@@ -33,7 +33,7 @@ export default async function OGImage() {
             display: "flex",
             alignItems: "baseline",
             fontWeight: 600,
-            fontSize: 160,
+            fontSize: 380,
             letterSpacing: "-0.05em",
             color: "#18181b",
             marginLeft: "-0.3ch",
