@@ -39,6 +39,14 @@ export function Hero() {
         style={{ background: "var(--accent)" }}
         aria-hidden
       />
+
+      {/* Currently making — anchors brand in active time */}
+      <p
+        className="mt-4 font-mono text-[11px] uppercase text-ink-faint"
+        style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+      >
+        Tasks &middot; Cycle 9 &mdash; Cinematic Showcase
+      </p>
     </section>
   );
 }

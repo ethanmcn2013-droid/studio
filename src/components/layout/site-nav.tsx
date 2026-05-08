@@ -39,6 +39,13 @@ export function SiteNav() {
         {/* Nav links */}
         <nav aria-label="Site navigation" className="flex items-center gap-6">
           <Link
+            href="/work"
+            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Work
+          </Link>
+          <Link
             href="/about"
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
             style={{ letterSpacing: "0.01em" }}

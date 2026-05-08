@@ -102,17 +102,18 @@ function Pill({ label }: { label: string }) {
 interface ProductCardProps {
   wordmark: React.ReactNode;
   description: string;
+  positioning: string;
   pills: [string, string];
   href: string;
 }
 
-function ProductCard({ wordmark, description, pills, href }: ProductCardProps) {
+function ProductCard({ wordmark, description, positioning, pills, href }: ProductCardProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="lift group flex flex-col justify-between rounded-2xl border border-border bg-bg-elev p-7 no-underline"
+      className="product-card lift group flex flex-col justify-between rounded-2xl border border-border bg-bg-elev p-7 no-underline"
       style={{ boxShadow: "var(--shadow-1)" }}
     >
       {/* Top */}
@@ -123,6 +124,12 @@ function ProductCard({ wordmark, description, pills, href }: ProductCardProps) {
           style={{ fontSize: "0.9375rem" }}
         >
           {description}
+        </p>
+        <p
+          className="mt-2 leading-[1.5] text-ink-quiet"
+          style={{ fontSize: "0.8125rem" }}
+        >
+          {positioning}
         </p>
       </div>
 
@@ -151,12 +158,14 @@ export function ProductsGrid() {
         <ProductCard
           wordmark={<TasksWordmark />}
           description="Project management for the 80% who don't work in tech."
+          positioning="Made for people who run projects without a PM department."
           pills={["Multi-view", "Real-time"]}
           href="https://tasks-nu-hazel.vercel.app"
         />
         <ProductCard
           wordmark={<RoadmapWordmark />}
           description="Public product roadmaps written in plain English."
+          positioning="Made for teams who need stakeholders to see progress, not tickets."
           pills={["Multi-tenant", "No jargon"]}
           href="https://roadmap-ebon-eight.vercel.app"
         />

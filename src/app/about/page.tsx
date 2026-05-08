@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 export const metadata: Metadata = {
@@ -23,8 +24,8 @@ export default function AboutPage() {
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           {/* Section label */}
           <div
-            className="mb-10 text-[11px] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: "var(--accent)" }}
+            className="mb-10 text-[11px] font-semibold uppercase"
+            style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             About
           </div>
@@ -50,6 +51,16 @@ export default function AboutPage() {
                 studio. is the workshop. The products — Tasks and Roadmap — are
                 the output. Each one is specific, quiet, and finished.
               </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                The work is in the products. Tasks is a multi-view workspace for
+                people who don&rsquo;t think in sprints. Roadmap is a
+                public-facing changelog for the people your engineers aren&rsquo;t
+                talking to.
+              </p>
             </div>
 
             {/* Right column — products + closing line */}
@@ -57,8 +68,8 @@ export default function AboutPage() {
               {/* Product links */}
               <div className="flex flex-col gap-4">
                 <div
-                  className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-                  style={{ color: "var(--ink-faint)" }}
+                  className="text-[11px] font-semibold uppercase"
+                  style={{ color: "var(--ink-faint)", letterSpacing: "var(--tracking-eyebrow)" }}
                 >
                   Products
                 </div>
@@ -96,6 +107,30 @@ export default function AboutPage() {
                     </span>
                   </a>
                 </div>
+              </div>
+
+              {/* Also made — link to /work */}
+              <div className="mt-2">
+                <div
+                  className="mb-3 text-[11px] font-semibold uppercase text-ink-faint"
+                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+                >
+                  Also made
+                </div>
+                <Link
+                  href="/work"
+                  className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                >
+                  <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                    See what&rsquo;s shipped
+                  </span>
+                  <span
+                    className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                    aria-hidden
+                  >
+                    &rarr;
+                  </span>
+                </Link>
               </div>
 
               {/* Quiet closing note */}

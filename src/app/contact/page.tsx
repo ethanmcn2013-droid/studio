@@ -18,8 +18,8 @@ export default function ContactPage() {
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           {/* Section label */}
           <div
-            className="mb-10 text-[11px] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: "var(--accent)" }}
+            className="mb-10 text-[11px] font-semibold uppercase"
+            style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             Contact
           </div>
@@ -35,6 +35,14 @@ export default function ContactPage() {
             >
               Send a note.
             </a>
+          </p>
+
+          {/* Typographic colophon — designer signal */}
+          <p
+            className="mt-12 font-mono text-[11px] leading-[1.8] text-ink-faint"
+          >
+            Set in Geist &middot; Geist Mono<br />
+            Next.js 16 &middot; Vercel &middot; 2026
           </p>
         </section>
       </main>

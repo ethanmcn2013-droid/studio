@@ -310,6 +310,31 @@ body {
   border-radius: 6px;
 }
 
+/* ── Eyebrow tracking token ───────────────────────────────── */
+:root {
+  --tracking-eyebrow: 0.16em;
+}
+
+/* ── Product card gold-rule hover ─────────────────────────── */
+/* A 1px accent line that expands from 0 → 100% at card bottom */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+.product-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: var(--accent);
+  transition: width 600ms var(--spring-glide);
+}
+.product-card:hover::after {
+  width: 100%;
+}
+
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
