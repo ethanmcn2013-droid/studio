@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────
+   Design tokens — Studio (umbrella brand)
+   Shared foundation: ink ramp, type scale, springs, radii,
+   shadows — same family as Tasks and Roadmap.
+   Own identity: --accent sand/gold instead of indigo.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  /* ── Studio accent ramp ───────────────────────────────────── */
+  /* warmer than tech-blue, ages better than neon */
+  --accent:       #c9a96a;
+  --accent-deep:  #9c7a42;
+  --accent-soft:  #f5edd8;
+  --accent-glow:  rgba(201, 169, 106, 0.36);
+
+  /* ── Ink ramp (neutrals — shared with Tasks + Roadmap) ────── */
+  --ink-0:   #ffffff;
+  --ink-50:  #fafafa;
+  --ink-100: #f4f4f5;
+  --ink-200: #e4e4e7;
+  --ink-300: #d4d4d8;
+  --ink-400: #a1a1aa;
+  --ink-500: #71717a;
+  --ink-600: #52525b;
+  --ink-700: #3f3f46;
+  --ink-800: #27272a;
+  --ink-900: #18181b;
+  --ink-950: #09090b;
+
+  /* ── Semantic surfaces ────────────────────────────────────── */
+  --bg:          #fafaf7; /* warm-stone, same family baseline */
+  --bg-elev:     #ffffff;
+  --bg-deep:     #f4f4f0;
+
+  --border:      #e4e4e7;
+  --border-soft: #ececec;
+  --line:        var(--border);
+  --line-soft:   var(--border-soft);
+
+  --text:        var(--ink-900);
+  --text-muted:  var(--ink-500);
+  --text-faint:  var(--ink-400);
+  --ink:         var(--ink-900);
+  --ink-soft:    var(--ink-700);
+  --ink-quiet:   var(--ink-500);
+  --ink-faint:   var(--ink-400);
+
+  /* ── Brand semantics → accent ────────────────────────────── */
+  --brand:      var(--accent);
+  --brand-deep: var(--accent-deep);
+  --brand-soft: var(--accent-soft);
+  --brand-glow: var(--accent-glow);
+
+  /* ── Motion · springs ─────────────────────────────────────── */
+  --spring-snap:  cubic-bezier(.2, .9, .2, 1.2);
+  --spring-soft:  cubic-bezier(.32, .72, 0, 1);
+  --spring-glide: cubic-bezier(.16, 1, .3, 1);
+  --ease-out:     cubic-bezier(.22, .61, .36, 1);
+
+  /* ── Type ─────────────────────────────────────────────────── */
+  --font-sans-stack: var(--font-geist-sans), 'Geist', -apple-system,
+    system-ui, sans-serif;
+  --font-mono-stack: var(--font-geist-mono), 'Geist Mono', ui-monospace,
+    'SF Mono', monospace;
+
+  /* Display scale — fluid clamps, shared system */
+  --fs-display: clamp(2.75rem, 1.8rem + 4.2vw, 5.5rem);
+  --fs-title:   clamp(1.875rem, 1.4rem + 2.2vw, 3.25rem);
+  --fs-section: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+
+  /* ── Radii ────────────────────────────────────────────────── */
+  --r-1:    4px;
+  --r-2:    6px;
+  --r-3:    10px;
+  --r-4:    14px;
+  --r-5:    20px;
+  --r-pill: 999px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgba(24, 24, 27, .04),
+              0 1px 1px rgba(24, 24, 27, .03);
+  --shadow-2: 0 4px 12px rgba(24, 24, 27, .06),
+              0 1px 3px rgba(24, 24, 27, .04);
+  --shadow-3: 0 24px 60px -20px rgba(24, 24, 27, .18),
+              0 8px 24px -8px rgba(24, 24, 27, .08);
+  --shadow-accent: 0 12px 32px -12px rgba(201, 169, 106, .38);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Tailwind theme bindings
+   ──────────────────────────────────────────────────────────── */
+@theme inline {
+  /* Studio accent */
+  --color-accent:      var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+
+  /* Brand aliases → accent */
+  --color-brand:      var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+
+  /* Ink ramp */
+  --color-ink:       var(--ink);
+  --color-ink-soft:  var(--ink-soft);
+  --color-ink-quiet: var(--ink-quiet);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-0:    var(--ink-0);
+  --color-ink-50:   var(--ink-50);
+  --color-ink-100:  var(--ink-100);
+  --color-ink-200:  var(--ink-200);
+  --color-ink-300:  var(--ink-300);
+  --color-ink-400:  var(--ink-400);
+  --color-ink-500:  var(--ink-500);
+  --color-ink-600:  var(--ink-600);
+  --color-ink-700:  var(--ink-700);
+  --color-ink-800:  var(--ink-800);
+  --color-ink-900:  var(--ink-900);
+  --color-ink-950:  var(--ink-950);
+
+  /* Semantic surfaces */
+  --color-bg:          var(--bg);
+  --color-bg-elev:     var(--bg-elev);
+  --color-bg-deep:     var(--bg-deep);
+  --color-line:        var(--line);
+  --color-line-soft:   var(--line-soft);
+  --color-border:      var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-text:        var(--text);
+  --color-text-muted:  var(--text-muted);
+  --color-text-faint:  var(--text-faint);
+
+  /* Type */
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-display: var(--font-geist-sans);
+
+  /* Radii */
+  --radius-1:    var(--r-1);
+  --radius-2:    var(--r-2);
+  --radius-3:    var(--r-3);
+  --radius-4:    var(--r-4);
+  --radius-5:    var(--r-5);
+  --radius-pill: var(--r-pill);
+
+  /* Shadows */
+  --shadow-1:      var(--shadow-1);
+  --shadow-2:      var(--shadow-2);
+  --shadow-3:      var(--shadow-3);
+  --shadow-accent: var(--shadow-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Base
+   ──────────────────────────────────────────────────────────── */
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans-stack);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink-900);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Display + utility
+   ──────────────────────────────────────────────────────────── */
+.tight   { letter-spacing: -0.035em; }
+.tighter { letter-spacing: -0.05em; }
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+.h-display {
+  font-size: var(--fs-display);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+.h-title {
+  font-size: var(--fs-title);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+.h-section {
+  font-size: var(--fs-section);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+/* Marker-underline accent — accent-gold variant for Studio */
+.marker {
+  background: linear-gradient(
+    120deg,
+    transparent 0 6%,
+    color-mix(in srgb, var(--accent) 28%, transparent) 6% 94%,
+    transparent 94%
+  );
+  background-size: 100% 0.78em;
+  background-position: 0 82%;
+  background-repeat: no-repeat;
+  padding: 0 0.05em;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Studio wordmark period — settling gesture
+   The "." fades in 200ms after load. Not a heartbeat, not a
+   pulse. A breath in. Quieter than Tasks' dot, quieter than
+   Roadmap's slide. Studio doesn't announce; it settles.
+   ──────────────────────────────────────────────────────────── */
+@keyframes studio-period-settle {
+  0%   { opacity: 0; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.studio-period {
+  display: inline-block;
+  color: var(--accent);
+  animation: studio-period-settle 0.3s var(--spring-glide) 0.2s both;
+}
+
+/* Tasks dot — inline pulse (adapted from Tasks design system) */
+.tasks-dot {
+  display: inline-block;
+  position: relative;
+  width: 0.28em;
+  height: 0.28em;
+  background-color: #4f46e5;
+  border-radius: 50%;
+  margin-left: 0.1em;
+  transform: translateY(-0.36em);
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.42);
+  animation: tasks-dot-pulse 2.6s cubic-bezier(.16, 1, .3, 1) infinite;
+}
+.tasks-dot::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid #4f46e5;
+  border-radius: 50%;
+  opacity: 0;
+  animation: tasks-dot-emit 2.6s cubic-bezier(.16, 1, .3, 1) infinite;
+}
+@keyframes tasks-dot-pulse {
+  0%, 60%, 100% { transform: translateY(-0.36em) scale(1); }
+  70%           { transform: translateY(-0.36em) scale(1.25); }
+  80%           { transform: translateY(-0.36em) scale(1); }
+}
+@keyframes tasks-dot-emit {
+  0%, 60% { opacity: 0; transform: scale(0.8); }
+  68%     { opacity: 1; transform: scale(1); }
+  100%    { opacity: 0; transform: scale(2.6); }
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes rise {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 0.85s var(--spring-glide) both;
+}
+
+@keyframes shine {
+  0%   { background-position: 200% center; }
+  100% { background-position: -100% center; }
+}
+.wordmark {
+  background: linear-gradient(
+    110deg,
+    var(--ink-900) 30%,
+    var(--ink-600) 50%,
+    var(--ink-900) 70%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.wordmark-hover:hover .wordmark {
+  animation: shine 3s linear infinite;
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+.lift {
+  transition:
+    transform 0.4s var(--spring-glide),
+    box-shadow 0.4s var(--spring-glide);
+}
+.lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
