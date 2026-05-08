@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteNav } from "@/components/layout/site-nav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Studio builds focused software for people who don't work in tech. Two tools: Tasks and Roadmap.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://studio.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://studio-sigma-pied-75.vercel.app"
   ),
   openGraph: {
     title: "studio · tools for the 80%",
@@ -37,7 +38,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }
