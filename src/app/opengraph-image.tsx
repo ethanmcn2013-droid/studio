@@ -39,8 +39,8 @@ export default async function OGImage() {
           }}
         >
           studio
-          {/* Period in contrasted dark, since gold bg makes accent-on-accent unreadable */}
-          <span style={{ color: "#18181b", opacity: 0.55 }}>.</span>
+          {/* Period in white — dark at 0.55 opacity disappears on gold. White reads. */}
+          <span style={{ color: "rgba(255,255,255,0.82)" }}>.</span>
         </div>
       </div>
     ),

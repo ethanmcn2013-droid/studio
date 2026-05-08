@@ -9,7 +9,7 @@
 :root {
   /* ── Studio accent ramp ───────────────────────────────────── */
   /* warmer than tech-blue, ages better than neon */
-  --accent:       #c9a96a;
+  --accent:       #c9a96a; /* matches Roadmap's --brand and Tasks' equivalent — update in sync */
   --accent-deep:  #9c7a42;
   --accent-soft:  #f5edd8;
   --accent-glow:  rgba(201, 169, 106, 0.36);

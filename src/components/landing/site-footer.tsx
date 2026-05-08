@@ -8,11 +8,11 @@ export function SiteFooter() {
       className="mx-auto w-full max-w-[760px] border-t border-border-soft px-6 py-10"
     >
       <div className="flex flex-wrap items-center justify-between gap-4">
-        {/* Left: wordmark + year */}
-        <div className="flex items-center gap-3">
+        {/* Left: wordmark stacked above copyright — separate terminal marks */}
+        <div className="flex flex-col gap-1">
           <Wordmark size="sm" animate={false} />
           <span
-            className="text-[12px] text-ink-faint"
+            className="text-[11px] text-ink-faint"
             style={{ letterSpacing: "0.02em" }}
           >
             &copy; {year}
