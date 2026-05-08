@@ -86,7 +86,7 @@ export default function WorkPage() {
           </p>
 
           {/* Index list */}
-          <ol className="flex flex-col divide-y divide-border-soft">
+          <ol className="flex flex-col">
             {items.map((item) => {
               const Row = (
                 <div className="grid grid-cols-1 gap-1 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8">
@@ -132,7 +132,7 @@ export default function WorkPage() {
 
               if (item.href) {
                 return (
-                  <li key={item.name}>
+                  <li key={item.name} className="border-b border-border-soft last:border-b-0">
                     <a
                       href={item.href}
                       target="_blank"
@@ -147,7 +147,7 @@ export default function WorkPage() {
               }
 
               return (
-                <li key={item.name}>
+                <li key={item.name} className="border-b border-border-soft last:border-b-0">
                   {Row}
                 </li>
               );

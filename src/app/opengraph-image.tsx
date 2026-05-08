@@ -33,14 +33,15 @@ export default async function OGImage() {
             display: "flex",
             alignItems: "baseline",
             fontWeight: 600,
-            fontSize: 96,
+            fontSize: 160,
             letterSpacing: "-0.05em",
             color: "#18181b",
+            marginLeft: "-0.3ch",
           }}
         >
           studio
-          {/* Period in white — dark at 0.55 opacity disappears on gold. White reads. */}
-          <span style={{ color: "rgba(255,255,255,0.82)" }}>.</span>
+          {/* Period in deep warm-brown — pops against gold field, stays in the gold family */}
+          <span style={{ color: "#5b3f12" }}>.</span>
         </div>
       </div>
     ),

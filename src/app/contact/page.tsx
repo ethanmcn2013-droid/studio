@@ -25,15 +25,21 @@ export default function ContactPage() {
           </div>
 
           <p
-            className="max-w-[420px] leading-[1.7] text-ink-soft"
+            className="leading-[1.7] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Have a question or want to work together?{" "}
+            For product questions or freelance work. Response within 48 hours.
+          </p>
+
+          <p
+            className="mt-5 leading-[1.7] text-ink-soft"
+            style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+          >
             <a
               href="mailto:ethanmcn2013@gmail.com"
               className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
-              Send a note.
+              ethanmcn2013@gmail.com
             </a>
           </p>
 

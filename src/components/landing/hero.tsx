@@ -1,18 +1,13 @@
-import { Wordmark } from "@/components/brand/wordmark";
-
 /**
  * Hero section — Studio's opening frame.
  *
  * No cinematic demo, no CTA. Studio is the workshop: it holds the
- * tools, it doesn't sell them from a stage. The wordmark sets the
- * tone; the manifesto line does the rest.
+ * tools, it doesn't sell them from a stage. The SiteNav carries the
+ * wordmark — the hero opens directly on the headline.
  */
 export function Hero() {
   return (
     <section className="mx-auto w-full max-w-[760px] px-6 pb-24 pt-20 md:pb-32 md:pt-28">
-      {/* Wordmark — xl settling treatment */}
-      <Wordmark size="xl" as="div" />
-
       {/* Manifesto headline */}
       <h1
         className="mt-8 text-balance font-semibold leading-[1.06] tracking-[-0.03em] text-ink"
