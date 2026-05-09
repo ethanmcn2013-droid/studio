@@ -313,6 +313,9 @@ body {
 /* ── Eyebrow tracking token ───────────────────────────────── */
 :root {
   --tracking-eyebrow: 0.16em;
+
+  /* Product brand tokens — separate from Studio's gold accent */
+  --indigo-600: #4f46e5;
 }
 
 /* ── Product card gold-rule hover ─────────────────────────── */
@@ -335,6 +338,37 @@ body {
   width: 100%;
 }
 
+/* ── Manifesto rule sweep ─────────────────────────────────────
+   The one moment Studio's gold accent earns volume. A 96px
+   accent rule above the manifesto title that sweeps from 0
+   width as the section enters the viewport. Uses the modern
+   CSS scroll-driven animations API; in older browsers, the
+   rule sits at its full width with no animation.
+   ──────────────────────────────────────────────────────────── */
+.manifesto-rule {
+  display: block;
+  height: 2px;
+  width: 96px;
+  background: var(--accent);
+  border-radius: 999px;
+  margin-bottom: 22px;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+@supports (animation-timeline: view()) {
+  .manifesto-rule {
+    width: 0;
+    animation: rule-sweep linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
+  }
+}
+
+@keyframes rule-sweep {
+  from { width: 0; }
+  to   { width: 96px; }
+}
+
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -343,5 +377,9 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  /* Ensure the gold rule is visible at full width when motion is reduced. */
+  .manifesto-rule {
+    width: 96px !important;
   }
 }

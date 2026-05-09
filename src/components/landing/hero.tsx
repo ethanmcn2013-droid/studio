@@ -1,46 +1,58 @@
 /**
- * Hero section — Studio's opening frame.
+ * Hero — Signal Studio's opening frame.
  *
- * No cinematic demo, no CTA. Studio is the workshop: it holds the
- * tools, it doesn't sell them from a stage. The SiteNav carries the
- * wordmark — the hero opens directly on the headline.
+ * Headline carries the operating headline ("Cut through the noise.")
+ * Sub-paragraph carries the operating principle. Both are locked in
+ * brand memory as load-bearing copy.
+ *
+ * No cinematic demo. The umbrella site is a directory; the
+ * products carry the weight. A quiet anchor CTA invites the scroll.
  */
 export function Hero() {
   return (
     <section className="mx-auto w-full max-w-[760px] px-6 pb-24 pt-20 md:pb-32 md:pt-28">
-      {/* Manifesto headline */}
       <h1
-        className="mt-8 text-balance font-semibold leading-[1.06] tracking-[-0.03em] text-ink"
-        style={{ fontSize: "clamp(1.75rem, 1.2rem + 2.6vw, 3rem)" }}
+        className="rise mt-8 text-balance font-semibold leading-[1.04] tracking-[-0.035em] text-ink"
+        style={{ fontSize: "clamp(2rem, 1.3rem + 3vw, 3.5rem)", animationDelay: "0ms" }}
       >
-        Tools made by hand,
-        <br />
-        for people who don&rsquo;t work in tech.
+        Cut through the noise.
       </h1>
 
-      {/* Sub-paragraph */}
       <p
-        className="mt-5 max-w-[520px] leading-[1.6] text-ink-quiet"
-        style={{ fontSize: "clamp(1rem, 0.9rem + 0.4vw, 1.125rem)" }}
+        className="rise mt-6 max-w-[540px] leading-[1.6] text-ink-soft"
+        style={{ fontSize: "clamp(1.0625rem, 0.95rem + 0.45vw, 1.1875rem)", animationDelay: "120ms" }}
       >
-        Studio builds focused software — a task manager and a public
-        roadmap tool — for the 80% of people the industry keeps building
-        around instead of for.
+        Operational clarity software. Built for people who want to know
+        what matters next, not be told everything at once.
       </p>
 
-      {/* Quiet hairline separator */}
+      <p
+        className="rise mt-3 max-w-[540px] leading-[1.6] text-ink-quiet"
+        style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)", animationDelay: "120ms" }}
+      >
+        Three tools live here. Each one specific, finished, and already shipped.
+      </p>
+
+      {/* Quiet anchor CTA — a small invitation, not a funnel */}
+      <a
+        href="#products"
+        className="rise mt-6 inline-block text-[13.5px] text-ink-quiet transition-colors hover:text-ink"
+        style={{ animationDelay: "200ms" }}
+      >
+        See what we make ↓
+      </a>
+
       <div
-        className="mt-14 h-px w-12"
-        style={{ background: "var(--accent)" }}
+        className="rise mt-14 h-px w-12"
+        style={{ background: "var(--accent)", animationDelay: "240ms" }}
         aria-hidden
       />
 
-      {/* Currently making — anchors brand in active time */}
       <p
-        className="mt-4 font-mono text-[11px] uppercase text-ink-faint"
-        style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+        className="rise mt-4 font-mono text-[11px] uppercase text-ink-faint"
+        style={{ letterSpacing: "var(--tracking-eyebrow)", animationDelay: "360ms" }}
       >
-        Tasks &middot; Cycle 9 &mdash; Cinematic Showcase
+        Operating principle &middot; Everything important. Nothing distracting.
       </p>
     </section>
   );

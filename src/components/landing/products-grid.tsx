@@ -1,13 +1,17 @@
 /**
- * Products grid — the two tools Studio makes.
+ * Products grid — the three tools Studio makes.
  *
- * Each card carries the product's own wordmark treatment:
- * - Tasks: lowercase "tasks" + the pulsing brand-indigo dot
- * - Roadmap: titlecase "Roadmap" + the hairline/dot-slide SVG
+ * Each card carries the product's own wordmark treatment, all
+ * inside one shared grammar: lowercase word + indigo dot.
+ * - Tasks:     pulsing dot (live signal)
+ * - Roadmap:   static dot here; slide-on-mount on its own site
+ * - Analytics: static dot (ambient briefing)
  *
  * No heavy shadows, no hover-glow theatrics. The cards lift 2px.
  * The "Open →" arrow is the only CTA.
  */
+
+import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
 
 /* ── Tasks wordmark (adapated inline, no import needed) ───── */
 function TasksWordmark() {
@@ -30,58 +34,56 @@ function TasksWordmark() {
   );
 }
 
-/* ── Roadmap wordmark (hairline + dot-at-rest) ─────────────── */
+/* ── Roadmap wordmark (lowercase + dot, suite family) ──────── */
 function RoadmapWordmark() {
-  // Static version of the Roadmap slide-dot — dot rests at 70%.
-  // No motion dependency; Studio keeps things lean.
-  const lineW = 28;
-  const dotR = 2.5;
-  const svgW = lineW + dotR * 2;
-  const svgH = dotR * 2 + 2;
-  const midY = svgH / 2;
-  const restX = dotR + lineW * 0.7;
-
+  // Matches the live Roadmap mark — lowercase + indigo dot.
+  // Static here in Studio's directory context (no slide-on-mount).
   return (
     <span
-      className="inline-flex items-baseline gap-[0.45em] font-semibold"
-      style={{ fontSize: "1.125rem" }}
+      className="inline-flex items-baseline font-semibold"
+      style={{ letterSpacing: "-0.05em", fontSize: "1.125rem" }}
     >
-      <svg
-        width={svgW}
-        height={svgH}
-        viewBox={`0 0 ${svgW} ${svgH}`}
+      <span style={{ fontWeight: 600, color: "var(--ink-900)" }}>
+        roadmap
+      </span>
+      <span
         aria-hidden
         style={{
           display: "inline-block",
-          verticalAlign: "middle",
+          width: "5px",
+          height: "5px",
+          borderRadius: "999px",
+          background: "var(--indigo-600)",
+          marginLeft: "0.18em",
           transform: "translateY(-1px)",
         }}
-      >
-        <line
-          x1={dotR}
-          x2={lineW + dotR}
-          y1={midY}
-          y2={midY}
-          stroke="var(--ink-quiet)"
-          strokeWidth={1}
-          strokeLinecap="round"
-        />
-        <circle
-          cx={restX}
-          cy={midY}
-          r={dotR}
-          fill="#4f46e5"
-        />
-      </svg>
-      <span
-        style={{
-          fontWeight: 600,
-          letterSpacing: "-0.01em",
-          color: "var(--ink-900)",
-        }}
-      >
-        Roadmap
+      />
+    </span>
+  );
+}
+
+/* ── Analytics wordmark (static dot, no pulse) ─────────────── */
+function AnalyticsWordmark() {
+  return (
+    <span
+      className="inline-flex items-baseline font-semibold"
+      style={{ letterSpacing: "-0.03em", fontSize: "1.125rem" }}
+    >
+      <span style={{ fontWeight: 600, color: "var(--ink-900)" }}>
+        analytics
       </span>
+      <span
+        aria-hidden
+        style={{
+          display: "inline-block",
+          width: "5px",
+          height: "5px",
+          borderRadius: "999px",
+          background: "var(--indigo-600)",
+          marginLeft: "0.18em",
+          transform: "translateY(-1px)",
+        }}
+      />
     </span>
   );
 }
@@ -100,74 +102,228 @@ function Pill({ label }: { label: string }) {
 
 /* ── Product card ──────────────────────────────────────────── */
 interface ProductCardProps {
+  /** Umbrella-prefixed display label, e.g. "Signal Tasks". */
+  label: string;
+  /** The product's own visual wordmark — preserved per-product. */
   wordmark: React.ReactNode;
+  /** A small visual proof sliver — sits above the textual stack. */
+  proof: React.ReactNode;
   description: string;
   positioning: string;
   pills: [string, string];
   href: string;
 }
 
-function ProductCard({ wordmark, description, positioning, pills, href }: ProductCardProps) {
+function ProductCard({ label, wordmark, proof, description, positioning, pills, href }: ProductCardProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="product-card lift group flex flex-col justify-between rounded-2xl border border-border bg-bg-elev p-7 no-underline"
+      className="product-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-bg-elev no-underline"
       style={{ boxShadow: "var(--shadow-1)" }}
     >
-      {/* Top */}
-      <div>
-        <div>{wordmark}</div>
-        <p
-          className="mt-4 leading-[1.55] text-ink-soft"
-          style={{ fontSize: "0.9375rem" }}
-        >
-          {description}
-        </p>
-        <p
-          className="mt-2 leading-[1.5] text-ink-quiet"
-          style={{ fontSize: "0.8125rem" }}
-        >
-          {positioning}
-        </p>
+      {/* Proof sliver — the product's signature artifact, in miniature */}
+      <div
+        className="border-b border-border-soft"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--bg-deep) 0%, color-mix(in srgb, var(--bg-deep) 60%, var(--bg-elev)) 100%)",
+          padding: "20px 22px",
+          minHeight: 124,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {proof}
       </div>
 
-      {/* Bottom */}
-      <div className="mt-8 flex items-end justify-between">
-        <div className="flex flex-wrap gap-2">
-          <Pill label={pills[0]} />
-          <Pill label={pills[1]} />
+      {/* Textual stack */}
+      <div className="flex flex-1 flex-col justify-between p-7">
+        <div>
+          <div
+            className="mb-3 text-[10.5px] font-semibold uppercase text-ink-faint"
+            style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+          >
+            {label}
+          </div>
+          <div>{wordmark}</div>
+          <p
+            className="mt-4 leading-[1.55] text-ink-soft"
+            style={{ fontSize: "0.9375rem" }}
+          >
+            {description}
+          </p>
+          <p
+            className="mt-2 leading-[1.5] text-ink-quiet"
+            style={{ fontSize: "0.8125rem" }}
+          >
+            {positioning}
+          </p>
         </div>
-        <span
-          className="flex-shrink-0 text-[13.5px] font-medium text-ink-quiet transition-colors group-hover:text-ink"
-          style={{ letterSpacing: "0.01em" }}
-        >
-          Open&nbsp;&rarr;
-        </span>
+
+        {/* Bottom */}
+        <div className="mt-8 flex items-end justify-between">
+          <div className="flex flex-wrap gap-2">
+            <Pill label={pills[0]} />
+            <Pill label={pills[1]} />
+          </div>
+          <span
+            className="flex-shrink-0 text-[13.5px] font-medium text-ink-quiet transition-colors group-hover:text-ink"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Open&nbsp;&rarr;
+          </span>
+        </div>
       </div>
     </a>
+  );
+}
+
+/* ── Proof slivers — one per product ───────────────────────── */
+
+/** Tasks: three mini-lane stack with a single card in each. */
+function TasksProof() {
+  const lanes: Array<{ name: string; cardTitle: string; tint: string }> = [
+    { name: "To do",       cardTitle: "Sprint planning",        tint: "var(--lane-todo)" },
+    { name: "In progress", cardTitle: "Audit conversion funnel", tint: "var(--lane-doing)" },
+    { name: "Done",        cardTitle: "Launch demo cut",         tint: "var(--lane-done)" },
+  ];
+  return (
+    <div className="grid w-full grid-cols-3 gap-2">
+      {lanes.map((l) => (
+        <div
+          key={l.name}
+          className="rounded-md border border-border-soft p-1.5"
+          style={{ background: l.tint }}
+        >
+          <div
+            className="mb-1 text-[8px] font-semibold uppercase text-ink-quiet"
+            style={{ letterSpacing: "0.08em" }}
+          >
+            {l.name}
+          </div>
+          <div
+            className="rounded-sm bg-white px-1.5 py-1 text-[9.5px] leading-tight text-ink"
+            style={{
+              boxShadow: "0 1px 2px rgba(24,24,27,.06)",
+            }}
+          >
+            {l.cardTitle}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Roadmap: two lined-up roadmap items with status pills. */
+function RoadmapProof() {
+  const items: Array<{ title: string; status: string; statusBg: string; statusFg: string }> = [
+    {
+      title:    "Public roadmap URL",
+      status:   "DONE",
+      statusBg: "var(--status-shipped-bg)",
+      statusFg: "var(--status-shipped)",
+    },
+    {
+      title:    "Auth-gated comments",
+      status:   "DOING",
+      statusBg: "var(--status-flight-bg)",
+      statusFg: "var(--status-flight)",
+    },
+  ];
+  return (
+    <div className="flex w-full flex-col gap-1.5">
+      {items.map((i) => (
+        <div
+          key={i.title}
+          className="flex items-center justify-between rounded-md border border-border-soft bg-white px-2.5 py-1.5"
+        >
+          <span className="text-[10.5px] text-ink">{i.title}</span>
+          <span
+            className="rounded px-1.5 py-px text-[8.5px] font-semibold tracking-[0.08em]"
+            style={{ background: i.statusBg, color: i.statusFg }}
+          >
+            {i.status}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Analytics: a one-bucket briefing fragment. */
+function AnalyticsProof() {
+  return (
+    <div className="w-full">
+      <p
+        className="text-[8.5px] font-semibold uppercase text-ink-quiet"
+        style={{
+          letterSpacing: "0.14em",
+          fontFamily: "var(--font-mono-stack)",
+          marginBottom: 6,
+        }}
+      >
+        Daily Signal · 09:14
+      </p>
+      <p className="text-[12px] font-semibold text-ink" style={{ letterSpacing: "-0.01em" }}>
+        Good morning.
+      </p>
+      <p
+        className="mt-2 flex items-center gap-1.5 text-[8.5px] font-semibold uppercase text-ink-quiet"
+        style={{ letterSpacing: "0.12em", fontFamily: "var(--font-mono-stack)" }}
+      >
+        <span
+          aria-hidden
+          style={{
+            display: "inline-block",
+            width: 5,
+            height: 5,
+            borderRadius: 999,
+            background: "var(--status-flight)",
+          }}
+        />
+        Needs attention
+      </p>
+      <p className="mt-1 text-[10.5px] leading-snug text-ink-soft">
+        Website launch is blocked by missing assets
+      </p>
+    </div>
   );
 }
 
 /* ── Grid ──────────────────────────────────────────────────── */
 export function ProductsGrid() {
   return (
-    <section className="mx-auto w-full max-w-[760px] px-6 pb-24">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <section id="products" className="mx-auto w-full max-w-[1140px] px-6 pb-24">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <ProductCard
+          label="Signal Tasks"
           wordmark={<TasksWordmark />}
-          description="Project management for the 80% who don't work in tech."
-          positioning="Made for people who run projects without a PM department."
+          proof={<TasksProof />}
+          description="Execution clarity. A multi-view workspace for people who don't think in sprints."
+          positioning="Run projects without the project-manager energy."
           pills={["Multi-view", "Real-time"]}
-          href="https://tasks-nu-hazel.vercel.app"
+          href={TASKS_URL}
         />
         <ProductCard
+          label="Signal Roadmap"
           wordmark={<RoadmapWordmark />}
-          description="Public product roadmaps written in plain English."
-          positioning="Made for teams who need stakeholders to see progress, not tickets."
+          proof={<RoadmapProof />}
+          description="Direction clarity. Public product roadmaps written in plain English."
+          positioning="Show your work, not your Jira."
           pills={["Multi-tenant", "No jargon"]}
-          href="https://roadmap-ebon-eight.vercel.app"
+          href={ROADMAP_URL}
+        />
+        <ProductCard
+          label="Signal Analytics"
+          wordmark={<AnalyticsWordmark />}
+          proof={<AnalyticsProof />}
+          description="Attention clarity. Know what needs your attention before you ask."
+          positioning="A briefing, not a dashboard."
+          pills={["Daily Signal", "Briefing format"]}
+          href={ANALYTICS_URL}
         />
       </div>
     </section>
