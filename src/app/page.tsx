@@ -1,17 +1,17 @@
-import { Hero } from "@/components/landing/hero";
-import { ProductsGrid } from "@/components/landing/products-grid";
-import { Manifesto } from "@/components/landing/manifesto";
-import { SiteFooter } from "@/components/landing/site-footer";
+import { RevealEngine } from "@/components/reveal/reveal-engine";
+import { RevealHero } from "@/components/reveal/reveal-hero";
+import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
+import { RevealProducts } from "@/components/reveal/reveal-products";
+import { RevealClosing } from "@/components/reveal/reveal-closing";
 
 export default function Home() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
-        <Hero />
-        <ProductsGrid />
-        <Manifesto />
-      </main>
-      <SiteFooter />
+      <RevealHero />
+      <RevealManifesto />
+      <RevealProducts />
+      <RevealClosing />
+      <RevealEngine />
     </>
   );
 }

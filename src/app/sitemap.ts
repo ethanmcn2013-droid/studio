@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://studio-sigma-pied-75.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

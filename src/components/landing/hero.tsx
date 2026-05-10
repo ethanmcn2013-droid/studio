@@ -30,7 +30,7 @@ export function Hero() {
         className="rise mt-3 max-w-[540px] leading-[1.6] text-ink-quiet"
         style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)", animationDelay: "120ms" }}
       >
-        Three tools live here. Each one specific, finished, and already shipped.
+        Four tools live here. Each one specific, finished, and already shipped.
       </p>
 
       {/* Quiet anchor CTA — a small invitation, not a funnel */}

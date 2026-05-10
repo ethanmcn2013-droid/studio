@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 export const metadata: Metadata = {
-  title: "Contact — studio.",
-  description: "Get in touch with studio.",
+  title: "Contact — Signal Studio",
+  description: "Get in touch. hello@signalstudio.ie",
 };
 
 /**

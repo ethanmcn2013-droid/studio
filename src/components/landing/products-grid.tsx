@@ -11,7 +11,7 @@
  * The "Open →" arrow is the only CTA.
  */
 
-import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
 
 /* ── Tasks wordmark (adapated inline, no import needed) ───── */
 function TasksWordmark() {
@@ -45,6 +45,32 @@ function RoadmapWordmark() {
     >
       <span style={{ fontWeight: 600, color: "var(--ink-900)" }}>
         roadmap
+      </span>
+      <span
+        aria-hidden
+        style={{
+          display: "inline-block",
+          width: "5px",
+          height: "5px",
+          borderRadius: "999px",
+          background: "var(--indigo-600)",
+          marginLeft: "0.18em",
+          transform: "translateY(-1px)",
+        }}
+      />
+    </span>
+  );
+}
+
+/* ── Notes wordmark (underline-writes-itself, planned product) ──────────── */
+function NotesWordmark() {
+  return (
+    <span
+      className="inline-flex items-baseline font-semibold"
+      style={{ letterSpacing: "-0.04em", fontSize: "1.125rem" }}
+    >
+      <span className="notes-mark" style={{ fontWeight: 600, color: "var(--ink-900)" }}>
+        notes
       </span>
       <span
         aria-hidden
@@ -102,27 +128,21 @@ function Pill({ label }: { label: string }) {
 
 /* ── Product card ──────────────────────────────────────────── */
 interface ProductCardProps {
-  /** Umbrella-prefixed display label, e.g. "Signal Tasks". */
   label: string;
-  /** The product's own visual wordmark — preserved per-product. */
   wordmark: React.ReactNode;
-  /** A small visual proof sliver — sits above the textual stack. */
   proof: React.ReactNode;
   description: string;
   positioning: string;
   pills: [string, string];
   href: string;
+  comingSoon?: boolean;
 }
 
-function ProductCard({ label, wordmark, proof, description, positioning, pills, href }: ProductCardProps) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="product-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-bg-elev no-underline"
-      style={{ boxShadow: "var(--shadow-1)" }}
-    >
+function ProductCard({ label, wordmark, proof, description, positioning, pills, href, comingSoon }: ProductCardProps) {
+  const cardClass = `product-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-bg-elev no-underline${comingSoon ? " opacity-70" : ""}`;
+  const cardStyle = { boxShadow: "var(--shadow-1)" };
+  const inner = (
+    <>
       {/* Proof sliver — the product's signature artifact, in miniature */}
       <div
         className="border-b border-border-soft"
@@ -172,10 +192,23 @@ function ProductCard({ label, wordmark, proof, description, positioning, pills, 
             className="flex-shrink-0 text-[13.5px] font-medium text-ink-quiet transition-colors group-hover:text-ink"
             style={{ letterSpacing: "0.01em" }}
           >
-            Open&nbsp;&rarr;
+            {comingSoon ? "Soon" : <>Open&nbsp;&rarr;</>}
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (comingSoon) {
+    return (
+      <div className={cardClass} style={cardStyle} aria-label={`${label} — coming soon`}>
+        {inner}
+      </div>
+    );
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass} style={cardStyle}>
+      {inner}
     </a>
   );
 }
@@ -293,11 +326,40 @@ function AnalyticsProof() {
   );
 }
 
+/** Notes: a stack of mock note tabs with one indigo highlight. */
+function NotesProof() {
+  const notes = [
+    { title: "Florist quote — Bloom", tint: "var(--bg-elev)", active: false },
+    { title: "Venue walkthrough notes", tint: "var(--bg-elev)", active: true },
+    { title: "Save-the-date copy", tint: "var(--bg-elev)", active: false },
+  ];
+  return (
+    <div className="flex w-full flex-col gap-1">
+      {notes.map((n) => (
+        <div
+          key={n.title}
+          className="rounded-md border px-2 py-1.5 text-[10px]"
+          style={{
+            background: n.tint,
+            borderColor: n.active
+              ? "color-mix(in srgb, var(--indigo-600) 28%, var(--border-soft))"
+              : "var(--border-soft)",
+            color: n.active ? "var(--ink)" : "var(--ink-quiet)",
+            boxShadow: n.active ? "0 1px 2px rgba(79,70,229,.08)" : "none",
+          }}
+        >
+          {n.title}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ── Grid ──────────────────────────────────────────────────── */
 export function ProductsGrid() {
   return (
-    <section id="products" className="mx-auto w-full max-w-[1140px] px-6 pb-24">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="products" className="mx-auto w-full max-w-[1280px] px-6 pb-24">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard
           label="Signal Tasks"
           wordmark={<TasksWordmark />}
@@ -324,6 +386,16 @@ export function ProductsGrid() {
           positioning="A briefing, not a dashboard."
           pills={["Daily Signal", "Briefing format"]}
           href={ANALYTICS_URL}
+        />
+        <ProductCard
+          label="Signal Notes"
+          wordmark={<NotesWordmark />}
+          proof={<NotesProof />}
+          description="Capture clarity. The notebook that finds what you wrote down."
+          positioning="Coming soon."
+          pills={["In design", "Q3 2026"]}
+          href={NOTES_URL}
+          comingSoon
         />
       </div>
     </section>

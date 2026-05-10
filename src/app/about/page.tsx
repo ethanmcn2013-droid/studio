@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "About — studio.",
+  title: "About — Signal Studio",
   description:
-    "Ethan is a designer building software and motion graphics under the studio. umbrella.",
+    "Ethan is a designer building operational clarity software under the Signal Studio umbrella.",
 };
 
 /**
@@ -24,11 +25,16 @@ export default function AboutPage() {
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           {/* Section label */}
           <div
-            className="mb-10 text-[11px] font-semibold uppercase"
+            className="mb-6 text-[11px] font-semibold uppercase"
             style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             About
           </div>
+
+          {/* Page H1 */}
+          <h1 className="h-section mb-10 max-w-[560px] text-balance text-ink">
+            One workshop. Four tools. Clear opinions.
+          </h1>
 
           {/* Two-column layout */}
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr] md:gap-16">
@@ -38,28 +44,27 @@ export default function AboutPage() {
                 className="leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Ethan is a designer making focused software and motion graphics
-                under the studio. umbrella. The work lives at the edge of
-                product and craft — not enterprise, not consumer SaaS. Tools
-                that disappear into the work they&rsquo;re there to support.
+                Ethan is a designer building operational clarity software under
+                the Signal Studio umbrella. The work lives at the edge of product
+                and craft — not enterprise, not consumer SaaS. Tools that
+                reduce ambiguity instead of adding information.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                studio. is the workshop. The products — Tasks and Roadmap — are
-                the output. Each one is specific, quiet, and finished.
+                Signal Studio is the workshop. Four products are the output.
+                Each one is specific, quiet, and finished.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                The work is in the products. Tasks is a multi-view workspace for
-                people who don&rsquo;t think in sprints. Roadmap is a
-                public-facing changelog for the people your engineers aren&rsquo;t
-                talking to.
+                Signal Tasks runs the work. Signal Roadmap explains it. Signal
+                Analytics surfaces what matters in it. Signal Notes captures it
+                as it happens. One slice each. Together, a system.
               </p>
             </div>
 
@@ -75,13 +80,13 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <a
-                    href="https://tasks-nu-hazel.vercel.app"
+                    href={TASKS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Tasks
+                      Signal Tasks
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
@@ -91,13 +96,46 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href="https://roadmap-ebon-eight.vercel.app"
+                    href={ROADMAP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Roadmap
+                      Signal Roadmap
+                    </span>
+                    <span
+                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      aria-hidden
+                    >
+                      &rarr;
+                    </span>
+                  </a>
+                  <a
+                    href={ANALYTICS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                  >
+                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                      Signal Analytics
+                    </span>
+                    <span
+                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      aria-hidden
+                    >
+                      &rarr;
+                    </span>
+                  </a>
+                  <a
+                    href={NOTES_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                    aria-label="Signal Notes — coming soon"
+                  >
+                    <span className="text-[14px] font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
+                      Signal Notes
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
@@ -138,7 +176,7 @@ export default function AboutPage() {
                 className="text-[12.5px] leading-[1.6] text-ink-faint"
                 style={{ letterSpacing: "0.005em" }}
               >
-                No team. No investors. One person, two tools, clear opinions.
+                No team. No investors. One person, four tools, clear opinions.
               </p>
             </div>
           </div>

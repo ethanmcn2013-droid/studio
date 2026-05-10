@@ -14,16 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "studio · tools for the 80%",
+  title: "Signal Studio · Cut through the noise.",
   description:
-    "Studio builds focused software for people who don't work in tech. Two tools: Tasks and Roadmap.",
+    "Four products for operational clarity. Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes. Everything important. Nothing distracting.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://studio-sigma-pied-75.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie"
   ),
   openGraph: {
-    title: "studio · tools for the 80%",
+    title: "Signal Studio · Cut through the noise.",
     description:
-      "Studio builds focused software for people who don't work in tech.",
+      "Operational clarity software. Four products live here. Everything important. Nothing distracting.",
     type: "website",
   },
 };
