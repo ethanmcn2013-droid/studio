@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { seedHqData } from "@/lib/hq/data";
 import type {
   Campaign,
+  CollaborationLoopStep,
   ContentItem,
   DecisionItem,
   DemoAsset,
@@ -16,6 +17,7 @@ import type {
   Prospect,
   RiskItem,
   SegmentPlan,
+  SharedObjectItem,
   TemplateItem,
   WeeklyRhythmItem,
 } from "@/lib/hq/data";
@@ -26,6 +28,7 @@ const STORAGE_KEY = "signal-hq-data-v1";
 type TabId =
   | "overview"
   | "products"
+  | "loop"
   | "features"
   | "launch"
   | "growth"
@@ -38,6 +41,8 @@ type TabId =
 type HqArrayKey =
   | "features"
   | "campaigns"
+  | "collaborationLoop"
+  | "sharedObjects"
   | "prospects"
   | "contentItems"
   | "demos"
@@ -53,6 +58,7 @@ type HqArrayKey =
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "overview", label: "Command" },
   { id: "products", label: "Ecosystem" },
+  { id: "loop", label: "Collab Loop" },
   { id: "features", label: "Features" },
   { id: "launch", label: "Launch" },
   { id: "growth", label: "Growth Studio" },
@@ -103,12 +109,29 @@ function safeCloneData() {
   return JSON.parse(JSON.stringify(seedHqData)) as HqData;
 }
 
+function normalizeData(imported: Partial<HqData>): HqData {
+  const seed = safeCloneData();
+
+  return {
+    ...seed,
+    ...imported,
+    collaborationLoop: imported.collaborationLoop ?? seed.collaborationLoop,
+    sharedObjects: imported.sharedObjects ?? seed.sharedObjects,
+  } as HqData;
+}
+
 function repoDataIsNewer(storedData: HqData) {
   return new Date(seedHqData.updatedAt).getTime() > new Date(storedData.updatedAt).getTime();
 }
 
 function getToday() {
   return new Date().toISOString().slice(0, 10);
+}
+
+function formatUpdatedAt(value: string) {
+  const dateOnly = value.match(/^\d{4}-\d{2}-\d{2}/)?.[0];
+
+  return dateOnly ?? value;
 }
 
 function cx(...classes: Array<string | false | null | undefined>) {
@@ -332,7 +355,7 @@ export function HqDashboard() {
     try {
       const parsed = JSON.parse(stored) as HqData;
       if (parsed.version === 1) {
-        setData(parsed);
+        setData(normalizeData(parsed));
         setRepoUpdateAvailable(repoDataIsNewer(parsed));
       }
     } catch {
@@ -389,7 +412,7 @@ export function HqDashboard() {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `signal-hq-${data.updatedAt}.json`;
+    anchor.download = `signal-hq-${data.updatedAt.replace(/[^0-9a-z-]/gi, "-")}.json`;
     anchor.click();
     URL.revokeObjectURL(url);
   }
@@ -406,7 +429,7 @@ export function HqDashboard() {
         return;
       }
 
-      setData({ ...imported, updatedAt: getToday() });
+      setData({ ...normalizeData(imported), updatedAt: getToday() });
       setRepoUpdateAvailable(false);
       setImportError("");
     } catch {
@@ -460,7 +483,7 @@ export function HqDashboard() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="mr-2 font-mono text-[11px] text-ink-faint">Updated {data.updatedAt}</span>
+            <span className="mr-2 font-mono text-[11px] text-ink-faint">Updated {formatUpdatedAt(data.updatedAt)}</span>
             <button
               type="button"
               onClick={exportData}
@@ -555,6 +578,9 @@ export function HqDashboard() {
             <OverviewTab data={data} derived={derived} />
           ) : null}
           {activeTab === "products" ? <ProductsTab data={data} /> : null}
+          {activeTab === "loop" ? (
+            <CollaborationLoopTab data={data} updateItem={updateItem} />
+          ) : null}
           {activeTab === "features" ? (
             <FeaturesTab
               data={data}
@@ -760,6 +786,119 @@ function ProductsTab({ data }: { data: HqData }) {
                     <StatusBadge value={flow.status} />
                   </td>
                   <td className="py-3 pr-4 text-ink-quiet">{flow.nextAction}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Panel>
+    </div>
+  );
+}
+
+function CollaborationLoopTab({
+  data,
+  updateItem,
+}: {
+  data: HqData;
+  updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+}) {
+  const loopReadiness = clampScore(
+    data.collaborationLoop.reduce((sum, item) => sum + item.readiness, 0) /
+      Math.max(data.collaborationLoop.length, 1)
+  );
+
+  return (
+    <div>
+      <SectionHeader
+        eyebrow="Collaboration loop"
+        title="Make collaboration the organic outreach engine."
+        body="The loop is simple: a creator starts a useful workspace, invites people into clear work, shares an artefact, and some of those people become future workspace creators."
+      />
+
+      <Panel className="mb-5">
+        <div className="grid gap-5 md:grid-cols-[1fr_220px] md:items-center">
+          <div>
+            <div className="font-mono text-[11px] uppercase text-ink-faint">Core loop</div>
+            <p className="mt-3 text-[18px] font-semibold leading-7 tracking-[-0.02em] text-ink">
+              {"Workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered."}
+            </p>
+            <p className="mt-2 max-w-3xl text-[13px] leading-6 text-ink-quiet">
+              This keeps the product from becoming a private productivity tool. Collaboration, shareable outputs, templates, and source tracking become the growth infrastructure.
+            </p>
+          </div>
+          <div>
+            <div className="mb-3 text-right font-mono text-[11px] uppercase text-ink-faint">Loop readiness</div>
+            <div className="text-right text-[34px] font-semibold tracking-[-0.04em]">{loopReadiness}%</div>
+            <div className="mt-4">
+              <ScoreBar score={loopReadiness} />
+            </div>
+          </div>
+        </div>
+      </Panel>
+
+      <div className="mb-5 grid gap-4 md:grid-cols-2">
+        {data.collaborationLoop.map((step: CollaborationLoopStep) => (
+          <Panel key={step.id}>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="font-mono text-[11px] uppercase text-ink-faint">{step.productOwner}</div>
+                <h3 className="mt-2 text-[18px] font-semibold tracking-[-0.02em] text-ink">{step.step}</h3>
+              </div>
+              <StatusBadge value={step.status} />
+            </div>
+            <p className="mt-3 min-h-[64px] text-[13px] leading-5 text-ink-quiet">{step.purpose}</p>
+            <div className="mt-4 grid gap-3">
+              <ScoreBar label="Readiness" score={step.readiness} />
+              <div className="text-[12px] leading-5 text-ink-quiet">
+                Surface: <span className="text-ink">{step.growthSurface}</span>
+              </div>
+              <div className="text-[12px] leading-5 text-ink-quiet">
+                Metric: <span className="text-ink">{step.metric}</span>
+              </div>
+              <div className="text-[12px] leading-5 text-ink-quiet">
+                Next: <span className="text-ink">{step.nextAction}</span>
+              </div>
+              <SelectInput
+                label="Status"
+                value={step.status}
+                values={workStatuses}
+                onChange={(status) => updateItem<CollaborationLoopStep>("collaborationLoop", step.id, { status })}
+              />
+            </div>
+          </Panel>
+        ))}
+      </div>
+
+      <Panel>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div className="font-mono text-[11px] uppercase text-ink-faint">Shared object model</div>
+            <h3 className="mt-2 text-[18px] font-semibold tracking-[-0.02em] text-ink">The objects that make four products feel like one system.</h3>
+          </div>
+          <span className="text-[13px] text-ink-quiet">Define once. Use everywhere.</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[900px] border-collapse text-left text-[13px]">
+            <thead>
+              <tr className="border-b border-border-soft text-[11px] uppercase text-ink-faint">
+                <th className="py-3 pr-4 font-medium">Object</th>
+                <th className="py-3 pr-4 font-medium">Definition</th>
+                <th className="py-3 pr-4 font-medium">Used by</th>
+                <th className="py-3 pr-4 font-medium">Status</th>
+                <th className="py-3 pr-4 font-medium">Next action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.sharedObjects.map((object: SharedObjectItem) => (
+                <tr key={object.id} className="border-b border-border-soft last:border-b-0">
+                  <td className="py-3 pr-4 font-medium text-ink">{object.object}</td>
+                  <td className="py-3 pr-4 text-ink-quiet">{object.definition}</td>
+                  <td className="py-3 pr-4 text-ink-quiet">{object.usedBy.join(", ")}</td>
+                  <td className="py-3 pr-4">
+                    <StatusBadge value={object.status} />
+                  </td>
+                  <td className="py-3 pr-4 text-ink-quiet">{object.nextAction}</td>
                 </tr>
               ))}
             </tbody>

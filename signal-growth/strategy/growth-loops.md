@@ -4,6 +4,8 @@
 
 Workspace created -> collaborators invited -> work becomes clearer -> shareable outputs created -> new people discover Signal Studio -> some become workspace creators -> more workspaces created.
 
+Detailed collaboration plan: `signal-growth/strategy/collaboration-growth-loop.md`.
+
 ## Early Wedge
 
 Weddings and events are the first validation wedge.

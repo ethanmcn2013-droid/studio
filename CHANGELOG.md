@@ -5,6 +5,21 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-11
+
+### Collaboration became the growth loop.
+
+Signal HQ now has a Collab Loop tab. It tracks the product-led path the
+suite has to prove: workspace created, collaborators invited, work made
+clearer, shareable output created, new creator discovered. The dashboard
+also now carries the shared object model that will keep Tasks, Roadmap,
+Analytics, and Notes from drifting into four separate tools.
+
+The plan is written down too. `docs/ECOSYSTEM_INTEGRATION_PLAN.md` holds
+the cross-product build sequence, and Signal Growth Studio now has a
+collaboration growth loop memory file. Collaboration is no longer a
+nice-to-have feature. It is the organic outreach campaign.
+
 ## 2026-05-10
 
 ### Signal HQ became the private operating room.

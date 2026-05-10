@@ -35,10 +35,13 @@ In this repo that usually means updating:
 - `src/lib/hq/data.ts`
 - `src/lib/hq/signals.ts` if derived logic changes
 - relevant files under `signal-growth/`
+- `docs/ECOSYSTEM_INTEGRATION_PLAN.md` if the change affects cross-product flows, sharing, invitations, templates, guest access, public outputs, or source tracking
 - `docs/SIGNAL_HQ.md` if the operating model changes
 - `CHANGELOG.md` for meaningful user-visible or operator-visible changes
 
 If you are working in another Signal product repo and the change affects Signal Studio's operating state, open or update a Studio PR that reflects it in Signal HQ.
+
+Collaboration is the organic outreach loop: workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered. Preserve that loop when making product or GTM choices.
 
 ## Dashboard Persistence Note
 

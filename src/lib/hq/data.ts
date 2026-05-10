@@ -332,12 +332,35 @@ export interface GrowthWorkflowItem {
     | "Compliance & Trust Reviewer";
 }
 
+export interface CollaborationLoopStep {
+  id: string;
+  step: string;
+  purpose: string;
+  productOwner: string;
+  status: WorkStatus;
+  readiness: number;
+  growthSurface: string;
+  nextAction: string;
+  metric: string;
+}
+
+export interface SharedObjectItem {
+  id: string;
+  object: string;
+  definition: string;
+  usedBy: string[];
+  status: "Defined" | "Needs model" | "Partly working" | "Working";
+  nextAction: string;
+}
+
 export interface HqData {
   version: 1;
   updatedAt: string;
   focus: OperatingFocus;
   products: ProductStatus[];
   ecosystemFlows: EcosystemFlow[];
+  collaborationLoop: CollaborationLoopStep[];
+  sharedObjects: SharedObjectItem[];
   features: FeatureItem[];
   launchReadiness: LaunchReadinessItem[];
   segments: SegmentPlan[];
@@ -359,27 +382,27 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11",
+  updatedAt: "2026-05-11T00:00:01Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
-    theme: "Turn product clarity into launch clarity.",
+    theme: "Turn product clarity into collaboration proof.",
     focus:
-      "Move the suite from polished private surfaces toward visible proof: demos, pilots, templates, and repeatable outreach.",
+      "Move the suite from polished private surfaces toward the visible loop: create a workspace, invite collaborators, share a clear output, and turn some collaborators into workspace creators.",
     priorities: [
-      "Publish one wedding/events proof path.",
-      "Create the first demo workspace and script.",
-      "Build a small outbound list with real follow-up dates.",
+      "Publish one wedding/events collaboration proof path.",
+      "Create the first demo workspace and invite flow script.",
+      "Define the shared objects that make the four products feel like one system.",
     ],
     risks: [
       "Product work is ahead of distribution.",
       "The four products could read as separate tools before the shared loop is visible.",
-      "Messaging may stay too abstract without wedge-specific proof.",
+      "Collaboration could be treated as a feature instead of the growth loop.",
     ],
     nextActions: [
-      "Build Signal Weddings landing page.",
-      "Draft Founding Venue Programme offer.",
-      "Record a 60 second wedding workspace walkthrough.",
+      "Build Signal Weddings landing page around the shared workspace loop.",
+      "Draft Founding Venue Programme offer around repeated workspace creation.",
+      "Record a 60 second walkthrough showing a collaborator receiving value.",
     ],
   },
   products: [
@@ -500,6 +523,121 @@ export const seedHqData: HqData = {
       nextAction: "Create the first Today Signal model.",
     },
   ],
+  collaborationLoop: [
+    {
+      id: "workspace-created",
+      step: "Workspace created",
+      purpose: "A workspace creator starts from a useful template, not a blank project-management shell.",
+      productOwner: "Signal Studio",
+      status: "Planned",
+      readiness: 34,
+      growthSurface: "Template landing page and wedge onboarding",
+      nextAction: "Build the wedding planning workspace template as the first proof path.",
+      metric: "Workspaces created",
+    },
+    {
+      id: "collaborators-invited",
+      step: "Collaborators invited",
+      purpose: "The creator brings a coordinator, couple, supplier, client, or teammate into the work.",
+      productOwner: "Signal Tasks",
+      status: "Idea",
+      readiness: 18,
+      growthSurface: "Invite email, guest access, and shared workspace preview",
+      nextAction: "Define the lightest safe invite and guest-access model across products.",
+      metric: "Workspaces with 2+ users",
+    },
+    {
+      id: "work-becomes-clearer",
+      step: "Work becomes clearer",
+      purpose: "The invited person immediately understands ownership, dates, decisions, direction, and what needs attention.",
+      productOwner: "All products",
+      status: "Planned",
+      readiness: 28,
+      growthSurface: "Workspace briefing, roadmap view, checklist, decision summary",
+      nextAction: "Create one wedding demo scene that shows Notes, Tasks, Roadmap, and Analytics as one loop.",
+      metric: "Activated collaborative workspaces",
+    },
+    {
+      id: "shareable-output-created",
+      step: "Shareable output created",
+      purpose: "The workspace produces a roadmap, update, checklist, decision summary, or briefing that travels outside the app.",
+      productOwner: "Signal Roadmap",
+      status: "Planned",
+      readiness: 42,
+      growthSurface: "Public roadmap, planning update, decision summary, template page",
+      nextAction: "Define the first three shareable artefacts for the weddings/events wedge.",
+      metric: "Template downloads",
+    },
+    {
+      id: "new-creator-discovered",
+      step: "New creator discovered",
+      purpose: "A collaborator or viewer sees enough value to create their own workspace.",
+      productOwner: "Signal Growth Studio",
+      status: "Idea",
+      readiness: 10,
+      growthSurface: "Tasteful Created with Signal Studio links and duplication CTAs",
+      nextAction: "Design referral/source tracking before public share links scale.",
+      metric: "New workspace creators",
+    },
+  ],
+  sharedObjects: [
+    {
+      id: "workspace",
+      object: "Workspace",
+      definition: "The shared place where one real piece of work lives across context, execution, direction, and attention.",
+      usedBy: ["Tasks", "Roadmap", "Analytics", "Notes"],
+      status: "Defined",
+      nextAction: "Keep naming consistent across product repos and onboarding.",
+    },
+    {
+      id: "person",
+      object: "Person",
+      definition: "Someone connected to the work: owner, collaborator, stakeholder, guest, supplier, client, or partner.",
+      usedBy: ["Tasks", "Roadmap", "Notes", "CRM"],
+      status: "Needs model",
+      nextAction: "Define guest and collaborator roles before invitation work starts.",
+    },
+    {
+      id: "decision",
+      object: "Decision",
+      definition: "A dated choice with reason, owner, linked work, and review point.",
+      usedBy: ["Notes", "Roadmap", "Tasks", "Analytics", "HQ"],
+      status: "Needs model",
+      nextAction: "Add decision object schema and the first manual decision-log flow.",
+    },
+    {
+      id: "risk",
+      object: "Risk",
+      definition: "Something that could affect delivery, direction, attention, or trust if ignored.",
+      usedBy: ["Analytics", "Roadmap", "Tasks", "Notes", "HQ"],
+      status: "Needs model",
+      nextAction: "Unify task blockers and roadmap risk language.",
+    },
+    {
+      id: "update",
+      object: "Update",
+      definition: "A meaningful change that can feed activity, changelog, briefing, analytics, and stakeholder summaries.",
+      usedBy: ["Tasks", "Roadmap", "Analytics", "Notes", "HQ"],
+      status: "Needs model",
+      nextAction: "Define the event stream before adding more cross-product features.",
+    },
+    {
+      id: "briefing",
+      object: "Workspace briefing",
+      definition: "The plain-language state of work: what changed, what is stuck, what is next, and what needs attention.",
+      usedBy: ["Analytics", "Tasks", "Roadmap", "Notes"],
+      status: "Partly working",
+      nextAction: "Name and implement the first Today Signal proof in the wedding demo.",
+    },
+    {
+      id: "shareable-output",
+      object: "Shareable output",
+      definition: "A roadmap, update, checklist, decision summary, template, or briefing that can be safely shared outside the creator account.",
+      usedBy: ["Roadmap", "Notes", "Analytics", "Growth Studio"],
+      status: "Needs model",
+      nextAction: "Define public/private controls and source tracking for output links.",
+    },
+  ],
   features: [
     {
       id: "focus-view",
@@ -591,6 +729,36 @@ export const seedHqData: HqData = {
       principleAlignment: 90,
       notes: "Internal source of truth for product and launch operations.",
     },
+    {
+      id: "collaboration-invite-loop",
+      name: "Collaboration invite loop",
+      product: "Signal Studio",
+      type: "Growth",
+      status: "Planned",
+      priority: "High",
+      effort: "Large",
+      impact: "High",
+      owner: "Ethan",
+      relatedCampaign: "Founding Venue Programme",
+      relatedMetric: "Workspaces with 2+ users",
+      principleAlignment: 97,
+      notes: "Turns invitations and shared outputs into the organic outreach engine.",
+    },
+    {
+      id: "shareable-briefing",
+      name: "Shareable workspace briefing",
+      product: "Signal Analytics",
+      type: "Integration",
+      status: "Idea",
+      priority: "High",
+      effort: "Medium",
+      impact: "High",
+      owner: "Ethan",
+      relatedCampaign: "Wedding Demo Video Series",
+      relatedMetric: "New workspace creators",
+      principleAlignment: 96,
+      notes: "Gives collaborators and stakeholders a reason to understand Signal before signing up.",
+    },
   ],
   launchReadiness: [
     {
@@ -616,12 +784,22 @@ export const seedHqData: HqData = {
     {
       id: "cross-product-integration",
       category: "Cross-product connection",
-      score: 32,
+      score: 34,
       weight: 12,
       status: "At risk",
-      notes: "The suite story is strong, but the live loop is still early.",
+      notes: "The suite story is strong, but shared objects and collaboration surfaces need to become visible.",
       blockers: ["Shared objects and events are not implemented."],
-      nextAction: "Model decisions, risks, and updates once.",
+      nextAction: "Model decisions, risks, updates, and shareable outputs once.",
+    },
+    {
+      id: "collaboration-loop",
+      category: "Collaboration loop",
+      score: 26,
+      weight: 10,
+      status: "At risk",
+      notes: "The growth loop is strategically clear, but invitations, guest value, and source tracking are not yet implemented.",
+      blockers: ["No invite flow, guest path, or shareable-output tracking yet."],
+      nextAction: "Design the wedding workspace invite path and collaborator first view.",
     },
     {
       id: "onboarding",
@@ -808,6 +986,23 @@ export const seedHqData: HqData = {
       relatedContent: "Wedding planning without spreadsheet chaos",
       relatedLandingPage: "/weddings/planners",
       relatedMetric: "Activated collaborative workspaces",
+    },
+    {
+      id: "collaboration-proof",
+      name: "Collaboration Proof Campaign",
+      segment: "Workspace creators",
+      goal: "Prove that one clear workspace can invite others and create new workspace creators.",
+      offer: "A polished demo workspace plus shareable planning update and invite flow.",
+      status: "Selected",
+      assetsNeeded: ["collaboration demo script", "shared briefing mock", "invite email", "source-tracking notes"],
+      startDate: "2026-05-12",
+      endDate: "2026-06-21",
+      currentBlocker: "The collaborator first view is not designed yet.",
+      nextStep: "Map the invite-to-activation path for venues and couples.",
+      progress: 12,
+      relatedContent: "How a shared workspace keeps everyone clear",
+      relatedLandingPage: "/weddings",
+      relatedMetric: "New workspace creators",
     },
     {
       id: "student-projects",
@@ -1017,6 +1212,26 @@ export const seedHqData: HqData = {
       notes: "Core validation metric for the collaboration loop.",
     },
     {
+      id: "activated-collaborative-workspaces",
+      name: "Activated collaborative workspaces",
+      category: "Activation",
+      value: 0,
+      previousValue: 0,
+      unit: "count",
+      target: 6,
+      notes: "Created, real work added, one person invited, return within seven days, and something moved.",
+    },
+    {
+      id: "new-workspace-creators",
+      name: "New workspace creators",
+      category: "Activation",
+      value: 0,
+      previousValue: 0,
+      unit: "count",
+      target: 3,
+      notes: "People who first encountered Signal through another workspace or shareable output.",
+    },
+    {
       id: "outreach-sent",
       name: "Outreach emails sent",
       category: "Outreach",
@@ -1130,6 +1345,19 @@ export const seedHqData: HqData = {
       relatedObjects: ["CLAUDE.md", "CODEX.md", "AGENTS.md", "Signal HQ"],
       notes: "Root shims now point both tools back to the same HQ rule.",
     },
+    {
+      id: "collaboration-as-growth-loop",
+      decision: "Treat collaboration as the organic outreach loop.",
+      category: "GTM",
+      date: "2026-05-12",
+      reason: "The strongest acquisition path is clear shared work that invites collaborators, creates useful outputs, and turns some viewers into workspace creators.",
+      alternatives: "Rely mainly on public content, paid ads, or founder-led outbound.",
+      risks: "Poor guest experience or unclear public controls could create friction or trust risk.",
+      reviewDate: "2026-06-12",
+      status: "Active",
+      relatedObjects: ["Collaboration Loop", "Workspace invitations", "Shareable outputs", "Founding Venue Programme"],
+      notes: "Prioritise invite value, shared artefacts, and source tracking before heavier monetisation.",
+    },
   ],
   feedback: [
     {
@@ -1185,6 +1413,17 @@ export const seedHqData: HqData = {
       reviewDate: "2026-05-24",
     },
     {
+      id: "collaboration-hidden",
+      risk: "Collaboration stays hidden behind private workspaces.",
+      area: "Growth",
+      likelihood: "High",
+      impact: "High",
+      status: "At risk",
+      mitigation: "Prioritise invitations, guest value, shareable outputs, and source tracking as product infrastructure.",
+      owner: "Ethan",
+      reviewDate: "2026-05-24",
+    },
+    {
       id: "messaging-abstract",
       risk: "Messaging stays too abstract.",
       area: "Brand",
@@ -1232,6 +1471,7 @@ export const seedHqData: HqData = {
       "Everything important. Nothing to decode.",
       "Built for people who have actual work to do.",
       "Clear workspaces for real-world coordination.",
+      "One workspace clear enough to invite everyone in.",
     ],
     pitches: {
       weddingVenue:
@@ -1285,6 +1525,36 @@ export const seedHqData: HqData = {
       status: "To do",
       relatedObject: "Wedding planning workspace",
       notes: "Use a believable venue meeting, supplier list, final-week tasks, and roadmap.",
+    },
+    {
+      id: "collaboration-loop-spec",
+      action: "Write collaboration loop product spec.",
+      category: "Product",
+      priority: "High",
+      dueDate: "2026-05-14",
+      status: "To do",
+      relatedObject: "Collaboration Loop",
+      notes: "Cover invite path, guest value, shared outputs, tracking, and public/private controls.",
+    },
+    {
+      id: "shared-object-model",
+      action: "Define shared object model across all four products.",
+      category: "Product",
+      priority: "High",
+      dueDate: "2026-05-17",
+      status: "To do",
+      relatedObject: "Workspace, Person, Decision, Risk, Update, Briefing",
+      notes: "This is the architectural foundation for ecosystem coherence.",
+    },
+    {
+      id: "collaborator-first-view",
+      action: "Design collaborator first view for a shared workspace.",
+      category: "GTM",
+      priority: "High",
+      dueDate: "2026-05-18",
+      status: "To do",
+      relatedObject: "Founding Venue Programme",
+      notes: "A venue, couple, or supplier should understand what matters before creating anything.",
     },
     {
       id: "demo-script",
@@ -1353,6 +1623,24 @@ export const seedHqData: HqData = {
       repurposing: ["offer page", "follow-up email", "partner deck"],
       status: "Drafting",
       roleOwner: "Outbound Operator",
+    },
+    {
+      id: "growth-collaboration-proof",
+      title: "One workspace, everyone clear",
+      audience: "Workspace creators and invited collaborators",
+      campaign: "Collaboration Proof Campaign",
+      product: "Signal Studio",
+      segment: "Weddings and events",
+      channel: "Demo / landing page / email",
+      goal: "Show collaboration as the reason Signal spreads.",
+      cta: "Ask for a private shared workspace.",
+      rationale: "The organic loop needs proof that invited people receive value immediately.",
+      relatedMetric: "New workspace creators",
+      brandRisk: "Low",
+      complianceRisk: "Medium",
+      repurposing: ["wedding demo", "venue email", "planner pitch", "template intro"],
+      status: "Selected",
+      roleOwner: "Strategy Director",
     },
     {
       id: "growth-review-standard",

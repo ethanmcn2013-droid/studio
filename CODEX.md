@@ -13,10 +13,13 @@ Use these files as the source for HQ updates:
 - `src/lib/hq/data.ts` for objects and seed dashboard state
 - `src/lib/hq/signals.ts` for derived operating signals
 - `signal-growth/` for growth memory and reusable learning
+- `docs/ECOSYSTEM_INTEGRATION_PLAN.md` for cross-product flows, sharing, invitations, templates, guest access, public outputs, and source tracking
 - `docs/SIGNAL_HQ.md` for HQ operating rules
 - `CHANGELOG.md` for meaningful changes
 
 If the task happens in a sibling Signal product repo, update the Studio repo's Signal HQ data as part of the same work or explicitly leave a follow-up action in Signal HQ.
+
+Collaboration is the organic outreach loop: workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered.
 
 ## Local-First Caveat
 

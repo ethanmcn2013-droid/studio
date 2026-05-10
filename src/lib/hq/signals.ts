@@ -12,6 +12,7 @@ export interface HqDerivedState {
   productReadiness: number;
   gtmReadiness: number;
   integrationReadiness: number;
+  collaborationReadiness: number;
   balance: Array<{ label: string; score: number }>;
   signals: HqSignal[];
 }
@@ -66,10 +67,14 @@ export function deriveHqState(data: HqData): HqDerivedState {
     readinessByCategory(data, "Messaging"),
     readinessByCategory(data, "CRM and outbound"),
     readinessByCategory(data, "Pilot programmes"),
+    readinessByCategory(data, "Collaboration loop"),
     readinessByCategory(data, "Case study readiness"),
   ]);
   const integrationReadiness = average(
-    data.ecosystemFlows.map((flow) => severityScore[flow.health])
+    (data.ecosystemFlows ?? []).map((flow) => severityScore[flow.health])
+  );
+  const collaborationReadiness = average(
+    (data.collaborationLoop ?? []).map((step) => step.readiness)
   );
   const marketingReadiness = average([
     readinessByCategory(data, "Website and landing pages"),
@@ -89,6 +94,7 @@ export function deriveHqState(data: HqData): HqDerivedState {
   const balance = [
     { label: "Product", score: productReadiness },
     { label: "Connection", score: integrationReadiness },
+    { label: "Collaboration", score: collaborationReadiness },
     { label: "Marketing", score: marketingReadiness },
     { label: "Content", score: contentReadiness },
     { label: "Outbound", score: outboundReadiness },
@@ -133,6 +139,15 @@ export function deriveHqState(data: HqData): HqDerivedState {
       title: "The ecosystem loop is still early.",
       detail: "Shared decisions, risks, updates, and cross-product links need a common model.",
       severity: "Needs attention",
+    });
+  }
+
+  if (collaborationReadiness < 35) {
+    signals.push({
+      id: "collaboration-loop-gap",
+      title: "Collaboration loop needs proof.",
+      detail: "Invites, guest value, shared outputs, and source tracking are not yet strong enough to carry organic growth.",
+      severity: "At risk",
     });
   }
 
@@ -193,6 +208,7 @@ export function deriveHqState(data: HqData): HqDerivedState {
     productReadiness,
     gtmReadiness,
     integrationReadiness,
+    collaborationReadiness,
     balance,
     signals,
   };
