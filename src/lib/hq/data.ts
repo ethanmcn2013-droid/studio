@@ -359,7 +359,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-10",
+  updatedAt: "2026-05-11",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1116,6 +1116,19 @@ export const seedHqData: HqData = {
       status: "Active",
       relatedObjects: ["Signal HQ", "Signal Growth Studio"],
       notes: "V1 should stay local-first and editable.",
+    },
+    {
+      id: "agent-hq-sync",
+      decision: "Claude Code and Codex must keep Signal HQ current.",
+      category: "Operations",
+      date: "2026-05-11",
+      reason: "Future coding sessions should not change product, brand, GTM, roadmap, or launch state without updating the internal source of truth.",
+      alternatives: "Rely on chat history or memory between tools.",
+      risks: "Agents working in sibling repos may miss Studio updates unless the rule is repeated clearly.",
+      reviewDate: "2026-05-25",
+      status: "Active",
+      relatedObjects: ["CLAUDE.md", "CODEX.md", "AGENTS.md", "Signal HQ"],
+      notes: "Root shims now point both tools back to the same HQ rule.",
     },
   ],
   feedback: [

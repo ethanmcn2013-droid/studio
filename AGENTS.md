@@ -8,7 +8,8 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 3. **`docs/BRAND.md`** — full voice/brand handbook (audience archetypes, banned words, visual register, page conventions). Source of truth for the suite.
 4. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
 5. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or roadmap work.
-6. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+6. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
+7. **`CHANGELOG.md`** — narrative log; read for tonal reference.
 
 If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
 
@@ -94,7 +95,7 @@ src/app/page.tsx
 3. **PR, don't merge.** Open a PR against `main`. Vercel will post a preview URL on the PR — review the preview, not just the diff. Brand drift is invisible in diffs.
 4. **Local dev.** `pnpm dev` (Turbopack). The motion stack only fires on production builds in some cases; if a motion change looks broken, also test `pnpm build && pnpm start`.
 5. **No new dependencies** without naming why in the PR description. The dependency surface here is deliberately small.
-6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ data/dashboard and, when relevant, `signal-growth/` memory files before the task is complete.
+6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ data/dashboard and, when relevant, `signal-growth/` memory files before the task is complete. In practice, update `src/lib/hq/data.ts`, `src/lib/hq/signals.ts` if derived logic changes, and bump `seedHqData.updatedAt` so the dashboard can detect newer repo-backed HQ data.
 
 ---
 

@@ -103,6 +103,10 @@ function safeCloneData() {
   return JSON.parse(JSON.stringify(seedHqData)) as HqData;
 }
 
+function repoDataIsNewer(storedData: HqData) {
+  return new Date(seedHqData.updatedAt).getTime() > new Date(storedData.updatedAt).getTime();
+}
+
 function getToday() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -315,6 +319,7 @@ export function HqDashboard() {
   const [featureFilter, setFeatureFilter] = useState("All");
   const [prospectDraft, setProspectDraft] = useState<Prospect>(() => makeProspect());
   const [importError, setImportError] = useState("");
+  const [repoUpdateAvailable, setRepoUpdateAvailable] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -328,6 +333,7 @@ export function HqDashboard() {
       const parsed = JSON.parse(stored) as HqData;
       if (parsed.version === 1) {
         setData(parsed);
+        setRepoUpdateAvailable(repoDataIsNewer(parsed));
       }
     } catch {
       setImportError("Saved HQ data could not be read. Seed data is showing.");
@@ -401,6 +407,7 @@ export function HqDashboard() {
       }
 
       setData({ ...imported, updatedAt: getToday() });
+      setRepoUpdateAvailable(false);
       setImportError("");
     } catch {
       setImportError("That file could not be imported.");
@@ -412,7 +419,19 @@ export function HqDashboard() {
 
     if (confirmed) {
       setData(safeCloneData());
+      setRepoUpdateAvailable(false);
       setImportError("");
+    }
+  }
+
+  function loadRepoVersion() {
+    const confirmed = window.confirm(
+      "Load the repo-backed Signal HQ version? Export your current browser data first if you need to keep it."
+    );
+
+    if (confirmed) {
+      setData(safeCloneData());
+      setRepoUpdateAvailable(false);
     }
   }
 
@@ -483,6 +502,29 @@ export function HqDashboard() {
         {importError ? (
           <div className="mx-auto w-full max-w-[1180px] px-5 pb-4 text-[13px] text-red-700">
             {importError}
+          </div>
+        ) : null}
+        {repoUpdateAvailable ? (
+          <div className="mx-auto flex w-full max-w-[1180px] flex-col gap-3 px-5 pb-4 text-[13px] text-ink-quiet md:flex-row md:items-center md:justify-between">
+            <span>
+              Repo-backed HQ data is newer than this browser copy. Export first if you need to keep local edits.
+            </span>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={loadRepoVersion}
+                className="rounded-[6px] border border-accent bg-accent-soft px-3 py-2 text-[12px] font-medium text-ink"
+              >
+                Load repo version
+              </button>
+              <button
+                type="button"
+                onClick={() => setRepoUpdateAvailable(false)}
+                className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 text-[12px] font-medium text-ink"
+              >
+                Not now
+              </button>
+            </div>
           </div>
         ) : null}
       </div>

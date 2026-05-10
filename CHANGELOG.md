@@ -20,6 +20,15 @@ campaign notes, brand rules, hooks, objections, demo planning, template
 strategy, review gates, and weekly operating rhythm. The public site
 stays quiet. The internal system gets serious.
 
+### Claude and Codex got the same operating rule.
+
+Root instruction files now exist for Claude Code and Codex. Both point
+back to the repo contract and repeat the rule that meaningful product,
+brand, GTM, roadmap, campaign, template, outreach, demo, decision, risk,
+or metric changes must update Signal HQ before the work is complete.
+The dashboard also notices when repo-backed HQ data is newer than the
+browser copy, so local-first does not become local-stale.
+
 ### The umbrella stopped being an old portfolio.
 
 The `/work` page now names only the four Signal Studio products. No

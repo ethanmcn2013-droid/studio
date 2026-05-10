@@ -35,6 +35,19 @@ V1 is local-first. Data seeds live in `src/lib/hq/data.ts`, derived signals live
 
 This should move to proper server storage only after the workflow proves useful.
 
+## Agent Sync
+
+Claude Code and Codex both have root instruction shims:
+
+- `CLAUDE.md`
+- `CODEX.md`
+
+Those files point back to `AGENTS.md` and repeat the mandatory Signal HQ update rule.
+
+When an agent updates repo-backed HQ data, it must also bump `seedHqData.updatedAt` in `src/lib/hq/data.ts`.
+
+Because HQ v1 is local-first, existing browser data may be newer or different from repo seed data. Do not silently destroy browser edits. Export before replacing local data.
+
 ## Required Agent Rule
 
 Whenever a meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change is made, update Signal HQ before the task is considered complete.
