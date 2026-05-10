@@ -35,11 +35,11 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 
 | Surface | URL | Status |
 |---|---|---|
-| Signal Studio (umbrella) | signalstudio.ie | **Live.** Reveal v3 shipped. |
-| Signal Tasks | tasks.signalstudio.ie | **Live.** Auth + DB + multi-domain audience packs + cinematic demo + 5 audience landing pages. |
-| Signal Roadmap | roadmap.signalstudio.ie | **Live.** Workspace + editor + public viewer + Stripe Pro tier + Sentry + GDPR exports + iCal subscriptions + RSS + cron + templates. |
-| Signal Analytics | analytics.signalstudio.ie | **Live (marketing + briefing engine v1).** Real Tasks-DB read → 10 triggers + curated prose → daily web/email render via Vercel cron. No AI in the path. |
-| Signal Notes | notes.signalstudio.ie | **Planned, not scaffolded.** Brand-tier added; placeholder card on Studio products grid; underline-writes-itself wordmark gesture designed. PRODUCT.md drafted. |
+| Signal Studio (umbrella) | signalstudio.ie | **Live private preview.** Reveal v3 shipped as the umbrella brand surface. |
+| Signal Tasks | tasks.signalstudio.ie | **Private preview.** Auth, persistence, app workspace, cinematic demo, and audience pages are in active refinement. |
+| Signal Roadmap | roadmap.signalstudio.ie | **Private preview.** Core roadmap, editor, and public viewer are in active refinement. Launch claims must stay tied to what the repo and preview prove. |
+| Signal Analytics | analytics.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
+| Signal Notes | notes.signalstudio.ie | **Planned, not scaffolded.** PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; underline-writes-itself wordmark gesture designed. |
 
 **Email:** `hello@signalstudio.ie` via Google Workspace (DKIM completion pending in Admin Console).
 

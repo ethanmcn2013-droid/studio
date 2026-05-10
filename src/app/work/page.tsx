@@ -1,68 +1,58 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TASKS_URL, ROADMAP_URL } from "@/lib/product-urls";
+import { ANALYTICS_URL, NOTES_URL, ROADMAP_URL, TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Work — Signal Studio",
   description:
-    "Six things made under this roof — Tasks, Roadmap, Luminary Studio, Approvals Motion, Verizon GPO, 1ERP.",
+    "Four products for operational clarity — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes.",
 };
 
 interface WorkItem {
   name: string;
   descriptor: string;
   year: string;
-  status: "In production" | "Shipped" | "In progress";
+  status: "Private preview" | "In definition";
   href?: string;
 }
 
 const items: WorkItem[] = [
   {
-    name: "Tasks",
-    descriptor: "A multi-view workspace for people who don't think in sprints.",
+    name: "Signal Tasks",
+    descriptor:
+      "Execution clarity for live work, daily attention, and plain-English follow-through.",
     year: "2026",
-    status: "In production",
+    status: "Private preview",
     href: TASKS_URL,
   },
   {
-    name: "Roadmap",
+    name: "Signal Roadmap",
     descriptor:
-      "Public-facing changelogs for the people your engineers aren't talking to.",
+      "Direction clarity for public plans, changes, and decisions people can read.",
     year: "2026",
-    status: "In production",
+    status: "Private preview",
     href: ROADMAP_URL,
   },
   {
-    name: "Luminary Studio",
-    descriptor: "A hospitality design studio site.",
-    year: "2026",
-    status: "Shipped",
-  },
-  {
-    name: "Approvals Motion",
+    name: "Signal Analytics",
     descriptor:
-      "Procurement approval flow, Slack-native vs S4-mail, rendered in Remotion.",
+      "Attention clarity through short briefings that surface what matters in the work.",
     year: "2026",
-    status: "Shipped",
+    status: "Private preview",
+    href: ANALYTICS_URL,
   },
   {
-    name: "Verizon GPO",
-    descriptor: "A modern Verizon design system, in progress.",
+    name: "Signal Notes",
+    descriptor: "Capture clarity for fast notes that can become work when they earn it.",
     year: "2026",
-    status: "In progress",
-  },
-  {
-    name: "1ERP",
-    descriptor: "Steerco source-of-truth and programme communications.",
-    year: "2026",
-    status: "In progress",
+    status: "In definition",
+    href: NOTES_URL,
   },
 ];
 
 const statusColor: Record<WorkItem["status"], string> = {
-  "In production": "var(--accent)",
-  Shipped: "var(--ink-quiet)",
-  "In progress": "var(--ink-faint)",
+  "Private preview": "var(--accent)",
+  "In definition": "var(--ink-faint)",
 };
 
 export default function WorkPage() {
@@ -78,15 +68,13 @@ export default function WorkPage() {
             Work
           </div>
 
-          {/* Intro line */}
           <p
             className="mb-12 leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Six things made under this roof.
+            Four products. One operating system for clarity.
           </p>
 
-          {/* Index list */}
           <ol className="flex flex-col">
             {items.map((item) => {
               const Row = (
@@ -139,7 +127,7 @@ export default function WorkPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block no-underline transition-opacity hover:opacity-80"
-                      aria-label={`${item.name} — opens in new tab`}
+                      aria-label={`${item.name} opens in a new tab`}
                     >
                       {Row}
                     </a>

@@ -28,7 +28,8 @@ export default function ContactPage() {
             className="leading-[1.7] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            For product questions or freelance work. Response within 48 hours.
+            For product questions, private-preview feedback, or thoughtful critique.
+            Response within 48 hours.
           </p>
 
           <p
@@ -36,10 +37,10 @@ export default function ContactPage() {
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             <a
-              href="mailto:ethanmcn2013@gmail.com"
+              href="mailto:hello@signalstudio.ie"
               className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
-              ethanmcn2013@gmail.com
+              hello@signalstudio.ie
             </a>
           </p>
 

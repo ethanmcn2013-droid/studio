@@ -364,7 +364,7 @@ export function ProductsGrid() {
           label="Signal Tasks"
           wordmark={<TasksWordmark />}
           proof={<TasksProof />}
-          description="Execution clarity. A multi-view workspace for people who don't think in sprints."
+          description="Execution clarity. A workspace that keeps the right work in view."
           positioning="Run projects without the project-manager energy."
           pills={["Multi-view", "Real-time"]}
           href={TASKS_URL}
