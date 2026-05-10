@@ -7,6 +7,14 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-10
 
+### The umbrella stopped being an old portfolio.
+
+The `/work` page now names only the four Signal Studio products. No
+client artifacts. No inherited side quests. The page says what the
+company is: Signal Tasks, Signal Roadmap, Signal Analytics, Signal
+Notes. The contact page now points at `hello@signalstudio.ie`, and the
+handbook no longer treats Analytics as a placeholder.
+
 ### The umbrella is live.
 
 signalstudio.ie opened today. DNS resolved to Vercel. The apex serves.

@@ -55,7 +55,7 @@ export default function AboutPage() {
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
                 Signal Studio is the workshop. Four products are the output.
-                Each one is specific, quiet, and finished.
+                Each one has a job, a refusal, and a place in the system.
               </p>
 
               <p
@@ -147,20 +147,20 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Also made — link to /work */}
+              {/* Product work — link to /work */}
               <div className="mt-2">
                 <div
                   className="mb-3 text-[11px] font-semibold uppercase text-ink-faint"
                   style={{ letterSpacing: "var(--tracking-eyebrow)" }}
                 >
-                  Also made
+                  Product work
                 </div>
                 <Link
                   href="/work"
                   className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
                 >
                   <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                    See what&rsquo;s shipped
+                    See the system
                   </span>
                   <span
                     className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"

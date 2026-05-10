@@ -12,11 +12,13 @@ Each product is a separate Next.js 16 application in its own repo, deploying to 
 
 | Product | Subdomain | Repo (local) | Status | What it does |
 |---|---|---|---|---|
-| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live | Choreographed entrance introducing the suite. No auth, no DB, no CMS. |
-| Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Live | Live task workspace. Auth via Clerk. Persistence on Turso (libSQL). 5 audience landing pages. Cinematic demo on homepage is the brand-feature. |
-| Signal Roadmap | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Live | Public-by-default roadmap. Markdown editor → public viewer. Stripe Pro tier. iCal + RSS subscriptions. Sentry. GDPR exports. Templates. Cron-driven RSS rebuild. |
-| Signal Analytics | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Live (engine v1) | Daily briefing engine. Reads real Signal Tasks DB → 10 rules-based triggers → curated prose phrasings → compressed render → web (`/app`) + email (Resend) via Vercel cron at 06:00 UTC. **No LLM in the path.** |
+| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. No auth, no DB, no CMS. |
+| Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
+| Signal Roadmap | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Roadmap workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
+| Signal Analytics | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
 | Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Planned | Capture clarity. PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Brand-tier added; not yet scaffolded. |
+
+**Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.
 
 The Studio repo (this one) is the **smallest and most restrained** of the five. It is a brand surface, not a product. Anything that would turn it into a product (forms, dashboards, interactive widgets) is a refusal candidate — propose, don't build.
 
@@ -74,7 +76,7 @@ Variations by product:
 
 ## 4 · How data flows across the suite
 
-The only cross-product data flow today is **Tasks → Analytics**. It works like this:
+The intended cross-product data flow is **Tasks → Analytics**. Treat it as a launch claim only after the current Analytics repo contains the engine files and the preview proves the briefing path. The contract is:
 
 1. Tasks's Turso DB is the source of truth for task data, project data (mapped from tags — see below), and user-Clerk linkage.
 2. Analytics has a **read-only Turso token** (`turso db tokens create ... --read-only`, JWT flag `"a":"ro"`). Writes are blocked at the token layer.

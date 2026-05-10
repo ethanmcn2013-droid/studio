@@ -12,10 +12,10 @@ Signal Studio is the umbrella. Four products live under it.
 
 | Product | Position | Domain | Repo | Status |
 |---|---|---|---|---|
-| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Live |
-| Signal Roadmap | Direction clarity | roadmap.signalstudio.ie | `~/Projects/personal/roadmap` | Live |
-| Signal Analytics | Attention clarity | analytics.signalstudio.ie | `~/Projects/personal/analytics` | Marketing-only · product TBD |
-| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Planned · 4th product · not yet scaffolded |
+| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Private preview |
+| Signal Roadmap | Direction clarity | roadmap.signalstudio.ie | `~/Projects/personal/roadmap` | Private preview |
+| Signal Analytics | Attention clarity | analytics.signalstudio.ie | `~/Projects/personal/analytics` | Private preview · product committed |
+| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Planned · product definition locked · not yet scaffolded |
 
 **Umbrella domain:** signalstudio.ie · **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
 
