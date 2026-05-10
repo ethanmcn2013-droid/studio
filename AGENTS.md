@@ -2,6 +2,14 @@
 
 Read this before making any change. It is the contract every agent (Codex, Claude Code, Cursor, anyone else) operates under in this repo.
 
+**Required reading on first session, in order:**
+1. **This file** — locked rules + workflow.
+2. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
+3. **`docs/BRAND.md`** — full voice/brand handbook (audience archetypes, banned words, visual register, page conventions). Source of truth for the suite.
+4. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+
+If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; AGENTS.md wins on workflow.
+
 ---
 
 ## What this is
@@ -98,8 +106,9 @@ If the request is ambiguous, ask one tight question. Don't ask three.
 
 ## Reference
 
-- **`~/Projects/personal/BRAND.md`** — full voice/brand handbook. Lives outside this repo because it's the source-of-truth for the whole suite. Read it when in doubt about voice or audience tone. (Codex won't have direct read access to it from outside the repo — when it matters, the relevant excerpt should be reproduced here or in the PR description.)
-- **`CHANGELOG.md`** (in this repo) — narrative log of suite-level launches. Add an entry for any user-visible change.
+- **`docs/BRAND.md`** — full voice/brand handbook (mirrors `~/Projects/personal/BRAND.md` so it's accessible to repo-scoped agents). Read first. When in doubt about voice or audience tone, this is the source.
+- **`docs/VISION.md`** — strategic intent: where the suite is, where it's going, locked refusals.
+- **`CHANGELOG.md`** — narrative log of suite-level launches. Add an entry for any user-visible change. Voice is playful and narrative, not procedural.
 
 ---
 
