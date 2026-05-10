@@ -12,7 +12,7 @@ Each product lives in its own repo, deploying to its own Vercel project, on its 
 
 | Product | Subdomain | Repo (local) | Status | What it does |
 |---|---|---|---|---|
-| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. No auth, no DB, no CMS. |
+| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. Also hosts private `/hq` for internal operations. No public auth or CMS. |
 | Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
 | Signal Roadmap | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Roadmap workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
 | Signal Analytics | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
@@ -70,7 +70,7 @@ Variations by product:
 - **Tasks + Roadmap + Analytics:** each owns its **own Turso (libSQL)** database. Analytics's DB stores user prefs only — the actual task data it reads comes from Tasks's DB via a read-only token.
 - **Roadmap:** Stripe for Pro tier; Sentry for error monitoring (with PII scrubbing — see §5).
 - **Analytics:** Resend for email dispatch.
-- **Studio:** none of the above. Static-ish marketing site; one client component (`RevealEngine`) for the motion stack.
+- **Studio:** public site stays static-ish with one client component (`RevealEngine`) for the motion stack. Private `/hq` uses `SIGNAL_HQ_PASSWORD`, an HTTP-only cookie, localStorage persistence, and JSON export/import.
 
 ---
 

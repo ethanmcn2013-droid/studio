@@ -7,6 +7,19 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-10
 
+### Signal HQ became the private operating room.
+
+The umbrella now has a private `/hq` route: password-gated, noindex,
+absent from public navigation, and built to show the state of Signal
+Studio in under a minute. Product readiness, launch readiness, growth
+work, outbound, content, demos, templates, pilots, metrics, decisions,
+feedback, risks, and next actions now have one internal home.
+
+Signal Growth Studio also entered the repo as memory, not theatre:
+campaign notes, brand rules, hooks, objections, demo planning, template
+strategy, review gates, and weekly operating rhythm. The public site
+stays quiet. The internal system gets serious.
+
 ### The umbrella stopped being an old portfolio.
 
 The `/work` page now names only the four Signal Studio products. No

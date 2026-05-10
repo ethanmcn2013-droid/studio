@@ -41,6 +41,10 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 | Signal Analytics | analytics.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
 | Signal Notes | notes.signalstudio.ie | **Private build.** First capture-clarity surface is live; PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; full v1 product work remains pending. |
 
+**Signal HQ:** `/hq` is the private operating dashboard for building and launching Signal Studio. It is password-gated, `noindex`, absent from public navigation, and local-first in v1.
+
+**Signal Growth Studio:** `signal-growth/` holds growth memory, review rules, campaign notes, demo planning, template strategy, and learning that should outlive a single chat session.
+
 **Email:** `hello@signalstudio.ie` via Google Workspace (DKIM completion pending in Admin Console).
 
 **Defensive:** `signalhq.ie` reserved, will 301 to signalstudio.ie post-cutover.
@@ -49,6 +53,7 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 
 - **Direction C — Daily Signal as page.** Alternative experiment for the umbrella landing: the umbrella IS a Daily Signal briefing (Analytics's product format applied to the studio itself, dated, timestamped, sectioned). Strategically distinctive — only Signal Studio could ship this. Build off main on a fresh branch, do NOT replace production.
 - **Notes v1 scaffolding.** Turn the first live Notes surface into the real product. Position: capture clarity. One-way Notes→Tasks promotion only — never auto-detect todos (that's a refusal locked in `notes/docs/PRODUCT.md`).
+- **Signal HQ operating cadence.** Keep product, launch, growth, decisions, risks, and next actions current inside `/hq` as the suite changes. HQ is now the internal source of truth for meaningful strategic movement.
 - **Cross-product chrome.** Top-bar product switcher, shared auth seam. Deferred until all four products are at parity. All four now have public surfaces; shared chrome work waits for product parity.
 - **Audience archetype completion.** BRAND.md §2.1 names 5 audience archetypes; only 3 of 5 have dedicated landing pages on Tasks. Missing: small-business operators (restaurant owners, shop owners, clinic operators, studio owners) and public-facing coordinators (teachers, school admins, club coaches, parish coordinators, community organisers). Building these is ~500 lines of brand-coherent writing per page — a positioning + content decision, not a polish.
 - **Performance pass with a real browser.** Plan 4 closed pragmatically without Lighthouse access. Owed: Core Web Vitals run against each deployed product, surface Largest Contentful Paint / Cumulative Layout Shift outliers, fix.

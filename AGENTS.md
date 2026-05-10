@@ -7,7 +7,8 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 2. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
 3. **`docs/BRAND.md`** — full voice/brand handbook (audience archetypes, banned words, visual register, page conventions). Source of truth for the suite.
 4. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
-5. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+5. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or roadmap work.
+6. **`CHANGELOG.md`** — narrative log; read for tonal reference.
 
 If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
 
@@ -15,7 +16,9 @@ If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wi
 
 ## What this is
 
-This is the **umbrella site for Signal Studio** — a four-product suite (Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes). The umbrella lives at `signalstudio.ie`. The site is a single-page choreographed entrance ("The Reveal v3") that introduces the suite. No auth, no DB, no CMS. Static-ish Next.js 16 with one client orchestrator for motion.
+This is the **umbrella site for Signal Studio** — a four-product suite (Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes). The umbrella lives at `signalstudio.ie`. The public site is a single-page choreographed entrance ("The Reveal v3") that introduces the suite. Static-ish Next.js 16 with one client orchestrator for motion.
+
+The repo also contains **Signal HQ** at `/hq`: a private, password-gated internal operating dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. It is not public marketing, is not linked from public navigation, and must stay `noindex`.
 
 The repo's job is to be the most restrained, premium, brand-coherent surface in the suite. Every other product takes its visual cues from here.
 
@@ -61,9 +64,11 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 - Tailwind v4
 - Geist font family
 - Motion stack: GSAP 3.13 + ScrollTrigger + Lenis 1.1.20 (dynamically imported in `RevealEngine` to keep the initial server bundle clean)
+- Private HQ gate: `SIGNAL_HQ_PASSWORD` + HTTP-only cookie scoped to `/hq`
+- Signal HQ data: typed seed data + localStorage persistence + JSON export/import in v1
 - Package manager: `pnpm`
 
-`pnpm-workspace.yaml` requires both `packages: - "."` and `allowBuilds` declared — without the `packages` line, `pnpm add` errors with "packages field missing or empty". Don't remove either.
+`pnpm-workspace.yaml` requires `packages: - "."` plus explicit build-script approval settings — without the `packages` line, `pnpm add` errors with "packages field missing or empty". Don't remove either.
 
 ---
 
@@ -89,6 +94,7 @@ src/app/page.tsx
 3. **PR, don't merge.** Open a PR against `main`. Vercel will post a preview URL on the PR — review the preview, not just the diff. Brand drift is invisible in diffs.
 4. **Local dev.** `pnpm dev` (Turbopack). The motion stack only fires on production builds in some cases; if a motion change looks broken, also test `pnpm build && pnpm start`.
 5. **No new dependencies** without naming why in the PR description. The dependency surface here is deliberately small.
+6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ data/dashboard and, when relevant, `signal-growth/` memory files before the task is complete.
 
 ---
 
@@ -116,7 +122,7 @@ If the request is ambiguous, ask one tight question. Don't ask three.
 
 ## Anti-patterns
 
-- Adding features. This repo is a brand surface, not a product. If you find yourself building a form, an interactive widget, a dashboard preview — stop and ask first.
+- Adding public features. This repo is primarily a brand surface, not a public product. If you find yourself building a form, an interactive widget, or a dashboard outside the private `/hq` operating system — stop and ask first.
 - Marketing copy in the AI register. Even "ambient AI" or "AI-light" — no.
 - Adding a CMS, analytics tag, or third-party script without explicit ask.
 - "Cleaning up" the motion choreography because the timing looks "off" — the choreography is intentional and Ethan-tuned. Don't touch timing without an explicit ask.
