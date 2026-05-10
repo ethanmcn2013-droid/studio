@@ -62,9 +62,8 @@ export function SiteFooter() {
               href={NOTES_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[12.5px] text-ink-faint"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
-              aria-label="Signal Notes — coming soon"
             >
               Signal Notes
             </a>

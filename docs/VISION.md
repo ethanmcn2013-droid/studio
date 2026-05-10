@@ -15,7 +15,7 @@ The category we operate in is **operational clarity**. Not productivity. Not pro
 - **Signal Tasks** — execution clarity. Run the work.
 - **Signal Roadmap** — direction clarity. Explain the work.
 - **Signal Analytics** — attention clarity. Surface what matters in the work.
-- **Signal Notes** — capture clarity. Hold the work as it happens. *(Planned, not yet scaffolded.)*
+- **Signal Notes** — capture clarity. Hold the work as it happens. *(Private build; full v1 still pending.)*
 
 Each product solves one slice. The suite is the system. The umbrella site (this repo) is the brand surface that makes the relationship between the four legible without forcing a "platform" story.
 
@@ -39,7 +39,7 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 | Signal Tasks | tasks.signalstudio.ie | **Private preview.** Auth, persistence, app workspace, cinematic demo, and audience pages are in active refinement. |
 | Signal Roadmap | roadmap.signalstudio.ie | **Private preview.** Core roadmap, editor, and public viewer are in active refinement. Launch claims must stay tied to what the repo and preview prove. |
 | Signal Analytics | analytics.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
-| Signal Notes | notes.signalstudio.ie | **Planned, not scaffolded.** PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; underline-writes-itself wordmark gesture designed. |
+| Signal Notes | notes.signalstudio.ie | **Private build.** First capture-clarity surface is live; PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; full v1 product work remains pending. |
 
 **Email:** `hello@signalstudio.ie` via Google Workspace (DKIM completion pending in Admin Console).
 
@@ -48,8 +48,8 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 ## 5 · Where we're heading (next 2–4 cycles)
 
 - **Direction C — Daily Signal as page.** Alternative experiment for the umbrella landing: the umbrella IS a Daily Signal briefing (Analytics's product format applied to the studio itself, dated, timestamped, sectioned). Strategically distinctive — only Signal Studio could ship this. Build off main on a fresh branch, do NOT replace production.
-- **Notes scaffolding.** Stand the fourth product up. Position: capture clarity. One-way Notes→Tasks promotion only — never auto-detect todos (that's a refusal locked in `notes/docs/PRODUCT.md`).
-- **Cross-product chrome.** Top-bar product switcher, shared auth seam. Deferred until all four products are at parity. Studio is currently ahead of Notes; chrome work waits for Notes scaffolding.
+- **Notes v1 scaffolding.** Turn the first live Notes surface into the real product. Position: capture clarity. One-way Notes→Tasks promotion only — never auto-detect todos (that's a refusal locked in `notes/docs/PRODUCT.md`).
+- **Cross-product chrome.** Top-bar product switcher, shared auth seam. Deferred until all four products are at parity. All four now have public surfaces; shared chrome work waits for product parity.
 - **Audience archetype completion.** BRAND.md §2.1 names 5 audience archetypes; only 3 of 5 have dedicated landing pages on Tasks. Missing: small-business operators (restaurant owners, shop owners, clinic operators, studio owners) and public-facing coordinators (teachers, school admins, club coaches, parish coordinators, community organisers). Building these is ~500 lines of brand-coherent writing per page — a positioning + content decision, not a polish.
 - **Performance pass with a real browser.** Plan 4 closed pragmatically without Lighthouse access. Owed: Core Web Vitals run against each deployed product, surface Largest Contentful Paint / Cumulative Layout Shift outliers, fix.
 - **CSP enforce-mode promotion.** Suite-wide Content-Security-Policy currently in Report-Only mode. Promote to enforce after browser verification confirms no false-positive blocks.

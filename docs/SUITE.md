@@ -8,7 +8,7 @@ Read this when you need cross-product context. When working on the Studio (umbre
 
 ## 1 · The four products
 
-Each product is a separate Next.js 16 application in its own repo, deploying to its own Vercel project, on its own subdomain. They are not a monorepo. They share no code packages today. They share **brand**, **chrome conventions**, and **a single accent color**.
+Each product lives in its own repo, deploying to its own Vercel project, on its own subdomain. They are not a monorepo. They share no code packages today. They share **brand**, **chrome conventions**, and **a single accent color**.
 
 | Product | Subdomain | Repo (local) | Status | What it does |
 |---|---|---|---|---|
@@ -16,7 +16,7 @@ Each product is a separate Next.js 16 application in its own repo, deploying to 
 | Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
 | Signal Roadmap | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Roadmap workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
 | Signal Analytics | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
-| Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Planned | Capture clarity. PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Brand-tier added; not yet scaffolded. |
+| Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Private build | Capture clarity. First live surface exists; PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Full v1 still pending. |
 
 **Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.
 
@@ -29,7 +29,7 @@ The Studio repo (this one) is the **smallest and most restrained** of the five. 
 These rules apply identically across all four products' marketing surfaces.
 
 ### Suite-strip nav
-A small lowercase strip near the header of every product's marketing pages: `tasks.   roadmap.   analytics.   notes.` — each a link to its product's subdomain. The current product's wordmark renders in the brand indigo + its per-product gesture (see below); the others render dimmed. Notes renders dimmed always until Notes ships.
+A small lowercase strip near the header of every product's marketing pages: `tasks.   roadmap.   analytics.   notes.` — each a link to its product's subdomain. The current product's wordmark renders in the brand indigo + its per-product gesture (see below); the others render dimmed.
 
 ### Footer
 4-column on desktop, cascading down: **Product · Company · Resources · Suite.** Cross-product links live in the Suite column with `↗` external arrows. Attribution always reads "Made by Signal Studio".
@@ -38,7 +38,7 @@ A small lowercase strip near the header of every product's marketing pages: `tas
 - `tasks·` — dot **pulses** continuously (live signal). CSS class `.tasks-dot`.
 - `roadmap·` — dot **slides on mount** then settles (motion toward a destination). CSS class `.roadmap-dot`. Plays once per page load.
 - `analytics·` — dot is **static** (ambient presence). Inline-styled, no class. The quietest of the four.
-- `notes·` — **underline writes itself** under the word, stops just before the dot, persists. CSS class `.notes-mark`. Lives in `studio/globals.css` since Notes is not yet scaffolded. Plays once on first paint.
+- `notes·` — **underline writes itself** under the word, stops just before the dot, persists. CSS class `.notes-mark`. Lives in `studio/globals.css` until Notes carries the gesture natively. Plays once on first paint.
 
 All four respect `prefers-reduced-motion`.
 

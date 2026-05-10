@@ -135,11 +135,11 @@ interface ProductCardProps {
   positioning: string;
   pills: [string, string];
   href: string;
-  comingSoon?: boolean;
 }
 
-function ProductCard({ label, wordmark, proof, description, positioning, pills, href, comingSoon }: ProductCardProps) {
-  const cardClass = `product-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-bg-elev no-underline${comingSoon ? " opacity-70" : ""}`;
+function ProductCard({ label, wordmark, proof, description, positioning, pills, href }: ProductCardProps) {
+  const cardClass =
+    "product-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-bg-elev no-underline";
   const cardStyle = { boxShadow: "var(--shadow-1)" };
   const inner = (
     <>
@@ -192,20 +192,13 @@ function ProductCard({ label, wordmark, proof, description, positioning, pills, 
             className="flex-shrink-0 text-[13.5px] font-medium text-ink-quiet transition-colors group-hover:text-ink"
             style={{ letterSpacing: "0.01em" }}
           >
-            {comingSoon ? "Soon" : <>Open&nbsp;&rarr;</>}
+            Open&nbsp;&rarr;
           </span>
         </div>
       </div>
     </>
   );
 
-  if (comingSoon) {
-    return (
-      <div className={cardClass} style={cardStyle} aria-label={`${label} — coming soon`}>
-        {inner}
-      </div>
-    );
-  }
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass} style={cardStyle}>
       {inner}
@@ -392,10 +385,9 @@ export function ProductsGrid() {
           wordmark={<NotesWordmark />}
           proof={<NotesProof />}
           description="Capture clarity. The notebook that finds what you wrote down."
-          positioning="Coming soon."
-          pills={["In design", "Q3 2026"]}
+          positioning="Fast capture. Quiet recall."
+          pills={["Private build", "Flat search"]}
           href={NOTES_URL}
-          comingSoon
         />
       </div>
     </section>

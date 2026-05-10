@@ -12,7 +12,7 @@ interface WorkItem {
   name: string;
   descriptor: string;
   year: string;
-  status: "Private preview" | "In definition";
+  status: "Private preview" | "Private build";
   href?: string;
 }
 
@@ -45,14 +45,14 @@ const items: WorkItem[] = [
     name: "Signal Notes",
     descriptor: "Capture clarity for fast notes that can become work when they earn it.",
     year: "2026",
-    status: "In definition",
+    status: "Private build",
     href: NOTES_URL,
   },
 ];
 
 const statusColor: Record<WorkItem["status"], string> = {
   "Private preview": "var(--accent)",
-  "In definition": "var(--ink-faint)",
+  "Private build": "var(--accent)",
 };
 
 export default function WorkPage() {
