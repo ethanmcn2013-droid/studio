@@ -781,6 +781,14 @@ body {
 .reveal-product-row.replay[data-key="notes"] .mark .word::after {
   animation: reveal-write-line .85s var(--reveal-ease-glide) forwards;
 }
+
+/* Notes row — placeholder: dim + inert (P0) */
+.reveal-product-row[data-key="notes"] {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: default;
+}
+
 .reveal-product-row.replay[data-key="roadmap"] .mark .dot {
   animation: reveal-replay-slide .85s var(--reveal-ease-mass) forwards;
 }

@@ -123,10 +123,10 @@ export function RevealEngine() {
       );
 
       // Fire each brand gesture in choreographed order
+      // notes is intentionally omitted — absence of the gesture IS the gesture
       tl.add(() => fire("tasks"), 2.85)
         .add(() => fire("roadmap"), 3.05)
-        .add(() => fire("analytics"), 3.25)
-        .add(() => fire("notes"), 3.45);
+        .add(() => fire("analytics"), 3.25);
 
       // Scroll cue arrives after the silence beat
       tl.to(
