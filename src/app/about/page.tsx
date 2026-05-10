@@ -132,9 +132,8 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
-                    aria-label="Signal Notes — coming soon"
                   >
-                    <span className="text-[14px] font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
+                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Notes
                     </span>
                     <span

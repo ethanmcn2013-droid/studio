@@ -75,8 +75,7 @@ export function SiteNav() {
             href={NOTES_URL}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ fontSize: 11, color: "var(--ink-faint)", fontWeight: 400, textDecoration: "none", letterSpacing: "-0.01em" }}
-            aria-label="Signal Notes — coming soon"
+            style={{ fontSize: 11, color: "var(--ink-quiet)", fontWeight: 400, textDecoration: "none", letterSpacing: "-0.01em" }}
           >
             notes
           </a>

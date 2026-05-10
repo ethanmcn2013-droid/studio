@@ -15,7 +15,7 @@ Signal Studio is the umbrella. Four products live under it.
 | Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Private preview |
 | Signal Roadmap | Direction clarity | roadmap.signalstudio.ie | `~/Projects/personal/roadmap` | Private preview |
 | Signal Analytics | Attention clarity | analytics.signalstudio.ie | `~/Projects/personal/analytics` | Private preview · product committed |
-| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Planned · product definition locked · not yet scaffolded |
+| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Private build · product definition locked · full v1 pending |
 
 **Umbrella domain:** signalstudio.ie · **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
 
@@ -137,7 +137,7 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
   - `tasks·` — dot **pulses** (live signal). `.tasks-dot` in CSS. Continuous.
   - `roadmap·` — dot **slides on mount** (motion toward a destination, settles). `.roadmap-dot` in CSS. Plays once.
   - `analytics·` — dot is **static** (ambient presence). Inline-styled, no class. The quietest of the four.
-  - `notes·` — **underline writes itself** under the word, stops just before the dot, persists. `.notes-mark` in CSS (lives in studio/globals.css since Notes is not yet scaffolded). Plays once on first paint. The line is the act of capture; the dot is the destination.
+  - `notes·` — **underline writes itself** under the word, stops just before the dot, persists. `.notes-mark` in CSS (lives in studio/globals.css until Notes carries the gesture natively). Plays once on first paint. The line is the act of capture; the dot is the destination.
   - All four respect `prefers-reduced-motion`.
 - **Conversational form (within the product itself):** drop "Signal" — e.g. "Welcome to Tasks."
 - **Never:** "the Tasks app" · "our task manager" · "the suite of products" (use "Signal Studio").
