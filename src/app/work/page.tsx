@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { TASKS_URL, ROADMAP_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Work — studio.",
+  title: "Work — Signal Studio",
   description:
     "Six things made under this roof — Tasks, Roadmap, Luminary Studio, Approvals Motion, Verizon GPO, 1ERP.",
 };
@@ -21,7 +22,7 @@ const items: WorkItem[] = [
     descriptor: "A multi-view workspace for people who don't think in sprints.",
     year: "2026",
     status: "In production",
-    href: "https://tasks-nu-hazel.vercel.app",
+    href: TASKS_URL,
   },
   {
     name: "Roadmap",
@@ -29,7 +30,7 @@ const items: WorkItem[] = [
       "Public-facing changelogs for the people your engineers aren't talking to.",
     year: "2026",
     status: "In production",
-    href: "https://roadmap-ebon-eight.vercel.app",
+    href: ROADMAP_URL,
   },
   {
     name: "Luminary Studio",

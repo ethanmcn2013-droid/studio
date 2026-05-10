@@ -1,33 +1,78 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/brand/wordmark";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { TASKS_URL, ROADMAP_URL } from "@/lib/product-urls";
 
 /**
- * 404 — on-brand. No drama.
- *
- * The wordmark centers the frame. "this page doesn't exist yet" is
- * honest without being cute about it. The home link is the only action.
+ * 404 — on-brand, calm. Two product links as the primary action.
+ * Voice: direct without drama. No "error", no "oops".
  */
 export default function NotFound() {
   return (
     <>
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-24">
-        <div className="flex flex-col items-center gap-6 text-center">
-          <Wordmark size="md" />
-
-          <p
-            className="text-ink-quiet"
-            style={{ fontSize: "clamp(0.875rem, 0.82rem + 0.25vw, 1rem)" }}
+        <div className="w-full max-w-[520px] text-center">
+          {/* Eyebrow */}
+          <div
+            className="text-[10.5px] font-semibold uppercase"
+            style={{ color: "var(--ink-quiet)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
-            this page doesn&rsquo;t exist yet.
+            404
+          </div>
+
+          {/* H1 */}
+          <h1
+            className="mt-3 text-balance font-semibold leading-[1.06] tracking-[-0.03em] text-ink"
+            style={{ fontSize: "clamp(1.75rem, 1.3rem + 2vw, 2.75rem)" }}
+          >
+            That page doesn&rsquo;t exist.
+          </h1>
+
+          {/* Sub */}
+          <p
+            className="mx-auto mt-4 max-w-[40ch] leading-[1.6] text-ink-quiet"
+            style={{ fontSize: "clamp(0.9rem, 0.85rem + 0.25vw, 1rem)" }}
+          >
+            You might be looking for one of the products.
           </p>
 
-          <Link
-            href="/"
-            className="text-[13px] text-ink-faint underline decoration-border underline-offset-[3px] transition-colors hover:text-ink hover:decoration-ink-quiet"
-          >
-            back home
-          </Link>
+          {/* Product CTAs */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <a
+              href={TASKS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium text-white transition-transform hover:-translate-y-px"
+              style={{
+                background: "var(--ink)",
+                boxShadow: "0 8px 20px -8px rgba(20,21,26,0.4)",
+              }}
+            >
+              Signal Tasks &rarr;
+            </a>
+            <a
+              href={ROADMAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors"
+              style={{
+                borderColor: "var(--border)",
+                background: "var(--bg-elev)",
+                color: "var(--ink-soft)",
+              }}
+            >
+              Signal Roadmap &rarr;
+            </a>
+          </div>
+
+          {/* Quiet home link */}
+          <div className="mt-6">
+            <Link
+              href="/"
+              className="text-[12.5px] text-ink-faint underline decoration-border underline-offset-[3px] transition-colors hover:text-ink hover:decoration-ink-quiet"
+            >
+              Back home
+            </Link>
+          </div>
         </div>
       </main>
       <SiteFooter />

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
 
 /**
  * Minimal sticky nav.
@@ -70,6 +70,15 @@ export function SiteNav() {
             style={{ fontSize: 11, color: "var(--ink-quiet)", fontWeight: 400, textDecoration: "none", letterSpacing: "-0.01em" }}
           >
             analytics
+          </a>
+          <a
+            href={NOTES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: 11, color: "var(--ink-faint)", fontWeight: 400, textDecoration: "none", letterSpacing: "-0.01em" }}
+            aria-label="Signal Notes — coming soon"
+          >
+            notes
           </a>
         </div>
       </div>

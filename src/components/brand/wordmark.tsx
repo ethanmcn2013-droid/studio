@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 interface WordmarkProps {
   className?: string;
   /** Show the settling animation on the period. Default true. */
@@ -19,12 +17,19 @@ const SIZE: Record<string, string> = {
 };
 
 /**
- * Studio wordmark: "studio."
+ * Signal Studio wordmark: "signal studio."
  *
- * Signature: the period is accent-gold and fades in 200ms after mount —
- * a settling gesture, not a pulse. Quieter than Tasks' heartbeat dot,
- * quieter than Roadmap's slide. Studio is the workshop; it doesn't
- * announce itself.
+ * Signature: lowercase wordmark, period is accent-gold and fades in
+ * 200ms after mount — a settling gesture, not a pulse. The period is
+ * the brand DNA carried over from the prior `studio.` mark; "signal"
+ * now prefixes for primary semantic weight. Lowercase keeps the
+ * register calm/premium (Linear/Arc/Notion family), not generic SaaS.
+ *
+ * Animation is fully driven by the `.studio-period` CSS class —
+ * no JS ref or effect needed.
+ *
+ * Never use just "Signal" alone in body copy — collides with Signal
+ * Messenger and is unownable as a standalone noun.
  */
 export function Wordmark({
   className = "",
@@ -32,33 +37,19 @@ export function Wordmark({
   size = "md",
   as: Tag = "span",
 }: WordmarkProps) {
-  const periodRef = useRef<HTMLSpanElement>(null);
-
-  // Trigger the settle animation after hydration. CSS animation handles
-  // the timing (200ms delay, 300ms fade) so this is just ensuring the
-  // element is mounted before the class applies.
-  useEffect(() => {
-    const el = periodRef.current;
-    if (!el || !animate) return;
-    // The animation runs via the .studio-period class in globals.css.
-    // Nothing to do — CSS handles it. This hook is a no-op safety net
-    // for future imperative control if needed.
-  }, [animate]);
-
   const sizeClass = SIZE[size] ?? SIZE.md;
 
   return (
     <Tag
-      className={`inline-flex select-none items-baseline font-semibold tracking-[-0.05em] ${sizeClass} ${className}`}
+      className={`inline-flex select-none items-baseline font-semibold tracking-[-0.045em] ${sizeClass} ${className}`}
     >
       <span
         className="wordmark"
         style={{ fontWeight: 600 }}
       >
-        studio
+        signal&nbsp;studio
       </span>
       <span
-        ref={periodRef}
         aria-hidden
         className={animate ? "studio-period" : ""}
         style={{
