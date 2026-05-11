@@ -104,6 +104,19 @@ Cycle 5 connects the proof artefact to a segment-specific conversion path:
 
 The proof scene is: viewer opens a wedding update, understands the state of the plan, then lands on a relevant page instead of a generic homepage.
 
+## Cycle 6 Status
+
+Started May 11, 2026.
+
+Cycle 6 makes the wedding proof path repeatable:
+
+- Signal Tasks now has `wedding-planning-workspace`.
+- The template gives creators an 18-task starting point across venue, suppliers, guests, decisions, and final-week work.
+- Studio `/weddings` now links to the template with source and campaign fields.
+- The template is the first concrete answer to "workspace creators should not start blank."
+
+The proof scene is: viewer opens a wedding update, lands on `/weddings`, then starts from a real workspace template.
+
 ## Shareable Artefacts
 
 Prioritise these first:

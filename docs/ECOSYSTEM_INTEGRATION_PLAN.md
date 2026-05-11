@@ -144,7 +144,7 @@ Acceptance criteria:
 
 ### Cycle 5: Wedding conversion path
 
-Status: active from May 11, 2026.
+Status: built from May 11, 2026.
 
 Detailed spec: `docs/CYCLE_5_WEDDING_CONVERSION_PATH.md`.
 
@@ -164,6 +164,29 @@ Acceptance criteria:
 - a viewer of the wedding shared update can click through to a relevant Studio page
 - the page explains the product through a wedding venue/planner/couple context
 - the route can be used in venue outreach and the first demo script
+
+### Cycle 6: Wedding workspace template
+
+Status: built from May 11, 2026.
+
+Detailed spec: `docs/CYCLE_6_WEDDING_WORKSPACE_TEMPLATE.md`.
+
+Purpose:
+
+Make the first wedding/events proof path repeatable by giving creators a real Tasks workspace template instead of a blank workspace.
+
+Deliverables:
+
+- Signal Tasks `wedding-planning-workspace`
+- long-form template page for search, demo, and outreach links
+- Studio `/weddings` CTA to the template with source/campaign fields
+- Signal HQ updated so the template is tracked as a built wedge asset
+
+Acceptance criteria:
+
+- a venue, planner, or couple can open a useful wedding workspace starter
+- the public weddings page has a clear creator action after the shared update
+- the next cross-product cycle can connect Notes, Roadmap, and Analytics to the same wedding scene
 
 ### Phase 1: Shared language and links
 

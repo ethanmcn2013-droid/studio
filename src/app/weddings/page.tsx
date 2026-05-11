@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ROADMAP_URL } from "@/lib/product-urls";
+import { ROADMAP_URL, TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Wedding Planning Workspaces - Signal Studio",
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/wedding-planning/update?source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue&artefact=landing_page`;
+const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace?source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue&artefact=template`;
 
 const clarityItems = [
   {
@@ -97,6 +98,14 @@ export default function WeddingsPage() {
               >
                 Ask about the pilot
               </Link>
+              <a
+                href={templateHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-border px-5 text-[14px] font-medium text-ink-soft transition-colors hover:border-ink-quiet hover:text-ink"
+              >
+                Use the template
+              </a>
             </div>
 
             <div className="mt-12 overflow-hidden rounded-[8px] border border-border-soft bg-bg-elev shadow-2">
@@ -217,6 +226,20 @@ export default function WeddingsPage() {
                   </p>
                 </section>
               ))}
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={templateHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+              >
+                Start from the wedding workspace
+              </a>
+              <p className="text-[13px] leading-[1.6] text-ink-quiet">
+                The first template covers venue, supplier, guest, decision,
+                and final-week work.
+              </p>
             </div>
           </div>
         </section>

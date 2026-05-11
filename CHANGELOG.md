@@ -7,6 +7,19 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-11
 
+### Cycle 6 made the wedding workspace repeatable.
+
+The weddings/events proof path now has a real creator action behind it:
+Signal Tasks ships `wedding-planning-workspace`, and Studio's
+`/weddings` route links to it with campaign/source context. The shared
+Roadmap update can now lead to a wedge page, and the wedge page can
+lead to a starter workspace instead of a blank shell.
+
+This makes the collaboration loop more concrete: shared update ->
+segment page -> template -> workspace. The next cycle should connect
+Notes and Analytics to the same wedding scene so the template can
+become a full four-product demo.
+
 ### Cycle 3 produced the first shared artefact.
 
 Signal HQ now tracks the first built shareable artefact in the
