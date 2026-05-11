@@ -10,45 +10,40 @@ export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Project Management for the 80% who don't work in tech"
+      aria-label="Signal Studio — Project Management for people not in tech"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
       <h1
         className="reveal-headline"
-        aria-label="Project Management for the 80% who don't work in tech."
+        aria-label="Project Management for people not in tech."
       >
-        <span className="word">
-          <span className="word-inner">Project</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">Management</span>
+        <span className="line line-1">
+          <span className="word">
+            <span className="word-inner">Project</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">Management</span>
+          </span>
         </span>
-        <br />
-        <span className="word">
-          <span className="word-inner">for</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">the</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">80%</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">who</span>
+        <span className="line line-2">
+          <span className="word">
+            <span className="word-inner">for</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">people</span>
+          </span>
         </span>
-        <br />
-        <span className="word">
-          <span className="word-inner">don&apos;t</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">work</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">in</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">tech.</span>
+        <span className="line line-3">
+          <span className="word">
+            <span className="word-inner em">not</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">in</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">tech.</span>
+          </span>
         </span>
       </h1>
 
