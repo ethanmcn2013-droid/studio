@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T20:15:00Z",
+  updatedAt: "2026-05-11T20:35:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -494,13 +494,13 @@ export const seedHqData: HqData = {
       name: "Signal Notes",
       layer: "Context",
       role: "What was said, decided, learned, captured, and turned into work.",
-      maturity: 65,
+      maturity: 70,
       status: "Private preview",
-      uxPolish: 55,
+      uxPolish: 58,
       integrationScore: 35,
-      launchReadiness: 58,
-      majorFeatures: ["Next.js 16 scaffold", "Turso + Drizzle server persistence", "suite-wide Clerk auth (live)", "auth-gated /app", "sign-in / sign-up routes", "notebook surface with optimistic UI", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo"],
-      blockers: ["No search yet (FTS5 in Cycle 9.4).", "Promote-to-tasks is a UI stub (Cycle 9.4 wires the cross-product API).", "First-sign-in onboarding empty state could be sharper (Cycle 9.3)."],
+      launchReadiness: 62,
+      majorFeatures: ["Next.js 16 scaffold", "Turso + Drizzle server persistence", "suite-wide Clerk auth (live)", "auth-gated /app", "sign-in / sign-up routes", "notebook surface with optimistic UI", "collapsible search rail with ⌘K", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo"],
+      blockers: ["Promote-to-tasks API endpoint and UI wiring is next (Cycle 9.4b, cross-repo into Tasks).", "First-sign-in onboarding empty state could be sharper (Cycle 9.3).", "FTS5 server-side search is a later polish — client-side filter is fast for corpora < 1000 notes."],
       notes: "Sprint 1 · Cycle 9.2 fully shipped: Turso DB ethanmcnamara-notes provisioned and schema pushed; server actions (create/list/delete) with optimistic UI honour PRODUCT.md §5's <100ms perceived budget; Clerk middleware (proxy.ts), ClerkProvider, sign-in/sign-up live; suite-wide Clerk shared with Tasks/Roadmap/Analytics. /app redirects unauthenticated to /sign-in.",
       nextActions: ["Sign up at notes.signalstudio.ie/sign-up; capture a note; confirm persistence across reload.", "Cycle 9.3: visual polish + first-sign-in onboarding empty state.", "Cycle 9.4: FTS5 search + cross-product promote-to-tasks API endpoint."],
     },
