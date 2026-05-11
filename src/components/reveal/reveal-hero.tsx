@@ -32,7 +32,9 @@ export function RevealHero() {
           </span>{" "}
           <span className="word">
             <span className="word-inner">people</span>
-          </span>{" "}
+          </span>
+        </span>
+        <span className="line line-3">
           <span className="word">
             <span className="word-inner em">not</span>
           </span>{" "}

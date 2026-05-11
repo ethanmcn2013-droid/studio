@@ -461,7 +461,8 @@ body {
 .reveal-headline .line {
   display: block;
 }
-.reveal-headline .line-2 {
+.reveal-headline .line-2,
+.reveal-headline .line-3 {
   margin-top: 0.08em;
 }
 .reveal-headline .word {
