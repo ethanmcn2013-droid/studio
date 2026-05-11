@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T19:25:00Z",
+  updatedAt: "2026-05-11T19:45:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -428,19 +428,19 @@ export const seedHqData: HqData = {
     focus:
       "Cycle 9.1 (Next.js scaffold) and 9.2 (server persistence + auth) both shipped today. Notes now has real Turso-backed storage, suite-wide Clerk auth wired, sign-in/sign-up routes, and the locked notebook surface from PRODUCT.md. Final gating: owner adds the existing suite-wide Clerk keys to the notes Vercel project; then /app and /sign-in go live.",
     priorities: [
-      "Owner: copy NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY + CLERK_SECRET_KEY from another product's Vercel env to notes' Vercel env.",
+      "Owner: sign up at notes.signalstudio.ie/sign-up, capture a note, confirm it persists across reload.",
       "Cycle 9.3: visual polish on the notebook + first-sign-in onboarding empty state.",
       "Cycle 9.4: Turso FTS5 search + cross-product promote-to-tasks API.",
     ],
     risks: [
-      "/app and /sign-in return 5xx until Clerk env vars are on notes Vercel — homepage + wedding-planning still serve cleanly so the public surface is unaffected.",
+      "Notes is using the shared dev Clerk app (pk_test_/sk_test_). For production launch we'll need a separate production Clerk instance with custom domain auth.",
       "Sprint 1 still has 9.3-9.5 to land before Sprint 2 (Analytics live briefing) is the right move.",
       "Cycle 8 outreach assets remain parked in signal-growth/outbound — useful when marketing reopens, dead weight if rushed back into.",
     ],
     nextActions: [
-      "Owner: drop Clerk env vars on notes Vercel → /app and /sign-in unlock.",
-      "Sign in once on notes.signalstudio.ie to verify end-to-end capture flow.",
-      "Then Cycle 9.3 begins.",
+      "Owner: first-sign-up verification on notes.signalstudio.ie.",
+      "Open Cycle 9.3 — polish pass + first-sign-in empty state, OR jump to 9.4 (search + promote-to-tasks).",
+      "Decide which Sprint 1 finishing cycle is the priority now Notes has its core flow.",
     ],
   },
   products: [
@@ -494,15 +494,15 @@ export const seedHqData: HqData = {
       name: "Signal Notes",
       layer: "Context",
       role: "What was said, decided, learned, captured, and turned into work.",
-      maturity: 60,
-      status: "Private build",
-      uxPolish: 52,
-      integrationScore: 32,
-      launchReadiness: 52,
-      majorFeatures: ["Next.js 16 scaffold", "notebook surface (capture + stream)", "Turso + Drizzle server persistence", "Clerk auth + suite-wide account", "sign-in/sign-up routes", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo"],
-      blockers: ["Clerk env vars not yet set on notes Vercel (owner action) — /app and /sign-in 5xx until added.", "No search yet (FTS5 in Cycle 9.4).", "Promote-to-tasks is a UI stub (Cycle 9.4 wires the cross-product API)."],
-      notes: "Sprint 1 · Cycle 9.2 shipped: Turso DB provisioned, Drizzle schema + indexes pushed, server actions (create/list/delete) with optimistic UI, Clerk middleware (proxy.ts) with graceful dev bypass, sign-in/sign-up routes, /app gated. Suite-wide Clerk decision locked. Gated on owner adding CLERK_SECRET_KEY + NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY to notes Vercel project.",
-      nextActions: ["Owner: add Clerk env vars from any other product's Vercel project, redeploy.", "Cycle 9.3: visual polish + empty states + first-sign-in onboarding.", "Cycle 9.4: FTS5 search + cross-product promote-to-tasks API endpoint."],
+      maturity: 65,
+      status: "Private preview",
+      uxPolish: 55,
+      integrationScore: 35,
+      launchReadiness: 58,
+      majorFeatures: ["Next.js 16 scaffold", "Turso + Drizzle server persistence", "suite-wide Clerk auth (live)", "auth-gated /app", "sign-in / sign-up routes", "notebook surface with optimistic UI", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo"],
+      blockers: ["No search yet (FTS5 in Cycle 9.4).", "Promote-to-tasks is a UI stub (Cycle 9.4 wires the cross-product API).", "First-sign-in onboarding empty state could be sharper (Cycle 9.3)."],
+      notes: "Sprint 1 · Cycle 9.2 fully shipped: Turso DB ethanmcnamara-notes provisioned and schema pushed; server actions (create/list/delete) with optimistic UI honour PRODUCT.md §5's <100ms perceived budget; Clerk middleware (proxy.ts), ClerkProvider, sign-in/sign-up live; suite-wide Clerk shared with Tasks/Roadmap/Analytics. /app redirects unauthenticated to /sign-in.",
+      nextActions: ["Sign up at notes.signalstudio.ie/sign-up; capture a note; confirm persistence across reload.", "Cycle 9.3: visual polish + first-sign-in onboarding empty state.", "Cycle 9.4: FTS5 search + cross-product promote-to-tasks API endpoint."],
     },
   ],
   ecosystemFlows: [
