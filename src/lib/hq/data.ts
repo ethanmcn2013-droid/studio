@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T19:45:00Z",
+  updatedAt: "2026-05-11T20:15:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1679,6 +1679,19 @@ export const seedHqData: HqData = {
       status: "Active",
       relatedObjects: ["Signal Roadmap", "Shareable outputs", "Collaboration Proof Campaign"],
       notes: "`/[workspace]/update` is the first built artefact. It should lead into wedding-specific sharing and view-to-creator tracking.",
+    },
+    {
+      id: "sprint-2-collaboration-locked",
+      decision: "Sprint 2 = Collaboration moat. Five gestures, seven cycles, Tasks + Roadmap only.",
+      category: "Product",
+      date: "2026-05-11",
+      reason: "Collaboration is the brand's structural moat: 'the invited person feels nothing.' The five gestures (one-click invite, no-signup guest view, 'invited by X' context, plain-English activity, one-tap reply) load-bear the 'wow intuitive' feeling. Plan locked in studio/docs/SPRINT_2_COLLABORATION.md.",
+      alternatives: "Generic 'add collab everywhere' (would break Notes locked single-user and Analytics private positioning). Or defer collaboration until after Analytics ships (loses the moat-building window).",
+      risks: "Sprint 2 is multi-cycle and cross-repo. Pacing matters. Don't half-start it before Sprint 1 (Notes 9.3+9.4+9.5) is closed. Cycle 9.4 promote-to-tasks is the first collab edge — finish it before 10.1.",
+      reviewDate: "2026-06-15",
+      status: "Active",
+      relatedObjects: ["studio/docs/SPRINT_2_COLLABORATION.md", "Tasks workspace_members", "Roadmap shared update", "Collaboration Loop"],
+      notes: "Notes stays single-user, Analytics stays private. Sprint 2 changes only Tasks + Roadmap.",
     },
     {
       id: "wedge-weddings-events-confirmed",
