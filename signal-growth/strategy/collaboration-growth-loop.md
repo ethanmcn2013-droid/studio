@@ -40,6 +40,19 @@ The venue should understand:
 - what questions keep repeating
 - which planning artefacts are ready to share
 
+## Cycle 1 Status
+
+Started May 11, 2026.
+
+Cycle 1 is the collaboration foundation cycle:
+
+- Tasks owns execution clarity for invited collaborators.
+- Roadmap owns the shareable direction artefact.
+- Analytics owns the briefing and attention signal.
+- Notes owns context-to-work extraction.
+
+The next strategic decisions are guest access, public/private controls, source tracking, and the first wedding/events shareable artefacts.
+
 ## Shareable Artefacts
 
 Prioritise these first:

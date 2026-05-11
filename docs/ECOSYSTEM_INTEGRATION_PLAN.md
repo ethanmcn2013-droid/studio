@@ -47,6 +47,28 @@ These objects should be defined once and reused across all product repos.
 
 ## Build Sequence
 
+### Cycle 1: Collaboration foundation
+
+Status: in progress from May 11, 2026.
+
+Purpose:
+
+Make the collaboration growth loop explicit across all four product repos before deeper implementation starts.
+
+Deliverables:
+
+- product-specific collaboration loop docs in Tasks, Roadmap, Analytics, and Notes
+- shared object language aligned across repos
+- HQ Collab Loop data kept current
+- first implementation targets named for invites, guest value, shareable outputs, and source tracking
+
+Acceptance criteria:
+
+- every product repo names its role in the loop
+- every product repo lists the shared objects it must respect
+- every product repo names its Cycle 1 acceptance test
+- Studio HQ tracks collaboration readiness and active next actions
+
 ### Phase 1: Shared language and links
 
 - Align product copy around workspace, owner, date, status, blocker, decision, risk, update, and briefing.

@@ -20,6 +20,15 @@ the cross-product build sequence, and Signal Growth Studio now has a
 collaboration growth loop memory file. Collaboration is no longer a
 nice-to-have feature. It is the organic outreach campaign.
 
+### Cycle 1 started across the product repos.
+
+Tasks, Roadmap, Analytics, and Notes now each carry their own
+collaboration-loop contract. Each product knows its role: execution,
+direction, attention, and context. The next work is no longer abstract
+"integrate the products"; it is narrower and better: define the invite
+path, the guest's first view, the first shareable artefacts, and the
+source tracking that proves collaboration can become distribution.
+
 ## 2026-05-10
 
 ### Signal HQ became the private operating room.
