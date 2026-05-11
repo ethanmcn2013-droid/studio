@@ -1,11 +1,8 @@
-"use client";
-
 interface WordmarkProps {
   className?: string;
-  /** Show the settling animation on the period. Default true. */
+  /** Play the pulse-slow gesture on the dot. Default true. */
   animate?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
-  /** Render as a plain span instead of a heading element. */
   as?: "span" | "div" | "h1";
 }
 
@@ -17,19 +14,10 @@ const SIZE: Record<string, string> = {
 };
 
 /**
- * Signal Studio wordmark: "signal studio."
- *
- * Signature: lowercase wordmark, period is accent-gold and fades in
- * 200ms after mount — a settling gesture, not a pulse. The period is
- * the brand DNA carried over from the prior `studio.` mark; "signal"
- * now prefixes for primary semantic weight. Lowercase keeps the
- * register calm/premium (Linear/Arc/Notion family), not generic SaaS.
- *
- * Animation is fully driven by the `.studio-period` CSS class —
- * no JS ref or effect needed.
- *
- * Never use just "Signal" alone in body copy — collides with Signal
- * Messenger and is unownable as a standalone noun.
+ * Signal Studio wordmark — per the 2026-05-11 brand guide (D01 —
+ * Refined Indigo Dot). Geist 500, dot 0.16em indigo at the baseline
+ * lower-right. Pulse-slow gesture on the dot (5.2s ease-in-out) when
+ * animate is true; static dot when false.
  */
 export function Wordmark({
   className = "",
@@ -40,26 +28,9 @@ export function Wordmark({
   const sizeClass = SIZE[size] ?? SIZE.md;
 
   return (
-    <Tag
-      className={`inline-flex select-none items-baseline font-semibold tracking-[-0.045em] ${sizeClass} ${className}`}
-    >
-      <span
-        className="wordmark"
-        style={{ fontWeight: 600 }}
-      >
-        signal&nbsp;studio
-      </span>
-      <span
-        aria-hidden
-        className={animate ? "studio-period" : ""}
-        style={{
-          color: "var(--accent)",
-          fontWeight: 600,
-          opacity: animate ? undefined : 1,
-        }}
-      >
-        .
-      </span>
+    <Tag className={`studio-mark ${animate ? "is-live" : ""} ${sizeClass} ${className}`}>
+      <span className="word">signal&nbsp;studio</span>
+      <span className="dot" aria-hidden />
     </Tag>
   );
 }

@@ -222,15 +222,49 @@ body {
    pulse. A breath in. Quieter than Tasks' dot, quieter than
    Roadmap's slide. Studio doesn't announce; it settles.
    ──────────────────────────────────────────────────────────── */
-@keyframes studio-period-settle {
-  0%   { opacity: 0; transform: translateY(2px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Studio umbrella wordmark — brand guide D01 (2026-05-11). Geist 500,
+   dot 0.16em indigo at baseline lower-right, pulse-slow gesture. */
+.studio-mark {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  color: var(--ink-950);
 }
-.studio-period {
+.studio-mark .word { display: inline-block; line-height: 0.95; }
+.studio-mark .dot {
+  width: 0.16em;
+  height: 0.16em;
+  border-radius: 50%;
+  background: var(--accent);
   display: inline-block;
-  color: var(--accent);
-  animation: studio-period-settle 0.3s var(--spring-glide) 0.2s both;
+  margin-left: 0.08em;
+  margin-bottom: 0.08em;
+  align-self: flex-end;
+  flex: 0 0 auto;
+  animation: studio-dot-arrive 0.4s var(--spring-glide) 0.22s both;
 }
+.studio-mark.is-live .dot {
+  animation:
+    studio-dot-arrive 0.4s var(--spring-glide) 0.22s both,
+    studio-dot-pulse-slow 5.2s ease-in-out 0.62s infinite;
+  transform-origin: center;
+}
+@keyframes studio-dot-arrive {
+  0%   { opacity: 0; transform: translateY(2px) scale(0.86); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes studio-dot-pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.88); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-mark .dot { animation: none; opacity: 1; }
+}
+
+/* Legacy period class — kept as a no-op so old refs don't break. */
+.studio-period { display: none; }
 
 /* Tasks dot — inline pulse (adapted from Tasks design system) */
 .tasks-dot {
