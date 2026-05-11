@@ -1,0 +1,194 @@
+# Wedding Venue Outreach Kit
+
+**Cycle 8.2** · **Status**: ready to send · **Owner**: Ethan (send)
+
+A founder-led outreach kit for the first 10 Irish wedding venue conversations. Voice register from BRAND.md §3. Every paragraph readable in 20 seconds. Plain English, no software-jargon, no urgency tricks.
+
+The whole point: hand a venue coordinator a clear, useful workspace they can give to couples. Get one piece of practical feedback per conversation. Land one founding venue.
+
+---
+
+## Target persona
+
+**Primary**: venue coordinator at a 60–200 capacity Irish wedding venue (hotels, country houses, restored barns, country estates). They handle anywhere from 8 to 30 weddings a year, run the venue's side of the planning conversation with couples, and pass information between catering, suppliers, internal staff, and the couple. They are not project managers. They have a notebook, an inbox, and a calendar.
+
+**Secondary**: independent wedding planners running ten to thirty active weddings concurrently.
+
+**Not the target yet**: large hotel groups, destination wedding planners, or couples directly. Those come after the venue path is validated.
+
+---
+
+## What we offer (the founding venue programme)
+
+For the first 10 venues who join the conversation:
+
+1. **Free planning workspaces** for every wedding running through their venue, for the next 12 months.
+2. A workspace **branded with the venue's identity** (name and one accent color) so couples experience the venue's brand from sign-up.
+3. **Direct line to Ethan** for product changes — what you ask for, we build first.
+4. **No charge during the pilot**. No card needed. If the venue stays after the pilot ends, the standard venue tier is €49/month.
+
+**What we ask in return**:
+- Use the workspace for at least 3 active weddings.
+- One 30-minute conversation a month for the first three months.
+- A short testimonial if the experience is positive at the end of the pilot.
+
+The pilot is a real commitment from both sides. Not a "free trial" — a working partnership.
+
+---
+
+## Email 1 · First touch
+
+**Subject options (pick one per send, A/B over the first 10)**:
+1. `Wedding planning workspaces for [Venue Name]`
+2. `Quick idea for how couples plan their day at [Venue Name]`
+3. `Founding venue spot — Signal Studio`
+
+**Body**:
+
+> Hi [Name],
+>
+> I run a small Irish software studio called Signal Studio. We make plain-language planning tools for people who need clear work without project-management jargon.
+>
+> One of the four tools is a wedding planning workspace. The reason I'm writing is to offer [Venue Name] a founding venue spot: free planning workspaces for every wedding through your venue for the next 12 months, with the workspace carrying your name and brand.
+>
+> The workspace gives couples one clear place to keep guest counts, supplier follow-ups, decisions, and the running plan — without spreadsheet chaos. The venue coordinator side gets the same plan from the venue's angle, plus a shareable update they can forward.
+>
+> Four short demos that show what it does:
+>
+> - **The venue meeting becoming the work**: [https://notes.signalstudio.ie/wedding-planning/](https://notes.signalstudio.ie/wedding-planning/?source=outbound_email&campaign=founding_venue&artefact=notes_demo)
+> - **The wedding workspace itself**: [https://tasks.signalstudio.ie/templates/wedding-planning-workspace](https://tasks.signalstudio.ie/templates/wedding-planning-workspace?source=outbound_email&campaign=founding_venue&artefact=template)
+> - **The shared update for couples**: [https://roadmap.signalstudio.ie/wedding-planning/update](https://roadmap.signalstudio.ie/wedding-planning/update?source=outbound_email&campaign=founding_venue&artefact=shared_update)
+> - **A Sunday morning briefing**: [https://analytics.signalstudio.ie/wedding-planning](https://analytics.signalstudio.ie/wedding-planning?source=outbound_email&campaign=founding_venue&artefact=analytics_demo)
+>
+> Each takes about 30 seconds to read. The whole loop together is under three minutes.
+>
+> I'm in [town/city] and happy to drive over and walk through it with you in person. Or a 20-minute call if that's easier.
+>
+> Ethan
+> Signal Studio
+> hello@signalstudio.ie
+> signalstudio.ie/weddings
+
+**Personalisation rule**: change one sentence per venue. Reference something specific — a wedding hashtag they were tagged in, the architecture of the venue, a recent feature in a wedding magazine, etc. One sentence only. No generic "love your beautiful venue" lines.
+
+---
+
+## Email 2 · 5 days later if no reply
+
+**Subject**: Re: previous subject
+
+> Hi [Name],
+>
+> Following up on my note last week. No pressure if it's not the right time — wedding season runs you ragged.
+>
+> If you have 30 seconds and want to see the part that matters most for venue coordinators specifically, this is the page: [https://signalstudio.ie/weddings](https://signalstudio.ie/weddings?source=outbound_email&campaign=founding_venue&artefact=landing&touch=2).
+>
+> Ethan
+
+---
+
+## Email 3 · 12 days later if no reply
+
+**Subject**: Last note — Signal Studio for [Venue Name]
+
+> Hi [Name],
+>
+> Last note from me on this — I'll stop after this one.
+>
+> The reason I keep reaching out is that the venue coordinator role is exactly who Signal is built for. Most planning software is built by tech companies for tech companies. Signal is built by a designer in Ireland for people who run real coordination work for people who don't work in tech.
+>
+> If your inbox is full and now isn't the moment, totally understand. The offer (free workspaces for every wedding for 12 months, your venue's branding, founding venue status) holds open if you ever want to come back to it.
+>
+> Best with the season.
+>
+> Ethan
+
+---
+
+## Pilot offer page draft
+
+To live at `signalstudio.ie/weddings/pilot` (build in a follow-up cycle if outreach generates enough interest to need a dedicated page).
+
+**Hero**:
+> **Founding Venue Programme**
+> A workspace for every wedding through your venue. Yours to give to couples. Free for the first 12 months.
+
+**Three blocks**:
+1. **What couples get**: a clear shared plan. Guest list, supplier follow-ups, the running budget, what was decided. No spreadsheet, no shared docs, no chasing the bridal party group chat.
+2. **What you get**: the same plan from the venue's angle. A shareable update you can send before each touch point. A daily briefing on the Sunday before the wedding telling you what to chase.
+3. **What we ask**: three active weddings in the workspace. One 30-minute conversation a month. A short testimonial if the experience is positive.
+
+**Closer**: We're choosing the first 10 venues by hand. If you'd like a spot, write to hello@signalstudio.ie.
+
+---
+
+## Objection handling
+
+Most likely objections from venue coordinators, with response patterns. Pair with the existing `objections.md`.
+
+### "We already use [The Knot / Aisle Planner / WedPro / Trello]."
+*Response*: That's fine. Signal isn't trying to replace your internal system. It's the plain-language layer the couple sees. The version that doesn't ask them to learn a tool.
+
+### "Our couples don't use software."
+*Response*: They don't have to. The shared update is a web page that reads in 20 seconds — no sign-up. The workspace is for the people coordinating, not for the couple.
+
+### "We're too busy to set anything up."
+*Response*: The workspace is a template — it opens populated. You don't configure it. The conversation we'd have is 30 minutes total to set up the first wedding together.
+
+### "What happens after the 12 months?"
+*Response*: If it's working, the venue tier is €49/month. If it's not, you walk away. No card needed during the pilot.
+
+### "What if we change our minds?"
+*Response*: Workspaces export to plain text and PDF at any time. Couples take their plan with them.
+
+### "Why should I be the first?"
+*Response*: Because founding venues shape what gets built. The next ten features in Signal will come from these conversations.
+
+---
+
+## Cadence
+
+**Send cadence**: 2 venues per day, weekdays only. Don't blast. Personalise the one-sentence hook for each.
+
+**Reply target**: 3 of 10 should reply within 7 days. 1 should book a conversation. 1 should accept the pilot within 30 days. If those targets miss by more than half, the script or the targeting is wrong — bring it back to HQ for a revision cycle.
+
+**Logging**: every send, every reply, every conversation goes into HQ's Outbound CRM (Prospect entries). Use the `/hq` Outbound tab.
+
+---
+
+## Voice guard
+
+Before send, every email passes BRAND.md §3 catch-net:
+- No "AI", "intelligent", "automatically".
+- No "leverage", "stakeholder", "seamless", "robust".
+- No "sprint", "epic", "OKR".
+- No exclamation marks.
+- No three-adjective trios.
+
+The whole register is: declarative, warm, factual, plain. A wedding venue coordinator should read the email and think "this is from a real person", not "this is from a SaaS company".
+
+---
+
+## Source tracking
+
+All four demo links + the pilot landing page link carry UTM-style params:
+
+```
+?source=outbound_email
+&campaign=founding_venue
+&artefact={notes_demo|template|shared_update|analytics_demo|landing}
+&touch={1|2|3}
+```
+
+Vercel Analytics on each product picks these up via the `Top Sources` panel (no custom code needed — Vercel reads referrer + URL params by default).
+
+To read attribution: open Vercel project → Analytics → Top Sources, filter by `signalstudio_outbound`. Until 30 days of data exist, this is qualitative — read the email replies as the primary signal.
+
+---
+
+## What's deliberately NOT in this kit
+
+- No social proof. Signal hasn't been used by another venue yet — claiming otherwise would breach the trust the brand is built on. Cycle 9+ adds testimonials once they exist.
+- No urgency framing ("limited spots", "act fast"). Doesn't fit the voice.
+- No paid-ad targeting copy. This is a founder-led outbound programme, not a paid-acquisition campaign.
+- No discount or "introductory" pricing. The pilot is free for 12 months — that's the offer. Don't water it down.
