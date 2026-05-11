@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T00:00:05Z",
+  updatedAt: "2026-05-11T00:00:06Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -904,7 +904,7 @@ export const seedHqData: HqData = {
       relatedCampaign: "Collaboration Proof Campaign",
       relatedMetric: "New workspace creators",
       principleAlignment: 94,
-      notes: "First built shareable artefact: a short read-only update at `/[workspace]/update` with source fields and Created with Signal Studio.",
+      notes: "First built shareable artefact: a short read-only update at `/[workspace]/update` with source fields, Created with Signal Studio, and bundled demo fallback for preview reliability.",
     },
     {
       id: "notes-decisions",

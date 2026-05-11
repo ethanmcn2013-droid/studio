@@ -15,6 +15,9 @@ collaboration growth loop: Roadmap's shared update page at
 Signal Studio tastefully, and gives future demo work a real output to
 show rather than a strategy slide to describe.
 
+The Roadmap preview path has also been hardened with bundled proof data
+so the demo link can render even when preview database rows are missing.
+
 The next step is to turn that generic Roadmap update into the
 weddings/events proof path.
 
