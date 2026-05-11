@@ -3,8 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { seedHqData } from "@/lib/hq/data";
 import type {
+  AccessRoleItem,
   Campaign,
   CollaborationLoopStep,
+  CollaboratorFirstViewItem,
   ContentItem,
   DecisionItem,
   DemoAsset,
@@ -17,6 +19,7 @@ import type {
   Prospect,
   RiskItem,
   SegmentPlan,
+  ShareableArtifactItem,
   SharedObjectItem,
   TemplateItem,
   WeeklyRhythmItem,
@@ -43,6 +46,9 @@ type HqArrayKey =
   | "campaigns"
   | "collaborationLoop"
   | "sharedObjects"
+  | "accessRoles"
+  | "collaboratorFirstView"
+  | "shareableArtifacts"
   | "prospects"
   | "contentItems"
   | "demos"
@@ -117,6 +123,9 @@ function normalizeData(imported: Partial<HqData>): HqData {
     ...imported,
     collaborationLoop: imported.collaborationLoop ?? seed.collaborationLoop,
     sharedObjects: imported.sharedObjects ?? seed.sharedObjects,
+    accessRoles: imported.accessRoles ?? seed.accessRoles,
+    collaboratorFirstView: imported.collaboratorFirstView ?? seed.collaboratorFirstView,
+    shareableArtifacts: imported.shareableArtifacts ?? seed.shareableArtifacts,
   } as HqData;
 }
 
@@ -837,6 +846,40 @@ function CollaborationLoopTab({
         </div>
       </Panel>
 
+      <Panel className="mb-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div className="font-mono text-[11px] uppercase text-ink-faint">Cycle 2</div>
+            <h3 className="mt-2 text-[18px] font-semibold tracking-[-0.02em] text-ink">Invite and access model.</h3>
+          </div>
+          <span className="text-[13px] text-ink-quiet">People should see value before they configure anything.</span>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {data.accessRoles.map((role: AccessRoleItem) => (
+            <div key={role.id} className="rounded-[6px] border border-border-soft bg-bg p-4">
+              <div className="mb-3 flex items-start justify-between gap-3">
+                <div>
+                  <div className="font-mono text-[11px] uppercase text-ink-faint">{role.role}</div>
+                  <h4 className="mt-1 font-semibold text-ink">{role.plainName}</h4>
+                </div>
+                <StatusBadge value={role.status} />
+              </div>
+              <p className="text-[13px] leading-5 text-ink-quiet">{role.purpose}</p>
+              <p className="mt-3 text-[12px] leading-5 text-ink-quiet">
+                Access: <span className="text-ink">{role.defaultAccess}</span>
+              </p>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                <ListBlock title="Can do" items={role.canDo} />
+                <ListBlock title="Cannot do" items={role.cannotDo} />
+              </div>
+              <p className="mt-3 text-[12px] leading-5 text-ink-quiet">
+                Next: <span className="text-ink">{role.nextAction}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </Panel>
+
       <div className="mb-5 grid gap-4 md:grid-cols-2">
         {data.collaborationLoop.map((step: CollaborationLoopStep) => (
           <Panel key={step.id}>
@@ -868,6 +911,56 @@ function CollaborationLoopTab({
             </div>
           </Panel>
         ))}
+      </div>
+
+      <div className="mb-5 grid gap-4 lg:grid-cols-2">
+        <Panel>
+          <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Collaborator first view</div>
+          <div className="grid gap-4">
+            {data.collaboratorFirstView.map((item: CollaboratorFirstViewItem) => (
+              <div key={item.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
+                <div className="mb-2 flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-semibold text-ink">{item.section}</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-ink-quiet">{item.question}</p>
+                  </div>
+                  <StatusBadge value={item.status} />
+                </div>
+                <p className="text-[13px] leading-5 text-ink-quiet">{item.purpose}</p>
+                <div className="mt-3 text-[12px] leading-5 text-ink-quiet">
+                  Source: <span className="text-ink">{item.sourceProduct}</span>
+                </div>
+                <div className="text-[12px] leading-5 text-ink-quiet">
+                  Next: <span className="text-ink">{item.nextAction}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Panel>
+
+        <Panel>
+          <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">First shareable artefacts</div>
+          <div className="grid gap-4">
+            {data.shareableArtifacts.map((artifact: ShareableArtifactItem) => (
+              <div key={artifact.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
+                <div className="mb-2 flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-semibold text-ink">{artifact.name}</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-ink-quiet">{artifact.purpose}</p>
+                  </div>
+                  <StatusBadge value={artifact.status} />
+                </div>
+                <div className="grid gap-2 text-[12px] text-ink-quiet">
+                  <div>Owner: <span className="text-ink">{artifact.ownerProduct}</span></div>
+                  <div>Visibility: <span className="text-ink">{artifact.defaultVisibility}</span></div>
+                  <div>Tracking: <span className="text-ink">{artifact.sourceTracking}</span></div>
+                  <div>CTA: <span className="text-ink">{artifact.cta}</span></div>
+                  <div>Next: <span className="text-ink">{artifact.nextAction}</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Panel>
       </div>
 
       <Panel>

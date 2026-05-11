@@ -14,6 +14,7 @@ Use these files as the source for HQ updates:
 - `src/lib/hq/signals.ts` for derived operating signals
 - `signal-growth/` for growth memory and reusable learning
 - `docs/ECOSYSTEM_INTEGRATION_PLAN.md` for cross-product flows, sharing, invitations, templates, guest access, public outputs, and source tracking
+- `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md` for invite roles, guest access, first-view behaviour, and source tracking
 - `docs/SIGNAL_HQ.md` for HQ operating rules
 - `CHANGELOG.md` for meaningful changes
 

@@ -53,6 +53,19 @@ Cycle 1 is the collaboration foundation cycle:
 
 The next strategic decisions are guest access, public/private controls, source tracking, and the first wedding/events shareable artefacts.
 
+## Cycle 2 Status
+
+Started May 11, 2026.
+
+Cycle 2 defines invite and first-view behaviour:
+
+- Creator, collaborator, guest, client/supplier, and viewer roles.
+- A first screen that answers what matters, what I own, what changed, what was decided, and what happens next.
+- First shareable artefacts: planning roadmap, venue meeting follow-up, Today Signal briefing.
+- Source tracking for invite and shared-output links.
+
+The proof scene is: venue invites couple.
+
 ## Shareable Artefacts
 
 Prioritise these first:

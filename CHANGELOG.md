@@ -16,6 +16,14 @@ while the product still refuses project-management theatre underneath.
 Signal HQ now records the test so future agents treat it as intent, not
 drift.
 
+### Cycle 2 became an access model.
+
+The next phase is now written down and visible in HQ: invite roles,
+guest access, the collaborator first view, first shareable artefacts,
+and source tracking. The proof scene is deliberately concrete: a venue
+invites a couple into a wedding planning workspace, and the couple sees
+what matters before touching a setting.
+
 ### Collaboration became the growth loop.
 
 Signal HQ now has a Collab Loop tab. It tracks the product-led path the

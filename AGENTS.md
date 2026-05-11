@@ -9,8 +9,9 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 4. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
 5. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or roadmap work.
 6. **`docs/ECOSYSTEM_INTEGRATION_PLAN.md`** — shared object model and collaboration growth loop. Read before cross-product, sharing, invite, template, or collaboration work.
-7. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
-8. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+7. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
+8. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
+9. **`CHANGELOG.md`** — narrative log; read for tonal reference.
 
 If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
 

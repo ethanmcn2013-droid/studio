@@ -353,6 +353,41 @@ export interface SharedObjectItem {
   nextAction: string;
 }
 
+export interface AccessRoleItem {
+  id: string;
+  role: string;
+  plainName: string;
+  purpose: string;
+  defaultAccess: string;
+  canDo: string[];
+  cannotDo: string[];
+  status: "Draft" | "Needs design" | "Ready to build" | "Built";
+  nextAction: string;
+}
+
+export interface CollaboratorFirstViewItem {
+  id: string;
+  section: string;
+  question: string;
+  sourceProduct: string;
+  purpose: string;
+  status: "Draft" | "Needs design" | "Ready to build" | "Built";
+  nextAction: string;
+}
+
+export interface ShareableArtifactItem {
+  id: string;
+  name: string;
+  wedge: string;
+  ownerProduct: string;
+  purpose: string;
+  defaultVisibility: "Private" | "Owner controlled" | "Public";
+  sourceTracking: string;
+  cta: string;
+  status: "Draft" | "Needs design" | "Ready to build" | "Built";
+  nextAction: string;
+}
+
 export interface HqData {
   version: 1;
   updatedAt: string;
@@ -361,6 +396,9 @@ export interface HqData {
   ecosystemFlows: EcosystemFlow[];
   collaborationLoop: CollaborationLoopStep[];
   sharedObjects: SharedObjectItem[];
+  accessRoles: AccessRoleItem[];
+  collaboratorFirstView: CollaboratorFirstViewItem[];
+  shareableArtifacts: ShareableArtifactItem[];
   features: FeatureItem[];
   launchReadiness: LaunchReadinessItem[];
   segments: SegmentPlan[];
@@ -382,17 +420,17 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T00:00:03Z",
+  updatedAt: "2026-05-11T00:00:04Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
-    theme: "Cycle 1: make collaboration executable across the suite.",
+    theme: "Cycle 2: define the invite and collaborator first view.",
     focus:
-      "Document and align each product's role in the collaboration loop, then move into the first invite, shared-output, and source-tracking implementation decisions.",
+      "Turn the collaboration loop into a practical access model: who gets invited, what they see first, what they can safely do, and which shared artefacts carry the product outward.",
     priorities: [
-      "Lock product-specific collaboration contracts in all four repos.",
-      "Define the minimum safe guest and invite path.",
-      "Choose the first shareable wedding/events artefacts.",
+      "Define creator, collaborator, guest, client/supplier, and viewer roles.",
+      "Design the collaborator first view for the wedding workspace.",
+      "Choose and track the first three shareable wedding/events artefacts.",
     ],
     risks: [
       "Product work is ahead of distribution.",
@@ -400,9 +438,9 @@ export const seedHqData: HqData = {
       "Collaboration could be treated as a feature instead of the growth loop.",
     ],
     nextActions: [
-      "Review the product-specific collaboration docs.",
       "Write the invite and guest-access product spec.",
       "Design the collaborator first view for the wedding workspace.",
+      "Define source tracking for invite and shared-output links.",
     ],
   },
   products: [
@@ -540,10 +578,10 @@ export const seedHqData: HqData = {
       step: "Collaborators invited",
       purpose: "The creator brings a coordinator, couple, supplier, client, or teammate into the work.",
       productOwner: "Signal Tasks",
-      status: "Idea",
-      readiness: 18,
+      status: "Planned",
+      readiness: 28,
       growthSurface: "Invite email, guest access, and shared workspace preview",
-      nextAction: "Define the lightest safe invite and guest-access model across products.",
+      nextAction: "Use Cycle 2 role model to design the minimum safe invite path.",
       metric: "Workspaces with 2+ users",
     },
     {
@@ -574,9 +612,9 @@ export const seedHqData: HqData = {
       purpose: "A collaborator or viewer sees enough value to create their own workspace.",
       productOwner: "Signal Growth Studio",
       status: "Idea",
-      readiness: 10,
+      readiness: 16,
       growthSurface: "Tasteful Created with Signal Studio links and duplication CTAs",
-      nextAction: "Design referral/source tracking before public share links scale.",
+      nextAction: "Define source tracking fields for invite links and shareable artefacts.",
       metric: "New workspace creators",
     },
   ],
@@ -636,6 +674,148 @@ export const seedHqData: HqData = {
       usedBy: ["Roadmap", "Notes", "Analytics", "Growth Studio"],
       status: "Needs model",
       nextAction: "Select the first three wedge artefacts and define source tracking for each link.",
+    },
+  ],
+  accessRoles: [
+    {
+      id: "creator",
+      role: "Creator",
+      plainName: "Workspace creator",
+      purpose: "Starts the workspace, invites people, controls sharing, and owns the working rhythm.",
+      defaultAccess: "Full workspace control.",
+      canDo: ["Create and edit work", "Invite people", "Share outputs", "Export data", "Change visibility"],
+      cannotDo: ["Bypass trust controls", "Publish private notes without choosing to share"],
+      status: "Draft",
+      nextAction: "Confirm whether venue coordinators and planners share the same creator permissions.",
+    },
+    {
+      id: "collaborator",
+      role: "Collaborator",
+      plainName: "Invited collaborator",
+      purpose: "Does real work in the workspace without needing setup or admin decisions.",
+      defaultAccess: "Can see the workspace and update assigned or shared work.",
+      canDo: ["View the first-view summary", "Update assigned tasks", "Comment or reply", "Mark work done"],
+      cannotDo: ["Change sharing settings", "Invite new people by default", "Delete the workspace"],
+      status: "Draft",
+      nextAction: "Decide whether collaborators can create tasks in the first wedding workspace.",
+    },
+    {
+      id: "guest",
+      role: "Guest",
+      plainName: "Guest",
+      purpose: "Receives a clear page, checklist, roadmap, or briefing without becoming a full user first.",
+      defaultAccess: "Can view selected shared outputs.",
+      canDo: ["Open shared outputs", "See what matters", "Respond through a controlled action"],
+      cannotDo: ["Browse private workspace areas", "See unrelated notes", "Change work state"],
+      status: "Needs design",
+      nextAction: "Design guest view before exposing public/private controls.",
+    },
+    {
+      id: "client-supplier",
+      role: "Client or supplier",
+      plainName: "Client / supplier",
+      purpose: "Understands what is needed from them in a real-world coordination flow.",
+      defaultAccess: "Focused access to relevant tasks, decisions, follow-ups, or planning updates.",
+      canDo: ["View relevant follow-ups", "Confirm information", "Reply to a question"],
+      cannotDo: ["See internal planning notes", "View unrelated people or projects"],
+      status: "Draft",
+      nextAction: "Use wedding suppliers as the first acceptance test.",
+    },
+    {
+      id: "viewer",
+      role: "Viewer",
+      plainName: "Viewer",
+      purpose: "Sees a public or owner-controlled artefact and can discover Signal Studio.",
+      defaultAccess: "Read-only access to a specific output.",
+      canDo: ["Read a public roadmap or update", "Use a template link", "Request a workspace"],
+      cannotDo: ["See private workspace data", "Interact with hidden work"],
+      status: "Draft",
+      nextAction: "Define Created with Signal Studio placement and source tracking.",
+    },
+  ],
+  collaboratorFirstView: [
+    {
+      id: "what-matters",
+      section: "What matters now",
+      question: "What needs my attention?",
+      sourceProduct: "Signal Analytics",
+      purpose: "Show the short plain-language briefing before any list or board.",
+      status: "Draft",
+      nextAction: "Design the first Today Signal block for a wedding workspace.",
+    },
+    {
+      id: "my-work",
+      section: "My work",
+      question: "What do I own?",
+      sourceProduct: "Signal Tasks",
+      purpose: "Show assigned actions, due dates, and waiting-on states.",
+      status: "Draft",
+      nextAction: "Define the assigned-task card for invited collaborators.",
+    },
+    {
+      id: "what-changed",
+      section: "What changed",
+      question: "What moved since I last looked?",
+      sourceProduct: "Signal Roadmap / Updates",
+      purpose: "Make plan movement visible without asking people to inspect every item.",
+      status: "Needs design",
+      nextAction: "Define the minimum event list needed for the first view.",
+    },
+    {
+      id: "what-decided",
+      section: "What was decided",
+      question: "What did we agree?",
+      sourceProduct: "Signal Notes",
+      purpose: "Surface decisions and unresolved questions from meeting context.",
+      status: "Draft",
+      nextAction: "Use venue meeting notes as the first decision-summary scene.",
+    },
+    {
+      id: "where-going",
+      section: "Where this is going",
+      question: "What happens next?",
+      sourceProduct: "Signal Roadmap",
+      purpose: "Show next milestone, confidence, and next visible step.",
+      status: "Draft",
+      nextAction: "Map wedding phases into Now / Next / Later.",
+    },
+  ],
+  shareableArtifacts: [
+    {
+      id: "planning-roadmap",
+      name: "Planning roadmap",
+      wedge: "Weddings and events",
+      ownerProduct: "Signal Roadmap",
+      purpose: "Give couples, venues, and planners a clear direction page.",
+      defaultVisibility: "Owner controlled",
+      sourceTracking: "source=roadmap_share, segment=weddings, role=viewer",
+      cta: "Use this planning workspace",
+      status: "Draft",
+      nextAction: "Define public/private copy and Created with Signal Studio placement.",
+    },
+    {
+      id: "venue-meeting-followup",
+      name: "Venue meeting follow-up",
+      wedge: "Weddings and events",
+      ownerProduct: "Signal Notes",
+      purpose: "Turn a meeting into actions, decisions, open questions, and a short shareable summary.",
+      defaultVisibility: "Private",
+      sourceTracking: "source=note_followup, segment=weddings, role=guest",
+      cta: "Open the follow-up",
+      status: "Draft",
+      nextAction: "Write the first follow-up template from a sample venue meeting.",
+    },
+    {
+      id: "today-signal-briefing",
+      name: "Today Signal briefing",
+      wedge: "Weddings and events",
+      ownerProduct: "Signal Analytics",
+      purpose: "Show what needs attention without sending a dashboard.",
+      defaultVisibility: "Owner controlled",
+      sourceTracking: "source=briefing_share, segment=weddings, role=collaborator",
+      cta: "See what needs attention",
+      status: "Needs design",
+      nextAction: "Decide which signals are safe to share with guests.",
     },
   ],
   features: [

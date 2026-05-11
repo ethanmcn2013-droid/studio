@@ -69,6 +69,32 @@ Acceptance criteria:
 - every product repo names its Cycle 1 acceptance test
 - Studio HQ tracks collaboration readiness and active next actions
 
+### Cycle 2: Invite and collaborator first view
+
+Status: active from May 11, 2026.
+
+Detailed spec: `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`.
+
+Purpose:
+
+Define the minimum safe way to invite people into a shared Signal workspace and make the first screen useful before they configure anything.
+
+Deliverables:
+
+- role model for creator, collaborator, guest, client/supplier, and viewer
+- collaborator first-view model
+- first three wedding/events shareable artefacts
+- V1 source tracking fields
+- product-specific Cycle 2 notes in Tasks, Roadmap, Analytics, and Notes
+
+Acceptance criteria:
+
+- an invited person can understand what matters without choosing a product view
+- private notes and internal work do not leak into shareable outputs
+- every shareable artefact has owner-controlled visibility
+- invite and share links can carry campaign/source context
+- the first demo path can show "venue invites couple"
+
 ### Phase 1: Shared language and links
 
 - Align product copy around workspace, owner, date, status, blocker, decision, risk, update, and briefing.

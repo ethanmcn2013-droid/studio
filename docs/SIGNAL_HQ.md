@@ -39,6 +39,8 @@ The Collab Loop tab tracks the product-led growth system:
 
 Workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered.
 
+Cycle 2 adds the invite/access model, collaborator first view, and first shareable artefacts to that tab.
+
 The deeper product architecture lives in `docs/ECOSYSTEM_INTEGRATION_PLAN.md`.
 
 This should move to proper server storage only after the workflow proves useful.
