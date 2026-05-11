@@ -41,6 +41,8 @@ Workspace created -> collaborators invited -> work becomes clearer -> shareable 
 
 Cycle 2 adds the invite/access model, collaborator first view, and first shareable artefacts to that tab.
 
+Cycle 3 tracks Roadmap's first built shared output: `/[workspace]/update`, with source fields and a "Created with Signal Studio" discovery surface.
+
 The deeper product architecture lives in `docs/ECOSYSTEM_INTEGRATION_PLAN.md`.
 
 This should move to proper server storage only after the workflow proves useful.

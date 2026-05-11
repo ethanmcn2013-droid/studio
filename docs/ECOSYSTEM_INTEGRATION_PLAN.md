@@ -71,7 +71,7 @@ Acceptance criteria:
 
 ### Cycle 2: Invite and collaborator first view
 
-Status: active from May 11, 2026.
+Status: defined from May 11, 2026.
 
 Detailed spec: `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`.
 
@@ -95,6 +95,30 @@ Acceptance criteria:
 - invite and share links can carry campaign/source context
 - the first demo path can show "venue invites couple"
 
+### Cycle 3: Shared update artefact
+
+Status: active from May 11, 2026.
+
+Detailed spec: `docs/CYCLE_3_SHARED_UPDATE_ARTEFACT.md`.
+
+Purpose:
+
+Build the first real shareable output so collaboration becomes visible outside a private workspace.
+
+Deliverables:
+
+- Signal Roadmap shared update page at `/[workspace]/update`
+- source-tracking query fields on shared-output links
+- "Created with Signal Studio" discovery surface
+- HQ tracking for the first built shareable artefact
+
+Acceptance criteria:
+
+- a viewer can understand the state of the work without opening the full roadmap
+- the output does not expose private notes or internal work
+- the share link can carry source, segment, role, campaign, and artefact fields
+- the page can be used in the first collaboration demo
+
 ### Phase 1: Shared language and links
 
 - Align product copy around workspace, owner, date, status, blocker, decision, risk, update, and briefing.
@@ -116,7 +140,7 @@ Acceptance criteria:
 
 ### Phase 4: Shareable outputs
 
-- Roadmap: public plan, change log, and stakeholder update.
+- Roadmap: public plan, change log, and shared update.
 - Notes: decision summary and action summary.
 - Tasks: checklist and status update.
 - Analytics: Today Signal / workspace briefing.

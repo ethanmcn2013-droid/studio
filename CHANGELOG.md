@@ -7,6 +7,17 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-11
 
+### Cycle 3 produced the first shared artefact.
+
+Signal HQ now tracks the first built shareable artefact in the
+collaboration growth loop: Roadmap's shared update page at
+`/[workspace]/update`. The update is source-tracked, points back to
+Signal Studio tastefully, and gives future demo work a real output to
+show rather than a strategy slide to describe.
+
+The next step is to turn that generic Roadmap update into the
+weddings/events proof path.
+
 ### The homepage got sharper.
 
 The hero line changed from "Cut through the noise." to "Project

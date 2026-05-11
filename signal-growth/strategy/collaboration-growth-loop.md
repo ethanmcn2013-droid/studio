@@ -66,10 +66,24 @@ Cycle 2 defines invite and first-view behaviour:
 
 The proof scene is: venue invites couple.
 
+## Cycle 3 Status
+
+Started May 11, 2026.
+
+Cycle 3 builds the first real shareable artefact:
+
+- Signal Roadmap shared update page at `/[workspace]/update`.
+- Source fields on shared-output links.
+- A tasteful "Created with Signal Studio" discovery link.
+- A proof URL that can be used before heavier invite, template, or analytics infrastructure exists.
+
+The first proof scene is: viewer opens a shared update and understands the state of work in under 60 seconds.
+
 ## Shareable Artefacts
 
 Prioritise these first:
 
+- shared roadmap update
 - planning roadmap
 - decision summary
 - final-week checklist
