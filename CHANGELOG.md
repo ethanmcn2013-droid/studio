@@ -7,6 +7,15 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-11
 
+### The homepage got sharper.
+
+The hero line changed from "Cut through the noise." to "Project
+Management for the 80% who don't work in tech." This is a deliberate
+positioning test: clearer category recognition at the top of the page,
+while the product still refuses project-management theatre underneath.
+Signal HQ now records the test so future agents treat it as intent, not
+drift.
+
 ### Collaboration became the growth loop.
 
 Signal HQ now has a Collab Loop tab. It tracks the product-led path the

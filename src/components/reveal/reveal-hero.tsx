@@ -10,23 +10,45 @@ export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Cut through the noise"
+      aria-label="Signal Studio — Project Management for the 80% who don't work in tech"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
-      <h1 className="reveal-headline" aria-label="Cut through the noise.">
+      <h1
+        className="reveal-headline"
+        aria-label="Project Management for the 80% who don't work in tech."
+      >
         <span className="word">
-          <span className="word-inner">Cut</span>
+          <span className="word-inner">Project</span>
         </span>{" "}
         <span className="word">
-          <span className="word-inner">through</span>
+          <span className="word-inner">Management</span>
         </span>
         <br />
+        <span className="word">
+          <span className="word-inner">for</span>
+        </span>{" "}
         <span className="word">
           <span className="word-inner">the</span>
         </span>{" "}
         <span className="word">
-          <span className="word-inner">noise.</span>
+          <span className="word-inner">80%</span>
+        </span>{" "}
+        <span className="word">
+          <span className="word-inner">who</span>
+        </span>
+        <br />
+        <span className="word">
+          <span className="word-inner">don&apos;t</span>
+        </span>{" "}
+        <span className="word">
+          <span className="word-inner">work</span>
+        </span>{" "}
+        <span className="word">
+          <span className="word-inner">in</span>
+        </span>{" "}
+        <span className="word">
+          <span className="word-inner">tech.</span>
         </span>
       </h1>
 

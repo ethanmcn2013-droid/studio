@@ -27,7 +27,7 @@ The system: every product is a different *kind* of clarity. Tasks runs the work.
 
 | | |
 |---|---|
-| **Headline** | Cut through the noise. |
+| **Headline** | Project Management for the 80% who don't work in tech. |
 | **Operating principle** | Everything important. Nothing distracting. |
 | **Audience** | The 80% who don't work in tech — wedding planners, freelance designers, tradespeople, students, small-business owners, teachers. People who need to get work done together without a special vocabulary. |
 | **Anti-quotable** | "Modern, simple, beautiful." (or any 3-adjective trio) |
@@ -197,7 +197,7 @@ Sparingly. Rise stagger on hero entries (`0.6s`, 60ms stagger). Subtle fade betw
 ### Hero pattern (every product homepage)
 ```
 EYEBROW (mono, uppercase, tracked): Signal [Product] · [Position] clarity
-H1 (display): Cut through the noise.
+H1 (display): Project Management for the 80% who don't work in tech.
 SUB (body marketing, 2 lines max): [product-specific value statement]
 CTA primary: Open the [product]
 CTA secondary: [product-specific deeper link]

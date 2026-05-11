@@ -382,7 +382,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T00:00:02Z",
+  updatedAt: "2026-05-11T00:00:03Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1358,6 +1358,19 @@ export const seedHqData: HqData = {
       relatedObjects: ["Collaboration Loop", "Workspace invitations", "Shareable outputs", "Founding Venue Programme"],
       notes: "Prioritise invite value, shared artefacts, and source tracking before heavier monetisation.",
     },
+    {
+      id: "hero-project-management-80",
+      decision: "Test the homepage headline: Project Management for the 80% who don't work in tech.",
+      category: "Brand",
+      date: "2026-05-11",
+      reason: "Sharper market language may explain the category faster than the previous poetic line.",
+      alternatives: "Keep 'Cut through the noise.' or use 'Work clarity for the 80% who don't work in tech.'",
+      risks: "The phrase could pull future copy toward project-management jargon unless treated as a headline test.",
+      reviewDate: "2026-05-25",
+      status: "Active",
+      relatedObjects: ["Homepage", "Brand handbook", "Messaging Bank"],
+      notes: "Use this as market-facing shorthand while keeping the product plain-language and anti-theatre.",
+    },
   ],
   feedback: [
     {
@@ -1458,7 +1471,7 @@ export const seedHqData: HqData = {
   ],
   messaging: {
     positioning:
-      "Signal Studio is plain-language software for clear work. It helps people capture context, organise action, communicate direction, and understand what needs attention without project-management overhead.",
+      "Signal Studio is project management for the 80% who don't work in tech. It helps people capture context, organise action, communicate direction, and understand what needs attention without project-management overhead.",
     ecosystemLine:
       "Signal Notes captures context. Signal Tasks organises action. Signal Roadmap communicates direction. Signal Analytics finds what needs attention.",
     founderStory:
@@ -1472,6 +1485,7 @@ export const seedHqData: HqData = {
       "Built for people who have actual work to do.",
       "Clear workspaces for real-world coordination.",
       "One workspace clear enough to invite everyone in.",
+      "Project Management for the 80% who don't work in tech.",
     ],
     pitches: {
       weddingVenue:

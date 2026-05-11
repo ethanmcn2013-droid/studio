@@ -10,7 +10,7 @@ Read this after BRAND.md, before touching code or copy.
 
 Signal Studio is a four-product suite for the 80% of working people who don't work in tech and have been failed by every productivity tool ever made for them. Wedding planners. Tradespeople. Freelance designers. Students. Small-business operators. Teachers. People whose work is real, deadline-bound, money-attached, and not described in the vocabulary of software product managers.
 
-The category we operate in is **operational clarity**. Not productivity. Not project management. Not analytics-as-dashboard. The four products each surface a different kind of clarity:
+The operating category is **operational clarity**. The current homepage tests "Project Management for the 80% who don't work in tech" as market-facing shorthand, but the product should still avoid productivity-platform framing, PM jargon, and analytics-as-dashboard theatre. The four products each surface a different kind of clarity:
 
 - **Signal Tasks** — execution clarity. Run the work.
 - **Signal Roadmap** — direction clarity. Explain the work.
@@ -87,7 +87,7 @@ These are locked refusals. Not "maybe later" — refusals.
 When you read existing code or copy and want to know if something is on-brand, listen for these:
 
 **On-brand sounds like:**
-- "Cut through the noise."
+- "Project Management for the 80% who don't work in tech."
 - "A briefing, not a dashboard."
 - "Show your work, not your Jira."
 - "Built for everyone else."

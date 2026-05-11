@@ -49,7 +49,7 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 - Three-adjective trios ("modern, simple, beautiful") — anywhere, any order.
 
 ### Category framing
-- The category is **operational clarity**. Not productivity. Not project management. Not analytics-as-dashboard. Never describe Signal Studio as a "productivity platform" or "all-in-one".
+- The operating category is **operational clarity**. The current homepage headline deliberately tests "Project Management for the 80% who don't work in tech" as market-facing shorthand. Do not let that pull body copy into project-management theatre, PM jargon, productivity-platform framing, or "all-in-one" language.
 - AI is ambient, never marketed. No "AI-powered" copy. No AI feature names.
 
 ### Visual
