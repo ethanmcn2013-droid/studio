@@ -15,8 +15,11 @@ export const metadata: Metadata = {
   },
 };
 
-const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/wedding-planning/update?source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue&artefact=landing_page`;
-const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace?source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue&artefact=template`;
+const trackingSuffix = "source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue";
+const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/wedding-planning/update?${trackingSuffix}&artefact=landing_page`;
+const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace?${trackingSuffix}&artefact=template`;
+const notesDemoHref = `https://notes.signalstudio.ie/wedding-planning/?${trackingSuffix}&artefact=notes_demo`;
+const analyticsDemoHref = `https://analytics.signalstudio.ie/wedding-planning/?${trackingSuffix}&artefact=analytics_demo`;
 
 const clarityItems = [
   {
@@ -42,21 +45,29 @@ const ecosystemSteps = [
     product: "Signal Notes",
     role: "Context",
     copy: "Capture the venue meeting, open questions, and decisions.",
+    href: notesDemoHref,
+    cta: "Open the venue meeting demo",
   },
   {
     product: "Signal Tasks",
     role: "Execution",
     copy: "Turn follow-ups into owned work with dates and blockers.",
+    href: templateHref,
+    cta: "Open the workspace template",
   },
   {
     product: "Signal Roadmap",
     role: "Direction",
     copy: "Show the planning timeline and what changed.",
+    href: sharedUpdateHref,
+    cta: "Open the shared update",
   },
   {
     product: "Signal Analytics",
     role: "Attention",
     copy: "Surface the few things that need attention before they become problems.",
+    href: analyticsDemoHref,
+    cta: "Open the daily briefing",
   },
 ];
 
@@ -211,9 +222,12 @@ export default function WeddingsPage() {
             </div>
             <div className="grid gap-3 md:grid-cols-4">
               {ecosystemSteps.map((step) => (
-                <section
+                <a
                   key={step.product}
-                  className="rounded-[8px] border border-border-soft bg-bg p-5"
+                  href={step.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-[8px] border border-border-soft bg-bg p-5 transition-colors hover:border-ink-quiet"
                 >
                   <p className="text-[11px] font-semibold uppercase text-ink-quiet">
                     {step.role}
@@ -224,7 +238,10 @@ export default function WeddingsPage() {
                   <p className="mt-4 text-[13.5px] leading-[1.6] text-ink-soft">
                     {step.copy}
                   </p>
-                </section>
+                  <p className="mt-4 text-[12px] font-medium text-ink-quiet group-hover:text-ink">
+                    {step.cta} <span aria-hidden>↗</span>
+                  </p>
+                </a>
               ))}
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
