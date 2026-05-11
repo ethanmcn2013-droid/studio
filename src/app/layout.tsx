@@ -14,16 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Project Management for people not in tech.",
+  title: "Signal Studio · Project Management without the project-manager voice.",
   description:
-    "Plain-language project management for people who need clear work without tech-team jargon. Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes.",
+    "Plain language software for clear work. Four small tools — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes — built for the 80% who don't work in tech.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie"
   ),
   openGraph: {
-    title: "Signal Studio · Project Management for people not in tech.",
+    title: "Signal Studio · Project Management without the project-manager voice.",
     description:
-      "Four products. One operating system for clarity. Everything important. Nothing distracting.",
+      "Four small tools. Plain English. Built for the 80%.",
     type: "website",
   },
 };

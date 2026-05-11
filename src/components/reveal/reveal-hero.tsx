@@ -1,22 +1,27 @@
 /**
  * Reveal hero — antique-gold hairline + masked word-by-word headline +
- * subhead + four-product wordmark stack with the §4 brand gestures.
+ * typewriter subhead + four-product wordmark stack with the §4 brand
+ * gestures.
  *
- * Pure markup. The animation choreography is owned by RevealEngine
- * which targets the class names in this file from a client component.
+ * Mostly pure markup. The headline + stack choreography is owned by
+ * RevealEngine which targets the class names in this file from a
+ * client component. The subhead is a small client component
+ * (TypewriterSub) which types itself in and keeps its caret blinking.
  */
+
+import { TypewriterSub } from "./typewriter-sub";
 
 export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Project Management for people not in tech"
+      aria-label="Signal Studio — Project Management without the project-manager voice"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
       <h1
         className="reveal-headline"
-        aria-label="Project Management for people not in tech."
+        aria-label="Project Management without the project-manager voice."
       >
         <span className="line line-1">
           <span className="word">
@@ -28,29 +33,26 @@ export function RevealHero() {
         </span>
         <span className="line line-2">
           <span className="word">
-            <span className="word-inner">for</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">people</span>
+            <span className="word-inner em">without</span>
           </span>
         </span>
         <span className="line line-3">
           <span className="word">
-            <span className="word-inner em">not</span>
+            <span className="word-inner">the</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">in</span>
+            <span className="word-inner">project-manager</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">tech.</span>
+            <span className="word-inner">voice.</span>
           </span>
         </span>
       </h1>
 
-      <p className="reveal-subhead">
-        Four small tools.{" "}
-        <span className="em">Built for the 80%.</span>
-      </p>
+      <TypewriterSub
+        text="Four small tools. Plain English. Built for the 80%."
+        startDelayMs={2200}
+      />
 
       <nav className="reveal-stack" aria-label="Signal Studio products">
         <a className="stack-row" data-key="tasks" href="#tasks">
