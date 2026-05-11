@@ -5,10 +5,10 @@ export const contentType = "image/png";
 
 /**
  * Browser tab icon for the Signal Studio umbrella. Compact mark
- * — wordmark "s" on the suite's brand-soft tile, antique-gold
- * period bottom-right (NOT indigo — gold is reserved for the
- * umbrella). Reads at 16x16 because the mark is just a glyph
- * and a period.
+ * — wordmark "s" on the suite's brand-soft tile, indigo dot
+ * bottom-right. Same indigo as every other product per the new
+ * brand guide (D01 — Refined Indigo Dot, locked 2026-05-11).
+ * Reads at 16x16 because the mark is just a glyph and a dot.
  */
 export default function Icon() {
   return new ImageResponse(
@@ -40,7 +40,7 @@ export default function Icon() {
             width: 4,
             height: 4,
             borderRadius: 9999,
-            background: "#c9a96a",
+            background: "#4f46e5",
           }}
         />
       </div>

@@ -5,12 +5,13 @@ export const contentType = "image/png";
 
 /**
  * Apple touch icon for the Signal Studio umbrella. Full
- * "signal studio." wordmark with antique-gold period (the
- * brand's signature mark). Brand-soft tile, ink wordmark,
- * gold period. Gold is reserved for the umbrella — never on
- * individual products. No transparency — Apple draws a tile
- * under transparent icons which would clash with the
- * brand-soft.
+ * "signal studio." wordmark with the indigo dot bottom-right —
+ * the brand's signature mark per the new brand guide (D01,
+ * locked 2026-05-11). Same indigo as every other product —
+ * the umbrella shares one indigo with the suite; per-product
+ * gestures encode the difference. No transparency — Apple
+ * draws a tile under transparent icons which would clash with
+ * the brand-soft.
  */
 export default function AppleIcon() {
   return new ImageResponse(
@@ -43,13 +44,15 @@ export default function AppleIcon() {
           <span
             style={{
               display: "flex",
-              color: "#c9a96a",
-              fontWeight: 700,
-              marginLeft: 1,
+              width: 12,
+              height: 12,
+              borderRadius: 999,
+              background: "#4f46e5",
+              marginLeft: 6,
+              alignSelf: "flex-end",
+              marginBottom: 6,
             }}
-          >
-            .
-          </span>
+          />
         </div>
       </div>
     ),

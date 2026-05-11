@@ -4,15 +4,17 @@
    Design tokens — Studio (umbrella brand)
    Shared foundation: ink ramp, type scale, springs, radii,
    shadows — same family as Tasks and Roadmap.
-   Own identity: --accent sand/gold instead of indigo.
+   Own identity: the indigo dot. (Antique gold retired 2026-05-11
+   per the new brand guide — D01 Refined Indigo Dot.)
    ──────────────────────────────────────────────────────────── */
 :root {
-  /* ── Studio accent ramp ───────────────────────────────────── */
-  /* warmer than tech-blue, ages better than neon */
-  --accent:       #c9a96a; /* matches Roadmap's --brand and Tasks' equivalent — update in sync */
-  --accent-deep:  #9c7a42;
-  --accent-soft:  #f5edd8;
-  --accent-glow:  rgba(201, 169, 106, 0.36);
+  /* ── Brand accent ramp ────────────────────────────────────── */
+  /* One indigo across the suite. Same construction from
+     16px favicon to billboard. */
+  --accent:       #4f46e5; /* indigo-600 — suite-locked. Was #c9a96a (gold) until 2026-05-11. */
+  --accent-deep:  #4338ca; /* indigo-700 */
+  --accent-soft:  #eef2ff; /* indigo-50 */
+  --accent-glow:  rgba(79, 70, 229, 0.32);
 
   /* ── Ink ramp (neutrals — shared with Tasks + Roadmap) ────── */
   --ink-0:   #ffffff;
