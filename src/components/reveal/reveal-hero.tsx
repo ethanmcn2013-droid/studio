@@ -18,27 +18,30 @@ export function RevealHero() {
         className="reveal-headline"
         aria-label="Project Management for people not in tech."
       >
-        <span className="word">
-          <span className="word-inner">Project</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">Management</span>
+        <span className="line line-1">
+          <span className="word">
+            <span className="word-inner">Project</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">Management</span>
+          </span>
         </span>
-        <br />
-        <span className="word">
-          <span className="word-inner">for</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">people</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">not</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">in</span>
-        </span>{" "}
-        <span className="word">
-          <span className="word-inner">tech.</span>
+        <span className="line line-2">
+          <span className="word">
+            <span className="word-inner">for</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">people</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner em">not</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">in</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">tech.</span>
+          </span>
         </span>
       </h1>
 
