@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T08:55:00Z",
+  updatedAt: "2026-05-11T15:35:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1656,6 +1656,17 @@ export const seedHqData: HqData = {
       mitigation: "Prioritise shared workspace language, shared objects, and Today Signal.",
       owner: "Ethan",
       reviewDate: "2026-05-24",
+    },
+    {
+      id: "analytics-pipeline-silent",
+      risk: "Analytics daily briefing pipeline does not actually fire in production.",
+      area: "Product",
+      likelihood: "High",
+      impact: "High",
+      status: "At risk",
+      mitigation: "Set CRON_SECRET + RESEND_API_KEY on the analytics Vercel project; generate DKIM in Google Workspace; sign into Tasks once with Clerk so listForUser returns a real user. Then watch one morning briefing land end-to-end before pointing new traffic at /app.",
+      owner: "Ethan",
+      reviewDate: "2026-05-12",
     },
     {
       id: "collaboration-hidden",
