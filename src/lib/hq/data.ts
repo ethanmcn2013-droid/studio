@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T20:35:00Z",
+  updatedAt: "2026-05-11T21:15:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1679,6 +1679,19 @@ export const seedHqData: HqData = {
       status: "Active",
       relatedObjects: ["Signal Roadmap", "Shareable outputs", "Collaboration Proof Campaign"],
       notes: "`/[workspace]/update` is the first built artefact. It should lead into wedding-specific sharing and view-to-creator tracking.",
+    },
+    {
+      id: "brand-guide-d01-committed",
+      decision: "Brand guide D01 (Refined Indigo Dot) locked. Per-product gestures update: tasks=pulse, roadmap=slide, analytics=tick, notes=caret, umbrella=pulse-slow. Mark grammar: Geist 500, dot 0.16em indigo at baseline. Same construction from 16px favicon to billboard.",
+      category: "Brand",
+      date: "2026-05-11",
+      reason: "Brand guide handoff from Claude Design canvas committed D01 as the direction. Two gesture changes from prior BRAND.md §4: analytics (static→tick) and notes (underline-writes→caret). The caret choice aligns Notes's wordmark with its own capture caret — same blinking-cursor language brand-to-product.",
+      alternatives: "Stay on prior BRAND.md §4 mappings (analytics=static, notes=underline-writes). Or commit to one of the three rejected directions (D02 quadrant, D03 mono wordmark, D04 serif Fraunces monogram).",
+      risks: "Wordmark refactor touches four product repos plus studio. If gestures aren't applied consistently, the four-temporality framework breaks. Notes was just rebuilt (Cycle 9.4a.2) — re-touching the wordmark same-day risks visual churn.",
+      reviewDate: "2026-06-25",
+      status: "Active",
+      relatedObjects: ["studio/docs/brand-guide/BRAND_GUIDE_HANDOFF.md", "BRAND.md §4", "Wordmark components across 5 repos"],
+      notes: "Rollout sequence in BRAND_GUIDE_HANDOFF.md: 11.1 Notes (closed) → 11.2 Studio umbrella → 11.3 Analytics → 11.4 Tasks+Roadmap verification → 11.5 universal dot vocabulary → 11.6 favicons.",
     },
     {
       id: "sprint-2-collaboration-locked",

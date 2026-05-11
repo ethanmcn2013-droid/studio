@@ -1,0 +1,94 @@
+* { box-sizing: border-box; }
+:root {
+  /* Brand colors */
+  --indigo-50: #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;  /* PRIMARY */
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #312e81;
+  --highlight: #7c5cff;
+
+  /* Ink (neutrals) */
+  --ink-0: #ffffff;
+  --ink-50: #fafafa;
+  --ink-100: #f4f4f5;
+  --ink-200: #e4e4e7;
+  --ink-300: #d4d4d8;
+  --ink-400: #a1a1aa;
+  --ink-500: #71717a;
+  --ink-600: #52525b;
+  --ink-700: #3f3f46;
+  --ink-800: #27272a;
+  --ink-900: #18181b;
+  --ink-950: #09090b;
+
+  /* Audience accents */
+  --aud-marketing: #4f46e5;
+  --aud-freelance: #16a34a;
+  --aud-student: #eab308;
+  --aud-wedding: #be185d;
+
+  /* Status */
+  --status-todo: #6366f1;
+  --status-progress: #f59e0b;
+  --status-review: #06b6d4;
+  --status-done: #10b981;
+  --status-blocked: #ef4444;
+
+  /* Semantic */
+  --bg: #fafaf7;
+  --bg-elev: #ffffff;
+  --bg-deep: #f4f4f0;
+  --border: #e4e4e7;
+  --border-soft: #ececec;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --text-faint: #a1a1aa;
+
+  /* Springs (motion tokens) */
+  --spring-snap: cubic-bezier(.2,.9,.2,1.2);
+  --spring-soft: cubic-bezier(.32,.72,0,1);
+  --spring-glide: cubic-bezier(.16,1,.3,1);
+  --ease-out: cubic-bezier(.22,.61,.36,1);
+
+  /* Type */
+  --font-sans: 'Geist', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Radii */
+  --r-1: 4px;
+  --r-2: 6px;
+  --r-3: 10px;
+  --r-4: 14px;
+  --r-5: 20px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(24,24,27,.04), 0 1px 1px rgba(24,24,27,.03);
+  --shadow-2: 0 4px 12px rgba(24,24,27,.06), 0 1px 3px rgba(24,24,27,.04);
+  --shadow-3: 0 24px 60px -20px rgba(24,24,27,.18), 0 8px 24px -8px rgba(24,24,27,.08);
+  --shadow-indigo: 0 12px 32px -12px rgba(79,70,229,.45);
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01','cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+::selection { background: #c7d2fe; color: var(--ink-900); }
