@@ -420,27 +420,27 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T16:05:00Z",
+  updatedAt: "2026-05-11T16:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
-    theme: "Cycle 7: close the four-layer wedding loop.",
+    theme: "Cycle 8: prepare outbound for the wedding wedge.",
     focus:
-      "All four layers of the wedding wedge now have a visible scene: Notes captures the venue meeting, Tasks holds the workspace, Roadmap publishes the shared update, Analytics shows the morning briefing. The /weddings page now lets a visitor walk all four in under two minutes.",
+      "Weddings/events wedge confirmed. Four-layer demo loop is live. Cycle 8 turns proof into outreach: a 60-second demo script that walks the four artefacts, a venue outreach kit with template emails and a pilot offer, and source tracking instructions so attribution flows from /weddings into Vercel Analytics.",
     priorities: [
-      "Ship the Notes venue meeting demo at notes.signalstudio.ie/wedding-planning/.",
-      "Ship the Analytics daily briefing demo at analytics.signalstudio.ie/wedding-planning/.",
-      "Cross-link both from /weddings so the four-layer loop is one click each.",
+      "Write the 60-second wedding demo script in studio/docs.",
+      "Ship the venue outreach kit (template email, follow-up sequence, pilot offer page).",
+      "Document source-tracking attribution path so view-to-creator becomes measurable.",
     ],
     risks: [
-      "All four demos are static — the Analytics product/app route does not exist yet, so the briefing is a marketing artefact, not a live product.",
-      "View-to-creator source tracking is in the URLs but no analytics is reading the params yet.",
-      "Wedge commitment to weddings/events is now implicit across five surfaces; worth a deliberate confirm before Cycle 8.",
+      "The Analytics live briefing product still does not exist — the fifth demo is marketing-only. Venue conversations will assume the briefing fires.",
+      "Wedding seasonality and niche persona could trap Signal as 'the wedding tool' if outbound runs hot without keeping the umbrella brand visible.",
+      "No actual venue list yet — outreach kit is template-ready but not target-ready.",
     ],
     nextActions: [
-      "Confirm or revise the wedding wedge commitment before scaling outbound.",
-      "Write the 60-second wedding demo script using the four shipped artefacts.",
-      "Start the first 10 venue outreach with the four-layer loop as proof.",
+      "Ethan compiles the first 10 venue list (Ireland weddings).",
+      "Ethan sends the first 3 outreach emails using the kit.",
+      "Ethan renders the wedding demo video (analytics-demo Remotion repo).",
     ],
   },
   products: [
@@ -1626,6 +1626,19 @@ export const seedHqData: HqData = {
       status: "Active",
       relatedObjects: ["Signal Roadmap", "Shareable outputs", "Collaboration Proof Campaign"],
       notes: "`/[workspace]/update` is the first built artefact. It should lead into wedding-specific sharing and view-to-creator tracking.",
+    },
+    {
+      id: "wedge-weddings-events-confirmed",
+      decision: "Lead outbound, demo production, and pilots with the weddings and events wedge through 2026 Q2.",
+      category: "GTM",
+      date: "2026-05-11",
+      reason: "The four-layer wedding loop is now walkable end-to-end (Notes venue meeting, Tasks template, Roadmap shared update, Analytics daily briefing). Wedding workspaces are the strongest workspace-creator shape we can demonstrate today. Ireland is the validation market.",
+      alternatives: "Stay segment-neutral and let multiple wedges (freelancers, students, trades, small-business operators) all develop in parallel. Slower validation, weaker outbound.",
+      risks: "Weddings is seasonal. Wedding planners are a niche persona. Over-committing now could trap Signal as 'the wedding planning tool' if we don't keep the brand at the umbrella level.",
+      reviewDate: "2026-07-12",
+      status: "Active",
+      relatedObjects: ["BRAND.md", "Founding Venue Programme", "Wedding demo loop", "Outbound CRM"],
+      notes: "Other §2.1 archetypes remain part of suite positioning. Reversible after 10 venue conversations. Revisit at the review date — wedge can become a wedge-and-fan or pivot.",
     },
   ],
   feedback: [
