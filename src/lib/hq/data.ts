@@ -420,27 +420,27 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T00:00:06Z",
+  updatedAt: "2026-05-11T00:00:07Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
-    theme: "Cycle 3: build the first shareable artefact.",
+    theme: "Cycle 4: turn the shared update into a wedding/events proof path.",
     focus:
-      "Turn Roadmap's public sharing strength into a real acquisition surface: a short shared update page that explains the state of work and points viewers back to Signal Studio.",
+      "Use the shared update artefact to show a concrete wedding planning scene that a venue, planner, couple, or supplier can understand and forward.",
     priorities: [
-      "Ship the first shared update page from live roadmap data.",
-      "Use source fields on shared-output links.",
-      "Turn the shared update into a wedding/events demo scene.",
+      "Ship the wedding planning shared update proof path.",
+      "Use the proof path in the first venue outreach and demo story.",
+      "Connect the proof path to the full wedding workspace template.",
     ],
     risks: [
       "Product work is ahead of distribution.",
-      "Shared outputs could exist without tracking or a clear creator CTA.",
-      "The first artefact could stay generic unless it is tied to the weddings/events proof path.",
+      "The wedding proof could remain a one-off unless it becomes template, demo, and outreach material.",
+      "The public artefact still needs view-to-creator tracking.",
     ],
     nextActions: [
-      "Use the Roadmap shared update in the first demo path.",
+      "Turn `/wedding-planning/update` into a short demo script.",
       "Add view-to-creator tracking once the share page is validated.",
-      "Design the wedding planning version of the shared update.",
+      "Build the full wedding planning workspace template.",
     ],
   },
   products: [
@@ -792,6 +792,18 @@ export const seedHqData: HqData = {
       cta: "See Signal Studio",
       status: "Built",
       nextAction: "Use `/tasks/update` as the first proof, then shape the wedding/events version.",
+    },
+    {
+      id: "wedding-planning-shared-update",
+      name: "Wedding planning shared update",
+      wedge: "Weddings and events",
+      ownerProduct: "Signal Roadmap",
+      purpose: "Show a venue, couple, planner, or supplier the state of a wedding plan in under 60 seconds.",
+      defaultVisibility: "Public",
+      sourceTracking: "source=roadmap_share, segment=weddings, role=viewer, campaign=founding_venue, artefact=shared_update",
+      cta: "See Signal Studio",
+      status: "Built",
+      nextAction: "Use `/wedding-planning/update` in the wedding demo script and venue outreach.",
     },
     {
       id: "planning-roadmap",
@@ -1756,9 +1768,9 @@ export const seedHqData: HqData = {
       category: "Product",
       priority: "High",
       dueDate: "2026-05-13",
-      status: "To do",
+      status: "Doing",
       relatedObject: "Wedding planning workspace",
-      notes: "Use a believable venue meeting, supplier list, final-week tasks, and roadmap.",
+      notes: "The first shared update proof path exists at `/wedding-planning/update`; next is the full template.",
     },
     {
       id: "shared-update-demo-path",

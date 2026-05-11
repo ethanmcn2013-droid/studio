@@ -21,6 +21,10 @@ so the demo link can render even when preview database rows are missing.
 The next step is to turn that generic Roadmap update into the
 weddings/events proof path.
 
+That proof path has now started: `/wedding-planning/update` carries
+bundled wedding planning data so the first venue/couple/supplier demo
+has a concrete artefact to show.
+
 ### The homepage got sharper.
 
 The hero line changed from "Cut through the noise." to "Project

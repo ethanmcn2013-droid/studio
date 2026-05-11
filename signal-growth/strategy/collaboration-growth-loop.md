@@ -79,11 +79,24 @@ Cycle 3 builds the first real shareable artefact:
 
 The first proof scene is: viewer opens a shared update and understands the state of work in under 60 seconds.
 
+## Cycle 4 Status
+
+Started May 11, 2026.
+
+Cycle 4 turns the shared update into a weddings/events proof path:
+
+- `/wedding-planning/update` uses bundled planning data.
+- The scene is a venue/couple/supplier planning update.
+- The artefact can become a demo, venue outreach link, and landing-page proof block.
+
+The proof scene is: venue coordinator shares a planning update with a couple or supplier.
+
 ## Shareable Artefacts
 
 Prioritise these first:
 
 - shared roadmap update
+- wedding planning shared update
 - planning roadmap
 - decision summary
 - final-week checklist

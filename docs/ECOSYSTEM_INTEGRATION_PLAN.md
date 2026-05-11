@@ -97,7 +97,7 @@ Acceptance criteria:
 
 ### Cycle 3: Shared update artefact
 
-Status: active from May 11, 2026.
+Status: built from May 11, 2026.
 
 Detailed spec: `docs/CYCLE_3_SHARED_UPDATE_ARTEFACT.md`.
 
@@ -118,6 +118,29 @@ Acceptance criteria:
 - the output does not expose private notes or internal work
 - the share link can carry source, segment, role, campaign, and artefact fields
 - the page can be used in the first collaboration demo
+
+### Cycle 4: Wedding/events proof path
+
+Status: active from May 11, 2026.
+
+Detailed spec: `docs/CYCLE_4_WEDDING_EVENTS_PROOF_PATH.md`.
+
+Purpose:
+
+Turn the generic shared update into a concrete wedding/events scene.
+
+Deliverables:
+
+- bundled wedding planning shared update at `/wedding-planning/update`
+- wedding-specific source fields
+- plausible venue/couple/supplier planning data
+- clear next iteration path into template, Notes follow-up, Tasks follow-ups, and Today Signal
+
+Acceptance criteria:
+
+- a wedding venue coordinator can open the page and see a useful artefact to forward
+- the page explains what is happening, what is held up, and what comes next
+- the artefact can become demo, outreach, and landing-page proof
 
 ### Phase 1: Shared language and links
 
