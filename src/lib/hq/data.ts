@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-11T18:10:00Z",
+  updatedAt: "2026-05-11T18:40:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1650,9 +1650,22 @@ export const seedHqData: HqData = {
       alternatives: "Keep 'Cut through the noise.' or use 'Work clarity for the 80% who don't work in tech.'",
       risks: "The phrase could pull future copy toward project-management jargon unless treated as a headline test.",
       reviewDate: "2026-05-25",
-      status: "Active",
+      status: "Reversed",
       relatedObjects: ["Homepage", "Brand handbook", "Messaging Bank"],
-      notes: "Use this as market-facing shorthand while keeping the product plain-language and anti-theatre.",
+      notes: "Superseded same day by hero-project-management-voice — value-based framing is more on-brand than exclusion-based.",
+    },
+    {
+      id: "hero-project-management-voice",
+      decision: "Replace homepage H1 with: Project Management without the project-manager voice.",
+      category: "Brand",
+      date: "2026-05-11",
+      reason: "BRAND.md §2 names this verbatim as a quotable target. Value-based ('what we remove') is stronger than exclusion-based ('who it isn't for'). Same length, same scannability, sharper anti-theatre register.",
+      alternatives: "Stay on 'Project management for people not in tech.' or move all the way to 'Cut through the noise.' as H1.",
+      risks: "Two H1 changes in 24 hours is brand-churn — relies on this one sticking. Some readers may not have an existing mental model of 'project-manager voice' the way they do of 'tech'.",
+      reviewDate: "2026-06-08",
+      status: "Active",
+      relatedObjects: ["Homepage", "Brand handbook §2", "Messaging Bank"],
+      notes: "Ships with a typewriter sub-hero ('Four small tools. Plain English. Built for the 80%.') and a persistent blinking caret — the 'live doc' gesture.",
     },
     {
       id: "cycle-3-shared-update",
