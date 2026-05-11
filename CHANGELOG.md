@@ -25,6 +25,11 @@ That proof path has now started: `/wedding-planning/update` carries
 bundled wedding planning data so the first venue/couple/supplier demo
 has a concrete artefact to show.
 
+Cycle 5 now adds the conversion path: `/weddings` gives the
+weddings/events proof artefact a relevant Studio page, and Roadmap's
+wedding shared-update CTA routes viewers there instead of the generic
+homepage.
+
 ### The homepage got sharper.
 
 The hero line changed from "Cut through the noise." to "Project

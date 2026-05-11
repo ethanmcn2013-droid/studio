@@ -91,6 +91,19 @@ Cycle 4 turns the shared update into a weddings/events proof path:
 
 The proof scene is: venue coordinator shares a planning update with a couple or supplier.
 
+## Cycle 5 Status
+
+Started May 11, 2026.
+
+Cycle 5 connects the proof artefact to a segment-specific conversion path:
+
+- `/weddings` explains Signal Studio through the venue/planner/couple scene.
+- Wedding shared-update CTAs now point to `/weddings`.
+- The page positions the four products as one wedding planning workspace.
+- The primary next step is a Founding Venue Pilot conversation.
+
+The proof scene is: viewer opens a wedding update, understands the state of the plan, then lands on a relevant page instead of a generic homepage.
+
 ## Shareable Artefacts
 
 Prioritise these first:

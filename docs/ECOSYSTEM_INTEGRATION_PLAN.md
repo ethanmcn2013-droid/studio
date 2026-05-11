@@ -121,7 +121,7 @@ Acceptance criteria:
 
 ### Cycle 4: Wedding/events proof path
 
-Status: active from May 11, 2026.
+Status: built from May 11, 2026.
 
 Detailed spec: `docs/CYCLE_4_WEDDING_EVENTS_PROOF_PATH.md`.
 
@@ -141,6 +141,29 @@ Acceptance criteria:
 - a wedding venue coordinator can open the page and see a useful artefact to forward
 - the page explains what is happening, what is held up, and what comes next
 - the artefact can become demo, outreach, and landing-page proof
+
+### Cycle 5: Wedding conversion path
+
+Status: active from May 11, 2026.
+
+Detailed spec: `docs/CYCLE_5_WEDDING_CONVERSION_PATH.md`.
+
+Purpose:
+
+Connect the weddings/events shared update to a segment-specific Studio page.
+
+Deliverables:
+
+- public Studio `/weddings` route
+- wedding shared-update CTAs route viewers to `/weddings`
+- page explains Notes, Tasks, Roadmap, and Analytics as one planning workspace
+- Founding Venue Pilot CTA is present
+
+Acceptance criteria:
+
+- a viewer of the wedding shared update can click through to a relevant Studio page
+- the page explains the product through a wedding venue/planner/couple context
+- the route can be used in venue outreach and the first demo script
 
 ### Phase 1: Shared language and links
 
