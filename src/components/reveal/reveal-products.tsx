@@ -91,7 +91,7 @@ export function RevealProducts() {
         position="Execution clarity"
         word="tasks"
         essence="Run the work. Without the project-manager voice."
-        pills={["Live", "Multi-view"]}
+        pills={["Private preview", "Multi-view"]}
         cta="Open the workspace →"
         href={TASKS_URL}
         external
@@ -102,7 +102,7 @@ export function RevealProducts() {
         position="Direction clarity"
         word="roadmap"
         essence="Show what you’re building. In plain English, on a public page."
-        pills={["Live", "Public roadmaps"]}
+        pills={["Private preview", "Public roadmaps"]}
         cta="Open the roadmap →"
         href={ROADMAP_URL}
         external
@@ -113,7 +113,7 @@ export function RevealProducts() {
         position="Attention clarity"
         word="analytics"
         essence="A morning briefing. Not a dashboard."
-        pills={["Live", "Daily Signal"]}
+        pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
         href={ANALYTICS_URL}
         external
@@ -124,7 +124,7 @@ export function RevealProducts() {
         position="Capture clarity"
         word="notes"
         essence="Catch what slips. Find it again later."
-        pills={["Soon", "In design"]}
+        pills={["Private build", "In design"]}
         cta="See what’s coming →"
         href={NOTES_URL}
         external

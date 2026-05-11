@@ -46,7 +46,7 @@ export default function AboutPage() {
               >
                 Ethan is a designer building operational clarity software under
                 the Signal Studio umbrella. The work lives at the edge of product
-                and craft — not enterprise, not consumer SaaS. Tools that
+                and craft — not enterprise, not consumer software. Tools that
                 reduce ambiguity instead of adding information.
               </p>
 
