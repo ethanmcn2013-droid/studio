@@ -1,7 +1,7 @@
 /**
  * Hero — Signal Studio's opening frame.
  *
- * Headline carries the operating headline ("Cut through the noise.")
+ * Headline carries the current positioning test.
  * Sub-paragraph carries the operating principle. Both are locked in
  * brand memory as load-bearing copy.
  *
@@ -15,7 +15,7 @@ export function Hero() {
         className="rise mt-8 text-balance font-semibold leading-[1.04] tracking-[-0.035em] text-ink"
         style={{ fontSize: "clamp(2rem, 1.3rem + 3vw, 3.5rem)", animationDelay: "0ms" }}
       >
-        Cut through the noise.
+        Project Management for the 80% who don&apos;t work in tech.
       </h1>
 
       <p

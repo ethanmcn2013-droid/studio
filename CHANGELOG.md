@@ -5,7 +5,106 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-11
+
+### Cycle 6 made the wedding workspace repeatable.
+
+The weddings/events proof path now has a real creator action behind it:
+Signal Tasks ships `wedding-planning-workspace`, and Studio's
+`/weddings` route links to it with campaign/source context. The shared
+Roadmap update can now lead to a wedge page, and the wedge page can
+lead to a starter workspace instead of a blank shell.
+
+This makes the collaboration loop more concrete: shared update ->
+segment page -> template -> workspace. The next cycle should connect
+Notes and Analytics to the same wedding scene so the template can
+become a full four-product demo.
+
+### Cycle 3 produced the first shared artefact.
+
+Signal HQ now tracks the first built shareable artefact in the
+collaboration growth loop: Roadmap's shared update page at
+`/[workspace]/update`. The update is source-tracked, points back to
+Signal Studio tastefully, and gives future demo work a real output to
+show rather than a strategy slide to describe.
+
+The Roadmap preview path has also been hardened with bundled proof data
+so the demo link can render even when preview database rows are missing.
+
+The next step is to turn that generic Roadmap update into the
+weddings/events proof path.
+
+That proof path has now started: `/wedding-planning/update` carries
+bundled wedding planning data so the first venue/couple/supplier demo
+has a concrete artefact to show.
+
+Cycle 5 now adds the conversion path: `/weddings` gives the
+weddings/events proof artefact a relevant Studio page, and Roadmap's
+wedding shared-update CTA routes viewers there instead of the generic
+homepage.
+
+### The homepage got sharper.
+
+The hero line changed from "Cut through the noise." to "Project
+Management for the 80% who don't work in tech." This is a deliberate
+positioning test: clearer category recognition at the top of the page,
+while the product still refuses project-management theatre underneath.
+Signal HQ now records the test so future agents treat it as intent, not
+drift.
+
+### Cycle 2 became an access model.
+
+The next phase is now written down and visible in HQ: invite roles,
+guest access, the collaborator first view, first shareable artefacts,
+and source tracking. The proof scene is deliberately concrete: a venue
+invites a couple into a wedding planning workspace, and the couple sees
+what matters before touching a setting.
+
+### Collaboration became the growth loop.
+
+Signal HQ now has a Collab Loop tab. It tracks the product-led path the
+suite has to prove: workspace created, collaborators invited, work made
+clearer, shareable output created, new creator discovered. The dashboard
+also now carries the shared object model that will keep Tasks, Roadmap,
+Analytics, and Notes from drifting into four separate tools.
+
+The plan is written down too. `docs/ECOSYSTEM_INTEGRATION_PLAN.md` holds
+the cross-product build sequence, and Signal Growth Studio now has a
+collaboration growth loop memory file. Collaboration is no longer a
+nice-to-have feature. It is the organic outreach campaign.
+
+### Cycle 1 started across the product repos.
+
+Tasks, Roadmap, Analytics, and Notes now each carry their own
+collaboration-loop contract. Each product knows its role: execution,
+direction, attention, and context. The next work is no longer abstract
+"integrate the products"; it is narrower and better: define the invite
+path, the guest's first view, the first shareable artefacts, and the
+source tracking that proves collaboration can become distribution.
+
 ## 2026-05-10
+
+### Signal HQ became the private operating room.
+
+The umbrella now has a private `/hq` route: password-gated, noindex,
+absent from public navigation, and built to show the state of Signal
+Studio in under a minute. Product readiness, launch readiness, growth
+work, outbound, content, demos, templates, pilots, metrics, decisions,
+feedback, risks, and next actions now have one internal home.
+
+Signal Growth Studio also entered the repo as memory, not theatre:
+campaign notes, brand rules, hooks, objections, demo planning, template
+strategy, review gates, and weekly operating rhythm. The public site
+stays quiet. The internal system gets serious.
+
+### Claude and Codex got the same operating rule.
+
+Root instruction files now exist for Claude Code and Codex. Both point
+back to the repo contract and repeat the rule that meaningful product,
+brand, GTM, roadmap, campaign, template, outreach, demo, decision, risk,
+or metric changes must update Signal HQ before the work is complete.
+The dashboard also notices when repo-backed HQ data is newer than the
+browser copy, so local-first does not become local-stale.
 
 ### The umbrella stopped being an old portfolio.
 

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Signal Studio · Project Management for people not in tech.",
   description:
-    "Four products for operational clarity. Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes. Everything important. Nothing distracting.",
+    "Plain-language project management for people who need clear work without tech-team jargon. Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie"
   ),
