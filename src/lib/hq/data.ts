@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T01:30:00Z",
+  updatedAt: "2026-05-13T02:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -464,15 +464,15 @@ export const seedHqData: HqData = {
       name: "Signal Roadmap",
       layer: "Direction",
       role: "Where the work is going, what changed, and what people should expect.",
-      maturity: 66,
+      maturity: 70,
       status: "Private preview",
-      uxPolish: 74,
-      integrationScore: 34,
-      launchReadiness: 62,
-      majorFeatures: ["Workspace creation", "editor", "public viewer (Cycle 8 — GTM-beat redesign)", "shared update page", "milestones as first-class section with per-milestone progress + T-N countdown", "bold-in-markdown promotes items to milestones (parser)", "item→milestone soft linkage in list view (Cycle 9 — '→ for <milestone>' line, deduped per contiguous group)", "hero dial gated on hasMomentum (Cycle 10 — ≥5 items or ≥1 milestone earns the dial; below threshold, single understated 'N of M shipped' line)", "meta-strip brand primitive carries the uppercase identity/timeline/count rhythm across workspace, project-detail, and refusals heroes (Cycle 11)", "BigStat brand primitive — values-first tabular stat treatment, shared across workspace + project-detail heroes (Cycle 12)", "cinematic homepage demo (cycle 11.3)"],
-      blockers: ["Confidence and change history need a sharper model.", "Demo-vs-reality gap widened: the cycle 11.3 demo shows inline comment threads on roadmap rows, which is a locked refusal in v1 — needs a marketing-side reconciliation pass."],
-      notes: "Cycles 8-12 all 2026-05-12. C8: GTM-beat viewer + bold-as-milestone parser + bullet-syntax legend in editor. C9: item→milestone soft linkage (deduped per contiguous group) + demo workspace rename (`Tasks · Product Roadmap`). C10: hasMomentum gating on the hero dial (≥5 items or ≥1 milestone; below threshold = single understated 'N of M shipped' line) + h1 period-dedup. C11: meta-strip rhythm extracted as a brand primitive and extended to project-detail and refusals heroes; refusals h1 tightened to 'What we said no to.' Homepage intentionally skipped. C12: BigStat extracted as a shared primitive; project-detail status row aligned to the tabular register (was prose-inline) so visual continuity holds across workspace-scoped heroes. REVIEW §5.4 (violet dial) refused; decision recorded in REVIEW_2026_05_12.md decision log. See docs/REVIEW_2026_05_12.md for the originating memo + decision log.",
-      nextActions: ["Confidence + change-history model — the deepest backlog item, still untouched. Wants scoping before code: what does 'confidence' mean (badge? 0-1 scale? text?), how is history captured (events table? on-save snapshots? markdown diffs?), which surfaces show it. Plan first, then a dedicated cycle.", "Walk the live roadmap.signalstudio.ie demo and confirm cursor + view-morph positioning on mobile widths.", "Reconcile the cycle 11.3 demo's comment-thread scene against the locked 'no comment threading' refusal — either soften the refusal or temper the demo."],
+      uxPolish: 76,
+      integrationScore: 38,
+      launchReadiness: 64,
+      majorFeatures: ["Workspace creation", "editor", "public viewer (Cycle 8 — GTM-beat redesign)", "shared update page", "milestones as first-class section with per-milestone progress + T-N countdown", "bold-in-markdown promotes items to milestones (parser)", "item→milestone soft linkage in list view (Cycle 9 — '→ for <milestone>' line, deduped per contiguous group)", "hero dial gated on hasMomentum (Cycle 10 — ≥5 items or ≥1 milestone earns the dial; below threshold, single understated 'N of M shipped' line)", "meta-strip brand primitive carries the uppercase identity/timeline/count rhythm across workspace, project-detail, and refusals heroes (Cycle 11)", "BigStat brand primitive — values-first tabular stat treatment, shared across workspace + project-detail heroes (Cycle 12)", "cinematic homepage demo (cycle 11.3)", "Public guest-view attribution + last-updated (Sprint 2 cycle 10.2, 2026-05-12)"],
+      blockers: ["Confidence and change history need a sharper model.", "Operator action: ALTER TABLE workspaces ADD COLUMN owner_name TEXT (Roadmap Turso); optional backfill UPDATE workspaces SET owner_name = '<name>' WHERE slug = '<slug>'."],
+      notes: "Sprint 2 cycle 10.2 closed 2026-05-12 — /[workspaceSlug] hero gained a slim 'Shared by [Owner name] · Last updated [X ago]' line. Schema added ownerName captured from Clerk on workspace creation. Public render stays a single DB query. Demo data updated (Ethan McNamara, Aoife Murphy). Existing workspaces have null ownerName until backfill — falls back to last-updated-only gracefully. Cycles 8-12 still represent the redesign arc; see docs/REVIEW_2026_05_12.md.",
+      nextActions: ["Sprint 2 Cycle 10.3: invited-by context bar + one-tap reply on shared views.", "Confidence + change-history model — the deepest backlog item, still untouched.", "Operator action: ALTER TABLE workspaces ADD COLUMN owner_name TEXT (Roadmap Turso) + optional backfill for existing workspaces."],
     },
     {
       id: "analytics",
