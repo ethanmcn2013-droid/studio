@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T00:30:00Z",
+  updatedAt: "2026-05-13T01:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -494,15 +494,15 @@ export const seedHqData: HqData = {
       name: "Signal Notes",
       layer: "Context",
       role: "What was said, decided, learned, captured, and turned into work.",
-      maturity: 74,
+      maturity: 78,
       status: "Private preview",
-      uxPolish: 70,
-      integrationScore: 44,
-      launchReadiness: 68,
-      majorFeatures: ["Next.js 16 scaffold", "Turso + Drizzle server persistence", "suite-wide Clerk auth (live)", "auth-gated /app", "sign-in / sign-up routes", "notebook surface with optimistic UI", "private empty-state copy", "private-by-default product treatment", "collapsible search rail with ⌘K", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo", "Draft action gesture (Cycle 9.4b extraction-half · 2026-05-12)"],
-      blockers: ["Cross-repo write to Tasks is the second half of 9.4b — drafted actions sit in Notes labeled 'pending Tasks send' until that contract lands. Production Turso ALTER TABLE for extract_body column is an operator action (Ethan, via Turso CLI).", "First-sign-in onboarding empty state could be sharper (Cycle 9.3).", "FTS5 server-side search is a later polish — client-side filter is fast for corpora < 1000 notes."],
-      notes: "Cycle 9.4b extraction-half shipped 2026-05-12 — the 'Promote to Tasks · arrives next cycle' placeholder is replaced with a real Draft action gesture: deliberate-authoring input (no auto-detect per PRODUCT.md §8 refusal), brand-tinted drafted block with Edit/Remove, indigo dot on the note row, schema gained extract_body. Cycle 11.5 cinematic demo (long-press → flying card → TasksEdge) still ahead of production — the cross-repo write closes that gap when the second half ships.",
-      nextActions: ["Run prod Turso ALTER TABLE notes ADD COLUMN extract_body TEXT via Turso CLI.", "Design the Notes → Tasks cross-repo write contract (the 9.4b second half).", "Cycle 9.3: first-sign-in onboarding empty state.", "Walk the live notes.signalstudio.ie /app once the Turso column lands and confirm the Draft action gesture end-to-end."],
+      uxPolish: 72,
+      integrationScore: 58,
+      launchReadiness: 72,
+      majorFeatures: ["Next.js 16 scaffold", "Turso + Drizzle server persistence", "suite-wide Clerk auth (live)", "auth-gated /app", "sign-in / sign-up routes", "notebook surface with optimistic UI", "private empty-state copy", "private-by-default product treatment", "collapsible search rail with ⌘K", "wordmark gesture", "anti-feature register", "homepage", "wedding planning demo", "Draft action gesture (Cycle 9.4b extraction-half, 2026-05-12)", "Cross-repo send to Tasks (Cycle 9.4b second half, 2026-05-12) — POST /api/notes-extract on Tasks, shared bearer auth, idempotent on (userId, noteId)"],
+      blockers: ["Production env + migrations pending: ALTER TABLE notes ADD COLUMN extract_body TEXT (Notes Turso), ALTER TABLE tasks ADD COLUMN source_note_id TEXT (Tasks Turso), NOTES_TO_TASKS_SECRET env var on both Notes and Tasks (Vercel) — same secret value. Until those land, Send to Tasks will SQL-error or 401.", "First-sign-in onboarding empty state could be sharper (Cycle 9.3).", "FTS5 server-side search is a later polish — client-side filter is fast for corpora < 1000 notes."],
+      notes: "Cycle 9.4b shipped end-to-end 2026-05-12 — extraction-half (Draft action gesture in /app) plus second half (cross-repo write to Tasks). The note → task edge is real: drafted extract → Send to Tasks → POST /api/notes-extract → task created in user's first workspace → promoted_task_id stored → 'Sent to [workspace]' state with deep link back. Privacy guardrail held: only extract_body crosses; raw note bodies stay private. Idempotency via source_note_id keyed as {userId}:{noteId}. Cycle 11.5 cinematic demo previously dramatized this gesture; product now matches marketing.",
+      nextActions: ["Run prod migrations: ALTER TABLE notes ADD COLUMN extract_body TEXT and ALTER TABLE tasks ADD COLUMN source_note_id TEXT via Turso CLI.", "Set NOTES_TO_TASKS_SECRET on Notes + Tasks Vercel projects (same value, server-only).", "Walk Send to Tasks end-to-end on the live deploys once env + migrations land.", "Cycle 9.3: first-sign-in onboarding empty state."],
     },
   ],
   ecosystemFlows: [
