@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T02:00:00Z",
+  updatedAt: "2026-05-13T02:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -464,15 +464,15 @@ export const seedHqData: HqData = {
       name: "Signal Roadmap",
       layer: "Direction",
       role: "Where the work is going, what changed, and what people should expect.",
-      maturity: 70,
+      maturity: 74,
       status: "Private preview",
-      uxPolish: 76,
-      integrationScore: 38,
-      launchReadiness: 64,
-      majorFeatures: ["Workspace creation", "editor", "public viewer (Cycle 8 — GTM-beat redesign)", "shared update page", "milestones as first-class section with per-milestone progress + T-N countdown", "bold-in-markdown promotes items to milestones (parser)", "item→milestone soft linkage in list view (Cycle 9 — '→ for <milestone>' line, deduped per contiguous group)", "hero dial gated on hasMomentum (Cycle 10 — ≥5 items or ≥1 milestone earns the dial; below threshold, single understated 'N of M shipped' line)", "meta-strip brand primitive carries the uppercase identity/timeline/count rhythm across workspace, project-detail, and refusals heroes (Cycle 11)", "BigStat brand primitive — values-first tabular stat treatment, shared across workspace + project-detail heroes (Cycle 12)", "cinematic homepage demo (cycle 11.3)", "Public guest-view attribution + last-updated (Sprint 2 cycle 10.2, 2026-05-12)"],
-      blockers: ["Confidence and change history need a sharper model.", "Operator action: ALTER TABLE workspaces ADD COLUMN owner_name TEXT (Roadmap Turso); optional backfill UPDATE workspaces SET owner_name = '<name>' WHERE slug = '<slug>'."],
-      notes: "Sprint 2 cycle 10.2 closed 2026-05-12 — /[workspaceSlug] hero gained a slim 'Shared by [Owner name] · Last updated [X ago]' line. Schema added ownerName captured from Clerk on workspace creation. Public render stays a single DB query. Demo data updated (Ethan McNamara, Aoife Murphy). Existing workspaces have null ownerName until backfill — falls back to last-updated-only gracefully. Cycles 8-12 still represent the redesign arc; see docs/REVIEW_2026_05_12.md.",
-      nextActions: ["Sprint 2 Cycle 10.3: invited-by context bar + one-tap reply on shared views.", "Confidence + change-history model — the deepest backlog item, still untouched.", "Operator action: ALTER TABLE workspaces ADD COLUMN owner_name TEXT (Roadmap Turso) + optional backfill for existing workspaces."],
+      uxPolish: 78,
+      integrationScore: 42,
+      launchReadiness: 66,
+      majorFeatures: ["Workspace creation", "editor", "public viewer (Cycle 8 — GTM-beat redesign)", "shared update page", "milestones as first-class section with per-milestone progress + T-N countdown", "bold-in-markdown promotes items to milestones (parser)", "item→milestone soft linkage in list view (Cycle 9 — '→ for <milestone>' line, deduped per contiguous group)", "hero dial gated on hasMomentum (Cycle 10 — ≥5 items or ≥1 milestone earns the dial; below threshold, single understated 'N of M shipped' line)", "meta-strip brand primitive carries the uppercase identity/timeline/count rhythm across workspace, project-detail, and refusals heroes (Cycle 11)", "BigStat brand primitive — values-first tabular stat treatment, shared across workspace + project-detail heroes (Cycle 12)", "cinematic homepage demo (cycle 11.3)", "Public guest-view attribution + last-updated (Sprint 2 cycle 10.2, 2026-05-12)", "Invited-by bar + mailto reply on /update (Sprint 2 cycle 10.3, 2026-05-12)"],
+      blockers: ["Confidence and change history need a sharper model.", "Operator actions: ALTER TABLE workspaces ADD COLUMN owner_name TEXT and ALTER TABLE workspaces ADD COLUMN owner_email TEXT (Roadmap Turso); optional backfill for existing workspaces."],
+      notes: "Sprint 2 cycle 10.3 closed 2026-05-12 — /[workspaceSlug]/update gained InvitedByBar component: '{Name} shared this with you' eyebrow + description + last-updated + Reply by email button (mailto). Reply is mailto-only — locked refusal on comment-thread infrastructure holds. Schema added ownerEmail alongside ownerName, both captured from Clerk on workspace creation. Demo data: hello@signalstudio.ie + aoife@harbourhouse.example. Existing workspaces fall back gracefully when fields are null. Cycle 10.2 (slim attribution on /[workspaceSlug] hero) also closed earlier in the day.",
+      nextActions: ["Sprint 2 Cycle 10.4: plain-English activity log in Tasks (last 10 events, human prose).", "Confidence + change-history model — the deepest backlog item, still untouched.", "Operator actions: ALTER TABLE workspaces ADD COLUMN owner_name TEXT + ALTER TABLE workspaces ADD COLUMN owner_email TEXT on Roadmap Turso, plus backfills for existing workspaces."],
     },
     {
       id: "analytics",
