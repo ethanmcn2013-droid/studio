@@ -521,7 +521,7 @@ export const seedHqData: HqData = {
       to: "Signal Roadmap",
       purpose: "Roll execution into milestones and phases.",
       status: "Partly working",
-      health: "On track",
+      health: "Clear",
       nextAction: "Verify the live four-layer wedge demo end-to-end (remix wedding → toast → roadmap onboarding → seeded workspace). Then design the non-template task-to-milestone link.",
     },
     {
