@@ -32,7 +32,7 @@
 
   /* ── Semantic surfaces ────────────────────────────────────── */
   --bg:          #fafaf7; /* warm-stone, same family baseline */
-  --bg-elev:     #ffffff;
+  --bg-elev:     #fffefa; /* warm-stone elevation — never pure white per BRAND.md §5 */
   --bg-deep:     #f4f4f0;
 
   --border:      #e4e4e7;

@@ -353,7 +353,7 @@ function NotesProof() {
 /* ── Grid ──────────────────────────────────────────────────── */
 export function ProductsGrid() {
   return (
-    <section id="products" className="mx-auto w-full max-w-[1280px] px-6 pb-24">
+    <section id="products" className="mx-auto w-full max-w-[1040px] px-6 pb-24">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard
           label="Signal Tasks"

@@ -16,6 +16,15 @@ export const metadata: Metadata = {
 };
 
 const trackingSuffix = "source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue";
+
+/**
+ * Days-to-event for the hero mock. Static — the demo represents a
+ * planner four weeks out, which is the moment the wedge most clearly
+ * earns its keep (date held, decisions made, final-week work pending).
+ * Replacing the abstract "Planning Roadmap - 2026-05-14" stamp with
+ * calendar proximity is the 80% audience's actual mental model.
+ */
+const daysToEvent = 28;
 const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/wedding-planning/update?${trackingSuffix}&artefact=landing_page`;
 const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace?${trackingSuffix}&artefact=template`;
 const notesDemoHref = `https://notes.signalstudio.ie/wedding-planning/?${trackingSuffix}&artefact=notes_demo`;
@@ -154,8 +163,11 @@ export default function WeddingsPage() {
                   <p className="text-[14px] font-medium text-ink">
                     Confirm final guest numbers
                   </p>
-                  <p className="mt-1 text-[12px] text-ink-quiet">
-                    Planning Roadmap - 2026-05-14
+                  <p
+                    className="mt-1 text-[12px] font-medium"
+                    style={{ color: "var(--status-flight, #f59e0b)" }}
+                  >
+                    {daysToEvent} days to event
                   </p>
                 </div>
               </div>
