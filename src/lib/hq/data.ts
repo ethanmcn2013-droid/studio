@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-12T23:55:00Z",
+  updatedAt: "2026-05-13T00:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1127,12 +1127,12 @@ export const seedHqData: HqData = {
     {
       id: "pricing",
       category: "Pricing readiness",
-      score: 62,
+      score: 78,
       weight: 5,
       status: "Needs attention",
-      notes: "Unified Signal Studio pricing decided 2026-05-12. /pricing page shipped: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Bundle covers all four products, price holds as Notes + Analytics ship.",
-      blockers: ["Shared entitlements layer across Tasks + Roadmap not yet built (single Stripe price ID, shared Turso entitlements table)."],
-      nextAction: "Architect the shared entitlements layer; grandfather existing Tasks subscribers; retire per-product pricing pages on Tasks + Roadmap once umbrella is verified.",
+      notes: "Unified Signal Studio pricing shipped 2026-05-12: signalstudio.ie/pricing (Free / Workspace €12mo / Event €79 one-time / Student .edu-free). Per-product /pricing routes on Tasks + Roadmap + Analytics all retired and 308-redirect to umbrella; in-product Pricing links across all three repos repointed to umbrella URL. In-app Tasks upsell renamed Team → Workspace. The umbrella is now the single canonical pricing surface in the suite.",
+      blockers: ["Shared entitlements layer across Tasks + Roadmap not yet built — single Stripe price ID + shared Turso entitlements table needed so one umbrella checkout unlocks both apps. Until then, new Workspace-tier signups effectively pause (acceptable: private preview, no live conversion to disrupt)."],
+      nextAction: "Architect the shared entitlements layer; design grandfather migration for existing Tasks subscribers (price-lock at current rate, no forced upgrade); wire one Stripe product/price that both Tasks + Roadmap entitlement gates check.",
     },
     {
       id: "case-studies",
@@ -1623,7 +1623,7 @@ export const seedHqData: HqData = {
       reviewDate: "2026-08-12",
       status: "Active",
       relatedObjects: ["Signal Studio", "Signal Tasks", "Signal Roadmap", "Signal Analytics", "Signal Notes"],
-      notes: "Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Page lives only at signalstudio.ie/pricing; per-product /pricing routes should 301 here once production-ready.",
+      notes: "Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/roadmap/analytics /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Notes has no pricing surface yet (was never built).",
     },
     {
       id: "four-products",
