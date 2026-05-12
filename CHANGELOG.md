@@ -5,6 +5,34 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12 (later still)
+
+### Suite chrome consolidated — one bar, not two.
+
+Every product surface across signalstudio.ie / tasks / roadmap /
+analytics / notes was running two stacked horizontal navs — a thin
+cross-product strip on top, then the product's own nav below. It
+read as CMS-template chrome, not a design decision. The strip wasn't
+even consistent: Notes split it left/right, the other three
+left-clustered it, the umbrella listed itself, and active state was
+inconsistent across the four products.
+
+Removed across the suite. Each product now runs a single bar with a
+small `signal studio. /` breadcrumb prefix before the product
+wordmark. The umbrella drops the strip entirely — the page is the
+umbrella, so a self-listing bar was redundant. Cross-product
+discovery falls back to the footer, where it already lived.
+
+Dissent named inside the decision: the strip's job was passive
+suite-awareness for visitors who land deep. The breadcrumb preserves
+the back-to-suite affordance but loses the "look, four products" at-
+a-glance read. Footer + brand-mark + breadcrumb are doing that work
+now. If the discovery loss shows up in pilot feedback, a small "the
+suite" menu can attach to the breadcrumb without resurrecting the
+two-bar stack.
+
+---
+
 ## 2026-05-12 (later)
 
 ### Venue-pilot forcing function set.
