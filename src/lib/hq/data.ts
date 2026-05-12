@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-12T23:45:00Z",
+  updatedAt: "2026-05-13T00:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -520,9 +520,9 @@ export const seedHqData: HqData = {
       from: "Signal Tasks",
       to: "Signal Roadmap",
       purpose: "Roll execution into milestones and phases.",
-      status: "Planned",
-      health: "Needs attention",
-      nextAction: "Define the task-to-milestone link.",
+      status: "Partly working",
+      health: "On track",
+      nextAction: "Verify the live four-layer wedge demo end-to-end (remix wedding → toast → roadmap onboarding → seeded workspace). Then design the non-template task-to-milestone link.",
     },
     {
       id: "roadmap-analytics",
@@ -1374,7 +1374,7 @@ export const seedHqData: HqData = {
       landingPageUrl: "/weddings",
       relatedCampaign: "Founding Venue Programme",
       activationGoal: "Workspace has tasks, notes, roadmap items, and at least one invite.",
-      notes: "Lifted to canonical 2026-05-12 (Cycle T-1). Sourced from `studio/src/lib/templates/wedding-planning-workspace/` as a five-file artefact (meta/tasks/notes/roadmap/analytics) — Tasks consumes via `pnpm sync:templates`. T-2 split into sub-cycles: T-2.0 Tasks `template_id` field (shipped), T-2.1a Roadmap plumbing (shipped — schema + sync + canonical roadmap.ts reshape), T-2.1b Roadmap seeding logic (shipped 2026-05-12 — server-action seeds projects + items, new /onboarding/from-template/[id] route, end-to-end), T-2.1c Cross-product CTA in Tasks (shipped 2026-05-12 — toast primitive gained action-link support, TemplatedToast surfaces a Create-a-Roadmap link after remix for canonical templates only), T-2.2 Notes lazy expression, T-2.3 Analytics lazy expression.",
+      notes: "Four-layer walkable end-to-end as of 2026-05-12. Canonical source at `studio/src/lib/templates/wedding-planning-workspace/` (five-file artefact). Tasks remix creates workspace with template_id + 18 seeded tasks; remix toast carries Create-a-Roadmap link → /onboarding/from-template/wedding-planning-workspace → seeded Roadmap workspace with one Planning Roadmap project + 8 items. T-2.2 (Notes lazy expression) + T-2.3 (Analytics, dormant) still owed. Full session report at `studio/docs/TEMPLATES_HANDOFF.md`.",
     },
     {
       id: "venue-checklist",

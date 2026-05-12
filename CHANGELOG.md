@@ -7,6 +7,47 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### Cycle 11.3–11.5 shipped — every product demo now holds the Tasks bar.
+
+Three products got rebuilt cinematic demos in one arc. The redirect
+that kicked it off: lighter demos around a Tasks flagship read as
+flagship-plus-sidekicks, which inverts the moat. One quality bar
+across the suite is the moat — and now every homepage carries it.
+
+Roadmap (cycle 11.3, four-phase rebuild): hero restructured to the
+Tasks pattern. Four audience packs (wedding / construction / launch /
+startup). 18-scene loop with three anonymous reader cursors that
+traverse the page on DOM-measured paths, follow items when their
+status changes, press a real Share button before the "Link copied"
+toast fires, open an inline comment thread with character-by-character
+typed reply, then morph the whole surface into Timeline view across a
+6-month axis before returning.
+
+Analytics (cycle 11.4, two-phase rebuild): same hero pattern, sender
+chrome on the briefing card. 19-scene loop with a single anonymous
+cursor that inspects an item, opens a "Why this?" rule chain that
+types its final line character-by-character, then moves to a focus
+item, presses "Mark done", sees the strike-through + "Marked done"
+toast, then morphs to Yesterday's briefing to prove the engine's
+freshness before returning.
+
+Notes (cycle 11.5, two-phase rebuild): tag chips stagger-land beneath
+each note 120ms apart after capture. View-toggle morphs Stream → Tags
+and back. Search hits highlight the matched substring inline. The
+locked Notes → Tasks promote gesture lands as a long-press ring →
+context menu → press flash → flying card silhouette arriving at a
+TasksEdge indicator on the right margin. The one-way discipline is
+now legible in motion.
+
+Cross-cutting: each demo lives on motion/react, uses DOM-measured
+positioning where it matters, respects useReducedMotion, and ships
+its own AudienceToggle on the same four-pack axis. Same hero
+typography, same status-pip pattern, same depth bar.
+
+Still owed: visual verification on the live URLs (dev server stalled
+the whole session — Vercel previews are the only proof). Signal HQ
+product-status fields will follow once the live deploys validate.
+
 ### T-2.1c shipped — Tasks remix toast now invites a Roadmap.
 
 The cross-product CTA gap that left T-2.1b technically working but
