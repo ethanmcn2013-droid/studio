@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Signal Studio · Pricing — wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" />
+<style>
+  /* ──────────────────────────────────────────────────────────────
+     Signal Studio · Pricing wireframe
+     Local-only visualization. Mirrors BRAND.md §3/§5/§6 + tokens.css.
+     ────────────────────────────────────────────────────────────── */
+
+  * { box-sizing: border-box; }
+  :root {
+    --indigo-600: #4f46e5;
+    --indigo-100: #e0e7ff;
+    --indigo-50: #eef2ff;
+    --bg: #fafaf7;
+    --bg-deep: #f4f4f0;
+    --bg-elev: #ffffff;
+    --ink: #18181b;
+    --ink-soft: #3f3f46;
+    --ink-quiet: #71717a;
+    --ink-faint: #a1a1aa;
+    --border: #e4e4e7;
+    --border-soft: #ececec;
+    --status-shipped: #10b981;
+    --status-build: #f59e0b;
+
+    --font-sans: 'Geist', -apple-system, system-ui, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+    --fs-display: clamp(2.75rem, 1.8rem + 3.6vw, 5rem);
+    --fs-title: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+    --fs-section: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+    --fs-body: 17px;
+    --fs-mono: 11px;
+  }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body { font-size: var(--fs-body); line-height: 1.55; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Layout primitives ─────────────────────────────────────── */
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  section { padding: 80px 0; border-bottom: 1px solid var(--border-soft); }
+  section:last-of-type { border-bottom: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin: 0 0 18px;
+  }
+
+  h1, h2, h3 { margin: 0; font-weight: 600; }
+  h1 { font-size: var(--fs-display); letter-spacing: -0.045em; line-height: 0.96; }
+  h2 { font-size: var(--fs-title); letter-spacing: -0.035em; line-height: 1.04; }
+  h3 { font-size: var(--fs-section); letter-spacing: -0.03em; line-height: 1.08; }
+
+  p { margin: 0; color: var(--ink-soft); }
+  .mono { font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--ink-quiet); letter-spacing: 0.02em; }
+
+  /* ── Top chrome (placeholder nav) ──────────────────────────── */
+
+  .nav {
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg);
+  }
+  .nav .wordmark { font-weight: 500; letter-spacing: -0.025em; font-size: 17px; }
+  .nav .wordmark .dot {
+    display: inline-block; width: 0.32em; height: 0.32em;
+    border-radius: 999px; background: var(--indigo-600);
+    transform: translate(0.06em, 0.18em);
+    animation: pulse-slow 5.2s ease-in-out infinite;
+  }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--indigo-600); }
+
+  /* ── 1 · Frame ─────────────────────────────────────────────── */
+
+  .frame { padding: 120px 0 88px; text-align: left; border-bottom: 0; }
+  .frame h1 { max-width: 14ch; }
+  .frame p.sub { max-width: 56ch; margin-top: 24px; font-size: 19px; color: var(--ink-soft); }
+
+  /* ── 2 · Suite reveal ──────────────────────────────────────── */
+
+  .suite {
+    padding: 64px 0 80px;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-deep);
+  }
+  .suite-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .suite-cell { padding: 8px 4px; }
+  .suite-cell .wm {
+    font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--ink);
+    position: relative;
+    display: inline-block;
+  }
+  .suite-cell .dot {
+    display: inline-block;
+    width: 0.16em; height: 0.16em;
+    border-radius: 999px;
+    background: var(--indigo-600);
+    vertical-align: baseline;
+    transform: translate(0.06em, 0);
+  }
+  .suite-cell .essence {
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+  }
+  .suite-cell .verb {
+    margin-top: 6px;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  /* Per-product gestures */
+  .wm.tasks .dot   { animation: pulse 2.6s ease-in-out infinite; }
+  .wm.roadmap .dot { animation: slide 5.4s var(--ease-out, cubic-bezier(.22,.61,.36,1)) infinite; }
+  .wm.analytics .dot { animation: tick 3.6s steps(1, end) infinite; }
+  .wm.notes .dot   { animation: caret 1.1s steps(1, end) infinite; }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(0.06em, 0) scale(1); opacity: 1; }
+    50%      { transform: translate(0.06em, 0) scale(0.7); opacity: 0.55; }
+  }
+  @keyframes slide {
+    0%   { transform: translate(0.06em, 0); }
+    45%  { transform: translate(0.6em, 0); }
+    55%  { transform: translate(0.6em, 0); opacity: 1; }
+    56%  { opacity: 0; }
+    57%  { transform: translate(-0.2em, 0); opacity: 0; }
+    65%  { transform: translate(0.06em, 0); opacity: 1; }
+    100% { transform: translate(0.06em, 0); }
+  }
+  @keyframes tick {
+    0%, 24%   { transform: translate(0.06em, 0); }
+    25%, 49%  { transform: translate(0.22em, 0); }
+    50%, 74%  { transform: translate(0.4em, 0); }
+    75%, 99%  { transform: translate(0.22em, 0); }
+    100%      { transform: translate(0.06em, 0); }
+  }
+  @keyframes caret {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.65; }
+  }
+
+  /* ── 3 · Tier grid ─────────────────────────────────────────── */
+
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+  .tier {
+    padding: 36px 28px 32px;
+    border-right: 1px solid var(--border-soft);
+    display: flex; flex-direction: column;
+    min-height: 360px;
+  }
+  .tier:last-child { border-right: 0; }
+  .tier .anchor { height: 26px; margin-bottom: 6px; }
+  .tier .anchor .dot-anchor {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-quiet);
+  }
+  .tier .anchor .dot-anchor::before {
+    content: ''; width: 6px; height: 6px; border-radius: 999px;
+    background: var(--indigo-600);
+    animation: pulse-slow 5.2s ease-in-out infinite;
+  }
+
+  .tier-name { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+  .tier-price {
+    margin-top: 22px;
+    font-size: clamp(2.5rem, 1.8rem + 2vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .tier-cadence {
+    margin-top: 8px;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.02em; color: var(--ink-quiet);
+  }
+  .tier-body { margin-top: 22px; font-size: 15px; color: var(--ink-soft); line-height: 1.55; flex: 1; }
+  .tier-cta {
+    margin-top: 28px;
+    color: var(--indigo-600);
+    font-weight: 500;
+    font-size: 15px;
+    border-bottom: 1px solid transparent;
+    align-self: flex-start;
+    padding-bottom: 2px;
+    transition: border-color 200ms ease;
+  }
+  .tier-cta:hover { border-bottom-color: var(--indigo-600); }
+  .tier.recommended { background: linear-gradient(180deg, #fdfcff 0%, var(--bg-elev) 60%); }
+
+  /* Subtle toggle above grid */
+  .billing-toggle {
+    margin: 0 0 20px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-quiet);
+    display: flex; gap: 18px; align-items: center;
+  }
+  .billing-toggle button {
+    all: unset; cursor: pointer;
+    color: var(--ink-quiet);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .billing-toggle button.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .billing-toggle .savings { color: var(--indigo-600); }
+
+  /* ── 4 · What's inside ─────────────────────────────────────── */
+
+  .inside-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .inside-cell {
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .inside-cell .wm-row {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 14px;
+  }
+  .inside-cell .wm-small {
+    font-size: 20px; font-weight: 500; letter-spacing: -0.025em;
+  }
+  .inside-cell .wm-small .dot {
+    display: inline-block;
+    width: 0.16em; height: 0.16em;
+    border-radius: 999px;
+    background: var(--indigo-600);
+    vertical-align: baseline;
+    transform: translate(0.06em, 0);
+  }
+  .inside-cell .wm-small.tasks .dot   { animation: pulse 2.6s ease-in-out infinite; }
+  .inside-cell .wm-small.roadmap .dot { animation: slide 5.4s var(--ease-out, cubic-bezier(.22,.61,.36,1)) infinite; }
+  .inside-cell .wm-small.analytics .dot { animation: tick 3.6s steps(1, end) infinite; }
+  .inside-cell .wm-small.notes .dot   { animation: caret 1.1s steps(1, end) infinite; }
+
+  .inside-cell .pos {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-quiet);
+  }
+  .inside-cell .desc {
+    margin-top: 12px;
+    font-size: 15px; line-height: 1.55; color: var(--ink-soft);
+  }
+  .inside-cell .status {
+    margin-top: 18px;
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.02em; color: var(--ink-quiet);
+  }
+  .pip {
+    width: 8px; height: 8px; border-radius: 999px;
+    display: inline-block;
+  }
+  .pip.shipped { background: var(--status-shipped); }
+  .pip.build   { background: var(--status-build); }
+
+  /* ── 5 · Shipping truth ────────────────────────────────────── */
+
+  .truth { background: var(--bg-deep); }
+  .truth .panel {
+    max-width: 64ch;
+    border-left: 2px solid var(--indigo-600);
+    padding-left: 28px;
+  }
+  .truth .panel p { font-size: 17px; color: var(--ink-soft); margin-bottom: 18px; }
+  .truth .panel p:last-child { margin-bottom: 0; }
+  .truth .panel strong { color: var(--ink); font-weight: 500; }
+
+  /* ── 6 · Event lane ────────────────────────────────────────── */
+
+  .event {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: end;
+  }
+  .event h2 { max-width: 22ch; }
+  .event p { margin-top: 20px; max-width: 52ch; }
+  .event .right {
+    text-align: right;
+    display: flex; flex-direction: column; gap: 18px; align-items: flex-end;
+  }
+  .event .price { font-size: clamp(2.5rem, 1.8rem + 2vw, 3.75rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  .event .lane { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-quiet); }
+  .event .ctas { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .event .ctas a { color: var(--indigo-600); font-size: 15px; }
+  .event .ctas .secondary { color: var(--ink-quiet); font-size: 13px; }
+
+  /* ── 7 · What this isn't ───────────────────────────────────── */
+
+  .refusals { padding: 96px 0; }
+  .refusals .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 40px;
+  }
+  .refusals .item {
+    padding: 0 36px;
+    border-left: 1px solid var(--border-soft);
+  }
+  .refusals .item:first-child { border-left: 0; padding-left: 0; }
+  .refusals .neg {
+    font-size: 22px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .refusals .pos { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── 8 · FAQ ───────────────────────────────────────────────── */
+
+  .faq { background: var(--bg-deep); }
+  .faq .list {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px 64px;
+  }
+  .faq .q { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+  .faq .a { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ── 9 · Quiet close ───────────────────────────────────────── */
+
+  .close { padding: 120px 0 96px; text-align: left; }
+  .close .sig {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-quiet);
+  }
+
+  /* ── Responsive ────────────────────────────────────────────── */
+
+  @media (max-width: 920px) {
+    .suite-grid, .tiers, .inside-grid, .refusals .list { grid-template-columns: repeat(2, 1fr); }
+    .tier { border-right: 0; border-bottom: 1px solid var(--border-soft); }
+    .tier:nth-child(2n) { border-right: 0; }
+    .tier:nth-child(odd) { border-right: 1px solid var(--border-soft); }
+    .refusals .item { border-left: 0; padding: 24px 0; border-top: 1px solid var(--border-soft); }
+    .refusals .item:first-child { padding-top: 0; border-top: 0; }
+    .event-grid { grid-template-columns: 1fr; gap: 32px; align-items: flex-start; }
+    .event .right { text-align: left; align-items: flex-start; }
+    .event .ctas { align-items: flex-start; }
+    .faq .list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .suite-grid, .tiers, .inside-grid, .refusals .list { grid-template-columns: 1fr; }
+    .tier { border-right: 0; }
+    .tier:nth-child(odd) { border-right: 0; }
+    section { padding: 56px 0; }
+    .frame { padding: 72px 0 56px; }
+  }
+
+  /* ── Reduced motion ────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .wm.tasks .dot, .wm.roadmap .dot, .wm.analytics .dot, .wm.notes .dot,
+    .wm-small.tasks .dot, .wm-small.roadmap .dot, .wm-small.analytics .dot, .wm-small.notes .dot,
+    .nav .wordmark .dot, .anchor .dot-anchor::before {
+      animation: none !important;
+    }
+  }
+
+  /* Wireframe-only callout (remove for production) */
+  .wf-note {
+    position: fixed; bottom: 16px; right: 16px;
+    background: var(--ink); color: #fff;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 8px 12px; border-radius: 999px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;border-bottom:0;padding-top:0;padding-bottom:0;">
+    <a href="/" class="wordmark">signal studio<span class="dot"></span></a>
+    <nav class="nav-links">
+      <a href="#">About</a>
+      <a href="#">Products</a>
+      <a href="#" style="color:var(--ink);">Pricing</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── 1 · Frame ──────────────────────────────────────────────── -->
+<section class="frame">
+  <div class="container">
+    <p class="eyebrow">Signal Studio · Pricing</p>
+    <h1>One price.<br/>Four kinds of clarity.</h1>
+    <p class="sub">
+      Signal Studio is one subscription. Use as many of the four products as you want.
+      No per-seat tax. No per-product tax.
+    </p>
+  </div>
+</section>
+
+<!-- ── 2 · Suite reveal ───────────────────────────────────────── -->
+<section class="suite" style="border-top:1px solid var(--border-soft);">
+  <div class="container">
+    <p class="eyebrow">The four products</p>
+    <div class="suite-grid">
+      <div class="suite-cell">
+        <div class="wm tasks">tasks<span class="dot"></span></div>
+        <div class="essence">Execution</div>
+        <div class="verb">Run the work.</div>
+      </div>
+      <div class="suite-cell">
+        <div class="wm roadmap">roadmap<span class="dot"></span></div>
+        <div class="essence">Direction</div>
+        <div class="verb">Show where it's going.</div>
+      </div>
+      <div class="suite-cell">
+        <div class="wm analytics">analytics<span class="dot"></span></div>
+        <div class="essence">Attention</div>
+        <div class="verb">Surface what matters.</div>
+      </div>
+      <div class="suite-cell">
+        <div class="wm notes">notes<span class="dot"></span></div>
+        <div class="essence">Context</div>
+        <div class="verb">Capture what was said.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3 · Tier grid ──────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="eyebrow">Plans</p>
+    <h2 style="max-width:18ch;margin-bottom:32px;">Pick the one that matches how you work.</h2>
+
+    <div class="billing-toggle">
+      <button class="active">Monthly</button>
+      <button>Yearly <span class="savings">· save €24</span></button>
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="anchor"></div>
+        <div class="tier-name">Free</div>
+        <div class="tier-price">€0</div>
+        <div class="tier-cadence">forever</div>
+        <div class="tier-body">
+          One workspace. All four products. Three editing guests. No card needed.
+        </div>
+        <a class="tier-cta" href="#">Open Signal Studio →</a>
+      </div>
+
+      <div class="tier recommended">
+        <div class="anchor"><span class="dot-anchor">Most chosen</span></div>
+        <div class="tier-name">Workspace</div>
+        <div class="tier-price">€12</div>
+        <div class="tier-cadence">/ month · per workspace</div>
+        <div class="tier-body">
+          Unlimited workspaces. All four products. Bring your whole crew — no per-seat tax.
+        </div>
+        <a class="tier-cta" href="#">Start a workspace →</a>
+      </div>
+
+      <div class="tier">
+        <div class="anchor"></div>
+        <div class="tier-name">Event</div>
+        <div class="tier-price">€79</div>
+        <div class="tier-cadence">one-time · 12 months</div>
+        <div class="tier-body">
+          One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.
+        </div>
+        <a class="tier-cta" href="#">Plan an event →</a>
+      </div>
+
+      <div class="tier">
+        <div class="anchor"></div>
+        <div class="tier-name">Student</div>
+        <div class="tier-price">€0</div>
+        <div class="tier-cadence">with verified .edu</div>
+        <div class="tier-body">
+          Workspace tier, free. Two-year window. For multi-stream students with real deadlines.
+        </div>
+        <a class="tier-cta" href="#">Verify .edu →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4 · What's inside ──────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="eyebrow">What's in Signal Studio</p>
+    <h2 style="max-width:20ch;">Four products. One subscription.</h2>
+
+    <div class="inside-grid">
+      <div class="inside-cell">
+        <div class="wm-row">
+          <span class="wm-small tasks">tasks<span class="dot"></span></span>
+          <span class="pos">Execution</span>
+        </div>
+        <p class="desc">Run the work. Plain-English task workspace for weddings, freelance, students, trades.</p>
+        <div class="status"><span class="pip shipped"></span>Shipping now</div>
+      </div>
+
+      <div class="inside-cell">
+        <div class="wm-row">
+          <span class="wm-small roadmap">roadmap<span class="dot"></span></span>
+          <span class="pos">Direction</span>
+        </div>
+        <p class="desc">Show where the work is going. Public roadmap, shared updates, no engineering vocabulary.</p>
+        <div class="status"><span class="pip shipped"></span>Shipping now</div>
+      </div>
+
+      <div class="inside-cell">
+        <div class="wm-row">
+          <span class="wm-small notes">notes<span class="dot"></span></span>
+          <span class="pos">Context</span>
+        </div>
+        <p class="desc">Capture what was said. Promote a note into a task in one tap. Never auto-detected.</p>
+        <div class="status"><span class="pip build"></span>In build</div>
+      </div>
+
+      <div class="inside-cell">
+        <div class="wm-row">
+          <span class="wm-small analytics">analytics<span class="dot"></span></span>
+          <span class="pos">Attention</span>
+        </div>
+        <p class="desc">The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.</p>
+        <div class="status"><span class="pip build"></span>In design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5 · Shipping truth ─────────────────────────────────────── -->
+<section class="truth">
+  <div class="container">
+    <p class="eyebrow">What we ship today</p>
+    <div class="panel">
+      <p>
+        Signal Studio is one subscription. Today, <strong>Signal Tasks</strong> and <strong>Signal Roadmap</strong> are live.
+        <strong>Signal Notes</strong> is in build. <strong>Signal Analytics</strong> is in design.
+      </p>
+      <p>
+        Your price stays the same as each one ships. You pay for Signal Studio, not for a product count.
+      </p>
+      <p>
+        We will not list a feature on this page until the product behind it works. That rule is the brand.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6 · Event lane ─────────────────────────────────────────── -->
+<section class="event">
+  <div class="container">
+    <p class="eyebrow">Planning one event?</p>
+    <div class="event-grid">
+      <div>
+        <h2>Signal Studio for one wedding, one launch, one move.</h2>
+        <p>
+          €79 one-time. 12 months of full access. All four products in a single event-shaped workspace.
+          When the event is over, the workspace keeps reading forever — a record of how the work actually ran.
+        </p>
+      </div>
+      <div class="right">
+        <span class="lane">Event lane</span>
+        <span class="price">€79</span>
+        <div class="ctas">
+          <a href="#">Plan an event →</a>
+          <a href="#" class="secondary">See how it works for weddings ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 7 · What this isn't ────────────────────────────────────── -->
+<section class="refusals">
+  <div class="container">
+    <p class="eyebrow">What this isn't</p>
+    <h2 style="max-width:24ch;">Three things Signal Studio refuses to do.</h2>
+
+    <div class="list">
+      <div class="item">
+        <div class="neg">Not per seat.</div>
+        <div class="pos">Bring your whole crew. Same price. Inviting people should never be a budget decision.</div>
+      </div>
+      <div class="item">
+        <div class="neg">Not per product.</div>
+        <div class="pos">The four work as one. Pay once. Use what you need, when you need it.</div>
+      </div>
+      <div class="item">
+        <div class="neg">Not a trial that ends.</div>
+        <div class="pos">The free tier is free forever. No 14-day countdown. No "verify to continue."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 8 · FAQ ────────────────────────────────────────────────── -->
+<section class="faq">
+  <div class="container">
+    <p class="eyebrow">Questions</p>
+    <h2 style="max-width:22ch;">The honest answers, in plain English.</h2>
+
+    <div class="list">
+      <div>
+        <div class="q">What if I only ever use one of the four products?</div>
+        <div class="a">Then you've spent €12 a month on the cleanest single product in its category, with three more sitting there in case you ever want them. That's still a good deal. We won't pressure you to use the rest.</div>
+      </div>
+
+      <div>
+        <div class="q">Do I have to pay per person?</div>
+        <div class="a">No. One workspace is one price. You can invite ten people, or one, or none — the bill doesn't change. We've never charged per seat and we never will.</div>
+      </div>
+
+      <div>
+        <div class="q">What does "in build" mean for my price?</div>
+        <div class="a">Nothing. Your price stays the same as Notes and Analytics ship. Today's subscribers are paying for the destination, and we honor that by not changing the price as the destination fills in.</div>
+      </div>
+
+      <div>
+        <div class="q">Why a one-time price for events?</div>
+        <div class="a">Because weddings, launches and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.</div>
+      </div>
+
+      <div>
+        <div class="q">What happens to subscribers on the older per-product tiers?</div>
+        <div class="a">You keep your current price forever. No forced upgrade. If you want to switch to Signal Studio at the unified rate, you can — but the old tier is yours as long as you want it.</div>
+      </div>
+
+      <div>
+        <div class="q">Can I switch tiers?</div>
+        <div class="a">Anytime. Up, down, sideways. No annual contracts on the Workspace plan. Cancel and you keep access through the end of the current month.</div>
+      </div>
+
+      <div>
+        <div class="q">Why one price for four products?</div>
+        <div class="a">Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean the user has to translate between Notes, Tasks, Roadmap and Analytics — which is the exact translation tax Signal Studio exists to remove.</div>
+      </div>
+
+      <div>
+        <div class="q">Can I cancel?</div>
+        <div class="a">Yes. One tap in the workspace settings. We don't ask why. We don't email you back. You keep the workspace through the end of the month, then it drops to Free.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 9 · Quiet close ────────────────────────────────────────── -->
+<section class="close">
+  <div class="container">
+    <h2 style="max-width:14ch;margin-bottom:32px;">Cut through the noise.</h2>
+    <p style="max-width:48ch;margin-bottom:48px;">
+      One price. Four kinds of clarity. Built for everyone else.
+    </p>
+    <div class="sig">hello@signalstudio.ie · Dublin · 2026</div>
+  </div>
+</section>
+
+<div class="wf-note">Wireframe · local only</div>
+
+</body>
+</html>
