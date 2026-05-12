@@ -111,6 +111,13 @@ export function SiteNav() {
             About
           </Link>
           <Link
+            href="/pricing"
+            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Pricing
+          </Link>
+          <Link
             href="/contact"
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
             style={{ letterSpacing: "0.01em" }}
