@@ -89,7 +89,7 @@ export default function WeddingsPage() {
             <p
               className="mb-5 text-[11px] font-semibold uppercase"
               style={{
-                color: "#be185d",
+                color: "var(--accent)",
                 letterSpacing: "var(--tracking-eyebrow)",
               }}
             >

@@ -5,6 +5,92 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12 (suite review · pass 2)
+
+### The umbrella grew the pages it was missing.
+
+A site review across all five surfaces surfaced concrete gaps —
+broken links on a live deploy, legal pages that footers pointed at
+but didn't exist, audience landing pages for two of the five
+archetypes BRAND.md §2.1 has been naming for months without
+landings to back them up, and a proof page the wedge pitch has been
+gesturing at without ever showing as one continuous read.
+
+Shipped, in order:
+
+The broken links got fixed. Analytics's nav had been pointing at
+`/method` for cycles without the route existing — built it. The
+new page explains the engine in four steps: read, detect, compress,
+write. Four things the engine refuses to do, named on the same page.
+No LLM in the path. Roadmap's hero copy promised a calendar-
+subscribe surface that doesn't ship — line rewritten to what the
+product actually does. Roadmap's demo banner used "your team's
+roadmap" — universalised. Tasks's demo data carried "Sprint
+planning · Q3 themes" — replaced with plain-English equivalent.
+Studio's `/weddings` eyebrow used Tasks's wedding audience accent
+(rose) — switched to brand indigo because the umbrella is the
+umbrella, not a Tasks audience page.
+
+The umbrella legal stack landed: `/privacy`, `/terms`, `/security`,
+`/accessibility`. Plain language where the law allows, careful
+language where it doesn't. Every product footer now carries the
+four legal links as a small mono row beneath the existing bottom
+strip — discoverable everywhere, one canonical source. Analytics's
+footer was the most exposed before this — Privacy and Terms links
+pointed at `/privacy` and `/terms` routes that didn't exist on its
+domain. Fixed.
+
+The two missing audience landing pages shipped. `/for/small-business`
+for restaurant owners, shop owners, clinic operators, studio owners —
+operational teal accent (#0e7490), two templates around the weekly
+and monthly cadences. `/for/community` for teachers, school
+administrators, club coaches, parish coordinators, community
+organisers — community violet (#7c3aed), two templates around term
+planning and season setup. BRAND.md §7 was extended with both
+accent tokens.
+
+`/proof` is the umbrella's new GTM page. One scene — a wedding
+planner sits in a venue call — walked layer by layer across all
+four products. Notes captures. Tasks promotes three captures into
+a workspace. Roadmap publishes one link the couple can read at
+midnight. Analytics writes the morning briefing. Each section
+shows a text artefact: the planner's notebook, the workspace, the
+public roadmap, the morning briefing. Each section names what came
+out: 12 captures, 5 tasks, one link, two minutes. The four-layer
+loop has been the proof for cycles; this is the page that shows
+it as one read.
+
+`/principles` joined the umbrella, parallel to Tasks's eight-
+refusals page. Five refusals the suite sustains across products:
+one voice, every product publishes its refusals, one accent
+colour, suite coherence as one product surface, audience first
+before any feature. The honest-dissent section names the watch
+metric — when readers describe Signal Studio in our register
+without prompting, the moat is paying out; when they describe it
+in Notion's or Asana's register, it has been breached.
+
+Press migrated to the umbrella. Tasks's `/press` was a strong page
+on the wrong surface — press writes about Signal Studio, not
+Signal Tasks. Suite-scoped boilerplates at three lengths, founder
+bio, brand asset links, suite-level "four products" section.
+Tasks's `/press` 308s to umbrella now, matching the changelog and
+pricing pattern.
+
+The Studio nav grew one item — `/proof` — between Work and About.
+It's the highest-leverage page for the venue-pilot pitch and
+deserves the nav real estate over /principles + /press (which live
+in the footer).
+
+BRAND.md got the doc-stale updates the audit surfaced. §6 hero
+pattern was holding "Cut through the noise." as the locked H1 for
+every product homepage; every product had evolved past it to its
+own punchline, and the doc lagged reality. Doc updated to
+acknowledge that each product owns its H1 and the umbrella line
+stays on Studio surfaces only. §7 added the two new audience
+accents. §1 acknowledged Analytics's settled position word
+(operational, not attention) — Analytics product surface decided
+this and the doc caught up.
+
 ## 2026-05-12 (suite chrome · footer pass)
 
 ### Four footers learned to read as one.

@@ -34,13 +34,20 @@ export function SiteNav() {
           <Wordmark size="sm" animate={false} />
         </Link>
 
-        <nav aria-label="Site navigation" className="flex items-center gap-6">
+        <nav aria-label="Site navigation" className="flex items-center gap-5">
           <Link
             href="/work"
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
             style={{ letterSpacing: "0.01em" }}
           >
             Work
+          </Link>
+          <Link
+            href="/proof"
+            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Proof
           </Link>
           <Link
             href="/about"

@@ -7,7 +7,7 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="mx-auto mt-24 w-full max-w-[760px] border-t border-border-soft px-6 py-10"
+      className="mx-auto mt-24 w-full max-w-[760px] border-t border-border-soft px-6 pb-10 pt-10"
     >
       <div className="flex flex-wrap items-center justify-between gap-6">
         {/* Left: wordmark + version + copyright */}
@@ -99,6 +99,27 @@ export function SiteFooter() {
               Pricing
             </Link>
             <Link
+              href="/proof"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Proof
+            </Link>
+            <Link
+              href="/principles"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Principles
+            </Link>
+            <Link
+              href="/press"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Press
+            </Link>
+            <Link
               href="/contact"
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
@@ -107,6 +128,39 @@ export function SiteFooter() {
             </Link>
           </nav>
         </div>
+      </div>
+
+      <div
+        className="mt-8 flex flex-wrap gap-x-4 gap-y-2 border-t border-border-soft pt-6 font-mono text-[11px] uppercase text-ink-faint"
+        style={{ letterSpacing: "0.08em" }}
+      >
+        <Link
+          href="/privacy"
+          className="transition-colors hover:text-ink-quiet"
+        >
+          Privacy
+        </Link>
+        <span aria-hidden>·</span>
+        <Link
+          href="/terms"
+          className="transition-colors hover:text-ink-quiet"
+        >
+          Terms
+        </Link>
+        <span aria-hidden>·</span>
+        <Link
+          href="/security"
+          className="transition-colors hover:text-ink-quiet"
+        >
+          Security
+        </Link>
+        <span aria-hidden>·</span>
+        <Link
+          href="/accessibility"
+          className="transition-colors hover:text-ink-quiet"
+        >
+          Accessibility
+        </Link>
       </div>
     </footer>
   );
