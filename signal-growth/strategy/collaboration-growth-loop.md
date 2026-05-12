@@ -129,6 +129,18 @@ Cycle 7 extends the same wedding scene across the missing layers:
 
 The proof scene is: a venue meeting becomes tasks and decisions, the plan is shared, and the briefing names what needs attention today.
 
+## Cycle 8 Status
+
+Started May 12, 2026.
+
+Cycle 8 sharpens the privacy boundary around Notes:
+
+- Notes now presents the empty capture field as a protected private-writing space.
+- Raw note bodies are explicitly excluded from collaborative surfaces by default.
+- Only creator-approved extracts should become tasks, decisions, roadmap context, analytics signals, or shared follow-ups.
+
+Growth implication: collaboration should spread through clear approved outputs, not by exposing private context. Trust is part of the acquisition loop.
+
 ## Shareable Artefacts
 
 Prioritise these first:

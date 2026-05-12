@@ -7,6 +7,17 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### Cycle 8 made Notes private by design.
+
+Signal Notes now treats the empty capture field as a protected writing
+space. The UI shows one quiet private-writing line with a restrained
+caret, hides it when the user starts typing, and avoids announcing the
+decorative copy repeatedly to screen readers.
+
+The product boundary is now explicit: raw notes stay private by default.
+Only creator-approved extracts should leave Notes for Tasks, Roadmap,
+Analytics, shared updates, or briefings.
+
 ### Cycle 7 put the wedding scene into Notes and Analytics.
 
 The wedding/events proof path now reaches all four products. Notes
