@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T02:30:00Z",
+  updatedAt: "2026-05-13T03:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -449,15 +449,15 @@ export const seedHqData: HqData = {
       name: "Signal Tasks",
       layer: "Execution",
       role: "What needs doing, who owns it, when it matters, and what is stuck.",
-      maturity: 82,
+      maturity: 84,
       status: "Private preview",
-      uxPolish: 78,
-      integrationScore: 56,
-      launchReadiness: 74,
-      majorFeatures: ["Workspace", "task list", "views", "auth", "persistence", "audience pages", "Cross-repo Notes extract endpoint (POST /api/notes-extract, Cycle 43, 2026-05-12)", "Real invite flow + pending invites panel with Resend/Revoke (Sprint 2 Cycle 10.1, 2026-05-12)"],
+      uxPolish: 80,
+      integrationScore: 60,
+      launchReadiness: 76,
+      majorFeatures: ["Workspace", "task list", "views", "auth", "persistence", "audience pages", "Cross-repo Notes extract endpoint (POST /api/notes-extract, Cycle 43, 2026-05-12)", "Real invite flow + pending invites panel with Resend/Revoke (Sprint 2 Cycle 10.1, 2026-05-12)", "Plain-English workspace activity log (Sprint 2 Cycle 10.4, 2026-05-12) — last 10 changes as human prose, grouped consecutive same-(user, kind) events within 10 min"],
       blockers: ["Cross-product object links are not yet visible.", "Operator action: ALTER TABLE tasks ADD COLUMN source_note_id TEXT + NOTES_TO_TASKS_SECRET env var (cross-repo edge prerequisites)."],
-      notes: "Sprint 2 Cycle 10.1 closed 2026-05-12 — gesture #1 (one-click invite) is real on the live surface: stale 'Phase F' copy purged, pending invites listed with Resend + Revoke gestures, real toast copy on send. Foundation for 10.2-10.4. Cycle 43 (cross-repo Notes write surface) shipped same day.",
-      nextActions: ["Sprint 2 Cycle 10.2: Roadmap guest view (workspace name + creator + last-updated time on public links).", "Sprint 2 Cycle 10.3: invited-by context bar + one-tap reply on Roadmap shared views.", "Sprint 2 Cycle 10.4: plain-English activity log in Tasks.", "Operator action: ALTER TABLE tasks ADD COLUMN source_note_id TEXT (Tasks Turso) + NOTES_TO_TASKS_SECRET env var on Notes + Tasks (matching)."],
+      notes: "Sprint 2 cycles 10.1 + 10.4 closed 2026-05-12. 10.1: gesture #1 one-click invite real on the live surface. 10.4: gesture #4 plain-English activity log rendered in settings → Members tab; visible to all members, not owner-gated; uses the existing activities table (no new schema), groups consecutive same-(user, kind) events within 10 min, prose covers all 8 ActivityKinds. Cycle 43 (cross-repo Notes write surface) also today.",
+      nextActions: ["Sprint 2 Cycle 10.7: source attribution wired to real numbers (the only remaining cycle — 10.5 + 10.6 already killed via HQ decisions).", "Cross-product object links surface so a venue can hop Notes → Tasks → Roadmap workspace without manual URL juggling.", "Operator action: ALTER TABLE tasks ADD COLUMN source_note_id TEXT (Tasks Turso) + NOTES_TO_TASKS_SECRET env var on Notes + Tasks (matching)."],
     },
     {
       id: "roadmap",
