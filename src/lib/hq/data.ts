@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T01:00:00Z",
+  updatedAt: "2026-05-13T01:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -449,15 +449,15 @@ export const seedHqData: HqData = {
       name: "Signal Tasks",
       layer: "Execution",
       role: "What needs doing, who owns it, when it matters, and what is stuck.",
-      maturity: 78,
+      maturity: 82,
       status: "Private preview",
-      uxPolish: 76,
-      integrationScore: 42,
-      launchReadiness: 72,
-      majorFeatures: ["Workspace", "task list", "views", "auth", "persistence", "audience pages"],
-      blockers: ["Cross-product object links are not yet visible."],
-      notes: "The execution layer is the strongest current product surface.",
-      nextActions: ["Define task health states.", "Design Focus view.", "Connect decisions to tasks."],
+      uxPolish: 78,
+      integrationScore: 56,
+      launchReadiness: 74,
+      majorFeatures: ["Workspace", "task list", "views", "auth", "persistence", "audience pages", "Cross-repo Notes extract endpoint (POST /api/notes-extract, Cycle 43, 2026-05-12)", "Real invite flow + pending invites panel with Resend/Revoke (Sprint 2 Cycle 10.1, 2026-05-12)"],
+      blockers: ["Cross-product object links are not yet visible.", "Operator action: ALTER TABLE tasks ADD COLUMN source_note_id TEXT + NOTES_TO_TASKS_SECRET env var (cross-repo edge prerequisites)."],
+      notes: "Sprint 2 Cycle 10.1 closed 2026-05-12 — gesture #1 (one-click invite) is real on the live surface: stale 'Phase F' copy purged, pending invites listed with Resend + Revoke gestures, real toast copy on send. Foundation for 10.2-10.4. Cycle 43 (cross-repo Notes write surface) shipped same day.",
+      nextActions: ["Sprint 2 Cycle 10.2: Roadmap guest view (workspace name + creator + last-updated time on public links).", "Sprint 2 Cycle 10.3: invited-by context bar + one-tap reply on Roadmap shared views.", "Sprint 2 Cycle 10.4: plain-English activity log in Tasks.", "Operator action: ALTER TABLE tasks ADD COLUMN source_note_id TEXT (Tasks Turso) + NOTES_TO_TASKS_SECRET env var on Notes + Tasks (matching)."],
     },
     {
       id: "roadmap",
