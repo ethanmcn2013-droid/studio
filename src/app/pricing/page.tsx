@@ -104,8 +104,8 @@ const SUITE: InsideProduct[] = [
     word: "analytics",
     position: "Attention",
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.",
-    status: "design",
-    statusLabel: "In design",
+    status: "build",
+    statusLabel: "In build",
   },
 ];
 
@@ -280,7 +280,7 @@ export default function PricingPage() {
               marginBottom: 20,
             }}
           >
-            Monthly billing · Yearly saves €24
+            Monthly billing
           </div>
 
           <div
@@ -499,7 +499,7 @@ export default function PricingPage() {
                 Signal Studio is one subscription. Today, <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong> and{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong> are live.{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong> is in build.{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> is in design.
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> is in build.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
                 Your price stays the same as each one ships. You pay for Signal

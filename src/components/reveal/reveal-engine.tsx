@@ -62,6 +62,10 @@ export function RevealEngine() {
         document
           .querySelectorAll(".stack-row")
           .forEach((r) => r.classList.add("fire"));
+        gsap.set(".reveal-gold-rule", { width: 132 });
+        gsap.set(".reveal-headline .word-inner", { y: "0%" });
+        gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
+        gsap.set(".reveal-scroll-cue", { y: 0, opacity: 1 });
         return;
       }
 
@@ -72,9 +76,8 @@ export function RevealEngine() {
         smoothWheel: true,
       });
       lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
+      const tickerFn = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(tickerFn);
       gsap.ticker.lagSmoothing(0);
 
       // ─── Initial states (defensive) ───────────────────────────
@@ -259,13 +262,15 @@ export function RevealEngine() {
       });
 
       // ─── Hover-replay (hero stack + product rows) ──────────────
+      const hoverListeners: Array<{ el: HTMLElement; fn: () => void }> = [];
+
       const wireHoverReplay = (
         selector: string,
         replayClass: "fire" | "replay"
       ) => {
         document.querySelectorAll<HTMLElement>(selector).forEach((row) => {
           let cooldown = false;
-          row.addEventListener("mouseenter", () => {
+          const handler = () => {
             const key = row.dataset.key;
             if (replayClass === "fire" && !row.classList.contains("fire")) {
               return;
@@ -279,7 +284,9 @@ export function RevealEngine() {
             setTimeout(() => {
               cooldown = false;
             }, wait);
-          });
+          };
+          row.addEventListener("mouseenter", handler);
+          hoverListeners.push({ el: row, fn: handler });
         });
       };
       wireHoverReplay(".stack-row", "fire");
@@ -289,7 +296,11 @@ export function RevealEngine() {
       cleanup = () => {
         ScrollTrigger.getAll().forEach((st) => st.kill());
         tl.kill();
+        gsap.ticker.remove(tickerFn);
         lenis.destroy();
+        hoverListeners.forEach(({ el, fn }) =>
+          el.removeEventListener("mouseenter", fn)
+        );
       };
     })();
 

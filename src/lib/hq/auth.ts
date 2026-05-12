@@ -1,3 +1,5 @@
+import { timingSafeEqual } from "crypto";
+
 export const HQ_ACCESS_COOKIE = "signal_hq_access";
 export const HQ_ACCESS_MAX_AGE = 60 * 60 * 12;
 
@@ -34,5 +36,17 @@ export async function verifyHqPassword(submittedPassword: string) {
     sha256(`signal-hq-password:v1:${password}`),
   ]);
 
-  return submitted === expected;
+  // Constant-time comparison — both are hex strings of equal length (64 chars)
+  const a = Buffer.from(submitted, "utf8");
+  const b = Buffer.from(expected, "utf8");
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
+}
+
+export async function verifyHqToken(token: string) {
+  const expected = await createHqAccessToken();
+  const a = Buffer.from(token, "utf8");
+  const b = Buffer.from(expected, "utf8");
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
 }
