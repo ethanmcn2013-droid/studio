@@ -92,6 +92,13 @@ export function SiteFooter() {
               About
             </Link>
             <Link
+              href="/pricing"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Pricing
+            </Link>
+            <Link
               href="/contact"
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}

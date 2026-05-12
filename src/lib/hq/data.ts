@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-12T18:15:00Z",
+  updatedAt: "2026-05-12T21:30:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1127,12 +1127,12 @@ export const seedHqData: HqData = {
     {
       id: "pricing",
       category: "Pricing readiness",
-      score: 16,
+      score: 62,
       weight: 5,
       status: "Needs attention",
-      notes: "Avoid per-seat friction during collaboration validation.",
-      blockers: ["No workspace creator plan yet."],
-      nextAction: "Sketch creator/studio pricing principles.",
+      notes: "Unified Signal Studio pricing decided 2026-05-12. /pricing page shipped: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Bundle covers all four products, price holds as Notes + Analytics ship.",
+      blockers: ["Shared entitlements layer across Tasks + Roadmap not yet built (single Stripe price ID, shared Turso entitlements table)."],
+      nextAction: "Architect the shared entitlements layer; grandfather existing Tasks subscribers; retire per-product pricing pages on Tasks + Roadmap once umbrella is verified.",
     },
     {
       id: "case-studies",
@@ -1617,6 +1617,19 @@ export const seedHqData: HqData = {
     },
   ],
   decisions: [
+    {
+      id: "unified-pricing",
+      decision: "Converge on a single Signal Studio price covering all four products.",
+      category: "Pricing",
+      date: "2026-05-12",
+      reason: "Per-product pricing pages contradict the one-ecosystem-four-layers brand position. The 80% audience does not want to translate between products at checkout. Bundle pricing IS the disciplined refusal; per-product pricing is the incumbent move.",
+      alternatives: "Keep per-product tiers under one brand; cross-product credit at depth; two-product bundle (Tasks + Roadmap only) until Notes and Analytics ship.",
+      risks: "Notion-trap perceived overpay if users only use one of the four. Vapor risk if marketing copy overclaims pre-ship — answered by the shipping-truth pane and never listing unshipped features. Tier ceiling lower than a per-product power-user model.",
+      reviewDate: "2026-08-12",
+      status: "Active",
+      relatedObjects: ["Signal Studio", "Signal Tasks", "Signal Roadmap", "Signal Analytics", "Signal Notes"],
+      notes: "Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Page lives only at signalstudio.ie/pricing; per-product /pricing routes should 301 here once production-ready.",
+    },
     {
       id: "four-products",
       decision: "Keep all four products as one ecosystem.",
