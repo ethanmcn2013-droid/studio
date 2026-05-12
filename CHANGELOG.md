@@ -5,6 +5,75 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12 (suite chrome · footer pass)
+
+### Four footers learned to read as one.
+
+A cross-suite audit found five surfaces running four different footer
+architectures. Studio at 2-col. Tasks at 4-col. Roadmap at 3-col.
+Analytics at 4-col but inline-styled instead of Tailwind. Notes inlined
+to a single line. The Suite column on Analytics was missing Signal Notes
+entirely. Roadmap and Analytics had no contact link at all — two of
+four product surfaces silently dead-ending visitors who wanted to reach
+out.
+
+Pulled into one shape. Every product surface now runs the 4-column
+desktop pattern: Brand · Product · Resources · Suite. Every Suite
+column lists all four products. Every product surface has a Contact
+link. Analytics was ported off inline styles back onto Tailwind so the
+chrome lives in the same system as its siblings. The umbrella footer
+stayed at 2-col on purpose — the umbrella is the umbrella, not a fifth
+product.
+
+The bottom strip got a single suite tagline, locked across all three
+product surfaces: *Clarity, not configuration.* Tasks's "Designed in
+motion." and Roadmap's "Built for direction clarity." were three
+different registers doing the same job. One line, said once, across
+the suite.
+
+BRAND.md §6 now carries the pattern as a locked spec so the next
+footer doesn't have to be reasoned out again.
+
+### The contact page learned to be a bouncer.
+
+The old `/contact` was a mailto link with a 48-hour SLA. Brand-faithful
+but transactional — it processed, it didn't invite. Replaced with a
+one-screen page that names both what the address is for and what it
+isn't: product questions, private-preview access, thoughtful critique,
+partnership conversations — yes. Press, sales, recruiting, CRM
+sequences — politely, no. Naming the dissenters is the same discipline
+as naming the refusals in PRODUCT.md. The address goes further when
+the inbox stays clean.
+
+The page now also names the human reading it. Designed and operated by
+Ethan McNamara, Dublin. The moat is *discipline-sustained-by-a-person*
+(BRAND.md §2.3); the contact page is where that person should be
+visible.
+
+### One changelog for the suite.
+
+Per-product `/changelog` routes are retired. Tasks's and Roadmap's
+changelog pages now 308-redirect to `signalstudio.ie/changelog`,
+which renders this file. Each product's repo still carries its own
+engineering log in `CHANGELOG.md` — that's where shipping notes get
+written, where they're closest to the diff. But the *reading surface*
+is one page now, with one register, written for people not
+build pipelines.
+
+The argument against consolidation: someone visiting Tasks may only
+want to read Tasks's shipping log, and routing them to a multi-product
+page dilutes the signal. Counter named inside the choice: the umbrella
+story is *the suite shipped this week*, not *Tasks shipped these
+things*. If a per-product anchor (`?tag=tasks`) earns its keep later,
+it can be added without resurrecting four separate routes.
+
+The cost is a 15-minute weekly editorial pass — picking what's worth
+saying, writing it in plain language, putting it where readers can
+find it. That cost is the entire point. The umbrella story only
+exists if someone tells it.
+
+---
+
 ## 2026-05-12 (later still)
 
 ### Suite chrome consolidated — one bar, not two.
