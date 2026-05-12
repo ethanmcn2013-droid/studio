@@ -7,6 +7,37 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### T-1 shipped — wedding template lifted to canonical four-layer source.
+
+The first cycle of the templates strategy is live. `wedding-planning-workspace`
+moved from `tasks/src/lib/templates.ts` to `studio/src/lib/templates/wedding-planning-workspace/`
+as a five-file artefact (meta, tasks, notes, roadmap, analytics). Tasks now
+consumes it via a build-time sync script (`pnpm sync:templates`) that writes
+`tasks/src/lib/templates.generated.ts`. The live `/templates/wedding-planning-workspace`
+page is byte-equivalent to before; the canonical contract for the four-layer
+template shape is now established.
+
+T-2 (Notes/Roadmap/Analytics lazy expression) is the next available cycle.
+
+### Templates locked as a cross-suite primitive.
+
+Signal Studio now treats templates as the front door to the suite, not a
+setup shortcut. Tasks remains the only product with a template gallery;
+Notes, Roadmap, and Analytics consume template metadata via lazy
+expression on first visit. No per-product template galleries beyond
+Tasks, no in-product template builder, no template marketplace.
+
+Five anchor templates locked, one per BRAND.md §2.1 archetype:
+wedding-planning-workspace (lift), trades-job-pipeline,
+final-paper-sprint (lift), freelance-client-engagement, and
+local-business-monthly-rhythm. The existing 13 Tasks-only specialty
+templates remain inside their domain packs. The seven named SEO pages
+will redirect to anchor-template slices in the final cycle.
+
+Strategy doc at `docs/TEMPLATES_STRATEGY.md`. Sequenced as Cycles T-1
+through T-7. T-1 (canonical type + sync script + wedding lift) is the
+prerequisite for all other template work.
+
 ### Notes became private by design on the live branch.
 
 Signal Notes now treats the empty capture field as a protected writing

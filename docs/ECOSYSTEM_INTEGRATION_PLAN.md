@@ -165,6 +165,24 @@ Acceptance criteria:
 - the page explains the product through a wedding venue/planner/couple context
 - the route can be used in venue outreach and the first demo script
 
+### Templates as a cross-suite primitive (locked 2026-05-12)
+
+Detailed spec: `docs/TEMPLATES_STRATEGY.md`.
+
+Templates are owned by the studio repo. Tasks is the only product with a template gallery; Notes, Roadmap, and Analytics consume template metadata via lazy expression on first visit. No per-product template galleries beyond Tasks.
+
+Canonical shape — `WorkspaceTemplate { id, name, domain, audience, problem, seoSummary, tasks[], notes[], roadmap, analytics }` — lives in `studio/src/lib/templates/`. Each product runs a build-time sync to pull the slices it needs.
+
+Five anchor templates, one per BRAND.md §2.1 archetype, sequenced in Cycles T-1 through T-7:
+
+1. `wedding-planning-workspace` — lift to 4-layer (T-1, T-2)
+2. `trades-job-pipeline` — build (T-3)
+3. `final-paper-sprint` — lift from Tasks-only (T-4)
+4. `freelance-client-engagement` — build (T-5)
+5. `local-business-monthly-rhythm` — build (T-6); four lanes (invoices/orders/admin/marketing) for small operators
+
+The existing 13 Tasks-only specialty templates remain Tasks-only. The 7 named SEO pages in `signal-growth/seo/template-strategy.md` will redirect to anchor-template slices in T-7.
+
 ### Cycle 6: Wedding workspace template
 
 Status: built from May 11, 2026.
