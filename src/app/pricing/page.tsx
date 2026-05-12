@@ -1,0 +1,736 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { SiteFooter } from "@/components/landing/site-footer";
+import { TASKS_URL } from "@/lib/product-urls";
+
+export const metadata: Metadata = {
+  title: "Pricing — Signal Studio",
+  description:
+    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month for the workspace tier. €79 one-time for an event. Free for students.",
+  openGraph: {
+    title: "Pricing — Signal Studio",
+    description:
+      "One subscription. Four kinds of clarity. No per-seat tax. No per-product tax.",
+    type: "website",
+  },
+};
+
+/* ── Type ─────────────────────────────────────────────────────────── */
+
+type Tier = {
+  name: string;
+  recommended?: boolean;
+  price: string;
+  cadence: string;
+  body: string;
+  cta: string;
+  href: string;
+};
+
+type InsideProduct = {
+  key: "tasks" | "roadmap" | "notes" | "analytics";
+  word: string;
+  position: string;
+  desc: string;
+  status: "shipped" | "build" | "design";
+  statusLabel: string;
+};
+
+/* ── Static content ───────────────────────────────────────────────── */
+
+const TIERS: Tier[] = [
+  {
+    name: "Free",
+    price: "€0",
+    cadence: "forever",
+    body: "One workspace. All four products. Three editing guests. No card needed.",
+    cta: "Open Signal Studio",
+    href: TASKS_URL,
+  },
+  {
+    name: "Workspace",
+    recommended: true,
+    price: "€12",
+    cadence: "/ month · per workspace",
+    body: "Unlimited workspaces. All four products. Bring your whole crew — no per-seat tax.",
+    cta: "Start a workspace",
+    href: TASKS_URL,
+  },
+  {
+    name: "Event",
+    price: "€79",
+    cadence: "one-time · 12 months",
+    body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
+    cta: "Plan an event",
+    href: "/weddings",
+  },
+  {
+    name: "Student",
+    price: "€0",
+    cadence: "with verified .edu",
+    body: "Workspace tier, free. Two-year window. For students running multi-stream work with real deadlines.",
+    cta: "Verify .edu",
+    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
+  },
+];
+
+const SUITE: InsideProduct[] = [
+  {
+    key: "tasks",
+    word: "tasks",
+    position: "Execution",
+    desc: "Run the work. Plain-English task workspace for weddings, freelance, students, trades.",
+    status: "shipped",
+    statusLabel: "Shipping now",
+  },
+  {
+    key: "roadmap",
+    word: "roadmap",
+    position: "Direction",
+    desc: "Show where the work is going. Public roadmap, shared updates, no engineering vocabulary.",
+    status: "shipped",
+    statusLabel: "Shipping now",
+  },
+  {
+    key: "notes",
+    word: "notes",
+    position: "Context",
+    desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
+    status: "build",
+    statusLabel: "In build",
+  },
+  {
+    key: "analytics",
+    word: "analytics",
+    position: "Attention",
+    desc: "The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.",
+    status: "design",
+    statusLabel: "In design",
+  },
+];
+
+const REFUSALS: { neg: string; pos: string }[] = [
+  {
+    neg: "Not per seat.",
+    pos: "Bring your whole crew. Same price. Inviting people should never be a budget decision.",
+  },
+  {
+    neg: "Not per product.",
+    pos: "The four work as one. Pay once. Use what you need, when you need it.",
+  },
+  {
+    neg: "Not a trial that ends.",
+    pos: "The free tier is free forever. No fourteen-day countdown. No verify-to-continue.",
+  },
+];
+
+const FAQ: { q: string; a: string }[] = [
+  {
+    q: "What if I only ever use one of the four products?",
+    a: "Then you have the cleanest single product in its category, with three more sitting there in case you ever want them. That is still a good deal. We will not pressure you to use the rest.",
+  },
+  {
+    q: "Do I have to pay per person?",
+    a: "No. One workspace is one price. You can invite ten people, or one, or none — the bill does not change. We have never charged per seat and we never will.",
+  },
+  {
+    q: "What does \"in build\" mean for my price?",
+    a: "Nothing. Your price stays the same as Notes and Analytics ship. Today's subscribers are paying for the destination, and we honor that by not changing the price as the destination fills in.",
+  },
+  {
+    q: "Why a one-time price for events?",
+    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.",
+  },
+  {
+    q: "What happens to subscribers on the older per-product tiers?",
+    a: "You keep your current price forever. No forced upgrade. If you want to switch to Signal Studio at the unified rate, you can — but the old tier is yours as long as you want it.",
+  },
+  {
+    q: "Can I switch tiers?",
+    a: "Anytime. Up, down, sideways. No annual contracts on the Workspace plan. Cancel and you keep access through the end of the current month.",
+  },
+  {
+    q: "Why one price for four products?",
+    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Roadmap, and Analytics — which is the exact translation tax Signal Studio exists to remove.",
+  },
+  {
+    q: "Can I cancel?",
+    a: "Yes. One tap in the workspace settings. We do not ask why. We do not email you back. You keep the workspace through the end of the month, then it drops to Free.",
+  },
+];
+
+/* ── Helpers ──────────────────────────────────────────────────────── */
+
+function eyebrowStyle(): React.CSSProperties {
+  return {
+    fontFamily: "var(--font-mono)",
+    fontSize: 11,
+    color: "var(--ink-quiet)",
+    letterSpacing: "var(--tracking-eyebrow)",
+    textTransform: "uppercase",
+    fontWeight: 600,
+  };
+}
+
+function statusPipColor(s: InsideProduct["status"]): string {
+  if (s === "shipped") return "#10b981";
+  return "#f59e0b";
+}
+
+/* ── Page ─────────────────────────────────────────────────────────── */
+
+export default function PricingPage() {
+  return (
+    <>
+      <main className="flex flex-1 flex-col">
+        {/* ── 1 · Frame ─────────────────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 pt-16 pb-20 md:pt-24 md:pb-24">
+          <div className="mb-6" style={eyebrowStyle()}>
+            Signal Studio · Pricing
+          </div>
+          <h1
+            className="h-display max-w-[14ch] text-balance text-ink"
+            style={{ marginBottom: 24 }}
+          >
+            One price.
+            <br />
+            Four kinds of clarity.
+          </h1>
+          <p
+            className="max-w-[56ch] text-ink-soft"
+            style={{ fontSize: 19, lineHeight: 1.55 }}
+          >
+            Signal Studio is one subscription. Use as many of the four products
+            as you want. No per-seat tax. No per-product tax.
+          </p>
+        </section>
+
+        {/* ── 2 · Suite reveal ──────────────────────────────────── */}
+        <section
+          style={{
+            background: "var(--bg-deep)",
+            borderTop: "1px solid var(--border-soft)",
+            borderBottom: "1px solid var(--border-soft)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1180px] px-6 py-16 md:py-20">
+            <div className="mb-10" style={eyebrowStyle()}>
+              The four products
+            </div>
+            <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8">
+              {SUITE.map((p) => (
+                <div key={p.key}>
+                  <span
+                    className="pricing-mark"
+                    data-key={p.key}
+                    style={{
+                      fontSize: "clamp(1.875rem, 1.2rem + 2vw, 3rem)",
+                    }}
+                  >
+                    <span className="word">{p.word}</span>
+                    <span className="dot" aria-hidden />
+                  </span>
+                  <div
+                    className="mt-3"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 11,
+                      color: "var(--ink-quiet)",
+                      letterSpacing: "var(--tracking-eyebrow)",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {p.position}
+                  </div>
+                  <p
+                    className="mt-2 text-ink-soft"
+                    style={{ fontSize: 15, lineHeight: 1.5 }}
+                  >
+                    {p.position === "Execution" && "Run the work."}
+                    {p.position === "Direction" && "Show where it's going."}
+                    {p.position === "Context" && "Capture what was said."}
+                    {p.position === "Attention" && "Surface what matters."}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 3 · Tier grid ─────────────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+          <div className="mb-4" style={eyebrowStyle()}>
+            Plans
+          </div>
+          <h2
+            className="h-title text-balance text-ink"
+            style={{ maxWidth: "20ch", marginBottom: 32 }}
+          >
+            Pick the one that matches how you work.
+          </h2>
+
+          <div
+            className="text-ink-quiet"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 11,
+              letterSpacing: "var(--tracking-eyebrow)",
+              textTransform: "uppercase",
+              marginBottom: 20,
+            }}
+          >
+            Monthly billing · Yearly saves €24
+          </div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            style={{
+              border: "1px solid var(--border)",
+              background: "var(--bg-elev)",
+            }}
+          >
+            {TIERS.map((t, i) => (
+              <div
+                key={t.name}
+                className="flex flex-col"
+                style={{
+                  padding: "36px 28px 32px",
+                  borderRight:
+                    i < TIERS.length - 1
+                      ? "1px solid var(--border-soft)"
+                      : "none",
+                  borderBottom:
+                    i < TIERS.length - 1
+                      ? "1px solid var(--border-soft)"
+                      : "none",
+                  minHeight: 360,
+                  background: t.recommended
+                    ? "linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 60%, var(--bg-elev)) 0%, var(--bg-elev) 70%)"
+                    : "transparent",
+                }}
+              >
+                {/* Anchor row — only filled for recommended */}
+                <div style={{ height: 26, marginBottom: 6 }}>
+                  {t.recommended ? (
+                    <span
+                      className="inline-flex items-center"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 10,
+                        letterSpacing: "var(--tracking-eyebrow)",
+                        textTransform: "uppercase",
+                        color: "var(--ink-quiet)",
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span className="pricing-anchor-dot" aria-hidden />
+                      Most chosen
+                    </span>
+                  ) : null}
+                </div>
+
+                <div
+                  className="text-ink"
+                  style={{
+                    fontSize: 22,
+                    fontWeight: 600,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {t.name}
+                </div>
+
+                <div
+                  className="text-ink"
+                  style={{
+                    marginTop: 22,
+                    fontSize: "clamp(2.25rem, 1.6rem + 1.8vw, 3.25rem)",
+                    fontWeight: 600,
+                    letterSpacing: "-0.045em",
+                    lineHeight: 1,
+                  }}
+                >
+                  {t.price}
+                </div>
+
+                <div
+                  style={{
+                    marginTop: 8,
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 12,
+                    color: "var(--ink-quiet)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {t.cadence}
+                </div>
+
+                <p
+                  className="text-ink-soft"
+                  style={{
+                    marginTop: 22,
+                    fontSize: 15,
+                    lineHeight: 1.55,
+                    flex: 1,
+                  }}
+                >
+                  {t.body}
+                </p>
+
+                <Link
+                  href={t.href}
+                  className="self-start"
+                  style={{
+                    marginTop: 28,
+                    color: "var(--accent)",
+                    fontWeight: 500,
+                    fontSize: 15,
+                    paddingBottom: 2,
+                    borderBottom: "1px solid transparent",
+                    transition: "border-color 200ms ease",
+                  }}
+                >
+                  {t.cta} →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 4 · What's inside ─────────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+          <div className="mb-4" style={eyebrowStyle()}>
+            What's in Signal Studio
+          </div>
+          <h2
+            className="h-title text-balance text-ink"
+            style={{ maxWidth: "20ch", marginBottom: 40 }}
+          >
+            Four products. One subscription.
+          </h2>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
+            {SUITE.map((p) => (
+              <div
+                key={p.key}
+                style={{
+                  borderTop: "1px solid var(--border)",
+                  paddingTop: 24,
+                }}
+              >
+                <div className="flex items-baseline" style={{ gap: 12, marginBottom: 14 }}>
+                  <span
+                    className="pricing-mark small"
+                    data-key={p.key}
+                    style={{ fontSize: 20 }}
+                  >
+                    <span className="word">{p.word}</span>
+                    <span className="dot" aria-hidden />
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 10,
+                      color: "var(--ink-quiet)",
+                      letterSpacing: "var(--tracking-eyebrow)",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {p.position}
+                  </span>
+                </div>
+                <p
+                  className="text-ink-soft"
+                  style={{ fontSize: 15, lineHeight: 1.55 }}
+                >
+                  {p.desc}
+                </p>
+                <div
+                  className="flex items-center"
+                  style={{
+                    marginTop: 18,
+                    gap: 8,
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    color: "var(--ink-quiet)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  <span
+                    aria-hidden
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      background: statusPipColor(p.status),
+                      display: "inline-block",
+                    }}
+                  />
+                  {p.statusLabel}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 5 · Shipping truth ────────────────────────────────── */}
+        <section
+          style={{
+            background: "var(--bg-deep)",
+            borderTop: "1px solid var(--border-soft)",
+            borderBottom: "1px solid var(--border-soft)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+            <div className="mb-6" style={eyebrowStyle()}>
+              What we ship today
+            </div>
+            <div
+              className="text-ink-soft"
+              style={{
+                maxWidth: "62ch",
+                borderLeft: "2px solid var(--accent)",
+                paddingLeft: 28,
+              }}
+            >
+              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
+                Signal Studio is one subscription. Today, <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong> and{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong> are live.{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong> is in build.{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> is in design.
+              </p>
+              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
+                Your price stays the same as each one ships. You pay for Signal
+                Studio, not for a product count.
+              </p>
+              <p style={{ fontSize: 17, lineHeight: 1.6 }}>
+                We will not list a feature on this page until the product behind
+                it works. That rule is the brand.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 6 · Event lane ────────────────────────────────────── */}
+        <section
+          style={{
+            background: "var(--bg-elev)",
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+            <div className="mb-6" style={eyebrowStyle()}>
+              Planning one event?
+            </div>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:gap-16 md:items-end">
+              <div>
+                <h2
+                  className="h-title text-balance text-ink"
+                  style={{ maxWidth: "22ch" }}
+                >
+                  Signal Studio for one wedding, one launch, one move.
+                </h2>
+                <p
+                  className="text-ink-soft"
+                  style={{
+                    marginTop: 20,
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    maxWidth: "52ch",
+                  }}
+                >
+                  €79 one-time. 12 months of full access. All four products in a
+                  single event-shaped workspace. When the event is over, the
+                  workspace keeps reading forever — a record of how the work
+                  actually ran.
+                </p>
+              </div>
+              <div className="flex flex-col md:items-end" style={{ gap: 18 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    color: "var(--ink-quiet)",
+                    letterSpacing: "var(--tracking-eyebrow)",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                  }}
+                >
+                  Event lane
+                </span>
+                <span
+                  className="text-ink"
+                  style={{
+                    fontSize: "clamp(2.5rem, 1.8rem + 2vw, 3.75rem)",
+                    fontWeight: 600,
+                    letterSpacing: "-0.045em",
+                    lineHeight: 1,
+                  }}
+                >
+                  €79
+                </span>
+                <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
+                  <Link
+                    href="/weddings"
+                    style={{
+                      color: "var(--accent)",
+                      fontSize: 15,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Plan an event →
+                  </Link>
+                  <Link
+                    href="/weddings"
+                    style={{
+                      color: "var(--ink-quiet)",
+                      fontSize: 13,
+                    }}
+                  >
+                    See how it works for weddings ↗
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 7 · What this isn't ───────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+          <div className="mb-4" style={eyebrowStyle()}>
+            What this isn't
+          </div>
+          <h2
+            className="h-title text-balance text-ink"
+            style={{ maxWidth: "24ch", marginBottom: 40 }}
+          >
+            Three things Signal Studio refuses to do.
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            {REFUSALS.map((r, i) => (
+              <div
+                key={r.neg}
+                style={{
+                  padding: i === 0 ? "0 28px 0 0" : "0 28px",
+                  borderLeft:
+                    i > 0 ? "1px solid var(--border-soft)" : "none",
+                }}
+              >
+                <div
+                  className="text-ink"
+                  style={{
+                    fontSize: 22,
+                    fontWeight: 500,
+                    letterSpacing: "-0.02em",
+                    marginBottom: 12,
+                  }}
+                >
+                  {r.neg}
+                </div>
+                <p
+                  className="text-ink-soft"
+                  style={{ fontSize: 15, lineHeight: 1.55 }}
+                >
+                  {r.pos}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 8 · FAQ ───────────────────────────────────────────── */}
+        <section
+          style={{
+            background: "var(--bg-deep)",
+            borderTop: "1px solid var(--border-soft)",
+            borderBottom: "1px solid var(--border-soft)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+            <div className="mb-4" style={eyebrowStyle()}>
+              Questions
+            </div>
+            <h2
+              className="h-title text-balance text-ink"
+              style={{ maxWidth: "24ch", marginBottom: 48 }}
+            >
+              The honest answers, in plain English.
+            </h2>
+
+            <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2">
+              {FAQ.map((f) => (
+                <div key={f.q}>
+                  <div
+                    className="text-ink"
+                    style={{
+                      fontSize: 18,
+                      fontWeight: 500,
+                      letterSpacing: "-0.02em",
+                      marginBottom: 10,
+                    }}
+                  >
+                    {f.q}
+                  </div>
+                  <p
+                    className="text-ink-soft"
+                    style={{ fontSize: 15, lineHeight: 1.6 }}
+                  >
+                    {f.a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 9 · Quiet close ───────────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 pt-24 pb-24 md:pt-28 md:pb-28">
+          <h2
+            className="h-title text-balance text-ink"
+            style={{ maxWidth: "14ch", marginBottom: 28 }}
+          >
+            Cut through the noise.
+          </h2>
+          <p
+            className="text-ink-soft"
+            style={{
+              maxWidth: "48ch",
+              fontSize: 19,
+              lineHeight: 1.55,
+              marginBottom: 48,
+            }}
+          >
+            One price. Four kinds of clarity. Built for everyone else.
+          </p>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 13,
+              letterSpacing: "0.04em",
+              color: "var(--ink-quiet)",
+            }}
+          >
+            <a
+              href="mailto:hello@signalstudio.ie"
+              style={{
+                color: "var(--ink-soft)",
+                borderBottom: "1px solid var(--ink-300)",
+                paddingBottom: 1,
+              }}
+            >
+              hello@signalstudio.ie
+            </a>
+            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
+            Dublin
+            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
+            2026
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
