@@ -47,19 +47,42 @@ export type NoteSeed = {
   body: string;
 };
 
-export type RoadmapStatus = "shipped" | "in-flight" | "next" | "later";
+/**
+ * Roadmap-product status vocabulary — matches Roadmap's `tasks.status` enum
+ * (see roadmap/src/server/db/schema.ts). Authoring against the product
+ * model directly avoids a translation layer.
+ */
+export type RoadmapStatus = "shipped" | "in-flight" | "next" | "blocked" | "refused";
 
-export type RoadmapMilestone = {
+/**
+ * A seeded project inside a workspace. Roadmap supports many projects
+ * per workspace; most templates ship with one.
+ */
+export type RoadmapProjectSeed = {
+  slug: string;
+  name: string;
+  oneLiner: string;
+  /** Optional hex accent for the project card. */
+  accent?: string;
+};
+
+/**
+ * A seeded item inside a project. "Item" here intentionally differs from
+ * `TaskSeed` (which seeds Tasks-product tasks). The Roadmap product
+ * stores these in its `tasks` table; the rename avoids name collision.
+ */
+export type RoadmapItemSeed = {
+  projectSlug: string;
   title: string;
   description: string;
   status: RoadmapStatus;
-  /** Optional plain-English when label ("12 weeks out", "Final week"). */
-  when?: string;
+  /** Plain-English when label or YYYY-MM-DD. Optional. */
+  targetDate?: string;
 };
 
 export type RoadmapSeed = {
-  sections: { title: string; description: string }[];
-  milestones: RoadmapMilestone[];
+  projects: RoadmapProjectSeed[];
+  items: RoadmapItemSeed[];
 };
 
 /**

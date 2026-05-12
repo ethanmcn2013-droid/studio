@@ -1,53 +1,77 @@
 import type { RoadmapSeed } from "../types";
 
+/**
+ * Roadmap seed — one "Planning Roadmap" project with the wedding
+ * planning items grouped by status. Shape matches Roadmap product's
+ * data model (workspaces → projects → tasks); status vocabulary is
+ * Roadmap's enum. Item bodies are written for a shared update view
+ * the couple, venue, and suppliers can read in under a minute.
+ */
 export const roadmap: RoadmapSeed = {
-  sections: [
+  projects: [
     {
-      title: "Venue and ceremony",
-      description: "Contracts, layout, ceremony order, weather backup.",
-    },
-    {
-      title: "Suppliers and catering",
-      description: "Bookings, timings, menu decisions, payments.",
-    },
-    {
-      title: "Guests and decisions",
-      description: "Numbers, dietary, seating, family photo list.",
-    },
-    {
-      title: "Final week",
-      description: "Walkthrough, supplier confirmations, morning kit, day-of timeline.",
+      slug: "planning",
+      name: "Planning Roadmap",
+      oneLiner:
+        "What is decided, what is moving, and what needs attention before the day.",
+      accent: "#be185d",
     },
   ],
-  milestones: [
+  items: [
     {
-      title: "Venue contract signed",
-      description: "Deposit paid, dates locked, ceremony room agreed.",
+      projectSlug: "planning",
+      title: "Venue contract and deposit schedule",
+      description: "Locked at booking. Final-week walkthrough date confirmed.",
       status: "shipped",
     },
     {
-      title: "Suppliers confirmed",
-      description: "Catering, photographer, florist, music — all booked and on the timeline.",
-      status: "in-flight",
-      when: "12 weeks out",
+      projectSlug: "planning",
+      title: "Ceremony room layout agreed",
+      description:
+        "Venue, couple, and officiant have signed off on aisle direction, seating block, and signing-table placement.",
+      status: "shipped",
     },
     {
-      title: "Guest numbers final",
-      description: "RSVPs in, dietary notes collected, seating sketched.",
+      projectSlug: "planning",
+      title: "Confirm final guest numbers",
+      description:
+        "Couple to confirm the final headcount before the venue locks table layout and catering quantities.",
       status: "in-flight",
-      when: "8 weeks out",
     },
     {
+      projectSlug: "planning",
+      title: "Supplier arrival times need confirmation",
+      description:
+        "Photographer, florist, and band arrival times are not all confirmed yet. This is the main planning risk.",
+      status: "blocked",
+    },
+    {
+      projectSlug: "planning",
+      title: "Menu decisions sent to catering",
+      description:
+        "Venue has sent the couple's menu decisions to catering and is waiting for final dietary notes.",
+      status: "in-flight",
+    },
+    {
+      projectSlug: "planning",
       title: "Final-week walkthrough",
-      description: "Venue walk, supplier arrivals confirmed, day-of timeline shared.",
+      description:
+        "Venue, planner, and couple walk through room setup, ceremony flow, supplier access, and backup weather plan.",
       status: "next",
-      when: "Final week",
     },
     {
-      title: "Wedding day",
-      description: "Morning kit, photo list, weather call, day-of run-of-show.",
-      status: "later",
-      when: "Day-of",
+      projectSlug: "planning",
+      title: "Day-of timeline shared with suppliers",
+      description:
+        "One-page run of show with arrival windows, ceremony cue, meal service, and band start time. Goes to every supplier.",
+      status: "next",
+    },
+    {
+      projectSlug: "planning",
+      title: "Weather backup plan confirmed",
+      description:
+        "Indoor ceremony fallback + supplier coverage if outdoor ceremony moves inside. Venue holds the final call.",
+      status: "next",
     },
   ],
 };

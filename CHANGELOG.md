@@ -7,6 +7,22 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### T-2.1a shipped — Roadmap plumbing in place.
+
+The Roadmap product is wired to consume canonical workspace templates.
+Its `workspaces` table gained a `template_id` column (prod Turso ALTER
+applied via CLI). A new `pnpm sync:templates` script pulls the
+sibling studio canonical and writes `src/lib/templates.generated.ts`
+with the roadmap slice from each template.
+
+The canonical wedding `roadmap.ts` was reshaped from the earlier
+placeholder (sections + milestones) to match Roadmap's actual data
+model (projects + items with Roadmap's own status vocabulary). This is
+the right reshape moment — nothing consumed the old shape yet.
+
+T-2.1b (workspace-create flow accepting `fromTemplate` and seeding
+projects + items from the synced slice) is the next templates cycle.
+
 ### T-2.0 shipped — workspaces now carry their templateId.
 
 Tasks's `workspaces` schema gains a nullable `template_id` column,
