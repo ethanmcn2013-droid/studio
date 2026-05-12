@@ -87,7 +87,7 @@ export function RevealEngine() {
       // ─── Entrance timeline ────────────────────────────────────
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      // Antique-gold hairline draws
+      // Accent hairline draws
       tl.to(".reveal-gold-rule", { width: 132, duration: 0.55 }, 0.30);
 
       // Headline — words rise from beneath their masks
@@ -222,7 +222,7 @@ export function RevealEngine() {
         }
       });
 
-      // Closing: gold hairline expands, sign-off rises, address signs off
+      // Closing: accent hairline expands, sign-off rises, address signs off
       gsap.from(".reveal-closing-rule", {
         scrollTrigger: {
           trigger: ".reveal-closing",

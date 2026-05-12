@@ -1,6 +1,6 @@
 /**
  * Reveal manifesto — operating principle eyebrow → display H2 with
- * antique-gold highlight on "less" → two body paragraphs.
+ * indigo accent highlight on "less" → two body paragraphs.
  *
  * Pure markup. ScrollTrigger reveals are wired in RevealEngine.
  */

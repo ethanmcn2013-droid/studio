@@ -230,8 +230,9 @@ function TasksProof() {
             {l.name}
           </div>
           <div
-            className="rounded-sm bg-white px-1.5 py-1 text-[9.5px] leading-tight text-ink"
+            className="rounded-sm px-1.5 py-1 text-[9.5px] leading-tight text-ink"
             style={{
+              background: "#fefdf9",
               boxShadow: "0 1px 2px rgba(24,24,27,.06)",
             }}
           >
@@ -264,7 +265,8 @@ function RoadmapProof() {
       {items.map((i) => (
         <div
           key={i.title}
-          className="flex items-center justify-between rounded-md border border-border-soft bg-white px-2.5 py-1.5"
+          className="flex items-center justify-between rounded-md border border-border-soft px-2.5 py-1.5"
+          style={{ background: "#fefdf9" }}
         >
           <span className="text-[10.5px] text-ink">{i.title}</span>
           <span

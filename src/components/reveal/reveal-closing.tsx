@@ -1,7 +1,7 @@
 /**
- * Reveal closing — antique-gold hairline (mirrors the opening rule) +
+ * Reveal closing — indigo accent hairline (mirrors the opening rule) +
  * editorial sign-off + mono address line. Page begins and ends on the
- * gold accent. Circular structure.
+ * indigo accent. Circular structure.
  */
 
 export function RevealClosing() {

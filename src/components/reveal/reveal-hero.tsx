@@ -1,5 +1,5 @@
 /**
- * Reveal hero — antique-gold hairline + masked word-by-word headline +
+ * Reveal hero — indigo accent hairline + masked word-by-word headline +
  * typewriter subhead + four-product wordmark stack with the §4 brand
  * gestures.
  *
