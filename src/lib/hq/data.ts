@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-12T20:00:00Z",
+  updatedAt: "2026-05-12T20:45:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1374,7 +1374,7 @@ export const seedHqData: HqData = {
       landingPageUrl: "/weddings",
       relatedCampaign: "Founding Venue Programme",
       activationGoal: "Workspace has tasks, notes, roadmap items, and at least one invite.",
-      notes: "Lifted to canonical 2026-05-12 (Cycle T-1). Now sourced from `studio/src/lib/templates/wedding-planning-workspace/` as a five-file artefact (meta/tasks/notes/roadmap/analytics) — Tasks consumes via `pnpm sync:templates`. T-2 wires lazy expression in Notes/Roadmap/Analytics so the slices stop being hand-built demo pages.",
+      notes: "Lifted to canonical 2026-05-12 (Cycle T-1). Sourced from `studio/src/lib/templates/wedding-planning-workspace/` as a five-file artefact (meta/tasks/notes/roadmap/analytics) — Tasks consumes via `pnpm sync:templates`. T-2 was split mid-flight into T-2.0 (workspaces.template_id field — shipped 2026-05-12), T-2.1 (Roadmap lazy expression — next), T-2.2 (Notes lazy expression), T-2.3 (Analytics lazy expression).",
     },
     {
       id: "venue-checklist",

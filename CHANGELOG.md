@@ -7,6 +7,19 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### T-2.0 shipped — workspaces now carry their templateId.
+
+Tasks's `workspaces` schema gains a nullable `template_id` column,
+populated by `remixTemplateAction` when a user remixes a canonical
+workspace template. This is the bookkeeping prerequisite for T-2.1
+(Roadmap lazy expression), T-2.2 (Notes), and T-2.3 (Analytics) — each
+consuming product reads `templateId` on first visit and seeds its
+slice from the canonical template files in the studio repo.
+
+T-2 was split from one cycle into four sub-cycles after starting —
+original framing tried to coordinate five repos in one cycle and
+that's too much per cycle.
+
 ### T-1 shipped — wedding template lifted to canonical four-layer source.
 
 The first cycle of the templates strategy is live. `wedding-planning-workspace`

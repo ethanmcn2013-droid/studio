@@ -137,19 +137,22 @@ This is the implementation order. Each cycle should ship as a coordinated Studio
 
 | Cycle | Scope | Owner repos |
 |---|---|---|
-| T-1 | Canonical type + sync script + Wedding lift (studio repo source-of-truth; Tasks reads from studio sync; existing Tasks behaviour preserved) | studio, tasks |
-| T-2 | Wedding template Notes/Roadmap/Analytics seeds; lazy expression mechanism + workspace `templateId` field | studio, tasks, notes, roadmap, analytics |
+| T-1 | Canonical type + sync script + Wedding lift (studio repo source-of-truth; Tasks reads from studio sync; existing Tasks behaviour preserved) — **closed 2026-05-12** | studio, tasks |
+| T-2.0 | Workspace `templateId` field — schema column + populated on remix-template — **closed 2026-05-12** | tasks |
+| T-2.1 | Roadmap lazy expression — sync script + first-visit seed from canonical wedding `roadmap.ts` | studio, roadmap |
+| T-2.2 | Notes lazy expression — sync script + first-visit seed from canonical wedding `notes.ts` (preserves PRODUCT.md §7 refusal: 0–3 named-note prompts only) | studio, notes |
+| T-2.3 | Analytics lazy expression — sync script + hint consumption at briefing-build time (dormant until analytics briefing pipeline ships) | studio, analytics |
 | T-3 | Trades job pipeline anchor template (all four layers) | studio, tasks, notes, roadmap, analytics |
 | T-4 | Final paper sprint anchor template (lift from Tasks-only) | studio, tasks, notes, roadmap, analytics |
 | T-5 | Freelance client engagement anchor template | studio, tasks, notes, roadmap, analytics |
-| T-6 | Small-business marketing month anchor template (highest copy-risk; needs BRAND voice pass) | studio, tasks, notes, roadmap, analytics |
+| T-6 | Local business monthly rhythm anchor template (highest copy-risk; needs BRAND voice pass) | studio, tasks, notes, roadmap, analytics |
 | T-7 | Roadmap-template SEO redirects (the 7 named pages → anchor templates) + source tracking ingest | studio |
 
 ### Sequencing rationale
 
 - **T-1 first**, in isolation, because the type contract is what every later cycle depends on. Get the shape right, get the sync working, ship without changing user-facing behaviour.
-- **T-2 second** to prove the lazy-expression mechanism end-to-end on the highest-stakes template (wedding). If the seam is bad, we find out before building four more.
-- **T-3–T-6** in audience-priority order. Trades second because Ireland-validatable + builds outbound reach beyond weddings. Marketing-month last because it's the highest copy-risk.
+- **T-2 split into four sub-cycles** (T-2.0 through T-2.3) after starting. The original T-2 framing tried to coordinate 5 repos; that's too much per cycle. T-2.0 establishes the workspace metadata; T-2.1/T-2.2/T-2.3 wire each consuming product independently (Roadmap first — clearest workspace model and most-visible artefact).
+- **T-3–T-6** in audience-priority order. Trades second because Ireland-validatable + builds outbound reach beyond weddings. Monthly-rhythm last because it's the highest copy-risk.
 - **T-7 last** because it's pure SEO consolidation; nothing depends on it.
 
 ## Dependencies on other in-flight work
