@@ -7,6 +7,23 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### T-2.1c shipped — Tasks remix toast now invites a Roadmap.
+
+The cross-product CTA gap that left T-2.1b technically working but
+undiscoverable is now closed. Tasks's toast primitive gained an
+optional `action` link (rendered below the body with a brand arrow).
+`TemplatedToast` now also handles `?remixed=<id>` — for canonical
+workspace templates (currently just wedding-planning-workspace), the
+remix-success toast carries a "Create a Roadmap for this" link to
+`roadmap.signalstudio.ie/onboarding/from-template/<id>`, opening in a
+new tab. Specialty Tasks-only templates skip the action.
+
+The wedge demo loop is now four-layer discoverable: someone remixes
+the wedding template in Tasks → toast suggests Roadmap → seeded
+roadmap workspace appears with one planning project and eight items.
+
+T-2.2 (Notes plumbing) is the next templates cycle.
+
 ### T-2.1b shipped — Roadmap workspaces seed from canonical templates.
 
 The Roadmap product's `createWorkspaceAction` now accepts a
