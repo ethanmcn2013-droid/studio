@@ -6,18 +6,8 @@ import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-
 export const metadata: Metadata = {
   title: "About — Signal Studio",
   description:
-    "Ethan is a designer building operational clarity software under the Signal Studio umbrella.",
+    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: cut through the noise.",
 };
-
-/**
- * /about — two-column manifesto.
- *
- * Left: section label + the "who" paragraph.
- * Right: two product links + a quiet closing line.
- *
- * Typography reuses .h-section and existing token scale.
- * No new primitives introduced.
- */
 export default function AboutPage() {
   return (
     <>
@@ -32,8 +22,8 @@ export default function AboutPage() {
           </div>
 
           {/* Page H1 */}
-          <h1 className="h-section mb-10 max-w-[560px] text-balance text-ink">
-            One workshop. Four tools. Clear opinions.
+          <h1 className="h-section mb-10 max-w-[620px] text-balance text-ink">
+            Operational clarity software for the 80%.
           </h1>
 
           {/* Two-column layout */}
@@ -44,27 +34,32 @@ export default function AboutPage() {
                 className="leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Ethan is a designer building operational clarity software under
-                the Signal Studio umbrella. The work lives at the edge of product
-                and craft — not enterprise, not consumer software. Tools that
-                reduce ambiguity instead of adding information.
+                Signal Studio builds software for the people the work routes
+                through. Wedding planners. Tradespeople. Freelancers. Students.
+                Small-business operators. The 80% of the world who run real work
+                with real deadlines, and have no patience for a tool that wants
+                them to learn project management first.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Signal Studio is the workshop. Four products are the output.
-                Each one has a job, a refusal, and a place in the system.
-              </p>
-
-              <p
-                className="mt-5 leading-[1.7] text-ink-soft"
-                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
-              >
+                Four products. One register. One job: cut through the noise.
                 Signal Tasks runs the work. Signal Roadmap explains it. Signal
                 Analytics surfaces what matters in it. Signal Notes captures it
-                as it happens. One slice each. Together, a system.
+                as it happens. Each solves one slice. Together they read as one
+                system.
+              </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Not a productivity suite. Productivity tools tell you to do
+                more. These ones tell you what matters. Not a project manager.
+                Plain English, no sprints, no epics, no burndown. Not an AI
+                workspace. The system is ambient. We don&rsquo;t market it.
               </p>
             </div>
 
@@ -175,7 +170,8 @@ export default function AboutPage() {
                 className="text-[12.5px] leading-[1.6] text-ink-faint"
                 style={{ letterSpacing: "0.005em" }}
               >
-                No team. No investors. One person, four tools, clear opinions.
+                Boring on purpose. Built slowly. Everything important, nothing
+                distracting.
               </p>
             </div>
           </div>
