@@ -117,6 +117,18 @@ Cycle 6 makes the wedding proof path repeatable:
 
 The proof scene is: viewer opens a wedding update, lands on `/weddings`, then starts from a real workspace template.
 
+## Cycle 7 Status
+
+Started May 12, 2026.
+
+Cycle 7 extends the same wedding scene across the missing layers:
+
+- Notes now shows a venue meeting follow-up with actions, decisions, open questions, and risk.
+- Analytics now shows a Harbour House wedding Today Signal briefing.
+- The demo loop can now be described as Notes -> Tasks -> Roadmap -> Analytics.
+
+The proof scene is: a venue meeting becomes tasks and decisions, the plan is shared, and the briefing names what needs attention today.
+
 ## Shareable Artefacts
 
 Prioritise these first:

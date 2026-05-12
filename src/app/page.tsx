@@ -3,6 +3,7 @@ import { RevealHero } from "@/components/reveal/reveal-hero";
 import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
 import { RevealProducts } from "@/components/reveal/reveal-products";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
+import { SiteFooter } from "@/components/landing/site-footer";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <RevealManifesto />
       <RevealProducts />
       <RevealClosing />
+      <SiteFooter />
       <RevealEngine />
     </>
   );

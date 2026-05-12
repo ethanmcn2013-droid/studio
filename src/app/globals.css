@@ -480,6 +480,9 @@ body {
   opacity: 0;
   transform: translateY(8px);
   will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .reveal-subhead .em {
   color: var(--ink-900);
@@ -527,62 +530,40 @@ body {
   border-radius: 50%;
   background: var(--indigo-600);
   margin-left: 0.06em;
-  transform: translateY(-0.04em);
+  transform: translateY(-0.04em) scale(1);
   display: inline-block;
   position: relative;
+  opacity: 0.28;
+  transition: opacity .35s ease;
 }
 
-/* Per-product brand gestures (BRAND.md §4) — driven by .fire class */
-/* tasks · pulse — continuous on .fire */
-.reveal-stack .stack-row[data-key="tasks"] .dot {
-  transition: opacity .4s ease;
+/* Ecosystem signal: one dot pulse travels tasks -> roadmap -> analytics -> notes. */
+.reveal-stack .stack-row.fire .dot {
+  opacity: 1;
 }
-.reveal-stack .stack-row[data-key="tasks"].fire .dot {
-  animation: reveal-dot-pulse 2.6s var(--reveal-ease-glide) infinite;
+.reveal-stack .stack-row.sequence-fire .dot {
+  animation: reveal-ecosystem-dot .72s var(--reveal-ease-glide) both;
 }
-.reveal-stack .stack-row[data-key="tasks"].fire .dot::before {
+.reveal-stack .stack-row.sequence-fire .dot::before {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: 50%;
   border: 1.5px solid var(--indigo-600);
   opacity: 0;
-  animation: reveal-dot-emit 2.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-ecosystem-ring .72s var(--reveal-ease-glide) both;
 }
-@keyframes reveal-dot-pulse {
-  0%, 60%, 100% { transform: translateY(-0.04em) scale(1); }
-  70%           { transform: translateY(-0.04em) scale(1.32); }
-  80%           { transform: translateY(-0.04em) scale(1); }
+@keyframes reveal-ecosystem-dot {
+  0%, 100% { transform: translateY(-0.04em) scale(1); }
+  44%      { transform: translateY(-0.04em) scale(1.38); }
 }
-@keyframes reveal-dot-emit {
-  0%, 60% { opacity: 0; transform: scale(.8); }
-  68%     { opacity: 1; transform: scale(1); }
-  100%    { opacity: 0; transform: scale(2.8); }
-}
-
-/* roadmap · slide-in — one-shot, replay-friendly */
-.reveal-stack .stack-row[data-key="roadmap"] .dot {
-  opacity: 0;
-  transform: translate(-18px, -0.04em);
-  transition:
-    transform .85s var(--reveal-ease-mass),
-    opacity .55s ease;
-}
-.reveal-stack .stack-row[data-key="roadmap"].fire .dot {
-  opacity: 1;
-  transform: translate(0, -0.04em);
+@keyframes reveal-ecosystem-ring {
+  0%   { opacity: 0; transform: scale(.75); }
+  36%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.65); }
 }
 
-/* analytics · fade only */
-.reveal-stack .stack-row[data-key="analytics"] .dot {
-  opacity: 0;
-  transition: opacity .55s ease;
-}
-.reveal-stack .stack-row[data-key="analytics"].fire .dot {
-  opacity: 1;
-}
-
-/* notes · underline writes itself */
+/* notes keeps the quiet capture underline after the sequence settles. */
 .reveal-stack .stack-row[data-key="notes"] .word::after {
   content: '';
   position: absolute;
@@ -755,17 +736,17 @@ body {
 }
 
 /* Settled-state product gestures (post-reveal product rows) */
-.reveal-product-row[data-key="tasks"] .mark .dot {
-  animation: reveal-dot-pulse 2.6s var(--reveal-ease-glide) infinite;
+.reveal-product-row.sequence-fire .mark .dot {
+  animation: reveal-ecosystem-dot .72s var(--reveal-ease-glide) both;
 }
-.reveal-product-row[data-key="tasks"] .mark .dot::before {
+.reveal-product-row.sequence-fire .mark .dot::before {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: 50%;
   border: 1.5px solid var(--indigo-600);
   opacity: 0;
-  animation: reveal-dot-emit 2.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-ecosystem-ring .72s var(--reveal-ease-glide) both;
 }
 .reveal-product-row[data-key="notes"] .mark .word::after {
   content: '';
@@ -1010,12 +991,10 @@ body {
   .reveal-subhead,
   .reveal-stack .stack-row,
   .reveal-scroll-cue { opacity: 1 !important; transform: none !important; }
-  .reveal-stack .stack-row[data-key="roadmap"] .dot {
-    transform: translate(0, -0.04em) !important;
+  .reveal-stack .stack-row .dot {
     opacity: 1 !important;
+    transform: translateY(-0.04em) scale(1) !important;
   }
-  .reveal-stack .stack-row[data-key="analytics"] .dot,
-  .reveal-stack .stack-row[data-key="notes"] .dot { opacity: 1 !important; }
   .reveal-stack .stack-row[data-key="notes"] .word::after {
     transform: scaleX(1) !important;
   }

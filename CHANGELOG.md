@@ -5,6 +5,33 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12
+
+### Cycle 7 put the wedding scene into Notes and Analytics.
+
+The wedding/events proof path now reaches all four products. Notes
+shows a venue meeting follow-up with actions, decisions, an open
+question, and a risk. Analytics shows the matching Harbour House
+wedding Today Signal: what needs attention, what is waiting, what is
+still clear, and the suggested focus.
+
+The loop is now visible end to end: Notes captures the venue meeting,
+Tasks organises the follow-ups, Roadmap shares the planning update, and
+Analytics names what needs attention today.
+
+### The homepage got quieter and clearer.
+
+The hero subhead now gives each sentence its own line and names the
+audience plainly: "Built for the 80% who don't work in tech." The
+manifesto body under "Most software gives you more" is now one short
+paragraph instead of two.
+
+The product stack now sends one dot signal through Tasks, Roadmap,
+Analytics, and Notes in sequence, so the motion reads as ecosystem
+rather than four separate tricks. The product-row reveal also starts
+later and runs slower, and the homepage now ends with the standard
+Signal Studio footer.
+
 ## 2026-05-11
 
 ### Cycle 6 made the wedding workspace repeatable.

@@ -52,10 +52,15 @@ export function RevealEngine() {
         .forEach(splitChars);
 
       // ─── Reduced-motion early return — set final states ───────
-      const fire = (key: string) => {
-        document
-          .querySelector(`.stack-row[data-key="${key}"]`)
-          ?.classList.add("fire");
+      const pulseStack = (key: string) => {
+        const row = document.querySelector<HTMLElement>(
+          `.stack-row[data-key="${key}"]`
+        );
+        if (!row) return;
+        row.classList.add("fire");
+        row.classList.remove("sequence-fire");
+        void row.offsetWidth;
+        row.classList.add("sequence-fire");
       };
 
       if (reduceMotion) {
@@ -122,11 +127,11 @@ export function RevealEngine() {
         2.55
       );
 
-      // Fire each brand gesture in choreographed order
-      // notes is intentionally omitted — absence of the gesture IS the gesture
-      tl.add(() => fire("tasks"), 2.85)
-        .add(() => fire("roadmap"), 3.05)
-        .add(() => fire("analytics"), 3.25);
+      // Let one signal travel through the suite in order.
+      tl.add(() => pulseStack("tasks"), 2.85)
+        .add(() => pulseStack("roadmap"), 3.12)
+        .add(() => pulseStack("analytics"), 3.39)
+        .add(() => pulseStack("notes"), 3.66);
 
       // Scroll cue arrives after the silence beat
       tl.to(
@@ -198,7 +203,7 @@ export function RevealEngine() {
         const right = row.querySelector(".right");
         const trigger = {
           trigger: row,
-          start: "top 82%",
+          start: "top 68%",
           once: true,
         };
         if (left) {
@@ -206,7 +211,7 @@ export function RevealEngine() {
             scrollTrigger: trigger,
             opacity: 0,
             x: -28,
-            duration: 0.7,
+            duration: 1.05,
             ease: "expo.out",
           });
         }
@@ -215,11 +220,24 @@ export function RevealEngine() {
             scrollTrigger: trigger,
             opacity: 0,
             x: 28,
-            duration: 0.7,
+            duration: 1.05,
             ease: "expo.out",
-            delay: 0.1,
+            delay: 0.16,
           });
         }
+      });
+
+      ScrollTrigger.create({
+        trigger: ".reveal-products",
+        start: "top 68%",
+        once: true,
+        onEnter: () => {
+          productRows.forEach((row, index) => {
+            window.setTimeout(() => {
+              row.classList.add("sequence-fire");
+            }, index * 260);
+          });
+        },
       });
 
       // Closing: gold hairline expands, sign-off rises, address signs off
@@ -273,8 +291,12 @@ export function RevealEngine() {
             if (cooldown) return;
             cooldown = true;
             row.classList.remove(replayClass);
+            row.classList.remove("sequence-fire");
             void row.offsetWidth;
             row.classList.add(replayClass);
+            if (replayClass === "fire") {
+              row.classList.add("sequence-fire");
+            }
             const wait = key === "tasks" ? 600 : 1200;
             setTimeout(() => {
               cooldown = false;

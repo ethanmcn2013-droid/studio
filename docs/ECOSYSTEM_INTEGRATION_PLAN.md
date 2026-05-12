@@ -188,6 +188,29 @@ Acceptance criteria:
 - the public weddings page has a clear creator action after the shared update
 - the next cross-product cycle can connect Notes, Roadmap, and Analytics to the same wedding scene
 
+### Cycle 7: Wedding context and attention
+
+Status: built from May 12, 2026.
+
+Detailed spec: `docs/CYCLE_7_WEDDING_CONTEXT_ATTENTION.md`.
+
+Purpose:
+
+Extend the wedding/events proof path into Notes and Analytics so the same scene now touches all four products.
+
+Deliverables:
+
+- Notes venue meeting follow-up proof block
+- seeded Notes meeting note with action, decision, and risk
+- Analytics wedding Today Signal proof block
+- HQ and memory updates for the first four-product wedding demo shape
+
+Acceptance criteria:
+
+- the wedding scene has a visible context layer
+- the wedding scene has a visible attention layer
+- future demo scripting can explain Notes -> Tasks -> Roadmap -> Analytics without inventing missing surfaces
+
 ### Phase 1: Shared language and links
 
 - Align product copy around workspace, owner, date, status, blocker, decision, risk, update, and briefing.

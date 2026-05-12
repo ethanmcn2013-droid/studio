@@ -53,8 +53,8 @@ export function RevealHero() {
       </h1>
 
       <p className="reveal-subhead">
-        Four small tools.{" "}
-        <span className="em">Built for the 80%.</span>
+        <span>Four small tools.</span>
+        <span className="em">Built for the 80% who don&apos;t work in tech.</span>
       </p>
 
       <nav className="reveal-stack" aria-label="Signal Studio products">

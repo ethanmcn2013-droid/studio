@@ -10,3 +10,5 @@
 - Built for people who have actual work to do.
 - Clear workspaces for real-world coordination.
 - Keep the discipline. Remove the theatre.
+- Project Management for the 80% who don't work in tech.
+- Built for the 80% who don't work in tech.
