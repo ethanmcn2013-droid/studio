@@ -7,9 +7,18 @@ import { localBusinessMonthlyRhythm } from "./local-business-monthly-rhythm";
  *
  * Strategy: docs/TEMPLATES_STRATEGY.md (locked 2026-05-12).
  *
- * T-1 lifted wedding-planning-workspace. T-6 (2026-05-12) adds
- * local-business-monthly-rhythm. T-3 through T-5 still owed
- * (trades-job-pipeline, final-paper-sprint, freelance-client-engagement).
+ * T-1 lifted wedding-planning-workspace. T-6 (2026-05-12) added
+ * local-business-monthly-rhythm. T-3 through T-5 — lifting the
+ * trades / students / freelance archetype templates into the canonical
+ * four-layer shape — are infrastructure work, NOT urgent gap-filling:
+ * the existing Tasks audience pages (/for/trades, /for/students,
+ * /for/freelancers) already work today against Tasks's specialty
+ * template registry (jobsite-punchlist, new-client-onboarding,
+ * final-paper-sprint, midterm-week, tax-season). Lifting those
+ * specialty templates to canonical shape only matters once the lazy
+ * Notes/Roadmap/Analytics expansion path is being exercised for those
+ * archetypes — and that signal will come from pilot demand, not a
+ * pre-emptive build.
  */
 export const WORKSPACE_TEMPLATES: WorkspaceTemplate[] = [
   weddingPlanningWorkspace,
