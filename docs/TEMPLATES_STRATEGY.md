@@ -140,7 +140,8 @@ This is the implementation order. Each cycle should ship as a coordinated Studio
 | T-1 | Canonical type + sync script + Wedding lift (studio repo source-of-truth; Tasks reads from studio sync; existing Tasks behaviour preserved) — **closed 2026-05-12** | studio, tasks |
 | T-2.0 | Workspace `templateId` field — schema column + populated on remix-template — **closed 2026-05-12** | tasks |
 | T-2.1a | Roadmap plumbing — `template_id` column + sync script + canonical `roadmap.ts` reshaped to projects+items (matches Roadmap product model) — **closed 2026-05-12** | studio, roadmap |
-| T-2.1b | Roadmap seeding logic — workspace create flow accepts `fromTemplate=<id>`, seeds projects + items from synced slice | roadmap |
+| T-2.1b | Roadmap seeding logic — workspace create flow accepts `fromTemplate=<id>`, seeds projects + items from synced slice; new `/onboarding/from-template/[id]` route — **closed 2026-05-12** | roadmap |
+| T-2.1c | Cross-product CTA — Tasks's remix-template-success path surfaces a "Create a Roadmap for this" link to `/onboarding/from-template/<id>` (needs toast-with-action support or a board-banner component in Tasks) | tasks |
 | T-2.2 | Notes lazy expression — sync script + first-visit seed from canonical wedding `notes.ts` (preserves PRODUCT.md §7 refusal: 0–3 named-note prompts only) | studio, notes |
 | T-2.3 | Analytics lazy expression — sync script + hint consumption at briefing-build time (dormant until analytics briefing pipeline ships) | studio, analytics |
 | T-3 | Trades job pipeline anchor template (all four layers) | studio, tasks, notes, roadmap, analytics |

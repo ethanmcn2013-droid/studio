@@ -7,6 +7,27 @@ this one tracks what coalesced across the suite.
 
 ## 2026-05-12
 
+### T-2.1b shipped — Roadmap workspaces seed from canonical templates.
+
+The Roadmap product's `createWorkspaceAction` now accepts a
+`fromTemplate` form field. When present, the action looks up the
+canonical template via the synced slice, creates the workspace with
+the matching `templateId`, then seeds projects and items from the
+template's roadmap slice in one transactional flow.
+
+A new public route `/onboarding/from-template/[id]` renders a
+template-aware variant of the create-workspace form: the workspace
+name is pre-filled from the template, an item-count line explains
+what will land, and a hidden `fromTemplate` input wires the seed.
+After creation the user is redirected to `/[slug]` (the public
+workspace surface) rather than `/app`.
+
+`onboarding` joined the reserved-slug list so users can't grab it.
+
+T-2.1c (Tasks-side CTA after remix-template-success) is the next
+templates cycle. Without it, the from-template route is technically
+working but undiscoverable from inside Tasks.
+
 ### T-2.1a shipped — Roadmap plumbing in place.
 
 The Roadmap product is wired to consume canonical workspace templates.

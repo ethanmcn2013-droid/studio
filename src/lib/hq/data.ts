@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-12T22:00:00Z",
+  updatedAt: "2026-05-12T23:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1374,7 +1374,7 @@ export const seedHqData: HqData = {
       landingPageUrl: "/weddings",
       relatedCampaign: "Founding Venue Programme",
       activationGoal: "Workspace has tasks, notes, roadmap items, and at least one invite.",
-      notes: "Lifted to canonical 2026-05-12 (Cycle T-1). Sourced from `studio/src/lib/templates/wedding-planning-workspace/` as a five-file artefact (meta/tasks/notes/roadmap/analytics) — Tasks consumes via `pnpm sync:templates`. T-2 split into sub-cycles: T-2.0 Tasks `template_id` field (shipped), T-2.1a Roadmap plumbing (shipped 2026-05-12 — schema + sync + reshape canonical roadmap.ts to projects+items), T-2.1b Roadmap seeding logic (next), T-2.2 Notes lazy expression, T-2.3 Analytics lazy expression.",
+      notes: "Lifted to canonical 2026-05-12 (Cycle T-1). Sourced from `studio/src/lib/templates/wedding-planning-workspace/` as a five-file artefact (meta/tasks/notes/roadmap/analytics) — Tasks consumes via `pnpm sync:templates`. T-2 split into sub-cycles: T-2.0 Tasks `template_id` field (shipped), T-2.1a Roadmap plumbing (shipped — schema + sync + canonical roadmap.ts reshape), T-2.1b Roadmap seeding logic (shipped 2026-05-12 — server-action seeds projects + items, new /onboarding/from-template/[id] route, end-to-end), T-2.1c Cross-product CTA in Tasks (next, needs toast-with-action support), T-2.2 Notes lazy expression, T-2.3 Analytics lazy expression.",
     },
     {
       id: "venue-checklist",
