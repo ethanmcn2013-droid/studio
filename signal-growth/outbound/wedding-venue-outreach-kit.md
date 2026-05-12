@@ -8,6 +8,26 @@ The whole point: hand a venue coordinator a clear, useful workspace they can giv
 
 ---
 
+## Personalisation rule (load-bearing)
+
+**Change one sentence per venue. Reference something specific** — a wedding hashtag they were tagged in, the architecture of the venue, a recent feature in a wedding magazine, the way they describe their offering on their own site, a couple who clearly loved working with them. One sentence only.
+
+No generic "love your beautiful venue" lines. No "I see you specialise in..." filler. If the sentence could be sent to a different venue without editing, it is the wrong sentence.
+
+If 10 emails go out with the same hook, none reply. This is the single highest-leverage move in the kit.
+
+---
+
+## Deadline cadence (set 2026-05-12)
+
+HQ deadline: **three venue conversations on calendar by 2026-06-02.**
+
+"On calendar" means booked (calendar invite accepted), not held. A conversation that's booked for 2026-06-15 counts toward the deadline; a conversation that's "hopefully soon" does not.
+
+With 2 venues/day from 2026-05-19, email 1 finishes 2026-05-23. Email 2 follow-ups land 2026-05-26 to 2026-05-30. Email 3 (12 days after email 1) lands 2026-05-31 to 2026-06-04, which means email 3 contributes nothing to the deadline for venues sent late in the batch. The deadline is reachable from email 1 + email 2 bookings only. If three bookings haven't landed by 2026-05-31, the script or the targeting needs a revision cycle before all three emails finish.
+
+---
+
 ## Target persona
 
 **Primary**: venue coordinator at a 60–200 capacity Irish wedding venue (hotels, country houses, restored barns, country estates). They handle anywhere from 8 to 30 weddings a year, run the venue's side of the planning conversation with couples, and pass information between catering, suppliers, internal staff, and the couple. They are not project managers. They have a notebook, an inbox, and a calendar.
@@ -47,9 +67,11 @@ The pilot is a real commitment from both sides. Not a "free trial" — a working
 
 > Hi [Name],
 >
-> I run a small Irish software studio called Signal Studio. We make plain-language planning tools for people who need clear work without project-management jargon.
+> I run a small Irish software studio called Signal Studio.
 >
-> One of the four tools is a wedding planning workspace. The reason I'm writing is to offer [Venue Name] a founding venue spot: free planning workspaces for every wedding through your venue for the next 12 months, with the workspace carrying your name and brand.
+> [One personalised sentence — see personalisation rule above. This is the sentence that gets you a reply.]
+>
+> One of the four tools we build is a wedding planning workspace. I'm writing to offer [Venue Name] a founding venue spot: free planning workspaces for every wedding through your venue for the next 12 months, with the workspace carrying your name and brand.
 >
 > The workspace gives couples one clear place to keep guest counts, supplier follow-ups, decisions, and the running plan — without spreadsheet chaos. The venue coordinator side gets the same plan from the venue's angle, plus a shareable update they can forward.
 >
@@ -69,7 +91,7 @@ The pilot is a real commitment from both sides. Not a "free trial" — a working
 > hello@signalstudio.ie
 > signalstudio.ie/weddings
 
-**Personalisation rule**: change one sentence per venue. Reference something specific — a wedding hashtag they were tagged in, the architecture of the venue, a recent feature in a wedding magazine, etc. One sentence only. No generic "love your beautiful venue" lines.
+**Personalisation rule**: see the top of this kit. The single highest-leverage move. The personalised sentence sits between "I run a small Irish software studio" and the founding venue offer — read order matters: who I am → why I'm writing to *you specifically* → the offer.
 
 ---
 

@@ -5,6 +5,34 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12 (later)
+
+### Venue-pilot forcing function set.
+
+Three hard dates committed to HQ data: 10-venue list by 2026-05-15,
+first outreach batch by 2026-05-19, three venue conversations on
+calendar by 2026-06-02. The 2026-05-15 input gate is the load-bearing
+one — if 10 named Irish venues can't be assembled in three working
+days, the wedge has a research problem disguised as a polish problem,
+and shipping more product won't fix it. Counter-argument named inside
+the decision: one week would test pitch sharpness more honestly than
+three. Three weeks was picked because the campaign window is already
+six weeks long and tightening to five days inside a six-week plan is
+theatre. If 2026-06-02 is hit cleanly with no learning, the next
+cycle's deadline tightens.
+
+### T0–T3.b suite-review polish verified live.
+
+Three live surfaces walked end-to-end against the kickoff:
+/weddings hero shows "28 days to event" in amber (rgb 245,158,11);
+Tasks /welcome leading card "Open the [template name]" is wired to
+workspace.template_id with brand-soft styling above the picker;
+Roadmap homepage cinematic demo plays cursor-lingers → view-morph
+timeline with zero comment/thread strings anywhere in the DOM. Sprint
+1 polish is closed from this side; pilot pull starts now.
+
+---
+
 ## 2026-05-12
 
 ### Cycle 11.3–11.5 shipped — every product demo now holds the Tasks bar.
