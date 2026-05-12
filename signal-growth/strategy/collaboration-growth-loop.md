@@ -117,6 +117,18 @@ Cycle 6 makes the wedding proof path repeatable:
 
 The proof scene is: viewer opens a wedding update, lands on `/weddings`, then starts from a real workspace template.
 
+## Cycle 9.4b Status
+
+Started May 12, 2026.
+
+Cycle 9.4b sharpens the privacy boundary around live Signal Notes:
+
+- Notes now presents the empty capture field as a protected private-writing space.
+- Raw note bodies are explicitly excluded from collaborative surfaces by default.
+- Only creator-approved extracts should become tasks, decisions, roadmap context, analytics signals, or shared follow-ups.
+
+Growth implication: collaboration should spread through clear approved outputs, not by exposing private context. Trust is part of the acquisition loop.
+
 ## Shareable Artefacts
 
 Prioritise these first:

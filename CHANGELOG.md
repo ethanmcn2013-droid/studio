@@ -5,6 +5,20 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-12
+
+### Notes became private by design on the live branch.
+
+Signal Notes now treats the empty capture field as a protected writing
+space. The live notebook shows one quiet private-writing line with a
+restrained caret, hides it when the user starts typing, and keeps the
+decorative copy out of screen-reader announcements.
+
+The product boundary is now explicit in HQ and the Notes repo: raw notes
+stay private by default. Collaboration should happen through
+creator-approved extracts, summaries, tasks, decisions, and shared
+updates, not by exposing private context.
+
 ## 2026-05-11
 
 ### Cycle 6 made the wedding workspace repeatable.
