@@ -5,6 +5,38 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Pricing surface · side-by-side compare + tier reorder)
+
+### Two €0 tiers first. A shape-not-features comparison underneath.
+
+Two changes to `/pricing`, shipped together.
+
+**Reorder.** Free and Student now sit on the left, Workspace and Event
+on the right. The two zero-cost lanes are adjacent and lead the grid;
+the paid lanes follow. Names unchanged — "Workspace" stays "Workspace"
+(renaming it "Studio" would collide with the umbrella brand), "Event"
+stays "Event" (renaming it "Wedding" would foreclose the launch / move /
+conference lanes the €79 tier already covers). "Most chosen" stays on
+Workspace; moving the badge to a free tier would soft-recommend against
+the revenue lane.
+
+**Side-by-side table.** A new section between the tier grid and "What's
+in Signal Studio." Seven rows of *shape*, not features: who it's for,
+workspaces, all four products, editing guests, price, window, after the
+window. The "all four products" row reads Yes / Yes / Yes / Yes by
+design — the whole point of the pricing model is that the tiers don't
+differ on what's inside. Recommended column carries the same accent wash
+and "Most chosen" pip as the grid above so the eye finds the anchor
+twice. Mobile uses horizontal scroll inside a bordered container
+(min-width 760).
+
+A quiet line under the table — "All tiers include every product as it
+ships. No feature is gated behind tier." — restates the thesis the table
+is built around. The page now pitches in the grid, audits in the table,
+and substantiates in the suite cards, in that order.
+
+---
+
 ## 2026-05-13 (Plan 8 · Cycle 8.4.9 — cron staleness signal across studio + analytics)
 
 ### The daily briefing cron now reports it ran. /hq/health makes the silence audible.

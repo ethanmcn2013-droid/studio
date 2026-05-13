@@ -48,6 +48,14 @@ const TIERS: Tier[] = [
     href: TASKS_URL,
   },
   {
+    name: "Student",
+    price: "€0",
+    cadence: "with verified .edu",
+    body: "Workspace tier, free. Two-year window. For students running multi-stream work with real deadlines.",
+    cta: "Verify .edu",
+    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
+  },
+  {
     name: "Workspace",
     recommended: true,
     price: "€12",
@@ -63,14 +71,6 @@ const TIERS: Tier[] = [
     body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
     cta: "Plan an event",
     href: "/weddings",
-  },
-  {
-    name: "Student",
-    price: "€0",
-    cadence: "with verified .edu",
-    body: "Workspace tier, free. Two-year window. For students running multi-stream work with real deadlines.",
-    cta: "Verify .edu",
-    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
   },
 ];
 
@@ -106,6 +106,42 @@ const SUITE: InsideProduct[] = [
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.",
     status: "build",
     statusLabel: "In build",
+  },
+];
+
+const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[] = [
+  {
+    label: "Who it's for",
+    values: [
+      "Solo, just starting",
+      "Verified .edu, two-year window",
+      "Crews running ongoing work",
+      "One wedding, launch, move, conference",
+    ],
+  },
+  {
+    label: "Workspaces",
+    values: ["One", "One", "Unlimited", "One, event-shaped"],
+  },
+  {
+    label: "All four products",
+    values: ["Yes", "Yes", "Yes", "Yes"],
+  },
+  {
+    label: "Editing guests",
+    values: ["Three", "Unlimited", "Unlimited", "Unlimited"],
+  },
+  {
+    label: "Price",
+    values: ["€0", "€0", "€12 / month", "€79 one-time"],
+  },
+  {
+    label: "Window",
+    values: ["Forever", "Two years", "Monthly, cancel anytime", "12 months"],
+  },
+  {
+    label: "After the window",
+    values: ["—", "Drops to Free", "Drops to Free", "Workspace keeps reading forever"],
   },
 ];
 
@@ -396,6 +432,169 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* ── 3.5 · Side-by-side compare ────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1180px] px-6 pb-20 md:pb-24">
+          <div className="mb-4" style={eyebrowStyle()}>
+            Side by side
+          </div>
+          <h2
+            className="h-title text-balance text-ink"
+            style={{ maxWidth: "22ch", marginBottom: 12 }}
+          >
+            Same four products. Four shapes of access.
+          </h2>
+          <p
+            className="text-ink-soft"
+            style={{
+              fontSize: 17,
+              lineHeight: 1.55,
+              maxWidth: "58ch",
+              marginBottom: 36,
+            }}
+          >
+            The tiers don't differ on what's inside. They differ on shape — who
+            it's for, how long it lasts, what stays when it ends.
+          </p>
+
+          <div
+            style={{
+              border: "1px solid var(--border)",
+              background: "var(--bg-elev)",
+              overflowX: "auto",
+            }}
+          >
+            <table
+              style={{
+                width: "100%",
+                minWidth: 760,
+                borderCollapse: "collapse",
+                textAlign: "left",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th
+                    style={{
+                      padding: "22px 24px",
+                      borderBottom: "1px solid var(--border-soft)",
+                      fontWeight: 400,
+                      width: "22%",
+                    }}
+                    aria-label="Dimension"
+                  />
+                  {TIERS.map((t) => (
+                    <th
+                      key={t.name}
+                      scope="col"
+                      style={{
+                        padding: "22px 24px",
+                        borderBottom: "1px solid var(--border-soft)",
+                        borderLeft: "1px solid var(--border-soft)",
+                        color: "var(--ink)",
+                        background: t.recommended
+                          ? "linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 60%, var(--bg-elev)) 0%, var(--bg-elev) 100%)"
+                          : "transparent",
+                        verticalAlign: "bottom",
+                      }}
+                    >
+                      {t.recommended ? (
+                        <div
+                          className="inline-flex items-center"
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: 10,
+                            letterSpacing: "var(--tracking-eyebrow)",
+                            textTransform: "uppercase",
+                            color: "var(--ink-quiet)",
+                            fontWeight: 600,
+                            marginBottom: 8,
+                          }}
+                        >
+                          <span className="pricing-anchor-dot" aria-hidden />
+                          Most chosen
+                        </div>
+                      ) : null}
+                      <div
+                        style={{
+                          fontSize: 17,
+                          fontWeight: 600,
+                          letterSpacing: "-0.015em",
+                        }}
+                      >
+                        {t.name}
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE_ROWS.map((row, ri) => {
+                  const isLast = ri === COMPARE_ROWS.length - 1;
+                  return (
+                    <tr key={row.label}>
+                      <th
+                        scope="row"
+                        style={{
+                          padding: "18px 24px",
+                          borderBottom: isLast
+                            ? "none"
+                            : "1px solid var(--border-soft)",
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "var(--ink-quiet)",
+                          letterSpacing: "var(--tracking-eyebrow)",
+                          textTransform: "uppercase",
+                          verticalAlign: "top",
+                          textAlign: "left",
+                        }}
+                      >
+                        {row.label}
+                      </th>
+                      {row.values.map((v, ci) => {
+                        const tier = TIERS[ci];
+                        return (
+                          <td
+                            key={ci}
+                            style={{
+                              padding: "18px 24px",
+                              borderBottom: isLast
+                                ? "none"
+                                : "1px solid var(--border-soft)",
+                              borderLeft: "1px solid var(--border-soft)",
+                              fontSize: 15,
+                              lineHeight: 1.5,
+                              color: "var(--ink-soft)",
+                              background: tier.recommended
+                                ? "color-mix(in srgb, var(--accent-soft) 35%, var(--bg-elev))"
+                                : "transparent",
+                              verticalAlign: "top",
+                            }}
+                          >
+                            {v}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <p
+            className="text-ink-quiet"
+            style={{
+              marginTop: 20,
+              fontSize: 13,
+              lineHeight: 1.55,
+            }}
+          >
+            All tiers include every product as it ships. No feature is gated
+            behind tier.
+          </p>
         </section>
 
         {/* ── 4 · What's inside ─────────────────────────────────── */}
