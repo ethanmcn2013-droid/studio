@@ -121,16 +121,22 @@ Defers: Notes / Roadmap / Analytics auto-provisioning. Tasks first; the others o
 
 Acceptance: a fresh sign-up from `/redeem/LAMBSHIL-XXX` lands directly in a wedding workspace, sees the compliments card, never touches the picker, and the corresponding `license_codes` row flips to `redeemed`. Tasks + studio `pnpm typecheck` clean.
 
-### Cycle 8.4 — Operator surface (lightweight)
+### Cycle 8.4 — Operator surface (lightweight) *(CLOSED 2026-05-13)*
 
 Ships:
 - `/pricing` quiet line below the Event tier — *"Planning a wedding? Ask your venue."* — 15px, `var(--ink-quiet)`, no CTA, no link
-- Internal `/hq/partners` read-only view on signalstudio.ie (gated by existing HQ password): list of sponsors with `codes_issued / codes_redeemed / active_30d` columns
+- Internal `/hq/partners` read-only view on signalstudio.ie (gated by existing HQ password): list of sponsors with `codes_issued / codes_redeemed / active_30d` columns, plus most-recent-redemption timestamp and rollup totals
 - `scripts/partner-digest.ts <sponsor-slug>` — Ethan-run, prints a one-paragraph activation summary suitable for forwarding to the venue contact
+- `src/lib/partners/stats.ts` — shared helper used by both surfaces; cross-DB read from Tasks (`comp_codes` keyed by sponsor JSON in `notes`, `entitlements` filtered on `source='comp' AND notes IN ('comp:CODE'...)`); `TASKS_DATABASE_URL` + `TASKS_AUTH_TOKEN` set on studio's Vercel production
+- `partner:digest` package script alias
 
-Defers: self-serve partner sign-up; partner web dashboard; automated digest cron. All Cycle 9 candidates.
+**Entitlements-table decision (kept, not dropped):** Studio's `entitlements` table remains in place but unused at runtime. Dropping requires a migration that would have to be reversed if cross-product identity (Cycle 9+) rehabilitates it. Empty table costs nothing. The Tasks `entitlements` table is authoritative for runtime; studio's stays as scaffolding for the cross-product future. Re-evaluate in Cycle 9 if cross-product entitlements move to deferred-deliberation rather than imminent build.
 
-Acceptance: `/hq/partners` accurately reflects Lamb's Hill's seeded state. `partner-digest.ts` produces a single sendable paragraph.
+**Redemptions audit decision (still empty):** Studio's `redemptions` table sits unwritten. Populating it would need either a Tasks → studio webhook on each redemption, or a periodic sync. /hq/partners reads live from Tasks's `entitlements` instead, which is the source of truth anyway. Cycle 9+ candidate.
+
+Defers: self-serve partner sign-up; partner web dashboard; automated digest cron; read-only Turso auth token (currently reuses the write-capable token from `issue-codes.ts`); pre-auth code validation on Tasks's /redeem/[code] so typo'd URLs don't push couples through Clerk. All Cycle 9+ candidates.
+
+Acceptance: `/hq/partners` accurately reflects Lamb's Hill's seeded state (3 codes issued, 0 redeemed pre-pilot). `partner-digest.ts lambs-hill` produces a single sendable paragraph. Both verified live against prod Turso.
 
 ### Cycle 8.5 — Lamb's Hill provision + soft launch
 

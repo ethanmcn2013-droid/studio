@@ -13,7 +13,8 @@
     "db:studio": "drizzle-kit studio",
     "seed:entitlement": "tsx scripts/seed-entitlement.ts",
     "create:sponsor": "tsx scripts/create-sponsor.ts",
-    "issue:codes": "tsx scripts/issue-codes.ts"
+    "issue:codes": "tsx scripts/issue-codes.ts",
+    "partner:digest": "tsx scripts/partner-digest.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",

@@ -5,6 +5,59 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Cycle 8.4 — operator surface)
+
+### One quiet line on /pricing. One private view at /hq/partners. One paragraph from the CLI.
+
+Cycle 8.4 closed in a single session because the surface is, by
+design, small. The audience is one person.
+
+`/pricing` gained a single line of copy below the Event lane —
+"Planning a wedding? Ask your venue." 15px, `var(--ink-quiet)`,
+no CTA, no link, no glass shimmer, no entry animation. The
+couples this is for don't arrive via /pricing; the line exists
+for the small minority who looked here first and need a quiet
+nudge toward the right door.
+
+`/hq/partners` is a read-only operator view, gated behind the
+existing Signal HQ password. Each sponsor appears as a row with
+four metrics — codes issued, codes redeemed (with percentage),
+active in the last 30 days, most recent redemption — and a
+totals footer. Studio's `license_codes` table answers "issued";
+Tasks's `comp_codes` + `entitlements` answer "redeemed" and
+"active" via a cross-DB read at request time, joined on the
+sponsor slug embedded in `comp_codes.notes` JSON. The
+`TASKS_DATABASE_URL` + `TASKS_AUTH_TOKEN` env vars that
+`scripts/issue-codes.ts` already needed locally are now also
+set on studio's Vercel production.
+
+`scripts/partner-digest.ts <sponsor-slug>` is the one Sinéad-
+shaped output: a single paragraph, plain English, suitable for
+pasting into a reply to a venue contact. Today, for Lamb's Hill,
+it reads:
+
+> Lamb's Hill update — 13 May 2026. 3 codes have been issued;
+> no couples have redeemed yet. Codes are live and ready —
+> every couple lands directly in a populated wedding workspace
+> with Lamb's Hill's name on the welcome card. Reply if you'd
+> like another batch of codes.
+
+When couples redeem, the prose adjusts — percentages, last-30d
+counts, most-recent timestamps. Same paragraph shape, evolving
+truth.
+
+Two architecture calls held the line: studio's `entitlements`
+table stays in place but unused (dropping it would have to be
+reversed if Cycle 9+ cross-product identity wants it back, and
+empty tables cost nothing); studio's `redemptions` audit stays
+empty (populating it via a Tasks → studio webhook is real work
+for a number Tasks already has, and /hq/partners reads Tasks
+directly anyway). Both decisions written into the plan doc with
+the reasoning attached, so the next Cycle 9 deliberation starts
+from "here's why we paused" rather than "wait, why didn't we?"
+
+---
+
 ## 2026-05-13 (Plan 8 · Venue Editions · live end-to-end)
 
 ### A real couple, a real code, a real wedding workspace.

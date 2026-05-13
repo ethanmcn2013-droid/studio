@@ -594,6 +594,20 @@ export default function PricingPage() {
                 </div>
               </div>
             </div>
+            {/* Venue Editions surface — quiet line, no CTA, no link.
+                The couples this is for arrive via their venue, not
+                via this page. The line exists for the small set of
+                couples who looked here first. */}
+            <p
+              className="text-ink-quiet"
+              style={{
+                marginTop: 36,
+                fontSize: 15,
+                lineHeight: 1.55,
+              }}
+            >
+              Planning a wedding? Ask your venue.
+            </p>
           </div>
         </section>
 
