@@ -85,10 +85,6 @@ export function RevealProducts() {
         Four products <span className="gold">·</span> one voice
       </div>
 
-      {/* Suite-clickthrough hrefs append #demo so visitors arriving from the
-          umbrella land on the live demo (which sits below the marketing hero).
-          The marketing hero stays for direct visitors. Notes has no demo yet
-          and is unchanged. */}
       <ProductRow
         id="tasks"
         dataKey="tasks"
@@ -97,7 +93,7 @@ export function RevealProducts() {
         essence="Run the work. Without the project-manager voice."
         pills={["Private preview", "Multi-view"]}
         cta="Open the workspace →"
-        href={`${TASKS_URL}#demo`}
+        href={TASKS_URL}
         external
       />
       <ProductRow
@@ -108,7 +104,7 @@ export function RevealProducts() {
         essence="Show what you’re building. In plain English, on a public page."
         pills={["Private preview", "Public roadmaps"]}
         cta="Open the roadmap →"
-        href={`${ROADMAP_URL}#demo`}
+        href={ROADMAP_URL}
         external
       />
       <ProductRow
@@ -119,7 +115,7 @@ export function RevealProducts() {
         essence="A morning briefing. Not a dashboard."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
-        href={`${ANALYTICS_URL}#demo`}
+        href={ANALYTICS_URL}
         external
       />
       <ProductRow
