@@ -15,13 +15,13 @@ export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Project Management without the project-manager voice"
+      aria-label="Signal Studio — Project Management for the 80% not in tech"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
       <h1
         className="reveal-headline"
-        aria-label="Project Management without the project-manager voice."
+        aria-label="Project Management for the 80% not in tech."
       >
         <span className="line line-1">
           <span className="word">
@@ -33,24 +33,30 @@ export function RevealHero() {
         </span>
         <span className="line line-2">
           <span className="word">
-            <span className="word-inner em">without</span>
-          </span>
-        </span>
-        <span className="line line-3">
+            <span className="word-inner">for</span>
+          </span>{" "}
           <span className="word">
             <span className="word-inner">the</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">project-manager</span>
+            <span className="word-inner em">80%</span>
+          </span>
+        </span>
+        <span className="line line-3">
+          <span className="word">
+            <span className="word-inner">not</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">voice.</span>
+            <span className="word-inner">in</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">tech.</span>
           </span>
         </span>
       </h1>
 
       <TypewriterSub
-        text="Four small tools. Plain English. Built for the 80%."
+        text="Four small tools. Plain English. Built for the work, not the workflow."
         startDelayMs={2200}
       />
 

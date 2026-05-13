@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-15T03:30:00Z",
+  updatedAt: "2026-05-15T04:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1717,9 +1717,22 @@ export const seedHqData: HqData = {
       alternatives: "Stay on 'Project management for people not in tech.' or move all the way to 'Cut through the noise.' as H1.",
       risks: "Two H1 changes in 24 hours is brand-churn — relies on this one sticking. Some readers may not have an existing mental model of 'project-manager voice' the way they do of 'tech'.",
       reviewDate: "2026-06-08",
-      status: "Active",
+      status: "Reversed",
       relatedObjects: ["Homepage", "Brand handbook §2", "Messaging Bank"],
-      notes: "Ships with a typewriter sub-hero ('Four small tools. Plain English. Built for the 80%.') and a persistent blinking caret — the 'live doc' gesture.",
+      notes: "Superseded 2026-05-13 by hero-80-not-in-tech — reverted to exclusion-based framing for audience-clarity reasons.",
+    },
+    {
+      id: "hero-80-not-in-tech",
+      decision: "Replace homepage H1 with: Project Management for the 80% not in tech.",
+      category: "Brand",
+      date: "2026-05-13",
+      reason: "Audience-clarity over voice-claim. Names who the suite is for in the H1 itself rather than describing what the suite avoids. Reverses the 2026-05-11 value-based pivot.",
+      alternatives: "Keep 'Project Management without the project-manager voice.' (BRAND.md §2 quotable). Or 'Project Management for the 80%.' without the 'not in tech' qualifier.",
+      risks: "Third H1 in three days — brand churn risk is real. Headline now restates the subhead ('Built for the 80%') so subhead was rewritten to 'Built for the work, not the workflow.' to preserve hero/subhead split. 'Not in tech' framing may read as exclusionary to the broader audience archetypes in BRAND.md §2.1 (operators, coordinators) who don't think of themselves as 'not in tech.'",
+      reviewDate: "2026-06-10",
+      status: "Active",
+      relatedObjects: ["Homepage", "Brand handbook §2", "Messaging Bank", "OG image alt", "SEO title"],
+      notes: "Hero choreography preserved — three-line word-by-word stagger with 'em' emphasis moved from 'without' to '80%'. Subhead rewritten to avoid redundancy with new H1. SEO title + OG alt updated to match.",
     },
     {
       id: "cycle-3-shared-update",
