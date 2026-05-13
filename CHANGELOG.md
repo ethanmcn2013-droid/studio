@@ -5,6 +5,222 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Venue Editions · live end-to-end)
+
+### A real couple, a real code, a real wedding workspace.
+
+Plan 8 has a working bridge today. `signalstudio.ie/redeem/LAMBSHIL-MP93X`
+serves the co-branded landing — Lamb's Hill in an 11px mono eyebrow,
+no logo, four products listed under "What's included," one "Claim
+your seat" CTA. Click it and the couple lands on
+`tasks.signalstudio.ie/redeem/LAMBSHIL-MP93X`, which now properly
+gates on Clerk sign-up first (it didn't earlier in the day — the
+first live walk found a 500, the fix shipped within the hour, the
+honest entry lives in `tasks/CHANGELOG.md`). After sign-up Clerk
+returns the user to the same `/redeem/` URL, the comp_code is
+redeemed against their fresh user row, the entitlement is written,
+and `/welcome` short-circuits straight to `/app/board` with a quiet
+"Compliments of Lamb's Hill" card. No picker. No tutorial. The
+workspace is already populated with a wedding template.
+
+Three Turso tables stood up on studio for sponsor audit
+(`sponsors` / `license_codes` / `redemptions`), with the runtime
+redemption deliberately routed through Tasks's pre-existing
+`comp_codes` + `entitlements` system to avoid building parallel
+infrastructure. `scripts/issue-codes.ts` dual-writes to both DBs —
+studio for who-issued-what-to-whom, Tasks for runtime redemption.
+Three test codes are seeded against Lamb's Hill in prod. The
+operator surface (`/hq/partners`, quiet `/pricing` line, monthly
+digest script) is the next cycle.
+
+A reconciliation doc at `docs/CYCLE_8_3_RECONCILIATION.md` carries
+the full architecture call, the rollback of the original signed-
+handoff approach, and the lesson learned about grepping the Tasks
+repo before declaring redemption infrastructure missing. Saved
+feedback `feedback_cross_repo_grep` was specifically created to
+prevent this and was specifically violated. Now logged twice.
+
+---
+
+## 2026-05-12 (suite chrome · second-route cycle)
+
+### Avatar dropdown gained the siblings; mobile-Tasks got a top bar; Analytics got its first /app shell.
+
+Three pieces shipped together this turn, all sequenced as deferred
+work in the launcher cycle's "what we did NOT ship" list:
+
+1. **Clerk avatar dropdown** now carries "Open <sibling>" rows in
+   all four products (Tasks/Roadmap/Notes/Analytics). Implemented as
+   thin per-repo `<UserButtonWithSuite/>` wrappers around Clerk's
+   official `<UserButton.MenuItems>` + `<UserButton.Link>` API — so
+   the dropdown remains Clerk-native (same hover, same shadow, same
+   kbd focus). Each link opens the sibling product in a new tab so
+   the user keeps the workspace they were standing in. The current
+   product is filtered out (no "Open Tasks" inside Tasks).
+
+   This is a second route to the same destinations the launcher
+   popover already covers. Two routes because the discovery profile
+   differs: launcher = "what users find when they look at the
+   breadcrumb"; avatar dropdown = "what they find when they reach
+   for settings." Both should work; neither is the only way.
+
+2. **Mobile-Tasks top header.** Until this turn, Tasks's mobile
+   chrome was bottom-tabs only — the desktop sidebar's `signal
+   studio. /` breadcrumb didn't exist on phones. New
+   `<MobileSuiteBar/>` is a fixed h-9 bar (md:hidden), carrying the
+   launcher trigger + `tasks·` wordmark. Tasks's `/app` layout
+   gained `pt-9 md:pt-0` to push content below it. The bottom-tab
+   bar is unchanged. Mobile users now have parity with desktop on
+   cross-product jump.
+
+3. **Analytics `/app` shell.** Analytics has been shipping
+   end-to-end (engine + email + cron) but the authenticated routes
+   `/app/brief`, `/app/preview-email`, `/app/settings/notifications`
+   had no in-app layout — they rendered under the root marketing
+   layout with zero chrome. New `analytics/src/app/app/layout.tsx`
+   lays the same chrome contract the other three products carry:
+   `signal studio. /` launcher + `analytics·` wordmark + Clerk
+   UserButton with suite jumps. Header recipe matches the marketing
+   site-nav (sticky, blurred bg, sat 160%) so the in-app chrome
+   reads as the same family.
+
+After this turn, all four products carry the same suite affordance
+in two places (breadcrumb launcher + avatar dropdown) on every
+viewport. The "marketed as separate, jumpable in one click" brief
+holds.
+
+What this turn explicitly did NOT ship: the studio-side reciprocal
+"Continue in [Product]" affordance for signed-in visitors on
+signalstudio.ie (would require Clerk on the umbrella site, which is
+currently unauthenticated marketing — and the existing /work
+product cards already let users into each product, so the marginal
+value of an auth-aware label is small).
+
+---
+
+## 2026-05-12 (suite chrome · launcher cycle)
+
+### The breadcrumb learned to open. Four products, one click.
+
+Two cycles ago the marketing nav got the `signal studio. /`
+breadcrumb prefix. One cycle ago that prefix walked into the
+authenticated workspaces of Tasks and Roadmap (Notes already had
+it). This cycle, the prefix learned a new gesture — click it, a
+small popover blooms below with all four products listed, each
+with a one-word tagline:
+
+```
+Signal Studio
+Four products, one studio.
+
+tasks·       Execution clarity
+roadmap·     Direction clarity        [HERE if current]
+notes·       Capture clarity
+analytics·   Attention clarity
+
+Visit signalstudio.ie →
+```
+
+The current product is de-emphasised with a small uppercase HERE
+tag; the other three open in a new tab so the user keeps the
+workspace they were standing in. The footer row routes to
+signalstudio.ie. No caret, no tab grid, no extra visual weight on
+the trigger — the same 12px ink-quiet `signal studio.` text that
+was already there. Discovery is cursor + click. Escape and
+click-outside both close.
+
+Wired into seven surfaces this turn:
+- Tasks desktop sidebar header
+- Roadmap in-app top bar
+- Notes `/app` notebook chrome
+- Notes homepage suitebar
+- Notes `/wedding-planning` worked example
+- (and via the existing breadcrumb structure on each)
+
+Tasks's command palette also gained a "Jump to" section in the
+empty state — open ⌘P with nothing typed and roadmap, notes,
+analytics surface as quick jumps; type `ro` and only Roadmap
+matches; type something that matches no task and no product and
+the palette stays clean. Roadmap and Notes don't have palettes
+yet, so this is a Tasks-only second gesture; the launcher popover
+is the universal fallback in the meantime.
+
+Notes also gained `src/lib/product-urls.ts` (it was the only
+product without one — URLs had been hard-coded in the homepage
+breadcrumb).
+
+The dissent inside the decision: visible suite chrome inside an
+authenticated product is exactly the move that risks turning four
+sovereign products into a single suite (Confluence/Jira swirl,
+Notion sidebar workspaces, Atlassian app launcher). All three
+patterns make the underlying products feel like tabs, not
+products. The smallest possible intervention here — a popover
+hidden behind a single 12px text trigger that already existed —
+is the move that solves the friction Ethan named ("hard to jump
+between products fast") without buying into the suite-as-product
+mental model. The trigger looks identical to before; the only
+difference is what happens on click.
+
+What this turn explicitly did NOT ship: mobile-Tasks header (the
+bottom-tab surface has no top chrome; adding one is its own
+design call); Clerk UserButton custom dropdown items (Clerk's
+typed `userProfileProps` API needs spelunking — own cycle);
+studio-side reciprocal "Continue in [Product]" affordance for
+signed-in visitors (needs Clerk on the studio site, currently
+unauthenticated marketing); Analytics in-app shell (own cycle —
+the launcher will land there when the shell exists).
+
+---
+
+## 2026-05-12 (suite chrome · in-app pass)
+
+### The breadcrumb crossed from the marketing nav into the workspace.
+
+Yesterday's "Suite chrome consolidated" cycle landed the
+`signal studio. /` prefix on the marketing site-nav of all four
+products. The in-app shells were untouched — Tasks sidebar said
+`tasks·`, Roadmap top bar said `roadmap·`, and only Notes (which
+was already wearing the breadcrumb) gave a logged-in user any way
+to walk back to signalstudio.ie without typing the URL. Three
+different chrome patterns, one breadcrumb, no parity.
+
+Today the breadcrumb walked into the workspace. Tasks's desktop
+sidebar header now reads `signal studio. / tasks·` at h-12.
+Roadmap's in-app top bar now reads `signal studio. / roadmap·`,
+with the wordmark bumped sm→md to match the marketing nav and read
+proportionally next to the 12px prefix. Notes was already correct
+— no change there. Analytics has no in-app shell yet, so this work
+queues for whatever cycle stands one up.
+
+The dissent that nearly killed this: a visible suite affordance
+inside the workspace dilutes the "four separate products"
+position. Counter — the breadcrumb is hierarchical ("this product,
+which is a thing under the studio"), not lateral ("tab 1 of 4"),
+and it's the smallest chrome that solves the friction Ethan named:
+a logged-in user with no way back to the umbrella except the URL
+bar. Picking the smallest possible move means the next cycle
+(launcher popover, palette "Jump to," Clerk dropdown
+standardisation, mobile-Tasks breadcrumb) builds on a stable
+anchor instead of relitigating it.
+
+Implementation: two file edits.
+`tasks/src/components/app/sidebar.tsx` and
+`roadmap/src/app/app/layout.tsx` each import `STUDIO_URL` from
+their `product-urls` module and render the same 12px prefix +
+indigo-dot + 12px slash that the marketing nav has been wearing
+since yesterday. Studio link is a hard `<a>` (not Next `<Link>`)
+to signalstudio.ie — same-window navigation, because clicking the
+breadcrumb means "leave this workspace for the umbrella."
+
+What this turn explicitly did NOT ship: the launcher popover, the
+palette "Jump to," the Clerk UserButton standardisation, the
+studio-side reciprocal "Continue in [Product]" affordance, the
+Analytics in-app shell, and the mobile-Tasks breadcrumb. All
+sequenced for the next cycle once the desktop breadcrumb anchor is
+verified live across both deploys.
+
+---
+
 ## 2026-05-12 (suite review · pass 2)
 
 ### The umbrella grew the pages it was missing.

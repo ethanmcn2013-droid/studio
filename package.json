@@ -7,9 +7,17 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "seed:entitlement": "tsx scripts/seed-entitlement.ts",
+    "create:sponsor": "tsx scripts/create-sponsor.ts",
+    "issue:codes": "tsx scripts/issue-codes.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.3",
+    "drizzle-orm": "^0.45.2",
     "gsap": "3.13.0",
     "lenis": "1.1.20",
     "next": "16.2.5",
@@ -22,9 +30,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^10.3.0",
     "eslint-config-next": "^16.2.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
