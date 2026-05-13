@@ -5,6 +5,43 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Cycle 8.4.6 — monitoring honesty pass)
+
+### Two small admissions, before the pilot ships.
+
+Cycle 8.4.6 is a thirty-minute cycle that earned its slot in front of
+the CSV send. Two corrections:
+
+**`active_30d` was a lie.** The /hq/partners column read like
+engagement; it actually counted "redemptions started in the last 30
+days." For a 12-month gift, that becomes useless after week 5 — and
+worse, it reads as if couples are *using* the workspace when all the
+column measures is *new claims*. Renamed across the helper, the page,
+and the digest CLI to `redeemed_30d` (column header "Redeemed 30d").
+The page descriptor now says explicitly: this counts redemptions, not
+engagement. A couple who claimed two weeks ago is in the count
+whether they've opened the workspace once or live in it daily.
+
+**The silent paths got eyes.** The 2026-05-13 archaeology session
+(the orphaned-redemption one) cost hours because the Clerk webhook
+returned 500 in silence. Tasks-side Sentry capture is now wired on
+both the webhook (missing-secret in production + handler dispatch,
+tagged by event type + svix id) and on `redeemCompCodeAction`
+(tagged by action + truncated code). Expected `ok: false` reasons
+are NOT captured — those are flow outcomes, not errors. No-op when
+`SENTRY_DSN` is unset.
+
+What we deliberately did NOT build, despite the temptation:
+per-redemption funnel events, a `tasks_created_after_redemption`
+usage column, a studio→Tasks webhook to populate the empty
+`redemptions` audit table. At pilot scale (N=10) the right monitoring
+is asking Sinéad to ask her couples at day 7 and day 14. We earn the
+event tables when we have ≥3 partners — not for one.
+
+Tasks repo: commit 8721a95.
+
+---
+
 ## 2026-05-13 (Plan 8 · Cycle 8.4.5 — redemption polish, pre-launch)
 
 ### Four small corrections to the venue-edition flow, before the CSV goes out.

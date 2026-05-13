@@ -48,7 +48,10 @@ export default async function PartnersPage() {
         style={{ fontSize: 17, lineHeight: 1.6 }}
       >
         Each sponsor and where their codes stand. Issued is from studio&rsquo;s
-        license_codes audit. Redeemed and active-30d are read live from Tasks.
+        license_codes audit. Redeemed and redeemed-30d are read live from Tasks.
+        Redeemed-30d counts new redemptions in the last 30 days, NOT product
+        engagement — a couple who claimed two weeks ago is in the count whether
+        they&rsquo;ve opened the workspace once or live in it daily.
       </p>
 
       {loadError ? (
@@ -84,9 +87,9 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
     (acc, s) => ({
       issued: acc.issued + s.codesIssued,
       redeemed: acc.redeemed + s.codesRedeemed,
-      active: acc.active + s.active30d,
+      redeemed30d: acc.redeemed30d + s.redeemed30d,
     }),
-    { issued: 0, redeemed: 0, active: 0 },
+    { issued: 0, redeemed: 0, redeemed30d: 0 },
   );
 
   return (
@@ -107,7 +110,7 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
           Redeemed
         </Cell>
         <Cell header align="right">
-          Active 30d
+          Redeemed 30d
         </Cell>
         <Cell header align="right" style={{ flexBasis: 180 }}>
           Most recent
@@ -141,7 +144,7 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
             </span>
           </Cell>
           <Cell align="right" mono>
-            {s.active30d}
+            {s.redeemed30d}
           </Cell>
           <Cell align="right" mono style={{ flexBasis: 180 }}>
             {s.mostRecentRedemptionAt
@@ -161,7 +164,7 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
           {totals.redeemed}
         </Cell>
         <Cell footer align="right" mono>
-          {totals.active}
+          {totals.redeemed30d}
         </Cell>
         <Cell footer align="right" mono style={{ flexBasis: 180 }} />
       </Row>

@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-15T04:30:00Z",
+  updatedAt: "2026-05-15T05:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",

@@ -10,7 +10,7 @@ export type PartnerStat = {
   sponsor: Sponsor;
   codesIssued: number;
   codesRedeemed: number;
-  active30d: number;
+  redeemed30d: number;
   /** Most recent redemption time across this sponsor's codes (ms epoch),
    *  or null when no couple has redeemed yet. */
   mostRecentRedemptionAt: number | null;
@@ -21,8 +21,10 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 /**
  * Cross-DB read of Tasks's runtime tables. Studio's audit (license_codes)
  * is authoritative for *issued* counts; Tasks's comp_codes + entitlements
- * are authoritative for *redeemed* and *active* counts. The reconciliation
- * doc explains why studio's redemptions table sits empty.
+ * are authoritative for *redeemed* counts. `redeemed30d` is honest
+ * about what it measures: redemptions started in the last 30 days,
+ * NOT actual product engagement. The reconciliation doc explains why
+ * studio's redemptions table sits empty.
  *
  * Reuses the same TASKS_DATABASE_URL + TASKS_AUTH_TOKEN that
  * scripts/issue-codes.ts already needs locally. For production reads
@@ -48,13 +50,13 @@ export async function getPartnerStats(): Promise<PartnerStat[]> {
     return await Promise.all(
       rows.map(async (s) => {
         const codesIssued = await countIssued(s.id);
-        const { codesRedeemed, active30d, mostRecentRedemptionAt } =
+        const { codesRedeemed, redeemed30d, mostRecentRedemptionAt } =
           await readTasksForSponsor(tasksDb, s.slug);
         return {
           sponsor: s,
           codesIssued,
           codesRedeemed,
-          active30d,
+          redeemed30d,
           mostRecentRedemptionAt,
         };
       }),
@@ -77,7 +79,7 @@ async function readTasksForSponsor(
   sponsorSlug: string,
 ): Promise<{
   codesRedeemed: number;
-  active30d: number;
+  redeemed30d: number;
   mostRecentRedemptionAt: number | null;
 }> {
   // comp_codes.notes is a JSON string containing { sponsor_slug, ... }
@@ -103,7 +105,7 @@ async function readTasksForSponsor(
   }
 
   if (sponsorCodes.length === 0) {
-    return { codesRedeemed: 0, active30d: 0, mostRecentRedemptionAt: null };
+    return { codesRedeemed: 0, redeemed30d: 0, mostRecentRedemptionAt: null };
   }
 
   // Tasks entitlements.notes is "comp:CODE" — match any of this
@@ -125,7 +127,7 @@ async function readTasksForSponsor(
     args: notesValues,
   });
 
-  let active30d = 0;
+  let redeemed30d = 0;
   let mostRecentRedemptionAt: number | null = null;
   for (const row of entitlementsRows.rows) {
     const startedAtSec = Number(row.started_at ?? 0);
@@ -133,8 +135,8 @@ async function readTasksForSponsor(
     if (mostRecentRedemptionAt === null) {
       mostRecentRedemptionAt = startedAtSec * 1000;
     }
-    if (startedAtSec >= cutoffSec) active30d += 1;
+    if (startedAtSec >= cutoffSec) redeemed30d += 1;
   }
 
-  return { codesRedeemed, active30d, mostRecentRedemptionAt };
+  return { codesRedeemed, redeemed30d, mostRecentRedemptionAt };
 }

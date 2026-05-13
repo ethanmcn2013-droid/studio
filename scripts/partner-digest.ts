@@ -42,7 +42,7 @@ type Stat = Awaited<
 >[number];
 
 function buildDigest(s: Stat): string {
-  const { sponsor, codesIssued, codesRedeemed, active30d, mostRecentRedemptionAt } = s;
+  const { sponsor, codesIssued, codesRedeemed, redeemed30d, mostRecentRedemptionAt } = s;
   const date = new Date().toLocaleDateString("en-IE", {
     year: "numeric",
     month: "long",
@@ -74,10 +74,10 @@ function buildDigest(s: Stat): string {
     lines.push(
       `${codesIssued} ${codeWord} been issued; ${codesRedeemed} ${coupleWord} redeemed so far (${redemptionPct}%).`,
     );
-    if (active30d > 0 && active30d !== codesRedeemed) {
+    if (redeemed30d > 0 && redeemed30d !== codesRedeemed) {
       lines.push(
-        `${active30d} of those ${
-          active30d === 1 ? "redemption was" : "redemptions were"
+        `${redeemed30d} of those ${
+          redeemed30d === 1 ? "redemption was" : "redemptions were"
         } in the last 30 days.`,
       );
     }
