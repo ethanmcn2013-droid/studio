@@ -1108,10 +1108,14 @@ body {
 
 /* ════════════════════════════════════════════════════════════
    Pricing · per-product marks
-   Continuous-loop variants of the four BRAND.md §4 gestures for
-   the pricing page suite-reveal section. Distinct from the
-   one-shot reveal-stack gestures on the landing page — pricing
-   stays alive while the user reads.
+   Continuous-loop variants of the four suite-spec gestures for
+   the pricing page suite-reveal section. Aligned with the
+   design-system v1 motion catalogue (2026-05-13) so /pricing
+   reads exactly like the asset hub at /brand.
+     - tasks      heartbeat  1.6s
+     - roadmap    advance    2.6s
+     - analytics  tick       2.4s
+     - notes      settle     3.2s
    ════════════════════════════════════════════════════════════ */
 .pricing-mark {
   display: inline-flex;
@@ -1132,64 +1136,52 @@ body {
   transform: translateY(-0.04em);
   position: relative;
   flex: 0 0 auto;
+  transform-origin: center;
 }
 
-/* tasks · pulse — continuous (~2.6s) */
+/* tasks · M·02 heartbeat — paired beats every 1.6s. */
 .pricing-mark[data-key="tasks"] .dot {
-  animation: pricing-pulse 2.6s var(--reveal-ease-glide) infinite;
+  animation: pricing-heartbeat 1.6s var(--reveal-ease-glide) infinite;
 }
-.pricing-mark[data-key="tasks"] .dot::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  border: 1.5px solid var(--accent);
-  opacity: 0;
-  animation: pricing-emit 2.6s var(--reveal-ease-glide) infinite;
-}
-@keyframes pricing-pulse {
-  0%, 60%, 100% { transform: translateY(-0.04em) scale(1); }
-  70%           { transform: translateY(-0.04em) scale(1.28); }
-  80%           { transform: translateY(-0.04em) scale(1); }
-}
-@keyframes pricing-emit {
-  0%, 60% { opacity: 0; transform: scale(0.85); }
-  68%     { opacity: 0.65; transform: scale(1); }
-  100%    { opacity: 0; transform: scale(2.5); }
+@keyframes pricing-heartbeat {
+  0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
+  10%           { transform: translateY(-0.04em) scale(1.22); }
+  20%           { transform: translateY(-0.04em) scale(1); }
+  40%           { transform: translateY(-0.04em) scale(1.12); }
+  50%           { transform: translateY(-0.04em) scale(1); }
 }
 
-/* roadmap · slide — continuous forward sweep (~5.4s) */
+/* roadmap · M·03 advance — drift right 4px, fade, reset, every 2.6s. */
 .pricing-mark[data-key="roadmap"] .dot {
-  animation: pricing-slide 5.4s cubic-bezier(.32, .72, 0, 1) infinite;
+  animation: pricing-advance 2.6s var(--reveal-ease-glide) infinite;
 }
-@keyframes pricing-slide {
-  0%   { transform: translate(0, -0.04em); opacity: 1; }
-  46%  { transform: translate(0.45em, -0.04em); opacity: 1; }
-  54%  { transform: translate(0.45em, -0.04em); opacity: 0; }
-  55%  { transform: translate(-0.2em, -0.04em); opacity: 0; }
-  68%  { transform: translate(0, -0.04em); opacity: 1; }
-  100% { transform: translate(0, -0.04em); opacity: 1; }
+@keyframes pricing-advance {
+  0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
+  60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
+  62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
+  70%  { transform: translateY(-0.04em) translateX(0); opacity: 0; }
+  78%  { transform: translateY(-0.04em) translateX(0); opacity: 1; }
+  100% { transform: translateY(-0.04em) translateX(0); opacity: 1; }
 }
 
-/* analytics · tick — discrete sampled jumps (~3.6s, steps) */
+/* analytics · M·04 tick — scope-style vertical pulse, 2.4s. */
 .pricing-mark[data-key="analytics"] .dot {
-  animation: pricing-tick 3.6s steps(1, end) infinite;
+  animation: pricing-tick 2.4s var(--reveal-ease-glide) infinite;
 }
 @keyframes pricing-tick {
-  0%, 24%   { transform: translate(0, -0.04em); }
-  25%, 49%  { transform: translate(0.18em, -0.04em); }
-  50%, 74%  { transform: translate(0.36em, -0.04em); }
-  75%, 99%  { transform: translate(0.18em, -0.04em); }
-  100%      { transform: translate(0, -0.04em); }
+  0%, 70%, 100% { transform: translateY(-0.04em) scaleY(1); }
+  78%           { transform: translateY(-0.04em) scaleY(1.45) scaleX(0.82); }
+  85%           { transform: translateY(-0.04em) scaleY(0.88) scaleX(1.1); }
+  92%           { transform: translateY(-0.04em) scaleY(1); }
 }
 
 /* notes · caret — sharp on/off blink (~1.1s) */
 .pricing-mark[data-key="notes"] .dot {
-  animation: pricing-caret 1.1s steps(1, end) infinite;
+  animation: pricing-settle 3.2s var(--reveal-ease-glide) infinite;
 }
-@keyframes pricing-caret {
-  0%, 49%   { opacity: 1; }
-  50%, 100% { opacity: 0; }
+@keyframes pricing-settle {
+  0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
+  50%      { transform: translateY(-0.04em) scale(1.05); opacity: 1; }
 }
 
 /* Smaller variant for "what's inside" inline cells */

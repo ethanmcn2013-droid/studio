@@ -58,6 +58,12 @@ export function SiteNav() {
           </Link>
           <Link
             href="/brand"
+            // prefetch={false}: /brand renders 18 inline <img> tags pointing at
+            // /public/brand/logos/*.svg. Default prefetch pulls all of them
+            // into the home page as <link rel="preload"> hints, which fire
+            // "preloaded but not used" warnings for every navigated-away path.
+            // The hub is a one-step click — prefetch isn't worth the noise.
+            prefetch={false}
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
             style={{ letterSpacing: "0.01em" }}
           >
