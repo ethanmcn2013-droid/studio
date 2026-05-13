@@ -5,6 +5,171 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Suite design-system v1 · paper turns white, the dot gets a household)
+
+### One umbrella, one indigo, five wordmarks.
+
+The suite design system landed. The warm-cream era ended on the umbrella —
+`--bg` is pure white now, ink moved from `#18181b` to the spec's `#111111`,
+and the indigo dot got promoted from a per-product motif to the central
+gesture of the whole house. Hairlines do the work shadows would in a louder
+system; `--paper`, `--paper-soft`, `--paper-deep`, `--ink`, `--ink-soft`,
+`--ink-faint`, `--ink-ghost`, `--hairline`, `--hairline-2`, `--indigo-soft`
+all landed as semantic tokens in `globals.css`. The older ramp tokens
+(`--ink-900` etc.) stay aliased so the suite doesn't shatter while pages
+get retouched.
+
+**`<Wordmark variant>` — five marks, five motions.** The component grew from
+"signal studio." to the full five: `signal` (broadcast — emit ring on a
+period, 2.6s), `tasks` (heartbeat — paired beats on a middot, 1.6s),
+`roadmap` (advance — drift right 4px then reset, 2.6s), `analytics` (tick —
+scope-style vertical pulse, 2.4s), `notes` (settle — slow breath, 3.2s).
+Period = umbrella + nouns; middot = verbs. Reduced-motion silences all of
+them. Default still renders the umbrella, animate=false — so the nav and
+footer call sites keep working.
+
+**`/brand` — the public asset hub.** A new public route at
+`signalstudio.ie/brand` houses the full brand index: wordmark anatomy,
+motion catalogue, refusal list, the palette, the type scale, voice rules,
+and **eighteen downloadable SVGs** — house wordmark + variants, four product
+wordmarks + lockups + square marks. Email signatures (full + mini) ship
+as plain-text downloads too. The page sells nothing; it just makes the
+brand available. Added to nav + sitemap.
+
+**What I didn't touch.** Existing surfaces still render — the Reveal
+landing, the pricing per-product marks, the press page, Signal HQ. Those
+get retouched per-page as the rollout reaches Tasks, Roadmap, Analytics,
+Notes. The `.studio-mark` and `.notes-mark` CSS classes stay (used by
+existing components); the new canonical surface is `.brand-mark`
+(via `<Wordmark>`).
+
+**Carries forward.** Phase 2 is Tasks — same token set, same wordmark
+refactor (heartbeat, 1.6s), primitives walked through. Then Roadmap,
+Analytics, Notes. Each one pauses for spot-check.
+
+---
+
+## 2026-05-13 (Suite review pass · cross-tenant leaks closed, partners moved to HTTP, demo brought back in line)
+
+### Quiet day with a long diff.
+
+Audited all five repos end-to-end with five parallel reviewers, then
+worked the punch list. Most of what landed was small, but a few were
+the kind of thing that doesn't show up in a screenshot.
+
+**Cross-tenant leaks (Tasks).** `/api/calendar/[workspaceId]` was
+reachable by any signed-in user with any workspace id — pulled task
+titles across tenants. `removeCommentAction` deleted any comment by
+id regardless of author or workspace. Both closed: calendar route now
+joins through `workspace_members`; comment delete scopes on
+`(active workspace, author === caller)`. Honest docstring on the
+calendar route too — Apple Calendar can't carry a Clerk session, so
+the "subscribe to your workspace from your calendar app" gesture
+needs the token-shaped URL we keep saying we'll build.
+
+**Partners stats over HTTP (Studio + Tasks).** Studio's `/hq/partners`
+used to read Tasks's `comp_codes` and `entitlements` tables directly
+over a Turso client. One rename in Tasks would silently break the
+operator page. Now a real endpoint:
+`tasks.signalstudio.ie/api/internal/partner-stats?sponsor=<slug>`,
+bearer-authed via `PARTNER_STATS_SECRET`. Studio fetches it with a
+5s timeout and a fail-safe to zero counts. Schema changes on Tasks
+are now a versioned contract, not folklore.
+
+**Hot-column indexes on Tasks (applied to prod).** Sixteen indexes
+that should have been in `0000_flat_blur.sql`: `tasks.workspace_id`,
+`comments.task_id`, `activities(task_id, created_at DESC)`,
+`activities(workspace_id, created_at DESC)`,
+`notifications(user_id, created_at DESC)`,
+`entitlements(user_id, workspace_id)`, the `workspace_members`
+lookup, share-link visit history, and a few neighbours. Every read
+was a full table scan before this. Applied to `ethanmcnamara-tasks`
+Turso via the CLI; idempotent file at
+`drizzle/0003_hot_indexes.sql` lives in the repo for fresh envs.
+
+**Suite-wide security headers (Tasks + Analytics).** The Plan 4.1
+header set (HSTS, X-Frame, Referrer-Policy, Permissions-Policy, CSP
+Report-Only) was supposed to cover all four products. Tasks and
+Analytics were on the missing-list. Both fixed today, with the
+Clerk-flavoured CSP that Roadmap already ships. The memory entry
+that claimed coverage on day one was corrected too — three drift
+points named honestly.
+
+**Tasks Sentry, finally doing something.** `beforeSend` in
+`src/instrumentation.ts` was a no-op that returned the event
+unchanged, with a comment about anti-noise that lied. Replaced with
+a real scrubber in `src/lib/sentry-scrub.ts`: reduces `user` to id
+only, drops `cookies`/`data`/`query_string`, redacts auth-shaped
+headers, filters clerk/stripe/svix breadcrumbs. `sendDefaultPii:
+false` everywhere — defaults were sending IP, cookies, and Clerk
+session tokens to Sentry.
+
+**Roadmap rate-limit, finally working.** `getClientIp` called
+`require("next/headers")` synchronously and `headers()` synchronously
+— against Next 16's async API. Every call threw and dropped to a
+single shared `"unknown"` bucket. Workspace-create and source-save
+were unprotected. Now async, awaited properly. Side fixes: missing
+workspace columns got a committed migration (prod was already at
+parity via earlier `db:push`); `upsertParsedItems` +
+`seedWorkspaceFromTemplate` wrapped in transactions; activity feed
+flipped from oldest-20 to newest-20; rawMarkdown capped at 200KB;
+workspace name capped at 80 chars.
+
+**Analytics cron idempotency + concurrency + GET-safe unsubscribe.**
+`lastSentAt` is now read as a filter on the cron — a double-fire
+won't double-send. Loop replaced with `Promise.all` in chunks of 6
+so the fanout doesn't fall off a cliff past ~80 users. `/u/[token]`
+no longer mutates on GET — Slack link unfurls and AV scanners
+silently unsubscribed users before. Now a confirmation step,
+server-action POST to actually flip cadence. RFC 8058
+`/api/unsubscribe/[token]` POST stays auto-confirming for the mail
+clients that need it. `tasksDbSource` got try/catches around both
+queries so one user's broken Tasks read doesn't kill the whole cron.
+Voice helpers (`greeting` / `summaryLine` / `graceNote`) hoisted to
+`@/lib/briefing/voice` — they were duplicated verbatim across web,
+HTML email, and plain-text email.
+
+**Reality check on Analytics claims.** Memory + `/method` copy
+claimed "10 triggers, ~55 phrasings" — code has six and eighteen.
+The trigger file's own comment said "Four, intentionally" which
+isn't right either. Marketing copy and code comments now say
+"eighteen phrasings"; memory amended to point at the real numbers
+without pretending the older claim shipped.
+
+**Notes demo brought back in line with PRODUCT.md.** The marketing
+demo did a Tags-view morph and a long-press → "Promote to Tasks"
+menu — two specific contract violations (§4 no views, §7 no
+taxonomy, §11 deliberate two-step extraction). Ripped out four
+showcase components (`view-toggle`, `tags-view`, `promote-menu`,
+`tasks-edge`); demo is now capture × 3 → search → reset. The
+extract-to-Tasks beat will return when designed deliberately
+against the shipped Notebook UX. Same pass: tags stripped from
+`CaptureEntry` type; `startup` audience pack (investor moat, SOC 2
+auditor, fintech founder Y — exactly the tech-bro register §2 says
+Notes isn't for) retired and replaced with `freelance` for a
+freelance designer.
+
+**Studio homepage gained a landmark.** `/accessibility` claimed
+"Skip links land users at main content" — the homepage had neither
+a skip-link nor a `<main>` element. Both added. Three unused
+landing-component files (`hero`, `manifesto`, `products-grid` —
+488 LOC of an earlier aesthetic) deleted.
+
+**Suite hygiene.** Duplicate `package-lock.json` files removed from
+Tasks/Roadmap/Notes (pnpm-only going forward). Stale
+`better-sqlite3` references stripped from Tasks (dependency removed
+from `package.json`, dead `serverExternalPackages` and
+`outputFileTracingIncludes` removed from `next.config.ts`, seed
+rewritten against libSQL drizzle).
+
+The two things this pass didn't touch and the operator still owns:
+verify the daily-briefing cron is actually firing in Vercel logs,
+and set `PARTNER_STATS_SECRET` on Studio + Tasks Vercel projects
+(same value both sides — Studio's `/hq/partners` shows zeros until
+it lands).
+
+---
+
 ## 2026-05-13 (Pricing surface · side-by-side compare + tier reorder)
 
 ### Two €0 tiers first. A shape-not-features comparison underneath.

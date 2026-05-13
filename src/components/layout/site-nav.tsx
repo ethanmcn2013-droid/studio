@@ -57,6 +57,13 @@ export function SiteNav() {
             About
           </Link>
           <Link
+            href="/brand"
+            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Brand
+          </Link>
+          <Link
             href="/pricing"
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
             style={{ letterSpacing: "0.01em" }}

@@ -30,23 +30,43 @@
   --ink-900: #18181b;
   --ink-950: #09090b;
 
-  /* ── Semantic surfaces ────────────────────────────────────── */
-  --bg:          #fafaf7; /* warm-stone, same family baseline */
-  --bg-elev:     #fffefa; /* warm-stone elevation — never pure white per BRAND.md §5 */
-  --bg-deep:     #f4f4f0;
+  /* ── Semantic surfaces · design-system v1 (2026-05-13) ────── */
+  /* Paper is white now. The warm cream era ended when the suite
+     design system locked. Hairlines do the work shadows would in
+     a louder system. */
+  --paper:       #ffffff;
+  --paper-elev:  #ffffff;
+  --paper-soft:  #fafafa;
+  --paper-deep:  #f4f4f5;
 
-  --border:      #e4e4e7;
-  --border-soft: #ececec;
+  /* Legacy aliases retained so older surfaces don't break. */
+  --bg:          var(--paper);
+  --bg-elev:     var(--paper-elev);
+  --bg-deep:     var(--paper-deep);
+
+  /* Hairlines — stronger than the cream era; pure white needs definition. */
+  --hairline:    rgba(17, 17, 17, 0.10);
+  --hairline-2:  rgba(17, 17, 17, 0.06);
+
+  --border:      var(--hairline);
+  --border-soft: var(--hairline-2);
   --line:        var(--border);
   --line-soft:   var(--border-soft);
 
-  --text:        var(--ink-900);
-  --text-muted:  var(--ink-500);
-  --text-faint:  var(--ink-400);
-  --ink:         var(--ink-900);
-  --ink-soft:    var(--ink-700);
-  --ink-quiet:   var(--ink-500);
-  --ink-faint:   var(--ink-400);
+  /* Ink — off-black, never pure black. Match the system spec exactly. */
+  --ink:         #111111;
+  --ink-soft:    #3f3f46;
+  --ink-faint:   #71717a;
+  --ink-ghost:   #d4d4d8;
+  --ink-quiet:   var(--ink-faint);
+  --text:        var(--ink);
+  --text-muted:  var(--ink-faint);
+  --text-faint:  var(--ink-ghost);
+
+  /* Indigo aliases — semantic tokens used by the design system spec. */
+  --indigo:      var(--accent);
+  --indigo-100:  #e0deff;
+  --indigo-soft: rgba(79, 70, 229, 0.12);
 
   /* ── Brand semantics → accent ────────────────────────────── */
   --brand:      var(--accent);
@@ -86,7 +106,8 @@
               0 1px 3px rgba(24, 24, 27, .04);
   --shadow-3: 0 24px 60px -20px rgba(24, 24, 27, .18),
               0 8px 24px -8px rgba(24, 24, 27, .08);
-  --shadow-accent: 0 12px 32px -12px rgba(201, 169, 106, .38);
+  --shadow-accent: 0 12px 32px -12px rgba(79, 70, 229, .38);
+  --shadow-indigo: var(--shadow-accent);
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -133,6 +154,16 @@
   --color-text-muted:  var(--text-muted);
   --color-text-faint:  var(--text-faint);
 
+  /* Paper + indigo semantic colors (design system v1) */
+  --color-paper:       var(--paper);
+  --color-paper-elev:  var(--paper-elev);
+  --color-paper-soft:  var(--paper-soft);
+  --color-paper-deep:  var(--paper-deep);
+  --color-indigo:      var(--indigo);
+  --color-indigo-soft: var(--indigo-soft);
+  --color-hairline:    var(--hairline);
+  --color-hairline-2:  var(--hairline-2);
+
   /* Type */
   --font-sans:    var(--font-geist-sans);
   --font-mono:    var(--font-geist-mono);
@@ -151,6 +182,7 @@
   --shadow-2:      var(--shadow-2);
   --shadow-3:      var(--shadow-3);
   --shadow-accent: var(--shadow-accent);
+  --shadow-indigo: var(--shadow-indigo);
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -1219,4 +1251,119 @@ body {
   .reveal-closing-sign,
   .reveal-closing-addr { opacity: 1 !important; transform: none !important; }
   .reveal-closing-rule { width: 132px !important; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   Brand mark · canonical (design system v1, 2026-05-13)
+   Five wordmarks, five motions, one indigo. Used by the
+   Wordmark component and the /brand asset hub.
+     - signal studio.  broadcast  2.6s  (period, baseline)
+     - tasks·          heartbeat  1.6s  (middot, lifted)
+     - roadmap·        advance    2.6s  (middot, lifted)
+     - analytics·      tick       2.4s  (middot, lifted)
+     - notes.          settle     3.2s  (period, baseline)
+   Period = umbrella + nouns. Middot = verbs.
+   ════════════════════════════════════════════════════════════ */
+.brand-mark {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  line-height: 1;
+  white-space: nowrap;
+}
+.brand-mark .word { display: inline-block; line-height: 0.95; }
+.brand-mark .pd {
+  color: var(--indigo);
+  font-weight: 600;
+  margin-left: 0.02em;
+  display: inline-block;
+  transform-origin: center;
+}
+.brand-mark .md {
+  display: inline-block;
+  width: 0.16em;
+  height: 0.16em;
+  border-radius: 50%;
+  background: var(--indigo);
+  margin-left: 0.06em;
+  transform: translateY(-0.62em);
+  transform-origin: center;
+  flex: 0 0 auto;
+}
+
+.brand-mark[data-variant="signal"] .pd { position: relative; }
+.brand-mark[data-variant="signal"].is-live .pd {
+  animation: brand-signal-emit 2.6s var(--spring-glide) infinite;
+}
+.brand-mark[data-variant="signal"].is-live .ring {
+  position: absolute;
+  right: 0;
+  bottom: 0.06em;
+  width: 0.18em;
+  height: 0.18em;
+  border-radius: 50%;
+  border: 1.2px solid var(--indigo);
+  transform-origin: center;
+  animation: brand-signal-ring 2.6s var(--spring-glide) infinite;
+  pointer-events: none;
+}
+@keyframes brand-signal-emit {
+  0%, 70%, 100% { transform: scale(1); }
+  80%           { transform: scale(1.25); }
+  90%           { transform: scale(1); }
+}
+@keyframes brand-signal-ring {
+  0%, 60% { opacity: 0; transform: scale(1); }
+  65%     { opacity: 0.55; transform: scale(1); }
+  100%    { opacity: 0; transform: scale(2.6); }
+}
+
+.brand-mark[data-variant="tasks"].is-live .md {
+  animation: brand-tasks-beat 1.6s var(--spring-glide) infinite;
+}
+@keyframes brand-tasks-beat {
+  0%, 30%, 100% { transform: translateY(-0.62em) scale(1); }
+  10%           { transform: translateY(-0.62em) scale(1.22); }
+  20%           { transform: translateY(-0.62em) scale(1); }
+  40%           { transform: translateY(-0.62em) scale(1.12); }
+  50%           { transform: translateY(-0.62em) scale(1); }
+}
+
+.brand-mark[data-variant="roadmap"].is-live .md {
+  animation: brand-roadmap-advance 2.6s var(--spring-glide) infinite;
+}
+@keyframes brand-roadmap-advance {
+  0%   { transform: translateY(-0.62em) translateX(0); opacity: 1; }
+  60%  { transform: translateY(-0.62em) translateX(4px); opacity: 1; }
+  62%  { transform: translateY(-0.62em) translateX(4px); opacity: 0; }
+  70%  { transform: translateY(-0.62em) translateX(0); opacity: 0; }
+  78%  { transform: translateY(-0.62em) translateX(0); opacity: 1; }
+  100% { transform: translateY(-0.62em) translateX(0); opacity: 1; }
+}
+
+.brand-mark[data-variant="analytics"].is-live .md {
+  animation: brand-analytics-tick 2.4s var(--spring-glide) infinite;
+}
+@keyframes brand-analytics-tick {
+  0%, 70%, 100% { transform: translateY(-0.62em) scaleY(1); }
+  78%           { transform: translateY(-0.62em) scaleY(1.45) scaleX(0.82); }
+  85%           { transform: translateY(-0.62em) scaleY(0.88) scaleX(1.1); }
+  92%           { transform: translateY(-0.62em) scaleY(1); }
+}
+
+.brand-mark[data-variant="notes"].is-live .pd {
+  animation: brand-notes-settle 3.2s var(--spring-glide) infinite;
+}
+@keyframes brand-notes-settle {
+  0%, 100% { transform: scale(0.92); opacity: 0.85; }
+  50%      { transform: scale(1.05); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark .pd,
+  .brand-mark .md,
+  .brand-mark .ring { animation: none !important; opacity: 1 !important; }
 }
