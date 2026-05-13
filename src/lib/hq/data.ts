@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-13T20:00:00Z",
+  updatedAt: "2026-05-13T21:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1889,7 +1889,7 @@ export const seedHqData: HqData = {
       reviewDate: "2026-06-02",
       status: "Active",
       relatedObjects: ["Founding Venue Programme", "founding-venue-pilot", "signal-growth/outbound/wedding-venue-outreach-kit.md", "BRAND.md mission", "/weddings"],
-      notes: "Counter-argument named inside the decision: a one-week deadline would test pitch sharpness more honestly than a three-week one. Reason for picking three: the campaign already lives in a 2026-05-13 → 2026-06-30 window; forcing five days inside a six-week plan is theatre. If three weeks lands with three conversations and no learning, the failure mode is that the deadline was too generous — that's what the 2026-06-02 review date exists to surface. Status check at the review date: did three conversations happen? If yes and learning was thin, next cycle tightens to one week. If no, the wedge needs a different offer or a different list, not more polish.",
+      notes: "Counter-argument named inside the decision: a one-week deadline would test pitch sharpness more honestly than a three-week one. Reason for picking three: the campaign already lives in a 2026-05-13 → 2026-06-30 window; forcing five days inside a six-week plan is theatre. If three weeks lands with three conversations and no learning, the failure mode is that the deadline was too generous — that's what the 2026-06-02 review date exists to surface. Status check at the review date: did three conversations happen? If yes and learning was thin, next cycle tightens to one week. If no, the wedge needs a different offer or a different list, not more polish. 2026-05-13 update: 10 Lamb's Hill codes minted (LAMBSHIL-UPNA2/6UNHH/RDHBG/CXXQN/53UMW/MQWYV/B34QB/VCAXG/DFZ8G/43TY6); pilot-send draft staged at signal-growth/outbound/lambs-hill-pilot-send.md awaiting voice rewrite. Send gated on 4 operator actions: Clerk webhook rotate, incognito redemption walk, DKIM generation, test-send to operator inbox. The 10-venue list (2026-05-15 input gate) has not started.",
     },
   ],
   feedback: [
