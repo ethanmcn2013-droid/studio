@@ -10,7 +10,7 @@ import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
 const SOCIALS = [
   {
     label: "X",
-    href: "https://x.com/signalstudio_ie",
+    href: "https://x.com/signalstudio_ie", // TODO: confirm handle
     title: "Signal Studio on X",
     svg: (
       // X (Twitter) glyph
@@ -21,7 +21,7 @@ const SOCIALS = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/@signalstudio_ie",
+    href: "https://www.youtube.com/@signalstudio_ie", // TODO: confirm handle
     title: "Signal Studio on YouTube",
     svg: (
       // YouTube play-in-rounded-rect glyph
@@ -32,7 +32,7 @@ const SOCIALS = [
   },
   {
     label: "TikTok",
-    href: "https://www.tiktok.com/@signalstudio_ie",
+    href: "https://www.tiktok.com/@signalstudio_ie", // TODO: confirm handle
     title: "Signal Studio on TikTok",
     svg: (
       // TikTok musical-note glyph
@@ -43,7 +43,7 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/signal-studio-ie",
+    href: "https://www.linkedin.com/company/signal-studio-ie", // TODO: confirm handle
     title: "Signal Studio on LinkedIn",
     svg: (
       // LinkedIn "in" glyph
