@@ -42,7 +42,14 @@ type Stat = Awaited<
 >[number];
 
 function buildDigest(s: Stat): string {
-  const { sponsor, codesIssued, codesRedeemed, redeemed30d, mostRecentRedemptionAt } = s;
+  const {
+    sponsor,
+    codesIssued,
+    codesRedeemed,
+    redeemed30d,
+    reachedBoard,
+    mostRecentRedemptionAt,
+  } = s;
   const date = new Date().toLocaleDateString("en-IE", {
     year: "numeric",
     month: "long",
@@ -79,6 +86,12 @@ function buildDigest(s: Stat): string {
         `${redeemed30d} of those ${
           redeemed30d === 1 ? "redemption was" : "redemptions were"
         } in the last 30 days.`,
+      );
+    }
+    if (reachedBoard < codesRedeemed) {
+      const gap = codesRedeemed - reachedBoard;
+      lines.push(
+        `${gap} ${gap === 1 ? "couple hasn't" : "couples haven't"} reached the workspace yet — the redemption succeeded but the board hasn't loaded for them.`,
       );
     }
     if (mostRecentRedemptionAt) {

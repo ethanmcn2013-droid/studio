@@ -48,10 +48,10 @@ export default async function PartnersPage() {
         style={{ fontSize: 17, lineHeight: 1.6 }}
       >
         Each sponsor and where their codes stand. Issued is from studio&rsquo;s
-        license_codes audit. Redeemed and redeemed-30d are read live from Tasks.
-        Redeemed-30d counts new redemptions in the last 30 days, NOT product
-        engagement — a couple who claimed two weeks ago is in the count whether
-        they&rsquo;ve opened the workspace once or live in it daily.
+        license_codes audit. Redeemed, reached-board, and redeemed-30d are read
+        live from Tasks. Reached-board counts couples whose first /app/board
+        render landed after they redeemed — the funnel-exit signal. Redeemed-30d
+        counts new redemptions in the last 30 days, NOT engagement.
       </p>
 
       {loadError ? (
@@ -87,9 +87,10 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
     (acc, s) => ({
       issued: acc.issued + s.codesIssued,
       redeemed: acc.redeemed + s.codesRedeemed,
+      reachedBoard: acc.reachedBoard + s.reachedBoard,
       redeemed30d: acc.redeemed30d + s.redeemed30d,
     }),
-    { issued: 0, redeemed: 0, redeemed30d: 0 },
+    { issued: 0, redeemed: 0, reachedBoard: 0, redeemed30d: 0 },
   );
 
   return (
@@ -108,6 +109,9 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
         </Cell>
         <Cell header align="right">
           Redeemed
+        </Cell>
+        <Cell header align="right">
+          Reached board
         </Cell>
         <Cell header align="right">
           Redeemed 30d
@@ -144,6 +148,12 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
             </span>
           </Cell>
           <Cell align="right" mono>
+            {s.reachedBoard}
+            <span className="ml-1 text-ink-quiet">
+              ({pct(s.reachedBoard, s.codesRedeemed)})
+            </span>
+          </Cell>
+          <Cell align="right" mono>
             {s.redeemed30d}
           </Cell>
           <Cell align="right" mono style={{ flexBasis: 180 }}>
@@ -162,6 +172,9 @@ function PartnerTable({ stats }: { stats: PartnerStat[] }) {
         </Cell>
         <Cell footer align="right" mono>
           {totals.redeemed}
+        </Cell>
+        <Cell footer align="right" mono>
+          {totals.reachedBoard}
         </Cell>
         <Cell footer align="right" mono>
           {totals.redeemed30d}

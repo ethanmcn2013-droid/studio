@@ -5,6 +5,42 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Cycle 8.4.7 — the "did the next person finish?" column)
+
+### One boolean. One column. The minimum monitoring earns its place.
+
+After Cycle 8.4.6 made the existing /hq/partners honest, 8.4.7 added
+the single column that actually answers an operator question: *of the
+couples who redeemed, how many reached their workspace?*
+
+Tasks's `entitlements` table gained a nullable `reached_board_at`
+timestamp; it's stamped idempotently on the first
+`/app/board?welcome=venue` render. Studio's `getPartnerStats` reads
+the new column via a try/fallback SELECT so /hq/partners stays
+loadable through the migration window. The column shows `<count>
+(<%>)` where the percent is reached/redeemed — funnel only
+meaningfully starts at redemption, not at issuance.
+
+Partner-digest CLI gained one sentence: when reached &lt; redeemed,
+it narrates the gap explicitly. "*Two couples haven't reached the
+workspace yet — the redemption succeeded but the board hasn't loaded
+for them.*" That's the line you actually want when Sinéad asks how
+it's going.
+
+Conscious non-build, restated: no per-event funnel table, no email
+open tracking, no engagement column. At N=10 the right monitoring is
+asking Sinéad to ask the couples; we earn event infrastructure at
+venue #3, not before. The brand position is restraint and the
+back-office data ethic mirrors the user-facing one.
+
+Operator action: apply Tasks's `drizzle/0001_add_reached_board_at.sql`
+ALTER to prod Turso before the next /hq/partners visit. Studio falls
+back gracefully (reachedBoard: 0) until it lands; no broken pages.
+
+Tasks repo: commit 3f0aa56.
+
+---
+
 ## 2026-05-13 (Plan 8 · Cycle 8.4.6 — monitoring honesty pass)
 
 ### Two small admissions, before the pilot ships.

@@ -11,6 +11,12 @@ export type PartnerStat = {
   codesIssued: number;
   codesRedeemed: number;
   redeemed30d: number;
+  /** Couples who actually reached the wedding board after redeeming
+   *  (the redemption funnel's exit signal). Read from Tasks's
+   *  entitlements.reached_board_at — set idempotently on first
+   *  /app/board?welcome=venue render. The "did the next person
+   *  finish?" answer. */
+  reachedBoard: number;
   /** Most recent redemption time across this sponsor's codes (ms epoch),
    *  or null when no couple has redeemed yet. */
   mostRecentRedemptionAt: number | null;
@@ -50,13 +56,18 @@ export async function getPartnerStats(): Promise<PartnerStat[]> {
     return await Promise.all(
       rows.map(async (s) => {
         const codesIssued = await countIssued(s.id);
-        const { codesRedeemed, redeemed30d, mostRecentRedemptionAt } =
-          await readTasksForSponsor(tasksDb, s.slug);
+        const {
+          codesRedeemed,
+          redeemed30d,
+          reachedBoard,
+          mostRecentRedemptionAt,
+        } = await readTasksForSponsor(tasksDb, s.slug);
         return {
           sponsor: s,
           codesIssued,
           codesRedeemed,
           redeemed30d,
+          reachedBoard,
           mostRecentRedemptionAt,
         };
       }),
@@ -80,6 +91,7 @@ async function readTasksForSponsor(
 ): Promise<{
   codesRedeemed: number;
   redeemed30d: number;
+  reachedBoard: number;
   mostRecentRedemptionAt: number | null;
 }> {
   // comp_codes.notes is a JSON string containing { sponsor_slug, ... }
@@ -105,29 +117,55 @@ async function readTasksForSponsor(
   }
 
   if (sponsorCodes.length === 0) {
-    return { codesRedeemed: 0, redeemed30d: 0, mostRecentRedemptionAt: null };
+    return {
+      codesRedeemed: 0,
+      redeemed30d: 0,
+      reachedBoard: 0,
+      mostRecentRedemptionAt: null,
+    };
   }
 
   // Tasks entitlements.notes is "comp:CODE" — match any of this
   // sponsor's codes. started_at is stored as a unix timestamp in
   // seconds (Drizzle `mode: "timestamp"`), so the cutoff is also
-  // in seconds.
+  // in seconds. reached_board_at is also seconds — but here we only
+  // need IS NOT NULL, so unit is moot.
   const placeholders = sponsorCodes.map(() => "?").join(",");
   const notesValues = sponsorCodes.map((c) => `comp:${c}`);
   const cutoffSec = Math.floor((Date.now() - 30 * DAY_MS) / 1000);
 
-  const entitlementsRows = await tasksDb.execute({
-    sql: `
-      SELECT started_at
-      FROM entitlements
-      WHERE source = 'comp'
-        AND notes IN (${placeholders})
-      ORDER BY started_at DESC
-    `,
-    args: notesValues,
-  });
+  // Try the column-aware SELECT first; fall back to the original
+  // shape when the prod Turso ALTER (drizzle/0001) hasn't run yet so
+  // /hq/partners stays loadable through the migration window.
+  let entitlementsRows: Awaited<ReturnType<typeof tasksDb.execute>>;
+  let reachedBoardColumnAvailable = true;
+  try {
+    entitlementsRows = await tasksDb.execute({
+      sql: `
+        SELECT started_at, reached_board_at
+        FROM entitlements
+        WHERE source = 'comp'
+          AND notes IN (${placeholders})
+        ORDER BY started_at DESC
+      `,
+      args: notesValues,
+    });
+  } catch {
+    reachedBoardColumnAvailable = false;
+    entitlementsRows = await tasksDb.execute({
+      sql: `
+        SELECT started_at
+        FROM entitlements
+        WHERE source = 'comp'
+          AND notes IN (${placeholders})
+        ORDER BY started_at DESC
+      `,
+      args: notesValues,
+    });
+  }
 
   let redeemed30d = 0;
+  let reachedBoard = 0;
   let mostRecentRedemptionAt: number | null = null;
   for (const row of entitlementsRows.rows) {
     const startedAtSec = Number(row.started_at ?? 0);
@@ -136,7 +174,10 @@ async function readTasksForSponsor(
       mostRecentRedemptionAt = startedAtSec * 1000;
     }
     if (startedAtSec >= cutoffSec) redeemed30d += 1;
+    if (reachedBoardColumnAvailable && row.reached_board_at != null) {
+      reachedBoard += 1;
+    }
   }
 
-  return { codesRedeemed, redeemed30d, mostRecentRedemptionAt };
+  return { codesRedeemed, redeemed30d, reachedBoard, mostRecentRedemptionAt };
 }
