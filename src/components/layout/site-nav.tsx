@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/brand/wordmark";
+import { ProductSwitcher } from "@/components/layout/product-switcher";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,6 +36,7 @@ export function SiteNav() {
         </Link>
 
         <nav aria-label="Site navigation" className="flex items-center gap-5">
+          <ProductSwitcher />
           <Link
             href="/work"
             className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
