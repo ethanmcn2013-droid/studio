@@ -5,6 +5,47 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Cycle 8.4.5 — redemption polish, pre-launch)
+
+### Four small corrections to the venue-edition flow, before the CSV goes out.
+
+A four-agent panel — creative-director, ux-director, ux-tester,
+strategy — walked the venue-edition flow end-to-end the morning after
+8.4 shipped and converged on four things worth doing before Lamb's
+Hill gets a code batch. Two hours of work. One deploy. The Tasks
+changelog narrates the code side; the suite-side residue is:
+
+The sponsor-to-couple email template now lives at
+`docs/VENUE_EDITION_EMAIL_TEMPLATE.md`. Plain text, sent from Sinéad's
+own address, written in BRAND.md §3 voice — no exclamation marks, one
+sentence of what-it-is, "yours alone, activates once" to preempt the
+per-couple confusion. The template was the missing first-touch
+surface — without it, our first-impression copy was uncontrolled the
+moment a venue contact wrote their own. It exists before the CSV
+does.
+
+Strategy heuristic locked into the cycle doc:
+
+> *Would a tired adult thank us for this, or skip past it?*
+
+Position B (restraint over warmth) was chosen against Positions A and
+C. A wedding-stressed couple has been over-charmed by twelve other
+vendors this month; the win isn't surprise-and-delight, it's reading
+like a real person.
+
+Deferred to a "Cycle 8.5.5 — polish v2" post-retro: IncludedStack box
+→ ruled list, "sponsoring" → softer phrasing on the studio landing,
+"Claim your seat" CTA tone, the "every view is the same items" jargon
+in VenueWelcomeCard, sponsor-named tasks in the seeded wedding
+template, and `already_used` self-vs-other routing.
+
+Cycle 8.4.5 closes the runway for 8.5. Two operator actions still
+gate the cycle start: Clerk webhook signing-secret rotation +
+redeploy, and one incognito walk to validate the corrected post-Clerk
+half.
+
+---
+
 ## 2026-05-13 (Plan 8 · Cycle 8.4 — operator surface)
 
 ### One quiet line on /pricing. One private view at /hq/partners. One paragraph from the CLI.
