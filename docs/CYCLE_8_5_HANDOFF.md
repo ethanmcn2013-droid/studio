@@ -1,7 +1,11 @@
 # Cycle 8.5 — Handoff (resume here next session)
 
 **Last updated:** 2026-05-13 (end of session)
-**Status:** Plan 8 through Cycle 8.4 is shipped + deployed + pushed. Cycle 8.5 (Lamb's Hill provision + soft launch) is the next cycle. One operator action and one in-browser walk gate it.
+**Status:** Plan 8 through Cycle 8.4 is shipped + deployed + pushed. **Cycle 8.4.5 (redemption-flow polish) now sequences in front of 8.5 — see `docs/CYCLE_8_4_5_REDEMPTION_POLISH.md`.** Cycle 8.5 (Lamb's Hill provision + soft launch) follows once 8.4.5 closes. One operator action and one in-browser walk gate the whole sequence.
+
+## New: Cycle 8.4.5 inserts before this
+
+A four-agent panel (creative-director, ux-director, ux-tester, strategy) reviewed the redemption flow at end of session 2026-05-13 and converged on four items worth shipping before Lamb's Hill gets the CSV. All four are unblocking improvements rather than additions — they fix the brand-thread breakage at the Clerk sign-up seam, the elided success moment, the misuse of system-success-green for what should be a wedding-audience-accent moment, and the missing sponsor-to-couple email. Full implementation plan: **`docs/CYCLE_8_4_5_REDEMPTION_POLISH.md`**. Estimate: ~2 hours + one deploy slot. Open that doc first tomorrow.
 
 ---
 
