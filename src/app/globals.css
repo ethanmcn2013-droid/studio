@@ -542,8 +542,14 @@ body {
 }
 .reveal-headline .word-inner {
   display: inline-block;
-  transform: translateY(110%);
-  will-change: transform;
+  /* Server-rendered visible by default. The GSAP entrance previously
+     started these at translateY(110%) but the headline is the first
+     thing the visitor sees — the ~800ms blank-flash during the GSAP
+     dynamic import cost more than the entrance gained. RevealEngine
+     no longer animates the headline; the subhead typewriter + downstream
+     scroll-triggered choreography carry the page's motion. */
+  transform: translateY(0);
+  will-change: auto;
 }
 .reveal-headline .word-inner.em {
   background: linear-gradient(transparent 62%, var(--reveal-accent-soft) 62%);
@@ -635,80 +641,81 @@ body {
   position: relative;
 }
 
-/* Per-product brand gestures (BRAND.md §4) — driven by .fire class */
-/* tasks · pulse — continuous on .fire */
+/* Per-product brand gestures — aligned to suite design-system v1
+   motion catalogue (2026-05-13). Each gesture starts as a dimmed
+   waiting state, becomes fully visible when the row gets .fire (the
+   choreographed entrance still plays), then runs the canonical
+   continuous motion: heartbeat 1.6s / advance 2.6s / tick 2.4s /
+   settle 3.2s. Same vocabulary that lives at /brand and /pricing. */
+
+/* tasks · M·02 heartbeat */
 .reveal-stack .stack-row[data-key="tasks"] .dot {
-  transition: opacity .4s ease;
+  opacity: 0;
+  transform: translateY(-0.04em) scale(1);
+  transition: opacity .55s ease;
+  transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="tasks"].fire .dot {
-  animation: reveal-dot-pulse 2.6s var(--reveal-ease-glide) infinite;
+  opacity: 1;
+  animation: reveal-tasks-heartbeat 1.6s var(--reveal-ease-glide) infinite;
 }
-.reveal-stack .stack-row[data-key="tasks"].fire .dot::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid var(--indigo-600);
-  opacity: 0;
-  animation: reveal-dot-emit 2.6s var(--reveal-ease-glide) infinite;
-}
-@keyframes reveal-dot-pulse {
-  0%, 60%, 100% { transform: translateY(-0.04em) scale(1); }
-  70%           { transform: translateY(-0.04em) scale(1.32); }
-  80%           { transform: translateY(-0.04em) scale(1); }
-}
-@keyframes reveal-dot-emit {
-  0%, 60% { opacity: 0; transform: scale(.8); }
-  68%     { opacity: 1; transform: scale(1); }
-  100%    { opacity: 0; transform: scale(2.8); }
+@keyframes reveal-tasks-heartbeat {
+  0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
+  10%           { transform: translateY(-0.04em) scale(1.22); }
+  20%           { transform: translateY(-0.04em) scale(1); }
+  40%           { transform: translateY(-0.04em) scale(1.12); }
+  50%           { transform: translateY(-0.04em) scale(1); }
 }
 
-/* roadmap · slide-in — one-shot, replay-friendly */
+/* roadmap · M·03 advance */
 .reveal-stack .stack-row[data-key="roadmap"] .dot {
   opacity: 0;
-  transform: translate(-18px, -0.04em);
-  transition:
-    transform .85s var(--reveal-ease-mass),
-    opacity .55s ease;
+  transition: opacity .55s ease;
+  transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="roadmap"].fire .dot {
   opacity: 1;
-  transform: translate(0, -0.04em);
+  animation: reveal-roadmap-advance 2.6s var(--reveal-ease-glide) infinite;
+}
+@keyframes reveal-roadmap-advance {
+  0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
+  60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
+  62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
+  70%  { transform: translateY(-0.04em) translateX(0); opacity: 0; }
+  78%  { transform: translateY(-0.04em) translateX(0); opacity: 1; }
+  100% { transform: translateY(-0.04em) translateX(0); opacity: 1; }
 }
 
-/* analytics · fade only */
+/* analytics · M·04 tick */
 .reveal-stack .stack-row[data-key="analytics"] .dot {
   opacity: 0;
   transition: opacity .55s ease;
+  transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="analytics"].fire .dot {
   opacity: 1;
+  animation: reveal-analytics-tick 2.4s var(--reveal-ease-glide) infinite;
+}
+@keyframes reveal-analytics-tick {
+  0%, 70%, 100% { transform: translateY(-0.04em) scaleY(1); }
+  78%           { transform: translateY(-0.04em) scaleY(1.45) scaleX(0.82); }
+  85%           { transform: translateY(-0.04em) scaleY(0.88) scaleX(1.1); }
+  92%           { transform: translateY(-0.04em) scaleY(1); }
 }
 
-/* notes · underline writes itself */
-.reveal-stack .stack-row[data-key="notes"] .word::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 1.5px;
-  background: var(--indigo-600);
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-.reveal-stack .stack-row[data-key="notes"].fire .word::after {
-  animation: reveal-write-line .85s var(--reveal-ease-glide) forwards;
-}
-@keyframes reveal-write-line {
-  to { transform: scaleX(1); }
-}
+/* notes · M·05 settle */
 .reveal-stack .stack-row[data-key="notes"] .dot {
   opacity: 0;
   transition: opacity .55s ease;
+  transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="notes"].fire .dot {
   opacity: 1;
+  animation: reveal-notes-settle 3.2s var(--reveal-ease-glide) infinite;
+}
+@keyframes reveal-notes-settle {
+  0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
+  50%      { transform: translateY(-0.04em) scale(1.05); opacity: 1; }
 }
 
 /* Scroll cue */
@@ -857,54 +864,33 @@ body {
   position: relative;
 }
 
-/* Settled-state product gestures (post-reveal product rows) */
+/* Settled-state product gestures (post-reveal product rows) —
+   aligned to suite design-system v1 motion catalogue. Same gestures
+   as the hero stack above; just at the larger row size. */
 .reveal-product-row[data-key="tasks"] .mark .dot {
-  animation: reveal-dot-pulse 2.6s var(--reveal-ease-glide) infinite;
+  transform-origin: center;
+  animation: reveal-tasks-heartbeat 1.6s var(--reveal-ease-glide) infinite;
 }
-.reveal-product-row[data-key="tasks"] .mark .dot::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid var(--indigo-600);
-  opacity: 0;
-  animation: reveal-dot-emit 2.6s var(--reveal-ease-glide) infinite;
+.reveal-product-row[data-key="roadmap"] .mark .dot {
+  transform-origin: center;
+  animation: reveal-roadmap-advance 2.6s var(--reveal-ease-glide) infinite;
 }
-.reveal-product-row[data-key="notes"] .mark .word::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 1.5px;
-  background: var(--indigo-600);
-  transform: scaleX(1);
-  transform-origin: left center;
+.reveal-product-row[data-key="analytics"] .mark .dot {
+  transform-origin: center;
+  animation: reveal-analytics-tick 2.4s var(--reveal-ease-glide) infinite;
 }
-.reveal-product-row.replay[data-key="notes"] .mark .word::after {
-  animation: reveal-write-line .85s var(--reveal-ease-glide) forwards;
+.reveal-product-row[data-key="notes"] .mark .dot {
+  transform-origin: center;
+  animation: reveal-notes-settle 3.2s var(--reveal-ease-glide) infinite;
 }
 
-/* Notes row — placeholder: dim + inert (P0) */
+/* Notes row — placeholder: in-design dim, slightly less aggressive
+   than the prior 0.45 (which read as "broken"). 0.7 reads as
+   "quieter, on its way", which matches the "In design" pill. */
 .reveal-product-row[data-key="notes"] {
-  opacity: 0.45;
+  opacity: 0.7;
   pointer-events: none;
   cursor: default;
-}
-
-.reveal-product-row.replay[data-key="roadmap"] .mark .dot {
-  animation: reveal-replay-slide .85s var(--reveal-ease-mass) forwards;
-}
-@keyframes reveal-replay-slide {
-  0%   { transform: translate(-18px, -0.04em); opacity: 0; }
-  100% { transform: translate(0, -0.04em); opacity: 1; }
-}
-.reveal-product-row.replay[data-key="analytics"] .mark .dot {
-  animation: reveal-replay-fade .55s ease forwards;
-}
-@keyframes reveal-replay-fade {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
 }
 
 .reveal-product-row .right {
@@ -1225,14 +1211,22 @@ body {
   .reveal-subhead,
   .reveal-stack .stack-row,
   .reveal-scroll-cue { opacity: 1 !important; transform: none !important; }
-  .reveal-stack .stack-row[data-key="roadmap"] .dot {
-    transform: translate(0, -0.04em) !important;
-    opacity: 1 !important;
-  }
+  /* All four product dots: final visible state, no motion. */
+  .reveal-stack .stack-row[data-key="tasks"] .dot,
+  .reveal-stack .stack-row[data-key="roadmap"] .dot,
   .reveal-stack .stack-row[data-key="analytics"] .dot,
-  .reveal-stack .stack-row[data-key="notes"] .dot { opacity: 1 !important; }
-  .reveal-stack .stack-row[data-key="notes"] .word::after {
-    transform: scaleX(1) !important;
+  .reveal-stack .stack-row[data-key="notes"] .dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateY(-0.04em) !important;
+  }
+  .reveal-product-row[data-key="tasks"] .mark .dot,
+  .reveal-product-row[data-key="roadmap"] .mark .dot,
+  .reveal-product-row[data-key="analytics"] .mark .dot,
+  .reveal-product-row[data-key="notes"] .mark .dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateY(-0.04em) !important;
   }
   .reveal-manifesto-eyebrow,
   .reveal-manifesto-h2,

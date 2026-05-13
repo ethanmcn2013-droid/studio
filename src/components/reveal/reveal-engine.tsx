@@ -63,7 +63,7 @@ export function RevealEngine() {
           .querySelectorAll(".stack-row")
           .forEach((r) => r.classList.add("fire"));
         gsap.set(".reveal-gold-rule", { width: 132 });
-        gsap.set(".reveal-headline .word-inner", { y: "0%" });
+        // Headline is server-rendered visible; no gsap.set needed.
         gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
         gsap.set(".reveal-scroll-cue", { y: 0, opacity: 1 });
         return;
@@ -81,8 +81,10 @@ export function RevealEngine() {
       gsap.ticker.lagSmoothing(0);
 
       // ─── Initial states (defensive) ───────────────────────────
+      // Headline is intentionally NOT set hidden — it's server-rendered
+      // visible to remove the ~800ms blank flash during GSAP's dynamic
+      // import. The choreography below is for everything else.
       gsap.set(".reveal-gold-rule", { width: 0 });
-      gsap.set(".reveal-headline .word-inner", { y: "110%" });
       gsap.set(".reveal-subhead", { y: 8, opacity: 0 });
       gsap.set(".stack-row", { y: 10, opacity: 0 });
       gsap.set(".reveal-scroll-cue", { y: 4, opacity: 0 });
@@ -90,22 +92,10 @@ export function RevealEngine() {
       // ─── Entrance timeline ────────────────────────────────────
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      // Accent hairline draws
-      tl.to(".reveal-gold-rule", { width: 132, duration: 0.55 }, 0.30);
+      // Accent hairline draws under the (already-visible) headline.
+      tl.to(".reveal-gold-rule", { width: 132, duration: 0.55 }, 0);
 
-      // Headline — words rise from beneath their masks
-      tl.to(
-        ".reveal-headline .word-inner",
-        {
-          y: "0%",
-          duration: 0.95,
-          ease: "expo.out",
-          stagger: 0.1,
-        },
-        0.55
-      );
-
-      // Subhead settles
+      // Subhead settles — typewriter starts at 2200ms (see TypewriterSub).
       tl.to(
         ".reveal-subhead",
         { opacity: 1, y: 0, duration: 0.55 },
