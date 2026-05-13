@@ -5,6 +5,30 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · operator-backlog clearance — `reached_board_at` migration applied + HQ catches up)
+
+### Two small completions before Cycle 8.5 launches.
+
+The `drizzle/0001_add_reached_board_at.sql` migration from Cycle
+8.4.7 is now applied to Tasks's prod Turso — the column is live and
+`/hq/partners` will populate the "Reached board" column as
+redemptions happen. No code change, just the operator step closing.
+
+Signal HQ also caught up: the Founding Venue Programme campaign and
+pilot entries in `src/lib/hq/data.ts` now reflect Venue Editions as
+the shipped mechanic (per-couple codes, 12-month duration, eyebrow-
+only co-brand) rather than the pre-Plan-8 framing. A new
+`venue-editions-mechanic` decision logs the Cycle 8.0 lock (naming,
+co-brand register, auto-drop, per-couple CLI codes) into HQ
+decisions so future-Ethan and future-Claude can read the *why* of
+the mechanic without spelunking through `docs/VENUE_EDITIONS_PLAN.md`.
+
+Cycle 8.5 still gated on the two operator actions in
+`docs/CYCLE_8_5_HANDOFF.md` — Clerk webhook secret rotation + the
+in-browser walk. The CSV send waits.
+
+---
+
 ## 2026-05-13 (Plan 8 · Cycle 8.4.7 — the "did the next person finish?" column)
 
 ### One boolean. One column. The minimum monitoring earns its place.
