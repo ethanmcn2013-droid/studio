@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SiteFooter } from "@/components/landing/site-footer";
 import { Wordmark } from "@/components/brand/wordmark";
 
 export const metadata: Metadata = {
@@ -145,6 +145,7 @@ function SwatchCard({ token, hex, desc }: { token: string; hex: string; desc: st
 
 export default function BrandPage() {
   return (
+    <>
     <main className="mx-auto w-full max-w-[1200px] px-8 pb-32">
       {/* HERO */}
       <header className="pt-24 pb-12">
@@ -478,13 +479,13 @@ export default function BrandPage() {
         <SectionHead
           num="04 / 05"
           kicker="Asset library"
-          title="Every brand surface, downloadable."
+          title="Every brand surface, in one place."
           intro={
             <>
               Eighteen wordmarks and marks across the suite — house, lockups,
-              dark variants, square marks. Every asset is downloadable as{" "}
+              dark variants, square marks. Every asset ships as{" "}
               <strong className="text-[var(--ink)]">SVG</strong> (vector,
-              editable). Right-click, save, and use.
+              editable). Use them. Don&apos;t recompose them.
             </>
           }
         />
@@ -601,7 +602,10 @@ Dublin · Ireland · signalstudio.ie`}
         </div>
       </section>
 
-      <footer className="grid grid-cols-1 items-end gap-12 border-t border-[var(--hairline-2)] py-20 md:grid-cols-2">
+      {/* Editorial signoff — stays brand-page-specific because /brand IS
+          an editorial object. The standard SiteFooter handles nav + tagline
+          + legal links below it. */}
+      <section className="grid grid-cols-1 items-end gap-12 border-t border-[var(--hairline-2)] py-20 md:grid-cols-2">
         <div>
           <h3 className="m-0 mb-3 flex items-baseline gap-1.5 text-[30px] font-medium tracking-[-0.025em] text-[var(--ink)]">
             Built slowly
@@ -635,15 +639,10 @@ Dublin · Ireland · signalstudio.ie`}
             </div>
           ))}
         </div>
-      </footer>
-
-      <div className="mt-12 flex items-center justify-between font-mono text-[11px] text-[var(--ink-faint)]">
-        <Link href="/" className="hover:text-[var(--ink)]">
-          ← signalstudio.ie
-        </Link>
-        <span>signal studio. · brand · v1.0</span>
-      </div>
+      </section>
     </main>
+    <SiteFooter />
+  </>
   );
 }
 

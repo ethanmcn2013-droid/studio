@@ -10,9 +10,15 @@ export function SiteFooter() {
       className="mx-auto mt-24 w-full max-w-[760px] border-t border-border-soft px-6 pb-10 pt-10"
     >
       <div className="flex flex-wrap items-center justify-between gap-6">
-        {/* Left: wordmark + version + copyright */}
+        {/* Left: wordmark + locked suite tagline + copyright */}
         <div className="flex flex-col gap-1">
           <Wordmark size="sm" animate={false} />
+          <span
+            className="text-[11px] text-ink-soft"
+            style={{ letterSpacing: "0.02em" }}
+          >
+            Clarity, not configuration.
+          </span>
           <span
             className="text-[11px] text-ink-faint"
             style={{ letterSpacing: "0.02em" }}
@@ -102,6 +108,14 @@ export function SiteFooter() {
               style={{ letterSpacing: "0.01em" }}
             >
               Pricing
+            </Link>
+            <Link
+              href="/brand"
+              prefetch={false}
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Brand
             </Link>
             <Link
               href="/proof"
