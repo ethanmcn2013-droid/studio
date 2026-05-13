@@ -132,3 +132,31 @@ export const redemptions = sqliteTable(
 
 export type Redemption = typeof redemptions.$inferSelect;
 export type NewRedemption = typeof redemptions.$inferInsert;
+
+export const CRON_RUN_SOURCES = ["analytics_daily"] as const;
+export type CronRunSource = (typeof CRON_RUN_SOURCES)[number];
+
+export const cronRuns = sqliteTable(
+  "cron_runs",
+  {
+    id: text("id").primaryKey(),
+    source: text("source").notNull(),
+    ranAt: integer("ran_at").notNull(),
+    ok: integer("ok").notNull(),
+    considered: integer("considered"),
+    sent: integer("sent"),
+    skipped: integer("skipped"),
+    failed: integer("failed"),
+    isMondayUtc: integer("is_monday_utc"),
+    notes: text("notes"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("cron_runs_source_ran_at_idx").on(table.source, table.ranAt),
+  ],
+);
+
+export type CronRun = typeof cronRuns.$inferSelect;
+export type NewCronRun = typeof cronRuns.$inferInsert;

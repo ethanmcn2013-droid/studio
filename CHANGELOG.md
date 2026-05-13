@@ -5,6 +5,80 @@ this one tracks what coalesced across the suite.
 
 ---
 
+## 2026-05-13 (Plan 8 · Cycle 8.4.9 — cron staleness signal across studio + analytics)
+
+### The daily briefing cron now reports it ran. /hq/health makes the silence audible.
+
+Until today, if the Analytics daily Vercel cron silently stopped firing —
+Hobby-tier limit, rotated CRON_SECRET, expired Resend key — no one would
+know until a venue prospect said "I signed up but never got an email." A
+five-agent admin-console review surfaced this as the single biggest
+operational blind spot the suite carries right now.
+
+The fix is two moving pieces.
+
+**Studio** owns the dashboard. New `cron_runs` Turso table
+(`drizzle/0002`), a POST `/api/internal/cron-ping` endpoint that records
+runs (Bearer-authed via `CRON_PING_SECRET`), a `getCronHealth(source)`
+helper with green / amber / red / never thresholds (green &lt; 12h, amber
+12–26h, red &gt; 26h or on failure), and a new `/hq/health` route showing
+the latest run per source with status pill, hours-since, sent/failed
+counts. Same chrome pattern as `/hq/partners`.
+
+**Analytics** owns the ping. New `src/lib/ops/ping-studio.ts` helper with
+a 2s `AbortController` timeout and total error swallowing — observability
+must never break dispatch. The cron handler awaits it once at the end
+before returning the JSON response, with the full counts payload.
+
+The system is gracefully no-op until four operator actions activate the
+signal — apply `drizzle/0002` to `ethanmcnamara-studio` Turso, generate
+`CRON_PING_SECRET` on studio Vercel, set `STUDIO_CRON_PING_URL` +
+`STUDIO_CRON_PING_SECRET` on analytics Vercel, redeploy both. Documented
+in `docs/CYCLE_8_4_9_CRON_STALENESS_HANDOFF.md`.
+
+Conscious non-builds: no alerting (dashboard-poll only), no multi-source
+view yet (`analytics_daily` is the only configured source), no historical
+sparkline, no pill on the main `/hq` dashboard overview. Each earns its
+place when there's a forcing function.
+
+---
+
+## 2026-05-13 (Plan 8 · Cycle 8.4.8 — admin-console scope re-grounded; pilot blockers visible in HQ)
+
+### A five-agent panel asked "what should the admin console look like?" The honest answer: most of it already shipped today.
+
+Spawned strategy, pm, architect, ux-director, and creative-director on
+the question of an admin console for Signal Studio. The agents (operating
+in a vacuum) recommended building entitlements, extending `/hq`,
+deferring a cmd-k palette, and adopting a hybrid visual register.
+
+Reading the actual studio repo state afterward surfaced the gap in the
+agents' premise: `/hq` is already a 1,767-line dashboard, `/hq/partners`
+already cross-DB reads from Tasks, entitlements + redeem flow + comp
+codes + `partner-digest` CLI all already shipped earlier in this
+session. The proposed "build an admin console" frame was operating on
+stale state.
+
+The genuine delta versus current state: cron-staleness dead-man's switch
+(deferred — landed as Cycle 8.4.9), cmd-k palette for cross-product
+person lookup (deferred — load-bearing dependency on cross-product
+identity join that's unbuilt), and a "pilot shelf" surfacing the 4
+operator actions blocking Cycle 8.5 send. The pilot shelf was the
+smallest valuable add.
+
+Four entries appended to `src/lib/hq/data.ts` `nextActions` array, all
+Operations / High / due 2026-05-14: Clerk webhook signing secret rotate
+on Tasks Vercel, one incognito redemption walk against the corrected
+post-Clerk flow, DKIM generation in Google Workspace Admin Console, and
+test-send the Sinéad email template to the operator inbox before any
+real send. They render in the existing Next Actions panel on the main
+dashboard with the standard `To do → Doing → Done` status toggle.
+
+No new render code. No new schema. No new route. Pure data layer
+addition using the existing `NextActionItem` type.
+
+---
+
 ## 2026-05-13 (Plan 8 · operator-backlog clearance — `reached_board_at` migration applied + HQ catches up)
 
 ### Two small completions before Cycle 8.5 launches.

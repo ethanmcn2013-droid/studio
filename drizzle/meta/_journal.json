@@ -15,6 +15,13 @@
       "when": 1778629203541,
       "tag": "0001_init_sponsors_license_codes_redemptions",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1778683279699,
+      "tag": "0002_init_cron_runs",
+      "breakpoints": true
     }
   ]
 }
