@@ -52,7 +52,7 @@ const TIERS: Tier[] = [
     price: "€0",
     cadence: "forever",
     body: "One workspace. All four products. Three editing guests. No card needed.",
-    cta: "Open Signal Studio",
+    cta: "Start free",
     href: TASKS_URL,
   },
   {
@@ -68,7 +68,7 @@ const TIERS: Tier[] = [
     recommended: true,
     price: "€12",
     cadence: "/ month · per workspace",
-    body: "Unlimited workspaces. All four products. Bring your whole crew — no per-seat tax.",
+    body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
     cta: "Start a workspace",
     href: TASKS_CHECKOUT_WORKSPACE,
   },
@@ -156,7 +156,7 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
 const REFUSALS: { neg: string; pos: string }[] = [
   {
     neg: "Not per seat.",
-    pos: "Bring your whole crew. Same price. Inviting people should never be a budget decision.",
+    pos: "One workspace, one price, however many people are in it.",
   },
   {
     neg: "Not per product.",
@@ -184,10 +184,6 @@ const FAQ: { q: string; a: string }[] = [
   {
     q: "Why a one-time price for events?",
     a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.",
-  },
-  {
-    q: "What happens to subscribers on the older per-product tiers?",
-    a: "You keep your current price forever. No forced upgrade. If you want to switch to Signal Studio at the unified rate, you can — but the old tier is yours as long as you want it.",
   },
   {
     q: "Can I switch tiers?",
@@ -253,7 +249,7 @@ export default async function PricingPage({
               <strong style={{ color: "var(--ink)" }}>
                 Checkout is temporarily offline.
               </strong>{" "}
-              Workspace and Event purchases will resume shortly. Free and
+              Workspace and Event purchases will resume when resolved. Free and
               Student access remain available — start there, or email{" "}
               <a
                 href="mailto:hello@signalstudio.ie"
@@ -272,19 +268,16 @@ export default async function PricingPage({
             Signal Studio · Pricing
           </div>
           <h1
-            className="h-display max-w-[14ch] text-balance text-ink"
+            className="h-display max-w-[22ch] text-balance text-ink"
             style={{ marginBottom: 24 }}
           >
-            One price.
-            <br />
-            Four kinds of clarity.
+            One price. All the clarity you need.
           </h1>
           <p
             className="max-w-[56ch] text-ink-soft"
             style={{ fontSize: 19, lineHeight: 1.55 }}
           >
-            Signal Studio is one subscription. Use as many of the four products
-            as you want. No per-seat tax. No per-product tax.
+            One subscription. Use what you need — no per-seat tax, no per-product tax.
           </p>
         </section>
 
@@ -376,7 +369,7 @@ export default async function PricingPage({
             {TIERS.map((t, i) => (
               <div
                 key={t.name}
-                className={`flex flex-col ${t.recommended ? "order-first md:order-none" : ""}`}
+                className={`flex flex-col md:min-h-[360px] ${t.recommended ? "order-first md:order-none" : ""}`}
                 style={{
                   padding: "36px 28px 32px",
                   borderRight:
@@ -387,14 +380,14 @@ export default async function PricingPage({
                     i < TIERS.length - 1
                       ? "1px solid var(--border-soft)"
                       : "none",
-                  minHeight: 360,
-                  background: t.recommended
-                    ? "linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 60%, var(--bg-elev)) 0%, var(--bg-elev) 70%)"
-                    : "transparent",
+                  background: "transparent",
+                  outline: t.recommended ? "1.5px solid var(--accent)" : "none",
+                  outlineOffset: t.recommended ? "-1.5px" : undefined,
+                  position: "relative",
                 }}
               >
-                {/* Anchor row — only filled for recommended */}
-                <div style={{ height: 26, marginBottom: 6 }}>
+                {/* Anchor row — only filled for recommended; renders only at md+ where horizontal alignment matters. */}
+                <div className="hidden md:block md:h-[26px] md:mb-[6px]">
                   {t.recommended ? (
                     <span
                       className="inline-flex items-center"
@@ -746,7 +739,7 @@ export default async function PricingPage({
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6 }}>
                 We will not list a feature on this page until the product behind
-                it works. That rule is the brand.
+                it works.
               </p>
             </div>
           </div>
