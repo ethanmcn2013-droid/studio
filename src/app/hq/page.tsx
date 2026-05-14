@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { HqDashboard } from "@/components/hq/hq-dashboard";
+import { HqToday } from "@/components/hq/hq-today";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
+import { getHqDashboardMarkdown } from "@/lib/hq/dashboard-data";
 
 export const dynamic = "force-dynamic";
 
@@ -28,5 +31,22 @@ export default async function HqPage() {
     redirect("/hq/access");
   }
 
-  return <HqDashboard />;
+  const markdown = await getHqDashboardMarkdown();
+
+  return (
+    <>
+      <Suspense
+        fallback={
+          <section className="hq-today hq-today--loading">
+            <div className="hq-today-header">
+              <span className="hq-today-eyebrow">today · loading</span>
+            </div>
+          </section>
+        }
+      >
+        <HqToday />
+      </Suspense>
+      <HqDashboard markdown={markdown} />
+    </>
+  );
 }

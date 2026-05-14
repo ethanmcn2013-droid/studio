@@ -5,33 +5,84 @@ lens: Products
 owner: Ethan
 lastVerified: 2026-05-14
 links: [five-products-as-a-system, pricing-and-entitlements, brand-enforcement, plan-cycle]
-tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella]
-references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/landing/]
-summary: What the umbrella owns and does not own — wordmark, /brand asset hub, unified pricing surface, BRAND.md.
-status: stub
+tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella, refusal list, four products]
+references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/wordmark/, src/components/landing/]
+summary: What the umbrella owns and what it refuses. Wordmark, /brand asset hub, unified /pricing, BRAND.md as source of truth. Strict four-product cardinality.
+status: complete
 pinned: false
+execWhat: Signal Studio is the parent brand over four products — Tasks, Roadmap, Analytics, Notes. The umbrella owns the wordmark, the pricing page, the brand handbook, and the public brand asset library at signalstudio.ie/brand.
+execMatters: The umbrella is what lets one operator credibly position a multi-product suite. Without it, the products would look like four unrelated apps. With it, paying customers see one company shipping a coordinated line of tools.
+execRisk: The biggest risk is brand cardinality drift — adding a fifth product, or naming an internal tool as a "Signal X" sibling. Each addition dilutes the four-product story and makes the suite harder to explain in one sentence.
 ---
 
 ## WHAT
 
-Signal Studio is the umbrella brand over the five products. It owns the wordmark, the suite-wide design system v1, the unified `/pricing` surface, the `/brand` public asset hub, and `BRAND.md` as voice source-of-truth. It does not own product-specific roadmaps, feature decisions, or per-product entitlements — those live in each product repo.
+Signal Studio is the umbrella brand sitting above four shippable products. The umbrella owns the things that have to be consistent across the products and the things that don't naturally belong to any one of them — the wordmark and visual register, the unified pricing surface, the brand handbook, and the public asset library at `/brand`.
+
+```mermaid
+flowchart TB
+  U[Signal Studio — umbrella]
+  U --> B[BRAND.md]
+  U --> P[/pricing]
+  U --> A[/brand asset hub]
+  U --> H[/hq + atlas]
+  U --> T[Tasks]
+  U --> R[Roadmap]
+  U --> AN[Analytics]
+  U --> N[Notes]
+  T -.-> B
+  R -.-> B
+  AN -.-> B
+  N -.-> B
+```
+
+The umbrella also owns the **refusal list**: features and surfaces the suite explicitly will not build. That list is brand work as much as product work — what a company refuses to do says more about it than what it builds.
 
 ## WHO
 
-_Stub. Fill in next cycle._
+Ethan owns the umbrella outright. The studio repo (~/Projects/personal/studio) is the codebase. BRAND.md is the handbook. The umbrella has no separate employees, no separate board, no separate decisions — it's the same operator wearing a brand hat instead of a product hat.
 
 ## WHERE
 
-_Stub. Fill in next cycle._
+- `signalstudio.ie` — the umbrella's public site. Hosts `/pricing`, `/brand`, `/about`, `/changelog`, `/press`, `/principles`, `/proof`, `/work`, `/weddings` (audience-specific landing), `/method`, `/security`, `/contact`.
+- `signalstudio.ie/brand` — the public brand asset hub: wordmark anatomy, motion catalogue, palette, type scale, voice rules, 18 downloadable SVGs (house wordmark + four product wordmarks + lockups + square marks), plain-text email signatures.
+- `signalstudio.ie/hq` — the private operating dashboard. Password-gated. The atlas you're reading lives here at `/hq/atlas`.
+- `~/Projects/personal/studio/BRAND.md` — the handbook (see [[brand-enforcement]] for the catch-net details).
+- `~/Projects/personal/studio/src/components/wordmark/` — the canonical wordmark component with five gestures (broadcast, heartbeat, advance, tick, settle).
+- `~/Projects/personal/studio/src/app/pricing/` — the unified pricing surface every product 308s to (see [[pricing-and-entitlements]]).
 
 ## HOW
 
-_Stub. Fill in next cycle._
+The umbrella is mostly *editorial discipline*, not technical machinery. Three operating moves run constantly:
+
+1. **Voice and visual rules sync into product repos via human discipline.** When a cycle in any product touches copy, the operator reads the relevant BRAND.md section before drafting. There is no linter, no shared NPM package. The handbook is the rule; the operator is the runtime (see [[brand-enforcement]]).
+2. **Pricing changes happen in one place.** `/pricing` lives in the studio repo. Per-product `/pricing` paths 308 to the umbrella. A tier change is a studio-repo PR, not a five-repo coordination.
+3. **Refusals get applied at decision-time, not after.** When a cycle proposes a refused feature ("let's add a team tier"; "let's allow comment threading"), the catch-net is to name the refusal and decide whether *this* cycle is the one that overturns it. Almost always: no.
+
+### The refusal list (current as of 2026-05-14)
+
+- **No fifth product.** Tasks, Roadmap, Analytics, Notes. Four. The temptation to scaffold a "Signal Chat" or "Signal Inbox" is the most common cardinality risk.
+- **No team tier.** The suite is sold to individuals and small teams. Enterprise tier would require multi-seat billing, role-based access, audit logs — features that change the product shape, not just the pricing page.
+- **No private workspaces in Roadmap.** Roadmap is public-facing by design. Adding private mode would gut the moat.
+- **No comment threading.** Anywhere. Comments are a productivity-tool trap.
+- **No public directory.** Of users, of workspaces, of templates. The suite refuses the "discover other users' content" surface.
+- **No engineering-team-flavored language.** The audience is wedding planners, freelancers, tradespeople, students, marketing operators — not "engineering teams". Banned in copy (see [[brand-enforcement]]).
 
 ## WHEN — current state
 
-_Stub. Fill in next cycle._
+- Suite design system v1 shipped 2026-05-13 across all four products.
+- Unified pricing surface live with five tiers (free / event / wedding / workspace / studio).
+- `/brand` asset hub public.
+- BRAND.md stable at the location `studio/BRAND.md` since 2026-05-12.
+- The wordmark "signal studio." (with the period) is locked. The collision risk with Signal Messenger means "Signal" alone is never used in body copy.
+- The umbrella's locked H1 across the suite is **"Cut through the noise."**
 
 ## WHY
 
-_Stub. Fill in next cycle._
+A single-operator portfolio with five separately-named apps reads as five hobby projects. A single-operator portfolio with four apps + a clearly-articulated umbrella reads as a company. The difference is entirely brand work — same code, same operator, same products, different perception.
+
+The four-product cardinality is deliberate. Three products is too few to look like a suite; six is too many to coordinate. Four is the sweet spot where the umbrella story is concrete ("Tasks, Roadmap, Analytics, Notes") and the operator can credibly ship updates across the line.
+
+The refusal list is the umbrella's most strategic artifact. Every product wants to add features; the umbrella's job is to say no on behalf of the suite identity. Almost every refusal could be argued in the affirmative for an individual product — a team tier in Tasks alone would make sense — but adding it would change what the umbrella *is*. The refusals are the moat.
+
+The public `/brand` hub is a quieter strategic move. It makes the brand *available* — to future hires, partners, journalists, anyone considering whether the suite is real. A locked-up internal brand book signals a small operation; a public asset hub signals confidence.

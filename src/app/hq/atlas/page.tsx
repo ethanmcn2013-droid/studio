@@ -79,16 +79,14 @@ export default async function AtlasIndexPage() {
         </p>
 
         {pinned && (
-          <div className="mb-16 border-t border-b border-border-soft py-8">
-            <div
-              className="mb-3 font-mono text-[10.5px] uppercase tracking-wider text-ink-quiet"
-              style={{ letterSpacing: "0.06em" }}
-            >
+          <div className="atlas-start-here mb-16">
+            <div className="atlas-start-here-label">
+              <span className="atlas-start-here-dot" aria-hidden="true" />
               start here
             </div>
             <Link
               href={`/hq/atlas/${pinned.slug}`}
-              className="group block"
+              className="atlas-start-here-link group block"
             >
               <h2 className="mb-2 text-[22px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
                 {pinned.title}
@@ -118,6 +116,7 @@ export default async function AtlasIndexPage() {
                 lens: e.lens,
                 status: e.status,
                 isStale: e.isStale,
+                isDrifted: e.isDrifted,
                 ageDays: Number.isFinite(e.ageDays) ? e.ageDays : null,
                 lastVerified: e.lastVerified,
                 tags: e.tags,

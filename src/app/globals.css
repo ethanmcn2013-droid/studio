@@ -1354,14 +1354,544 @@ body {
   .brand-mark .ring { animation: none !important; opacity: 1 !important; }
 }
 
+/* ─── Atlas start-here pin ───────────────────────────────────────────────
+ * The pinned entry renders above the list as a single full-width anchor.
+ * A small indigo dot in the label pulses gently — gesture-system
+ * consistent with the broadcast wordmark gesture. The pin is the only
+ * place on the atlas index that carries motion.
+ */
+.atlas-start-here {
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 2rem 0 1.75rem;
+  position: relative;
+}
+.atlas-start-here-label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+}
+.atlas-start-here-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+  animation: atlas-start-here-broadcast 2.8s var(--spring-glide, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+.atlas-start-here-dot::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  animation: atlas-start-here-ring 2.8s var(--spring-glide, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+@keyframes atlas-start-here-broadcast {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  45% { transform: scale(1.08); opacity: 0.85; }
+}
+@keyframes atlas-start-here-ring {
+  0% { transform: scale(1); opacity: 0; }
+  35% { transform: scale(1.4); opacity: 0.55; }
+  80% { transform: scale(2.6); opacity: 0; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-start-here-dot,
+  .atlas-start-here-dot::after { animation: none !important; }
+  .atlas-start-here-dot::after { opacity: 0 !important; }
+}
+.atlas-start-here-link {
+  text-decoration: none;
+}
+
+/* ─── Atlas exec brief ───────────────────────────────────────────────────
+ * Sits between the meta line and the article body. Three rows — "What it
+ * is" / "Why it matters" / "Risk if it breaks". Plain English, scannable
+ * in 30 seconds. The label borrows the suite's eyebrow tracking; the
+ * grid uses a left-aligned definition-list rhythm.
+ */
+.atlas-exec {
+  max-width: 62ch;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 1.5rem 0 1.25rem;
+}
+.atlas-exec-label {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
+}
+.atlas-exec-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+}
+.atlas-exec-row {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: baseline;
+}
+@media (max-width: 640px) {
+  .atlas-exec-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+}
+.atlas-exec-row dt {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  padding-top: 0.15rem;
+}
+.atlas-exec-row dd {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0;
+}
+.atlas-exec-foot {
+  margin-top: 1.2rem;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-quiet);
+  max-width: 56ch;
+}
+
+/* ─── HQ Today — derived signal block above the dashboard ─────────────── */
+.hq-today {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 2.25rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hq-today--loading { min-height: 4rem; }
+.hq-today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.hq-today-eyebrow,
+.hq-today-stamp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-quiet);
+}
+.hq-today-eyebrow { color: var(--accent); }
+.hq-today-headline {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+  margin: 0 0 1.75rem 0;
+  letter-spacing: -0.01em;
+  max-width: 62ch;
+}
+.hq-today-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-product {
+  padding: 0.9rem 1rem 0.9rem 0;
+}
+.hq-today-product + .hq-today-product {
+  padding-left: 1rem;
+}
+@media (min-width: 700px) {
+  .hq-today-product + .hq-today-product {
+    border-left: 1px solid var(--border-soft);
+  }
+}
+.hq-today-product-name {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.15rem;
+}
+.hq-today-product-layer {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+.hq-today-product-meta {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  font-variant-numeric: tabular-nums;
+}
+
+.hq-today-pilots {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-pilot-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.hq-today-pilot-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  gap: 0.6rem 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: baseline;
+}
+.hq-today-pilot-row:last-child { border-bottom: 0; }
+.hq-today-pilot-title {
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.hq-today-pilot-meta {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+.hq-today-pilot-next {
+  grid-column: 1 / -1;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.hq-today-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+}
+.hq-today-block {
+  padding: 1.1rem 1.25rem 1.1rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-block + .hq-today-block { padding-left: 1.25rem; }
+@media (min-width: 700px) {
+  .hq-today-block + .hq-today-block {
+    border-left: 1px solid var(--border-soft);
+  }
+}
+.hq-today-label {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-quiet);
+  margin-bottom: 0.75rem;
+}
+.hq-today-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.hq-today-row {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.hq-today-row-name {
+  color: var(--ink);
+  font-weight: 500;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+.hq-today-row-meta {
+  color: var(--ink-quiet);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hq-today-row-meta[data-status="red"] { color: var(--accent); }
+.hq-today-row-meta[data-status="amber"] { color: var(--ink); }
+.hq-today-row-meta[data-status="green"] { color: var(--ink-quiet); }
+.hq-today-row-meta[data-status="never"] { color: var(--ink-quiet); font-style: italic; }
+.hq-today-row-detail {
+  color: var(--ink-quiet);
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.hq-today-strong-line {
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.45;
+}
+.hq-today-strong { color: var(--accent); font-weight: 600; }
+.hq-today-clear,
+.hq-today-empty {
+  color: var(--ink-quiet);
+  font-size: 12.5px;
+  font-style: italic;
+  margin: 0;
+}
+.hq-today-footnote {
+  margin: 0.7rem 0 0 0;
+  font-size: 11.5px;
+  color: var(--ink-quiet);
+  line-height: 1.5;
+}
+.hq-today-risks {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-risks-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.hq-today-risk-row {
+  display: grid;
+  grid-template-columns: 0.7rem minmax(0, 1fr) minmax(0, auto);
+  gap: 0.7rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hq-today-risk-row:last-child { border-bottom: 0; }
+.hq-today-risk-tier {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--border-soft);
+  align-self: center;
+  transform: translateY(-0.05rem);
+}
+.hq-today-risk-tier[data-tier="high"] { background: var(--accent); }
+.hq-today-risk-tier[data-tier="mid"] { background: var(--ink-soft); }
+.hq-today-risk-tier[data-tier="low"] { background: var(--ink-quiet); }
+.hq-today-risk-title {
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.5;
+  min-width: 0;
+}
+.hq-today-risk-meta {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+
+.hq-today-fproduct {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 700px) {
+  .hq-today-fproduct { grid-template-columns: 1fr 1fr; }
+  .hq-today-fproduct-col + .hq-today-fproduct-col {
+    border-left: 1px solid var(--border-soft);
+    padding-left: 1.5rem;
+  }
+}
+.hq-today-feature-list,
+.hq-today-campaign-list {
+  list-style: none;
+  margin: 0.65rem 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.hq-today-feature-row,
+.hq-today-campaign-row {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  gap: 0.55rem;
+  align-items: baseline;
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.hq-today-feature-bullet,
+.hq-today-campaign-meta,
+.hq-today-feature-meta {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+.hq-today-campaign-title { color: var(--ink); }
+
+.hq-today-decisions {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-decisions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.hq-today-decision-row {
+  display: grid;
+  grid-template-columns: 5.25rem minmax(0, 1fr) minmax(0, auto);
+  gap: 0.9rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hq-today-decision-row:last-child { border-bottom: 0; }
+.hq-today-decision-date {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  color: var(--ink-quiet);
+  font-variant-numeric: tabular-nums;
+}
+.hq-today-decision-title {
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.5;
+  min-width: 0;
+}
+.hq-today-decision-meta {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+
+.hq-today-foot {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-soft);
+}
+.hq-today-link {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.12s ease-out;
+}
+.hq-today-link:hover { color: var(--accent); }
+
+/* ─── HQ dashboard register reset ────────────────────────────────────────
+ * Removes the rounded card chrome and segmented-control tab nav from the
+ * existing HqDashboard component, bringing it inline with the atlas
+ * register. Targets are class selectors set up by the dashboard component;
+ * see hq-dashboard.tsx for the matching JSX.
+ */
+.hq-panel {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 1.25rem 0 1.5rem 0 !important;
+  border-top: 1px solid var(--border-soft) !important;
+}
+.hq-tab {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding-left: 0.75rem !important;
+  border-left: 2px solid transparent !important;
+  color: var(--ink-quiet) !important;
+  font-weight: 400 !important;
+  transition: color 0.12s ease-out, border-color 0.12s ease-out !important;
+}
+.hq-tab:hover { color: var(--ink) !important; }
+.hq-tab[data-active="true"] {
+  color: var(--ink) !important;
+  border-left-color: var(--accent) !important;
+  font-weight: 500 !important;
+}
+.hq-score-number {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
 /* ─── Atlas index row ────────────────────────────────────────────────────
  * The card grid is gone (it read as Notion). Each entry is a single row in
  * a divide-y typographic list — monospace index left, title + summary
- * middle, age right. Hover lifts the title only. No backgrounds, no chrome.
+ * middle, age right. Hover slides a thin indigo bar in from the left
+ * margin (signature motion moment, gesture-system consistent).
  */
 .atlas-row {
   text-decoration: none;
-  transition: opacity 0.15s ease-out;
+  position: relative;
+  padding-left: 0.6rem;
+  transition: padding-left 0.18s ease-out;
+}
+.atlas-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.55rem;
+  bottom: 1.55rem;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.atlas-row:hover {
+  padding-left: 1rem;
+}
+.atlas-row:hover::before {
+  transform: scaleY(1);
 }
 .atlas-row-index {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
@@ -1372,6 +1902,10 @@ body {
   flex: 0 0 1.75rem;
   align-self: flex-start;
   padding-top: 0.15rem;
+  transition: color 0.18s ease-out;
+}
+.atlas-row:hover .atlas-row-index {
+  color: var(--accent);
 }
 .atlas-row-title {
   display: inline;
@@ -1510,3 +2044,92 @@ body {
 }
 .atlas-prose strong { color: var(--ink); font-weight: 600; }
 .atlas-prose em { color: var(--ink-soft); font-style: italic; }
+
+/* ─── Atlas mermaid diagram ──────────────────────────────────────────────
+ * Server-rendered placeholder; client component (AtlasMermaidHydrator)
+ * swaps the inner fallback <pre> for an SVG on mount. The container
+ * sits as a full-width prose block with a hairline frame so the diagram
+ * reads as a separate object from the body text.
+ */
+.atlas-prose .atlas-mermaid {
+  margin: 2rem 0 2.25rem 0;
+  padding: 1.75rem 1.25rem 1.5rem;
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  position: relative;
+  overflow-x: auto;
+}
+.atlas-prose .atlas-mermaid::before {
+  content: "diagram";
+  position: absolute;
+  top: 0.65rem;
+  left: 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-quiet);
+}
+.atlas-prose .atlas-mermaid[data-rendered="true"]::before {
+  display: none; /* SVG carries its own visual identity */
+}
+.atlas-prose .atlas-mermaid svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+.atlas-prose .atlas-mermaid .atlas-mermaid-fallback {
+  margin: 0.6rem 0 0 0;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+  white-space: pre;
+}
+.atlas-prose .atlas-mermaid[data-render-error="true"] {
+  border-color: var(--accent);
+}
+
+/* Mermaid theme overrides — match suite register (paper white, ink #111,
+ * indigo accent on edges where the diagram has emphasis). */
+.atlas-prose .atlas-mermaid svg .node rect,
+.atlas-prose .atlas-mermaid svg .node circle,
+.atlas-prose .atlas-mermaid svg .node ellipse,
+.atlas-prose .atlas-mermaid svg .node polygon,
+.atlas-prose .atlas-mermaid svg .node path {
+  fill: var(--paper) !important;
+  stroke: var(--ink) !important;
+  stroke-width: 1px !important;
+}
+.atlas-prose .atlas-mermaid svg .nodeLabel,
+.atlas-prose .atlas-mermaid svg .nodeLabel * {
+  color: var(--ink) !important;
+  fill: var(--ink) !important;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+}
+.atlas-prose .atlas-mermaid svg .edgePath .path {
+  stroke: var(--ink-quiet) !important;
+  stroke-width: 1px !important;
+}
+.atlas-prose .atlas-mermaid svg .edgeLabel,
+.atlas-prose .atlas-mermaid svg .edgeLabel * {
+  background: var(--paper) !important;
+  color: var(--ink-soft) !important;
+  fill: var(--ink-soft) !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace !important;
+  font-size: 11px !important;
+}
+.atlas-prose .atlas-mermaid svg marker path,
+.atlas-prose .atlas-mermaid svg defs marker path {
+  fill: var(--ink-quiet) !important;
+  stroke: var(--ink-quiet) !important;
+}
+.atlas-prose .atlas-mermaid svg .cluster rect {
+  fill: var(--paper-soft) !important;
+  stroke: var(--border-soft) !important;
+  stroke-dasharray: 0 !important;
+}

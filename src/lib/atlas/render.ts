@@ -91,12 +91,22 @@ export function renderAtlasMarkdown(md: string): string {
         i += 1;
       }
       i += 1; // skip closing fence
-      const label =
-        lang === "mermaid"
-          ? '<div class="atlas-code-label">diagram source · mermaid</div>'
-          : lang
-            ? `<div class="atlas-code-label">${escapeHtml(lang)}</div>`
-            : "";
+
+      // Mermaid blocks: emit a placeholder div the client component
+      // hydrates into a real SVG diagram. Source is base64-encoded so
+      // it can ride through serialization without escaping issues.
+      if (lang === "mermaid") {
+        const source = codeLines.join("\n");
+        const encoded = Buffer.from(source, "utf8").toString("base64");
+        out.push(
+          `<div class="atlas-mermaid" data-source="${encoded}"><pre class="atlas-mermaid-fallback"><code>${escapeHtml(source)}</code></pre></div>`,
+        );
+        continue;
+      }
+
+      const label = lang
+        ? `<div class="atlas-code-label">${escapeHtml(lang)}</div>`
+        : "";
       out.push(
         `<div class="atlas-codeblock">${label}<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre></div>`,
       );

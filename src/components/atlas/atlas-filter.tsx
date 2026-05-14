@@ -10,6 +10,7 @@ type EntrySummary = {
   lens: "Products" | "Processes" | "Data Flows";
   status: "stub" | "partial" | "complete";
   isStale: boolean;
+  isDrifted: boolean;
   ageDays: number | null;
   lastVerified: string;
   tags: string[];
@@ -18,6 +19,7 @@ type EntrySummary = {
 type Group = { lens: EntrySummary["lens"]; entries: EntrySummary[] };
 
 function stateNote(e: EntrySummary): string | null {
+  if (e.isDrifted) return "drifted";
   if (e.isStale) return "stale";
   if (e.status === "stub") return "stub";
   if (e.status === "partial") return "partial";

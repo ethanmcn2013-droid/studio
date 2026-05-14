@@ -222,7 +222,7 @@ Standardize on `Open the [product]` for the primary hero CTA:
 ```
 [Brand col]        [Product]        [Resources]        [Suite]
 
-Wordmark           Feature links    Changelog (→       Signal Studio ↗
+Wordmark           Feature links    Dispatch (→        Signal Studio ↗
 Tagline                             umbrella ↗)        Signal Tasks ↗
                    Pricing ↗                           Signal Roadmap ↗
 A Signal Studio    Demo             About              Signal Analytics ↗
@@ -244,19 +244,91 @@ The right-hand tagline is the **single locked suite tagline**: `Clarity, not con
 - Suite column must list **all four** Signal products (Studio + the other three siblings). Missing one is a visible drift signal.
 - Brand column must include the line `A Signal Studio product.` (the umbrella anchor).
 - Resources or Product column must include a Contact link (mailto:hello@signalstudio.ie) — no surface should silently dead-end visitors who want to reach out.
-- Changelog link points to `https://signalstudio.ie/changelog` (suite-wide, see Changelog convention below).
+- Dispatch link points to `https://signalstudio.ie/dispatch` (suite-wide, see Dispatch convention below). Per-product `/changelog` and `/dispatch` routes 308-redirect to it.
 
 Cross-product links use `target="_blank" rel="noopener noreferrer"`. The `↗` external-link glyph appears on Analytics's pattern; Tasks/Roadmap render link-only — both readings are acceptable, the discipline is on link presence, not glyph.
 
-### Changelog convention (locked 2026-05-12)
+### Dispatch convention (locked 2026-05-14, supersedes the 2026-05-12 Changelog convention)
 
-The suite has **one reading surface** for shipped work: `signalstudio.ie/changelog`. Per-product `/changelog` routes 308-redirect to it. Engineering source-of-truth stays per-product (`tasks/CHANGELOG.md`, `roadmap/CHANGELOG.md`, etc) — the umbrella log is the curated read.
+The suite changelog is called **the dispatch.** What gets sent, not what accumulates. Sits inside the brand's broadcast grammar — wordmark broadcast, briefings, signals, dispatch.
 
-**Entry voice:** Tasks's pattern is the bar — "The day the slugs collided" reads, "Shipped feature X" doesn't. Character that earns its keep is allowed. Performance is banned.
+**One reading surface** for shipped work: `signalstudio.ie/dispatch` (to be built — half-day slot after the next cycle ships). Per-product `/changelog` and `/dispatch` routes 308-redirect to it. Engineering source-of-truth stays per-product (`tasks/CHANGELOG.md`, `roadmap/CHANGELOG.md`, etc) — the file path keeps the conventional name for tooling and muscle memory; the document inside calls itself the dispatch.
 
-**Entry shape:** date section (mono header, `## YYYY-MM-DD`), one or more entries (`### Entry title.` ending in a period, body in declarative prose, no bullets if it can be helped). Bullets allowed when the entry is genuinely list-shaped; default to paragraphs.
+**Entry shape (locked).** One header line. One bold impact-lead sentence. Then prose.
 
-**Cadence:** silence is also brand. The log only updates when something is worth saying out loud.
+```
+## YYYY-MM-DD · X·NN · verb · Declarative present-tense headline
+
+**One bold sentence written for a pilot venue operator, not for future-Ethan.
+Plain English. What changed for the person reading.**
+
+Body prose — narrative, no bullets if it can be helped. Implementation
+detail welcome here, not in the bold lead.
+```
+
+Four header elements, separated by middle dot (` · `, U+00B7 with spaces):
+
+1. **Date** in ISO. Scan anchor.
+2. **Cycle code** — `X·NN`. Single-letter product (`S` Studio · `T` Tasks · `R` Roadmap · `A` Analytics · `N` Notes), middle dot, zero-padded number. Grep target. The code is also the cycle's anchor in `phase.md` and commit messages.
+3. **Verb** — exactly one of the five Signal verbs (see below). Lowercase.
+4. **Headline** — declarative present-tense, subject + active verb, no gerunds. Banned: "Improvements to X", "Adding Y", "Fixed Z", "Performance". Allowed: "Paper turns white", "The dot learns to heartbeat", "Burndown disappears from the one place we forgot to ban it".
+
+**The five Signal verbs.** Replaces Keep-a-Changelog's Added/Changed/Fixed/Removed.
+
+| verb       | what it covers                                                |
+|------------|---------------------------------------------------------------|
+| **ships**   | new capability reaching users                                 |
+| **tightens**| existing thing made more correct, faster, or honest           |
+| **cuts**    | something deleted, retired, simplified                        |
+| **holds**   | a refusal — what was chosen *not* to build, and why           |
+| **reads**   | copy, naming, voice, tone hygiene                             |
+
+`holds` is the Signal-specific category. Every other product log buries refusals inside "Changed" or never writes them at all. The brand brags about refusals on `/about` and `/method`; the dispatch brags about them in the same register. Earn its use — typically once per sprint, not every entry.
+
+**Compound entries split.** If a date covers three distinct beats with different verbs, write three entries, not one. Splitting is the most expensive part of this convention — name the cost up front.
+
+**Entry voice (unchanged from 2026-05-12 lock).** Tasks's pattern is the bar — "The day the slugs collided" reads, "Shipped feature X" doesn't. Character that earns its keep is allowed. Performance, in the corporate sense, is banned.
+
+**No retroactive rewrite.** Entries before 2026-05-14 keep their original shape. The new shape starts at the next cycle that ships. Rewriting the past is the worse drift.
+
+**Forbidden in the dispatch.** Emoji or badge chips (`[FEATURE]`, `🐛 fixed`). Keep-a-Changelog's Added/Changed/Fixed/Removed/Deprecated/Security. Semver version numbers (there are no public releases). Audience-impact pills (`you'll notice this`, `under the hood`) — the bold impact lead does that job without a taxonomy that decays. In-product "what's new" toasts — they violate §2.2 surface-bloat.
+
+**Cadence.** Silence is also brand. The dispatch only updates when something is worth saying out loud.
+
+**Reference examples.** Two worked entries to anchor the shape (hypothetical — neither has shipped):
+
+```
+## 2026-06-02 · T·12 · holds · Tasks refuses the smart-inbox auto-sort
+
+**Power users asked for a mode that would route new tasks into projects
+automatically based on the title. We're not building it.**
+
+The product's discipline is that you do the sorting because the sorting
+is the thinking. Outsourcing that step to an LLM removes the moment that
+makes Tasks different from a database with tags — the 80% audience
+doesn't need help typing a tag, they need a tool that won't insert one
+for them while they're not looking.
+
+What we'll build instead: faster tag-suggest based on what you've used
+in this workspace before. The keystrokes get shorter. The decision
+stays yours.
+```
+
+```
+## 2026-06-05 · A·09 · ships · The briefing learns to skip a quiet day
+
+**If nothing in your workspace moved yesterday, the briefing doesn't
+arrive. No filler, no "no signal" placeholder — silence is the message.**
+
+The cron checks for movement before composing. If `attentionEvents` is
+empty for the user's workspace and no trigger fires, dispatch is
+skipped. `lastSentAt` is left untouched so the next eligible day still
+sends.
+
+This is a §2.2 anti-surface-bloat decision dressed as a feature. The
+brand promises to cut through the noise; the briefing that lands on a
+day with nothing to say is itself noise.
+```
 
 ### "What this isn't" pattern
 On every product's `/about` (or homepage anti-features section):
@@ -309,6 +381,7 @@ When agents (or future-Ethan) ask "what's the Signal Studio voice?" — point th
 
 ## 10 · Living document — recent decisions
 
+- **2026-05-14:** §6.5 Changelog convention rewritten as **the dispatch convention.** Supersedes the 2026-05-12 lock. Five-agent deliberation (creative-director / ux-director / strategy / pm / tech-writer) converged on: rename "changelog" → "the dispatch"; replace Keep-a-Changelog's Added/Changed/Fixed/Removed with five Signal verbs (ships / tightens / cuts / holds / reads); lock a single header-line shape (`YYYY-MM-DD · X·NN · verb · headline`); require a bold impact-lead sentence as the body's first line; ban emoji, badge chips, semver, audience-impact pills, and in-product "what's new" toasts. The `holds` category is the Signal-specific bet — refusals as a first-class entry type, the §6 brand posture finally on the log. Strategy's dissent preserved inline in the recommendation: if scaffolding flattens the prose voice after two cycles, drop the verb tag and keep only the name, the headline grammar, and the `holds` concept. No retroactive rewrite of prior entries. The new shape starts at the next cycle. `signalstudio.ie/dispatch` to be built as a half-day curated read-surface after the next cycle ships — not before venue calls.
 - **2026-05-11:** Brand guide handoff received from Claude Design canvas. Direction **D01 — Refined Indigo Dot** committed. Three explorations rejected (D02 quadrant glyph, D03 mono wordmark with cursor, D04 serif Fraunces monogram). The locked four-temporality framework: tasks=pulse, roadmap=slide, analytics=tick, notes=caret, umbrella=pulse-slow. Two per-product gestures changed from prior BRAND.md §4: Analytics (static→tick) and Notes (underline-writes→caret). Full spec at `studio/docs/brand-guide/BRAND_GUIDE_HANDOFF.md`. Rolling out across products in cycles 11.1–11.6.
 - **2026-05-11:** Wedge confirmed — **weddings and events** are the first GTM wedge. Other §2.1 archetypes (freelancers, students, tradespeople, small-business operators, public-facing coordinators) remain part of the suite positioning, but outbound, demo production, and pilot programmes lead with weddings/events through the rest of 2026 Q2. Validates: Ireland is the validation market, venues are the workspace-creator persona, the four-layer wedding loop (Notes venue meeting → Tasks workspace → Roadmap shared update → Analytics daily briefing) is the proof. Reversible decision; revisit after 10 venue conversations.
 - **2026-05-11:** Cycles 1–7 (Codex/GPT-5.5 reframing) published end-to-end. Signal Studio reframed as one integrated ecosystem with four layers (context/execution/direction/attention) rather than four products with shared chrome. Strategic enemy named: *translation debt*. Growth loop locked: workspace created → collaborators invited → shareable artefact → new creator discovered. Internal `/hq` dashboard now live as the operational source of truth.

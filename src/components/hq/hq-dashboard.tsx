@@ -10,12 +10,16 @@ import type {
   ContentItem,
   DecisionItem,
   DemoAsset,
+  EcosystemFlow,
   FeatureItem,
   GrowthStatus,
   GrowthWorkflowItem,
   HqData,
+  LaunchReadinessItem,
   MetricItem,
   NextActionItem,
+  PilotProgramme,
+  ProductStatus,
   Prospect,
   RiskItem,
   SegmentPlan,
@@ -32,14 +36,9 @@ type TabId =
   | "overview"
   | "products"
   | "loop"
-  | "features"
-  | "launch"
-  | "growth"
-  | "crm"
-  | "content"
-  | "metrics"
-  | "decisions"
-  | "rhythm";
+  | "pipeline"
+  | "proof"
+  | "operations";
 
 type HqArrayKey =
   | "features"
@@ -62,17 +61,12 @@ type HqArrayKey =
   | "growthWorkflow";
 
 const tabs: Array<{ id: TabId; label: string }> = [
-  { id: "overview", label: "Command" },
-  { id: "products", label: "Ecosystem" },
-  { id: "loop", label: "Collab Loop" },
-  { id: "features", label: "Features" },
-  { id: "launch", label: "Launch" },
-  { id: "growth", label: "Growth Studio" },
-  { id: "crm", label: "Outbound" },
-  { id: "content", label: "Content" },
-  { id: "metrics", label: "Metrics" },
-  { id: "decisions", label: "Decisions" },
-  { id: "rhythm", label: "Rhythm" },
+  { id: "overview", label: "Today" },
+  { id: "products", label: "Products" },
+  { id: "loop", label: "The loop" },
+  { id: "pipeline", label: "Pipeline" },
+  { id: "proof", label: "Proof" },
+  { id: "operations", label: "Operations" },
 ];
 
 const workStatuses: FeatureItem["status"][] = [
@@ -86,7 +80,7 @@ const workStatuses: FeatureItem["status"][] = [
 ];
 
 const growthStatuses: GrowthStatus[] = [
-  "Backlog",
+  "Queued",
   "Selected",
   "Drafting",
   "Review",
@@ -241,6 +235,30 @@ function SectionHeader({
   );
 }
 
+function FileBackedNotice({ section }: { section: string }) {
+  return (
+    <div
+      className="mb-5 flex items-center gap-3 border-t border-b border-border-soft px-0 py-2.5"
+      role="note"
+    >
+      <span
+        aria-hidden="true"
+        className="inline-block h-1.5 w-1.5 rounded-full"
+        style={{ background: "var(--accent)" }}
+      />
+      <span
+        className="font-mono text-[10.5px] uppercase tracking-wider"
+        style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+      >
+        file-backed · edit at content/hq/{section}/
+      </span>
+      <span className="font-mono text-[10.5px] uppercase tracking-wider text-ink-quiet">
+        operator-edit affordances hidden here
+      </span>
+    </div>
+  );
+}
+
 function Panel({
   children,
   className,
@@ -250,7 +268,7 @@ function Panel({
 }) {
   return (
     <section
-      className={cx("rounded-[8px] border border-border-soft bg-bg-elev p-5 shadow-1", className)}
+      className={cx("hq-panel rounded-[8px] border border-border-soft bg-bg-elev p-5 shadow-1", className)}
     >
       {children}
     </section>
@@ -345,7 +363,28 @@ function makeProspect(): Prospect {
   };
 }
 
-export function HqDashboard() {
+type HqDashboardMarkdown = {
+  products: ProductStatus[];
+  ecosystemFlows: EcosystemFlow[];
+  features: FeatureItem[];
+  risks: RiskItem[];
+  decisions: DecisionItem[];
+  launchReadiness: LaunchReadinessItem[];
+  pilots: PilotProgramme[];
+  collaborationLoop: CollaborationLoopStep[];
+  sharedObjects: SharedObjectItem[];
+  accessRoles: AccessRoleItem[];
+  collaboratorFirstView: CollaboratorFirstViewItem[];
+  shareableArtifacts: ShareableArtifactItem[];
+  segments: SegmentPlan[];
+  campaigns: Campaign[];
+  contentItems: ContentItem[];
+  demos: DemoAsset[];
+  templates: TemplateItem[];
+  growthWorkflow: GrowthWorkflowItem[];
+};
+
+export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
   const [data, setData] = useState<HqData>(() => safeCloneData());
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const [featureFilter, setFeatureFilter] = useState("All");
@@ -487,7 +526,7 @@ export function HqDashboard() {
               <span className="font-mono text-[11px] uppercase text-ink-faint">Private</span>
             </div>
             <p className="max-w-2xl text-[14px] leading-6 text-ink-quiet">
-              Internal command centre for product, launch, content, outreach, pilots, and growth.
+              What needs attention today. Everything else stays out of the way.
             </p>
           </div>
 
@@ -588,8 +627,9 @@ export function HqDashboard() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
+                data-active={activeTab === tab.id ? "true" : "false"}
                 className={cx(
-                  "rounded-[6px] border px-3 py-2 text-left text-[13px] font-medium transition",
+                  "hq-tab rounded-[6px] border px-3 py-2 text-left text-[13px] font-medium transition",
                   activeTab === tab.id
                     ? "border-accent bg-accent-soft text-ink"
                     : "border-border-soft bg-bg-elev text-ink-quiet hover:text-ink"
@@ -605,44 +645,43 @@ export function HqDashboard() {
           {activeTab === "overview" ? (
             <OverviewTab data={data} derived={derived} />
           ) : null}
-          {activeTab === "products" ? <ProductsTab data={data} /> : null}
+          {activeTab === "products" ? <ProductsTab data={data} markdown={markdown} /> : null}
           {activeTab === "loop" ? (
-            <CollaborationLoopTab data={data} updateItem={updateItem} />
+            <CollaborationLoopTab data={data} updateItem={updateItem} markdown={markdown} />
           ) : null}
-          {activeTab === "features" ? (
-            <FeaturesTab
-              data={data}
-              filteredFeatures={filteredFeatures}
-              featureFilter={featureFilter}
-              setFeatureFilter={setFeatureFilter}
-              updateItem={updateItem}
-            />
+          {activeTab === "pipeline" ? (
+            <div className="grid gap-8">
+              <FeaturesTab
+                data={data}
+                filteredFeatures={filteredFeatures}
+                featureFilter={featureFilter}
+                setFeatureFilter={setFeatureFilter}
+                updateItem={updateItem}
+                markdown={markdown}
+              />
+              <LaunchTab data={data} derived={derived} markdown={markdown} />
+              <CrmTab
+                data={data}
+                prospectDraft={prospectDraft}
+                setProspectDraft={setProspectDraft}
+                addProspect={addProspect}
+                updateItem={updateItem}
+                deleteItem={deleteItem}
+              />
+            </div>
           ) : null}
-          {activeTab === "launch" ? <LaunchTab data={data} derived={derived} /> : null}
-          {activeTab === "growth" ? (
-            <GrowthTab data={data} updateItem={updateItem} />
+          {activeTab === "proof" ? (
+            <div className="grid gap-8">
+              <ContentTab data={data} updateItem={updateItem} markdown={markdown} />
+              <GrowthTab data={data} updateItem={updateItem} markdown={markdown} />
+            </div>
           ) : null}
-          {activeTab === "crm" ? (
-            <CrmTab
-              data={data}
-              prospectDraft={prospectDraft}
-              setProspectDraft={setProspectDraft}
-              addProspect={addProspect}
-              updateItem={updateItem}
-              deleteItem={deleteItem}
-            />
-          ) : null}
-          {activeTab === "content" ? (
-            <ContentTab data={data} updateItem={updateItem} />
-          ) : null}
-          {activeTab === "metrics" ? (
-            <MetricsTab data={data} updateItem={updateItem} />
-          ) : null}
-          {activeTab === "decisions" ? (
-            <DecisionsTab data={data} updateItem={updateItem} />
-          ) : null}
-          {activeTab === "rhythm" ? (
-            <RhythmTab data={data} updateItem={updateItem} />
+          {activeTab === "operations" ? (
+            <div className="grid gap-8">
+              <MetricsTab data={data} updateItem={updateItem} />
+              <DecisionsTab data={data} updateItem={updateItem} markdown={markdown} />
+              <RhythmTab data={data} updateItem={updateItem} />
+            </div>
           ) : null}
         </div>
       </div>
@@ -676,7 +715,7 @@ function OverviewTab({
         {scoreCards.map((card) => (
           <Panel key={card.label}>
             <div className="font-mono text-[11px] uppercase text-ink-faint">{card.label}</div>
-            <div className="mt-3 text-[34px] font-semibold tracking-[-0.04em]">{card.score}%</div>
+            <div className="hq-score-number mt-3 text-[34px] font-semibold tracking-[-0.04em]">{card.score}%</div>
             <p className="mt-2 min-h-[42px] text-[12.5px] leading-5 text-ink-quiet">{card.detail}</p>
             <div className="mt-4">
               <ScoreBar score={card.score} />
@@ -752,7 +791,21 @@ function ListBlock({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function ProductsTab({ data }: { data: HqData }) {
+function ProductsTab({
+  data,
+  markdown,
+}: {
+  data: HqData;
+  markdown?: HqDashboardMarkdown;
+}) {
+  const products = markdown?.products && markdown.products.length > 0
+    ? markdown.products
+    : data.products;
+  const ecosystemFlows =
+    markdown?.ecosystemFlows && markdown.ecosystemFlows.length > 0
+      ? markdown.ecosystemFlows
+      : data.ecosystemFlows;
+  const isFileBacked = Boolean(markdown?.products?.length);
   return (
     <div>
       <SectionHeader
@@ -761,8 +814,10 @@ function ProductsTab({ data }: { data: HqData }) {
         body="The strongest version is not four disconnected tools. It is one workspace seen through context, execution, direction, and attention."
       />
 
+      {isFileBacked && <FileBackedNotice section="products" />}
+
       <div className="mb-5 grid gap-4 md:grid-cols-2">
-        {data.products.map((product) => (
+        {products.map((product) => (
           <Panel key={product.id}>
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -804,7 +859,7 @@ function ProductsTab({ data }: { data: HqData }) {
               </tr>
             </thead>
             <tbody>
-              {data.ecosystemFlows.map((flow) => (
+              {ecosystemFlows.map((flow) => (
                 <tr key={flow.id} className="border-b border-border-soft last:border-b-0">
                   <td className="py-3 pr-4 font-medium text-ink">
                     {flow.from} → {flow.to}
@@ -827,13 +882,42 @@ function ProductsTab({ data }: { data: HqData }) {
 function CollaborationLoopTab({
   data,
   updateItem,
+  markdown,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const collaborationLoop =
+    markdown?.collaborationLoop && markdown.collaborationLoop.length > 0
+      ? markdown.collaborationLoop
+      : data.collaborationLoop;
+  const accessRoles =
+    markdown?.accessRoles && markdown.accessRoles.length > 0
+      ? markdown.accessRoles
+      : data.accessRoles;
+  const sharedObjects =
+    markdown?.sharedObjects && markdown.sharedObjects.length > 0
+      ? markdown.sharedObjects
+      : data.sharedObjects;
+  const collaboratorFirstView =
+    markdown?.collaboratorFirstView && markdown.collaboratorFirstView.length > 0
+      ? markdown.collaboratorFirstView
+      : data.collaboratorFirstView;
+  const shareableArtifacts =
+    markdown?.shareableArtifacts && markdown.shareableArtifacts.length > 0
+      ? markdown.shareableArtifacts
+      : data.shareableArtifacts;
+  const isFileBacked = Boolean(
+    markdown?.collaborationLoop?.length ||
+    markdown?.accessRoles?.length ||
+    markdown?.sharedObjects?.length ||
+    markdown?.collaboratorFirstView?.length ||
+    markdown?.shareableArtifacts?.length,
+  );
   const loopReadiness = clampScore(
-    data.collaborationLoop.reduce((sum, item) => sum + item.readiness, 0) /
-      Math.max(data.collaborationLoop.length, 1)
+    collaborationLoop.reduce((sum, item) => sum + item.readiness, 0) /
+      Math.max(collaborationLoop.length, 1)
   );
 
   return (
@@ -843,6 +927,8 @@ function CollaborationLoopTab({
         title="Make collaboration the organic outreach engine."
         body="The loop is simple: a creator starts a useful workspace, invites people into clear work, shares an artefact, and some of those people become future workspace creators."
       />
+
+      {isFileBacked && <FileBackedNotice section="collaboration-loop" />}
 
       <Panel className="mb-5">
         <div className="grid gap-5 md:grid-cols-[1fr_220px] md:items-center">
@@ -857,7 +943,7 @@ function CollaborationLoopTab({
           </div>
           <div>
             <div className="mb-3 text-right font-mono text-[11px] uppercase text-ink-faint">Loop readiness</div>
-            <div className="text-right text-[34px] font-semibold tracking-[-0.04em]">{loopReadiness}%</div>
+            <div className="hq-score-number text-right text-[34px] font-semibold tracking-[-0.04em]">{loopReadiness}%</div>
             <div className="mt-4">
               <ScoreBar score={loopReadiness} />
             </div>
@@ -874,7 +960,7 @@ function CollaborationLoopTab({
           <span className="text-[13px] text-ink-quiet">People should see value before they configure anything.</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
-          {data.accessRoles.map((role: AccessRoleItem) => (
+          {accessRoles.map((role: AccessRoleItem) => (
             <div key={role.id} className="rounded-[6px] border border-border-soft bg-bg p-4">
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
@@ -900,7 +986,7 @@ function CollaborationLoopTab({
       </Panel>
 
       <div className="mb-5 grid gap-4 md:grid-cols-2">
-        {data.collaborationLoop.map((step: CollaborationLoopStep) => (
+        {collaborationLoop.map((step: CollaborationLoopStep) => (
           <Panel key={step.id}>
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -936,7 +1022,7 @@ function CollaborationLoopTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Collaborator first view</div>
           <div className="grid gap-4">
-            {data.collaboratorFirstView.map((item: CollaboratorFirstViewItem) => (
+            {collaboratorFirstView.map((item: CollaboratorFirstViewItem) => (
               <div key={item.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -960,7 +1046,7 @@ function CollaborationLoopTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">First shareable artefacts</div>
           <div className="grid gap-4">
-            {data.shareableArtifacts.map((artifact: ShareableArtifactItem) => (
+            {shareableArtifacts.map((artifact: ShareableArtifactItem) => (
               <div key={artifact.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -1002,7 +1088,7 @@ function CollaborationLoopTab({
               </tr>
             </thead>
             <tbody>
-              {data.sharedObjects.map((object: SharedObjectItem) => (
+              {sharedObjects.map((object: SharedObjectItem) => (
                 <tr key={object.id} className="border-b border-border-soft last:border-b-0">
                   <td className="py-3 pr-4 font-medium text-ink">{object.object}</td>
                   <td className="py-3 pr-4 text-ink-quiet">{object.definition}</td>
@@ -1027,18 +1113,33 @@ function FeaturesTab({
   featureFilter,
   setFeatureFilter,
   updateItem,
+  markdown,
 }: {
   data: HqData;
   filteredFeatures: FeatureItem[];
   featureFilter: string;
   setFeatureFilter: (value: string) => void;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const features = markdown?.features && markdown.features.length > 0
+    ? markdown.features
+    : data.features;
+  const isFileBacked = Boolean(markdown?.features?.length);
+  const renderFeatures = isFileBacked
+    ? features.filter((f) =>
+        featureFilter === "All"
+          ? true
+          : f.product === featureFilter ||
+            f.status === featureFilter ||
+            f.type === featureFilter,
+      )
+    : filteredFeatures;
   const filters = [
     "All",
-    ...Array.from(new Set(data.features.flatMap((feature) => [feature.product, feature.status, feature.type]))),
+    ...Array.from(new Set(features.flatMap((feature) => [feature.product, feature.status, feature.type]))),
   ];
-  const inProgressCount = data.features.filter((feature) => feature.status === "In Progress").length;
+  const inProgressCount = features.filter((feature) => feature.status === "In Progress").length;
 
   return (
     <div>
@@ -1047,6 +1148,8 @@ function FeaturesTab({
         title="Build only what sharpens clarity."
         body="Feature work should support the ecosystem loop, launch proof, or a real activation path."
       />
+
+      {isFileBacked && <FileBackedNotice section="features" />}
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <select
@@ -1080,27 +1183,33 @@ function FeaturesTab({
               </tr>
             </thead>
             <tbody>
-              {filteredFeatures.map((feature) => (
+              {renderFeatures.map((feature) => (
                 <tr key={feature.id} className="border-b border-border-soft last:border-b-0">
                   <td className="py-3 pr-4 font-medium text-ink">{feature.name}</td>
                   <td className="py-3 pr-4 text-ink-quiet">{feature.product}</td>
                   <td className="py-3 pr-4 text-ink-quiet">{feature.type}</td>
                   <td className="py-3 pr-4">
-                    <select
-                      value={feature.status}
-                      onChange={(event) =>
-                        updateItem<FeatureItem>("features", feature.id, {
-                          status: event.target.value as FeatureItem["status"],
-                        })
-                      }
-                      className="h-9 rounded-[6px] border border-border-soft bg-bg px-2 text-[12px]"
-                    >
-                      {workStatuses.map((status) => (
-                        <option key={status} value={status}>
-                          {status}
-                        </option>
-                      ))}
-                    </select>
+                    {isFileBacked ? (
+                      <span className="font-mono text-[12px] text-ink-quiet">
+                        {feature.status.toLowerCase()}
+                      </span>
+                    ) : (
+                      <select
+                        value={feature.status}
+                        onChange={(event) =>
+                          updateItem<FeatureItem>("features", feature.id, {
+                            status: event.target.value as FeatureItem["status"],
+                          })
+                        }
+                        className="h-9 rounded-[6px] border border-border-soft bg-bg px-2 text-[12px]"
+                      >
+                        {workStatuses.map((status) => (
+                          <option key={status} value={status}>
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </td>
                   <td className="py-3 pr-4">{feature.priority}</td>
                   <td className="py-3 pr-4">
@@ -1120,10 +1229,17 @@ function FeaturesTab({
 function LaunchTab({
   data,
   derived,
+  markdown,
 }: {
   data: HqData;
   derived: ReturnType<typeof deriveHqState>;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const launchReadiness =
+    markdown?.launchReadiness && markdown.launchReadiness.length > 0
+      ? markdown.launchReadiness
+      : data.launchReadiness;
+  const isFileBacked = Boolean(markdown?.launchReadiness?.length);
   return (
     <div>
       <SectionHeader
@@ -1131,8 +1247,9 @@ function LaunchTab({
         title={`${derived.launchReadiness}% ready. Proof work is the gap.`}
         body="The weighted model keeps launch pressure honest. Product stability matters, but activation, demos, pilots, and tracking matter too."
       />
+      {isFileBacked && <FileBackedNotice section="launch-readiness" />}
       <div className="grid gap-4">
-        {data.launchReadiness.map((item) => (
+        {launchReadiness.map((item) => (
           <Panel key={item.id}>
             <div className="grid gap-4 md:grid-cols-[220px_1fr_130px] md:items-start">
               <div>
@@ -1163,23 +1280,38 @@ function LaunchTab({
 function GrowthTab({
   data,
   updateItem,
+  markdown,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const segments = markdown?.segments?.length ? markdown.segments : data.segments;
+  const campaigns = markdown?.campaigns?.length ? markdown.campaigns : data.campaigns;
+  const growthWorkflow = markdown?.growthWorkflow?.length
+    ? markdown.growthWorkflow
+    : data.growthWorkflow;
+  const isFileBacked = Boolean(
+    markdown?.segments?.length ||
+    markdown?.campaigns?.length ||
+    markdown?.growthWorkflow?.length,
+  );
+  const workflowFileBacked = Boolean(markdown?.growthWorkflow?.length);
   return (
     <div>
       <SectionHeader
-        eyebrow="Signal Growth Studio"
-        title="A founder growth operating system with review gates."
-        body="The goal is structured output, not uncontrolled volume. Every useful asset should carry metadata, a status, a review path, and a reason to exist."
+        eyebrow="Growth"
+        title="Growth work, reviewed before it ships."
+        body="Structured output, not volume. Every useful asset carries a status, a review path, and a reason to exist."
       />
+
+      {isFileBacked && <FileBackedNotice section="growth" />}
 
       <div className="mb-5 grid gap-4 md:grid-cols-2">
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Segments</div>
           <div className="grid gap-4">
-            {data.segments.map((segment: SegmentPlan) => (
+            {segments.map((segment: SegmentPlan) => (
               <div key={segment.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -1197,7 +1329,7 @@ function GrowthTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Campaigns</div>
           <div className="grid gap-4">
-            {data.campaigns.map((campaign: Campaign) => (
+            {campaigns.map((campaign: Campaign) => (
               <div key={campaign.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -1216,7 +1348,7 @@ function GrowthTab({
       <Panel>
         <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Review queue and metadata</div>
         <div className="grid gap-4">
-          {data.growthWorkflow.map((item: GrowthWorkflowItem) => (
+          {growthWorkflow.map((item: GrowthWorkflowItem) => (
             <div key={item.id} className="grid gap-4 border-b border-border-soft pb-4 last:border-b-0 last:pb-0 md:grid-cols-[1fr_190px]">
               <div>
                 <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -1232,11 +1364,17 @@ function GrowthTab({
                 </div>
               </div>
               <div>
-                <SelectInput
-                  value={item.status}
-                  values={growthStatuses}
-                  onChange={(status) => updateItem<GrowthWorkflowItem>("growthWorkflow", item.id, { status })}
-                />
+                {workflowFileBacked ? (
+                  <span className="font-mono text-[12px] text-ink-quiet">
+                    {item.status.toLowerCase()}
+                  </span>
+                ) : (
+                  <SelectInput
+                    value={item.status}
+                    values={growthStatuses}
+                    onChange={(status) => updateItem<GrowthWorkflowItem>("growthWorkflow", item.id, { status })}
+                  />
+                )}
                 <div className="mt-3 grid grid-cols-2 gap-2 text-[12px]">
                   <StatusBadge value={`Brand ${item.brandRisk}`} />
                   <StatusBadge value={`Trust ${item.complianceRisk}`} />
@@ -1442,7 +1580,7 @@ function MiniStat({ label, value }: { label: string; value: number | string }) {
   return (
     <Panel>
       <div className="font-mono text-[11px] uppercase text-ink-faint">{label}</div>
-      <div className="mt-2 text-[28px] font-semibold tracking-[-0.04em]">{value}</div>
+      <div className="hq-score-number mt-2 text-[28px] font-semibold tracking-[-0.04em]">{value}</div>
     </Panel>
   );
 }
@@ -1450,10 +1588,27 @@ function MiniStat({ label, value }: { label: string; value: number | string }) {
 function ContentTab({
   data,
   updateItem,
+  markdown,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const contentItems = markdown?.contentItems?.length
+    ? markdown.contentItems
+    : data.contentItems;
+  const demos = markdown?.demos?.length ? markdown.demos : data.demos;
+  const templates = markdown?.templates?.length ? markdown.templates : data.templates;
+  const pilots = markdown?.pilots?.length ? markdown.pilots : data.pilots;
+  const isFileBacked = Boolean(
+    markdown?.contentItems?.length ||
+    markdown?.demos?.length ||
+    markdown?.templates?.length ||
+    markdown?.pilots?.length,
+  );
+  const contentFileBacked = Boolean(markdown?.contentItems?.length);
+  const demosFileBacked = Boolean(markdown?.demos?.length);
+  const templatesFileBacked = Boolean(markdown?.templates?.length);
   return (
     <div>
       <SectionHeader
@@ -1462,22 +1617,30 @@ function ContentTab({
         body="Each asset should make the product easier to understand, easier to share, or easier to try."
       />
 
+      {isFileBacked && <FileBackedNotice section="content" />}
+
       <div className="mb-5 grid gap-4 lg:grid-cols-2">
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Content Studio</div>
           <div className="grid gap-4">
-            {data.contentItems.map((item: ContentItem) => (
+            {contentItems.map((item: ContentItem) => (
               <AssetRow
                 key={item.id}
                 title={item.title}
                 detail={`${item.format} · ${item.channel} · ${item.targetSegment}`}
                 status={item.status}
                 select={
-                  <SelectInput
-                    value={item.status}
-                    values={["Idea", "Script", "Recording", "Editing", "Published"]}
-                    onChange={(status) => updateItem<ContentItem>("contentItems", item.id, { status })}
-                  />
+                  contentFileBacked ? (
+                    <span className="font-mono text-[12px] text-ink-quiet">
+                      {item.status.toLowerCase()}
+                    </span>
+                  ) : (
+                    <SelectInput
+                      value={item.status}
+                      values={["Idea", "Script", "Recording", "Editing", "Published"]}
+                      onChange={(status) => updateItem<ContentItem>("contentItems", item.id, { status })}
+                    />
+                  )
                 }
               />
             ))}
@@ -1487,18 +1650,24 @@ function ContentTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Demo Library</div>
           <div className="grid gap-4">
-            {data.demos.map((demo: DemoAsset) => (
+            {demos.map((demo: DemoAsset) => (
               <AssetRow
                 key={demo.id}
                 title={demo.title}
                 detail={`${demo.audience} · ${demo.objective}`}
                 status={demo.scriptStatus}
                 select={
-                  <SelectInput
-                    value={demo.scriptStatus}
-                    values={workStatuses}
-                    onChange={(scriptStatus) => updateItem<DemoAsset>("demos", demo.id, { scriptStatus })}
-                  />
+                  demosFileBacked ? (
+                    <span className="font-mono text-[12px] text-ink-quiet">
+                      {demo.scriptStatus.toLowerCase()}
+                    </span>
+                  ) : (
+                    <SelectInput
+                      value={demo.scriptStatus}
+                      values={workStatuses}
+                      onChange={(scriptStatus) => updateItem<DemoAsset>("demos", demo.id, { scriptStatus })}
+                    />
+                  )
                 }
               />
             ))}
@@ -1510,18 +1679,24 @@ function ContentTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Templates</div>
           <div className="grid gap-4">
-            {data.templates.map((template: TemplateItem) => (
+            {templates.map((template: TemplateItem) => (
               <AssetRow
                 key={template.id}
                 title={template.name}
                 detail={`${template.targetSegment} · ${template.useCase}`}
                 status={template.status}
                 select={
-                  <SelectInput
-                    value={template.status}
-                    values={["Idea", "Draft", "Built", "Tested", "Published"]}
-                    onChange={(status) => updateItem<TemplateItem>("templates", template.id, { status })}
-                  />
+                  templatesFileBacked ? (
+                    <span className="font-mono text-[12px] text-ink-quiet">
+                      {template.status.toLowerCase()}
+                    </span>
+                  ) : (
+                    <SelectInput
+                      value={template.status}
+                      values={["Idea", "Draft", "Built", "Tested", "Published"]}
+                      onChange={(status) => updateItem<TemplateItem>("templates", template.id, { status })}
+                    />
+                  )
                 }
               />
             ))}
@@ -1531,7 +1706,7 @@ function ContentTab({
         <Panel>
           <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Pilot programmes</div>
           <div className="grid gap-4">
-            {data.pilots.map((pilot) => (
+            {pilots.map((pilot) => (
               <div key={pilot.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -1630,10 +1805,20 @@ function MetricsTab({
 function DecisionsTab({
   data,
   updateItem,
+  markdown,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  markdown?: HqDashboardMarkdown;
 }) {
+  const decisions = markdown?.decisions && markdown.decisions.length > 0
+    ? markdown.decisions
+    : data.decisions;
+  const risks = markdown?.risks && markdown.risks.length > 0
+    ? markdown.risks
+    : data.risks;
+  const decisionsFileBacked = Boolean(markdown?.decisions?.length);
+  const isFileBacked = Boolean(markdown?.risks?.length);
   return (
     <div>
       <SectionHeader
@@ -1642,8 +1827,10 @@ function DecisionsTab({
         body="Decisions prevent re-litigation. Feedback prevents guessing. Risks keep the work honest."
       />
 
+      {decisionsFileBacked && <FileBackedNotice section="decisions" />}
+
       <div className="mb-5 grid gap-4">
-        {data.decisions.map((decision: DecisionItem) => (
+        {decisions.map((decision: DecisionItem) => (
           <Panel key={decision.id}>
             <div className="grid gap-4 md:grid-cols-[1fr_160px]">
               <div>
@@ -1654,11 +1841,17 @@ function DecisionsTab({
                 <p className="text-[13px] leading-5 text-ink-quiet">{decision.reason}</p>
                 <p className="mt-2 text-[13px] leading-5 text-ink-quiet">Risk: {decision.risks}</p>
               </div>
-              <SelectInput
-                value={decision.status}
-                values={["Active", "Revisit", "Reversed"]}
-                onChange={(status) => updateItem<DecisionItem>("decisions", decision.id, { status })}
-              />
+              {decisionsFileBacked ? (
+                <span className="font-mono text-[12px] text-ink-quiet">
+                  {decision.status.toLowerCase()}
+                </span>
+              ) : (
+                <SelectInput
+                  value={decision.status}
+                  values={["Active", "Revisit", "Reversed"]}
+                  onChange={(status) => updateItem<DecisionItem>("decisions", decision.id, { status })}
+                />
+              )}
             </div>
           </Panel>
         ))}
@@ -1681,9 +1874,12 @@ function DecisionsTab({
         </Panel>
 
         <Panel>
-          <div className="mb-4 font-mono text-[11px] uppercase text-ink-faint">Risks and signals</div>
+          <div className="mb-4 flex items-center justify-between font-mono text-[11px] uppercase text-ink-faint">
+            <span>Risks and signals</span>
+            {isFileBacked && <span className="text-accent">file-backed</span>}
+          </div>
           <div className="grid gap-4">
-            {data.risks.map((risk: RiskItem) => (
+            {risks.map((risk: RiskItem) => (
               <div key={risk.id} className="border-b border-border-soft pb-4 last:border-b-0 last:pb-0">
                 <div className="mb-2 flex items-center justify-between gap-3">
                   <h3 className="font-semibold text-ink">{risk.risk}</h3>

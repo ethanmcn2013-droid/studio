@@ -6,10 +6,19 @@ read these files at request time — no rebuild for content changes.
 
 ## Who it's for
 
-Future-Ethan. The operator at 11pm six months from now staring at a
-broken cross-repo flow he hasn't touched since shipping. Dense, jargon-
-rich, file-path-first. If a reader needs a softer version, that's a
-*generated* artifact, not this one.
+Two readers, two layers in the same document.
+
+**The body** is for future-Ethan — the operator at 11pm six months
+from now staring at a broken cross-repo flow he hasn't touched since
+shipping. Dense, jargon-rich, file-path-first.
+
+**The exec brief** at the top of every entry (three fields:
+`execWhat`, `execMatters`, `execRisk`) is for leadership readers
+who need to grasp the system in 30 seconds without acronyms or file
+paths. Plain English. Two sentences max per field.
+
+Same document, two voices. No separate exec-facing site, no second
+maintainer-flow to keep in sync.
 
 ## Adding an entry
 
@@ -31,8 +40,16 @@ rich, file-path-first. If a reader needs a softer version, that's a
    summary: One-line hook, ~140 chars, shows on the index row.
    status: stub | partial | complete
    pinned: false               # set true on at most one entry — the "start here"
+   execWhat: One plain-English sentence. No acronyms, no file paths.
+   execMatters: One sentence on why this system is load-bearing for the business.
+   execRisk: One sentence on what fails if this breaks or doesn't exist.
    ---
    ```
+
+   The three `exec*` fields render as a "for leadership · 30-second
+   read" block above the body. Write them last — they're the
+   distillation of everything in the body. If you can't write them
+   without jargon, the body isn't done.
 
 4. Body sections, fixed order:
    - `## WHAT` — one paragraph, plain English.
@@ -86,13 +103,34 @@ Not by default. Add an entry only when you needed it and it wasn't
 there. Completeness for its own sake reintroduces the documentation
 doom-loop.
 
+## Drift-trigger (studio-side shipped 2026-05-14)
+
+The pre-commit hook lives at `.githooks/pre-commit` and runs
+`scripts/atlas-drift-check.ts`. It's **opt-in** — to activate in your
+local clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Once active, every commit that touches a file referenced by an atlas
+entry's `references[]` will flag the entry in `content/atlas/_drift.json`
+and stage the sidecar as part of the same commit. Bumping an entry's
+`lastVerified` (or staging the entry's own .md) clears its slug from
+the sidecar — the operator's confirmation that the entry is current.
+
+The hook **never blocks commits**. Drift is a signal, not a gate.
+
+Studio-side is shipped. The cross-repo fan-out (per-repo hooks in
+tasks, roadmap, analytics, notes that write into studio's sidecar)
+is a separate cycle. See `docs/ATLAS_DRIFT_TRIGGER.md` for the full
+spec, the open questions, and the sign-off criterion.
+
 ## Not in v1 (don't build yet)
 
-- **Drift-trigger** — pre-commit or CI hook that watches paths in
-  `references[]` and flips an `isDrifted` flag when source files
-  change. This is the load-bearing v2 piece per the 2026-05-14 audit.
-  Without it the atlas is honour-system documentation; with it,
-  drift becomes a system signal.
+- **Cross-repo drift fan-out** — pre-commit hooks in the other four
+  product repos that write into studio's sidecar. The studio script
+  proves the shape; fan-out is mechanical.
 - Natural-language query over the corpus.
 - Client-side Mermaid rendering.
 - Public-facing variant for hires or partners.

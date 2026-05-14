@@ -10,6 +10,9 @@ references: [~/.claude/state/phase.md, ~/.claude/state/log.jsonl, ~/.claude/hook
 summary: How a Signal cycle opens, runs, and closes — phase.md plus log.jsonl plus memory, in one loop.
 status: complete
 pinned: true
+execWhat: The repeatable working unit that lets one operator ship five products. Every piece of work — feature, fix, polish — runs through the same five-step shape so nothing gets lost between sessions.
+execMatters: This is the operating discipline that replaces a team. Without it, the suite would have inconsistent voice, half-finished features, and constant context loss between sessions; with it, the operator can pause and resume any product without re-learning what was in flight.
+execRisk: If the cycle pattern breaks down, every product slows by roughly 3x and quality drifts within two weeks. The shape is the moat, not any individual feature.
 ---
 
 ## WHAT

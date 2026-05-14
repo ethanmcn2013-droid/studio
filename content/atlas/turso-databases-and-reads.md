@@ -10,6 +10,9 @@ references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, dr
 summary: Per-product Turso libSQL databases plus the shared signal-entitlements DB. Cross-product reads use scoped read-only tokens; tag-as-project in Tasks; Notes promotes one-way into Tasks.
 status: complete
 pinned: false
+execWhat: Each product has its own database; one shared database carries who-has-paid-for-what across the whole suite. Products read each other's data via locked-down keys that prevent writes.
+execMatters: Five products with five databases means a bad change to one can't break the others. The shared payments database means a customer who pays once gets access in every product within seconds — no manual sync, no drift.
+execRisk: If a product loses its database key or the shared payments database goes down, that product can't sell anything. Local data stays intact; recovery is typically minutes, not hours.
 ---
 
 ## WHAT

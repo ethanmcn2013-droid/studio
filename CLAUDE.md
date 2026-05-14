@@ -38,7 +38,7 @@ In this repo that usually means updating:
 - `docs/ECOSYSTEM_INTEGRATION_PLAN.md` if the change affects cross-product flows, sharing, invitations, templates, guest access, public outputs, or source tracking
 - `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md` if the change affects invite roles, guest access, first-view behaviour, or source tracking
 - `docs/SIGNAL_HQ.md` if the operating model changes
-- `CHANGELOG.md` for meaningful user-visible or operator-visible changes
+- `CHANGELOG.md` for meaningful user-visible or operator-visible changes — write entries in the dispatch shape (BRAND.md §6.5): `## YYYY-MM-DD · X·NN · verb · headline`, then a bold impact-lead sentence, then prose. Verbs are `ships / tightens / cuts / holds / reads`.
 
 If you are working in another Signal product repo and the change affects Signal Studio's operating state, open or update a Studio PR that reflects it in Signal HQ.
 

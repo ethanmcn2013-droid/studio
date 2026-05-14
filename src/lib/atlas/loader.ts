@@ -33,13 +33,29 @@ export type AtlasFrontmatter = {
   summary: string;
   status: AtlasStatus;
   pinned: boolean;
+  execWhat: string;
+  execMatters: string;
+  execRisk: string;
 };
 
 export type AtlasEntry = AtlasFrontmatter & {
   body: string;
   ageDays: number;
   isStale: boolean;
+  isDrifted: boolean;
+  driftedRefs: string[];
 };
+
+/**
+ * Optional sidecar at content/atlas/_drift.json — written by the v2
+ * drift-trigger when files referenced by an entry change in git.
+ * Shape: { "<slug>": { "drifted": ["path", ...], "updatedAt": "ISO" } }
+ * Missing file / missing slug = no drift detected.
+ */
+export type DriftSidecar = Record<
+  string,
+  { drifted: string[]; updatedAt?: string }
+>;
 
 const LENSES: AtlasLens[] = ["Products", "Processes", "Data Flows"];
 
@@ -89,6 +105,22 @@ function arrayField(fm: Record<string, unknown>, key: string): string[] {
   return Array.isArray(raw) ? raw.map(String) : [];
 }
 
+async function readDriftSidecar(): Promise<DriftSidecar> {
+  try {
+    const raw = await fs.readFile(
+      path.join(process.cwd(), "content", "atlas", "_drift.json"),
+      "utf-8",
+    );
+    const parsed = JSON.parse(raw) as unknown;
+    if (parsed && typeof parsed === "object") {
+      return parsed as DriftSidecar;
+    }
+  } catch {
+    // Sidecar is optional — absence means no drift detected.
+  }
+  return {};
+}
+
 function toEntry(fm: Record<string, unknown>, body: string, fileSlug: string): AtlasEntry {
   const title = String(fm.title ?? fileSlug);
   const slug = String(fm.slug ?? fileSlug);
@@ -105,6 +137,9 @@ function toEntry(fm: Record<string, unknown>, body: string, fileSlug: string): A
     ? (statusValue as AtlasStatus)
     : "complete") as AtlasStatus;
   const pinned = fm.pinned === true || fm.pinned === "true";
+  const execWhat = String(fm.execWhat ?? "");
+  const execMatters = String(fm.execMatters ?? "");
+  const execRisk = String(fm.execRisk ?? "");
   const ageDays = lastVerified ? ageInDays(lastVerified) : Infinity;
   const isStale = ageDays > STALE_THRESHOLD_DAYS;
 
@@ -120,9 +155,14 @@ function toEntry(fm: Record<string, unknown>, body: string, fileSlug: string): A
     summary,
     status,
     pinned,
+    execWhat,
+    execMatters,
+    execRisk,
     body,
     ageDays,
     isStale,
+    isDrifted: false,
+    driftedRefs: [],
   };
 }
 
@@ -135,20 +175,30 @@ export async function readAtlasEntries(): Promise<AtlasEntry[]> {
     return [];
   }
   const mdFiles = files.filter((f) => f.endsWith(".md") && f !== "README.md");
-  const entries = await Promise.all(
-    mdFiles.map(async (file) => {
-      const raw = await fs.readFile(path.join(dir, file), "utf-8");
-      const { fm, body } = parseFrontmatter(raw);
-      return toEntry(fm, body, file.replace(/\.md$/, ""));
-    }),
-  );
-  // Stable order: lens (canonical), then most-recently-verified first,
-  // then title as tiebreaker. Recency surfaces fresh state above older
-  // entries — UX call after the 2026-05-14 audit.
+  const [drift, entries] = await Promise.all([
+    readDriftSidecar(),
+    Promise.all(
+      mdFiles.map(async (file) => {
+        const raw = await fs.readFile(path.join(dir, file), "utf-8");
+        const { fm, body } = parseFrontmatter(raw);
+        return toEntry(fm, body, file.replace(/\.md$/, ""));
+      }),
+    ),
+  ]);
+  for (const entry of entries) {
+    const drifted = drift[entry.slug]?.drifted ?? [];
+    if (drifted.length > 0) {
+      entry.isDrifted = true;
+      entry.driftedRefs = drifted;
+    }
+  }
+  // Stable order: lens (canonical) → drifted entries float up (truth age
+  // is the strongest signal — fix these first) → recency → title.
   return entries.sort((a, b) => {
     const la = LENSES.indexOf(a.lens);
     const lb = LENSES.indexOf(b.lens);
     if (la !== lb) return la - lb;
+    if (a.isDrifted !== b.isDrifted) return a.isDrifted ? -1 : 1;
     if (a.ageDays !== b.ageDays) return a.ageDays - b.ageDays;
     return a.title.localeCompare(b.title);
   });

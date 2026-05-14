@@ -10,6 +10,9 @@ references: [~/Projects/personal/analytics/vercel.json, ~/Projects/personal/anal
 summary: Daily 06:00 UTC Vercel cron reads Tasks DB, runs 10-trigger attention engine with rotated phrasings, renders briefing to /app + email via Resend, pings Studio on success.
 status: complete
 pinned: false
+execWhat: Every morning at 6am UTC, Analytics reads what each user has on their plate, picks at most three things worth their attention, and sends a short briefing by email and on the website.
+execMatters: This is the product's heartbeat. The reason people open the email is that it never overdelivers — three items, not twelve — and the wording rotates so it doesn't sound like a template. The discipline of three is the difference between "I look at this every morning" and "I filter-folded it after a week."
+execRisk: If the morning briefing stops arriving, retention drops within a week — the daily habit is the product. The pipeline has a self-check that pings the umbrella when it finishes; if the pings stop, the operator knows within hours.
 ---
 
 ## WHAT

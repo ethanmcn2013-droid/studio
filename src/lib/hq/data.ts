@@ -9,7 +9,7 @@ export type WorkStatus =
   | "Shipped";
 export type Priority = "High" | "Medium" | "Low";
 export type GrowthStatus =
-  | "Backlog"
+  | "Queued"
   | "Selected"
   | "Drafting"
   | "Review"
@@ -420,7 +420,7 @@ export interface HqData {
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-14T16:30:00Z",
+  updatedAt: "2026-05-14T16:50:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
@@ -1220,7 +1220,7 @@ export const seedHqData: HqData = {
       segment: "Wedding planners",
       goal: "Validate active planning workflows across three weddings.",
       offer: "Free access for 3 active weddings in exchange for workflow feedback.",
-      status: "Backlog",
+      status: "Queued",
       assetsNeeded: ["planner pitch", "demo workspace", "pilot terms"],
       startDate: "2026-05-20",
       endDate: "2026-07-15",
@@ -1254,7 +1254,7 @@ export const seedHqData: HqData = {
       segment: "Students / societies",
       goal: "Collect feedback from group work and society event planning.",
       offer: "Free semester access for feedback and a short testimonial if useful.",
-      status: "Backlog",
+      status: "Queued",
       assetsNeeded: ["student template", "campus post", "short demo"],
       startDate: "2026-06-01",
       endDate: "2026-08-31",
@@ -1471,7 +1471,7 @@ export const seedHqData: HqData = {
       currentParticipants: 0,
       feedbackCollected: 0,
       caseStudyPotential: "Medium",
-      status: "Backlog",
+      status: "Queued",
       relatedProspects: [],
       relatedWorkspaces: [],
     },

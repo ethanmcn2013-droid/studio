@@ -1,37 +1,90 @@
 ---
-title: The five products as one system
+title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
 lastVerified: 2026-05-14
-links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements]
-tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem]
-references: [~/Projects/personal/studio, ~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes]
-summary: Studio → Tasks → Roadmap → Analytics → Notes — how they fit, what each owns, where they cross.
-status: stub
+links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
+tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem, design system v1, wordmark gestures]
+references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/wordmark/]
+summary: Tasks does the work; Roadmap shows the plan; Analytics asks "what now"; Notes captures the rest. Four products, one umbrella, one design system, three explicit hand-offs.
+status: complete
 pinned: false
+execWhat: Four products that each solve one job, sharing one design system and three explicit hand-offs. Notes promotes into Tasks; Tasks drives Analytics; Roadmap is the public-facing planning surface. The umbrella ties them together.
+execMatters: Each product is small and credible on its own. Together they cover the full "capture → plan → work → reflect" loop without forcing users into one giant tool. The discipline of keeping each product narrow is what makes the suite feel like a system instead of a feature pile.
+execRisk: If any product drifts into trying to do another's job — Tasks adding note-capture, Notes adding scheduling, Analytics adding task editing — the boundaries collapse and the suite reads as four overlapping apps instead of four complementary ones.
 ---
 
 ## WHAT
 
-Five products, one design system, one pricing surface, three Turso databases. Studio is the umbrella; Tasks is the live workspace; Roadmap is the public-facing planning surface; Analytics is the attention-clarity layer reading Tasks data; Notes is the capture-clarity surface with a one-way promote into Tasks.
+Four products, each named for the job they do:
+
+- **Tasks** — the live workspace where work happens.
+- **Roadmap** — the public-facing planning surface, lighter than a project tool.
+- **Analytics** — the daily attention layer that reads Tasks data and surfaces three things worth noticing.
+- **Notes** — the capture surface; ideas land here before they're work.
+
+The four products share one design system (see [[brand-enforcement]] and the suite design system v1 shipped 2026-05-13), one pricing surface (see [[pricing-and-entitlements]]), and a small number of explicit cross-product flows.
+
+```mermaid
+flowchart LR
+  N[Notes — capture] -->|promote| T[Tasks — work]
+  T -->|read-only| A[Analytics — attention]
+  T -.->|optional surface| R[Roadmap — plan]
+  A -->|cron ping| ST[Studio HQ — operator dashboard]
+```
 
 ## WHO
 
-_Stub. Fill in next cycle._
+Ethan owns every product. Each lives in its own repo under `~/Projects/personal/`. No external operators. The four products are the cardinality limit the umbrella refuses to break (see [[signal-studio-umbrella]]).
 
 ## WHERE
 
-_Stub. Fill in next cycle._
+- **Tasks** — `~/Projects/personal/tasks/`. Live at `tasks.signalstudio.ie`. Persistence on Turso since 2026-05-08.
+- **Roadmap** — `~/Projects/personal/roadmap/`. Live at `roadmap.signalstudio.ie` (and `roadmap-ebon-eight.vercel.app`). Phases 1–5 shipped 2026-05-09.
+- **Analytics** — `~/Projects/personal/analytics/`. Live at `analytics.signalstudio.ie`. End-to-end pipeline shipped 2026-05-13.
+- **Notes** — `~/Projects/personal/notes/`. Live at `notes.signalstudio.ie`. Cross-repo Notes→Tasks extract shipped Cycle 9.4b.
+- **Studio (umbrella)** — `~/Projects/personal/studio/`. Live at `signalstudio.ie`. The umbrella site, brand hub, pricing, HQ.
 
 ## HOW
 
-_Stub. Fill in next cycle._
+The four products run as **autonomous units** that interact through three explicit hand-offs and one shared layer.
+
+### The three hand-offs
+
+1. **Notes → Tasks** (promote). User writes a note, promotes it into Tasks via Notes's "send to tasks" action. One-way; Notes never holds a Tasks write token. Implemented as authed HTTP POST (see [[log-cycle-cross-repo-writer]]).
+2. **Tasks → Analytics** (read). Analytics reads the Tasks Turso DB via a scoped read-only token (write attempts blocked at the Turso layer). Tags in Tasks map to projects in Analytics (see [[turso-databases-and-reads]]).
+3. **Analytics → Studio** (cron staleness). Analytics's daily cron pings Studio after each run so HQ knows the engine fired. Studio's `cron_runs` table is the source of truth for "did the daily briefing job run today" (see [[log-cycle-cross-repo-writer]]).
+
+### The one shared layer
+
+- **Pricing and entitlements.** Every product reads from the shared `signal-entitlements` Turso DB via the copy-pasted `entitlements-shared` module (see [[pricing-and-entitlements]]). Tasks owns the Stripe webhook; Studio owns the admin grant surfaces; every product reads.
+
+### Boundaries the products *don't* cross
+
+- Tasks doesn't capture; Notes does.
+- Notes doesn't schedule or assign; Tasks does.
+- Analytics doesn't edit; it reads and renders.
+- Roadmap doesn't auth users into private workspaces; it's public-facing by design.
+- Studio doesn't host product features; it hosts brand, pricing, and HQ.
+
+These boundaries are the discipline that lets each product stay small. They get re-tested every cycle that proposes a cross-boundary feature.
 
 ## WHEN — current state
 
-_Stub. Fill in next cycle._
+- All four products + the umbrella are live on Vercel as of 2026-05-14.
+- Suite design system v1 unified visual register across all five surfaces 2026-05-13.
+- Entitlements sprint closed 2026-05-14 — every product gates against the shared payments DB.
+- Two cross-repo writers shipped (notes→tasks promote, analytics→studio cron-ping).
+- One read-only cross-product flow shipped (Tasks→Analytics).
+- No new product additions planned. Refusal list (see [[signal-studio-umbrella]]) keeps cardinality at four.
 
 ## WHY
 
-_Stub. Fill in next cycle._
+The cheapest version of "ship a productivity suite" is one giant product with twelve features. Rejected: every feature pulls the product toward feature parity with every other productivity tool, and the result is undifferentiated.
+
+The expensive version is one product per workflow, each genuinely small and good at its one job. That's what the suite is. The cost is the cross-product friction (a user has to know that capture is Notes and work is Tasks). The benefit is that each product can be world-class at its one thing without the design tax of being world-class at everything.
+
+The three hand-offs are deliberate and explicit, not implicit. A user has to *promote* a note into a task. A user has to know Analytics reads from Tasks. These visible boundaries are part of the product education, not friction to be optimized away — the boundaries are what teach the user that the suite is a system, not one app split into four tabs.
+
+The shared payments layer is the only thing that has to be perfectly synchronized across products. Everything else can drift slightly (a Roadmap update doesn't break Tasks; a Notes outage doesn't break Analytics) and the suite still functions. Entitlements drift would be visible to paying customers within seconds and undermines the suite's commercial integrity, so it gets the single shared DB.

@@ -1,0 +1,31 @@
+{
+  "brand-enforcement": {
+    "drifted": [
+      "BRAND.md",
+      "src/app/globals.css"
+    ],
+    "updatedAt": "2026-05-14T16:59:43.832Z",
+    "byCommit": "53d8ac0"
+  },
+  "five-products-as-a-system": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T16:59:43.832Z",
+    "byCommit": "53d8ac0"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-14T16:59:43.832Z",
+    "byCommit": "53d8ac0"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T16:59:43.832Z",
+    "byCommit": "53d8ac0"
+  }
+}

@@ -1,7 +1,102 @@
-# signal studio. — changelog
+# signal studio. — the dispatch
 
-Process notes for the umbrella. The four products keep their own logs;
-this one tracks what coalesced across the suite.
+The umbrella dispatch. The four products keep their own; this one
+carries what coalesced across the suite. Convention: BRAND.md §6.5.
+
+## 2026-05-14 · S·16 · ships · /hq drops from eleven tabs to six
+
+**The HQ dashboard's tab strip collapses from eleven tabs to six.
+The five workstreams that lived alone — Features, Launch, Outbound,
+Content, Growth, Metrics, Decisions, Rhythm — fold into three named
+groups: Pipeline, Proof, Operations.**
+
+The consolidation is mechanical, not magical. The eight retired tabs
+each rendered as a self-contained panel component; those panels now
+stack under their consolidated parent with `grid gap-8` between them.
+No data migration, no component rewrite. The merge logic is
+"they're already shaped right; just stop pretending they're separate
+workstreams."
+
+The map:
+
+- **Pipeline** = Features + Launch + Outbound. Work in flight — to
+  ship, to release, to prospects.
+- **Proof** = Content + Growth. The evidence motion.
+- **Operations** = Metrics + Decisions + Rhythm. The running-the-thing
+  layer.
+
+Today, Products, and The loop stay as-is. The `activeTab` state is
+React-only, not persisted to localStorage — a fresh load defaults to
+Today every time, so no migration risk for users with a retired tab
+id stuck somewhere.
+
+**What's not done.** This is the structural pass — HQ-5 closes here.
+HQ-5.1, actually merging the data inside each consolidated tab into
+a single organizing view (Pipeline-as-one-list-with-status-column,
+Operations-as-single-table), is the follow-up. The current shape
+gets the operator-velocity win without the rewrite cost; the deeper
+merge can wait until the daily use surfaces what the right shape
+should be.
+
+Browser verification not done in this session — typecheck is clean
+and the panel components themselves are unchanged. The risk surface
+is purely the routing change, which is mechanical.
+
+## 2026-05-14 · S·15 · reads · The changelog learns its name, and five verbs
+
+**The suite's changelog gets a new name — the dispatch — and a
+five-verb taxonomy that replaces Added/Changed/Fixed/Removed.
+Pilot venues who land on `signalstudio.ie/dispatch` will read shipped
+work in Signal's own register, not in library-maintainer scaffolding
+borrowed from npm.**
+
+**The name.** `signalstudio.ie/changelog` becomes
+`signalstudio.ie/dispatch`. What gets sent, not what accumulates.
+The file path stays `CHANGELOG.md` for tooling and muscle memory;
+the document inside calls itself the dispatch. Per-product URLs
+308-redirect to the umbrella.
+
+**The five verbs.** `ships · tightens · cuts · holds · reads`. The
+fourth one is the Signal-specific bet — a category for what the brand
+chose *not* to build, and why. Every other product changelog buries
+refusals inside a "Changed" entry or never writes them at all. The
+brand brags about refusals on `/about` and `/method`; the dispatch
+brags about them in the same register.
+
+**The header line.** `## YYYY-MM-DD · X·NN · verb · headline`. Single
+header line, middle-dot separated. Cycle code is grep target and
+`phase.md` anchor — `T·09`, `N·05`, `S·15`. Headline grammar locked:
+declarative present-tense, subject + active verb, no gerunds. "Paper
+turns white" passes; "Improvements to performance" never will.
+
+**The bold impact lead.** The body's first sentence is bold, written
+for a pilot venue operator with ten seconds — not for future-Ethan
+who has all night. If the bold lead can't be written in one breath,
+the entry probably needs splitting into two.
+
+**What the dispatch refuses.** Emoji and badge chips. Keep-a-Changelog's
+Added/Changed/Fixed/Removed/Deprecated/Security. Semver. Audience-impact
+pills. In-product "what's new" toasts. Cross-product interleaved view.
+All refused on the same principle that runs through the rest of the
+suite — scaffolding decays, voice doesn't.
+
+**Strategy's dissent, preserved inside the rule.** The risk in adding a
+verb tag and a bold lead is that the new scaffolding flattens the prose
+voice already doing the brand's work. Mitigation: the verb is one
+lowercase word at the end of a header line, invisible unless scanned
+for. If after two cycles the tagging feels like overhead, drop the
+verb and keep the name, the headline grammar, and the `holds` concept.
+That's the floor.
+
+**No backfill.** Entries before today keep their original shape.
+Rewriting the past is the worse drift. The new shape starts here.
+
+Convention locked at BRAND.md §6.5. The umbrella read-surface
+(`signalstudio.ie/dispatch`) ships as a half-day slot after the next
+cycle — not before venue calls, which beat changelog work on every
+ROI axis.
+
+---
 
 ## 2026-05-14 · Entitlements sprint · One DB, every product, real checkout
 
@@ -49,6 +144,430 @@ same event id.
 (Resend Inbound + DNS + secret), `studio/docs/ENTITLEMENTS_OPS.md`
 (grant, expire, reconcile, audit, troubleshooting).
 
+
+---
+
+## 2026-05-14 · Signal HQ v2 · dashboard starts reading from markdown (HQ-6c.2)
+
+### Pattern proven. Three tabs flip. Eight to go.
+
+HQ-6c.2 wires the dashboard to the markdown files HQ-6a/-6b/-6c.1
+migrated. Products + Features + Risks now read from
+`content/hq/<section>/*.md` when present, with a clear "file-backed"
+indicator and operator-edit affordances hidden in those sections.
+
+**Server-to-client bridge** at `src/lib/hq/dashboard-data.ts` —
+adapter functions that convert generic `HqMarkdownEntry[]` shapes
+into the typed shapes the dashboard already consumes
+(`ProductStatus[]`, `EcosystemFlow[]`, `FeatureItem[]`,
+`RiskItem[]`). `/hq/page.tsx` reads them server-side via
+`getHqDashboardMarkdown()` and passes them as a prop to the
+existing `<HqDashboard markdown={...} />` client component.
+
+**Per-tab pattern, locked.** Each migrated tab does the same
+three-line check at the top:
+
+```tsx
+const products = markdown?.products?.length
+  ? markdown.products
+  : data.products;
+const isFileBacked = Boolean(markdown?.products?.length);
+```
+
+When file-backed: render the `<FileBackedNotice>` indicator with a
+small indigo dot, hide inline edit affordances (the status dropdown
+in Features becomes a plain mono label), point operators at the
+markdown source. When not file-backed: fall back to the existing
+localStorage behavior. Additive. Reversible. Per-tab.
+
+**Loader parser fixed.** Migrated `majorFeatures` / `blockers` /
+`nextActions` arrays contain commas inside string values
+("(POST /api/notes-extract, Cycle 43, 2026-05-12)"). The frontmatter
+parser used to comma-split blindly, which would have shredded those
+strings into three fragments. It now tries `JSON.parse` first when
+the value looks like a JSON array, falls back to comma-split for the
+lighter syntax. Migration scripts emit JSON-form when any value
+contains a comma. Arrays survive the round-trip cleanly.
+
+**Page weight** went from 75KB to 107KB at `/hq` — the markdown is
+shipping to the client via the prop. That's the cost; the value is
+that the dashboard no longer pretends to edit data that has a real
+source of truth.
+
+**What's still owed.** Eight more tabs (Today's the Overview, plus
+Loop / Launch / Growth / Outbound / Content / Metrics / Rhythm).
+Each one follows the pattern above. After all 11 are flipped,
+HQ-6c.3 deletes the seed entries for migrated sections and removes
+the localStorage editor path. Only then HQ-6c.4 rewrites the
+CLAUDE.md "Mandatory Signal HQ Rule" — the rule has to match the
+code, so it lands last.
+
+---
+
+## 2026-05-14 · Signal HQ v2 · the remaining 14 narrative sections migrate (HQ-6c.1)
+
+### Every strategic section in the seed now has a markdown twin.
+
+HQ-6c.1 finishes the migration coverage. 74 more files written across
+14 sections — products, ecosystem flows, the collaboration loop,
+shared objects, access roles, the collaborator first view, shareable
+artifacts, launch readiness scorecard, segments, content items,
+demos, templates, pilots, and growth workflow.
+
+**117 markdown files total now back strategic HQ content.** 22
+decisions + 9 features + 7 risks + 4 campaigns + 1 messaging + 74
+narrative entries = a complete file-backed mirror of every section
+of `seedHqData` that has a real source-of-truth shape. The four
+operator-owned sections (prospects / feedback / weeklyRhythm /
+nextActions) stay localStorage. The `metrics` section is deferred.
+
+**One parametric migration script** at
+`scripts/migrate-hq-remaining.ts` handles all 14 sections via a
+per-section config (titleField + bodyFields). The single script
+beats 14 small scripts: less surface area, easier to extend with
+the next section that pops up.
+
+**Two more Today surfaces.** A four-product strip sits right under
+the phase headline — each product carries its name (Signal Tasks /
+Signal Roadmap / Signal Analytics / Signal Notes), its layer
+(execution / direction / attention / context) in indigo mono, and
+its current status + maturity %. A "live pilots" block sits beneath
+campaigns showing the two active pilots (Founding Venue Programme,
+Couples Private Beta) with status and a truncated next step. Both
+read entirely from `content/hq/products/` and `content/hq/pilots/`.
+
+**What HQ-6c.1 deliberately did NOT do.** No dashboard refactor
+(the 11 tabs still read from seedHqData via localStorage). No
+seed deletion. No CLAUDE.md rule rewrite. Those are HQ-6c.2,
+HQ-6c.3, HQ-6c.4 — each gated on the prior. The rule rewrite is
+the last move and must match the code, not lead it.
+
+**The status now:** the seed and markdown are both valid sources.
+Today reads markdown for products / risks / features / campaigns /
+decisions / pilots. The dashboard tabs read the seed (with
+localStorage edits on top). The two systems coexist until HQ-6c.2
+flips the dashboard, and then HQ-6c.3 deletes the seed.
+
+---
+
+## 2026-05-14 · Signal HQ v2 · risks, features, campaigns, messaging migrate (HQ-6b)
+
+### Today block starts answering "what should I worry about" in real time.
+
+HQ-6b extends the markdown migration to the four most operationally-
+useful strategic sections. 21 more files written. Today block grew
+three new surfaces — risks at the top tier, features and campaigns
+side-by-side beneath.
+
+**Migrations shipped.** `scripts/migrate-hq-{features,risks,
+campaigns,messaging}.ts`. 9 features + 7 risks + 4 campaigns + 1
+messaging file at `content/hq/{features,risks,campaigns}/*.md` and
+`content/hq/messaging.md`. Same pattern as the decisions pilot —
+idempotent, seed-preserving, scriptable. Re-running overwrites.
+
+**Active risks surfaced in Today.** A tier-coded dot (high/mid/low
+from likelihood × impact) sits left of each risk title. Top 5
+sorted by combined likelihood + impact float to the top. The first
+thing visible above the fold once an operator scans past the phase
+line: their five sharpest current risks, with area + status +
+review date. This is the single biggest founder-value-add of the
+HQ-6 sequence so far.
+
+**Features in flight + campaigns in motion** sit side-by-side
+beneath the risks. Features show the count of in-flight items
+(In Progress / Built / Testing / Planned) plus a status histogram
+and the top 3 high-impact-but-still-Idea entries. Campaigns show
+the active ones with progress percentage. Both surfaces collapse
+gracefully when empty.
+
+**Messaging document model.** Unlike the array sections, messaging
+became a single `messaging.md` with H2 sections (Positioning /
+Ecosystem line / Founder story / Hooks / Pitches / Objections /
+CTAs). The loader's `splitH2Sections` returns the named-section
+map either way — the same `HqMarkdownEntry` shape carries one-file
+sections cleanly.
+
+**What's still owed (HQ-6c).** The remaining 14 narrative sections
+(products, collaboration loop, shared objects, access roles,
+ecosystem flows, launch readiness, segments, content items, demos,
+templates, pilots, growth workflow, collaborator first view,
+shareable artifacts) still live in the seed. HQ-6c migrates them,
+refactors the corresponding dashboard tabs to read from markdown,
+deletes the localStorage editor path, and rewrites the CLAUDE.md
+"Mandatory Signal HQ Rule" so it points at source files. Then HQ-7
+(inbox shape) becomes the final move.
+
+---
+
+## 2026-05-14 · Signal HQ v2 · decisions migrate to markdown (HQ-6a pilot)
+
+### Strategic thinking moves from a 2,334-line seed to one .md per decision.
+
+The HQ audit's load-bearing recommendation was to migrate the
+localStorage-edited seed to file-backed markdown. HQ-6a is the pilot:
+build the loader infrastructure, migrate the Decisions section
+end-to-end, prove the pattern.
+
+**Loader at `src/lib/hq/markdown.ts`** mirrors the atlas loader.
+Reads `content/hq/<section>/*.md`, parses frontmatter (`id`, `title`,
+`category`, `date`, `status`, `reviewDate`, `relatedObjects`), splits
+H2 sections into a named map (`Decision`, `Reason`, `Alternatives
+considered`, `Risks`, `Notes`), sorts by date descending. Server-only,
+no dependency added.
+
+**22 decisions migrated** via `scripts/migrate-hq-decisions.ts` —
+idempotent one-shot. Each decision becomes a markdown file at
+`content/hq/decisions/<id>.md`. The seed in `data.ts` stays in place
+(safe until the dashboard reads from markdown for ALL migrated
+sections — that's HQ-6c).
+
+**Today block surfaces top 4 recent decisions** with date, title,
+category, status. The first thing Ethan sees on `/hq` now is the
+active phase line followed by the four most recent strategic
+decisions. The atlas pattern is the bar; decisions are the second
+file-backed surface to hit it.
+
+**Maintainer notes** at `content/hq/README.md`. Documents the
+migration manifest (which sections move to markdown, which stay
+localStorage-backed, which derive, which get deferred). The four
+fields that stay localStorage-edited — `prospects`, `feedback`,
+`weeklyRhythm`, `nextActions` — are operator-owned write-optimized
+surfaces with no other source of truth. Migrating those would force
+opening an editor and committing for every Tuesday-morning plan
+update, which is exactly the friction localStorage editing is good
+at avoiding.
+
+**Why this is staged.** Strategy's audit named the risk: the seed
+contains real strategic thinking, and a bad migration loses company
+knowledge. HQ-6a proves the pattern on one section. HQ-6b migrates
+features/risks/campaigns/messaging. HQ-6c finishes the narrative
+sections and rewrites the CLAUDE.md "Mandatory HQ Rule" so it points
+at source files, not at the dashboard. The rule rewrite waits until
+the migration is real; otherwise the contract drifts from the code.
+
+**Strongest counter-argument to the migration.** Markdown is
+verbose. Editing 22 .md files instead of one TS array is more
+clicks. The mitigation: the dashboard's localStorage editing path
+stays live for sections that haven't been migrated, and the
+operator-owned sections stay localStorage forever. The migration is
+for strategic content, not for capture surfaces.
+
+---
+
+## 2026-05-14 · Signal HQ v2 · derived state, register reset, voice fixes
+
+### HQ stops being a wiki and starts being a mission control.
+
+Ran a full UI / UX / strategy / communications audit on Signal HQ with
+four parallel reviewers (strategy, ux-director, creative-director,
+tech-writer). They converged on the same picture: HQ is a beautifully-
+designed wiki masquerading as mission control. The 11-tab dashboard is
+bureaucracy-shaped. Nothing about it changes when a session impacts
+the suite — the operator has to remember to update it. The visual
+register doesn't match the atlas bar set yesterday.
+
+This pass ships the highest-leverage cuts.
+
+**Today block lives above the dashboard.** A new server-rendered
+section at the top of `/hq` reads from real sources: the active phase
+line from `~/.claude/state/phase.md`, the last commit across all five
+product repos sorted by recency, the atlas drift state from
+`content/atlas/_drift.json`, the analytics daily cron health from
+Studio's `cron_runs` Turso table, and the session pulse (Stop-hook
+responses logged today + last 7 days + total). No localStorage. No
+seed prose. Sessions impact HQ because sessions impact the source
+files HQ reads. This is what "every session impacts HQ" means as a
+build, not a wish.
+
+**Register reset.** The rounded `Panel` card chrome (`rounded-[8px]
+border bg-bg-elev shadow-1`) collapses to a hairline section
+(`border-t border-border-soft`). The 11-rectangle tab nav becomes a
+typographic list — left-edge 2px indigo on active, no fill, no
+radius, no box. Score numbers drop from 34px to 22px — the prose
+description carries the importance now. HQ stops looking like a
+WordPress admin panel.
+
+**Voice fixes per BRAND.md.** "Command" → "Today". "Ecosystem" →
+"Products". "Collab Loop" → "The loop". "Growth Studio" → "Growth"
+(the "studio" was self-narration; you're already inside HQ).
+"command centre" killed from the header description. The Growth tab's
+"A founder growth operating system with review gates" — nine words of
+self-narration — collapses to "Growth work, reviewed before it
+ships." `GrowthStatus.Backlog` retired across `data.ts` and replaced
+with `Queued`. That's the single most obvious banned-word violation
+gone.
+
+**What's still owed.** Three follow-up cycles, sequenced:
+
+- *HQ-5* — collapse 11 tabs to 6 (Pipeline = Features + Launch; Proof
+  = Content + Growth; Operations = Metrics + Decisions + Rhythm).
+- *HQ-6* — migrate the 2,334-line seed in `src/lib/hq/data.ts` to
+  markdown files at `content/hq/*.md`. Delete the localStorage
+  editor path. Rewrite the CLAUDE.md "Mandatory Signal HQ Rule" so
+  it points at source files, not at the HQ dashboard.
+- *HQ-7* — inbox shape. One screen, severity-tiered queue of
+  unresolved items (overdue follow-ups, atlas drift, cron red,
+  ready-for-Ethan, decisions owed). "Clear" is a valid state.
+
+**The honest counter-argument.** Strategy named it: the current HQ
+contains real strategic thinking. A queue-shaped HQ loses that. The
+mitigation is that the thinking belongs in BRAND.md, atlas entries,
+and decision-named markdown files — git-versioned, diffable,
+searchable. HQ is the wrong tool for the strategic thinking; it was
+just the only tool the operator had.
+
+---
+
+## 2026-05-14 · hq/atlas · 9 of 9, live diagrams, exec layer, drift-trigger active
+
+### The atlas grew up.
+
+By the end of the day the atlas turned from a placeholder scaffold
+into something a senior leader could open and grasp in a minute.
+
+**Every entry now has two voices.** A "for leadership · 30-second
+read" block sits between the summary and the body — three lines:
+*What it is*, *Why it matters*, *Risk if it breaks*. Plain English,
+no acronyms, no file paths. The founder-dense body sits below for
+anyone who needs the detail. Same document, two registers. No second
+maintainer flow.
+
+**Diagrams render live.** Mermaid fences are no longer labeled code
+blocks — they're SVG flows, themed to the suite (paper white,
+ink #111, monospace edge labels, indigo only where the diagram has
+emphasis). The hydrator is lazy-loaded, so the index page pays no
+cost; only entry pages with diagrams pull mermaid into the browser.
+Render errors fall back to the source. The biggest visible upgrade
+of the day.
+
+**All 9 entries are complete.** The remaining three stubs
+(`signal-studio-umbrella`, `five-products-as-a-system`,
+`memory-and-hooks`) got the same depth as the data-flow entries —
+full WHO/WHERE/HOW/WHEN/WHY plus mermaid plus exec brief. The atlas
+is no longer "1 entry of substance and 8 placeholders"; it's a
+nine-entry book that holds together as a system.
+
+**Drift-trigger is live in studio.** `git config core.hooksPath
+.githooks` is set. The next commit that touches a file listed in
+any entry's `references[]` will flag the entry in
+`content/atlas/_drift.json`. Staging the entry's own .md (or
+bumping `lastVerified`) clears the flag. The hook never blocks —
+drift is a signal, not a gate.
+
+**Polish landed.** Row hover slides a thin indigo bar in from the
+left margin and the mono index column shifts to accent — signature
+motion moment, gesture-system consistent. The pinned entry's
+"start here" label carries a single indigo dot that pulses with the
+broadcast gesture (the same motion the umbrella wordmark uses).
+Reduced-motion silences both.
+
+**HQ password is now `signal-atlas-2026`** — memorable, scope-
+appropriate. Local dev + HQ cookie gate only.
+
+What's still owed: drift-trigger fan-out across the other four
+product repos (mechanical copy of the studio-side script and hook).
+That's its own cycle when the operator wants the full drift signal
+across the suite.
+
+---
+
+## 2026-05-14 · hq/atlas · drift-trigger live in studio, 6 of 9 entries complete
+
+### The system that flags itself when the system changes.
+
+The drift-trigger went from spec to working pre-commit hook this
+afternoon. The atlas is now a private notebook that can tell when
+its own pages are out of date.
+
+**`scripts/atlas-drift-check.ts`** runs on every commit when
+activated. Reads atlas entries, compares `git diff --cached
+--name-only` against each entry's `references[]`, writes drift into
+`content/atlas/_drift.json`, and auto-stages the sidecar so it
+travels with the commit that caused the drift. Edit BRAND.md, the
+script flags every entry that depends on it. Bump an entry's
+`lastVerified` (or stage the entry's own .md), the script clears the
+slug. The hook never blocks — drift is a signal, not a gate.
+
+**Opt-in activation.** No deps added. The hook lives at
+`.githooks/pre-commit` and runs `npx tsx scripts/atlas-drift-check.ts`
+— tsx was already a devDependency. To activate in any clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+That's it. No husky, no simple-git-hooks, no `prepare` script churn.
+
+**End-to-end verified.** Staged a real edit to `BRAND.md`, watched
+both `brand-enforcement` and `signal-studio-umbrella` flag (both
+reference it). Staged each entry's own .md, watched both clear.
+Sidecar wrote, sidecar auto-staged, sidecar deleted itself when
+empty. The clear-on-restage path means a single coordinated commit
+that updates a system AND its atlas entry leaves no residual drift.
+
+**Two more entries promoted to complete.** `pricing-and-entitlements`
+documents the unified pricing surface, the shared signal-entitlements
+DB, the dual-write Stripe webhook in Tasks, the operator admin
+surfaces in Studio, and the five-tier vocabulary (`free / event /
+wedding / workspace / studio`). `brand-enforcement` documents
+BRAND.md as the catch-net — the Stark+Jobs voice, the banned-word
+list as a blunt instrument, the refusal list as the strategic
+anchor.
+
+**6 of 9 entries complete now.** Remaining: signal-studio-umbrella,
+five-products-as-a-system, memory-and-hooks. The remaining three
+are meta-entries (less file-path-dense, more conceptual) and don't
+benefit from the drift-trigger as immediately — they wait for an
+actual "how does this work?" trigger to earn promotion.
+
+**Fan-out to the other four repos is the next cycle.** Tasks,
+Roadmap, Analytics, Notes each need their own copy of the script.
+The script's `REPO_ROOT` already generalizes. Sidecar still lives in
+studio. See `docs/ATLAS_DRIFT_TRIGGER.md` §Sequencing for the spec
+that walks each remaining step.
+
+---
+
+## 2026-05-14 · hq/atlas · drift-trigger staged, 4 of 9 entries complete
+
+### The atlas earns its keep when the source files start talking back.
+
+Followed the audit-driven v1 with a real content pass and the v2
+scaffold. Two cycles in one day, neither one optional.
+
+**Three data-flow entries promoted stub → complete.** `turso-databases-
+and-reads` (five Turso DBs, scoped read-only tokens, tag-as-project,
+Notes-promote-by-HTTP), `analytics-daily-cron` (the 06:00 UTC briefing
+engine with real env vars, real route paths, real ping-Studio loop),
+and `log-cycle-cross-repo-writer` (the canonical cross-repo pattern
+with both shipped instances documented — analytics→studio cron-ping
+and notes→tasks promote). All three carry accurate `references[]`
+pointing at real paths in each of the five product repos — the v2
+drift-trigger has something to watch when it ships.
+
+**Drift-trigger staged.** The loader now reads an optional sidecar at
+`content/atlas/_drift.json`. When the v2 cycle wires per-repo pre-
+commit hooks across all five product repos, each one writes drift into
+that file from its own working tree. The atlas surfaces `isDrifted`
+separately from `isStale` — calendar age is the soft signal, truth age
+is the hard one. Drifted entries sort to the top of their lens, render
+a banner above Related listing exactly which references mutated, and
+show `— drifted` in the index state note. Full spec at
+`docs/ATLAS_DRIFT_TRIGGER.md` — including the sequencing (studio
+script first, then fan-out), the open questions (sidecar in git vs
+gitignored), and the sign-off criterion.
+
+**Why drift matters more than stale.** Strategy's audit named the
+load-bearing risk: without a write-trigger, the atlas competes with
+auto-memory and loses within eight weeks. Auto-memory updates every
+cycle for free; the atlas requires a deliberate write. The drift-
+trigger inverts that — when a file the atlas points at changes, the
+atlas knows before any human does. Stale is documentation; drift is
+a signal.
+
+**HQ password set.** `SIGNAL_HQ_PASSWORD` is in `studio/.env.local`
+with a generated value. Phase.md notes operator action #4: replace
+with a value you'll remember before the session ends.
 
 ---
 
