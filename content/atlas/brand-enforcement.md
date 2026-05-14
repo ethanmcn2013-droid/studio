@@ -87,3 +87,7 @@ The handbook is the moat (§2.3 — "discipline, not feature"). Any competitor c
 The banned words list is the most actively-applied piece. It's blunt, and that's deliberate — the alternative is a vibes-based "this feels off" judgment that's slower to invoke and harder to defend. Naming a word as banned makes the catch instant.
 
 The refusal list (§1) is the strategic anchor. The temptation in any product is to add — features, tiers, integrations, surfaces. The handbook explicitly says "no" to the things that would make the suite less itself. That refusal is brand work as much as it is product work, and BRAND.md is where it lives.
+
+## Reverification trail
+
+- 2026-05-14 (S·32) — BRAND.md §6.5 grew two new paragraphs: "Engineering log vs dispatch (clarified 2026-05-14)" establishes a two-artifact discipline, and "Banned in the dispatch (extended)" enumerates engineering-internal references (file paths, function names, type names, library names, hex codes, anything in backticks) that the dispatch must never reach for. Catch-net role unchanged — this is an *addition* to the rules BRAND.md enforces, not a modification of the enforcement mechanism. Voice, banned words, refusal list, and visual register sections untouched.

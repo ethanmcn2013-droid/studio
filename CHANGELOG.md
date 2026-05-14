@@ -49,7 +49,7 @@ plan stays a permanent decision.
 
 ---
 
-## 2026-05-14 · S·30 · tightens · The dispatch separates from the engineering log
+## 2026-05-14 · S·32 · tightens · The dispatch separates from the engineering log
 
 **Two artifacts now, two audiences. The per-repo `CHANGELOG.md` files are
 the engineering log — kept jargon-fluent for future-Ethan. The new

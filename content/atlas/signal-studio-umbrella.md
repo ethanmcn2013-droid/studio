@@ -87,3 +87,7 @@ The four-product cardinality is deliberate. Three products is too few to look li
 The refusal list is the umbrella's most strategic artifact. Every product wants to add features; the umbrella's job is to say no on behalf of the suite identity. Almost every refusal could be argued in the affirmative for an individual product — a team tier in Tasks alone would make sense — but adding it would change what the umbrella *is*. The refusals are the moat.
 
 The public `/brand` hub is a quieter strategic move. It makes the brand *available* — to future hires, partners, journalists, anyone considering whether the suite is real. A locked-up internal brand book signals a small operation; a public asset hub signals confidence.
+
+## Reverification trail
+
+- 2026-05-14 (S·32) — BRAND.md §6.5 update; the umbrella's `/dispatch` surface now reads from `content/dispatch/*.md` (operator-voice) instead of rendering the umbrella engineering log directly. Umbrella structure unchanged — still four products, one indigo, one shared wordmark grammar, one refusal list. The dispatch convention itself is now a structurally-separated artifact, which strengthens (rather than changes) the umbrella's brand-coherence story.

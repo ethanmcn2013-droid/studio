@@ -70,3 +70,7 @@ flowchart LR
 Every product is a portfolio of small commitments. Sprints assume teams. This is a solo operator with a portfolio. The cycle replaces the sprint with something cheaper to start, cheaper to close, and cheaper to throw away. Drift is the enemy — so the phase line, the STATUS block, and the log are all forcing functions to keep the loop honest.
 
 The plan cycle is the thing that lets one person ship five products without losing the thread.
+
+## Reverification trail
+
+- 2026-05-14 (S·32) — CHANGELOG.md grew an S·32 dispatch-shape entry recording the engineering-log / dispatch separation. The plan-cycle loop itself is unchanged: phase.md still names the active cycle, STATUS blocks still close every turn, log.jsonl still records, the dispatch is still where shipped work surfaces out loud. What changed underneath is that the dispatch now reads from `content/dispatch/*.md` (operator-voice translations) instead of rendering the engineering log directly — two artifacts, two registers, one loop.

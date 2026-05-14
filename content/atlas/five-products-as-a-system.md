@@ -88,3 +88,7 @@ The expensive version is one product per workflow, each genuinely small and good
 The three hand-offs are deliberate and explicit, not implicit. A user has to *promote* a note into a task. A user has to know Analytics reads from Tasks. These visible boundaries are part of the product education, not friction to be optimized away — the boundaries are what teach the user that the suite is a system, not one app split into four tabs.
 
 The shared payments layer is the only thing that has to be perfectly synchronized across products. Everything else can drift slightly (a Roadmap update doesn't break Tasks; a Notes outage doesn't break Analytics) and the suite still functions. Entitlements drift would be visible to paying customers within seconds and undermines the suite's commercial integrity, so it gets the single shared DB.
+
+## Reverification trail
+
+- 2026-05-14 (S·32) — BRAND.md §6.5 grew the engineering-log / dispatch separation rules. Five-product cardinality, three-handoff structure, and the shared-payments-as-the-only-tight-coupling reading are unaffected. The dispatch convention change is about how shipped work is *narrated* across the suite, not about how the suite is *shaped*.
