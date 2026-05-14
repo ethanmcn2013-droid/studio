@@ -3,6 +3,73 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·18 · ships · The dispatch gets its public surface
+
+**`signalstudio.ie/dispatch` is the umbrella read for shipped work
+across the suite. New entries render with the cycle code in indigo
+mono, the verb tag in lowercase ink, and the bold impact-lead sentence
+at the top of each body.**
+
+The half-day slot strategy ranked third behind venue calls and HQ-5
+(now both clear). A new route at `src/app/dispatch/page.tsx` reads
+the same `CHANGELOG.md` the engineers ship to, and a new parser at
+`src/lib/changelog.ts` understands both the new dispatch shape and
+the older pre-convention shape so nothing gets dropped during the
+transition. Legacy entries (anything before 2026-05-14) render with
+a lighter chrome — date and headline, no cycle code, no verb tag —
+visually deferring to the new shape without rewriting the past.
+
+`signalstudio.ie/changelog` now 308-redirects to `/dispatch`. The
+RSS feed stays at `/changelog.rss` for backwards compatibility with
+any subscriber that's already set up — renaming the RSS endpoint
+would orphan readers for zero brand gain.
+
+**What's not done.** The parser is forgiving but not bullet-proof:
+malformed headers (missing middle dots, lowercase product letters)
+fall through to the legacy path rather than erroring. That's the
+right default for a hand-authored log — better to render imperfectly
+than refuse to render at all. The footer link across the four
+product sites is still pointed at `/changelog`; those 308-redirect
+correctly, but the next time those footers get touched, the URL
+should update to `/dispatch` directly.
+
+Browser verification not done in this session — typecheck clean.
+
+## 2026-05-14 · S·17 · ships · /hq reads its strategic content from markdown
+
+**The dashboard stops pretending to edit data that has a real source
+of truth. Every Products, Features, Launch, Loop, Proof, and
+Operations panel now reads from `content/hq/<section>/*.md` and shows
+a "file-backed" indicator. Inline status dropdowns disappear in those
+panels — updates happen by editing the markdown, not by clicking the
+select.**
+
+The bridge sits at `src/lib/hq/dashboard-data.ts` — eighteen adapter
+functions that read markdown sections and convert them into the
+typed shapes the dashboard already consumes. `/hq/page.tsx` reads
+them server-side and passes the whole bundle through as a single
+`markdown` prop on `<HqDashboard>`.
+
+Inside each refactored tab the pattern is the same three-line check:
+`markdown?.<section>?.length ? markdown.<section> : data.<section>`.
+When present, render the `<FileBackedNotice>` and swap inline edits
+for plain mono labels. When absent, fall back to the existing
+localStorage behaviour. Additive, reversible, per-tab.
+
+Page weight at `/hq` rose from 107KB to 175KB — sixty-eight kilobytes
+of strategic prose now ship to the client through the prop. That's
+the visible cost. The invisible cost was higher: a dashboard that
+pretended to be source-of-truth while the source of truth lived
+elsewhere.
+
+What's still owed: HQ-6c.3 deletes the migrated sections from
+`seedHqData` and removes the localStorage editor path entirely; then
+HQ-6c.4 rewrites the `CLAUDE.md` Mandatory Signal HQ Rule so it
+points at the source files. The rule lands last — the contract has
+to match the code, not lead it.
+
+---
+
 ## 2026-05-14 · S·16 · ships · /hq drops from eleven tabs to six
 
 **The HQ dashboard's tab strip collapses from eleven tabs to six.
