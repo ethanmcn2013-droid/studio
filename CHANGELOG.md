@@ -3,6 +3,95 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·29 · reads · The HQ rules catch up to the empty seed
+
+**The Tasks repo's `AGENTS.md` rule that says "update `src/lib/hq/data.ts`
+before the task is complete" was lying — the seed has been empty since
+`S·24`. The rule is rewritten as a routing table pointing at the right
+`content/hq/<section>/*.md` file per change type.**
+
+`content/hq/README.md` gains a new paragraph naming the four
+localStorage-forever surfaces (prospects, feedback, weeklyRhythm,
+nextActions) so future maintainers know which arrays not to migrate.
+The `/method` audit was scoped — the route doesn't exist in the studio
+repo (memory references were stale). Type-ladder consolidation was
+deferred as polish-over-functioning-code.
+
+---
+
+## 2026-05-14 · S·28 · tightens · The HQ inbox grows two more sources, and a way to quiet it
+
+**`/hq` now flags session response failures (rows with `ok: false` in
+`~/.claude/state/log.jsonl`) as inbox items — high tier when 5+ in
+seven days, mid otherwise. Every inbox row also gains a hover-revealed
+dismiss button that hides it for 24 hours via localStorage TTL.**
+
+Dismissals are honest about scope: the entry vanishes from the list
+but stays counted in the tier-count summary line. A new client island
+`HqInboxDismissable` reads + writes the dismissal map, drops stale
+TTL entries on read, and renders nothing when the row's id is still
+fresh-dismissed.
+
+Deferred to next cycle: lazy-load markdown per active tab (real
+surgery — needs `HqDashboard` broken into per-tab server components),
+and the Vercel deploy-failure inbox source (needs a Vercel API token
+env you haven't set yet).
+
+---
+
+## 2026-05-14 · S·27 · tightens · The HQ infrastructure earns tests
+
+**The HQ markdown loader's parser and the inbox aggregator's finalize
+step both get test coverage. 18 tests, all passing. `pnpm test` runs
+them via Node's built-in test runner + tsx — no new dependency added.**
+
+`src/lib/hq/markdown-parser.ts` was extracted out of `markdown.ts` to
+lift the pure parsing functions clear of the `import "server-only"`
+guard so they're testable. Same trick for inbox: `inbox-pure.ts`
+carries the tier rank + finalize step.
+
+Coverage focuses on what would actually break and stay broken: JSON
+arrays surviving comma-in-string values, H2 section split,
+date-descending sort with title tiebreak, tier rank ordering, date
+ordering within tier, tier count totals.
+
+---
+
+## 2026-05-14 · S·25b · ships · Drift-trigger reaches all four product repos
+
+**Roadmap, Analytics, and Notes each get a copy of
+`scripts/atlas-drift-check.ts` + `.githooks/pre-commit`, joining Tasks
+(`S·22`). All four product repos now flag drift on the studio atlas
+when their staged files match a referenced path. Activation per repo
+is one git-config command.**
+
+Same cross-repo shape as the Tasks fan-out: `ATLAS_REPO_ROOT` env
+override, auto-stage gated on `REPO_ROOT === ATLAS_REPO_ROOT` so
+cross-repo runs leave the studio sidecar uncommitted for the studio
+operator. Smoke-tested all three with empty staged files — silent
+exit, ready to fire on the first real commit.
+
+---
+
+## 2026-05-14 · S·25a · reads · /hq finishes its visual register cleanup
+
+**The remaining BRAND.md §5 offenders in the HQ dashboard fall.
+`ScoreBar` drops the rounded stoplight progress bars for a tight mono
+number + 1px hairline meter (indigo only when score < 30). `Panel`
+sheds its `rounded-[8px] border bg-bg-elev shadow-1` className inline;
+`.hq-panel` carries the visible style cleanly. The red blocker
+callouts switch to the indigo-bar register.**
+
+`updateItem` now refuses to write localStorage edits for the 13
+migrated sections — silent writes that the next render would ignore
+aren't a bug worth tolerating. A console warn surfaces the no-op so a
+curious operator sees why the click didn't persist.
+
+The dashboard now passes every BRAND.md §5 visual rule that's
+applicable to an internal surface.
+
+---
+
 ## 2026-05-14 · S·26 · tightens · The umbrella reads on a phone
 
 **Every route on signalstudio.ie now fits the phone it's read on. The
