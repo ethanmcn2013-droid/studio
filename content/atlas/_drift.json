@@ -12,5 +12,12 @@
     ],
     "updatedAt": "2026-05-14T19:03:18.959Z",
     "byCommit": "1a0947a"
+  },
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css"
+    ],
+    "updatedAt": "2026-05-14T19:12:02.126Z",
+    "byCommit": "967f91c"
   }
 }
