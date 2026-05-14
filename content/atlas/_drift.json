@@ -1,0 +1,23 @@
+{
+  "brand-enforcement": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T18:50:35.941Z",
+    "byCommit": "2aba288"
+  },
+  "five-products-as-a-system": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T18:50:35.941Z",
+    "byCommit": "2aba288"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T18:50:35.941Z",
+    "byCommit": "2aba288"
+  }
+}

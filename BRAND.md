@@ -271,7 +271,7 @@ detail welcome here, not in the bold lead.
 Four header elements, separated by middle dot (` · `, U+00B7 with spaces):
 
 1. **Date** in ISO. Scan anchor.
-2. **Cycle code** — `X·NN`. Single-letter product (`S` Studio · `T` Tasks · `R` Roadmap · `A` Analytics · `N` Notes), middle dot, zero-padded number. Grep target. The code is also the cycle's anchor in `phase.md` and commit messages.
+2. **Cycle code** — `X·NN`. Single-letter product (`S` Studio · `T` Tasks · `R` Roadmap · `A` Analytics · `N` Notes), middle dot, zero-padded number. Grep target. The code is also the cycle's anchor in `phase.md` and commit messages. **Preflight against collisions:** before claiming a new `X·NN`, run `git log --oneline -20 | grep -oE '[STRAN]·[0-9]+' | sort -t·-k2 -nr | head -5` against the relevant repo to surface the highest in-flight numbers, then increment. Parallel sessions (multiple agents shipping in the same hour) are a known failure mode — two cycles claiming the same code at the same time is a small, recurring drift. The fix is preflight, not retroactive rewriting.
 3. **Verb** — exactly one of the five Signal verbs (see below). Lowercase.
 4. **Headline** — declarative present-tense, subject + active verb, no gerunds. Banned: "Improvements to X", "Adding Y", "Fixed Z", "Performance". Allowed: "Paper turns white", "The dot learns to heartbeat", "Burndown disappears from the one place we forgot to ban it".
 
