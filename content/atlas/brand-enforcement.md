@@ -3,7 +3,7 @@ title: Brand enforcement — BRAND.md as catch-net
 slug: brand-enforcement
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-14
+lastVerified: 2026-05-15
 links: [signal-studio-umbrella, plan-cycle, five-products-as-a-system]
 tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Cut through the noise.", Stark+Jobs, Pentagram, Manual]
 references: [BRAND.md, src/app/globals.css, src/components/wordmark/, src/app/brand/]
