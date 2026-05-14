@@ -3,6 +3,92 @@
 Process notes for the umbrella. The four products keep their own logs;
 this one tracks what coalesced across the suite.
 
+## 2026-05-14 · Entitlements sprint · One DB, every product, real checkout
+
+The suite stops pretending. Until today the pricing page promised
+features only Tasks actually enforced — Roadmap, Analytics, and Notes
+were paid-tier-blind, and Studio's `getEntitlement` lived as dead
+code. That whole gap closed.
+
+**Shared DB.** A new `signal-entitlements` Turso DB became the
+canonical store, with sponsors / license_codes / entitlements /
+redemptions / processed_webhooks tables. All five product repos
+read from it via a copy-pasted `entitlements-shared` module (no
+monorepo); Tasks's Stripe webhook + comp redemption mirror-write to
+it; the `issue-codes.ts` pipeline now dual-writes audit rows.
+Studio's HQ `/hq/partners` page was repointed to read from shared
+so any future writer propagates.
+
+**Cross-product checkout.** Umbrella `/pricing` CTAs deep-link to
+`tasks.signalstudio.ie/api/checkout?tier=workspace|event`. Tasks
+owns the Stripe wiring; the resulting entitlement appears in the
+shared DB on webhook success and every product sees it on the next
+`resolveEntitlement` call. A `?status=checkout-offline` banner
+renders on `/pricing` if Stripe envs aren't yet set in production,
+so the umbrella never silently grants free upgrades during the
+configuration window.
+
+**Operator surfaces.** Two new endpoints on Studio for support /
+pilot ops: `POST /api/internal/entitlements/grant` and `/expire`
+(Bearer `STUDIO_OPS_SECRET`). A new HQ admin page at
+`/hq/entitlements` provides the same surface as a UI inside the
+cookie-gated dashboard — list active grants, grant a new one,
+expire by source-ref. Off-Stripe grants carry `origin: studio-ops`
+or `origin: studio-hq` in metadata for audit grep.
+
+**Hardening.** A daily reconcile sweep piggybacks on Tasks's
+existing digest cron — walks all local entitlements and asks the
+shared writer to mirror anything missing, idempotently.
+`writeSharedEntitlement` retries transient errors with backoff.
+The Stripe webhook now mirrors its dedup row into shared
+`processed_webhooks` so any future writer can short-circuit on the
+same event id.
+
+**Operator docs.** Three runbooks committed: `tasks/docs/STRIPE_SETUP.md`
+(price IDs + webhook + envs), `notes/docs/INBOUND_EMAIL_SETUP.md`
+(Resend Inbound + DNS + secret), `studio/docs/ENTITLEMENTS_OPS.md`
+(grant, expire, reconcile, audit, troubleshooting).
+
+
+---
+
+## 2026-05-14 (Signal Atlas v1 · the system map that flags itself when it lies)
+
+### A founder's tool for asking "wait — how does this work again?"
+
+Signal HQ grew a new room. `/hq/atlas` is repo-backed system documentation
+that reads from `content/atlas/*.md` at request time. Three lenses
+(Products / Processes / Data Flows), search-light filter across titles
+and summaries, and a stale-flag that triggers when an entry hasn't been
+re-verified in 60 days. The flag is the entire point: documentation that
+can't lie quietly. Fix the entry, then the code — reverses the usual rot
+direction.
+
+**Nine anchor entries to start.** One fully written (the plan cycle —
+the most important "how does this work" surface, the loop that makes
+five products from one operator possible). Eight more stubbed with
+frontmatter and a one-line WHAT placeholder so the index reads honestly
+about what's written and what isn't. The whole atlas refuses to be
+complete by default — completeness for its own sake is how wikis die.
+
+**A minimal markdown renderer** (`src/lib/atlas/render.ts`) handles H2/H3,
+lists, links, inline code, fenced code, bold, italic. Mermaid fences are
+labeled as `diagram source · mermaid` and rendered as monospace; client-
+side diagram rendering is a v2 if v1 gets real use. No dep added — the
+shape of entries is constrained enough that 150 lines of code beats a
+markdown library.
+
+**Atlas prose styling** lives in `globals.css` under `.atlas-prose` —
+engineering-notebook register, restrained heading scale, hairline
+section dividers, code blocks that read like inline code instead of
+chrome. Matches the paper-white + ink-#111 + indigo register the suite
+locked yesterday.
+
+**Maintainer notes** at `content/atlas/README.md`. The "when to add a
+new entry" line is the load-bearing one: not by default, only when you
+needed it and it wasn't there. The atlas is a forcing function, not a
+completeness exercise.
+
 ---
 
 ## 2026-05-13 (Suite design-system v1 · paper turns white, the dot gets a household)
