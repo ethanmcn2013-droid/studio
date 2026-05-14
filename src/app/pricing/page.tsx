@@ -38,6 +38,14 @@ type InsideProduct = {
 
 /* ── Static content ───────────────────────────────────────────────── */
 
+/* E-7 (2026-05-14): paid-tier CTAs route through Tasks's /api/checkout
+ * endpoint. Tasks owns the Stripe integration; the resulting entitlement
+ * is mirrored to the shared signal-entitlements DB on success, so all
+ * five products see the new tier without per-product checkout wiring.
+ */
+const TASKS_CHECKOUT_WORKSPACE = `${TASKS_URL}/api/checkout?tier=workspace`;
+const TASKS_CHECKOUT_EVENT = `${TASKS_URL}/api/checkout?tier=event`;
+
 const TIERS: Tier[] = [
   {
     name: "Free",
@@ -62,7 +70,7 @@ const TIERS: Tier[] = [
     cadence: "/ month · per workspace",
     body: "Unlimited workspaces. All four products. Bring your whole crew — no per-seat tax.",
     cta: "Start a workspace",
-    href: TASKS_URL,
+    href: TASKS_CHECKOUT_WORKSPACE,
   },
   {
     name: "Event",
@@ -70,7 +78,7 @@ const TIERS: Tier[] = [
     cadence: "one-time · 12 months",
     body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
     cta: "Plan an event",
-    href: "/weddings",
+    href: TASKS_CHECKOUT_EVENT,
   },
 ];
 
