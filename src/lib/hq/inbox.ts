@@ -1,9 +1,14 @@
 import "server-only";
+import { cache } from "react";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { readHqSection } from "@/lib/hq/markdown";
 import { getCronHealth } from "@/lib/cron/runs";
 import { seedHqData } from "@/lib/hq/data";
+import {
+  readDriftSidecarCached,
+  readLogJsonlCached,
+} from "@/lib/hq/shared-reads";
 import {
   finalizeInbox,
   type InboxItem,
@@ -12,6 +17,9 @@ import {
 
 export type { InboxItem, InboxTier };
 export { finalizeInbox };
+
+// Cron health duplicated between Today and Inbox — cache it.
+const getCronHealthCached = cache(getCronHealth);
 
 /**
  * Signal HQ Inbox — things you owe an answer to right now.
@@ -52,40 +60,26 @@ function pastOrToday(yyyymmdd: string): boolean {
 }
 
 async function readDriftItems(): Promise<InboxItem[]> {
-  const sidecarPath = path.join(
-    process.cwd(),
-    "content",
-    "atlas",
-    "_drift.json",
-  );
-  try {
-    const raw = await fs.readFile(sidecarPath, "utf-8");
-    const parsed = JSON.parse(raw) as Record<
-      string,
-      { drifted?: string[]; updatedAt?: string }
-    >;
-    return Object.entries(parsed).map(([slug, payload]) => {
-      const drifted = payload.drifted ?? [];
-      return {
-        id: `atlas-drift:${slug}`,
-        tier: "high" as InboxTier,
-        source: "atlas-drift" as const,
-        title: `atlas/${slug} has drifted`,
-        detail: drifted.length
-          ? `${drifted.length} reference${drifted.length === 1 ? "" : "s"} changed since lastVerified · ${drifted[0]}`
-          : "References changed since the entry was last verified.",
-        href: `/hq/atlas/${slug}`,
-        date: payload.updatedAt?.slice(0, 10),
-      };
-    });
-  } catch {
-    return [];
-  }
+  const parsed = await readDriftSidecarCached();
+  return Object.entries(parsed).map(([slug, payload]) => {
+    const drifted = payload.drifted ?? [];
+    return {
+      id: `atlas-drift:${slug}`,
+      tier: "high" as InboxTier,
+      source: "atlas-drift" as const,
+      title: `atlas/${slug} has drifted`,
+      detail: drifted.length
+        ? `${drifted.length} reference${drifted.length === 1 ? "" : "s"} changed since lastVerified · ${drifted[0]}`
+        : "References changed since the entry was last verified.",
+      href: `/hq/atlas/${slug}`,
+      date: payload.updatedAt?.slice(0, 10),
+    };
+  });
 }
 
 async function readCronItems(): Promise<InboxItem[]> {
   try {
-    const health = await getCronHealth("analytics_daily");
+    const health = await getCronHealthCached("analytics_daily");
     if (health.status === "green") return [];
     const tier: InboxTier =
       health.status === "never" || health.status === "red" ? "high" : "mid";
@@ -242,53 +236,26 @@ async function readAtlasItems(): Promise<InboxItem[]> {
 }
 
 async function readLogErrorItems(): Promise<InboxItem[]> {
-  if (!HOME) return [];
-  const logPath = path.join(HOME, ".claude", "state", "log.jsonl");
-  try {
-    const raw = await fs.readFile(logPath, "utf-8");
-    const lines = raw.split("\n");
-    let depth = 0;
-    let buffer = "";
-    type LogRow = { ts?: string; ok?: boolean; project?: string; phase?: string };
-    const failed: LogRow[] = [];
-    for (const line of lines) {
-      if (!line.trim() && depth === 0) continue;
-      buffer += line + "\n";
-      for (const ch of line) {
-        if (ch === "{") depth += 1;
-        else if (ch === "}") depth -= 1;
-      }
-      if (depth === 0 && buffer.trim()) {
-        try {
-          const row = JSON.parse(buffer) as LogRow;
-          if (row.ok === false && row.ts) failed.push(row);
-        } catch {
-          // tolerate malformed
-        }
-        buffer = "";
-      }
-    }
-    // Only surface failures from the last 7 days; cluster by day.
-    const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-    const recentFailures = failed.filter((r) => {
-      const t = new Date(String(r.ts)).getTime();
-      return Number.isFinite(t) && t >= weekAgo;
-    });
-    if (recentFailures.length === 0) return [];
-    const tier: InboxTier = recentFailures.length >= 5 ? "high" : "mid";
-    return [
-      {
-        id: `log-errors:${recentFailures.length}`,
-        tier,
-        source: "cron",
-        title: `${recentFailures.length} session response${recentFailures.length === 1 ? "" : "s"} failed in the last 7 days`,
-        detail: `STATUS-block validation or hook failures — check ~/.claude/state/log.jsonl`,
-        date: String(recentFailures[recentFailures.length - 1].ts).slice(0, 10),
-      },
-    ];
-  } catch {
-    return [];
-  }
+  const rows = await readLogJsonlCached();
+  const failed = rows.filter((r) => r.ok === false && r.ts);
+  if (failed.length === 0) return [];
+  const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const recentFailures = failed.filter((r) => {
+    const t = new Date(String(r.ts)).getTime();
+    return Number.isFinite(t) && t >= weekAgo;
+  });
+  if (recentFailures.length === 0) return [];
+  const tier: InboxTier = recentFailures.length >= 5 ? "high" : "mid";
+  return [
+    {
+      id: `log-errors:${recentFailures.length}`,
+      tier,
+      source: "cron",
+      title: `${recentFailures.length} session response${recentFailures.length === 1 ? "" : "s"} failed in the last 7 days`,
+      detail: `STATUS-block validation or hook failures — check ~/.claude/state/log.jsonl`,
+      date: String(recentFailures[recentFailures.length - 1].ts).slice(0, 10),
+    },
+  ];
 }
 
 async function readVercelDeployItems(): Promise<InboxItem[]> {

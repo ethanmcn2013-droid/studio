@@ -3,8 +3,16 @@ import { exec } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
+import { cache } from "react";
 import { getCronHealth, type CronHealth } from "@/lib/cron/runs";
 import { readHqSection } from "@/lib/hq/markdown";
+import {
+  readDriftSidecarCached,
+  readLogJsonlCached,
+} from "@/lib/hq/shared-reads";
+
+// Cron health duplicated between Today and Inbox — cache it.
+const getCronHealthCached = cache(getCronHealth);
 
 /**
  * Today — the derived signal layer for Signal HQ.
@@ -170,35 +178,22 @@ async function readRepoActivity(repo: Product): Promise<RepoActivity> {
 }
 
 async function readAtlasDrift(): Promise<AtlasDriftSummary> {
-  const sidecarPath = path.join(
-    process.cwd(),
-    "content",
-    "atlas",
-    "_drift.json",
-  );
-  try {
-    const raw = await fs.readFile(sidecarPath, "utf-8");
-    const parsed = JSON.parse(raw) as Record<
-      string,
-      { drifted?: string[] }
-    >;
-    const slugs = Object.keys(parsed);
-    const driftedRefCount = slugs.reduce(
-      (n, slug) => n + (parsed[slug]?.drifted?.length ?? 0),
-      0,
-    );
-    return {
-      hasDrift: slugs.length > 0,
-      driftedSlugs: slugs,
-      driftedRefCount,
-    };
-  } catch {
+  const parsed = await readDriftSidecarCached();
+  const slugs = Object.keys(parsed);
+  if (slugs.length === 0) {
     return { hasDrift: false, driftedSlugs: [], driftedRefCount: 0 };
   }
+  const driftedRefCount = slugs.reduce(
+    (n, slug) => n + (parsed[slug]?.drifted?.length ?? 0),
+    0,
+  );
+  return { hasDrift: true, driftedSlugs: slugs, driftedRefCount };
 }
 
 async function readSessionPulse(): Promise<SessionPulse> {
-  if (!HOME) {
+  const objects = await readLogJsonlCached();
+  const total = objects.length;
+  if (total === 0) {
     return {
       totalLoggedResponses: 0,
       loggedToday: 0,
@@ -206,71 +201,36 @@ async function readSessionPulse(): Promise<SessionPulse> {
       lastResponseAt: null,
     };
   }
-  const logPath = path.join(HOME, ".claude", "state", "log.jsonl");
-  try {
-    const raw = await fs.readFile(logPath, "utf-8");
-    // The log is JSONL — one JSON object per line, but the legacy format
-    // splits each object across multiple lines. Parse defensively.
-    const lines = raw.split("\n");
-    let depth = 0;
-    let buffer = "";
-    const objects: Array<{ ts?: string; ok?: boolean }> = [];
-    for (const line of lines) {
-      if (!line.trim() && depth === 0) continue;
-      buffer += line + "\n";
-      for (const ch of line) {
-        if (ch === "{") depth += 1;
-        else if (ch === "}") depth -= 1;
-      }
-      if (depth === 0 && buffer.trim()) {
-        try {
-          objects.push(JSON.parse(buffer));
-        } catch {
-          // Tolerate malformed segments.
-        }
-        buffer = "";
-      }
+  const now = Date.now();
+  const todayBoundary = now - 24 * 60 * 60 * 1000;
+  const weekBoundary = now - 7 * 24 * 60 * 60 * 1000;
+
+  let loggedToday = 0;
+  let loggedLast7Days = 0;
+  let lastResponseAt: string | null = null;
+
+  for (const obj of objects) {
+    if (!obj.ts) continue;
+    const t = new Date(obj.ts).getTime();
+    if (!Number.isFinite(t)) continue;
+    if (t >= todayBoundary) loggedToday += 1;
+    if (t >= weekBoundary) loggedLast7Days += 1;
+    if (!lastResponseAt || t > new Date(lastResponseAt).getTime()) {
+      lastResponseAt = obj.ts;
     }
-
-    const total = objects.length;
-    const now = Date.now();
-    const todayBoundary = now - 24 * 60 * 60 * 1000;
-    const weekBoundary = now - 7 * 24 * 60 * 60 * 1000;
-
-    let loggedToday = 0;
-    let loggedLast7Days = 0;
-    let lastResponseAt: string | null = null;
-
-    for (const obj of objects) {
-      if (!obj.ts) continue;
-      const t = new Date(obj.ts).getTime();
-      if (!Number.isFinite(t)) continue;
-      if (t >= todayBoundary) loggedToday += 1;
-      if (t >= weekBoundary) loggedLast7Days += 1;
-      if (!lastResponseAt || t > new Date(lastResponseAt).getTime()) {
-        lastResponseAt = obj.ts;
-      }
-    }
-
-    return {
-      totalLoggedResponses: total,
-      loggedToday,
-      loggedLast7Days,
-      lastResponseAt,
-    };
-  } catch {
-    return {
-      totalLoggedResponses: 0,
-      loggedToday: 0,
-      loggedLast7Days: 0,
-      lastResponseAt: null,
-    };
   }
+
+  return {
+    totalLoggedResponses: total,
+    loggedToday,
+    loggedLast7Days,
+    lastResponseAt,
+  };
 }
 
 async function readCron(): Promise<CronHealth[]> {
   try {
-    return await Promise.all([getCronHealth("analytics_daily")]);
+    return await Promise.all([getCronHealthCached("analytics_daily")]);
   } catch {
     return [];
   }
