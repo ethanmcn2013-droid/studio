@@ -223,10 +223,49 @@ function statusPipColor(s: InsideProduct["status"]): string {
 
 /* ── Page ─────────────────────────────────────────────────────────── */
 
-export default function PricingPage() {
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ status?: string; upgrade?: string }>;
+}) {
+  const params = await searchParams;
+  const checkoutOffline = params.status === "checkout-offline";
+
   return (
     <>
       <main className="flex flex-1 flex-col">
+        {checkoutOffline ? (
+          <div
+            role="status"
+            className="mx-auto w-full max-w-[1180px] px-6 pt-6"
+            style={{ marginTop: 16 }}
+          >
+            <div
+              style={{
+                background: "var(--bg-deep)",
+                border: "1px solid var(--border-soft)",
+                borderRadius: 12,
+                padding: "14px 18px",
+                fontSize: 13.5,
+                color: "var(--ink-soft)",
+              }}
+            >
+              <strong style={{ color: "var(--ink)" }}>
+                Checkout is temporarily offline.
+              </strong>{" "}
+              Workspace and Event purchases will resume shortly. Free and
+              Student access remain available — start there, or email{" "}
+              <a
+                href="mailto:hello@signalstudio.ie"
+                style={{ color: "var(--ink)" }}
+              >
+                hello@signalstudio.ie
+              </a>{" "}
+              and we&apos;ll grant access manually.
+            </div>
+          </div>
+        ) : null}
+
         {/* ── 1 · Frame ─────────────────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 pt-16 pb-20 md:pt-24 md:pb-24">
           <div className="mb-6" style={eyebrowStyle()}>
