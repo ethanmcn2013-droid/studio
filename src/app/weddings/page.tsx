@@ -87,44 +87,34 @@ export default function WeddingsPage() {
         <section className="border-b border-border-soft px-6 pb-16 pt-14 md:pb-20 md:pt-20">
           <div className="mx-auto w-full max-w-[1040px]">
             <p
-              className="mb-5 text-[11px] font-semibold uppercase"
+              className="mb-5 text-[11px] font-semibold uppercase text-ink-quiet"
               style={{
-                color: "var(--accent)",
                 letterSpacing: "var(--tracking-eyebrow)",
               }}
             >
               Weddings and events
             </p>
-            <h1 className="max-w-4xl text-[clamp(2.5rem,1.7rem+3.8vw,5.4rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-ink">
-              Wedding planning workspaces for venues, planners, and couples.
+            <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
+              The plan everyone can actually read.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              Signal Studio keeps the work behind a wedding clear: notes,
-              decisions, tasks, timelines, and plain-language updates without
-              spreadsheet chaos.
+              Signal Studio keeps the work behind a wedding in one place — notes,
+              decisions, tasks, and a plan anyone can forward.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={sharedUpdateHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
-              >
-                View the shared update
-              </a>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
                 href="/contact?subject=weddings"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-border px-5 text-[14px] font-medium text-ink-soft transition-colors hover:border-ink-quiet hover:text-ink"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Ask about the pilot
               </Link>
               <a
-                href={templateHref}
+                href={sharedUpdateHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-border px-5 text-[14px] font-medium text-ink-soft transition-colors hover:border-ink-quiet hover:text-ink"
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                Use the template
+                See what the couple sees →
               </a>
             </div>
 
@@ -232,7 +222,7 @@ export default function WeddingsPage() {
                 The collaboration loop is the product.
               </h2>
             </div>
-            <div className="grid gap-3 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {ecosystemSteps.map((step) => (
                 <a
                   key={step.product}
@@ -280,13 +270,12 @@ export default function WeddingsPage() {
                 Founding venue pilot
               </p>
               <h2 className="max-w-2xl text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
-                Give couples a clear planning workspace and help shape the
-                product.
+                Give couples a clear planning workspace from day one.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-ink-soft">
-                Early venues and planners can use private wedding planning
-                workspaces during beta in exchange for practical feedback from
-                the people coordinating the day.
+                Early venues and planners get private wedding planning
+                workspaces, first-mover access, and a direct line to the people
+                building the product.
               </p>
             </div>
             <Link
