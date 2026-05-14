@@ -52,42 +52,60 @@ same event id.
 
 ---
 
-## 2026-05-14 (Signal Atlas v1 · the system map that flags itself when it lies)
+## 2026-05-14 · hq/atlas v1 · the system, written down
 
-### A founder's tool for asking "wait — how does this work again?"
+### A private notebook with a route, before it becomes anything more.
 
-Signal HQ grew a new room. `/hq/atlas` is repo-backed system documentation
-that reads from `content/atlas/*.md` at request time. Three lenses
-(Products / Processes / Data Flows), search-light filter across titles
-and summaries, and a stale-flag that triggers when an entry hasn't been
-re-verified in 60 days. The flag is the entire point: documentation that
-can't lie quietly. Fix the entry, then the code — reverses the usual rot
-direction.
+Signal HQ grew a new room. `/hq/atlas` is repo-backed system
+documentation — one entry per system, one markdown file per entry,
+read at request time. No branding, no product noun. Inside HQ it's
+just *atlas* — lowercase, internal, unmarketed.
 
-**Nine anchor entries to start.** One fully written (the plan cycle —
-the most important "how does this work" surface, the loop that makes
-five products from one operator possible). Eight more stubbed with
-frontmatter and a one-line WHAT placeholder so the index reads honestly
-about what's written and what isn't. The whole atlas refuses to be
-complete by default — completeness for its own sake is how wikis die.
+**The forcing function is the stale flag.** Each entry carries a
+`lastVerified` date. Past 60 days, the flag fires inline after the
+title. Fix the entry, then the code — reverses the usual rot
+direction. The flag is the whole point; without it, the atlas is
+documentation that can lie quietly.
 
-**A minimal markdown renderer** (`src/lib/atlas/render.ts`) handles H2/H3,
-lists, links, inline code, fenced code, bold, italic. Mermaid fences are
-labeled as `diagram source · mermaid` and rendered as monospace; client-
-side diagram rendering is a v2 if v1 gets real use. No dep added — the
+**Nine anchor entries to start, one fully written.** The pinned
+`plan-cycle` entry is the only one with body filled — the loop that
+makes five products from one operator possible. Eight more carry
+frontmatter plus tags, references, and a one-line WHAT. The index
+reads honestly about what's written and what isn't (`partial` and
+`stub` states render inline after the title, not as decorative pills).
+
+**Numbered typographic list, not cards.** First pass had a card grid;
+it read as Notion. Replaced with a divide-y list — monospace index
+left, title plus summary middle, age right. No hover backgrounds. The
+data is the surface. The "start here" pin sits above the list as a
+single full-width anchor pointing at `plan-cycle`.
+
+**A minimal markdown renderer** (`src/lib/atlas/render.ts`) handles
+H2/H3, lists, links, inline code, fenced code, bold, italic. Mermaid
+fences render as labeled source blocks for now; a v2 cycle adds
+client-side diagram rendering if v1 gets real use. No dep added — the
 shape of entries is constrained enough that 150 lines of code beats a
 markdown library.
 
-**Atlas prose styling** lives in `globals.css` under `.atlas-prose` —
-engineering-notebook register, restrained heading scale, hairline
-section dividers, code blocks that read like inline code instead of
-chrome. Matches the paper-white + ink-#111 + indigo register the suite
-locked yesterday.
+**Schema fields earning their space.** `tags[]` for strings future-Ethan
+would actually type when lost (`phase.md`, `log.jsonl`, `Stop hook`).
+`references[]` for paths and env vars the entry points at — staging
+ground for the v2 drift-trigger that flags `isDrifted` when a referenced
+file changes in git. The data shape lands now; the trigger lands next
+cycle. Without the trigger, the atlas is honour-system documentation;
+with it, drift becomes a system signal.
 
-**Maintainer notes** at `content/atlas/README.md`. The "when to add a
-new entry" line is the load-bearing one: not by default, only when you
-needed it and it wasn't there. The atlas is a forcing function, not a
-completeness exercise.
+**HQ chip is lowercase mono** between Reset and Entitlements —
+`atlas`, no arrow. Consistent with the HQ register. The audience is
+one operator at 11pm; the chip should look like a shortcut, not a
+product launch.
+
+**Audit-driven from day one.** Strategy, creative-director, and
+ux-director pushed back on the v1 draft within hours of scaffold.
+Card grid replaced. Dual-persona framing dropped — exec briefings
+are a different artifact. Lens taxonomy kept, sort flipped to
+recency-first. Related links lifted above the body so navigation is
+visible before reading.
 
 ---
 

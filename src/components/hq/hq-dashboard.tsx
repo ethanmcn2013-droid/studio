@@ -516,9 +516,10 @@ export function HqDashboard() {
             </button>
             <a
               href="/hq/atlas"
-              className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 text-[12px] font-medium text-ink no-underline transition hover:border-accent"
+              className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 font-mono text-[12px] lowercase text-ink no-underline transition hover:border-accent"
+              style={{ letterSpacing: "0.04em" }}
             >
-              Atlas →
+              atlas
             </a>
             <a
               href="/hq/entitlements"

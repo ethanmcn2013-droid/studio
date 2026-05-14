@@ -71,27 +71,24 @@ The pilot is a real commitment from both sides. Not a "free trial" — a working
 >
 > [One personalised sentence — see personalisation rule above. This is the sentence that gets you a reply.]
 >
-> One of the four tools we build is a wedding planning workspace. I'm writing to offer [Venue Name] a founding venue spot: free planning workspaces for every wedding through your venue for the next 12 months, with the workspace carrying your name and brand.
+> I'm writing because the venue coordinator role is exactly who this is built for. Most planning software is built by tech companies for tech companies. Signal Studio is built by a designer in Ireland for people who run real coordination work for people who don't work in tech.
+>
+> One of the four tools we build is a wedding planning workspace. I'm offering [Venue Name] a founding venue spot: free planning workspaces for every wedding through your venue for the next 12 months, with the workspace carrying your name and brand.
 >
 > The workspace gives couples one clear place to keep guest counts, supplier follow-ups, decisions, and the running plan — without spreadsheet chaos. The venue coordinator side gets the same plan from the venue's angle, plus a shareable update they can forward.
 >
-> Four short demos that show what it does:
+> A 30-second look at the wedding workspace itself: [https://tasks.signalstudio.ie/templates/wedding-planning-workspace](https://tasks.signalstudio.ie/templates/wedding-planning-workspace?source=outbound_email&campaign=founding_venue&artefact=template)
 >
-> - **The venue meeting becoming the work**: [https://notes.signalstudio.ie/wedding-planning/](https://notes.signalstudio.ie/wedding-planning/?source=outbound_email&campaign=founding_venue&artefact=notes_demo)
-> - **The wedding workspace itself**: [https://tasks.signalstudio.ie/templates/wedding-planning-workspace](https://tasks.signalstudio.ie/templates/wedding-planning-workspace?source=outbound_email&campaign=founding_venue&artefact=template)
-> - **The shared update for couples**: [https://roadmap.signalstudio.ie/wedding-planning/update](https://roadmap.signalstudio.ie/wedding-planning/update?source=outbound_email&campaign=founding_venue&artefact=shared_update)
-> - **A Sunday morning briefing**: [https://analytics.signalstudio.ie/wedding-planning](https://analytics.signalstudio.ie/wedding-planning?source=outbound_email&campaign=founding_venue&artefact=analytics_demo)
->
-> Each takes about 30 seconds to read. The whole loop together is under three minutes.
->
-> I'm in [town/city] and happy to drive over and walk through it with you in person. Or a 20-minute call if that's easier.
+> Write back and I'll send you a one-page overview with the rest. Happy to drive over and walk through it with you in person, or a 20-minute call if that's easier.
 >
 > Ethan
 > Signal Studio
 > hello@signalstudio.ie
 > signalstudio.ie/weddings
 
-**Personalisation rule**: see the top of this kit. The single highest-leverage move. The personalised sentence sits between "I run a small Irish software studio" and the founding venue offer — read order matters: who I am → why I'm writing to *you specifically* → the offer.
+**Personalisation rule**: see the top of this kit. The single highest-leverage move. The personalised sentence sits between "I run a small Irish software studio" and the credibility paragraph — read order matters: who I am → why I'm writing to *you specifically* → why this product is built for people like you → the offer → one concrete demo → reply CTA.
+
+**Why one link, not four** (changed 2026-05-13): four demo links on a mobile preview pane induced choice paralysis — coordinators were closing the email without clicking any. One link to the most concrete artefact (the workspace itself), and a reply-back CTA that arrives a forwardable one-page PDF, converts better than scattering attention across four URLs. The other three demos move into the one-pager Claude Design produces Monday (or into Email 2 / the /weddings landing page).
 
 ---
 
@@ -117,13 +114,13 @@ The pilot is a real commitment from both sides. Not a "free trial" — a working
 >
 > Last note from me on this — I'll stop after this one.
 >
-> The reason I keep reaching out is that the venue coordinator role is exactly who Signal is built for. Most planning software is built by tech companies for tech companies. Signal is built by a designer in Ireland for people who run real coordination work for people who don't work in tech.
->
-> If your inbox is full and now isn't the moment, totally understand. The offer (free workspaces for every wedding for 12 months, your venue's branding, founding venue status) holds open if you ever want to come back to it.
+> If your inbox is full and now isn't the moment, totally understand. The founding venue spots stay open until the first ten are taken, and there are still places. If you'd ever like to come back to it — even just one upcoming wedding to test the shape — write to hello@signalstudio.ie any time.
 >
 > Best with the season.
 >
 > Ethan
+
+**Why this email is short** (changed 2026-05-13): Email 3's strongest paragraph (the "built by a designer in Ireland for people who don't work in tech" credibility line) moved to Email 1 — most coordinators were never reaching day 12, so the kit's most persuasive sentence was landing too late to matter. Email 3 is now a brief door-open note, not a re-pitch. If the credibility argument didn't land in Email 1 + Email 2, repeating it on day 12 won't change the outcome.
 
 ---
 
