@@ -156,6 +156,25 @@ async function main() {
   // Studio: license_codes row (sponsor audit / who-issued-what).
   await db.insert(licenseCodes).values(rows);
 
+  // E-8 (2026-05-14): Mirror to shared signal-entitlements DB so all
+  // five products can audit issuance from one source. The shared
+  // schema is identical to Studio's local — the migrated rows from
+  // E-2 stay in sync as new issuance lands here.
+  try {
+    const { entitlementsDb } = await import(
+      "../src/lib/entitlements-db/client"
+    );
+    const { licenseCodes: sharedLicenseCodes } = await import(
+      "../src/lib/entitlements-db/schema"
+    );
+    await entitlementsDb().insert(sharedLicenseCodes).values(rows);
+  } catch (err) {
+    console.warn(
+      "[issue-codes] shared license_codes mirror failed (Studio local + Tasks still written):",
+      err,
+    );
+  }
+
   // Tasks: comp_codes row (runtime redemption surface). Per-couple
   // semantics enforced by quantity=1.
   for (const row of rows) {
