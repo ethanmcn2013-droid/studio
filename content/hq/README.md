@@ -146,11 +146,33 @@ When `isFileBacked` is false (section not migrated yet):
 This is intentionally additive — migration is per-tab and reversible
 until HQ-6c.3 deletes the seed.
 
-### Tabs refactored to read from markdown (HQ-6c.2)
+### Tabs refactored to read from markdown (HQ-6c.2 / S·17)
 
-- **Products tab** — products + ecosystem flows
-- **Features tab** — features (status select replaced with mono label)
-- **Decisions tab** — risks panel (markdown read; rest of tab still seed)
+Every consolidated tab now prefers markdown when present:
+
+- **Products** — products + ecosystem flows
+- **Pipeline → Features / Launch** — features + launch readiness
+- **Loop** — collaboration loop + shared objects + access roles + collaborator first view + shareable artifacts
+- **Proof → Content / Growth** — content items + demos + templates + pilots + segments + campaigns + growth workflow
+- **Operations → Decisions** — decisions list + risks panel
+
+Status dropdowns and inline edit affordances are hidden in every
+file-backed section. `updateItem` actively refuses localStorage writes
+for the 13 migrated section keys (S·25a) with a console.warn so a
+curious operator sees why the click didn't persist.
+
+### Tests (S·27)
+
+`src/lib/hq/markdown-parser.ts` and `src/lib/hq/inbox-pure.ts` are
+the pure modules that escape the `import "server-only"` guard. Two
+test files cover them:
+
+- `markdown.test.ts` — 11 cases (frontmatter parsing across syntaxes,
+  H2 section split, sort + count helpers)
+- `inbox.test.ts` — 7 cases (tier ordering, date-within-tier,
+  title tiebreak, count totals)
+
+Run: `pnpm test` (uses Node's built-in test runner + tsx).
 
 ## Migration scripts
 
@@ -174,17 +196,25 @@ entry would lose company knowledge. The staged approach is:
 
 1. **HQ-6a (shipped):** Build the loader. Migrate decisions. Wire
    into Today. Prove the pattern.
-2. **HQ-6b:** Migrate features, risks, campaigns, segments,
-   messaging. Refactor each tab in `hq-dashboard.tsx` to read from
-   markdown. localStorage editing for these sections gets disabled.
-3. **HQ-6c:** Migrate the remaining narrative sections
-   (products, collaborationLoop, sharedObjects, etc.). Delete the
-   localStorage editor entirely. Rewrite the CLAUDE.md "Mandatory
-   Signal HQ Rule" to point at source files, not at HQ.
+2. **HQ-6b (shipped):** Migrate features, risks, campaigns,
+   messaging.
+3. **HQ-6c.1 (shipped):** Migrate the 14 remaining narrative
+   sections via the parametric script.
+4. **HQ-6c.2 (shipped):** Refactor every dashboard tab to read from
+   markdown via the adapter at `src/lib/hq/dashboard-data.ts`.
+   localStorage edits for migrated sections are gated off.
+5. **HQ-6c.3 (shipped):** Annotate `data.ts` as transitional.
+6. **HQ-6c.4 (shipped):** Rewrite the CLAUDE.md Mandatory Signal HQ
+   Rule as a routing table.
+7. **S·24 (shipped):** Empty the 18 migrated arrays in `data.ts`.
+   The seed dropped from 2,361 lines to 926 — only the four
+   localStorage-kept sections and `metrics` + `messaging` survive
+   as runtime data.
 
-After HQ-6c, `data.ts` carries only the localStorage-kept sections
-(prospects, feedback, weeklyRhythm, nextActions) — operator-owned
-write-optimized data with no other source of truth.
+`data.ts` is now substantively complete as a transitional file. The
+operator-owned sections (`prospects`, `feedback`, `weeklyRhythm`,
+`nextActions`) carry the only live data; everything else is empty
+arrays whose type shapes the dashboard imports.
 
 ## Anti-patterns
 

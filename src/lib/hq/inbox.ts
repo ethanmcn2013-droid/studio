@@ -291,6 +291,66 @@ async function readLogErrorItems(): Promise<InboxItem[]> {
   }
 }
 
+async function readVercelDeployItems(): Promise<InboxItem[]> {
+  const token = process.env.VERCEL_API_TOKEN;
+  if (!token) return []; // graceful no-env fallback
+  const teamId = process.env.VERCEL_TEAM_ID;
+  const projects = (process.env.VERCEL_PROJECT_IDS ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (projects.length === 0) return [];
+
+  const since = Date.now() - 24 * 60 * 60 * 1000;
+  const items: InboxItem[] = [];
+
+  for (const projectId of projects) {
+    const url = new URL("https://api.vercel.com/v6/deployments");
+    url.searchParams.set("projectId", projectId);
+    url.searchParams.set("limit", "20");
+    url.searchParams.set("since", String(since));
+    if (teamId) url.searchParams.set("teamId", teamId);
+
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+        // 5s timeout to keep inbox responsive even if Vercel is slow
+        signal: AbortSignal.timeout(5000),
+      });
+      if (!res.ok) continue;
+      const data = (await res.json()) as {
+        deployments?: Array<{
+          uid: string;
+          name: string;
+          state: string;
+          created: number;
+          inspectorUrl?: string;
+        }>;
+      };
+      const deployments = data.deployments ?? [];
+      const failed = deployments.filter(
+        (d) => d.state === "ERROR" || d.state === "CANCELED",
+      );
+      for (const d of failed) {
+        items.push({
+          id: `vercel-deploy:${d.uid}`,
+          tier: "high",
+          source: "cron",
+          title: `Vercel deploy ${d.state.toLowerCase()} · ${d.name}`,
+          detail: d.inspectorUrl
+            ? `inspect: ${d.inspectorUrl}`
+            : "Open the Vercel dashboard to inspect",
+          href: d.inspectorUrl,
+          date: new Date(d.created).toISOString().slice(0, 10),
+        });
+      }
+    } catch {
+      // Network / timeout — skip silently
+    }
+  }
+  return items;
+}
+
 function readProspectItems(): InboxItem[] {
   try {
     const prospects = seedHqData.prospects ?? [];
@@ -321,14 +381,16 @@ function readProspectItems(): InboxItem[] {
 }
 
 export async function getInboxData(): Promise<InboxData> {
-  const [drift, cron, risks, decisions, atlas, logErrors] = await Promise.all([
-    readDriftItems(),
-    readCronItems(),
-    readRiskItems(),
-    readDecisionReviewItems(),
-    readAtlasItems(),
-    readLogErrorItems(),
-  ]);
+  const [drift, cron, risks, decisions, atlas, logErrors, vercelDeploys] =
+    await Promise.all([
+      readDriftItems(),
+      readCronItems(),
+      readRiskItems(),
+      readDecisionReviewItems(),
+      readAtlasItems(),
+      readLogErrorItems(),
+      readVercelDeployItems(),
+    ]);
   const prospects = readProspectItems();
 
   const merged = [
@@ -339,6 +401,7 @@ export async function getInboxData(): Promise<InboxData> {
     ...atlas,
     ...prospects,
     ...logErrors,
+    ...vercelDeploys,
   ];
   const { items, tierCounts } = finalizeInbox(merged);
 

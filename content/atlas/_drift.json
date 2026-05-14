@@ -10,15 +10,16 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-14T18:38:16.501Z",
-    "byCommit": "b878a66"
+    "updatedAt": "2026-05-14T18:40:38.574Z",
+    "byCommit": "d4b09cc"
   },
   "brand-enforcement": {
     "drifted": [
-      "BRAND.md"
+      "BRAND.md",
+      "src/app/globals.css"
     ],
-    "updatedAt": "2026-05-14T18:38:16.501Z",
-    "byCommit": "b878a66"
+    "updatedAt": "2026-05-14T18:40:38.574Z",
+    "byCommit": "d4b09cc"
   },
   "signal-studio-umbrella": {
     "drifted": [

@@ -3,6 +3,52 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·31 · tightens · A small polish pass closes the HQ cycle
+
+**Four touches finish the HQ v2 cleanup: the Vercel deploy-failure
+source lands in the inbox aggregator with a graceful no-env
+fallback; a five-step type ladder lands as named classes in
+`globals.css` for future use; the drift-sidecar git policy is
+decided (in-git, auto-staged); and `content/hq/README.md` catches
+up with the actual shipped state.**
+
+`readVercelDeployItems` in `src/lib/hq/inbox.ts` short-circuits on
+missing `VERCEL_API_TOKEN` so the source is safe to ship before the
+env is set. Per-project polling reads the Vercel deployments API
+for failures in the last 24h, classifies each as high tier (deploy
+failure is a real signal), 5s `AbortSignal.timeout` so a slow
+Vercel doesn't slow the inbox. When the env eventually lands, the
+items appear automatically.
+
+The type ladder (`.hq-text-xs / .hq-text-sm / .hq-text-base /
+.hq-text-md / .hq-text-lg`) ships as named classes but doesn't
+migrate any existing call sites. Mixed `text-[XXpx]` inside
+`hq-dashboard.tsx` stays — touching it now is polish-over-functioning
+code. New code adopts the ladder; old code stays until something
+else takes it.
+
+The drift-sidecar policy went in-git: the studio-side script
+auto-stages `content/atlas/_drift.json` so drift travels with the
+PR/commit that caused it. Cross-repo runs (Tasks/Roadmap/Analytics/
+Notes) write to the studio working tree but skip auto-stage — the
+studio operator picks it up next time. Decision documented in
+`docs/ATLAS_DRIFT_TRIGGER.md`.
+
+`content/hq/README.md` got the freshness update — the staged
+migration sequence (HQ-6a/-6b/-6c.1/-6c.2/-6c.3/-6c.4 → S·24) is
+now a single coherent narrative instead of "deferred to next
+cycle" leftovers, and the tests sub-section explains how to run
+them.
+
+Closing carry-forward: the page-weight optimisation (lazy-load
+markdown per active tab) is **dropped** after honest weighing —
+trading 160KB on first paint for 50–200ms per tab switch is
+backwards for an internal mission control where tab-switching
+dominates. The 193KB total is fine. The deferral on the previous
+plan stays a permanent decision.
+
+---
+
 ## 2026-05-14 · S·30 · tightens · The dispatch separates from the engineering log
 
 **Two artifacts now, two audiences. The per-repo `CHANGELOG.md` files are

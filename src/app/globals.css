@@ -1533,6 +1533,48 @@ body {
   max-width: 56ch;
 }
 
+/* ─── HQ type ladder ──────────────────────────────────────────────────
+ * Five steps. Use these instead of arbitrary text-[XXpx] classes when
+ * touching HQ surfaces. The mixed-size status quo in hq-dashboard.tsx
+ * stays for now; new code adopts the ladder.
+ *
+ *   .hq-text-xs    11px mono · eyebrows, timestamps, nav labels
+ *   .hq-text-sm    13px       · body, table rows, list items
+ *   .hq-text-base  15px       · panel descriptors, prose
+ *   .hq-text-md    22px       · section title, H2 feature
+ *   .hq-text-lg    var(--fs-title) · single page-level moment
+ */
+.hq-text-xs {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+}
+.hq-text-sm {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.hq-text-base {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.hq-text-md {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.hq-text-lg {
+  font-size: var(--fs-title, clamp(1.875rem, 1.4rem + 2.2vw, 3.25rem));
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
 /* ─── HQ score — replaces stoplight progress bars ────────────────────── */
 .hq-score { display: grid; gap: 0.4rem; }
 .hq-score-row {

@@ -179,10 +179,13 @@ and disposable.
   Either exclude `~/.claude/` from drift detection, or fire drift only
   on path changes that are *also* tracked in some git repo. Lean
   toward the second.
-- **Sidecar in git or `.gitignore`'d?** In git is more visible (drift
-  state is reviewable in PRs). Gitignored is simpler (no commit
-  churn). Lean toward in-git, with the trigger committing the sidecar
-  as part of the triggering commit.
+- **Sidecar in git or `.gitignore`'d?** **Decision (2026-05-14): in
+  git.** The studio-side script auto-stages it as part of the
+  triggering commit; the sidecar then travels with the PR/commit that
+  caused the drift, which makes drift state reviewable rather than
+  silent. Cross-repo runs (Tasks/Roadmap/Analytics/Notes) write to the
+  studio working tree but skip the auto-stage — the studio operator
+  picks it up next time, which is the right ownership split.
 - **What about the entitlements-shared module?** It's duplicated across
   all 5 repos. A change to it should drift any entry referencing it.
   The script needs to dedupe by entry, not by repo, so this works
