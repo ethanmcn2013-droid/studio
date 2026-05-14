@@ -45,13 +45,13 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  // Bundle CHANGELOG.md into the /dispatch server function. Without this,
-  // readDispatchEntries() in src/lib/changelog.ts hits ENOENT on Vercel
-  // (the file lives at repo root, outside the .next/standalone tracing
-  // window) and Next falls through to the 404 page.
+  // Bundle the per-entry dispatch files into the /dispatch + RSS server
+  // functions. Without this, readDispatchEntries() in src/lib/changelog.ts
+  // hits ENOENT on Vercel (content/dispatch/*.md sits outside the
+  // .next/standalone tracing window) and Next falls through to 404.
   outputFileTracingIncludes: {
-    "/dispatch": ["./CHANGELOG.md"],
-    "/changelog.rss": ["./CHANGELOG.md"],
+    "/dispatch": ["./content/dispatch/*.md"],
+    "/changelog.rss": ["./content/dispatch/*.md"],
   },
   async headers() {
     return [

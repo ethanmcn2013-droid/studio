@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { readDispatchEntries, type DispatchEntry } from "@/lib/changelog";
+import { EntryBlock } from "@/components/dispatch/entry-block";
+import { readDispatchEntries } from "@/lib/changelog";
 
 export const dynamic = "force-dynamic";
 
@@ -13,14 +14,6 @@ export const metadata: Metadata = {
       "application/rss+xml": "/changelog.rss",
     },
   },
-};
-
-const PRODUCT_LABEL: Record<string, string> = {
-  S: "Signal Studio",
-  T: "Signal Tasks",
-  R: "Signal Roadmap",
-  A: "Signal Analytics",
-  N: "Signal Notes",
 };
 
 function renderInline(text: string): React.ReactNode[] {
@@ -55,53 +48,6 @@ function paragraphs(body: string): string[] {
     .filter((p) => p.length > 0);
 }
 
-function EntryBlock({ entry }: { entry: DispatchEntry }) {
-  const productLetter = entry.cycleCode?.[0];
-  const productLabel = productLetter ? PRODUCT_LABEL[productLetter] : null;
-
-  return (
-    <article className="border-t border-border-soft pt-10 first:border-t-0 first:pt-0">
-      <header className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-[11.5px] uppercase tracking-wide text-ink-quiet">
-        <span>{entry.date}</span>
-        {entry.cycleCode && (
-          <>
-            <span aria-hidden className="text-border">·</span>
-            <span className="text-accent">{entry.cycleCode}</span>
-          </>
-        )}
-        {entry.verb && (
-          <>
-            <span aria-hidden className="text-border">·</span>
-            <span className="lowercase text-ink-soft">{entry.verb}</span>
-          </>
-        )}
-        {productLabel && (
-          <>
-            <span aria-hidden className="text-border">·</span>
-            <span className="lowercase text-ink-quiet">{productLabel}</span>
-          </>
-        )}
-      </header>
-
-      <h2 className="mb-5 max-w-[58ch] text-[22px] font-semibold leading-snug tracking-[-0.015em] text-ink">
-        {entry.headline}
-      </h2>
-
-      {entry.boldLead && (
-        <p className="mb-5 max-w-[58ch] text-[16px] font-medium leading-[1.6] text-ink">
-          {renderInline(entry.boldLead)}
-        </p>
-      )}
-
-      <div className="max-w-[58ch] space-y-4 text-[15px] leading-[1.7] text-ink-soft">
-        {paragraphs(entry.body).map((p, i) => (
-          <p key={i}>{renderInline(p)}</p>
-        ))}
-      </div>
-    </article>
-  );
-}
-
 export default async function DispatchPage() {
   const entries = await readDispatchEntries();
 
@@ -121,26 +67,15 @@ export default async function DispatchPage() {
           </h1>
 
           <p
-            className="mb-4 max-w-[58ch] leading-[1.7] text-ink-soft"
+            className="mb-4 max-w-[58ch] leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Shipped work across the suite — Signal Tasks, Roadmap, Analytics,
-            Notes, and the umbrella. Plain English, four lines or fewer. Five
-            verbs:{" "}
-            <span className="font-mono text-[14px] text-ink">ships</span>,{" "}
-            <span className="font-mono text-[14px] text-ink">tightens</span>,{" "}
-            <span className="font-mono text-[14px] text-ink">cuts</span>,{" "}
-            <span className="font-mono text-[14px] text-ink">holds</span>{" "}
-            (what we chose not to build), and{" "}
-            <span className="font-mono text-[14px] text-ink">reads</span>.
+            Notes, and the umbrella. Updated when something is worth saying out
+            loud.
           </p>
 
-          <p className="mb-3 max-w-[58ch] text-[13.5px] leading-[1.65] text-ink-quiet">
-            Updated when something is worth saying out loud. Silence is also
-            brand.
-          </p>
-
-          <p className="mb-16 max-w-[58ch] text-[13.5px] leading-[1.65] text-ink-quiet">
+          <p className="mb-12 max-w-[58ch] text-[13.5px] leading-[1.6] text-ink-quiet">
             Subscribe via{" "}
             <a
               href="/changelog.rss"
@@ -151,16 +86,29 @@ export default async function DispatchPage() {
             .
           </p>
 
-          <div className="space-y-12">
-            {entries.map((entry, i) => (
-              <EntryBlock key={`${entry.date}-${i}`} entry={entry} />
-            ))}
-          </div>
+          {entries.length === 0 ? (
+            <p className="max-w-[58ch] text-[15px] leading-[1.6] text-ink-soft">
+              Nothing has shipped that's worth saying out loud yet. Subscribe
+              via RSS and you'll get it when it arrives.
+            </p>
+          ) : (
+            <div className="space-y-16">
+              {entries.map((entry, i) => (
+                <EntryBlock
+                  key={`${entry.date}-${i}`}
+                  entry={entry}
+                  boldLeadNode={entry.boldLead ? renderInline(entry.boldLead) : null}
+                  bodyNodes={paragraphs(entry.body).map((p, pi) => (
+                    <p key={pi}>{renderInline(p)}</p>
+                  ))}
+                />
+              ))}
+            </div>
+          )}
 
           <div className="mt-24 border-t border-border-soft pt-6 text-[13px] leading-[1.6] text-ink-quiet">
-            The engineering log lives in each repo, in a register meant for
-            future-Ethan. This page is the operator-voice translation — what
-            shipped, said out loud. Convention:{" "}
+            Engineering detail lives in each repo. This page is the
+            operator-voice version. Convention:{" "}
             <a
               href="/brand"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
