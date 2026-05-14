@@ -3,7 +3,14 @@
     "drifted": [
       "src/app/pricing/"
     ],
-    "updatedAt": "2026-05-14T18:54:20.308Z",
-    "byCommit": "00cbc97"
+    "updatedAt": "2026-05-14T19:03:18.959Z",
+    "byCommit": "1a0947a"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "src/app/pricing/"
+    ],
+    "updatedAt": "2026-05-14T19:03:18.959Z",
+    "byCommit": "1a0947a"
   }
 }

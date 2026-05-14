@@ -23,6 +23,7 @@ type Tier = {
   price: string;
   cadence: string;
   body: string;
+  pills?: { label: string; value: string }[];
   cta: string;
   href: string;
 };
@@ -52,6 +53,11 @@ const TIERS: Tier[] = [
     price: "€0",
     cadence: "forever",
     body: "One workspace. All four products. Three editing guests. No card needed.",
+    pills: [
+      { label: "Workspaces", value: "One" },
+      { label: "Guests", value: "Three" },
+      { label: "Window", value: "Forever" },
+    ],
     cta: "Start free",
     href: TASKS_URL,
   },
@@ -60,6 +66,11 @@ const TIERS: Tier[] = [
     price: "€0",
     cadence: "with verified .edu",
     body: "Workspace tier, free. Two-year window. For students running multi-stream work with real deadlines.",
+    pills: [
+      { label: "Workspaces", value: "One" },
+      { label: "Guests", value: "Unlimited" },
+      { label: "Window", value: "Two years" },
+    ],
     cta: "Verify .edu",
     href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
   },
@@ -69,6 +80,11 @@ const TIERS: Tier[] = [
     price: "€12",
     cadence: "/ month · per workspace",
     body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
+    pills: [
+      { label: "Workspaces", value: "Unlimited" },
+      { label: "Guests", value: "Unlimited" },
+      { label: "Window", value: "Monthly" },
+    ],
     cta: "Start a workspace",
     href: TASKS_CHECKOUT_WORKSPACE,
   },
@@ -77,6 +93,11 @@ const TIERS: Tier[] = [
     price: "€79",
     cadence: "one-time · 12 months",
     body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
+    pills: [
+      { label: "Workspaces", value: "One" },
+      { label: "Guests", value: "Unlimited" },
+      { label: "Window", value: "12 months" },
+    ],
     cta: "Plan an event",
     href: TASKS_CHECKOUT_EVENT,
   },
@@ -170,20 +191,24 @@ const REFUSALS: { neg: string; pos: string }[] = [
 
 const FAQ: { q: string; a: string }[] = [
   {
+    q: "Why a one-time price for events?",
+    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.",
+  },
+  {
+    q: "Do I have to pay per person?",
+    a: "No. One workspace is one price. You can invite ten people, or one, or none — the bill does not change.",
+  },
+  {
+    q: "Can I cancel?",
+    a: "Yes. One tap in the workspace settings. You keep the workspace through the end of the month, then it drops to Free.",
+  },
+  {
     q: "What if I only ever use one of the four products?",
     a: "Then you have the cleanest single product in its category, with three more sitting there in case you ever want them. That is still a good deal. We will not pressure you to use the rest.",
   },
   {
-    q: "Do I have to pay per person?",
-    a: "No. One workspace is one price. You can invite ten people, or one, or none — the bill does not change. We have never charged per seat and we never will.",
-  },
-  {
     q: "What does \"in build\" mean for my price?",
     a: "Nothing. Your price stays the same as Notes and Analytics ship. Today's subscribers are paying for the destination, and we honor that by not changing the price as the destination fills in.",
-  },
-  {
-    q: "Why a one-time price for events?",
-    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.",
   },
   {
     q: "Can I switch tiers?",
@@ -192,10 +217,6 @@ const FAQ: { q: string; a: string }[] = [
   {
     q: "Why one price for four products?",
     a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Roadmap, and Analytics — which is the exact translation tax Signal Studio exists to remove.",
-  },
-  {
-    q: "Can I cancel?",
-    a: "Yes. One tap in the workspace settings. We do not ask why. We do not email you back. You keep the workspace through the end of the month, then it drops to Free.",
   },
 ];
 
@@ -359,6 +380,18 @@ export default async function PricingPage({
             Monthly billing
           </div>
 
+          <p
+            className="md:hidden text-ink-quiet"
+            style={{
+              fontSize: 14,
+              lineHeight: 1.5,
+              marginBottom: 18,
+              maxWidth: "44ch",
+            }}
+          >
+            Planning one event? The €79 Event tier is the last card below.
+          </p>
+
           <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
             style={{
@@ -453,6 +486,42 @@ export default async function PricingPage({
                 >
                   {t.body}
                 </p>
+
+                {t.pills ? (
+                  <div
+                    className="md:hidden flex flex-wrap gap-x-5 gap-y-2"
+                    style={{
+                      marginTop: 18,
+                      marginBottom: 22,
+                      borderTop: "1px solid var(--border-soft)",
+                      paddingTop: 14,
+                    }}
+                    aria-label="Plan at a glance"
+                  >
+                    {t.pills.map((pill) => (
+                      <div key={pill.label} className="flex flex-col">
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: 10,
+                            color: "var(--ink-quiet)",
+                            letterSpacing: "var(--tracking-eyebrow)",
+                            textTransform: "uppercase",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {pill.label}
+                        </span>
+                        <span
+                          className="text-ink"
+                          style={{ fontSize: 14, fontWeight: 500, marginTop: 2 }}
+                        >
+                          {pill.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
 
                 <Link
                   href={t.href}
