@@ -514,6 +514,24 @@ export function HqDashboard() {
             >
               Reset
             </button>
+            <a
+              href="/hq/atlas"
+              className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 text-[12px] font-medium text-ink no-underline transition hover:border-accent"
+            >
+              Atlas →
+            </a>
+            <a
+              href="/hq/entitlements"
+              className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 text-[12px] font-medium text-ink no-underline transition hover:border-accent"
+            >
+              Entitlements →
+            </a>
+            <a
+              href="/hq/partners"
+              className="rounded-[6px] border border-border-soft bg-bg px-3 py-2 text-[12px] font-medium text-ink no-underline transition hover:border-accent"
+            >
+              Partners →
+            </a>
             <form action="/hq/logout" method="post">
               <button
                 type="submit"
