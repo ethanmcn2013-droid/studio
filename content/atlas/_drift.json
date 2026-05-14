@@ -3,14 +3,28 @@
     "drifted": [
       "BRAND.md"
     ],
-    "updatedAt": "2026-05-14T18:22:27.576Z",
-    "byCommit": "8385a93"
+    "updatedAt": "2026-05-14T18:38:16.501Z",
+    "byCommit": "b878a66"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-14T18:24:53.691Z",
-    "byCommit": "17d4777"
+    "updatedAt": "2026-05-14T18:38:16.501Z",
+    "byCommit": "b878a66"
+  },
+  "brand-enforcement": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T18:38:16.501Z",
+    "byCommit": "b878a66"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "BRAND.md"
+    ],
+    "updatedAt": "2026-05-14T18:38:16.501Z",
+    "byCommit": "b878a66"
   }
 }

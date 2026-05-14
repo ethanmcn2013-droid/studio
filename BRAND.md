@@ -252,7 +252,7 @@ Cross-product links use `target="_blank" rel="noopener noreferrer"`. The `↗` e
 
 The suite changelog is called **the dispatch.** What gets sent, not what accumulates. Sits inside the brand's broadcast grammar — wordmark broadcast, briefings, signals, dispatch.
 
-**One reading surface** for shipped work: `signalstudio.ie/dispatch` (to be built — half-day slot after the next cycle ships). Per-product `/changelog` and `/dispatch` routes 308-redirect to it.
+**One reading surface** for shipped work: `signalstudio.ie/dispatch` (live — reads from `content/dispatch/*.md`). Per-product `/changelog` and `/dispatch` routes 308-redirect to it. The RSS mirror at `/changelog.rss` carries the same entries.
 
 **Engineering log vs dispatch (clarified 2026-05-14).** Two artifacts, two audiences, one shipped beat. The per-repo `CHANGELOG.md` files are the **engineering log** — kept jargon-fluent for future-Ethan, future-Codex, future-Claude. File paths, function names, type names, library names, line-count deltas all welcome here; that is what the engineering log is for. The `content/dispatch/*.md` collection in the studio repo (read at `signalstudio.ie/dispatch`) is **the dispatch** — the operator-voice translation of beats worth saying out loud, for a venue operator on a phone. Two registers, two files, one source of truth on what shipped. Not every engineering-log entry earns a dispatch entry. Most internal-plumbing beats stop at the log. Silence remains brand (see Cadence below); the dispatch is rarer than the engineering log on purpose.
 

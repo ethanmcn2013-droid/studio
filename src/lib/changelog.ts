@@ -27,12 +27,10 @@ export type Verb = "ships" | "tightens" | "cuts" | "holds" | "reads";
 
 export type DispatchEntry = {
   date: string;
-  cycleCode: string | null;
-  verb: Verb | null;
+  verb: Verb;
   headline: string;
   boldLead: string | null;
   body: string;
-  isLegacy: boolean;
 };
 
 const VERBS: readonly Verb[] = ["ships", "tightens", "cuts", "holds", "reads"];
@@ -68,12 +66,10 @@ function parseDispatchFile(raw: string, filename: string): DispatchEntry | null 
   const { boldLead, rest } = extractBoldLead(body);
   return {
     date: header[1],
-    cycleCode: null,
     verb: header[2].toLowerCase() as Verb,
     headline: header[3].trim(),
     boldLead,
     body: rest.trim(),
-    isLegacy: false,
   };
 }
 

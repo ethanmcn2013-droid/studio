@@ -3,6 +3,59 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·30 · tightens · The dispatch separates from the engineering log
+
+**Two artifacts now, two audiences. The per-repo `CHANGELOG.md` files are
+the engineering log — kept jargon-fluent for future-Ethan. The new
+`content/dispatch/*.md` collection is the dispatch — operator-voice, four-
+line cap, banned-words extended to file paths, function names, type names,
+library names, hex codes, and anything inside backticks. Same shipped work,
+two registers. What gets sent, not what accumulates — now structurally.**
+
+`BRAND.md` §6.5 codifies the split with two new paragraphs: "Engineering
+log vs dispatch (clarified 2026-05-14)" establishes the two-artifact
+discipline; "Banned in the dispatch (extended)" enumerates the exact
+identifiers that never appear on the public surface. The public reader at
+`src/lib/changelog.ts:readDispatchEntries()` now walks `content/dispatch/*.md`
+(one entry per file) instead of parsing the umbrella `CHANGELOG.md`. The
+legacy parser branches that handled pre-2026-05-14 entry shapes are gone
+— the dispatch directory only carries new-convention entries, so the
+simpler shape wins. The `DispatchEntry` type tightens to `{date, verb,
+headline, boldLead, body}` — `cycleCode` and `isLegacy` are no longer
+needed on the dispatch surface (cycle codes belong in the engineering log
+header only, where they remain the grep target).
+
+Four worked dispatch entries seed the surface: status badges drop the
+stoplight (`S·21`), the dispatch learns its name (`S·15`), paper turns
+white (2026-05-13), and real checkout opens across the suite (the
+entitlements sprint). Each one stays inside four body lines under the
+bold lead — the discipline that keeps the two artifacts honest. Internal-
+plumbing beats (`S·22-S·25`, the markdown migration, the seed empty, the
+drift-trigger fan-out) intentionally stop at the engineering log; the
+cadence rule says silence is also brand.
+
+`/changelog.rss` now mirrors the dispatch — same content, same operator
+voice, no double-source. The feed's channel title is "Signal Studio — The
+dispatch" pointing at `signalstudio.ie/dispatch`. Per-product footers
+(Tasks, Roadmap, Analytics) and per-product `/changelog` redirects (Tasks,
+Roadmap) updated to point at `/dispatch` directly — skipping the double-
+hop through `/changelog` that lingered from `S·15`. Label "Changelog"
+becomes "Dispatch" in the Resources column across three product repos.
+
+**What's not done.** Same-day dispatch entries sort alphabetically by
+filename, not by ship-order — when many entries land in one day the order
+won't reflect chronology. Low priority. Notes has no marketing footer
+yet, so the Dispatch link is missing there; lands when Notes grows one.
+The dead-code purge in `changelog.ts` also retired `readChangelogSections`,
+`Entry`, `Section`, and `parseChangelog`. No other readers existed.
+
+Typecheck clean across all four repos. The dispatch surface (`/dispatch`
++ `/changelog.rss`) verified in browser against the four seeded entries —
+three-element header (date · verb in indigo), bold lead in larger weight,
+body prose below.
+
+---
+
 ## 2026-05-14 · S·29 · reads · The HQ rules catch up to the empty seed
 
 **The Tasks repo's `AGENTS.md` rule that says "update `src/lib/hq/data.ts`
