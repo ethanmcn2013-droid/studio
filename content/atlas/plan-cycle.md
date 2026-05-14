@@ -63,6 +63,7 @@ flowchart LR
 - Suite design-system v1 completed 2026-05-13 across all five products.
 - Entitlements sprint (E-1 through E-8) is the next active sequence.
 - Atlas v1 (this thing) is the current open cycle.
+- S·26 (2026-05-14) added a CHANGELOG.md entry in the dispatch shape per BRAND.md §6.5 — conventional cycle close, no shape change to the loop itself.
 
 ## WHY
 

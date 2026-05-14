@@ -1,37 +1,4 @@
 {
-  "brand-enforcement": {
-    "drifted": [
-      "src/app/globals.css",
-      "src/app/brand/",
-      "BRAND.md"
-    ],
-    "updatedAt": "2026-05-14T18:22:27.576Z",
-    "byCommit": "8385a93"
-  },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-14T18:07:38.613Z",
-    "byCommit": "7d87c40"
-  },
-  "pricing-and-entitlements": {
-    "drifted": [
-      "src/app/pricing/"
-    ],
-    "updatedAt": "2026-05-14T18:07:38.613Z",
-    "byCommit": "7d87c40"
-  },
-  "signal-studio-umbrella": {
-    "drifted": [
-      "src/app/brand/",
-      "src/app/pricing/",
-      "src/components/landing/",
-      "BRAND.md"
-    ],
-    "updatedAt": "2026-05-14T18:22:27.576Z",
-    "byCommit": "8385a93"
-  },
   "five-products-as-a-system": {
     "drifted": [
       "BRAND.md"

@@ -76,6 +76,7 @@ The enforcement is *operational*, not technical. There's no linter checking bann
 - §5 D01 (indigo `#4f46e5`) retired the antique gold `#c9a96a` on 2026-05-11. Gold survives only as a wordmark-period detail.
 - Voice version: Stark+Jobs locked. Audience archetypes (§2.1) carry five named personas — wedding, trades, student, freelance, marketing — with public-coordinator and small-business-operator flagged in BRAND.md but not yet landed as audience pages.
 - The /brand public asset hub at signalstudio.ie/brand is the externally-visible expression of the handbook (wordmarks, palette, type scale, voice rules, eighteen downloadable SVGs).
+- S·26 (2026-05-14) added `loading="lazy" decoding="async"` to those eighteen images and stepped the wordmark + motion grids from a 1→5 jump to 2→3→5. CSS register, no copy or palette change. Handbook unaffected.
 
 ## WHY
 

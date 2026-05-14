@@ -90,6 +90,7 @@ A daily reconcile sweep piggybacks on Tasks's existing digest cron. It walks Tas
 - A `?status=checkout-offline` banner renders on `/pricing` if Stripe envs aren't yet set in production, so the umbrella never silently grants free upgrades during the configuration window.
 - 5 changelogs backfilled across the suite. 3 runbooks committed.
 - The tier vocabulary is canonical — any new tier requires editing `TIER_RANK` in every repo's `entitlements-shared/tiers.ts`. The copy-paste cost is the deliberate price for not having a monorepo.
+- S·26 (2026-05-14) made /pricing mobile-correct: Workspace promoted to top of stack ≤640px via `order-first md:order-none`, tier CTAs swap from inline-link to solid pill on mobile via a new `.pricing-tier-cta` class, comparison table `hidden md:block` (was 760w in 340w scroll parent). Tier model, prices, Stripe wiring, and entitlements DB all unchanged.
 
 ## WHY
 

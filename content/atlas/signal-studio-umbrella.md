@@ -76,6 +76,7 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 - BRAND.md stable at the location `studio/BRAND.md` since 2026-05-12.
 - The wordmark "signal studio." (with the period) is locked. The collision risk with Signal Messenger means "Signal" alone is never used in body copy.
 - The umbrella's locked H1 across the suite is **"Cut through the noise."**
+- S·26 (2026-05-14) shipped a mobile UI/UX pass across the umbrella — overflow guard, nav collapse, H1 mobile leading, /redeem CTA, /pricing tier order, footer tap targets, /dispatch routing fix. All four umbrella surfaces (brand, pricing, landing, redeem) read on a phone now. No structural change to the umbrella itself (still four products, one wordmark, one indigo, one BRAND.md).
 
 ## WHY
 
