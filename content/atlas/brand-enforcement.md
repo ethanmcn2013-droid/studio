@@ -91,3 +91,4 @@ The refusal list (§1) is the strategic anchor. The temptation in any product is
 ## Reverification trail
 
 - 2026-05-14 (S·32) — BRAND.md §6.5 grew two new paragraphs: "Engineering log vs dispatch (clarified 2026-05-14)" establishes a two-artifact discipline, and "Banned in the dispatch (extended)" enumerates engineering-internal references (file paths, function names, type names, library names, hex codes, anything in backticks) that the dispatch must never reach for. Catch-net role unchanged — this is an *addition* to the rules BRAND.md enforces, not a modification of the enforcement mechanism. Voice, banned words, refusal list, and visual register sections untouched.
+- 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code definition gained a preflight rule (`git log --oneline -20 | grep -oE '[STRAN]·[0-9]+'`) for catching parallel-session collisions before they ship. Addition to the convention, not a modification — the catch-net still holds for voice and visual rules.

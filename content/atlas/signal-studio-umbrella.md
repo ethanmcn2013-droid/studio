@@ -91,3 +91,4 @@ The public `/brand` hub is a quieter strategic move. It makes the brand *availab
 ## Reverification trail
 
 - 2026-05-14 (S·32) — BRAND.md §6.5 update; the umbrella's `/dispatch` surface now reads from `content/dispatch/*.md` (operator-voice) instead of rendering the umbrella engineering log directly. Umbrella structure unchanged — still four products, one indigo, one shared wordmark grammar, one refusal list. The dispatch convention itself is now a structurally-separated artifact, which strengthens (rather than changes) the umbrella's brand-coherence story.
+- 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code preflight rule landed for parallel-session collision catching. Umbrella structure unaffected.

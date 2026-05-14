@@ -92,3 +92,4 @@ The shared payments layer is the only thing that has to be perfectly synchronize
 ## Reverification trail
 
 - 2026-05-14 (S·32) — BRAND.md §6.5 grew the engineering-log / dispatch separation rules. Five-product cardinality, three-handoff structure, and the shared-payments-as-the-only-tight-coupling reading are unaffected. The dispatch convention change is about how shipped work is *narrated* across the suite, not about how the suite is *shaped*.
+- 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code preflight rule landed. System-shape claims here are unaffected.
