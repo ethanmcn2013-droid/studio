@@ -125,7 +125,7 @@ function ClaimableView({
       <div className="mb-10">
         <a
           href={`${TASKS_URL}/redeem/${encodeURIComponent(view.code)}`}
-          className="inline-flex items-center justify-center rounded-md px-6 py-3 text-[15px] font-medium text-white transition-opacity hover:opacity-90"
+          className="flex w-full min-h-[52px] items-center justify-center rounded-md px-6 py-3.5 text-[17px] font-medium text-white transition-opacity hover:opacity-90 sm:inline-flex sm:w-auto sm:min-h-0 sm:py-3 sm:text-[15px]"
           style={{ background: "var(--accent)" }}
         >
           {copy.cta}
@@ -288,12 +288,20 @@ function ContactFooter() {
 
 function CodeFooter({ code }: { code: string }) {
   return (
-    <p
-      className="mt-12 border-t border-border-soft pt-4 font-mono text-[11px] uppercase text-ink-faint"
-      style={{ letterSpacing: "0.14em" }}
-    >
-      Code · {code}
-    </p>
+    <div className="mt-12 border-t border-border-soft pt-4">
+      <div
+        className="font-mono text-[10px] font-semibold uppercase text-ink-faint"
+        style={{ letterSpacing: "0.14em" }}
+      >
+        Code
+      </div>
+      <div
+        className="mt-1 font-mono text-[14px] uppercase text-ink-quiet"
+        style={{ letterSpacing: "0.08em", fontVariantNumeric: "tabular-nums" }}
+      >
+        {code}
+      </div>
+    </div>
   );
 }
 

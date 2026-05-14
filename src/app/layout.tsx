@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
@@ -12,6 +12,14 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Notch / home-indicator hardware: opt into the full screen so
+  // env(safe-area-inset-*) becomes meaningful on iOS.
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Signal Studio · Cut through the noise.",

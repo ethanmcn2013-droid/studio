@@ -3,6 +3,282 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·26 · tightens · The umbrella reads on a phone
+
+**Every route on signalstudio.ie now fits the phone it's read on. The
+site-wide horizontal scroll is gone, the nav collapses to three items
+under 640px, the venue-redeem CTA is a full-width pill, the H1 leading
+no longer collides with its own descenders, and the 404 on /dispatch
+is fixed. Twenty-three findings from a 32-row mobile audit, shipped in
+one cycle.**
+
+A walk of the live site at 390px and 375px surfaced thirty-two
+findings — five P0 (broken-on-mobile), seven P1 (conversion-critical
+tap targets), and twenty quality issues. They bundle into one mobile
+pass because most of them are the same disciplines (typography,
+breakpoint hygiene, hit-area arithmetic) applied across surfaces.
+
+The load-bearing fix: `html, body { overflow-x: clip }` plus the nav
+collapsing to `wordmark · Products · Pricing · Contact` below the
+`sm:` breakpoint. The nav was 415px wide inside a 390px viewport,
+which had been forcing every route on the umbrella to scroll
+horizontally. The four hidden links (Work, Proof, About, Brand) all
+remain in the footer.
+
+The Products switcher repositions to viewport-edges on mobile (`fixed
+left-4 right-4 top-[64px]`) rather than anchoring to its button — the
+old `absolute right-0` rendered the popover 98px off the left edge at
+375px. On desktop the original anchoring is preserved via `sm:`
+overrides.
+
+The H1 leading on `/pricing`, `/brand`, and `/weddings` was clipping
+descenders into the next line: `line-height: 0.96` works at 132px
+display, breaks at 45px mobile. A `@media (max-width: 640px)` block
+loosens `.h-display`, `.h-title`, `.h-section`, and `h1` to ratios in
+the 1.04–1.18 range. Display-tight desktop register preserved above
+640px.
+
+`/redeem/[code]` — the venue-pilot conversion surface — got the
+biggest single jump. The "Claim your seat" CTA went from a 157×47
+centered link to a full-width 342×54 pill at 17px. The code itself
+(`LAMBSHIL-UPNA2`) jumped from 11px gray to 14px tabular-nums on its
+own line, with `Code` as a separate eyebrow above. Two changes, one
+flow that's no longer easy to miss when read off a printed card.
+
+Tap targets got swept across the suite. Footer socials went from
+14×14 (untappable) to 44×44 hit areas with the visual icon centered
+inside. Footer legal links went from 17px tall at 11px font to 32px
+tall at 12px font with `inline-flex` padding. The /brand asset
+download/open pills went from 25px to 40px. The /about product rows
+went from 34px to 56px minimum height. The /pricing tier CTAs got the
+biggest treatment: a new `.pricing-tier-cta` class that renders as a
+solid full-width pill (48px tall, indigo for recommended, ink for
+others) on mobile and reverts to the restrained inline-link with
+underline-on-hover on desktop. Same anchor text, two different
+registers.
+
+`/pricing` also gained mobile-specific shape changes: the comparison
+table is `hidden md:block` — it was 760px wide in a 340px scroll
+parent with no sticky first column, and the tier cards above already
+carry the primary info. Workspace ("Most chosen") is promoted via
+`order-first md:order-none` so it stacks above Free and Student on
+mobile.
+
+`/dispatch` was returning a 404 in production despite the page file
+existing. The cause was `readDispatchEntries()` calling
+`fs.readFile(process.cwd() + "/CHANGELOG.md")` from a Vercel
+serverless function, where `CHANGELOG.md` wasn't bundled. The fix is
+one block in `next.config.ts`: `outputFileTracingIncludes` pinning
+CHANGELOG.md into the `/dispatch` and `/changelog.rss` function
+bundles.
+
+`/contact` gained an `<h1>` (it had only a metadata title before).
+`/brand` got `loading="lazy" decoding="async"` on all 18 inline asset
+images, and the wordmark + motion grids now step `grid-cols-2
+sm:grid-cols-3 md:grid-cols-5` instead of the 1→5 jump that left
+mobile as a tall single column.
+
+A11y polish: `viewport-fit=cover` added so iOS notches get
+`env(safe-area-inset-bottom)` honoured (footer now pads against it).
+The CSP `upgrade-insecure-requests` directive — which is ignored in
+report-only and was spamming the console — got removed.
+
+What didn't ship in this cycle: the /changelog (now /dispatch)
+collapse-with-TL;DR pattern (#16 from the audit). That page is 58,615
+pixels tall on mobile because the entries are dense narrative — the
+brand voice, not bloat. Tightening it deserves its own design call,
+not lumping into a hygiene pass.
+
+Tier-by-tier findings table is in the audit transcript. Typecheck
+clean. Build clean. Verified at 390px and 375px via Playwright before
+commit.
+
+---
+
+## 2026-05-14 · S·25 · tightens · The grouped HQ tabs read as one section, not three stacked sub-pages
+
+**Pipeline, Proof, and Operations each carry one parent header now —
+"Everything in flight, in one place.", "What the work is producing.",
+"The operating system underneath." — and the sub-sections collapse to
+a mono eyebrow above each block. The structural-only pass from HQ-5
+(11 tabs → 6) is done.**
+
+Each of the eight sub-tabs (`FeaturesTab`, `LaunchTab`, `CrmTab`,
+`ContentTab`, `GrowthTab`, `MetricsTab`, `DecisionsTab`, `RhythmTab`)
+gained an optional `embedded?: boolean`. When `embedded`, the
+sub-tab swaps its full `SectionHeader` (eyebrow + 24px title + body
+paragraph) for a single mono `SubEyebrow` label. The parent tab
+renders one full `SectionHeader` once, and the children sit under it
+in a `gap-10` grid. Visually the dashboard now reads top-to-bottom
+as one register per parent tab — not three sub-pages stacked.
+
+Voice for the three new parent headers follows BRAND.md §3 — plain
+English, declarative, present-tense. The sub-block discriminators
+("Feature tracker", "Launch readiness · NN% ready", "Outbound CRM",
+etc.) stay visible as eyebrows so the operator can still orient.
+
+Pure UI / register work. No data layer changes; the markdown loaders
+and seed fallbacks untouched. Typecheck clean.
+
+---
+
+## 2026-05-14 · S·24 · cuts · The HQ data seed loses 99KB of dead prose
+
+**`src/lib/hq/data.ts` drops from 2,361 lines to 926. The 18 migrated
+sections — products, ecosystem flows, collaboration loop, shared
+objects, access roles, collaborator first view, shareable artifacts,
+features, launch readiness, segments, campaigns, content items,
+demos, templates, pilots, decisions, risks, growth workflow — are
+now `[]`. The markdown at `content/hq/<section>/*.md` is the only
+source of truth. The localStorage-edited operator surfaces survive
+intact.**
+
+A small tsx script at `scripts/empty-migrated-seed-arrays.ts` does
+the surgery — bracket-depth-tracked replacement of each array
+literal with `[]`, run end-to-end against the seed. The four
+operator-owned surfaces (`prospects`, `feedback`, `weeklyRhythm`,
+`nextActions`) keep their seed data; they have no markdown source.
+The `metrics` array stays (deferred — would need a real DB).
+`messaging` is an object, not an array, and stays as-is.
+
+The header comment at the top of the file now reads literally true
+instead of aspirationally — *DEAD SUBSTRATE* sections are no longer
+just labelled as dead; they ARE dead.
+
+---
+
+## 2026-05-14 · S·23 · tightens · signals.ts reads from markdown
+
+**The HQ derived state (productReadiness, launchReadiness,
+gtmReadiness, integrationReadiness, collaborationReadiness, the
+balance scorecard, and the eight active-signals checks) all stop
+depending on the seed. They read from the same markdown the
+dashboard reads.**
+
+`deriveHqState(data, markdown?)` now accepts an optional override
+shaped like `HqDerivedMarkdownOverride` — a structural subset of
+`HqDashboardMarkdown` covering products, launch readiness,
+ecosystem flows, collaboration loop, features, content items,
+demos, templates, and growth workflow. When a section's markdown is
+present, the override wins; otherwise the seed survives as
+fallback. Same pattern the dashboard tabs use via
+`dashboard-data.ts`.
+
+The OverviewTab's nine-dimension balance still reads honestly. The
+active-signals checks (`distribution-lag`, `ecosystem-loop-early`,
+`collaboration-loop-gap`, `too-much-wip`, `followups-overdue`,
+`demo-gap`, `feedback-theme`, `review-queue`) fire from the same
+data the dashboard renders. The seed can now be emptied without the
+overview breaking — exactly what S·24 needed.
+
+---
+
+## 2026-05-14 · S·22 · ships · Drift-trigger fans out to the Tasks repo
+
+**Edits inside `~/Projects/personal/tasks/` to any file an atlas
+entry references will now flag the entry in the studio sidecar at
+`content/hq/atlas/_drift.json`. The studio-side hook proved the
+pattern; this is the first cross-repo writer.**
+
+`scripts/atlas-drift-check.ts` + `.githooks/pre-commit` copied from
+studio. Two cross-repo adjustments: `ATLAS_REPO_ROOT` env override
+(defaults to `~/Projects/personal/studio`) so the script reads atlas
+entries from the right place, and the auto-stage step is gated on
+`REPO_ROOT === ATLAS_REPO_ROOT` — cross-repo runs leave the sidecar
+uncommitted in studio's working tree for the studio operator to
+pick up.
+
+Activation is opt-in, same as studio: `cd ~/Projects/personal/tasks
+&& git config core.hooksPath .githooks`. Smoke-tested live: a
+staged edit to `tasks/docs/STRIPE_SETUP.md` correctly flagged
+`pricing-and-entitlements` in the studio sidecar with the
+tasks-repo path.
+
+Three more product repos remain: Roadmap, Analytics, Notes. Each
+follows the same shape — copy the two files, no script changes
+needed (the env override is generic). Operator activates per repo
+when ready.
+
+---
+
+## 2026-05-14 · S·21 · reads · Status badges drop the stoplight
+
+**The HQ dashboard's coloured pill badges become restrained mono with
+a single dot. Green, red, and amber stoplight colours leave the
+surface. BRAND.md §5 wins.**
+
+`StatusBadge` was the worst register offender in `hq-dashboard.tsx` —
+a rounded `border` pill in `#047857` / `#b91c1c` / `#b45309` that
+read as a Jira ticket-status indicator. Replaced with `.hq-status` — a
+restrained inline grouping of one dot plus a lowercase mono label.
+Four tiers map by meaning, not by colour: `alert` (indigo dot with a
+soft halo, reserved for At risk / Blocked), `active` (ink-soft dot,
+for things in flight), `done` (open ring on the dot, for Shipped /
+Published / Done / Approved / Working / Clear), and `quiet` (default).
+
+The visual moment that earns its keep is the indigo halo on the
+`alert` tier — a single accent in a register that otherwise refuses
+to colour-code. Everything else holds the line.
+
+---
+
+## 2026-05-14 · S·20 · cuts · The HQ data seed steps back into legacy
+
+**`src/lib/hq/data.ts` becomes a transitional file. Eighteen sections
+have markdown twins; the seed is now read-only fallback. The CLAUDE.md
+Mandatory Signal HQ Rule rewrites to point at source files instead.**
+
+Every strategic section in the dashboard now reads from
+`content/hq/<section>/*.md` via the adapter at
+`src/lib/hq/dashboard-data.ts`. The seed survives as type-shape
+fallback for backwards compatibility, but the markdown wins when both
+exist. A header comment at the top of `data.ts` names every section
+as dead substrate or live operator surface or derived elsewhere — so
+future readers know which lines to leave alone.
+
+`CLAUDE.md`'s Mandatory Signal HQ Rule no longer instructs operators
+to update `src/lib/hq/data.ts` after every change. It instead lists
+the right source file per section (`content/hq/decisions/`,
+`content/hq/risks/`, `content/atlas/`, `BRAND.md`, `phase.md`,
+`CHANGELOG.md`). The contract finally matches the code. The dashboard
+is the view, not the source.
+
+The four operator-owned surfaces — `prospects`, `feedback`,
+`weeklyRhythm`, `nextActions` — stay localStorage-backed. They have
+no other source of truth; the browser is canonical for those.
+
+---
+
+## 2026-05-14 · S·19 · ships · /hq grows an inbox
+
+**A new inbox sits above the Today block on `/hq` — a severity-tiered
+queue of things that owe an answer right now. Atlas drift, cron
+trouble, risks at-risk, decision reviews past due, stale atlas
+entries, overdue prospect follow-ups. Clear is a valid state.**
+
+`src/lib/hq/inbox.ts` is the server-side aggregator that walks six
+real sources and classifies each into `high` / `mid` / `low`. High
+tier is reserved for things actually broken — atlas drift, cron
+red/never, risks marked At risk or Blocked. Mid is decisions and
+risks needing attention. Low is stubs, stale entries, decisions due
+for review. Strategy's HQ v2 audit named the inbox as the
+load-bearing missing surface; this is the surface.
+
+`src/components/hq/hq-inbox.tsx` renders the queue with the atlas
+register — paper white, ink #111, indigo only on the high-tier dot,
+hairlines between rows, no card chrome. A high-tier item carries a
+soft indigo halo on its dot — the one motion-equivalent accent on
+the surface. Rows linked to a destination get a quiet hover lift.
+The clear state writes one line: *"Nothing owes you an answer right
+now. Quiet is a valid state."*
+
+Live on first load: four atlas-drift entries (the recent edits to
+BRAND.md and the atlas itself), the analytics daily cron (never run
+in dev), and risks at high likelihood × high impact. The dashboard
+sits beneath, unchanged. The inbox is the first thing you read.
+
+---
+
 ## 2026-05-14 · S·18 · ships · The dispatch gets its public surface
 
 **`signalstudio.ie/dispatch` is the umbrella read for shipped work

@@ -196,6 +196,10 @@ body {
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Belt-and-braces guard against horizontal scroll on mobile.
+     overflow-x: clip preserves position: sticky on descendants
+     where overflow-x: hidden would break it. */
+  overflow-x: clip;
 }
 
 ::selection {
@@ -232,6 +236,62 @@ body {
   line-height: 1.1;
   letter-spacing: -0.03em;
   font-weight: 600;
+}
+
+/* Mobile leading correction — display-tight desktop leading
+   (0.96–1.04) lets descenders touch the next line's cap-height
+   once clamp() shrinks the font on phones. Loosen below 640px so
+   wrapped headlines breathe without losing the typographic register. */
+@media (max-width: 640px) {
+  .h-display { line-height: 1.04; }
+  .h-title   { line-height: 1.1;  }
+  .h-section { line-height: 1.18; }
+  h1         { line-height: 1.08; }
+}
+
+/* Pricing tier CTA — restrained inline-link on desktop, solid pill on mobile.
+   Mobile needs a real button: this is the conversion action on the page. */
+.pricing-tier-cta {
+  align-self: stretch;
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--bg-elev);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: opacity 200ms ease, background 200ms ease;
+}
+.pricing-tier-cta[data-recommended="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+.pricing-tier-cta:hover { opacity: 0.9; }
+@media (min-width: 640px) {
+  .pricing-tier-cta {
+    align-self: flex-start;
+    min-height: 0;
+    padding: 0 0 2px 0;
+    background: transparent;
+    color: var(--accent);
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease;
+  }
+  .pricing-tier-cta[data-recommended="true"] {
+    background: transparent;
+    color: var(--accent);
+  }
+  .pricing-tier-cta:hover {
+    opacity: 1;
+    border-bottom-color: var(--accent);
+  }
 }
 
 /* Marker-underline accent — indigo accent rule */
@@ -1473,6 +1533,201 @@ body {
   max-width: 56ch;
 }
 
+/* ─── HQ score — replaces stoplight progress bars ────────────────────── */
+.hq-score { display: grid; gap: 0.4rem; }
+.hq-score-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.hq-score-row--solo { justify-content: flex-end; }
+.hq-score-label { font-size: 12.5px; color: var(--ink-quiet); }
+.hq-score-value {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.hq-score-value--alert { color: var(--accent); }
+.hq-score-meter {
+  position: relative;
+  height: 1px;
+  background: var(--border-soft);
+}
+.hq-score-meter-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ink);
+  transition: width 0.2s ease-out;
+}
+.hq-score-meter-fill--alert { background: var(--accent); }
+
+/* ─── HQ panel — chrome stripped to hairline section ──────────────────── */
+.hq-panel {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 1.25rem 0 1.5rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ─── HQ status pill — restrained replacement for stoplight badges ─────── */
+.hq-status {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+.hq-status-dot {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--ink-quiet);
+  align-self: center;
+  transform: translateY(-0.05rem);
+  flex: 0 0 auto;
+}
+.hq-status[data-tier="alert"] { color: var(--accent); }
+.hq-status[data-tier="alert"] .hq-status-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+.hq-status[data-tier="active"] { color: var(--ink); }
+.hq-status[data-tier="active"] .hq-status-dot { background: var(--ink-soft); }
+.hq-status[data-tier="done"] { color: var(--ink-quiet); }
+.hq-status[data-tier="done"] .hq-status-dot {
+  background: transparent;
+  border: 1px solid var(--ink-quiet);
+}
+
+/* ─── HQ Inbox — what needs an answer right now ───────────────────────── */
+.hq-inbox {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 2.25rem 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hq-inbox--loading { min-height: 4rem; }
+.hq-inbox--clear { padding-bottom: 2.5rem; }
+.hq-inbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+.hq-inbox-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.hq-inbox-stamp,
+.hq-inbox-counts {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-quiet);
+}
+.hq-inbox-clear-line {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 58ch;
+}
+.hq-inbox-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hq-inbox-row-wrap {
+  border-top: 1px solid var(--border-soft);
+}
+.hq-inbox-row-wrap:last-child {
+  border-bottom: 1px solid var(--border-soft);
+}
+.hq-inbox-row {
+  display: grid;
+  grid-template-columns: 0.85rem 5rem minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  text-decoration: none;
+  position: relative;
+  transition: padding-left 0.16s ease-out, background 0.16s ease-out;
+}
+.hq-inbox-row--linked:hover {
+  padding-left: 0.4rem;
+  background: var(--paper-soft);
+}
+.hq-inbox-row--linked:hover .hq-inbox-row-title {
+  color: var(--accent);
+}
+.hq-inbox-tier {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--ink-quiet);
+  transform: translateY(-0.05rem);
+}
+.hq-inbox-tier[data-tier="high"] {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+.hq-inbox-tier[data-tier="mid"] { background: var(--ink-soft); }
+.hq-inbox-tier[data-tier="low"] { background: var(--ink-quiet); }
+.hq-inbox-row-source {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  align-self: flex-start;
+  padding-top: 0.1rem;
+}
+.hq-inbox-row-title {
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  min-width: 0;
+  transition: color 0.12s ease-out;
+}
+.hq-inbox-row-detail {
+  color: var(--ink-quiet);
+  font-size: 12px;
+  line-height: 1.55;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .hq-inbox-row {
+    grid-template-columns: 0.85rem minmax(0, 1fr);
+    grid-template-areas:
+      "tier title"
+      "tier source"
+      "tier detail";
+    gap: 0.25rem 0.85rem;
+  }
+  .hq-inbox-tier { grid-area: tier; align-self: flex-start; margin-top: 0.4rem; }
+  .hq-inbox-row-title { grid-area: title; }
+  .hq-inbox-row-source { grid-area: source; padding-top: 0; }
+  .hq-inbox-row-detail { grid-area: detail; white-space: normal; }
+}
+
 /* ─── HQ Today — derived signal block above the dashboard ─────────────── */
 .hq-today {
   margin: 0 auto;
@@ -1832,14 +2087,9 @@ body {
  * register. Targets are class selectors set up by the dashboard component;
  * see hq-dashboard.tsx for the matching JSX.
  */
-.hq-panel {
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  padding: 1.25rem 0 1.5rem 0 !important;
-  border-top: 1px solid var(--border-soft) !important;
-}
+/* .hq-panel — see definition earlier in file (Phase 2 cleanup removed
+ * the !important overrides since Panel's className no longer ships the
+ * rounded chrome). */
 .hq-tab {
   border: 0 !important;
   border-radius: 0 !important;

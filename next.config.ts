@@ -30,7 +30,9 @@ const csp = [
   `base-uri 'self'`,
   `form-action 'self'`,
   `object-src 'none'`,
-  `upgrade-insecure-requests`,
+  // upgrade-insecure-requests removed — the directive is ignored in
+  // report-only policies and was spamming the console on every page.
+  // Add it back when CSP is promoted to enforce mode.
 ].join("; ");
 
 const securityHeaders = [
@@ -43,6 +45,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Bundle CHANGELOG.md into the /dispatch server function. Without this,
+  // readDispatchEntries() in src/lib/changelog.ts hits ENOENT on Vercel
+  // (the file lives at repo root, outside the .next/standalone tracing
+  // window) and Next falls through to the 404 page.
+  outputFileTracingIncludes: {
+    "/dispatch": ["./CHANGELOG.md"],
+    "/changelog.rss": ["./CHANGELOG.md"],
+  },
   async headers() {
     return [
       {

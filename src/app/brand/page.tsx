@@ -88,6 +88,8 @@ function AssetCard({ logo }: { logo: LogoFile }) {
         <img
           src={`/brand/logos/${logo.file}`}
           alt={logo.name}
+          loading="lazy"
+          decoding="async"
           className="max-h-[60%] max-w-[70%]"
         />
       </div>
@@ -105,7 +107,7 @@ function AssetCard({ logo }: { logo: LogoFile }) {
           <a
             href={`/brand/logos/${logo.file}`}
             download
-            className="rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-2.5 py-1 font-mono text-[10px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
           >
             ↓ svg
           </a>
@@ -113,7 +115,7 @@ function AssetCard({ logo }: { logo: LogoFile }) {
             href={`/brand/logos/${logo.file}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-2.5 py-1 font-mono text-[10px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
+            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
           >
             ↗ open
           </a>
@@ -227,7 +229,7 @@ export default function BrandPage() {
           }
         />
 
-        <div className="grid grid-cols-1 overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] md:grid-cols-5">
+        <div className="grid grid-cols-2 overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] sm:grid-cols-3 md:grid-cols-5">
           {MOTIONS.map((m, i) => (
             <div
               key={m.code}
@@ -255,7 +257,7 @@ export default function BrandPage() {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
           {MOTIONS.map((m, i) => (
             <div
               key={m.code}

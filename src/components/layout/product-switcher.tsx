@@ -85,7 +85,7 @@ export function ProductSwitcher() {
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 top-full z-50 mt-2 w-[280px] overflow-hidden rounded-xl border bg-bg-elevated shadow-[0_24px_60px_-24px_rgba(20,21,26,0.22)]"
+          className="fixed left-4 right-4 top-[64px] z-50 overflow-hidden rounded-xl border bg-bg-elevated shadow-[0_24px_60px_-24px_rgba(20,21,26,0.22)] sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[280px]"
           style={{ borderColor: "var(--border-soft)" }}
         >
           <div

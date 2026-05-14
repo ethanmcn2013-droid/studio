@@ -18,18 +18,22 @@ export default function ContactPage() {
       <main className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
-            className="mb-10 text-[11px] font-semibold uppercase"
+            className="mb-6 text-[11px] font-semibold uppercase"
             style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
             Reach
           </div>
 
+          <h1 className="h-section mb-8 max-w-[620px] text-balance text-ink">
+            A real human, on the other end.
+          </h1>
+
           <p
             className="leading-[1.7] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            A real human reads everything sent to this address. Usually within
-            48 hours, sometimes faster, occasionally slower if I&apos;m shipping.
+            Everything sent to this address is read. Usually within 48 hours,
+            sometimes faster, occasionally slower if I&apos;m shipping.
           </p>
 
           <div className="mt-10 grid gap-8 md:grid-cols-2">

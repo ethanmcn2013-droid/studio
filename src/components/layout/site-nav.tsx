@@ -35,38 +35,33 @@ export function SiteNav() {
           <Wordmark size="sm" animate={false} />
         </Link>
 
-        <nav aria-label="Site navigation" className="flex items-center gap-5">
+        <nav aria-label="Site navigation" className="flex items-center gap-4 sm:gap-5">
           <ProductSwitcher />
           <Link
             href="/work"
-            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
             Work
           </Link>
           <Link
             href="/proof"
-            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
             Proof
           </Link>
           <Link
             href="/about"
-            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
             About
           </Link>
           <Link
             href="/brand"
-            // prefetch={false}: /brand renders 18 inline <img> tags pointing at
-            // /public/brand/logos/*.svg. Default prefetch pulls all of them
-            // into the home page as <link rel="preload"> hints, which fire
-            // "preloaded but not used" warnings for every navigated-away path.
-            // The hub is a one-step click — prefetch isn't worth the noise.
             prefetch={false}
-            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
             Brand

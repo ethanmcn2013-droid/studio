@@ -59,7 +59,8 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="mx-auto mt-24 w-full max-w-[760px] border-t border-border-soft px-6 pb-10 pt-10"
+      className="mx-auto mt-24 w-full max-w-[760px] border-t border-border-soft px-6 pt-10"
+      style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
       <div className="flex flex-wrap items-center justify-between gap-6">
         {/* Left: wordmark + locked suite tagline + socials + copyright */}
@@ -73,7 +74,7 @@ export function SiteFooter() {
           </span>
           <nav
             aria-label="Signal Studio on social"
-            className="mt-1 flex items-center gap-3 text-ink-quiet"
+            className="-ml-2.5 mt-1 flex items-center text-ink-quiet"
           >
             {SOCIALS.map(({ label, href, title, svg }) => (
               <a
@@ -83,7 +84,7 @@ export function SiteFooter() {
                 rel="noopener noreferrer"
                 title={title}
                 aria-label={title}
-                className="transition-colors hover:text-ink"
+                className="inline-flex h-11 w-11 items-center justify-center transition-colors hover:text-ink"
               >
                 {svg}
               </a>
@@ -220,33 +221,33 @@ export function SiteFooter() {
       </div>
 
       <div
-        className="mt-8 flex flex-wrap gap-x-4 gap-y-2 border-t border-border-soft pt-6 font-mono text-[11px] uppercase text-ink-faint"
+        className="mt-8 flex flex-wrap items-center gap-x-1 gap-y-1 border-t border-border-soft pt-4 font-mono text-[12px] uppercase text-ink-faint"
         style={{ letterSpacing: "0.08em" }}
       >
         <Link
           href="/privacy"
-          className="transition-colors hover:text-ink-quiet"
+          className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
         >
           Privacy
         </Link>
-        <span aria-hidden>·</span>
+        <span aria-hidden className="opacity-50">·</span>
         <Link
           href="/terms"
-          className="transition-colors hover:text-ink-quiet"
+          className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
         >
           Terms
         </Link>
-        <span aria-hidden>·</span>
+        <span aria-hidden className="opacity-50">·</span>
         <Link
           href="/security"
-          className="transition-colors hover:text-ink-quiet"
+          className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
         >
           Security
         </Link>
-        <span aria-hidden>·</span>
+        <span aria-hidden className="opacity-50">·</span>
         <Link
           href="/accessibility"
-          className="transition-colors hover:text-ink-quiet"
+          className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
         >
           Accessibility
         </Link>

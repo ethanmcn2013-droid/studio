@@ -376,7 +376,7 @@ export default async function PricingPage({
             {TIERS.map((t, i) => (
               <div
                 key={t.name}
-                className="flex flex-col"
+                className={`flex flex-col ${t.recommended ? "order-first md:order-none" : ""}`}
                 style={{
                   padding: "36px 28px 32px",
                   borderRight:
@@ -463,16 +463,8 @@ export default async function PricingPage({
 
                 <Link
                   href={t.href}
-                  className="self-start"
-                  style={{
-                    marginTop: 28,
-                    color: "var(--accent)",
-                    fontWeight: 500,
-                    fontSize: 15,
-                    paddingBottom: 2,
-                    borderBottom: "1px solid transparent",
-                    transition: "border-color 200ms ease",
-                  }}
+                  className="pricing-tier-cta"
+                  data-recommended={t.recommended ? "true" : undefined}
                 >
                   {t.cta} →
                 </Link>
@@ -506,6 +498,7 @@ export default async function PricingPage({
           </p>
 
           <div
+            className="hidden md:block"
             style={{
               border: "1px solid var(--border)",
               background: "var(--bg-elev)",

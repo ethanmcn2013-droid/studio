@@ -78,7 +78,7 @@ export default function AboutPage() {
                     href={TASKS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Tasks
@@ -94,7 +94,7 @@ export default function AboutPage() {
                     href={ROADMAP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Roadmap
@@ -110,7 +110,7 @@ export default function AboutPage() {
                     href={ANALYTICS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Analytics
@@ -126,7 +126,7 @@ export default function AboutPage() {
                     href={NOTES_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Notes
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 </div>
                 <Link
                   href="/work"
-                  className="group flex items-center justify-between border-b border-border-soft pb-3 no-underline"
+                  className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                 >
                   <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                     See the system

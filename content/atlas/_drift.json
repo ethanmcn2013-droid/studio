@@ -1,31 +1,33 @@
 {
   "brand-enforcement": {
     "drifted": [
-      "BRAND.md",
-      "src/app/globals.css"
+      "src/app/globals.css",
+      "src/app/brand/"
     ],
-    "updatedAt": "2026-05-14T16:59:43.832Z",
-    "byCommit": "53d8ac0"
-  },
-  "five-products-as-a-system": {
-    "drifted": [
-      "BRAND.md"
-    ],
-    "updatedAt": "2026-05-14T16:59:43.832Z",
-    "byCommit": "53d8ac0"
+    "updatedAt": "2026-05-14T18:07:38.613Z",
+    "byCommit": "7d87c40"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-14T17:10:02.418Z",
-    "byCommit": "96d267b"
+    "updatedAt": "2026-05-14T18:07:38.613Z",
+    "byCommit": "7d87c40"
+  },
+  "pricing-and-entitlements": {
+    "drifted": [
+      "src/app/pricing/"
+    ],
+    "updatedAt": "2026-05-14T18:07:38.613Z",
+    "byCommit": "7d87c40"
   },
   "signal-studio-umbrella": {
     "drifted": [
-      "BRAND.md"
+      "src/app/brand/",
+      "src/app/pricing/",
+      "src/components/landing/"
     ],
-    "updatedAt": "2026-05-14T16:59:43.832Z",
-    "byCommit": "53d8ac0"
+    "updatedAt": "2026-05-14T18:07:38.613Z",
+    "byCommit": "7d87c40"
   }
 }
