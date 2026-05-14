@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-14 · S·34 · ships · The atlas drift-trigger actually fires from siblings
+
+**The fan-out claim in `S·25b` was overstated — sibling repos held a
+verbatim copy of the studio script that resolved atlas content
+against their own `REPO_ROOT`, so the entries list came back empty
+and the hook silently no-opped on every commit. This cycle rewrites
+the script around a fixed `STUDIO_ROOT` path, so all five repos read
+one atlas and write one sidecar.**
+
+Architecture decision locked in `docs/ATLAS_DRIFT_TRIGGER.md`: shared
+write to studio's `content/atlas/_drift.json`, not per-repo sidecars.
+The atlas itself is centralized in studio; drift is a property of
+the atlas, not of the writing repo, so the sidecar belongs next to
+the entries. `git add` is gated on `REPO_ROOT === STUDIO_ROOT` so
+sibling commits never try to stage foreign files. End-to-end verified
+in all four siblings: staging `briefing/triggers.ts` in `analytics/`
+flags `analytics-daily-cron`; staging `actions/notes.ts` in `notes/`
+flags `log-cycle-cross-repo-writer` and `turso-databases-and-reads`.
+
 ## 2026-05-14 · S·31 · tightens · A small polish pass closes the HQ cycle
 
 **Four touches finish the HQ v2 cleanup: the Vercel deploy-failure

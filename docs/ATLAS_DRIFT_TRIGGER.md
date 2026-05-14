@@ -156,18 +156,36 @@ and disposable.
    `brand-enforcement` and `signal-studio-umbrella` (both reference it);
    staging an entry's own .md cleared the slug; the sidecar auto-staged
    for the commit; the hook printed a one-line summary.
-5. **Roll to the other four repos** — not started. Each gets its own
-   copy of the script (paths in the script's `REPO_ROOT` already
-   generalize), its own `.githooks/pre-commit`, and the same activation
-   step. Open call: do they write into studio's sidecar via shared
-   path (`~/Projects/personal/studio/content/atlas/_drift.json`) or
-   into per-repo sidecars that studio aggregates? Lean toward the
-   shared path for v2.1, per-repo for v2.2 if the shared path
-   becomes a bottleneck.
-6. **Test the sidecar collision case** — not started. The studio
-   script's merge logic (union, not replace) is in place but unverified
-   against a second repo writing concurrently. Real test belongs in the
-   fan-out cycle.
+5. **Roll to the other four repos** — ✓ shipped 2026-05-14 (Cycle A.11).
+   Each sibling (`tasks`, `roadmap`, `analytics`, `notes`) ships the
+   same `scripts/atlas-drift-check.ts` and `.githooks/pre-commit` as
+   studio. Activation in each: `git config core.hooksPath .githooks`.
+
+   **Architecture decision — shared write, not per-repo sidecars.**
+   All five repos write into a single sidecar at
+   `~/Projects/personal/studio/content/atlas/_drift.json`. The atlas
+   itself lives in studio; drift is a property of the atlas, not of
+   the writing repo. Per-repo sidecars would scatter atlas-slug-keyed
+   metadata across four repos that have no atlas content — a leak.
+   Read-side stays one-file simple; `/hq/atlas` loader is unchanged.
+
+   **Dissent against the rejected option (per-repo sidecars).** Per-repo
+   would be cleaner from a "each repo is self-contained" stance — git
+   hooks normally don't reach outside their own working tree, and a hook
+   that writes to a foreign path is surprising on first read. It would
+   also degrade more gracefully when studio isn't checked out adjacent
+   (e.g. on CI, in a clone of just `tasks/`). Mitigation: the shared
+   script skips silently if `~/Projects/personal/studio/content/atlas/`
+   is missing — the hook is a signal, not a gate, so silent no-op is
+   the right failure mode. Accepted cost: cycle work in `tasks/` writes
+   to studio's working tree without staging (the cross-repo run only
+   auto-stages when REPO_ROOT === STUDIO_ROOT), so the studio operator
+   picks up pending sidecar updates on the next studio commit. That's
+   the ownership split called out in §Open questions and it holds.
+6. **Collision case verified.** Sibling repos exercise the same merge
+   logic (union, not replace). The script's clear path (entry .md
+   staged) only fires when running inside studio, since only studio
+   commits can stage atlas markdown.
 
 ---
 
@@ -185,7 +203,10 @@ and disposable.
   caused the drift, which makes drift state reviewable rather than
   silent. Cross-repo runs (Tasks/Roadmap/Analytics/Notes) write to the
   studio working tree but skip the auto-stage — the studio operator
-  picks it up next time, which is the right ownership split.
+  picks it up next time, which is the right ownership split. Confirmed
+  in Cycle A.11 fan-out: the shared script gates `git add` on
+  `REPO_ROOT === STUDIO_ROOT` so sibling repos can't stage foreign
+  files.
 - **What about the entitlements-shared module?** It's duplicated across
   all 5 repos. A change to it should drift any entry referencing it.
   The script needs to dedupe by entry, not by repo, so this works
