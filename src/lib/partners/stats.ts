@@ -2,9 +2,13 @@
 // by both the /hq/partners server component AND scripts/partner-digest.ts
 // (run via tsx). The server-only guard would crash the CLI invocation.
 import { eq } from "drizzle-orm";
-import { createClient, type Client } from "@libsql/client";
-import { db } from "@/lib/db";
-import { sponsors, licenseCodes, type Sponsor } from "@/lib/db/schema";
+import { entitlementsDb } from "@/lib/entitlements-db/client";
+import {
+  sponsors,
+  licenseCodes,
+  type Sponsor,
+} from "@/lib/entitlements-db/schema";
+import { TASKS_URL } from "@/lib/product-urls";
 
 export type PartnerStat = {
   sponsor: Sponsor;
@@ -22,62 +26,58 @@ export type PartnerStat = {
   mostRecentRedemptionAt: number | null;
 };
 
-const DAY_MS = 24 * 60 * 60 * 1000;
+type TasksPartnerStats = {
+  codesRedeemed: number;
+  redeemed30d: number;
+  reachedBoard: number;
+  mostRecentRedemptionAt: number | null;
+};
+
+const EMPTY_TASKS_STATS: TasksPartnerStats = {
+  codesRedeemed: 0,
+  redeemed30d: 0,
+  reachedBoard: 0,
+  mostRecentRedemptionAt: null,
+};
 
 /**
- * Cross-DB read of Tasks's runtime tables. Studio's audit (license_codes)
- * is authoritative for *issued* counts; Tasks's comp_codes + entitlements
- * are authoritative for *redeemed* counts. `redeemed30d` is honest
- * about what it measures: redemptions started in the last 30 days,
- * NOT actual product engagement. The reconciliation doc explains why
- * studio's redemptions table sits empty.
+ * Partner roll-up. Studio's audit (license_codes) is authoritative for
+ * issued counts; Tasks's comp_codes + entitlements are authoritative
+ * for redeemed counts. `redeemed30d` is honest about what it measures:
+ * redemptions started in the last 30 days, NOT actual product
+ * engagement.
  *
- * Reuses the same TASKS_DATABASE_URL + TASKS_AUTH_TOKEN that
- * scripts/issue-codes.ts already needs locally. For production reads
- * the same env vars must be set in studio's Vercel.
+ * The Tasks-side numbers now come over HTTP from Tasks's
+ * `/api/internal/partner-stats?sponsor=<slug>` endpoint, authed with
+ * `PARTNER_STATS_SECRET` (must match the same env var on Tasks).
+ * Direct libSQL reads of Tasks's tables retired 2026-05-13 — the API
+ * is a versioned contract, schema changes on Tasks no longer silently
+ * break /hq/partners.
  */
-function tasksClient(): Client {
-  const url = process.env.TASKS_DATABASE_URL;
-  const authToken = process.env.TASKS_AUTH_TOKEN;
-  if (!url) {
-    throw new Error(
-      "TASKS_DATABASE_URL is not set on studio. /hq/partners needs cross-DB read access to Tasks's comp_codes + entitlements. Set TASKS_DATABASE_URL and TASKS_AUTH_TOKEN in studio's .env.local (local) and on Vercel (production).",
-    );
-  }
-  return createClient({ url, authToken });
-}
-
 export async function getPartnerStats(): Promise<PartnerStat[]> {
+  // E-8 follow-up (2026-05-14): reads moved from Studio's local DB
+  // to shared signal-entitlements so any future writer (not only
+  // issue-codes.ts) propagates here. The issue-codes pipeline now
+  // dual-writes; this read closes the loop.
+  const db = entitlementsDb();
   const rows = await db.select().from(sponsors).orderBy(sponsors.createdAt);
   if (rows.length === 0) return [];
 
-  const tasksDb = tasksClient();
-  try {
-    return await Promise.all(
-      rows.map(async (s) => {
-        const codesIssued = await countIssued(s.id);
-        const {
-          codesRedeemed,
-          redeemed30d,
-          reachedBoard,
-          mostRecentRedemptionAt,
-        } = await readTasksForSponsor(tasksDb, s.slug);
-        return {
-          sponsor: s,
-          codesIssued,
-          codesRedeemed,
-          redeemed30d,
-          reachedBoard,
-          mostRecentRedemptionAt,
-        };
-      }),
-    );
-  } finally {
-    tasksDb.close();
-  }
+  return Promise.all(
+    rows.map(async (s) => {
+      const codesIssued = await countIssued(s.id);
+      const tasksStats = await fetchTasksStats(s.slug);
+      return {
+        sponsor: s,
+        codesIssued,
+        ...tasksStats,
+      };
+    }),
+  );
 }
 
 async function countIssued(sponsorId: string): Promise<number> {
+  const db = entitlementsDb();
   const result = await db
     .select({ id: licenseCodes.id })
     .from(licenseCodes)
@@ -85,99 +85,54 @@ async function countIssued(sponsorId: string): Promise<number> {
   return result.length;
 }
 
-async function readTasksForSponsor(
-  tasksDb: Client,
-  sponsorSlug: string,
-): Promise<{
-  codesRedeemed: number;
-  redeemed30d: number;
-  reachedBoard: number;
-  mostRecentRedemptionAt: number | null;
-}> {
-  // comp_codes.notes is a JSON string containing { sponsor_slug, ... }
-  // written by issue-codes.ts. SQLite json_extract reads it without
-  // needing a generated column.
-  const compCodesRows = await tasksDb.execute({
-    sql: `
-      SELECT code, redeemed
-      FROM comp_codes
-      WHERE notes IS NOT NULL
-        AND json_extract(notes, '$.sponsor_slug') = ?
-    `,
-    args: [sponsorSlug],
-  });
-
-  let codesRedeemed = 0;
-  const sponsorCodes: string[] = [];
-  for (const row of compCodesRows.rows) {
-    const code = String(row.code);
-    sponsorCodes.push(code);
-    const redeemed = Number(row.redeemed ?? 0);
-    if (redeemed > 0) codesRedeemed += 1;
+/**
+ * Fetch the Tasks-side roll-up for one sponsor. On any failure
+ * (Tasks down, secret unset, network error, non-OK response) returns
+ * the empty shape and logs — /hq/partners still renders, the issued-
+ * vs-redeemed funnel just shows 0s for this sponsor. Failure-mode
+ * matches the original try/catch around the entitlements query.
+ */
+async function fetchTasksStats(sponsorSlug: string): Promise<TasksPartnerStats> {
+  const secret = process.env.PARTNER_STATS_SECRET;
+  if (!secret) {
+    console.warn(
+      "[partners/stats] PARTNER_STATS_SECRET is not set — Tasks roll-up unavailable. Set it on Studio AND Tasks (same value).",
+    );
+    return EMPTY_TASKS_STATS;
   }
 
-  if (sponsorCodes.length === 0) {
-    return {
-      codesRedeemed: 0,
-      redeemed30d: 0,
-      reachedBoard: 0,
-      mostRecentRedemptionAt: null,
-    };
-  }
+  const url = `${TASKS_URL}/api/internal/partner-stats?sponsor=${encodeURIComponent(sponsorSlug)}`;
 
-  // Tasks entitlements.notes is "comp:CODE" — match any of this
-  // sponsor's codes. started_at is stored as a unix timestamp in
-  // seconds (Drizzle `mode: "timestamp"`), so the cutoff is also
-  // in seconds. reached_board_at is also seconds — but here we only
-  // need IS NOT NULL, so unit is moot.
-  const placeholders = sponsorCodes.map(() => "?").join(",");
-  const notesValues = sponsorCodes.map((c) => `comp:${c}`);
-  const cutoffSec = Math.floor((Date.now() - 30 * DAY_MS) / 1000);
-
-  // Try the column-aware SELECT first; fall back to the original
-  // shape when the prod Turso ALTER (drizzle/0001) hasn't run yet so
-  // /hq/partners stays loadable through the migration window.
-  let entitlementsRows: Awaited<ReturnType<typeof tasksDb.execute>>;
-  let reachedBoardColumnAvailable = true;
   try {
-    entitlementsRows = await tasksDb.execute({
-      sql: `
-        SELECT started_at, reached_board_at
-        FROM entitlements
-        WHERE source = 'comp'
-          AND notes IN (${placeholders})
-        ORDER BY started_at DESC
-      `,
-      args: notesValues,
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${secret}` },
+      // Don't let Next cache this — partner counts change throughout
+      // the day and /hq/partners is operator-facing.
+      cache: "no-store",
+      // Hard cap so a hung Tasks doesn't stall the page.
+      signal: AbortSignal.timeout(5000),
     });
-  } catch {
-    reachedBoardColumnAvailable = false;
-    entitlementsRows = await tasksDb.execute({
-      sql: `
-        SELECT started_at
-        FROM entitlements
-        WHERE source = 'comp'
-          AND notes IN (${placeholders})
-        ORDER BY started_at DESC
-      `,
-      args: notesValues,
-    });
-  }
-
-  let redeemed30d = 0;
-  let reachedBoard = 0;
-  let mostRecentRedemptionAt: number | null = null;
-  for (const row of entitlementsRows.rows) {
-    const startedAtSec = Number(row.started_at ?? 0);
-    if (!startedAtSec) continue;
-    if (mostRecentRedemptionAt === null) {
-      mostRecentRedemptionAt = startedAtSec * 1000;
+    if (!res.ok) {
+      console.warn(
+        `[partners/stats] Tasks /api/internal/partner-stats responded ${res.status} for sponsor=${sponsorSlug}`,
+      );
+      return EMPTY_TASKS_STATS;
     }
-    if (startedAtSec >= cutoffSec) redeemed30d += 1;
-    if (reachedBoardColumnAvailable && row.reached_board_at != null) {
-      reachedBoard += 1;
-    }
+    const json = (await res.json()) as TasksPartnerStats;
+    return {
+      codesRedeemed: Number(json.codesRedeemed ?? 0),
+      redeemed30d: Number(json.redeemed30d ?? 0),
+      reachedBoard: Number(json.reachedBoard ?? 0),
+      mostRecentRedemptionAt:
+        json.mostRecentRedemptionAt == null
+          ? null
+          : Number(json.mostRecentRedemptionAt),
+    };
+  } catch (err) {
+    console.warn(
+      `[partners/stats] Tasks /api/internal/partner-stats fetch failed for sponsor=${sponsorSlug}:`,
+      String(err),
+    );
+    return EMPTY_TASKS_STATS;
   }
-
-  return { codesRedeemed, redeemed30d, reachedBoard, mostRecentRedemptionAt };
 }
