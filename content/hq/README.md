@@ -8,6 +8,28 @@ here with one `.md` file per entry.
 The migration is staged across HQ-6a / -6b / -6c. **HQ-6a (shipped
 2026-05-14):** decisions.
 
+## What stays localStorage forever (the four operator surfaces)
+
+Four sections never migrate to markdown — they're operator-owned
+write-optimized data with no other source of truth:
+
+- **`prospects`** — the CRM. Status, follow-up date, personalisation
+  note. You edit these mid-call, on the bus, between meetings. Forcing
+  open-editor-and-commit for every status change would kill the
+  surface.
+- **`feedback`** — raw captures from venue calls, demos, conversations.
+  Same shape as prospects: write-fast, return-to-later.
+- **`weeklyRhythm`** — your operating cadence. This week's items by day.
+  Updates daily.
+- **`nextActions`** — your todo list. Updates by the hour.
+
+For these, the browser is canonical. The `/hq` dashboard's localStorage
+edits are the live state. Don't migrate them. The line in CLAUDE.md's
+Mandatory Signal HQ Rule that says "no markdown source — the browser
+is canonical for those" applies to these four and only these four.
+
+Everything else — the strategic content — lives in markdown below.
+
 ## Migration manifest
 
 The seed has 26 top-level fields. Classification:

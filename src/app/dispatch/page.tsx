@@ -125,8 +125,8 @@ export default async function DispatchPage() {
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Shipped work across the suite — Signal Tasks, Roadmap, Analytics,
-            Notes, and the umbrella. Each entry carries a date, a cycle code,
-            a verb, and a one-sentence impact lead. The five verbs are{" "}
+            Notes, and the umbrella. Plain English, four lines or fewer. Five
+            verbs:{" "}
             <span className="font-mono text-[14px] text-ink">ships</span>,{" "}
             <span className="font-mono text-[14px] text-ink">tightens</span>,{" "}
             <span className="font-mono text-[14px] text-ink">cuts</span>,{" "}
@@ -158,11 +158,9 @@ export default async function DispatchPage() {
           </div>
 
           <div className="mt-24 border-t border-border-soft pt-6 text-[13px] leading-[1.6] text-ink-quiet">
-            Each product&apos;s own dispatch lives in its repo&apos;s{" "}
-            <code className="font-mono text-[12.5px] text-ink-soft">
-              CHANGELOG.md
-            </code>
-            . This page is the curated suite read. Convention:{" "}
+            The engineering log lives in each repo, in a register meant for
+            future-Ethan. This page is the operator-voice translation — what
+            shipped, said out loud. Convention:{" "}
             <a
               href="/brand"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"

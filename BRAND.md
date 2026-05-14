@@ -252,9 +252,11 @@ Cross-product links use `target="_blank" rel="noopener noreferrer"`. The `↗` e
 
 The suite changelog is called **the dispatch.** What gets sent, not what accumulates. Sits inside the brand's broadcast grammar — wordmark broadcast, briefings, signals, dispatch.
 
-**One reading surface** for shipped work: `signalstudio.ie/dispatch` (to be built — half-day slot after the next cycle ships). Per-product `/changelog` and `/dispatch` routes 308-redirect to it. Engineering source-of-truth stays per-product (`tasks/CHANGELOG.md`, `roadmap/CHANGELOG.md`, etc) — the file path keeps the conventional name for tooling and muscle memory; the document inside calls itself the dispatch.
+**One reading surface** for shipped work: `signalstudio.ie/dispatch` (to be built — half-day slot after the next cycle ships). Per-product `/changelog` and `/dispatch` routes 308-redirect to it.
 
-**Entry shape (locked).** One header line. One bold impact-lead sentence. Then prose.
+**Engineering log vs dispatch (clarified 2026-05-14).** Two artifacts, two audiences, one shipped beat. The per-repo `CHANGELOG.md` files are the **engineering log** — kept jargon-fluent for future-Ethan, future-Codex, future-Claude. File paths, function names, type names, library names, line-count deltas all welcome here; that is what the engineering log is for. The `content/dispatch/*.md` collection in the studio repo (read at `signalstudio.ie/dispatch`) is **the dispatch** — the operator-voice translation of beats worth saying out loud, for a venue operator on a phone. Two registers, two files, one source of truth on what shipped. Not every engineering-log entry earns a dispatch entry. Most internal-plumbing beats stop at the log. Silence remains brand (see Cadence below); the dispatch is rarer than the engineering log on purpose.
+
+**Entry shape — engineering log (locked).** One header line. One bold impact-lead sentence. Then prose.
 
 ```
 ## YYYY-MM-DD · X·NN · verb · Declarative present-tense headline
@@ -293,7 +295,9 @@ Four header elements, separated by middle dot (` · `, U+00B7 with spaces):
 
 **Forbidden in the dispatch.** Emoji or badge chips (`[FEATURE]`, `🐛 fixed`). Keep-a-Changelog's Added/Changed/Fixed/Removed/Deprecated/Security. Semver version numbers (there are no public releases). Audience-impact pills (`you'll notice this`, `under the hood`) — the bold impact lead does that job without a taxonomy that decays. In-product "what's new" toasts — they violate §2.2 surface-bloat.
 
-**Cadence.** Silence is also brand. The dispatch only updates when something is worth saying out loud.
+**Banned in the dispatch (extended).** Beyond the items above, the dispatch never reaches for engineering-internal references: file paths (`src/lib/hq/data.ts`), function names (`deriveHqState`), type names (`HqDerivedMarkdownOverride`), library names (`Drizzle`, `Resend`, `Clerk`), CSS class names, hex codes, line-count deltas (`2,361 → 926`), anything inside backticks. Cycle codes (`S·21`, `T·12`) stay in the engineering log header as the grep target; the dispatch headline strips them — date · verb · headline only. The dispatch body holds to four lines maximum under the bold lead. If the entry can't fit in four lines without reaching for an identifier, it is engineering-log-grade and stays there. The four-line cap is the discipline that keeps the two artifacts honest.
+
+**Cadence.** Silence is also brand. The dispatch only updates when something is worth saying out loud — typically a fraction of what the engineering log carries.
 
 **Reference examples.** Two worked entries to anchor the shape (hypothetical — neither has shipped):
 

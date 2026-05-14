@@ -2,27 +2,25 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 /**
- * Shared parser for the Signal Studio umbrella dispatch.
+ * Two artifacts, two readers (see BRAND.md §6.5).
  *
- * Two entry shapes are supported in the same file — the convention
- * locked at 2026-05-14 (see BRAND.md §6.5) introduced the new shape;
- * pre-2026-05-14 entries keep their original shape and are rendered
- * with a lighter chrome.
+ *   readDispatchEntries() reads `content/dispatch/*.md` — one entry per
+ *   file, operator-voice, four-line cap. Powers the public `/dispatch`
+ *   surface at signalstudio.ie/dispatch.
  *
- *   NEW (dispatch shape):
- *     ## YYYY-MM-DD · X·NN · verb · headline
- *     **bold impact-lead sentence**
- *     body prose...
+ *   readChangelogSections() reads `CHANGELOG.md` — the engineering log,
+ *   jargon welcome, audience is future-Ethan. Powers the legacy
+ *   `/changelog.rss` feed.
  *
- *   OLD (pre-convention):
- *     ## YYYY-MM-DD · suffix    → section header
- *     ### Entry title           → entry inside the section
- *     body lines...             → entry body
+ * Dispatch entry file shape:
  *
- *   OLD (compound single-entry, no ###):
- *     ## YYYY-MM-DD · headline  → entry header with body following
+ *   ## YYYY-MM-DD · verb · headline
+ *   **bold impact-lead sentence**
+ *   body prose (≤ 4 lines)
  *
- * Used by `/dispatch` (HTML) and `/changelog.rss` (XML feed).
+ * Filename convention: YYYY-MM-DD-slug.md. Multiple entries can share a
+ * date; the parser sorts by date desc, then by filename to keep order
+ * deterministic.
  */
 
 export type Verb = "ships" | "tightens" | "cuts" | "holds" | "reads";
@@ -37,56 +35,10 @@ export type DispatchEntry = {
   isLegacy: boolean;
 };
 
-/** Legacy Section + Entry shape retained for RSS feed compatibility. */
-export type Entry = { title: string; body: string };
-export type Section = { date: string; entries: Entry[] };
-
-function parseChangelog(raw: string): Section[] {
-  const lines = raw.split("\n");
-  const sections: Section[] = [];
-  let currentSection: Section | null = null;
-  let currentEntry: Entry | null = null;
-
-  for (const line of lines) {
-    const sectionMatch = line.match(/^##\s+(\d{4}-\d{2}-\d{2}.*)$/);
-    if (sectionMatch) {
-      if (currentEntry && currentSection) currentSection.entries.push(currentEntry);
-      if (currentSection) sections.push(currentSection);
-      currentSection = { date: sectionMatch[1].trim(), entries: [] };
-      currentEntry = null;
-      continue;
-    }
-
-    const entryMatch = line.match(/^###\s+(.+)$/);
-    if (entryMatch) {
-      if (currentEntry && currentSection) currentSection.entries.push(currentEntry);
-      currentEntry = { title: entryMatch[1].trim(), body: "" };
-      continue;
-    }
-
-    if (currentEntry) {
-      currentEntry.body += line + "\n";
-    }
-  }
-  if (currentEntry && currentSection) currentSection.entries.push(currentEntry);
-  if (currentSection) sections.push(currentSection);
-  return sections;
-}
-
-export async function readChangelogSections(): Promise<Section[]> {
-  const file = await fs.readFile(
-    path.join(process.cwd(), "CHANGELOG.md"),
-    "utf-8",
-  );
-  return parseChangelog(file);
-}
-
 const VERBS: readonly Verb[] = ["ships", "tightens", "cuts", "holds", "reads"];
 const VERB_SET = new Set<string>(VERBS);
 
-const DISPATCH_HEADER = /^##\s+(\d{4}-\d{2}-\d{2})\s+·\s+([A-Z])·(\d{2})\s+·\s+(\w+)\s+·\s+(.+?)\s*$/;
-const LEGACY_H2 = /^##\s+(\d{4}-\d{2}-\d{2})(?:\s+·\s+(.+?))?\s*$/;
-const LEGACY_H3 = /^###\s+(.+)$/;
+const DISPATCH_FILE_HEADER = /^##\s+(\d{4}-\d{2}-\d{2})\s+·\s+(\w+)\s+·\s+(.+?)\s*$/;
 
 function extractBoldLead(body: string): { boldLead: string | null; rest: string } {
   const m = body.trimStart().match(/^\*\*([^]+?)\*\*\s*(?:\n|$)/);
@@ -96,85 +48,55 @@ function extractBoldLead(body: string): { boldLead: string | null; rest: string 
   return { boldLead: m[1].replace(/\s+/g, " ").trim(), rest };
 }
 
-/** Parse CHANGELOG.md into a flat list of dispatch entries (newest first as written). */
-function parseDispatch(raw: string): DispatchEntry[] {
+function parseDispatchFile(raw: string, filename: string): DispatchEntry | null {
   const lines = raw.split("\n");
-  const entries: DispatchEntry[] = [];
-  let current: DispatchEntry | null = null;
-  let legacyDate: string | null = null;
-  let legacySuffix: string | null = null;
-
-  const finalize = () => {
-    if (!current) return;
-    const { boldLead, rest } = extractBoldLead(current.body);
-    current.boldLead = boldLead;
-    current.body = rest.trim();
-    entries.push(current);
-    current = null;
-  };
-
-  for (const line of lines) {
-    const newMatch = line.match(DISPATCH_HEADER);
-    if (newMatch && VERB_SET.has(newMatch[4].toLowerCase())) {
-      finalize();
-      legacyDate = null;
-      legacySuffix = null;
-      current = {
-        date: newMatch[1],
-        cycleCode: `${newMatch[2]}·${newMatch[3]}`,
-        verb: newMatch[4].toLowerCase() as Verb,
-        headline: newMatch[5].trim(),
-        boldLead: null,
-        body: "",
-        isLegacy: false,
-      };
-      continue;
+  let header: RegExpMatchArray | null = null;
+  let headerIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(DISPATCH_FILE_HEADER);
+    if (m && VERB_SET.has(m[2].toLowerCase())) {
+      header = m;
+      headerIdx = i;
+      break;
     }
-
-    const h2 = line.match(LEGACY_H2);
-    if (h2) {
-      finalize();
-      legacyDate = h2[1];
-      legacySuffix = h2[2]?.trim() ?? "";
-      current = {
-        date: legacyDate,
-        cycleCode: null,
-        verb: null,
-        headline: legacySuffix || legacyDate,
-        boldLead: null,
-        body: "",
-        isLegacy: true,
-      };
-      continue;
-    }
-
-    const h3 = line.match(LEGACY_H3);
-    if (h3 && legacyDate) {
-      finalize();
-      current = {
-        date: legacyDate,
-        cycleCode: null,
-        verb: null,
-        headline: h3[1].trim(),
-        boldLead: null,
-        body: "",
-        isLegacy: true,
-      };
-      continue;
-    }
-
-    if (current) current.body += line + "\n";
   }
-  finalize();
-  return entries;
+  if (!header) {
+    console.warn(`[dispatch] skipping ${filename} — no valid header`);
+    return null;
+  }
+  const body = lines.slice(headerIdx + 1).join("\n");
+  const { boldLead, rest } = extractBoldLead(body);
+  return {
+    date: header[1],
+    cycleCode: null,
+    verb: header[2].toLowerCase() as Verb,
+    headline: header[3].trim(),
+    boldLead,
+    body: rest.trim(),
+    isLegacy: false,
+  };
 }
 
 export async function readDispatchEntries(): Promise<DispatchEntry[]> {
-  const file = await fs.readFile(
-    path.join(process.cwd(), "CHANGELOG.md"),
-    "utf-8",
-  );
-  return parseDispatch(file);
+  const dir = path.join(process.cwd(), "content", "dispatch");
+  let files: string[];
+  try {
+    files = await fs.readdir(dir);
+  } catch {
+    return [];
+  }
+  const mdFiles = files.filter((f) => f.endsWith(".md") && !f.startsWith("_"));
+  const entries: DispatchEntry[] = [];
+  for (const file of mdFiles) {
+    const raw = await fs.readFile(path.join(dir, file), "utf-8");
+    const entry = parseDispatchFile(raw, file);
+    if (entry) entries.push(entry);
+  }
+  entries.sort((a, b) => {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return 0;
+  });
+  return entries;
 }
 
 /** Split body into paragraphs (blank-line separated) and trim. */

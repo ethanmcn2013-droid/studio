@@ -1,5 +1,5 @@
 import {
-  readChangelogSections,
+  readDispatchEntries,
   paragraphs,
   sectionDate,
   xmlEscape,
@@ -10,45 +10,50 @@ export const dynamic = "force-dynamic";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie";
 
 /**
- * /changelog.rss — RSS 2.0 feed for the umbrella changelog.
+ * /changelog.rss — RSS 2.0 feed mirroring the dispatch.
  *
- * One <item> per entry inside studio/CHANGELOG.md. pubDate uses the
- * section's YYYY-MM-DD at noon UTC (the file does not carry per-entry
- * timestamps and a date-stable wall-clock keeps the feed deterministic).
- * GUIDs are constructed from the section date plus an entry index so
- * a duplicate title across sections doesn't collapse readers' caches.
+ * The URL stays /changelog.rss for backwards compatibility with any
+ * subscriber already set up; the content is the dispatch (operator
+ * voice, four-line cap — see BRAND.md §6.5). One <item> per entry in
+ * content/dispatch/*.md. pubDate uses the entry date at noon UTC; GUID
+ * is constructed from date + slugified headline so re-ordered files
+ * don't collapse readers' caches.
  */
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
 export async function GET() {
-  const sections = await readChangelogSections();
+  const entries = await readDispatchEntries();
 
-  type FeedItem = {
-    title: string;
-    description: string;
-    pubDate: string;
-    guid: string;
-    link: string;
-  };
+  const items = entries.map((entry) => {
+    const pubDate = sectionDate(entry.date).toUTCString();
+    const guid = `signalstudio:dispatch:${entry.date}:${slugify(entry.headline)}`;
+    const descriptionParts: string[] = [];
+    if (entry.boldLead) descriptionParts.push(entry.boldLead);
+    const bodyParas = paragraphs(entry.body);
+    if (bodyParas.length) descriptionParts.push(...bodyParas);
+    const description = descriptionParts.join("\n\n");
+    const title = entry.verb
+      ? `${entry.verb} · ${entry.headline}`
+      : entry.headline;
+    return {
+      title,
+      description,
+      pubDate,
+      guid,
+      link: `${SITE}/dispatch`,
+    };
+  });
 
-  const items: FeedItem[] = [];
-  for (const section of sections) {
-    const pubDate = sectionDate(section.date).toUTCString();
-    section.entries.forEach((entry, idx) => {
-      const guid = `signalstudio:changelog:${section.date}:${idx}`;
-      const description = paragraphs(entry.body).join("\n\n");
-      items.push({
-        title: entry.title,
-        description,
-        pubDate,
-        guid,
-        link: `${SITE}/changelog`,
-      });
-    });
-  }
-
-  const channelTitle = "Signal Studio — Changelog";
+  const channelTitle = "Signal Studio — The dispatch";
   const channelDescription =
-    "Process notes from the Signal Studio umbrella. Updated when something is worth saying out loud.";
-  const channelLink = `${SITE}/changelog`;
+    "What gets sent, not what accumulates. Shipped work across the Signal Studio suite, in plain English. Updated when something is worth saying out loud.";
+  const channelLink = `${SITE}/dispatch`;
   const feedLink = `${SITE}/changelog.rss`;
   const lastBuildDate = new Date().toUTCString();
 

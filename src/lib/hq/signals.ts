@@ -1,4 +1,37 @@
-import type { HqData, LaunchReadinessItem, ReadinessStatus } from "@/lib/hq/data";
+import type {
+  ContentItem,
+  EcosystemFlow,
+  CollaborationLoopStep,
+  DemoAsset,
+  FeatureItem,
+  GrowthWorkflowItem,
+  HqData,
+  LaunchReadinessItem,
+  ProductStatus,
+  ReadinessStatus,
+  TemplateItem,
+} from "@/lib/hq/data";
+
+/**
+ * Optional markdown override — when present, individual sections are
+ * read from this object instead of the (now-legacy) seed in HqData.
+ * Mirrors the shape exposed by `src/lib/hq/dashboard-data.ts`.
+ *
+ * Per HQ-6c.4 (2026-05-14): the seed is dead substrate; sources of
+ * truth live in `content/hq/<section>/*.md`. deriveHqState prefers the
+ * markdown when present, falls back to the seed when empty/absent.
+ */
+export type HqDerivedMarkdownOverride = {
+  products?: ProductStatus[];
+  launchReadiness?: LaunchReadinessItem[];
+  ecosystemFlows?: EcosystemFlow[];
+  collaborationLoop?: CollaborationLoopStep[];
+  features?: FeatureItem[];
+  contentItems?: ContentItem[];
+  demos?: DemoAsset[];
+  templates?: TemplateItem[];
+  growthWorkflow?: GrowthWorkflowItem[];
+};
 
 export interface HqSignal {
   id: string;
@@ -43,8 +76,11 @@ function weightedScore(items: LaunchReadinessItem[]) {
   return Math.round(total / totalWeight);
 }
 
-function readinessByCategory(data: HqData, category: string) {
-  return data.launchReadiness.find((item) => item.category === category)?.score ?? 0;
+function readinessByCategory(
+  launchReadiness: LaunchReadinessItem[],
+  category: string,
+) {
+  return launchReadiness.find((item) => item.category === category)?.score ?? 0;
 }
 
 function daysUntil(dateValue: string, todayValue: string) {
@@ -58,38 +94,69 @@ function daysUntil(dateValue: string, todayValue: string) {
   return Math.ceil((date - today) / (1000 * 60 * 60 * 24));
 }
 
-export function deriveHqState(data: HqData): HqDerivedState {
-  const productReadiness = average(data.products.map((product) => product.launchReadiness));
-  const launchReadiness = weightedScore(data.launchReadiness);
+export function deriveHqState(
+  data: HqData,
+  markdown?: HqDerivedMarkdownOverride,
+): HqDerivedState {
+  // Prefer markdown when present; fall back to seed. Same pattern the
+  // dashboard tabs already use via dashboard-data.ts.
+  const products =
+    markdown?.products?.length ? markdown.products : data.products;
+  const launchReadinessItems =
+    markdown?.launchReadiness?.length
+      ? markdown.launchReadiness
+      : data.launchReadiness;
+  const ecosystemFlows =
+    markdown?.ecosystemFlows?.length
+      ? markdown.ecosystemFlows
+      : data.ecosystemFlows ?? [];
+  const collaborationLoop =
+    markdown?.collaborationLoop?.length
+      ? markdown.collaborationLoop
+      : data.collaborationLoop ?? [];
+  const features =
+    markdown?.features?.length ? markdown.features : data.features;
+  const contentItems =
+    markdown?.contentItems?.length ? markdown.contentItems : data.contentItems;
+  const demos = markdown?.demos?.length ? markdown.demos : data.demos;
+  const templates =
+    markdown?.templates?.length ? markdown.templates : data.templates;
+  const growthWorkflow =
+    markdown?.growthWorkflow?.length
+      ? markdown.growthWorkflow
+      : data.growthWorkflow;
+
+  const productReadiness = average(products.map((product) => product.launchReadiness));
+  const launchReadiness = weightedScore(launchReadinessItems);
   const gtmReadiness = average([
-    readinessByCategory(data, "Demo assets"),
-    readinessByCategory(data, "Website and landing pages"),
-    readinessByCategory(data, "Messaging"),
-    readinessByCategory(data, "CRM and outbound"),
-    readinessByCategory(data, "Pilot programmes"),
-    readinessByCategory(data, "Collaboration loop"),
-    readinessByCategory(data, "Case study readiness"),
+    readinessByCategory(launchReadinessItems, "Demo assets"),
+    readinessByCategory(launchReadinessItems, "Website and landing pages"),
+    readinessByCategory(launchReadinessItems, "Messaging"),
+    readinessByCategory(launchReadinessItems, "CRM and outbound"),
+    readinessByCategory(launchReadinessItems, "Pilot programmes"),
+    readinessByCategory(launchReadinessItems, "Collaboration loop"),
+    readinessByCategory(launchReadinessItems, "Case study readiness"),
   ]);
   const integrationReadiness = average(
-    (data.ecosystemFlows ?? []).map((flow) => severityScore[flow.health])
+    ecosystemFlows.map((flow) => severityScore[flow.health])
   );
   const collaborationReadiness = average(
-    (data.collaborationLoop ?? []).map((step) => step.readiness)
+    collaborationLoop.map((step) => step.readiness)
   );
   const marketingReadiness = average([
-    readinessByCategory(data, "Website and landing pages"),
-    readinessByCategory(data, "Messaging"),
-    readinessByCategory(data, "Demo assets"),
+    readinessByCategory(launchReadinessItems, "Website and landing pages"),
+    readinessByCategory(launchReadinessItems, "Messaging"),
+    readinessByCategory(launchReadinessItems, "Demo assets"),
   ]);
   const contentReadiness = average([
-    readinessByCategory(data, "Demo assets"),
-    data.contentItems.filter((item) => item.status === "Published").length > 0 ? 55 : 10,
-    data.templates.filter((item) => item.status === "Published").length > 0 ? 55 : 12,
+    readinessByCategory(launchReadinessItems, "Demo assets"),
+    contentItems.filter((item) => item.status === "Published").length > 0 ? 55 : 10,
+    templates.filter((item) => item.status === "Published").length > 0 ? 55 : 12,
   ]);
-  const outboundReadiness = readinessByCategory(data, "CRM and outbound");
-  const partnershipReadiness = readinessByCategory(data, "Pilot programmes");
+  const outboundReadiness = readinessByCategory(launchReadinessItems, "CRM and outbound");
+  const partnershipReadiness = readinessByCategory(launchReadinessItems, "Pilot programmes");
   const feedbackReadiness = data.feedback.length > 0 ? 52 : 10;
-  const metricsReadiness = readinessByCategory(data, "Tracking");
+  const metricsReadiness = readinessByCategory(launchReadinessItems, "Tracking");
 
   const balance = [
     { label: "Product", score: productReadiness },
@@ -103,7 +170,7 @@ export function deriveHqState(data: HqData): HqDerivedState {
     { label: "Metrics", score: metricsReadiness },
   ];
 
-  const inProgressFeatures = data.features.filter((feature) => feature.status === "In Progress");
+  const inProgressFeatures = features.filter((feature) => feature.status === "In Progress");
   const overdueFollowUps = data.prospects.filter(
     (prospect) =>
       prospect.nextFollowUp &&
@@ -116,9 +183,9 @@ export function deriveHqState(data: HqData): HqDerivedState {
       !["Not Interested", "Later"].includes(prospect.status) &&
       daysUntil(prospect.nextFollowUp, data.updatedAt) <= 3
   );
-  const publishedDemos = data.demos.filter((demo) => demo.publishedLink).length;
+  const publishedDemos = demos.filter((demo) => demo.publishedLink).length;
   const repeatedFeedback = data.feedback.filter((feedback) => feedback.frequency >= 3);
-  const readyForEthan = data.growthWorkflow.filter(
+  const readyForEthan = growthWorkflow.filter(
     (item) => item.status === "Ready for Ethan"
   );
 

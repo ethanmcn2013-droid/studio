@@ -158,52 +158,61 @@ function scoreTone(score: number) {
 }
 
 function StatusBadge({ value }: { value: string }) {
-  const tone =
-    value === "Clear" ||
-    value === "Shipped" ||
-    value === "Published" ||
-    value === "Done" ||
-    value === "Approved" ||
-    value === "Working"
-      ? "#047857"
-      : value === "At risk" || value === "Blocked"
-        ? "#b91c1c"
-        : value === "In Progress" || value === "Drafting" || value === "Doing"
-          ? "#b45309"
-          : "var(--ink-quiet)";
+  // Tier maps to one of three restrained registers (no stoplight pills):
+  //   "alert" — indigo dot, ink title. Reserved for At risk / Blocked.
+  //   "active" — ink-soft dot. Things in flight.
+  //   "done"   — open ring on the dot, ink-quiet title. Reserved for
+  //              Shipped / Published / Done / Approved / Working / Clear.
+  //   "quiet"  — default; ink-quiet dot, ink-quiet title.
+  // Brand alignment: BRAND.md §5 bans stoplight colour pills.
+  const tier =
+    value === "At risk" || value === "Blocked"
+      ? "alert"
+      : value === "Shipped" ||
+          value === "Published" ||
+          value === "Done" ||
+          value === "Approved" ||
+          value === "Working" ||
+          value === "Clear"
+        ? "done"
+        : value === "In Progress" ||
+            value === "Drafting" ||
+            value === "Doing" ||
+            value === "Needs attention"
+          ? "active"
+          : "quiet";
 
   return (
-    <span
-      className="inline-flex items-center rounded-[999px] border px-2 py-1 font-mono text-[10px] uppercase"
-      style={{
-        borderColor: "color-mix(in srgb, currentColor 20%, transparent)",
-        color: tone,
-        letterSpacing: "0.08em",
-      }}
-    >
-      {value}
+    <span className="hq-status" data-tier={tier}>
+      <span className="hq-status-dot" aria-hidden="true" />
+      <span className="hq-status-label">{value.toLowerCase()}</span>
     </span>
   );
 }
 
 function ScoreBar({ score, label }: { score: number; label?: string }) {
   const safeScore = clampScore(score);
-
+  const alert = safeScore < 30;
   return (
-    <div className="space-y-2">
+    <div className="hq-score">
       {label ? (
-        <div className="flex items-center justify-between gap-4 text-[12px]">
-          <span className="text-ink-quiet">{label}</span>
-          <span className="font-mono text-ink">{safeScore}%</span>
+        <div className="hq-score-row">
+          <span className="hq-score-label">{label}</span>
+          <span className={"hq-score-value" + (alert ? " hq-score-value--alert" : "")}>
+            {safeScore}%
+          </span>
         </div>
-      ) : null}
-      <div className="h-2 overflow-hidden rounded-[999px] bg-ink-100">
+      ) : (
+        <div className="hq-score-row hq-score-row--solo">
+          <span className={"hq-score-value" + (alert ? " hq-score-value--alert" : "")}>
+            {safeScore}%
+          </span>
+        </div>
+      )}
+      <div className="hq-score-meter" aria-hidden="true">
         <div
-          className="h-full rounded-[999px]"
-          style={{
-            width: `${safeScore}%`,
-            background: scoreTone(safeScore),
-          }}
+          className={"hq-score-meter-fill" + (alert ? " hq-score-meter-fill--alert" : "")}
+          style={{ width: `${safeScore}%` }}
         />
       </div>
     </div>
@@ -231,6 +240,17 @@ function SectionHeader({
         {title}
       </h2>
       {body ? <p className="mt-2 max-w-3xl text-[14px] leading-6 text-ink-quiet">{body}</p> : null}
+    </div>
+  );
+}
+
+function SubEyebrow({ label }: { label: string }) {
+  return (
+    <div
+      className="mb-3 font-mono text-[11px] font-semibold uppercase text-ink-faint"
+      style={{ letterSpacing: "0.14em" }}
+    >
+      {label}
     </div>
   );
 }
@@ -268,7 +288,7 @@ function Panel({
 }) {
   return (
     <section
-      className={cx("hq-panel rounded-[8px] border border-border-soft bg-bg-elev p-5 shadow-1", className)}
+      className={cx("hq-panel", className)}
     >
       {children}
     </section>
@@ -415,17 +435,48 @@ export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [data]);
 
-  const derived = useMemo(() => deriveHqState(data), [data]);
+  const derived = useMemo(() => deriveHqState(data, markdown), [data, markdown]);
 
   function updateData(updater: (current: HqData) => HqData) {
     setData((current) => ({ ...updater(current), updatedAt: getToday() }));
   }
+
+  // Sections backed by markdown — operator edits to these belong in
+  // content/hq/<section>/*.md, not localStorage. The dashboard prefers
+  // markdown over data anyway, so a localStorage write here would
+  // silently be ignored on next render. Block at the source instead.
+  const MIGRATED_KEYS: HqArrayKey[] = [
+    "features",
+    "campaigns",
+    "collaborationLoop",
+    "sharedObjects",
+    "accessRoles",
+    "collaboratorFirstView",
+    "shareableArtifacts",
+    "contentItems",
+    "demos",
+    "templates",
+    "decisions",
+    "risks",
+    "growthWorkflow",
+  ];
 
   function updateItem<T extends { id: string }>(
     key: HqArrayKey,
     id: string,
     patch: Partial<T>
   ) {
+    if (MIGRATED_KEYS.includes(key)) {
+      // No-op: edits to migrated sections must happen in markdown.
+      // Surface this once per call site in dev so it's not silent.
+      if (typeof console !== "undefined") {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[hq] updateItem("${key}", "${id}") ignored — section is file-backed at content/hq/${key}/. Edit the markdown.`,
+        );
+      }
+      return;
+    }
     updateData((current) => ({
       ...current,
       [key]: (current[key] as unknown as T[]).map((item) =>
@@ -590,7 +641,7 @@ export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
           </div>
         </div>
         {importError ? (
-          <div className="mx-auto w-full max-w-[1180px] px-5 pb-4 text-[13px] text-red-700">
+          <div className="mx-auto w-full max-w-[1180px] border-l-2 border-accent px-5 pb-4 pl-3 text-[13px] text-ink-soft">
             {importError}
           </div>
         ) : null}
@@ -650,37 +701,60 @@ export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
             <CollaborationLoopTab data={data} updateItem={updateItem} markdown={markdown} />
           ) : null}
           {activeTab === "pipeline" ? (
-            <div className="grid gap-8">
-              <FeaturesTab
-                data={data}
-                filteredFeatures={filteredFeatures}
-                featureFilter={featureFilter}
-                setFeatureFilter={setFeatureFilter}
-                updateItem={updateItem}
-                markdown={markdown}
+            <div>
+              <SectionHeader
+                eyebrow="Pipeline"
+                title="Everything in flight, in one place."
+                body="Features being built, launch readiness, prospects in motion — the work that hasn't shipped yet."
               />
-              <LaunchTab data={data} derived={derived} markdown={markdown} />
-              <CrmTab
-                data={data}
-                prospectDraft={prospectDraft}
-                setProspectDraft={setProspectDraft}
-                addProspect={addProspect}
-                updateItem={updateItem}
-                deleteItem={deleteItem}
-              />
+              <div className="grid gap-10">
+                <FeaturesTab
+                  data={data}
+                  filteredFeatures={filteredFeatures}
+                  featureFilter={featureFilter}
+                  setFeatureFilter={setFeatureFilter}
+                  updateItem={updateItem}
+                  markdown={markdown}
+                  embedded
+                />
+                <LaunchTab data={data} derived={derived} markdown={markdown} embedded />
+                <CrmTab
+                  data={data}
+                  prospectDraft={prospectDraft}
+                  setProspectDraft={setProspectDraft}
+                  addProspect={addProspect}
+                  updateItem={updateItem}
+                  deleteItem={deleteItem}
+                  embedded
+                />
+              </div>
             </div>
           ) : null}
           {activeTab === "proof" ? (
-            <div className="grid gap-8">
-              <ContentTab data={data} updateItem={updateItem} markdown={markdown} />
-              <GrowthTab data={data} updateItem={updateItem} markdown={markdown} />
+            <div>
+              <SectionHeader
+                eyebrow="Proof"
+                title="What the work is producing."
+                body="Content shipped, growth signals — the assets that make the product easier to understand and share."
+              />
+              <div className="grid gap-10">
+                <ContentTab data={data} updateItem={updateItem} markdown={markdown} embedded />
+                <GrowthTab data={data} updateItem={updateItem} markdown={markdown} embedded />
+              </div>
             </div>
           ) : null}
           {activeTab === "operations" ? (
-            <div className="grid gap-8">
-              <MetricsTab data={data} updateItem={updateItem} />
-              <DecisionsTab data={data} updateItem={updateItem} markdown={markdown} />
-              <RhythmTab data={data} updateItem={updateItem} />
+            <div>
+              <SectionHeader
+                eyebrow="Operations"
+                title="The operating system underneath."
+                body="Activation metrics, decisions, the weekly cadence — how the work gets made, not what it makes."
+              />
+              <div className="grid gap-10">
+                <MetricsTab data={data} updateItem={updateItem} embedded />
+                <DecisionsTab data={data} updateItem={updateItem} markdown={markdown} embedded />
+                <RhythmTab data={data} updateItem={updateItem} embedded />
+              </div>
             </div>
           ) : null}
         </div>
@@ -838,7 +912,7 @@ function ProductsTab({
               <ListBlock title="Next actions" items={product.nextActions} />
             </div>
             {product.blockers.length ? (
-              <p className="mt-4 rounded-[6px] border border-red-100 bg-red-50 px-3 py-2 text-[13px] text-red-800">
+              <p className="mt-4 border-l-2 border-accent pl-3 text-[13px] text-ink-soft">
                 {product.blockers.join(" ")}
               </p>
             ) : null}
@@ -1114,6 +1188,7 @@ function FeaturesTab({
   setFeatureFilter,
   updateItem,
   markdown,
+  embedded,
 }: {
   data: HqData;
   filteredFeatures: FeatureItem[];
@@ -1121,6 +1196,7 @@ function FeaturesTab({
   setFeatureFilter: (value: string) => void;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
   markdown?: HqDashboardMarkdown;
+  embedded?: boolean;
 }) {
   const features = markdown?.features && markdown.features.length > 0
     ? markdown.features
@@ -1143,11 +1219,15 @@ function FeaturesTab({
 
   return (
     <div>
-      <SectionHeader
-        eyebrow="Feature tracker"
-        title="Build only what sharpens clarity."
-        body="Feature work should support the ecosystem loop, launch proof, or a real activation path."
-      />
+      {embedded ? (
+        <SubEyebrow label="Feature tracker" />
+      ) : (
+        <SectionHeader
+          eyebrow="Feature tracker"
+          title="Build only what sharpens clarity."
+          body="Feature work should support the ecosystem loop, launch proof, or a real activation path."
+        />
+      )}
 
       {isFileBacked && <FileBackedNotice section="features" />}
 
@@ -1230,10 +1310,12 @@ function LaunchTab({
   data,
   derived,
   markdown,
+  embedded,
 }: {
   data: HqData;
   derived: ReturnType<typeof deriveHqState>;
   markdown?: HqDashboardMarkdown;
+  embedded?: boolean;
 }) {
   const launchReadiness =
     markdown?.launchReadiness && markdown.launchReadiness.length > 0
@@ -1242,11 +1324,15 @@ function LaunchTab({
   const isFileBacked = Boolean(markdown?.launchReadiness?.length);
   return (
     <div>
-      <SectionHeader
-        eyebrow="Launch readiness"
-        title={`${derived.launchReadiness}% ready. Proof work is the gap.`}
-        body="The weighted model keeps launch pressure honest. Product stability matters, but activation, demos, pilots, and tracking matter too."
-      />
+      {embedded ? (
+        <SubEyebrow label={`Launch readiness · ${derived.launchReadiness}% ready`} />
+      ) : (
+        <SectionHeader
+          eyebrow="Launch readiness"
+          title={`${derived.launchReadiness}% ready. Proof work is the gap.`}
+          body="The weighted model keeps launch pressure honest. Product stability matters, but activation, demos, pilots, and tracking matter too."
+        />
+      )}
       {isFileBacked && <FileBackedNotice section="launch-readiness" />}
       <div className="grid gap-4">
         {launchReadiness.map((item) => (
@@ -1262,7 +1348,7 @@ function LaunchTab({
               <div>
                 <p className="text-[13px] leading-5 text-ink-quiet">{item.notes}</p>
                 {item.blockers.length ? (
-                  <p className="mt-2 text-[13px] leading-5 text-red-700">{item.blockers.join(" ")}</p>
+                  <p className="mt-2 border-l-2 border-accent pl-3 text-[13px] leading-5 text-ink-soft">{item.blockers.join(" ")}</p>
                 ) : null}
                 <p className="mt-2 text-[13px] leading-5 text-ink">
                   Next: <span className="text-ink-quiet">{item.nextAction}</span>
@@ -1281,10 +1367,12 @@ function GrowthTab({
   data,
   updateItem,
   markdown,
+  embedded,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
   markdown?: HqDashboardMarkdown;
+  embedded?: boolean;
 }) {
   const segments = markdown?.segments?.length ? markdown.segments : data.segments;
   const campaigns = markdown?.campaigns?.length ? markdown.campaigns : data.campaigns;
@@ -1299,11 +1387,15 @@ function GrowthTab({
   const workflowFileBacked = Boolean(markdown?.growthWorkflow?.length);
   return (
     <div>
-      <SectionHeader
-        eyebrow="Growth"
-        title="Growth work, reviewed before it ships."
-        body="Structured output, not volume. Every useful asset carries a status, a review path, and a reason to exist."
-      />
+      {embedded ? (
+        <SubEyebrow label="Growth" />
+      ) : (
+        <SectionHeader
+          eyebrow="Growth"
+          title="Growth work, reviewed before it ships."
+          body="Structured output, not volume. Every useful asset carries a status, a review path, and a reason to exist."
+        />
+      )}
 
       {isFileBacked && <FileBackedNotice section="growth" />}
 
@@ -1395,6 +1487,7 @@ function CrmTab({
   addProspect,
   updateItem,
   deleteItem,
+  embedded,
 }: {
   data: HqData;
   prospectDraft: Prospect;
@@ -1402,6 +1495,7 @@ function CrmTab({
   addProspect: () => void;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
   deleteItem: <T extends { id: string }>(key: HqArrayKey, id: string) => void;
+  embedded?: boolean;
 }) {
   const contacted = data.prospects.filter((prospect) => prospect.status !== "To Contact").length;
   const replies = data.prospects.filter((prospect) =>
@@ -1412,11 +1506,15 @@ function CrmTab({
 
   return (
     <div>
-      <SectionHeader
-        eyebrow="Outbound CRM"
-        title="Follow-up is part of the product loop."
-        body="This is founder-led and personal. No spam engine, no mass scraping, no fake urgency."
-      />
+      {embedded ? (
+        <SubEyebrow label="Outbound CRM" />
+      ) : (
+        <SectionHeader
+          eyebrow="Outbound CRM"
+          title="Follow-up is part of the product loop."
+          body="This is founder-led and personal. No spam engine, no mass scraping, no fake urgency."
+        />
+      )}
 
       <div className="mb-5 grid gap-4 md:grid-cols-4">
         <MiniStat label="Prospects" value={data.prospects.length} />
@@ -1589,10 +1687,12 @@ function ContentTab({
   data,
   updateItem,
   markdown,
+  embedded,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
   markdown?: HqDashboardMarkdown;
+  embedded?: boolean;
 }) {
   const contentItems = markdown?.contentItems?.length
     ? markdown.contentItems
@@ -1611,11 +1711,15 @@ function ContentTab({
   const templatesFileBacked = Boolean(markdown?.templates?.length);
   return (
     <div>
-      <SectionHeader
-        eyebrow="Content, demos, templates, pilots"
-        title="Shared proof beats private polish."
-        body="Each asset should make the product easier to understand, easier to share, or easier to try."
-      />
+      {embedded ? (
+        <SubEyebrow label="Content, demos, templates, pilots" />
+      ) : (
+        <SectionHeader
+          eyebrow="Content, demos, templates, pilots"
+          title="Shared proof beats private polish."
+          body="Each asset should make the product easier to understand, easier to share, or easier to try."
+        />
+      )}
 
       {isFileBacked && <FileBackedNotice section="content" />}
 
@@ -1753,17 +1857,23 @@ function AssetRow({
 function MetricsTab({
   data,
   updateItem,
+  embedded,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  embedded?: boolean;
 }) {
   return (
     <div>
-      <SectionHeader
-        eyebrow="Manual metrics"
-        title="Measure activation before scale."
-        body="A workspace is activated when real work is added, someone is invited, the user returns, and something moves."
-      />
+      {embedded ? (
+        <SubEyebrow label="Manual metrics" />
+      ) : (
+        <SectionHeader
+          eyebrow="Manual metrics"
+          title="Measure activation before scale."
+          body="A workspace is activated when real work is added, someone is invited, the user returns, and something moves."
+        />
+      )}
 
       <div className="grid gap-4 md:grid-cols-2">
         {data.metrics.map((metric) => (
@@ -1806,10 +1916,12 @@ function DecisionsTab({
   data,
   updateItem,
   markdown,
+  embedded,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
   markdown?: HqDashboardMarkdown;
+  embedded?: boolean;
 }) {
   const decisions = markdown?.decisions && markdown.decisions.length > 0
     ? markdown.decisions
@@ -1821,11 +1933,15 @@ function DecisionsTab({
   const isFileBacked = Boolean(markdown?.risks?.length);
   return (
     <div>
-      <SectionHeader
-        eyebrow="Decisions, feedback, risks"
-        title="Keep why visible."
-        body="Decisions prevent re-litigation. Feedback prevents guessing. Risks keep the work honest."
-      />
+      {embedded ? (
+        <SubEyebrow label="Decisions, feedback, risks" />
+      ) : (
+        <SectionHeader
+          eyebrow="Decisions, feedback, risks"
+          title="Keep why visible."
+          body="Decisions prevent re-litigation. Feedback prevents guessing. Risks keep the work honest."
+        />
+      )}
 
       {decisionsFileBacked && <FileBackedNotice section="decisions" />}
 
@@ -1898,17 +2014,23 @@ function DecisionsTab({
 function RhythmTab({
   data,
   updateItem,
+  embedded,
 }: {
   data: HqData;
   updateItem: <T extends { id: string }>(key: HqArrayKey, id: string, patch: Partial<T>) => void;
+  embedded?: boolean;
 }) {
   return (
     <div>
-      <SectionHeader
-        eyebrow="Weekly rhythm and messaging"
-        title="Keep the operating cadence visible."
-        body="The rhythm is intentionally small. It gives distribution a place in the week without taking over the company."
-      />
+      {embedded ? (
+        <SubEyebrow label="Weekly rhythm and messaging" />
+      ) : (
+        <SectionHeader
+          eyebrow="Weekly rhythm and messaging"
+          title="Keep the operating cadence visible."
+          body="The rhythm is intentionally small. It gives distribution a place in the week without taking over the company."
+        />
+      )}
 
       <div className="mb-5 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
         <Panel>

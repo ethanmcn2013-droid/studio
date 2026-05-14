@@ -1656,6 +1656,36 @@ body {
 .hq-inbox-row-wrap:last-child {
   border-bottom: 1px solid var(--border-soft);
 }
+.hq-inbox-dismissable {
+  position: relative;
+}
+.hq-inbox-dismiss {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 0;
+  padding: 0.15rem 0.5rem;
+  opacity: 0;
+  transition: opacity 0.12s ease-out, color 0.12s ease-out, border-color 0.12s ease-out;
+  cursor: pointer;
+  z-index: 2;
+}
+.hq-inbox-dismissable:hover .hq-inbox-dismiss,
+.hq-inbox-dismiss:focus {
+  opacity: 1;
+}
+.hq-inbox-dismiss:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 .hq-inbox-row {
   display: grid;
   grid-template-columns: 0.85rem 5rem minmax(0, 1.7fr) minmax(0, 1fr);

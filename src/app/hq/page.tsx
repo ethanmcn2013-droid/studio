@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { HqDashboard } from "@/components/hq/hq-dashboard";
+import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqToday } from "@/components/hq/hq-today";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getHqDashboardMarkdown } from "@/lib/hq/dashboard-data";
@@ -35,6 +36,17 @@ export default async function HqPage() {
 
   return (
     <>
+      <Suspense
+        fallback={
+          <section className="hq-inbox hq-inbox--loading">
+            <div className="hq-inbox-header">
+              <span className="hq-inbox-eyebrow">inbox · loading</span>
+            </div>
+          </section>
+        }
+      >
+        <HqInbox />
+      </Suspense>
       <Suspense
         fallback={
           <section className="hq-today hq-today--loading">
