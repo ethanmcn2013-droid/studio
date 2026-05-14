@@ -13,13 +13,11 @@ import type {
 } from "@/lib/hq/data";
 
 /**
- * Optional markdown override — when present, individual sections are
- * read from this object instead of the (now-legacy) seed in HqData.
- * Mirrors the shape exposed by `src/lib/hq/dashboard-data.ts`.
- *
- * Per HQ-6c.4 (2026-05-14): the seed is dead substrate; sources of
- * truth live in `content/hq/<section>/*.md`. deriveHqState prefers the
- * markdown when present, falls back to the seed when empty/absent.
+ * Markdown override consumed by deriveHqState. Mirrors the shape exposed
+ * by `src/lib/hq/dashboard-data.ts`. After the HQ v2 closure (2026-05-15)
+ * these sections are markdown-only — no seed fallback. When the markdown
+ * is absent (e.g. dev without content/hq), the derived state simply has
+ * empty arrays and the readiness scores fall to 0.
  */
 export type HqDerivedMarkdownOverride = {
   products?: ProductStatus[];
@@ -98,33 +96,18 @@ export function deriveHqState(
   data: HqData,
   markdown?: HqDerivedMarkdownOverride,
 ): HqDerivedState {
-  // Prefer markdown when present; fall back to seed. Same pattern the
-  // dashboard tabs already use via dashboard-data.ts.
-  const products =
-    markdown?.products?.length ? markdown.products : data.products;
-  const launchReadinessItems =
-    markdown?.launchReadiness?.length
-      ? markdown.launchReadiness
-      : data.launchReadiness;
-  const ecosystemFlows =
-    markdown?.ecosystemFlows?.length
-      ? markdown.ecosystemFlows
-      : data.ecosystemFlows ?? [];
-  const collaborationLoop =
-    markdown?.collaborationLoop?.length
-      ? markdown.collaborationLoop
-      : data.collaborationLoop ?? [];
-  const features =
-    markdown?.features?.length ? markdown.features : data.features;
-  const contentItems =
-    markdown?.contentItems?.length ? markdown.contentItems : data.contentItems;
-  const demos = markdown?.demos?.length ? markdown.demos : data.demos;
-  const templates =
-    markdown?.templates?.length ? markdown.templates : data.templates;
-  const growthWorkflow =
-    markdown?.growthWorkflow?.length
-      ? markdown.growthWorkflow
-      : data.growthWorkflow;
+  // Markdown-only for retired sections — seed fallback removed in the
+  // HQ v2 closure (2026-05-15). data still carries the operator-owned
+  // surfaces (prospects, feedback).
+  const products = markdown?.products ?? [];
+  const launchReadinessItems = markdown?.launchReadiness ?? [];
+  const ecosystemFlows = markdown?.ecosystemFlows ?? [];
+  const collaborationLoop = markdown?.collaborationLoop ?? [];
+  const features = markdown?.features ?? [];
+  const contentItems = markdown?.contentItems ?? [];
+  const demos = markdown?.demos ?? [];
+  const templates = markdown?.templates ?? [];
+  const growthWorkflow = markdown?.growthWorkflow ?? [];
 
   const productReadiness = average(products.map((product) => product.launchReadiness));
   const launchReadiness = weightedScore(launchReadinessItems);

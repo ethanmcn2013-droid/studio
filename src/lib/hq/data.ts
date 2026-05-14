@@ -1,28 +1,37 @@
 /**
- * Signal HQ seed data — TRANSITIONAL FILE (HQ-6c.3, 2026-05-14).
+ * Signal HQ seed data — operator surfaces + types only (HQ v2 closure, 2026-05-15).
  *
- * 18 sections have migrated to markdown at `content/hq/<section>/*.md`.
- * The dashboard reads those via `src/lib/hq/dashboard-data.ts` and
- * prefers markdown when present. The data below is legacy fallback —
- * when both sources exist, the markdown wins.
+ * Most HQ state lives in `content/hq/<section>/*.md` and is loaded by
+ * `src/lib/hq/dashboard-data.ts`. This file carries only what has no
+ * other source of truth:
  *
- * DEAD SUBSTRATE (read-only fallback; edit the .md files instead):
- *   products, ecosystemFlows, collaborationLoop, sharedObjects,
- *   accessRoles, collaboratorFirstView, shareableArtifacts, features,
- *   launchReadiness, segments, campaigns, contentItems, demos,
- *   templates, pilots, decisions, risks, messaging, growthWorkflow.
+ *   focus       — operator-set strategic frame (stage/week/theme/focus).
+ *                 The derived signal layer (phase.md, atlas drift, commits,
+ *                 cron, log) renders separately in `hq-today.tsx`. The
+ *                 dashboard's OverviewTab focus card supplements the
+ *                 operator theme with the phase headline (piped through
+ *                 HqDashboardMarkdown).
+ *   prospects   — outbound CRM, browser-edited via /hq.
+ *   feedback    — operator capture, browser-edited via /hq.
+ *   weeklyRhythm — operator cadence, browser-edited via /hq.
+ *   nextActions — operator todos, browser-edited via /hq.
  *
- * STILL LIVE (operator-owned, localStorage-edited via /hq):
- *   prospects (CRM), feedback, weeklyRhythm, nextActions.
+ *   metrics     — DEFERRED. 13 seed values are display-only. There is
+ *                 no real source of truth wired today (no analytics
+ *                 read, no repo activity counter, no Vercel metrics
+ *                 ingest). Values stay manually-set in localStorage
+ *                 until a real source ships. Treat as historical
+ *                 scaffolding, not signal.
  *
- * DERIVED ELSEWHERE (kept here as type-shape only):
- *   focus → read from ~/.claude/state/phase.md by the Today block.
- *   metrics → deferred (would need a real DB to honor).
+ * Retired on 2026-05-15 (sections now markdown-only): products,
+ * ecosystem-flows, collaboration-loop, shared-objects, access-roles,
+ * collaborator-first-view, shareable-artifacts, features,
+ * launch-readiness, segments, campaigns, content, demos, templates,
+ * pilots, decisions, risks, growth-workflow, messaging. The dashboard
+ * reads them via `getHqDashboardMarkdown()` and renders directly.
  *
- * Types below stay the canonical shape; the dashboard imports them.
- * CLAUDE.md's Mandatory Signal HQ Rule was rewritten (HQ-6c.4) to point
- * at source files. When you change strategic HQ content, change the
- * markdown — not this file.
+ * Types below stay the canonical shape; `dashboard-data.ts` and
+ * `signals.ts` import them as the dashboard contract.
  */
 
 export type ReadinessStatus = "Clear" | "Needs attention" | "At risk" | "Blocked";
@@ -48,20 +57,11 @@ export type GrowthStatus =
   | "Repurposed"
   | "Archived";
 
-export interface ScoreCard {
-  label: string;
-  score: number;
-  detail: string;
-}
-
 export interface OperatingFocus {
   stage: "Development" | "Pre-launch" | "Private Beta" | "Public Beta" | "Launch";
   weekOf: string;
   theme: string;
   focus: string;
-  priorities: string[];
-  risks: string[];
-  nextActions: string[];
 }
 
 export interface ProductStatus {
@@ -419,69 +419,23 @@ export interface HqData {
   version: 1;
   updatedAt: string;
   focus: OperatingFocus;
-  products: ProductStatus[];
-  ecosystemFlows: EcosystemFlow[];
-  collaborationLoop: CollaborationLoopStep[];
-  sharedObjects: SharedObjectItem[];
-  accessRoles: AccessRoleItem[];
-  collaboratorFirstView: CollaboratorFirstViewItem[];
-  shareableArtifacts: ShareableArtifactItem[];
-  features: FeatureItem[];
-  launchReadiness: LaunchReadinessItem[];
-  segments: SegmentPlan[];
-  campaigns: Campaign[];
   prospects: Prospect[];
-  contentItems: ContentItem[];
-  demos: DemoAsset[];
-  templates: TemplateItem[];
-  pilots: PilotProgramme[];
   metrics: MetricItem[];
-  decisions: DecisionItem[];
   feedback: FeedbackItem[];
-  risks: RiskItem[];
   weeklyRhythm: WeeklyRhythmItem[];
-  messaging: MessagingBank;
   nextActions: NextActionItem[];
-  growthWorkflow: GrowthWorkflowItem[];
 }
 
 export const seedHqData: HqData = {
   version: 1,
-  updatedAt: "2026-05-14T19:00:00Z",
+  updatedAt: "2026-05-15T00:00:00Z",
   focus: {
     stage: "Pre-launch",
     weekOf: "2026-05-11",
     theme: "Venue-pilot pull · three conversations by 2026-06-02, regardless of polish.",
     focus:
       "T0-T3.b polish work is closed (verified 2026-05-12 across /weddings, Tasks /welcome, Roadmap demo). The next forcing function is not another sprint - it is venues. Three real conversations by 2026-06-02. Sprint 1 (Notes 9.3 + 9.4b) and Sprint 2 (collaboration gestures) continue, but in service of the pilot, not as a prerequisite.",
-    priorities: [
-      "Assemble a list of 10 named Irish wedding venues in signal-growth/outbound by 2026-05-15.",
-      "Send the wedding venue outreach kit to those 10 venues by 2026-05-19.",
-      "Hold three venue conversations by 2026-06-02 - regardless of remaining polish.",
-    ],
-    risks: [
-      "Polish-cowardice - Sprint 1 + Sprint 2 cycles can absorb every available hour unless the pilot deadline holds.",
-      "If the 2026-05-15 venue list gate slips, the wedge has a research/sourcing problem, not a polish problem - and shipping more product will not fix it.",
-      "Three weeks is on the soft side. If 2026-06-02 is hit cleanly with no learning, the next cycle's deadline tightens to one week to test pitch sharpness honestly.",
-    ],
-    nextActions: [
-      "Compile 10 named Irish venues by Friday 2026-05-15 - coordinator name, email, and one specific reason this venue (not 'wedding venues in Cork').",
-      "Send 2 outreach kits/day, 5 weekdays, starting 2026-05-19 - use signal-growth/outbound/wedding-venue-outreach-kit.md verbatim.",
-      "Book three venue conversations by 2026-06-02 - calendar invites accepted, not just replies received.",
-      "Monday 2026-05-18 11:00 - design-system session with Claude Design. Working session for the new suite-wide design system; output goes in studio/docs/. Hard time-box so it doesn't absorb venue-list slippage.",
-    ],
   },
-  products: [],
-  ecosystemFlows: [],
-  collaborationLoop: [],
-  sharedObjects: [],
-  accessRoles: [],
-  collaboratorFirstView: [],
-  shareableArtifacts: [],
-  features: [],
-  launchReadiness: [],
-  segments: [],
-  campaigns: [],
   prospects: [
     {
       id: "sample-venue-1",
@@ -502,10 +456,6 @@ export const seedHqData: HqData = {
       notes: "Use this row as the shape for real prospects.",
     },
   ],
-  contentItems: [],
-  demos: [],
-  templates: [],
-  pilots: [],
   metrics: [
     {
       id: "workspaces-created",
@@ -648,7 +598,6 @@ export const seedHqData: HqData = {
       notes: "Not the first validation metric.",
     },
   ],
-  decisions: [],
   feedback: [
     {
       id: "feedback-demo-gap",
@@ -679,7 +628,6 @@ export const seedHqData: HqData = {
       notes: "Lead with a venue meeting, a couple timeline, and supplier follow-up.",
     },
   ],
-  risks: [],
   weeklyRhythm: [
     { id: "mon-list", day: "Monday", action: "Build prospect list.", checked: false },
     { id: "mon-post", day: "Monday", action: "Publish one founder or product post.", checked: false },
@@ -690,46 +638,6 @@ export const seedHqData: HqData = {
     { id: "fri-metrics", day: "Friday", action: "Review metrics and objections.", checked: false },
     { id: "weekend-improve", day: "Weekend", action: "Improve one landing page, template, or demo.", checked: false },
   ],
-  messaging: {
-    positioning:
-      "Signal Studio is project management for the 80% who don't work in tech. It helps people capture context, organise action, communicate direction, and understand what needs attention without project-management overhead.",
-    ecosystemLine:
-      "Signal Notes captures context. Signal Tasks organises action. Signal Roadmap communicates direction. Signal Analytics finds what needs attention.",
-    founderStory:
-      "I am a PMP and Lean Six Sigma Black Belt, and even I think most project-management software has become unnecessarily confusing. Signal Studio keeps the discipline of good project work while removing the jargon, overhead, and translation layer.",
-    hooks: [
-      "No Jira translator required.",
-      "Project clarity without project-management theatre.",
-      "Group projects without the group chat mess.",
-      "Wedding planning without spreadsheet chaos.",
-      "Everything important. Nothing to decode.",
-      "Built for people who have actual work to do.",
-      "Clear workspaces for real-world coordination.",
-      "One workspace clear enough to invite everyone in.",
-      "Project Management for the 80% who don't work in tech.",
-    ],
-    pitches: {
-      weddingVenue:
-        "Give each couple a clear planning workspace for notes, decisions, tasks, and the timeline you both need to see.",
-      weddingPlanner:
-        "Keep each wedding's moving parts visible without asking couples or suppliers to learn planning software.",
-      student:
-        "A shared workspace for group projects that shows who owns what and what happens next.",
-      freelancer:
-        "A calm client workspace for the work, the notes, and the updates that usually get buried in email.",
-    },
-    objections: [
-      "I already use spreadsheets. Response: keep the spreadsheet where it helps, then use Signal Studio for ownership, decisions, and follow-up.",
-      "I do not want another tool. Response: Signal Studio should replace the scattered middle, not add a new layer.",
-      "My clients will not use software. Response: they should be able to open a shared page and understand it in under 60 seconds.",
-    ],
-    ctas: [
-      "Ask for a private workspace.",
-      "Join the pilot.",
-      "See the wedding planning demo.",
-      "Use the template.",
-    ],
-  },
   nextActions: [
     {
       id: "build-weddings-page",
@@ -922,5 +830,4 @@ export const seedHqData: HqData = {
       notes: "The Suite Review pass replaced Studio's direct libSQL read of Tasks tables with an HTTP endpoint at tasks.signalstudio.ie/api/internal/partner-stats. Both sides need PARTNER_STATS_SECRET set to the same value. Until it lands, /hq/partners stays loadable but Tasks-side stats render as zeros (with console.warn). Generate one strong secret, paste on both Vercel projects, redeploy.",
     },
   ],
-  growthWorkflow: [],
 };

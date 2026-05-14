@@ -3,6 +3,74 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-15 · S·35 · cuts · The HQ seed steps back from 19 retired sections
+
+**The fan-out claim in `HQ-6c.3` was that 18 sections had migrated to
+markdown but the seed kept their type-shape "as a fallback". This
+cycle removes the fallback — `HqData` no longer declares the 18
+retired arrays, `seedHqData` no longer carries empty placeholders,
+and `messaging` joins them by being read from `content/hq/messaging.md`
+via a new adapter. The dashboard reads markdown directly with no seed
+shadow.**
+
+Retirement scope on `src/lib/hq/data.ts`: products, ecosystemFlows,
+collaborationLoop, sharedObjects, accessRoles, collaboratorFirstView,
+shareableArtifacts, features, launchReadiness, segments, campaigns,
+contentItems, demos, templates, pilots, decisions, risks,
+growthWorkflow — all gone from `HqData`. `messaging` gone too, now
+wired through `getHqDashboardMarkdown()` via the new
+`readMessagingAsDashboard()` parser (single-file shape, H2 sections +
+H3 sub-pitches). `OperatingFocus` trims to four fields
+(stage/weekOf/theme/focus); the priorities/risks/nextActions arrays
+were stale duplicates of hq-today's active risks, the operator's
+nextActions tab, and the inbox tier flags. `ScoreCard` (defined-never-
+used) deleted.
+
+`OverviewTab` gains a phase headline panel between the stage badge
+and the operator-set theme — phase.md derives into the dashboard, not
+just the Today block above it. `readPhase` exported + `cache()`-
+wrapped in `today.ts` so dashboard + Today share one disk read per
+request. `HqDashboardMarkdown` extended with `messaging?:
+MessagingBank` and `phaseHeadline?: string`. RhythmTab Messaging Bank
+panel reads from markdown with an empty-state pointer
+("Edit at `content/hq/messaging.md`.") when the file is absent.
+
+`hq-dashboard.tsx` cleanup follows: every `markdown?.X?.length ?
+markdown.X : data.X` fallback collapses to `markdown?.X ?? []`; the
+`SelectInput` editors for migrated sections (decisions, content,
+demos, templates, collab-loop step, growth-workflow) replaced with
+read-only status spans; `MIGRATED_KEYS` no-op list dropped (the
+sections it warned about don't exist on `HqData` anymore); `MIGRATED`
+warning console.warn dropped; `workStatuses` / `growthStatuses` /
+`GrowthStatus` imports purged. `HqArrayKey` narrows to five operator
+keys: prospects, metrics, feedback, weeklyRhythm, nextActions.
+`signals.ts` `deriveHqState` reads markdown-only for the 9 retired
+sections it consumed (operator surfaces still come from `data`).
+
+Six one-shot migration scripts at `scripts/migrate-hq-*.ts` deleted
+— they produced the 117 markdown files in `content/hq/*/`, git
+preserves the pattern, the file system doesn't need them.
+
+Net diff across the repo: **+492 / −1096 = −604 lines.** `data.ts`
+926 → 833. `hq-dashboard.tsx` 2104 → 1917. `npx tsc --noEmit` clean,
+`npx tsx --test` 18/18 pass, `npx next build` green (24/24 static
+pages, all `/hq/*` routes resolve). ESLint blocked by an upstream
+`eslint-plugin-react@7.37.5 × eslint@10.3.0` compat error that
+predates this work.
+
+Decisions kept out of scope: `metrics` defers (13 seed values stay
+display-only, header comment documents the deferral); CLAUDE.md
+Mandatory Signal HQ Rule stays as written (the four-operator-surfaces
+list is still the correct mental model — focus + metrics are
+seed-bound but the rule's intent is unambiguous and rewriting for
+elegance was refused); localStorage key stays `v1` (old browser
+exports with retired fields will silently drop them on import,
+acceptable). OverviewTab as a structural question — it now
+visibly duplicates hq-today which sits above it — punts to the next
+audit.
+
+Per the S·32 rule, this is internal-plumbing work — no dispatch entry.
+
 ## 2026-05-14 · S·34 · ships · The atlas drift-trigger actually fires from siblings
 
 **The fan-out claim in `S·25b` was overstated — sibling repos held a

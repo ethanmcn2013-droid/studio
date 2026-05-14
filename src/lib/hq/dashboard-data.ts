@@ -1,5 +1,9 @@
 import "server-only";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { readHqSection } from "@/lib/hq/markdown";
+import { parseFrontmatter, splitH2Sections } from "@/lib/hq/markdown-parser";
+import { readPhase } from "@/lib/hq/today";
 import type {
   AccessRoleItem,
   Campaign,
@@ -13,6 +17,7 @@ import type {
   GrowthStatus,
   GrowthWorkflowItem,
   LaunchReadinessItem,
+  MessagingBank,
   PilotProgramme,
   Priority,
   ProductStatus,
@@ -421,6 +426,64 @@ async function readTemplatesAsDashboard(): Promise<TemplateItem[]> {
   });
 }
 
+async function readMessagingAsDashboard(): Promise<MessagingBank | undefined> {
+  // messaging lives as a single file (content/hq/messaging.md), not a
+  // directory of entries. Parse it directly and adapt to MessagingBank.
+  const messagingPath = path.join(
+    process.cwd(),
+    "content",
+    "hq",
+    "messaging.md",
+  );
+  let raw: string;
+  try {
+    raw = await fs.readFile(messagingPath, "utf-8");
+  } catch {
+    return undefined;
+  }
+  const { body } = parseFrontmatter(raw);
+  const sections = splitH2Sections(body);
+
+  const parseList = (section: string | undefined): string[] => {
+    if (!section) return [];
+    return section
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.startsWith("- "))
+      .map((l) => l.slice(2).trim())
+      .filter(Boolean);
+  };
+
+  // Pitches section uses H3 subheadings — parse manually.
+  const pitchesSection = sections.Pitches ?? "";
+  const parsePitches = (): MessagingBank["pitches"] => {
+    const out: Record<string, string> = {};
+    const blocks = pitchesSection.split(/^###\s+/m).slice(1);
+    for (const block of blocks) {
+      const [headLine, ...rest] = block.split("\n");
+      const key = headLine.trim();
+      const value = rest.join("\n").trim();
+      if (key) out[key] = value;
+    }
+    return {
+      weddingVenue: out.weddingVenue ?? "",
+      weddingPlanner: out.weddingPlanner ?? "",
+      student: out.student ?? "",
+      freelancer: out.freelancer ?? "",
+    };
+  };
+
+  return {
+    positioning: (sections.Positioning ?? "").trim(),
+    ecosystemLine: (sections["Ecosystem line"] ?? "").trim(),
+    founderStory: (sections["Founder story"] ?? "").trim(),
+    hooks: parseList(sections.Hooks),
+    pitches: parsePitches(),
+    objections: parseList(sections.Objections),
+    ctas: parseList(sections.CTAs),
+  };
+}
+
 async function readGrowthWorkflowAsDashboard(): Promise<GrowthWorkflowItem[]> {
   const entries = await readHqSection("growth-workflow");
   return entries.map((e) => {
@@ -471,6 +534,8 @@ export type HqDashboardMarkdown = {
   demos: DemoAsset[];
   templates: TemplateItem[];
   growthWorkflow: GrowthWorkflowItem[];
+  messaging?: MessagingBank;
+  phaseHeadline?: string;
 };
 
 export async function getHqDashboardMarkdown(): Promise<HqDashboardMarkdown> {
@@ -493,6 +558,8 @@ export async function getHqDashboardMarkdown(): Promise<HqDashboardMarkdown> {
     demos,
     templates,
     growthWorkflow,
+    messaging,
+    phase,
   ] = await Promise.all([
     readProductsAsDashboard(),
     readEcosystemFlowsAsDashboard(),
@@ -512,6 +579,8 @@ export async function getHqDashboardMarkdown(): Promise<HqDashboardMarkdown> {
     readDemosAsDashboard(),
     readTemplatesAsDashboard(),
     readGrowthWorkflowAsDashboard(),
+    readMessagingAsDashboard(),
+    readPhase(),
   ]);
   return {
     products,
@@ -532,5 +601,7 @@ export async function getHqDashboardMarkdown(): Promise<HqDashboardMarkdown> {
     demos,
     templates,
     growthWorkflow,
+    messaging,
+    phaseHeadline: phase.available ? phase.headline : undefined,
   };
 }

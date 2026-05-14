@@ -122,8 +122,13 @@ export type TodayData = {
   pilots: PilotSummary[];
 };
 
-/** Read phase.md and return the first non-empty line as the headline. */
-async function readPhase(): Promise<PhaseSnapshot> {
+/** Read phase.md and return the first non-empty line as the headline.
+ *
+ * Cached per-request so the dashboard (which reads phaseHeadline via
+ * `dashboard-data.ts`) and HqToday (which calls `getTodayData`) collapse
+ * to one disk read per page render.
+ */
+export const readPhase = cache(async (): Promise<PhaseSnapshot> => {
   if (!HOME) {
     return { available: false, headline: "—", source: "" };
   }
@@ -142,7 +147,7 @@ async function readPhase(): Promise<PhaseSnapshot> {
   } catch {
     return { available: false, headline: "—", source: phasePath };
   }
-}
+});
 
 async function readRepoActivity(repo: Product): Promise<RepoActivity> {
   if (!PROJECTS_ROOT) {
