@@ -114,7 +114,10 @@ export default function WeddingsPage() {
                 rel="noopener noreferrer"
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                See what the couple sees →
+                See what the couple sees{" "}
+                <span className="cta-arrow" aria-hidden>
+                  →
+                </span>
               </a>
             </div>
 

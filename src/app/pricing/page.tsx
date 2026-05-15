@@ -528,7 +528,10 @@ export default async function PricingPage({
                   className="pricing-tier-cta"
                   data-recommended={t.recommended ? "true" : undefined}
                 >
-                  {t.cta} →
+                  {t.cta}{" "}
+                  <span className="cta-arrow" aria-hidden>
+                    →
+                  </span>
                 </Link>
               </div>
             ))}
@@ -881,7 +884,10 @@ export default async function PricingPage({
                       fontWeight: 500,
                     }}
                   >
-                    Plan an event →
+                    Plan an event{" "}
+                    <span className="cta-arrow" aria-hidden>
+                      →
+                    </span>
                   </Link>
                   <Link
                     href="/weddings"

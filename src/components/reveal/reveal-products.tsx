@@ -71,7 +71,12 @@ function ProductRow({
               {label}
             </span>
           ))}
-          <span className="open">{cta}</span>
+          <span className="open">
+            {cta.replace(/\s*→\s*$/, "")}{" "}
+            <span className="cta-arrow" aria-hidden>
+              →
+            </span>
+          </span>
         </div>
       </div>
     </a>

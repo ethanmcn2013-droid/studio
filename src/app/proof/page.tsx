@@ -245,7 +245,10 @@ export default function ProofPage() {
                   rel="noopener noreferrer"
                   className="text-[14px] text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
                 >
-                  Open {layer.product} →
+                  Open {layer.product}{" "}
+                  <span className="cta-arrow" aria-hidden>
+                    →
+                  </span>
                 </a>
               </div>
             </div>
