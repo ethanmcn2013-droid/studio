@@ -27,7 +27,15 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-15T18:50:42.284Z",
-    "byCommit": "85afad2"
+    "updatedAt": "2026-05-15T19:24:28.342Z",
+    "byCommit": "19b7b40"
+  },
+  "analytics-daily-cron": {
+    "drifted": [
+      "~/Projects/personal/analytics/src/lib/briefing/prose.ts",
+      "~/Projects/personal/analytics/src/lib/briefing/build.ts"
+    ],
+    "updatedAt": "2026-05-15T19:22:50.145Z",
+    "byCommit": "54c33f9"
   }
 }
