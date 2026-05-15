@@ -6,7 +6,7 @@ import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-
 export const metadata: Metadata = {
   title: "About — Signal Studio",
   description:
-    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: cut through the noise.",
+    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: show you what matters.",
 };
 export default function AboutPage() {
   return (
@@ -45,7 +45,7 @@ export default function AboutPage() {
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Four products. One register. One job: cut through the noise.
+                Four products. One register. One job: show you what matters.
                 Signal Tasks runs the work. Signal Roadmap explains it. Signal
                 Analytics surfaces what matters in it. Signal Notes captures it
                 as it happens. Each solves one slice. Together they read as one

@@ -3,7 +3,37 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
-## 2026-05-15 · S·U2 · cuts · the retired tagline off the money page
+## 2026-05-15 · S·U3 · cuts · the retired tagline off the page that explains the company
+
+**The third home of "cut through the noise." — and the one that
+stings. S·U2's dispatch said the sweep "closes the known retired-
+line instances." It did not. The sweep grepped case-sensitively for
+"Cut through the noise" and never saw the two lowercase ones on
+/about: the page's own SEO description and the body sentence that
+declares the suite's purpose — "Four products. One register. One
+job: cut through the noise." The /about page, the place a wedding
+planner goes to find out what this company is, stated the company's
+one job as a tagline the brand had retired. Found by actually
+reading /about at phone width — not by trusting last turn's
+"exhaustively clean."**
+
+Both now read "One job: show you what matters." — which is what the
+next sentence of that same paragraph already says the products do,
+so the page is now coherent with itself and with the current thesis
+(operating principle "Everything important. Nothing distracting.";
+positioning "Project management for the 80% not in tech."). A
+case-insensitive sweep across all five repos confirms these were the
+last two; tasks/roadmap/analytics/notes are genuinely clean (every
+remaining hit is a sanctioned strikethrough or "no agent, no
+copilot" refusal). typecheck + build clean; verifying live.
+
+The honest lesson, logged so it stops recurring: a case-sensitive
+grep is not an exhaustive sweep, and "I verified" stated without the
+exact command run is how the same line survived three cycles
+(S·U1 title → S·U2 pricing → S·U3 /about). The catch-net only works
+if the net has the right mesh. Same-session pixel-walk also
+re-confirmed /weddings, /principles, /work world-class on phone — no
+manufactured fixes; those surfaces were sound.
 
 **S·U1 fixed "Cut through the noise." in the homepage title — but
 the same retired line (BRAND §6 killed it on the 15th) was still
