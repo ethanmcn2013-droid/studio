@@ -1007,7 +1007,7 @@ export default async function PricingPage({
             className="h-title text-balance text-ink"
             style={{ maxWidth: "14ch", marginBottom: 28 }}
           >
-            Cut through the noise.
+            Everything important. Nothing distracting.
           </h2>
           <p
             className="text-ink-soft"

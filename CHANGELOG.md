@@ -3,7 +3,30 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
-## 2026-05-15 · S·U1 · ships · The umbrella front door shows the 80% their own day before it names the tools
+## 2026-05-15 · S·U2 · cuts · the retired tagline off the money page
+
+**S·U1 fixed "Cut through the noise." in the homepage title — but
+the same retired line (BRAND §6 killed it on the 15th) was still
+the closing headline of the pricing page. The last thing a wedding
+planner or a tradesperson read before deciding whether to pay was a
+tagline the brand had already disowned. It was the only surviving
+user-facing instance in the repo, and it was on the highest-intent
+surface there is.**
+
+The pricing page now closes on the operating principle —
+"Everything important. Nothing distracting." (BRAND §2) — sanctioned
+canonical language, declarative, and a stronger close than a retired
+slogan or a lazy echo of the H1. Found by pixel-walking the live
+public surfaces at true phone width, the discipline T·58 forced:
+the line was legible even in a 90px-wide full-page thumbnail, which
+is exactly why "voice-verified" never substitutes for looking at
+the rendered page. typecheck + build clean; verified live on
+signalstudio.ie/pricing at 390 and desktop. Honest scope: this
+closes the *known* retired-line instances; the broader phone-width
+pixel audit of every public surface (proof / weddings / audience
+pages) is real remaining work, named not buried — gross breaks
+ruled out (zero horizontal overflow, single-column structure sound)
+but a section-by-section readable-zoom pass is its own cycle.
 
 **Two discipline gaps on signalstudio.ie, both on the surface every
 visitor sees first. The browser tab, the Google result, the shared
