@@ -3,6 +3,23 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-15 · R·U2 · ships · Signal Roadmap stops being two products and starts being a map
+
+**Signal Roadmap shipped its unification end to end. It was two
+products wearing one nav — a fictional marketing landing bolted onto
+the real viewer it shared nothing with. That is gone. A known-live
+production blocker that denied 100% of writes (no Upstash) is closed.
+And the two views that mattered most stopped being lists.**
+
+For the 80%, a list is a spreadsheet; a map is a plan. Roadmap is now
+a plain-English status flow a wedding planner reads at a glance.
+Milestones is now a path — stations toward the day that matters, each
+filling as the work ships. The delight is real progress made visible,
+not decoration. Two P0s the first deploy left live (a banned "Timeline"
+label, a stale-brand proof image) are closed. Held for the next cycle,
+on purpose: the real viewer as the landing hero, and the landing's own
+de-slop. The product is honest now; next it gets beautiful.
+
 ## 2026-05-15 · S·36 · ships · The umbrella hero leads with "Project management for the 80% not in tech."
 
 **The signalstudio.ie hero H1 is now "Project management for the 80%
