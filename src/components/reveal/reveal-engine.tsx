@@ -181,6 +181,56 @@ export function RevealEngine() {
         ease: "expo.out",
       });
 
+      // Proof beat — same restraint as the manifesto: eyebrow settles,
+      // headline rises, the four scene lines stagger in like evidence
+      // arriving in order, the outro signs off.
+      gsap.from(".reveal-proof-eyebrow", {
+        scrollTrigger: {
+          trigger: ".reveal-proof",
+          start: "top 78%",
+          once: true,
+        },
+        opacity: 0,
+        y: 10,
+        duration: 0.55,
+        ease: "expo.out",
+      });
+      gsap.from(".reveal-proof-h2", {
+        scrollTrigger: {
+          trigger: ".reveal-proof",
+          start: "top 78%",
+          once: true,
+        },
+        opacity: 0,
+        y: 16,
+        duration: 0.75,
+        ease: "expo.out",
+        delay: 0.12,
+      });
+      gsap.from(".reveal-proof-line", {
+        scrollTrigger: {
+          trigger: ".reveal-proof-scene",
+          start: "top 85%",
+          once: true,
+        },
+        opacity: 0,
+        y: 12,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "expo.out",
+      });
+      gsap.from(".reveal-proof-outro", {
+        scrollTrigger: {
+          trigger: ".reveal-proof-outro",
+          start: "top 90%",
+          once: true,
+        },
+        opacity: 0,
+        y: 8,
+        duration: 0.55,
+        ease: "expo.out",
+      });
+
       gsap.from(".reveal-products-head", {
         scrollTrigger: {
           trigger: ".reveal-products-head",

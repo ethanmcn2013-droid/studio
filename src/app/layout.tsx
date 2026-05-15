@@ -22,14 +22,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Cut through the noise.",
+  title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Operational clarity software for the 80% who don't work in tech. Four small tools — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes — that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Four small tools — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes — that read as one system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie"
   ),
   openGraph: {
-    title: "Signal Studio · Cut through the noise.",
+    title: "Signal Studio · Project management for the 80% not in tech.",
     description:
       "Four small tools. Plain English. Built for the work, not the workflow.",
     type: "website",

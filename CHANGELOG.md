@@ -3,7 +3,41 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
-## 2026-05-15 · T·U1 · cuts · Signal Tasks stops showing the 80% the team's own dogfood
+## 2026-05-15 · S·U1 · ships · The umbrella front door shows the 80% their own day before it names the tools
+
+**Two discipline gaps on signalstudio.ie, both on the surface every
+visitor sees first. The browser tab, the Google result, the shared
+link still read "Cut through the noise." — a line BRAND.md §6 retired
+on the 15th in favour of "Project management for the 80% not in
+tech." The most-shared string about the brand was contradicting the
+ratified positioning. And the homepage itself only ever asserted: a
+manifesto about "less", then four wordmarks. The single strongest
+piece of evidence — the concrete, dated wedding scene — was one nav
+click away, and most visitors never took it. The front door asked
+for belief without ever showing the work.**
+
+The title and social card now carry the ratified line. And a new
+beat sits between the manifesto and the four-product stack: one real
+Tuesday, told in the same restraint as the rest of the page — no
+mockup, no chrome, just a mono time-stamp and a plain sentence. The
+venue call. That evening. Midnight. 6 am. It is the same scene as
+/proof — Sarah and James, the 26th of September, the florist quiet
+eight days — so the site holds one story, not a teaser that drifts
+from the page it teases. The manifesto says "less"; this shows what
+less looks like in a real life, then hands to the tools that did it.
+
+The honest counter-argument, on record: the umbrella's job could be
+purely voice-setting, with each product demonstrating itself and
+/proof as the dedicated scene — and a deliberately spare reveal can
+be diluted by adding a demonstrative beat. The mitigation is the
+register: it stays type-only, declarative, reduced-motion and no-JS
+safe, the same gesture grammar as the manifesto it follows. If it
+ever reads as "a SaaS landing page with a mockup", it has failed and
+should come out. Typecheck and build clean. Full-page browser capture
+is unreliable against the page's perpetual wordmark gestures; the
+scene is verified server-rendered, desktop and mobile rules mirror
+the manifesto's — an operator eyeball on the live deploy is the
+honest last check, consistent with the suite's walk-it pattern.
 
 **The same discipline failure R·U3 just closed in Roadmap was live in
 Tasks, in a higher-traffic surface. The homepage demo toggle and the

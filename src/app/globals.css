@@ -846,6 +846,89 @@ body {
   font-weight: 600;
 }
 
+/* ── Proof beat ──────────────────────────────────────────────── */
+/* The one concrete, dated scene on the front door. Same editorial
+   register as the manifesto — type only, no UI chrome. Server-
+   rendered visible; RevealEngine adds the scroll-in only when motion
+   is allowed (reduced-motion + no-JS read the static scene). */
+.reveal-proof {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 32px 120px;
+}
+.reveal-proof-eyebrow {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-500);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.reveal-proof-eyebrow .gold {
+  color: var(--accent);
+}
+.reveal-proof-h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: var(--ink-950);
+  margin: 0 0 48px;
+  text-wrap: balance;
+}
+.reveal-proof-h2 .em {
+  background: linear-gradient(transparent 60%, var(--reveal-accent-soft) 60%);
+  padding: 0 0.06em;
+}
+.reveal-proof-scene {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+}
+.reveal-proof-line {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 28px;
+  padding: 24px 0;
+  border-top: 1px solid var(--ink-200);
+}
+.reveal-proof-line:last-child {
+  border-bottom: 1px solid var(--ink-200);
+}
+.reveal-proof-line .when {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: 0.35em;
+}
+.reveal-proof-line .what {
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-700);
+  text-wrap: pretty;
+}
+.reveal-proof-outro {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-600);
+  margin: 0;
+  text-wrap: pretty;
+}
+.reveal-proof-link {
+  color: var(--ink-900);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-300);
+  padding-bottom: 1px;
+  white-space: nowrap;
+  transition: color .18s ease, border-color .18s ease;
+}
+.reveal-proof-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* ── Product detail rows ─────────────────────────────────────── */
 .reveal-products {
   max-width: 1080px;
@@ -1094,6 +1177,20 @@ body {
   }
   .reveal-manifesto {
     padding: 96px 24px 64px;
+  }
+  .reveal-proof {
+    padding: 24px 24px 80px;
+  }
+  .reveal-proof-h2 {
+    margin-bottom: 36px;
+  }
+  .reveal-proof-line {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+  .reveal-proof-line .when {
+    padding-top: 0;
   }
   .reveal-products {
     padding: 0 24px 80px;
