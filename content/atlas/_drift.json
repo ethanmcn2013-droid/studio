@@ -5,29 +5,29 @@
       "BRAND.md",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-15T14:23:16.319Z",
-    "byCommit": "e0a46ae"
+    "updatedAt": "2026-05-15T18:26:56.757Z",
+    "byCommit": "66d99ab"
   },
   "brand-enforcement": {
     "drifted": [
       "src/app/globals.css",
       "BRAND.md"
     ],
-    "updatedAt": "2026-05-15T14:21:29.566Z",
-    "byCommit": "24cff14"
+    "updatedAt": "2026-05-15T18:26:56.757Z",
+    "byCommit": "66d99ab"
   },
   "five-products-as-a-system": {
     "drifted": [
       "BRAND.md"
     ],
-    "updatedAt": "2026-05-15T14:21:29.566Z",
-    "byCommit": "24cff14"
+    "updatedAt": "2026-05-15T18:26:56.757Z",
+    "byCommit": "66d99ab"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-15T17:17:06.181Z",
-    "byCommit": "bb73aab"
+    "updatedAt": "2026-05-15T18:22:59.734Z",
+    "byCommit": "7b4702b"
   }
 }
