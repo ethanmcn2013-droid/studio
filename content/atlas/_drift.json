@@ -1,13 +1,4 @@
 {
-  "pricing-and-entitlements": {
-    "drifted": [
-      "src/app/pricing/",
-      "~/Projects/personal/tasks/src/app/api/webhooks/stripe/",
-      "~/Projects/personal/roadmap/src/lib/entitlements-shared/"
-    ],
-    "updatedAt": "2026-05-15T14:18:17.280Z",
-    "byCommit": "b3329a4"
-  },
   "signal-studio-umbrella": {
     "drifted": [
       "src/app/pricing/",
@@ -15,22 +6,6 @@
     ],
     "updatedAt": "2026-05-15T14:21:29.566Z",
     "byCommit": "24cff14"
-  },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-15T14:21:29.566Z",
-    "byCommit": "24cff14"
-  },
-  "turso-databases-and-reads": {
-    "drifted": [
-      "drizzle/",
-      "~/Projects/personal/tasks/drizzle/",
-      "~/Projects/personal/notes/src/server/actions/notes.ts"
-    ],
-    "updatedAt": "2026-05-15T14:20:18.998Z",
-    "byCommit": "8d845fa"
   },
   "analytics-daily-cron": {
     "drifted": [

@@ -3,7 +3,7 @@ title: Turso databases — five DBs, read-only tokens, tag-as-project
 slug: turso-databases-and-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-05-14
+lastVerified: 2026-05-15
 links: [analytics-daily-cron, five-products-as-a-system, pricing-and-entitlements, log-cycle-cross-repo-writer]
 tags: [Turso, libSQL, read-only token, tag-as-project, Tasks DB, Analytics DB, Roadmap DB, Notes DB, signal-entitlements, Cycle 9.4b, drizzle]
 references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, drizzle.config.ts, ~/Projects/personal/tasks/drizzle/, ~/Projects/personal/analytics/drizzle/, ~/Projects/personal/roadmap/drizzle/, ~/Projects/personal/notes/drizzle/, ~/Projects/personal/notes/src/server/actions/notes.ts]
@@ -60,6 +60,8 @@ The pattern across the five is consistent.
 - Notes→Tasks promote shipped Cycle 9.4b.
 - Tasks→Analytics read-only token live; carry-forward bug fixed Cycle 6.4.
 - signal-entitlements shipped during the E-1→E-8 entitlements sprint (2026-05-14).
+- Tasks `0005_workspace_id_backfill.sql` written 2026-05-15 (code-review T·50): backfills NULL `workspace_id` to the legacy workspace across seven tables (`tasks`, `comments`, `activities`, `notifications`, `entitlements`, `share_links`, `attachments`). Hand-applied via `turso db shell` per the repo's migration convention — operator owes the run. The NOT NULL + FK-with-cascade constraint rebuild is a separate operator-with-a-backup follow-up, documented inside that migration file, not auto-applied.
+- The Tasks→Analytics read-only path was tightened 2026-05-15 (A·4): the cross-repo SQL now filters `parent_task_id IS NULL`, mirroring Tasks's own `getTasks`. Subtasks were leaking into the briefing engine as top-level signals. This is a reminder that the read query in `analytics/src/lib/briefing/tasks-db-source.ts` hand-mirrors Tasks's row-shape filters — a Tasks schema change to the parent/child model must be reflected here too.
 - No live drift detection — when a schema changes, this entry has to be hand-updated. The v2 atlas drift-trigger is the planned mitigation; see `docs/ATLAS_DRIFT_TRIGGER.md`.
 
 ## WHY

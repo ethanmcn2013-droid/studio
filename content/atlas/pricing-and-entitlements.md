@@ -3,7 +3,7 @@ title: Pricing and entitlements — one DB, every product
 slug: pricing-and-entitlements
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-14
+lastVerified: 2026-05-15
 links: [signal-studio-umbrella, five-products-as-a-system, turso-databases-and-reads, log-cycle-cross-repo-writer]
 tags: [pricing, entitlements, Stripe, free, event, wedding, workspace, studio, signal-entitlements DB, entitlements-shared, resolveEntitlement, /api/checkout, STRIPE_SETUP, STUDIO_OPS_SECRET, ENTITLEMENTS_OPS]
 references: [signalstudio.ie/pricing, src/app/pricing/, src/app/hq/entitlements/, src/app/api/internal/entitlements/grant/, src/app/api/internal/entitlements/expire/, src/lib/entitlements/, src/lib/entitlements-db/, drizzle-entitlements/, drizzle-entitlements.config.ts, ~/Projects/personal/tasks/src/app/api/checkout/, ~/Projects/personal/tasks/src/app/api/webhooks/stripe/, ~/Projects/personal/tasks/src/lib/entitlements-shared/, ~/Projects/personal/roadmap/src/lib/entitlements-shared/, ~/Projects/personal/analytics/src/lib/entitlements-shared/, ~/Projects/personal/notes/src/lib/entitlements-shared/, docs/ENTITLEMENTS_OPS.md, ~/Projects/personal/tasks/docs/STRIPE_SETUP.md]
@@ -91,6 +91,7 @@ A daily reconcile sweep piggybacks on Tasks's existing digest cron. It walks Tas
 - 5 changelogs backfilled across the suite. 3 runbooks committed.
 - The tier vocabulary is canonical — any new tier requires editing `TIER_RANK` in every repo's `entitlements-shared/tiers.ts`. The copy-paste cost is the deliberate price for not having a monorepo.
 - S·26 (2026-05-14) made /pricing mobile-correct: Workspace promoted to top of stack ≤640px via `order-first md:order-none`, tier CTAs swap from inline-link to solid pill on mobile via a new `.pricing-tier-cta` class, comparison table `hidden md:block` (was 760w in 340w scroll parent). Tier model, prices, Stripe wiring, and entitlements DB all unchanged.
+- T·50 (2026-05-15, code-review hardening) touched the Tasks read + webhook paths without changing the tier model, prices, or DB shape: (a) Tasks's `getEffectiveTier` now returns the **rank-max of the shared resolver and the local entitlements table**, not shared-first. The old shared-first short-circuit could silently downgrade a customer whose paid grant still lives only in Tasks's local DB during the E-3.2 writer cutover — rank-max is downgrade-proof and collapses back to a plain shared read once the local table empties. (b) The Stripe webhook's `processed_webhooks` dedup guard was repaired — `alreadyProcessed()` cast `db.run()` (a libSQL ResultSet) as a row array, so it always returned false and the dedup table never actually deduped; idempotency had been resting entirely on the `notes`-field compensator. The dual-write contract in the HOW section above is unchanged; this only fixed the guard that was supposed to make retries cheap.
 
 ## WHY
 
