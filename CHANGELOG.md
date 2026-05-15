@@ -3,6 +3,24 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-15 · R·U3 · ships · Signal Roadmap's demo finally speaks to the 80%
+
+**The moat is discipline sustained, and the demo had been breaking it:
+Signal Roadmap was showing a wedding planner a software roadmap. The
+public demo is now a real wedding plan — planner-voiced, dated, with
+the milestone it's all building toward visibly getting closer. The
+product says "this is for you" on first paint instead of asking the
+80% to read a vocabulary that was never theirs.**
+
+The front door changed with it. The hero shows the real product, not a
+mock; `/demo` opens the wedding instantly; the landing carries one
+honest narrative instead of duplicate marketing triads. This is the
+moat-watch metric (§2.3) working in our favour: a planner can now
+describe Roadmap back to us in their own words, because we finally
+showed them their own work. Verified world-class on desktop and on a
+phone. Suite chrome unchanged and consistent — same nav grammar, same
+wordmark, same one indigo.
+
 ## 2026-05-15 · R·U2 · ships · Signal Roadmap stops being two products and starts being a map
 
 **Signal Roadmap shipped its unification end to end. It was two
