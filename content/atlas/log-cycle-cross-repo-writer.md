@@ -3,7 +3,7 @@ title: Cross-repo writers — the log-cycle pattern
 slug: log-cycle-cross-repo-writer
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-14
+lastVerified: 2026-05-15
 links: [plan-cycle, five-products-as-a-system, turso-databases-and-reads, analytics-daily-cron]
 tags: [cross-repo, ping, authed HTTP, fire-and-forget, recipient-owns-the-table, Cycle 8.4.9, Cycle 9.4b, STUDIO_CRON_PING_SECRET, NOTES_TO_TASKS_SECRET]
 references: [~/Projects/personal/analytics/src/lib/ops/ping-studio.ts, ~/Projects/personal/notes/src/server/actions/notes.ts, ~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts, ~/Projects/personal/studio/src/lib/db/schema.ts]
@@ -71,6 +71,7 @@ The pattern has five invariants. Skip any of them and you've built fragile coupl
 
 - Two instances live (Analytics→Studio cron-ping, Notes→Tasks promote).
 - Pattern stable since Cycle 8.4.9. No deprecations.
+- A·5 (2026-05-15) hardened the Analytics→Studio caller: `ping-studio.ts` now validates `STUDIO_CRON_PING_URL` against an `https://*.signalstudio.ie` allowlist and refuses to send if it fails — an env misconfig or DNS hijack can no longer exfiltrate the bearer to an arbitrary host. This strengthens invariant 1 (the secret only ever travels to the intended recipient); the fire-and-forget shape and the other four invariants are unchanged.
 - One frequent extension candidate: Roadmap → Studio (when a public workspace ships an item, ping HQ). Not built — no demand signal yet.
 - Quiet gap: there's no shared utility module across repos. Each caller writes its own ~30-line fetcher. That's intentional (no shared dep, no monorepo); it's also a source of future drift — the two existing callers should look more alike than they do.
 

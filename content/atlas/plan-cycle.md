@@ -74,3 +74,4 @@ The plan cycle is the thing that lets one person ship five products without losi
 ## Reverification trail
 
 - 2026-05-14 (S·32) — CHANGELOG.md grew an S·32 dispatch-shape entry recording the engineering-log / dispatch separation. The plan-cycle loop itself is unchanged: phase.md still names the active cycle, STATUS blocks still close every turn, log.jsonl still records, the dispatch is still where shipped work surfaces out loud. What changed underneath is that the dispatch now reads from `content/dispatch/*.md` (operator-voice translations) instead of rendering the engineering log directly — two artifacts, two registers, one loop.
+- 2026-05-15 (A·5) — Analytics CHANGELOG.md grew an A·5 dispatch entry for the code-review remediation. CHANGELOG-only drift; the dispatch is the loop working exactly as documented (step 4: cycle closed → entry in product voice). Re-verified, body unchanged.

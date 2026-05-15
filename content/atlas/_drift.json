@@ -2,17 +2,11 @@
   "signal-studio-umbrella": {
     "drifted": [
       "src/app/pricing/",
-      "BRAND.md"
+      "BRAND.md",
+      "src/components/landing/"
     ],
-    "updatedAt": "2026-05-15T14:21:29.566Z",
-    "byCommit": "24cff14"
-  },
-  "analytics-daily-cron": {
-    "drifted": [
-      "~/Projects/personal/analytics/src/app/api/cron/briefings/route.ts"
-    ],
-    "updatedAt": "2026-05-14T23:57:43.341Z",
-    "byCommit": "e46cc0f"
+    "updatedAt": "2026-05-15T14:23:16.319Z",
+    "byCommit": "e0a46ae"
   },
   "brand-enforcement": {
     "drifted": [
@@ -21,13 +15,6 @@
     ],
     "updatedAt": "2026-05-15T14:21:29.566Z",
     "byCommit": "24cff14"
-  },
-  "log-cycle-cross-repo-writer": {
-    "drifted": [
-      "~/Projects/personal/notes/src/server/actions/notes.ts"
-    ],
-    "updatedAt": "2026-05-15T14:20:18.998Z",
-    "byCommit": "8d845fa"
   },
   "five-products-as-a-system": {
     "drifted": [
