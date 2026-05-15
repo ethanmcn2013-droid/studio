@@ -5,8 +5,8 @@
       "BRAND.md",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-15T18:26:56.757Z",
-    "byCommit": "66d99ab"
+    "updatedAt": "2026-05-15T18:43:08.785Z",
+    "byCommit": "77a30f9"
   },
   "brand-enforcement": {
     "drifted": [
@@ -27,7 +27,7 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-15T18:40:34.666Z",
-    "byCommit": "1dce2fd"
+    "updatedAt": "2026-05-15T18:43:08.785Z",
+    "byCommit": "77a30f9"
   }
 }
