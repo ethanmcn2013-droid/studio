@@ -2,7 +2,7 @@
 id: risk
 title: Risk
 usedBy: [Analytics, Roadmap, Tasks, Notes, HQ]
-status: Needs model
+status: Defined
 ---
 
 ## Definition

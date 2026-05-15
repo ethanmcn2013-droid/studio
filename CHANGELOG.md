@@ -3,6 +3,35 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·U4 · ships · the page a venue reads before it says yes
+
+**The Founding Venue Programme had a campaign, codes, and a couple-
+facing wedge — but no page that told a venue what it was being asked
+to do. `/venues` is that page. It states the offer in the venue's
+own terms: every couple gets a clear planning workspace for a year,
+on the venue, co-branded as an eyebrow and not a logo wall, with
+nothing for the venue team to install or run. It names the three
+small asks — one conversation, a line of feedback, permission to
+point to the work if it is good — and the rhythm: start, a soft
+two-week window, one short retro. No deck, no demo gate.**
+
+Built to the shipped `/weddings` grammar exactly — same hairline
+sections, same ink CTA, same restraint — so a venue moving between
+the couple page and the offer page never feels two hands. No
+fabricated product shot: a hairline "what's included" panel does the
+work a fake hero mock would, the way the suite is supposed to.
+
+Behind it, quieter work that earns no dispatch line of its own but
+holds the position: the wedding demo script re-aligned to design-
+system v1 (the warm-stone-and-gold draft predated the paper-white
+lock); the Notes extract-permission contract written so decisions,
+risks, and summaries can leave a note the way actions already do —
+without the raw note body ever crossing; the six shared objects
+moved from described to modelled; and a cross-repo symbol guard so
+"this looks dead, delete it" has to prove itself across all five
+repos first. The thing that nearly dropped a live writer in May now
+exits non-zero before it can happen again.
+
 ## 2026-05-15 · S·U3 · cuts · the retired tagline off the page that explains the company
 
 **The third home of "cut through the noise." — and the one that

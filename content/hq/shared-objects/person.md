@@ -2,7 +2,7 @@
 id: person
 title: Person
 usedBy: [Tasks, Roadmap, Notes, CRM]
-status: Needs model
+status: Defined
 ---
 
 ## Definition

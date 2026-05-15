@@ -1,6 +1,7 @@
 # Cycle 8 · Wedding Demo Script (60 seconds)
 
 **Status**: locked draft · ready for storyboard
+**Brand-current revision**: 2026-05-16 — Scenes 1, 10, 11 re-aligned to design-system v1 (DESIGN.md §2). The original draft predated the 2026-05-13 paper-white lock and the antique-gold retirement (2026-05-11); it specified a warm-stone background, antique-gold hairlines, and a non-locked closing line. Frame timing and all verbatim real prose are unchanged — only the visual register and the closer moved.
 **Owner**: Ethan (render); Claude (script + frame timing)
 **Source artefacts** (all live):
 - `notes.signalstudio.ie/wedding-planning/` — context
@@ -19,7 +20,7 @@
 
 | Scene | Frames | Seconds | What's on screen | Notes |
 |---|---|---|---|---|
-| 1 · Hold | 0–60 | 0–2 | Warm-stone background, antique-gold hairline rule centred | Same opening grammar as the Analytics typography demo. Signals continuity. |
+| 1 · Hold | 0–60 | 0–2 | Paper-white background (`--paper` #ffffff), single centred hairline rule (`rgba(17,17,17,0.10)`, 1px, ~120px wide) | Design-system v1 opening grammar — matches the brand-current Analytics demo. Hairlines do the work shadows would. |
 | 2 · Eyebrow | 60–180 | 2–6 | Mono eyebrow types in: `WEDDING PLANNING · WITHOUT THE SPREADSHEET CHAOS` | Stark statement. Names the wedge and the enemy in one line. |
 | 3 · Problem line | 180–360 | 6–12 | Eyebrow fades. Headline word-by-word: *"Four weeks out. Three live suppliers. One date held but not confirmed."* | Real situation a wedding planner recognises. No abstractions. |
 | 4 · Notes scene | 360–600 | 12–20 | Cut to a notebook-paper card with the venue meeting note (real prose from notes/wedding-planning). Words type in over 4 seconds. Bottom-left mono tag: `NOTES · CONTEXT` | The meeting as it actually happened. |
@@ -28,8 +29,8 @@
 | 7 · Roadmap shared | 960–1140 | 32–38 | The workspace simplifies into the shared update view — three columns: Now / Needs attention / Next. One sentence each. Bottom-left tag: `→ ANALYTICS · ATTENTION` | The artefact you forward to the couple. |
 | 8 · Analytics briefing | 1140–1380 | 38–46 | Background goes paper-white. Briefing format: `Good morning. Four weeks to go. Here's where the wedding stands.` Then the three Needs Attention items from `analytics.signalstudio.ie/wedding-planning`. | The Sunday morning before the suppliers wake up. |
 | 9 · Suggested focus | 1380–1500 | 46–50 | One line: *"Chase the Lambs Hill visit today — it is blocking the venue decision."* | One thing to do today. The point of the briefing. |
-| 10 · Closer | 1500–1680 | 50–56 | Pull back. Four layer marks dim onto screen in mono caps, stacked: `notes · tasks · roadmap · analytics`. Antique-gold period appears under each at 1700, 1720, 1740, 1760. | Suite reveal — one product across four scenes. |
-| 11 · Wordmark | 1680–1800 | 56–60 | `signal studio.` wordmark fades in centred. Below in mono: `Plain language software for clear work.` | Closing register, same as Analytics demo. |
+| 10 · Closer | 1500–1680 | 50–56 | Pull back. Four layer marks dim onto screen in mono caps, stacked: `notes · tasks · roadmap · analytics`. An indigo period (`--accent` #4f46e5) appears under each at 1700, 1720, 1740, 1760. | Suite reveal — one product across four scenes. Periods are indigo, not gold (gold retired 2026-05-11; only the literal `signal studio.` wordmark period in Scene 11 retains the gold detail). |
+| 11 · Wordmark | 1680–1800 | 56–60 | `signal studio.` wordmark fades in centred (period carries the broadcast gesture — one concentric ring outward, once). Below in mono: `Clarity, not configuration.` | Closing register: the locked suite tagline (BRAND.md §1 / DESIGN.md §1), not a one-off line. |
 
 ---
 

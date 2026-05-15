@@ -2,7 +2,7 @@
 id: update
 title: Update
 usedBy: [Tasks, Roadmap, Analytics, Notes, HQ]
-status: Needs model
+status: Defined
 ---
 
 ## Definition

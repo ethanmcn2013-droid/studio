@@ -2,7 +2,7 @@
 id: decision
 title: Decision
 usedBy: [Notes, Roadmap, Tasks, Analytics, HQ]
-status: Needs model
+status: Defined
 ---
 
 ## Definition
