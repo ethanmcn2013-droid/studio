@@ -3,6 +3,28 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-15 · T·U1 · cuts · Signal Tasks stops showing the 80% the team's own dogfood
+
+**The same discipline failure R·U3 just closed in Roadmap was live in
+Tasks, in a higher-traffic surface. The homepage demo toggle and the
+/about grid offered a tech-company marketing board — pricing-funnel
+audits, engineering headcount, all-hands — as a target audience,
+sitting next to the wedding planner and the tradesperson. Toggle to
+it and a non-tech visitor read the exact vocabulary alienation the
+suite exists to refuse. It is gone.**
+
+Tasks now presents only its four real audiences — BRAND.md §3's
+canonical example set verbatim. The tech board survives only as the
+invisible seed-structure skeleton every real domain overlays; no user
+path reaches it. Emoji came out of the hero demo, the empty states,
+and the comment thread seeded onto a fresh user's very first tasks
+(which had led with "Hero animation looks great" and "Bumped this to
+P1"). This is the §2.3 moat-watch working twice in one day: the same
+drift, found in two products, closed the same week. The pattern to
+internalise — the demo-vs-reality gap is the suite's recurring failure
+mode, and it hides in the surface everyone sees first. Verified on
+production, desktop and phone.
+
 ## 2026-05-15 · R·U3 · ships · Signal Roadmap's demo finally speaks to the 80%
 
 **The moat is discipline sustained, and the demo had been breaking it:
