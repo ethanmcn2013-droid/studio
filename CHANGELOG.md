@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-15 · S·36 · ships · The umbrella hero leads with "Project management for the 80% not in tech."
+
+**The signalstudio.ie hero H1 is now "Project management for the 80%
+not in tech." (`80%` carries the indigo highlight), and the entrance
+choreography resolves in ~2.4s instead of ~5.3s.** Operator-ratified
+copy, confirmed twice — it reverses the 2026-05-14 line that retired
+this exact string, and BRAND.md §2 is updated to match.
+
+The motion pass applied speed-first animation principles. The headline
+is server-rendered visible, so the old timeline left the page
+motionless for 2.2s and the scroll cue didn't exist until 4.8s — it
+read as frozen. Subhead fade moved 2.2s → 0.35s, typewriter 55ms →
+28ms/char starting at 0.7s, stack rows 2.55s → 0.6s with the bounce
+eased from `back.out(1.4)` to `back.out(1.1)`, brand gestures 2.85s →
+1.0s, scroll cue 4.8s → 1.7s. Product stack spacing un-cramped
+(line-height 0.95 → 1, row padding 4 → 7px). Reduced-motion path
+unchanged. Dissent recorded: this narrows a four-product suite toward
+Tasks' category; shipped per explicit operator instruction.
+
 ## 2026-05-15 · S·35 · cuts · The HQ seed steps back from 19 retired sections
 
 **The fan-out claim in `HQ-6c.3` was that 18 sections had migrated to

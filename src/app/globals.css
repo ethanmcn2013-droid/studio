@@ -661,9 +661,9 @@ body {
 .reveal-stack {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 2px;
   align-items: center;
-  line-height: 0.95;
+  line-height: 1;
 }
 .reveal-stack .stack-row {
   opacity: 0;
@@ -671,7 +671,7 @@ body {
   will-change: transform, opacity;
   text-decoration: none;
   color: inherit;
-  padding: 4px 12px;
+  padding: 7px 14px;
   border-radius: 6px;
   transition: background .2s ease;
 }
@@ -782,7 +782,7 @@ body {
 
 /* Scroll cue */
 .reveal-scroll-cue {
-  margin-top: 88px;
+  margin-top: 64px;
   font-family: var(--font-mono-stack);
   font-size: 11px;
   color: var(--ink-500);

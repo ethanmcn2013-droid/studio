@@ -27,7 +27,7 @@ The system: every product is a different *kind* of clarity. Tasks runs the work.
 
 | | |
 |---|---|
-| **Headline** | Cut through the noise. |
+| **Headline** | Project management for the 80% not in tech. |
 | **Operating principle** | Everything important. Nothing distracting. |
 | **Audience** | The 80% who don't work in tech — wedding planners, freelance designers, tradespeople, students, small-business owners, teachers. People who need to get work done together without a special vocabulary. |
 | **Anti-quotable** | "Modern, simple, beautiful." (or any 3-adjective trio) |
@@ -206,7 +206,9 @@ CTA primary: Open the [product]
 CTA secondary: [product-specific deeper link]
 ```
 
-**Update 2026-05-12:** the original lock used `"Cut through the noise."` as the umbrella H1 on every product. In practice each product evolved a sharper, product-specific H1 — Tasks ships "Execution clarity for live work.", Roadmap "Show your work, not your Jira.", Analytics "A briefing, not a dashboard.", Notes "Your private layer. Capture the thought. Decide later." All four are stronger than a repeated umbrella headline would be, and each carries the umbrella thesis through its own register. "Cut through the noise." is retained as the umbrella's signature line on signalstudio.ie surfaces only (Studio pricing, hero, OG cards). The eyebrow + product wordmark do the umbrella anchoring on product pages.
+**Update 2026-05-12:** the original lock used `"Cut through the noise."` as the umbrella H1 on every product. In practice each product evolved a sharper, product-specific H1 — Tasks ships "Execution clarity for live work.", Roadmap "Show your work, not your Jira.", Analytics "A briefing, not a dashboard.", Notes "Your private layer. Capture the thought. Decide later." All four are stronger than a repeated umbrella headline would be, and each carries the umbrella thesis through its own register. The eyebrow + product wordmark do the umbrella anchoring on product pages.
+
+**Update 2026-05-15 (operator-ratified):** the signalstudio.ie umbrella hero H1 is now **"Project management for the 80% not in tech."** — confirmed twice by Ethan, overriding the prior `"Cut through the noise."` umbrella line. `80%` carries the indigo highlight. `"Cut through the noise."` is retired as the umbrella signature; product-specific H1s are unaffected. Dissent on record (cycle log): this narrows a four-product suite toward Tasks' category and competes with Tasks' own positioning — kept anyway per explicit operator instruction. The alternative I recommended was "Software for the 80% not in tech."
 
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:

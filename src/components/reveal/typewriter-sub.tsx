@@ -10,24 +10,26 @@
  * but does not blink.
  *
  * Timing coordinates with reveal-engine.tsx — that timeline fades the
- * .reveal-subhead wrapper in at ~2.2s, so the typewriter starts then.
+ * .reveal-subhead wrapper in at ~0.35s, so the typewriter starts just
+ * after (~0.7s). Fast cadence keeps the hero from making the visitor
+ * wait on the UI (Kowalski: speed first).
  */
 
 import { useEffect, useState } from "react";
 
 interface TypewriterSubProps {
   text: string;
-  /** ms per character. Default 55ms ≈ 18 cps, fast-reader pace. */
+  /** ms per character. Default 28ms ≈ 36 cps — brisk, not a wait. */
   speed?: number;
-  /** ms delay before the first character types in. Default 2200ms to
+  /** ms delay before the first character types in. Default 700ms to
    * coordinate with reveal-engine.tsx's subhead fade-in. */
   startDelayMs?: number;
 }
 
 export function TypewriterSub({
   text,
-  speed = 55,
-  startDelayMs = 2200,
+  speed = 28,
+  startDelayMs = 700,
 }: TypewriterSubProps) {
   const [displayed, setDisplayed] = useState("");
   const [started, setStarted] = useState(false);

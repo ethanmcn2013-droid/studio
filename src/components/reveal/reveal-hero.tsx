@@ -15,28 +15,40 @@ export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Cut through the noise"
+      aria-label="Signal Studio — Project management for the 80% not in tech"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
       <h1
         className="reveal-headline"
-        aria-label="Cut through the noise."
+        aria-label="Project management for the 80% not in tech."
       >
         <span className="line line-1">
           <span className="word">
-            <span className="word-inner">Cut</span>
+            <span className="word-inner">Project</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">through</span>
+            <span className="word-inner">management</span>
           </span>
         </span>
         <span className="line line-2">
           <span className="word">
+            <span className="word-inner">for</span>
+          </span>{" "}
+          <span className="word">
             <span className="word-inner">the</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner em">noise</span>
+            <span className="word-inner em">80%</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">not</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">in</span>
+          </span>{" "}
+          <span className="word">
+            <span className="word-inner">tech</span>
           </span>
           <span className="word">
             <span className="word-inner">.</span>
@@ -46,7 +58,8 @@ export function RevealHero() {
 
       <TypewriterSub
         text="Four small tools. Plain English. Built for the work, not the workflow."
-        startDelayMs={2200}
+        startDelayMs={700}
+        speed={28}
       />
 
       <nav className="reveal-stack" aria-label="Signal Studio products">

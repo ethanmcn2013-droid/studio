@@ -92,46 +92,56 @@ export function RevealEngine() {
       // ─── Entrance timeline ────────────────────────────────────
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      // Accent hairline draws under the (already-visible) headline.
-      tl.to(".reveal-gold-rule", { width: 132, duration: 0.55 }, 0);
+      // Kowalski pass (2026-05-15): the headline is server-rendered
+      // visible, so the old timeline left the page motionless for 2.2s —
+      // it read as frozen, and the scroll cue didn't exist until 4.8s.
+      // The whole entrance now resolves by ~2.4s: every beat earns its
+      // place, nothing makes the visitor wait on the UI.
 
-      // Subhead settles — typewriter starts at 2200ms (see TypewriterSub).
+      // Accent hairline draws under the (already-visible) headline.
+      tl.to(".reveal-gold-rule", { width: 132, duration: 0.5 }, 0);
+
+      // Subhead settles almost immediately — typewriter starts ~700ms
+      // (see TypewriterSub), riding just behind this fade.
       tl.to(
         ".reveal-subhead",
-        { opacity: 1, y: 0, duration: 0.55 },
-        2.2
+        { opacity: 1, y: 0, duration: 0.5 },
+        0.35
       );
 
-      // Four-row stack — each row enters with a slight back-out for character
+      // Four-row stack — gentle back-out for character, not bounce.
+      // 1.4 overshoot was too springy for a restraint brand; 1.1 reads
+      // as "settled with intent".
       tl.to(
         ".stack-row",
         {
           opacity: 1,
           y: 0,
-          duration: 0.55,
-          ease: "back.out(1.4)",
-          stagger: 0.12,
+          duration: 0.5,
+          ease: "back.out(1.1)",
+          stagger: 0.08,
         },
-        2.55
+        0.6
       );
 
-      // Fire each brand gesture in choreographed order
+      // Each brand gesture fires as its row lands — choreographed order.
       // notes is intentionally omitted — absence of the gesture IS the gesture
-      tl.add(() => fire("tasks"), 2.85)
-        .add(() => fire("roadmap"), 3.05)
-        .add(() => fire("analytics"), 3.25);
+      tl.add(() => fire("tasks"), 1.0)
+        .add(() => fire("roadmap"), 1.16)
+        .add(() => fire("analytics"), 1.32);
 
-      // Scroll cue arrives after the silence beat
+      // Scroll cue arrives while the visitor is still looking at the hero,
+      // not 3 seconds after they've already decided to leave.
       tl.to(
         ".reveal-scroll-cue",
         {
           opacity: 1,
           y: 0,
-          duration: 0.55,
+          duration: 0.5,
           onComplete: () =>
             document.querySelector(".reveal-scroll-cue")?.classList.add("bob"),
         },
-        4.8
+        1.7
       );
 
       // ─── Scroll-triggered post-reveal sections ─────────────────
