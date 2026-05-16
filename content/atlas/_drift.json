@@ -16,13 +16,6 @@
     "updatedAt": "2026-05-15T18:26:56.757Z",
     "byCommit": "66d99ab"
   },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-16T15:01:09.413Z",
-    "byCommit": "bd54be3"
-  },
   "analytics-daily-cron": {
     "drifted": [
       "~/Projects/personal/analytics/src/lib/briefing/prose.ts",
