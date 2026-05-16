@@ -5,6 +5,7 @@ import Link from "next/link";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { HqMarketing } from "@/components/hq/hq-marketing";
 import { MARKETING_BUCKETS, MARKETING_TOTAL } from "@/lib/hq/marketing";
+import { getPartnerStats } from "@/lib/partners/stats";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,36 @@ export default async function MarketingPage() {
   const engineCount = MARKETING_BUCKETS.flatMap((b) => b.approaches).filter(
     (a) => a.impact === "Engine",
   ).length;
+
+  // Live Venue Edition funnel for the engine view — read, never fabricated.
+  let engine: {
+    sponsors: number;
+    issued: number;
+    redeemed: number;
+    reachedBoard: number;
+    redeemed30d: number;
+    error: string | null;
+  } | null = null;
+  try {
+    const stats = await getPartnerStats();
+    engine = {
+      sponsors: stats.length,
+      issued: stats.reduce((n, s) => n + s.codesIssued, 0),
+      redeemed: stats.reduce((n, s) => n + s.codesRedeemed, 0),
+      reachedBoard: stats.reduce((n, s) => n + s.reachedBoard, 0),
+      redeemed30d: stats.reduce((n, s) => n + s.redeemed30d, 0),
+      error: null,
+    };
+  } catch (err) {
+    engine = {
+      sponsors: 0,
+      issued: 0,
+      redeemed: 0,
+      reachedBoard: 0,
+      redeemed30d: 0,
+      error: err instanceof Error ? err.message : "partner stats unavailable",
+    };
+  }
 
   return (
     <main className="mx-auto w-full max-w-[1100px] px-6 pb-24 pt-16 md:pt-20">
@@ -71,7 +102,7 @@ export default async function MarketingPage() {
         <Stat n="3 / 3" label="director greenlight, every row" />
       </div>
 
-      <HqMarketing buckets={MARKETING_BUCKETS} />
+      <HqMarketing buckets={MARKETING_BUCKETS} engine={engine} />
 
       <div
         className="mt-16 border-t border-border-soft pt-6"
