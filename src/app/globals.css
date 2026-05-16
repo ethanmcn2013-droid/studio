@@ -2554,3 +2554,52 @@ body {
   stroke: var(--border-soft) !important;
   stroke-dasharray: 0 !important;
 }
+
+/* ── Contact confirmation (P9) — house broadcast, once ─────────────
+   Reuses the M·01 broadcast keyframes (brand-signal-emit on the dot,
+   brand-signal-ring on the ring), single iteration. The line settles
+   in once, behind the ring. transform + opacity only. Global reduced-
+   motion block neutralises all of it; the component also drops the
+   ring element under reduced motion.
+   ────────────────────────────────────────────────────────────────── */
+.contact-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.contact-confirm-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--indigo);
+  animation: brand-signal-emit 2.6s var(--spring-glide) 1 both;
+}
+.contact-confirm-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.2px solid var(--indigo);
+  transform-origin: center;
+  animation: brand-signal-ring 2.6s var(--spring-glide) 1 both;
+  pointer-events: none;
+}
+.contact-confirm-line {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  opacity: 0;
+  animation: contact-confirm-in 320ms var(--reveal-ease-glide) 200ms both;
+}
+@keyframes contact-confirm-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-confirm-dot { animation: none !important; }
+  .contact-confirm-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
