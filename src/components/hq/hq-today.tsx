@@ -295,6 +295,9 @@ export async function HqToday() {
         <Link href="/hq/partners" className="hq-today-link">
           partners →
         </Link>
+        <Link href="/hq/plan" className="hq-today-link">
+          marketing plan →
+        </Link>
       </div>
     </section>
   );
