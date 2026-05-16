@@ -95,20 +95,14 @@ function InboxRow({ item }: { item: InboxItem }) {
 
 function sourceLabel(source: InboxItem["source"]): string {
   switch (source) {
-    case "atlas-drift":
-      return "drift";
-    case "atlas-stale":
-      return "stale";
-    case "atlas-stub":
-      return "stub";
-    case "cron":
-      return "cron";
     case "risk":
       return "risk";
     case "decision-review":
       return "review";
     case "prospect":
       return "follow-up";
+    case "vercel-deploy":
+      return "deploy";
     default:
       return "—";
   }

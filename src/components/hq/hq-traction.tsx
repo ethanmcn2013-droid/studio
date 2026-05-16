@@ -1,4 +1,4 @@
-import { formatEur, type TractionState } from "@/lib/hq/traction";
+import { type Burndown, formatEur, type TractionState } from "@/lib/hq/traction";
 
 /**
  * HQ Traction — are we winning?
@@ -67,6 +67,8 @@ export function HqTraction({ state }: { state: TractionState }) {
         </div>
       )}
 
+      <BurndownTrack b={state.burndown} cashEur={state.cashCollectedEur} goalEur={state.goalEur} />
+
       <div className="hq-trac-grid">
         <Stat
           n={state.paidVenues}
@@ -119,6 +121,71 @@ export function HqTraction({ state }: { state: TractionState }) {
         </p>
       )}
     </section>
+  );
+}
+
+/**
+ * The signature moment: a hairline pace track. Required-pace tick and
+ * the M3-gate marker sit on a 1px rule; the actual fill is the only
+ * thing that earns the indigo. Type + hairline, never chrome — the
+ * restraint *is* the brand. Honest at €0: the fill is a zero-width
+ * sliver and the caption says the slope hasn't started.
+ */
+function BurndownTrack({
+  b,
+  cashEur,
+  goalEur,
+}: {
+  b: Burndown;
+  cashEur: number;
+  goalEur: number;
+}) {
+  const pct = (n: number) =>
+    `${Math.max(0, Math.min(100, (n / goalEur) * 100))}%`;
+  const actualPct = pct(cashEur);
+  const requiredLeft = `${Math.max(0, Math.min(100, b.fractionElapsed * 100))}%`;
+  const m3Frac =
+    b.totalDays > 0
+      ? (new Date(`${b.m3Gate}T00:00:00Z`).getTime() -
+          new Date(`${b.campaignStart}T00:00:00Z`).getTime()) /
+        (b.totalDays * 86_400_000)
+      : 0;
+  const m3Left = `${Math.max(0, Math.min(100, m3Frac * 100))}%`;
+
+  const verdict = b.notStarted
+    ? "the slope starts now — nothing collected yet"
+    : b.onPace
+      ? `${formatEur(b.paceDeltaEur)} ahead of the slope`
+      : `${formatEur(-b.paceDeltaEur)} behind the slope you'd need`;
+
+  return (
+    <div className="hq-trac-burn" aria-label="six-month pace">
+      <div
+        className="hq-trac-burn-track"
+        data-pace={b.notStarted ? "idle" : b.onPace ? "ahead" : "behind"}
+      >
+        <div className="hq-trac-burn-fill" style={{ width: actualPct }} />
+        <span
+          className="hq-trac-burn-tick hq-trac-burn-tick--req"
+          style={{ left: requiredLeft }}
+          title={`on-pace would be ${formatEur(b.requiredToDateEur)} by today`}
+        />
+        <span
+          className="hq-trac-burn-tick hq-trac-burn-tick--m3"
+          style={{ left: m3Left }}
+          title={`M3 gate ${b.m3Gate} — ≥10 paid venues`}
+        />
+      </div>
+      <p className="hq-trac-burn-caption">
+        week <strong className="hq-trac-strong">{b.weeksElapsed}</strong> of{" "}
+        {b.totalWeeks} · {verdict} ·{" "}
+        <strong className="hq-trac-strong">
+          {formatEur(b.requiredWeeklyFromHereEur)}
+        </strong>
+        /wk to land {formatEur(goalEur)} · {b.daysRemaining}d left · m3 gate{" "}
+        {b.m3Gate}
+      </p>
+    </div>
   );
 }
 

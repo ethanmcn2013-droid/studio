@@ -38,8 +38,8 @@ test("finalizeInbox: empty input → empty result with zero tier counts", () => 
 
 test("finalizeInbox: sorts high → mid → low", () => {
   const input: InboxItem[] = [
-    item({ id: "a", tier: "low", source: "atlas-stale", title: "A" }),
-    item({ id: "b", tier: "high", source: "atlas-drift", title: "B" }),
+    item({ id: "a", tier: "low", source: "prospect", title: "A" }),
+    item({ id: "b", tier: "high", source: "vercel-deploy", title: "B" }),
     item({ id: "c", tier: "mid", source: "risk", title: "C" }),
   ];
   const { items } = finalizeInbox(input);
@@ -76,9 +76,9 @@ test("finalizeInbox: undated items sort after dated ones within tier", () => {
 
 test("finalizeInbox: ties on tier+date break by title alphabetically", () => {
   const input: InboxItem[] = [
-    item({ id: "b", tier: "low", source: "atlas-stub", title: "Beta", date: "2026-05-10" }),
-    item({ id: "a", tier: "low", source: "atlas-stub", title: "Alpha", date: "2026-05-10" }),
-    item({ id: "c", tier: "low", source: "atlas-stub", title: "Charlie", date: "2026-05-10" }),
+    item({ id: "b", tier: "low", source: "decision-review", title: "Beta", date: "2026-05-10" }),
+    item({ id: "a", tier: "low", source: "decision-review", title: "Alpha", date: "2026-05-10" }),
+    item({ id: "c", tier: "low", source: "decision-review", title: "Charlie", date: "2026-05-10" }),
   ];
   const { items } = finalizeInbox(input);
   assert.deepEqual(
@@ -89,12 +89,12 @@ test("finalizeInbox: ties on tier+date break by title alphabetically", () => {
 
 test("finalizeInbox: tier counts tally accurately", () => {
   const input: InboxItem[] = [
-    item({ id: "h1", tier: "high", source: "atlas-drift", title: "H1" }),
-    item({ id: "h2", tier: "high", source: "cron", title: "H2" }),
+    item({ id: "h1", tier: "high", source: "vercel-deploy", title: "H1" }),
+    item({ id: "h2", tier: "high", source: "vercel-deploy", title: "H2" }),
     item({ id: "m1", tier: "mid", source: "risk", title: "M1" }),
-    item({ id: "l1", tier: "low", source: "atlas-stub", title: "L1" }),
+    item({ id: "l1", tier: "low", source: "decision-review", title: "L1" }),
     item({ id: "l2", tier: "low", source: "decision-review", title: "L2" }),
-    item({ id: "l3", tier: "low", source: "atlas-stale", title: "L3" }),
+    item({ id: "l3", tier: "low", source: "prospect", title: "L3" }),
   ];
   const { tierCounts } = finalizeInbox(input);
   assert.deepEqual(tierCounts, { high: 2, mid: 1, low: 3 });
@@ -102,8 +102,8 @@ test("finalizeInbox: tier counts tally accurately", () => {
 
 test("finalizeInbox: doesn't mutate the input array", () => {
   const input: InboxItem[] = [
-    item({ id: "a", tier: "low", source: "atlas-stub", title: "A" }),
-    item({ id: "b", tier: "high", source: "cron", title: "B" }),
+    item({ id: "a", tier: "low", source: "decision-review", title: "A" }),
+    item({ id: "b", tier: "high", source: "vercel-deploy", title: "B" }),
   ];
   const inputOrder = input.map((i) => i.id);
   finalizeInbox(input);

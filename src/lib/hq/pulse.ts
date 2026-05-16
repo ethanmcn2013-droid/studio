@@ -99,24 +99,12 @@ export async function getPulseState(today: TodayData): Promise<PulseState> {
   // side's STUDIO_CRON_PING env is set it reads honestly as `never`,
   // not a hardcoded nag — and self-heals to green on the first ping.
 
-  // ── High-impact risks that are actively biting ──────────────────────
-  for (const risk of today.activeRisks) {
-    const highImpact = risk.impact === "High";
-    if (!highImpact) continue;
-    const overdue =
-      risk.reviewDate &&
-      risk.reviewDate !== "—" &&
-      new Date(risk.reviewDate).getTime() < Date.now();
-    const critical = risk.likelihood === "High" || Boolean(overdue);
-    signals.push({
-      id: `risk-${risk.id}`,
-      level: critical ? "critical" : "watch",
-      label: risk.title,
-      detail: `${risk.area.toLowerCase()} · ${risk.status.toLowerCase()}${
-        overdue ? ` · review overdue (${risk.reviewDate})` : ` · review ${risk.reviewDate}`
-      }`,
-    });
-  }
+  // Risks deliberately do NOT appear here. HQ v3 (2026-05-16) made the
+  // Inbox/Pulse contract exclusive: a risk needs a *human decision*
+  // (review, mitigate, accept) so it lives in the Inbox only. Pulse is
+  // system-decay — things degrading whether or not you act. Keeping
+  // risks out of Pulse is what removes the back-to-back duplicate-list
+  // stutter the redesign set out to kill.
 
   // ── Atlas drift age — is the map going stale? ───────────────────────
   try {

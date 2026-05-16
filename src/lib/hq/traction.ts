@@ -33,6 +33,90 @@ export const GOAL_EUR_6MO = 250_000;
 /** Workspace subscription, €12/mo → annualised (estimate only). */
 const WORKSPACE_YR = 12 * 12;
 
+/**
+ * The 6-month clock. Source: content/hq/decisions/venue-editions-paid-tier.md
+ * — ratified by the founder 2026-05-16, €250k over six months, M3 gate
+ * (≥10 paid venues) on 2026-08-16. These are the contract dates, not
+ * derived — change them only if the decision file changes.
+ */
+const CAMPAIGN_START = "2026-05-16";
+const CAMPAIGN_END = "2026-11-16";
+const CAMPAIGN_M3_GATE = "2026-08-16";
+
+/**
+ * Burndown — the one temporal element on the one question that matters.
+ * Converts a static integer ("€0 collected") into a verdict ("week 3 of
+ * 26, €X behind the slope you'd need to land €250k"). Linear required
+ * pace, no smoothing: required-to-date is exactly goal × fraction of the
+ * window elapsed; the gap is exact arithmetic, never a projection dressed
+ * as one. With €0 in, the honest reading is "the slope hasn't started."
+ */
+export type Burndown = {
+  campaignStart: string;
+  campaignEnd: string;
+  m3Gate: string;
+  totalDays: number;
+  daysElapsed: number;
+  daysRemaining: number;
+  weeksElapsed: number;
+  totalWeeks: number;
+  /** 0..1 — fraction of the six-month window spent. */
+  fractionElapsed: number;
+  /** goal × fractionElapsed — the cash you'd have if perfectly on pace. */
+  requiredToDateEur: number;
+  /** cashCollected − requiredToDate. Negative = behind the slope. */
+  paceDeltaEur: number;
+  /** (goal − cash) ÷ weeks left — the run-rate needed from here on. */
+  requiredWeeklyFromHereEur: number;
+  onPace: boolean;
+  /** Before the clock starts ticking meaningfully (day 0). */
+  notStarted: boolean;
+};
+
+function dayStartUtc(yyyymmdd: string): number {
+  return new Date(`${yyyymmdd}T00:00:00Z`).getTime();
+}
+
+export function computeBurndown(
+  cashCollectedEur: number,
+  goalEur: number,
+  now: number = Date.now(),
+): Burndown {
+  const startMs = dayStartUtc(CAMPAIGN_START);
+  const endMs = dayStartUtc(CAMPAIGN_END);
+  const DAY = 1000 * 60 * 60 * 24;
+  const totalDays = Math.round((endMs - startMs) / DAY);
+  const daysElapsed = Math.min(
+    totalDays,
+    Math.max(0, Math.floor((now - startMs) / DAY)),
+  );
+  const daysRemaining = Math.max(0, totalDays - daysElapsed);
+  const fractionElapsed = totalDays > 0 ? daysElapsed / totalDays : 0;
+  const requiredToDateEur = Math.round(goalEur * fractionElapsed);
+  const paceDeltaEur = cashCollectedEur - requiredToDateEur;
+  const weeksRemaining = Math.max(1, daysRemaining / 7);
+  const requiredWeeklyFromHereEur = Math.max(
+    0,
+    Math.round((goalEur - cashCollectedEur) / weeksRemaining),
+  );
+  return {
+    campaignStart: CAMPAIGN_START,
+    campaignEnd: CAMPAIGN_END,
+    m3Gate: CAMPAIGN_M3_GATE,
+    totalDays,
+    daysElapsed,
+    daysRemaining,
+    weeksElapsed: Math.floor(daysElapsed / 7),
+    totalWeeks: Math.round(totalDays / 7),
+    fractionElapsed,
+    requiredToDateEur,
+    paceDeltaEur,
+    requiredWeeklyFromHereEur,
+    onPace: paceDeltaEur >= 0,
+    notStarted: daysElapsed === 0,
+  };
+}
+
 export type TractionState =
   | { available: false; reason: string }
   | {
@@ -61,6 +145,8 @@ export type TractionState =
       goalEur: number;
       /** Cash collected ÷ €250k. The honest number, no inflation. */
       goalPct: number;
+      /** The 6-month clock — required pace vs actual, days remaining. */
+      burndown: Burndown;
     };
 
 async function countWhere(
@@ -173,6 +259,7 @@ export async function getTraction(): Promise<TractionState> {
       sponsors: sponsorCount,
       goalEur: GOAL_EUR_6MO,
       goalPct: Math.round((cashCollectedEur / GOAL_EUR_6MO) * 100),
+      burndown: computeBurndown(cashCollectedEur, GOAL_EUR_6MO),
     };
   } catch (err) {
     return {

@@ -3,6 +3,35 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·50 · ships · signal hq answers before it reports
+
+**Signal HQ now opens with one mechanically-derived sentence and the
+single next action — not a wall of equal-weight lists — and the 2,513
+lines of legacy dashboard the code itself called fiction are gone.**
+
+The masthead led with a phase headline and four equal-weight numbers:
+"needs you" sat at the same visual weight as "atlas entries drifted",
+and the one question that decides the next six months — are we winning
+— was a static integer. It now leads with a verdict: a single sentence
+resolved by pure function from inbox + pulse + traction, with the one
+action beneath it and the exact inputs one click away. It is derived,
+never authored — the moment it reads like prose instead of a computed
+judgment it has become the fiction it replaced. With nothing sold and
+no venue signed, it says exactly that, and the action it surfaces is
+contact venues. The dashboard cannot move that number; it can refuse to
+hide it.
+
+Traction gained the one temporal element it was missing: a hairline
+burndown against the ratified six-month clock — actual fill, a tick at
+the pace you'd need to be on today, the M3 gate marked. Type and
+hairline, no chrome; honest at zero. Inbox and Pulse stopped saying the
+same thing twice — Inbox is now human-decision only, Pulse is
+system-decay only, and no source appears in both. The System
+disclosure — a 1,906-line dashboard with synthetic readiness
+scorecards behind a fold — was deleted, not folded deeper; the genuine
+reference surfaces already live at their own routes. Net for the cycle:
+2,443 fewer lines. Restraint was the brief.
+
 ## 2026-05-16 · S·44 · ships · the tasks digest is no longer a blind spot
 
 **HQ used to carry a permanent hardcoded warning that the Tasks daily

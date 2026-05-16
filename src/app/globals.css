@@ -2732,48 +2732,100 @@ body {
   gap: 1rem;
 }
 .hq-mast-dot { color: var(--accent); }
+
+/* Phase line — the operator's own words, now subordinate context. */
+.hq-mast-phase {
+  margin: 1.4rem 0 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+  max-width: 70ch;
+}
+
+/* The verdict — one derived sentence, the lead. */
 .hq-mast-headline {
-  margin: 0.9rem 0 0;
+  margin: 0.55rem 0 0;
   font-size: clamp(1.85rem, 1.2rem + 2.4vw, 2.85rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.025em;
   color: var(--ink);
   text-wrap: balance;
 }
-.hq-mast-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  margin-top: 1.5rem;
+.hq-mast-headline[data-level="one-thing"] { color: var(--accent); }
+.hq-mast-headline[data-level="on-fire"] { color: var(--hq-crit); }
+
+/* The one action. */
+.hq-mast-action {
+  margin: 0.85rem 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
 }
-.hq-mast-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+.hq-mast-action-arrow { color: var(--ink-quiet); }
+.hq-mast-action-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--border-soft);
+  text-underline-offset: 3px;
+  transition: color 0.15s, text-decoration-color 0.15s;
 }
-.hq-mast-stat-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: 1px solid var(--hairline);
-  align-self: center;
+.hq-mast-action-link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
-.hq-mast-stat-dot[data-on="true"] { background: var(--ink); border-color: var(--ink); }
-.hq-mast-stat-dot[data-level="watch"] { background: var(--hq-warn); border-color: var(--hq-warn); }
-.hq-mast-stat-dot[data-level="critical"] { background: var(--hq-crit); border-color: var(--hq-crit); }
-.hq-mast-stat-num {
-  font-size: 16px;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-.hq-mast-stat-label {
+
+/* The audit — the verdict shows its working in one click. */
+.hq-mast-audit { margin-top: 1.4rem; }
+.hq-mast-audit-summary {
+  display: inline-flex;
+  cursor: pointer;
+  list-style: none;
   font-family: var(--font-mono-stack);
   font-size: 11px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: lowercase;
   color: var(--ink-quiet);
+  transition: color 0.12s ease-out;
+}
+.hq-mast-audit-summary::-webkit-details-marker { display: none; }
+.hq-mast-audit-summary::before {
+  content: "+ ";
+  color: var(--ink-faint);
+}
+.hq-mast-audit[open] .hq-mast-audit-summary::before { content: "− "; }
+.hq-mast-audit-summary:hover { color: var(--accent); }
+.hq-mast-audit-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 32rem;
+}
+.hq-mast-audit-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--hairline-2);
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+.hq-mast-audit-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.hq-mast-audit-label {
+  color: var(--ink-quiet);
+  text-transform: lowercase;
+}
+.hq-mast-audit-value {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 .hq-mast-nav {
   display: flex;
@@ -2900,6 +2952,67 @@ body {
 }
 .hq-trac-tiers { margin: 1.1rem 0 0; }
 
+/* ── Burndown — the one temporal element, hairline not chrome ──────── */
+.hq-trac-burn { margin-top: 1.9rem; padding-top: 1.15rem; }
+.hq-trac-burn-track {
+  position: relative;
+  height: 2px;
+  background: var(--hairline);
+}
+.hq-trac-burn-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  min-width: 1px;
+  background: var(--accent);
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hq-trac-burn-track[data-pace="behind"] .hq-trac-burn-fill { background: var(--hq-warn); }
+.hq-trac-burn-track[data-pace="idle"] .hq-trac-burn-fill { background: var(--ink-faint); }
+.hq-trac-burn-tick {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+}
+.hq-trac-burn-tick--req { background: var(--ink); }
+.hq-trac-burn-tick--req::after {
+  content: "pace";
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono-stack);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  white-space: nowrap;
+}
+.hq-trac-burn-tick--m3 { background: var(--ink-faint); }
+.hq-trac-burn-tick--m3::after {
+  content: "m3";
+  position: absolute;
+  bottom: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono-stack);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+.hq-trac-burn-caption {
+  margin: 1.45rem 0 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  line-height: 1.65;
+  color: var(--ink-quiet);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hq-trac-burn-fill { transition: none; }
+}
+
 /* ── System (the demoted dashboard, behind a disclosure) ──────────── */
 .hq-system { border-top: 1px solid var(--hairline); }
 .hq-system-summary {
@@ -2934,8 +3047,50 @@ body {
 .hq-system-body main { padding: 0 !important; }
 .hq-system-body .mx-auto { max-width: 100% !important; }
 
+/* ── Mobile: the between-meetings phone glance ─────────────────────────
+ * Not "the desktop reflowed". The phone question is "am I on fire / what
+ * is the one thing" — so the verdict + the one action are the only
+ * things that earn the first screen. Phase line is clamped so it can't
+ * push the verdict down; audit and nav are pushed below; the traction
+ * grid stays two-up but the burndown caption is what's actually read.
+ */
 @media (max-width: 640px) {
-  .hq-spine { padding: 2.25rem 1.1rem 3.5rem; }
-  .hq-mast-strip { gap: 1rem 1.4rem; }
+  .hq-spine { padding: 2rem 1.1rem 3.5rem; }
+  .hq-spine > * + * {
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+
+  /* Phase: kept, but never more than two lines above the verdict. */
+  .hq-mast-phase {
+    margin-top: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Verdict: still the lead, denser so a long sentence doesn't eat the
+   * whole screen. */
+  .hq-mast-headline {
+    font-size: clamp(1.5rem, 1.1rem + 3.5vw, 1.95rem);
+    line-height: 1.18;
+  }
+  .hq-mast-action { font-size: 14px; margin-top: 0.7rem; }
+
+  /* Audit + nav: secondary on phone — readable, out of the way, with
+   * tap-sized hit areas. */
+  .hq-mast-audit { margin-top: 1.6rem; }
+  .hq-mast-audit-summary { padding: 0.3rem 0; }
+  .hq-mast-nav {
+    gap: 0.4rem 1.25rem;
+    margin-top: 1.6rem;
+  }
+  .hq-mast-link { padding: 0.45rem 0; }
+
+  /* Traction: two-up grid (eight integers need a desk; the burndown
+   * caption is the phone signal). */
   .hq-trac-grid { grid-template-columns: repeat(2, 1fr); }
+  .hq-trac-band { font-size: clamp(1.85rem, 1.4rem + 4vw, 2.4rem); }
+  .hq-trac-burn-caption { font-size: 10.5px; line-height: 1.7; }
 }

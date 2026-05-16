@@ -8,17 +8,17 @@
 
 export type InboxTier = "high" | "mid" | "low";
 
+/**
+ * Inbox sources are human-decision only — things where *you choosing to
+ * act* is the resolution. System-decay signals (atlas drift/stale/stub,
+ * cron health, repo silence, session failures) live in Pulse, never
+ * here: a source appears in exactly one section so the founder never
+ * reads the same fact twice. Contract enforced 2026-05-16 (HQ v3).
+ */
 export type InboxItem = {
   id: string;
   tier: InboxTier;
-  source:
-    | "atlas-drift"
-    | "atlas-stale"
-    | "atlas-stub"
-    | "cron"
-    | "risk"
-    | "decision-review"
-    | "prospect";
+  source: "risk" | "decision-review" | "prospect" | "vercel-deploy";
   title: string;
   detail: string;
   href?: string;

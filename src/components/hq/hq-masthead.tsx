@@ -1,39 +1,30 @@
 import Link from "next/link";
-import type { PulseLevel } from "@/lib/hq/pulse";
+import type { Verdict } from "@/lib/hq/verdict";
 
 /**
  * HQ Masthead — the one line you read before anything else.
  *
- * Phase headline (the operator's own words, from phase.md) sits large.
- * Below it a single mono status strip answers, at a glance: does
- * anything need me, is anything on fire, is the map stale, when did I
- * last work. Everything here is derived. Same register as the atlas:
- * paper white, ink, one indigo, hairlines, no card chrome.
+ * HQ v3 (2026-05-16). The old masthead led with the phase headline and
+ * a flat 4-stat strip (four equal-weight numbers, no triage). It now
+ * leads with the Verdict: one mechanically-derived sentence + the one
+ * action. The phase line (the operator's own words from phase.md) is
+ * kept but subordinate — context, not the headline. The stat strip is
+ * demoted into a one-click "inputs" disclosure so the verdict is always
+ * auditable (strategy non-negotiable #1: derived, never authored).
+ *
+ * Same register as the atlas: paper white, ink, one indigo, hairlines,
+ * no card chrome. On-fire is the only state that earns the functional
+ * red; one-thing earns the indigo; calm stays ink.
  */
-
-export type MastheadStatus = {
-  inbox: number;
-  inboxHigh: number;
-  pulseLevel: PulseLevel;
-  pulseCritical: number;
-  driftCount: number;
-  cadenceDays: number | null;
-};
-
-const PULSE_WORD: Record<PulseLevel, string> = {
-  clear: "clear",
-  watch: "watch",
-  critical: "on fire",
-};
 
 export function HqMasthead({
   phaseHeadline,
   generatedAt,
-  status,
+  verdict,
 }: {
   phaseHeadline: string;
   generatedAt: string;
-  status: MastheadStatus;
+  verdict: Verdict;
 }) {
   const stamp = new Date(generatedAt).toLocaleTimeString("en-IE", {
     hour: "2-digit",
@@ -50,55 +41,40 @@ export function HqMasthead({
         <span className="hq-mast-stamp">derived {stamp}</span>
       </div>
 
-      <h1 className="hq-mast-headline">
-        {phaseHeadline === "—" ? "No phase recorded yet." : phaseHeadline}
+      {phaseHeadline !== "—" && (
+        <p className="hq-mast-phase">{phaseHeadline}</p>
+      )}
+
+      <h1 className="hq-mast-headline" data-level={verdict.level}>
+        {verdict.headline}
       </h1>
 
-      <div className="hq-mast-strip" role="list">
-        <span className="hq-mast-stat" role="listitem">
-          <span
-            className="hq-mast-stat-dot"
-            data-on={status.inbox > 0 ? "true" : "false"}
-            aria-hidden="true"
-          />
-          <span className="hq-mast-stat-num">{status.inbox}</span>
-          <span className="hq-mast-stat-label">
-            {status.inbox === 1 ? "needs you" : "need you"}
-            {status.inboxHigh > 0 ? ` · ${status.inboxHigh} high` : ""}
-          </span>
+      <p className="hq-mast-action">
+        <span className="hq-mast-action-arrow" aria-hidden="true">
+          →{" "}
         </span>
+        {verdict.actionHref ? (
+          <Link href={verdict.actionHref} className="hq-mast-action-link">
+            {verdict.action}
+          </Link>
+        ) : (
+          verdict.action
+        )}
+      </p>
 
-        <span className="hq-mast-stat" role="listitem">
-          <span
-            className="hq-mast-stat-dot"
-            data-level={status.pulseLevel}
-            aria-hidden="true"
-          />
-          <span className="hq-mast-stat-num">{PULSE_WORD[status.pulseLevel]}</span>
-          <span className="hq-mast-stat-label">
-            pulse
-            {status.pulseCritical > 0 ? ` · ${status.pulseCritical} critical` : ""}
-          </span>
-        </span>
-
-        <span className="hq-mast-stat" role="listitem">
-          <span className="hq-mast-stat-num">{status.driftCount}</span>
-          <span className="hq-mast-stat-label">
-            atlas {status.driftCount === 1 ? "entry" : "entries"} drifted
-          </span>
-        </span>
-
-        <span className="hq-mast-stat" role="listitem">
-          <span className="hq-mast-stat-num">
-            {status.cadenceDays === null
-              ? "—"
-              : status.cadenceDays < 1
-                ? "today"
-                : `${Math.round(status.cadenceDays)}d`}
-          </span>
-          <span className="hq-mast-stat-label">since last session</span>
-        </span>
-      </div>
+      <details className="hq-mast-audit">
+        <summary className="hq-mast-audit-summary">
+          show the inputs
+        </summary>
+        <ul className="hq-mast-audit-list" role="list">
+          {verdict.inputs.map((row) => (
+            <li key={row.label} className="hq-mast-audit-row">
+              <span className="hq-mast-audit-label">{row.label}</span>
+              <span className="hq-mast-audit-value">{row.value}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
 
       <nav className="hq-mast-nav" aria-label="hq surfaces">
         <Link href="/hq/atlas" className="hq-mast-link">
