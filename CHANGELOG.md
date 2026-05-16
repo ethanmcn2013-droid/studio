@@ -3,6 +3,26 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·24 · tightens · the marketing deck to the brand it argues for
+
+**The ratified six-month plan lived in a private HQ deck that was
+restrained but generic. It now wears the brand it is asking the
+company to hold. Every heading is lowercase Geist at the lighter
+weight; every titled statement lands on its full-stop and that
+full-stop is indigo, because the dot is the mark. The cover rings
+send outward once and rest, the way the umbrella gesture is supposed
+to. Active states are a dot that arrives, not a colour that
+brightens. The neutral stays white — the new guide's warm paper was
+considered and declined for working surfaces. Nothing in the plan's
+words changed; the deck simply stopped contradicting them.**
+
+Verified by reading the rendered styles back rather than a
+screenshot — this page class defeats the capture tool, an old ops
+truth — so the proof is the computed values: the title is the right
+typeface at the right weight, the period is the right indigo, the
+gesture is wired, the page is white. Shipped to production behind the
+HQ gate.
+
 ## 2026-05-16 · S·23 · ships · the mission control a sole founder actually opens
 
 **Signal HQ was a beautifully-built wiki with three competing
