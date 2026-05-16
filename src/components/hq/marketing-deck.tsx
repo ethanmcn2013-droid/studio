@@ -44,7 +44,7 @@ const SECTIONS: { id: SectionId; numeral: string; title: string; line: string }[
   ];
 
 type Kind = "title" | "divider" | "statement" | "metrics" | "content" | "closing";
-type Slide = {
+export type Slide = {
   kind: Kind;
   section?: SectionId;
   kicker?: string;
@@ -59,7 +59,7 @@ type Slide = {
  * indigo. "The period is a signal" (Brand Book §00): the dot is the
  * brand mark, so every titled statement lands on it.
  */
-function T({ children }: { children: string }) {
+export function T({ children }: { children: string }) {
   const s = children;
   if (s.endsWith(".")) {
     return (
@@ -140,7 +140,7 @@ function Ledger({
   );
 }
 
-const DECK: Slide[] = [
+export const DECK: Slide[] = [
   {
     kind: "title",
     title: "Six-month\nmarketing plan.",

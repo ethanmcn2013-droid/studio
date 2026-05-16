@@ -3,6 +3,22 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·52 · ships · the suite prints itself
+
+**Signal HQ can now export six documents as PDF — one for each product,
+one for the brand, and the six-month marketing plan — every one its own
+file, every one built to hold up on paper.** White page, one indigo
+period, and each product's gesture rendered as a typographic mark, never
+an icon: a still dot for Tasks, a short rule for Roadmap, three arrested
+dots for Analytics, a cursor bar for Notes, faint rings for the umbrella.
+The marketing plan stays single-sourced from the live deck, so the
+exported file can never drift from what's presented. Export runs through
+the browser's own print path — vector text, embedded type, true flat
+indigo — with no second rendering engine to disagree with the first. It
+opens from a new one-pagers hub in the HQ nav. What's left off each page
+is the point: no screenshots, no feature grids, no calls to action. The
+restraint is the brand.
+
 ## 2026-05-16 · S·50 · ships · signal hq answers before it reports
 
 **Signal HQ now opens with one mechanically-derived sentence and the

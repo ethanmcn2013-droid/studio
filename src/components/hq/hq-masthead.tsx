@@ -92,6 +92,9 @@ export function HqMasthead({
         <Link href="/hq/plan" className="hq-mast-link">
           marketing plan
         </Link>
+        <Link href="/hq/one-pagers" className="hq-mast-link">
+          one-pagers
+        </Link>
       </nav>
     </header>
   );
