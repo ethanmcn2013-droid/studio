@@ -24,6 +24,7 @@ type Tier = {
   cadence: string;
   /** Plainly-stated annual prepay. No "SAVE %" theatre — the number is the number. */
   annual?: string;
+  annualHref?: string;
   body: string;
   pills?: { label: string; value: string }[];
   cta: string;
@@ -47,6 +48,7 @@ type InsideProduct = {
  * five products see the new tier without per-product checkout wiring.
  */
 const TASKS_CHECKOUT_WORKSPACE = `${TASKS_URL}/api/checkout?tier=workspace`;
+const TASKS_CHECKOUT_WORKSPACE_ANNUAL = `${TASKS_URL}/api/checkout?tier=workspace&interval=annual`;
 const TASKS_CHECKOUT_EVENT = `${TASKS_URL}/api/checkout?tier=event`;
 
 const TIERS: Tier[] = [
@@ -82,6 +84,7 @@ const TIERS: Tier[] = [
     price: "€12",
     cadence: "/ month · per workspace",
     annual: "or €120 a year, paid once",
+    annualHref: TASKS_CHECKOUT_WORKSPACE_ANNUAL,
     body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
     pills: [
       { label: "Workspaces", value: "Unlimited" },
@@ -486,7 +489,20 @@ export default async function PricingPage({
                       color: "var(--ink-soft)",
                     }}
                   >
-                    {t.annual}
+                    {t.annualHref ? (
+                      <Link
+                        href={t.annualHref}
+                        style={{
+                          color: "var(--ink-soft)",
+                          borderBottom: "1px solid var(--border)",
+                          paddingBottom: 1,
+                        }}
+                      >
+                        {t.annual}
+                      </Link>
+                    ) : (
+                      t.annual
+                    )}
                   </div>
                 ) : null}
 
