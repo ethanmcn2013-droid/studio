@@ -3,6 +3,33 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·U6 · tightens · the link finally shows the brand instead of nothing
+
+**Every link to signalstudio.ie pasted into a message, a post, or a
+chat has been unfurling as a blank card — the social preview image
+rendered empty, and had done since the day it was written. It now
+shows the wordmark, in the brand's own type, the way it always
+should have.**
+
+Built on the server from the same wordmark every page carries,
+generated once and cached rather than per request, and light enough
+to load before an unfurl gives up waiting. The kind of thing nobody
+notices until the day it is finally right.
+
+## 2026-05-16 · S·U5 · tightens · the lock gets changed before anyone tries the handle
+
+**Two known weaknesses in the site's own foundations are closed —
+one that could let a crafted request slip past the routing layer,
+one a stylesheet-escaping flaw inherited from a build dependency.
+Neither was being used against us; both are shut before they could
+be. Build, types, and tests are green; the live site is unchanged
+to anyone reading it.**
+
+Surfaced by a routine audit, fixed the same hour. Nothing on the
+page moved. This is the kind of work the brand would rather do
+quietly than announce — it earns one honest line here only because
+a closed security hole is worth saying out loud once.
+
 ## 2026-05-16 · S·U4 · ships · the page a venue reads before it says yes
 
 **The Founding Venue Programme had a campaign, codes, and a couple-

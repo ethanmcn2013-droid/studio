@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
 /**
  * ── Security headers (Plan 4.1) ────────────────────────────────────
@@ -41,8 +42,21 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-Frame-Options", value: "DENY" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()" },
 ];
+
+// ── CSP enforce-promotion gate (hardening P2, 2026-05-16) ──────────
+// CSP has run Report-Only in production since Plan 4.1 (2026-05-09) —
+// the "≥1 deploy cycle in Report-Only" bar is met by history. It is
+// kept Report-Only for THIS pass on purpose (the hardening goal's P2
+// rail), because there is no report-uri/report-to endpoint collecting
+// violations, so promotion would be blind. Next hardening pass:
+// (1) swap key to `Content-Security-Policy`, (2) re-add
+// `upgrade-insecure-requests` to the csp array (it is a no-op + console
+// spam under Report-Only, which is why it is absent above), (3) keep
+// `va.vercel-scripts.com` (Vercel Analytics, pre-existing) and `blob:`
+// in img-src (client-rendered image data) — both are intentional
+// deviations from a generic CSP template, not gaps.
 
 const nextConfig: NextConfig = {
   // Bundle the per-entry dispatch files into the /dispatch + RSS server
@@ -52,6 +66,16 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/dispatch": ["./content/dispatch/*.md"],
     "/changelog.rss": ["./content/dispatch/*.md"],
+    // The OG generator reads this bundled font off disk at runtime;
+    // without this it sits outside the standalone trace and the route
+    // renders an empty image on Vercel (the original bug, in a new form).
+    "/opengraph-image": ["./src/app/_og-assets/*.ttf"],
+  },
+  // The apex is a typographic site — one inline SVG logo, no raster
+  // images flow through next/image today. This is correct future-proofing:
+  // any image that does get optimized is served AVIF→WebP→original.
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [
@@ -63,4 +87,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Bundle analyzer (hardening P6) — only active with ANALYZE=true so it
+// never touches a normal or production build. Emits .next/analyze/*.html.
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+  openAnalyzer: false,
+})(nextConfig);

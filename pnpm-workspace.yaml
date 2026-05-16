@@ -1,6 +1,12 @@
 packages:
   - "."
 
+overrides:
+  # next@16.2.6 still pins postcss@8.4.31 (GHSA-qx2v-qp2m-jg93,
+  # moderate XSS in stringify). Force the patched line until Next
+  # bumps its own pin. postcss is patch-stable across 8.x.
+  postcss: ">=8.5.10"
+
 onlyBuiltDependencies:
   - sharp
 ignoredBuiltDependencies:

@@ -1,0 +1,16 @@
+=== Lighthouse mobile: / (home) ===
+=== Lighthouse mobile: /work (work) ===
+=== Lighthouse mobile: /proof (proof) ===
+=== Lighthouse mobile: /about (about) ===
+=== Lighthouse mobile: /brand (brand) ===
+=== Lighthouse mobile: /pricing (pricing) ===
+=== Lighthouse mobile: /contact (contact) ===
+=== SCORES SUMMARY ===
+about          perf 98 a11y 98 bp 100 seo 100 | LCP 2.1 s CLS 0 TBT 30 ms
+brand          perf 100 a11y 92 bp 100 seo 100 | LCP 1.4 s CLS 0 TBT 10 ms
+contact        perf 98 a11y 98 bp 100 seo 100 | LCP 2.2 s CLS 0 TBT 50 ms
+home           perf 94 a11y 96 bp 100 seo 100 | LCP 2.5 s CLS 0.071 TBT 70 ms
+pricing        perf 99 a11y 93 bp 100 seo 100 | LCP 2.1 s CLS 0 TBT 50 ms
+proof          perf 99 a11y 98 bp 100 seo 100 | LCP 2.1 s CLS 0 TBT 50 ms
+work           perf 98 a11y 98 bp 100 seo 100 | LCP 2.2 s CLS 0 TBT 110 ms
+LIGHTHOUSE BASELINE COMPLETE

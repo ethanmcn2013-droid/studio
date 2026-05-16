@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { lookupRedemption, type RedemptionLookup } from "@/lib/redeem/lookup";
+import {
+  checkRedeemRateLimit,
+  ipFromForwardedFor,
+} from "@/lib/redeem/rate-limit";
 import { TASKS_URL } from "@/lib/product-urls";
 
 export const dynamic = "force-dynamic";
@@ -82,19 +87,49 @@ export default async function RedeemPage({
   const { code } = await params;
   const sp = await searchParams;
 
-  const view =
-    sp.state && PREVIEW_STATES.has(sp.state as PreviewState)
-      ? previewLookup(sp.state as PreviewState, code)
+  const isPreview =
+    !!sp.state && PREVIEW_STATES.has(sp.state as PreviewState);
+
+  // Preview states are static and harmless (design QA) — never gated.
+  // The real lookup is an enumeration oracle, so it is rate-limited per
+  // IP and the DB call is skipped entirely once over budget.
+  let limited = false;
+  if (!isPreview) {
+    const h = await headers();
+    const ip = ipFromForwardedFor(h.get("x-forwarded-for"));
+    limited = !checkRedeemRateLimit(ip);
+  }
+
+  const view = isPreview
+    ? previewLookup(sp.state as PreviewState, code)
+    : limited
+      ? null
       : await lookupRedemption(code);
 
   return (
     <>
       <main className="flex flex-1 flex-col">
         <article className="mx-auto w-full max-w-[620px] px-6 pb-28 pt-20 md:pt-28">
-          <RedeemView view={view} />
+          {view ? <RedeemView view={view} /> : <RateLimitedView />}
         </article>
       </main>
       <SiteFooter />
+    </>
+  );
+}
+
+function RateLimitedView() {
+  return (
+    <>
+      <h1 className="h-section mb-5 text-balance text-ink">
+        Too many attempts
+      </h1>
+      <p className="text-[17px] leading-[1.6] text-ink-soft">
+        This link has been opened too many times from your connection.
+        Wait a few minutes, then try it again. If you were sent this code
+        and it keeps refusing, reply to the email it came in and a person
+        will sort it.
+      </p>
     </>
   );
 }

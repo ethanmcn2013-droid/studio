@@ -1,0 +1,60 @@
+▲ Next.js 16.2.5 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.6s
+  Running TypeScript ...
+  Finished TypeScript in 3.9s ...
+  Collecting page data using 9 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 9 workers (0/25) ...
+  Generating static pages using 9 workers (6/25) 
+  Generating static pages using 9 workers (12/25) 
+  Generating static pages using 9 workers (18/25) 
+✓ Generating static pages using 9 workers (25/25) in 413ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /accessibility
+├ ƒ /api/internal/cron-ping
+├ ƒ /api/internal/entitlements/expire
+├ ƒ /api/internal/entitlements/grant
+├ ○ /apple-icon
+├ ○ /brand
+├ ○ /changelog
+├ ƒ /changelog.rss
+├ ○ /contact
+├ ƒ /dispatch
+├ ƒ /hq
+├ ƒ /hq/access
+├ ƒ /hq/access/check
+├ ƒ /hq/atlas
+├ ƒ /hq/atlas/[slug]
+├ ƒ /hq/entitlements
+├ ƒ /hq/health
+├ ƒ /hq/logout
+├ ƒ /hq/partners
+├ ○ /icon
+├ ƒ /opengraph-image
+├ ○ /press
+├ ƒ /pricing
+├ ○ /principles
+├ ○ /privacy
+├ ○ /proof
+├ ƒ /redeem/[code]
+├ ○ /security
+├ ○ /sitemap.xml
+├ ○ /terms
+├ ○ /venues
+├ ○ /weddings
+└ ○ /work
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

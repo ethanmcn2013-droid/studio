@@ -1,0 +1,61 @@
+{
+  "advisories": {
+    "1117015": {
+      "findings": [
+        {
+          "version": "8.4.31",
+          "paths": [
+            ".>next>postcss"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1117015,
+      "title": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
+      "module_name": "postcss",
+      "vulnerable_versions": "<8.5.10",
+      "patched_versions": ">=8.5.10",
+      "severity": "moderate",
+      "cwe": "CWE-79",
+      "github_advisory_id": "GHSA-qx2v-qp2m-jg93",
+      "url": "https://github.com/advisories/GHSA-qx2v-qp2m-jg93"
+    },
+    "1118938": {
+      "findings": [
+        {
+          "version": "16.2.5",
+          "paths": [
+            ".>next"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1118938,
+      "title": "Next.js has a Middleware / Proxy bypass in App Router applications via segment-prefetch routes - Incomplete Fix Follow-Up",
+      "module_name": "next",
+      "vulnerable_versions": ">=16.0.0 <16.2.6",
+      "patched_versions": ">=16.2.6",
+      "severity": "high",
+      "cwe": "CWE-288",
+      "github_advisory_id": "GHSA-26hh-7cqf-hhc6",
+      "url": "https://github.com/advisories/GHSA-26hh-7cqf-hhc6"
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 1,
+      "high": 1,
+      "critical": 0
+    },
+    "dependencies": 141,
+    "devDependencies": 0,
+    "optionalDependencies": 83,
+    "totalDependencies": 224
+  }
+}

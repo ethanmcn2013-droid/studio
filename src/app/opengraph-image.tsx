@@ -1,6 +1,8 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const alt = "Signal Studio — Project Management for the 80% not in tech";
 export const size = { width: 1200, height: 630 };
@@ -16,7 +18,20 @@ export const contentType = "image/png";
  * Antique gold retired 2026-05-11 per the new brand guide (D01 —
  * Refined Indigo Dot).
  */
+// Satori (next/og) ships with NO system fonts — a fontFamily of
+// "-apple-system,…" renders nothing and the route returns an empty 200,
+// which is exactly how this OG was silently broken on every shared link.
+// The wordmark font is bundled (server-only, never in the browser
+// bundle) and read off disk on the Node runtime. Self-hosted: the
+// running function reads the committed asset, never Google. Node (not
+// edge) because Turbopack can't resolve the edge import.meta.url asset
+// URL at build; OG images are heavily cached so cold-start cost is moot.
+const fontData = readFileSync(
+  join(process.cwd(), "src/app/_og-assets/geist-500.ttf")
+);
+
 export default async function OGImage() {
+
   return new ImageResponse(
     (
       <div
@@ -27,7 +42,7 @@ export default async function OGImage() {
           width: "100%",
           height: "100%",
           background: "#fafaf7",
-          fontFamily: "-apple-system, 'Helvetica Neue', sans-serif",
+          fontFamily: "Geist",
         }}
       >
         <div
@@ -49,7 +64,7 @@ export default async function OGImage() {
               background: "#4f46e5",
               marginLeft: 14,
               marginBottom: 18,
-              display: "inline-block",
+              display: "flex",
             }}
           />
         </div>
@@ -57,6 +72,14 @@ export default async function OGImage() {
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Geist",
+          data: fontData,
+          weight: 500,
+          style: "normal",
+        },
+      ],
     }
   );
 }

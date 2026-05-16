@@ -1,0 +1,14 @@
+CHUNK                                                                        gzip B
+/_next/static/chunks/025~3v5s7ezvq.js                                         31284
+/_next/static/chunks/02ue-p6f56i2c.js                                          1453
+/_next/static/chunks/03~yq9q893hmn.js                                         39797
+/_next/static/chunks/03gtjjm~y~ssu.js                                          7587
+/_next/static/chunks/0apjxcvd6z01t.js                                          1839
+/_next/static/chunks/0csc2jk-2vsvi.js                                          9329
+/_next/static/chunks/0fuvf5~zp8e-c.js                                         71636
+/_next/static/chunks/0twmr1f_bih~-.js                                         12995
+/_next/static/chunks/0v95e_jia~hfg.js                                          5603
+/_next/static/chunks/0z_i~ud8_a8c_.js                                           856
+/_next/static/chunks/11aihu~s~po_q.js                                         10103
+/_next/static/chunks/turbopack-169_.n.ryoic7.js                                4381
+TOTAL initial JS (gzip transferred): 196863 bytes = 192.2 KB / target 150KB
