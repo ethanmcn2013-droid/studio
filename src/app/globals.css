@@ -2595,3 +2595,20 @@ body {
   opacity: 1;
   transform: none;
 }
+
+/* ── CTA arrow nudge ───────────────────────────────────────────────
+   The "→" in a call-to-action drifts 4px right on hover — roadmap·'s
+   "advance" gesture quoted at micro-scale. One class, applied site-
+   wide. Pointer-hover only (no jump on touch); transform only; the
+   global reduced-motion block above flattens the transition.
+   ────────────────────────────────────────────────────────────────── */
+.cta-arrow {
+  display: inline-block;
+  transition: transform 180ms ease-out;
+}
+@media (hover: hover) {
+  a:hover .cta-arrow,
+  button:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+}

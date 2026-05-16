@@ -5,16 +5,16 @@
       "BRAND.md",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-15T20:29:08.042Z",
-    "byCommit": "af9354e"
+    "updatedAt": "2026-05-16T00:20:37.234Z",
+    "byCommit": "8fedf4d"
   },
   "brand-enforcement": {
     "drifted": [
       "src/app/globals.css",
       "BRAND.md"
     ],
-    "updatedAt": "2026-05-16T00:19:30.738Z",
-    "byCommit": "b29a1c3"
+    "updatedAt": "2026-05-16T00:20:37.234Z",
+    "byCommit": "8fedf4d"
   },
   "five-products-as-a-system": {
     "drifted": [
@@ -42,7 +42,7 @@
     "drifted": [
       "src/app/pricing/"
     ],
-    "updatedAt": "2026-05-15T20:29:08.042Z",
-    "byCommit": "af9354e"
+    "updatedAt": "2026-05-16T00:20:37.234Z",
+    "byCommit": "8fedf4d"
   }
 }

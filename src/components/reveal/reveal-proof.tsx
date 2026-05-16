@@ -63,7 +63,10 @@ export function RevealProof() {
         No dashboards. No vocabulary to learn. The plan, and the few things
         that need attention.{" "}
         <Link className="reveal-proof-link" href="/proof">
-          See the scene in full →
+          See the scene in full{" "}
+          <span className="cta-arrow" aria-hidden>
+            →
+          </span>
         </Link>
       </p>
     </section>
