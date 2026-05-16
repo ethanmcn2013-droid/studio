@@ -1,4 +1,5 @@
 import "server-only";
+import { randomUUID } from "node:crypto";
 import { and, eq } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import {
@@ -43,7 +44,7 @@ export async function writeSharedEntitlement(input: {
     if (existing[0]) return { id: existing[0].id, created: false };
   }
 
-  const id = `e-${Math.random().toString(36).slice(2, 12)}`;
+  const id = `e-${randomUUID().replace(/-/g, "").slice(0, 16)}`;
 
   // Retry on transient errors — Turso reads at the edge can briefly
   // reject writes during failover. Three attempts with short

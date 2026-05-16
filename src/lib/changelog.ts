@@ -82,10 +82,12 @@ export async function readDispatchEntries(): Promise<DispatchEntry[]> {
     return [];
   }
   const mdFiles = files.filter((f) => f.endsWith(".md") && !f.startsWith("_"));
+  const raws = await Promise.all(
+    mdFiles.map((file) => fs.readFile(path.join(dir, file), "utf-8")),
+  );
   const entries: DispatchEntry[] = [];
-  for (const file of mdFiles) {
-    const raw = await fs.readFile(path.join(dir, file), "utf-8");
-    const entry = parseDispatchFile(raw, file);
+  for (let i = 0; i < mdFiles.length; i++) {
+    const entry = parseDispatchFile(raws[i], mdFiles[i]);
     if (entry) entries.push(entry);
   }
   entries.sort((a, b) => {

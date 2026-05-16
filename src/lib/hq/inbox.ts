@@ -179,26 +179,27 @@ async function readDecisionReviewItems(): Promise<InboxItem[]> {
 
 async function readAtlasItems(): Promise<InboxItem[]> {
   try {
-    const entries = await readHqSection("atlas").catch(() => []);
     // Atlas lives at content/atlas, not content/hq/atlas — read via direct fs.
     const dir = path.join(process.cwd(), "content", "atlas");
     const files = await fs.readdir(dir).catch(() => [] as string[]);
     const mdFiles = files.filter((f) => f.endsWith(".md") && f !== "README.md");
-    const items: InboxItem[] = [];
     const today = Date.now();
-    for (const file of mdFiles) {
-      const raw = await fs
-        .readFile(path.join(dir, file), "utf-8")
-        .catch(() => "");
+    const raws = await Promise.all(
+      mdFiles.map((file) =>
+        fs.readFile(path.join(dir, file), "utf-8").catch(() => ""),
+      ),
+    );
+    const items: InboxItem[] = [];
+    for (let idx = 0; idx < mdFiles.length; idx++) {
+      const raw = raws[idx];
+      const file = mdFiles[idx];
       const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
       if (!fmMatch) continue;
       const fm = fmMatch[1];
       const slugMatch = fm.match(/^slug:\s*(.*)$/m);
-      const titleMatch = fm.match(/^title:\s*(.*)$/m);
       const lastVerifiedMatch = fm.match(/^lastVerified:\s*(.*)$/m);
       const statusMatch = fm.match(/^status:\s*(.*)$/m);
       const slug = slugMatch?.[1]?.trim() ?? file.replace(/\.md$/, "");
-      const title = titleMatch?.[1]?.trim() ?? slug;
       const lastVerified = lastVerifiedMatch?.[1]?.trim() ?? "";
       const status = statusMatch?.[1]?.trim() ?? "";
       if (status === "stub") {

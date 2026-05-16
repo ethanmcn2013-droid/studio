@@ -34,6 +34,36 @@ function getIp(request: Request): string {
   return "dev-fallback";
 }
 
+/**
+ * Validate and sanitise a user-supplied redirect target.
+ *
+ * Defences applied:
+ *   - Parsed against the request origin via `new URL()` so that `//evil.com`,
+ *     `\\evil.com`, encoded slashes, and `../` traversal all normalise before
+ *     the host/pathname checks run.
+ *   - Host must exactly equal the request origin's host (same-origin only).
+ *   - Pathname must be `/hq` or start with `/hq/` (no `/hqfoo` side-steps).
+ *   - Returns only the pathname — no query string, no hash — so an attacker
+ *     cannot smuggle parameters or fragment identifiers through a valid path.
+ *   - Falls back to `/hq` on any validation failure.
+ */
+function sanitizeHqRedirect(from: string, origin: string): string {
+  const SAFE_DEFAULT = "/hq";
+  try {
+    const target = new URL(from, origin);
+    const requestOrigin = new URL(origin);
+    // Same-origin check — catches //evil.com, http://evil.com, etc.
+    if (target.host !== requestOrigin.host) return SAFE_DEFAULT;
+    // Pathname must be exactly /hq or start with /hq/ (prevents /hqescape)
+    const p = target.pathname;
+    if (p !== "/hq" && !p.startsWith("/hq/")) return SAFE_DEFAULT;
+    // Return pathname only — strip query string and hash
+    return p;
+  } catch {
+    return SAFE_DEFAULT;
+  }
+}
+
 export async function POST(request: Request) {
   const ip = getIp(request);
 
@@ -48,12 +78,14 @@ export async function POST(request: Request) {
   const password = String(formData.get("password") ?? "");
   const from = String(formData.get("from") ?? "/hq");
   const isValid = await verifyHqPassword(password);
-  const redirectUrl = new URL(isValid ? from : "/hq/access?error=1", request.url);
 
-  if (!redirectUrl.pathname.startsWith("/hq")) {
-    redirectUrl.pathname = "/hq";
-    redirectUrl.search = "";
-  }
+  // Success: sanitise the user-supplied `from` to a clean same-origin /hq path.
+  // Guard-trip: fixed access page with a hardcoded `?error=1` (no user input
+  // reaches this literal) so the access page can render its error state.
+  const safePath = isValid
+    ? sanitizeHqRedirect(from, request.url)
+    : "/hq/access?error=1";
+  const redirectUrl = new URL(safePath, request.url);
 
   const response = NextResponse.redirect(redirectUrl, { status: 303 });
 

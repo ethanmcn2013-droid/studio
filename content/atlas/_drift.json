@@ -33,9 +33,10 @@
   },
   "pricing-and-entitlements": {
     "drifted": [
-      "src/app/pricing/"
+      "src/app/pricing/",
+      "src/lib/entitlements-db/"
     ],
-    "updatedAt": "2026-05-16T00:20:37.234Z",
-    "byCommit": "8fedf4d"
+    "updatedAt": "2026-05-16T05:21:21.279Z",
+    "byCommit": "8a81a15"
   }
 }
