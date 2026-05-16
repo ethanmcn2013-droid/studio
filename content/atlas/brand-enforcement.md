@@ -3,10 +3,10 @@ title: Brand enforcement — BRAND.md as catch-net
 slug: brand-enforcement
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-15
+lastVerified: 2026-05-16
 links: [signal-studio-umbrella, plan-cycle, five-products-as-a-system]
 tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Cut through the noise.", Stark+Jobs, Pentagram, Manual]
-references: [BRAND.md, src/app/globals.css, src/components/wordmark/, src/app/brand/]
+references: [BRAND.md, DESIGN.md, src/app/globals.css, src/components/brand/wordmark.tsx, src/app/brand/page.tsx]
 summary: BRAND.md is the single source of truth for voice, naming, banned words, locked H1, the indigo accent. The catch-net runs during any cycle touching copy.
 status: complete
 pinned: false

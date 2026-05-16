@@ -9,15 +9,6 @@
     "updatedAt": "2026-05-16T04:46:26.217Z",
     "byCommit": "b52755a"
   },
-  "brand-enforcement": {
-    "drifted": [
-      "src/app/globals.css",
-      "BRAND.md",
-      "src/app/brand/"
-    ],
-    "updatedAt": "2026-05-16T04:46:26.217Z",
-    "byCommit": "b52755a"
-  },
   "five-products-as-a-system": {
     "drifted": [
       "BRAND.md"
