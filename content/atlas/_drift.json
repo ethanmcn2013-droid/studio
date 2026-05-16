@@ -1,0 +1,24 @@
+{
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css",
+      "src/app/brand/page.tsx"
+    ],
+    "updatedAt": "2026-05-16T16:21:08.275Z",
+    "byCommit": "5ebc323"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-16T16:21:08.275Z",
+    "byCommit": "5ebc323"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "src/app/brand/"
+    ],
+    "updatedAt": "2026-05-16T16:21:08.275Z",
+    "byCommit": "5ebc323"
+  }
+}

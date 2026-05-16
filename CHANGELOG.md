@@ -3,6 +3,28 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·43 · tightens · the brand page now tells the truth about its own system
+
+**A brand page that documents retired gestures and breaks its own
+"one indigo" rule is not world-class — /brand did both.** It still
+described the analytics gesture as a "2.4s scope-style squash" and
+tasks as "paired beats, tap-tap" — the exact pre-canon vocabulary
+retired suite-wide in S·39/S·41 — while the live specimens (correctly)
+animated the new canon. The spec labels said "tick · 2.4s" over a dot
+doing the 3.6s discrete-jump. Fixed: the M·01–M·05 catalogue is now
+DESIGN.md §5 canon (broadcast = *once*, pulse breathes 2.6s, sweep
+5.4s, tick snaps 3.6s, caret 1.1s). The signal wordmark's `is-live`
+looped the broadcast `infinite` — broadcast is a one-shot; it now runs
+once like `is-intro` (the hero + MotionSpecimen were perpetually
+broadcasting). And the page that preaches "one indigo, no second
+colour, boring on purpose" was using a rust refusal-list palette
+(`#b34e2f`/`#fbe7df`) and a generic-SaaS green status dot
+(`#4ade80`) — both now monochrome / indigo, which *is* the restraint
+the page argues for. Plus precision: the indigo contrast claim was
+wrong (`5.7`→`6.3` actual), living-document date bumped to the
+motion-vocab ratification. The page no longer contradicts the system
+it documents.
+
 ## 2026-05-16 · S·41 · tightens · the analytics tick is now canon on *every* studio surface, not most
 
 **S·39 fixed two analytics-gesture surfaces and claimed the showcase

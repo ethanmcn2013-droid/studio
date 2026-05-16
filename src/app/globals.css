@@ -1419,8 +1419,13 @@ body {
 }
 
 .brand-mark[data-variant="signal"] .pd { position: relative; }
+/* Broadcast is a ONE-SHOT (DESIGN.md §5: "sends rings outward, once").
+   is-live runs it a single time, identical to is-intro — the house
+   announces itself on arrival and is then quiet. It must never loop;
+   the /brand MotionSpecimen re-triggers it per scroll/hover, which is
+   the correct way to demonstrate a one-shot gesture. */
 .brand-mark[data-variant="signal"].is-live .pd {
-  animation: brand-signal-emit 2.6s var(--spring-glide) infinite;
+  animation: brand-signal-emit 2.6s var(--spring-glide) 1 both;
 }
 .brand-mark[data-variant="signal"].is-live .ring {
   position: absolute;
@@ -1431,7 +1436,7 @@ body {
   border-radius: 50%;
   border: 1.2px solid var(--indigo);
   transform-origin: center;
-  animation: brand-signal-ring 2.6s var(--spring-glide) infinite;
+  animation: brand-signal-ring 2.6s var(--spring-glide) 1 both;
   pointer-events: none;
 }
 @keyframes brand-signal-emit {
