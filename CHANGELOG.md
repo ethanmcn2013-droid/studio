@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·54 · ships · the marketing plan becomes an operating tool
+
+**Signal HQ has a new section — /hq/marketing — that turns the
+six-month plan from a deck into the surface the work runs on: one
+hundred approaches, each cleared by the three-director panel, every
+one now holding state through the founder's weekly rhythm.** It shipped
+in two passes the same day — first the hundred, bucketed by strategic
+role and ranked by leverage on the negative-CAC engine; then the
+rebuild from a read-only library into a tool. Five modes: ideas,
+filterable, each approach carrying a status; this week, the Monday
+queue that refuses to exceed seven; timeline, the M1–M6 sequence as a
+board; engine, the live Venue Edition funnel read from the same source
+the partners page uses, with the seventy-five-percent single-buyer line
+drawn as a guardrail rather than a footnote; and a ledger that keeps
+what shipped or died, and why. The relational join that would need a
+database is not faked — the funnel is read, the outcome is logged by
+hand. The surface names its own concentration risk on the page, because
+a tool that flatters the operator is worse than no tool.
+
 ## 2026-05-16 · S·52 · ships · the suite prints itself
 
 **Signal HQ can now export six documents as PDF — one for each product,
