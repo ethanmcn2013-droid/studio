@@ -15,6 +15,7 @@ export interface CronHealth {
 
 const EXPECTED_CADENCE_HOURS: Record<CronRunSource, number> = {
   analytics_daily: 24,
+  tasks_digest: 24,
 };
 
 const AMBER_AFTER_HOURS = 12;

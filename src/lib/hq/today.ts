@@ -235,7 +235,10 @@ async function readSessionPulse(): Promise<SessionPulse> {
 
 async function readCron(): Promise<CronHealth[]> {
   try {
-    return await Promise.all([getCronHealthCached("analytics_daily")]);
+    return await Promise.all([
+      getCronHealthCached("analytics_daily"),
+      getCronHealthCached("tasks_digest"),
+    ]);
   } catch {
     return [];
   }

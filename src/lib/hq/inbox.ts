@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { readHqSection } from "@/lib/hq/markdown";
 import { getCronHealth } from "@/lib/cron/runs";
+import { CRON_RUN_SOURCES, type CronRunSource } from "@/lib/db/schema";
 import { seedHqData } from "@/lib/hq/data";
 import {
   readDriftSidecarCached,
@@ -77,28 +78,44 @@ async function readDriftItems(): Promise<InboxItem[]> {
   });
 }
 
+const CRON_LABEL: Record<CronRunSource, string> = {
+  analytics_daily: "analytics daily cron",
+  tasks_digest: "tasks digest cron",
+};
+
+const CRON_NEVER_DETAIL: Record<CronRunSource, string> = {
+  analytics_daily:
+    "Never run in this environment. CRON_SECRET + RESEND_API_KEY may be unset on the Analytics Vercel project.",
+  tasks_digest:
+    "No ping recorded yet. The Tasks 09:00 UTC digest needs STUDIO_CRON_PING_URL + STUDIO_CRON_PING_SECRET set on the Tasks Vercel project; it self-heals to green on the first run after that.",
+};
+
 async function readCronItems(): Promise<InboxItem[]> {
   try {
-    const health = await getCronHealthCached("analytics_daily");
-    if (health.status === "green") return [];
-    const tier: InboxTier =
-      health.status === "never" || health.status === "red" ? "high" : "mid";
-    return [
-      {
-        id: `cron:analytics_daily`,
-        tier,
-        source: "cron",
-        title: `analytics daily cron · ${health.status}`,
-        detail:
-          health.status === "never"
-            ? "Never run in this environment. CRON_SECRET + RESEND_API_KEY may be unset on Vercel."
-            : health.hoursSinceLastRun !== null
-              ? `Last run ${Math.round(health.hoursSinceLastRun)}h ago · expected every ${health.expectedCadenceHours}h`
-              : "Cron status amber.",
-        href: `/hq/health`,
-        date: todayIso(),
-      },
-    ];
+    const healths = await Promise.all(
+      CRON_RUN_SOURCES.map((s) => getCronHealthCached(s)),
+    );
+    return healths.flatMap((health) => {
+      if (health.status === "green") return [];
+      const tier: InboxTier =
+        health.status === "never" || health.status === "red" ? "high" : "mid";
+      return [
+        {
+          id: `cron:${health.source}`,
+          tier,
+          source: "cron" as const,
+          title: `${CRON_LABEL[health.source]} · ${health.status}`,
+          detail:
+            health.status === "never"
+              ? CRON_NEVER_DETAIL[health.source]
+              : health.hoursSinceLastRun !== null
+                ? `Last run ${Math.round(health.hoursSinceLastRun)}h ago · expected every ${health.expectedCadenceHours}h`
+                : "Cron status amber.",
+          href: `/hq/health`,
+          date: todayIso(),
+        },
+      ];
+    });
   } catch {
     return [];
   }

@@ -173,7 +173,7 @@ export const redemptions = sqliteTable(
 export type Redemption = typeof redemptions.$inferSelect;
 export type NewRedemption = typeof redemptions.$inferInsert;
 
-export const CRON_RUN_SOURCES = ["analytics_daily"] as const;
+export const CRON_RUN_SOURCES = ["analytics_daily", "tasks_digest"] as const;
 export type CronRunSource = (typeof CRON_RUN_SOURCES)[number];
 
 export const cronRuns = sqliteTable(

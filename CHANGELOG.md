@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·44 · ships · the tasks digest is no longer a blind spot
+
+**HQ used to carry a permanent hardcoded warning that the Tasks daily
+digest was unmonitored — true, but a nag, not a signal. It is now real
+cross-repo monitoring.** The Tasks 09:00 UTC digest pings Studio when
+it finishes, exactly the way the analytics cron already does — same
+hardened, allowlisted, fail-silent caller, written as a deliberate
+line-for-line mirror so the two stay honest. Studio's cron ledger now
+accepts `tasks_digest` alongside `analytics_daily`, and the inbox,
+pulse, and Today surfaces derive its health from real run data instead
+of a constant. The hardcoded "tasks digest unmonitored" pulse line is
+gone; in its place is a true health signal that reads honestly as
+`never` until the Tasks side's ping env is set, then self-heals to
+green on the first run after. The cross-repo-writer atlas entry was
+re-verified and now documents this third instance and the consistency
+discipline it tightens. No behaviour change to the digest itself —
+this is observability, and observability never breaks the thing it
+watches.
+
 ## 2026-05-16 · S·43 · tightens · the brand page now tells the truth about its own system
 
 **A brand page that documents retired gestures and breaks its own

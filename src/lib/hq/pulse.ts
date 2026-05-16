@@ -93,17 +93,11 @@ export async function getPulseState(today: TodayData): Promise<PulseState> {
       href: "/hq/health",
     });
   }
-  // Honest gap: Tasks runs a daily digest cron that never pings Studio,
-  // so HQ is structurally blind to it. Naming the blind spot is itself
-  // a signal — better than a false green.
-  signals.push({
-    id: "cron-tasks-unmonitored",
-    level: "watch",
-    label: "tasks digest cron is unmonitored",
-    detail:
-      "Tasks runs a 09:00 UTC digest that never pings Studio — HQ cannot see if it is alive",
-    href: "/hq/health",
-  });
+  // The Tasks 09:00 UTC digest is no longer a structural blind spot:
+  // it pings Studio's cron_runs as `tasks_digest`, so the data-driven
+  // loop above now monitors it like analytics_daily. Until the Tasks
+  // side's STUDIO_CRON_PING env is set it reads honestly as `never`,
+  // not a hardcoded nag — and self-heals to green on the first ping.
 
   // ── High-impact risks that are actively biting ──────────────────────
   for (const risk of today.activeRisks) {
