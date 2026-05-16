@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { Wordmark } from "@/components/brand/wordmark";
+import { ReadingProgress } from "@/components/reading-progress";
 
 export const metadata: Metadata = {
   title: "Brand · signal studio.",
@@ -148,6 +149,7 @@ function SwatchCard({ token, hex, desc }: { token: string; hex: string; desc: st
 export default function BrandPage() {
   return (
     <>
+    <ReadingProgress />
     <main className="mx-auto w-full max-w-[1200px] px-8 pb-32">
       {/* HERO */}
       <header className="pt-24 pb-12">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { ReadingProgress } from "@/components/reading-progress";
 import {
   TASKS_URL,
   ROADMAP_URL,
@@ -139,6 +140,7 @@ function Eyebrow({
 export default function ProofPage() {
   return (
     <>
+      <ReadingProgress />
       <main className="flex flex-1 flex-col">
         <section className={`${PROSE_MAX} pb-16 pt-16 md:pt-24`}>
           <Eyebrow accent>Proof</Eyebrow>
