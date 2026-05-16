@@ -20,16 +20,17 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-16T04:56:43.396Z",
-    "byCommit": "da21638"
+    "updatedAt": "2026-05-16T14:41:48.163Z",
+    "byCommit": "d77bf48"
   },
   "analytics-daily-cron": {
     "drifted": [
       "~/Projects/personal/analytics/src/lib/briefing/prose.ts",
-      "~/Projects/personal/analytics/src/lib/briefing/build.ts"
+      "~/Projects/personal/analytics/src/lib/briefing/build.ts",
+      "~/Projects/personal/analytics/src/app/api/cron/briefings/route.ts"
     ],
-    "updatedAt": "2026-05-15T19:22:50.145Z",
-    "byCommit": "54c33f9"
+    "updatedAt": "2026-05-16T05:21:52.879Z",
+    "byCommit": "79bd8b7"
   },
   "pricing-and-entitlements": {
     "drifted": [
@@ -38,5 +39,12 @@
     ],
     "updatedAt": "2026-05-16T05:21:21.279Z",
     "byCommit": "8a81a15"
+  },
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css"
+    ],
+    "updatedAt": "2026-05-16T14:41:48.163Z",
+    "byCommit": "d77bf48"
   }
 }

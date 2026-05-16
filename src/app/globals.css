@@ -311,51 +311,16 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────
-   Studio wordmark period — settling gesture
-   The "." fades in 200ms after load. Not a heartbeat, not a
-   pulse. A breath in. Quieter than Tasks' dot, quieter than
-   Roadmap's slide. Studio doesn't announce; it settles.
+   Retired: .studio-mark + studio-dot-arrive/-pulse-slow.
+   This was the pre-v1 "settle / breath in" wordmark gesture.
+   Superseded by the canonical .brand-mark (Wordmark component),
+   whose signal variant is the one-shot M·01 broadcast per
+   DESIGN.md §5 — see brand-signal-emit / brand-signal-ring below.
+   Removed 2026-05-16: zero DOM references (Wordmark renders
+   .brand-mark everywhere — nav, footer, /brand); the dead block
+   only risked the next agent copying retired vocab. The old
+   "settle/breath" gesture is not part of suite design-system v1.
    ──────────────────────────────────────────────────────────── */
-/* Studio umbrella wordmark — brand guide D01 (2026-05-11). Geist 500,
-   dot 0.16em indigo at baseline lower-right, pulse-slow gesture. */
-.studio-mark {
-  display: inline-flex;
-  align-items: baseline;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  white-space: nowrap;
-  color: var(--ink-950);
-}
-.studio-mark .word { display: inline-block; line-height: 0.95; }
-.studio-mark .dot {
-  width: 0.16em;
-  height: 0.16em;
-  border-radius: 50%;
-  background: var(--accent);
-  display: inline-block;
-  margin-left: 0.08em;
-  margin-bottom: 0.08em;
-  align-self: flex-end;
-  flex: 0 0 auto;
-  animation: studio-dot-arrive 0.4s var(--spring-glide) 0.22s both;
-}
-.studio-mark.is-live .dot {
-  animation:
-    studio-dot-arrive 0.4s var(--spring-glide) 0.22s both,
-    studio-dot-pulse-slow 5.2s ease-in-out 0.62s infinite;
-  transform-origin: center;
-}
-@keyframes studio-dot-arrive {
-  0%   { opacity: 0; transform: translateY(2px) scale(0.86); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes studio-dot-pulse-slow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.55; transform: scale(0.88); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .studio-mark .dot { animation: none; opacity: 1; }
-}
 
 /* Legacy period class — kept as a no-op so old refs don't break. */
 .studio-period { display: none; }
@@ -707,8 +672,9 @@ body {
    motion catalogue (2026-05-13). Each gesture starts as a dimmed
    waiting state, becomes fully visible when the row gets .fire (the
    choreographed entrance still plays), then runs the canonical
-   continuous motion: pulse 2.6s / sweep 5.4s / tick 2.4s /
-   caret 1.1s. Same vocabulary that lives at /brand and /pricing. */
+   motion: pulse 2.6s ease-in-out / sweep 5.4s / tick 3.6s
+   steps(1,end) / caret 1.1s. Same vocabulary — and the same
+   timings — that live at /brand, /pricing, and in each product. */
 
 /* tasks · M·02 pulse */
 .reveal-stack .stack-row[data-key="tasks"] .dot {
@@ -748,7 +714,11 @@ body {
   100% { transform: translateY(-0.04em) translateX(0); opacity: 1; }
 }
 
-/* analytics · M·04 tick */
+/* analytics · M·04 tick — discrete sample JUMPS, never a glide.
+   steps(1,end) + 3.6s mirrors the live Analytics product exactly
+   (analytics-dot-tick). The old 2.4s scaleY squash read as a
+   blink/pulse — the wrong gesture. Tick = the dot snaps between
+   discrete Y samples and holds. Canon: DESIGN.md §5. */
 .reveal-stack .stack-row[data-key="analytics"] .dot {
   opacity: 0;
   transition: opacity .55s ease;
@@ -756,13 +726,14 @@ body {
 }
 .reveal-stack .stack-row[data-key="analytics"].fire .dot {
   opacity: 1;
-  animation: reveal-analytics-tick 2.4s var(--reveal-ease-glide) infinite;
+  animation: reveal-analytics-tick 3.6s steps(1, end) infinite;
 }
 @keyframes reveal-analytics-tick {
-  0%, 70%, 100% { transform: translateY(-0.04em) scaleY(1); }
-  78%           { transform: translateY(-0.04em) scaleY(1.45) scaleX(0.82); }
-  85%           { transform: translateY(-0.04em) scaleY(0.88) scaleX(1.1); }
-  92%           { transform: translateY(-0.04em) scaleY(1); }
+  0%   { transform: translateY(-0.04em); }
+  25%  { transform: translateY(-0.16em); }
+  50%  { transform: translateY(0.02em); }
+  75%  { transform: translateY(-0.12em); }
+  100% { transform: translateY(-0.04em); }
 }
 
 /* notes · M·05 caret */
@@ -1510,14 +1481,18 @@ body {
   100% { transform: translateY(-0.62em) translateX(0); opacity: 1; }
 }
 
+/* tick = discrete sample jumps, 3.6s steps(1,end) — mirrors the
+   live Analytics product (analytics-dot-tick) and DESIGN.md §5.
+   .md is the cap-height-lifted middot baseline (-0.62em). */
 .brand-mark[data-variant="analytics"].is-live .md {
-  animation: brand-analytics-tick 2.4s var(--spring-glide) infinite;
+  animation: brand-analytics-tick 3.6s steps(1, end) infinite;
 }
 @keyframes brand-analytics-tick {
-  0%, 70%, 100% { transform: translateY(-0.62em) scaleY(1); }
-  78%           { transform: translateY(-0.62em) scaleY(1.45) scaleX(0.82); }
-  85%           { transform: translateY(-0.62em) scaleY(0.88) scaleX(1.1); }
-  92%           { transform: translateY(-0.62em) scaleY(1); }
+  0%   { transform: translateY(-0.62em); }
+  25%  { transform: translateY(-0.74em); }
+  50%  { transform: translateY(-0.56em); }
+  75%  { transform: translateY(-0.70em); }
+  100% { transform: translateY(-0.62em); }
 }
 
 .brand-mark[data-variant="notes"].is-live .pd {

@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·39 · tightens · the brand showcase now tells the truth about the analytics gesture
+
+**On the suite's most-seen brand surfaces — the homepage reveal, /brand,
+and /pricing — the analytics dot was doing the wrong gesture entirely.**
+Canon (DESIGN.md §5) defines analytics as `tick`: the dot *jumps* between
+discrete sample heights, `3.6s steps(1,end)`, never gliding between them —
+the gesture means "discrete samples, not a continuous signal". The live
+Analytics product implements exactly that. Studio's showcase did not: both
+`reveal-analytics-tick` and `brand-analytics-tick` ran a `2.4s` scaleY
+squash-stretch on an ease-glide — a blink, not a tick. The flagship was
+misrepresenting one of the five gestures it exists to demonstrate. Both now
+mirror the live product: `3.6s steps(1,end)`, discrete translateY jumps.
+Also retired the dead `.studio-mark` / `studio-dot-pulse-slow` "settle/breath"
+block — pre-v1 vocab, zero DOM references, superseded by the conformant
+`.brand-mark` (the live wordmark's signal variant is correctly the one-shot
+M·01 broadcast). Reveal rows are independent infinite loops, so the timing
+change does not desync the choreographed entrance. Suite re-swept: all five
+products' own-mark gestures conform; retired vocab at zero.
+
 ## 2026-05-16 · S·38 · ships · the venue pipeline starts with fifty real names
 
 **Signal HQ's prospect CRM now opens on fifty verified Irish hotels
