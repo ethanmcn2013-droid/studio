@@ -8,6 +8,7 @@ import { ProductSwitcher } from "@/components/layout/product-switcher";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [intro, setIntro] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -15,6 +16,14 @@ export function SiteNav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // House wordmark: broadcast once on DOM ready, then quiet. Skipped
+  // under reduced motion; the wordmark just sits there, which is right.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = requestAnimationFrame(() => setIntro(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   if (pathname?.startsWith("/hq")) {
@@ -32,7 +41,7 @@ export function SiteNav() {
     >
       <div className="mx-auto flex h-14 w-full max-w-[760px] items-center justify-between px-6">
         <Link href="/" className="wordmark-hover flex items-baseline" aria-label="Signal Studio — home">
-          <Wordmark size="sm" animate={false} />
+          <Wordmark size="sm" animate={false} intro={intro} />
         </Link>
 
         <nav aria-label="Site navigation" className="flex items-center gap-4 sm:gap-5">
