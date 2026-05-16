@@ -3,6 +3,32 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·23 · ships · the mission control a sole founder actually opens
+
+**Signal HQ was a beautifully-built wiki with three competing
+"what matters" surfaces and a six-tab browse layout fighting its own
+job. It is now one scrolling page that answers four questions in the
+order a sole operator asks them: what needs me (Inbox), is anything
+on fire or rotting (Pulse), are we winning (Traction), what is the
+state of things (System, collapsed). Pulse derives entirely from
+sources HQ already read — repo silence thresholds, cron health, a
+high-impact-risk filter, atlas-drift age — and names its own blind
+spots instead of rendering a false green. Traction reads Studio's
+own Turso DB (the same one `cron_runs` uses, zero new wiring) and
+shows, for the first time, the only number that decides the next six
+months: paid conversions against the €250k target. Zero is shown as
+zero.**
+
+The fiction is gone from the operator's view — the synthetic
+readiness scorecards and the editable fake-metrics surface no longer
+render. The whole spine converges on the atlas register and adopts
+the new brand guide white-locked: sharper radius, flat
+hairline-anchored shadows, fixed type ladder, one indigo, function
+red used exactly once on a genuinely-critical signal. The guide's
+gesture vocabulary was ratified suite-wide (pulse/sweep/tick/caret)
+and its warm Stone ramp was rejected for product use — both recorded
+in DESIGN.md. Build and typecheck clean; verified at 390 and 1440.
+
 ## 2026-05-16 · S·U4 · ships · the page a venue reads before it says yes
 
 **The Founding Venue Programme had a campaign, codes, and a couple-

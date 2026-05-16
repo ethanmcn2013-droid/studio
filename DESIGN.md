@@ -158,15 +158,31 @@ Sparingly.
 - `prefers-reduced-motion` is respected everywhere via `useReducedMotion()`. No exceptions.
 
 ### Per-product gestures (the differentiator)
-| Product | Gesture | What it is |
-|---|---|---|
-| Studio | broadcast | Wordmark period sends concentric rings outward, once |
-| Tasks | tick | Underline writes itself left-to-right on hover |
-| Roadmap | advance | Indigo dot slides one column right on milestone change |
-| Analytics | heartbeat | Single pulse on the briefing badge when new |
-| Notes | settle | Capture animation collapses three lines into one |
 
-These are the *only* product-level animations. Don't invent new gestures.
+**Vocabulary updated 2026-05-16 (operator-ratified).** The new brand
+guide (`Signal Studio Design System`, the source Ethan handed to the
+HQ rebuild) renames the per-product gestures. This set is now
+canonical and supersedes the broadcast/heartbeat/advance/tick/settle
+set. The dot reads time: each gesture is the brand dot behaving
+differently per product.
+
+| Product | Gesture | What it is | Timing |
+|---|---|---|---|
+| Studio | broadcast | Wordmark period sends concentric rings outward, once | one-shot |
+| Tasks | pulse | Dot breathes at rest, quickens with load | 2.6s ease-in-out |
+| Roadmap | sweep | Dot tracks left→right along a timeline | 5.4s `cubic-bezier(.22,.7,.2,1)` |
+| Analytics | tick | Dot jumps between samples, never between them | 3.6s `steps(1,end)` |
+| Notes | caret | Dot blinks like a held cursor | 1.1s `steps(1,end)` |
+
+These are the *only* product-level animations. Don't invent new
+gestures. **Suite-wide migration owed:** product repos and the
+marketing site still reference the old gesture names in code/CSS —
+that rename is a separate cross-repo cycle, not part of the HQ work
+that ratified this table. The conflicting old vocabulary was: Tasks
+`tick` (now Analytics), Roadmap `advance`, Analytics `heartbeat`,
+Notes `settle`. **Rejected at the same time:** the new guide's warm
+Stone neutral ramp — HQ holds the 2026-05-13 white/zinc lock; the
+guide's warm ramp is brand-book chrome only, not product tokens.
 
 ---
 
@@ -302,10 +318,10 @@ The suite is one design system. Each product carries one structural accent the o
 | Product | Domain | Structural accent | Voice register |
 |---|---|---|---|
 | Studio | signalstudio.ie | broadcast wordmark gesture; umbrella footer 2-col | umbrella, oriented to the suite as one thing |
-| Tasks | tasks.signalstudio.ie | tick-underline gesture; cinematic demo on homepage | execution-first, present tense, "your week" |
-| Roadmap | roadmap.signalstudio.ie | advance-dot gesture; public-viewer share surface | direction-first, plain prose for non-tech stakeholders |
-| Analytics | analytics.signalstudio.ie | heartbeat-badge gesture; briefing-not-dashboard layout | observational, never prescriptive, "you might want to look at" |
-| Notes | notes.signalstudio.ie | settle-collapse gesture; warm-paper notebook chrome | sotto voce, single-column reading, no chrome on focus |
+| Tasks | tasks.signalstudio.ie | pulse-dot gesture; cinematic demo on homepage | execution-first, present tense, "your week" |
+| Roadmap | roadmap.signalstudio.ie | sweep-dot gesture; public-viewer share surface | direction-first, plain prose for non-tech stakeholders |
+| Analytics | analytics.signalstudio.ie | tick-dot gesture; briefing-not-dashboard layout | observational, never prescriptive, "you might want to look at" |
+| Notes | notes.signalstudio.ie | caret-dot gesture; warm-paper notebook chrome | sotto voce, single-column reading, no chrome on focus |
 
 Notes's green/mustard/Inter aesthetic is **intentional and locked** (see [`feedback_notes_aesthetic.md`](~/.claude/projects/-Users-ethanmcnamara/memory/feedback_notes_aesthetic.md)). Do not file it as a BRAND.md violation.
 

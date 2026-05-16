@@ -13,8 +13,12 @@ import { HqInboxDismissable } from "./hq-inbox-dismissable";
  * Visual register matches the atlas: paper white, ink #111, indigo only
  * on the high-tier dot, hairlines between rows, restrained motion.
  */
-export async function HqInbox() {
-  const data = await getInboxData();
+export async function HqInbox({
+  data: provided,
+}: {
+  data?: Awaited<ReturnType<typeof getInboxData>>;
+} = {}) {
+  const data = provided ?? (await getInboxData());
 
   if (data.items.length === 0) {
     return (

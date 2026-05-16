@@ -32,13 +32,7 @@ import { deriveHqState } from "@/lib/hq/signals";
 
 const STORAGE_KEY = "signal-hq-data-v1";
 
-type TabId =
-  | "overview"
-  | "products"
-  | "loop"
-  | "pipeline"
-  | "proof"
-  | "operations";
+type TabId = "products" | "loop" | "pipeline" | "proof" | "operations";
 
 // After the HQ v2 closure (2026-05-15), only the operator-owned surfaces
 // remain in HqData. Retired sections are read from markdown and are not
@@ -51,7 +45,6 @@ type HqArrayKey =
   | "nextActions";
 
 const tabs: Array<{ id: TabId; label: string }> = [
-  { id: "overview", label: "Today" },
   { id: "products", label: "Products" },
   { id: "loop", label: "The loop" },
   { id: "pipeline", label: "Pipeline" },
@@ -365,7 +358,7 @@ type HqDashboardMarkdown = {
 
 export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
   const [data, setData] = useState<HqData>(() => safeCloneData());
-  const [activeTab, setActiveTab] = useState<TabId>("overview");
+  const [activeTab, setActiveTab] = useState<TabId>("products");
   const [featureFilter, setFeatureFilter] = useState("All");
   const [prospectDraft, setProspectDraft] = useState<Prospect>(() => makeProspect());
   const [importError, setImportError] = useState("");
@@ -613,9 +606,6 @@ export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
         </aside>
 
         <div>
-          {activeTab === "overview" ? (
-            <OverviewTab data={data} derived={derived} markdown={markdown} />
-          ) : null}
           {activeTab === "products" ? <ProductsTab markdown={markdown} /> : null}
           {activeTab === "loop" ? (
             <CollaborationLoopTab markdown={markdown} />
@@ -668,7 +658,6 @@ export function HqDashboard({ markdown }: { markdown?: HqDashboardMarkdown }) {
                 body="Activation metrics, decisions, the weekly cadence — how the work gets made, not what it makes."
               />
               <div className="grid gap-10">
-                <MetricsTab data={data} updateItem={updateItem} embedded />
                 <DecisionsTab data={data} markdown={markdown} embedded />
                 <RhythmTab data={data} updateItem={updateItem} markdown={markdown} embedded />
               </div>

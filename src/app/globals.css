@@ -2699,3 +2699,255 @@ body {
     transform: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * Signal HQ — mission-control spine (2026-05-16 rebuild)
+ *
+ * One urgency-ordered page in the atlas register: paper white, ink
+ * #111, one indigo, hairlines instead of card chrome. New brand-guide
+ * deltas applied white-locked — sharper radius, flat hairline-anchored
+ * shadows (no indigo glow), fixed type ladder. Function colour (red)
+ * appears once, only on a genuinely-critical signal — never decoration.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.hq-spine {
+  --hq-r: 6px;                 /* new guide: cards never friendly */
+  --hq-shadow: 0 1px 2px rgba(17, 17, 17, 0.06), 0 0 0 1px var(--hairline);
+  --hq-crit: #b91c1c;          /* new guide --err — functional only */
+  --hq-warn: #b45309;          /* new guide --warn */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+}
+.hq-spine > * + * {
+  margin-top: 2.75rem;
+  padding-top: 2.75rem;
+  border-top: 1px solid var(--hairline-2);
+}
+
+/* ── shared eyebrow / stamp register ──────────────────────────────── */
+.hq-mast-eyebrow, .hq-pulse-eyebrow, .hq-trac-eyebrow,
+.hq-system-eyebrow, .hq-mast-stamp, .hq-pulse-stamp, .hq-trac-stamp {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-quiet);
+}
+.hq-mast-stamp, .hq-pulse-stamp, .hq-trac-stamp { color: var(--ink-faint); }
+
+/* ── Masthead ─────────────────────────────────────────────────────── */
+.hq-mast-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.hq-mast-dot { color: var(--accent); }
+.hq-mast-headline {
+  margin: 0.9rem 0 0;
+  font-size: clamp(1.85rem, 1.2rem + 2.4vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.hq-mast-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+.hq-mast-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.hq-mast-stat-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  align-self: center;
+}
+.hq-mast-stat-dot[data-on="true"] { background: var(--ink); border-color: var(--ink); }
+.hq-mast-stat-dot[data-level="watch"] { background: var(--hq-warn); border-color: var(--hq-warn); }
+.hq-mast-stat-dot[data-level="critical"] { background: var(--hq-crit); border-color: var(--hq-crit); }
+.hq-mast-stat-num {
+  font-size: 16px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.hq-mast-stat-label {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink-quiet);
+}
+.hq-mast-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.hq-mast-link {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.12s ease-out;
+}
+.hq-mast-link:hover { color: var(--accent); }
+
+/* ── shared section header (Pulse / Traction) ─────────────────────── */
+.hq-pulse-header, .hq-trac-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+.hq-pulse-counts, .hq-trac-tiers { font-size: 12px; color: var(--ink-quiet); }
+.hq-pulse-count[data-level="critical"] { color: var(--hq-crit); }
+.hq-pulse-count[data-level="watch"] { color: var(--hq-warn); }
+
+/* ── Pulse rows ───────────────────────────────────────────────────── */
+.hq-pulse-list { list-style: none; margin: 0; padding: 0; }
+.hq-pulse-row-wrap + .hq-pulse-row-wrap { border-top: 1px solid var(--hairline-2); }
+.hq-pulse-row {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  grid-template-areas: "tier label" ". detail";
+  column-gap: 0.85rem;
+  row-gap: 0.2rem;
+  padding: 0.85rem 0;
+  text-decoration: none;
+}
+.hq-pulse-row--linked { transition: padding-left 0.16s ease-out; }
+.hq-pulse-row--linked:hover { padding-left: 0.4rem; }
+.hq-pulse-tier {
+  grid-area: tier;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+}
+.hq-pulse-tier[data-level="watch"] { background: var(--hq-warn); border-color: var(--hq-warn); }
+.hq-pulse-tier[data-level="critical"] { background: var(--hq-crit); border-color: var(--hq-crit); }
+.hq-pulse-label { grid-area: label; font-size: 14px; font-weight: 500; color: var(--ink); }
+.hq-pulse-detail {
+  grid-area: detail;
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+  color: var(--ink-quiet);
+}
+.hq-pulse--clear .hq-pulse-clear-line,
+.hq-trac--off .hq-trac-off-line {
+  font-size: 14px;
+  color: var(--ink-soft);
+  max-width: 42rem;
+  margin: 0;
+}
+
+/* ── Traction ─────────────────────────────────────────────────────── */
+.hq-trac-zero { font-size: 15px; color: var(--ink-soft); max-width: 42rem; margin: 0 0 1.5rem; }
+.hq-trac-strong { color: var(--ink); font-weight: 500; }
+.hq-trac-headline { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1.75rem; }
+.hq-trac-band {
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.hq-trac-band-label {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--ink-quiet);
+}
+.hq-trac-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border: 1px solid var(--hairline);
+  border-radius: var(--hq-r);
+  box-shadow: var(--hq-shadow);
+  overflow: hidden;
+}
+.hq-trac-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.1rem 1.25rem;
+  border-right: 1px solid var(--hairline-2);
+  border-bottom: 1px solid var(--hairline-2);
+}
+.hq-trac-stat-num {
+  font-size: 26px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  line-height: 1;
+}
+.hq-trac-stat[data-accent="true"] { box-shadow: inset 2px 0 0 var(--accent); }
+.hq-trac-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.hq-trac-stat-note {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+}
+.hq-trac-tiers { margin: 1.1rem 0 0; }
+
+/* ── System (the demoted dashboard, behind a disclosure) ──────────── */
+.hq-system { border-top: 1px solid var(--hairline); }
+.hq-system-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1.4rem 0 0;
+  cursor: pointer;
+  list-style: none;
+}
+.hq-system-summary::-webkit-details-marker { display: none; }
+.hq-system-summary::after {
+  content: "open ↓";
+  position: absolute;
+  right: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+.hq-system { position: relative; }
+.hq-system[open] > .hq-system-summary::after { content: "close ↑"; }
+.hq-system-summary:hover .hq-system-eyebrow { color: var(--accent); }
+.hq-system-hint {
+  font-size: 12px;
+  color: var(--ink-quiet);
+  max-width: 38rem;
+}
+.hq-system-body { margin-top: 1.5rem; }
+/* The dashboard ships its own max-width container; the spine already
+ * centres, so neutralise the double frame inside System. */
+.hq-system-body main { padding: 0 !important; }
+.hq-system-body .mx-auto { max-width: 100% !important; }
+
+@media (max-width: 640px) {
+  .hq-spine { padding: 2.25rem 1.1rem 3.5rem; }
+  .hq-mast-strip { gap: 1rem 1.4rem; }
+  .hq-trac-grid { grid-template-columns: repeat(2, 1fr); }
+}
