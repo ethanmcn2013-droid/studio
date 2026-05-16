@@ -3,6 +3,25 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·25 · ships · one gesture per product, the same word everywhere
+
+**The per-product motion vocabulary now reads identically in code, CSS,
+and prose across all five repos — and it's live on every production
+domain.** The brand guide Ethan handed over was reviewed closely: most of
+it was already canon, so this was a conformance pass, not a rebuild. The
+one genuine fork — the guide's warm Stone neutral ramp — was held back,
+white-locked, because that decision had been ratified three times
+including the same day. Everything else landed. Tasks' dot stopped saying
+"heartbeat" and started breathing (pulse · 2.6s · ease-in-out). Roadmap
+stopped "settling" and started tracking time left to right (sweep · 5.4s).
+Analytics kept the name "tick" but finally moved like one — discrete
+steps, never a glide. Notes' dot became a held cursor (caret · 1.1s).
+Studio's broadcast was already right. Old vocabulary — advance, settle,
+heartbeat, the Tasks-era tick — is fully retired from product code, with
+the homograph traps (tickets, caret-color, the HQ pulse feed, settled
+state) left untouched by design. Verified on all five live domains:
+new keyframes present, old vocabulary at zero, neutrals still white.
+
 ## 2026-05-16 · S·37 · ships · the venue pays now, and the whole site says so
 
 **The Venue Edition reversed from a gift to a price, and until today the
