@@ -3,6 +3,24 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·41 · tightens · the analytics tick is now canon on *every* studio surface, not most
+
+**S·39 fixed two analytics-gesture surfaces and claimed the showcase
+told the truth — it still lied on two more.** Live-verifying the prod
+CSS (not grepping a keyframe name) caught it: `signalstudio.ie` was
+still serving the 2.4s glide because the homepage *settled product
+rows* (`.reveal-product-row[data-key="analytics"]`) and the entire
+`/pricing` gesture demo (`pricing-tick`) each carried their own copy
+of the old `2.4s var(--reveal-ease-glide)` scaleY squash. The Studio
+repo had **four** analytics-tick surfaces; S·39 only conformed one
+(plus the wordmark). All four now run `3.6s steps(1,end)` discrete
+sample-jumps, matching the live Analytics product and DESIGN.md §5;
+the `scaleY(1.45)` squash fingerprint is gone from the repo entirely;
+the canonical Wordmark docstring corrected (2.4s→3.6s). Lesson, twice
+over: a name-presence grep is not conformance — verify the rendered
+declaration on every surface, and "I fixed it" is not "it is fixed"
+until the live bytes say so.
+
 ## 2026-05-16 · S·40 · ships · the marketing plan is now torn out of the brand book
 
 **The private /hq/plan deck was a competent scrolling document; it is now

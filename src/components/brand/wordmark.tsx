@@ -47,7 +47,7 @@ const USES_PERIOD: Record<Variant, boolean> = {
  *   - signal studio.  broadcast  2.6s  (period + emit ring)
  *   - tasks·          pulse      2.6s  ease-in-out
  *   - roadmap·        sweep      5.4s  cubic-bezier(.22,.7,.2,1)
- *   - analytics·      tick       2.4s  steps(1,end)
+ *   - analytics·      tick       3.6s  steps(1,end)
  *   - notes.          caret      1.1s  steps(1,end)
  *
  * Period (.pd) is baseline-seated — used by umbrella + nouns.

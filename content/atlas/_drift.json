@@ -35,9 +35,17 @@
   },
   "brand-enforcement": {
     "drifted": [
-      "src/app/globals.css"
+      "src/app/globals.css",
+      "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-16T14:41:48.163Z",
-    "byCommit": "d77bf48"
+    "updatedAt": "2026-05-16T15:32:11.836Z",
+    "byCommit": "94f69b0"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-16T15:32:11.836Z",
+    "byCommit": "94f69b0"
   }
 }
