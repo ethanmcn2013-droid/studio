@@ -4,13 +4,19 @@ title: Signal Roadmap prod has no Upstash env, so the rate limiter denies 100% o
 category: Product
 likelihood: High
 impact: High
-status: Needs attention
+status: Blocked
 owner: Ethan
-reviewDate: 2026-05-18
+reviewDate: 2026-05-20
 ---
 
 ## Mitigation
 
-Confirmed 2026-05-15 via `vercel env ls production` on the linked `roadmap` project (prj_3OGGF…): only TURSO + Clerk vars present, no `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. `rate-limit.ts` deliberately fail-closes in production when Upstash is unconfigured, so every `createWorkspaceAction`, `createProjectAction`, and `saveProjectSourceAction` call on the live site returns "Too many requests" and fails — the product's core write path is dead in prod. R·4 widened the surface by adding a limit to `createProjectAction` (the slate is otherwise net-safe).
+Status set to Blocked 2026-05-16 — this is not "needs attention", it is down. Confirmed 2026-05-15 via `vercel env ls production` on the linked `roadmap` project: only TURSO + Clerk vars, no `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. `rate-limit.ts` fail-closes in production when Upstash is unconfigured, so every `createWorkspaceAction`, `createProjectAction`, and `saveProjectSourceAction` on the live site returns "Too many requests". Roadmap's core write path is dead in prod.
 
-Operator chose to provision Upstash rather than soften the fail-closed policy (the alternative — falling back to the in-memory limiter when Upstash was never configured — was rejected to keep distributed brute-force protection intact). Operator action: create an Upstash Redis instance (free tier is sufficient), then the agent sets `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` on the Roadmap Vercel project (Production) via `vercel env add` and triggers a redeploy. No code change. Write paths stay bricked until both vars land and prod redeploys. Same fail-closed pattern likely affects any other suite product whose `rate-limit.ts` runs unconfigured in prod — worth a sweep when this is closed.
+Deliberately NOT cleared in this program-health pass: it is genuinely broken and clearing it would be a lie. It is operator-gated by design — the operator chose to provision Upstash rather than soften the fail-closed policy (in-memory fallback was rejected to keep distributed brute-force protection intact). It stays a critical until the env lands.
+
+Operator action (the one manual step, ~5 min, free): create an Upstash Redis database via the Vercel Marketplace and connect it to the `roadmap` project. The Vercel↔Upstash integration auto-injects `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`. Then the agent confirms the vars and triggers a Production redeploy — no code change. Step-by-step lives in the operator action pack. Sweep owed when closed: any other suite product whose `rate-limit.ts` runs unconfigured in prod has the same latent failure.
+
+## Notes
+
+Critical, honest, operator-gated. Cleared only when Upstash is connected and prod redeploys green.

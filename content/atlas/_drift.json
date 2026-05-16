@@ -16,9 +16,17 @@
   },
   "log-cycle-cross-repo-writer": {
     "drifted": [
-      "~/Projects/personal/studio/src/lib/db/schema.ts"
+      "~/Projects/personal/studio/src/lib/db/schema.ts",
+      "~/Projects/personal/tasks/src/lib/ops/ping-studio.ts"
     ],
-    "updatedAt": "2026-05-16T16:25:01.421Z",
-    "byCommit": "f3e784d"
+    "updatedAt": "2026-05-16T16:26:38.331Z",
+    "byCommit": "39bf911"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-16T16:26:38.331Z",
+    "byCommit": "39bf911"
   }
 }
