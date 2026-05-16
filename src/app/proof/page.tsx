@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { HandoffTrace } from "@/components/proof/handoff-trace";
 import {
   TASKS_URL,
   ROADMAP_URL,
@@ -173,6 +174,7 @@ export default function ProofPage() {
             }`}
           >
             <div className={PROSE_MAX}>
+              {idx > 0 && <HandoffTrace />}
               <div className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1">
                 <span
                   className="font-mono text-[42px] font-semibold leading-none text-ink"

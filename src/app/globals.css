@@ -2554,3 +2554,25 @@ body {
   stroke: var(--border-soft) !important;
   stroke-dasharray: 0 !important;
 }
+
+/* ── Proof handoff trace (1→2, 2→3, 3→4) ──────────────────────────
+   1px indigo hairline that draws downward into each stage on entry.
+   The handoffs are the product; this draws the handoff. Owned by
+   HandoffTrace (client). Reduced motion is handled twice over: the
+   component renders .is-drawn on mount, and the global reduced-motion
+   block above neutralises the transition — the line is simply present.
+   ────────────────────────────────────────────────────────────── */
+.proof-trace {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+  pointer-events: none;
+}
+.proof-trace-svg line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 340ms var(--reveal-ease-glide);
+}
+.proof-trace-svg.is-drawn line {
+  stroke-dashoffset: 0;
+}
