@@ -2,14 +2,50 @@ import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
-const url = process.env.TURSO_STUDIO_DATABASE_URL;
-const authToken = process.env.TURSO_STUDIO_AUTH_TOKEN;
+/**
+ * Lazy Turso/libSQL client.
+ *
+ * The client is created on first *use* (first query), not at module
+ * import. `next build` collects page data by importing every route
+ * module — if the connection were built at import time, a missing
+ * TURSO_STUDIO_DATABASE_URL (e.g. the Preview environment, which has
+ * no DB by design) would throw during build-data collection and fail
+ * the whole deployment, even though no query ever runs at build.
+ *
+ * Behaviour is otherwise identical: the same explicit error is thrown
+ * the first time a query is attempted without the env configured.
+ */
+function createDb() {
+  const url = process.env.TURSO_STUDIO_DATABASE_URL;
+  const authToken = process.env.TURSO_STUDIO_AUTH_TOKEN;
 
-if (!url) {
-  throw new Error(
-    "TURSO_STUDIO_DATABASE_URL is not set. Create a Turso database (turso db create ethanmcnamara-studio) and add the URL to .env.local. See docs/CYCLE_8_1_ENTITLEMENTS_HANDOFF.md.",
-  );
+  if (!url) {
+    throw new Error(
+      "TURSO_STUDIO_DATABASE_URL is not set. Create a Turso database (turso db create ethanmcnamara-studio) and add the URL to .env.local. See docs/CYCLE_8_1_ENTITLEMENTS_HANDOFF.md.",
+    );
+  }
+
+  return drizzle(createClient({ url, authToken }), { schema });
 }
 
-const client = createClient({ url, authToken });
-export const db = drizzle(client, { schema });
+type DB = ReturnType<typeof createDb>;
+
+let cached: DB | null = null;
+
+function getDb(): DB {
+  if (!cached) cached = createDb();
+  return cached;
+}
+
+/**
+ * Drop-in replacement for the eager `db` export — same import surface
+ * (`import { db } from "@/lib/db"`), same typed Drizzle API. Property
+ * access initialises the connection on first touch.
+ */
+export const db: DB = new Proxy({} as DB, {
+  get(_target, prop, receiver) {
+    const real = getDb();
+    const value = Reflect.get(real as object, prop, receiver);
+    return typeof value === "function" ? value.bind(real) : value;
+  },
+});
