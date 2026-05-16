@@ -5,11 +5,11 @@ import { SiteFooter } from "@/components/landing/site-footer";
 export const metadata: Metadata = {
   title: "Founding Venue Programme - Signal Studio",
   description:
-    "Give every couple a clear planning workspace, on you. Founding venues sponsor 12 months of Signal Studio per couple, co-branded, with nothing to install.",
+    "Stand behind every couple's planning. The Venue Edition is patronage, paid once a year from €1,500 — the venue's name in a quiet line, nothing for the team to run. Founding venues lock €1,500 for as long as they stay.",
   openGraph: {
     title: "Founding Venue Programme - Signal Studio",
     description:
-      "Sponsored wedding planning workspaces for your couples — 12 months free each, co-branded, no software for your team to run.",
+      "A venue stands behind its couples' planning — twelve months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
     type: "website",
   },
 };
@@ -19,12 +19,14 @@ const trackingSuffix =
 
 /**
  * Founding Venue Programme offer page. Venue-facing — distinct from
- * /weddings (the couple-facing wedge). Content is the canonical offer
- * from content/hq/campaigns/founding-venue.md + pilots/founding-venue-
- * pilot.md: what couples get, what founding status means, what we ask,
- * and the feedback rhythm. No fabricated product screenshot (DESIGN.md
- * §8) — a hairline "what's included" panel does the work a fake hero
- * mock would, in the suite's restrained register.
+ * /weddings (the couple-facing wedge). Rebuilt 2026-05-16 to the
+ * ratified paid model (content/hq/decisions/venue-editions-paid-tier.md):
+ * the venue PAYS Signal Studio. Every "free / with our compliments /
+ * the gift / no card" string is gone — that model was reversed. The
+ * mechanic is unchanged: per-couple codes, co-branded eyebrow, 12-month
+ * couple duration, auto-drop to Free at month 12. No fabricated product
+ * screenshot (DESIGN.md §8) — a hairline panel does the work, in the
+ * suite's restrained register.
  */
 
 const included = [
@@ -33,8 +35,8 @@ const included = [
     copy: "Notes, decisions, tasks, and a plan anyone can forward — one clear place instead of a spreadsheet and a thread.",
   },
   {
-    title: "Twelve months, on the venue",
-    copy: "Each couple's workspace is sponsored for a full year. It drops to the free plan at month twelve, with a quiet prompt beforehand. No card, no trial countdown.",
+    title: "Twelve months, every couple",
+    copy: "The venue prepays the year. Each couple gets twelve months of the full suite, then it drops to the free plan with a quiet prompt beforehand. No countdown in their face.",
   },
   {
     title: "Your name on it, quietly",
@@ -46,18 +48,18 @@ const included = [
   },
 ];
 
-const asks = [
+const founding = [
   {
-    title: "A short conversation with your coordinator",
-    copy: "What the planning year actually looks like from your side, and where it gets noisy. Thirty minutes, once.",
+    title: "A price that holds",
+    copy: "€1,500 a year, locked for as long as you stay. The asset is permanence, not a discount that expires into a higher number.",
   },
   {
-    title: "A line of feedback from a couple or two",
-    copy: "Only the couples who want to. What helped, what got in the way. Plain words, not a survey.",
+    title: "A short conversation, once",
+    copy: "What the planning year looks like from your side, and where it gets noisy. Thirty minutes, once — not a standing meeting.",
   },
   {
-    title: "Permission to point to the work — if it is good",
-    copy: "If the pilot earns it, we would like to describe it as a short case study. You see it before anyone else, and you can say no.",
+    title: "First look at what is next",
+    copy: "Founding venues see new work before anyone else, and can say what should change while it still can.",
   },
 ];
 
@@ -75,12 +77,13 @@ export default function VenuesPage() {
               Founding Venue Programme
             </p>
             <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
-              Give every couple a plan they can read.
+              Stand behind every couple who plans with you.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              A founding venue sponsors a clear planning workspace for every
-              couple it works with — twelve months each, co-branded, with
-              nothing for the venue team to install or manage.
+              Signal Studio gives every couple a clear place to plan their
+              wedding. The Venue Edition lets a venue stand behind that — paid
+              once a year, the venue&apos;s name in a quiet line at the top,
+              nothing for the team to run. Patronage, not software.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
@@ -99,6 +102,51 @@ export default function VenuesPage() {
           </div>
         </section>
 
+        {/* The Venue Edition — the money, stated plainly */}
+        <section className="border-b border-border-soft px-6 py-16 md:py-20">
+          <div className="mx-auto w-full max-w-[1040px]">
+            <p
+              className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
+              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+            >
+              The Venue Edition
+            </p>
+            <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
+              Paid once a year. The couple never sees a price.
+            </h2>
+            <div className="mt-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
+              <div>
+                <p className="text-[16px] leading-[1.65] text-ink-soft">
+                  €1,500 to €4,000 a year, prepaid, set by venue size and
+                  number of sites. Every couple the venue sends gets twelve
+                  months of the full suite. No seats. No per-couple maths. No
+                  contract jargon. The venue pays so the couple never has to
+                  think about it.
+                </p>
+                <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
+                  The founding cohort — the first fifteen venues — locks
+                  €1,500 a year for as long as it stays. Not an introductory
+                  rate that climbs. A standing that holds.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 border-t border-border-soft pt-7 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+                <span
+                  className="text-[11px] font-semibold uppercase text-ink-quiet"
+                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+                >
+                  Annual · prepaid
+                </span>
+                <span className="text-[clamp(2rem,1.6rem+1.6vw,3rem)] font-semibold leading-none tracking-[-0.045em] text-ink">
+                  €1,500–€4,000
+                </span>
+                <span className="text-[13px] leading-[1.5] text-ink-quiet">
+                  a year, by venue size · founding venues lock €1,500
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* What couples get */}
         <section className="border-b border-border-soft px-6 py-16 md:py-20">
           <div className="mx-auto w-full max-w-[1040px]">
@@ -109,7 +157,7 @@ export default function VenuesPage() {
               What your couples get
             </p>
             <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              The gift is clarity, not another tool to learn.
+              What your patronage gives them.
             </h2>
             <div className="mt-10 border-t border-border-soft">
               {included.map((item) => (
@@ -129,20 +177,20 @@ export default function VenuesPage() {
           </div>
         </section>
 
-        {/* What we ask */}
+        {/* What founding means */}
         <section className="border-b border-border-soft px-6 py-16 md:py-20">
           <div className="mx-auto w-full max-w-[1040px]">
             <p
               className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
               style={{ letterSpacing: "var(--tracking-eyebrow)" }}
             >
-              What we ask of you
+              What founding means
             </p>
             <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              Three small things, and only if it is working.
+              You shape it, and the price never moves.
             </h2>
             <div className="mt-10 border-t border-border-soft">
-              {asks.map((item) => (
+              {founding.map((item) => (
                 <div
                   key={item.title}
                   className="grid gap-2 border-b border-border-soft py-6 md:grid-cols-[0.9fr_1.1fr] md:gap-10"
@@ -177,9 +225,10 @@ export default function VenuesPage() {
                   01
                 </span>
                 <p className="text-[15px] leading-[1.6] text-ink-soft">
-                  <span className="font-medium text-ink">Start.</span> We send
-                  the codes and a short note you can pass to couples. Your
-                  coordinator gets one walkthrough, then it runs itself.
+                  <span className="font-medium text-ink">Start.</span> Once the
+                  year is settled, we send the codes and a short note you can
+                  pass to couples. Your coordinator gets one walkthrough, then
+                  it runs itself.
                 </p>
               </li>
               <li className="grid grid-cols-[auto_1fr] gap-4">
@@ -214,12 +263,13 @@ export default function VenuesPage() {
         <section className="px-6 py-16 md:py-24">
           <div className="mx-auto w-full max-w-[1040px]">
             <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              We are taking a small first group of venues.
+              We are taking a founding group of fifteen venues.
             </h2>
             <p className="mt-5 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
               If your venue runs real wedding coordination and you want your
-              couples to plan with less noise, start a conversation. No deck, no
-              demo gate — just a short talk about whether this fits.
+              couples planning with less noise, start a conversation. No deck,
+              no demo gate — a short talk about whether this fits, and what
+              your venue would pay.
             </p>
             <div className="mt-8">
               <Link

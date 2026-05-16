@@ -7,6 +7,31 @@
 
 ---
 
+> ## ⚠ AMENDED 2026-05-16 — the money reversed
+>
+> This plan was written for a **free** model ("with our compliments"). On
+> 2026-05-16 the founder ratified the **paid Venue Edition**:
+> **€1,500–€4,000 / year, prepaid**, founding cohort locks €1,500 for
+> life. The venue now **pays Signal Studio** for the sponsorship. The
+> canonical decision is `content/hq/decisions/venue-editions-paid-tier.md`
+> — read it first; where it and this doc disagree, the decision wins.
+>
+> **What changed:** the money only. The venue pays instead of receiving
+> "with our compliments". §1's "extends free, full-suite access", §3's
+> "Free for your couples" pitch, and §4's "not a public tier on /pricing"
+> are **superseded** — the Venue Edition is now a paid tier surfaced on
+> `signalstudio.ie/pricing` and `signalstudio.ie/venues`.
+>
+> **What did NOT change (still load-bearing below):** the mechanic —
+> per-couple codes, co-branded eyebrow only (no venue logo), 12-month
+> couple duration, auto-drop to Free at month 12, sponsor-aware welcome.
+> "With our compliments" survives ONLY as the founder-issued
+> family/friends comp track, never as the venue model. Lamb's Hill, in
+> flight as a free pilot, is honoured at the founding €1,500 lock if it
+> converts.
+
+---
+
 ## 1 · What this program is
 
 Signal Studio extends free, full-suite access to its 80% audience through **two named programs**:
