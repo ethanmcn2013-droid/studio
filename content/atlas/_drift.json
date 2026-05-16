@@ -1,19 +1,4 @@
 {
-  "brand-enforcement": {
-    "drifted": [
-      "src/app/globals.css",
-      "src/app/brand/page.tsx"
-    ],
-    "updatedAt": "2026-05-16T16:21:08.275Z",
-    "byCommit": "5ebc323"
-  },
-  "signal-studio-umbrella": {
-    "drifted": [
-      "src/app/brand/"
-    ],
-    "updatedAt": "2026-05-16T16:21:08.275Z",
-    "byCommit": "5ebc323"
-  },
   "log-cycle-cross-repo-writer": {
     "drifted": [
       "~/Projects/personal/studio/src/lib/db/schema.ts",
