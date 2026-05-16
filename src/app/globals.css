@@ -707,10 +707,10 @@ body {
    motion catalogue (2026-05-13). Each gesture starts as a dimmed
    waiting state, becomes fully visible when the row gets .fire (the
    choreographed entrance still plays), then runs the canonical
-   continuous motion: heartbeat 1.6s / advance 2.6s / tick 2.4s /
-   settle 3.2s. Same vocabulary that lives at /brand and /pricing. */
+   continuous motion: pulse 2.6s / sweep 5.4s / tick 2.4s /
+   caret 1.1s. Same vocabulary that lives at /brand and /pricing. */
 
-/* tasks · M·02 heartbeat */
+/* tasks · M·02 pulse */
 .reveal-stack .stack-row[data-key="tasks"] .dot {
   opacity: 0;
   transform: translateY(-0.04em) scale(1);
@@ -719,9 +719,9 @@ body {
 }
 .reveal-stack .stack-row[data-key="tasks"].fire .dot {
   opacity: 1;
-  animation: reveal-tasks-heartbeat 1.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-tasks-pulse 2.6s ease-in-out infinite;
 }
-@keyframes reveal-tasks-heartbeat {
+@keyframes reveal-tasks-pulse {
   0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
   10%           { transform: translateY(-0.04em) scale(1.22); }
   20%           { transform: translateY(-0.04em) scale(1); }
@@ -729,7 +729,7 @@ body {
   50%           { transform: translateY(-0.04em) scale(1); }
 }
 
-/* roadmap · M·03 advance */
+/* roadmap · M·03 sweep */
 .reveal-stack .stack-row[data-key="roadmap"] .dot {
   opacity: 0;
   transition: opacity .55s ease;
@@ -737,9 +737,9 @@ body {
 }
 .reveal-stack .stack-row[data-key="roadmap"].fire .dot {
   opacity: 1;
-  animation: reveal-roadmap-advance 2.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes reveal-roadmap-advance {
+@keyframes reveal-roadmap-sweep {
   0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
@@ -765,7 +765,7 @@ body {
   92%           { transform: translateY(-0.04em) scaleY(1); }
 }
 
-/* notes · M·05 settle */
+/* notes · M·05 caret */
 .reveal-stack .stack-row[data-key="notes"] .dot {
   opacity: 0;
   transition: opacity .55s ease;
@@ -773,9 +773,9 @@ body {
 }
 .reveal-stack .stack-row[data-key="notes"].fire .dot {
   opacity: 1;
-  animation: reveal-notes-settle 3.2s var(--reveal-ease-glide) infinite;
+  animation: reveal-notes-caret 1.1s steps(1,end) infinite;
 }
-@keyframes reveal-notes-settle {
+@keyframes reveal-notes-caret {
   0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
   50%      { transform: translateY(-0.04em) scale(1.05); opacity: 1; }
 }
@@ -1014,11 +1014,11 @@ body {
    as the hero stack above; just at the larger row size. */
 .reveal-product-row[data-key="tasks"] .mark .dot {
   transform-origin: center;
-  animation: reveal-tasks-heartbeat 1.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-tasks-pulse 2.6s ease-in-out infinite;
 }
 .reveal-product-row[data-key="roadmap"] .mark .dot {
   transform-origin: center;
-  animation: reveal-roadmap-advance 2.6s var(--reveal-ease-glide) infinite;
+  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
 .reveal-product-row[data-key="analytics"] .mark .dot {
   transform-origin: center;
@@ -1026,7 +1026,7 @@ body {
 }
 .reveal-product-row[data-key="notes"] .mark .dot {
   transform-origin: center;
-  animation: reveal-notes-settle 3.2s var(--reveal-ease-glide) infinite;
+  animation: reveal-notes-caret 1.1s steps(1,end) infinite;
 }
 
 /* Notes row — placeholder: in-design dim, slightly less aggressive
@@ -1257,10 +1257,10 @@ body {
    the pricing page suite-reveal section. Aligned with the
    design-system v1 motion catalogue (2026-05-13) so /pricing
    reads exactly like the asset hub at /brand.
-     - tasks      heartbeat  1.6s
-     - roadmap    advance    2.6s
-     - analytics  tick       2.4s
-     - notes      settle     3.2s
+     - tasks      pulse   2.6s  ease-in-out
+     - roadmap    sweep   5.4s  cubic-bezier(.22,.7,.2,1)
+     - analytics  tick    2.4s  steps(1,end)
+     - notes      caret   1.1s  steps(1,end)
    ════════════════════════════════════════════════════════════ */
 .pricing-mark {
   display: inline-flex;
@@ -1284,11 +1284,11 @@ body {
   transform-origin: center;
 }
 
-/* tasks · M·02 heartbeat — paired beats every 1.6s. */
+/* tasks · M·02 pulse — dot breathes every 2.6s. */
 .pricing-mark[data-key="tasks"] .dot {
-  animation: pricing-heartbeat 1.6s var(--reveal-ease-glide) infinite;
+  animation: pricing-pulse 2.6s ease-in-out infinite;
 }
-@keyframes pricing-heartbeat {
+@keyframes pricing-pulse {
   0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
   10%           { transform: translateY(-0.04em) scale(1.22); }
   20%           { transform: translateY(-0.04em) scale(1); }
@@ -1296,11 +1296,11 @@ body {
   50%           { transform: translateY(-0.04em) scale(1); }
 }
 
-/* roadmap · M·03 advance — drift right 4px, fade, reset, every 2.6s. */
+/* roadmap · M·03 sweep — dot tracks left→right, every 5.4s. */
 .pricing-mark[data-key="roadmap"] .dot {
-  animation: pricing-advance 2.6s var(--reveal-ease-glide) infinite;
+  animation: pricing-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes pricing-advance {
+@keyframes pricing-sweep {
   0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
@@ -1320,11 +1320,11 @@ body {
   92%           { transform: translateY(-0.04em) scaleY(1); }
 }
 
-/* notes · caret — sharp on/off blink (~1.1s) */
+/* notes · M·05 caret — dot blinks like a held cursor, 1.1s. */
 .pricing-mark[data-key="notes"] .dot {
-  animation: pricing-settle 3.2s var(--reveal-ease-glide) infinite;
+  animation: pricing-caret 1.1s steps(1,end) infinite;
 }
-@keyframes pricing-settle {
+@keyframes pricing-caret {
   0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
   50%      { transform: translateY(-0.04em) scale(1.05); opacity: 1; }
 }
@@ -1403,10 +1403,10 @@ body {
    Five wordmarks, five motions, one indigo. Used by the
    Wordmark component and the /brand asset hub.
      - signal studio.  broadcast  2.6s  (period, baseline)
-     - tasks·          heartbeat  1.6s  (middot, lifted)
-     - roadmap·        advance    2.6s  (middot, lifted)
-     - analytics·      tick       2.4s  (middot, lifted)
-     - notes.          settle     3.2s  (period, baseline)
+     - tasks·          pulse      2.6s  ease-in-out (middot, lifted)
+     - roadmap·        sweep      5.4s  cubic-bezier(.22,.7,.2,1) (middot, lifted)
+     - analytics·      tick       2.4s  steps(1,end) (middot, lifted)
+     - notes.          caret      1.1s  steps(1,end) (period, baseline)
    Period = umbrella + nouns. Middot = verbs.
    ════════════════════════════════════════════════════════════ */
 .brand-mark {
@@ -1488,9 +1488,9 @@ body {
 }
 
 .brand-mark[data-variant="tasks"].is-live .md {
-  animation: brand-tasks-beat 1.6s var(--spring-glide) infinite;
+  animation: brand-tasks-pulse 2.6s ease-in-out infinite;
 }
-@keyframes brand-tasks-beat {
+@keyframes brand-tasks-pulse {
   0%, 30%, 100% { transform: translateY(-0.62em) scale(1); }
   10%           { transform: translateY(-0.62em) scale(1.22); }
   20%           { transform: translateY(-0.62em) scale(1); }
@@ -1499,9 +1499,9 @@ body {
 }
 
 .brand-mark[data-variant="roadmap"].is-live .md {
-  animation: brand-roadmap-advance 2.6s var(--spring-glide) infinite;
+  animation: brand-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes brand-roadmap-advance {
+@keyframes brand-roadmap-sweep {
   0%   { transform: translateY(-0.62em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.62em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.62em) translateX(4px); opacity: 0; }
@@ -1521,9 +1521,9 @@ body {
 }
 
 .brand-mark[data-variant="notes"].is-live .pd {
-  animation: brand-notes-settle 3.2s var(--spring-glide) infinite;
+  animation: brand-notes-caret 1.1s steps(1,end) infinite;
 }
-@keyframes brand-notes-settle {
+@keyframes brand-notes-caret {
   0%, 100% { transform: scale(0.92); opacity: 0.85; }
   50%      { transform: scale(1.05); opacity: 1; }
 }

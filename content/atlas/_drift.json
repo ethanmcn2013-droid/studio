@@ -6,8 +6,8 @@
       "src/components/landing/",
       "src/app/brand/"
     ],
-    "updatedAt": "2026-05-16T00:23:01.965Z",
-    "byCommit": "9bc4261"
+    "updatedAt": "2026-05-16T04:46:26.217Z",
+    "byCommit": "b52755a"
   },
   "brand-enforcement": {
     "drifted": [
@@ -15,8 +15,8 @@
       "BRAND.md",
       "src/app/brand/"
     ],
-    "updatedAt": "2026-05-16T01:33:49.872Z",
-    "byCommit": "d51944f"
+    "updatedAt": "2026-05-16T04:46:26.217Z",
+    "byCommit": "b52755a"
   },
   "five-products-as-a-system": {
     "drifted": [

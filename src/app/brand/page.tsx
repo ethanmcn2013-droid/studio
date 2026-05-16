@@ -57,10 +57,10 @@ const PALETTE = [
 
 const MOTIONS: Array<{ code: string; variant: LogoFile["variant"]; name: string; cycle: string; line: string }> = [
   { code: "M·01", variant: "signal", name: "broadcast", cycle: "2.6s", line: "A single emit ring radiates from the dot. The signature gesture — the studio is here." },
-  { code: "M·02", variant: "tasks", name: "heartbeat", cycle: "1.6s", line: "Paired beats. Tap-tap, rest. Work has a pulse." },
-  { code: "M·03", variant: "roadmap", name: "advance", cycle: "2.6s", line: "Drifts right 4px, then fades and resets. Direction without urgency." },
+  { code: "M·02", variant: "tasks", name: "pulse", cycle: "2.6s", line: "Paired beats. Tap-tap, rest. Work has a pulse." },
+  { code: "M·03", variant: "roadmap", name: "sweep", cycle: "5.4s", line: "Drifts right 4px, then fades and resets. Direction without urgency." },
   { code: "M·04", variant: "analytics", name: "tick", cycle: "2.4s", line: "A scope-style vertical pulse — the dot squeezes then settles. Registering a signal." },
-  { code: "M·05", variant: "notes", name: "settle", cycle: "3.2s", line: "A slow breath. Scales 0.92→1.05 with a faint opacity drift. A thought arriving." },
+  { code: "M·05", variant: "notes", name: "caret", cycle: "1.1s", line: "Blinks like a held cursor. A thought mid-formation." },
 ];
 
 const REFUSALS = [

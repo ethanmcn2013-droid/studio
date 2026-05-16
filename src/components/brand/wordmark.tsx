@@ -45,10 +45,10 @@ const USES_PERIOD: Record<Variant, boolean> = {
  *
  * Five variants, five motions, one indigo:
  *   - signal studio.  broadcast  2.6s  (period + emit ring)
- *   - tasks·          heartbeat  1.6s
- *   - roadmap·        advance    2.6s
- *   - analytics·      tick       2.4s
- *   - notes.          settle     3.2s
+ *   - tasks·          pulse      2.6s  ease-in-out
+ *   - roadmap·        sweep      5.4s  cubic-bezier(.22,.7,.2,1)
+ *   - analytics·      tick       2.4s  steps(1,end)
+ *   - notes.          caret      1.1s  steps(1,end)
  *
  * Period (.pd) is baseline-seated — used by umbrella + nouns.
  * Middot (.md) is lifted toward cap-height — used by verbs.

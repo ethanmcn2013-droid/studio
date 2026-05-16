@@ -175,14 +175,19 @@ differently per product.
 | Notes | caret | Dot blinks like a held cursor | 1.1s `steps(1,end)` |
 
 These are the *only* product-level animations. Don't invent new
-gestures. **Suite-wide migration owed:** product repos and the
-marketing site still reference the old gesture names in code/CSS —
-that rename is a separate cross-repo cycle, not part of the HQ work
-that ratified this table. The conflicting old vocabulary was: Tasks
-`tick` (now Analytics), Roadmap `advance`, Analytics `heartbeat`,
-Notes `settle`. **Rejected at the same time:** the new guide's warm
-Stone neutral ramp — HQ holds the 2026-05-13 white/zinc lock; the
-guide's warm ramp is brand-book chrome only, not product tokens.
+gestures. **Suite-wide migration complete (2026-05-16):** all five
+repos now implement the canonical vocabulary in code/CSS — keyframes,
+animation tokens, timings, easings, and component docstrings conformed
+(Tasks `heartbeat`→`pulse` 2.6s ease-in-out, Roadmap `advance`→`sweep`
+5.4s cubic-bezier(.22,.7,.2,1), Analytics continuous-pulse→`tick` 3.6s
+steps(1,end), Notes `settle`→`caret` 1.1s steps(1,end), Studio
+`broadcast` one-shot). The old vocabulary (Tasks `tick` — now
+Analytics, Roadmap `advance`, Analytics `heartbeat`, Notes `settle`)
+is fully retired from product code. **White-lock held, ratified again
+2026-05-16:** the handed brand guide's warm Stone neutral ramp was
+*not* adopted for product use — paper stays `#ffffff`/`#fafafa`, ink
+`#111111`, one indigo `#4f46e5`. The guide's warm ramp is brand-book
+chrome only, never product tokens.
 
 ---
 
