@@ -83,6 +83,29 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      // ── Caching (hardening P8) ──────────────────────────────────
+      // Hashed assets (/_next/static/*) are already served
+      // `max-age=31536000, immutable` by Vercel/Next automatically,
+      // and static HTML is CDN-cached with stale-while-revalidate by
+      // the Vercel edge — those are platform defaults, not gaps, and
+      // fighting them via next.config is fragile, so they're left to
+      // the platform.
+      //
+      // The real gap: /public assets ship `max-age=0, must-revalidate`
+      // by default because they aren't content-hashed. The brand SVGs
+      // are stable identity assets — give them the year+immutable
+      // treatment P8 asks for. Contract: a logo that changes content
+      // MUST change filename (or be cache-busted) — same discipline
+      // the brand hub already follows for asset versioning.
+      {
+        source: "/brand/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 };
