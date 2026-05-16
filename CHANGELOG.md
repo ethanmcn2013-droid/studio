@@ -3,7 +3,7 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
-## 2026-05-16 · S·U6 · tightens · the link finally shows the brand instead of nothing
+## 2026-05-16 · S·U8 · tightens · the link finally shows the brand instead of nothing
 
 **Every link to signalstudio.ie pasted into a message, a post, or a
 chat has been unfurling as a blank card — the social preview image
@@ -16,7 +16,7 @@ generated once and cached rather than per request, and light enough
 to load before an unfurl gives up waiting. The kind of thing nobody
 notices until the day it is finally right.
 
-## 2026-05-16 · S·U5 · tightens · the lock gets changed before anyone tries the handle
+## 2026-05-16 · S·U7 · tightens · the lock gets changed before anyone tries the handle
 
 **Two known weaknesses in the site's own foundations are closed —
 one that could let a crafted request slip past the routing layer,

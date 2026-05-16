@@ -62,7 +62,7 @@ export function RevealEngine() {
         document
           .querySelectorAll(".stack-row")
           .forEach((r) => r.classList.add("fire"));
-        gsap.set(".reveal-gold-rule", { width: 132 });
+        gsap.set(".reveal-gold-rule", { scaleX: 1 });
         // Headline is server-rendered visible; no gsap.set needed.
         gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
         gsap.set(".reveal-scroll-cue", { y: 0, opacity: 1 });
@@ -84,7 +84,7 @@ export function RevealEngine() {
       // Headline is intentionally NOT set hidden — it's server-rendered
       // visible to remove the ~800ms blank flash during GSAP's dynamic
       // import. The choreography below is for everything else.
-      gsap.set(".reveal-gold-rule", { width: 0 });
+      gsap.set(".reveal-gold-rule", { scaleX: 0 });
       gsap.set(".reveal-subhead", { y: 8, opacity: 0 });
       gsap.set(".stack-row", { y: 10, opacity: 0 });
       gsap.set(".reveal-scroll-cue", { y: 4, opacity: 0 });

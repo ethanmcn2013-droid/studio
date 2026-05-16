@@ -519,7 +519,12 @@ body {
 
 @supports (animation-timeline: view()) {
   .manifesto-rule {
-    width: 0;
+    /* Width stays 96px; the sweep is a compositor scaleX, not a
+       per-frame width reflow (hardening P7). transform-origin:left
+       preserves the "draws in from the left" read. */
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
     animation: rule-sweep linear both;
     animation-timeline: view();
     animation-range: entry 5% cover 30%;
@@ -527,8 +532,8 @@ body {
 }
 
 @keyframes rule-sweep {
-  from { width: 0; }
-  to   { width: 96px; }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
@@ -542,6 +547,7 @@ body {
   }
   /* Ensure the accent rule is visible at full width when motion is reduced. */
   .manifesto-rule {
+    transform: scaleX(1) !important;
     width: 96px !important;
   }
 }
@@ -573,10 +579,16 @@ body {
   padding: 64px 32px 120px;
 }
 .reveal-gold-rule {
-  width: 0;
+  /* Full width at rest; the entrance draw is a compositor scaleX
+     (hardening P7), not a width tween. margin:auto + origin:center
+     reproduces the original symmetric expand-from-centre exactly. */
+  width: 132px;
   height: 1px;
   background: var(--accent);
   margin: 0 auto 40px;
+  transform: scaleX(0);
+  transform-origin: center;
+  will-change: transform;
 }
 .reveal-headline {
   font-size: clamp(44px, 7.2vw, 104px);
@@ -1111,6 +1123,10 @@ body {
   width: 132px;
   height: 1px;
   background: var(--accent);
+  /* gsap.from() animates scaleX 0→1 (compositor), not width
+     (hardening P7). Natural rest state is scaleX(1). */
+  transform-origin: center;
+  will-change: transform;
 }
 .reveal-closing-sign {
   font-size: clamp(28px, 3.4vw, 40px);
@@ -1365,7 +1381,7 @@ body {
 
 /* ── Reduced motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-gold-rule { width: 132px !important; }
+  .reveal-gold-rule { transform: scaleX(1) !important; }
   .reveal-headline .word-inner { transform: none !important; }
   .reveal-subhead,
   .reveal-stack .stack-row,
@@ -1395,7 +1411,7 @@ body {
   .reveal-product-row .right,
   .reveal-closing-sign,
   .reveal-closing-addr { opacity: 1 !important; transform: none !important; }
-  .reveal-closing-rule { width: 132px !important; }
+  .reveal-closing-rule { transform: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════
