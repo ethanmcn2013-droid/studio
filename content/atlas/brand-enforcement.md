@@ -5,7 +5,7 @@ lens: Processes
 owner: Ethan
 lastVerified: 2026-05-16
 links: [signal-studio-umbrella, plan-cycle, five-products-as-a-system]
-tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Cut through the noise.", Stark+Jobs, Pentagram, Manual]
+tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Project management for the 80% not in tech.", Stark+Jobs, Pentagram, Manual]
 references: [BRAND.md, DESIGN.md, src/app/globals.css, src/components/brand/wordmark.tsx, src/app/brand/page.tsx]
 summary: BRAND.md is the single source of truth for voice, naming, banned words, locked H1, the indigo accent. The catch-net runs during any cycle touching copy.
 status: complete
@@ -33,12 +33,13 @@ Ethan owns BRAND.md outright. Every other contributor (Claude in any role, Codex
   - §3 Voice — Stark+Jobs (cadence, banned words, cadence words, emotional intelligence)
   - §4 Naming conventions (product naming, umbrella naming, email, URLs)
   - §5 Visual register (palette, type, motion, banned visuals)
-  - §6 Page-level conventions (hero pattern, CTA verbs, footer pattern, changelog convention)
+  - §6 Page-level conventions (hero pattern, CTA verbs, footer pattern, dispatch convention)
   - §7 Audience accents (per-archetype tonal shifts)
   - §8 Operating constraints
   - §9 How to use this document
-- `src/app/globals.css` — the visual register tokens (`--paper`, `--ink`, `--accent: #4f46e5`, tracking variables). Codified version of §5.
-- `src/components/wordmark/` — the `<Wordmark>` component, gestures encoded per §1 / §4.
+  - §10 Living document — recent decisions
+- `src/app/globals.css` — the visual register tokens (`--paper: #ffffff`, `--ink: #111111`, `--accent: #4f46e5`, hairline borders, tracking variables). Codified version of §5.
+- `src/components/brand/wordmark.tsx` — the `<Wordmark>` component, five variants and gestures (broadcast/pulse/sweep/tick/caret) encoded per §1 / §4.
 - `src/app/brand/` — `/brand` public asset hub (the brand is *available*, not just enforced).
 
 ## HOW
@@ -59,7 +60,7 @@ The enforcement is *operational*, not technical. There's no linter checking bann
 1. **Cycle opens with copy or visual work.** Before drafting, read the relevant BRAND.md section (§3 for words, §5 for visuals, §6 for page patterns, §7 for audience accents).
 2. **Draft against the rules.** Examples: hero patterns follow §6.1's three-line shape; CTAs use the verbs in §6.2; banned words in §3 are off-limits unless explicitly carved out for a security/docs page.
 3. **Cross-check before commit.** If the cycle is non-trivial (a new page, a hero rewrite, a naming decision), the catch-net is a second read against BRAND.md before staging. Most cycles catch one or two banned words on this pass.
-4. **The locked H1 across the suite is "Cut through the noise."** — the wedding-vow line. Never changed without a decision recorded in §1 or §6.
+4. **The umbrella H1 is "Project management for the 80% not in tech."** — operator-ratified 2026-05-15 (the prior "Cut through the noise." wedding-vow line is retired as the umbrella signature). `80%` carries the indigo highlight. Each product carries its own sharper H1 (Tasks "Execution clarity for live work.", Roadmap "Show your work, not your Jira.", Analytics "A briefing, not a dashboard.", Notes "Not everything is ready for the room. Write it here first."). The umbrella line is never changed without a decision recorded in §4/§10.
 5. **Refusals stay refusals.** §1 lists what doesn't get built (no team tier, no private workspaces, no comment threading, no public directory). When a cycle proposes one of these, the catch-net is: name the refusal, then decide whether *this* cycle is the one that overturns it. Almost always: no.
 
 ### The most common catches
@@ -73,10 +74,11 @@ The enforcement is *operational*, not technical. There's no linter checking bann
 ## WHEN — current state
 
 - Handbook stable since 2026-05-12 (moved into studio repo from a previous shared location).
-- §5 D01 (indigo `#4f46e5`) retired the antique gold `#c9a96a` on 2026-05-11. Gold survives only as a wordmark-period detail.
+- §5 D01 (indigo `#4f46e5`) retired the antique gold `#c9a96a` on 2026-05-11. Gold survives only as a wordmark-period detail. globals.css codifies this: `--accent: #4f46e5`, `--paper: #ffffff`, `--ink: #111111`, hairline borders doing the work shadows would in a louder system.
+- Umbrella H1 is "Project management for the 80% not in tech." since the 2026-05-15 operator ratification; "Cut through the noise." is retired as the umbrella signature.
 - Voice version: Stark+Jobs locked. Audience archetypes (§2.1) carry five named personas — wedding, trades, student, freelance, marketing — with public-coordinator and small-business-operator flagged in BRAND.md but not yet landed as audience pages.
-- The /brand public asset hub at signalstudio.ie/brand is the externally-visible expression of the handbook (wordmarks, palette, type scale, voice rules, eighteen downloadable SVGs).
-- S·26 (2026-05-14) added `loading="lazy" decoding="async"` to those eighteen images and stepped the wordmark + motion grids from a 1→5 jump to 2→3→5. CSS register, no copy or palette change. Handbook unaffected.
+- The /brand public asset hub at signalstudio.ie/brand is the externally-visible expression of the handbook (wordmarks, palette, type scale, voice rules, nineteen downloadable SVGs).
+- S·26 (2026-05-14) added `loading="lazy" decoding="async"` to those images and stepped the wordmark + motion grids from a 1→5 jump to 2→3→5. CSS register, no copy or palette change. Handbook unaffected.
 
 ## WHY
 
@@ -90,5 +92,6 @@ The refusal list (§1) is the strategic anchor. The temptation in any product is
 
 ## Reverification trail
 
+- 2026-05-16 (atlas re-verify) — two drifts corrected. (1) The locked-H1 claim was false: the entry stated the suite's locked H1 is "Cut through the noise."; BRAND.md §10 (2026-05-15 operator-ratified), `src/app/layout.tsx`, and `src/components/reveal/reveal-hero.tsx` all carry "Project management for the 80% not in tech." as the umbrella H1, with "Cut through the noise." explicitly retired. HOW step 4, the `tags`, and the WHEN section updated accordingly. (2) WHERE pointed at a non-existent `src/components/wordmark/`; corrected to `src/components/brand/wordmark.tsx` (already correct in `references[]`). Token claims re-verified against globals.css and confirmed accurate: `--accent: #4f46e5`, `--paper: #ffffff`, `--ink: #111111`, hairline borders, white-locked surfaces. Section structure §1–§10 re-verified. Enforcement mechanism (operational catch-net, not a linter) unchanged.
 - 2026-05-14 (S·32) — BRAND.md §6.5 grew two new paragraphs: "Engineering log vs dispatch (clarified 2026-05-14)" establishes a two-artifact discipline, and "Banned in the dispatch (extended)" enumerates engineering-internal references (file paths, function names, type names, library names, hex codes, anything in backticks) that the dispatch must never reach for. Catch-net role unchanged — this is an *addition* to the rules BRAND.md enforces, not a modification of the enforcement mechanism. Voice, banned words, refusal list, and visual register sections untouched.
 - 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code definition gained a preflight rule (`git log --oneline -20 | grep -oE '[STRAN]·[0-9]+'`) for catching parallel-session collisions before they ship. Addition to the convention, not a modification — the catch-net still holds for voice and visual rules.

@@ -3,10 +3,10 @@ title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-14
+lastVerified: 2026-05-16
 links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
 tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem, design system v1, wordmark gestures]
-references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/wordmark/]
+references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/brand/wordmark.tsx]
 summary: Tasks does the work; Roadmap shows the plan; Analytics asks "what now"; Notes captures the rest. Four products, one umbrella, one design system, three explicit hand-offs.
 status: complete
 pinned: false
@@ -91,5 +91,6 @@ The shared payments layer is the only thing that has to be perfectly synchronize
 
 ## Reverification trail
 
+- 2026-05-16 (atlas re-verify) — `references[]` corrected: the non-existent `src/components/wordmark/` path replaced with the real `src/components/brand/wordmark.tsx`. System shape re-verified against BRAND.md §1 and the cross-flow descriptions and is unchanged — four products (Tasks/Roadmap/Analytics/Notes) under one umbrella, three explicit hand-offs (Notes→Tasks promote, Tasks→Analytics read, Analytics→Studio cron-ping), one shared payments layer. No body prose drift; the canonical gesture vocabulary is broadcast/pulse/sweep/tick/caret.
 - 2026-05-14 (S·32) — BRAND.md §6.5 grew the engineering-log / dispatch separation rules. Five-product cardinality, three-handoff structure, and the shared-payments-as-the-only-tight-coupling reading are unaffected. The dispatch convention change is about how shipped work is *narrated* across the suite, not about how the suite is *shaped*.
 - 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code preflight rule landed. System-shape claims here are unaffected.
