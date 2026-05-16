@@ -41,6 +41,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // ── Consent / cookie stance (hardening P10) ─────────────────────
+  // The apex sets NO non-essential cookies. The only cookie in the
+  // codebase is the HQ sign-in session (httpOnly, sameSite=strict,
+  // path=/hq) — strictly necessary, consent-exempt under GDPR/ePrivacy.
+  // Vercel Web Analytics, if enabled, is cookieless and account-blind.
+  // Therefore: NO cookie banner, by design — a banner for cookies that
+  // don't exist is dark-pattern noise.
+  // If a non-essential cookie/tracker is ever added: it requires PRIOR
+  // opt-in consent (a real choice before it loads), never "by
+  // continuing you agree". Revisit /privacy and this note together.
   return (
     <html
       lang="en"
