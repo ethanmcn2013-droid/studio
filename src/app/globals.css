@@ -1466,6 +1466,27 @@ body {
   100%    { opacity: 0; transform: scale(2.6); }
 }
 
+/* House wordmark page-load — broadcast fires exactly once on DOM
+   ready, then quiet. Same emit + ring keyframes as .is-live, but a
+   single iteration with fill, so the period settles and stays put.
+   The header passes this on mount (SiteNav, client). Reduced motion
+   is covered by the global reduced-motion block and the .ring reset. */
+.brand-mark[data-variant="signal"].is-intro .pd {
+  animation: brand-signal-emit 2.6s var(--spring-glide) 1 both;
+}
+.brand-mark[data-variant="signal"].is-intro .ring {
+  position: absolute;
+  right: 0;
+  bottom: 0.06em;
+  width: 0.18em;
+  height: 0.18em;
+  border-radius: 50%;
+  border: 1.2px solid var(--indigo);
+  transform-origin: center;
+  animation: brand-signal-ring 2.6s var(--spring-glide) 1 both;
+  pointer-events: none;
+}
+
 .brand-mark[data-variant="tasks"].is-live .md {
   animation: brand-tasks-beat 1.6s var(--spring-glide) infinite;
 }

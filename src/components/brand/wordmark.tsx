@@ -3,8 +3,14 @@ type Size = "sm" | "md" | "lg" | "xl";
 
 interface WordmarkProps {
   className?: string;
-  /** Run the variant's motion gesture. Defaults to true. */
+  /** Run the variant's motion gesture (looping). Defaults to true. */
   animate?: boolean;
+  /**
+   * Play the signal broadcast exactly once on mount, then go quiet —
+   * the house wordmark's page-load gesture, not a perpetual one.
+   * Ignored for non-signal variants. Independent of `animate`.
+   */
+  intro?: boolean;
   size?: Size;
   as?: "span" | "div" | "h1";
   /** Which wordmark — default "signal" (the umbrella). */
@@ -50,12 +56,14 @@ const USES_PERIOD: Record<Variant, boolean> = {
 export function Wordmark({
   className = "",
   animate = true,
+  intro = false,
   size = "md",
   as: Tag = "span",
   variant = "signal",
 }: WordmarkProps) {
   const sizeClass = SIZE[size] ?? SIZE.md;
-  const liveClass = animate ? "is-live" : "";
+  const isIntro = intro && variant === "signal";
+  const liveClass = isIntro ? "is-intro" : animate ? "is-live" : "";
   const label = LABEL[variant];
   const usesPeriod = USES_PERIOD[variant];
 
@@ -70,7 +78,7 @@ export function Wordmark({
           <span className="pd" aria-hidden>
             .
           </span>
-          {variant === "signal" && animate ? (
+          {variant === "signal" && (animate || isIntro) ? (
             <span className="ring" aria-hidden />
           ) : null}
         </>
