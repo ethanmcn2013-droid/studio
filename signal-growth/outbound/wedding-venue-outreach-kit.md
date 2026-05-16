@@ -1,6 +1,12 @@
+> **SUPERSEDED 2026-05-16 — DO NOT SEND.** This kit pitches the reversed
+> model (free for 12 months, then €49/month) and targets the coordinator
+> as the buyer. The ratified Venue Edition is a paid founding position —
+> €1,500/yr prepaid, owner-operator who signs alone. Use
+> `venue-edition-outreach.md` instead. Retained for historical context only.
+
 # Wedding Venue Outreach Kit
 
-**Cycle 8.2** · **Status**: ready to send · **Owner**: Ethan (send)
+**Cycle 8.2** · **Status**: SUPERSEDED (see banner) · **Owner**: Ethan (send)
 
 A founder-led outreach kit for the first 10 Irish wedding venue conversations. Voice register from BRAND.md §3. Every paragraph readable in 20 seconds. Plain English, no software-jargon, no urgency tricks.
 

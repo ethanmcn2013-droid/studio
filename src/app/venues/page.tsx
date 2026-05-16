@@ -87,7 +87,7 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="/contact?subject=founding-venue-programme"
+                href="mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
@@ -273,7 +273,7 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8">
               <Link
-                href="/contact?subject=founding-venue-programme"
+                href="mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
