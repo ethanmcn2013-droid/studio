@@ -43,6 +43,24 @@ type Slide = {
   body?: ReactNode;
 };
 
+/**
+ * Title — renders a heading string with its trailing full-stop in
+ * indigo. "The period is a signal" (new brand guide, principle 06):
+ * the dot is the brand mark, so every titled statement ends on it.
+ */
+function T({ children }: { children: string }) {
+  const s = children;
+  if (s.endsWith(".")) {
+    return (
+      <>
+        {s.slice(0, -1)}
+        <span className="mdk-period">.</span>
+      </>
+    );
+  }
+  return <>{s}</>;
+}
+
 function Lead({ children }: { children: ReactNode }) {
   return <p className="mdk-lead">{children}</p>;
 }
@@ -522,7 +540,9 @@ export default function MarketingDeck() {
               return (
                 <div className="mdk-read-act" key={i}>
                   <span>{m?.numeral}</span>
-                  <h2>{s.title}</h2>
+                  <h2>
+                    <T>{s.title}</T>
+                  </h2>
                   <p>{m?.line}</p>
                 </div>
               );
@@ -532,7 +552,9 @@ export default function MarketingDeck() {
                 {s.kicker ? (
                   <span className="mdk-eyebrow">{s.kicker}</span>
                 ) : null}
-                <h3>{s.title}</h3>
+                <h3>
+                  <T>{s.title}</T>
+                </h3>
                 <div className="mdk-read-body">{s.body}</div>
               </section>
             );
@@ -625,7 +647,9 @@ export default function MarketingDeck() {
               </span>
               <h1 className="mdk-cover-title">
                 {slide.title.split("\n").map((l, i) => (
-                  <span key={i}>{l}</span>
+                  <span key={i}>
+                    <T>{l}</T>
+                  </span>
                 ))}
               </h1>
               <p className="mdk-cover-sub">
@@ -640,15 +664,17 @@ export default function MarketingDeck() {
                 viewBox="0 0 200 200"
                 aria-hidden="true"
               >
-                {[28, 52, 78, 104].map((r) => (
+                {[28, 52, 78, 104].map((r, i) => (
                   <circle
                     key={r}
+                    className="mdk-ring"
                     cx="100"
                     cy="100"
                     r={r}
                     fill="none"
                     stroke="var(--accent)"
                     strokeWidth="1"
+                    style={{ animationDelay: `${i * 140}ms` }}
                   />
                 ))}
               </svg>
@@ -662,7 +688,9 @@ export default function MarketingDeck() {
                 <span className="mdk-eyebrow">
                   Act {secMeta?.numeral}
                 </span>
-                <h2 className="mdk-div-title">{slide.title}</h2>
+                <h2 className="mdk-div-title">
+                <T>{slide.title}</T>
+              </h2>
                 <p className="mdk-div-line">{secMeta?.line}</p>
               </div>
             </section>
@@ -684,7 +712,9 @@ export default function MarketingDeck() {
                 ) : null}
               </div>
               <div className="mdk-well">
-                <h2 className="mdk-h">{slide.title}</h2>
+                <h2 className="mdk-h">
+                  <T>{slide.title}</T>
+                </h2>
                 <div className="mdk-content">{slide.body}</div>
               </div>
             </section>
@@ -766,12 +796,21 @@ export default function MarketingDeck() {
 }
 
 const CSS = `
-.mdk-root{--gap:clamp(1.5rem,5vw,5rem);position:relative;min-height:100dvh;
+/* ═══ Signal Studio marketing deck — new design system, white-locked
+ * Geist 500 lowercase headings · the indigo period is the signature ·
+ * fixed type ladder · hairlines, never shadows · one indigo · the dot
+ * reads time. Neutrals held to the 2026-05-13 white/zinc lock; the
+ * brand guide's warm Stone ramp is book-only. ═══ */
+.mdk-root{--gap:clamp(1.5rem,5vw,5rem);
+  --r:6px;
+  position:relative;min-height:100dvh;
   background:var(--paper,#fff);color:var(--ink,#111);display:flex;
   flex-direction:column;overflow:hidden;
   font-feature-settings:"ss01","cv11"}
-.mdk-eyebrow{font-family:var(--font-mono-stack);font-size:11px;font-weight:600;
-  letter-spacing:var(--tracking-eyebrow,.14em);text-transform:uppercase;
+/* the period is a signal — every titled statement lands on the dot */
+.mdk-period{color:var(--accent,#4f46e5)}
+.mdk-eyebrow{font-family:var(--font-mono-stack);font-size:10px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-quiet,#71717a)}
 .mdk-zone{position:absolute;top:0;bottom:68px;width:24%;z-index:2;border:0;
   background:transparent;cursor:pointer;padding:0}
@@ -785,83 +824,92 @@ const CSS = `
 /* cover */
 .mdk-cover{flex-direction:column;justify-content:center;position:relative}
 .mdk-cover-meta{display:block;margin-bottom:clamp(2rem,8vh,4rem)}
-.mdk-cover-title{font-size:clamp(2.75rem,1.6rem+5vw,6.5rem);line-height:.98;
-  letter-spacing:-.045em;font-weight:600;margin:0;
-  font-feature-settings:"ss01","cv11","ss02"}
+.mdk-cover-title{font-size:clamp(2.75rem,1.5rem+5.5vw,6rem);line-height:.96;
+  letter-spacing:-.03em;font-weight:500;margin:0;text-transform:lowercase;
+  font-feature-settings:"ss01","cv11"}
 .mdk-cover-title span{display:block}
-.mdk-cover-sub{margin:clamp(1.5rem,4vh,2.5rem) 0 0;max-width:34ch;
-  font-size:clamp(1rem,.9rem+.4vw,1.25rem);line-height:1.5;
+.mdk-cover-sub{margin:clamp(1.5rem,4vh,2.5rem) 0 0;max-width:36ch;
+  font-size:clamp(1rem,.92rem+.38vw,1.2rem);line-height:1.55;
   color:var(--ink-soft,#3f3f46)}
 .mdk-cover-wm{position:absolute;left:var(--gap);
-  bottom:calc(68px + clamp(1rem,4vh,2.5rem));font-size:13px;font-weight:600;
-  letter-spacing:-.02em;color:var(--ink-quiet,#71717a)}
+  bottom:calc(68px + clamp(1rem,4vh,2.5rem));font-size:13px;font-weight:500;
+  letter-spacing:-.025em;color:var(--ink-quiet,#71717a);
+  text-transform:lowercase}
 .mdk-cover-wm .mdk-dot{color:var(--accent,#4f46e5)}
 .mdk-rings{position:absolute;right:calc(var(--gap) - 1rem);
   bottom:calc(68px - 2rem);width:clamp(180px,26vw,340px);height:auto;
-  opacity:.10;pointer-events:none}
+  opacity:.14;pointer-events:none}
+/* broadcast — the Studio gesture: rings send outward once, then rest */
+.mdk-ring{transform-box:fill-box;transform-origin:center;
+  animation:mdk-broadcast 1.4s cubic-bezier(.22,.7,.2,1) both}
+@keyframes mdk-broadcast{
+  0%{transform:scale(.2);opacity:0}
+  35%{opacity:1}
+  100%{transform:scale(1);opacity:1}}
 
 /* divider */
 .mdk-divider{align-items:center;gap:clamp(2rem,6vw,5rem)}
 .mdk-div-num{font-size:clamp(7rem,12rem+6vw,20rem);line-height:.8;
-  font-weight:600;letter-spacing:-.06em;color:var(--ink,#111);
-  opacity:.06;flex:none;user-select:none}
+  font-weight:500;letter-spacing:-.05em;color:var(--ink,#111);
+  opacity:.05;flex:none;user-select:none;font-variant-numeric:tabular-nums}
 .mdk-div-body{align-self:center}
-.mdk-div-title{font-size:clamp(2.25rem,1.5rem+4vw,5rem);line-height:1.02;
-  letter-spacing:-.04em;font-weight:600;margin:1rem 0 0}
-.mdk-div-line{margin:1.25rem 0 0;max-width:34ch;font-size:17px;
-  line-height:1.5;color:var(--ink-soft,#3f3f46)}
+.mdk-div-title{font-size:clamp(2.25rem,1.5rem+4vw,4.5rem);line-height:1.05;
+  letter-spacing:-.025em;font-weight:500;margin:1rem 0 0;
+  text-transform:lowercase}
+.mdk-div-line{margin:1.25rem 0 0;max-width:36ch;font-size:16px;
+  line-height:1.55;color:var(--ink-soft,#3f3f46)}
 
 /* content — editorial two-column */
 .mdk-slide{gap:clamp(2rem,6vw,5.5rem)}
 .mdk-rail{flex:none;width:clamp(7rem,16vw,12rem);display:flex;
   flex-direction:column;gap:.85rem;padding-top:.4rem;
   border-top:1px solid var(--ink,#111)}
-.mdk-rail-i{font-family:var(--font-mono-stack);font-size:13px;font-weight:600;
+.mdk-rail-i{font-family:var(--font-mono-stack);font-size:13px;font-weight:500;
   font-variant-numeric:tabular-nums;color:var(--accent,#4f46e5);
   margin-top:.85rem}
 .mdk-rail-act,.mdk-rail-k{font-family:var(--font-mono-stack);font-size:10px;
-  font-weight:600;letter-spacing:var(--tracking-eyebrow,.14em);
+  font-weight:500;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-quiet,#71717a);line-height:1.5}
 .mdk-rail-k{color:var(--ink-soft,#3f3f46)}
 .mdk-well{flex:1;min-width:0;display:flex;flex-direction:column;
   justify-content:center;max-width:46rem}
-.mdk-h{font-size:clamp(1.9rem,1.3rem+3.4vw,4rem);line-height:1.04;
-  letter-spacing:-.038em;font-weight:600;margin:0 0 clamp(1.5rem,4vh,2.5rem);
-  max-width:17ch}
-.mdk-content{font-size:17px;line-height:1.6;color:var(--ink-soft,#3f3f46)}
-.mdk-lead{font-size:clamp(1.1rem,.98rem+.55vw,1.45rem);line-height:1.5;
+.mdk-h{font-size:clamp(1.85rem,1.25rem+3vw,3.4rem);line-height:1.08;
+  letter-spacing:-.025em;font-weight:500;margin:0 0 clamp(1.5rem,4vh,2.5rem);
+  max-width:18ch;text-transform:lowercase}
+.mdk-content{font-size:16px;line-height:1.65;color:var(--ink-soft,#3f3f46)}
+.mdk-lead{font-size:clamp(1.1rem,.98rem+.55vw,1.4rem);line-height:1.5;
   color:var(--ink,#111);margin:0;max-width:40ch;font-weight:400}
-.mdk-note{margin:1.6rem 0 0;font-size:14px;line-height:1.55;
-  color:var(--ink-quiet,#71717a);max-width:50ch}
+.mdk-note{margin:1.6rem 0 0;font-size:14px;line-height:1.6;
+  color:var(--ink-quiet,#71717a);max-width:52ch}
 .mdk-pull{margin:1.5rem 0 0;font-size:clamp(1.05rem,.95rem+.4vw,1.3rem);
-  line-height:1.45;color:var(--ink,#111);max-width:38ch;
+  line-height:1.5;color:var(--ink,#111);max-width:38ch;
   padding-left:1.15rem;border-left:2px solid var(--accent,#4f46e5)}
 .mdk-defs{display:flex;flex-direction:column;
   border-top:1px solid var(--hairline,rgba(17,17,17,.10))}
 .mdk-def{display:grid;grid-template-columns:minmax(7rem,13rem) 1fr;
   gap:1.75rem;padding:.9rem 0;
   border-bottom:1px solid var(--hairline-2,rgba(17,17,17,.06))}
-.mdk-def dt{font-family:var(--font-mono-stack);font-size:12px;font-weight:600;
+.mdk-def dt{font-family:var(--font-mono-stack);font-size:12px;font-weight:500;
   color:var(--ink,#111);letter-spacing:.01em;padding-top:1px}
-.mdk-def dd{margin:0;font-size:15px;line-height:1.5;
+.mdk-def dd{margin:0;font-size:15px;line-height:1.55;
   color:var(--ink-soft,#3f3f46)}
 .mdk-figs{display:flex;flex-wrap:wrap;gap:clamp(2rem,7vw,5rem)}
-.mdk-fig-v{font-size:clamp(2.75rem,1.6rem+4.5vw,5.5rem);font-weight:600;
-  letter-spacing:-.045em;line-height:.95;color:var(--ink,#111);
+.mdk-fig-v{font-size:clamp(2.75rem,1.6rem+4.5vw,5.25rem);font-weight:500;
+  letter-spacing:-.03em;line-height:.96;color:var(--ink,#111);
   font-variant-numeric:tabular-nums}
 .mdk-fig:first-child .mdk-fig-v{color:var(--accent,#4f46e5)}
-.mdk-fig-l{margin-top:.75rem;font-family:var(--font-mono-stack);font-size:11px;
-  font-weight:600;letter-spacing:var(--tracking-eyebrow,.14em);
+.mdk-fig-l{margin-top:.75rem;font-family:var(--font-mono-stack);font-size:10px;
+  font-weight:500;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-quiet,#71717a)}
 .mdk-ledger{display:flex;flex-direction:column}
 .mdk-lr{display:grid;grid-template-columns:8rem 1fr 7rem;gap:1.25rem;
-  padding:.75rem 0;border-bottom:1px solid var(--hairline-2,rgba(17,17,17,.06));
+  padding:.78rem 0;border-bottom:1px solid var(--hairline-2,rgba(17,17,17,.06));
   font-size:15px;color:var(--ink-soft,#3f3f46);align-items:baseline}
 .mdk-lr span:last-child{font-variant-numeric:tabular-nums;text-align:right}
-.mdk-lh{font-family:var(--font-mono-stack);font-size:10px;font-weight:600;
-  letter-spacing:var(--tracking-eyebrow,.14em);text-transform:uppercase;
+.mdk-lh{font-family:var(--font-mono-stack);font-size:10px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-quiet,#71717a);border-bottom:1px solid var(--ink,#111)}
-.mdk-lr-on{color:var(--ink,#111);font-weight:600}
+.mdk-lr-on{color:var(--ink,#111);font-weight:500}
 .mdk-lr-on span:last-child{color:var(--accent,#4f46e5)}
 
 /* footer chrome */
@@ -875,8 +923,8 @@ const CSS = `
 .mdk-seg-u{flex:1;background:var(--ink-ghost,#d4d4d8);overflow:hidden}
 .mdk-seg-f{display:block;height:100%;background:var(--accent,#4f46e5);
   transition:width .5s cubic-bezier(.32,.72,0,1)}
-.mdk-bar-l{font-family:var(--font-mono-stack);font-size:11px;font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-quiet,#71717a);
+.mdk-bar-l{font-family:var(--font-mono-stack);font-size:10px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-quiet,#71717a);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mdk-bar-c{display:flex;align-items:center;gap:.6rem;justify-self:center}
 .mdk-bar-r{display:flex;align-items:center;gap:.35rem;justify-self:end}
@@ -887,14 +935,22 @@ const CSS = `
 .mdk-btn:hover:not(:disabled){border-color:var(--accent,#4f46e5);
   color:var(--accent,#4f46e5)}
 .mdk-btn:disabled{opacity:.3;cursor:default}
-.mdk-count{font-family:var(--font-mono-stack);font-size:13px;font-weight:600;
+.mdk-count{font-family:var(--font-mono-stack);font-size:13px;font-weight:500;
   font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
 .mdk-count-sep{color:var(--ink-quiet,#71717a);font-weight:400}
-.mdk-tab{font-family:var(--font-mono-stack);font-size:11px;font-weight:600;
-  letter-spacing:.04em;color:var(--ink-quiet,#71717a);background:none;border:0;
-  padding:6px 8px;cursor:pointer;transition:color .15s}
-.mdk-tab:hover,.mdk-tab.on{color:var(--accent,#4f46e5)}
-.mdk-tab-q{width:26px}
+.mdk-tab{position:relative;font-family:var(--font-mono-stack);font-size:11px;
+  font-weight:500;letter-spacing:.04em;color:var(--ink-quiet,#71717a);
+  background:none;border:0;padding:6px 8px 6px 14px;cursor:pointer;
+  text-transform:lowercase;transition:color .15s}
+.mdk-tab::before{content:"";position:absolute;left:5px;top:50%;width:4px;
+  height:4px;border-radius:50%;background:var(--accent,#4f46e5);
+  transform:translateY(-50%) scale(0);transition:transform .16s
+  cubic-bezier(.22,.7,.2,1)}
+.mdk-tab:hover{color:var(--ink,#111)}
+.mdk-tab.on{color:var(--ink,#111)}
+.mdk-tab.on::before{transform:translateY(-50%) scale(1)}
+.mdk-tab-q{width:24px;padding-left:8px}
+.mdk-tab-q::before{content:none}
 
 /* contents */
 .mdk-contents{flex:1;overflow:auto;padding:clamp(3rem,9vh,6rem) var(--gap)}
@@ -904,25 +960,31 @@ const CSS = `
 .mdk-toc-acthead{display:flex;align-items:baseline;gap:1rem;background:none;
   border:0;padding:.5rem 0;cursor:pointer;text-align:left;
   border-bottom:1px solid var(--hairline,rgba(17,17,17,.10))}
-.mdk-toc-num{font-family:var(--font-mono-stack);font-size:13px;font-weight:600;
+.mdk-toc-num{font-family:var(--font-mono-stack);font-size:13px;font-weight:500;
   color:var(--accent,#4f46e5);min-width:2rem}
-.mdk-toc-title{font-size:clamp(1.25rem,1rem+1vw,1.75rem);font-weight:600;
-  letter-spacing:-.025em;color:var(--ink,#111)}
+.mdk-toc-title{font-size:clamp(1.25rem,1rem+1vw,1.75rem);font-weight:500;
+  letter-spacing:-.022em;color:var(--ink,#111);text-transform:lowercase}
 .mdk-toc-act ul{list-style:none;margin:0;padding:.5rem 0 0 3rem;
   display:flex;flex-direction:column}
-.mdk-toc-act li button{display:flex;gap:1rem;align-items:baseline;
-  background:none;border:0;padding:.5rem 0;cursor:pointer;text-align:left;
-  font-size:16px;color:var(--ink-soft,#3f3f46);width:100%;
-  transition:color .15s}
-.mdk-toc-act li button:hover,.mdk-toc-act li button.on{color:var(--accent,#4f46e5)}
-.mdk-toc-i{font-family:var(--font-mono-stack);font-size:11px;font-weight:600;
+.mdk-toc-act li button{position:relative;display:flex;gap:1rem;
+  align-items:baseline;background:none;border:0;padding:.5rem 0 .5rem 1rem;
+  cursor:pointer;text-align:left;font-size:16px;color:var(--ink-soft,#3f3f46);
+  width:100%;text-transform:lowercase;transition:color .15s}
+.mdk-toc-act li button::before{content:"";position:absolute;left:0;top:1.05rem;
+  width:5px;height:5px;border-radius:50%;background:var(--accent,#4f46e5);
+  transform:scale(0);transition:transform .16s cubic-bezier(.22,.7,.2,1)}
+.mdk-toc-act li button:hover{color:var(--ink,#111)}
+.mdk-toc-act li button.on{color:var(--ink,#111)}
+.mdk-toc-act li button.on::before{transform:scale(1)}
+.mdk-toc-i{font-family:var(--font-mono-stack);font-size:11px;font-weight:500;
   color:var(--ink-quiet,#71717a);min-width:1.75rem}
 
 /* read mode */
 .mdk-read{flex:1;overflow:auto;padding:clamp(3rem,10vh,7rem) var(--gap) 8rem}
 .mdk-read>*{max-width:42rem;margin-left:auto;margin-right:auto}
-.mdk-read-head h1{font-size:clamp(2rem,1.4rem+3vw,3.5rem);
-  letter-spacing:-.035em;font-weight:600;margin:.75rem 0 .5rem;line-height:1.05}
+.mdk-read-head h1{font-size:clamp(2rem,1.4rem+3vw,3.25rem);
+  letter-spacing:-.025em;font-weight:500;margin:.75rem 0 .5rem;
+  line-height:1.08;text-transform:lowercase}
 .mdk-read-head p{color:var(--ink-quiet,#71717a);font-size:15px;margin:0}
 .mdk-read-head kbd{font-family:var(--font-mono-stack);font-size:12px;
   border:1px solid var(--hairline,rgba(17,17,17,.10));border-radius:4px;
@@ -931,15 +993,16 @@ const CSS = `
   border-top:1px solid var(--ink,#111);display:flex;align-items:baseline;
   gap:1rem;flex-wrap:wrap}
 .mdk-read-act span{font-family:var(--font-mono-stack);font-size:13px;
-  font-weight:600;color:var(--accent,#4f46e5)}
-.mdk-read-act h2{font-size:clamp(1.6rem,1.2rem+2vw,2.5rem);font-weight:600;
-  letter-spacing:-.03em;margin:0}
+  font-weight:500;color:var(--accent,#4f46e5)}
+.mdk-read-act h2{font-size:clamp(1.6rem,1.2rem+2vw,2.4rem);font-weight:500;
+  letter-spacing:-.025em;margin:0;text-transform:lowercase}
 .mdk-read-act p{flex-basis:100%;color:var(--ink-quiet,#71717a);
   font-size:15px;margin:.25rem 0 0}
 .mdk-read-sec{margin:2.75rem auto 0}
-.mdk-read-sec h3{font-size:clamp(1.35rem,1.1rem+1.2vw,1.9rem);font-weight:600;
-  letter-spacing:-.025em;margin:.6rem 0 1rem;line-height:1.15}
-.mdk-read-body{font-size:17px;line-height:1.65;color:var(--ink-soft,#3f3f46)}
+.mdk-read-sec h3{font-size:clamp(1.35rem,1.1rem+1.2vw,1.85rem);font-weight:500;
+  letter-spacing:-.022em;margin:.6rem 0 1rem;line-height:1.18;
+  text-transform:lowercase}
+.mdk-read-body{font-size:16px;line-height:1.7;color:var(--ink-soft,#3f3f46)}
 .mdk-read-body .mdk-lead{font-size:17px;color:var(--ink,#111);max-width:none}
 .mdk-read-body .mdk-pull{font-size:17px}
 .mdk-read-body .mdk-defs,.mdk-read-body .mdk-figs{margin-top:1.25rem}
@@ -960,6 +1023,8 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){
   .mdk-stage{animation:none}
   .mdk-seg-f{transition:none}
+  .mdk-ring{animation:none;opacity:1}
+  .mdk-tab::before,.mdk-toc-act li button::before{transition:none}
 }
 @media (max-width:760px){
   .mdk-zone{display:none}
