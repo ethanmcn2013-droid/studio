@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { Wordmark } from "@/components/brand/wordmark";
+import { MotionSpecimen } from "@/components/brand/motion-specimen";
 
 export const metadata: Metadata = {
   title: "Brand · signal studio.",
@@ -231,29 +232,15 @@ export default function BrandPage() {
 
         <div className="grid grid-cols-2 overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] sm:grid-cols-3 md:grid-cols-5">
           {MOTIONS.map((m, i) => (
-            <div
+            <MotionSpecimen
               key={m.code}
-              className="flex aspect-[1.05] flex-col justify-between border-b border-[var(--hairline-2)] p-6 md:border-b-0 md:border-r"
-              style={{
-                borderRight: i === MOTIONS.length - 1 ? "none" : undefined,
-              }}
-            >
-              <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.04em] text-[var(--ink-faint)]">
-                <span className="text-[var(--ink)]">{m.variant === "signal" ? "signal studio." : m.variant + (m.variant === "notes" ? "." : "·")}</span>
-                <span>{m.variant === "signal" || m.variant === "notes" ? "noun" : "verb"}</span>
-              </div>
-              <div className="flex flex-1 items-center justify-center py-4">
-                <Wordmark
-                  variant={m.variant}
-                  size={m.variant === "signal" || m.variant === "analytics" ? "md" : "lg"}
-                  animate
-                />
-              </div>
-              <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.04em] text-[var(--ink-faint)]">
-                <span>{m.name}</span>
-                <span>{m.cycle}</span>
-              </div>
-            </div>
+              variant={m.variant}
+              name={m.name}
+              cycle={m.cycle}
+              className={`border-b border-[var(--hairline-2)] md:border-b-0 ${
+                i === MOTIONS.length - 1 ? "" : "md:border-r"
+              }`}
+            />
           ))}
         </div>
 

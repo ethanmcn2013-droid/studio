@@ -2633,3 +2633,21 @@ body {
     transform: translateX(4px);
   }
 }
+
+/* ── /brand motion specimen ────────────────────────────────────────
+   Click freezes the gesture mid-motion (play-state paused, not
+   removed — the wordmark holds its current frame) and the spec line
+   goes indigo so duration + motion name read as the answer to "what
+   am I looking at". Hover/scroll restart is handled in the component.
+   ────────────────────────────────────────────────────────────────── */
+.brand-mark.is-paused .pd,
+.brand-mark.is-paused .md,
+.brand-mark.is-paused .ring {
+  animation-play-state: paused;
+}
+.motion-specimen-spec {
+  transition: color 150ms ease-out;
+}
+.motion-specimen[data-paused="true"] .motion-specimen-spec {
+  color: var(--indigo);
+}
