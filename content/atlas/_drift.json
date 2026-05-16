@@ -1,0 +1,9 @@
+{
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css"
+    ],
+    "updatedAt": "2026-05-16T20:02:31.410Z",
+    "byCommit": "616a596"
+  }
+}
