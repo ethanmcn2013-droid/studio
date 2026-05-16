@@ -1,0 +1,10 @@
+{
+  "turso-databases-and-reads": {
+    "drifted": [
+      "drizzle/",
+      "~/Projects/personal/notes/drizzle/"
+    ],
+    "updatedAt": "2026-05-16T22:21:25.374Z",
+    "byCommit": "efde4ee"
+  }
+}

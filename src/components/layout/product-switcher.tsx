@@ -85,7 +85,7 @@ export function ProductSwitcher() {
       {open ? (
         <div
           role="menu"
-          className="fixed left-4 right-4 top-[64px] z-50 overflow-hidden rounded-xl border bg-bg-elevated shadow-[0_24px_60px_-24px_rgba(20,21,26,0.22)] sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[280px]"
+          className="fixed left-4 right-4 top-[64px] z-50 overflow-hidden rounded-xl border bg-bg-elev shadow-[0_24px_60px_-24px_rgba(20,21,26,0.22)] sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[280px]"
           style={{ borderColor: "var(--border-soft)" }}
         >
           <div
@@ -108,7 +108,7 @@ export function ProductSwitcher() {
                   rel="noopener noreferrer"
                   role="menuitem"
                   onClick={() => setOpen(false)}
-                  className="group flex items-center justify-between gap-3 rounded-md px-2.5 py-2 text-ink no-underline transition-colors hover:bg-bg-sunken"
+                  className="group flex items-center justify-between gap-3 rounded-md px-2.5 py-2 text-ink no-underline transition-colors hover:bg-bg-deep"
                 >
                   <div className="min-w-0">
                     <div className="text-[13px] font-semibold tracking-[-0.01em]">
