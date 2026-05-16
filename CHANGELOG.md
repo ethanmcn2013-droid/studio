@@ -3,6 +3,33 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·40 · ships · the marketing plan is now torn out of the brand book
+
+**The private /hq/plan deck was a competent scrolling document; it is now
+the Brand Book §11 pitch system, running for real.** Every slide is a
+true 16:9 frame on the book's faint gridded page, carrying the same four
+corners on every slide — kicker top-left, ref top-right, the wordmark
+with its indigo dot bottom-left, slide number bottom-right. That chrome
+is the binding. Three palettes only, cycled and never mixed: paper is
+the default, ink is the divider and nothing else, indigo is the closing
+slide and nothing else. The eight documented templates are honoured —
+title anchored low, ink chapter dividers with the giant indigo numeral,
+the big-statement slide with its indigo-pip kicker, the three-figure
+metrics row with hairline rules, the closing on its inverted paper
+period — and extended, faithfully, with a content frame (ledger, defs,
+figures) that stays inside the same chrome, mono labels, hairlines, one
+indigo, so a living strategy document loses nothing the eight templates
+can't carry. Type is held at the projection floor and the densest
+slides (a six-row sequence, five-row channel ranking) were tuned until
+they clear the chrome with air to spare — verified slide by slide in a
+headless pass at 1440. Slides cut; they never fade, push, or build
+(§11.01.6) — the lone motion is the cover dot settling once, removed
+under reduced-motion. Presenter affordances survive intact: keyboard
+nav, contents, the full plan as one document in read mode, fullscreen.
+Tokens are pinned locally to the book's exact values so the deck reads
+as torn out of it regardless of theme, and sit inside the white/zinc
+lock. Source of truth unchanged: docs/MARKETING_PLAN_6MO.md.
+
 ## 2026-05-16 · S·39 · tightens · the brand showcase now tells the truth about the analytics gesture
 
 **On the suite's most-seen brand surfaces — the homepage reveal, /brand,
