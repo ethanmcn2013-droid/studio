@@ -6,7 +6,7 @@ import { TASKS_URL } from "@/lib/product-urls";
 export const metadata: Metadata = {
   title: "Pricing — Signal Studio",
   description:
-    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month for the workspace tier. €79 one-time for an event. Free for students.",
+    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €120 a year, for the workspace tier. €79 one-time for an event. Free for students. Venues stand behind their couples from €1,500 a year.",
   openGraph: {
     title: "Pricing — Signal Studio",
     description:
@@ -22,6 +22,8 @@ type Tier = {
   recommended?: boolean;
   price: string;
   cadence: string;
+  /** Plainly-stated annual prepay. No "SAVE %" theatre — the number is the number. */
+  annual?: string;
   body: string;
   pills?: { label: string; value: string }[];
   cta: string;
@@ -79,6 +81,7 @@ const TIERS: Tier[] = [
     recommended: true,
     price: "€12",
     cadence: "/ month · per workspace",
+    annual: "or €120 a year, paid once",
     body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
     pills: [
       { label: "Workspaces", value: "Unlimited" },
@@ -125,16 +128,16 @@ const SUITE: InsideProduct[] = [
     word: "notes",
     position: "Context",
     desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
-    status: "build",
-    statusLabel: "In build",
+    status: "shipped",
+    statusLabel: "Shipping now",
   },
   {
     key: "analytics",
     word: "analytics",
     position: "Attention",
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.",
-    status: "build",
-    statusLabel: "In build",
+    status: "shipped",
+    statusLabel: "Shipping now",
   },
 ];
 
@@ -207,8 +210,8 @@ const FAQ: { q: string; a: string }[] = [
     a: "Then you have the cleanest single product in its category, with three more sitting there in case you ever want them. That is still a good deal. We will not pressure you to use the rest.",
   },
   {
-    q: "What does \"in build\" mean for my price?",
-    a: "Nothing. Your price stays the same as Notes and Analytics ship. Today's subscribers are paying for the destination, and we honor that by not changing the price as the destination fills in.",
+    q: "Will the price move as the suite grows?",
+    a: "No. All four products are live now. As each one deepens, your price stays where it is. You pay for Signal Studio, not for a feature count, and we honor that by holding the price steady.",
   },
   {
     q: "Can I switch tiers?",
@@ -474,6 +477,18 @@ export default async function PricingPage({
                 >
                   {t.cadence}
                 </div>
+
+                {t.annual ? (
+                  <div
+                    style={{
+                      marginTop: 6,
+                      fontSize: 13,
+                      color: "var(--ink-soft)",
+                    }}
+                  >
+                    {t.annual}
+                  </div>
+                ) : null}
 
                 <p
                   className="text-ink-soft"
@@ -800,14 +815,15 @@ export default async function PricingPage({
               }}
             >
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Signal Studio is one subscription. Today, <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong> and{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong> are live.{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong> is in build.{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> is in build.
+                Signal Studio is one subscription. Today,{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong>,{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong>,{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>, and{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> are live.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Your price stays the same as each one ships. You pay for Signal
-                Studio, not for a product count.
+                Your price stays the same as the suite deepens. You pay for
+                Signal Studio, not for a product count.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6 }}>
                 We will not list a feature on this page until the product behind
@@ -915,6 +931,104 @@ export default async function PricingPage({
             >
               Planning a wedding? Ask your venue.
             </p>
+          </div>
+        </section>
+
+        {/* ── 6.5 · For venues (paid patronage, ratified 2026-05-16) ─ */}
+        <section
+          style={{
+            background: "var(--bg-deep)",
+            borderBottom: "1px solid var(--border-soft)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+            <div className="mb-6" style={eyebrowStyle()}>
+              For venues
+            </div>
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:gap-16 md:items-start">
+              <div>
+                <h2
+                  className="h-title text-balance text-ink"
+                  style={{ maxWidth: "20ch" }}
+                >
+                  Stand behind every couple who books with you.
+                </h2>
+                <p
+                  className="text-ink-soft"
+                  style={{
+                    marginTop: 20,
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    maxWidth: "56ch",
+                  }}
+                >
+                  The Venue Edition is patronage, not software. The venue pays
+                  once a year. Every couple it sends gets twelve months of
+                  Signal Studio to plan their wedding, with the venue&apos;s
+                  name in a quiet line at the top. No seats. No per-couple
+                  maths. Nothing for your team to run.
+                </p>
+                <p
+                  className="text-ink-soft"
+                  style={{
+                    marginTop: 18,
+                    fontSize: 17,
+                    lineHeight: 1.6,
+                    maxWidth: "56ch",
+                  }}
+                >
+                  The first fifteen venues lock €1,500 for as long as they
+                  stay. Not a discount — a standing. The couples never see a
+                  price. They see a venue that thought ahead.
+                </p>
+                <div style={{ marginTop: 28 }}>
+                  <Link
+                    href="/venues"
+                    style={{
+                      color: "var(--accent)",
+                      fontSize: 15,
+                      fontWeight: 500,
+                    }}
+                  >
+                    See the Founding Venue Programme{" "}
+                    <span className="cta-arrow" aria-hidden>
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+              <div className="flex flex-col md:items-end" style={{ gap: 14 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    color: "var(--ink-quiet)",
+                    letterSpacing: "var(--tracking-eyebrow)",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                  }}
+                >
+                  Annual · prepaid
+                </span>
+                <span
+                  className="text-ink"
+                  style={{
+                    fontSize: "clamp(2.25rem, 1.7rem + 1.8vw, 3.25rem)",
+                    fontWeight: 600,
+                    letterSpacing: "-0.045em",
+                    lineHeight: 1,
+                  }}
+                >
+                  €1,500–€4,000
+                </span>
+                <span
+                  className="text-ink-quiet"
+                  style={{ fontSize: 13, lineHeight: 1.5 }}
+                >
+                  a year, by venue size
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 

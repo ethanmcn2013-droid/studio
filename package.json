@@ -15,6 +15,7 @@
     "seed:entitlement": "tsx scripts/seed-entitlement.ts",
     "create:sponsor": "tsx scripts/create-sponsor.ts",
     "issue:codes": "tsx scripts/issue-codes.ts",
+    "venue:paid": "tsx scripts/mark-venue-paid.ts",
     "partner:digest": "tsx scripts/partner-digest.ts",
     "check:dead": "tsx scripts/cross-repo-symbol-check.ts"
   },

@@ -11,45 +11,56 @@ import {
 /**
  * Traction — "are we actually winning?".
  *
- * HQ historically showed zero of the one number that matters to a
- * founder: is the business converting. The ratified 6-month plan
- * (memory: marketing-plan-6mo-2026-05-16) targets €250k/6mo on a paid
- * Venue Edition (€1.5–4k/venue/yr). The proof of progress already
- * lives in Studio's OWN Turso DB — the same database `cron_runs` reads
- * from. No new wiring, no new credentials: just count what's there.
+ * Rebuilt 2026-05-16 for the paid Venue Edition model
+ * (venue-editions-paid-tier). The earlier version multiplied COUPLE-side
+ * `venue_edition` entitlements by the €1.5–4k band — that counted
+ * couples as if each were a paying venue, which over the paid model is
+ * simply wrong. Revenue now comes from the sponsor ledger: a venue is
+ * money only when its plan is founding|paid AND the prepay cash landed
+ * (`paid_at`). Couples seeded are reported separately — they are
+ * distribution, the thing the venue's money buys, never the revenue.
  *
- * Honesty contract: this never inflates. Zero is reported as zero.
- * The annualised figure is an explicit estimate band, labelled as
- * such — it is not invoiced revenue. If the DB is unreachable the
- * section says so rather than rendering a confident fiction.
+ * Honesty contract (the plan's #1 success indicator is "zero brand-
+ * integrity exceptions"): cash collected is exact, not a band — annual
+ * prepay means the full year lands at signature. Signed-but-unpaid
+ * venues are shown as pipeline, never as money. Workspace MRR is the
+ * only annualised estimate and is labelled as one, kept out of the
+ * headline goal %. If the DB is unreachable the section says so.
  */
 
-/** Ratified target — memory: marketing-plan-6mo-2026-05-16. */
+/** Ratified target — memory: marketing-plan-6mo-2026-05-16. Cash, not ARR. */
 export const GOAL_EUR_6MO = 250_000;
-/** Venue Edition price band, €/venue/yr. */
-const VENUE_LOW = 1_500;
-const VENUE_HIGH = 4_000;
-/** Workspace subscription, €12/mo → annualised. */
+/** Workspace subscription, €12/mo → annualised (estimate only). */
 const WORKSPACE_YR = 12 * 12;
 
 export type TractionState =
   | { available: false; reason: string }
   | {
       available: true;
+      /** Exact prepay cash that has actually landed (founding+paid venues). */
+      cashCollectedEur: number;
+      /** Paid venues with cash in the door. The plan's #1 leading metric. */
+      paidVenues: number;
+      /** Of those, founding cohort (€1,500 locked for life). */
+      foundingVenues: number;
+      /** Signed founding|paid but `paid_at` still null — pipeline, not money. */
+      signedUnpaidVenues: number;
+      /** Free in-flight pilots (e.g. Lamb's Hill pre-conversion). */
+      pilotVenues: number;
+      /** Couple-side venue_edition entitlements — distribution, not revenue. */
+      couplesSeeded: number;
+      workspaceSubs: number;
+      workspaceAnnualisedEur: number;
       activeEntitlements: number;
       activePaid: number;
       byTier: Array<{ tier: string; n: number }>;
-      venueEditions: number;
-      workspaceSubs: number;
       redemptionsTotal: number;
       codesMinted: number;
       codesRedeemed: number;
       sponsors: number;
-      arrLowEur: number;
-      arrHighEur: number;
       goalEur: number;
-      goalPctLow: number;
-      goalPctHigh: number;
+      /** Cash collected ÷ €250k. The honest number, no inflation. */
+      goalPct: number;
     };
 
 async function countWhere(
@@ -69,6 +80,7 @@ export async function getTraction(): Promise<TractionState> {
       redemptionsTotal,
       codeRows,
       sponsorCount,
+      venueRows,
     ] = await Promise.all([
       db
         .select({ n: count() })
@@ -96,6 +108,14 @@ export async function getTraction(): Promise<TractionState> {
         .from(licenseCodes)
         .groupBy(licenseCodes.status),
       countWhere(sponsors),
+      db
+        .select({
+          venuePlan: sponsors.venuePlan,
+          paidAt: sponsors.paidAt,
+          foundingLocked: sponsors.foundingLocked,
+          annualAmountCents: sponsors.annualAmountCents,
+        })
+        .from(sponsors),
     ]);
 
     const activeEntitlements = activeRows[0]?.n ?? 0;
@@ -106,33 +126,53 @@ export async function getTraction(): Promise<TractionState> {
       .sort((a, b) => b.n - a.n);
 
     const bySource = new Map(sourceRows.map((r) => [String(r.source), r.n]));
-    const venueEditions = bySource.get("venue_edition") ?? 0;
+    const couplesSeeded = bySource.get("venue_edition") ?? 0;
     const workspaceSubs = bySource.get("workspace_subscription") ?? 0;
 
     const codeMap = new Map(codeRows.map((r) => [String(r.status), r.n]));
     const codesMinted = codeMap.get("minted") ?? 0;
     const codesRedeemed = codeMap.get("redeemed") ?? 0;
 
-    const baseYr = workspaceSubs * WORKSPACE_YR;
-    const arrLowEur = venueEditions * VENUE_LOW + baseYr;
-    const arrHighEur = venueEditions * VENUE_HIGH + baseYr;
+    // The sponsor ledger is the only source that may become revenue.
+    let paidVenues = 0;
+    let foundingVenues = 0;
+    let signedUnpaidVenues = 0;
+    let pilotVenues = 0;
+    let cashCents = 0;
+    for (const v of venueRows) {
+      const plan = String(v.venuePlan ?? "none");
+      const isPaidPlan = plan === "founding" || plan === "paid";
+      if (plan === "pilot") pilotVenues += 1;
+      if (isPaidPlan && v.paidAt != null) {
+        paidVenues += 1;
+        if (v.foundingLocked) foundingVenues += 1;
+        cashCents += v.annualAmountCents ?? 0;
+      } else if (isPaidPlan && v.paidAt == null) {
+        signedUnpaidVenues += 1;
+      }
+    }
+    const cashCollectedEur = Math.round(cashCents / 100);
+    const workspaceAnnualisedEur = workspaceSubs * WORKSPACE_YR;
 
     return {
       available: true,
+      cashCollectedEur,
+      paidVenues,
+      foundingVenues,
+      signedUnpaidVenues,
+      pilotVenues,
+      couplesSeeded,
+      workspaceSubs,
+      workspaceAnnualisedEur,
       activeEntitlements,
       activePaid,
       byTier,
-      venueEditions,
-      workspaceSubs,
       redemptionsTotal,
       codesMinted,
       codesRedeemed,
       sponsors: sponsorCount,
-      arrLowEur,
-      arrHighEur,
       goalEur: GOAL_EUR_6MO,
-      goalPctLow: Math.round((arrLowEur / 2 / GOAL_EUR_6MO) * 100),
-      goalPctHigh: Math.round((arrHighEur / 2 / GOAL_EUR_6MO) * 100),
+      goalPct: Math.round((cashCollectedEur / GOAL_EUR_6MO) * 100),
     };
   } catch (err) {
     return {

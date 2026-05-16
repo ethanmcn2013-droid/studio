@@ -85,12 +85,29 @@ export const entitlements = sqliteTable(
 export type Entitlement = typeof entitlements.$inferSelect;
 export type NewEntitlement = typeof entitlements.$inferInsert;
 
+/**
+ * Venue patronage plan — mirrors src/lib/db/schema.ts (the studio-local
+ * ledger HQ Traction reads). Kept shape-identical so the entitlements
+ * stack can dual-write sponsor records like it dual-writes entitlements.
+ * Ratified 2026-05-16 (venue-editions-paid-tier): the venue pays.
+ */
+export const VENUE_PLANS = ["none", "pilot", "founding", "paid"] as const;
+export type VenuePlan = (typeof VENUE_PLANS)[number];
+
 export const sponsors = sqliteTable("sponsors", {
   id: text("id").primaryKey(),
   slug: text("slug").notNull().unique(),
   name: text("name").notNull(),
   contactEmail: text("contact_email").notNull(),
   brandMeta: text("brand_meta"),
+  /* Paid Venue Edition ledger (2026-05-16). Additive + nullable. */
+  venuePlan: text("venue_plan").notNull().default("none"),
+  annualAmountCents: integer("annual_amount_cents"),
+  foundingLocked: integer("founding_locked"),
+  termStartsAt: integer("term_starts_at"),
+  termEndsAt: integer("term_ends_at"),
+  paidAt: integer("paid_at"),
+  codeAllotment: integer("code_allotment"),
   createdAt: integer("created_at")
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
@@ -101,6 +118,13 @@ export const sponsors = sqliteTable("sponsors", {
 
 export type Sponsor = typeof sponsors.$inferSelect;
 export type NewSponsor = typeof sponsors.$inferInsert;
+
+/** A venue is revenue only when paid (founding or paid) AND cash landed. */
+export function isPaidVenue(s: Pick<Sponsor, "venuePlan" | "paidAt">): boolean {
+  return (
+    (s.venuePlan === "founding" || s.venuePlan === "paid") && s.paidAt != null
+  );
+}
 
 export const LICENSE_CODE_STATUSES = ["minted", "redeemed", "revoked"] as const;
 export type LicenseCodeStatus = (typeof LICENSE_CODE_STATUSES)[number];
