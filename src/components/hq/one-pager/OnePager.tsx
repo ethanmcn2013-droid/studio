@@ -53,36 +53,42 @@ const PRINT_CSS = `
   print-color-adjust:exact; -webkit-print-color-adjust:exact;
 }
 
-/* ── Masthead ─────────────────────────────────────────────── */
-.op-mast{ display:flex; align-items:flex-start; justify-content:space-between; }
+/* ── Masthead — one left-aligned identity stack ───────────── */
+.op-mast{ display:flex; flex-direction:column; gap:6pt; }
 .op-mark{
-  font-family:var(--sans); font-size:8pt; font-weight:500;
-  letter-spacing:-0.01em; color:var(--ink); line-height:1;
+  font-family:var(--sans); font-size:11pt; font-weight:500;
+  letter-spacing:-0.015em; color:var(--ink); line-height:1;
 }
 .op-mark .op-dot{ color:var(--indigo); }
 .op-eyebrow{
-  margin-top:5pt; font-family:var(--mono); font-size:7pt;
+  font-family:var(--mono); font-size:7pt;
   font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
   color:var(--quiet); line-height:1;
 }
-.op-gesture{ height:8pt; display:flex; align-items:center; }
+/* The gesture is bound to the identity block — an elaboration of
+   the one indigo mark (spec §1.9), not an orphaned corner speck.
+   Placement reads under the eyebrow: legible + print-robust over
+   literal 8pt micro-placement. */
+.op-gesture{ height:5pt; display:flex; align-items:center;
+  align-self:flex-start; margin-top:1pt; }
 
 /* gesture marks — typographic, never icons (spec §1.8) */
-.g-pulse{ width:2pt; height:2pt; border-radius:50%; background:var(--indigo); }
-.g-sweep{ width:12mm; height:0.4pt; background:var(--indigo); }
-.g-tick{ display:flex; align-items:center; gap:3mm; }
-.g-tick i{ width:2pt; height:2pt; border-radius:50%; background:var(--indigo); display:block; }
-.g-tick i:nth-child(1),.g-tick i:nth-child(2){ opacity:0.30; }
-.g-caret{ width:0.4pt; height:7pt; background:var(--indigo); }
-.g-broadcast{ position:relative; width:8pt; height:8pt; display:flex; align-items:center; justify-content:center; }
-.g-broadcast .r{ position:absolute; border-radius:50%; border:0.25pt solid var(--indigo); }
-.g-broadcast .r1{ width:8pt; height:8pt; opacity:0.15; }
-.g-broadcast .r2{ width:5pt; height:5pt; opacity:0.30; }
-.g-broadcast .c{ width:2pt; height:2pt; border-radius:50%; background:var(--indigo); }
+.g-pulse{ width:3pt; height:3pt; border-radius:50%; background:var(--indigo); }
+.g-sweep{ width:14mm; height:0.6pt; background:var(--indigo); }
+.g-tick{ display:flex; align-items:center; gap:2.4mm; }
+.g-tick i{ width:3pt; height:3pt; border-radius:50%; background:var(--indigo); display:block; }
+.g-tick i:nth-child(1),.g-tick i:nth-child(2){ opacity:0.32; }
+.g-caret{ width:1pt; height:9pt; background:var(--indigo); }
+.g-broadcast{ position:relative; width:11pt; height:11pt; display:flex; align-items:center; justify-content:center; }
+.g-broadcast .r{ position:absolute; border-radius:50%; border:0.5pt solid var(--indigo); }
+.g-broadcast .r1{ width:11pt; height:11pt; opacity:0.18; }
+.g-broadcast .r2{ width:6.5pt; height:6.5pt; opacity:0.34; }
+.g-broadcast .c{ width:3pt; height:3pt; border-radius:50%; background:var(--indigo); }
 
 /* ── Body ─────────────────────────────────────────────────── */
 .op-rule{ height:0.25pt; background:var(--hair); margin:14pt 0; }
-.op-body{ flex:1 1 auto; display:flex; flex-direction:column; }
+.op-body{ flex:1 1 auto; display:flex; flex-direction:column;
+  justify-content:center; padding:10mm 0; }
 
 .op-headline{
   font-family:var(--sans); font-size:36pt; font-weight:600;
@@ -223,10 +229,8 @@ export function OnePager({
 
       <article className="op-page">
         <header className="op-mast">
-          <div>
-            <Wordmark text={wordmark} />
-            <div className="op-eyebrow">{eyebrow}</div>
-          </div>
+          <Wordmark text={wordmark} />
+          <div className="op-eyebrow">{eyebrow}</div>
           <Gesture kind={gesture} />
         </header>
         <div className="op-rule" />
