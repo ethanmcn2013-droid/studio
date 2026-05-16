@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { HandoffTrace } from "@/components/proof/handoff-trace";
+import { CaptureReveal } from "@/components/proof/capture-reveal";
 import {
   TASKS_URL,
   ROADMAP_URL,
@@ -219,17 +220,21 @@ export default function ProofPage() {
                   {layer.artefact.label}
                 </figcaption>
                 <div className="px-5 py-5">
-                  <ul className="space-y-2 font-mono text-[13.5px] leading-[1.6] text-ink-soft">
-                    {layer.artefact.lines.map((line, i) =>
-                      line === "" ? (
-                        <li key={i} aria-hidden className="h-2" />
-                      ) : (
-                        <li key={i} className="break-words">
-                          {line}
-                        </li>
-                      ),
-                    )}
-                  </ul>
+                  {idx === 0 ? (
+                    <CaptureReveal lines={layer.artefact.lines} />
+                  ) : (
+                    <ul className="space-y-2 font-mono text-[13.5px] leading-[1.6] text-ink-soft">
+                      {layer.artefact.lines.map((line, i) =>
+                        line === "" ? (
+                          <li key={i} aria-hidden className="h-2" />
+                        ) : (
+                          <li key={i} className="break-words">
+                            {line}
+                          </li>
+                        ),
+                      )}
+                    </ul>
+                  )}
                 </div>
               </figure>
 

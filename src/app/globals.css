@@ -2576,3 +2576,22 @@ body {
 .proof-trace-svg.is-drawn line {
   stroke-dashoffset: 0;
 }
+
+/* ── Proof Stage 1 capture reveal ──────────────────────────────────
+   Notebook lines arrive one at a time on viewport entry. Server-
+   rendered visible; .capture-armed (JS, motion only) hides them, then
+   .is-in releases them with a per-line transition-delay set inline.
+   Reduced motion never arms, and the global reduced-motion block above
+   neutralises the transition either way. transform + opacity only.
+   ────────────────────────────────────────────────────────────────── */
+.capture-armed .capture-line {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms var(--reveal-ease-glide),
+    transform 300ms var(--reveal-ease-glide);
+}
+.capture-armed.is-in .capture-line {
+  opacity: 1;
+  transform: none;
+}
