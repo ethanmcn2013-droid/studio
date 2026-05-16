@@ -207,7 +207,10 @@ export function DeckPrint() {
     <div className="dp-root">
       <style dangerouslySetInnerHTML={{ __html: DECK_PRINT_CSS }} />
       <div className="dp-toolbar dp-noprint">
-        <Link href="/hq/one-pagers">← One-pagers</Link>
+        <span style={{ display: "flex", gap: "20px" }}>
+          <Link href="/hq/plan">← Back to deck</Link>
+          <Link href="/hq/one-pagers">One-pagers</Link>
+        </span>
         <ExportButton label="Export PDF · A4 landscape" />
       </div>
       {DECK.map((slide, i) => {

@@ -828,6 +828,13 @@ export default function MarketingDeck() {
           </button>
         </div>
         <div className="mdk-bar-r">
+          <a
+            href="/hq/plan/print"
+            className="mdk-tab"
+            title="Open the print-ready version, then Export PDF"
+          >
+            export pdf
+          </a>
           <button
             type="button"
             className={`mdk-tab${pane === "contents" ? " on" : ""}`}
