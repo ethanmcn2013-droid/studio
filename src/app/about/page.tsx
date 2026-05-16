@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { ReadingProgress } from "@/components/reading-progress";
 import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <ReadingProgress />
       <main className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           {/* Section label */}
