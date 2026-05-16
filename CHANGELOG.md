@@ -3,6 +3,22 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-16 · S·38 · ships · the venue pipeline starts with fifty real names
+
+**Signal HQ's prospect CRM now opens on fifty verified Irish hotels
+instead of a single placeholder row — the Founding Venue Programme finally
+has a pipeline to work, not a shape to fill.** Three parallel research
+passes (luxury, Dublin, regional) were compiled, deduplicated, and
+verified against official hotel sites, then prioritised by the inbox that
+actually buys: events@ / weddings@ / sales@ over generic info@. Seven
+generic-only inboxes are flagged in-row for phone-first warm-up. The list
+lands two ways — a mail-merge-ready CSV at
+`signal-growth/outbound/ireland-top-50-hotels.csv`, and the HQ seed
+itself, so the prospects surface renders the fifty on first load. Existing
+operator sessions get the standing "Load repo version" prompt (seed
+timestamp bumped); browser-edited CRM state is never overwritten silently.
+No outreach has been sent — this is the list, ready.
+
 ## 2026-05-16 · S·25 · ships · one gesture per product, the same word everywhere
 
 **The per-product motion vocabulary now reads identically in code, CSS,

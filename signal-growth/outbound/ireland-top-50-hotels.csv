@@ -1,0 +1,51 @@
+rank,hotel,location,stars,email,inbox_type,group,generic_inbox_only
+1,Adare Manor,"Adare, Limerick",5,info@adaremanor.com,General,Independent,yes
+2,Ashford Castle,"Cong, Mayo",5,reservations@ashfordcastle.com,Reservations,Red Carnation,yes
+3,The Shelbourne,"Dublin 2",5,sales@theshelbourne.com,Sales/Weddings,Marriott Autograph,no
+4,The Merrion,"Dublin 2",5,weddings@merrionhotel.com,Weddings,Independent,no
+5,The Westbury,"Dublin 2",5,westbury@doylecollection.com,General/Events,Doyle Collection,no
+6,Anantara The Marker,"Dublin 2",5,groups.themarker@anantara-hotels.com,Groups/Events,Minor/Anantara,no
+7,Dromoland Castle,"Newmarket-on-Fergus, Clare",5,sales@dromoland.ie,Sales,Independent,no
+8,The K Club,"Straffan, Kildare",5,reservations@kclub.ie,Reservations,Independent,no
+9,Powerscourt Hotel,"Enniskerry, Wicklow",5,info@powerscourthotel.com,General,MHL/Marriott,yes
+10,Carton House,"Maynooth, Kildare",5,cartonhouseweddings@fairmont.com,Weddings,Fairmont/Accor,no
+11,Mount Juliet Estate,"Thomastown, Kilkenny",5,events@mountjuliet.ie,Events,Marriott Autograph,no
+12,Sheen Falls Lodge,"Kenmare, Kerry",5,events@sheenfallslodge.ie,Events,Mayrange,no
+13,The Europe Hotel,"Killarney, Kerry",5,reservations@theeurope.com,Reservations,Killarney Hotels,no
+14,Castlemartyr Resort,"Castlemartyr, Cork",5,weddings@castlemartyrresort.ie,Weddings,Mayrange,no
+15,Lough Erne Resort,"Enniskillen, Fermanagh (NI)",5,events@lougherneresort.com,Events,Independent,no
+16,The g Hotel & Spa,"Galway City",5,ghotel_weddingsandevents@leonardohotels.com,Weddings/Events,Leonardo,no
+17,Trump Intl Doonbeg,"Doonbeg, Clare",5,doonbeg.reservations@trumphotels.com,Reservations,Trump Hotels,no
+18,Fota Island Resort,"Fota Island, Cork",4,reservations@fotaisland.ie,Reservations,Fota Collection,no
+19,The College Green Hotel,"Dublin 2",5,weddings@thecollegegreenhotel.com,Weddings,Marriott Autograph,no
+20,InterContinental Dublin,"Ballsbridge, Dublin 4",5,weddings@icdublin.com,Weddings,IHG,no
+21,Conrad Dublin,"Earlsfort Terrace, Dublin 2",5,dublininfo@conradhotels.com,General,Hilton/Conrad,yes
+22,Fitzwilliam Hotel,"St Stephen's Green, Dublin 2",5,events@fitzwilliamhoteldublin.com,Events,Independent,no
+23,The Morrison,"Ormond Quay, Dublin 1",5,events@morrisonhotel.ie,Events,Curio/Hilton,no
+24,Druids Glen Resort,"Newtownmountkennedy, Wicklow",5,weddings@druidsglenresort.com,Weddings,Neville Hotels,no
+25,The Gibson Hotel,"Point Square, Dublin 1",4,events.gibson@thegibsonhotel.ie,Events,Ascend,no
+26,The Croke Park Hotel,"Jones's Road, Dublin 3",4,crokeparkhotelevents@doylecollection.com,Events,Doyle Collection,no
+27,Clayton Burlington Road,"Leeson Street, Dublin 4",4,events.burlingtonroad@claytonhotels.com,Events,Dalata,no
+28,The Dean Dublin,"Harcourt Street, Dublin 2",4,dublinevents@deangroup.com,Events/Weddings,Dean Group,no
+29,Clontarf Castle Hotel,"Clontarf, Dublin 3",4,weddings@clontarfcastle.ie,Weddings,Independent,no
+30,Radisson Blu Royal,"Golden Lane, Dublin 8",4,meetings.royal.dublin@radissonblu.com,Meetings/Events,Radisson,no
+31,Hayfield Manor,"Cork City",5,enquiries@hayfieldmanor.ie,General,Vertu,yes
+32,The Montenotte Hotel,"Cork City",4,events@themontenottehotel.com,Events,Independent,no
+33,The River Lee,"Cork City",4,Riverlee_Sales@doylecollection.com,Sales,Doyle Collection,no
+34,The Imperial Hotel,"Cork City",4,Events@imperialhotelcork.ie,Events/Weddings,Independent,no
+35,The Galmont Hotel & Spa,"Galway City",4,weddings@thegalmont.com,Weddings,MHL,no
+36,The Hardiman,"Galway City",4,Weddings@thehardiman.ie,Weddings,Ascend,no
+37,Glenlo Abbey Hotel,"Bushypark, Galway",5,info@glenloabbey.ie,General,Independent,yes
+38,The Killarney Park Hotel,"Killarney, Kerry",5,reservations@killarneyparkhotel.ie,Reservations,Independent,yes
+39,The Brehon Hotel & Spa,"Killarney, Kerry",4,events@thebrehon.com,Events,Gleneagle,no
+40,Aghadoe Heights,"Killarney, Kerry",5,weddingplanner@aghadoeheights.com,Weddings,Independent,no
+41,Harvey's Point,"Lough Eske, Donegal",4,events@harveyspoint.com,Events,Independent,no
+42,Lough Eske Castle,"Donegal Town",5,weddings@lougheskecastlehotel.com,Weddings,Solis,no
+43,Castlecourt Hotel,"Westport, Mayo",4,mywedding@castlecourthotel.ie,Weddings,Westport Hotel Group,no
+44,Lyrath Estate,"Kilkenny City",5,events@lyrath.com,Events,Independent,no
+45,Killashee Hotel & Spa,"Naas, Kildare",4,weddings@killasheehotel.com,Weddings,FBD Hotels,no
+46,Faithlegg Hotel,"Faithlegg, Waterford",4,weddings@faithlegg.com,Weddings,FBD Hotels,no
+47,Waterford Castle,"Ballinakill, Waterford",4,weddings@waterfordcastleresort.com,Weddings,Independent,no
+48,Limerick Strand Hotel,"Limerick City",4,events@strandlimerick.ie,Events,MHL,no
+49,Slieve Russell Hotel,"Ballyconnell, Cavan",4,enquiries@slieverussell.ie,General/Events,Brady Hotels,no
+50,Culloden Estate & Spa,"Holywood, Belfast (NI)",5,weddings@cull.hastingshotels.com,Weddings,Hastings,no
