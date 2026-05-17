@@ -3,7 +3,7 @@ title: Plan cycle — how work flows
 slug: plan-cycle
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-16
+lastVerified: 2026-05-17
 links: [memory-and-hooks, log-cycle-cross-repo-writer, brand-enforcement]
 tags: [phase.md, log.jsonl, Stop hook, STATUS block, cycle, CHANGELOG]
 references: [~/.claude/state/phase.md, ~/.claude/state/log.jsonl, ~/.claude/hooks/, ~/.claude/projects/-Users-ethanmcnamara/memory/, CHANGELOG.md]
