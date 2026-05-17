@@ -102,6 +102,21 @@ export default function VenuesPage() {
           </div>
         </section>
 
+        {/* Core venue promise */}
+        <section className="border-b border-border-soft px-6 py-14 md:py-16">
+          <div className="mx-auto w-full max-w-[1040px]">
+            <p className="text-[clamp(1.25rem,1rem+1.2vw,1.75rem)] font-semibold leading-[1.25] tracking-[-0.025em] text-ink">
+              Fewer confused couples.
+            </p>
+            <p className="mt-1 text-[clamp(1.25rem,1rem+1.2vw,1.75rem)] font-semibold leading-[1.25] tracking-[-0.025em] text-ink">
+              Fewer repetitive emails.
+            </p>
+            <p className="mt-1 text-[clamp(1.25rem,1rem+1.2vw,1.75rem)] font-semibold leading-[1.25] tracking-[-0.025em] text-ink-soft">
+              A better planning experience under your venue&apos;s name.
+            </p>
+          </div>
+        </section>
+
         {/* The Venue Edition — the money, stated plainly */}
         <section className="border-b border-border-soft px-6 py-16 md:py-20">
           <div className="mx-auto w-full max-w-[1040px]">
@@ -174,6 +189,18 @@ export default function VenuesPage() {
                 </div>
               ))}
             </div>
+            <p className="mt-8 text-[15px] leading-[1.6] text-ink-soft">
+              This is the plan a couple opens — calm, plain English, their
+              venue&apos;s name in a quiet line at the top.{" "}
+              <a
+                href="https://roadmap.signalstudio.ie/the-wedding"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:decoration-accent"
+              >
+                See an example plan &rarr;
+              </a>
+            </p>
           </div>
         </section>
 
@@ -271,13 +298,21 @@ export default function VenuesPage() {
               no demo gate — a short talk about whether this fits, and what
               your venue would pay.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
                 href="mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
               </Link>
+              <a
+                href="https://roadmap.signalstudio.ie/the-wedding"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Or see an example plan first &rarr;
+              </a>
             </div>
           </div>
         </section>
