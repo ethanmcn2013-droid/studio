@@ -62,28 +62,31 @@ export function RevealHero() {
         speed={28}
       />
 
+      {/* Stack order follows the ratified product hierarchy
+          (Roadmap → Tasks → Notes → Analytics, 2026-05-16) so the
+          first product impression matches the grid + meta + pricing. */}
       <nav className="reveal-stack" aria-label="Signal Studio products">
-        <a className="stack-row" data-key="tasks" href="#tasks">
-          <span className="mark">
-            <span className="word">tasks</span>
-            <span className="dot" />
-          </span>
-        </a>
         <a className="stack-row" data-key="roadmap" href="#roadmap">
           <span className="mark">
             <span className="word">roadmap</span>
             <span className="dot" />
           </span>
         </a>
-        <a className="stack-row" data-key="analytics" href="#analytics">
+        <a className="stack-row" data-key="tasks" href="#tasks">
           <span className="mark">
-            <span className="word">analytics</span>
+            <span className="word">tasks</span>
             <span className="dot" />
           </span>
         </a>
         <a className="stack-row" data-key="notes" href="#notes">
           <span className="mark">
             <span className="word">notes</span>
+            <span className="dot" />
+          </span>
+        </a>
+        <a className="stack-row" data-key="analytics" href="#analytics">
+          <span className="mark">
+            <span className="word">analytics</span>
             <span className="dot" />
           </span>
         </a>

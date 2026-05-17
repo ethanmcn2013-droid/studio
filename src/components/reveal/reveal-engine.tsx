@@ -124,11 +124,15 @@ export function RevealEngine() {
         0.6
       );
 
-      // Each brand gesture fires as its row lands — choreographed order.
-      // notes is intentionally omitted — absence of the gesture IS the gesture
-      tl.add(() => fire("tasks"), 1.0)
-        .add(() => fire("roadmap"), 1.16)
-        .add(() => fire("analytics"), 1.32);
+      // Each brand gesture fires as its row lands — choreographed to
+      // cascade top-to-bottom in the ratified stack order
+      // (roadmap → tasks → notes → analytics). notes is intentionally
+      // omitted — absence of the gesture IS the gesture — so analytics,
+      // now the bottom row, fires a beat later than the old 1.32 to
+      // land with its row rather than before it.
+      tl.add(() => fire("roadmap"), 1.0)
+        .add(() => fire("tasks"), 1.16)
+        .add(() => fire("analytics"), 1.4);
 
       // Scroll cue arrives while the visitor is still looking at the hero,
       // not 3 seconds after they've already decided to leave.
