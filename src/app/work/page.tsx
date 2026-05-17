@@ -76,7 +76,9 @@ export default function WorkPage() {
             className="mb-12 leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Four products. One operating system for clarity.
+            Four products. One operating system for clarity. Private preview
+            means early, not closed — follow a name to open it. Free to start,
+            no card.
           </p>
 
           <ol className="flex flex-col">

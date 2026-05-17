@@ -69,6 +69,15 @@ export function RevealProof() {
           </span>
         </Link>
       </p>
+      <p className="reveal-proof-outro reveal">
+        This scene is a wedding because that work is real.{" "}
+        <Link className="reveal-proof-link" href="/weddings">
+          See it built for weddings and venues{" "}
+          <span className="cta-arrow" aria-hidden>
+            →
+          </span>
+        </Link>
+      </p>
     </section>
   );
 }
