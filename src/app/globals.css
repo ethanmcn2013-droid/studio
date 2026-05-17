@@ -640,7 +640,19 @@ body {
   will-change: auto;
 }
 .reveal-headline .word-inner.em {
-  background: linear-gradient(transparent 62%, var(--reveal-accent-soft) 62%);
+  /* R11 fix 2026-05-17: clamp the highlight band to an explicit 0.78em tile
+     at 82% position — same contract as .marker. Before this fix, no
+     background-size was set, so at display heading scale (~88px) the band
+     was ~38% × 88px = ~33px tall, reading as a full-height selection rect.
+     The 0.78em tile is always typographic-scale regardless of font-size. */
+  background: linear-gradient(
+    to right,
+    var(--reveal-accent-soft),
+    var(--reveal-accent-soft)
+  );
+  background-size: 100% 0.78em;
+  background-position: 0 82%;
+  background-repeat: no-repeat;
   padding: 0 0.06em;
 }
 .reveal-subhead {
@@ -1475,8 +1487,13 @@ body {
 }
 .brand-mark .md {
   display: inline-block;
-  width: 0.16em;
-  height: 0.16em;
+  /* R3 fix 2026-05-17: hard-clamp to max 10px so the dot can never balloon
+     if text fails to lay out or fonts are slow to swap. 0.16em at the largest
+     intended wordmark size (xl = clamp(2.25rem,…,4rem)) = ~10.24px at max,
+     so 10px is the intended ceiling without losing the em-relative feel at
+     smaller sizes. See DESIGN.md §13 Loading boundary. */
+  width: min(0.16em, 10px);
+  height: min(0.16em, 10px);
   border-radius: 50%;
   background: var(--indigo);
   margin-left: 0.06em;
