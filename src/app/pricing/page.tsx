@@ -111,18 +111,18 @@ const TIERS: Tier[] = [
 
 const SUITE: InsideProduct[] = [
   {
-    key: "tasks",
-    word: "tasks",
-    position: "Execution",
-    desc: "Run the work. Plain-English task workspace for weddings, freelance, students, trades.",
+    key: "roadmap",
+    word: "roadmap",
+    position: "Direction",
+    desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
     status: "shipped",
     statusLabel: "Shipping now",
   },
   {
-    key: "roadmap",
-    word: "roadmap",
-    position: "Direction",
-    desc: "Show where the work is going. Public roadmap, shared updates, no engineering vocabulary.",
+    key: "tasks",
+    word: "tasks",
+    position: "Execution",
+    desc: "Run the work. Plain-language workspace for weddings, freelance, students, trades.",
     status: "shipped",
     statusLabel: "Shipping now",
   },
@@ -138,7 +138,7 @@ const SUITE: InsideProduct[] = [
     key: "analytics",
     word: "analytics",
     position: "Attention",
-    desc: "The daily briefing. What needs focus before it becomes a problem. Three things, in plain English.",
+    desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",
     status: "shipped",
     statusLabel: "Shipping now",
   },
@@ -256,7 +256,7 @@ export default async function PricingPage({
 
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         {checkoutOffline ? (
           <div
             role="status"
@@ -408,7 +408,7 @@ export default async function PricingPage({
             {TIERS.map((t, i) => (
               <div
                 key={t.name}
-                className={`flex flex-col md:min-h-[360px] ${t.recommended ? "order-first md:order-none" : ""}`}
+                className={`flex flex-col md:min-h-[360px] ${i === 1 ? "order-2 md:order-none" : i === 2 ? "order-1 md:order-none" : i === 3 ? "order-3 md:order-none" : ""}`}
                 style={{
                   padding: "36px 28px 32px",
                   borderRight:
@@ -718,6 +718,102 @@ export default async function PricingPage({
                 })}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile compare — stacked per-tier blocks, md:hidden */}
+          <div className="grid grid-cols-1 gap-4 md:hidden">
+            {TIERS.map((t, ti) => (
+              <div
+                key={t.name}
+                className={ti === 1 ? "order-2" : ti === 2 ? "order-1" : ti === 3 ? "order-3" : ""}
+                style={{
+                  border: t.recommended ? "1.5px solid var(--accent)" : "1px solid var(--border)",
+                  background: t.recommended
+                    ? "color-mix(in srgb, var(--accent-soft) 20%, var(--bg-elev))"
+                    : "var(--bg-elev)",
+                }}
+              >
+                {/* Tier header */}
+                <div
+                  style={{
+                    padding: "18px 20px 14px",
+                    borderBottom: "1px solid var(--border-soft)",
+                  }}
+                >
+                  {t.recommended ? (
+                    <div
+                      className="inline-flex items-center"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 10,
+                        letterSpacing: "var(--tracking-eyebrow)",
+                        textTransform: "uppercase",
+                        color: "var(--ink-quiet)",
+                        fontWeight: 600,
+                        marginBottom: 6,
+                      }}
+                    >
+                      <span className="pricing-anchor-dot" aria-hidden />
+                      Most chosen
+                    </div>
+                  ) : null}
+                  <div
+                    style={{
+                      fontSize: 17,
+                      fontWeight: 600,
+                      letterSpacing: "-0.015em",
+                      color: "var(--ink)",
+                    }}
+                  >
+                    {t.name}
+                  </div>
+                </div>
+
+                {/* Rows */}
+                <dl style={{ margin: 0 }}>
+                  {COMPARE_ROWS.map((row, ri) => {
+                    const isLast = ri === COMPARE_ROWS.length - 1;
+                    return (
+                      <div
+                        key={row.label}
+                        className="flex items-start justify-between"
+                        style={{
+                          padding: "13px 20px",
+                          borderBottom: isLast ? "none" : "1px solid var(--border-soft)",
+                          gap: 16,
+                        }}
+                      >
+                        <dt
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: 10,
+                            fontWeight: 600,
+                            color: "var(--ink-quiet)",
+                            letterSpacing: "var(--tracking-eyebrow)",
+                            textTransform: "uppercase",
+                            flexShrink: 0,
+                            paddingTop: 2,
+                          }}
+                        >
+                          {row.label}
+                        </dt>
+                        <dd
+                          style={{
+                            fontSize: 14,
+                            lineHeight: 1.5,
+                            color: "var(--ink-soft)",
+                            margin: 0,
+                            textAlign: "right",
+                          }}
+                        >
+                          {row.values[ti]}
+                        </dd>
+                      </div>
+                    );
+                  })}
+                </dl>
+              </div>
+            ))}
           </div>
 
           <p

@@ -55,7 +55,7 @@ export default async function OnePagersHub() {
   if (!valid) redirect("/hq/access");
 
   return (
-    <main className="mx-auto w-full max-w-[820px] px-6 pb-24 pt-16 md:pt-20">
+    <main id="main" className="mx-auto w-full max-w-[820px] px-6 pb-24 pt-16 md:pt-20">
       <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[#71717a]">
         Signal HQ
       </p>

@@ -55,13 +55,13 @@ const SECTIONS = [
     heading: "Reporting a vulnerability",
     body: [
       "If you find a security issue, write to hello@signalstudio.ie with the subject line \"security\". Include enough detail for us to reproduce it. Please do not exploit the issue beyond what is necessary to demonstrate it, and please do not share it publicly until we have had thirty days to fix it.",
-      "We will acknowledge inside two working days and keep you updated until the issue is resolved. We do not currently run a paid bug bounty, but we will credit serious reports in the changelog at signalstudio.ie/changelog unless you ask us not to.",
+      "We will acknowledge inside two working days and keep you updated until the issue is resolved. We do not currently run a paid bug bounty, but we will credit serious reports in the changelog at signalstudio.ie/dispatch unless you ask us not to.",
     ],
   },
   {
     heading: "What we will not pretend",
     body: [
-      "Signal Studio is built by a small team. We do not publish SOC 2 reports. We do not promise an uptime SLA. We are not enterprise-grade — we are well-shipped. The controls above are the ones we actually run; we will tell you honestly if you ask about a control you do not see here.",
+      "Signal Studio is built by a small team. We do not publish SOC 2 reports. We do not promise an uptime SLA. We are not built for enterprise security requirements. We are honest about the controls we actually run. The controls above are the ones we actually run; we will tell you honestly if you ask about a control you do not see here.",
     ],
   },
 ] as const;
@@ -69,7 +69,7 @@ const SECTIONS = [
 export default function SecurityPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"

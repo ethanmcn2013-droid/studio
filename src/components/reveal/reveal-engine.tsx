@@ -1,13 +1,17 @@
 "use client";
 
 /**
- * Reveal engine — orchestrates the GSAP entrance timeline, Lenis
- * momentum scroll, ScrollTrigger directional reveals, char-split for
- * per-character hover lift, and gesture hover-replay.
+ * Reveal engine — orchestrates the GSAP hero entrance timeline, Lenis
+ * momentum scroll, char-split for per-character hover lift, and gesture
+ * hover-replay.
  *
- * Targets the markup rendered by RevealHero / RevealManifesto /
- * RevealProducts / RevealClosing via class selectors. No props —
- * this component is mount-and-forget.
+ * GSAP is used exclusively for the hero entrance choreography.
+ * Secondary section reveals (manifesto, proof, products, closing) use
+ * the CSS .reveal scroll-driven pattern in globals.css — no JS, no
+ * ScrollTrigger, baseline-visible, reduced-motion safe.
+ *
+ * Targets the markup rendered by RevealHero via class selectors. No
+ * props — this component is mount-and-forget.
  *
  * Reduced-motion is honored: when the user prefers reduced motion,
  * the timeline + Lenis are skipped and final states are set
@@ -21,12 +25,11 @@ export function RevealEngine() {
     let cleanup: (() => void) | undefined;
 
     (async () => {
-      // Dynamic imports keep GSAP/Lenis out of the initial server bundle
+      // Dynamic imports keep GSAP/Lenis out of the initial server bundle.
+      // ScrollTrigger is intentionally not imported — secondary sections
+      // now use the CSS .reveal scroll-driven pattern (no JS dependency).
       const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       const Lenis = (await import("lenis")).default;
-
-      gsap.registerPlugin(ScrollTrigger);
 
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
@@ -69,13 +72,13 @@ export function RevealEngine() {
         return;
       }
 
-      // ─── Lenis momentum scroll synced to ScrollTrigger ────────
+      // ─── Lenis momentum scroll ────────────────────────────────
+      // No ScrollTrigger sync needed — all secondary reveals are CSS-driven.
       const lenis = new Lenis({
         duration: 1.15,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
       });
-      lenis.on("scroll", ScrollTrigger.update);
       const tickerFn = (time: number) => lenis.raf(time * 1000);
       gsap.ticker.add(tickerFn);
       gsap.ticker.lagSmoothing(0);
@@ -148,172 +151,10 @@ export function RevealEngine() {
         1.7
       );
 
-      // ─── Scroll-triggered post-reveal sections ─────────────────
-      gsap.from(".reveal-manifesto-eyebrow", {
-        scrollTrigger: {
-          trigger: ".reveal-manifesto",
-          start: "top 78%",
-          once: true,
-        },
-        opacity: 0,
-        y: 10,
-        duration: 0.55,
-        ease: "expo.out",
-      });
-      gsap.from(".reveal-manifesto-h2", {
-        scrollTrigger: {
-          trigger: ".reveal-manifesto",
-          start: "top 78%",
-          once: true,
-        },
-        opacity: 0,
-        y: 16,
-        duration: 0.75,
-        ease: "expo.out",
-        delay: 0.12,
-      });
-      gsap.from(".reveal-manifesto-body", {
-        scrollTrigger: {
-          trigger: ".reveal-manifesto-body",
-          start: "top 85%",
-          once: true,
-        },
-        opacity: 0,
-        y: 12,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "expo.out",
-      });
-
-      // Proof beat — same restraint as the manifesto: eyebrow settles,
-      // headline rises, the four scene lines stagger in like evidence
-      // arriving in order, the outro signs off.
-      gsap.from(".reveal-proof-eyebrow", {
-        scrollTrigger: {
-          trigger: ".reveal-proof",
-          start: "top 78%",
-          once: true,
-        },
-        opacity: 0,
-        y: 10,
-        duration: 0.55,
-        ease: "expo.out",
-      });
-      gsap.from(".reveal-proof-h2", {
-        scrollTrigger: {
-          trigger: ".reveal-proof",
-          start: "top 78%",
-          once: true,
-        },
-        opacity: 0,
-        y: 16,
-        duration: 0.75,
-        ease: "expo.out",
-        delay: 0.12,
-      });
-      gsap.from(".reveal-proof-line", {
-        scrollTrigger: {
-          trigger: ".reveal-proof-scene",
-          start: "top 85%",
-          once: true,
-        },
-        opacity: 0,
-        y: 12,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "expo.out",
-      });
-      gsap.from(".reveal-proof-outro", {
-        scrollTrigger: {
-          trigger: ".reveal-proof-outro",
-          start: "top 90%",
-          once: true,
-        },
-        opacity: 0,
-        y: 8,
-        duration: 0.55,
-        ease: "expo.out",
-      });
-
-      gsap.from(".reveal-products-head", {
-        scrollTrigger: {
-          trigger: ".reveal-products-head",
-          start: "top 85%",
-          once: true,
-        },
-        opacity: 0,
-        y: 8,
-        duration: 0.55,
-        ease: "expo.out",
-      });
-
-      const productRows = gsap.utils.toArray<HTMLElement>(
-        ".reveal-product-row"
-      );
-      productRows.forEach((row) => {
-        const left = row.querySelector(".left");
-        const right = row.querySelector(".right");
-        const trigger = {
-          trigger: row,
-          start: "top 82%",
-          once: true,
-        };
-        if (left) {
-          gsap.from(left, {
-            scrollTrigger: trigger,
-            opacity: 0,
-            x: -28,
-            duration: 0.7,
-            ease: "expo.out",
-          });
-        }
-        if (right) {
-          gsap.from(right, {
-            scrollTrigger: trigger,
-            opacity: 0,
-            x: 28,
-            duration: 0.7,
-            ease: "expo.out",
-            delay: 0.1,
-          });
-        }
-      });
-
-      // Closing: accent hairline expands, sign-off rises, address signs off
-      gsap.from(".reveal-closing-rule", {
-        scrollTrigger: {
-          trigger: ".reveal-closing",
-          start: "top 82%",
-          once: true,
-        },
-        width: 0,
-        duration: 0.55,
-        ease: "expo.out",
-      });
-      gsap.from(".reveal-closing-sign", {
-        scrollTrigger: {
-          trigger: ".reveal-closing",
-          start: "top 82%",
-          once: true,
-        },
-        opacity: 0,
-        y: 14,
-        duration: 0.75,
-        delay: 0.2,
-        ease: "expo.out",
-      });
-      gsap.from(".reveal-closing-addr", {
-        scrollTrigger: {
-          trigger: ".reveal-closing",
-          start: "top 82%",
-          once: true,
-        },
-        opacity: 0,
-        y: 8,
-        duration: 0.55,
-        delay: 0.42,
-        ease: "expo.out",
-      });
+      // Secondary sections below the hero now use the CSS .reveal
+      // scroll-driven pattern (globals.css) — no GSAP/ScrollTrigger
+      // dependency, baseline-visible, reduced-motion safe. GSAP here
+      // is reserved exclusively for the hero entrance above.
 
       // ─── Hover-replay (hero stack + product rows) ──────────────
       const hoverListeners: Array<{ el: HTMLElement; fn: () => void }> = [];
@@ -348,7 +189,6 @@ export function RevealEngine() {
 
       // ─── Cleanup on unmount ────────────────────────────────────
       cleanup = () => {
-        ScrollTrigger.getAll().forEach((st) => st.kill());
         tl.kill();
         gsap.ticker.remove(tickerFn);
         lenis.destroy();

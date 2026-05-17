@@ -9,7 +9,7 @@ import { TASKS_URL, ROADMAP_URL } from "@/lib/product-urls";
 export default function NotFound() {
   return (
     <>
-      <main className="flex flex-1 flex-col items-center justify-center px-6 py-24">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col items-center justify-center px-6 py-24">
         <div className="w-full max-w-[520px] text-center">
           {/* Eyebrow */}
           <div

@@ -26,7 +26,7 @@ const SECTIONS = [
     body: [
       "Every page can be navigated by keyboard. Focus rings are visible. Tab order is meaningful.",
       "Every product respects prefers-reduced-motion. The cinematic homepage demos on Tasks, Roadmap, and Analytics fall back to a static frame for readers who have asked the OS to reduce motion.",
-      "Text colours meet WCAG AA contrast against the warm-stone background. Body sizes are at least 14px on marketing surfaces.",
+      "Text colours meet WCAG AA contrast against the white background. Body sizes are at least 14px on marketing surfaces.",
       "All form fields are labelled. Required fields are announced as required, not just visually marked.",
       "Headings follow a logical hierarchy on every page. Skip links land users at main content.",
       "Images that carry meaning have alt text. Decorative images are aria-hidden.",
@@ -53,7 +53,7 @@ const SECTIONS = [
 export default function AccessibilityPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"

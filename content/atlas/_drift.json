@@ -2,9 +2,42 @@
   "turso-databases-and-reads": {
     "drifted": [
       "drizzle/",
-      "~/Projects/personal/notes/drizzle/"
+      "~/Projects/personal/notes/drizzle/",
+      "~/Projects/personal/analytics/drizzle/"
     ],
-    "updatedAt": "2026-05-16T22:21:25.374Z",
-    "byCommit": "efde4ee"
+    "updatedAt": "2026-05-17T18:14:56.377Z",
+    "byCommit": "150d851"
+  },
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css",
+      "src/app/brand/page.tsx"
+    ],
+    "updatedAt": "2026-05-17T18:14:59.830Z",
+    "byCommit": "4e85982"
+  },
+  "analytics-daily-cron": {
+    "drifted": [
+      "~/Projects/personal/analytics/src/lib/briefing/voice.ts"
+    ],
+    "updatedAt": "2026-05-17T18:14:56.377Z",
+    "byCommit": "150d851"
+  },
+  "pricing-and-entitlements": {
+    "drifted": [
+      "src/app/pricing/",
+      "src/app/hq/entitlements/"
+    ],
+    "updatedAt": "2026-05-17T18:14:59.830Z",
+    "byCommit": "4e85982"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "src/app/pricing/",
+      "src/components/landing/",
+      "src/app/brand/"
+    ],
+    "updatedAt": "2026-05-17T18:14:59.830Z",
+    "byCommit": "4e85982"
   }
 }

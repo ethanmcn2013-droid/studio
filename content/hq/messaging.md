@@ -2,16 +2,16 @@
 id: messaging
 title: Suite messaging
 status: Active
-date: 2026-05-14
+date: 2026-05-16
 ---
 
 ## Positioning
 
-Signal Studio is project management for the 80% who don't work in tech. It helps people capture context, organise action, communicate direction, and understand what needs attention without project-management overhead.
+Signal Studio is project management for the 80% who don't work in tech. Four products, one system. Signal Roadmap is what people outside the work can see — a plain-English page anyone can open, no account needed. Signal Tasks is where the work gets done. Signal Notes is where it starts, catching context before it slips. Signal Analytics is the daily briefing that tells you where to look.
 
 ## Ecosystem line
 
-Signal Notes captures context. Signal Tasks organises action. Signal Roadmap communicates direction. Signal Analytics finds what needs attention.
+Notes is where it starts. Tasks is where it gets done. Roadmap is what everyone else sees. Analytics tells you where to look.
 
 ## Founder story
 

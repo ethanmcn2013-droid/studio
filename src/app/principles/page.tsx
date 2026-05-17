@@ -27,7 +27,7 @@ const PRINCIPLES = [
     n: "3",
     title: "One accent colour across the suite.",
     body:
-      "Brand indigo, used as a single accent across umbrella and products. The same shape from a 16px favicon to a billboard. Differentiation comes from per-product wordmark gestures — pulse, slide, tick, caret — not from per-product palette. Antique gold was retired the day the brand guide flattened the umbrella to one indigo.",
+      "Brand indigo, used as a single accent across umbrella and products. The same shape from a 16px favicon to a billboard. Differentiation comes from per-product wordmark gestures — pulse, sweep, tick, caret — not from per-product palette. Antique gold was retired the day the brand guide flattened the umbrella to one indigo.",
     why: "Category-colour fragmentation is how a four-product suite stops reading as one product. We refuse it.",
   },
   {
@@ -49,7 +49,7 @@ const PRINCIPLES = [
 export default function PrinciplesPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-16 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"

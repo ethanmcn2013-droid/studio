@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ROADMAP_URL, TASKS_URL } from "@/lib/product-urls";
+import { ROADMAP_URL, TASKS_URL, NOTES_URL, ANALYTICS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Wedding Planning Workspaces - Signal Studio",
@@ -15,8 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-const trackingSuffix = "source=studio_weddings&segment=weddings&role=creator&campaign=founding_venue";
-
 /**
  * Days-to-event for the hero mock. Static — the demo represents a
  * planner four weeks out, which is the moment the wedge most clearly
@@ -25,10 +23,11 @@ const trackingSuffix = "source=studio_weddings&segment=weddings&role=creator&cam
  * calendar proximity is the 80% audience's actual mental model.
  */
 const daysToEvent = 28;
-const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/wedding-planning/update?${trackingSuffix}&artefact=landing_page`;
-const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace?${trackingSuffix}&artefact=template`;
-const notesDemoHref = `https://notes.signalstudio.ie/wedding-planning/?${trackingSuffix}&artefact=notes_demo`;
-const analyticsDemoHref = `https://analytics.signalstudio.ie/wedding-planning/?${trackingSuffix}&artefact=analytics_demo`;
+// /the-wedding is the confirmed bespoke static route on Signal Roadmap.
+const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`;
+const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`;
+const notesDemoHref = NOTES_URL;
+const analyticsDemoHref = ANALYTICS_URL;
 
 const clarityItems = [
   {
@@ -83,7 +82,7 @@ const ecosystemSteps = [
 export default function WeddingsPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="border-b border-border-soft px-6 pb-16 pt-14 md:pb-20 md:pt-20">
           <div className="mx-auto w-full max-w-[1040px]">
             <p

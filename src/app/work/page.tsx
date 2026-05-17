@@ -58,12 +58,16 @@ const statusColor: Record<WorkItem["status"], string> = {
 export default function WorkPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
+          {/* Visually-hidden page H1 — eyebrow div below is the visual label */}
+          <h1 className="sr-only">Work</h1>
+
           {/* Section eyebrow */}
           <div
             className="mb-10 text-[11px] font-semibold uppercase"
             style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
+            aria-hidden="true"
           >
             Work
           </div>
@@ -81,12 +85,12 @@ export default function WorkPage() {
                 <div className="grid grid-cols-1 gap-1 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8">
                   {/* Left col */}
                   <div>
-                    <span
-                      className="font-medium text-ink"
+                    <h2
+                      className="m-0 inline p-0 font-medium text-ink"
                       style={{ fontSize: "0.9375rem", letterSpacing: "-0.01em" }}
                     >
                       {item.name}
-                    </span>
+                    </h2>
                     <span
                       className="ml-3 text-ink-quiet"
                       style={{ fontSize: "0.9375rem" }}

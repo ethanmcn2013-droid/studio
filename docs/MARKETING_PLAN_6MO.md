@@ -23,6 +23,22 @@ Everything below builds the engine that gets to €500k *with the voice intact*.
 
 ---
 
+## 0.5 · The proof gate (read this before any number below)
+
+The numbers in §2 are real targets, not fiction. But they are *downstream of one fact that does not yet exist*. So this plan separates ambition from proof, and is honest about which is which.
+
+**Gate 0 — the only thing that matters first:** *a premium venue owner pays real money for this, unprompted by a discount.* Not interest. Not a warm call. Not a pilot they didn't pay for. A prepaid invoice, settled, at the standing price.
+
+Until Gate 0 is cleared:
+
+- €250k/6mo and €500k/12mo are **hypotheses**, not the goal. They are what the engine produces *if the thesis is true*. They do not get to be the headline yet.
+- The headline goal is the single sentence in `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md` §5: **prove one venue will pay.** Everything in §5–§10 of this plan is the machine that scales a *proven* motion — it is not proof itself.
+- The five leading indicators in §10 remain the scoreboard, but indicator-by-indicator they ladder to one: **paid pilots ≥ 1**. The other four are how you read whether you are getting there. None of them substitutes for it.
+
+This is not pessimism. The engine below is the right engine. But a plan that leads with €250k before one venue has paid is a plan measuring the wrong thing first. Clear Gate 0, then the scenarios in §2 stop being hypotheses and start being a forecast. Treat the gap between "ambitious" and "proven" as the most important line in this document.
+
+---
+
 ## 1 · The decision that gates everything — RATIFIED 2026-05-16
 
 Pricing is a locked decision area. This was ratified by the founder on 2026-05-16: **paid Venue Edition approved at the €1,500–€4,000/yr band; Workspace €120/yr annual prepay approved; Event €79 untouched.** Recorded in `content/hq/decisions/venue-editions-paid-tier.md`.
@@ -47,6 +63,8 @@ Three motions, in priority order. Everything else is ruled out (paid ads = const
 1. **Paid Venue Edition (annual, prepaid)** — the engine. ~75–85% of the number.
 2. **Event €79 one-time at volume**, fed by sponsoring venues' couples beyond the sponsored allotment — the secondary layer.
 3. **Workspace €12/mo (+ €120/yr prepay)** — the compounding tail; small in-window, the year-2 annuity.
+
+> **These scenarios are downstream of Gate 0 (§0.5).** Until one premium venue has paid real money unprompted by a discount, read every row below as a hypothesis, not a forecast. The number that unlocks this table is "paid pilots ≥ 1", not any figure in it.
 
 ### Scenarios — cash collected, 6 months (EUR; "cash in the door", not bookings)
 

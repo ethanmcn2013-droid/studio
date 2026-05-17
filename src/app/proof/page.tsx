@@ -143,7 +143,7 @@ export default function ProofPage() {
   return (
     <>
       <ReadingProgress />
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className={`${PROSE_MAX} pb-16 pt-16 md:pt-24`}>
           <Eyebrow accent>Proof</Eyebrow>
 

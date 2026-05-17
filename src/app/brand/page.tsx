@@ -154,7 +154,7 @@ export default function BrandPage() {
   return (
     <>
     <ReadingProgress />
-    <main className="mx-auto w-full max-w-[1200px] px-8 pb-32">
+    <main id="main" tabIndex={-1} className="mx-auto w-full max-w-[1200px] px-8 pb-32">
       {/* HERO */}
       <header className="pt-24 pb-12">
         <div className="mb-9 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.06em] text-[var(--ink-faint)]">

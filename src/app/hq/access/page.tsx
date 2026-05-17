@@ -23,7 +23,7 @@ export default async function HqAccessPage({
   const configured = isHqPasswordConfigured();
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-bg px-5 py-12 text-ink">
+    <main id="main" className="flex min-h-screen items-center justify-center bg-bg px-5 py-12 text-ink">
       <section className="w-full max-w-[420px] rounded-[8px] border border-border-soft bg-bg-elev p-6 shadow-2">
         <div className="mb-8">
           <div className="mb-2 text-[24px] font-semibold tracking-[-0.045em]">

@@ -40,7 +40,7 @@ export default async function AtlasIndexPage() {
   const partialCount = entries.filter((e) => e.status === "partial").length;
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <section className="mx-auto w-full max-w-[920px] px-6 pb-28 pt-14 md:pt-20">
         {freshest && (
           <div

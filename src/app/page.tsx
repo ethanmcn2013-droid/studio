@@ -7,7 +7,7 @@ import { RevealClosing } from "@/components/reveal/reveal-closing";
 
 export default function Home() {
   return (
-    <main id="main">
+    <main id="main" tabIndex={-1}>
       <RevealHero />
       <RevealManifesto />
       <RevealProof />

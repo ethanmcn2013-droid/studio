@@ -67,7 +67,7 @@ const SECTIONS = [
   {
     heading: "Changes to this policy",
     body: [
-      "If we change this policy, we will say so on the changelog at signalstudio.ie/changelog and date the change here. Material changes will be announced by email to active accounts.",
+      "If we change this policy, we will say so on the changelog at signalstudio.ie/dispatch and date the change here. Material changes will be announced by email to active accounts.",
     ],
   },
   {
@@ -82,7 +82,7 @@ const SECTIONS = [
 export default function PrivacyPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"

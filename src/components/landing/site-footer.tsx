@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
 
 // Social channels. Placeholder hrefs — replace with the real handles when
 // the accounts go live. Order is text → video → professional: X first
@@ -10,7 +10,7 @@ import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL } from "@/lib/product-urls";
 const SOCIALS = [
   {
     label: "X",
-    href: "https://x.com/signalstudio_ie", // TODO: confirm handle
+    href: "https://x.com/signalstudio_ie",
     title: "Signal Studio on X",
     svg: (
       // X (Twitter) glyph
@@ -21,7 +21,7 @@ const SOCIALS = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/@signalstudio_ie", // TODO: confirm handle
+    href: "https://www.youtube.com/@signalstudio_ie",
     title: "Signal Studio on YouTube",
     svg: (
       // YouTube play-in-rounded-rect glyph
@@ -32,7 +32,7 @@ const SOCIALS = [
   },
   {
     label: "TikTok",
-    href: "https://www.tiktok.com/@signalstudio_ie", // TODO: confirm handle
+    href: "https://www.tiktok.com/@signalstudio_ie",
     title: "Signal Studio on TikTok",
     svg: (
       // TikTok musical-note glyph
@@ -43,7 +43,7 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/signal-studio-ie", // TODO: confirm handle
+    href: "https://www.linkedin.com/company/signal-studio-ie",
     title: "Signal Studio on LinkedIn",
     svg: (
       // LinkedIn "in" glyph
@@ -135,20 +135,15 @@ export function SiteFooter() {
             >
               Signal Analytics
             </a>
-            <span
-              aria-disabled="true"
-              className="text-[12.5px] text-ink-faint"
-              style={{ letterSpacing: "0.01em", pointerEvents: "none", cursor: "default" }}
-              title="Signal Notes — coming soon"
+            <a
+              href={NOTES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
             >
               Signal Notes
-              <span
-                className="ml-1.5 font-mono text-[9px] uppercase"
-                style={{ letterSpacing: "0.08em", color: "var(--ink-faint)" }}
-              >
-                Soon
-              </span>
-            </span>
+            </a>
           </nav>
 
           {/* Pages */}
@@ -208,6 +203,13 @@ export function SiteFooter() {
               style={{ letterSpacing: "0.01em" }}
             >
               Press
+            </Link>
+            <Link
+              href="/dispatch"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Dispatch
             </Link>
             <Link
               href="/contact"

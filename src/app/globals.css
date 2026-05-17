@@ -74,11 +74,22 @@
   --brand-soft: var(--accent-soft);
   --brand-glow: var(--accent-glow);
 
-  /* ── Motion · springs ─────────────────────────────────────── */
+  /* ── Motion Contract v1 — suite-locked durations ─────────── */
+  /* Identical values across all 5 repos. Do not alter numbers. */
+  --motion-instant:  80ms;
+  --motion-fast:     140ms;
+  --motion-base:     220ms;
+  --motion-moderate: 320ms;
+  --motion-slow:     480ms;
+  /* Suite-standard easings (override existing --ease-out below) */
+  --ease-standard: cubic-bezier(0.2,0,0,1);
+  --ease-out:      cubic-bezier(0,0,0.2,1);
+  --ease-in:       cubic-bezier(0.4,0,1,1);
+
+  /* ── Motion · springs (retained — hero choreography) ─────── */
   --spring-snap:  cubic-bezier(.2, .9, .2, 1.2);
   --spring-soft:  cubic-bezier(.32, .72, 0, 1);
   --spring-glide: cubic-bezier(.16, 1, .3, 1);
-  --ease-out:     cubic-bezier(.22, .61, .36, 1);
 
   /* ── Type ─────────────────────────────────────────────────── */
   --font-sans-stack: var(--font-geist-sans), 'Geist', -apple-system,
@@ -268,7 +279,7 @@ body {
   font-size: 15px;
   letter-spacing: -0.005em;
   text-decoration: none;
-  transition: opacity 200ms ease, background 200ms ease;
+  transition: opacity var(--motion-base) var(--ease-out), background var(--motion-base) var(--ease-out);
 }
 .pricing-tier-cta[data-recommended="true"] {
   background: var(--accent);
@@ -284,7 +295,7 @@ body {
     color: var(--accent);
     border-radius: 0;
     border-bottom: 1px solid transparent;
-    transition: border-color 200ms ease;
+    transition: border-color var(--motion-base) var(--ease-out);
   }
   .pricing-tier-cta[data-recommended="true"] {
     background: transparent;
@@ -335,7 +346,7 @@ body {
   border-radius: 50%;
   margin-left: 0.1em;
   transform: translateY(-0.36em);
-  box-shadow: 0 0 10px rgba(79, 70, 229, 0.42);
+  /* No box-shadow glow — gesture is transform/opacity only (calm register) */
   animation: tasks-dot-pulse 2.6s cubic-bezier(.16, 1, .3, 1) infinite;
 }
 .tasks-dot::before {
@@ -422,8 +433,8 @@ body {
 /* ── Utilities ────────────────────────────────────────────── */
 .lift {
   transition:
-    transform 0.4s var(--spring-glide),
-    box-shadow 0.4s var(--spring-glide);
+    transform var(--motion-moderate) var(--spring-glide),
+    box-shadow var(--motion-moderate) var(--spring-glide);
 }
 .lift:hover {
   transform: translateY(-2px);
@@ -434,7 +445,16 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: 2px;
+}
+
+/* WCAG 2.4.11 — sticky nav is 56px (h-14). Section anchor targets
+   get scroll-margin-top so keyboard focus + skip-links land clear. */
+[id="roadmap"],
+[id="tasks"],
+[id="notes"],
+[id="analytics"] {
+  scroll-margin-top: 72px;
 }
 
 /* ── Eyebrow tracking token ───────────────────────────────── */
@@ -459,7 +479,7 @@ body {
   height: 1px;
   width: 0;
   background: var(--accent);
-  transition: width 600ms var(--spring-glide);
+  transition: width var(--motion-slow) var(--spring-glide);
 }
 .product-card:hover::after {
   width: 100%;
@@ -479,7 +499,7 @@ body {
   background: var(--accent);
   border-radius: 999px;
   margin-bottom: 22px;
-  box-shadow: 0 0 14px var(--accent-glow);
+  /* No glow — the accent color does the work; restraint register */
 }
 
 @supports (animation-timeline: view()) {
@@ -496,19 +516,60 @@ body {
   to   { width: 96px; }
 }
 
-/* ── Reduced motion ───────────────────────────────────────── */
+/* ── Reduced motion — Motion Contract v1 ─────────────────── */
+/* Token override: collapse all suite durations to near-zero.
+   The universal * rule below remains as belt-and-braces for any
+   value that isn't referenced via a token. */
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-instant:  0.01ms;
+    --motion-fast:     0.01ms;
+    --motion-base:     0.01ms;
+    --motion-moderate: 0.01ms;
+    --motion-slow:     0.01ms;
+  }
+  /* Ensure reveal classes are immediately visible, no JS needed */
+  .reveal,
+  .reveal-subhead,
+  .reveal-stack .stack-row,
+  .reveal-scroll-cue {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    animation: none !important;
+  }
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    transition-duration: 0.01ms !important;
   }
   /* Ensure the accent rule is visible at full width when motion is reduced. */
   .manifesto-rule {
     width: 96px !important;
   }
+}
+
+/* ── CSS scroll-driven reveal — baseline-visible, no JS ─────
+   Applied to secondary sections below the hero. The .reveal
+   class is safe to use server-side: opacity:1 / translate:none
+   is the default, so no-JS / reduced-motion users always see
+   content. The scroll-driven animation is progressive enhancement
+   gated to @supports + no-preference. Single-axis only.
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-fade var(--motion-slow) var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; translate: 0 12px; }
+  to   { opacity: 1; translate: 0 0; }
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -588,8 +649,11 @@ body {
   margin: 0 0 56px;
   text-align: center;
   letter-spacing: -0.005em;
-  opacity: 0;
-  transform: translateY(8px);
+  /* JS-progressive: GSAP hijacks this to opacity:0/translateY(8px) on its
+     synchronous first tick (reveal-engine.tsx:88). The default is visible
+     so slow/no-JS users always see the subhead. */
+  opacity: 1;
+  transform: none;
   will-change: transform, opacity;
 }
 .reveal-subhead .em {
@@ -631,14 +695,16 @@ body {
   line-height: 1;
 }
 .reveal-stack .stack-row {
-  opacity: 0;
-  transform: translateY(10px);
+  /* JS-progressive: GSAP hijacks to opacity:0/translateY(10px) on first
+     tick (reveal-engine.tsx:89). Default visible for no-JS. */
+  opacity: 1;
+  transform: none;
   will-change: transform, opacity;
   text-decoration: none;
   color: inherit;
   padding: 7px 14px;
   border-radius: 6px;
-  transition: background .2s ease;
+  transition: background var(--motion-base) var(--ease-out);
 }
 .reveal-stack .stack-row:hover {
   background: color-mix(in srgb, var(--ink-900) 3%, transparent);
@@ -680,7 +746,7 @@ body {
 .reveal-stack .stack-row[data-key="tasks"] .dot {
   opacity: 0;
   transform: translateY(-0.04em) scale(1);
-  transition: opacity .55s ease;
+  transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="tasks"].fire .dot {
@@ -698,7 +764,7 @@ body {
 /* roadmap · M·03 sweep */
 .reveal-stack .stack-row[data-key="roadmap"] .dot {
   opacity: 0;
-  transition: opacity .55s ease;
+  transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="roadmap"].fire .dot {
@@ -721,7 +787,7 @@ body {
    discrete Y samples and holds. Canon: DESIGN.md §5. */
 .reveal-stack .stack-row[data-key="analytics"] .dot {
   opacity: 0;
-  transition: opacity .55s ease;
+  transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="analytics"].fire .dot {
@@ -739,7 +805,7 @@ body {
 /* notes · M·05 caret */
 .reveal-stack .stack-row[data-key="notes"] .dot {
   opacity: 0;
-  transition: opacity .55s ease;
+  transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="notes"].fire .dot {
@@ -759,8 +825,10 @@ body {
   color: var(--ink-500);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(4px);
+  /* JS-progressive: GSAP hijacks to opacity:0/translateY(4px) on first
+     tick (reveal-engine.tsx:90). Default visible for no-JS. */
+  opacity: 1;
+  transform: none;
   text-align: center;
 }
 .reveal-scroll-cue .arrow {
@@ -893,7 +961,7 @@ body {
   border-bottom: 1px solid var(--ink-300);
   padding-bottom: 1px;
   white-space: nowrap;
-  transition: color .18s ease, border-color .18s ease;
+  transition: color var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out);
 }
 .reveal-proof-link:hover {
   color: var(--accent);
@@ -926,6 +994,13 @@ body {
   height: 1px;
   background: var(--ink-200);
 }
+.reveal-products-connective {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-500);
+  max-width: 560px;
+  margin: -10px 0 40px;
+}
 
 .reveal-product-row {
   display: grid;
@@ -936,7 +1011,7 @@ body {
   align-items: baseline;
   text-decoration: none;
   color: inherit;
-  transition: background .2s ease;
+  transition: background var(--motion-base) var(--ease-out);
 }
 .reveal-product-row:last-child {
   border-bottom: 1px solid var(--ink-200);
@@ -1004,14 +1079,6 @@ body {
   animation: reveal-notes-caret 1.1s steps(1,end) infinite;
 }
 
-/* Notes row — placeholder: in-design dim, slightly less aggressive
-   than the prior 0.45 (which read as "broken"). 0.7 reads as
-   "quieter, on its way", which matches the "In design" pill. */
-.reveal-product-row[data-key="notes"] {
-  opacity: 0.7;
-  pointer-events: none;
-  cursor: default;
-}
 
 .reveal-product-row .right {
   display: flex;
@@ -1051,7 +1118,7 @@ body {
 .reveal-product-row .meta .open {
   margin-left: auto;
   color: var(--ink-700);
-  transition: transform .25s var(--reveal-ease-glide), color .2s ease;
+  transition: transform var(--motion-moderate) var(--spring-glide), color var(--motion-base) var(--ease-out);
 }
 .reveal-product-row:hover .meta .open {
   color: var(--ink-950);
@@ -1062,7 +1129,7 @@ body {
 @media (hover: hover) and (pointer: fine) {
   .reveal-product-row .mark .word .char {
     display: inline-block;
-    transition: transform 0.42s var(--reveal-ease-mass) 0s;
+    transition: transform var(--motion-moderate) var(--reveal-ease-mass) 0s;
     will-change: transform;
   }
   .reveal-product-row:hover .mark .word .char {
@@ -1118,7 +1185,7 @@ body {
   text-decoration: none;
   border-bottom: 1px solid var(--ink-300);
   padding-bottom: 1px;
-  transition: border-color .2s ease;
+  transition: border-color var(--motion-base) var(--ease-out);
 }
 .reveal-closing-addr a:hover {
   border-bottom-color: var(--ink-900);

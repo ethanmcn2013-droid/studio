@@ -89,7 +89,7 @@ export default async function RedeemPage({
 
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <article className="mx-auto w-full max-w-[620px] px-6 pb-28 pt-20 md:pt-28">
           <RedeemView view={view} />
         </article>

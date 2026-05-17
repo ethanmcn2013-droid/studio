@@ -41,7 +41,7 @@ export default async function HqEntitlementsPage() {
   rows.reverse();
 
   return (
-    <main className="mx-auto w-full max-w-[1080px] px-5 py-12 text-ink">
+    <main id="main" className="mx-auto w-full max-w-[1080px] px-5 py-12 text-ink">
       <header className="mb-8">
         <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-quiet">
           Signal HQ

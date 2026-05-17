@@ -42,24 +42,24 @@ const SCENE = [
 export function RevealProof() {
   return (
     <section className="reveal-proof" aria-label="One real scene, end to end">
-      <div className="reveal-proof-eyebrow">
+      <div className="reveal-proof-eyebrow reveal">
         Proof <span className="gold">·</span> one real Tuesday
       </div>
-      <h2 className="reveal-proof-h2">
+      <h2 className="reveal-proof-h2 reveal">
         Here is what <span className="em">less</span> looks like on a real
         day.
       </h2>
 
       <ol className="reveal-proof-scene">
         {SCENE.map((step) => (
-          <li className="reveal-proof-line" key={step.when}>
+          <li className="reveal-proof-line reveal" key={step.when}>
             <span className="when">{step.when}</span>
             <span className="what">{step.what}</span>
           </li>
         ))}
       </ol>
 
-      <p className="reveal-proof-outro">
+      <p className="reveal-proof-outro reveal">
         No dashboards. No vocabulary to learn. The plan, and the few things
         that need attention.{" "}
         <Link className="reveal-proof-link" href="/proof">

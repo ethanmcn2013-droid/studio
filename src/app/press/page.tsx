@@ -13,12 +13,21 @@ export const metadata: Metadata = {
     "Boilerplates, founder bio, brand assets, and a press contact who answers within a day.",
 };
 
-const LAST_UPDATED = "2026-05-12";
+type CoverageItem = { title: string; outlet: string; href: string; date: string };
+
+// Add entries here as coverage lands. Date format: YYYY-MM-DD.
+const COVERAGE: CoverageItem[] = [];
+
+// Derive the most recent coverage date; undefined when no coverage yet.
+const lastCoverageDate: string | undefined =
+  COVERAGE.length > 0
+    ? COVERAGE.slice().sort((a, b) => b.date.localeCompare(a.date))[0].date
+    : undefined;
 
 export default function PressPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <article className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"
@@ -35,9 +44,17 @@ export default function PressPage() {
             For writers and producers.
           </h1>
 
-          <p className="mb-12 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
-            Last updated {LAST_UPDATED}
-          </p>
+          {lastCoverageDate ? (
+            <p className="mb-12 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+              Last updated {lastCoverageDate}
+            </p>
+          ) : (
+            <p
+              className="mb-12 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint"
+            >
+              No coverage filed yet.
+            </p>
+          )}
 
           <div className="space-y-12 text-[15.5px] leading-[1.7] text-ink-soft">
             <p>
@@ -208,9 +225,19 @@ export default function PressPage() {
               </p>
             </Section>
 
-            <Section title="Recent coverage">
-              <p>None yet. Links will land here as they do.</p>
-            </Section>
+            {COVERAGE.length > 0 ? (
+              <Section title="Recent coverage">
+                <ul className="space-y-2 text-[15px]">
+                  {COVERAGE.map((item) => (
+                    <li key={item.href}>
+                      <ExternalLink href={item.href}>{item.title}</ExternalLink>
+                      {" — "}
+                      <span className="text-ink-quiet">{item.outlet}, {item.date}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Section>
+            ) : null}
 
             <p className="border-t border-border-soft pt-6 text-[14px] text-ink-quiet">
               No publicist. No PR firm. No embargo dance. The email above

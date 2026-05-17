@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Project management for the 80% who don't work in tech. Four small tools — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes — that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Four small tools — Signal Roadmap, Signal Tasks, Signal Notes, Signal Analytics — that read as one system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie"
   ),

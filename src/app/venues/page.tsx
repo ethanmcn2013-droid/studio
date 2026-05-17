@@ -66,7 +66,7 @@ const founding = [
 export default function VenuesPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         {/* Hero */}
         <section className="border-b border-border-soft px-6 pb-16 pt-14 md:pb-20 md:pt-20">
           <div className="mx-auto w-full max-w-[1040px]">
@@ -87,7 +87,7 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme"
+                href="/contact?subject=founding-venue"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
@@ -300,7 +300,7 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme"
+                href="/contact?subject=founding-venue"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue

@@ -59,7 +59,6 @@ export function ProductSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Open Signal Studio product switcher"
         className="inline-flex items-center gap-1 text-[13px] text-ink-quiet transition-colors hover:text-ink"
@@ -86,7 +85,6 @@ export function ProductSwitcher() {
       </button>
       {open ? (
         <div
-          role="menu"
           className="fixed left-4 right-4 top-[64px] z-50 overflow-hidden rounded-xl border bg-bg-elev shadow-[0_24px_60px_-24px_rgba(20,21,26,0.22)] sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[280px]"
           style={{ borderColor: "var(--border-soft)" }}
         >
@@ -108,7 +106,6 @@ export function ProductSwitcher() {
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  role="menuitem"
                   onClick={() => setOpen(false)}
                   className="group flex items-center justify-between gap-3 rounded-md px-2.5 py-2 text-ink no-underline transition-colors hover:bg-bg-deep"
                 >

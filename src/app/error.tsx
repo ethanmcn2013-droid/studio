@@ -22,6 +22,8 @@ export default function RootError({
 
   return (
     <div
+      id="main"
+      tabIndex={-1}
       className="flex min-h-screen flex-col items-center justify-center px-6"
       style={{ background: "var(--bg)" }}
     >

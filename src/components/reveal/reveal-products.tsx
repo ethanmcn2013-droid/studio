@@ -47,7 +47,7 @@ function ProductRow({
 
   return (
     <a
-      className="reveal-product-row"
+      className="reveal-product-row reveal"
       id={id}
       data-key={dataKey}
       href={href}
@@ -86,54 +86,57 @@ function ProductRow({
 export function RevealProducts() {
   return (
     <section className="reveal-products">
-      <div className="reveal-products-head">
-        Four products <span className="gold">·</span> one voice
+      <div className="reveal-products-head reveal">
+        Four products <span className="gold">·</span> one system
       </div>
+      <p className="reveal-products-connective">
+        Notes is where it starts. Tasks is where it gets done. Roadmap is what
+        everyone else sees. Analytics tells you where to look.
+      </p>
 
-      <ProductRow
-        id="tasks"
-        dataKey="tasks"
-        position="Execution clarity"
-        word="tasks"
-        essence="Run the work. Without the project-manager voice."
-        pills={["Private preview", "Multi-view"]}
-        cta="Open the workspace →"
-        href={TASKS_URL}
-        external
-      />
       <ProductRow
         id="roadmap"
         dataKey="roadmap"
-        position="Direction clarity"
+        position="What people see"
         word="roadmap"
-        essence="Show what you’re building. In plain English, on a public page."
+        essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
         pills={["Private preview", "Public roadmaps"]}
         cta="Open the roadmap →"
         href={ROADMAP_URL}
         external
       />
       <ProductRow
-        id="analytics"
-        dataKey="analytics"
-        position="Attention clarity"
-        word="analytics"
-        essence="A morning briefing. Not a dashboard."
-        pills={["Private preview", "Daily Signal"]}
-        cta="Open the briefing →"
-        href={ANALYTICS_URL}
+        id="tasks"
+        dataKey="tasks"
+        position="Where the work happens"
+        word="tasks"
+        essence="Run the work without the project-manager voice. One workspace, every view you need."
+        pills={["Private preview", "Multi-view"]}
+        cta="Open the workspace →"
+        href={TASKS_URL}
         external
       />
       <ProductRow
         id="notes"
         dataKey="notes"
-        position="Capture clarity"
+        position="Where work begins"
         word="notes"
-        essence="Catch what slips. Find it again later."
-        pills={["Private build", "In design"]}
-        cta="See what’s coming →"
+        essence="Catch what was said before it slips. Turn a note into a task in one tap. Nothing leaves until you send it."
+        pills={["Private preview", "Capture"]}
+        cta="Open the notebook →"
         href={NOTES_URL}
         external
-        comingSoon
+      />
+      <ProductRow
+        id="analytics"
+        dataKey="analytics"
+        position="What needs attention"
+        word="analytics"
+        essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
+        pills={["Private preview", "Daily Signal"]}
+        cta="Open the briefing →"
+        href={ANALYTICS_URL}
+        external
       />
     </section>
   );

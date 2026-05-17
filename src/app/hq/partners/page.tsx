@@ -28,7 +28,7 @@ export default async function PartnersPage() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-[1100px] px-6 pb-24 pt-16 md:pt-20">
+    <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24 pt-16 md:pt-20">
       <div
         className="mb-3"
         style={{

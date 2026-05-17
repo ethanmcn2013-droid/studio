@@ -61,7 +61,7 @@ export default async function AtlasEntryPage({
   const note = stateNote(entry.status, entry.isStale, entry.isDrifted);
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-14 md:pt-20">
         <div className="mb-10 flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider">
           <Link

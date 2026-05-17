@@ -61,7 +61,7 @@ const SECTIONS = [
   {
     heading: "Service availability",
     body: [
-      "Signal Studio is built and operated as a small team. We aim for high availability but we don't publish an uptime SLA. If a product is down for more than a few hours, we will post on the changelog at signalstudio.ie/changelog.",
+      "Signal Studio is built and operated as a small team. We aim for high availability but we don't publish an uptime SLA. If a product is down for more than a few hours, we will post on the changelog at signalstudio.ie/dispatch.",
       "We may take a product offline briefly for upgrades. We try to do this outside Irish business hours.",
     ],
   },
@@ -89,7 +89,7 @@ const SECTIONS = [
   {
     heading: "Changes to these terms",
     body: [
-      "If we change these terms, we will say so on the changelog at signalstudio.ie/changelog and date the change here. Continued use of the service after the date means you accept the change.",
+      "If we change these terms, we will say so on the changelog at signalstudio.ie/dispatch and date the change here. Continued use of the service after the date means you accept the change.",
     ],
   },
   {
@@ -109,7 +109,7 @@ const SECTIONS = [
 export default function TermsPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"

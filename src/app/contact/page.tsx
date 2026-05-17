@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 export const metadata: Metadata = {
-  title: "Reach — Signal Studio",
+  title: "Contact — Signal Studio",
   description: "A real human reads everything sent to hello@signalstudio.ie.",
+};
+
+const SUBJECT_EYEBROWS: Record<string, string> = {
+  weddings: "Wedding planning enquiry",
+  "founding-venue": "Founding Venue Programme",
 };
 
 /**
@@ -12,17 +17,33 @@ export const metadata: Metadata = {
  * Names what reaches a human, names what doesn't. No form. No CRM.
  * Same restraint as the rest of the umbrella.
  */
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ subject?: string }>;
+}) {
+  const params = await searchParams;
+  const contextualEyebrow = params.subject ? SUBJECT_EYEBROWS[params.subject] : undefined;
+
   return (
     <>
-      <main className="flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
           <div
             className="mb-6 text-[11px] font-semibold uppercase"
             style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
-            Reach
+            Contact
           </div>
+
+          {contextualEyebrow ? (
+            <p
+              className="mb-4 text-[13px] font-medium text-ink-quiet"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              {contextualEyebrow}
+            </p>
+          ) : null}
 
           <h1 className="h-section mb-8 max-w-[620px] text-balance text-ink">
             A real human, on the other end.
@@ -86,8 +107,7 @@ export default function ContactPage() {
           <p
             className="mt-12 font-mono text-[11px] leading-[1.8] text-ink-faint"
           >
-            Set in Geist &middot; Geist Mono<br />
-            Next.js 16 &middot; Vercel &middot; 2026
+            Set in Geist &middot; Geist Mono &middot; 2026
           </p>
         </section>
       </main>
