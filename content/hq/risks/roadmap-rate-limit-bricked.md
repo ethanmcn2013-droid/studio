@@ -13,7 +13,7 @@ reviewDate: 2026-05-17
 
 Cleared 2026-05-17. Operator provisioned Upstash; both `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are present on the `roadmap` project's Production environment, and the live prod deployment is newer than the env (so it is baked in). Verified end-to-end, not assumed: a live round-trip against the prod credentials ran the exact limiter pipeline — `PING` → `PONG`, `INCR` → 1, `EXPIRE … NX` → 1, `TTL` → 60 — HTTP 200. The fail-closed branch is no longer reachable in prod; `create-workspace`, `create-project`, and `save-source` writes go through the Redis sliding-window path. Roadmap's core write path is live.
 
-Owed sweep (kept open, not silently dropped): any other suite product whose `rate-limit.ts` runs unconfigured in prod has the same latent fail-closed failure. Audit Tasks/Notes/Analytics for the same env-presence + live round-trip before assuming they're safe — env-present ≠ creds-valid (the limiter also fails closed on a bad-cred pipeline error).
+Cross-suite sweep — done 2026-05-17, clean. The latent fail-closed failure is Roadmap-specific. Tasks: no rate limiter (only a comment naming Upstash as a future substrate). Analytics: no rate limiter. Notes: `api/capture/email/route.ts` has an in-memory throttle that fails *open* (no Upstash, no prod deny branch) and is additionally auth-gated by `NOTES_CAPTURE_INBOUND_SECRET` — different, weaker (per-lambda) protection model, but not this blocker. No other product gates writes on a prod fail-closed Upstash check.
 
 ## Mitigation (historical)
 
