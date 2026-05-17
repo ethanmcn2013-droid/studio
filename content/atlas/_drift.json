@@ -6,12 +6,5 @@
     ],
     "updatedAt": "2026-05-16T22:21:25.374Z",
     "byCommit": "efde4ee"
-  },
-  "pricing-and-entitlements": {
-    "drifted": [
-      "src/lib/entitlements/"
-    ],
-    "updatedAt": "2026-05-17T00:41:44.269Z",
-    "byCommit": "5cc8267"
   }
 }
