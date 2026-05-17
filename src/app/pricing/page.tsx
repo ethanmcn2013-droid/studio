@@ -589,8 +589,9 @@ export default async function PricingPage({
               marginBottom: 36,
             }}
           >
-            The tiers don't differ on what's inside. They differ on shape — who
-            it's for, how long it lasts, what stays when it ends.
+            The tiers don't differ on which products you get. All four, every
+            plan. They differ on shape — who it's for, how long it lasts, what
+            stays when it ends.
           </p>
 
           <div
@@ -824,8 +825,11 @@ export default async function PricingPage({
               lineHeight: 1.55,
             }}
           >
-            All tiers include every product as it ships. No feature is gated
-            behind tier.
+            All tiers include every product, and every plan can read every
+            briefing in the app. Two things that come to you instead — the
+            morning briefing by email, and a forward-to address that turns mail
+            into notes — are part of the Workspace tier. Nothing you make is
+            ever locked away by plan.
           </p>
         </section>
 
