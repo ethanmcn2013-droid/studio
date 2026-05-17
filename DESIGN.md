@@ -334,6 +334,86 @@ Notes's green/mustard/Inter aesthetic is **intentional and locked** (see [`feedb
 
 ## 12 · How to use this file
 
+---
+
+## 13 · Loading boundary (canonical spec — all five repos)
+
+**Authored 2026-05-17. This section is the contract that Notes, Tasks, Roadmap, and Analytics implement against — copy the spec exactly, do not diverge.**
+
+### Problem
+Zero `loading.tsx` files exist across the suite. Without a Suspense fallback the bare RSC shell paints during route-transition and hydration. The wordmark `.md` (middot dot) is `0.16em` — before Geist Sans resolves, the em unit inherits from the root element's unhydrated size, and the dot balloons to ~250px. This reads as a crash.
+
+### Contract
+
+Every App Router repo mounts a `loading.tsx` at the app root. The file:
+
+1. **Visual** — renders the product's per-product brand gesture mark (the `.md` dot for verbs: Tasks/Roadmap/Analytics/Notes; the `.pd` period for nouns: Studio/Notes) as a static indigo circle, centered on the product's paper background.
+2. **Background** — `var(--paper, #ffffff)`. Never bare white via `background: white` — always the CSS custom property so it inherits the product's paper token if it ever diverges.
+3. **Size** — `10px × 10px` hard-coded in `px` (not `em`). This is the intended ceiling: `0.16em` at the wordmark's `xl` size (`clamp(2.25rem,…,4rem)`) = ~10.24px at max viewport. Hard-coding in px makes the loading dot immune to font-size inheritance before the web font resolves.
+4. **Dot ceiling in CSS** — The `.brand-mark .md` rule in every product's `globals.css` (or equivalent) must also apply `width: min(0.16em, 10px); height: min(0.16em, 10px)` so the dot is clamped in *all* contexts (nav, footer, loading state), not only inside `loading.tsx`.
+5. **No animation** in `loading.tsx` itself — the loading state is intentionally quiet. Gesture animation belongs to the settled, hydrated component.
+6. **No client directive** — `loading.tsx` must be a Server Component (no `"use client"`). It should have zero JS overhead and paint with the RSC shell.
+7. **Reduced motion** — no animation to suppress; the static dot satisfies `prefers-reduced-motion` without a media query.
+8. **Accessibility** — the entire loading container is `aria-hidden`. It is a visual transition aid, not meaningful content.
+
+### Implementation (copy-pasteable for each repo)
+
+```tsx
+// app/loading.tsx — replace PRODUCT_NAME with the product's name
+export default function Loading() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "var(--paper, #ffffff)",
+        zIndex: 9999,
+      }}
+    >
+      <div
+        style={{
+          width: 10,
+          height: 10,
+          borderRadius: "50%",
+          background: "var(--indigo, #4f46e5)",
+          flexShrink: 0,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+### CSS rule (add to every product's globals.css if not already present)
+
+```css
+/* Loading-boundary dot ceiling — DESIGN.md §13.
+   Hard-clamp to 10px so the dot cannot balloon before fonts resolve.
+   min() keeps em-relative sizing at smaller contexts. */
+.brand-mark .md {
+  width: min(0.16em, 10px);
+  height: min(0.16em, 10px);
+}
+```
+
+### Background token per product
+
+| Product | Background token | Hex |
+|---|---|---|
+| Studio | `--paper` | `#ffffff` |
+| Tasks | `--paper` | `#ffffff` |
+| Roadmap | `--paper` | `#ffffff` |
+| Analytics | `--paper` | `#ffffff` |
+| Notes | `--paper` | `#ffffff` (Notes green/mustard is typography, not background) |
+
+All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lock). The white-lock ratified 2026-05-16 (warm Stone ramp rejected for product use).
+
+---
+
 **For agents (Claude Code, Codex, Stitch):**
 1. Load this file before any UI work in any Signal Studio repo.
 2. Resolve token references against the repo's `globals.css` (or `app/globals.css`) — this file documents the family; the CSS is the source of truth for the exact value.
@@ -347,8 +427,9 @@ Notes's green/mustard/Inter aesthetic is **intentional and locked** (see [`feedb
 
 ---
 
-## 13 · Provenance
+## 14 · Provenance
 
 - **Generated:** 2026-05-14 by direct extraction from `BRAND.md` §3–§6 and `src/app/globals.css`. Not an LLM hallucination of design tokens — every hex and value below was read from the live system.
 - **Cadence:** review on each design-system-v* bump (currently v1, locked 2026-05-13).
+- **Last updated:** 2026-05-17 — §13 Loading boundary added (R3 remediation).
 - **Owner:** Ethan McNamara · `hello@signalstudio.ie`.
