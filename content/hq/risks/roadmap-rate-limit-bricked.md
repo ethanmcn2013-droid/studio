@@ -2,14 +2,20 @@
 id: roadmap-rate-limit-bricked
 title: Signal Roadmap prod has no Upstash env, so the rate limiter denies 100% of workspace/project/source writes.
 category: Product
-likelihood: High
+likelihood: Low
 impact: High
-status: Blocked
+status: Resolved
 owner: Ethan
-reviewDate: 2026-05-20
+reviewDate: 2026-05-17
 ---
 
-## Mitigation
+## Resolution
+
+Cleared 2026-05-17. Operator provisioned Upstash; both `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are present on the `roadmap` project's Production environment, and the live prod deployment is newer than the env (so it is baked in). Verified end-to-end, not assumed: a live round-trip against the prod credentials ran the exact limiter pipeline — `PING` → `PONG`, `INCR` → 1, `EXPIRE … NX` → 1, `TTL` → 60 — HTTP 200. The fail-closed branch is no longer reachable in prod; `create-workspace`, `create-project`, and `save-source` writes go through the Redis sliding-window path. Roadmap's core write path is live.
+
+Owed sweep (kept open, not silently dropped): any other suite product whose `rate-limit.ts` runs unconfigured in prod has the same latent fail-closed failure. Audit Tasks/Notes/Analytics for the same env-presence + live round-trip before assuming they're safe — env-present ≠ creds-valid (the limiter also fails closed on a bad-cred pipeline error).
+
+## Mitigation (historical)
 
 Status set to Blocked 2026-05-16 — this is not "needs attention", it is down. Confirmed 2026-05-15 via `vercel env ls production` on the linked `roadmap` project: only TURSO + Clerk vars, no `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. `rate-limit.ts` fail-closes in production when Upstash is unconfigured, so every `createWorkspaceAction`, `createProjectAction`, and `saveProjectSourceAction` on the live site returns "Too many requests". Roadmap's core write path is dead in prod.
 
