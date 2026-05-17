@@ -427,9 +427,200 @@ All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lo
 
 ---
 
-## 14 · Provenance
+## 14 · Suite shell and auth-aware switcher (canonical spec — all five repos)
+
+**Authored 2026-05-18. This section is the contract that Tasks, Notes, Analytics, and Roadmap implement against. Copy the spec exactly; do not diverge. Studio is the reference implementation.**
+
+### Problem
+
+When a user is signed in, every product currently renders its public marketing homepage. This is not a session bug — the shared Clerk PROD instance already keeps the user authenticated across `*.signalstudio.ie`. The failure is purely presentational: the marketing nav shows "Sign in / Start for free" while the Clerk avatar sits in the corner proving the user is logged in. The user reads this as "I am logged out of this product." Scope: routing and nav presentation only. Session infrastructure is correct and untouched.
+
+### Route authority
+
+Every redirect decision defers to the Layer 0 per-product route allowlist. The allowlist is the binding contract; this spec references it, not duplicates it. Implement the redirect in `src/middleware.ts` (Next.js 16 middleware location; not `src/proxy.ts` unless the repo already uses that name for Clerk middleware).
+
+- **M routes** (marketing) — authed user → 307 to that product's app entry.
+- **C routes** (content: published roadmaps, shared briefings, brand assets) — never redirected. Reachable by everyone, signed in or not. A miscategorised C route detonates the no-auth-for-viewers promise.
+- **A routes** (app) — the authed destination; never redirected.
+- **X routes** (infra) — `/api/*`, `/hq/*`, OG images, feeds, sitemaps, robots; never touched.
+
+### Persistent top chrome
+
+Every authed **app surface** mounts a byte-identical top chrome. The exact visual specification:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ [signal studio.] / [product]   ···   [switcher▾]  [avatar▾] │
+└─────────────────────────────────────────────────────────────┘
+```
+
+- **Left slot — breadcrumb:** `signal studio.` (the umbrella wordmark, lowercase with period, indigo dot, links to `https://signalstudio.ie`) + a `/` separator in `var(--ink-ghost)` + the product mark in `var(--ink-soft)` (e.g. `tasks`, `roadmap`, `notes`, `analytics` — lowercase, no period/middot in this breadcrumb context).
+- **Right slot — controls:** the cross-product switcher dropdown (label "Products" or the current product name — see below) + the account menu (Clerk `<UserButton />`).
+- **Height:** `h-14` (56px). Sticky top-0, `z-40`. Backdrop blur: `backdrop-blur-md`. Background: `color-mix(in srgb, var(--bg) 85%, transparent)`. Hairline border bottom on scroll: `1px solid var(--border-soft)`, transparent at rest — same transition as studio's `SiteNav`.
+- **Max width:** `80rem` (app content width per §4), `px-6` padding.
+- **Positional identity:** the chrome is identical in pixel geometry across all five products. A cross-product jump swaps only the body; the chrome appears not to move. This is the "feels like one app" mechanism.
+- **Honest ceiling (state in code comments):** this is *perceived* continuity. A hard document navigation still occurs between subdomains. True cross-product SPA is ruled out by the locked no-monorepo and no-DB-merge decisions. The correct implementation note is: "perceived continuity, not a true SPA."
+
+### Auth-aware switcher
+
+The switcher dropdown has two modes based on auth state.
+
+**Authed mode** — the user is signed in:
+- Trigger label: `Products` (or current product word if space-constrained at mobile).
+- Each product entry deep-links to that product's **app entry**, not its marketing homepage:
+  - Tasks → `https://tasks.signalstudio.ie/app`
+  - Notes → `https://notes.signalstudio.ie/app`
+  - Analytics → `https://analytics.signalstudio.ie/app`
+  - Roadmap → `https://roadmap.signalstudio.ie/app`
+- Each item shows an **app-context label** (not a marketing tagline):
+  - Tasks: "Open the workspace"
+  - Notes: "Open the notebook"
+  - Analytics: "Open the briefing"
+  - Roadmap: "Open the roadmap"
+- The current product is indicated (bold or a subtle active state) but is still a tappable link (useful to reset to app home within the product).
+- Studio entry: "Back to Signal Studio" → `https://signalstudio.ie` (the suite launcher if authed, the hero if unauthed — the redirect handles it).
+
+**Unauthed mode** — current marketing behavior. Marketing taglines, links to product marketing homepages. No change from today.
+
+### Kill the false "Sign in"
+
+When the user is authenticated, the product nav **must not** render any variant of "Sign in", "Start for free", "Get started", or similar authentication CTAs. These strings make an authenticated user feel logged out — this is the single biggest perceived-logout offender.
+
+The account menu (`<UserButton />` or equivalent) **replaces** the auth CTA in the nav when authed. The auth CTA is removed entirely; it is not toggled or hidden behind a class — it is not rendered.
+
+**Implementation pattern (Server Component):**
+
+```tsx
+// In the nav/header server component
+import { auth } from "@clerk/nextjs/server"; // or equivalent
+
+const { userId } = await auth();
+// When userId is present: render <UserButton /> + switcher, not <SignInButton />
+// When userId is absent: render marketing CTAs as today
+```
+
+### Owner-only escape hatch
+
+The operator must be able to demo public marketing pages while logged in (venue sales motion, prospect walkthroughs). The escape hatch mechanism:
+
+**Flag:** a `sessionStorage` key `signal_preview_public` (string `"1"`, tab-scoped). The per-tab scoping is intentional — opening a new tab resets to the default authed experience.
+
+**Activation:** an account menu item labelled "View public site" (visible only when authed). Clicking it sets `sessionStorage.setItem("signal_preview_public", "1")` and reloads the page. A `?preview=public` query param is also accepted as an alternative entry (useful for linking directly to a preview-mode URL in a screen recording or handoff note).
+
+**Effect:** the redirect middleware reads the flag via a request cookie OR the `?preview=public` query param (since `sessionStorage` is client-only and the middleware is server-side, the client-side "View public site" button must set a short-lived cookie `signal_preview_public=1; path=/; max-age=86400; SameSite=Strict` alongside the sessionStorage entry). The middleware checks: `if (authed && previewCookie !== "1" && !searchParams.has("preview", "public")) { redirect to app }`.
+
+**Exact middleware logic (copy-pasteable):**
+
+```ts
+// In src/middleware.ts (or src/proxy.ts if that file handles routing)
+const isAuthed = Boolean(request.cookies.get("__session")?.value);
+const isPreview =
+  request.cookies.get("signal_preview_public")?.value === "1" ||
+  request.nextUrl.searchParams.get("preview") === "public";
+
+if (isAuthed && !isPreview && MARKETING_ROUTES.has(pathname)) {
+  return NextResponse.redirect(new URL(APP_ENTRY, request.url), 307);
+}
+```
+
+**Deactivation:** the cookie expires after 24 hours (`max-age=86400`). The "View public site" item in the account menu shows a dismiss affordance when the flag is active ("Exit preview") that clears the cookie and reloads.
+
+**Security note:** this is an operator-only feature. It does not alter any auth state, expose any private data, or change Clerk session handling. It only suppresses the marketing→app redirect for the bearer of a same-site cookie. Non-operators who somehow set this cookie get the marketing page — which is public anyway.
+
+### Studio suite launcher (signalstudio.ie authed variant)
+
+Studio has no end-user product app. Its authed destination is the **suite launcher** — the existing cross-product switcher rendered as a full page.
+
+- **Route:** `/` (authed variant). Same URL, different render. The middleware (or a server component auth check) determines which variant to return.
+- **Content:** "Jump back in" header + a 2×2 grid of product cards (same four products, same ratified hierarchy: Roadmap → Tasks → Notes → Analytics). Each card: product wordmark + app-context label ("Open the workspace", etc.) + a right-arrow. Card links go to app entries (as in authed switcher above). Below the grid: the account menu inline or a "Sign out" text link via Clerk.
+- **Chrome:** mounts the persistent top chrome from this spec (§14 above). Left slot shows `signal studio.` only (no `/ product` — the launcher IS studio). Right slot: switcher + account menu.
+- **Unauthed `/`:** unchanged marketing hero. The middleware passes through; `page.tsx` renders `<RevealHero />` etc. as today.
+- **Brand voice on new copy:** "Jump back in." is the only heading. No marketing copy on the launcher. No taglines. No "Get started." One verb per card. This is a utility surface, not a selling surface.
+
+### Redirect middleware implementation (studio)
+
+Studio's existing `src/proxy.ts` handles the `/hq` password gate only. The M→launcher redirect lives in a new `src/middleware.ts` (Next.js 16 picks up both via the config matcher — they compose):
+
+```ts
+// src/middleware.ts — Layer 2 studio M→suite-launcher redirect
+import { NextResponse, type NextRequest } from "next/server";
+
+const MARKETING_PATHS = new Set([
+  "/", "/work", "/proof", "/about", "/pricing",
+  "/contact", "/dispatch", "/method",
+]);
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // C routes — always pass through
+  if (pathname.startsWith("/brand")) return NextResponse.next();
+  // X routes — always pass through
+  if (pathname.startsWith("/hq") || pathname.startsWith("/api")) return NextResponse.next();
+
+  const isMarketingRoute = MARKETING_PATHS.has(pathname);
+  if (!isMarketingRoute) return NextResponse.next();
+
+  const isAuthed = Boolean(request.cookies.get("__session")?.value);
+  const isPreview =
+    request.cookies.get("signal_preview_public")?.value === "1" ||
+    request.nextUrl.searchParams.get("preview") === "public";
+
+  if (isAuthed && !isPreview) {
+    // Authed on a marketing route → render the suite launcher.
+    // The launcher is the authed variant of `/` — rewrite, not redirect,
+    // so the URL stays clean.
+    const target = new URL("/", request.url);
+    // Signal the page to render the launcher variant via a request header.
+    const response = NextResponse.rewrite(target);
+    response.headers.set("x-signal-authed", "1");
+    return response;
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/((?!_next|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff2?|ttf|eot|ico|css|js)$).*)"],
+};
+```
+
+**Note on the rewrite vs redirect approach for studio `/`:** Because the suite launcher lives at the same URL (`/`) as the marketing hero, a 307 redirect would loop. Instead, the middleware rewrites to `/` and sets an `x-signal-authed: 1` request header. The `page.tsx` server component reads this header via `headers()` to decide which variant to render. For all other M routes (`/work`, `/proof`, etc.), a 307 to `/` is correct (the launcher is at `/`).
+
+**Revised middleware logic for non-root M routes:**
+
+```ts
+if (isAuthed && !isPreview) {
+  if (pathname === "/") {
+    // Rewrite in place; set header for variant selection in page.tsx
+    const res = NextResponse.rewrite(request.nextUrl);
+    res.headers.set("x-signal-authed", "1");
+    return res;
+  }
+  // All other M routes → redirect to the suite launcher at /
+  return NextResponse.redirect(new URL("/", request.url), 307);
+}
+```
+
+### Per-product M route lists (implementing repos)
+
+Each product repo defines its own `MARKETING_PATHS` set matching the Layer 0 allowlist for that product. The redirect target is always that product's own app entry (not studio). Tasks/Notes/Analytics redirect to `/app`. Roadmap redirects to `/app` (the owner's workspace). None of the products' middlewares should redirect to studio — they redirect within their own subdomain.
+
+### Verification gates (all repos before merge)
+
+1. Authed request to a **C** route returns the public view (HTTP 200), not a redirect. Test `roadmap.signalstudio.ie/the-wedding`, an analytics shared briefing, `signalstudio.ie/brand`. This is the single most critical test.
+2. Authed request to an **M** route (e.g. `signalstudio.ie/`, `tasks.signalstudio.ie/`) renders the app surface, not marketing.
+3. Unauthed request to an **M** route renders marketing — no redirect, no auth wall.
+4. Product nav renders **no** "Sign in" or "Start for free" string when the user is authed.
+5. "View public site" escape hatch suppresses the redirect for the tab session.
+6. `signalstudio.ie/brand` returns HTTP 200 for both authed and unauthed requests (category C).
+7. 390px and 1440px visual check on the suite launcher and persistent chrome.
+
+---
+
+## 15 · Provenance
 
 - **Generated:** 2026-05-14 by direct extraction from `BRAND.md` §3–§6 and `src/app/globals.css`. Not an LLM hallucination of design tokens — every hex and value below was read from the live system.
 - **Cadence:** review on each design-system-v* bump (currently v1, locked 2026-05-13).
-- **Last updated:** 2026-05-17 — §13 Loading boundary added (R3 remediation).
+- **Last updated:** 2026-05-18 — §14 Suite shell and auth-aware switcher spec added (seamless ecosystem).
 - **Owner:** Ethan McNamara · `hello@signalstudio.ie`.

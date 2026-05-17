@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 
@@ -102,11 +103,18 @@ const structuredData = [
   },
 ];
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Suppress the marketing SiteNav when the suite launcher is active.
+  // The proxy (src/proxy.ts) sets x-signal-authed: 1 via a rewrite when
+  // an authed user hits a marketing route. The SuiteLauncher renders its
+  // own chrome; the marketing SiteNav must not stack on top of it.
+  const headersList = await headers();
+  const isAuthedLauncher = headersList.get("x-signal-authed") === "1";
+
   return (
     <html
       lang="en"
@@ -131,7 +139,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteNav />
+        {!isAuthedLauncher && <SiteNav />}
         {children}
       </body>
     </html>
