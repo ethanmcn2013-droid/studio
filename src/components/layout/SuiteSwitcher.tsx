@@ -21,15 +21,15 @@
  * (D6: "Tasks SuiteChrome is the outlier causing 'signal studio.×3'").
  *
  * Panel anatomy:
- *   Header  — "signal studio." + "Four products, one system." tagline
+ *   Header  — "signal studio." + "Four products, one studio." tagline
  *   List    — 4 product rows: word·  / verb / tagline
- *   Footer  — "Back to studio" link → signalstudio.ie
+ *   Footer  — "Back to Signal Studio →" link → signalstudio.ie (same-tab)
  *
- * Verb pattern (locked — matches suite-launcher.tsx):
- *   roadmap   "Open the roadmap"
- *   tasks     "Open the workspace"
- *   notes     "Open the notebook"
- *   analytics "Open the briefing"
+ * Verb pattern (locked — matches suite-launcher.tsx, IA_COHERENCE.md §1C):
+ *   roadmap   "Open roadmap"
+ *   tasks     "Open tasks"
+ *   notes     "Open notes"
+ *   analytics "Open analytics"
  *
  * ── Accessibility ─────────────────────────────────────────────────
  *
@@ -81,28 +81,28 @@ const PRODUCTS: {
   {
     slug: "roadmap",
     word: "roadmap",
-    verb: "Open the roadmap",
+    verb: "Open roadmap",
     tagline: "Direction clarity",
     url: "https://roadmap.signalstudio.ie/app",
   },
   {
     slug: "tasks",
     word: "tasks",
-    verb: "Open the workspace",
+    verb: "Open tasks",
     tagline: "Execution clarity",
     url: "https://tasks.signalstudio.ie/app",
   },
   {
     slug: "notes",
     word: "notes",
-    verb: "Open the notebook",
+    verb: "Open notes",
     tagline: "Capture clarity",
     url: "https://notes.signalstudio.ie/app",
   },
   {
     slug: "analytics",
     word: "analytics",
-    verb: "Open the briefing",
+    verb: "Open analytics",
     tagline: "Attention clarity",
     url: "https://analytics.signalstudio.ie/app",
   },
@@ -316,7 +316,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
             })}
           </ul>
 
-          {/* Footer — back to studio */}
+          {/* Footer — §1F: "Back to Signal Studio →" same-tab (authed). */}
           <div
             className="border-t px-3.5 py-2.5"
             style={{
@@ -327,22 +327,9 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
             <a
               href={STUDIO_URL}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-1.5 text-[11px] text-ink-quiet no-underline transition-colors hover:text-ink"
+              className="block text-[11px] text-ink-quiet no-underline transition-colors hover:text-ink"
             >
-              <svg
-                width="9"
-                height="9"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              >
-                <path d="M19 12H5M12 5l-7 7 7 7" />
-              </svg>
-              Back to studio
+              Back to Signal Studio →
             </a>
           </div>
         </div>
