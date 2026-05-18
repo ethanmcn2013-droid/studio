@@ -4,13 +4,14 @@ import { redirect } from "next/navigation";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
-import { HqProofGate } from "@/components/hq/hq-proof-gate";
 import { HqPulse } from "@/components/hq/hq-pulse";
 import { HqTraction } from "@/components/hq/hq-traction";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getInboxData } from "@/lib/hq/inbox";
-import { getNextOutreachAction } from "@/lib/hq/next-action";
-import { getProofGate } from "@/lib/hq/proofgate";
+import {
+  getNextOutreachAction,
+  getOutreachClock,
+} from "@/lib/hq/next-action";
 import { getPulseState } from "@/lib/hq/pulse";
 import { getTodayData } from "@/lib/hq/today";
 import { getTraction } from "@/lib/hq/traction";
@@ -29,37 +30,29 @@ export const metadata: Metadata = {
 };
 
 /**
- * Signal HQ — the founder's mission control. HQ v3, 2026-05-16.
+ * Signal HQ — the founder's mission control.
  *
- * One scrolling page, ordered by urgency, answering the questions a
- * sole operator actually asks, in order:
+ * The running state is the urgency-ordered scroll: Masthead (one derived
+ * verdict + the one action, inputs a click away, never authored) →
+ * Inbox (human-decision only) → Pulse (system-decay only) → Traction
+ * (+ the six-month burndown). Everything derived from real sources every
+ * render — no localStorage, no seed prose, no manual upkeep. The genuine
+ * reference surfaces live at their own routes (atlas, health,
+ * entitlements, partners, plan); the masthead nav points there.
  *
- *   0. What's the verdict?           → Masthead (one derived sentence
- *                                      + the one action; inputs one
- *                                      click away — never authored)
- *   1. What needs me right now?      → Inbox  (human-decision only)
- *   2. Is anything on fire/rotting?  → Pulse  (system-decay only)
- *   3. Are we winning?               → Traction (+ the six-month
- *                                      burndown — the one temporal
- *                                      element on the one number)
+ * v3.1 (2026-05-18) — state-gated, and self-contained. While the outreach
+ * clock is inert (zero founder-signed sends logged) the page is a forcing
+ * function, not a dashboard: the clock IS the screen, the next physical
+ * send is one tap, and the whole scroll collapses behind a disclosure the
+ * operator must choose to open. A dashboard that reports the gate can be
+ * read and closed; this cannot. It reverts to the full scroll the moment
+ * a send is logged — dwell is earned then, not before.
  *
- * Everything is derived from real sources every render — no
- * localStorage, no seed prose, no manual upkeep. The old "System"
- * disclosure (a 1,906-line legacy dashboard the code itself called
- * fiction) was deleted in v3: the genuine reference surfaces live at
- * their own routes (atlas, health, entitlements, partners, plan) and
- * the masthead nav points there. Restraint is the brand — debt behind a
- * fold is still debt.
- *
- * v3.1 (2026-05-18) — state-gated. The v3 scroll is the *running* state.
- * While the proof-gate clock is inert (zero sends logged) the page is a
- * forcing function, not a dashboard: the gate IS the screen, the next
- * physical send is one tap, and the whole v3 scroll collapses behind a
- * disclosure the operator must choose to open. A dashboard that reports
- * the gate can be read and closed; this cannot. The page reverts to the
- * full scroll the moment the clock leaves "inert" — dwell is earned
- * then, not before. This is the only HQ change consistent with the
- * 2026-05-18 product freeze: it pushes toward the gate, not away.
+ * The clock is derived in next-action.ts from the committed prospects
+ * baseline against the ratified review dates — deliberately NOT coupled to
+ * the parallel-session proof-gate module, so this ships standalone. This
+ * is the only HQ change consistent with the 2026-05-18 product freeze: it
+ * pushes toward the outreach gate, not away from it.
  */
 export default async function HqPage() {
   const cookieStore = await cookies();
@@ -76,7 +69,7 @@ export default async function HqPage() {
   ]);
   const pulse = await getPulseState(today);
   const verdict = deriveVerdict({ inbox, pulse, traction });
-  const proofGate = getProofGate(traction);
+  const clock = getOutreachClock();
 
   const masthead = (
     <HqMasthead
@@ -86,31 +79,33 @@ export default async function HqPage() {
     />
   );
 
+  const stack = (
+    <>
+      <HqInbox data={inbox} />
+      <HqPulse state={pulse} />
+      <HqTraction state={traction} />
+    </>
+  );
+
   // Inert clock → forcing function. The masthead stays (identity + the
-  // nav out to the reference surfaces); everything below the gate is
-  // collapsed behind the forcing function's own disclosure.
-  if (proofGate.clock.state === "inert") {
+  // nav out to the reference surfaces); the whole stack collapses behind
+  // the forcing function's own disclosure.
+  if (clock.inert) {
     return (
       <div className="hq-spine">
         {masthead}
-        <HqForcingFunction gate={proofGate} next={getNextOutreachAction()}>
-          <HqProofGate gate={proofGate} />
-          <HqInbox data={inbox} />
-          <HqPulse state={pulse} />
-          <HqTraction state={traction} />
+        <HqForcingFunction clock={clock} next={getNextOutreachAction()}>
+          {stack}
         </HqForcingFunction>
       </div>
     );
   }
 
-  // Running / expired → the earned v3 scroll.
+  // Running / expired → the earned scroll.
   return (
     <div className="hq-spine">
       {masthead}
-      <HqProofGate gate={proofGate} />
-      <HqInbox data={inbox} />
-      <HqPulse state={pulse} />
-      <HqTraction state={traction} />
+      {stack}
     </div>
   );
 }
