@@ -35,6 +35,12 @@ const WORD = "signal studio";
  */
 const ROLL_MS = 3800;
 const RISE_MS = 360; // per-letter rise; eased up from 260 to match the calmer pace
+/**
+ * Play the whole assembly this many times, then settle. Operator: "repeat
+ * twice just in case people miss it on loading." MUST equal --slx-iter in
+ * SLX_CSS (CSS animation-iteration-count) or the dot and letters desync.
+ */
+const CYCLES = 2;
 
 export function RevealLoadingShowcase() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -87,12 +93,19 @@ export function RevealLoadingShowcase() {
     };
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
+    let lastCycle = 0;
     const frame = () => {
-      const t = performance.now() - start;
-      if (t >= ROLL_MS) {
+      const elapsed = performance.now() - start;
+      if (elapsed >= ROLL_MS * CYCLES) {
         freeze();
-        root.classList.add("slx-settled"); // hands the dot to the breathe loop
-        return; // STOP — no re-loop
+        root.classList.add("slx-settled"); // settle → dot hands to breathe loop
+        return; // STOP after CYCLES plays — never an infinite loop
+      }
+      const cycle = Math.floor(elapsed / ROLL_MS);
+      const t = elapsed - cycle * ROLL_MS; // time within the current play
+      if (cycle !== lastCycle) {
+        risenAt.fill(null); // drop letters so they re-rise with the 2nd roll
+        lastCycle = cycle;
       }
       const cl = composerEl.getBoundingClientRect().left;
       const dr = dotEl.getBoundingClientRect();
@@ -166,6 +179,7 @@ const SLX_CSS = `
   --slx-wm:clamp(58px,11.5vw,208px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
+  --slx-iter:2;   /* MUST equal CYCLES in the component. */
   width:100%;display:flex;justify-content:center;background:transparent;
   font-family:var(--font-geist-sans,system-ui,sans-serif);}
 .slx *{box-sizing:border-box;}
@@ -187,7 +201,7 @@ const SLX_CSS = `
 .slx-dot{position:relative;width:.16em;height:.16em;border-radius:50%;
   background:var(--slx-indigo);margin-left:.06em;align-self:flex-end;
   margin-bottom:.06em;transform-origin:center bottom;
-  animation:slx-roll var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;z-index:3;}
+  animation:slx-roll var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) var(--slx-iter,2) forwards;z-index:3;}
 /* after roll, the settled dot just breathes — a gentle pulse/squeeze, forever,
    WITHOUT re-running the word assembly. */
 .slx-settled .slx-dot{animation:slx-breathe 3.8s ease-in-out infinite;}
@@ -209,9 +223,9 @@ const SLX_CSS = `
 .slx-trail{position:absolute;width:.16em;height:.16em;border-radius:50%;
   background:var(--slx-indigo);align-self:flex-end;margin-bottom:.06em;
   margin-left:.06em;opacity:0;z-index:2;}
-.slx-t1{animation:slx-ghost1 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
-.slx-t2{animation:slx-ghost2 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
-.slx-t3{animation:slx-ghost3 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
+.slx-t1{animation:slx-ghost1 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) var(--slx-iter,2) forwards;}
+.slx-t2{animation:slx-ghost2 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) var(--slx-iter,2) forwards;}
+.slx-t3{animation:slx-ghost3 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) var(--slx-iter,2) forwards;}
 @keyframes slx-ghost1{0%,8%{transform:translate(calc(-1 * var(--slx-roll)),0);opacity:0}
  22%{transform:translate(calc(-0.85 * var(--slx-roll)),0);opacity:.45}
  42%{transform:translate(calc(-0.2 * var(--slx-roll)),0);opacity:.22}
@@ -228,11 +242,11 @@ const SLX_CSS = `
 .slx-ripple{position:absolute;width:.16em;height:.16em;border-radius:50%;
   border:1px solid var(--slx-indigo);background:transparent;align-self:flex-end;
   margin-bottom:.06em;margin-left:.06em;opacity:0;transform:scale(1);
-  animation:slx-rip-fast var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
+  animation:slx-rip-fast var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) var(--slx-iter,2) forwards;z-index:1;}
 .slx-ripple-slow{position:absolute;width:.16em;height:.16em;border-radius:50%;
   border:1px solid var(--slx-indigo-300);background:transparent;align-self:flex-end;
   margin-bottom:.06em;margin-left:.06em;opacity:0;transform:scale(1);
-  animation:slx-rip-slow var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
+  animation:slx-rip-slow var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) var(--slx-iter,2) forwards;z-index:1;}
 @keyframes slx-rip-fast{0%,63%{transform:scale(1);opacity:0}
  66%{transform:scale(1);opacity:.65}88%{transform:scale(10);opacity:0}
  100%{transform:scale(10);opacity:0}}
