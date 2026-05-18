@@ -74,30 +74,14 @@ const founding = [
   },
 ];
 
-export default async function VenuesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{
-    source?: string;
-    campaign?: string;
-    touch?: string;
-    venue?: string;
-  }>;
-}) {
-  // A venue arriving from an outreach link carries its identity in the
-  // query string. Forward it through the contact CTA so the founder can
-  // attribute the reply and log it in the /hq Outbound CRM. No sink, no
-  // CRM call — the attributable event is the email itself, which is the
-  // right shape for a founder-run pilot of a few venues.
-  const incoming = await searchParams;
-  const contactHref = withTracking("/contact?subject=founding-venue", {
-    ...VENUE_SITE_TRACKING,
-    artifact: "venue_contact_cta",
-    ...(incoming.source ? { source: incoming.source } : {}),
-    ...(incoming.campaign ? { campaign: incoming.campaign } : {}),
-    ...(incoming.venue ? { venue: incoming.venue } : {}),
-    touch: incoming.touch ?? VENUE_SITE_TRACKING.touch,
-  });
+export default function VenuesPage() {
+  // S·55 ratified: the CTA opens a real conversation, not a form-less
+  // /contact page that silently discards every param forwarded to it.
+  // Attribution for a founder-run pilot of a few venues is the founder
+  // knowing which venues he emailed — not URL plumbing that dies at a
+  // static page. One click, pre-addressed, subject set.
+  const contactHref =
+    "mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme";
 
   return (
     <>
