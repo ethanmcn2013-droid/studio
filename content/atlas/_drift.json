@@ -31,8 +31,8 @@
       "src/app/pricing/",
       "src/app/hq/entitlements/"
     ],
-    "updatedAt": "2026-05-17T18:14:59.830Z",
-    "byCommit": "4e85982"
+    "updatedAt": "2026-05-18T17:32:30.843Z",
+    "byCommit": "e98cf57"
   },
   "signal-studio-umbrella": {
     "drifted": [
@@ -41,15 +41,15 @@
       "src/app/brand/",
       "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-18T15:10:00.079Z",
-    "byCommit": "ab7b865"
+    "updatedAt": "2026-05-18T17:32:30.843Z",
+    "byCommit": "e98cf57"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-18T00:16:27.815Z",
-    "byCommit": "0c8f530"
+    "updatedAt": "2026-05-18T17:32:30.843Z",
+    "byCommit": "e98cf57"
   },
   "five-products-as-a-system": {
     "drifted": [

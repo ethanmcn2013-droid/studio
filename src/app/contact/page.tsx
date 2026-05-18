@@ -15,15 +15,69 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
  * /contact — one screen, three honest intents.
  *
  * Names what reaches a human, names what doesn't. No form. No CRM.
- * Same restraint as the rest of the umbrella.
+ * Same restraint as the rest of the umbrella. The one concession:
+ * a known subject prefills the email so the next step is obvious
+ * (a bare mailto is a soft dead-end on mobile/webmail), and any
+ * inbound attribution from an outreach link rides into a quiet Ref
+ * footer so the founder can attribute the reply and log it in the
+ * /hq Outbound CRM. Still a person writing to a person — no form.
  */
+function buildMailto(
+  subject: string | undefined,
+  eyebrow: string | undefined,
+  attr: { source?: string; campaign?: string; touch?: string; venue?: string },
+): string {
+  const base = "mailto:hello@signalstudio.ie";
+  if (!subject || !eyebrow) return base;
+
+  const venueName = attr.venue && attr.venue !== "unknown" ? attr.venue : undefined;
+  const subjectLine = venueName ? `${eyebrow} — ${venueName}` : eyebrow;
+
+  const ref = [
+    attr.source && `source=${attr.source}`,
+    attr.campaign && `campaign=${attr.campaign}`,
+    attr.touch && `touch=${attr.touch}`,
+    venueName && `venue=${venueName}`,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const body =
+    subject === "founding-venue"
+      ? [
+          "Hi Ethan,",
+          "",
+          "[A line about your venue and what made you write.]",
+          "",
+          "A good time to talk would be:",
+          ...(ref ? ["", "—", `Ref: ${ref}`] : []),
+        ].join("\n")
+      : "";
+
+  const qs = new URLSearchParams({ subject: subjectLine });
+  if (body) qs.set("body", body);
+  return `${base}?${qs.toString()}`;
+}
+
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ subject?: string }>;
+  searchParams: Promise<{
+    subject?: string;
+    source?: string;
+    campaign?: string;
+    touch?: string;
+    venue?: string;
+  }>;
 }) {
   const params = await searchParams;
   const contextualEyebrow = params.subject ? SUBJECT_EYEBROWS[params.subject] : undefined;
+  const mailtoHref = buildMailto(params.subject, contextualEyebrow, {
+    source: params.source,
+    campaign: params.campaign,
+    touch: params.touch,
+    venue: params.venue,
+  });
 
   return (
     <>
@@ -93,7 +147,7 @@ export default async function ContactPage({
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             <a
-              href="mailto:hello@signalstudio.ie"
+              href={mailtoHref}
               className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
               hello@signalstudio.ie

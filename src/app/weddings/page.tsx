@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ROADMAP_URL, TASKS_URL, NOTES_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import { withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Wedding Planning Workspaces - Signal Studio",
@@ -24,10 +25,45 @@ export const metadata: Metadata = {
  */
 const daysToEvent = 28;
 // /the-wedding is the confirmed bespoke static route on Signal Roadmap.
-const sharedUpdateHref = `${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`;
-const templateHref = `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`;
-const notesDemoHref = NOTES_URL;
-const analyticsDemoHref = ANALYTICS_URL;
+const weddingTracking = {
+  source: "studio_weddings",
+  campaign: "founding_venue",
+  audience: "wedding",
+  touch: "site",
+  venue: "unknown",
+};
+const sharedUpdateHref = withTracking(`${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`, {
+  ...weddingTracking,
+  artifact: "roadmap_example",
+});
+const templateHref = withTracking(`${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`, {
+  ...weddingTracking,
+  artifact: "wedding_template",
+});
+const notesDemoHref = withTracking(NOTES_URL, {
+  ...weddingTracking,
+  artifact: "notes_demo",
+});
+const analyticsDemoHref = withTracking(ANALYTICS_URL, {
+  ...weddingTracking,
+  artifact: "analytics_demo",
+});
+const venuesHref = withTracking("/venues", {
+  source: "studio_weddings",
+  campaign: "founding_venue",
+  audience: "venue",
+  artifact: "venue_page",
+  touch: "site",
+  venue: "unknown",
+});
+const venueContactHref = withTracking("/contact?subject=founding-venue", {
+  source: "studio_weddings",
+  campaign: "founding_venue",
+  audience: "venue",
+  artifact: "contact_cta",
+  touch: "site",
+  venue: "unknown",
+});
 
 const clarityItems = [
   {
@@ -102,10 +138,10 @@ export default function WeddingsPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="/contact?subject=weddings"
+                href={venuesHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Ask about the pilot
+                See the Venue Edition
               </Link>
               <a
                 href={sharedUpdateHref}
@@ -269,22 +305,22 @@ export default function WeddingsPage() {
           <div className="mx-auto grid w-full max-w-[1040px] gap-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet">
-                Founding venue pilot
+                Paid Venue Edition
               </p>
               <h2 className="max-w-2xl text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
                 Give couples a clear planning workspace from day one.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-ink-soft">
-                Early venues and planners get private wedding planning
-                workspaces, first-mover access, and a direct line to the people
-                building the product.
+                Venues pay once a year. Every couple they send gets twelve
+                months of Signal Studio. No per-couple maths, no seats, nothing
+                for the coordinator to run.
               </p>
             </div>
             <Link
-              href="/contact?subject=founding-venue"
+              href={venueContactHref}
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
             >
-              Start a pilot conversation
+              Start a venue conversation
             </Link>
           </div>
         </section>

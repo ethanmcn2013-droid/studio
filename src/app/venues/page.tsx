@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Founding Venue Programme - Signal Studio",
@@ -14,8 +15,18 @@ export const metadata: Metadata = {
   },
 };
 
-const trackingSuffix =
-  "source=studio_venues&segment=weddings&role=venue&campaign=founding_venue";
+const weddingsHref = withTracking("/weddings", {
+  ...VENUE_SITE_TRACKING,
+  artifact: "weddings_page",
+});
+const demoHref = withTracking("/venues/demo", {
+  ...VENUE_SITE_TRACKING,
+  artifact: "venue_demo",
+});
+const examplePlanHref = withTracking("https://roadmap.signalstudio.ie/the-wedding", {
+  ...VENUE_SITE_TRACKING,
+  artifact: "example_plan",
+});
 
 /**
  * Founding Venue Programme offer page. Venue-facing — distinct from
@@ -40,7 +51,7 @@ const included = [
   },
   {
     title: "Your name on it, quietly",
-    copy: "A co-branded line at the top of the workspace. An eyebrow, not a logo wall. The couple's plan stays the thing in focus.",
+    copy: "When a couple opens their workspace, they are welcomed in your venue's name — a quiet line that you stand behind their planning, not a logo wall. Their plan stays the thing in focus.",
   },
   {
     title: "Nothing for your team to run",
@@ -63,7 +74,31 @@ const founding = [
   },
 ];
 
-export default function VenuesPage() {
+export default async function VenuesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    source?: string;
+    campaign?: string;
+    touch?: string;
+    venue?: string;
+  }>;
+}) {
+  // A venue arriving from an outreach link carries its identity in the
+  // query string. Forward it through the contact CTA so the founder can
+  // attribute the reply and log it in the /hq Outbound CRM. No sink, no
+  // CRM call — the attributable event is the email itself, which is the
+  // right shape for a founder-run pilot of a few venues.
+  const incoming = await searchParams;
+  const contactHref = withTracking("/contact?subject=founding-venue", {
+    ...VENUE_SITE_TRACKING,
+    artifact: "venue_contact_cta",
+    ...(incoming.source ? { source: incoming.source } : {}),
+    ...(incoming.campaign ? { campaign: incoming.campaign } : {}),
+    ...(incoming.venue ? { venue: incoming.venue } : {}),
+    touch: incoming.touch ?? VENUE_SITE_TRACKING.touch,
+  });
+
   return (
     <>
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
@@ -87,13 +122,19 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="/contact?subject=founding-venue"
+                href={contactHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
               </Link>
               <Link
-                href={`/weddings?${trackingSuffix}`}
+                href={demoHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Watch the 60-second path &rarr;
+              </Link>
+              <Link
+                href={weddingsHref}
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
                 See what the couple gets &rarr;
@@ -193,7 +234,7 @@ export default function VenuesPage() {
               This is the plan a couple opens — calm, plain English, their
               venue&apos;s name in a quiet line at the top.{" "}
               <a
-                href="https://roadmap.signalstudio.ie/the-wedding"
+                href={examplePlanHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:decoration-accent"
@@ -300,13 +341,13 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href="/contact?subject=founding-venue"
+                href={contactHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Talk to us about your venue
               </Link>
               <a
-                href="https://roadmap.signalstudio.ie/the-wedding"
+                href={examplePlanHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"

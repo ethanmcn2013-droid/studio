@@ -29,6 +29,7 @@ Founder-signed. One at a time. No automation, no drip tool. The two follow-ups b
 - Send from `hello@signalstudio.ie`. Test-send to yourself first (DKIM still pending per `project_email.md` — check it does not land in spam).
 - One personalised sentence per send. Load-bearing. If the sentence could go to a different venue unedited, it is the wrong sentence.
 - Log every send / reply / call in the `/hq` Outbound CRM against the prospect row.
+- Every link uses the same tracking shape: `source`, `campaign`, `audience`, `artifact`, `touch`, `venue`. Cold email starts with `source=founder_email`, `campaign=founding_venue`, `audience=venue`, `venue=[venue-slug]`.
 - No social proof. No venue has signed. Claiming or implying otherwise breaks the one thing the brand is built on.
 - No urgency theatre. "Founding fifteen" is a real constraint stated plainly, never "limited spots, act now."
 
@@ -85,7 +86,7 @@ Mapped to `signal-growth/outbound/ireland-top-50-hotels.csv` / HQ `prospects` ro
 > Ethan
 > Signal Studio
 > hello@signalstudio.ie
-> signalstudio.ie/venues
+> signalstudio.ie/venues?source=founder_email&campaign=founding_venue&audience=venue&artifact=venue_page&touch=1&venue=[venue-slug]
 
 ### Email A2 — manual follow-up, ~5 days, only if no reply
 
@@ -95,7 +96,7 @@ Mapped to `signal-growth/outbound/ireland-top-50-hotels.csv` / HQ `prospects` ro
 >
 > Following my note last week. No pressure if the timing is wrong — I know what a wedding season does to an inbox.
 >
-> If it is easier to read than to talk, the one page is here: signalstudio.ie/venues. It is the whole offer, plainly — what your couples get, what it costs, what founding means. No form, no demo gate.
+> If it is easier to read than to talk, the one page is here: signalstudio.ie/venues?source=founder_email&campaign=founding_venue&audience=venue&artifact=venue_page&touch=2&venue=[venue-slug]. It is the whole offer, plainly — what your couples get, what it costs, what founding means. No form, no demo gate.
 >
 > If it is not for [Venue], a one-line "not for us" is a kindness and I will leave it there.
 >
@@ -146,7 +147,7 @@ One email per group, to the commercial/events lead — never the same pitch cold
 > Ethan
 > Signal Studio
 > hello@signalstudio.ie
-> signalstudio.ie/venues
+> signalstudio.ie/venues?source=founder_email&campaign=founding_venue&audience=venue&artifact=venue_page&touch=1&venue=[group-slug]
 
 ---
 
