@@ -24,15 +24,20 @@ export default async function Home() {
   const isAuthed = headersList.get("x-signal-authed") === "1";
 
   if (isAuthed) {
-    return <SuiteLauncher />;
+    // Pills are an app-user affordance only — never on the public front door.
+    return (
+      <>
+        <ProductPills />
+        <SuiteLauncher />
+      </>
+    );
   }
 
   return (
     <main id="main" tabIndex={-1}>
-      <ProductPills />
       <RevealHero />
-      <RevealManifesto />
       <RevealLoadingShowcase />
+      <RevealManifesto />
       <RevealProducts />
       <RevealClosing />
       <RevealEngine />
