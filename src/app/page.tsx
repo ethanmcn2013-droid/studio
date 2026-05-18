@@ -2,7 +2,8 @@ import { headers } from "next/headers";
 import { RevealEngine } from "@/components/reveal/reveal-engine";
 import { RevealHero } from "@/components/reveal/reveal-hero";
 import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
-import { RevealProof } from "@/components/reveal/reveal-proof";
+import { RevealLoadingShowcase } from "@/components/reveal/reveal-loading-showcase";
+import { ProductPills } from "@/components/layout/product-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
@@ -28,9 +29,10 @@ export default async function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
+      <ProductPills />
       <RevealHero />
       <RevealManifesto />
-      <RevealProof />
+      <RevealLoadingShowcase />
       <RevealProducts />
       <RevealClosing />
       <RevealEngine />

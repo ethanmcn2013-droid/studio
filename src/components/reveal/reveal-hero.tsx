@@ -39,10 +39,10 @@ export function RevealHero() {
             <span className="word-inner">the</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner em">80%</span>
+            <span className="word-inner">80%</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">not</span>
+            <span className="word-inner em">not</span>
           </span>{" "}
           <span className="word">
             <span className="word-inner">in</span>

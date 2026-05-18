@@ -75,6 +75,14 @@ export default async function DispatchPage() {
             loud.
           </p>
 
+          <p
+            className="mb-2 font-mono text-[12px] text-ink-quiet"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            (It&apos;s the changelog. This one&apos;s for the nerds — you know
+            who you are. Everyone else: the product just got better.)
+          </p>
+
           <p className="mb-12 max-w-[58ch] text-[13.5px] leading-[1.6] text-ink-quiet">
             Subscribe via{" "}
             <a
