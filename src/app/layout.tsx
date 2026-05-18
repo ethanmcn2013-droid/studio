@@ -119,16 +119,47 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // D4 Layer-0 instant canvas: these inline attributes fire before any
+      // stylesheet resolves. background:#fff kills the browser-default grey
+      // on cross-origin first load. colorScheme:light prevents the UA from
+      // painting a dark-mode void even when the OS is in dark mode.
+      // LOADING_SYSTEM.md §2 — "Frame 1 of every cross-origin destination
+      // is paper white field, no content."
+      style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
+        {/* D4 — belt-and-braces inline style: fires synchronously before the
+            linked stylesheet resolves, preventing any grey flash on the
+            document body. One-liner; only background is set here. */}
+        {/* eslint-disable-next-line react/no-danger */}
+        <style dangerouslySetInnerHTML={{ __html: "html{background:#fff}" }} />
         <link
           rel="alternate"
           type="application/rss+xml"
           title="Signal Studio — The dispatch"
           href={`${SITE_URL}/changelog.rss`}
         />
+        {/* D4 — preconnect + DNS-prefetch to all 4 product origins.
+            Marketing is the cross-product hub; establishing early connections
+            shaves ~100-300ms from the first cross-domain navigation.
+            Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
+            for browsers that don't support preconnect. */}
+        <link rel="preconnect" href="https://tasks.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://tasks.signalstudio.ie" />
+        <link rel="preconnect" href="https://roadmap.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://roadmap.signalstudio.ie" />
+        <link rel="preconnect" href="https://analytics.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://analytics.signalstudio.ie" />
+        <link rel="preconnect" href="https://notes.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://notes.signalstudio.ie" />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body
+        className="flex min-h-full flex-col"
+        // D4 — inline style on body: same reason as html above.
+        // background:#fff fires before the stylesheet link resolves,
+        // removing the grey void on cross-origin first paint.
+        style={{ background: "#fff" }}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

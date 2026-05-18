@@ -1,19 +1,23 @@
 /**
  * Studio root loading boundary — App Router loading.tsx
  *
- * Spec: DESIGN.md §13 Loading boundary (2026-05-17).
+ * Spec: LOADING_SYSTEM.md §1 (2026-05-18 seamless-wave).
+ * Supersedes: DESIGN.md §13 Loading boundary (2026-05-17).
  *
- * Visual: the studio broadcast dot — a small indigo circle, hard-clamped to
- * 10px max so it never balloons if fonts are slow to resolve. Centered on the
- * product's paper background (#ffffff). No spinner, no skeleton, no text.
+ * Visual: one indigo dot. Paper-white field. No wordmark. No chrome.
+ * No skeleton. Server Component: zero JS overhead, paints with RSC shell.
  *
- * The dot is a plain <div> (not the Wordmark component) so this file has zero
- * client-component overhead, renders immediately in the RSC shell, and
- * carries no animation dependencies that could delay paint.
+ * The dot class `signal-loading-dot` is defined in globals.css:
+ *   - @media no-preference: signal-load-pulse 1.8s infinite
+ *   - @media reduce: animation:none; opacity:0.85 (static dot, brand present)
  *
- * Reduced-motion: the broadcast ring is suppressed via @media
- * (prefers-reduced-motion: reduce) in globals.css. The static dot always
- * shows regardless.
+ * LOADING_SYSTEM.md hard refusals (cite doc if asked to change):
+ *   1. No wordmark in the loading state.
+ *   2. No skeleton bars.
+ *   3. No large disc, spinner, or ring.
+ *   4. No product-colour differentiation.
+ *   5. No text in the loading state.
+ *   6. No top progress bar (creative-director refusal).
  */
 export default function Loading() {
   return (
@@ -29,17 +33,15 @@ export default function Loading() {
         zIndex: 9999,
       }}
     >
-      {/* The brand dot at its intended size (10px = 0.16em at the md size used
-          in the wordmark). Hard-clamped here with an explicit px value so it
-          is immune to font-size inheritance before Geist loads. */}
       <div
-        className="loading-dot"
+        className="signal-loading-dot"
         style={{
           width: 10,
           height: 10,
           borderRadius: "50%",
           background: "var(--indigo, #4f46e5)",
           flexShrink: 0,
+          willChange: "transform, opacity",
         }}
       />
     </div>
