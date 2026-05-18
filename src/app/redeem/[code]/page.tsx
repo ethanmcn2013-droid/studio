@@ -312,7 +312,7 @@ function claimableCopy(
     return {
       eyebrow: view.sponsor.name,
       headline: `${view.sponsor.name} is sponsoring your access to Signal Studio.`,
-      sub: "Plan your wedding without the noise. Four small tools, free to you for the next year.",
+      sub: "Plan your wedding in plain English. Four small tools, free to you for the next year.",
       cta: "Claim your seat",
     };
   }
