@@ -3,7 +3,7 @@ title: Pricing and entitlements — one DB, every product
 slug: pricing-and-entitlements
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-17
+lastVerified: 2026-05-18
 links: [signal-studio-umbrella, five-products-as-a-system, turso-databases-and-reads, log-cycle-cross-repo-writer]
 tags: [pricing, entitlements, Stripe, free, event, wedding, workspace, studio, Venue Edition, sponsors-ledger, entitlementsDb, signal-entitlements DB, entitlements-shared, resolveEntitlement, /api/checkout, STRIPE_SETUP, STUDIO_OPS_SECRET, ENTITLEMENTS_OPS]
 references: [signalstudio.ie/pricing, src/app/pricing/, src/app/hq/entitlements/, src/app/api/internal/entitlements/grant/, src/app/api/internal/entitlements/expire/, src/lib/entitlements-db/, src/lib/entitlements-db/client.ts, src/lib/entitlements-db/schema.ts, src/lib/entitlements-db/reads.ts, src/lib/entitlements-db/writes.ts, drizzle-entitlements/, drizzle-entitlements.config.ts, ~/Projects/personal/tasks/src/app/api/checkout/, ~/Projects/personal/tasks/src/app/api/webhooks/stripe/, ~/Projects/personal/tasks/src/lib/entitlements-shared/, ~/Projects/personal/roadmap/src/lib/entitlements-shared/, ~/Projects/personal/analytics/src/lib/entitlements-shared/, ~/Projects/personal/notes/src/lib/entitlements-shared/, docs/ENTITLEMENTS_OPS.md, ~/Projects/personal/tasks/docs/STRIPE_SETUP.md]

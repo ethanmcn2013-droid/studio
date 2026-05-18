@@ -3,7 +3,7 @@ title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-16
+lastVerified: 2026-05-18
 links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
 tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem, design system v1, wordmark gestures]
 references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/brand/wordmark.tsx]

@@ -3,7 +3,7 @@ title: Analytics daily cron + briefing engine
 slug: analytics-daily-cron
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-16
+lastVerified: 2026-05-18
 links: [turso-databases-and-reads, five-products-as-a-system, log-cycle-cross-repo-writer]
 tags: [vercel.json, 06:00 UTC, CRON_SECRET, RESEND_API_KEY, briefing, 6 triggers, RFC 8058, /api/cron/briefings, ping-studio, STUDIO_CRON_PING_SECRET, CRON_PING_SECRET]
 references: [~/Projects/personal/analytics/vercel.json, ~/Projects/personal/analytics/src/app/api/cron/briefings/route.ts, ~/Projects/personal/analytics/src/lib/briefing/triggers.ts, ~/Projects/personal/analytics/src/lib/briefing/prose.ts, ~/Projects/personal/analytics/src/lib/briefing/voice.ts, ~/Projects/personal/analytics/src/lib/briefing/build.ts, ~/Projects/personal/analytics/src/lib/email/dispatch.ts, ~/Projects/personal/analytics/src/lib/ops/ping-studio.ts, src/app/api/internal/cron-ping/route.ts]

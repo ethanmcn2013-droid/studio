@@ -3,7 +3,7 @@ title: Turso databases — five DBs, read-only tokens, tag-as-project
 slug: turso-databases-and-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-05-16
+lastVerified: 2026-05-18
 links: [analytics-daily-cron, five-products-as-a-system, pricing-and-entitlements, log-cycle-cross-repo-writer]
 tags: [Turso, libSQL, read-only token, tag-as-project, Tasks DB, Analytics DB, Roadmap DB, Notes DB, signal-entitlements, Cycle 9.4b, drizzle]
 references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, drizzle.config.ts, ~/Projects/personal/tasks/drizzle/, ~/Projects/personal/analytics/drizzle/, ~/Projects/personal/roadmap/drizzle/, ~/Projects/personal/notes/drizzle/, ~/Projects/personal/notes/src/server/actions/notes.ts]
@@ -38,7 +38,7 @@ Ethan owns every database, every migration, every token. No external operators. 
 
 - **Tasks DB** — `~/Projects/personal/tasks/drizzle/` migrations. Live workspace data, migrated to Turso on 2026-05-08.
 - **Analytics DB** — `~/Projects/personal/analytics/drizzle/` migrations. User prefs, phrasing-rotation persistence, briefing audit.
-- **Roadmap DB** — `~/Projects/personal/roadmap/drizzle/` migrations. Workspaces, items, activity log. `isPublic` + `shareToken` removed via `drizzle/0001_drop_isPublic_shareToken.sql` (applied 2026-05-12).
+- **Roadmap DB** — `~/Projects/personal/roadmap/drizzle/` migrations. Workspaces, items, activity log. Token sharing stays removed (`isPublic` + `shareToken` dropped via `drizzle/0001_drop_isPublic_shareToken.sql`, 2026-05-12). Public reachability is now **publish-state**, not token: seamless-ecosystem L1 (2026-05-18) added `publishedAt` (`drizzle/0004_add_published_at.sql`) for the operator-ratified draft-by-default + explicit Publish model — a published workspace's public URL stays no-auth; a draft is owner-only. Conscious reversal of the "no private workspaces" refusal (see [[project-roadmap]] / [[project-seamless-ecosystem-2026-05-18]]).
 - **Notes DB** — `~/Projects/personal/notes/drizzle/` migrations. Notes content, extracts, capture surfaces.
 - **signal-entitlements DB** — `drizzle-entitlements/` + `drizzle-entitlements.config.ts` (in studio repo). Shared canonical store: sponsors, license_codes, entitlements, redemptions, processed_webhooks. Every product reads it via a copy-pasted `entitlements-shared` module — no monorepo.
 - **Cross-repo writer (Notes → Tasks)** — `notes/src/server/actions/notes.ts` posts to `TASKS_API_URL` with `NOTES_TO_TASKS_SECRET`. One-way only; the destination owns the task row.
