@@ -19,10 +19,10 @@ execRisk: If any product drifts into trying to do another's job — Tasks adding
 
 Four products, each named for the job they do:
 
+- **Notes** — the capture surface; ideas land here before they're work.
 - **Tasks** — the live workspace where work happens.
 - **Roadmap** — the public-facing planning surface, lighter than a project tool.
 - **Analytics** — the daily attention layer that reads Tasks data and surfaces three things worth noticing.
-- **Notes** — the capture surface; ideas land here before they're work.
 
 The four products share one design system (see [[brand-enforcement]] and the suite design system v1 shipped 2026-05-13), one pricing surface (see [[pricing-and-entitlements]]), and a small number of explicit cross-product flows.
 

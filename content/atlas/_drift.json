@@ -1,0 +1,24 @@
+{
+  "brand-enforcement": {
+    "drifted": [
+      "DESIGN.md"
+    ],
+    "updatedAt": "2026-05-18T19:32:39.375Z",
+    "byCommit": "3ab87f1"
+  },
+  "pricing-and-entitlements": {
+    "drifted": [
+      "src/app/pricing/"
+    ],
+    "updatedAt": "2026-05-18T19:32:39.375Z",
+    "byCommit": "3ab87f1"
+  },
+  "signal-studio-umbrella": {
+    "drifted": [
+      "src/app/pricing/",
+      "src/components/landing/"
+    ],
+    "updatedAt": "2026-05-18T19:32:39.375Z",
+    "byCommit": "3ab87f1"
+  }
+}

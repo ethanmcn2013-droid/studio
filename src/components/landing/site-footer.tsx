@@ -109,6 +109,15 @@ export function SiteFooter() {
               Products
             </span>
             <a
+              href={NOTES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Signal Notes
+            </a>
+            <a
               href={TASKS_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -134,15 +143,6 @@ export function SiteFooter() {
               style={{ letterSpacing: "0.01em" }}
             >
               Signal Analytics
-            </a>
-            <a
-              href={NOTES_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Signal Notes
             </a>
           </nav>
 

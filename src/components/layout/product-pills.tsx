@@ -6,7 +6,7 @@
  * to whichever pill is hovered/focused, and on click it travels to the
  * target pill before the page navigates ("the cool dot transition").
  *
- * Order: ratified hierarchy Roadmap → Tasks → Notes → Analytics.
+ * Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
  *
  * SAFETY (post-2026-05-18 SEV-0): fully scoped (`pp-*`), IN-FLOW only —
  * no position:fixed, no inset:0, no high z-index, no global @keyframes.
@@ -20,9 +20,9 @@ import { useRef, useState, useCallback } from "react";
 type Product = { slug: string; label: string; href: string };
 
 const PRODUCTS: Product[] = [
-  { slug: "roadmap", label: "roadmap", href: "https://roadmap.signalstudio.ie" },
-  { slug: "tasks", label: "tasks", href: "https://tasks.signalstudio.ie" },
   { slug: "notes", label: "notes", href: "https://notes.signalstudio.ie" },
+  { slug: "tasks", label: "tasks", href: "https://tasks.signalstudio.ie" },
+  { slug: "roadmap", label: "roadmap", href: "https://roadmap.signalstudio.ie" },
   { slug: "analytics", label: "analytics", href: "https://analytics.signalstudio.ie" },
 ];
 

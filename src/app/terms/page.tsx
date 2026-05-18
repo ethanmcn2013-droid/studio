@@ -17,7 +17,7 @@ const SECTIONS = [
   {
     heading: "What Signal Studio is",
     body: [
-      "Signal Studio is a small suite of four products: Signal Tasks, Signal Roadmap, Signal Analytics, and Signal Notes. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
+      "Signal Studio is a small suite of four products: Signal Notes, Signal Tasks, Signal Roadmap, and Signal Analytics. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
       "The suite is operated by Ethan McNamara, a sole trader registered in Ireland.",
     ],
   },

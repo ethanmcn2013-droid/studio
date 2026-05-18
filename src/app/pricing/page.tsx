@@ -111,10 +111,10 @@ const TIERS: Tier[] = [
 
 const SUITE: InsideProduct[] = [
   {
-    key: "roadmap",
-    word: "roadmap",
-    position: "Direction",
-    desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
+    key: "notes",
+    word: "notes",
+    position: "Context",
+    desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
     status: "shipped",
     statusLabel: "Shipping now",
   },
@@ -127,10 +127,10 @@ const SUITE: InsideProduct[] = [
     statusLabel: "Shipping now",
   },
   {
-    key: "notes",
-    word: "notes",
-    position: "Context",
-    desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
+    key: "roadmap",
+    word: "roadmap",
+    position: "Direction",
+    desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
     status: "shipped",
     statusLabel: "Shipping now",
   },
@@ -932,9 +932,9 @@ export default async function PricingPage({
             >
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
                 Signal Studio is one subscription. Today,{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>,{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>, and{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong>, and{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> are live.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>

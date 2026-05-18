@@ -5,7 +5,7 @@ import { ANALYTICS_URL, NOTES_URL, ROADMAP_URL, TASKS_URL } from "@/lib/product-
 export const metadata: Metadata = {
   title: "Work — Signal Studio",
   description:
-    "Four products for operational clarity — Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes.",
+    "Four products for operational clarity — Signal Notes, Signal Tasks, Signal Roadmap, Signal Analytics.",
 };
 
 interface WorkItem {

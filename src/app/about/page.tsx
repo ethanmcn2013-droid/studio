@@ -77,6 +77,22 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <a
+                    href={NOTES_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                  >
+                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                      Signal Notes
+                    </span>
+                    <span
+                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      aria-hidden
+                    >
+                      &rarr;
+                    </span>
+                  </a>
+                  <a
                     href={TASKS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -116,22 +132,6 @@ export default function AboutPage() {
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
                       Signal Analytics
-                    </span>
-                    <span
-                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
-                      aria-hidden
-                    >
-                      &rarr;
-                    </span>
-                  </a>
-                  <a
-                    href={NOTES_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
-                  >
-                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Notes
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"

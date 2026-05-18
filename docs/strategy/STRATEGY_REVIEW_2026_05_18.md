@@ -25,7 +25,7 @@ These are settled. Re-litigating them is itself a form of the avoidance describe
 
 - **Positioning.** Coordination clarity for the 80% who don't work in tech. Not productivity, not wedding software, not a dashboard. Unchanged.
 - **The two-wedge distinction.** Roadmap = lead *product* story (the forwardable artifact). Premium venues = lead *commercial* wedge (who pays first). They stack; they do not compete. Unchanged and load-bearing.
-- **Product hierarchy.** Roadmap → Tasks → Notes → Analytics. Canonical.
+- **Product hierarchy.** Notes → Tasks → Roadmap → Analytics. Reordered by operator directive 2026-05-18 (was Roadmap-first per 2026-05-16 partner review).
 - **Segment sequencing.** Venues now; contractors as the designated second wedge *only if venues prove*; small-business inbound-only; teachers/students never a paid wedge. Ratified, anti-drift, do not reason from population/TAM.
 - **Kill / pivot triggers.** Pre-committed in the spine §8. Still correct. The discipline of having decided in advance is worth more than the specific thresholds.
 

@@ -77,13 +77,13 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Order: ratified product hierarchy (Roadmap → Tasks → Notes → Analytics, 2026-05-16)
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
   {
-    slug: "roadmap",
-    word: "roadmap",
-    verb: "Open roadmap",
-    tagline: "Direction clarity",
-    url: "https://roadmap.signalstudio.ie/app",
+    slug: "notes",
+    word: "notes",
+    verb: "Open notes",
+    tagline: "Capture clarity",
+    url: "https://notes.signalstudio.ie/app",
   },
   {
     slug: "tasks",
@@ -93,11 +93,11 @@ const PRODUCTS: {
     url: "https://tasks.signalstudio.ie/app",
   },
   {
-    slug: "notes",
-    word: "notes",
-    verb: "Open notes",
-    tagline: "Capture clarity",
-    url: "https://notes.signalstudio.ie/app",
+    slug: "roadmap",
+    word: "roadmap",
+    verb: "Open roadmap",
+    tagline: "Direction clarity",
+    url: "https://roadmap.signalstudio.ie/app",
   },
   {
     slug: "analytics",

@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Project management for the 80% who don't work in tech. Four small tools — Signal Roadmap, Signal Tasks, Signal Notes, Signal Analytics — that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Four small tools — Signal Notes, Signal Tasks, Signal Roadmap, Signal Analytics — that read as one system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -69,7 +69,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for the 80% who don't work in tech. Signal Tasks, Signal Roadmap, Signal Notes, and Signal Analytics read as one system.",
+      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks, Signal Roadmap, and Signal Analytics read as one system.",
     offers: [
       {
         "@type": "Offer",

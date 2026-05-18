@@ -532,7 +532,7 @@ if (isAuthed && !isPreview && MARKETING_ROUTES.has(pathname)) {
 Studio has no end-user product app. Its authed destination is the **suite launcher** — the existing cross-product switcher rendered as a full page.
 
 - **Route:** `/` (authed variant). Same URL, different render. The middleware (or a server component auth check) determines which variant to return.
-- **Content:** "Jump back in" header + a 2×2 grid of product cards (same four products, same ratified hierarchy: Roadmap → Tasks → Notes → Analytics). Each card: product wordmark + app-context label ("Open the workspace", etc.) + a right-arrow. Card links go to app entries (as in authed switcher above). Below the grid: the account menu inline or a "Sign out" text link via Clerk.
+- **Content:** "Jump back in" header + a 2×2 grid of product cards (same four products, operator-directed order 2026-05-18: Notes → Tasks → Roadmap → Analytics). Each card: product wordmark + app-context label ("Open the notebook", "Open the workspace", etc.) + a right-arrow. Card links go to app entries (as in authed switcher above). Below the grid: the account menu inline or a "Sign out" text link via Clerk.
 - **Chrome:** mounts the persistent top chrome from this spec (§14 above). Left slot shows `signal studio.` only (no `/ product` — the launcher IS studio). Right slot: switcher + account menu.
 - **Unauthed `/`:** unchanged marketing hero. The middleware passes through; `page.tsx` renders `<RevealHero />` etc. as today.
 - **Brand voice on new copy:** "Jump back in." is the only heading. No marketing copy on the launcher. No taglines. No "Get started." One verb per card. This is a utility surface, not a selling surface.

@@ -95,14 +95,14 @@ export function RevealProducts() {
       </p>
 
       <ProductRow
-        id="roadmap"
-        dataKey="roadmap"
-        position="What people see"
-        word="roadmap"
-        essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
-        pills={["Private preview", "Public roadmaps"]}
-        cta="Open the roadmap →"
-        href={ROADMAP_URL}
+        id="notes"
+        dataKey="notes"
+        position="Where work begins"
+        word="notes"
+        essence="Catch what was said before it slips. Turn a note into a task in one tap. Nothing leaves until you send it."
+        pills={["Private preview", "Capture"]}
+        cta="Open the notebook →"
+        href={NOTES_URL}
         external
       />
       <ProductRow
@@ -117,14 +117,14 @@ export function RevealProducts() {
         external
       />
       <ProductRow
-        id="notes"
-        dataKey="notes"
-        position="Where work begins"
-        word="notes"
-        essence="Catch what was said before it slips. Turn a note into a task in one tap. Nothing leaves until you send it."
-        pills={["Private preview", "Capture"]}
-        cta="Open the notebook →"
-        href={NOTES_URL}
+        id="roadmap"
+        dataKey="roadmap"
+        position="What people see"
+        word="roadmap"
+        essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
+        pills={["Private preview", "Public roadmaps"]}
+        cta="Open the roadmap →"
+        href={ROADMAP_URL}
         external
       />
       <ProductRow

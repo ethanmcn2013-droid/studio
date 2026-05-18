@@ -81,7 +81,7 @@ export function RevealEngine() {
       // P1-6 fix: hero must not replay on back-nav (ISSUE_REGISTER P1-6).
       // P3-2 fix: first paint is a clean settled state, not mid-animation.
       const restoreFinalState = () => {
-        ["roadmap", "tasks", "notes", "analytics"].forEach(fire);
+        ["notes", "tasks", "roadmap", "analytics"].forEach(fire);
         gsap.set(".reveal-gold-rule", { width: 132 });
         // Headline is server-rendered visible; no gsap.set needed.
         gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
@@ -185,13 +185,13 @@ export function RevealEngine() {
           );
 
           // Each brand gesture fires as its row lands — choreographed to
-          // cascade top-to-bottom in the ratified stack order
-          // (roadmap → tasks → notes → analytics).
-          // P3-3 fix: notes added at t=1.28s so all four products have
+          // cascade top-to-bottom in the operator-directed stack order
+          // (notes → tasks → roadmap → analytics, 2026-05-18).
+          // P3-3 fix: roadmap added at t=1.28s so all four products have
           // their gesture active after the entrance completes.
-          tl.add(() => fire("roadmap"), 1.0)
+          tl.add(() => fire("notes"), 1.0)
             .add(() => fire("tasks"), 1.16)
-            .add(() => fire("notes"), 1.28)
+            .add(() => fire("roadmap"), 1.28)
             .add(() => fire("analytics"), 1.4);
 
           // Scroll cue arrives while the visitor is still looking at the hero,

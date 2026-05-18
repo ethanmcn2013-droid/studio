@@ -28,13 +28,13 @@ const PRODUCTS: {
   url: string;
   description: string;
 }[] = [
-  // Ratified product hierarchy: Roadmap → Tasks → Notes → Analytics
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
   {
-    slug: "roadmap",
-    word: "roadmap",
-    label: "Open the roadmap",
-    url: `${ROADMAP_URL}/app`,
-    description: "Direction clarity",
+    slug: "notes",
+    word: "notes",
+    label: "Open the notebook",
+    url: `${NOTES_URL}/app`,
+    description: "Capture clarity",
   },
   {
     slug: "tasks",
@@ -44,11 +44,11 @@ const PRODUCTS: {
     description: "Execution clarity",
   },
   {
-    slug: "notes",
-    word: "notes",
-    label: "Open the notebook",
-    url: `${NOTES_URL}/app`,
-    description: "Capture clarity",
+    slug: "roadmap",
+    word: "roadmap",
+    label: "Open the roadmap",
+    url: `${ROADMAP_URL}/app`,
+    description: "Direction clarity",
   },
   {
     slug: "analytics",
