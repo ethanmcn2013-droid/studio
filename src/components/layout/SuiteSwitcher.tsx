@@ -231,7 +231,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
               <span style={{ color: INDIGO }}>.</span>
             </div>
             <div className="mt-0.5 text-[10.5px] text-ink-quiet">
-              Four products, one system.
+              Four products, one studio.
             </div>
           </div>
 
