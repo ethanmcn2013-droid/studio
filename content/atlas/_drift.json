@@ -9,16 +9,6 @@
     "updatedAt": "2026-05-17T23:58:05.301Z",
     "byCommit": "7a841d2"
   },
-  "brand-enforcement": {
-    "drifted": [
-      "src/app/globals.css",
-      "src/app/brand/page.tsx",
-      "DESIGN.md",
-      "src/components/brand/wordmark.tsx"
-    ],
-    "updatedAt": "2026-05-18T19:02:07.892Z",
-    "byCommit": "0474ac3"
-  },
   "analytics-daily-cron": {
     "drifted": [
       "~/Projects/personal/analytics/src/lib/briefing/voice.ts"
@@ -43,13 +33,6 @@
     ],
     "updatedAt": "2026-05-18T17:32:30.843Z",
     "byCommit": "e98cf57"
-  },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-18T19:02:07.892Z",
-    "byCommit": "0474ac3"
   },
   "five-products-as-a-system": {
     "drifted": [
