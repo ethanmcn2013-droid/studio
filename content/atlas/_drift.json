@@ -6,17 +6,18 @@
       "~/Projects/personal/analytics/drizzle/",
       "~/Projects/personal/roadmap/drizzle/"
     ],
-    "updatedAt": "2026-05-17T18:15:02.353Z",
-    "byCommit": "ad113fc"
+    "updatedAt": "2026-05-17T23:58:05.301Z",
+    "byCommit": "7a841d2"
   },
   "brand-enforcement": {
     "drifted": [
       "src/app/globals.css",
       "src/app/brand/page.tsx",
-      "DESIGN.md"
+      "DESIGN.md",
+      "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-17T23:50:31.363Z",
-    "byCommit": "46da8aa"
+    "updatedAt": "2026-05-18T15:10:00.079Z",
+    "byCommit": "ab7b865"
   },
   "analytics-daily-cron": {
     "drifted": [
@@ -37,16 +38,24 @@
     "drifted": [
       "src/app/pricing/",
       "src/components/landing/",
-      "src/app/brand/"
+      "src/app/brand/",
+      "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-17T18:14:59.830Z",
-    "byCommit": "4e85982"
+    "updatedAt": "2026-05-18T15:10:00.079Z",
+    "byCommit": "ab7b865"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-17T22:55:51.280Z",
-    "byCommit": "09be23d"
+    "updatedAt": "2026-05-18T00:16:27.815Z",
+    "byCommit": "0c8f530"
+  },
+  "five-products-as-a-system": {
+    "drifted": [
+      "src/components/brand/wordmark.tsx"
+    ],
+    "updatedAt": "2026-05-18T15:10:00.079Z",
+    "byCommit": "ab7b865"
   }
 }
