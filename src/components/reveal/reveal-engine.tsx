@@ -68,6 +68,36 @@ export function RevealEngine() {
         .querySelectorAll<HTMLElement>(".reveal-product-row .mark .word")
         .forEach(splitChars);
 
+      // ─── Product rows: cross-browser staggered scroll entrance ──
+      // Safari has no animation-timeline:view(); a one-shot IO adds
+      // .in per row, the children choreograph via CSS transitions
+      // (globals.css). Reduced-motion → shown immediately, no motion.
+      const productRows = Array.from(
+        document.querySelectorAll<HTMLElement>(".reveal-product-row")
+      );
+      let rowIO: IntersectionObserver | undefined;
+      if (reduceMotion) {
+        productRows.forEach((r) => r.classList.add("in"));
+      } else {
+        rowIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                rowIO?.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -12% 0px", threshold: 0.15 }
+        );
+        productRows.forEach((r) => rowIO!.observe(r));
+      }
+      const ioPrevCleanup = cleanup;
+      cleanup = () => {
+        ioPrevCleanup?.();
+        rowIO?.disconnect();
+      };
+
       // ─── Helper: fire brand gesture on a stack row ─────────────
       const fire = (key: string) => {
         document

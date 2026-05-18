@@ -1100,7 +1100,7 @@ body::after { content: none; }
 .reveal-products {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 32px 120px;
+  padding: 0 32px 64px;
 }
 .reveal-products-head {
   font-family: var(--font-mono-stack);
@@ -1127,14 +1127,14 @@ body::after { content: none; }
   line-height: 1.65;
   color: var(--ink-500);
   max-width: 560px;
-  margin: -10px 0 40px;
+  margin: -10px 0 28px;
 }
 
 .reveal-product-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  padding: 56px 0;
+  padding: 40px 0;
   border-top: 1px solid var(--ink-200);
   align-items: baseline;
   text-decoration: none;
@@ -1275,61 +1275,61 @@ body::after { content: none; }
    / no-JS) and reduced-motion: every part is visible with no
    animation — the .reveal class on the row + the reduce block
    above are the fallback. ──────────────────────────────────────── */
+/* Cross-browser entrance: an IntersectionObserver (reveal-engine.tsx)
+   adds .in to each row once, on first scroll into view. Safari has no
+   animation-timeline:view(), so the choreography rides CSS transitions
+   toggled by .in — works everywhere. Reduced-motion users are
+   force-shown by the block above; no-JS users keep the .reveal default
+   (opacity:1). Choreography per ds-animation-principles: eyebrow leads,
+   wordmark clip-wipes L→R, essence slides from +x, meta settles last;
+   ease-out, ~60ms stagger, total under 700ms, single direction. The
+   perpetual per-product dot gesture (pulse/sweep/tick/caret) is on
+   .dot and is untouched — only the parent .mark enters. */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    /* The row no longer fades as one block — its children carry the
-       choreography, so neutralise the generic .reveal fade here.
-       Two-class selector outspecifies .reveal regardless of order. */
-    .reveal-product-row.reveal {
-      animation: none;
-      opacity: 1;
-      translate: none;
-    }
-    .reveal-product-row .position {
-      animation: rp-eyebrow var(--motion-slow) var(--reveal-ease-glide) both;
-      animation-timeline: view();
-      animation-range: entry 2% entry 22%;
-    }
-    .reveal-product-row .mark {
-      animation: rp-mark-wipe 920ms var(--reveal-ease-glide) both;
-      animation-timeline: view();
-      animation-range: entry 6% entry 34%;
-    }
-    .reveal-product-row .essence {
-      animation: rp-essence var(--motion-slow) var(--reveal-ease-glide) both;
-      animation-timeline: view();
-      animation-range: entry 12% entry 34%;
-    }
-    .reveal-product-row .meta {
-      animation: rp-meta var(--motion-slow) var(--reveal-ease-glide) both;
-      animation-timeline: view();
-      animation-range: entry 18% entry 40%;
-    }
+  /* The row no longer fades as one block — its children carry the
+     choreography. Two-class selector outspecifies the generic .reveal. */
+  .reveal-product-row.reveal {
+    animation: none;
+    opacity: 1;
+    translate: none;
   }
-}
-@keyframes rp-eyebrow {
-  from { opacity: 0; transform: translateY(9px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes rp-mark-wipe {
-  from { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-14px); }
-  55%  { opacity: 1; }
-  to   { opacity: 1; clip-path: inset(0 0 0 0); transform: translateX(0); }
-}
-@keyframes rp-essence {
-  from { opacity: 0; transform: translateX(28px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes rp-meta {
-  from { opacity: 0; transform: translateY(11px); }
-  to   { opacity: 1; transform: translateY(0); }
+  .reveal-product-row .position,
+  .reveal-product-row .mark,
+  .reveal-product-row .essence,
+  .reveal-product-row .meta {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--motion-slow) var(--reveal-ease-glide),
+      transform var(--motion-slow) var(--reveal-ease-glide),
+      clip-path 560ms var(--reveal-ease-glide);
+    will-change: opacity, transform;
+  }
+  .reveal-product-row .mark { clip-path: inset(0 0 0 0); }
+
+  /* Hidden until the observer adds .in (one-shot per row). */
+  .reveal-product-row:not(.in) .position { opacity: 0; transform: translateY(9px); }
+  .reveal-product-row:not(.in) .mark {
+    opacity: 0;
+    transform: translateX(-14px);
+    clip-path: inset(0 100% 0 0);
+  }
+  .reveal-product-row:not(.in) .essence { opacity: 0; transform: translateX(28px); }
+  .reveal-product-row:not(.in) .meta { opacity: 0; transform: translateY(11px); }
+
+  /* Stagger: eyebrow 0 → mark 60 → essence 130 → meta 190ms.
+     Max finish ≈ 190 + 480 (motion-slow) = 670ms. */
+  .reveal-product-row.in .position { transition-delay: 0ms; }
+  .reveal-product-row.in .mark { transition-delay: 60ms; }
+  .reveal-product-row.in .essence { transition-delay: 130ms; }
+  .reveal-product-row.in .meta { transition-delay: 190ms; }
 }
 
 /* ── Closing block ────────────────────────────────────────────── */
 .reveal-closing {
   max-width: 760px;
   margin: 0 auto;
-  padding: 120px 32px 88px;
+  padding: 72px 32px 88px;
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -36,11 +36,12 @@ const WORD = "signal studio";
 const ROLL_MS = 3800;
 const RISE_MS = 360; // per-letter rise; eased up from 260 to match the calmer pace
 /**
- * Play the whole assembly this many times, then settle. Operator: "repeat
- * twice just in case people miss it on loading." MUST equal --slx-iter in
+ * Play the whole assembly this many times, then settle. Operator direction
+ * 2026-05-18: play the hero card animation ONCE (reverses the earlier
+ * "repeat twice just in case people miss it"). MUST equal --slx-iter in
  * SLX_CSS (CSS animation-iteration-count) or the dot and letters desync.
  */
-const CYCLES = 2;
+const CYCLES = 1;
 
 export function RevealLoadingShowcase() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -179,7 +180,7 @@ const SLX_CSS = `
   --slx-wm:clamp(58px,11.5vw,208px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
-  --slx-iter:2;   /* MUST equal CYCLES in the component. */
+  --slx-iter:1;   /* MUST equal CYCLES in the component. */
   width:100%;display:flex;justify-content:center;background:transparent;
   font-family:var(--font-geist-sans,system-ui,sans-serif);}
 .slx *{box-sizing:border-box;}
