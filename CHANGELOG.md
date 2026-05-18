@@ -3,6 +3,20 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-18 · S·62 · ships · the brand page carries the real kit, not a hand-list
+
+**The /brand asset library pointed at ~18 older bespoke SVGs while the
+actual exported kit — 17 outlined-path SVG masters plus 76 PNG renders
+across wordmark, lockup, the dot, the app-icon tile, and four product
+wordmarks — sat unused.** The page now derives its catalogue from the
+kit on disk, so it can't drift from what shipped: every family grouped,
+every asset offering its SVG, a one-click PNG, and a row of size chips,
+plus a single 1 MB zip of everything from the hero and the library. The
+mobile loader is no longer a leftover file — it runs live in a phone
+frame as its own section, with a spec table and a download. A
+construction block fixes the wordmark to its spec (Geist 500, −0.025em,
+dot at 0.16 × cap-height, 0.06em gap). Sections renumbered to /06.
+
 ## 2026-05-18 · S·61 · tightens · the front door reads as a headline, not a wall
 
 **The homepage headline was set at full hero scale, so "Project

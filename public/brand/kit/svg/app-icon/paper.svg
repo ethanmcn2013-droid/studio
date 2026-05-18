@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Signal Studio app icon">
+  <rect x="0" y="0" width="1000" height="1000" rx="220" ry="220" fill="#ffffff"></rect>
+  <rect x="2" y="2" width="996" height="996" rx="218" ry="218" fill="none" stroke="#111" stroke-width="4" opacity="0.10"></rect>
+  <circle cx="500" cy="500" r="170" fill="#4f46e5"></circle>
+</svg>

@@ -7,7 +7,7 @@ import { ReadingProgress } from "@/components/reading-progress";
 export const metadata: Metadata = {
   title: "Brand · signal studio.",
   description:
-    "The full signal studio brand system — wordmarks, palette, typography, and downloadable assets. One umbrella. One indigo. Boring on purpose.",
+    "The full signal studio brand system — wordmarks, palette, typography, the loader, and a complete downloadable kit in SVG and PNG. One umbrella. One indigo. Boring on purpose.",
   openGraph: {
     title: "signal studio. · brand system",
     description: "One umbrella. One indigo. Boring on purpose.",
@@ -15,33 +15,139 @@ export const metadata: Metadata = {
   },
 };
 
-type LogoFile = {
-  file: string;
+/* ──────────────────────────────────────────────────────────────────────────
+   ASSET KIT — maps the real /public/brand/kit/ directory 1:1.
+   Every SVG has its text outlined to paths (no font dependency); every PNG
+   was rendered from that SVG. Don't hand-list files — derive them here so
+   the page can never drift from what actually shipped in the kit.
+   ────────────────────────────────────────────────────────────────────────── */
+
+type Surface = "paper" | "deep" | "ink" | "indigo" | "cream";
+
+type Asset = {
+  /** kit base filename, no extension */
+  base: string;
+  /** human label */
   name: string;
-  surface: "paper" | "ink" | "indigo";
-  variant: "signal" | "tasks" | "roadmap" | "analytics" | "notes";
-  kind: "wordmark" | "lockup" | "mark";
+  /** kit subfolder under svg/ and png/ */
+  family: "wordmark" | "lockup" | "mark" | "app-icon" | "product-wordmarks";
+  /** PNG sizes that exist for this base */
+  png: number[];
+  /** background the preview sits on so the asset is legible */
+  surface: Surface;
+  /** how the preview image is constrained */
+  fit: "wide" | "tall" | "tile";
 };
 
-const LOGOS: LogoFile[] = [
-  { file: "signal-studio.svg", name: "signal studio. · wordmark", surface: "paper", variant: "signal", kind: "wordmark" },
-  { file: "signal-studio-on-dark.svg", name: "signal studio. · on dark", surface: "ink", variant: "signal", kind: "wordmark" },
-  { file: "signal-studio-mono.svg", name: "signal studio. · monochrome", surface: "paper", variant: "signal", kind: "wordmark" },
-  { file: "signal-studio-mark.svg", name: "signal studio. · square mark", surface: "ink", variant: "signal", kind: "mark" },
-  { file: "signal-studio-monogram.svg", name: "signal studio. · monogram", surface: "paper", variant: "signal", kind: "mark" },
-  { file: "signal-tasks.svg", name: "tasks· · wordmark", surface: "paper", variant: "tasks", kind: "wordmark" },
-  { file: "signal-tasks-full.svg", name: "tasks· · full lockup", surface: "paper", variant: "tasks", kind: "lockup" },
-  { file: "lockup-tasks.svg", name: "tasks· · house lockup", surface: "paper", variant: "tasks", kind: "lockup" },
-  { file: "mark-tasks.svg", name: "tasks· · square mark", surface: "ink", variant: "tasks", kind: "mark" },
-  { file: "signal-roadmap.svg", name: "roadmap· · wordmark", surface: "paper", variant: "roadmap", kind: "wordmark" },
-  { file: "signal-roadmap-full.svg", name: "roadmap· · full lockup", surface: "paper", variant: "roadmap", kind: "lockup" },
-  { file: "mark-roadmap.svg", name: "roadmap· · square mark", surface: "ink", variant: "roadmap", kind: "mark" },
-  { file: "signal-analytics.svg", name: "analytics· · wordmark", surface: "paper", variant: "analytics", kind: "wordmark" },
-  { file: "signal-analytics-full.svg", name: "analytics· · full lockup", surface: "paper", variant: "analytics", kind: "lockup" },
-  { file: "mark-analytics.svg", name: "analytics· · square mark", surface: "ink", variant: "analytics", kind: "mark" },
-  { file: "signal-notes.svg", name: "notes. · wordmark", surface: "paper", variant: "notes", kind: "wordmark" },
-  { file: "signal-notes-full.svg", name: "notes. · full lockup", surface: "paper", variant: "notes", kind: "lockup" },
-  { file: "mark-notes.svg", name: "notes. · square mark", surface: "ink", variant: "notes", kind: "mark" },
+const SURFACE_BG: Record<Surface, string> = {
+  paper: "var(--paper)",
+  deep: "var(--paper-deep)",
+  ink: "#111111",
+  indigo: "#4f46e5",
+  cream: "#faf8f1",
+};
+
+const KIND_SIZES = {
+  wordmark: [128, 256, 512],
+  lockup: [800, 1600],
+  mark: [16, 32, 64, 128, 256, 512, 1024],
+  appicon: [16, 32, 64, 128, 256, 512, 1024],
+  product: [128, 256, 512],
+} as const;
+
+type AssetGroup = {
+  num: string;
+  kicker: string;
+  title: string;
+  blurb: React.ReactNode;
+  assets: Asset[];
+};
+
+const ASSET_GROUPS: AssetGroup[] = [
+  {
+    num: "A",
+    kicker: "Wordmark",
+    title: "The house signature.",
+    blurb: (
+      <>
+        Geist 500, lowercase, kerning <strong className="text-[var(--ink)]">−0.025em</strong>,
+        and the indigo period. Three colourways for three surfaces.
+      </>
+    ),
+    assets: [
+      { base: "signal-studio-indigo", name: "signal studio. · indigo", family: "wordmark", png: [...KIND_SIZES.wordmark], surface: "deep", fit: "wide" },
+      { base: "signal-studio-ink", name: "signal studio. · ink", family: "wordmark", png: [...KIND_SIZES.wordmark], surface: "deep", fit: "wide" },
+      { base: "signal-studio-paper", name: "signal studio. · paper", family: "wordmark", png: [...KIND_SIZES.wordmark], surface: "ink", fit: "wide" },
+    ],
+  },
+  {
+    num: "B",
+    kicker: "Lockup",
+    title: "Share cards. 16 : 9.",
+    blurb: (
+      <>
+        The wordmark centred and breathing on a full bleed — for hero images,
+        OpenGraph cards, slide title pages. Three grounds: cream, ink, indigo.
+      </>
+    ),
+    assets: [
+      { base: "on-cream", name: "lockup · on cream", family: "lockup", png: [...KIND_SIZES.lockup], surface: "cream", fit: "wide" },
+      { base: "on-ink", name: "lockup · on ink", family: "lockup", png: [...KIND_SIZES.lockup], surface: "ink", fit: "wide" },
+      { base: "on-indigo", name: "lockup · on indigo", family: "lockup", png: [...KIND_SIZES.lockup], surface: "indigo", fit: "wide" },
+    ],
+  },
+  {
+    num: "C",
+    kicker: "The dot",
+    title: "The brand, at any size.",
+    blurb: (
+      <>
+        One indigo circle. Same shape from a 16px favicon to a billboard.
+        Don&apos;t recolour it — it <em className="not-italic font-medium text-[var(--indigo)]">is</em> the
+        brand. Seven PNG sizes, plus the vector.
+      </>
+    ),
+    assets: [
+      { base: "dot-indigo", name: "dot · indigo", family: "mark", png: [...KIND_SIZES.mark], surface: "deep", fit: "tile" },
+      { base: "dot-ink", name: "dot · ink", family: "mark", png: [...KIND_SIZES.mark], surface: "deep", fit: "tile" },
+      { base: "dot-paper", name: "dot · paper", family: "mark", png: [...KIND_SIZES.mark], surface: "ink", fit: "tile" },
+    ],
+  },
+  {
+    num: "D",
+    kicker: "App icon",
+    title: "The squircle tile.",
+    blurb: (
+      <>
+        The dot, seated in a rounded tile for launchers, social avatars, and
+        anywhere a square is required. Four colourways — including the inverse.
+      </>
+    ),
+    assets: [
+      { base: "cream", name: "app icon · cream", family: "app-icon", png: [...KIND_SIZES.appicon], surface: "deep", fit: "tile" },
+      { base: "indigo", name: "app icon · indigo", family: "app-icon", png: [...KIND_SIZES.appicon], surface: "deep", fit: "tile" },
+      { base: "ink", name: "app icon · ink", family: "app-icon", png: [...KIND_SIZES.appicon], surface: "deep", fit: "tile" },
+      { base: "paper", name: "app icon · paper", family: "app-icon", png: [...KIND_SIZES.appicon], surface: "ink", fit: "tile" },
+    ],
+  },
+  {
+    num: "E",
+    kicker: "Products",
+    title: "Four products, one house.",
+    blurb: (
+      <>
+        Each product wordmark carries the house signature with its own noun.
+        The verbs take a <em className="not-italic font-medium text-[var(--indigo)]">middot</em>;
+        notes takes a <em className="not-italic font-medium text-[var(--indigo)]">period</em>.
+      </>
+    ),
+    assets: [
+      { base: "tasks", name: "tasks·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "roadmap", name: "roadmap·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "analytics", name: "analytics·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "notes", name: "notes.", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+    ],
+  },
 ];
 
 const PALETTE = [
@@ -56,9 +162,7 @@ const PALETTE = [
 ];
 
 // Canon: DESIGN.md §5 (ratified 2026-05-16, deployed + live-verified).
-// Each line describes the gesture as it actually ships — not the
-// retired pre-canon vocabulary (heartbeat tap-tap / 2.4s squash).
-const MOTIONS: Array<{ code: string; variant: LogoFile["variant"]; name: string; cycle: string; line: string }> = [
+const MOTIONS: Array<{ code: string; variant: "signal" | "tasks" | "roadmap" | "analytics" | "notes"; name: string; cycle: string; line: string }> = [
   { code: "M·01", variant: "signal", name: "broadcast", cycle: "once", line: "One ring radiates from the period and is gone. The house announcing itself on arrival — said once, never repeated." },
   { code: "M·02", variant: "tasks", name: "pulse", cycle: "2.6s", line: "The dot breathes at rest and quickens under load. Work — alive, but unhurried." },
   { code: "M·03", variant: "roadmap", name: "sweep", cycle: "5.4s", line: "The dot tracks left to right along an unseen timeline, then resets. Direction without urgency." },
@@ -76,54 +180,100 @@ const REFUSALS = [
   { num: "N·07", text: "A roadmap that promises features the team won't ship." },
 ];
 
-function AssetCard({ logo }: { logo: LogoFile }) {
-  const surfaceBg =
-    logo.surface === "ink"
-      ? "var(--ink)"
-      : logo.surface === "indigo"
-        ? "var(--indigo)"
-        : "var(--paper-deep)";
+const CONSTRUCTION = [
+  { k: "Face", v: "Geist · weight 500" },
+  { k: "Case", v: "lowercase — always" },
+  { k: "Kerning", v: "−0.025em" },
+  { k: "The dot", v: "0.16 × cap-height" },
+  { k: "Dot gap", v: "0.06em from the wordmark" },
+  { k: "Indigo", v: "#4F46E5 — never recoloured" },
+];
+
+function totalAssetCount() {
+  // svg masters + every rendered png across all groups
+  let svg = 0;
+  let png = 0;
+  for (const g of ASSET_GROUPS) {
+    for (const a of g.assets) {
+      svg += 1;
+      png += a.png.length;
+    }
+  }
+  return { svg, png, total: svg + png };
+}
+
+function AssetCard({ asset }: { asset: Asset }) {
+  const svgPath = `/brand/kit/svg/${asset.family}/${asset.base}.svg`;
+  const sizes = asset.png;
+  const largest = sizes[sizes.length - 1];
+  const pngPath = (s: number) => `/brand/kit/png/${asset.family}/${asset.base}-${s}.png`;
+
+  const previewClass =
+    asset.fit === "tile"
+      ? "max-h-[44%] max-w-[44%]"
+      : asset.fit === "tall"
+        ? "max-h-[62%] max-w-[58%]"
+        : "max-h-[52%] max-w-[78%]";
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] transition-transform hover:-translate-y-[3px]">
+    <div className="group flex flex-col overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] transition-transform hover:-translate-y-[3px]">
       <div
-        className="flex aspect-[16/9] items-center justify-center"
-        style={{ background: surfaceBg }}
+        className="flex aspect-[16/10] items-center justify-center"
+        style={{ background: SURFACE_BG[asset.surface] }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/brand/logos/${logo.file}`}
-          alt={logo.name}
+          src={svgPath}
+          alt={asset.name}
           loading="lazy"
           decoding="async"
-          className="max-h-[60%] max-w-[70%]"
+          className={previewClass}
         />
       </div>
       <div className="flex flex-col gap-1 px-[18px] pt-4 pb-[18px]">
         <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--ink-faint)]">
-          {logo.kind}
+          {asset.family.replace("-", " ")}
         </span>
         <span className="text-[15px] font-medium tracking-[-0.015em] text-[var(--ink)]">
-          {logo.name}
+          {asset.name}
         </span>
-        <span className="mt-1 font-mono text-[10.5px] text-[var(--ink-faint)]">
-          {logo.file}
-        </span>
-        <div className="mt-3 flex gap-1.5">
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
           <a
-            href={`/brand/logos/${logo.file}`}
+            href={svgPath}
             download
-            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            className="inline-flex min-h-[38px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
           >
             ↓ svg
           </a>
           <a
-            href={`/brand/logos/${logo.file}`}
+            href={pngPath(largest)}
+            download
+            className="inline-flex min-h-[38px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
+            title={`${largest}px PNG`}
+          >
+            ↓ png
+          </a>
+          <a
+            href={svgPath}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
+            className="inline-flex min-h-[38px] items-center rounded-full px-2.5 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-faint)] transition-colors hover:text-[var(--ink)]"
           >
             ↗ open
           </a>
+        </div>
+        <div className="mt-2.5 flex flex-wrap gap-1 border-t border-dashed border-[var(--hairline-2)] pt-2.5 font-mono text-[10px] text-[var(--ink-faint)]">
+          <span className="mr-1 text-[var(--ink-ghost)]">png</span>
+          {sizes.map((s) => (
+            <a
+              key={s}
+              href={pngPath(s)}
+              download
+              className="rounded-[4px] px-1.5 py-0.5 transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+            >
+              {s}
+            </a>
+          ))}
         </div>
       </div>
     </div>
@@ -131,7 +281,6 @@ function AssetCard({ logo }: { logo: LogoFile }) {
 }
 
 function SwatchCard({ token, hex, desc }: { token: string; hex: string; desc: string }) {
-  const isDark = ["#4F46E5", "#111111", "#3F3F46", "#71717A"].includes(hex);
   return (
     <div className="flex flex-col gap-2 rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] p-5">
       <div
@@ -144,20 +293,20 @@ function SwatchCard({ token, hex, desc }: { token: string; hex: string; desc: st
         <span className="font-mono text-[11px] text-[var(--ink-faint)]">{hex}</span>
       </div>
       <p className="m-0 text-[13px] leading-snug text-[var(--ink-soft)]">{desc}</p>
-      {/* visual swatch is rendered with explicit hex so the page stays correct even if the token shifts */}
-      <span className="sr-only">{isDark ? "dark" : "light"}</span>
     </div>
   );
 }
 
 export default function BrandPage() {
+  const { svg, png, total } = totalAssetCount();
+
   return (
     <>
     <ReadingProgress />
     <main id="main" tabIndex={-1} className="mx-auto w-full max-w-[1200px] px-8 pb-32">
       {/* HERO */}
       <header className="pt-24 pb-12">
-        <div className="mb-9 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.06em] text-[var(--ink-faint)]">
+        <div className="mb-9 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.06em] text-[var(--ink-faint)]">
           <span className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-2.5 py-1 text-[10px] tracking-[0.06em] text-[var(--paper)]">
             <span
               className="h-1.5 w-1.5 rounded-full"
@@ -166,7 +315,7 @@ export default function BrandPage() {
             />
             Brand · living document
           </span>
-          <span>v1.0 · 2026.05.16</span>
+          <span>v1.1 · 2026.05.18</span>
           <span className="text-[var(--ink-ghost)]">·</span>
           <span>built slowly, maintained quietly</span>
         </div>
@@ -189,20 +338,40 @@ export default function BrandPage() {
         </h1>
 
         <div className="grid grid-cols-1 items-end gap-12 md:grid-cols-[1fr_320px]">
-          <p className="m-0 max-w-[580px] text-[19px] leading-[1.5] text-[var(--ink-soft)] text-pretty">
-            The brand system for{" "}
-            <Wordmark variant="signal" size="sm" animate />. One house, four
-            products, one indigo. Built for the people the work routes
-            through, not the people who run sprints.{" "}
-            <strong className="font-semibold text-[var(--ink)]">
-              Everything important, nothing distracting.
-            </strong>
-          </p>
+          <div>
+            <p className="m-0 mb-6 max-w-[580px] text-[19px] leading-[1.5] text-[var(--ink-soft)] text-pretty">
+              The brand system for{" "}
+              <Wordmark variant="signal" size="sm" animate />. One house, four
+              products, one indigo. Built for the people the work routes
+              through, not the people who run sprints.{" "}
+              <strong className="font-semibold text-[var(--ink)]">
+                Everything important, nothing distracting.
+              </strong>
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="/brand/signal-studio-brand-kit.zip"
+                download
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 font-mono text-[12px] tracking-[0.04em] text-[var(--paper)] transition-colors hover:bg-[var(--indigo)]"
+              >
+                ↓ Download the full kit
+                <span className="opacity-60">· {total} files</span>
+              </a>
+              <a
+                href="#assets"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-5 py-2.5 font-mono text-[12px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)]"
+              >
+                Browse assets ↓
+              </a>
+            </div>
+          </div>
           <div className="border-l border-[var(--hairline)] pl-6 font-mono text-[11px] leading-[1.7] tracking-[0.02em] text-[var(--ink-faint)]">
             {[
               ["Maintainer", "Ethan McNamara"],
               ["House", "signal studio."],
               ["Products", "04"],
+              ["SVG masters", String(svg).padStart(2, "0")],
+              ["PNG renders", String(png)],
               ["Bar", "Editorial"],
             ].map(([k, v]) => (
               <div
@@ -217,10 +386,10 @@ export default function BrandPage() {
         </div>
       </header>
 
-      {/* WORDMARKS */}
+      {/* WORDMARKS / MOTION */}
       <section className="border-t border-[var(--hairline-2)] py-20">
         <SectionHead
-          num="01 / 05"
+          num="01 / 06"
           kicker="The mark"
           title="Five wordmarks. Five motions."
           intro={
@@ -230,7 +399,7 @@ export default function BrandPage() {
               baseline-seated. The verbs take a{" "}
               <em className="not-italic font-medium text-[var(--indigo)]">middot</em>,
               lifted toward the cap-height. Each wordmark carries its own
-              ambient motion — a pulse fitting the product's job.
+              ambient motion — a pulse fitting the product&apos;s job.
             </>
           }
         />
@@ -270,6 +439,34 @@ export default function BrandPage() {
               <p className="m-0 text-[12.5px] leading-[1.5] text-[var(--ink-soft)]">{m.line}</p>
             </div>
           ))}
+        </div>
+
+        {/* Construction spec */}
+        <div className="mt-16 grid grid-cols-1 gap-8 rounded-[var(--r-4)] border border-[var(--hairline)] bg-[var(--paper-elev)] p-8 md:grid-cols-[1fr_1fr] md:p-10">
+          <div>
+            <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--ink-faint)]">
+              Construction
+            </span>
+            <h3 className="m-0 mt-2 mb-3 text-[24px] font-medium tracking-[-0.025em] text-[var(--ink)]">
+              The wordmark is built to a spec, not eyeballed.
+            </h3>
+            <p className="m-0 max-w-[440px] text-[14.5px] leading-[1.55] text-[var(--ink-soft)]">
+              Every export in the kit holds these exact relationships. If a
+              layout needs something the spec doesn&apos;t cover, the answer is
+              ask — not improvise.
+            </p>
+          </div>
+          <dl className="m-0 grid grid-cols-1 gap-0 self-center font-mono text-[12px]">
+            {CONSTRUCTION.map(({ k, v }) => (
+              <div
+                key={k}
+                className="flex items-center justify-between border-b border-dashed border-[var(--hairline-2)] py-2.5 last:border-b-0"
+              >
+                <dt className="text-[var(--ink-faint)]">{k}</dt>
+                <dd className="m-0 text-[var(--ink)]">{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         {/* Refusals */}
@@ -314,7 +511,7 @@ export default function BrandPage() {
       {/* COLOR */}
       <section className="border-t border-[var(--hairline-2)] py-20">
         <SectionHead
-          num="02 / 05"
+          num="02 / 06"
           kicker="Color"
           title="One indigo. White paper. Off-black ink."
           intro={
@@ -393,7 +590,7 @@ export default function BrandPage() {
       {/* TYPOGRAPHY */}
       <section className="border-t border-[var(--hairline-2)] py-20">
         <SectionHead
-          num="03 / 05"
+          num="03 / 06"
           kicker="Type"
           title="Geist sans. Geist Mono as the kicker."
           intro={
@@ -455,7 +652,7 @@ export default function BrandPage() {
           <TypeRow
             label="mono"
             meta="12 / 1.5 · +4%"
-            sample="— signal studio · brand index · 2026.05.16"
+            sample="— signal studio · brand index · 2026.05.18"
             sampleStyle={{
               fontFamily: "var(--font-mono)",
               fontSize: 12,
@@ -468,30 +665,154 @@ export default function BrandPage() {
         </div>
       </section>
 
-      {/* ASSETS */}
-      <section className="border-t border-[var(--hairline-2)] py-20" id="assets">
+      {/* THE LOADER */}
+      <section className="border-t border-[var(--hairline-2)] py-20">
         <SectionHead
-          num="04 / 05"
-          kicker="Asset library"
-          title="Every brand surface, in one place."
+          num="04 / 06"
+          kicker="In motion"
+          title="The loader. The brand, assembling itself."
           intro={
             <>
-              Eighteen wordmarks and marks across the suite — house, lockups,
-              dark variants, square marks. Every asset ships as{" "}
-              <strong className="text-[var(--ink)]">SVG</strong> (vector,
-              editable). Use them. Don&apos;t recompose them.
+              The wait is part of the work. The wordmark rolls in, the four
+              products rise once, the pip stays live. No spinner, no progress
+              bar — the house{" "}
+              <strong className="text-[var(--ink)]">composing itself</strong>{" "}
+              while the data lands. It honours{" "}
+              <em className="not-italic font-medium text-[var(--indigo)]">
+                prefers-reduced-motion
+              </em>{" "}
+              and pauses when the tab is hidden.
             </>
           }
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {LOGOS.map((logo) => (
-            <AssetCard key={logo.file} logo={logo} />
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[300px_1fr] md:items-center">
+          {/* phone frame */}
+          <div className="mx-auto">
+            <div
+              className="relative rounded-[44px] border border-[var(--hairline)] bg-[var(--ink)] p-[10px] shadow-[0_30px_60px_-20px_rgba(17,17,17,0.30)]"
+              style={{ width: 264 }}
+            >
+              <div
+                className="absolute left-1/2 top-[18px] z-10 h-[5px] w-[64px] -translate-x-1/2 rounded-full"
+                style={{ background: "rgba(255,255,255,0.18)" }}
+                aria-hidden
+              />
+              <iframe
+                src="/brand/loader.html"
+                title="signal studio. mobile loader"
+                loading="lazy"
+                className="block rounded-[34px] border-0 bg-[#fafaf7]"
+                style={{ width: 244, height: 528 }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="grid grid-cols-1 overflow-hidden rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] sm:grid-cols-2">
+              {[
+                ["Choreography", "wordmark roll · products rise once · live pip"],
+                ["Period", "5.0s loop · fade at 4.7s"],
+                ["Reduced motion", "static wordmark · “ready”"],
+                ["Type", "Geist 500 · Geist Mono chrome"],
+                ["Ground", "#fafaf7 stone · safe-area aware"],
+                ["Footprint", "single self-contained .html"],
+              ].map(([k, v], i) => (
+                <div
+                  key={k}
+                  className={`flex flex-col gap-1 p-5 ${i % 2 === 0 ? "sm:border-r" : ""} border-b border-[var(--hairline-2)] [&:nth-last-child(-n+1)]:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0`}
+                >
+                  <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--ink-faint)]">
+                    {k}
+                  </span>
+                  <span className="text-[14px] leading-[1.45] text-[var(--ink)]">
+                    {v}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <a
+                href="/brand/loader.html"
+                download="signal-studio-loader.html"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-4 py-2 font-mono text-[12px] tracking-[0.04em] text-[var(--ink)] transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+              >
+                ↓ loader.html
+              </a>
+              <a
+                href="/brand/loader.html"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-2 font-mono text-[12px] tracking-[0.04em] text-[var(--ink-faint)] transition-colors hover:text-[var(--ink)]"
+              >
+                ↗ open full screen
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ASSETS */}
+      <section className="border-t border-[var(--hairline-2)] py-20" id="assets">
+        <SectionHead
+          num="05 / 06"
+          kicker="Asset library"
+          title="The complete kit. SVG masters, PNG renders."
+          intro={
+            <>
+              Every brand surface in one place — wordmark, lockup, the dot,
+              the app-icon tile, and four product wordmarks. SVGs have their
+              text{" "}
+              <strong className="text-[var(--ink)]">outlined to paths</strong>{" "}
+              (no font dependency, opens anywhere). PNGs are pre-rendered for
+              Slack, GitHub, and email. Use them. Don&apos;t recompose them.
+            </>
+          }
+        />
+
+        <div className="mb-12 flex flex-wrap items-center justify-between gap-4 rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] px-6 py-5">
+          <div className="font-mono text-[12px] text-[var(--ink-soft)]">
+            <span className="text-[var(--ink)]">{total} files</span> ·{" "}
+            {svg} SVG masters · {png} PNG renders · one zip
+          </div>
+          <a
+            href="/brand/signal-studio-brand-kit.zip"
+            download
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 font-mono text-[12px] tracking-[0.04em] text-[var(--paper)] transition-colors hover:bg-[var(--indigo)]"
+          >
+            ↓ Download everything
+          </a>
+        </div>
+
+        <div className="flex flex-col gap-16">
+          {ASSET_GROUPS.map((group) => (
+            <div key={group.num}>
+              <div className="mb-7 grid grid-cols-1 items-start gap-6 md:grid-cols-[220px_1fr]">
+                <div className="font-mono text-[12px] tracking-[0.06em] text-[var(--ink-faint)]">
+                  {group.num}
+                  <span className="mx-2 text-[var(--ink-ghost)]">/</span>
+                  {group.kicker}
+                </div>
+                <div>
+                  <h3 className="m-0 mb-2 text-[24px] font-medium tracking-[-0.025em] text-[var(--ink)]">
+                    {group.title}
+                  </h3>
+                  <p className="m-0 max-w-[560px] text-[14.5px] leading-[1.55] text-[var(--ink-soft)] text-pretty">
+                    {group.blurb}
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {group.assets.map((asset) => (
+                  <AssetCard key={`${group.num}-${asset.base}`} asset={asset} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
         {/* Email signatures + companion files */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-3 rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] p-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--ink-faint)]">
               Email signature · plain text
@@ -526,10 +847,10 @@ Dublin · Ireland · signalstudio.ie`}
               Usage in plain English
             </span>
             <ol className="m-0 list-decimal pl-5 text-[14px] leading-[1.6] text-[var(--ink-soft)] marker:text-[var(--ink-faint)]">
-              <li>Use the wordmark in the right surface — light SVG on paper, dark SVG on ink.</li>
+              <li>Light wordmark on light, paper wordmark on ink. Match the surface.</li>
               <li>Never recolour the indigo dot. It&apos;s the brand.</li>
-              <li>Square marks are for favicons, app icons, social avatars.</li>
-              <li>Lockups (full) include the house tag; use them only where context needs it.</li>
+              <li>App-icon tiles are for favicons, launchers, social avatars.</li>
+              <li>Lockups are the 16:9 share card — hero images and slide titles only.</li>
               <li>Don&apos;t recompose the wordmark. If a layout needs something different, ask.</li>
             </ol>
             <a
@@ -542,10 +863,10 @@ Dublin · Ireland · signalstudio.ie`}
         </div>
       </section>
 
-      {/* VOICE / FOOTER */}
+      {/* VOICE */}
       <section className="border-t border-[var(--hairline-2)] py-20">
         <SectionHead
-          num="05 / 05"
+          num="06 / 06"
           kicker="Voice"
           title="Plain English. The vocabulary of the work."
           intro={
@@ -596,9 +917,7 @@ Dublin · Ireland · signalstudio.ie`}
         </div>
       </section>
 
-      {/* Editorial signoff — stays brand-page-specific because /brand IS
-          an editorial object. The standard SiteFooter handles nav + tagline
-          + legal links below it. */}
+      {/* Editorial signoff */}
       <section className="grid grid-cols-1 items-end gap-12 border-t border-[var(--hairline-2)] py-20 md:grid-cols-2">
         <div>
           <h3 className="m-0 mb-3 flex items-baseline gap-1.5 text-[30px] font-medium tracking-[-0.025em] text-[var(--ink)]">
@@ -621,7 +940,7 @@ Dublin · Ireland · signalstudio.ie`}
             ["House", "signal studio."],
             ["Address", "Dublin, Ireland"],
             ["Mail", "hello@signalstudio.ie"],
-            ["Version", "1.0 · 2026-05-16"],
+            ["Version", "1.1 · 2026-05-18"],
             ["Status", "Living document"],
           ].map(([k, v]) => (
             <div

@@ -2,10 +2,11 @@
   "brand-enforcement": {
     "drifted": [
       "DESIGN.md",
-      "src/app/globals.css"
+      "src/app/globals.css",
+      "src/app/brand/page.tsx"
     ],
-    "updatedAt": "2026-05-18T20:17:53.563Z",
-    "byCommit": "79b01cf"
+    "updatedAt": "2026-05-18T20:34:18.775Z",
+    "byCommit": "49e5dcd"
   },
   "pricing-and-entitlements": {
     "drifted": [
@@ -17,10 +18,11 @@
   "signal-studio-umbrella": {
     "drifted": [
       "src/app/pricing/",
-      "src/components/landing/"
+      "src/components/landing/",
+      "src/app/brand/"
     ],
-    "updatedAt": "2026-05-18T20:22:32.216Z",
-    "byCommit": "63885fb"
+    "updatedAt": "2026-05-18T20:34:18.775Z",
+    "byCommit": "49e5dcd"
   },
   "analytics-daily-cron": {
     "drifted": [
@@ -28,5 +30,12 @@
     ],
     "updatedAt": "2026-05-18T20:21:23.081Z",
     "byCommit": "071e6b6"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-18T20:34:18.775Z",
+    "byCommit": "49e5dcd"
   }
 }
