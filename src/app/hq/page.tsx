@@ -4,14 +4,13 @@ import { redirect } from "next/navigation";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
+import { HqProofGate } from "@/components/hq/hq-proof-gate";
 import { HqPulse } from "@/components/hq/hq-pulse";
 import { HqTraction } from "@/components/hq/hq-traction";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getInboxData } from "@/lib/hq/inbox";
-import {
-  getNextOutreachAction,
-  getOutreachClock,
-} from "@/lib/hq/next-action";
+import { getNextOutreachAction } from "@/lib/hq/next-action";
+import { getProofGate } from "@/lib/hq/proofgate";
 import { getPulseState } from "@/lib/hq/pulse";
 import { getTodayData } from "@/lib/hq/today";
 import { getTraction } from "@/lib/hq/traction";
@@ -30,29 +29,33 @@ export const metadata: Metadata = {
 };
 
 /**
- * Signal HQ — the founder's mission control.
+ * Signal HQ — the founder's mission control. v4: ONE STATE MACHINE.
  *
- * The running state is the urgency-ordered scroll: Masthead (one derived
- * verdict + the one action, inputs a click away, never authored) →
- * Inbox (human-decision only) → Pulse (system-decay only) → Traction
- * (+ the six-month burndown). Everything derived from real sources every
- * render — no localStorage, no seed prose, no manual upkeep. The genuine
- * reference surfaces live at their own routes (atlas, health,
- * entitlements, partners, plan); the masthead nav points there.
+ * ── THE SEAM CONTRACT — read before editing this file ───────────────
+ * Three sessions independently rewrote this page; that collision was the
+ * real architecture problem, not the UI. The fix is this: HQ is a single
+ * state machine over `proofGate.clock.state`. There is exactly one source
+ * of clock truth (proofgate.ts, canonical) and one source of the next
+ * venue (next-action.ts). New HQ work COMPOSES INTO THE SWITCH BELOW —
+ * add a state arm, or add a derived component into an existing arm. Do
+ * NOT rewrite this file as a flat scroll again; that is what kept
+ * clobbering prior sessions' work. If you need a new top-level surface,
+ * it is a /hq/<route>, reached from the masthead nav — not the spine.
  *
- * v3.1 (2026-05-18) — state-gated, and self-contained. While the outreach
- * clock is inert (zero founder-signed sends logged) the page is a forcing
- * function, not a dashboard: the clock IS the screen, the next physical
- * send is one tap, and the whole scroll collapses behind a disclosure the
- * operator must choose to open. A dashboard that reports the gate can be
- * read and closed; this cannot. It reverts to the full scroll the moment
- * a send is logged — dwell is earned then, not before.
+ *   inert    → forcing function: the gate IS the screen, the next send
+ *              one tap away, the whole stack behind one disclosure.
+ *   running  → the answer-first scroll: masthead verdict → proof gate
+ *              (section 0, "has it moved") → inbox → pulse → traction.
+ *   expired  → same scroll; the proof gate itself renders the expired
+ *              clock line + "§8 kill/pivot due" (proofgate.ts owns that
+ *              copy, so no separate component — honest, not duplicated).
  *
- * The clock is derived in next-action.ts from the committed prospects
- * baseline against the ratified review dates — deliberately NOT coupled to
- * the parallel-session proof-gate module, so this ships standalone. This
- * is the only HQ change consistent with the 2026-05-18 product freeze: it
- * pushes toward the outreach gate, not away from it.
+ * Everything derived from real sources every render — committed seed
+ * baseline for derived truth, localStorage only for the four operator
+ * surfaces CLAUDE.md names. Reference surfaces (atlas/health/
+ * entitlements/partners/marketing/plan/one-pagers) live at their own
+ * routes off the masthead, never in this spine.
+ * ────────────────────────────────────────────────────────────────────
  */
 export default async function HqPage() {
   const cookieStore = await cookies();
@@ -69,7 +72,7 @@ export default async function HqPage() {
   ]);
   const pulse = await getPulseState(today);
   const verdict = deriveVerdict({ inbox, pulse, traction });
-  const clock = getOutreachClock();
+  const proofGate = getProofGate(traction);
 
   const masthead = (
     <HqMasthead
@@ -79,33 +82,38 @@ export default async function HqPage() {
     />
   );
 
-  const stack = (
+  // The scroll body, shared by running + expired. The proof gate is
+  // section 0 — "has the only thing that matters moved" — above inbox,
+  // because the review's finding is that product work was functioning as
+  // avoidance of exactly this scoreboard.
+  const scroll = (
     <>
+      <HqProofGate gate={proofGate} />
       <HqInbox data={inbox} />
       <HqPulse state={pulse} />
       <HqTraction state={traction} />
     </>
   );
 
-  // Inert clock → forcing function. The masthead stays (identity + the
-  // nav out to the reference surfaces); the whole stack collapses behind
-  // the forcing function's own disclosure.
-  if (clock.inert) {
+  // ── The state machine ──────────────────────────────────────────────
+  if (proofGate.clock.state === "inert") {
     return (
       <div className="hq-spine">
         {masthead}
-        <HqForcingFunction clock={clock} next={getNextOutreachAction()}>
-          {stack}
+        <HqForcingFunction gate={proofGate} next={getNextOutreachAction()}>
+          {scroll}
         </HqForcingFunction>
       </div>
     );
   }
 
-  // Running / expired → the earned scroll.
+  // running | expired — the earned scroll. proofgate.ts encodes the
+  // expired distinction in clock.line + the stamp; no separate arm
+  // needed until expired warrants its own §8 surface.
   return (
     <div className="hq-spine">
       {masthead}
-      {stack}
+      {scroll}
     </div>
   );
 }
