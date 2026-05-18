@@ -3,6 +3,20 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-18 · S·61 · tightens · the front door reads as a headline, not a wall
+
+**The homepage headline was set at full hero scale, so "Project
+management for the 80% not in tech." weighed the same as everything
+under it — the hierarchy was flat.** It now sits a clear step down
+(clamp 34–66 against the product wordmarks' 56–96), so the eye goes
+headline → products, not headline == products. The four-product mark
+went from a vertical column to a single horizontal row that assembles
+left-to-right on the entrance. The four poster rows below now
+choreograph as they scroll into view — the eyebrow leads, the
+wordmark types on with a left-to-right clip wipe, the line slides in
+from the right, the meta settles last. All scroll-driven CSS, no new
+JS, fully visible under reduced motion and no-JS.
+
 ## 2026-05-17 · S·60 · tightens · the pricing page stops promising what it doesn't enforce
 
 **The pricing page said "no feature is gated behind tier." That was

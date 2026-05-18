@@ -633,11 +633,16 @@ body::after { content: none; }
   .reveal,
   .reveal-subhead,
   .reveal-stack .stack-row,
-  .reveal-scroll-cue {
+  .reveal-scroll-cue,
+  .reveal-product-row .position,
+  .reveal-product-row .mark,
+  .reveal-product-row .essence,
+  .reveal-product-row .meta {
     opacity: 1 !important;
     transform: none !important;
     translate: none !important;
     animation: none !important;
+    clip-path: none !important;
   }
   *,
   *::before,
@@ -706,14 +711,18 @@ body::after { content: none; }
   margin: 0 auto 40px;
 }
 .reveal-headline {
-  font-size: clamp(44px, 7.2vw, 104px);
-  line-height: 1.04;
-  letter-spacing: -0.045em;
+  /* Sized as a headline, not a hero wall — was clamp(44,104) which
+     read at full hero scale and crowded the page. This sits a clear
+     step below the product-row wordmarks (clamp 56–96) so the
+     hierarchy is headline → products, not headline == products. */
+  font-size: clamp(34px, 5.1vw, 66px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   font-weight: 600;
   color: var(--ink-950);
-  margin: 0 0 36px;
+  margin: 0 0 26px;
   text-align: center;
-  max-width: 1180px;
+  max-width: 920px;
 }
 .reveal-headline .line {
   display: block;
@@ -801,10 +810,14 @@ body::after { content: none; }
 
 /* ── Four-product stack ───────────────────────────────────────── */
 .reveal-stack {
+  /* Horizontal product row (was a vertical column). Reads as one
+     line of products, assembles left-to-right via RevealEngine. */
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 22px;
+  align-items: baseline;
   line-height: 1;
 }
 .reveal-stack .stack-row {
@@ -823,7 +836,9 @@ body::after { content: none; }
   background: color-mix(in srgb, var(--ink-900) 3%, transparent);
 }
 .reveal-stack .mark {
-  font-size: clamp(28px, 3.4vw, 48px);
+  /* Lighter than the headline now — this is a product nav row, not
+     four headlines. Was clamp(28,48). */
+  font-size: clamp(22px, 2.9vw, 38px);
   line-height: 0.96;
   font-weight: 600;
   letter-spacing: -0.038em;
@@ -1249,6 +1264,65 @@ body::after { content: none; }
     transform: translateY(-3px);
     transition-delay: calc(var(--ci) * 0.018s);
   }
+}
+
+/* ── Product rows · motion-graphics scroll entrance ──────────────
+   Each of the four poster rows choreographs itself as it scrolls
+   into view: the mono eyebrow leads, the giant wordmark types on
+   with a left→right clip wipe, the essence slides in from the
+   right, the meta settles last. Scroll-driven (no JS), gated to
+   no-preference + animation-timeline support. Baseline (no support
+   / no-JS) and reduced-motion: every part is visible with no
+   animation — the .reveal class on the row + the reduce block
+   above are the fallback. ──────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* The row no longer fades as one block — its children carry the
+       choreography, so neutralise the generic .reveal fade here.
+       Two-class selector outspecifies .reveal regardless of order. */
+    .reveal-product-row.reveal {
+      animation: none;
+      opacity: 1;
+      translate: none;
+    }
+    .reveal-product-row .position {
+      animation: rp-eyebrow var(--motion-slow) var(--reveal-ease-glide) both;
+      animation-timeline: view();
+      animation-range: entry 2% entry 22%;
+    }
+    .reveal-product-row .mark {
+      animation: rp-mark-wipe 920ms var(--reveal-ease-glide) both;
+      animation-timeline: view();
+      animation-range: entry 6% entry 34%;
+    }
+    .reveal-product-row .essence {
+      animation: rp-essence var(--motion-slow) var(--reveal-ease-glide) both;
+      animation-timeline: view();
+      animation-range: entry 12% entry 34%;
+    }
+    .reveal-product-row .meta {
+      animation: rp-meta var(--motion-slow) var(--reveal-ease-glide) both;
+      animation-timeline: view();
+      animation-range: entry 18% entry 40%;
+    }
+  }
+}
+@keyframes rp-eyebrow {
+  from { opacity: 0; transform: translateY(9px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rp-mark-wipe {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-14px); }
+  55%  { opacity: 1; }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); transform: translateX(0); }
+}
+@keyframes rp-essence {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes rp-meta {
+  from { opacity: 0; transform: translateY(11px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Closing block ────────────────────────────────────────────── */

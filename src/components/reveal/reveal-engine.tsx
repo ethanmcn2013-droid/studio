@@ -85,7 +85,8 @@ export function RevealEngine() {
         gsap.set(".reveal-gold-rule", { width: 132 });
         // Headline is server-rendered visible; no gsap.set needed.
         gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
-        gsap.set(".stack-row", { y: 0, opacity: 1 });
+        // Stack is now a horizontal row — clear x (and any legacy y).
+        gsap.set(".stack-row", { x: 0, y: 0, opacity: 1 });
         gsap.set(".reveal-scroll-cue", { y: 0, opacity: 1 });
         document.querySelector(".reveal-scroll-cue")?.classList.add("bob");
       };
@@ -143,7 +144,9 @@ export function RevealEngine() {
           // import. The choreography below is for everything else.
           gsap.set(".reveal-gold-rule", { width: 0 });
           gsap.set(".reveal-subhead", { y: 8, opacity: 0 });
-          gsap.set(".stack-row", { y: 10, opacity: 0 });
+          // Horizontal row: rows start offset to the left and slide
+          // in along the x-axis (was a vertical y:10 drop).
+          gsap.set(".stack-row", { x: -32, opacity: 0 });
           gsap.set(".reveal-scroll-cue", { y: 4, opacity: 0 });
 
           // ─── Entrance timeline ────────────────────────────────
@@ -166,17 +169,17 @@ export function RevealEngine() {
             0.35
           );
 
-          // Four-row stack — gentle back-out for character, not bounce.
-          // 1.4 overshoot was too springy for a restraint brand; 1.1 reads
-          // as "settled with intent".
+          // Four-product row — assembles left-to-right along the
+          // x-axis. Gentle back-out for character, not bounce: 1.1
+          // reads as "settled with intent" for a restraint brand.
           tl.to(
             ".stack-row",
             {
               opacity: 1,
-              y: 0,
-              duration: 0.5,
+              x: 0,
+              duration: 0.55,
               ease: "back.out(1.1)",
-              stagger: 0.08,
+              stagger: 0.09,
             },
             0.6
           );
