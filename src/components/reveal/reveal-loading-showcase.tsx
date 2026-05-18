@@ -26,7 +26,15 @@
 import { useEffect, useRef } from "react";
 
 const WORD = "signal studio";
-const ROLL_MS = 2600; // single roll-in, then freeze
+/**
+ * Single source of truth for the assembly duration. MUST stay numerically
+ * equal to --slx-dur in SLX_CSS below (ms here = s there). The rAF freezes
+ * the letters at ROLL_MS; the CSS dot roll runs for --slx-dur. If they
+ * drift, the dot and letters desync. Slowed 2.6s → 3.8s (operator: "slow
+ * it a small bit so people don't miss it") — savorable, still crisp.
+ */
+const ROLL_MS = 3800;
+const RISE_MS = 360; // per-letter rise; eased up from 260 to match the calmer pace
 
 export function RevealLoadingShowcase() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -102,7 +110,7 @@ export function RevealLoadingShowcase() {
           el.style.transform = "translateY(115%)";
           return;
         }
-        let p = Math.min(1, Math.max(0, (t - risenAt[i]!) / 260));
+        let p = Math.min(1, Math.max(0, (t - risenAt[i]!) / RISE_MS));
         p = easeOutCubic(p);
         el.style.opacity = p.toString();
         el.style.transform = `translateY(${(1 - p) * 115}%)`;
@@ -157,6 +165,7 @@ const SLX_CSS = `
   --slx-hairline:rgba(17,17,17,0.05);
   --slx-wm:clamp(58px,11.5vw,208px);
   --slx-roll:calc(var(--slx-wm) * 6);
+  --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
   width:100%;display:flex;justify-content:center;background:transparent;
   font-family:var(--font-geist-sans,system-ui,sans-serif);}
 .slx *{box-sizing:border-box;}
@@ -178,10 +187,10 @@ const SLX_CSS = `
 .slx-dot{position:relative;width:.16em;height:.16em;border-radius:50%;
   background:var(--slx-indigo);margin-left:.06em;align-self:flex-end;
   margin-bottom:.06em;transform-origin:center bottom;
-  animation:slx-roll 2.6s cubic-bezier(.34,1.56,.64,1) forwards;z-index:3;}
+  animation:slx-roll var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;z-index:3;}
 /* after roll, the settled dot just breathes — a gentle pulse/squeeze, forever,
    WITHOUT re-running the word assembly. */
-.slx-settled .slx-dot{animation:slx-breathe 3.4s ease-in-out infinite;}
+.slx-settled .slx-dot{animation:slx-breathe 3.8s ease-in-out infinite;}
 @keyframes slx-roll{
  0%{transform:translate(calc(-1 * var(--slx-roll)),0) scale(1,1);opacity:0}
  6%{transform:translate(calc(-1 * var(--slx-roll)),0) scale(1,1);opacity:1}
@@ -200,9 +209,9 @@ const SLX_CSS = `
 .slx-trail{position:absolute;width:.16em;height:.16em;border-radius:50%;
   background:var(--slx-indigo);align-self:flex-end;margin-bottom:.06em;
   margin-left:.06em;opacity:0;z-index:2;}
-.slx-t1{animation:slx-ghost1 2.6s cubic-bezier(.34,1.56,.64,1) forwards;}
-.slx-t2{animation:slx-ghost2 2.6s cubic-bezier(.34,1.56,.64,1) forwards;}
-.slx-t3{animation:slx-ghost3 2.6s cubic-bezier(.34,1.56,.64,1) forwards;}
+.slx-t1{animation:slx-ghost1 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
+.slx-t2{animation:slx-ghost2 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
+.slx-t3{animation:slx-ghost3 var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) forwards;}
 @keyframes slx-ghost1{0%,8%{transform:translate(calc(-1 * var(--slx-roll)),0);opacity:0}
  22%{transform:translate(calc(-0.85 * var(--slx-roll)),0);opacity:.45}
  42%{transform:translate(calc(-0.2 * var(--slx-roll)),0);opacity:.22}
@@ -219,11 +228,11 @@ const SLX_CSS = `
 .slx-ripple{position:absolute;width:.16em;height:.16em;border-radius:50%;
   border:1px solid var(--slx-indigo);background:transparent;align-self:flex-end;
   margin-bottom:.06em;margin-left:.06em;opacity:0;transform:scale(1);
-  animation:slx-rip-fast 2.6s cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
+  animation:slx-rip-fast var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
 .slx-ripple-slow{position:absolute;width:.16em;height:.16em;border-radius:50%;
   border:1px solid var(--slx-indigo-300);background:transparent;align-self:flex-end;
   margin-bottom:.06em;margin-left:.06em;opacity:0;transform:scale(1);
-  animation:slx-rip-slow 2.6s cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
+  animation:slx-rip-slow var(--slx-dur,3.8s) cubic-bezier(.22,.7,.2,1) forwards;z-index:1;}
 @keyframes slx-rip-fast{0%,63%{transform:scale(1);opacity:0}
  66%{transform:scale(1);opacity:.65}88%{transform:scale(10);opacity:0}
  100%{transform:scale(10);opacity:0}}
