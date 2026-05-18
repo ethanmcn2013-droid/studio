@@ -146,18 +146,22 @@ export function RevealLoadingShowcase() {
 
 /* Fully scoped. Single-iteration roll → freeze; only the dot keeps a slow breathe. */
 const SLX_CSS = `
-.reveal-loading-showcase{display:flex;justify-content:center;
-  width:100%;padding:8px 16px 56px;background:transparent;}
+/* HERO-SCALE: the assembling wordmark is the front-door hero. In-flow,
+   overflow-clipped (the dot rolls in from off-canvas) — never fixed. */
+.reveal-loading-showcase{display:flex;align-items:center;
+  justify-content:center;width:100%;overflow:hidden;background:transparent;
+  min-height:min(86vh,860px);
+  padding:clamp(92px,15vh,184px) 16px clamp(36px,7vh,88px);}
 .slx{
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
-  --slx-wm:clamp(34px,5.6vw,84px);
-  --slx-roll:calc(var(--slx-wm) * 9.5);
+  --slx-wm:clamp(58px,11.5vw,208px);
+  --slx-roll:calc(var(--slx-wm) * 6);
   width:100%;display:flex;justify-content:center;background:transparent;
   font-family:var(--font-geist-sans,system-ui,sans-serif);}
 .slx *{box-sizing:border-box;}
 .slx-stage{position:relative;display:flex;align-items:center;
-  justify-content:center;min-height:calc(var(--slx-wm) * 1.9);}
+  justify-content:center;min-height:calc(var(--slx-wm) * 1.7);}
 .slx-composer{position:relative;display:inline-flex;align-items:baseline;
   font-weight:500;font-size:var(--slx-wm);line-height:.95;
   letter-spacing:-.03em;color:var(--slx-ink);

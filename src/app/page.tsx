@@ -35,8 +35,8 @@ export default async function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
-      <RevealHero />
       <RevealLoadingShowcase />
+      <RevealHero />
       <RevealManifesto />
       <RevealProducts />
       <RevealClosing />
