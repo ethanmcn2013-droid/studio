@@ -64,7 +64,7 @@ const LAYERS = [
         "Brief MC on Tom's toast — ceremony",
       ],
     },
-    outcome: "5 tasks. 4 tags. 0 setup.",
+    outcome: "3 tasks promoted. 4 tags. 0 setup.",
   },
   {
     n: "3",

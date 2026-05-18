@@ -440,7 +440,7 @@ export default async function PricingPage({
                       }}
                     >
                       <span className="pricing-anchor-dot" aria-hidden />
-                      Most chosen
+                      For ongoing work
                     </span>
                   ) : null}
                 </div>
@@ -650,7 +650,7 @@ export default async function PricingPage({
                           }}
                         >
                           <span className="pricing-anchor-dot" aria-hidden />
-                          Most chosen
+                          For ongoing work
                         </div>
                       ) : null}
                       <div
@@ -755,7 +755,7 @@ export default async function PricingPage({
                       }}
                     >
                       <span className="pricing-anchor-dot" aria-hidden />
-                      Most chosen
+                      For ongoing work
                     </div>
                   ) : null}
                   <div
@@ -1122,6 +1122,7 @@ export default async function PricingPage({
                     letterSpacing: "var(--tracking-eyebrow)",
                     textTransform: "uppercase",
                     fontWeight: 600,
+                    display: "block",
                   }}
                 >
                   Annual · prepaid
@@ -1133,13 +1134,14 @@ export default async function PricingPage({
                     fontWeight: 600,
                     letterSpacing: "-0.045em",
                     lineHeight: 1,
+                    display: "block",
                   }}
                 >
                   €1,500–€4,000
                 </span>
                 <span
                   className="text-ink-quiet"
-                  style={{ fontSize: 13, lineHeight: 1.5 }}
+                  style={{ fontSize: 13, lineHeight: 1.5, display: "block" }}
                 >
                   a year, by venue size
                 </span>

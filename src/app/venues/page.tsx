@@ -19,10 +19,6 @@ const weddingsHref = withTracking("/weddings", {
   ...VENUE_SITE_TRACKING,
   artifact: "weddings_page",
 });
-const demoHref = withTracking("/venues/demo", {
-  ...VENUE_SITE_TRACKING,
-  artifact: "venue_demo",
-});
 const examplePlanHref = withTracking("https://roadmap.signalstudio.ie/the-wedding", {
   ...VENUE_SITE_TRACKING,
   artifact: "example_plan",
@@ -127,12 +123,14 @@ export default async function VenuesPage({
               >
                 Talk to us about your venue
               </Link>
-              <Link
-                href={demoHref}
+              <a
+                href={examplePlanHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                Watch the 60-second path &rarr;
-              </Link>
+                See an example plan &rarr;
+              </a>
               <Link
                 href={weddingsHref}
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
@@ -180,8 +178,8 @@ export default async function VenuesPage({
                   think about it.
                 </p>
                 <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
-                  The founding cohort — the first fifteen venues — locks
-                  €1,500 a year for as long as it stays. Not an introductory
+                  The founding cohort — the first fifteen venues — lock
+                  €1,500 a year for as long as they stay. Not an introductory
                   rate that climbs. A standing that holds.
                 </p>
               </div>
