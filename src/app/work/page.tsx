@@ -112,6 +112,7 @@ export default function WorkPage() {
                     >
                       {item.year}
                     </span>
+                    <span className="font-mono text-[11px] text-ink-faint" aria-hidden>·</span>
                     <span
                       className="text-[11px] font-medium uppercase"
                       style={{

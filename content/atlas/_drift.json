@@ -11,15 +11,22 @@
     "drifted": [
       "src/app/pricing/"
     ],
-    "updatedAt": "2026-05-18T19:32:39.375Z",
-    "byCommit": "3ab87f1"
+    "updatedAt": "2026-05-18T20:22:32.216Z",
+    "byCommit": "63885fb"
   },
   "signal-studio-umbrella": {
     "drifted": [
       "src/app/pricing/",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-18T19:32:39.375Z",
-    "byCommit": "3ab87f1"
+    "updatedAt": "2026-05-18T20:22:32.216Z",
+    "byCommit": "63885fb"
+  },
+  "analytics-daily-cron": {
+    "drifted": [
+      "~/Projects/personal/analytics/src/lib/briefing/voice.ts"
+    ],
+    "updatedAt": "2026-05-18T20:21:23.081Z",
+    "byCommit": "071e6b6"
   }
 }
