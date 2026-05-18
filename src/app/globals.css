@@ -3272,6 +3272,275 @@ body::after { content: none; }
   .hq-trac-burn-fill { transition: none; }
 }
 
+/* ── Proof gate (the one scoreboard, directly under the masthead) ─── */
+.hq-pg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.hq-pg-eyebrow, .hq-pg-stamp {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-quiet);
+}
+.hq-pg-stamp { color: var(--ink-faint); }
+.hq-pg[data-state="inert"] .hq-pg-stamp,
+.hq-pg[data-state="expired"] .hq-pg-stamp { color: var(--hq-crit); }
+
+/* The clock sentence — load-bearing, read in full. Severe when inert. */
+.hq-pg-clock {
+  margin: 0 0 1.75rem;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  padding-left: 0.95rem;
+  border-left: 2px solid var(--ink-faint);
+}
+.hq-pg[data-state="inert"] .hq-pg-clock,
+.hq-pg[data-state="expired"] .hq-pg-clock {
+  border-left-color: var(--hq-crit);
+  color: var(--ink);
+}
+
+/* Milestone rail — the dated forcing function, horizontal. */
+.hq-pg-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 0 0 1.9rem;
+  padding: 0;
+  list-style: none;
+}
+.hq-pg-rail-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--ink-quiet);
+}
+.hq-pg-rail-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  align-self: center;
+}
+.hq-pg-rail-item[data-done="true"] .hq-pg-rail-dot { background: var(--accent); }
+.hq-pg-rail-item[data-missed="true"] .hq-pg-rail-dot { background: var(--hq-crit); }
+.hq-pg-rail-item[data-missed="true"] .hq-pg-rail-date { color: var(--hq-crit); }
+.hq-pg-rail-date { color: var(--ink-faint); }
+
+/* The five metrics — a sober list, not a card grid. */
+.hq-pg-metrics {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--hairline-2);
+}
+.hq-pg-metric {
+  display: grid;
+  grid-template-columns: 12rem 4.5rem 1fr;
+  align-items: baseline;
+  gap: 0.75rem 1.1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--hairline-2);
+}
+.hq-pg-metric-name {
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+}
+.hq-pg-metric-num {
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.hq-pg-metric[data-met="true"] .hq-pg-metric-num { color: var(--accent); }
+.hq-pg-metric-target {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.hq-pg-metric-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-quiet);
+}
+.hq-pg-metric--dark { grid-template-columns: 12rem 1fr; }
+.hq-pg-metric-dark {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.hq-pg-foot {
+  margin: 1.4rem 0 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  color: var(--ink-faint);
+  max-width: 64ch;
+}
+@media (max-width: 560px) {
+  .hq-pg-metric,
+  .hq-pg-metric--dark {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+/* ── Forcing function (the inert-clock screen) ─────────────────────── */
+.hq-ff {
+  padding: 2.4rem 0 0;
+  max-width: 68ch;
+}
+.hq-ff-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hq-crit);
+}
+.hq-ff-headline {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.hq-ff-clock {
+  margin: 1rem 0 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--hq-crit);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.hq-ff-act {
+  margin: 1.8rem 0 0;
+  padding: 1.3rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--hq-r);
+  box-shadow: var(--hq-shadow);
+}
+.hq-ff-act-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.hq-ff-act-venue {
+  margin: 0.5rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.hq-ff-act-loc {
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.hq-ff-act-to {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.hq-ff-act-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  margin: 1rem 0 0;
+}
+.hq-ff-act-go {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+}
+.hq-ff-act-go:hover {
+  opacity: 0.8;
+}
+.hq-ff-act-then {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 38ch;
+}
+.hq-ff-act-foot {
+  margin: 1rem 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink-faint);
+}
+.hq-ff-mono {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.hq-ff-deadline {
+  margin: 1.4rem 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.hq-ff-deadline[data-missed="true"] {
+  color: var(--hq-crit);
+}
+.hq-ff-rest {
+  margin: 2.2rem 0 0;
+  border-top: 1px solid var(--hairline);
+}
+.hq-ff-rest-summary {
+  padding: 1.2rem 0 0;
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  cursor: pointer;
+  list-style: none;
+}
+.hq-ff-rest-summary::-webkit-details-marker {
+  display: none;
+}
+.hq-ff-rest-summary::after {
+  content: " ↓";
+}
+.hq-ff-rest[open] .hq-ff-rest-summary::after {
+  content: " ↑";
+}
+.hq-ff-rest-note {
+  margin: 0.7rem 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink-faint);
+  max-width: 56ch;
+}
+.hq-ff-rest-body {
+  margin: 1.8rem 0 0;
+}
+.hq-ff-rest-body > * + * {
+  margin-top: 2.4rem;
+}
+
 /* ── System (the demoted dashboard, behind a disclosure) ──────────── */
 .hq-system { border-top: 1px solid var(--hairline); }
 .hq-system-summary {
