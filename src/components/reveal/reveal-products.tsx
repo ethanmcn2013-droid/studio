@@ -138,6 +138,32 @@ export function RevealProducts() {
         href={ANALYTICS_URL}
         external
       />
+
+      {/*
+        Per-product dot identity (operator: "each product will have their own
+        animated dot · every tiny piece feels individually cared for").
+        Notes' signature, ported from the operator's Notes loader: the dot
+        morphs into a blinking text caret — the "held thought, awaiting input"
+        gesture. Scoped to the notes row only, in-flow, reduced-motion-safe,
+        NO overlay/fixed (loader-safety canon). Seeds the pattern; the other
+        products' gestures slot in here when their loaders land.
+      */}
+      <style>{`
+        .reveal-product-row[data-key="notes"] .dot{
+          transform-origin:center bottom;
+          animation:rpn-caret .55s cubic-bezier(.22,.7,.2,1) .25s 1 forwards,
+                    rpn-blink 1.06s steps(1,end) .9s infinite;
+        }
+        @keyframes rpn-caret{
+          0%{width:.16em;height:.16em;border-radius:50%}
+          100%{width:.075em;height:.78em;border-radius:.02em}
+        }
+        @keyframes rpn-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+        @media (prefers-reduced-motion:reduce){
+          .reveal-product-row[data-key="notes"] .dot{
+            animation:none;width:.075em;height:.78em;border-radius:.02em}
+        }
+      `}</style>
     </section>
   );
 }
