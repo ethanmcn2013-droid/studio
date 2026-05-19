@@ -3,6 +3,24 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-19 · S·63 · ships · four visible pills, not a hidden popover
+
+**Signed in, every surface in the suite now shows the four products as
+always-visible pills at the top — one click to switch, zero clicks to see
+where you can go.** The cross-product switch was a dropdown hidden behind a
+faint "signal studio." text label; nothing told you the other three
+products were a click away. There is now one canonical `SuiteSwitcher`,
+copied byte-identical into all five repos, carrying the umbrella anchor
+once, the dot-morph transition, hover-prefetch and origin preconnect. The
+umbrella authed homepage drops the old `product-pills` for the same
+component, so the suite reads as one surface. The popover is kept where a
+pill row does not fit or does not belong — the unauthed marketing nav, the
+narrow Tasks sidebar, and the public Roadmap shared-plan header (pills must
+not leak to a forwarded plan's guest). Restraint held: the pills are quiet
+at rest, only the current one carries the indigo dot. DESIGN.md §14 amended
+so the popover is not reinstated by a later hand. All five repos build
+clean; all five prod domains verified 200, app entries 307 to auth.
+
 ## 2026-05-18 · S·62 · ships · the brand page carries the real kit, not a hand-list
 
 **The /brand asset library pointed at ~18 older bespoke SVGs while the

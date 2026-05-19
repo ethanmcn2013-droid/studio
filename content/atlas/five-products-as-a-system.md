@@ -3,7 +3,7 @@ title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-18
+lastVerified: 2026-05-19
 links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
 tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem, design system v1, wordmark gestures]
 references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/brand/wordmark.tsx]
@@ -59,6 +59,7 @@ The four products run as **autonomous units** that interact through three explic
 ### The one shared layer
 
 - **Pricing and entitlements.** Every product reads from the shared `signal-entitlements` Turso DB via the copy-pasted `entitlements-shared` module (see [[pricing-and-entitlements]]). Tasks owns the Stripe webhook; Studio owns the admin grant surfaces; every product reads.
+- **The suite switcher.** When signed in, every authed surface mounts the canonical `SuiteSwitcher` — an always-visible four-product pill row (`src/components/.../suite-switcher-pills.tsx`, copied byte-identical into all five repos; only the `current` prop differs). It carries the umbrella anchor once, the dot-morph jump, hover-prefetch and origin preconnect, so the four subdomains feel like one surface (perceived continuity, not a true SPA). The older click-to-open `SuiteLauncher` popover is retained only where a pill row does not fit or belong: the unauthed marketing nav, the narrow Tasks sidebar, and the public Roadmap shared-plan header. Canonical spec: BRAND/DESIGN.md §14 (amended 2026-05-19, S·63).
 
 ### Boundaries the products *don't* cross
 

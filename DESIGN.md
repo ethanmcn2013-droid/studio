@@ -431,6 +431,35 @@ All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lo
 
 **Authored 2026-05-18. This section is the contract that Tasks, Notes, Analytics, and Roadmap implement against. Copy the spec exactly; do not diverge. Studio is the reference implementation.**
 
+> **AMENDMENT 2026-05-19 — the authed switcher is always-visible pills, not a popover.**
+> The original §14 specified the cross-product switcher as a *dropdown behind
+> the "signal studio." text trigger* (the `SuiteLauncher` popover). In authed
+> app context this proved a discoverability failure: zero of the four products
+> are visible until the operator finds and clicks a faint text label. The
+> authed switcher is now an **always-visible 4-product pill row** —
+> `SuiteSwitcher` in `src/components/layout/suite-switcher-pills.tsx`,
+> copied **byte-identical** into all five repos (only the `current` prop
+> differs; omit `current` and pass `showUmbrella={false}` on the umbrella
+> launcher). It carries the umbrella anchor exactly once, the dot-morph
+> transition, hover-prefetch, and origin preconnect. It is portable
+> (inline styles + scoped `<style>`, no Tailwind/token dependency).
+>
+> The `SuiteLauncher` popover is **retained, not deleted** — it remains the
+> correct affordance in two contexts where a pill row does not fit or does
+> not belong: (1) the **unauthed marketing nav** (low chrome, one product in
+> view), and (2) **narrow/public surfaces** — the Tasks app sidebar (252px
+> vertical rail) and the Roadmap public workspace-header (a forwarded
+> shared-plan view guests see; suite pills must not leak there).
+>
+> Restraint clause: an always-on bar is more chrome than "Nothing
+> distracting" prefers, so the pills are deliberately quiet — text-only at
+> rest, no boxes/borders, `ink-faint`; only the current product carries the
+> indigo gesture dot + a faint wash. Deferred polish (named, not silently
+> dropped): the retired `product-pills.tsx` had a gliding rest-state dot;
+> porting it into the byte-identical canonical component is optional future
+> refinement, held back here because it cannot be pixel-verified across five
+> repos in one pass.
+
 ### Problem
 
 When a user is signed in, every product currently renders its public marketing homepage. This is not a session bug — the shared Clerk PROD instance already keeps the user authenticated across `*.signalstudio.ie`. The failure is purely presentational: the marketing nav shows "Sign in / Start for free" while the Clerk avatar sits in the corner proving the user is logged in. The user reads this as "I am logged out of this product." Scope: routing and nav presentation only. Session infrastructure is correct and untouched.

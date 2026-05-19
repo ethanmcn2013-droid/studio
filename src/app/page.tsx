@@ -3,7 +3,7 @@ import { RevealEngine } from "@/components/reveal/reveal-engine";
 import { RevealHero } from "@/components/reveal/reveal-hero";
 import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
 import { RevealLoadingShowcase } from "@/components/reveal/reveal-loading-showcase";
-import { ProductPills } from "@/components/layout/product-pills";
+import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
@@ -24,10 +24,16 @@ export default async function Home() {
   const isAuthed = headersList.get("x-signal-authed") === "1";
 
   if (isAuthed) {
-    // Pills are an app-user affordance only — never on the public front door.
+    // §14 (amended 2026-05-19): the canonical SuiteSwitcher pills — the
+    // same component the four product app-chromes render, so the suite
+    // feels like one surface. No `current` (you are on the umbrella, not
+    // in a product); no umbrella anchor (you are already here). The
+    // full-page launcher grid stays below as the richer "jump back in".
     return (
       <>
-        <ProductPills />
+        <div className="flex w-full justify-center px-4 pt-[18px]">
+          <SuiteSwitcher showUmbrella={false} />
+        </div>
         <SuiteLauncher />
       </>
     );
