@@ -3,6 +3,23 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-19 · S·64 · ships · Analytics stops looking broken on the way in
+
+**Navigating into Analytics no longer shows a naked indigo dot on white
+for three-and-a-half seconds — it now streams the chrome instantly and the
+quiet day gives you somewhere to go.** A recording walkthrough caught it:
+there was no `loading.tsx` anywhere under Analytics' `src/app/`, so the
+authed route blocked with zero streaming and a stray cross-origin dot read
+as a bug, not a load. Two byte-identical DESIGN.md §13 boundaries now paint
+the static dot and stream the header immediately. The quiet-day empty state
+was a dead end — "the board is clear" and nothing to do; it now carries one
+calm line, a time anchor and a link back to the Tasks workspace, without
+breaking the spare register. Plus §3/§10 typography conformance and a
+FocusBlock that no longer reads promotional against the editorial surface.
+A four-director panel cleared it through a 9.5 gate twice over. This shipped
+strictly as the freeze's L0–3 defect carve-out — a thing that looked broken,
+now fixed — not new product. The founder outreach is still the work.
+
 ## 2026-05-19 · S·63 · ships · four visible pills, not a hidden popover
 
 **Signed in, every surface in the suite now shows the four products as
