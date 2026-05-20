@@ -698,13 +698,27 @@ export default function BrandPage() {
                 style={{ background: "rgba(255,255,255,0.18)" }}
                 aria-hidden
               />
-              <iframe
-                src="/brand/loader.html"
-                title="signal studio. mobile loader"
-                loading="lazy"
-                className="block rounded-[34px] border-0 bg-[#fafaf7]"
+              {/* Loader.html is designed for a real phone viewport (390×844).
+                  Render at native iPhone resolution and scale-transform to fit
+                  the 244×528 aperture — preserves hero wordmark scale + keeps
+                  the downloadable .html byte-identical to the standalone. */}
+              <div
+                className="overflow-hidden rounded-[34px] bg-[#fafaf7]"
                 style={{ width: 244, height: 528 }}
-              />
+              >
+                <iframe
+                  src="/brand/loader.html"
+                  title="signal studio. mobile loader"
+                  loading="lazy"
+                  className="block border-0 bg-[#fafaf7]"
+                  style={{
+                    width: 390,
+                    height: 844,
+                    transformOrigin: "top left",
+                    transform: "scale(0.6257)",
+                  }}
+                />
+              </div>
             </div>
           </div>
 

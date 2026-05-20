@@ -6,8 +6,8 @@
       "src/app/brand/page.tsx",
       "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-20T12:10:54.695Z",
-    "byCommit": "8f4bd54"
+    "updatedAt": "2026-05-20T12:40:00.305Z",
+    "byCommit": "e503c25"
   },
   "pricing-and-entitlements": {
     "drifted": [
@@ -23,8 +23,8 @@
       "src/app/brand/",
       "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-19T19:04:46.316Z",
-    "byCommit": "280d7a9"
+    "updatedAt": "2026-05-20T12:40:00.305Z",
+    "byCommit": "e503c25"
   },
   "analytics-daily-cron": {
     "drifted": [
