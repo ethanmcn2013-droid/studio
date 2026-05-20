@@ -3,10 +3,11 @@
     "drifted": [
       "DESIGN.md",
       "src/app/globals.css",
-      "src/app/brand/page.tsx"
+      "src/app/brand/page.tsx",
+      "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-19T15:10:40.263Z",
-    "byCommit": "67f0483"
+    "updatedAt": "2026-05-20T12:10:54.695Z",
+    "byCommit": "8f4bd54"
   },
   "pricing-and-entitlements": {
     "drifted": [
@@ -19,10 +20,11 @@
     "drifted": [
       "src/app/pricing/",
       "src/components/landing/",
-      "src/app/brand/"
+      "src/app/brand/",
+      "src/components/brand/wordmark.tsx"
     ],
-    "updatedAt": "2026-05-18T20:34:18.775Z",
-    "byCommit": "49e5dcd"
+    "updatedAt": "2026-05-19T19:04:46.316Z",
+    "byCommit": "280d7a9"
   },
   "analytics-daily-cron": {
     "drifted": [
@@ -35,21 +37,28 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-19T15:26:38.355Z",
-    "byCommit": "821e126"
+    "updatedAt": "2026-05-19T20:06:52.681Z",
+    "byCommit": "4db4892"
   },
   "log-cycle-cross-repo-writer": {
     "drifted": [
       "~/Projects/personal/notes/src/server/actions/notes.ts"
     ],
-    "updatedAt": "2026-05-19T15:10:40.263Z",
-    "byCommit": "67f0483"
+    "updatedAt": "2026-05-19T18:34:07.376Z",
+    "byCommit": "3768af4"
   },
   "turso-databases-and-reads": {
     "drifted": [
       "~/Projects/personal/notes/src/server/actions/notes.ts"
     ],
-    "updatedAt": "2026-05-19T15:10:40.263Z",
-    "byCommit": "67f0483"
+    "updatedAt": "2026-05-19T18:34:07.376Z",
+    "byCommit": "3768af4"
+  },
+  "five-products-as-a-system": {
+    "drifted": [
+      "src/components/brand/wordmark.tsx"
+    ],
+    "updatedAt": "2026-05-19T19:04:46.316Z",
+    "byCommit": "280d7a9"
   }
 }

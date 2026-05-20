@@ -702,7 +702,7 @@ body::after { content: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 64px 32px 120px;
+  padding: 64px 32px 144px;
 }
 .reveal-gold-rule {
   width: 0;
@@ -821,8 +821,8 @@ body::after { content: none; }
   line-height: 1;
 }
 .reveal-stack .stack-row {
-  /* JS-progressive: GSAP hijacks to opacity:0/translateY(10px) on first
-     tick (reveal-engine.tsx:89). Default visible for no-JS. */
+  /* JS-progressive: GSAP hijacks to opacity:0/translateX(-32px) on first
+     visit (reveal-engine.tsx:179). Default visible for no-JS. */
   opacity: 1;
   transform: none;
   will-change: transform, opacity;
@@ -975,7 +975,7 @@ body::after { content: none; }
 .reveal-manifesto {
   max-width: 760px;
   margin: 0 auto;
-  padding: 160px 32px 120px;
+  padding: 144px 32px 144px;
 }
 .reveal-manifesto-eyebrow {
   font-family: var(--font-mono-stack);
@@ -1021,7 +1021,7 @@ body::after { content: none; }
 .reveal-proof {
   max-width: 760px;
   margin: 0 auto;
-  padding: 40px 32px 120px;
+  padding: 96px 32px 144px;
 }
 .reveal-proof-eyebrow {
   font-family: var(--font-mono-stack);
@@ -1100,7 +1100,7 @@ body::after { content: none; }
 .reveal-products {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 32px 64px;
+  padding: 48px 32px 96px;
 }
 .reveal-products-head {
   font-family: var(--font-mono-stack);
@@ -1329,7 +1329,7 @@ body::after { content: none; }
 .reveal-closing {
   max-width: 760px;
   margin: 0 auto;
-  padding: 72px 32px 88px;
+  padding: 96px 32px 144px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1384,7 +1384,7 @@ body::after { content: none; }
 /* ── Mobile breakpoints ───────────────────────────────────────── */
 @media (max-width: 880px) {
   .reveal-hero {
-    padding: 32px 24px 80px;
+    padding: 40px 24px 96px;
     min-height: calc(100vh - 100px);
   }
   .reveal-headline {
@@ -1405,10 +1405,10 @@ body::after { content: none; }
     margin-top: 56px;
   }
   .reveal-manifesto {
-    padding: 96px 24px 64px;
+    padding: 96px 24px 96px;
   }
   .reveal-proof {
-    padding: 24px 24px 80px;
+    padding: 32px 24px 96px;
   }
   .reveal-proof-h2 {
     margin-bottom: 36px;
@@ -1448,7 +1448,7 @@ body::after { content: none; }
     flex-basis: 100%;
   }
   .reveal-closing {
-    padding: 88px 24px 72px;
+    padding: 80px 24px 96px;
     gap: 22px;
   }
   .reveal-closing-sign {

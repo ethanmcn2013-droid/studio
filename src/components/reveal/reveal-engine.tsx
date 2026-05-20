@@ -200,29 +200,30 @@ export function RevealEngine() {
           );
 
           // Four-product row — assembles left-to-right along the
-          // x-axis. Gentle back-out for character, not bounce: 1.1
-          // reads as "settled with intent" for a restraint brand.
+          // x-axis. Slower ride (0.95s, stagger 0.18s) so visitors can
+          // actually read each wordmark as it lands — the prior 0.55/0.09
+          // tempo blew through the four products faster than recognition.
           tl.to(
             ".stack-row",
             {
               opacity: 1,
               x: 0,
-              duration: 0.55,
-              ease: "back.out(1.1)",
-              stagger: 0.09,
+              duration: 0.95,
+              ease: "back.out(0.7)",
+              stagger: 0.18,
             },
-            0.6
+            0.55
           );
 
-          // Each brand gesture fires as its row lands — choreographed to
-          // cascade top-to-bottom in the operator-directed stack order
-          // (notes → tasks → roadmap → analytics, 2026-05-18).
-          // P3-3 fix: roadmap added at t=1.28s so all four products have
-          // their gesture active after the entrance completes.
-          tl.add(() => fire("notes"), 1.0)
-            .add(() => fire("tasks"), 1.16)
-            .add(() => fire("roadmap"), 1.28)
-            .add(() => fire("analytics"), 1.4);
+          // Each brand gesture fires ~250ms after its row finishes landing,
+          // cascading top-to-bottom in the operator-directed stack order
+          // (notes → tasks → roadmap → analytics, 2026-05-18). Retimed to
+          // match the slowed wordmark cadence — gestures no longer collide
+          // with the still-arriving row.
+          tl.add(() => fire("notes"), 1.55)
+            .add(() => fire("tasks"), 1.85)
+            .add(() => fire("roadmap"), 2.15)
+            .add(() => fire("analytics"), 2.45);
 
           // Scroll cue arrives while the visitor is still looking at the hero,
           // not 3 seconds after they've already decided to leave.
@@ -247,7 +248,7 @@ export function RevealEngine() {
                 }
               },
             },
-            1.7
+            2.7
           );
 
           // Secondary sections below the hero now use the CSS .reveal
