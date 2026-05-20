@@ -59,6 +59,15 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      {
+        // The /brand page iframes loader.html same-origin. Site-wide
+        // X-Frame-Options: DENY blocks that and renders a broken-doc icon
+        // in the phone frame. Allow same-origin framing for this asset only.
+        source: "/brand/loader.html",
+        headers: securityHeaders.map((h) =>
+          h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
+        ),
+      },
     ];
   },
 };
