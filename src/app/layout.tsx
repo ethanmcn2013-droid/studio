@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     SITE_URL
   ),
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: "Signal Studio · Project management for the 80% not in tech.",
     description:

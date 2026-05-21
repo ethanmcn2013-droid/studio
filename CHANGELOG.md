@@ -3,6 +3,10 @@
 The umbrella dispatch. The four products keep their own; this one
 carries what coalesced across the suite. Convention: BRAND.md §6.5.
 
+## 2026-05-21 · S·65 · ships · the suite is installable, the iOS submission paperwork is on file
+
+**The umbrella and the four products now install to a home screen with their own wordmark tile; in-app account deletion is reachable from the avatar dropdown across the suite; the App Store submission artifacts (privacy labels, data-flow disclosure, listing copy) are drafted and on file ahead of the post-July submission window.** Across the four product repos, a typed-email account-delete confirms in place and irreversibly wipes the user's footprint in that product's database, then closes the Signal identity. Each product installs as its own PWA with the correct paper canvas, wordmark Apple touch icon, and maskable Android tile in the brand's signature shape. The umbrella adds the same install plumbing and a cross-suite Today aggregation endpoint behind a server-to-server shared key, ready for the native iOS Today screen to hit. A submission-artifacts folder carries the App Privacy nutrition label disclosure, the data-flow map, the iOS 17 manifest template, the listing copy through the brand voice gate, and the Apple sign-in runbook. An iPhone-width responsive audit script gives the operator a one-command Playwright sweep at 320 / 375 / 390 / 393 / 414 / 430. The iOS submission window opens later this summer once both Roadmap and Analytics hold their quality bar; the paperwork is no longer the long pole.
+
 ## 2026-05-19 · S·64 · ships · Analytics stops looking broken on the way in
 
 **Navigating into Analytics no longer shows a naked indigo dot on white
