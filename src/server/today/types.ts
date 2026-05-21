@@ -100,3 +100,101 @@ export type TodayRequest = {
    *  isn't available (some product DBs key by email only). */
   email: string;
 };
+
+// ── iOS-native Today payload (per IOS_TODAY_DOC_IA_2026_05_21 §8b) ─────────
+//
+// The native iOS Today document is a server-rendered presentation layer
+// on top of `TodayResponse`. The native client is dumb — it does not
+// own timezone logic, greeting phrasing, or "should section X be
+// visible right now" decisions. The server owns all of that so a single
+// truth holds across web seamless-ecosystem and iOS.
+//
+// `TodayNativePayload` is consumed by `/api/native/today`.
+
+export type TodayProductSlug = "tasks" | "notes" | "roadmap" | "analytics";
+
+export type TodaySectionId = "today" | "evening" | "upcoming" | "caught";
+
+export type TodayNativeItem = {
+  /** Stable id for this row (workspace id, milestone slug, synthetic id). */
+  id: string;
+  /** Which product this row routes into. */
+  productSlug: TodayProductSlug;
+  /** Display title — workspace name, milestone title, note excerpt. */
+  title: string;
+  /** Secondary line — counts, target date, relative time. Optional. */
+  meta?: string;
+  /** Canonical product URL the iOS shell opens in the product WebView. */
+  deepLink: string;
+  /** Whether the leading circle on R4/R5 should be tap-to-toggle. False
+   *  for workspace-summary rows; will be true once the aggregator grows
+   *  task-item-level granularity. Stays false in v1. */
+  canCheck?: boolean;
+  /** Whether the row is already complete. Stays false in v1. */
+  isComplete?: boolean;
+};
+
+export type TodayNativeSection = {
+  id: TodaySectionId;
+  /** Server-decides — iOS client renders if `true`, hides if `false`. */
+  visible: boolean;
+  items: TodayNativeItem[];
+};
+
+export type TodayNativeGreeting = {
+  /** "Good morning, Anya." — full phrase, ready to render. */
+  phrase: string;
+  /** "Thursday, 21 May" — editorial date string in user's locale. */
+  dateString: string;
+};
+
+export type TodayNativeAnchor = {
+  /** Pre-formatted display string for the New York-serif numeral.
+   *  E.g. "12", "0", "—" when no data. */
+  numeral: string;
+  /** Short label below the numeral. E.g. "tasks done this week". */
+  label: string;
+  /** Optional second line. E.g. "Thursday was your busiest." */
+  supportingLine?: string;
+  /** Which product the anchor card routes into on tap. */
+  productSlug: TodayProductSlug;
+  /** Canonical product URL the iOS shell opens on anchor tap. */
+  deepLink: string;
+};
+
+export type TodayNativeUser = {
+  /** Display name — first name preferred, falls back to email-local-part. */
+  name: string;
+  /** IANA timezone the user lives in. Drives §2 time-of-day logic. */
+  timezone: string;
+  /** BCP 47 locale, e.g. "en-IE". Drives date formatting. */
+  locale: string;
+};
+
+export type TodayNativeMeta = {
+  /** Unix ms when the underlying aggregator data was fetched. */
+  lastUpdated: string;
+  /** Unix ms when this shaped payload was generated. */
+  serverGeneratedAt: string;
+  /** Reads health map — surfaces partial-product outages to the client. */
+  reads: TodayResponse["reads"];
+};
+
+export type TodayNativePayload = {
+  user: TodayNativeUser;
+  greeting: TodayNativeGreeting;
+  anchor: TodayNativeAnchor;
+  sections: TodayNativeSection[];
+  meta: TodayNativeMeta;
+};
+
+export type TodayNativeRequest = TodayRequest & {
+  /** User's display name. Client supplies — aggregator doesn't return it. */
+  name?: string;
+  /** IANA timezone. Optional — falls back to analytics.timezone, then UTC. */
+  timezone?: string;
+  /** BCP 47 locale. Optional — falls back to "en-IE". */
+  locale?: string;
+  /** Override "now" for deterministic testing. Server-only. */
+  nowMs?: number;
+};
