@@ -412,6 +412,10 @@ export default function Loading() {
 
 All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lock). The white-lock ratified 2026-05-16 (warm Stone ramp rejected for product use).
 
+### Shimmer skeleton — Roadmap-only (2026-05-22 clarification)
+
+The §13 dot loader above is the canonical loading-boundary pattern for **all five** repos. Roadmap **also** carries a `.skeleton-shimmer` CSS rule and a paired `--paper-bone` (#ebebec, ~L*92) trough token in its own `globals.css`, used inside the curation surface for in-flow row skeletons. This is intentional and Roadmap-only — the other four repos do not (and as of 2026-05-22 should not) carry the shimmer rule or the `--paper-bone` token. If a future suite-wide skeleton pattern is reintroduced, the canonical pairing is trough `--paper-bone` at 0%/100% + peak `--paper-deep` (#f4f4f5, ~L*96) at 40-60% — a ~4 L* delta that reads as motion without flashing. Provenance: `roadmap/ELEVATION_C2_TICKET.md § SUITE-SKELETON-RECONCILE` (closed 2026-05-22 as not-applicable post-wordmark-loader pass).
+
 ---
 
 **For agents (Claude Code, Codex, Stitch):**
