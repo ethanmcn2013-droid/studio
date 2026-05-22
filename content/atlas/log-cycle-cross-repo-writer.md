@@ -3,7 +3,7 @@ title: Cross-repo writers — the log-cycle pattern
 slug: log-cycle-cross-repo-writer
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-16
+lastVerified: 2026-05-22
 links: [plan-cycle, five-products-as-a-system, turso-databases-and-reads, analytics-daily-cron]
 tags: [cross-repo, ping, authed HTTP, fire-and-forget, recipient-owns-the-table, Cycle 8.4.9, Cycle 9.4b, STUDIO_CRON_PING_SECRET, NOTES_TO_TASKS_SECRET, tasks_digest]
 references: [~/Projects/personal/analytics/src/lib/ops/ping-studio.ts, ~/Projects/personal/tasks/src/lib/ops/ping-studio.ts, ~/Projects/personal/notes/src/server/actions/notes.ts, ~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts, ~/Projects/personal/studio/src/lib/db/schema.ts]

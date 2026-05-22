@@ -3,7 +3,7 @@ title: Turso databases — five DBs, read-only tokens, tag-as-project
 slug: turso-databases-and-reads
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-05-18
+lastVerified: 2026-05-22
 links: [analytics-daily-cron, five-products-as-a-system, pricing-and-entitlements, log-cycle-cross-repo-writer]
 tags: [Turso, libSQL, read-only token, tag-as-project, Tasks DB, Analytics DB, Roadmap DB, Notes DB, signal-entitlements, Cycle 9.4b, drizzle]
 references: [drizzle/, drizzle-entitlements/, drizzle-entitlements.config.ts, drizzle.config.ts, ~/Projects/personal/tasks/drizzle/, ~/Projects/personal/analytics/drizzle/, ~/Projects/personal/roadmap/drizzle/, ~/Projects/personal/notes/drizzle/, ~/Projects/personal/notes/src/server/actions/notes.ts]

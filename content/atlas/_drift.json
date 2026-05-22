@@ -33,27 +33,6 @@
     "updatedAt": "2026-05-18T20:21:23.081Z",
     "byCommit": "071e6b6"
   },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-22T00:27:58.029Z",
-    "byCommit": "4e88145"
-  },
-  "log-cycle-cross-repo-writer": {
-    "drifted": [
-      "~/Projects/personal/notes/src/server/actions/notes.ts"
-    ],
-    "updatedAt": "2026-05-19T18:34:07.376Z",
-    "byCommit": "3768af4"
-  },
-  "turso-databases-and-reads": {
-    "drifted": [
-      "~/Projects/personal/notes/src/server/actions/notes.ts"
-    ],
-    "updatedAt": "2026-05-19T18:34:07.376Z",
-    "byCommit": "3768af4"
-  },
   "five-products-as-a-system": {
     "drifted": [
       "src/components/brand/wordmark.tsx"
