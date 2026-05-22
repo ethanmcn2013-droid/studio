@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/proof", label: "Proof" },
   { href: "/about", label: "About" },
   { href: "/brand", label: "Brand", prefetch: false },
+  { href: "/templates", label: "Templates" },
   { href: "/pricing", label: "Pricing" },
   { href: "/principles", label: "Principles" },
   { href: "/press", label: "Press" },
@@ -109,6 +110,13 @@ export function SiteNav() {
             style={{ letterSpacing: "0.01em" }}
           >
             Brand
+          </Link>
+          <Link
+            href="/templates"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Templates
           </Link>
           <Link
             href="/pricing"
