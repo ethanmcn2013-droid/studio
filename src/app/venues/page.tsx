@@ -19,9 +19,9 @@ const examplePlanHref = withTracking(
   "https://roadmap.signalstudio.ie/the-wedding",
   { ...VENUE_SITE_TRACKING, artifact: "example_plan" },
 );
-const weddingsHref = withTracking("/weddings", {
+const demoHref = withTracking("/venues/demo", {
   ...VENUE_SITE_TRACKING,
-  artifact: "weddings_page",
+  artifact: "venue_demo",
 });
 
 /**
@@ -149,6 +149,12 @@ export default function VenuesPage() {
               >
                 Talk to us about your venue
               </Link>
+              <Link
+                href={demoHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Watch one wedding Tuesday &rarr;
+              </Link>
               <a
                 href={examplePlanHref}
                 target="_blank"
@@ -157,12 +163,6 @@ export default function VenuesPage() {
               >
                 See what the couple opens &rarr;
               </a>
-              <Link
-                href={weddingsHref}
-                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
-              >
-                See the couple&rsquo;s side &rarr;
-              </Link>
             </div>
 
             {/* Co-branded workspace mock */}
@@ -571,6 +571,12 @@ export default function VenuesPage() {
               >
                 Talk to us about your venue
               </Link>
+              <Link
+                href={demoHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Watch the venue demo &rarr;
+              </Link>
               <a
                 href={examplePlanHref}
                 target="_blank"
@@ -633,4 +639,3 @@ const statusMap: Record<
     color: "var(--ink-quiet)",
   },
 };
-

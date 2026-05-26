@@ -176,6 +176,20 @@ export function SiteFooter() {
               Pricing
             </Link>
             <Link
+              href="/venues"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Venues
+            </Link>
+            <Link
+              href="/weddings"
+              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+              style={{ letterSpacing: "0.01em" }}
+            >
+              Weddings
+            </Link>
+            <Link
               href="/brand"
               prefetch={false}
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"

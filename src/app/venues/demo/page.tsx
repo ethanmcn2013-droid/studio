@@ -11,46 +11,93 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Venue Edition Demo - Signal Studio",
     description:
-      "A 60-second venue-facing demo: venue call, tasks, public plan, and morning briefing.",
+      "A venue-facing product walkthrough: the meeting note, the owned work, the couple plan, and the morning briefing.",
     type: "website",
   },
 };
-
-const beats = [
-  {
-    time: "0:00",
-    title: "The venue call",
-    product: "Signal Notes",
-    copy: "The planner captures the open questions, supplier names, deposits, and the date the couple needs held.",
-    href: NOTES_URL,
-  },
-  {
-    time: "0:18",
-    title: "The work becomes visible",
-    product: "Signal Tasks",
-    copy: "Three notes become tasks. Florist quote. Marquee decision. Save-the-dates. No project setup before the work begins.",
-    href: `${TASKS_URL}/templates/wedding-planning-workspace`,
-  },
-  {
-    time: "0:38",
-    title: "The couple gets one link",
-    product: "Signal Roadmap",
-    copy: "The public plan shows what changed, what is waiting, and what happens next. No login for the people who only need to read.",
-    href: `${ROADMAP_URL}/the-wedding`,
-  },
-  {
-    time: "0:52",
-    title: "The next morning",
-    product: "Signal Analytics",
-    copy: "The briefing names the few things that need attention before they become a problem.",
-    href: ANALYTICS_URL,
-  },
-];
 
 const contactHref = withTracking("/contact?subject=founding-venue", {
   ...VENUE_SITE_TRACKING,
   artifact: "venue_demo_contact",
 });
+
+const venueHref = withTracking("/venues", {
+  ...VENUE_SITE_TRACKING,
+  artifact: "venue_page",
+});
+
+const couplePlanRawHref = `${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`;
+const couplePlanHref = withTracking(couplePlanRawHref, {
+  ...VENUE_SITE_TRACKING,
+  artifact: "couple_plan",
+});
+
+const demoSteps = [
+  {
+    time: "0:00",
+    product: "Signal Notes",
+    role: "Capture",
+    title: "The venue call is written down before it becomes work.",
+    copy:
+      "The planner captures the date hold, supplier names, deposit question, and open decisions in plain sentences. Nothing is shared until it is ready.",
+    href: `${NOTES_URL.replace(/\/$/, "")}/wedding-planning`,
+    label: "Private note",
+    lines: [
+      "Date held until 31 May.",
+      "Deposit amount needs confirming.",
+      "Dietary list waiting on Aoife.",
+      "Tuesday email closes three questions.",
+    ],
+  },
+  {
+    time: "0:18",
+    product: "Signal Tasks",
+    role: "Work",
+    title: "The right pieces become owned follow-ups.",
+    copy:
+      "The wedding workspace already has the shape: venue, suppliers, guests, decisions, final week. The team starts with real work, not setup.",
+    href: `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`,
+    label: "Wedding workspace",
+    lines: [
+      "Send venue follow-up email - Aoife - due Tuesday",
+      "Confirm dietary list - waiting on couple",
+      "Lock photographer access notes - supplier",
+      "Book final-week walkthrough - venue",
+    ],
+  },
+  {
+    time: "0:38",
+    product: "Signal Roadmap",
+    role: "Plan",
+    title: "The couple gets one readable plan.",
+    copy:
+      "The plan says what is done, what is underway, what is waiting on the couple, and what comes next. No account for people who only need to read.",
+    href: couplePlanRawHref,
+    label: "Couple plan",
+    lines: [
+      "Now - final guest numbers",
+      "Soon - florist walkthrough",
+      "Waiting on you - music and sound",
+      "Later - final walkthrough",
+    ],
+  },
+  {
+    time: "0:52",
+    product: "Signal Analytics",
+    role: "Attention",
+    title: "The next morning is a short briefing, not a dashboard.",
+    copy:
+      "The briefing names the few things that need attention before they become another thread in the coordinator inbox.",
+    href: `${ANALYTICS_URL.replace(/\/$/, "")}/wedding-planning`,
+    label: "Morning briefing",
+    lines: [
+      "Final guest count was due 5 days ago.",
+      "Venue deposit is due in 9 days.",
+      "Book the Lambs Hill visit today.",
+      "Two minutes to read. Move.",
+    ],
+  },
+] as const;
 
 export default function VenueDemoPage() {
   return (
@@ -62,15 +109,15 @@ export default function VenueDemoPage() {
               className="mb-5 text-[11px] font-semibold uppercase text-ink-quiet"
               style={{ letterSpacing: "var(--tracking-eyebrow)" }}
             >
-              Venue Edition · demo route
+              Venue Edition demo
             </p>
             <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
               One wedding Tuesday, end to end.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              The 60-second version of what a venue is paying for: a couple
-              gets a clearer planning year, and the coordinator gets fewer
-              repetitive questions in the inbox.
+              This is the concrete version of what a venue pays for: one
+              meeting becomes owned work, one readable plan, and a short
+              briefing before the inbox gets noisy.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
@@ -79,63 +126,124 @@ export default function VenueDemoPage() {
               >
                 Start a venue conversation
               </Link>
-              <Link
-                href="/venues"
+              <a
+                href={couplePlanHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                Read the Venue Edition <span aria-hidden>→</span>
+                See what the couple opens &rarr;
+              </a>
+              <Link
+                href={venueHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Read the Venue Edition &rarr;
               </Link>
             </div>
           </div>
         </section>
 
         <section className="px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <div className="overflow-hidden rounded-[8px] border border-border-soft bg-bg-elev">
-              <div className="grid border-b border-border-soft md:grid-cols-[1fr_auto]">
-                <div className="p-5 md:p-7">
+          <div className="mx-auto grid w-full max-w-[1040px] gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
+            <div>
+              <p
+                className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
+                style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+              >
+                The walkthrough
+              </p>
+              <h2 className="text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
+                Four product moments. One planning year made calmer.
+              </h2>
+              <p className="mt-5 text-[15px] leading-[1.65] text-ink-soft">
+                The venue does not operate these layers. The venue backs the
+                couple, hands over a code, and the workspace carries the work
+                from there.
+              </p>
+              <div className="mt-8 overflow-hidden rounded-[8px] border border-border-soft bg-bg-elev">
+                <div className="border-b border-border-soft px-5 py-4">
                   <p className="text-[11px] font-semibold uppercase text-ink-quiet">
-                    Founder video script
-                  </p>
-                  <h2 className="mt-2 text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                    Show the actual workspace. No abstract montage.
-                  </h2>
-                </div>
-                <div className="border-t border-border-soft p-5 md:border-l md:border-t-0 md:p-7">
-                  <p className="font-mono text-[12px] text-ink-quiet">
-                    Target length · 60 seconds
+                    Venue mechanic
                   </p>
                 </div>
+                <ol className="divide-y divide-border-soft">
+                  {[
+                    "Venue pays once a year.",
+                    "Each couple gets a code.",
+                    "The wedding workspace opens in under a minute.",
+                    "The couple never sees a price.",
+                  ].map((line, i) => (
+                    <li key={line} className="grid grid-cols-[auto_1fr] gap-3 px-5 py-4">
+                      <span className="font-mono text-[11px] text-ink-quiet">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[14px] leading-[1.55] text-ink-soft">
+                        {line}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <div className="divide-y divide-border-soft">
-                {beats.map((beat) => (
-                  <a
-                    key={beat.time}
-                    href={withTracking(beat.href, {
-                      ...VENUE_SITE_TRACKING,
-                      artifact: `venue_demo_${beat.product.toLowerCase().replaceAll(" ", "_")}`,
-                    })}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="grid gap-4 p-5 transition-colors hover:bg-bg-deep md:grid-cols-[80px_0.8fr_1.2fr] md:p-7"
-                  >
-                    <span className="font-mono text-[12px] text-ink-quiet">
-                      {beat.time}
-                    </span>
-                    <div>
-                      <p className="text-[15px] font-semibold text-ink">
-                        {beat.title}
-                      </p>
-                      <p className="mt-1 text-[12px] text-ink-quiet">
-                        {beat.product}
-                      </p>
+            </div>
+
+            <div className="venue-demo-stack relative">
+              <div className="absolute left-[18px] top-4 hidden h-[calc(100%-2rem)] w-px bg-border-soft md:block" />
+              {demoSteps.map((step, index) => (
+                <article
+                  key={step.product}
+                  className="venue-demo-card relative mb-4 rounded-[8px] border border-border-soft bg-bg-elev p-5 shadow-2 last:mb-0 md:ml-10 md:p-6"
+                  style={{ animationDelay: `${index * 120}ms` }}
+                >
+                  <span
+                    aria-hidden
+                    className="absolute -left-[31px] top-6 hidden h-3.5 w-3.5 rounded-full border-2 border-bg md:block"
+                    style={{ background: "var(--accent)" }}
+                  />
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-[12px] text-ink-quiet">
+                        {step.time}
+                      </span>
+                      <span className="rounded-full border border-border-soft px-2.5 py-1 text-[11px] font-semibold uppercase text-ink-quiet">
+                        {step.role}
+                      </span>
                     </div>
-                    <p className="max-w-2xl text-[14px] leading-[1.65] text-ink-soft">
-                      {beat.copy}
-                    </p>
-                  </a>
-                ))}
-              </div>
+                    <a
+                      href={withTracking(step.href, {
+                        ...VENUE_SITE_TRACKING,
+                        artifact: `venue_demo_${step.product.toLowerCase().replaceAll(" ", "_")}`,
+                      })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[12px] font-medium text-ink-quiet underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+                    >
+                      Open {step.product.replace("Signal ", "")} &rarr;
+                    </a>
+                  </div>
+                  <h3 className="text-[22px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-[14px] leading-[1.65] text-ink-soft">
+                    {step.copy}
+                  </p>
+                  <div className="mt-5 overflow-hidden rounded-[8px] border border-border-soft bg-bg">
+                    <div className="flex items-center justify-between border-b border-border-soft px-4 py-3">
+                      <p className="text-[11px] font-semibold uppercase text-ink-quiet">
+                        {step.label}
+                      </p>
+                      <span className="venue-demo-pulse" aria-hidden />
+                    </div>
+                    <ul className="space-y-2 px-4 py-4 font-mono text-[12.5px] leading-[1.6] text-ink-soft">
+                      {step.lines.map((line) => (
+                        <li key={line} className="venue-demo-line">
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -167,6 +275,54 @@ export default function VenueDemoPage() {
         </section>
       </main>
       <SiteFooter />
+      <style>{`
+        @media (prefers-reduced-motion: no-preference) {
+          .venue-demo-card {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: venue-demo-rise 620ms cubic-bezier(.16,1,.3,1) forwards;
+          }
+
+          .venue-demo-line {
+            animation: venue-demo-fade 2200ms ease-in-out infinite;
+          }
+
+          .venue-demo-line:nth-child(2) { animation-delay: 180ms; }
+          .venue-demo-line:nth-child(3) { animation-delay: 360ms; }
+          .venue-demo-line:nth-child(4) { animation-delay: 540ms; }
+
+          .venue-demo-pulse {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 30%, transparent);
+            animation: venue-demo-pulse 1800ms ease-out infinite;
+          }
+        }
+
+        @keyframes venue-demo-rise {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes venue-demo-fade {
+          0%, 100% { opacity: .62; }
+          40%, 70% { opacity: 1; }
+        }
+
+        @keyframes venue-demo-pulse {
+          70% {
+            box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent) 0%, transparent);
+          }
+          100% {
+            box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+          }
+        }
+      `}</style>
     </>
   );
 }

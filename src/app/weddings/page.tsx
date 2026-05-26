@@ -5,13 +5,13 @@ import { ROADMAP_URL, TASKS_URL, NOTES_URL, ANALYTICS_URL } from "@/lib/product-
 import { withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Wedding Planning Workspaces - Signal Studio",
+  title: "Wedding Planning Workspace - Signal Studio",
   description:
-    "Plain-language planning workspaces for venues, planners, couples, and suppliers who need the work behind a wedding to stay clear.",
+    "A self-serve wedding planning workspace for independent couples and planners who need notes, tasks, timelines, and updates in one calm place.",
   openGraph: {
-    title: "Wedding Planning Workspaces - Signal Studio",
+    title: "Wedding Planning Workspace - Signal Studio",
     description:
-      "A clear workspace for notes, decisions, tasks, timelines, and updates behind a wedding.",
+      "Plan one wedding without building a system first. Notes, decisions, tasks, timelines, and updates in one workspace.",
     type: "website",
   },
 };
@@ -27,8 +27,8 @@ const daysToEvent = 28;
 // /the-wedding is the confirmed bespoke static route on Signal Roadmap.
 const weddingTracking = {
   source: "studio_weddings",
-  campaign: "founding_venue",
-  audience: "wedding",
+  campaign: "self_serve_wedding",
+  audience: "wedding_self_serve",
   touch: "site",
   venue: "unknown",
 };
@@ -40,27 +40,19 @@ const templateHref = withTracking(`${TASKS_URL.replace(/\/$/, "")}/templates/wed
   ...weddingTracking,
   artifact: "wedding_template",
 });
-const notesDemoHref = withTracking(NOTES_URL, {
+const notesDemoHref = withTracking(`${NOTES_URL.replace(/\/$/, "")}/wedding-planning`, {
   ...weddingTracking,
   artifact: "notes_demo",
 });
-const analyticsDemoHref = withTracking(ANALYTICS_URL, {
+const analyticsDemoHref = withTracking(`${ANALYTICS_URL.replace(/\/$/, "")}/wedding-planning`, {
   ...weddingTracking,
   artifact: "analytics_demo",
 });
-const venuesHref = withTracking("/venues", {
+const venueHref = withTracking("/venues", {
   source: "studio_weddings",
-  campaign: "founding_venue",
+  campaign: "venue_edition",
   audience: "venue",
   artifact: "venue_page",
-  touch: "site",
-  venue: "unknown",
-});
-const venueContactHref = withTracking("/contact?subject=founding-venue", {
-  source: "studio_weddings",
-  campaign: "founding_venue",
-  audience: "venue",
-  artifact: "contact_cta",
   touch: "site",
   venue: "unknown",
 });
@@ -76,7 +68,7 @@ const clarityItems = [
   },
   {
     title: "What changed",
-    copy: "Couples, venues, planners, and suppliers can see the latest agreement before old messages create confusion.",
+    copy: "The couple, planner, and suppliers can see the latest agreement before old messages create confusion.",
   },
   {
     title: "What happens next",
@@ -127,29 +119,36 @@ export default function WeddingsPage() {
                 letterSpacing: "var(--tracking-eyebrow)",
               }}
             >
-              Weddings and events
+              Self-serve weddings
             </p>
             <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
-              The plan everyone can actually read.
+              Plan one wedding without building a system.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              Signal Studio keeps the work behind a wedding in one place — notes,
-              decisions, tasks, and a plan anyone can forward.
+              For independent couples and planners who found Signal Studio
+              directly: one workspace for notes, decisions, tasks, and a plan
+              anyone can forward.
+            </p>
+            <p className="mt-4 max-w-2xl text-[13.5px] leading-[1.6] text-ink-quiet">
+              If your venue sent you a code, use that link instead. Your venue
+              has already covered the workspace.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href={venuesHref}
+              <a
+                href={templateHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                See the Venue Edition
-              </Link>
+                Open the wedding workspace
+              </a>
               <a
                 href={sharedUpdateHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                See what the couple sees{" "}
+                See the readable plan{" "}
                 <span className="cta-arrow" aria-hidden>
                   →
                 </span>
@@ -305,22 +304,22 @@ export default function WeddingsPage() {
           <div className="mx-auto grid w-full max-w-[1040px] gap-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet">
-                Paid Venue Edition
+                If you run the venue
               </p>
               <h2 className="max-w-2xl text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
-                Give couples a clear planning workspace from day one.
+                The venue path is separate.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-ink-soft">
-                Venues pay once a year. Every couple they send gets twelve
+                Venues pay once a year so every couple they send gets twelve
                 months of Signal Studio. No per-couple maths, no seats, nothing
                 for the coordinator to run.
               </p>
             </div>
             <Link
-              href={venueContactHref}
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+              href={venueHref}
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-soft px-5 text-[14px] font-medium text-ink transition-colors hover:border-ink-quiet"
             >
-              Start a venue conversation
+              See the Venue Edition
             </Link>
           </div>
         </section>

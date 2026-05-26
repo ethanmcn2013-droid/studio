@@ -1559,7 +1559,7 @@ export const seedHqData: HqData = {
       dueDate: "2026-05-14",
       status: "Done",
       relatedObject: "Shared roadmap update",
-      notes: "`/wedding-planning/update` now routes viewers to `/weddings` through the shared-output CTA.",
+      notes: "`/wedding-planning/update` routes viewers to the self-serve `/weddings` page. Venue-led proof uses `/venues/demo` and the no-CTA couple artifact at Roadmap `/the-wedding`.",
     },
     {
       id: "collaboration-loop-spec",

@@ -1045,7 +1045,8 @@ export default async function PricingPage({
                 lineHeight: 1.55,
               }}
             >
-              Planning a wedding? Ask your venue.
+              Planning a wedding? Ask your venue. If they sent you a code, use
+              that link instead.
             </p>
           </div>
         </section>
