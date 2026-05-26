@@ -25,7 +25,14 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
 function buildMailto(
   subject: string | undefined,
   eyebrow: string | undefined,
-  attr: { source?: string; campaign?: string; touch?: string; venue?: string },
+  attr: {
+    source?: string;
+    campaign?: string;
+    audience?: string;
+    artifact?: string;
+    touch?: string;
+    venue?: string;
+  },
 ): string {
   const base = "mailto:hello@signalstudio.ie";
   if (!subject || !eyebrow) return base;
@@ -36,6 +43,8 @@ function buildMailto(
   const ref = [
     attr.source && `source=${attr.source}`,
     attr.campaign && `campaign=${attr.campaign}`,
+    attr.audience && `audience=${attr.audience}`,
+    attr.artifact && `artifact=${attr.artifact}`,
     attr.touch && `touch=${attr.touch}`,
     venueName && `venue=${venueName}`,
   ]
@@ -66,6 +75,8 @@ export default async function ContactPage({
     subject?: string;
     source?: string;
     campaign?: string;
+    audience?: string;
+    artifact?: string;
     touch?: string;
     venue?: string;
   }>;
@@ -75,6 +86,8 @@ export default async function ContactPage({
   const mailtoHref = buildMailto(params.subject, contextualEyebrow, {
     source: params.source,
     campaign: params.campaign,
+    audience: params.audience,
+    artifact: params.artifact,
     touch: params.touch,
     venue: params.venue,
   });

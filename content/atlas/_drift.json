@@ -8,10 +8,12 @@
   },
   "pricing-and-entitlements": {
     "drifted": [
-      "src/app/pricing/"
+      "src/app/pricing/",
+      "src/lib/entitlements-db/",
+      "src/lib/entitlements-db/client.ts"
     ],
-    "updatedAt": "2026-05-26T18:01:23.179Z",
-    "byCommit": "7e2fd38"
+    "updatedAt": "2026-05-26T20:35:32.480Z",
+    "byCommit": "f0131db"
   },
   "signal-studio-umbrella": {
     "drifted": [

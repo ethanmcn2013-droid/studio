@@ -162,7 +162,7 @@ async function main() {
   // E-2 stay in sync as new issuance lands here.
   try {
     const { entitlementsDb } = await import(
-      "../src/lib/entitlements-db/client"
+      "../src/lib/entitlements-db/client-core"
     );
     const { licenseCodes: sharedLicenseCodes } = await import(
       "../src/lib/entitlements-db/schema"

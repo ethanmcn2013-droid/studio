@@ -2,7 +2,7 @@
 // by both the /hq/partners server component AND scripts/partner-digest.ts
 // (run via tsx). The server-only guard would crash the CLI invocation.
 import { eq } from "drizzle-orm";
-import { entitlementsDb } from "@/lib/entitlements-db/client";
+import { entitlementsDb } from "@/lib/entitlements-db/client-core";
 import {
   sponsors,
   licenseCodes,
