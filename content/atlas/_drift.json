@@ -5,20 +5,5 @@
     ],
     "updatedAt": "2026-05-18T20:21:23.081Z",
     "byCommit": "071e6b6"
-  },
-  "five-products-as-a-system": {
-    "drifted": [
-      "src/components/brand/wordmark.tsx",
-      "BRAND.md"
-    ],
-    "updatedAt": "2026-05-26T16:35:52.002Z",
-    "byCommit": "e566c07"
-  },
-  "plan-cycle": {
-    "drifted": [
-      "CHANGELOG.md"
-    ],
-    "updatedAt": "2026-05-26T16:35:52.002Z",
-    "byCommit": "e566c07"
   }
 }

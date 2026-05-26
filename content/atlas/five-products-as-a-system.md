@@ -3,7 +3,7 @@ title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-19
+lastVerified: 2026-05-26
 links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
 tags: [Studio, Tasks, Roadmap, Analytics, Notes, suite, ecosystem, design system v1, wordmark gestures]
 references: [~/Projects/personal/tasks, ~/Projects/personal/roadmap, ~/Projects/personal/analytics, ~/Projects/personal/notes, BRAND.md, src/components/brand/wordmark.tsx]
@@ -95,3 +95,4 @@ The shared payments layer is the only thing that has to be perfectly synchronize
 - 2026-05-16 (atlas re-verify) — `references[]` corrected: the non-existent `src/components/wordmark/` path replaced with the real `src/components/brand/wordmark.tsx`. System shape re-verified against BRAND.md §1 and the cross-flow descriptions and is unchanged — four products (Tasks/Roadmap/Analytics/Notes) under one umbrella, three explicit hand-offs (Notes→Tasks promote, Tasks→Analytics read, Analytics→Studio cron-ping), one shared payments layer. No body prose drift; the canonical gesture vocabulary is broadcast/pulse/sweep/tick/caret.
 - 2026-05-14 (S·32) — BRAND.md §6.5 grew the engineering-log / dispatch separation rules. Five-product cardinality, three-handoff structure, and the shared-payments-as-the-only-tight-coupling reading are unaffected. The dispatch convention change is about how shipped work is *narrated* across the suite, not about how the suite is *shaped*.
 - 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code preflight rule landed. System-shape claims here are unaffected.
+- 2026-05-26 (S·68) — BRAND.md touched by S·68 (§6.6 operating vocabulary committed in the same batch). Re-verified BRAND.md §1 (four-product cardinality refusal), the three-handoff structure (Notes→Tasks promote, Tasks→Analytics read, Analytics→Studio cron-ping), and the shared-payments-as-the-only-tight-coupling reading — all unchanged. The `SuiteSwitcher` pills (canonical four-product row, spec DESIGN.md §14 amended S·63 2026-05-19) are the current cross-product navigation primitive; the `SuiteLauncher` popover is retained only in the three named exception surfaces. `/venues` page rebuilt (S·68) adds a venue coordinator view concept (coming for founding venues) — this is Studio-side marketing, not a product boundary change. Five-product cardinality remains: Tasks/Roadmap/Analytics/Notes + Studio umbrella. No cross-boundary drift detected.
