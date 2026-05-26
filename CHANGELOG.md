@@ -1,7 +1,15 @@
 # signal studio. — the dispatch
 
 The umbrella dispatch. The four products keep their own; this one
-carries what coalesced across the suite. Convention: BRAND.md §6.5.
+carries what coalesced across the suite. Convention: BRAND.md §6.5
+(entry shape — `ships / tightens / cuts / holds / reads`) · §6.6
+(operating vocabulary — pass · step · update · fix · re-do · push ·
+look-back · look-ahead · mark · week). No retroactive rewrite of
+entries before 2026-05-22; the vocabulary starts at the next pass.
+
+## 2026-05-26 · S·68 · ships · /venues rebuilt for warm leads — co-branded mock inline, coordinator wireframe
+
+**The Founding Venue Programme page is now proof-first for a reader who already knows the pitch.** The hero carries an inline co-branded workspace mock — venue identity bar, couple workspace header, status body, and three-column timeline — so a warm lead sees exactly what their couple opens without clicking away. A new "How it works" strip replaces the paragraph-heavy included-items list with four numbered lines: the whole mechanic in plain English. A dashed-border wireframe section introduces the coordinator view — a concept mock showing all venue couples with status, event date, and last-active, clearly marked as coming for founding venues — giving founding status a fourth concrete perk and planting a research signal for what to build first. Pricing moves before the founding-cohort section (proof before price). Section order: co-branded mock → mechanic → what couples get → coordinator wireframe → pricing → founding → rhythm → CTA. The page is a server component; typecheck and build clean.
 
 ## 2026-05-22 · S·67 · ships · /templates audience-pill row goes live, wedding-led
 

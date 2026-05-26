@@ -41,7 +41,7 @@ const PRINCIPLES = [
     n: "5",
     title: "Audience first. Always. Before any feature decision.",
     body:
-      "Every cycle asks one question: would a wedding planner, a freelance designer, a tradesperson, a student, a small-business operator, or a teacher use this? If yes, build it. If not, refuse it — even if it would look good in a comparison table. The 80% who don't work in tech do not need a special vocabulary. They need software that learned them, not the other way around.",
+      "Every pass asks one question: would a wedding planner, a freelance designer, a tradesperson, a student, a small-business operator, or a teacher use this? If yes, build it. If not, refuse it — even if it would look good in a comparison table. The 80% who don't work in tech do not need a special vocabulary. They need software that learned them, not the other way around.",
     why: "This is the most load-bearing discipline of all because it is the one most easily abandoned under growth pressure.",
   },
 ] as const;
@@ -138,7 +138,7 @@ export default function PrinciplesPage() {
               Discipline moats are slower than feature moats.
             </h2>
             <p className="mb-4 max-w-[58ch] text-[15.5px] leading-[1.7] text-ink-soft">
-              There will be cycles where Signal Studio looks behind because an
+              There will be weeks where Signal Studio looks behind because an
               incumbent shipped a feature we refused. That is the moat
               working, not failing. The metric that tells us it is paying out
               is the language readers use back to us. When a user says back

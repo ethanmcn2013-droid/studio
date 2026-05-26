@@ -52,6 +52,13 @@ const structuredData = [
     name: "Signal Studio",
     url: SITE_URL,
     email: "hello@signalstudio.ie",
+    foundingDate: "2025",
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     founder: {
       "@type": "Person",
       name: "Ethan McNamara",
@@ -61,6 +68,12 @@ const structuredData = [
       addressLocality: "Dublin",
       addressCountry: "IE",
     },
+    sameAs: [
+      "https://www.linkedin.com/company/signalstudio-ie/",
+      "https://x.com/SignalStudioIE",
+      "https://www.instagram.com/signalstudioie/",
+      "https://www.youtube.com/@SignalStudioIE",
+    ],
   },
   {
     "@context": "https://schema.org",

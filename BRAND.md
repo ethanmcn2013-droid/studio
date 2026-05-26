@@ -336,6 +336,35 @@ brand promises to cut through the noise; the briefing that lands on a
 day with nothing to say is itself noise.
 ```
 
+### 6.6 · Operating vocabulary (locked 2026-05-22)
+
+How Signal Studio talks about its own work. Plain English. No PM-tool jargon. Two layers — one for readers (dispatch + umbrella copy), one for the operator (HQ, phase, commits, log).
+
+**The principle.** §2.2 "no special vocabulary for the 80%" applies to *how Signal describes itself*, not just to product features. *Sprint, cycle, phase, epic, iteration, milestone, quarter, standup, backlog, velocity, kanban* are PM-tool words with a learning curve. They never reach the dispatch, the umbrella, or any user-facing surface. The operator vocabulary below is what replaces them — also plain English, slight studio-craft tilt, no metaphor that needs a glossary.
+
+| word            | what it names                                  | replaces                          | example                                                |
+|-----------------|------------------------------------------------|-----------------------------------|--------------------------------------------------------|
+| **pass**        | one focused arc of work on a theme             | sprint / phase / plan             | "the Tasks elevation pass"                             |
+| **step**        | one unit of work inside a pass                 | cycle / task / story              | "step three of the elevation pass"                     |
+| **update**      | something that went live for users             | release / deployment / shipment   | "an update on 20 May — wordmark loaders"               |
+| **fix**         | a small correction to something that shipped   | patch / hotfix                    | "a fix to Notes inline-edit scroll"                    |
+| **re-do**       | a larger rebuild of something that already existed | refactor / pivot / overhaul   | "a re-do of the suite switcher — one pill row, not two"|
+| **push**        | a focused initiative spanning many passes      | epic / initiative / workstream    | "the calm push — quieter loading, slower fades"        |
+| **look-back**   | what was learned after a pass closed           | retro / post-mortem               | "the look-back from the wordmark loader pass"          |
+| **look-ahead**  | what is coming up next                         | roadmap / forecast / pipeline     | "the look-ahead: iOS suite app, gated post-July"       |
+| **mark**        | a date or moment that matters                  | milestone / checkpoint            | "a mark on the calendar — first venue conversation"    |
+| **week**        | a recurring chunk of time                      | sprint / iteration / quarter      | "the week of 19 May"                                   |
+
+**Layer A — user-facing (dispatch + umbrella).** *Update · fix · re-do · look-back · look-ahead* are the words the dispatch reaches for in prose when one is needed. Per-entry verbs stay as `ships / tightens / cuts / holds / reads` per §6.5 — those are the entry-shape contract, untouched. The new words live in the dispatch *preamble*, in umbrella copy that describes how Signal works (`/principles`, `/press`, `/about`), and in any place the suite explains its own rhythm to a reader.
+
+**Layer B — operator-facing (HQ, phase, commits, log).** *Pass · step · push · mark · week* are how the operator names the work internally. They appear in `~/.claude/state/phase.md`, in `content/hq/*.md`, in commit message verbs, and in cross-agent briefings. The X·NN cycle-code grep target (S·67, T·56) stays — it's a code, not a word. It survives because it never reaches the dispatch (§6.5 banned-list) and never reaches a user.
+
+**Historical entries are not rewritten.** The same rule as §6.5: prior CHANGELOG entries, older `docs/CYCLE_*.md` filenames, and committed messages from before 2026-05-22 keep their original wording. The new vocabulary starts at the next pass. Rewriting history is the worse drift.
+
+**The PM-jargon refusal list stays loud.** Where the umbrella names PM-tool words on purpose — `/about`, `/brand`, `/principles` refusal lists, the §3 banned terms — *sprints, epics, burndown, velocity* stay verbatim, because they are what Signal refuses to speak. The refusal is the brand posture. The new vocabulary is what Signal speaks *instead*.
+
+**Dissent preserved.** Strategy's note on record: the operator/reader split adds discipline cost — *pass* and *update* will leak into each other under pressure. The mitigation is not vigilance but the fact that the dispatch banned-list (§6.5) already filters file paths and internal codes; *cycle* and *sprint* now join that filter. If the discipline cracks after two passes, retire Layer A entirely and let plain English ("we shipped this", "we fixed that") do the job without a vocabulary at all.
+
 ### "What this isn't" pattern
 On every product's `/about` (or homepage anti-features section):
 ```

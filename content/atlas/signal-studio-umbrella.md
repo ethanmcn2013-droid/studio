@@ -3,7 +3,7 @@ title: Signal Studio — the umbrella
 slug: signal-studio-umbrella
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-18
+lastVerified: 2026-05-22
 links: [five-products-as-a-system, pricing-and-entitlements, brand-enforcement, plan-cycle]
 tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella, refusal list, four products]
 references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/brand/wordmark.tsx, src/components/landing/]

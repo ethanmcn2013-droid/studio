@@ -143,7 +143,7 @@ export default function PressPage() {
                 Signal Studio is operated by Ethan McNamara, a designer in
                 Dublin, who spent years inside enterprise software watching
                 the wrong people get charged for the wrong things. The
-                suite ships in cycles, in public, against its own roadmap.
+                suite ships in passes, in public, against its own roadmap.
                 signalstudio.ie. hello@signalstudio.ie.
               </Quote>
             </Section>
@@ -178,7 +178,7 @@ export default function PressPage() {
                 become a wiki, Asana become enterprise software, and the
                 rest of the productivity category turn into a vocabulary
                 tax. Previously designed inside large product organisations;
-                now ships in cycles, in public, from Dublin.
+                now ships in passes, in public, from Dublin.
               </Quote>
             </Section>
 

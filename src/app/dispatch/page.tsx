@@ -116,14 +116,22 @@ export default async function DispatchPage() {
 
           <div className="mt-24 border-t border-border-soft pt-6 text-[13px] leading-[1.6] text-ink-quiet">
             Engineering detail lives in each repo. This page is the
-            operator-voice version. Convention:{" "}
+            operator-voice version. Each entry is one update — something
+            shipped. Larger arcs of work are called passes. Conventions:{" "}
             <a
               href="/brand"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
               brand §6.5
-            </a>
-            .
+            </a>{" "}
+            (dispatch shape) ·{" "}
+            <a
+              href="/brand"
+              className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+            >
+              §6.6
+            </a>{" "}
+            (operating vocabulary).
           </div>
         </section>
       </main>

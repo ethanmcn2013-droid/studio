@@ -1,31 +1,4 @@
 {
-  "brand-enforcement": {
-    "drifted": [
-      "DESIGN.md",
-      "src/app/globals.css",
-      "src/app/brand/page.tsx",
-      "src/components/brand/wordmark.tsx"
-    ],
-    "updatedAt": "2026-05-22T00:33:36.451Z",
-    "byCommit": "d554321"
-  },
-  "pricing-and-entitlements": {
-    "drifted": [
-      "src/app/pricing/"
-    ],
-    "updatedAt": "2026-05-18T20:22:32.216Z",
-    "byCommit": "63885fb"
-  },
-  "signal-studio-umbrella": {
-    "drifted": [
-      "src/app/pricing/",
-      "src/components/landing/",
-      "src/app/brand/",
-      "src/components/brand/wordmark.tsx"
-    ],
-    "updatedAt": "2026-05-20T12:40:00.305Z",
-    "byCommit": "e503c25"
-  },
   "analytics-daily-cron": {
     "drifted": [
       "~/Projects/personal/analytics/src/lib/briefing/voice.ts"
@@ -35,16 +8,17 @@
   },
   "five-products-as-a-system": {
     "drifted": [
-      "src/components/brand/wordmark.tsx"
+      "src/components/brand/wordmark.tsx",
+      "BRAND.md"
     ],
-    "updatedAt": "2026-05-19T19:04:46.316Z",
-    "byCommit": "280d7a9"
+    "updatedAt": "2026-05-26T16:35:52.002Z",
+    "byCommit": "e566c07"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-22T16:30:58.135Z",
-    "byCommit": "ad2c6b7"
+    "updatedAt": "2026-05-26T16:35:52.002Z",
+    "byCommit": "e566c07"
   }
 }
