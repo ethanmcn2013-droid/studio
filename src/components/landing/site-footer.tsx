@@ -146,92 +146,58 @@ export function SiteFooter() {
             </a>
           </nav>
 
-          {/* Pages */}
-          <nav aria-label="Pages" className="flex flex-col gap-2">
+          {/* Studio — company / brand pages */}
+          <nav aria-label="Studio" className="flex flex-col gap-2">
             <span
               className="text-[10px] font-semibold uppercase text-ink-faint"
               style={{ letterSpacing: "var(--tracking-eyebrow)" }}
             >
-              Pages
+              Studio
             </span>
-            <Link
-              href="/work"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
+            {[
+              { href: "/about",      label: "About"      },
+              { href: "/work",       label: "Work"       },
+              { href: "/proof",      label: "Proof"      },
+              { href: "/principles", label: "Principles" },
+              { href: "/press",      label: "Press"      },
+              { href: "/contact",    label: "Contact"    },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+                style={{ letterSpacing: "0.01em" }}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Explore — resources, pricing, audience pages */}
+          <nav aria-label="Explore" className="flex flex-col gap-2">
+            <span
+              className="text-[10px] font-semibold uppercase text-ink-faint"
+              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
             >
-              Work
-            </Link>
-            <Link
-              href="/about"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              About
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/venues"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Venues
-            </Link>
-            <Link
-              href="/weddings"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Weddings
-            </Link>
-            <Link
-              href="/brand"
-              prefetch={false}
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Brand
-            </Link>
-            <Link
-              href="/proof"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Proof
-            </Link>
-            <Link
-              href="/principles"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Principles
-            </Link>
-            <Link
-              href="/press"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Press
-            </Link>
-            <Link
-              href="/dispatch"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Dispatch
-            </Link>
-            <Link
-              href="/contact"
-              className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
-              style={{ letterSpacing: "0.01em" }}
-            >
-              Contact
-            </Link>
+              Explore
+            </span>
+            {[
+              { href: "/templates", label: "Templates" },
+              { href: "/brand",     label: "Brand"     },
+              { href: "/pricing",   label: "Pricing"   },
+              { href: "/dispatch",  label: "Dispatch"  },
+              { href: "/venues",    label: "Venues"    },
+              { href: "/weddings",  label: "Weddings"  },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
+                style={{ letterSpacing: "0.01em" }}
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
         </div>
       </div>

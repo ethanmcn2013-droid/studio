@@ -1,31 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/brand/wordmark";
-import { ProductSwitcher } from "@/components/layout/product-switcher";
+import { ProductsMegaPanel } from "@/components/layout/products-mega-panel";
 
 const NAV_LINKS = [
-  { href: "/work", label: "Work" },
-  { href: "/proof", label: "Proof" },
-  { href: "/about", label: "About" },
-  { href: "/brand", label: "Brand", prefetch: false },
-  { href: "/templates", label: "Templates" },
+  { href: "/work",    label: "Work"    },
   { href: "/pricing", label: "Pricing" },
-  { href: "/principles", label: "Principles" },
-  { href: "/press", label: "Press" },
+  { href: "/about",   label: "About"   },
   { href: "/contact", label: "Contact" },
-  { href: "/dispatch", label: "Dispatch" },
 ] as const;
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [intro, setIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const pathname = usePathname();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const productsTriggerRef = useRef<HTMLButtonElement>(null);
+  const productsWrapRef = useRef<HTMLElement>(null);
+
+  const closeProducts = useCallback(() => setProductsOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -55,10 +54,26 @@ export function SiteNav() {
     return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  // Close on route change.
+  // Close mobile nav + products panel on route change.
   useEffect(() => {
     setMobileOpen(false);
+    setProductsOpen(false);
   }, [pathname]);
+
+  // Outside-click dismissal for products panel.
+  useEffect(() => {
+    if (!productsOpen) return;
+    function onDocClick(e: MouseEvent) {
+      if (
+        productsWrapRef.current &&
+        !productsWrapRef.current.contains(e.target as Node)
+      ) {
+        setProductsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [productsOpen]);
 
   if (pathname?.startsWith("/hq")) {
     return null;
@@ -66,10 +81,11 @@ export function SiteNav() {
 
   return (
     <header
+      ref={productsWrapRef}
       className="sticky top-0 z-40 w-full backdrop-blur-md"
       style={{
         background: "color-mix(in srgb, var(--bg) 85%, transparent)",
-        borderBottom: scrolled ? "1px solid var(--border-soft)" : "1px solid transparent",
+        borderBottom: scrolled || productsOpen ? "1px solid var(--border-soft)" : "1px solid transparent",
         transition: "border-color var(--motion-base) var(--ease-out)",
       }}
     >
@@ -79,7 +95,38 @@ export function SiteNav() {
         </Link>
 
         <nav aria-label="Site navigation" className="flex items-center gap-4 sm:gap-5">
-          <ProductSwitcher />
+          {/* Products trigger — opens the full-width mega-panel */}
+          <button
+            ref={productsTriggerRef}
+            type="button"
+            aria-expanded={productsOpen}
+            aria-controls="products-mega-panel"
+            onClick={() => setProductsOpen((o) => !o)}
+            className="inline-flex items-center gap-1 text-[13px] transition-colors hover:text-ink"
+            style={{
+              letterSpacing: "0.01em",
+              color: productsOpen ? "var(--ink)" : "var(--ink-quiet)",
+            }}
+          >
+            Products
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{
+                transition: "transform 200ms",
+                transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+              aria-hidden
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
 
           {/* Desktop links — hidden below sm */}
           <Link
@@ -90,11 +137,11 @@ export function SiteNav() {
             Work
           </Link>
           <Link
-            href="/proof"
+            href="/pricing"
             className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
-            Proof
+            Pricing
           </Link>
           <Link
             href="/about"
@@ -104,40 +151,11 @@ export function SiteNav() {
             About
           </Link>
           <Link
-            href="/brand"
-            prefetch={false}
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            Brand
-          </Link>
-          <Link
-            href="/templates"
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            Templates
-          </Link>
-          <Link
-            href="/pricing"
-            className="text-[13px] text-ink-quiet transition-colors hover:text-ink"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            Pricing
-          </Link>
-          <Link
             href="/contact"
             className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
             style={{ letterSpacing: "0.01em" }}
           >
             Contact
-          </Link>
-          <Link
-            href="/dispatch"
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            Dispatch
           </Link>
 
           {/* Mobile menu trigger — visible below sm only */}
@@ -176,6 +194,12 @@ export function SiteNav() {
           </button>
         </nav>
       </div>
+
+      {/* Products mega-panel — full-width, absolutely positioned below nav */}
+      <ProductsMegaPanel
+        open={productsOpen}
+        onClose={closeProducts}
+      />
 
       {/* Mobile nav panel — paper-white, hairline border, no heavy shadow */}
       <div

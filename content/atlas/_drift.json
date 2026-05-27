@@ -20,7 +20,14 @@
       "src/app/pricing/",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-26T18:01:23.179Z",
-    "byCommit": "7e2fd38"
+    "updatedAt": "2026-05-27T16:00:13.531Z",
+    "byCommit": "b649e79"
+  },
+  "brand-enforcement": {
+    "drifted": [
+      "src/app/globals.css"
+    ],
+    "updatedAt": "2026-05-27T16:00:13.531Z",
+    "byCommit": "b649e79"
   }
 }
