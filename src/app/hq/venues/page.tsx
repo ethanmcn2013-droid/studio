@@ -6,12 +6,19 @@ import Link from "next/link";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import {
   BATCH_A_EMAIL_DRAFTS,
+  BATCH_BC_EMAIL_DRAFTS,
+  VENUE_FAQ_OBJECTIONS,
+  VENUE_FULFILMENT_REHEARSAL,
   VENUE_CREATIVE_PRODUCTION_CHECKLIST,
+  WAVE_ONE_CONVERSION_LEDGER,
   WAVE_ONE_OUTREACH_GATES,
   WAVE_ONE_VENUES,
   type BatchAEmailDraft,
   type CreativeProductionItem,
   type OutreachGate,
+  type VenueConversionLedgerRow,
+  type VenueFaqObjection,
+  type VenueFulfilmentRehearsalStep,
   type VenueBatch,
   type VenueTarget,
 } from "@/lib/venues/wave-one";
@@ -42,6 +49,7 @@ export default async function VenuesPage() {
     (venue) => venue.status !== "not-ready" && venue.status !== "ready-unsent",
   ).length;
   const linksChecked = WAVE_ONE_VENUES.length * 3;
+  const heldDrafts = [...BATCH_A_EMAIL_DRAFTS, ...BATCH_BC_EMAIL_DRAFTS];
 
   return (
     <main id="main" className="mx-auto w-full max-w-[1180px] px-6 pb-24 pt-16 md:pt-20">
@@ -71,7 +79,7 @@ export default async function VenuesPage() {
       <div style={statsGridStyle}>
         <Stat value={String(WAVE_ONE_VENUES.length)} label="Wave 1 targets" />
         <Stat value={String(batches.length)} label="review batches" />
-        <Stat value={String(BATCH_A_EMAIL_DRAFTS.length)} label="Batch A drafts" />
+        <Stat value={String(heldDrafts.length)} label="held drafts" />
         <Stat value={String(linksChecked)} label="links checked" />
         <Stat value={String(notReady)} label="asset gated" />
         <Stat value={String(readyUnsent)} label="ready unsent" />
@@ -155,12 +163,51 @@ export default async function VenuesPage() {
       <section className="mt-14">
         <SectionTitle
           kicker="held drafts"
-          title="Batch A email review"
-          copy="The four first-touch drafts now exist, but they remain held until the proof video and PDF are approved."
+          title="Batch A-C email review"
+          copy="All twelve Wave 1 first-touch drafts now exist, but they remain held until the proof video, PDF, contact path, and read-aloud gates clear."
         />
         <div style={draftGridStyle}>
-          {BATCH_A_EMAIL_DRAFTS.map((draft) => (
+          {heldDrafts.map((draft) => (
             <DraftCard key={draft.venueSlug} draft={draft} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <SectionTitle
+          kicker="conversion"
+          title="Empty ledger, ready to operate"
+          copy="No outreach has happened, so every row is intentionally blank. The point is that status, follow-ups, replies, calls, signer, and price are already defined before the first send."
+        />
+        <div style={ledgerStyle}>
+          {WAVE_ONE_CONVERSION_LEDGER.map((row) => (
+            <LedgerRow key={row.venueSlug} row={row} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <SectionTitle
+          kicker="fulfilment"
+          title="If a venue says yes"
+          copy="The post-sale path is rehearsed without mutating sponsors or issuing codes. Payment first, then sponsor setup, code issue, redemption smoke test, and partner digest."
+        />
+        <div className="space-y-3">
+          {VENUE_FULFILMENT_REHEARSAL.map((step) => (
+            <FulfilmentRow key={step.name} step={step} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <SectionTitle
+          kicker="objections"
+          title="Answers before they ask"
+          copy="Keep these private for now. The standard is plain answers, not defensive sales copy."
+        />
+        <div style={draftGridStyle}>
+          {VENUE_FAQ_OBJECTIONS.map((item) => (
+            <FaqCard key={item.objection} item={item} />
           ))}
         </div>
       </section>
@@ -188,7 +235,12 @@ export default async function VenuesPage() {
           <FilePath file="docs/strategy/VENUE_GTM_EXECUTION_PLAN.md" note="course-correction plan" />
           <FilePath file="docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md" note="video, PDF, and capture work order" />
           <FilePath file="docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md" note="held Batch A founder emails" />
+          <FilePath file="docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md" note="held Batch B and C founder emails" />
           <FilePath file="docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md" note="36/36 live tracked links passed" />
+          <FilePath file="docs/strategy/VENUE_ATTRIBUTION_CONTACT_LEDGER.md" note="tracking and contact route hardening" />
+          <FilePath file="docs/strategy/VENUE_FULFILMENT_REHEARSAL_2026_05_27.md" note="post-sale path rehearsal" />
+          <FilePath file="docs/strategy/VENUE_FAQ_OBJECTIONS.md" note="private objection and FAQ answers" />
+          <FilePath file="docs/strategy/VENUE_PUBLIC_PAGE_QA_2026_05_27.md" note="public route QA" />
           <FilePath file="docs/strategy/VENUE_WAVE1_DOSSIERS.md" note="account intelligence" />
           <FilePath file="docs/strategy/VENUE_FOUNDER_REVIEW_PACK.md" note="creative gates" />
           <FilePath file="docs/strategy/VENUE_TARGET_LEDGER.md" note="status ledger and tracked links" />
@@ -312,7 +364,10 @@ function DraftCard({ draft }: { draft: BatchAEmailDraft }) {
     <article style={panelStyle}>
       <div className="flex items-start justify-between gap-4">
         <div>
-          <div style={smallMonoStyle}>{draft.venueSlug}</div>
+          <div style={smallMonoStyle}>
+            {draft.batch ? `Batch ${draft.batch} - ` : ""}
+            {draft.venueSlug}
+          </div>
           <h3 className="mt-2 text-ink" style={{ fontSize: 19, lineHeight: 1.25, fontWeight: 500 }}>
             {draft.venueName}
           </h3>
@@ -327,6 +382,90 @@ function DraftCard({ draft }: { draft: BatchAEmailDraft }) {
         blocked by - {draft.proofDependency}
       </div>
     </article>
+  );
+}
+
+function LedgerRow({ row }: { row: VenueConversionLedgerRow }) {
+  return (
+    <div
+      className="grid gap-4 border-b border-border-soft px-5 py-4 last:border-b-0"
+      style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}
+    >
+      <div>
+        <div style={smallMonoStyle}>Batch {row.batch} - {row.venueSlug}</div>
+        <div className="mt-1 text-ink" style={{ fontSize: 15, fontWeight: 500 }}>
+          {row.venueName}
+        </div>
+      </div>
+      <div className="grid gap-2 md:grid-cols-2">
+        <MiniFact label="email 1" value={row.email1SentAt} />
+        <MiniFact label="reply" value={row.replyState} />
+        <MiniFact label="call" value={row.callDate} />
+        <MiniFact label="price" value={row.priceDiscussed} />
+      </div>
+      <div>
+        <Pill tone="status">{row.status}</Pill>
+        <p className="mt-3 text-ink-quiet" style={{ fontSize: 12, lineHeight: 1.45 }}>
+          {row.nextAction}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function FulfilmentRow({ step }: { step: VenueFulfilmentRehearsalStep }) {
+  return (
+    <div
+      className="grid gap-4 border border-border"
+      style={{
+        background: "var(--bg-elev)",
+        gridTemplateColumns: "minmax(48px, 72px) minmax(0, 1fr) auto",
+        padding: 18,
+      }}
+    >
+      <div style={smallMonoStyle}>step {step.step}</div>
+      <div>
+        <h3 className="text-ink" style={{ fontSize: 17, fontWeight: 500 }}>
+          {step.name}
+        </h3>
+        <p className="mt-2 text-ink-soft" style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 1.55 }}>
+          {step.command}
+        </p>
+        <p className="mt-2 text-ink-quiet" style={{ fontSize: 13, lineHeight: 1.5 }}>
+          {step.proof}
+        </p>
+      </div>
+      <div>
+        <Pill tone={step.state}>{step.state}</Pill>
+      </div>
+    </div>
+  );
+}
+
+function FaqCard({ item }: { item: VenueFaqObjection }) {
+  return (
+    <article style={panelStyle}>
+      <h3 className="text-ink" style={{ fontSize: 18, lineHeight: 1.25, fontWeight: 500 }}>
+        {item.objection}
+      </h3>
+      <p className="mt-4 text-ink-soft" style={{ fontSize: 14, lineHeight: 1.55 }}>
+        {item.answer}
+      </p>
+      <div className="mt-5 border-t border-border-soft pt-4" style={smallMonoStyle}>
+        use when - {item.useWhen}
+      </div>
+    </article>
+  );
+}
+
+function MiniFact({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div style={eyebrowStyle}>{label}</div>
+      <div className="mt-1 text-ink-soft" style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
+        {value}
+      </div>
+    </div>
   );
 }
 
@@ -410,7 +549,7 @@ function Pill({
   tone,
   children,
 }: {
-  tone: "blocked" | "open" | "ready" | "held" | "status" | "readiness";
+  tone: "blocked" | "open" | "ready" | "manual" | "held" | "status" | "readiness";
   children: ReactNode;
 }) {
   const palette: Record<typeof tone, CSSProperties> = {
@@ -428,6 +567,11 @@ function Pill({
       color: "#14532d",
       background: "color-mix(in srgb, #16a34a 10%, var(--bg-elev))",
       borderColor: "color-mix(in srgb, #16a34a 30%, var(--border))",
+    },
+    manual: {
+      color: "var(--ink-soft)",
+      background: "color-mix(in srgb, var(--ink) 5%, var(--bg-elev))",
+      borderColor: "var(--border)",
     },
     held: {
       color: "var(--ink-soft)",
@@ -497,6 +641,11 @@ const draftGridStyle: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
   gap: 16,
+};
+
+const ledgerStyle: CSSProperties = {
+  border: "1px solid var(--border)",
+  background: "var(--bg-elev)",
 };
 
 const venueDetailGridStyle: CSSProperties = {

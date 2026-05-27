@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 
 const contactHref = withTracking("/contact?subject=founding-venue", {
   ...VENUE_SITE_TRACKING,
-  artifact: "venue_demo_contact",
+  artifact: "contact",
+  touch: "venue_demo",
 });
 
 const venueHref = withTracking("/venues", {
@@ -37,16 +38,17 @@ const demoSteps = [
     time: "0:00",
     product: "Signal Notes",
     role: "Capture",
-    title: "The venue call is written down before it becomes work.",
+    title: "The venue call is captured before it becomes work.",
     copy:
-      "The planner captures the date hold, supplier names, deposit question, and open decisions in plain sentences. Nothing is shared until it is ready.",
+      "Sarah and Tom's venue meeting becomes one private note: decisions, open questions, and the next supplier follow-ups in plain sentences. Nothing is shared until it is ready.",
     href: `${NOTES_URL.replace(/\/$/, "")}/wedding-planning`,
+    venueEyebrow: "Founding Venue Preview · Sarah and Tom · June 2027",
     label: "Private note",
     lines: [
-      "Date held until 31 May.",
-      "Deposit amount needs confirming.",
-      "Dietary list waiting on Aoife.",
-      "Tuesday email closes three questions.",
+      "Florist can do the ceremony arch.",
+      "Table runners need a second supplier or a simpler plan.",
+      "Tom prefers the simpler table arrangement.",
+      "Ask venue about supplier access for the morning.",
     ],
   },
   {
@@ -55,14 +57,15 @@ const demoSteps = [
     role: "Work",
     title: "The right pieces become owned follow-ups.",
     copy:
-      "The wedding workspace already has the shape: venue, suppliers, guests, decisions, final week. The team starts with real work, not setup.",
+      "The workspace already has the shape: venue, suppliers, guests, decisions, and final week. The couple starts with real work, not setup.",
     href: `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`,
+    venueEyebrow: "Founding Venue Preview · wedding workspace",
     label: "Wedding workspace",
     lines: [
-      "Send venue follow-up email - Aoife - due Tuesday",
-      "Confirm dietary list - waiting on couple",
-      "Lock photographer access notes - supplier",
-      "Book final-week walkthrough - venue",
+      "Confirm florist arrangement - Sarah - due Friday",
+      "Send guest list to caterer - Tom - waiting on update",
+      "Schedule menu tasting - venue - due next week",
+      "Pay venue deposit second instalment - couple",
     ],
   },
   {
@@ -73,12 +76,13 @@ const demoSteps = [
     copy:
       "The plan says what is done, what is underway, what is waiting on the couple, and what comes next. No account for people who only need to read.",
     href: couplePlanRawHref,
+    venueEyebrow: "Public plan · no account needed",
     label: "Couple plan",
     lines: [
-      "Now - final guest numbers",
-      "Soon - florist walkthrough",
-      "Waiting on you - music and sound",
-      "Later - final walkthrough",
+      "Venue booked - complete",
+      "Guest list first draft - in progress",
+      "Florist confirmed - waiting on table decision",
+      "Final headcount - due four weeks out",
     ],
   },
   {
@@ -89,12 +93,13 @@ const demoSteps = [
     copy:
       "The briefing names the few things that need attention before they become another thread in the coordinator inbox.",
     href: `${ANALYTICS_URL.replace(/\/$/, "")}/wedding-planning`,
+    venueEyebrow: "Morning briefing · three things, not thirty",
     label: "Morning briefing",
     lines: [
-      "Final guest count was due 5 days ago.",
-      "Venue deposit is due in 9 days.",
-      "Book the Lambs Hill visit today.",
-      "Two minutes to read. Move.",
+      "Menu tasting is in four days and catering confirmation is still pending.",
+      "Guest count changed twice this week; florist numbers may be out of date.",
+      "Ceremony music has not moved since Tuesday.",
+      "Nothing else needs attention today.",
     ],
   },
 ] as const;
@@ -112,7 +117,7 @@ export default function VenueDemoPage() {
               Venue Edition demo
             </p>
             <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
-              One wedding Tuesday, end to end.
+              One wedding planning year, made readable.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
               This is the concrete version of what a venue pays for: one
@@ -229,9 +234,14 @@ export default function VenueDemoPage() {
                   </p>
                   <div className="mt-5 overflow-hidden rounded-[8px] border border-border-soft bg-bg">
                     <div className="flex items-center justify-between border-b border-border-soft px-4 py-3">
-                      <p className="text-[11px] font-semibold uppercase text-ink-quiet">
-                        {step.label}
-                      </p>
+                      <div>
+                        <p className="text-[11px] font-semibold uppercase text-ink-quiet">
+                          {step.label}
+                        </p>
+                        <p className="mt-1 text-[11.5px] text-ink-faint">
+                          {step.venueEyebrow}
+                        </p>
+                      </div>
                       <span className="venue-demo-pulse" aria-hidden />
                     </div>
                     <ul className="space-y-2 px-4 py-4 font-mono text-[12.5px] leading-[1.6] text-ink-soft">

@@ -23,6 +23,10 @@ const demoHref = withTracking("/venues/demo", {
   ...VENUE_SITE_TRACKING,
   artifact: "venue_demo",
 });
+const contactHref = withTracking("/contact?subject=founding-venue", {
+  ...VENUE_SITE_TRACKING,
+  artifact: "contact",
+});
 
 /**
  * Founding Venue Programme — rebuilt 2026-05-26 (S·68).
@@ -118,9 +122,6 @@ const mechanicLines = [
 
 // ── Page ─────────────────────────────────────────────────────────
 export default function VenuesPage() {
-  const contactHref =
-    "mailto:hello@signalstudio.ie?subject=Founding%20Venue%20Programme";
-
   return (
     <>
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">

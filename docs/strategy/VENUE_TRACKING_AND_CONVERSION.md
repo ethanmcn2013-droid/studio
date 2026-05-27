@@ -1,6 +1,6 @@
 # Venue Tracking And Conversion
 
-Status: founder-review draft - 2026-05-26
+Status: implemented baseline - 2026-05-27
 Owner: founder
 Boundary: tracking spec only. No outreach is live.
 
@@ -147,11 +147,10 @@ These are the only numbers that matter for the venue motion.
 
 | Area | Current state | Next action |
 | --- | --- | --- |
-| Link query tracking | Exists through `withTracking()`. | Use it for every venue link. |
+| Link query tracking | Exists through `withTracking()` and canonical `formatTrackingRef()`. | Use it for every venue link. |
 | Page view analytics | Not confirmed in this doc. | Add only when analytics destination is decided. |
 | CTA click analytics | Query strings exist, but client events may not. | Implement after destination is chosen. |
 | Sponsor redemption | Existing code/coupon flow and partner stats exist. | Verify dry run before outreach. |
-| Contact form/source capture | `/contact?subject=founding-venue` is referenced. | Confirm contact route captures query source before sending. |
+| Contact route/source capture | `/contact?subject=founding-venue` preserves source, campaign, audience, artifact, touch, and venue in the generated email body. | Keep mailto route; do not add a form unless a real failure appears. |
 
 Do not block the first outreach draft on a full analytics stack. Do block actual sending on the ability to identify which venue clicked/contacted.
-

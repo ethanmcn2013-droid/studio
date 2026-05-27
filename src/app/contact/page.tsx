@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
+import {
+  formatTrackingRef,
+  normalizeTrackingParams,
+  type TrackingParamKey,
+} from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Contact — Signal Studio",
@@ -25,31 +30,15 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
 function buildMailto(
   subject: string | undefined,
   eyebrow: string | undefined,
-  attr: {
-    source?: string;
-    campaign?: string;
-    audience?: string;
-    artifact?: string;
-    touch?: string;
-    venue?: string;
-  },
+  attr: Partial<Record<TrackingParamKey, string | undefined>>,
 ): string {
   const base = "mailto:hello@signalstudio.ie";
-  if (!subject || !eyebrow) return base;
+  const ref = formatTrackingRef(attr);
+  if (!subject && !ref) return base;
 
   const venueName = attr.venue && attr.venue !== "unknown" ? attr.venue : undefined;
-  const subjectLine = venueName ? `${eyebrow} — ${venueName}` : eyebrow;
-
-  const ref = [
-    attr.source && `source=${attr.source}`,
-    attr.campaign && `campaign=${attr.campaign}`,
-    attr.audience && `audience=${attr.audience}`,
-    attr.artifact && `artifact=${attr.artifact}`,
-    attr.touch && `touch=${attr.touch}`,
-    venueName && `venue=${venueName}`,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  const subjectLabel = eyebrow ?? "Signal Studio enquiry";
+  const subjectLine = venueName ? `${subjectLabel} — ${venueName}` : subjectLabel;
 
   const body =
     subject === "founding-venue"
@@ -61,6 +50,8 @@ function buildMailto(
           "A good time to talk would be:",
           ...(ref ? ["", "—", `Ref: ${ref}`] : []),
         ].join("\n")
+      : ref
+        ? ["Hi Ethan,", "", "", "—", `Ref: ${ref}`].join("\n")
       : "";
 
   const qs = new URLSearchParams({ subject: subjectLine });
@@ -83,7 +74,7 @@ export default async function ContactPage({
 }) {
   const params = await searchParams;
   const contextualEyebrow = params.subject ? SUBJECT_EYEBROWS[params.subject] : undefined;
-  const mailtoHref = buildMailto(params.subject, contextualEyebrow, {
+  const tracking = normalizeTrackingParams({
     source: params.source,
     campaign: params.campaign,
     audience: params.audience,
@@ -91,6 +82,8 @@ export default async function ContactPage({
     touch: params.touch,
     venue: params.venue,
   });
+  const trackingRef = formatTrackingRef(tracking);
+  const mailtoHref = buildMailto(params.subject, contextualEyebrow, tracking);
 
   return (
     <>
@@ -166,6 +159,12 @@ export default async function ContactPage({
               hello@signalstudio.ie
             </a>
           </p>
+
+          {trackingRef ? (
+            <p className="mt-5 max-w-[62ch] font-mono text-[11px] leading-[1.8] text-ink-faint">
+              Ref preserved: {trackingRef}
+            </p>
+          ) : null}
 
           <p className="mt-6 text-[13px] leading-[1.6] text-ink-faint">
             Designed and operated by Ethan McNamara. Dublin &middot; Ireland.

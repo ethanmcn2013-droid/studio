@@ -55,11 +55,42 @@ export type CreativeProductionItem = {
 export type BatchAEmailDraft = {
   venueSlug: string;
   venueName: string;
+  batch?: VenueBatch;
   state: "held" | "ready-unsent";
   subject: string;
   firstLine: string;
   proofDependency: string;
   source: string;
+};
+
+export type VenueConversionLedgerRow = {
+  venueSlug: string;
+  venueName: string;
+  batch: VenueBatch;
+  status: "not-started" | "ready-unsent" | "sent" | "warm-reply" | "meeting" | "paid" | "later" | "no";
+  contactPathState: string;
+  email1SentAt: string;
+  followup1SentAt: string;
+  followup2SentAt: string;
+  replyState: "none" | "warm" | "meeting" | "paid" | "later" | "no";
+  callDate: string;
+  signerPresent: "unknown" | "yes" | "no";
+  priceDiscussed: "no" | "yes";
+  nextAction: string;
+};
+
+export type VenueFulfilmentRehearsalStep = {
+  step: number;
+  name: string;
+  state: "ready" | "blocked" | "manual";
+  command: string;
+  proof: string;
+};
+
+export type VenueFaqObjection = {
+  objection: string;
+  answer: string;
+  useWhen: string;
 };
 
 export const VENUE_CAMPAIGN = "founding_venue_2026_q2";
@@ -194,6 +225,7 @@ export const BATCH_A_EMAIL_DRAFTS: BatchAEmailDraft[] = [
   {
     venueSlug: "tankardstown",
     venueName: "Tankardstown House",
+    batch: "A",
     state: "held",
     subject: "A planning layer for Tankardstown couples",
     firstLine:
@@ -204,6 +236,7 @@ export const BATCH_A_EMAIL_DRAFTS: BatchAEmailDraft[] = [
   {
     venueSlug: "ballymagarvey",
     venueName: "Ballymagarvey Village",
+    batch: "A",
     state: "held",
     subject: "A planning layer for Ballymagarvey couples",
     firstLine:
@@ -214,6 +247,7 @@ export const BATCH_A_EMAIL_DRAFTS: BatchAEmailDraft[] = [
   {
     venueSlug: "clonabreany",
     venueName: "Clonabreany House",
+    batch: "A",
     state: "held",
     subject: "A planning layer for Clonabreany couples",
     firstLine:
@@ -224,12 +258,201 @@ export const BATCH_A_EMAIL_DRAFTS: BatchAEmailDraft[] = [
   {
     venueSlug: "boyne-hill",
     venueName: "Boyne Hill House Estate",
+    batch: "A",
     state: "held",
     subject: "A planning layer for Boyne Hill couples",
     firstLine:
       "Boyne Hill sells a private-estate experience; the couple-side planning should feel just as private and composed.",
     proofDependency: "30 second proof video and one-page PDF",
     source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
+  },
+];
+
+export const BATCH_BC_EMAIL_DRAFTS: BatchAEmailDraft[] = [
+  {
+    venueSlug: "the-millhouse",
+    venueName: "The Millhouse",
+    batch: "B",
+    state: "held",
+    subject: "A planning layer for The Millhouse couples",
+    firstLine:
+      "The Millhouse looks built for couples who care about detail; Signal gives that detail one calm home from booking to final handoff.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "rathsallagh",
+    venueName: "Rathsallagh House",
+    batch: "B",
+    state: "held",
+    subject: "A planning layer for Rathsallagh couples",
+    firstLine:
+      "Because Rathsallagh is owner-managed and one-wedding-at-a-time, the planning handoff should feel just as singular.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "bellingham-castle",
+    venueName: "Bellingham Castle",
+    batch: "B",
+    state: "held",
+    subject: "A planning layer for Bellingham Castle couples",
+    firstLine:
+      "Bellingham already gives couples a very personal castle handoff; Signal keeps the repeated planning questions organised without making the service feel less personal.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "darver-castle",
+    venueName: "Darver Castle",
+    batch: "B",
+    state: "held",
+    subject: "A planning layer for Darver couples",
+    firstLine:
+      "Darver's one-wedding-per-day promise is exactly the kind of service Signal should sit behind: one current plan, one calm handoff.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "markree-castle",
+    venueName: "Markree Castle",
+    batch: "C",
+    state: "held",
+    subject: "A planning layer for Markree Castle couples",
+    firstLine:
+      "Markree's destination-castle promise makes the planning layer matter early; Signal gives the couple and venue one current picture before the weekend begins.",
+    proofDependency: "destination/castle proof asset",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "castle-leslie",
+    venueName: "Castle Leslie Estate",
+    batch: "C",
+    state: "held",
+    subject: "A planning layer for Castle Leslie couples",
+    firstLine:
+      "Castle Leslie's estate scale makes planning calm part of the guest experience; Signal keeps the couple-side plan current without adding another admin burden.",
+    proofDependency: "estate-scale proof asset",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "cliff-at-lyons",
+    venueName: "Cliff at Lyons",
+    batch: "C",
+    state: "held",
+    subject: "A planning layer for Cliff at Lyons couples",
+    firstLine:
+      "Cliff at Lyons feels like a venue where the planning layer should flex with the event, from intimate wedding to fuller estate flow.",
+    proofDependency: "split-scenario proof asset",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "kilkea-castle",
+    venueName: "Kilkea Castle",
+    batch: "C",
+    state: "held",
+    subject: "A planning layer for Kilkea Castle couples",
+    firstLine:
+      "Kilkea already promises couples a guided planning experience; Signal gives that planner-led journey one calm workspace after booking.",
+    proofDependency: "planner-led proof asset",
+    source: "docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md",
+  },
+];
+
+export const VENUE_FULFILMENT_REHEARSAL: VenueFulfilmentRehearsalStep[] = [
+  {
+    step: 1,
+    name: "Confirm signer, price, and venue eyebrow",
+    state: "manual",
+    command: "Founder confirms signer, annual amount, start date, and display name.",
+    proof: "No code issuance before this is written in the ledger.",
+  },
+  {
+    step: 2,
+    name: "Payment lands",
+    state: "blocked",
+    command: "Invoice paid before sponsor is marked paid.",
+    proof: "Cash in the door is the only revenue signal.",
+  },
+  {
+    step: 3,
+    name: "Create sponsor",
+    state: "ready",
+    command: "pnpm create:sponsor <slug> <name> <contact-email> [brand-meta-json]",
+    proof: "Script validates slug, contact email, and optional JSON before insert.",
+  },
+  {
+    step: 4,
+    name: "Mark venue paid",
+    state: "ready",
+    command: "pnpm venue:paid <sponsor-slug> founding 1500 --founding",
+    proof: "Writes annual amount, paid_at, term window, and founding lock.",
+  },
+  {
+    step: 5,
+    name: "Issue first code batch",
+    state: "ready",
+    command: "pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 365",
+    proof: "Dual-writes Studio audit and Tasks runtime comp codes.",
+  },
+  {
+    step: 6,
+    name: "Redeem one internal code",
+    state: "manual",
+    command: "Open /redeem/[CODE] in an incognito browser and reach the wedding workspace.",
+    proof: "No self-serve price shown; venue eyebrow visible.",
+  },
+  {
+    step: 7,
+    name: "Partner digest",
+    state: "ready",
+    command: "pnpm partner:digest <sponsor-slug>",
+    proof: "Summarises issued, redeemed, reached-board, and most recent redemption.",
+  },
+];
+
+export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
+  {
+    objection: "Our couples already have planners.",
+    answer:
+      "Good planners benefit from one readable source of truth. Signal does not replace the planner; it gives the planner, couple, suppliers, and venue a calmer shared picture.",
+    useWhen: "The venue hears this as overlap with planning services.",
+  },
+  {
+    objection: "We do not want to run software.",
+    answer:
+      "You do not run it. The venue pays once, hands out codes, and Signal Studio supports the product. The venue is the sponsor, not the admin.",
+    useWhen: "The buyer worries about operational lift.",
+  },
+  {
+    objection: "What if couples do not use it?",
+    answer:
+      "Nothing breaks. The couples who use it get a materially calmer year; the venue loses nothing on couples who ignore the code. Usage is learned through the founding cohort.",
+    useWhen: "The buyer wants adoption certainty before proof exists.",
+  },
+  {
+    objection: "Can we see the couple workspace?",
+    answer:
+      "The couple workspace is private by default. The venue sees what the couple chooses to share: roadmap, updates, and the artefacts that belong in the planning relationship.",
+    useWhen: "The buyer asks about privacy and oversight.",
+  },
+  {
+    objection: "Why annual instead of per couple?",
+    answer:
+      "The venue is not buying seats. It is backing the planning year for every couple it books. Annual prepay keeps the couple experience seamless and keeps pricing away from the couple.",
+    useWhen: "The buyer asks for per-couple pricing.",
+  },
+  {
+    objection: "Who else uses it?",
+    answer:
+      "This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the founding price.",
+    useWhen: "The buyer asks for social proof before it exists.",
+  },
+  {
+    objection: "We are too busy right now.",
+    answer:
+      "That is fair. The right next step is not a demo; it is a calmer proof asset and one short conversation when planning bandwidth exists.",
+    useWhen: "The venue has interest but no immediate time.",
   },
 ];
 
@@ -580,3 +803,23 @@ export const WAVE_ONE_VENUES: VenueTarget[] = [
     links: links("kilkea-castle", "https://www.kilkeacastle.ie/weddings/"),
   },
 ];
+
+export const WAVE_ONE_CONVERSION_LEDGER: VenueConversionLedgerRow[] =
+  WAVE_ONE_VENUES.map((venue) => ({
+    venueSlug: venue.slug,
+    venueName: venue.name,
+    batch: venue.batch,
+    status: "not-started",
+    contactPathState: "official path known; recheck on send day",
+    email1SentAt: "—",
+    followup1SentAt: "—",
+    followup2SentAt: "—",
+    replyState: "none",
+    callDate: "—",
+    signerPresent: "unknown",
+    priceDiscussed: "no",
+    nextAction:
+      venue.batch === "A"
+        ? "Hold until proof video, PDF, and founder read-aloud are complete."
+        : "Hold until Batch A produces signal or founder approves moving wider.",
+  }));

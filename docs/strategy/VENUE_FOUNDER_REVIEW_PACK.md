@@ -22,12 +22,17 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | `docs/strategy/VENUE_OUTREACH_SEQUENCE.md` | Email sequence, still unsent. | Approve only after assets are complete. |
 | `docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md` | Exact video, PDF, capture, and motion work order. | Use as the production checklist. |
 | `docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md` | Held first-touch drafts for Tankardstown, Ballymagarvey, Clonabreany, and Boyne Hill. | Read aloud only after proof assets exist. |
+| `docs/strategy/VENUE_BATCH_BC_EMAIL_DRAFTS.md` | Held first-touch drafts for the remaining eight Wave 1 venues. | Keep held until Batch A has signal or founder approves moving wider. |
 | `docs/strategy/VENUE_TARGET_LEDGER.md` | 30-account ledger, Wave 1 links, status vocabulary. | Update statuses only after real human action. |
 | `docs/strategy/VENUE_WAVE1_DOSSIERS.md` | 12 venue-specific opening reads and account hypotheses. | Read Batch A aloud and rewrite anything generic. |
 | `docs/strategy/VENUE_DEMO_SYSTEM.md` | Demo mechanics and show flow. | Use as the capture script for product footage. |
 | `docs/strategy/VENUE_EDITION_VIDEO_BRIEF.md` | Motion/video creative brief. | Make this the creative source of truth. |
 | `docs/strategy/VENUE_TRACKING_AND_CONVERSION.md` | Measurement, tracked links, conversion handling. | Confirm no untracked link appears in outbound material. |
 | `docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md` | Live route check for Wave 1 tracked links. | Keep as passed route evidence; recheck official contact paths on send day. |
+| `docs/strategy/VENUE_ATTRIBUTION_CONTACT_LEDGER.md` | Contact route and attribution hardening. | Use for inbound reply logging. |
+| `docs/strategy/VENUE_FULFILMENT_REHEARSAL_2026_05_27.md` | No-mutation rehearsal of the post-sale path. | Use before the first paid venue setup. |
+| `docs/strategy/VENUE_FAQ_OBJECTIONS.md` | Private answer bank for common venue objections. | Keep answers plain until real calls sharpen them. |
+| `docs/strategy/VENUE_PUBLIC_PAGE_QA_2026_05_27.md` | Buyer journey QA for `/venues`, `/venues/demo`, `/weddings`, `/pricing`, and `/contact`. | Refresh after public page changes. |
 | `docs/strategy/VENUE_FULFILMENT_RUNBOOK.md` | What happens after a venue says yes. | Keep expectations operationally true. |
 
 ---
