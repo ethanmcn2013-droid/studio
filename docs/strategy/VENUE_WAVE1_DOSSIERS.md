@@ -66,6 +66,5 @@ Boundary: no outreach has been sent. No personal names, personal emails, or infe
 | 30 second proof video is approved. | blocked | founder |
 | 60 second venue walkthrough is approved. | blocked | founder |
 | Product capture frames are clean on desktop and mobile. | open | founder/operator |
-| `/venues`, `/venues/demo`, and `/contact` tracked links are dry-run tested. | open | operator |
+| `/venues`, `/venues/demo`, and `/contact` tracked links are dry-run tested. | ready - 36/36 Signal-owned links returned 200 on 2026-05-27 | operator |
 | Batch A is read aloud once and rewritten where it sounds generic. | open | founder/operator |
-

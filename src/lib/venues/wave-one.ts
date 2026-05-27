@@ -43,6 +43,25 @@ export type OutreachGate = {
   detail: string;
 };
 
+export type CreativeProductionItem = {
+  step: number;
+  output: string;
+  state: "open" | "blocked" | "ready";
+  owner: string;
+  nextAction: string;
+  source: string;
+};
+
+export type BatchAEmailDraft = {
+  venueSlug: string;
+  venueName: string;
+  state: "held" | "ready-unsent";
+  subject: string;
+  firstLine: string;
+  proofDependency: string;
+  source: string;
+};
+
 export const VENUE_CAMPAIGN = "founding_venue_2026_q2";
 
 const BASE_URL = "https://signalstudio.ie";
@@ -93,10 +112,10 @@ export const WAVE_ONE_OUTREACH_GATES: OutreachGate[] = [
   },
   {
     name: "Demo dry run",
-    state: "open",
+    state: "ready",
     owner: "operator",
     detail:
-      "Tracked venue page, live demo, contact route, and email links tested end to end with no fake sends.",
+      "36/36 Wave 1 Signal-owned venue page, demo, and contact links returned HTTP 200 on 2026-05-27.",
   },
   {
     name: "Personalization pass",
@@ -111,6 +130,106 @@ export const WAVE_ONE_OUTREACH_GATES: OutreachGate[] = [
     owner: "founder",
     detail:
       "Batch A is read aloud once. Anything that sounds generic gets rewritten before email 1 exists.",
+  },
+];
+
+export const VENUE_CREATIVE_PRODUCTION_CHECKLIST: CreativeProductionItem[] = [
+  {
+    step: 1,
+    output: "Product capture frames",
+    state: "open",
+    owner: "founder/operator",
+    nextAction:
+      "Capture the eight proof frames: Notes, Tasks, Roadmap, Analytics, code redeem, venue eyebrow, and closing card.",
+    source: "docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md",
+  },
+  {
+    step: 2,
+    output: "30 second proof video",
+    state: "blocked",
+    owner: "founder",
+    nextAction:
+      "Edit the 30 second no-CTA proof cut from the exact timeline and approved product frames.",
+    source: "docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md",
+  },
+  {
+    step: 3,
+    output: "One-page PDF",
+    state: "blocked",
+    owner: "founder",
+    nextAction:
+      "Design the A4 one-pager using the venue eyebrow frame, four-layer product summary, mechanic, and plain pricing.",
+    source: "docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md",
+  },
+  {
+    step: 4,
+    output: "60 second walkthrough",
+    state: "blocked",
+    owner: "founder",
+    nextAction:
+      "Cut the extended venue walkthrough after the 30 second proof video is tight.",
+    source: "docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md",
+  },
+  {
+    step: 5,
+    output: "Batch A email drafts",
+    state: "open",
+    owner: "operator",
+    nextAction:
+      "Read the four held drafts aloud after the video and PDF exist; rewrite anything that sounds generic.",
+    source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
+  },
+  {
+    step: 6,
+    output: "Tracked link dry run",
+    state: "ready",
+    owner: "operator",
+    nextAction:
+      "Keep the dry-run note. Recheck official venue contact routes on the actual send day.",
+    source: "docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md",
+  },
+];
+
+export const BATCH_A_EMAIL_DRAFTS: BatchAEmailDraft[] = [
+  {
+    venueSlug: "tankardstown",
+    venueName: "Tankardstown House",
+    state: "held",
+    subject: "A planning layer for Tankardstown couples",
+    firstLine:
+      "I was looking at how Tankardstown frames the house, gardens, Orangery, and guest stay as one experience.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "ballymagarvey",
+    venueName: "Ballymagarvey Village",
+    state: "held",
+    subject: "A planning layer for Ballymagarvey couples",
+    firstLine:
+      "Ballymagarvey already sells the feeling of a private, carefully held wedding.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "clonabreany",
+    venueName: "Clonabreany House",
+    state: "held",
+    subject: "A planning layer for Clonabreany couples",
+    firstLine:
+      "Clonabreany feels like a venue where guests, rooms, suppliers, and final details all meet in one place.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
+  },
+  {
+    venueSlug: "boyne-hill",
+    venueName: "Boyne Hill House Estate",
+    state: "held",
+    subject: "A planning layer for Boyne Hill couples",
+    firstLine:
+      "Boyne Hill sells a private-estate experience; the couple-side planning should feel just as private and composed.",
+    proofDependency: "30 second proof video and one-page PDF",
+    source: "docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md",
   },
 ];
 

@@ -36,6 +36,9 @@ Boundary: no outreach has been sent. Contact names and emails stay blank until i
 
 | File | Use |
 | --- | --- |
+| `docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md` | Founder video, PDF, capture, and motion work order. |
+| `docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md` | Held first-touch drafts for Batch A. |
+| `docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md` | 36/36 Wave 1 Signal-owned tracked links passed on 2026-05-27. |
 | `docs/strategy/VENUE_WAVE1_DOSSIERS.md` | Wave 1 account intelligence, opening observations, proof assets, and send risks. |
 | `docs/strategy/VENUE_FOUNDER_REVIEW_PACK.md` | Founder asset gate, creative checklist, and read-aloud controls. |
 | `docs/strategy/VENUE_DEMO_SYSTEM.md` | Live demo mechanics and capture path. |

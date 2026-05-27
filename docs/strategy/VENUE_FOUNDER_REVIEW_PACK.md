@@ -20,11 +20,14 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | `docs/strategy/VENUE_EDITION_STRATEGY.md` | Strategic context for venue editions. | Keep as reference, not outbound copy. |
 | `docs/strategy/VENUE_SALES_PACK.md` | Core sales copy and founder narrative. | Pull from this for PDF and video script. |
 | `docs/strategy/VENUE_OUTREACH_SEQUENCE.md` | Email sequence, still unsent. | Approve only after assets are complete. |
+| `docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md` | Exact video, PDF, capture, and motion work order. | Use as the production checklist. |
+| `docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md` | Held first-touch drafts for Tankardstown, Ballymagarvey, Clonabreany, and Boyne Hill. | Read aloud only after proof assets exist. |
 | `docs/strategy/VENUE_TARGET_LEDGER.md` | 30-account ledger, Wave 1 links, status vocabulary. | Update statuses only after real human action. |
 | `docs/strategy/VENUE_WAVE1_DOSSIERS.md` | 12 venue-specific opening reads and account hypotheses. | Read Batch A aloud and rewrite anything generic. |
 | `docs/strategy/VENUE_DEMO_SYSTEM.md` | Demo mechanics and show flow. | Use as the capture script for product footage. |
 | `docs/strategy/VENUE_EDITION_VIDEO_BRIEF.md` | Motion/video creative brief. | Make this the creative source of truth. |
 | `docs/strategy/VENUE_TRACKING_AND_CONVERSION.md` | Measurement, tracked links, conversion handling. | Confirm no untracked link appears in outbound material. |
+| `docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md` | Live route check for Wave 1 tracked links. | Keep as passed route evidence; recheck official contact paths on send day. |
 | `docs/strategy/VENUE_FULFILMENT_RUNBOOK.md` | What happens after a venue says yes. | Keep expectations operationally true. |
 
 ---
@@ -39,7 +42,8 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | 2 minute founder walkthrough | Optional Loom-style founder explanation. | Calm, specific, no feature dumping. Must feel like partnership, not sales pressure. | open |
 | Product capture frames | Stills for PDF, page, and video. | Desktop and mobile captures are clean, current, and on-brand. | open |
 | Motion tests | Micro motion for the four product areas. | Notes, Tasks, Roadmap, and Analytics each get a small moment that makes the product feel alive. | open |
-| Batch A first-line review | The founder taste check before any email. | Every opener sounds like it could only go to that venue. | open |
+| Batch A first-line review | The founder taste check before any email. | Every opener sounds like it could only go to that venue. | drafted, held |
+| Wave 1 tracked links | Venue page, demo, and contact path for each target. | 36/36 Signal-owned links resolve before any send. | ready |
 
 ---
 
@@ -78,4 +82,3 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | Tracking | Every link includes `source`, `campaign`, `audience`, `artifact`, `touch`, and `venue`. |
 | Founder voice | The email sounds like Ethan noticed the venue and is sharing a useful operating idea. |
 | Fulfilment | If a venue replies "yes", setup, code issue, and partner digest are already clear. |
-

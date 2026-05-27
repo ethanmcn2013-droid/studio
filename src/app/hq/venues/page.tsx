@@ -5,8 +5,12 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import {
+  BATCH_A_EMAIL_DRAFTS,
+  VENUE_CREATIVE_PRODUCTION_CHECKLIST,
   WAVE_ONE_OUTREACH_GATES,
   WAVE_ONE_VENUES,
+  type BatchAEmailDraft,
+  type CreativeProductionItem,
   type OutreachGate,
   type VenueBatch,
   type VenueTarget,
@@ -37,6 +41,7 @@ export default async function VenuesPage() {
   const sent = WAVE_ONE_VENUES.filter(
     (venue) => venue.status !== "not-ready" && venue.status !== "ready-unsent",
   ).length;
+  const linksChecked = WAVE_ONE_VENUES.length * 3;
 
   return (
     <main id="main" className="mx-auto w-full max-w-[1180px] px-6 pb-24 pt-16 md:pt-20">
@@ -66,6 +71,8 @@ export default async function VenuesPage() {
       <div style={statsGridStyle}>
         <Stat value={String(WAVE_ONE_VENUES.length)} label="Wave 1 targets" />
         <Stat value={String(batches.length)} label="review batches" />
+        <Stat value={String(BATCH_A_EMAIL_DRAFTS.length)} label="Batch A drafts" />
+        <Stat value={String(linksChecked)} label="links checked" />
         <Stat value={String(notReady)} label="asset gated" />
         <Stat value={String(readyUnsent)} label="ready unsent" />
         <Stat value={String(sent)} label="emails sent" />
@@ -123,11 +130,37 @@ export default async function VenuesPage() {
         <SectionTitle
           kicker="gates"
           title="No-send controls"
-          copy="The product is ready enough to show. The venue motion layer still needs founder polish before any outbound email should exist."
+          copy="The tracked routes work. The venue motion layer still needs founder polish before any outbound email should exist."
         />
         <div style={gateGridStyle}>
           {WAVE_ONE_OUTREACH_GATES.map((gate) => (
             <GateRow key={gate.name} gate={gate} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <SectionTitle
+          kicker="production"
+          title="Founder proof work order"
+          copy="The next constraint is visual proof: capture frames, 30 second video, PDF, and the read-aloud pass. This is the order to work through."
+        />
+        <div className="space-y-3">
+          {VENUE_CREATIVE_PRODUCTION_CHECKLIST.map((item) => (
+            <ProductionRow key={item.output} item={item} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <SectionTitle
+          kicker="held drafts"
+          title="Batch A email review"
+          copy="The four first-touch drafts now exist, but they remain held until the proof video and PDF are approved."
+        />
+        <div style={draftGridStyle}>
+          {BATCH_A_EMAIL_DRAFTS.map((draft) => (
+            <DraftCard key={draft.venueSlug} draft={draft} />
           ))}
         </div>
       </section>
@@ -153,6 +186,9 @@ export default async function VenuesPage() {
         />
         <div style={fileGridStyle}>
           <FilePath file="docs/strategy/VENUE_GTM_EXECUTION_PLAN.md" note="course-correction plan" />
+          <FilePath file="docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md" note="video, PDF, and capture work order" />
+          <FilePath file="docs/strategy/VENUE_BATCH_A_EMAIL_DRAFTS.md" note="held Batch A founder emails" />
+          <FilePath file="docs/strategy/VENUE_LINK_DRY_RUN_2026_05_27.md" note="36/36 live tracked links passed" />
           <FilePath file="docs/strategy/VENUE_WAVE1_DOSSIERS.md" note="account intelligence" />
           <FilePath file="docs/strategy/VENUE_FOUNDER_REVIEW_PACK.md" note="creative gates" />
           <FilePath file="docs/strategy/VENUE_TARGET_LEDGER.md" note="status ledger and tracked links" />
@@ -242,6 +278,58 @@ function GateRow({ gate }: { gate: OutreachGate }) {
   );
 }
 
+function ProductionRow({ item }: { item: CreativeProductionItem }) {
+  return (
+    <div
+      className="grid gap-4 border border-border"
+      style={{
+        background: "var(--bg-elev)",
+        gridTemplateColumns: "minmax(48px, 72px) minmax(0, 1fr) auto",
+        padding: 18,
+      }}
+    >
+      <div style={smallMonoStyle}>step {item.step}</div>
+      <div>
+        <h3 className="text-ink" style={{ fontSize: 17, fontWeight: 500 }}>
+          {item.output}
+        </h3>
+        <p className="mt-2 text-ink-soft" style={{ fontSize: 14, lineHeight: 1.5 }}>
+          {item.nextAction}
+        </p>
+        <div className="mt-3" style={smallMonoStyle}>
+          {item.owner} - {item.source}
+        </div>
+      </div>
+      <div>
+        <Pill tone={item.state}>{item.state}</Pill>
+      </div>
+    </div>
+  );
+}
+
+function DraftCard({ draft }: { draft: BatchAEmailDraft }) {
+  return (
+    <article style={panelStyle}>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div style={smallMonoStyle}>{draft.venueSlug}</div>
+          <h3 className="mt-2 text-ink" style={{ fontSize: 19, lineHeight: 1.25, fontWeight: 500 }}>
+            {draft.venueName}
+          </h3>
+        </div>
+        <Pill tone={draft.state === "held" ? "held" : "ready"}>
+          {draft.state}
+        </Pill>
+      </div>
+      <Detail label="subject">{draft.subject}</Detail>
+      <Detail label="first line">{draft.firstLine}</Detail>
+      <div className="mt-5 border-t border-border-soft pt-4" style={smallMonoStyle}>
+        blocked by - {draft.proofDependency}
+      </div>
+    </article>
+  );
+}
+
 function VenueCard({ venue }: { venue: VenueTarget }) {
   return (
     <article style={panelStyle}>
@@ -322,7 +410,7 @@ function Pill({
   tone,
   children,
 }: {
-  tone: "blocked" | "open" | "ready" | "status" | "readiness";
+  tone: "blocked" | "open" | "ready" | "held" | "status" | "readiness";
   children: ReactNode;
 }) {
   const palette: Record<typeof tone, CSSProperties> = {
@@ -340,6 +428,11 @@ function Pill({
       color: "#14532d",
       background: "color-mix(in srgb, #16a34a 10%, var(--bg-elev))",
       borderColor: "color-mix(in srgb, #16a34a 30%, var(--border))",
+    },
+    held: {
+      color: "var(--ink-soft)",
+      background: "color-mix(in srgb, #f59e0b 10%, var(--bg-elev))",
+      borderColor: "color-mix(in srgb, #f59e0b 28%, var(--border))",
     },
     status: {
       color: "var(--ink-soft)",
@@ -398,6 +491,12 @@ const fileGridStyle: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
   gap: 18,
+};
+
+const draftGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+  gap: 16,
 };
 
 const venueDetailGridStyle: CSSProperties = {
