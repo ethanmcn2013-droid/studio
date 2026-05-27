@@ -1,0 +1,71 @@
+# Venue Wave 1 Dossiers
+
+Status: unsent account intelligence - 2026-05-27
+Owner: founder
+Boundary: no outreach has been sent. No personal names, personal emails, or inferred contact details are stored here. Use only official public venue routes until a current contact is independently verified.
+
+---
+
+## How To Use This
+
+| Rule | Standard |
+| --- | --- |
+| One venue, one hypothesis. | Each note needs one specific reason Signal belongs in that venue's planning experience. |
+| Verify the current page before send. | Source facts can change. Recheck the official page the same day the email is drafted. |
+| Keep the first line human. | It should read like a founder noticed the venue, not like a scraped template. |
+| Do not send from this file. | This is research and preparation only. Email copy stays gated by founder assets and read-aloud review. |
+
+---
+
+## Batch Logic
+
+| Batch | Venues | Why this order |
+| --- | --- | --- |
+| A | Tankardstown House, Ballymagarvey Village, Clonabreany House, Boyne Hill House Estate | Local proof density. Meath gives the first sequence a coherent regional story. |
+| B | The Millhouse, Rathsallagh House, Bellingham Castle, Darver Castle | Castle and country-house operators where planning handoff and repeated questions should resonate. |
+| C | Markree Castle, Castle Leslie Estate, Cliff at Lyons, Kilkea Castle | Prestige and distance. Hold until visual proof feels unmistakably premium. |
+
+---
+
+## Dossier Table
+
+| Rank | Venue | Official source | Contact path | Fit | Likely planning friction | Opening observation | First-line draft | Proof asset | Risk | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Tankardstown House | [celebration spaces](https://www.tankardstown.ie/celebration-spaces.html) | Official celebration or wedding enquiry route; use the venue form before any named contact. | Premium country-house venue with house, gardens, Orangery, accommodation, and a high-touch handoff after booking. | Multi-space guest flow, supplier detail, accommodation, and the final-month questions that scatter across email. | The Orangery and garden flow already read like a designed guest experience; the planning year should feel just as composed. | I was looking at how Tankardstown frames the house, gardens, Orangery, and guest stay as one experience; Signal is built for that same calm before the day. | Venue demo plus 30 second proof video showing couple workspace, venue view, and supplier handoff. | Do not over-explain software. Lead with protecting the premium handoff the venue already sells. | Verify current Orangery and celebration-space language before Batch A review. |
+| 2 | Ballymagarvey Village | [your wedding](https://www.ballymagarvey.ie/your-wedding) | Official wedding enquiry route; keep first touch to the public weddings path. | Wedding-led private estate positioning with a strong service promise and one couple experience to protect. | The promise of a seamless day raises expectations for every planning touch before the wedding. | A private, highly cared-for venue creates a lot of invisible planning traffic before the visible day. | Ballymagarvey already sells the feeling of a private, carefully held wedding; Signal is the planning layer that keeps that feeling intact after booking. | Short proof video focused on stress-free planning, not feature volume. | Avoid sounding like a replacement for their team. Position Signal as the quiet workspace behind their service. | Verify current service and private-wedding language before Batch A review. |
+| 3 | Clonabreany House | [about](https://clonabreanyhouse.ie/about/) | Official venue enquiry or weddings contact path; confirm current public contact route before send. | Events-led country house with accommodation and a meaningful guest count, making planning logistics part of the product. | Accommodation, guest questions, supplier handoffs, and final headcount can fragment across multiple threads. | Clonabreany has enough moving parts that one calm couple workspace could protect the handoff for both team and couple. | Clonabreany feels like a venue where the planning experience matters as much as the event itself because guests, rooms, suppliers, and details all meet in one place. | Venue demo with a focus on timeline, guest notes, supplier tasks, and monthly planning rhythm. | Do not mention capacity unless it has been rechecked on the current official page. | Recheck accommodation and guest-count wording before Batch A review. |
+| 4 | Boyne Hill House Estate | [weddings](https://www.boynehillhouse.ie/weddings/) | Official weddings enquiry path; do not use any personal contact until independently verified. | Private estate positioning with multiple spaces and a high-emotion planning journey. | Estate-style weddings create options, guest movement, supplier dependencies, and repeated couple questions. | A private estate wedding deserves a private planning layer rather than another scattered email thread. | Boyne Hill sells a private-estate experience; Signal is designed to keep the couple-side planning just as private, current, and composed. | 60 second venue walkthrough showing how a couple moves from roadmap to task list to final-month analytics. | Keep the note specific to the estate experience; generic wedding SaaS language will miss. | Verify current exclusive/private-estate wording before Batch A review. |
+| 5 | The Millhouse | [official site](https://www.themillhouse.ie/) | Official wedding enquiry route; confirm the correct form or inbox during pre-send review. | Exclusive-hire wedding venue with manor-house character, ceremony options, accommodation, and day-after potential. | Bespoke weddings and multi-day detail can sprawl unless the couple and venue share one live picture. | The Millhouse feels strongest when couples are making the day their own; that is exactly when planning detail tends to sprawl. | The Millhouse looks built for couples who care about detail; Signal gives that detail one calm home from booking to final handoff. | Venue demo using a bespoke wedding scenario with notes, tasks, roadmap, and analytics moving together. | Do not flatten the venue into a generic estate pitch. Keep the copy on detail, character, and handoff. | Capture current ceremony, accommodation, and day-after language for the Batch B draft. |
+| 6 | Rathsallagh House | [weddings](https://www.rathsallagh.com/weddings.html) | Official wedding enquiry route; keep first touch to the public venue path. | Exclusive-use, owner-managed country-house venue with a one-wedding-at-a-time service promise. | A high-care promise can create a large volume of small questions that need one current answer. | Because Rathsallagh is owner-managed and one-wedding-at-a-time, the planning handoff should feel just as singular. | Rathsallagh already makes the wedding feel privately held; Signal is the quiet planning workspace that helps keep that feeling intact before arrival. | Proof video focused on reducing repeated questions while preserving personal service. | Never imply automation replaces the wedding manager. The value is fewer scattered updates. | Verify current exclusive-use and one-wedding-at-a-time wording before Batch B review. |
+| 7 | Bellingham Castle | [castle weddings](https://www.bellinghamcastle.ie/weddings/castle-weddings-venues) | Official weddings enquiry route; public form first, named contact only if current and verified. | Exclusive-use castle venue with a visible coordinator promise and a likely high volume of planning questions. | Repeated planning emails, room questions, supplier dependencies, and castle-weekend detail can pile up on the team. | Their public planning FAQ makes the planning-email load visible; Signal can make that service easier to sustain. | Bellingham already gives couples a very personal castle handoff; Signal is a way to keep the repeated planning questions organised without making the service feel less personal. | 30 second proof video showing repeated questions resolved inside a shared couple workspace. | Be careful with FAQ-specific claims unless rechecked the same day as the send. | Recheck public FAQ and coordinator wording before Batch B review. |
+| 8 | Darver Castle | [official site](https://darvercastle.ie/) | Official wedding enquiry route; use generic venue path unless a current public team contact is confirmed. | Family-run, exclusive-use castle wedding venue with one-wedding-per-day positioning and strong on-site accommodation. | Large weddings need calm guest, room, supplier, menu, and final-detail coordination before the day. | One wedding per day is a strong promise; Signal is about carrying that feeling into the months before. | Darver's one-wedding-per-day promise is exactly the kind of service Signal should sit behind: one current plan, one calm handoff, no scattered version of the truth. | Venue demo framed around one wedding, one board, and one final-month handoff. | Avoid any claim that makes Darver sound high-volume or impersonal. | Verify current one-wedding-per-day, room, and coordinator language before Batch B review. |
+| 9 | Markree Castle | [weddings](https://www.markreecastle.ie/weddings) | Official weddings enquiry route; destination-wedding angle needs current page verification. | Castle and destination-wedding positioning where remote couples need a calm, shared planning picture. | Destination planning, accommodation, travel questions, and supplier dependencies can create stale information fast. | Destination castle weddings need one current picture for couple, venue, suppliers, and guests. | Markree's destination-castle promise makes the planning layer matter early; Signal gives couples and the venue one current picture before the weekend begins. | Destination-wedding version of the demo with travel notes, supplier tasks, guest questions, and planning health. | Do not lead with local Meath proof; this account needs a destination/castle-specific proof asset. | Hold until the destination proof video is stronger, then verify current wedding wording. |
+| 10 | Castle Leslie Estate | [weddings](https://www.castleleslie.com/weddings/) | Official weddings enquiry route; do not approach until estate-scale proof asset is ready. | Large estate venue with one-wedding-per-day positioning and a high-touch team across menus, suppliers, and banquet detail. | Estate-scale planning creates many dependencies that need to stay current across couple, venue, and suppliers. | When the team is already holding menus, banquet rhythm, and supplier detail, a shared couple plan becomes a service asset. | Castle Leslie's estate scale makes planning calm a real part of the guest experience; Signal is built to keep the couple-side plan current without adding another admin burden. | Estate-scale 60 second walkthrough showing supplier rhythm, guest questions, and final-month readiness. | This is a prestige account. Do not send until the visual proof feels premium. | Hold for founder-approved estate proof and verify current one-wedding wording. |
+| 11 | Cliff at Lyons | [wedding venue](https://cliffatlyons.ie/weddings/your-wedding-venue) | Official weddings enquiry route; choose intimate or exclusive-use angle after current page review. | Estate wedding venue near Dublin with intimate and broader estate-use paths. | Different wedding scales require different planning rhythms, which can make generic tools feel clumsy. | Cliff has two planning modes: intimate and fuller estate use. Signal can keep the couple side calm in either case. | Cliff at Lyons feels like a venue where the planning layer should flex with the event, from intimate wedding to fuller estate flow. | Split-scenario demo: intimate wedding board and fuller-estate wedding board using the same Signal structure. | Avoid over-claiming exclusive-use details without current verification. | Verify current intimate and exclusive-use wording before Batch C review. |
+| 12 | Kilkea Castle | [weddings](https://www.kilkeacastle.ie/weddings/) | Official weddings enquiry route; use public venue path until a current contact is verified. | Castle estate with dedicated planner positioning and a clear promise of guided planning. | Planner-led service still needs one current view across couple tasks, supplier progress, guest details, and final checks. | Kilkea's dedicated planner promise is exactly the kind of service Signal should sit behind, quietly. | Kilkea already promises couples a guided planning experience; Signal gives that planner-led journey one calm workspace after booking. | Planner-led walkthrough showing venue view, couple view, and the final-month readiness score. | Do not pitch a new portal. Pitch a calmer service layer behind an existing premium planner promise. | Verify current planner, estate, and wedding package language before Batch C review. |
+
+---
+
+## Founder Read-Aloud Gate
+
+| Check | Pass condition |
+| --- | --- |
+| Specificity | The first line could only be sent to that venue. |
+| Service respect | The copy never implies Signal replaces the coordinator, planner, or wedding manager. |
+| Visual proof | The asset feels premium enough for the venue before the link is sent. |
+| No-pressure tone | The note invites a thoughtful look; it does not push a meeting before value is clear. |
+| Tracking | Venue page, demo, and contact links resolve with venue-specific campaign parameters. |
+
+---
+
+## Do Not Send Until
+
+| Gate | Current state | Owner |
+| --- | --- | --- |
+| One-page PDF is designed and exported. | blocked | founder |
+| 30 second proof video is approved. | blocked | founder |
+| 60 second venue walkthrough is approved. | blocked | founder |
+| Product capture frames are clean on desktop and mobile. | open | founder/operator |
+| `/venues`, `/venues/demo`, and `/contact` tracked links are dry-run tested. | open | operator |
+| Batch A is read aloud once and rewritten where it sounds generic. | open | founder/operator |
+

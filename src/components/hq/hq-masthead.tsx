@@ -89,6 +89,9 @@ export function HqMasthead({
         <Link href="/hq/partners" className="hq-mast-link">
           partners
         </Link>
+        <Link href="/hq/venues" className="hq-mast-link">
+          venues
+        </Link>
         <Link href="/hq/marketing" className="hq-mast-link">
           marketing
         </Link>

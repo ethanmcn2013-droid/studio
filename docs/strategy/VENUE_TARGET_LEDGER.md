@@ -1,6 +1,6 @@
 # Venue Target Ledger
 
-Status: unsent operating ledger - 2026-05-26
+Status: unsent operating ledger - 2026-05-27
 Owner: founder
 Boundary: no outreach has been sent. Contact names and emails stay blank until independently verified.
 
@@ -32,14 +32,25 @@ Boundary: no outreach has been sent. Contact names and emails stay blank until i
 
 ---
 
+## Companion Operating Files
+
+| File | Use |
+| --- | --- |
+| `docs/strategy/VENUE_WAVE1_DOSSIERS.md` | Wave 1 account intelligence, opening observations, proof assets, and send risks. |
+| `docs/strategy/VENUE_FOUNDER_REVIEW_PACK.md` | Founder asset gate, creative checklist, and read-aloud controls. |
+| `docs/strategy/VENUE_DEMO_SYSTEM.md` | Live demo mechanics and capture path. |
+| `docs/strategy/VENUE_TRACKING_AND_CONVERSION.md` | Attribution, link standards, and conversion handling. |
+
+---
+
 ## Target Ledger
 
 | Rank | Slug | Venue | County | Wave | Batch | Target role | Status | Next action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `tankardstown` | Tankardstown House | Meath | 1 | A | Owner/operator or wedding manager | not-ready | Personalize around the Orangery and premium country-house handoff. |
-| 2 | `ballymagarvey` | Ballymagarvey Village | Meath | 1 | A | Owner/operator or wedding manager | not-ready | Personalize around seamless/stress-free planning promise. |
-| 3 | `clonabreany` | Clonabreany House | Meath | 1 | A | Owner/operator or events lead | not-ready | Personalize around exclusive events and guest/accommodation logistics. |
-| 4 | `boyne-hill` | Boyne Hill House Estate | Meath | 1 | A | Owner/operator or wedding coordinator | not-ready | Personalize around private-estate planning experience. |
+| 1 | `tankardstown` | Tankardstown House | Meath | 1 | A | Owner/operator or wedding manager | not-ready | Review Wave 1 dossier, then verify current Orangery and celebration-space language. |
+| 2 | `ballymagarvey` | Ballymagarvey Village | Meath | 1 | A | Owner/operator or wedding manager | not-ready | Review Wave 1 dossier, then verify current service and private-wedding language. |
+| 3 | `clonabreany` | Clonabreany House | Meath | 1 | A | Owner/operator or events lead | not-ready | Review Wave 1 dossier, then recheck accommodation and guest-count wording. |
+| 4 | `boyne-hill` | Boyne Hill House Estate | Meath | 1 | A | Owner/operator or wedding coordinator | not-ready | Review Wave 1 dossier, then verify private-estate wording. |
 | 5 | `the-millhouse` | The Millhouse | Meath | 1 | B | Owner/operator or wedding coordinator | not-ready | Personalize around bespoke weddings and detail management. |
 | 6 | `rathsallagh` | Rathsallagh House | Wicklow | 1 | B | Owner/operator or wedding manager | not-ready | Personalize around exclusive-use service standard. |
 | 7 | `bellingham-castle` | Bellingham Castle | Louth | 1 | B | Owner/operator or wedding manager | not-ready | Personalize around castle handoff and repeated planning questions. |
@@ -100,4 +111,3 @@ Campaign: `founding_venue_2026_q2`
 | A | Ballymagarvey Village | Confirm current promise language around stress-free or seamless planning. |
 | A | Clonabreany House | Confirm current guest/accommodation claims before mentioning capacity. |
 | A | Boyne Hill House Estate | Confirm current private-estate/boutique positioning before using it. |
-
