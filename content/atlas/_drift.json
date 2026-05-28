@@ -20,8 +20,8 @@
       "src/app/pricing/",
       "src/components/landing/"
     ],
-    "updatedAt": "2026-05-27T16:00:13.531Z",
-    "byCommit": "b649e79"
+    "updatedAt": "2026-05-28T21:24:06.568Z",
+    "byCommit": "57806c5"
   },
   "brand-enforcement": {
     "drifted": [
@@ -34,7 +34,7 @@
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-28T14:23:59.319Z",
-    "byCommit": "6a29d8b"
+    "updatedAt": "2026-05-28T21:28:17.958Z",
+    "byCommit": "521789d"
   }
 }
