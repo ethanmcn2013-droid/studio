@@ -29,5 +29,12 @@
     ],
     "updatedAt": "2026-05-27T16:00:13.531Z",
     "byCommit": "b649e79"
+  },
+  "plan-cycle": {
+    "drifted": [
+      "CHANGELOG.md"
+    ],
+    "updatedAt": "2026-05-28T14:23:59.319Z",
+    "byCommit": "6a29d8b"
   }
 }
