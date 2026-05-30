@@ -78,7 +78,7 @@
     padding: 60px 72px;
   }
 
-  .cover-top { display: flex; flex-direction: column; gap: 0; }
+  .cover-top { display: flex; flex-direction: column; gap: 0; position: relative; z-index: 2; }
 
   .wordmark {
     font-family: var(--sans);
@@ -111,7 +111,50 @@
     line-height: 1.5;
   }
 
-  .cover-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .cover-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 2; }
+
+  /* ── Signal pulse — cover slide only ────────────── */
+  .pulse-origin {
+    position: absolute;
+    top: 50%;
+    left: 900px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .pulse-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(129,140,248,0.75);
+    animation: dot-flash 6s ease-in-out infinite;
+  }
+  .pulse-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 960px; height: 960px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(129,140,248,0.28);
+    transform: translate(-50%,-50%) scale(0.01);
+    animation: ring-burst 6s cubic-bezier(0.2,0,0.55,1) infinite;
+  }
+  .pulse-ring:nth-child(2) { animation-delay: 0.9s; }
+  .pulse-ring:nth-child(3) {
+    border-color: rgba(129,140,248,0.10);
+    animation-delay: 1.7s;
+  }
+  @keyframes ring-burst {
+    0%        { transform: translate(-50%,-50%) scale(0.01); opacity: 0.9; }
+    55%, 100% { transform: translate(-50%,-50%) scale(1);    opacity: 0; }
+  }
+  @keyframes dot-flash {
+    0%    { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+    4%    { opacity: 1;   transform: translate(-50%,-50%) scale(1.4); }
+    14%   { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    100%  { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+  }
 
   .cover-meta {
     font-family: var(--mono);
@@ -304,6 +347,13 @@
 
 <!-- 01 · COVER -->
 <div class="slide slide-cover">
+  <!-- Signal pulse — right centre -->
+  <div class="pulse-origin">
+    <div class="pulse-dot"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+  </div>
   <div class="cover-top">
     <div class="wordmark">signal studio<span>.</span></div>
     <div class="cover-headline">Project management<br>for the <em>80%</em><br>not in tech.</div>
@@ -694,12 +744,12 @@
         <div class="tl-row active"><div class="tl-date">Jun–Jul<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 1 · Commercial Proof</div><div class="tl-items">20 founder-signed venue outreaches sent. Motion designer hired. Apple Org enrollment started. Gate 0 target: ≥1 paid venue pilot signed.</div></div></div>
         <div class="tl-row active"><div class="tl-date">Aug<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 2 · Pre-launch Final</div><div class="tl-items">iOS TestFlight beta. Brand film + demo reels delivered. 3–5 venue pilots active. PR groundwork.</div></div></div>
         <div class="tl-row active"><div class="tl-date">Sept 1<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 3 · Full Studio Launch</div><div class="tl-items">Web suite public launch + iOS App Store live, same day. Brand film + all demo reels released. Push notifications. Target: 500 iOS downloads in 30 days.</div></div></div>
-        <div class="tl-row active"><div class="tl-date">Oct–Dec<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 4 · Commercial Scale</div><div class="tl-items">Venue outreach wave 2 — group plays. SEO content live. Target: 10 venue licenses, €25k+ revenue.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Oct–Dec<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 4 · Commercial Scale</div><div class="tl-items">Venue outreach wave 2 — group plays. SEO content live. Target: 10 venue licenses, €50k+ revenue.</div></div></div>
       </div>
       <div class="timeline">
         <div class="tl-row active"><div class="tl-date">Jan–Feb<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 5 · Second Wedge Decision</div><div class="tl-items">Evaluate contractor wedge activation. Workspace subscription drive — direct SaaS to SMB inbound. iOS v1.2.</div></div></div>
         <div class="tl-row active"><div class="tl-date">Mar–Apr<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 6 · Product + Press</div><div class="tl-items">Tier-2 Irish and UK press. Venue case study published. iOS App Store optimisation. Entitlements + Stripe fully live.</div></div></div>
-        <div class="tl-row active"><div class="tl-date">May<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 7 · Year 1 Review</div><div class="tl-items">Full review against 5 metrics: pilots signed, couples activated, Roadmaps shared, workspace growth, revenue. Contractor wedge decision made. Target: 20 venue licenses, €74k+ revenue, 2,000+ registered users.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">May<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 7 · Year 1 Review</div><div class="tl-items">Full review against 5 metrics: pilots signed, couples activated, Roadmaps shared, workspace growth, revenue. Contractor wedge decision made. Target: 20 venue licenses, €150k revenue, 2,000+ registered users.</div></div></div>
       </div>
     </div>
   </div>
@@ -710,49 +760,58 @@
 <!-- 11 · FINANCIAL PROJECTIONS -->
 <div class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Financial Projections · Year 1</div>
-    <div class="slide-title">12-month revenue target: <span>€74,200.</span><br>Here is exactly what that is built from.</div>
+    <div class="slide-eyebrow">Year 1 Revenue Target · June 2026 – May 2027</div>
+    <!-- Hero number -->
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:4px;margin-top:8px;">
+      <div style="font-family:var(--sans);font-size:88px;font-weight:900;color:var(--indigo);letter-spacing:-0.05em;line-height:1;">€150,000</div>
+    </div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink-30);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;">By May 2027 · built from three revenue streams</div>
     <hr class="rule">
-    <div class="two-col">
+    <!-- Three streams -->
+    <div class="three-col" style="margin-bottom:24px;align-items:stretch;">
+      <div class="stat-block">
+        <div class="mono-label" style="margin-bottom:6px;">Venue Edition (B2B)</div>
+        <div class="stat-num indigo" style="font-size:30px;margin:6px 0;">€60,000</div>
+        <div class="stat-label">20 venue licenses · avg €3,000 / yr</div>
+        <div class="stat-sub" style="margin-top:4px;">40% of target · primary commercial wedge</div>
+      </div>
+      <div class="stat-block">
+        <div class="mono-label" style="margin-bottom:6px;">Workspace subscriptions</div>
+        <div class="stat-num" style="font-size:30px;margin:6px 0;">€66,000</div>
+        <div class="stat-label">500 active workspaces · €12 / mo</div>
+        <div class="stat-sub" style="margin-top:4px;">44% of target · direct SaaS + venue couples</div>
+      </div>
+      <div class="stat-block">
+        <div class="mono-label" style="margin-bottom:6px;">Event tier</div>
+        <div class="stat-num" style="font-size:30px;margin:6px 0;">€24,000</div>
+        <div class="stat-label">304 one-time events · €79 each</div>
+        <div class="stat-sub" style="margin-top:4px;">16% of target · weddings, launches, moves</div>
+      </div>
+    </div>
+    <!-- Build chart + assumptions -->
+    <div class="two-col" style="flex:1;align-items:start;">
       <div>
-        <div class="mono-label" style="margin-bottom: 12px;">Revenue build · quarterly (conservative scenario)</div>
-        <div class="bar-chart" style="gap: 16px;">
-          <div class="bar-row"><div class="bar-label">Aug 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:3%"></div></div><div class="bar-val">€2.5k</div></div>
-          <div class="bar-row"><div class="bar-label">Sep 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:12%"></div></div><div class="bar-val">€8.7k</div></div>
-          <div class="bar-row"><div class="bar-label">Nov 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:26%"></div></div><div class="bar-val">€19.3k</div></div>
-          <div class="bar-row"><div class="bar-label">Jan 2027</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:48%"></div></div><div class="bar-val">€36.0k</div></div>
-          <div class="bar-row"><div class="bar-label">Mar 2027</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:66%"></div></div><div class="bar-val">€49.5k</div></div>
-          <div class="bar-row"><div class="bar-label">May 2027</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:98%"></div></div><div class="bar-val">€74.2k</div></div>
-        </div>
-        <div style="margin-top: 20px; background: var(--paper); border-radius: 4px; padding: 16px;">
-          <div class="mono-label" style="margin-bottom: 8px;">Revenue components · Year 1 End (Conservative)</div>
-          <div class="budget-table">
-            <div class="budget-row"><div class="budget-cell header">Revenue source</div><div class="budget-cell header">Units</div><div class="budget-cell header">Year 1 revenue</div></div>
-            <div class="budget-row"><div class="budget-cell">Venue licenses @ avg €2,500 / yr</div><div class="budget-cell">15</div><div class="budget-cell">€37,500</div></div>
-            <div class="budget-row"><div class="budget-cell">Workspace subscriptions @ €12 / mo</div><div class="budget-cell">200</div><div class="budget-cell">€28,800</div></div>
-            <div class="budget-row"><div class="budget-cell">Event tier @ €79 one-time</div><div class="budget-cell">100</div><div class="budget-cell">€7,900</div></div>
-            <div class="budget-row total-row"><div class="budget-cell"><strong>12-month revenue target</strong></div><div class="budget-cell"><strong>—</strong></div><div class="budget-cell"><strong>€74,200</strong></div></div>
-          </div>
+        <div class="mono-label" style="margin-bottom:10px;">Revenue build · Jun 2026 – May 2027</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">Aug 2026</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:3%"></div></div><div class="bar-val">€5k</div></div>
+          <div class="bar-row"><div class="bar-label">Sep 2026</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:10%"></div></div><div class="bar-val">€15k</div></div>
+          <div class="bar-row"><div class="bar-label">Nov 2026</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:27%"></div></div><div class="bar-val">€40k</div></div>
+          <div class="bar-row"><div class="bar-label">Jan 2027</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:50%"></div></div><div class="bar-val">€75k</div></div>
+          <div class="bar-row"><div class="bar-label">Mar 2027</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:77%"></div></div><div class="bar-val">€115k</div></div>
+          <div class="bar-row"><div class="bar-label">May 2027</div><div class="bar-track" style="height:14px;"><div class="bar-fill" style="width:100%"></div></div><div class="bar-val">€150k</div></div>
         </div>
       </div>
       <div>
-        <div class="mono-label" style="margin-bottom: 12px;">Revenue scenarios · 12 months to May 2027</div>
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div class="stat-block" style="background:var(--paper);border:none;"><div class="mono-label" style="margin-bottom:6px;">Conservative</div><div class="stat-num" style="font-size:30px;">€74k</div><div class="stat-label">15 venues · 200 workspaces · 100 events</div></div>
-            <div class="stat-block" style="background:var(--indigo-light);border-color:var(--indigo);"><div class="mono-label" style="margin-bottom:6px;color:var(--indigo);">Optimistic</div><div class="stat-num" style="font-size:30px;color:var(--indigo);">€163k</div><div class="stat-label">25 venues · 500 workspaces · 200 events</div></div>
-          </div>
-        </div>
-        <div class="mono-label" style="margin-bottom: 10px;">Key assumptions</div>
-        <ul class="deck-list" style="gap: 8px;">
-          <li>Gate 0 (first paid pilot) cleared by end of July 2026</li>
-          <li>Full launch September 1, 2026 — web suite + iOS simultaneously; 500 iOS downloads in month 1</li>
-          <li>Venue conversion rate: 1 in 5 outreaches → call; 1 in 3 calls → pilot</li>
-          <li>Workspace subscription conversion: 8% of free users → paid within 90 days</li>
-          <li>Gross margin: ≥90% (Vercel + Turso + Resend + Clerk)</li>
-          <li>No paid acquisition spend in Year 1 — founder outreach + organic only</li>
+        <div class="mono-label" style="margin-bottom:10px;">Key assumptions</div>
+        <ul class="deck-list" style="gap:7px;">
+          <li>Gate 0 (first paid pilot) cleared by July 2026</li>
+          <li>Full launch September 1 — web suite + iOS simultaneously</li>
+          <li>1 in 5 outreaches → call · 1 in 3 calls → paid pilot</li>
+          <li>8% of free users → Workspace tier within 90 days</li>
+          <li>Gross margin ≥90% — infrastructure-light stack</li>
+          <li>Zero paid acquisition in Year 1 — founder outreach + organic only</li>
         </ul>
-        <div class="callout"><p>These projections are hypotheses until Gate 0 clears. One paid pilot is more valuable than any revenue model.</p></div>
+        <div class="callout" style="margin-top:16px;"><p>Gate 0 is the unlock. One paid venue pilot is the proof that everything else is real.</p></div>
       </div>
     </div>
   </div>
@@ -818,16 +877,16 @@
         <div class="mono-label" style="margin-bottom: 12px;">Year 1 cost structure</div>
         <div class="budget-table" style="margin-bottom: 20px;">
           <div class="budget-row"><div class="budget-cell header">Line</div><div class="budget-cell header">Basis</div><div class="budget-cell header">Year 1</div></div>
-          <div class="budget-row"><div class="budget-cell">Founder salary / living costs</div><div class="budget-cell">€5,000/mo</div><div class="budget-cell">€60,000</div></div>
+          <div class="budget-row"><div class="budget-cell">Founder salary</div><div class="budget-cell">Deferred Y1</div><div class="budget-cell">€0</div></div>
           <div class="budget-row"><div class="budget-cell">Motion designer (€500 per video × 8 deliverables)</div><div class="budget-cell">Per video</div><div class="budget-cell">€4,000</div></div>
-          <div class="budget-row"><div class="budget-cell">Marketing production (equipment, shoots)</div><div class="budget-cell">One-off</div><div class="budget-cell">€12,000</div></div>
+          <div class="budget-row"><div class="budget-cell">Marketing production</div><div class="budget-cell">Organic only</div><div class="budget-cell">€0</div></div>
           <div class="budget-row"><div class="budget-cell">Infrastructure (Vercel, Turso, Clerk, Resend)</div><div class="budget-cell">€350/mo</div><div class="budget-cell">€4,200</div></div>
-          <div class="budget-row"><div class="budget-cell">Legal (shareholder structure)</div><div class="budget-cell">One-off</div><div class="budget-cell">€6,000</div></div>
-          <div class="budget-row"><div class="budget-cell">iOS development (Apple Dev Program, Capacitor)</div><div class="budget-cell">One-off</div><div class="budget-cell">€1,500</div></div>
+          <div class="budget-row"><div class="budget-cell">Legal (shareholder structure)</div><div class="budget-cell">One-off</div><div class="budget-cell">€1,500</div></div>
+          <div class="budget-row"><div class="budget-cell">iOS (Apple Developer Program)</div><div class="budget-cell">Annual</div><div class="budget-cell">€99</div></div>
           <div class="budget-row"><div class="budget-cell">Growth reserve</div><div class="budget-cell">Contingency</div><div class="budget-cell">€5,300</div></div>
-          <div class="budget-row total-row"><div class="budget-cell"><strong>Total Year 1</strong></div><div class="budget-cell"><strong>—</strong></div><div class="budget-cell"><strong>€93,000</strong></div></div>
+          <div class="budget-row total-row"><div class="budget-cell"><strong>Total Year 1</strong></div><div class="budget-cell"><strong>—</strong></div><div class="budget-cell"><strong>€15,099</strong></div></div>
         </div>
-        <div class="callout" style="margin-top: 0;"><p>The product is already built and live. Year 1 spend is almost entirely founder time and production costs — no engineering headcount, no office, no dedicated sales team.</p></div>
+        <div class="callout" style="margin-top: 0;"><p>Founder takes no salary in Year 1. Zero paid marketing. Total Year 1 cost to operate: <strong>€15,099</strong> — almost entirely infrastructure and legal. This is what it looks like when the product is already built.</p></div>
       </div>
       <div>
         <div class="mono-label" style="margin-bottom: 12px;">Year 1 targets — May 2027</div>
@@ -845,8 +904,8 @@
             <div class="metric-key">Workspace subscriptions (€12/mo)</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-val indigo">€74k</div>
-            <div class="metric-key">12-month revenue target (conservative)</div>
+            <div class="metric-val indigo">€150k</div>
+            <div class="metric-key">12-month revenue target</div>
           </div>
           <div class="metric-cell">
             <div class="metric-val">500+</div>
@@ -875,7 +934,7 @@
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
       <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">4</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Products. Live on production.</div></div>
       <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">Sept 1</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Full suite + iOS public launch date.</div></div>
-      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">€74k</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">12-month revenue target (conservative).</div></div>
+      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">€150k</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">12-month revenue target.</div></div>
       <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">2,000+</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Registered users target, Year 1.</div></div>
     </div>
   </div>
