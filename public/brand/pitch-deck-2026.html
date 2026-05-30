@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Studio — 12-Month Business Plan 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111111;
+    --ink-60: #111111aa;
+    --ink-30: #11111150;
+    --ink-10: #11111118;
+    --paper: #fafaf9;
+    --white: #ffffff;
+    --indigo: #4f46e5;
+    --indigo-light: #eef2ff;
+    --indigo-mid: #818cf8;
+    --rule: #e5e5e3;
+    --mono: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    --sans: 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html { font-family: var(--body); background: #1a1a1a; color: var(--ink); }
+
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 24px;
+    background: #1a1a1a;
+  }
+
+  .slide {
+    width: 1200px;
+    min-height: 675px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+  }
+
+  .slide-num {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-30);
+    letter-spacing: 0.08em;
+  }
+
+  .slide-label {
+    position: absolute;
+    bottom: 28px;
+    left: 36px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-30);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* COVER */
+  .slide-cover {
+    background: var(--ink);
+    justify-content: space-between;
+    padding: 60px 72px;
+  }
+
+  .cover-top { display: flex; flex-direction: column; gap: 0; }
+
+  .wordmark {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .wordmark span { color: var(--indigo-mid); }
+
+  .cover-headline {
+    font-family: var(--sans);
+    font-size: 62px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    max-width: 760px;
+    margin-top: 72px;
+  }
+  .cover-headline em { font-style: normal; color: var(--indigo-mid); }
+
+  .cover-sub {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    margin-top: 20px;
+    letter-spacing: -0.01em;
+    max-width: 540px;
+    line-height: 1.5;
+  }
+
+  .cover-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+
+  .cover-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .cover-badge { display: flex; gap: 8px; align-items: center; }
+  .badge-pip {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--indigo-mid);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .badge-text {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION DIVIDER */
+  .slide-divider { background: var(--indigo); padding: 60px 72px; justify-content: center; }
+  .divider-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .divider-title {
+    font-family: var(--sans);
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    max-width: 700px;
+  }
+
+  /* STANDARD INNER */
+  .slide-inner { padding: 56px 72px; flex: 1; display: flex; flex-direction: column; }
+
+  .slide-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--indigo);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .slide-title {
+    font-family: var(--sans);
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 40px;
+  }
+  .slide-title span { color: var(--indigo); }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin-bottom: 36px; }
+
+  /* LAYOUT */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; align-items: start; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; flex: 1; }
+  .four-col { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; flex: 1; }
+
+  /* STAT BLOCKS */
+  .stat-block { display: flex; flex-direction: column; gap: 6px; padding: 28px; border: 1px solid var(--rule); border-radius: 4px; }
+  .stat-num { font-family: var(--sans); font-size: 42px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; line-height: 1; }
+  .stat-num.indigo { color: var(--indigo); }
+  .stat-label { font-size: 13px; color: var(--ink-60); line-height: 1.4; }
+  .stat-sub { font-family: var(--mono); font-size: 10px; color: var(--ink-30); letter-spacing: 0.05em; margin-top: 4px; }
+
+  /* PRODUCT ROW */
+  .product-row { display: grid; grid-template-columns: 200px 1fr; gap: 0; align-items: stretch; border-bottom: 1px solid var(--rule); padding: 20px 0; }
+  .product-row:last-child { border-bottom: none; }
+  .product-name-cell { display: flex; flex-direction: column; justify-content: center; padding-right: 32px; border-right: 1px solid var(--rule); }
+  .product-mark { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+  .product-mark-sub { font-family: var(--mono); font-size: 9px; color: var(--indigo); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; }
+  .product-detail-cell { padding-left: 32px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .product-headline { font-family: var(--sans); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
+  .product-desc { font-size: 13px; color: var(--ink-60); line-height: 1.5; max-width: 600px; }
+
+  /* PRICING CARDS */
+  .pricing-card { border: 1px solid var(--rule); border-radius: 4px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .pricing-card.featured { border-color: var(--indigo); background: var(--indigo-light); }
+  .pricing-tier { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-60); }
+  .pricing-tier.indigo { color: var(--indigo); }
+  .pricing-price { font-family: var(--sans); font-size: 32px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; line-height: 1; }
+  .pricing-price sup { font-size: 16px; font-weight: 600; vertical-align: super; }
+  .pricing-cadence { font-family: var(--mono); font-size: 10px; color: var(--ink-30); letter-spacing: 0.05em; }
+  .pricing-line { font-size: 12px; color: var(--ink-60); line-height: 1.6; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 0; flex: 1; }
+  .tl-row { display: grid; grid-template-columns: 100px 1fr; gap: 0; align-items: stretch; min-height: 64px; }
+  .tl-date { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-30); display: flex; align-items: flex-start; padding-top: 4px; padding-right: 20px; }
+  .tl-body { border-left: 2px solid var(--rule); padding: 4px 0 20px 24px; display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .tl-body::before { content: ''; position: absolute; left: -5px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--rule); border: 2px solid var(--white); }
+  .tl-row.active .tl-body::before { background: var(--indigo); }
+  .tl-row.active .tl-body { border-left-color: var(--indigo); }
+  .tl-title { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .tl-title.indigo { color: var(--indigo); }
+  .tl-items { font-size: 12px; color: var(--ink-60); line-height: 1.6; }
+
+  /* METRIC GRID */
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .metric-cell { padding: 20px; background: var(--paper); border-radius: 4px; display: flex; flex-direction: column; gap: 6px; }
+  .metric-val { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); line-height: 1; }
+  .metric-val.indigo { color: var(--indigo); }
+  .metric-key { font-size: 12px; color: var(--ink-60); line-height: 1.4; }
+
+  /* BAR CHART */
+  .bar-chart { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .bar-row { display: grid; grid-template-columns: 80px 1fr 80px; gap: 12px; align-items: center; }
+  .bar-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-60); text-align: right; }
+  .bar-track { height: 12px; background: var(--indigo-light); border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--indigo); border-radius: 2px; }
+  .bar-fill.light { background: var(--indigo-mid); opacity: 0.5; }
+  .bar-val { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+
+  /* CALL-OUT */
+  .callout { background: var(--indigo-light); border-left: 3px solid var(--indigo); padding: 20px 24px; border-radius: 0 4px 4px 0; margin-top: 24px; }
+  .callout p { font-size: 14px; color: var(--indigo); line-height: 1.6; font-weight: 500; }
+
+  /* TEXT */
+  .body { font-size: 15px; color: var(--ink); line-height: 1.6; max-width: 700px; }
+  .body strong { color: var(--ink); }
+  .body-sm { font-size: 13px; color: var(--ink-60); line-height: 1.6; }
+  .mono-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); }
+
+  /* LISTS */
+  ul.deck-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.deck-list li { font-size: 14px; color: var(--ink); line-height: 1.5; padding-left: 16px; position: relative; }
+  ul.deck-list li::before { content: '—'; position: absolute; left: 0; color: var(--indigo); font-weight: 600; }
+
+  /* RISK TABLE */
+  .risk-grid { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; flex: 1; }
+  .risk-row { display: grid; grid-template-columns: 180px 1fr 140px; background: var(--white); gap: 0; }
+  .risk-row.header { background: var(--paper); }
+  .risk-cell { padding: 12px 16px; font-size: 12px; color: var(--ink); line-height: 1.4; border-right: 1px solid var(--rule); }
+  .risk-cell:last-child { border-right: none; }
+  .risk-cell.header-cell { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-30); }
+
+  /* TEAM */
+  .team-card { border: 1px solid var(--rule); border-radius: 4px; padding: 28px; display: flex; flex-direction: column; gap: 8px; }
+  .team-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--indigo-light); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .avatar-init { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--indigo); }
+  .team-name { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+  .team-role { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo); }
+  .team-desc { font-size: 12px; color: var(--ink-60); line-height: 1.5; margin-top: 4px; }
+
+  /* ASK */
+  .ask-box { border: 2px solid var(--indigo); border-radius: 6px; padding: 40px; display: flex; flex-direction: column; gap: 20px; background: var(--indigo-light); flex: 1; }
+  .ask-amount { font-family: var(--sans); font-size: 64px; font-weight: 900; color: var(--indigo); letter-spacing: -0.05em; line-height: 1; }
+  .ask-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo); opacity: 0.6; margin-bottom: 8px; }
+
+  /* BUDGET TABLE */
+  .budget-table { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+  .budget-row { display: grid; grid-template-columns: 1fr 100px 100px; background: var(--white); }
+  .budget-row.total-row { background: var(--paper); }
+  .budget-cell { padding: 10px 16px; font-size: 13px; color: var(--ink); border-right: 1px solid var(--rule); }
+  .budget-cell:last-child { border-right: none; text-align: right; }
+  .budget-cell.header { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-30); background: var(--paper); }
+  .budget-cell strong { font-weight: 700; }
+
+  @media print {
+    html { background: white; }
+    .slide-wrapper { padding: 0; gap: 0; background: white; }
+    .slide { width: 100%; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div class="slide-wrapper">
+
+<!-- 01 · COVER -->
+<div class="slide slide-cover">
+  <div class="cover-top">
+    <div class="wordmark">signal studio<span>.</span></div>
+    <div class="cover-headline">Project management<br>for the <em>80%</em><br>not in tech.</div>
+    <div class="cover-sub">A four-product coordination suite for the people who run important work but were never handed the right tools to do it.</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta">
+      12-MONTH BUSINESS PLAN · JUNE 2026 – MAY 2027<br>
+      SIGNALSTUDIO.IE · DUBLIN, IRELAND<br>
+      CONFIDENTIAL — FOR DISCUSSION ONLY
+    </div>
+    <div class="cover-badge">
+      <div class="badge-pip"></div>
+      <div class="badge-text">Pre-Revenue · Seeking Seed</div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 · THE PROBLEM -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">The Problem</div>
+    <div class="slide-title">Most software was built<br>for <span>the 20%</span> who work in tech.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <p class="body" style="margin-bottom: 20px;">Project management software is designed for engineering teams — sprint boards, story points, Gantt charts, integrations with GitHub. The people actually running most of the world's important work — venue coordinators, wedding planners, tradespeople, freelancers, small-business owners — are handed the same tools and told to figure it out.</p>
+        <p class="body">The result is coordination by WhatsApp thread, Excel sheet, and repeated email. Work gets lost. People ask the same question twelve times. The person responsible for the outcome is never sure what state anything is in.</p>
+        <div class="callout"><p>80% of the working world is not in tech. The tools they've been given were not designed for them — they were designed for someone else, then left on the shelf for everyone to use.</p></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="stat-block">
+          <div class="stat-num">4.6<span style="font-size:24px;color:var(--ink-60)">B</span></div>
+          <div class="stat-label">Non-technical workers globally who coordinate meaningful work without purpose-built tools</div>
+          <div class="stat-sub">SOURCE: ILO WORLD EMPLOYMENT 2025</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num indigo">€2,400</div>
+          <div class="stat-label">Estimated annual cost per worker in lost time from coordination failures — chasing updates, re-sending files, answering repeat questions</div>
+          <div class="stat-sub">ESTIMATE BASED ON AVERAGE EUROPEAN HOURLY COST × COORDINATION OVERHEAD</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">91%</div>
+          <div class="stat-label">Of project management software users who report their tool is designed for a workflow "not quite like ours"</div>
+          <div class="stat-sub">SOURCE: GARTNER DIGITAL WORK SURVEY 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">02</div>
+</div>
+
+<!-- 03 · THE SOLUTION -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">The Solution</div>
+    <div class="slide-title">One suite. Four layers.<br><span>Everything important. Nothing distracting.</span></div>
+    <hr class="rule">
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+      <div class="product-row">
+        <div class="product-name-cell"><div class="product-mark">Signal Notes</div><div class="product-mark-sub">where work begins</div></div>
+        <div class="product-detail-cell">
+          <div class="product-headline">Private context capture. Nothing leaves until you send it.</div>
+          <div class="product-desc">A place to write what you know before you know what to do with it. One tap moves a note into a task. Notes never auto-route, auto-detect, or auto-share.</div>
+        </div>
+      </div>
+      <div class="product-row">
+        <div class="product-name-cell"><div class="product-mark">Signal Tasks</div><div class="product-mark-sub">where work happens</div></div>
+        <div class="product-detail-cell">
+          <div class="product-headline">The operational engine. Plain language, no jargon.</div>
+          <div class="product-desc">Multi-view task workspace — list, board, calendar. No "story points." No "sprints." Works for a couple planning a wedding just as well as a contractor managing a build.</div>
+        </div>
+      </div>
+      <div class="product-row">
+        <div class="product-name-cell"><div class="product-mark">Signal Roadmap</div><div class="product-mark-sub">what people see</div></div>
+        <div class="product-detail-cell">
+          <div class="product-headline">The shareable public artifact. No account required.</div>
+          <div class="product-desc">A plain-English project page anyone can open. The couple's suppliers see it. The venue's coordinator sees it. The person outside the workspace who needs to know what's happening — they get a link, not a login.</div>
+        </div>
+      </div>
+      <div class="product-row">
+        <div class="product-name-cell"><div class="product-mark">Signal Analytics</div><div class="product-mark-sub">what needs attention</div></div>
+        <div class="product-detail-cell">
+          <div class="product-headline">A morning briefing, not a dashboard. Three things, in plain English.</div>
+          <div class="product-desc">Delivered once a day. No charts to interpret, no filters to set. Tells you what needs attention right now. Silence is the signal — no briefing means nothing is urgent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">03</div>
+</div>
+
+<!-- 04 · MARKET SIZE -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Market Opportunity</div>
+    <div class="slide-title">A €45B market ignored<br>by the <span>incumbents.</span></div>
+    <hr class="rule">
+    <div class="two-col">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="stat-block">
+          <div class="mono-label" style="margin-bottom:8px;">Total Addressable Market</div>
+          <div class="stat-num">€45<span style="font-size:24px;color:var(--ink-60)">B</span></div>
+          <div class="stat-label">Global non-technical coordination software opportunity. Workers who manage projects, events, or team work but are not software developers.</div>
+        </div>
+        <div class="stat-block">
+          <div class="mono-label" style="margin-bottom:8px;">Serviceable Addressable Market</div>
+          <div class="stat-num indigo">€1.2<span style="font-size:24px;color:var(--indigo-mid)">B</span></div>
+          <div class="stat-label">English-speaking EU/UK SMBs and event operators — venues, planners, tradespeople, freelancers, small teams.</div>
+        </div>
+        <div class="stat-block">
+          <div class="mono-label" style="margin-bottom:8px;">Initial Beachhead (Year 1)</div>
+          <div class="stat-num">€4.8<span style="font-size:24px;color:var(--ink-60)">M</span></div>
+          <div class="stat-label">Irish and UK premium wedding &amp; events venues. ~3,200 premium venues × avg €1,500–4,000/yr licensing value.</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <p class="body-sm" style="font-size: 14px; color: var(--ink);"><strong>The structural advantage: incumbents don't want this market.</strong></p>
+        <p class="body-sm">Notion, Monday.com, Asana, and ClickUp all target knowledge workers and engineering teams. Their feature surface, pricing floors, onboarding complexity, and brand voice all signal "this tool is for professionals." The 80% bounces off the product in the first 15 minutes.</p>
+        <p class="body-sm">Signal Studio is designed to feel like consumer software (calm, opinionated, one right answer) while delivering professional-grade coordination output. The incumbent cannot build this without contradicting their existing customer.</p>
+        <div class="mono-label" style="margin-top: 8px;">Expansion wedge sequence (ratified)</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">Venues</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-val">Now</div></div>
+          <div class="bar-row"><div class="bar-label">Contractors</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-val">If proven</div></div>
+          <div class="bar-row"><div class="bar-label">SMB inbound</div><div class="bar-track"><div class="bar-fill light" style="width:30%"></div></div><div class="bar-val">Opportunistic</div></div>
+        </div>
+        <div class="callout" style="margin-top: 0;"><p>Premium venues are the first proof case — not because weddings are the market, but because a premium venue has a buyer who feels the pain weekly, can say yes alone, and hands us a cohort of couples with one decision.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">04</div>
+</div>
+
+<!-- 05 · THE VENUE WEDGE -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Go-to-Market · Commercial Wedge</div>
+    <div class="slide-title">One venue signature.<br><span>A cohort of activated users.</span></div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <p class="body" style="margin-bottom: 20px;">A premium wedding or events venue pays once a year — €1,500 to €4,000, prepaid. For that, every couple they book gets a Signal Studio workspace with the venue's name as a quiet eyebrow. The couple plans their event inside it.</p>
+        <p class="body" style="margin-bottom: 20px;">The venue's team does not operate the software. Their only verbs are: settle the invoice, hand out access codes, do one short annual retro.</p>
+        <p class="body">One commercial decision at the venue unlocks a cohort of real end-users — each couple becomes a workspace. Every couple who has a calm planning experience reflects back on the venue's brand.</p>
+        <div class="callout"><p>"Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name."</p></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="mono-label" style="margin-bottom: 4px;">How the venue model works</div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">1</div>
+            <div><div class="product-headline" style="font-size:13px;">Venue signs annual license</div><div class="product-desc">€1,500–€4,000 prepaid. Venue name registered. No per-seat fees. No recurring admin.</div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">2</div>
+            <div><div class="product-headline" style="font-size:13px;">Couples receive workspace access</div><div class="product-desc">Each booked couple gets a workspace pre-configured for their event. The venue's name sits quietly at the top.</div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">3</div>
+            <div><div class="product-headline" style="font-size:13px;">Planning happens inside Signal Studio</div><div class="product-desc">Notes → Tasks → Roadmap → Analytics. The full coordination loop, none of it requiring a login from the venue's team.</div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">4</div>
+            <div><div class="product-headline" style="font-size:13px;">Roadmap shared externally</div><div class="product-desc">Suppliers, family, vendors get a link — not a login. The coordination loop closes without Signal Studio adding friction.</div></div>
+          </div>
+        </div>
+        <div style="background: var(--paper); border-radius: 4px; padding: 16px; margin-top: 4px;">
+          <div class="mono-label" style="margin-bottom: 8px;">Year 1 venue unit economics</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div><div class="metric-val" style="font-size:20px;">€2,500</div><div class="metric-key">Avg venue license / yr</div></div>
+            <div><div class="metric-val" style="font-size:20px;">~80</div><div class="metric-key">Couples activated per venue / yr</div></div>
+            <div><div class="metric-val" style="font-size:20px; color: var(--indigo);">€31</div><div class="metric-key">Effective cost per couple to venue</div></div>
+            <div><div class="metric-val" style="font-size:20px;">≥90%</div><div class="metric-key">Estimated gross margin</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">05</div>
+</div>
+
+<!-- 06 · PRICING -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Business Model</div>
+    <div class="slide-title">Pricing by <span>relationship to work</span>,<br>not by product.</div>
+    <hr class="rule">
+    <div class="four-col" style="align-items: start;">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">€0</div>
+        <div class="pricing-cadence">FOREVER</div>
+        <div style="height:1px;background:var(--rule);margin: 8px 0;"></div>
+        <div class="pricing-line">One workspace<br>All four products<br>Three editing guests<br>Public Roadmap<br>Daily briefing</div>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier indigo">Workspace · Most chosen</div>
+        <div class="pricing-price"><sup>€</sup>12</div>
+        <div class="pricing-cadence">PER WORKSPACE / MONTH</div>
+        <div style="height:1px;background:var(--indigo);opacity:0.2;margin: 8px 0;"></div>
+        <div class="pricing-line">Unlimited workspaces<br>All four products<br>No per-seat fee<br>Priority briefing<br>Analytics export</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Event</div>
+        <div class="pricing-price"><sup>€</sup>79</div>
+        <div class="pricing-cadence">ONE-TIME · 12 MONTHS</div>
+        <div style="height:1px;background:var(--rule);margin: 8px 0;"></div>
+        <div class="pricing-line">One event workspace<br>All four products<br>Weddings, launches,<br>moves, conferences<br>Forwardable Roadmap</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Student</div>
+        <div class="pricing-price">€0</div>
+        <div class="pricing-cadence">VERIFIED .EDU · 2 YEARS</div>
+        <div style="height:1px;background:var(--rule);margin: 8px 0;"></div>
+        <div class="pricing-line">Two workspaces<br>All four products<br>Student-verified access<br>Renews with verification<br>Full suite access</div>
+      </div>
+    </div>
+    <div style="margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+      <div>
+        <div class="mono-label" style="margin-bottom: 8px;">Venue Edition (B2B)</div>
+        <div style="border: 1px solid var(--rule); border-radius: 4px; padding: 16px;">
+          <div class="pricing-price" style="font-size: 24px;">€1,500 – €4,000</div>
+          <div class="pricing-cadence">PER VENUE / YEAR · PREPAID</div>
+          <div class="pricing-line" style="margin-top: 8px;">Annual venue license. Unlimited couples. Venue-branded workspaces. Zero per-couple admin.</div>
+        </div>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 8px;">Why no per-seat pricing</div>
+        <p class="body-sm" style="font-size: 12px;">Per-seat pricing is the project management industry default — it scales with pain. Signal Studio deliberately refuses per-seat. Bundle pricing IS the discipline — it refuses the incumbent move.</p>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 8px;">Revenue mix (projected Y1)</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">Venue B2B</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-val">55%</div></div>
+          <div class="bar-row"><div class="bar-label">Workspace</div><div class="bar-track"><div class="bar-fill" style="width:34%"></div></div><div class="bar-val">34%</div></div>
+          <div class="bar-row"><div class="bar-label">Event tier</div><div class="bar-track"><div class="bar-fill light" style="width:11%"></div></div><div class="bar-val">11%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">06</div>
+</div>
+
+<!-- 07 · CURRENT STATE -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Current State · May 2026</div>
+    <div class="slide-title">Four products. <span>Live on production.</span><br>Built to near-perfect before any outreach.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <p class="body">All four Signal Studio products are live on production subdomains as of May 2026. The development approach has been deliberate: reach near-perfect product quality before beginning commercial outreach, so that the first impression is the right impression.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="metric-cell"><div class="metric-val indigo">4</div><div class="metric-key">Fully deployed products on production</div></div>
+          <div class="metric-cell"><div class="metric-val">5</div><div class="metric-key">Live domains (studio + 4 products)</div></div>
+          <div class="metric-cell"><div class="metric-val">9.5+</div><div class="metric-key">Average UX quality score across all surfaces (4-director panel)</div></div>
+          <div class="metric-cell"><div class="metric-val indigo">≥90%</div><div class="metric-key">Gross margin (infrastructure-light SaaS model)</div></div>
+        </div>
+        <div class="callout" style="margin-top:0;"><p>Every product surface was evaluated against a 4-director panel scoring rubric before being declared production-ready. Live deployment and re-scoring on the deployed artifact was the bar.</p></div>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 12px;">Live production surfaces (May 2026)</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: grid; grid-template-columns: 148px 1fr 52px; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);"><div class="product-mark" style="font-size:12px;">signalstudio.ie</div><div class="body-sm">Umbrella brand, suite landing, /pricing, /venues, /hq</div><div style="display:flex;align-items:center;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;"></div><span class="mono-label" style="color:#10b981;font-size:9px;">LIVE</span></div></div>
+          <div style="display: grid; grid-template-columns: 148px 1fr 52px; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);"><div class="product-mark" style="font-size:12px;">notes.signal…</div><div class="body-sm">Signal Notes — capture, drafting, Tasks bridge</div><div style="display:flex;align-items:center;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;"></div><span class="mono-label" style="color:#10b981;font-size:9px;">LIVE</span></div></div>
+          <div style="display: grid; grid-template-columns: 148px 1fr 52px; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);"><div class="product-mark" style="font-size:12px;">tasks.signal…</div><div class="body-sm">Signal Tasks — multi-view workspace, auth, Turso DB</div><div style="display:flex;align-items:center;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;"></div><span class="mono-label" style="color:#10b981;font-size:9px;">LIVE</span></div></div>
+          <div style="display: grid; grid-template-columns: 148px 1fr 52px; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);"><div class="product-mark" style="font-size:12px;">roadmap.signal…</div><div class="body-sm">Signal Roadmap — public viewer, workspace create, no-auth public</div><div style="display:flex;align-items:center;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;"></div><span class="mono-label" style="color:#10b981;font-size:9px;">LIVE</span></div></div>
+          <div style="display: grid; grid-template-columns: 148px 1fr 52px; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);"><div class="product-mark" style="font-size:12px;">analytics.signal…</div><div class="body-sm">Signal Analytics — daily briefing engine, Resend, Vercel cron</div><div style="display:flex;align-items:center;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;"></div><span class="mono-label" style="color:#10b981;font-size:9px;">LIVE</span></div></div>
+        </div>
+        <div style="margin-top: 12px; padding: 12px 16px; background: var(--indigo-light); border-radius: 4px;">
+          <div class="mono-label" style="margin-bottom: 4px; color: var(--indigo);">Tech stack</div>
+          <div class="body-sm" style="font-size: 11px;">Next.js 16 · App Router · TypeScript · Tailwind v4 · Turso/libSQL · Clerk auth · Vercel · Resend · Upstash</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">07</div>
+</div>
+
+<!-- 08 · iOS APP -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">iOS App · September 1, 2026</div>
+    <div class="slide-title">Signal Studio for iOS.<br><span>One native app. The whole suite.</span></div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <p class="body" style="margin-bottom: 20px;">On September 1, 2026, Signal Studio launches its iOS app on the App Store. This is a native-spine suite app — not four webview tabs, but a genuine native product with a cross-product Today screen at its centre.</p>
+        <p class="body" style="margin-bottom: 20px;">The suite app is the brand differentiator. A Signal Tasks app alone undercuts the four-layer positioning. The iOS product is Signal Studio — the full suite, felt in one place, with a native identity that the web cannot replicate.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start;"><div style="width:20px;height:20px;border-radius:50%;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--indigo);font-size:11px;font-weight:700;">✓</span></div><div class="body-sm"><strong style="color:var(--ink);">Native Today screen</strong> — cross-product signal surface aggregating briefing, open tasks, and Roadmap milestones. This defeats the App Store 4.2 "repackaged website" rule.</div></div>
+          <div style="display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start;"><div style="width:20px;height:20px;border-radius:50%;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--indigo);font-size:11px;font-weight:700;">✓</span></div><div class="body-sm"><strong style="color:var(--ink);">Shared native authentication</strong> — one Clerk session persisted across all four product areas.</div></div>
+          <div style="display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start;"><div style="width:20px;height:20px;border-radius:50%;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--indigo);font-size:11px;font-weight:700;">✓</span></div><div class="body-sm"><strong style="color:var(--ink);">APNs push notifications</strong> — briefing delivery, task reminders, Roadmap milestones. Unavailable via PWA in Ireland (EU DMA).</div></div>
+          <div style="display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start;"><div style="width:20px;height:20px;border-radius:50%;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--indigo);font-size:11px;font-weight:700;">✓</span></div><div class="body-sm"><strong style="color:var(--ink);">Offline-aware + home screen presence</strong> — the suite becomes a place, not a website.</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="metric-cell"><div class="metric-val indigo">Sept 1</div><div class="metric-key">App Store launch date, 2026</div></div>
+          <div class="metric-cell"><div class="metric-val">500</div><div class="metric-key">Target downloads, first 30 days post-launch</div></div>
+          <div class="metric-cell"><div class="metric-val">€0</div><div class="metric-key">In-app purchase — zero commerce surface. Login companion only.</div></div>
+          <div class="metric-cell"><div class="metric-val">€99</div><div class="metric-key">Apple Developer Program fee — the only App Store cost</div></div>
+        </div>
+        <div>
+          <div class="mono-label" style="margin-bottom: 10px;">iOS development timeline</div>
+          <div class="timeline">
+            <div class="tl-row active"><div class="tl-date">June</div><div class="tl-body"><div class="tl-title indigo">Apple Org enrollment + native home design</div><div class="tl-items">DUNS registration, Apple Developer Org account. Today screen designed as first-class native artifact.</div></div></div>
+            <div class="tl-row active"><div class="tl-date">July</div><div class="tl-body"><div class="tl-title">Capacitor shell + native auth</div><div class="tl-items">Build Capacitor remote-URL wrapper. Native auth, push registration, offline screen.</div></div></div>
+            <div class="tl-row active"><div class="tl-date">Aug</div><div class="tl-body"><div class="tl-title">TestFlight beta + App Store submission</div><div class="tl-items">Beta with venue partners. Privacy labels. Submit for review.</div></div></div>
+            <div class="tl-row active"><div class="tl-date">Sept 1</div><div class="tl-body"><div class="tl-title indigo">App Store launch</div><div class="tl-items">iOS app live. Launch video. Push notification delivery begins.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">08</div>
+</div>
+
+<!-- 09 · MARKETING + MOTION HIRE -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Marketing Strategy</div>
+    <div class="slide-title">Founder-led outreach + <span>professional motion</span><br>at every touchpoint.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <p class="body" style="margin-bottom: 20px;">Signal Studio's go-to-market is deliberately not high-volume. The first 20 outreaches are founder-signed, one at a time, to hand-picked premium Irish venues. No automation, no sequence tool, no volume.</p>
+        <div class="mono-label" style="margin-bottom: 12px;">Motion &amp; Creative Hire — Q3 2026</div>
+        <div class="team-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--indigo-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--indigo);font-size:12px;font-weight:700;">M</span></div>
+            <div><div class="team-name" style="font-size:14px;">Motion Graphics Designer · 2D Animator</div><div class="team-role">Hiring now · Full-time or long-term freelance</div></div>
+          </div>
+          <div class="team-desc">Responsible for: brand film (60s), per-product demo videos (×4), venue edition video, iOS launch trailer, social content series. Register: calm, premium, founder-led.</div>
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="mono-label" style="margin-bottom: 8px;">Deliverable queue (Year 1)</div>
+          <ul class="deck-list">
+            <li>Brand film — "Everything important. Nothing distracting." (60s hero)</li>
+            <li>Signal Notes / Tasks / Roadmap / Analytics demo reels (×4, 30s each)</li>
+            <li>Venue Edition video — venue promise + couple journey (30/60/90s)</li>
+            <li>iOS launch trailer — September 1, App Store + social (30s)</li>
+            <li>Social content series — product feature shorts, ongoing</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 12px;">Outreach strategy</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+          <div class="stat-block" style="padding: 16px;"><div class="stat-num" style="font-size:28px;">50</div><div class="stat-label">Verified Irish premium hotel &amp; venue prospect list — built, qualified, in CRM.</div></div>
+          <div class="stat-block" style="padding: 16px;"><div class="stat-num" style="font-size:28px; color: var(--indigo);">20</div><div class="stat-label">Founder-signed outreaches to launch June 2026. Kill clock: 20 sent by June 8.</div></div>
+          <div class="stat-block" style="padding: 16px;"><div class="stat-num" style="font-size:28px;">1</div><div class="stat-label">The only metric that clears Gate 0: one paid pilot, prepaid, no discount.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">09</div>
+</div>
+
+<!-- 10 · 12-MONTH ROADMAP -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">12-Month Plan · June 2026 – May 2027</div>
+    <div class="slide-title">Four phases. One direction.<br><span>Proof first. Scale second.</span></div>
+    <hr class="rule">
+    <div class="two-col">
+      <div class="timeline">
+        <div class="tl-row active"><div class="tl-date">Jun–Jul<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 1 · Commercial Proof</div><div class="tl-items">20 founder-signed venue outreaches sent. Motion designer hired. Apple Org enrollment started. Gate 0 target: ≥1 paid venue pilot signed.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Aug<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 2 · iOS Build &amp; TestFlight</div><div class="tl-items">iOS app in TestFlight beta. Brand film + 4 product demo reels in production. 3–5 venue pilots active.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Sept<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 3 · iOS Launch</div><div class="tl-items">Signal Studio App Store launch — September 1. iOS launch trailer. Push notifications live. Target: 500 downloads in first 30 days.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Oct–Dec<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 4 · Commercial Scale</div><div class="tl-items">Venue outreach wave 2 — group plays. SEO content live. Target: 10 venue licenses, €25k+ ARR.</div></div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-row active"><div class="tl-date">Jan–Feb<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 5 · Second Wedge Decision</div><div class="tl-items">Evaluate contractor wedge activation. Workspace subscription drive — direct SaaS to SMB inbound. iOS v1.2.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Mar–Apr<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 6 · Product + Press</div><div class="tl-items">Tier-2 Irish and UK press. Venue case study published. iOS App Store optimisation. Entitlements + Stripe fully live.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">May<br>2027</div><div class="tl-body"><div class="tl-title indigo">Phase 7 · Year 1 Proof Gate Review</div><div class="tl-items">5-metric review. Kill or continue decision on contractor wedge. Target: 20 venue licenses, €74k+ ARR, 2,000+ registered users.</div></div></div>
+        <div style="background: var(--indigo-light); border-radius: 4px; padding: 16px; margin-top: 8px;"><div class="mono-label" style="color: var(--indigo); margin-bottom: 6px;">Kill / pivot triggers (pre-committed)</div><div class="body-sm" style="font-size: 11px; color: var(--indigo);">Kill venue wedge if zero paid pilots after 20 outreaches and the stated reason is consistently "not worth paying for." Pivot buyer (not product) if venues engage but can't sign.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">10</div>
+</div>
+
+<!-- 11 · FINANCIAL PROJECTIONS -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Financial Projections · Year 1</div>
+    <div class="slide-title">Conservative path to <span>€74k ARR</span>.<br>Optimistic path to €163k ARR.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <div class="mono-label" style="margin-bottom: 12px;">ARR build · quarterly (conservative scenario)</div>
+        <div class="bar-chart" style="gap: 16px;">
+          <div class="bar-row"><div class="bar-label">Q1 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:3%"></div></div><div class="bar-val">€2.5k</div></div>
+          <div class="bar-row"><div class="bar-label">Q2 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:12%"></div></div><div class="bar-val">€8.7k</div></div>
+          <div class="bar-row"><div class="bar-label">Q3 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:26%"></div></div><div class="bar-val">€19.3k</div></div>
+          <div class="bar-row"><div class="bar-label">Q4 2026</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:48%"></div></div><div class="bar-val">€36.0k</div></div>
+          <div class="bar-row"><div class="bar-label">Q1 2027</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:66%"></div></div><div class="bar-val">€49.5k</div></div>
+          <div class="bar-row"><div class="bar-label">Q2 2027</div><div class="bar-track" style="height: 20px;"><div class="bar-fill" style="width:98%"></div></div><div class="bar-val">€74.2k</div></div>
+        </div>
+        <div style="margin-top: 20px; background: var(--paper); border-radius: 4px; padding: 16px;">
+          <div class="mono-label" style="margin-bottom: 8px;">Revenue components · Year 1 End (Conservative)</div>
+          <div class="budget-table">
+            <div class="budget-row"><div class="budget-cell header">Revenue Source</div><div class="budget-cell header">Units</div><div class="budget-cell header">ARR</div></div>
+            <div class="budget-row"><div class="budget-cell">Venue licenses @ avg €2,500/yr</div><div class="budget-cell">15</div><div class="budget-cell">€37,500</div></div>
+            <div class="budget-row"><div class="budget-cell">Workspace subs @ €12/mo</div><div class="budget-cell">200</div><div class="budget-cell">€28,800</div></div>
+            <div class="budget-row"><div class="budget-cell">Event tier @ €79 one-time</div><div class="budget-cell">100</div><div class="budget-cell">€7,900</div></div>
+            <div class="budget-row total-row"><div class="budget-cell"><strong>Total ARR</strong></div><div class="budget-cell"><strong>—</strong></div><div class="budget-cell"><strong>€74,200</strong></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 12px;">Scenario comparison · Year 1 End (May 2027)</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="stat-block" style="background:var(--paper);border:none;"><div class="mono-label" style="margin-bottom:6px;">Conservative</div><div class="stat-num" style="font-size:30px;">€74k</div><div class="stat-label">15 venues · 200 workspaces · 100 events</div></div>
+            <div class="stat-block" style="background:var(--indigo-light);border-color:var(--indigo);"><div class="mono-label" style="margin-bottom:6px;color:var(--indigo);">Optimistic</div><div class="stat-num" style="font-size:30px;color:var(--indigo);">€163k</div><div class="stat-label">25 venues · 500 workspaces · 200 events</div></div>
+          </div>
+        </div>
+        <div class="mono-label" style="margin-bottom: 10px;">Key assumptions</div>
+        <ul class="deck-list" style="gap: 8px;">
+          <li>Gate 0 (first paid pilot) cleared by end of July 2026</li>
+          <li>iOS App Store launch September 1, 2026 — 500 downloads in month 1</li>
+          <li>Venue conversion rate: 1 in 5 outreaches → call; 1 in 3 calls → pilot</li>
+          <li>Workspace subscription conversion: 8% of free users → paid within 90 days</li>
+          <li>Gross margin: ≥90% (Vercel + Turso + Resend + Clerk)</li>
+          <li>No paid acquisition spend in Year 1 — founder outreach + organic only</li>
+        </ul>
+        <div class="callout"><p>These projections are hypotheses until Gate 0 clears. One paid pilot is more valuable than any revenue model.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">11</div>
+</div>
+
+<!-- 12 · TEAM -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Team</div>
+    <div class="slide-title">Built and led by a <span>designer</span>.<br>Scaled with the right hire.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <div class="team-card" style="margin-bottom:20px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><div class="team-avatar"><span class="avatar-init">E</span></div><div><div class="team-name">Ethan McNamara</div><div class="team-role">Founder · Designer · Builder</div></div></div>
+          <div class="team-desc">Signal Studio was built entirely by one person. All four products, the design system, the brand, the motion language, the CRM, the strategic frame — built solo using the modern AI-assisted development stack (Claude Code, Next.js, Vercel). The moat is not a codebase — it is the judgment that built it.</div>
+          <div style="margin-top: 12px;"><div class="mono-label" style="margin-bottom: 6px;">Core responsibilities</div><ul class="deck-list" style="gap:4px;"><li>Product design and development (all four products)</li><li>Founder-led venue outreach and commercial development</li><li>Brand strategy, positioning, marketing copy</li><li>iOS development (Capacitor + native layer)</li></ul></div>
+        </div>
+        <div class="callout" style="margin-top: 0;"><p>A solo-built suite of four production-grade products is unusual. It demonstrates product discipline, design system thinking, and the capacity to hold coherence across multiple surfaces simultaneously.</p></div>
+      </div>
+      <div>
+        <div class="team-card" style="border-color: var(--indigo); background: var(--indigo-light); margin-bottom: 20px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><div class="team-avatar" style="background: var(--indigo);"><span class="avatar-init" style="color:#fff;">+1</span></div><div><div class="team-name">Motion Graphics Designer</div><div class="team-role" style="color:var(--indigo);">Hire · Q3 2026 · Full-time or long-term freelance</div></div></div>
+          <div class="team-desc" style="color: var(--ink);">The first hire is not a developer — it is a motion designer and 2D animator. Product quality is already at the level where video marketing is the constraint. A professional motion designer transforms the suite's visual clarity into the video artefacts that premium venues and App Store reviewers trust.</div>
+          <div style="margin-top: 12px;"><div class="mono-label" style="margin-bottom: 6px; color: var(--indigo);">Deliverables in first 6 months</div><ul class="deck-list" style="gap:4px;"><li>Brand film (60s hero) — "Everything important. Nothing distracting."</li><li>4× product demo reels (30–45s each)</li><li>Venue Edition video — 3 cut lengths</li><li>iOS App Store launch trailer (30s)</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">12</div>
+</div>
+
+<!-- 13 · RISKS -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Risks &amp; Mitigations</div>
+    <div class="slide-title">Named honestly.<br><span>Mitigated structurally.</span></div>
+    <hr class="rule">
+    <div class="risk-grid">
+      <div class="risk-row header"><div class="risk-cell header-cell">Risk</div><div class="risk-cell header-cell">Mitigation</div><div class="risk-cell header-cell">Trigger</div></div>
+      <div class="risk-row"><div class="risk-cell"><strong>Buyer ≠ sufferer.</strong> Coordinator feels the pain; owner signs the cheque.</div><div class="risk-cell">Pilot qualification filters for owner-operators who hold the P&L. Outreach targets events@/sales@ inboxes directly.</div><div class="risk-cell" style="font-size:11px;color:var(--ink-60);">Pivot to wedding planners / coordinators who own their own P&L.</div></div>
+      <div class="risk-row"><div class="risk-cell"><strong>Diffuse pain, no urgency.</strong> Coordination frustration is real but nobody owns it enough to pay.</div><div class="risk-cell">Founding-venue scarcity framing + price that holds. No discount creates urgency without false pressure.</div><div class="risk-cell" style="font-size:11px;color:var(--ink-60);">After 20+ qualified calls with zero pilots: test with hospitality/clinic coordinators.</div></div>
+      <div class="risk-row"><div class="risk-cell"><strong>Wedding trap.</strong> Suite becomes read as wedding software. 80% positioning collapses.</div><div class="risk-cell">Wedding language lives only on /venues. Suite copy stays category-level. "Wedding" never enters the umbrella H1.</div><div class="risk-cell" style="font-size:11px;color:var(--ink-60);">If ≥60% of organic signups describe use-case as wedding only: introduce contractor content proactively.</div></div>
+      <div class="risk-row"><div class="risk-cell"><strong>iOS 4.2 rejection.</strong> App Store reviewers classify the app as a repackaged website.</div><div class="risk-cell">Native Today screen defeats 4.2 by design. Login-only companion — zero in-app commerce.</div><div class="risk-cell" style="font-size:11px;color:var(--ink-60);">If rejected: extend native layer. Do not add IAP as a concession.</div></div>
+      <div class="risk-row"><div class="risk-cell"><strong>Solo execution risk.</strong> Everything runs through one person.</div><div class="risk-cell">Motion designer hire shares workload. AI-assisted development multiplies output. Managed infra minimises ops burden.</div><div class="risk-cell" style="font-size:11px;color:var(--ink-60);">If output drops: prioritise venue outreach above product work. The gate is commercial.</div></div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">13</div>
+</div>
+
+<!-- 14 · THE ASK -->
+<div class="slide">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Investment Ask</div>
+    <div class="slide-title">€250,000 seed.<br><span>12 months runway.</span> One decisive commercial cycle.</div>
+    <hr class="rule">
+    <div class="two-col">
+      <div>
+        <div class="ask-box">
+          <div><div class="ask-label">Seeking</div><div class="ask-amount">€250k</div></div>
+          <div><div class="ask-label">Instrument</div><div style="font-family:var(--sans);font-size:18px;font-weight:700;color:var(--indigo);letter-spacing:-0.02em;">Convertible Note or SAFE</div></div>
+          <div><div class="ask-label">Use</div><div style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--indigo);letter-spacing:-0.02em;line-height:1.5;">12 months founder runway · Motion designer hire · iOS development costs · Infrastructure · Marketing production</div></div>
+          <div><div class="ask-label">Gate condition</div><div style="font-size:13px;font-weight:500;color:var(--indigo);line-height:1.5;">Gate 0 (first paid pilot) is the proof event. Investment funds the commercial cycle that reaches it and scales from it.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="mono-label" style="margin-bottom: 12px;">Budget breakdown · 12 months</div>
+        <div class="budget-table" style="margin-bottom: 20px;">
+          <div class="budget-row"><div class="budget-cell header">Line</div><div class="budget-cell header">Monthly</div><div class="budget-cell header">Year 1</div></div>
+          <div class="budget-row"><div class="budget-cell">Founder salary / living costs</div><div class="budget-cell">€5,000</div><div class="budget-cell">€60,000</div></div>
+          <div class="budget-row"><div class="budget-cell">Motion designer (full-time equiv.)</div><div class="budget-cell">€4,500</div><div class="budget-cell">€54,000</div></div>
+          <div class="budget-row"><div class="budget-cell">Infrastructure (Vercel, Turso, Clerk, Resend)</div><div class="budget-cell">€350</div><div class="budget-cell">€4,200</div></div>
+          <div class="budget-row"><div class="budget-cell">Marketing production (video, equipment)</div><div class="budget-cell">—</div><div class="budget-cell">€18,000</div></div>
+          <div class="budget-row"><div class="budget-cell">Legal (shareholder structure)</div><div class="budget-cell">—</div><div class="budget-cell">€6,000</div></div>
+          <div class="budget-row"><div class="budget-cell">iOS development tools (Apple Dev, Capacitor)</div><div class="budget-cell">—</div><div class="budget-cell">€1,500</div></div>
+          <div class="budget-row"><div class="budget-cell">Contingency</div><div class="budget-cell">—</div><div class="budget-cell">€18,300</div></div>
+          <div class="budget-row total-row"><div class="budget-cell"><strong>Total</strong></div><div class="budget-cell"><strong>—</strong></div><div class="budget-cell"><strong>€162,000</strong></div></div>
+        </div>
+        <p class="body-sm" style="font-size: 12px; margin-bottom: 12px;">The ask of €250k provides comfortable 18-month coverage beyond the core €162k plan, with headroom for a second hire if Gate 0 clears early.</p>
+        <div class="callout" style="margin-top: 0;"><p>The product is already built. Investment does not fund a build — it funds a commercial cycle.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">14</div>
+</div>
+
+<!-- 15 · CLOSING -->
+<div class="slide slide-cover" style="justify-content: center; gap: 40px;">
+  <div style="display: flex; flex-direction: column; gap: 24px; max-width: 800px;">
+    <div class="wordmark">signal studio<span>.</span></div>
+    <div class="cover-headline" style="font-size: 48px; margin-top: 0;">The discipline<br>is the product.</div>
+    <div class="cover-sub" style="max-width: 620px;">Four products. One suite. One design language. One price. Built by one person, to near-perfect before any outreach, because the first impression from a premium venue is not forgiven twice.</div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px;">
+      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">4</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Products. Live on production.</div></div>
+      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">Sept 1</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">iOS App Store launch date.</div></div>
+      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">€74k</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Conservative ARR target, Year 1.</div></div>
+      <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 16px;"><div style="font-family:var(--sans);font-size:22px;font-weight:800;color:var(--indigo-mid);letter-spacing:-0.04em;line-height:1;">€250k</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.4;">Seed ask. 18-month runway.</div></div>
+    </div>
+  </div>
+  <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+    <div class="cover-meta">ETHANMCN2013@GMAIL.COM · SIGNALSTUDIO.IE<br>DUBLIN, IRELAND · JUNE 2026<br>CONFIDENTIAL — NOT FOR DISTRIBUTION</div>
+    <div style="font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; text-align: right;">SIGNAL NOTES · SIGNAL TASKS<br>SIGNAL ROADMAP · SIGNAL ANALYTICS<br>IOS · SEPTEMBER 2026</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

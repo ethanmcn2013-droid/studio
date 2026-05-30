@@ -47,6 +47,7 @@ export default function HqLayout({ children }: { children: React.ReactNode }) {
             <Link href="/hq/entitlements" className="hq-env-nav-link" role="listitem">entitlements</Link>
             <Link href="/hq/marketing" className="hq-env-nav-link" role="listitem">marketing</Link>
             <Link href="/hq/plan" className="hq-env-nav-link" role="listitem">plan</Link>
+            <Link href="/hq/deck" className="hq-env-nav-link" role="listitem">deck</Link>
           </div>
           <Link href="/" className="hq-env-nav-exit">
             ← signalstudio.ie
