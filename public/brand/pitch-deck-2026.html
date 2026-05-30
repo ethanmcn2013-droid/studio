@@ -950,39 +950,60 @@
 
 <script>
 (function () {
-  var SLIDE_W = 1200;
+  var SLIDE_W   = 1200;
+  var heights   = null; // cached once, never re-measured on resize
+  var timer     = null;
+  var wrapper   = document.querySelector('.slide-wrapper');
+  var slides    = Array.prototype.slice.call(document.querySelectorAll('.slide'));
 
-  function fit() {
-    var ww  = window.innerWidth;
-    var pad = ww < 600 ? 8 : 24;
-    var scale = Math.min(1, (ww - pad * 2) / SLIDE_W);
-
-    var wrapper = document.querySelector('.slide-wrapper');
-    wrapper.style.padding = pad + 'px';
-
-    // Measure natural heights with transforms cleared
-    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  /* ── Step 1: measure natural heights (transforms cleared) ── */
+  function measure() {
     slides.forEach(function (s) {
       s.style.transform      = '';
       s.style.transformOrigin = '';
       s.style.marginBottom   = '';
     });
+    heights = slides.map(function (s) { return s.offsetHeight; });
+  }
 
-    // Read heights (no forced reflow — all writes done above)
-    var heights = slides.map(function (s) { return s.offsetHeight; });
+  /* ── Step 2: apply scale using cached heights — no clear, no flash ── */
+  function apply() {
+    var ww    = window.innerWidth;
+    var pad   = ww < 600 ? 8 : 24;
+    var scale = Math.min(1, (ww - pad * 2) / SLIDE_W);
 
-    // Apply scale + collapse dead vertical space
+    wrapper.style.padding = pad + 'px';
+
     slides.forEach(function (s, i) {
       if (scale < 1) {
         s.style.transform       = 'scale(' + scale + ')';
         s.style.transformOrigin = 'top center';
         s.style.marginBottom    = '-' + Math.round(heights[i] * (1 - scale)) + 'px';
+      } else {
+        s.style.transform      = '';
+        s.style.transformOrigin = '';
+        s.style.marginBottom   = '';
       }
     });
   }
 
-  fit();
-  window.addEventListener('resize', fit);
+  /* ── Initial load: measure once, then apply ── */
+  measure();
+  apply();
+
+  /* ── Resize: apply only (no re-measure = no flash)
+     Skip if the user is pinch-zooming (visualViewport.scale > 1) ── */
+  window.addEventListener('resize', function () {
+    var vv = window.visualViewport;
+    if (vv && vv.scale > 1.05) return; // user is zoomed in — leave it alone
+    clearTimeout(timer);
+    timer = setTimeout(apply, 180);
+  });
+
+  /* ── Orientation change: re-measure then apply ── */
+  window.addEventListener('orientationchange', function () {
+    setTimeout(function () { measure(); apply(); }, 350);
+  });
 })();
 </script>
 </body>
