@@ -1,3 +1,4 @@
+import type { DbProspect } from "@/lib/db/schema";
 import { seedHqData } from "@/lib/hq/data";
 
 /**
@@ -43,18 +44,25 @@ export type NextAction = {
  * The next un-sent Track A venue, or null when all five are sent (at which
  * point the clock is no longer inert anyway and HQ reverts to the scroll).
  */
-export function getNextOutreachAction(): NextAction {
-  const prospects = seedHqData.prospects ?? [];
-  const byId = new Map(prospects.map((p) => [p.id, p]));
+export function getNextOutreachAction(dbProspects?: DbProspect[]): NextAction {
+  // Prefer live DB prospects; fall back to seed data
+  const byId = dbProspects
+    ? new Map(
+        dbProspects.map((p) => [
+          p.id,
+          { id: p.id, organisation: p.organisation, email: p.email, location: p.location, stage: p.stage, lastContactedAt: p.lastContactedAt },
+        ]),
+      )
+    : new Map((seedHqData.prospects ?? []).map((p) => [p.id, { id: p.id, organisation: p.organisation, email: p.email, location: p.location, stage: "to_contact" as const, lastContactedAt: p.lastContacted || null }]));
 
   const unsent = TRACK_A_ORDER.map((id) => byId.get(id)).filter(
     (p): p is NonNullable<typeof p> =>
-      !!p && p.status === "To Contact" && !p.lastContacted,
+      !!p && p.stage === "to_contact" && !p.lastContactedAt,
   );
 
   if (unsent.length === 0) return null;
 
-  const next = unsent[0];
+  const next = unsent[0]!;
   const ordinal =
     TRACK_A_ORDER.indexOf(next.id as (typeof TRACK_A_ORDER)[number]) + 1;
 

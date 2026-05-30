@@ -25,16 +25,24 @@
   },
   "brand-enforcement": {
     "drifted": [
-      "src/app/globals.css"
+      "src/app/globals.css",
+      "DESIGN.md"
     ],
-    "updatedAt": "2026-05-27T16:00:13.531Z",
-    "byCommit": "b649e79"
+    "updatedAt": "2026-05-30T11:55:43.834Z",
+    "byCommit": "dba1ff5"
   },
   "plan-cycle": {
     "drifted": [
       "CHANGELOG.md"
     ],
-    "updatedAt": "2026-05-28T21:28:17.958Z",
-    "byCommit": "521789d"
+    "updatedAt": "2026-05-30T11:55:43.834Z",
+    "byCommit": "dba1ff5"
+  },
+  "log-cycle-cross-repo-writer": {
+    "drifted": [
+      "~/Projects/personal/studio/src/lib/db/schema.ts"
+    ],
+    "updatedAt": "2026-05-30T11:55:43.834Z",
+    "byCommit": "dba1ff5"
   }
 }

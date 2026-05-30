@@ -173,6 +173,59 @@ export const redemptions = sqliteTable(
 export type Redemption = typeof redemptions.$inferSelect;
 export type NewRedemption = typeof redemptions.$inferInsert;
 
+// ── Outreach CRM ──────────────────────────────────────────────────────────────
+
+export const PROSPECT_STAGES = [
+  "to_contact",
+  "contacted",
+  "replied",
+  "demo_booked",
+  "pilot_active",
+  "not_interested",
+  "later",
+] as const;
+export type ProspectStage = (typeof PROSPECT_STAGES)[number];
+
+export const prospectsTable = sqliteTable(
+  "prospects",
+  {
+    id: text("id").primaryKey(),
+    organisation: text("organisation").notNull(),
+    segment: text("segment").notNull().default("venue"),
+    contactName: text("contact_name").notNull().default(""),
+    role: text("role").notNull().default(""),
+    email: text("email").notNull().default(""),
+    website: text("website").notNull().default(""),
+    location: text("location").notNull().default(""),
+    source: text("source").notNull().default(""),
+    /** snake_case stage — see PROSPECT_STAGES */
+    stage: text("stage").$type<ProspectStage>().notNull().default("to_contact"),
+    /** ISO date string "YYYY-MM-DD", null if never contacted */
+    lastContactedAt: text("last_contacted_at"),
+    /** ISO date string "YYYY-MM-DD", null if not set */
+    nextFollowUpAt: text("next_follow_up_at"),
+    personalisationNote: text("personalisation_note").notNull().default(""),
+    offerSent: text("offer_sent").notNull().default(""),
+    outcome: text("outcome").notNull().default(""),
+    notes: text("notes").notNull().default(""),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("prospects_stage_idx").on(table.stage),
+    index("prospects_next_follow_up_idx").on(table.nextFollowUpAt),
+  ],
+);
+
+export type DbProspect = typeof prospectsTable.$inferSelect;
+export type NewDbProspect = typeof prospectsTable.$inferInsert;
+
+// ── Cron runs ─────────────────────────────────────────────────────────────────
+
 export const CRON_RUN_SOURCES = ["analytics_daily", "tasks_digest"] as const;
 export type CronRunSource = (typeof CRON_RUN_SOURCES)[number];
 

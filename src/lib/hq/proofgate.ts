@@ -1,4 +1,6 @@
 import { seedHqData } from "@/lib/hq/data";
+import { computeOutreachSummary } from "@/lib/hq/crm-utils";
+import type { DbProspect } from "@/lib/db/schema";
 import type { TractionState } from "@/lib/hq/traction";
 
 /**
@@ -79,28 +81,34 @@ export type ProofGate = {
   };
 };
 
-export function getProofGate(traction: TractionState): ProofGate {
+export function getProofGate(
+  traction: TractionState,
+  dbProspects?: DbProspect[],
+): ProofGate {
   const now = Date.now();
   const asOfDay = new Date(now).toISOString().slice(0, 10);
-  const prospects = seedHqData.prospects ?? [];
 
-  // A "send" is a logged contact date. Status is engagement, not the act.
-  const sendDays: number[] = [];
-  let sent = 0;
-  let qualifiedReplies = 0;
-  let bookedCalls = 0;
-  for (const p of prospects) {
-    const d = parseDay(p.lastContacted);
-    if (d != null) {
-      sent += 1;
-      sendDays.push(d);
-    }
-    if (REPLIED.has(p.status)) qualifiedReplies += 1;
-    if (CALLED.has(p.status)) bookedCalls += 1;
-  }
-  const firstSendMs = sendDays.length ? Math.min(...sendDays) : null;
-  const firstSendDay =
-    firstSendMs != null ? new Date(firstSendMs).toISOString().slice(0, 10) : null;
+  // Prefer live DB prospects; fall back to seed data if not yet migrated.
+  const { sent, firstSendDay, qualifiedReplies, bookedCalls } = dbProspects
+    ? computeOutreachSummary(dbProspects)
+    : (() => {
+        const prospects = seedHqData.prospects ?? [];
+        const sendDays: number[] = [];
+        let s = 0, qr = 0, bc = 0;
+        for (const p of prospects) {
+          const d = parseDay(p.lastContacted);
+          if (d != null) { s++; sendDays.push(d); }
+          if (REPLIED.has(p.status)) qr++;
+          if (CALLED.has(p.status)) bc++;
+        }
+        const firstMs = sendDays.length ? Math.min(...sendDays) : null;
+        return {
+          sent: s,
+          firstSendDay: firstMs != null ? new Date(firstMs).toISOString().slice(0, 10) : null,
+          qualifiedReplies: qr,
+          bookedCalls: bc,
+        };
+      })();
 
   // Metric 3 — the proof gate. Reuse the real sponsors-DB read.
   let paidPilots: MetricCell;
@@ -171,7 +179,7 @@ export function getProofGate(traction: TractionState): ProofGate {
 
   let state: ProofGate["clock"]["state"];
   let line: string;
-  if (firstSendMs == null) {
+  if (firstSendDay == null) {
     state = "inert";
     const dToStart = daysBetween(now, parseDay(OUTREACH_START)!);
     line =

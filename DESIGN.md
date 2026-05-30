@@ -655,5 +655,76 @@ Each product repo defines its own `MARKETING_PATHS` set matching the Layer 0 all
 
 - **Generated:** 2026-05-14 by direct extraction from `BRAND.md` §3–§6 and `src/app/globals.css`. Not an LLM hallucination of design tokens — every hex and value below was read from the live system.
 - **Cadence:** review on each design-system-v* bump (currently v1, locked 2026-05-13).
-- **Last updated:** 2026-05-18 — §14 Suite shell and auth-aware switcher spec added (seamless ecosystem).
+- **Last updated:** 2026-05-30 — §16 HQ internal surface spec added.
 - **Owner:** Ethan McNamara · `hello@signalstudio.ie`.
+
+---
+
+## 16 · Signal HQ Internal Surface
+
+### The goal
+
+Any employee navigating to `/hq/*` must know immediately — without reading body copy — that they are on an internal operating surface, not the public-facing signalstudio.ie.
+
+### Three compounding signals
+
+| Signal | Implementation | Why |
+|---|---|---|
+| Environment strip | 28px sticky bar at top: `●  Signal HQ · Internal` in `--paper-deep` | Never appears on external surfaces. Sticky so it persists on scroll. |
+| Surface temperature | `.hq-env-body` background is `--paper-soft` (#fafafa) | The public site is pure `#ffffff`. The difference is subtle but consistent — the eye reads it without naming it. |
+| Persistent HQ nav | 44px bar below strip: full section list + `← signalstudio.ie` exit | The exit link is the tell. An external surface never needs one. |
+
+### Layout structure
+
+```
+<div class="hq-env">
+  <div class="hq-env-strip">●  Signal HQ · Internal</div>
+  <nav class="hq-env-nav">signal hq. | links… | ← signalstudio.ie</nav>
+  <div class="hq-env-body">{children}</div>
+</div>
+```
+
+Implemented in `src/app/hq/layout.tsx`. Applies to all `/hq/*` pages including the access gate — showing INTERNAL before login is correct and safe.
+
+### CRM architecture
+
+The Outreach CRM at `/hq/crm` is the only HQ surface backed by a DB write path.
+
+```
+crm-utils.ts    — pure utilities, safe for client import (no "use server")
+                  STAGE_LABELS, PIPELINE_STAGES, PARKED_STAGES, STAGE_COLORS
+                  isOverdue(), isDueToday(), computeStageCounts(), getDueToday()
+                  computeOutreachSummary(), buildMailtoHref()
+
+crm-db.ts       — "use server" — async DB reads and server actions only
+                  getProspects(), getProspect()
+                  updateProspectStage(), updateProspectContact()
+                  updateProspectNotes(), updateProspectFollowUp()
+```
+
+**Import rule:** Client components → import utilities from `crm-utils.ts`, server actions from `crm-db.ts`. Server components → import from either. Types → import from `@/lib/db/schema`.
+
+### Stage colour contract
+
+| Stage | Background | Text |
+|---|---|---|
+| `to_contact` | `var(--paper-deep)` | `var(--ink-quiet)` |
+| `contacted` | `var(--accent-soft)` | `var(--accent-deep)` |
+| `replied` | `#fef3c7` | `#92400e` |
+| `demo_booked` | `#fef3c7` | `#92400e` |
+| `pilot_active` | `#d1fae5` | `#065f46` |
+| `not_interested` | `var(--paper-deep)` | `var(--ink-ghost)` |
+| `later` | `var(--paper-deep)` | `var(--ink-ghost)` |
+
+### Overdue / due-today contract
+
+- Past-due follow-up → `color: var(--hq-crit)` (#b91c1c) + a 5px red dot pip
+- Due-today follow-up → `color: var(--hq-warn)` (#b45309)
+- Neither → `color: var(--ink-soft)`, mono font, ISO date string
+
+### Refusals
+
+- No card chrome on the CRM list (hairline separators only — same register as atlas)
+- No optimistic UI on stage changes — the row reflects server state after revalidation (CRM data must not lie)
+- No purple anywhere (#7c5cff is banned suite-wide)
+- No emojis in stage labels or UI copy

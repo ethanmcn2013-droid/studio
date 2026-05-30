@@ -4457,3 +4457,493 @@ body::after { content: none; }
   .mega-roadmap-sweep-dot { transform: none; }
   .mega-analytics-bar { transform: scaleY(0.7); }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+ * HQ Environment Shell — three signals that make internal unambiguous
+ *
+ * The goal: any employee, any hour, instantly knows whether they are
+ * on signalstudio.ie (external, paper white) or inside Signal HQ
+ * (internal, warmer register). Three independent signals compound:
+ *
+ *   1. Environment strip  — 28px sticky bar at top: "● SIGNAL HQ · INTERNAL"
+ *      in --paper-deep (#f4f4f5). Never appears on any external surface.
+ *
+ *   2. Surface temperature — .hq-env-body sits on --paper-soft (#fafafa),
+ *      not the pure #ffffff of the public site. The difference is subtle
+ *      but consistent. The eye reads it without naming it.
+ *
+ *   3. Persistent nav — a 44px bar directly below the strip with the full
+ *      HQ section list and a "← signalstudio.ie" escape link.
+ *      The exit link is the tell: an external surface never needs it.
+ *
+ * All three apply site-wide via layout.tsx — even the /hq/access gate
+ * shows INTERNAL before login (the content is protected; the label is not).
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.hq-env {
+  min-height: 100dvh;
+  background: var(--paper-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 1. Environment strip ──────────────────────────────────────────── */
+.hq-env-strip {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 28px;
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--hairline-2);
+  flex-shrink: 0;
+}
+.hq-env-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hq-env-pip {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.hq-env-label {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+}
+
+/* ── 2. Persistent HQ nav ─────────────────────────────────────────── */
+.hq-env-nav {
+  position: sticky;
+  top: 28px;         /* sits directly below the strip */
+  z-index: 99;
+  height: 44px;
+  background: var(--paper-soft);
+  border-bottom: 1px solid var(--hairline-2);
+  flex-shrink: 0;
+}
+.hq-env-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.hq-env-nav-home {
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color 0.12s;
+}
+.hq-env-nav-home:hover { color: var(--accent); }
+.hq-env-nav-dot { color: var(--accent); }
+
+.hq-env-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.hq-env-nav-links::-webkit-scrollbar { display: none; }
+
+.hq-env-nav-link {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  text-decoration: none;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  transition: color 0.12s, background 0.12s;
+  white-space: nowrap;
+}
+.hq-env-nav-link:hover {
+  color: var(--ink);
+  background: var(--paper-deep);
+}
+
+.hq-env-nav-exit {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  transition: color 0.12s, background 0.12s;
+}
+.hq-env-nav-exit:hover {
+  color: var(--ink-soft);
+  background: var(--paper-deep);
+}
+
+/* ── 3. Body — the warm surface temperature ────────────────────────── */
+.hq-env-body {
+  flex: 1;
+  background: var(--paper-soft);
+}
+
+/* Mobile: collapse nav links to a scrollable strip */
+@media (max-width: 640px) {
+  .hq-env-nav-inner { gap: 0.75rem; }
+  .hq-env-nav-exit { display: none; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ * HQ Outreach CRM
+ *
+ * Pipeline view: stage rail + prospect rows. On-brand: paper-soft
+ * background inherited from .hq-env-body, hairline separators, mono
+ * eyebrow, no card chrome, one accent, --hq-crit for overdue.
+ *
+ * The stage select is the only native form control — intentionally.
+ * The browser-native `<select>` is fast, keyboard-navigable, and
+ * requires zero JS to open. It reads the inline background/color
+ * style from STAGE_COLORS, so the pill effect is immediate on render.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.hq-crm-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+.hq-crm-page > * + * {
+  margin-top: 2.5rem;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.hq-crm-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.hq-crm-eyebrow {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-quiet);
+}
+.hq-crm-stamp {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+.hq-crm-title {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.hq-crm-due-banner {
+  margin: 0.75rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  color: var(--hq-crit, #b91c1c);
+}
+.hq-crm-due-pip {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hq-crit, #b91c1c);
+  flex-shrink: 0;
+}
+
+/* ── Pipeline rail ────────────────────────────────────────────────── */
+.hq-crm-pipeline {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hairline-2);
+}
+.hq-crm-pipeline-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+.hq-crm-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 3px;
+  border: 1px solid var(--hairline-2);
+  background: var(--paper);
+  text-decoration: none;
+  transition: border-color 0.12s, background 0.12s;
+}
+.hq-crm-stage-pill:hover {
+  border-color: var(--ink-quiet);
+  background: var(--paper-deep);
+}
+.hq-crm-stage-pill[data-active="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.hq-crm-stage-label {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.hq-crm-stage-pill[data-active="true"] .hq-crm-stage-label {
+  color: var(--accent-deep);
+}
+.hq-crm-stage-count {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-faint);
+  min-width: 1.2ch;
+  text-align: right;
+}
+.hq-crm-stage-pill[data-active="true"] .hq-crm-stage-count {
+  color: var(--accent);
+}
+
+/* Stage-specific pill accent colours (inactive state only) */
+.hq-crm-stage-pill[data-stage="replied"] .hq-crm-stage-label,
+.hq-crm-stage-pill[data-stage="demo_booked"] .hq-crm-stage-label {
+  color: #92400e;
+}
+.hq-crm-stage-pill[data-stage="pilot_active"] .hq-crm-stage-label {
+  color: #065f46;
+}
+
+/* Parked pills — muted, below the active funnel */
+.hq-crm-pipeline-parked {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+.hq-crm-parked-pill {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-decoration: none;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--hairline);
+  transition: color 0.12s, border-color 0.12s;
+}
+.hq-crm-parked-pill:hover { color: var(--ink-quiet); border-color: var(--hairline-2); }
+.hq-crm-parked-pill[data-active="true"] {
+  color: var(--ink-soft);
+  border-color: var(--hairline-2);
+  background: var(--paper-deep);
+}
+
+/* ── Prospect list ───────────────────────────────────────────────── */
+.hq-crm-list {
+  display: flex;
+  flex-direction: column;
+}
+.hq-crm-list-head {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.1fr 1fr 1fr 1.2fr;
+  gap: 0.75rem;
+  padding: 0.4rem 0.75rem 0.6rem;
+  border-bottom: 1px solid var(--hairline-2);
+}
+.hq-crm-list-head > span {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+}
+.hq-crm-list-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Prospect row ────────────────────────────────────────────────── */
+.hq-crm-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.1fr 1fr 1fr 1.2fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+  transition: background 0.1s;
+}
+.hq-crm-row:hover { background: var(--paper-deep); }
+.hq-crm-row[data-pending="true"] { opacity: 0.55; pointer-events: none; }
+.hq-crm-row:last-child { border-bottom: 0; }
+
+/* Organisation column */
+.hq-crm-col-org {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.hq-crm-org-name {
+  font-size: 14px;
+  font-weight: 450;
+  color: var(--ink);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hq-crm-org-note {
+  font-size: 11.5px;
+  color: var(--ink-quiet);
+  line-height: 1.4;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.hq-crm-org-contact {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+/* Location */
+.hq-crm-location {
+  font-size: 12.5px;
+  color: var(--ink-quiet);
+}
+
+/* Stage select */
+.hq-crm-stage-select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--hairline-2);
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  width: 100%;
+  max-width: 130px;
+  outline-offset: 2px;
+}
+.hq-crm-stage-select:focus-visible {
+  outline: 2px solid var(--accent);
+}
+.hq-crm-stage-select:disabled { opacity: 0.5; }
+
+/* Date columns */
+.hq-crm-date {
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.hq-crm-date--none { color: var(--ink-faint); }
+.hq-crm-date[data-overdue="true"] { color: var(--hq-crit, #b91c1c); }
+.hq-crm-date[data-today="true"] { color: var(--hq-warn, #b45309); }
+.hq-crm-overdue-pip {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hq-crit, #b91c1c);
+  flex-shrink: 0;
+}
+
+/* Action column */
+.hq-crm-col-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+}
+.hq-crm-compose {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.1s;
+}
+.hq-crm-compose:hover { opacity: 0.7; }
+.hq-crm-log-contact {
+  appearance: none;
+  background: none;
+  border: 1px solid var(--hairline-2);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-quiet);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.hq-crm-log-contact:hover { color: var(--ink); border-color: var(--ink-quiet); }
+.hq-crm-log-contact:disabled { opacity: 0.4; }
+
+/* Empty state */
+.hq-crm-empty {
+  padding: 3rem 0;
+  text-align: center;
+}
+.hq-crm-empty-line {
+  font-family: var(--font-mono-stack);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* Shared column classes (used in both head and body) */
+.hq-crm-col-loc,
+.hq-crm-col-stage,
+.hq-crm-col-contact,
+.hq-crm-col-follow,
+.hq-crm-col-action {
+  min-width: 0;
+}
+
+/* ── Mobile — collapse to card stack below 768px ──────────────────── */
+@media (max-width: 768px) {
+  .hq-crm-list-head { display: none; }
+  .hq-crm-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0.5rem;
+    padding: 1rem 0.75rem;
+  }
+  .hq-crm-col-org { grid-column: 1 / -1; }
+  .hq-crm-col-loc { grid-column: 1; }
+  .hq-crm-col-stage { grid-column: 2; }
+  .hq-crm-col-contact { grid-column: 1; }
+  .hq-crm-col-follow { grid-column: 2; }
+  .hq-crm-col-action {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}

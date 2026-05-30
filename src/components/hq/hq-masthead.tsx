@@ -77,6 +77,9 @@ export function HqMasthead({
       </details>
 
       <nav className="hq-mast-nav" aria-label="hq surfaces">
+        <Link href="/hq/crm" className="hq-mast-link">
+          outreach
+        </Link>
         <Link href="/hq/atlas" className="hq-mast-link">
           atlas
         </Link>

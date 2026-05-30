@@ -8,6 +8,7 @@ import { HqProofGate } from "@/components/hq/hq-proof-gate";
 import { HqPulse } from "@/components/hq/hq-pulse";
 import { HqTraction } from "@/components/hq/hq-traction";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
+import { getProspects } from "@/lib/hq/crm-db";
 import { getInboxData } from "@/lib/hq/inbox";
 import { getNextOutreachAction } from "@/lib/hq/next-action";
 import { getProofGate } from "@/lib/hq/proofgate";
@@ -65,14 +66,15 @@ export default async function HqPage() {
     redirect("/hq/access");
   }
 
-  const [today, inbox, traction] = await Promise.all([
+  const [today, inbox, traction, prospects] = await Promise.all([
     getTodayData(),
     getInboxData(),
     getTraction(),
+    getProspects(),
   ]);
   const pulse = await getPulseState(today);
   const verdict = deriveVerdict({ inbox, pulse, traction });
-  const proofGate = getProofGate(traction);
+  const proofGate = getProofGate(traction, prospects);
 
   const masthead = (
     <HqMasthead
@@ -100,7 +102,7 @@ export default async function HqPage() {
     return (
       <div className="hq-spine">
         {masthead}
-        <HqForcingFunction gate={proofGate} next={getNextOutreachAction()}>
+        <HqForcingFunction gate={proofGate} next={getNextOutreachAction(prospects)}>
           {scroll}
         </HqForcingFunction>
       </div>
