@@ -34,6 +34,8 @@
     gap: 2px;
     padding: 24px;
     background: #1a1a1a;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .slide {
@@ -945,5 +947,43 @@
 </div>
 
 </div>
+
+<script>
+(function () {
+  var SLIDE_W = 1200;
+
+  function fit() {
+    var ww  = window.innerWidth;
+    var pad = ww < 600 ? 8 : 24;
+    var scale = Math.min(1, (ww - pad * 2) / SLIDE_W);
+
+    var wrapper = document.querySelector('.slide-wrapper');
+    wrapper.style.padding = pad + 'px';
+
+    // Measure natural heights with transforms cleared
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    slides.forEach(function (s) {
+      s.style.transform      = '';
+      s.style.transformOrigin = '';
+      s.style.marginBottom   = '';
+    });
+
+    // Read heights (no forced reflow — all writes done above)
+    var heights = slides.map(function (s) { return s.offsetHeight; });
+
+    // Apply scale + collapse dead vertical space
+    slides.forEach(function (s, i) {
+      if (scale < 1) {
+        s.style.transform       = 'scale(' + scale + ')';
+        s.style.transformOrigin = 'top center';
+        s.style.marginBottom    = '-' + Math.round(heights[i] * (1 - scale)) + 'px';
+      }
+    });
+  }
+
+  fit();
+  window.addEventListener('resize', fit);
+})();
+</script>
 </body>
 </html>
