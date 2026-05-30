@@ -67,6 +67,9 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  .slide-label::after {
+    content: ' · CONFIDENTIAL';
+  }
 
   /* COVER */
   .slide-cover {
@@ -678,7 +681,7 @@
     <div class="two-col">
       <div class="timeline">
         <div class="tl-row active"><div class="tl-date">Jun–Jul<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 1 · Commercial Proof</div><div class="tl-items">20 founder-signed venue outreaches sent. Motion designer hired. Apple Org enrollment started. Gate 0 target: ≥1 paid venue pilot signed.</div></div></div>
-        <div class="tl-row active"><div class="tl-date">Aug<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 2 · Pre-launch Final</div><div class="tl-items">iOS TestFlight beta. Brand film + demo reels delivered. 3–5 venue pilots active. EI grant applications filed. PR groundwork.</div></div></div>
+        <div class="tl-row active"><div class="tl-date">Aug<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 2 · Pre-launch Final</div><div class="tl-items">iOS TestFlight beta. Brand film + demo reels delivered. 3–5 venue pilots active. PR groundwork.</div></div></div>
         <div class="tl-row active"><div class="tl-date">Sept 1<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 3 · Full Studio Launch</div><div class="tl-items">Web suite public launch + iOS App Store live, same day. Brand film + all demo reels released. Push notifications. Target: 500 iOS downloads in 30 days.</div></div></div>
         <div class="tl-row active"><div class="tl-date">Oct–Dec<br>2026</div><div class="tl-body"><div class="tl-title indigo">Phase 4 · Commercial Scale</div><div class="tl-items">Venue outreach wave 2 — group plays. SEO content live. Target: 10 venue licenses, €25k+ ARR.</div></div></div>
       </div>
@@ -798,7 +801,7 @@
 <div class="slide">
   <div class="slide-inner">
     <div class="slide-eyebrow">12-Month Operating Plan</div>
-    <div class="slide-title">Lean by design.<br><span>Enterprise Ireland grants</span> pursued alongside.</div>
+    <div class="slide-title">Lean by design.<br><span>One year to prove the thesis.</span></div>
     <hr class="rule">
     <div class="two-col">
       <div>
@@ -817,20 +820,34 @@
         <div class="callout" style="margin-top: 0;"><p>The product is already built and live. Year 1 spend is almost entirely founder time and production costs — no engineering headcount, no office, no enterprise sales team.</p></div>
       </div>
       <div>
-        <div class="mono-label" style="margin-bottom: 12px;">Enterprise Ireland — grant programmes</div>
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-          <div class="stat-block" style="padding: 18px;">
-            <div class="mono-label" style="margin-bottom: 6px;">Feasibility Study Grant</div>
-            <div class="stat-num indigo" style="font-size:28px;">€25k</div>
-            <div class="stat-label">EI support for market validation and commercial feasibility work — aligns directly with the venue pilot programme. Applying in Q3 2026.</div>
+        <div class="mono-label" style="margin-bottom: 12px;">Year 1 targets — May 2027</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+          <div class="metric-cell">
+            <div class="metric-val indigo">1</div>
+            <div class="metric-key">Paid venue pilot signed by July 2026 (Gate 0 — proof event)</div>
           </div>
-          <div class="stat-block" style="padding: 18px;">
-            <div class="mono-label" style="margin-bottom: 6px;">Competitive Start Fund</div>
-            <div class="stat-num" style="font-size:28px;">€50k</div>
-            <div class="stat-label">EI equity-free funding for high-potential Irish start-ups with international ambition. Applications tied to HPSU designation. Target: Q4 2026.</div>
+          <div class="metric-cell">
+            <div class="metric-val">15+</div>
+            <div class="metric-key">Venue licenses active by May 2027</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">200+</div>
+            <div class="metric-key">Workspace subscriptions (€12/mo)</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val indigo">€74k</div>
+            <div class="metric-key">ARR conservative target, Year 1 end</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">500+</div>
+            <div class="metric-key">iOS downloads in first 30 days post-launch</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">2,000+</div>
+            <div class="metric-key">Registered users, suite-wide</div>
           </div>
         </div>
-        <p class="body-sm" style="font-size: 12px;">Enterprise Ireland grants are non-dilutive and pursued independently of any commercial arrangement. They represent programme-aligned recognition — not a dependency. Signal Studio qualifies on multiple dimensions: Irish-founded, international market potential, software-led, pre-revenue.</p>
+        <div class="callout" style="margin-top: 0;"><p>Gate 0 is the only target that matters in the first 90 days. Every other number is a hypothesis until one venue pays real money.</p></div>
       </div>
     </div>
   </div>
@@ -852,7 +869,7 @@
     </div>
   </div>
   <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
-    <div class="cover-meta">ETHAN MCNAMARA · FOUNDER<br>ETHANMCN2013@GMAIL.COM · SIGNALSTUDIO.IE<br>DUBLIN, IRELAND · JUNE 2026</div>
+    <div class="cover-meta">ETHAN MCNAMARA · FOUNDER<br>ETHANMCN2013@GMAIL.COM · SIGNALSTUDIO.IE<br>DUBLIN, IRELAND · JUNE 2026<br>CONFIDENTIAL — FOR DISCUSSION ONLY</div>
     <div style="font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; text-align: right;">SIGNAL NOTES · SIGNAL TASKS<br>SIGNAL ROADMAP · SIGNAL ANALYTICS<br>IOS · SEPTEMBER 2026</div>
   </div>
 </div>
