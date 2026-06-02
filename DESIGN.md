@@ -649,6 +649,28 @@ Each product repo defines its own `MARKETING_PATHS` set matching the Layer 0 all
 6. `signalstudio.ie/brand` returns HTTP 200 for both authed and unauthed requests (category C).
 7. 390px and 1440px visual check on the suite launcher and persistent chrome.
 
+### Canonical product marketing header (v1, 2026-06-02)
+
+One spec, all four product marketing surfaces. The umbrella (`signalstudio.ie`)
+is the visual reference; products carry a breadcrumb + wider container because
+they sit one level down and need cross-product reach.
+
+- **Container.** `mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6`. (Analytics was `max-w-[80rem]` — corrected.)
+- **Left lockup.** `SuiteLauncher current=<product>` + `/` separator (`var(--ink-faint)`, 12px) + `<Wordmark size="md" />`. No size variants — analytics' `0.9375rem` corrected to `md`.
+- **Breadcrumb dot.** Static indigo `#4f46e5`, tight to the wordmark. Per-product motion gestures (caret/pulse/sweep/tick) live ONLY in the big hero wordmark — never the nav chrome. (Notes' breadcrumb dot was running the caret blink; corrected to static.)
+- **Nav links.** `text-[13px] text-ink-soft`, `gap-7`, `hover:text-ink`. Labels are product-specific (real routes) — the spec governs treatment, not the label set. `Pricing` points at the umbrella.
+- **Sign in.** ALWAYS present when unauthed — a visible affordance, never a gate. Public scanning stays fully open; the user signs in when *they* decide, and knows where to click. Canonical treatment: `rounded-full px-3.5 py-1.5 text-[13px] font-medium text-ink-soft hover:text-ink`. Replaced by the account menu (`UserButton`) when authed (see "Kill the false Sign in"). Analytics and Notes were missing it entirely; added. Notes renders the affordance in its own register (protected aesthetic, §11) rather than the suite pill.
+
+### Cross-product pivot arrows (v1, 2026-06-02)
+
+`SuiteArrows` — ghost edge chevrons that walk the intended workflow:
+`notes → tasks → roadmap → analytics` (capture → execute → plan → measure).
+
+- **Endpoints terminal, no wrap.** Notes = forward only; analytics = back only; tasks/roadmap = both.
+- **Treatment.** Fixed, vertically centred, screen edges. ~24% opacity at rest; rise to full + reveal destination wordmark (with indigo dot) on hover/focus. Neighbour `prefetch`ed on intent. Desktop `←/→` mirror the arrows (suppressed in form fields). Hidden below 860px — the `SuiteLauncher` covers mobile cross-nav.
+- **Cross-subdomain.** Each jump is a real navigation between product subdomains; the prefetch hint keeps the warm-cache path instant. The umbrella is the hub (reached via breadcrumb), not a station in the cycle.
+- **Source.** One component, copied byte-identical into all four product repos (`src/components/suite-arrows.tsx`); order + URLs derive from `@/lib/product-urls`.
+
 ---
 
 ## 15 · Provenance
