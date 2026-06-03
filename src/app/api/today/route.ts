@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
  *
  * Auth: shared `SUITE_API_KEY` Bearer token. This is a server-to-server
  * endpoint — the iOS native app reaches it via its own backend proxy
- * (which has the key in env), and the web seamless-ecosystem widget
+ * (which has the key in env), and the web suite-wide Today widget
  * reaches it from its own server. NEVER expose the key to the
  * browser bundle or to client-side JS in the iOS WebView.
  *

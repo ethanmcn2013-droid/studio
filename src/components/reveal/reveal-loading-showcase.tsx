@@ -2,7 +2,7 @@
 
 /**
  * RevealLoadingShowcase — the operator's loading-screen wordmark assembly,
- * lifted into the hero as the first brand moment. Seamless: NO cream box,
+ * lifted into the hero as the first brand moment. Unframed: NO cream box,
  * NO frame, NO corner chrome — it lives on the page's own white canvas as
  * a single signature animation.
  *

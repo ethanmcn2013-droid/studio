@@ -439,7 +439,7 @@ export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
   {
     objection: "Why annual instead of per couple?",
     answer:
-      "The venue is not buying seats. It is backing the planning year for every couple it books. Annual prepay keeps the couple experience seamless and keeps pricing away from the couple.",
+      "The venue is not buying seats. It is backing the planning year for every couple it books. Annual prepay keeps the couple experience uninterrupted and keeps pricing away from the couple.",
     useWhen: "The buyer asks for per-couple pricing.",
   },
   {
@@ -503,7 +503,7 @@ export const WAVE_ONE_VENUES: VenueTarget[] = [
     fit:
       "Wedding-led private estate positioning with a strong service promise and one couple experience to protect.",
     friction:
-      "The promise of a seamless day raises expectations for every planning touch before the wedding.",
+      "The promise of an uninterrupted day raises expectations for every planning touch before the wedding.",
     openingObservation:
       "A private, highly cared-for venue creates a lot of invisible planning traffic before the visible day.",
     firstLine:

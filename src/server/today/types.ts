@@ -7,7 +7,7 @@
  * enough that adding fields later doesn't break older app builds.
  *
  * Native iOS clients should be lenient parsers (treat unknown fields
- * as ignorable). Web clients (the seamless-ecosystem dashboard)
+ * as ignorable). Web clients (the suite-wide Today dashboard)
  * consume the same shape.
  */
 
@@ -107,7 +107,7 @@ export type TodayRequest = {
 // on top of `TodayResponse`. The native client is dumb — it does not
 // own timezone logic, greeting phrasing, or "should section X be
 // visible right now" decisions. The server owns all of that so a single
-// truth holds across web seamless-ecosystem and iOS.
+// truth holds across the web suite and iOS.
 //
 // `TodayNativePayload` is consumed by `/api/native/today`.
 

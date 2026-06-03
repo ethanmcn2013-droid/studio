@@ -11,7 +11,6 @@
   --indigo-700: #4338ca;
   --indigo-800: #3730a3;
   --indigo-900: #312e81;
-  --highlight: #7c5cff;
 
   /* Ink (neutrals) */
   --ink-0: #ffffff;
@@ -27,11 +26,14 @@
   --ink-900: #18181b;
   --ink-950: #09090b;
 
-  /* Audience accents */
-  --aud-marketing: #4f46e5;
-  --aud-freelance: #16a34a;
-  --aud-student: #eab308;
-  --aud-wedding: #be185d;
+  /* Audience accents — per BRAND.md §7 */
+  --aud-marketing: #4f46e5;     /* indigo */
+  --aud-freelance: #16a34a;     /* green */
+  --aud-student: #eab308;       /* amber */
+  --aud-wedding: #be185d;       /* rose */
+  --aud-trades: #ea580c;        /* orange */
+  --aud-small-business: #0e7490; /* operational teal */
+  --aud-community: #7c3aed;     /* community violet — teachers, coaches, parish, community organisers */
 
   /* Status */
   --status-todo: #6366f1;
