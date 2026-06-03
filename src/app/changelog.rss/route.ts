@@ -4,10 +4,9 @@ import {
   sectionDate,
   xmlEscape,
 } from "@/lib/changelog";
+import { SITE_URL } from "@/lib/site-url";
 
 export const dynamic = "force-dynamic";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie";
 
 /**
  * /changelog.rss — RSS 2.0 feed mirroring the dispatch.
@@ -46,15 +45,15 @@ export async function GET() {
       description,
       pubDate,
       guid,
-      link: `${SITE}/dispatch`,
+      link: `${SITE_URL}/dispatch`,
     };
   });
 
   const channelTitle = "Signal Studio — The dispatch";
   const channelDescription =
     "What gets sent, not what accumulates. Shipped work across the Signal Studio suite, in plain English. Updated when something is worth saying out loud.";
-  const channelLink = `${SITE}/dispatch`;
-  const feedLink = `${SITE}/changelog.rss`;
+  const channelLink = `${SITE_URL}/dispatch`;
+  const feedLink = `${SITE_URL}/changelog.rss`;
   const lastBuildDate = new Date().toUTCString();
 
   const itemXml = items

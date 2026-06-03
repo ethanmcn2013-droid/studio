@@ -89,7 +89,7 @@ export function SiteNav() {
         transition: "border-color var(--motion-base) var(--ease-out)",
       }}
     >
-      <div className="mx-auto flex h-14 w-full max-w-[760px] items-center justify-between px-6">
+      <div className="mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6">
         <Link href="/" className="wordmark-hover flex items-baseline" aria-label="Signal Studio — home">
           <Wordmark size="sm" animate={false} intro={intro} />
         </Link>
@@ -214,7 +214,7 @@ export function SiteNav() {
           background: "var(--bg)",
         }}
       >
-        <nav aria-label="All pages" className="mx-auto w-full max-w-[760px] px-6 py-4">
+        <nav aria-label="All pages" className="mx-auto w-full max-w-[1240px] px-6 py-4">
           <ul className="flex flex-col" style={{ gap: 0 }}>
             {NAV_LINKS.map(({ href, label }) => (
               <li key={href}>

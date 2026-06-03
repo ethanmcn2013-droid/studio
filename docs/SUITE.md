@@ -43,10 +43,10 @@ A small lowercase strip near the header of every product's marketing pages: `tas
 All four respect `prefers-reduced-motion`.
 
 ### Suite-shared favicon system
-Brand-soft tile `#eef2ff` (one family). Per-product letter (t/r/a/s) + accent. Studio's tile uses the antique-gold period; the three live products use indigo dot. Favicon generated via `icon.tsx` + `apple-icon.tsx` (Next.js convention).
+Brand-soft tile `#eef2ff` (one family). Per-product letter (t/r/a/s) + accent. Studio and products now use the same indigo dot/period treatment. Favicon generated via `icon.tsx` + `apple-icon.tsx` (Next.js convention).
 
 ### Single accent across the suite
-`#c9a96a` warm antique gold — **reserved exclusively for Signal Studio umbrella.** Never on individual products. Each product's accent is `#4f46e5` brand indigo, used sparingly. There is no per-product color identity beyond that. Do not introduce one.
+`#4f46e5` brand indigo is the single suite accent. Antique gold `#c9a96a` is retired and must not be reintroduced for new work. There is no per-product color identity beyond the shared indigo. Do not introduce one.
 
 ### Audience accents (Tasks-specific)
 Tasks's audience landing pages each have their own color accent (`/for/freelancers` green, `/for/students` amber, `/for/weddings` rose, `/for/trades` orange, `/for/marketing` indigo). These accents are **scoped to landing pages only** — they do not propagate to suite-shared chrome. If you find yourself reaching for a wedding-rose color in Studio code, stop.

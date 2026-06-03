@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
 import { COMPARISON_PAGES } from "@/lib/comparison-pages";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://signalstudio.ie";
+import { SITE_URL } from "@/lib/site-url";
 
 const routes: Array<{
   path: string;
@@ -37,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [...routes, ...comparisonRoutes].map((route) => ({
-    url: `${BASE_URL}${route.path}`,
+    url: `${SITE_URL}${route.path}`,
     lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,

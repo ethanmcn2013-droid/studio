@@ -54,9 +54,9 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 - AI is ambient, never marketed. No "AI-powered" copy. No AI feature names.
 
 ### Visual
-- Accent color: `#c9a96a` (warm antique gold). Single accent across the suite — do not introduce per-product accents in this repo.
+- Accent color: `#4f46e5` (brand indigo). Single accent across the suite — do not introduce per-product accents in this repo. Antique gold `#c9a96a` is retired.
 - Type: Geist (sans + mono). No other typefaces.
-- Visual register: calm, premium, neutral with one warm accent. Reference points: Apple, Linear, Arc, Notion Calendar, Raycast. **Never** Jira, Monday, Tableau, or any 3-adjective hero grid.
+- Visual register: calm, premium, neutral with one indigo accent. Reference points: Apple, Linear, Arc, Notion Calendar, Raycast. **Never** Jira, Monday, Tableau, or any 3-adjective hero grid.
 
 ---
 
@@ -79,10 +79,10 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 
 ```
 src/app/page.tsx
-  ├─ <RevealHero>        — gold hairline → masked headline word-by-word → product wordmark stack with per-product gestures
+  ├─ <RevealHero>        — indigo hairline → masked headline word-by-word → product wordmark stack with per-product gestures
   ├─ <RevealManifesto>   — operating principle eyebrow → display H2 → two-paragraph thesis
   ├─ <RevealProducts>    — four typographic-poster product rows, subdomain links via @/lib/product-urls
-  ├─ <RevealClosing>     — gold hairline + "Built for everyone else." sign-off + mono `hello@signalstudio.ie · Dublin, 2026`
+  ├─ <RevealClosing>     — indigo hairline + "Built for everyone else." sign-off + mono `hello@signalstudio.ie · Dublin, 2026`
   └─ <RevealEngine>      — single client orchestrator (GSAP timeline + Lenis + ScrollTrigger)
 ```
 

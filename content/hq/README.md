@@ -113,14 +113,14 @@ array syntax (`[a, b, c]`) and JSON-array syntax (`["a", "b, comma"]`)
 in frontmatter. Migration scripts use the JSON form when values
 contain commas, so arrays survive the round trip.
 
-## Dashboard read path (HQ-6c.2)
+## HQ read path (2026-05-31)
 
-For sections wired to the live dashboard, an adapter layer at
-`src/lib/hq/dashboard-data.ts` converts `HqMarkdownEntry[]` into
-the typed shapes the dashboard expects (`ProductStatus[]`,
-`EcosystemFlow[]`, `FeatureItem[]`, `RiskItem[]`). The `/hq` server
-page reads these via `getHqDashboardMarkdown()` and passes them to
-`<HqDashboard markdown={...} />` as a prop.
+Narrative sections remain Markdown-backed through
+`src/lib/hq/markdown.ts`. The founder operating system now bridges those
+static sources with the live CRM and traction reads through
+`src/lib/hq/operating-system.ts`. `/hq` renders the command center, hub
+map, and proof spine directly; there is no separate dashboard adapter in
+the current repo.
 
 Inside each refactored tab, the pattern is:
 
@@ -200,9 +200,9 @@ entry would lose company knowledge. The staged approach is:
    messaging.
 3. **HQ-6c.1 (shipped):** Migrate the 14 remaining narrative
    sections via the parametric script.
-4. **HQ-6c.2 (shipped):** Refactor every dashboard tab to read from
-   markdown via the adapter at `src/lib/hq/dashboard-data.ts`.
-   localStorage edits for migrated sections are gated off.
+4. **HQ-6c.2 (historical):** Dashboard tabs were migrated away from
+   operator-authored localStorage. The current route no longer carries
+   the old adapter file.
 5. **HQ-6c.3 (shipped):** Annotate `data.ts` as transitional.
 6. **HQ-6c.4 (shipped):** Rewrite the CLAUDE.md Mandatory Signal HQ
    Rule as a routing table.

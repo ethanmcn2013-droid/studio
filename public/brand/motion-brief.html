@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signal Studio · The Film System — Motion & Advertising Brief</title>
+<meta name="description" content="The reference brief for every Signal Studio motion-graphic and advertising film. Strategy, motion language, production plan, and full detail on 30 films." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #4f46e5;
+    --accent-deep: #4338ca;
+    --accent-soft: #eef2ff;
+    --paper: #ffffff;
+    --paper-soft: #fafafa;
+    --paper-deep: #f4f4f5;
+    --ink: #111111;
+    --ink-soft: #3f3f46;
+    --ink-faint: #71717a;
+    --ink-ghost: #d4d4d8;
+    --hairline: rgba(17,17,17,0.10);
+    --hairline-2: rgba(17,17,17,0.06);
+
+    --status-shipped: #10b981;
+    --status-flight: #f59e0b;
+    --status-blocked: #ef4444;
+    --status-next: #6366f1;
+
+    --sans: 'Geist', -apple-system, system-ui, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+    --r-2: 6px; --r-3: 10px; --r-4: 14px; --r-5: 20px; --r-pill: 999px;
+    --shadow-3: 0 24px 60px -20px rgba(24,24,27,.18), 0 8px 24px -8px rgba(24,24,27,.08);
+
+    --maxw: 1180px;
+    --content: 760px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* ── Layout shell ───────────────────────────────────────── */
+  .shell { display: grid; grid-template-columns: 248px 1fr; max-width: var(--maxw); margin: 0 auto; }
+
+  /* Sidebar TOC */
+  .toc {
+    position: sticky; top: 0; align-self: start; height: 100vh;
+    overflow-y: auto; padding: 40px 24px 40px 32px;
+    border-right: 1px solid var(--hairline-2);
+  }
+  .toc .brand { display: flex; align-items: baseline; gap: 0.16em; font-weight: 500; font-size: 16px; letter-spacing: -0.025em; margin-bottom: 4px; }
+  .toc .brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); align-self: flex-end; margin-bottom: 4px; }
+  .toc .kicker { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-faint); margin-bottom: 28px; }
+  .toc nav a { display: block; font-size: 13px; color: var(--ink-faint); text-decoration: none; padding: 5px 0; border-left: 2px solid transparent; padding-left: 12px; margin-left: -12px; transition: color .15s, border-color .15s; }
+  .toc nav a:hover { color: var(--ink); }
+  .toc nav a.group { margin-top: 18px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-ghost); pointer-events: none; }
+  .toc nav a.sub { font-size: 12px; padding-left: 24px; color: var(--ink-ghost); }
+  .toc nav a.sub:hover { color: var(--ink-soft); }
+
+  main { padding: 0 56px 160px; min-width: 0; }
+
+  /* ── Typographic system ─────────────────────────────────── */
+  .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: var(--ink-faint); }
+  h1.display { font-size: clamp(2.6rem, 1.8rem + 3.6vw, 4.4rem); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; margin: 18px 0 0; }
+  h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; margin: 0 0 8px; }
+  h3 { font-size: 1.18rem; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h4 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  p { color: var(--ink-soft); max-width: var(--content); margin: 0 0 14px; }
+  p.lead { font-size: 1.18rem; color: var(--ink-soft); line-height: 1.5; }
+  a { color: var(--accent-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: var(--ink); font-weight: 600; }
+  em.mark { font-style: normal; background: linear-gradient(120deg, transparent 0 6%, color-mix(in srgb, var(--accent) 28%, transparent) 6% 94%, transparent 94%); background-size: 100% 0.78em; background-position: 0 82%; background-repeat: no-repeat; padding: 0 1px; }
+
+  section { padding: 76px 0; border-top: 1px solid var(--hairline-2); }
+  section:first-of-type { border-top: none; }
+  .section-head { margin-bottom: 36px; }
+  .section-head .eyebrow { display: block; margin-bottom: 14px; }
+
+  /* ── Cover ──────────────────────────────────────────────── */
+  .cover { padding: 88px 0 64px; border-top: none; }
+  .cover .meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 40px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.02em; }
+  .cover .meta span strong { color: var(--ink); font-weight: 500; }
+  .cover-dot-row { display: flex; align-items: center; gap: 16px; margin-top: 6px; }
+
+  /* ── Callout / note ─────────────────────────────────────── */
+  .note { border: 1px solid var(--hairline); border-left: 3px solid var(--accent); border-radius: var(--r-3); padding: 18px 22px; margin: 22px 0; background: var(--paper-soft); max-width: var(--content); }
+  .note .eyebrow { display: block; margin-bottom: 8px; }
+  .note p:last-child { margin-bottom: 0; }
+  .note.warn { border-left-color: var(--status-flight); }
+  .note.refuse { border-left-color: var(--status-blocked); }
+
+  /* ── Principle grid ─────────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: var(--content); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { border: 1px solid var(--hairline); border-radius: var(--r-3); padding: 20px 22px; }
+  .card .eyebrow { display: block; margin-bottom: 10px; }
+  .card p { font-size: 0.92rem; margin-bottom: 0; }
+
+  /* ── Tables ─────────────────────────────────────────────── */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--hairline); border-radius: var(--r-3); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--hairline-2); vertical-align: top; }
+  th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 600; background: var(--paper-soft); }
+  tr:last-child td { border-bottom: none; }
+  td strong { font-weight: 600; }
+  .num { font-family: var(--mono); color: var(--ink-faint); white-space: nowrap; }
+
+  /* ── Pills ──────────────────────────────────────────────── */
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--r-pill); border: 1px solid var(--hairline); color: var(--ink-soft); white-space: nowrap; }
+  .pill .dotmini { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .pill.p2d { background: var(--accent-soft); border-color: transparent; color: var(--accent-deep); }
+  .pill.phybrid { background: #fff7ed; border-color: transparent; color: #9a3412; }
+  .pill.plive { background: #fef2f2; border-color: transparent; color: #991b1b; }
+  .pill.pcraft { background: #f0fdf4; border-color: transparent; color: #065f46; }
+  .cost { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; }
+  .cost .on { color: var(--ink); } .cost .off { color: var(--ink-ghost); }
+
+  /* ── Motion lab ─────────────────────────────────────────── */
+  .lab { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 8px 0 26px; }
+  .lab .cell { border: 1px solid var(--hairline); border-radius: var(--r-3); padding: 22px 14px 16px; display: flex; flex-direction: column; align-items: center; gap: 16px; background: var(--paper); }
+  .lab .stage { height: 64px; width: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .lab .label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); text-align: center; }
+  .lab .label small { display: block; color: var(--ink-ghost); text-transform: none; letter-spacing: 0; margin-top: 3px; font-size: 9.5px; }
+  .g-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
+
+  /* broadcast */
+  .g-broadcast { position: relative; }
+  .g-broadcast::before, .g-broadcast::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--accent); animation: ring 3.2s ease-out infinite; }
+  .g-broadcast::after { animation-delay: 1.6s; }
+  @keyframes ring { 0% { transform: scale(1); opacity: 0.55; } 80%,100% { transform: scale(3.4); opacity: 0; } }
+  /* pulse */
+  .g-pulse { animation: pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(0.86); opacity: 0.85; } 50% { transform: scale(1.12); opacity: 1; } }
+  /* sweep */
+  .g-sweep { animation: sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite; }
+  @keyframes sweep { 0% { transform: translateX(-26px); } 50% { transform: translateX(26px); } 100% { transform: translateX(-26px); } }
+  /* tick */
+  .g-tick { animation: tick 3.6s steps(6, end) infinite; }
+  @keyframes tick { 0% { transform: translateX(-26px); } 100% { transform: translateX(26px); } }
+  /* caret */
+  .g-caret { width: 4px; height: 18px; border-radius: 1px; animation: caret 1.1s steps(1, end) infinite; }
+  @keyframes caret { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .g-broadcast::before, .g-broadcast::after, .g-pulse, .g-sweep, .g-tick, .g-caret { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ── Phase blocks ───────────────────────────────────────── */
+  .phase { border: 1px solid var(--hairline); border-radius: var(--r-4); padding: 26px 28px; margin-bottom: 16px; }
+  .phase .phase-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .phase .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep); }
+  .phase h3 { margin-bottom: 2px; }
+  .phase .films { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .chip { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: var(--r-2); background: var(--paper-deep); color: var(--ink-soft); }
+  .chip b { color: var(--ink); font-weight: 600; }
+
+  /* ── Film cards ─────────────────────────────────────────── */
+  .film { border: 1px solid var(--hairline); border-radius: var(--r-4); padding: 28px 30px; margin-bottom: 18px; scroll-margin-top: 24px; }
+  .film .film-head { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 14px; }
+  .film .fnum { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-2); padding: 4px 8px; line-height: 1; margin-top: 4px; white-space: nowrap; }
+  .film .ftitle { flex: 1; min-width: 0; }
+  .film .ftitle .eyebrow { display: block; margin-bottom: 6px; }
+  .film .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 16px; }
+  .film .logline { font-size: 1.05rem; color: var(--ink); font-weight: 500; letter-spacing: -0.01em; max-width: var(--content); margin-bottom: 16px; }
+  .film dl { display: grid; grid-template-columns: 132px 1fr; gap: 0; max-width: 880px; }
+  .film dt { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); padding: 9px 0; border-top: 1px solid var(--hairline-2); }
+  .film dd { font-size: 0.92rem; color: var(--ink-soft); padding: 9px 0; border-top: 1px solid var(--hairline-2); }
+  .film dd .copy { font-family: var(--mono); font-size: 0.84rem; color: var(--ink); background: var(--paper-deep); padding: 2px 7px; border-radius: var(--r-2); display: inline-block; margin: 2px 4px 2px 0; }
+  .film dd .strike { text-decoration: line-through; color: var(--ink-faint); }
+  .film.break { border-color: color-mix(in srgb, var(--status-flight) 45%, var(--hairline)); }
+  .break-flag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #9a3412; background: #fff7ed; padding: 3px 9px; border-radius: var(--r-pill); }
+
+  .reel-divider { margin: 44px 0 26px; }
+  .reel-divider .eyebrow { display: block; margin-bottom: 8px; }
+  .reel-divider h2 { margin-bottom: 6px; }
+
+  /* ── Appendix copy library ──────────────────────────────── */
+  .copylib { columns: 2; column-gap: 28px; max-width: var(--content); }
+  .copylib .line { break-inside: avoid; margin-bottom: 12px; }
+  .copylib .line .src { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-ghost); display: block; }
+  .copylib .line .txt { font-size: 0.95rem; color: var(--ink); }
+
+  ul.clean { list-style: none; max-width: var(--content); }
+  ul.clean li { padding: 7px 0 7px 22px; position: relative; color: var(--ink-soft); font-size: 0.95rem; border-bottom: 1px solid var(--hairline-2); }
+  ul.clean li::before { content: ""; position: absolute; left: 2px; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  ul.refuse li::before { background: var(--status-blocked); border-radius: 1px; }
+
+  footer { padding: 48px 0 0; border-top: 1px solid var(--hairline); margin-top: 40px; color: var(--ink-faint); font-size: 0.85rem; }
+  footer .wm { display: inline-flex; align-items: baseline; gap: 0.16em; font-weight: 500; letter-spacing: -0.025em; color: var(--ink); font-size: 15px; }
+  footer .wm .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); align-self: flex-end; margin-bottom: 3px; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .shell { grid-template-columns: 1fr; }
+    .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--hairline-2); padding: 28px 24px; }
+    .toc nav { columns: 2; column-gap: 24px; }
+    main { padding: 0 24px 100px; }
+    .lab { grid-template-columns: repeat(2, 1fr); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .film dl { grid-template-columns: 1fr; }
+    .film dt { border-top: none; padding-bottom: 0; }
+    .film dd { padding-top: 2px; border-top: none; }
+    .copylib { columns: 1; }
+  }
+
+  @media print {
+    .toc { display: none; }
+    .shell { grid-template-columns: 1fr; max-width: none; }
+    main { padding: 0 12mm; }
+    section, .film, .phase { break-inside: avoid; }
+    .g-broadcast::before, .g-broadcast::after, .g-pulse, .g-sweep, .g-tick, .g-caret { animation: none !important; }
+    a { color: var(--ink); }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ───────────────────────── SIDEBAR ───────────────────────── -->
+  <aside class="toc">
+    <div class="brand">signal&nbsp;studio<span class="dot"></span></div>
+    <div class="kicker">The Film System · v1.0</div>
+    <nav>
+      <a href="#cover">Cover</a>
+      <a href="#use">How to use this brief</a>
+      <a href="#strategy">1 · Strategy</a>
+      <a href="#language">2 · The motion language</a>
+      <a href="#catalogue">3 · The catalogue</a>
+      <a href="#plan">4 · The production plan</a>
+
+      <a class="group">The 30 films</a>
+      <a class="sub" href="#reel-one">Reel One · Foundations</a>
+      <a class="sub" href="#reel-three">Reel Three · Pure 2D</a>
+      <a class="sub" href="#reel-two">Reel Two · Belief</a>
+
+      <a class="group">Reference</a>
+      <a href="#copy">Locked copy library</a>
+      <a href="#refusals">The refusal checklist</a>
+      <a href="#template">Film-spec template</a>
+    </nav>
+  </aside>
+
+  <!-- ───────────────────────── MAIN ───────────────────────── -->
+  <main>
+
+    <!-- COVER -->
+    <section class="cover" id="cover">
+      <span class="eyebrow">Signal Studio · Motion &amp; Advertising Reference Brief</span>
+      <h1 class="display">The Film System.</h1>
+      <p class="lead" style="margin-top:22px;">One indigo dot. Five gestures. Thirty films. This is the source of truth for every motion-graphic and advertising piece Signal Studio commissions — the strategy behind the work, the motion language every film inherits, and a phased plan for what to build first.</p>
+      <div class="cover-dot-row">
+        <span class="g-dot g-pulse" aria-hidden="true"></span>
+        <span class="eyebrow">The dot is the hero.</span>
+      </div>
+      <div class="meta">
+        <span>Version <strong>1.0</strong></span>
+        <span>Dated <strong>3 Jun 2026</strong></span>
+        <span>Owner <strong>hello@signalstudio.ie</strong></span>
+        <span>Status <strong>Living document</strong></span>
+        <span>For <strong>Directors · Partners · Motion designers · AI</strong></span>
+      </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section id="use">
+      <div class="section-head">
+        <span class="eyebrow">Read this first</span>
+        <h2>How to use this brief</h2>
+      </div>
+      <p>This document does three jobs. It explains <strong>why</strong> Signal Studio films look and move the way they do (§1). It hands you the <strong>system</strong> every film is built from — gestures, palette, type, sound, and the words allowed on screen (§2). And it gives you a <strong>plan</strong>: thirty films, categorised and sequenced by cost, reuse, and dependency, so the cheapest, highest-leverage work happens first (§3–§4).</p>
+      <div class="grid-3" style="margin-top:8px;">
+        <div class="card">
+          <span class="eyebrow">If you're a motion designer</span>
+          <p>Start at §2 (the motion language) and your film's detail card. Everything you need — duration, technique, sound, exact on-screen copy — is in the card. Do not deviate from the copy.</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">If you're a director or partner</span>
+          <p>Read §1 and §4. The strategy tells you what each film is <em>for</em>; the plan tells you which to greenlight and in what order. Pitch ideas against the refusal checklist (§Reference).</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">If you're an AI tool</span>
+          <p>Treat §2's copy rules and the refusal checklist as hard constraints. Any output containing a banned word or an exclamation mark is rejected before review. Brand voice wins over any persuasion formula.</p>
+        </div>
+      </div>
+      <div class="note">
+        <span class="eyebrow">The one rule above all rules</span>
+        <p>Signal Studio films are <strong>calm, declarative, and quiet</strong>. No exclamation marks. No hype words. The work earns its quality through craft and restraint — it never claims it. If a frame feels like it's shouting, it's wrong.</p>
+      </div>
+    </section>
+
+    <!-- 1 · STRATEGY -->
+    <section id="strategy">
+      <div class="section-head">
+        <span class="eyebrow">Section 1</span>
+        <h2>Strategy</h2>
+        <p class="lead" style="margin-top:10px;">What every film is trying to do, and the through-line that makes thirty separate pieces read as one brand.</p>
+      </div>
+
+      <h3>The hero is a dot</h3>
+      <p>Signal Studio's entire identity is a single indigo dot. It is the favicon, the wordmark's period, the loading state, and — across this whole reel — the <strong>main character</strong>. The dot is not a logo we place in a corner; it is the subject of the films. This is the discipline that lets us make thirty films cheaply and coherently: we are animating one object, with one colour, on paper.</p>
+      <p>The dot reads time. It behaves differently in each product, and those five behaviours (§2) are our motion alphabet. A viewer who watches three of our films should be able to recognise a fourth as ours from the motion alone — before any logo appears.</p>
+
+      <h3 style="margin-top:30px;">Belief, not just comprehension</h3>
+      <p>Films do one of two jobs. <strong>Comprehension</strong> films show what a product does. <strong>Belief</strong> films make someone feel this brand is <em class="mark">for them</em> and has a spine. A reel of only comprehension films explains a tool nobody has a reason to care about; a reel of only belief films wins hearts for a product nobody understands. This brief is balanced on purpose, and sequenced so comprehension (cheap, 2D) comes first and belief (expensive, live) comes once the motion language is proven.</p>
+
+      <h3 style="margin-top:30px;">Who we're talking to — the 80%</h3>
+      <p>Signal Studio is <em class="mark">project management for the 80% not in tech</em>: the wedding planner, the tradesperson quoting from a van, the tutor between two students, the shop owner, the freelancer with eleven live clients. They are the person the work routes through, in a category that doesn't call itself an industry. Every film casts <strong>their</strong> work and <strong>their</strong> words — never "engineering teams", never jargon, never stock-photo office life.</p>
+
+      <h3 style="margin-top:30px;">The moat is refusal</h3>
+      <p>Our competitive edge isn't a feature — anyone can copy a feature. It's <strong>disciplined refusal</strong>, sustained across a suite. We refuse jargon (sprint, burndown, velocity, stakeholder), refuse AI-marketing, refuse the dashboard, refuse the configuration tax. Several films in this reel are <em>about</em> what we won't build. Refusal is not a gap in the story; it is the story.</p>
+
+      <div class="note warn">
+        <span class="eyebrow">A note on the brief that started this</span>
+        <p>This work was commissioned with the words "Apple-grade" and "world-class". The films should absolutely <em>be</em> that — but the brand bans <strong>world-class</strong>, <strong>best-in-class</strong>, <strong>seamless</strong>, and <strong>supercharge</strong> as on-screen words. So the quality lives in the craft, the sound, and the restraint, and is <em>demonstrated</em>, never stated. The most distinctive film we have is literally about what we refuse to build. That paradox — show it, never say it — is the central creative principle of the entire system.</p>
+      </div>
+
+      <h3 style="margin-top:30px;">Reference register</h3>
+      <div class="grid-2">
+        <div class="card"><span class="eyebrow" style="color:var(--accent-deep)">Aspire to</span><p>Apple product films, Linear's motion spec, Arc, Notion Calendar, Raycast. Macro detail, single hero object, deliberate slow moves, tactile sound, negative space, one idea per shot.</p></div>
+        <div class="card"><span class="eyebrow" style="color:var(--status-blocked)">Never</span><p>Jira / Monday / Tableau dashboard sizzle, holographic gradients, glow blooms, robot/AI motifs, fast-cut hustle edits, the "feature × icon × verb" 3-up SaaS grid.</p></div>
+      </div>
+    </section>
+
+    <!-- 2 · MOTION LANGUAGE -->
+    <section id="language">
+      <div class="section-head">
+        <span class="eyebrow">Section 2 · The reusable core</span>
+        <h2>The motion language</h2>
+        <p class="lead" style="margin-top:10px;">Lock this before a single film is animated. Everything in the reel inherits it. Phase 0 of the plan is producing this as a system test.</p>
+      </div>
+
+      <h3>The five gestures — our motion alphabet</h3>
+      <p>The dot behaves differently per product. These are the <strong>only</strong> product-level animations. Don't invent new gestures. (Live below — values are suite-locked.)</p>
+      <div class="lab" role="img" aria-label="Five animated dot gestures: broadcast, pulse, sweep, tick, caret">
+        <div class="cell"><div class="stage"><span class="g-dot g-broadcast"></span></div><div class="label">Broadcast<small>Studio · one-shot rings</small></div></div>
+        <div class="cell"><div class="stage"><span class="g-dot g-pulse"></span></div><div class="label">Pulse<small>Tasks · 2.6s ease-in-out</small></div></div>
+        <div class="cell"><div class="stage"><span class="g-dot g-sweep"></span></div><div class="label">Sweep<small>Roadmap · 5.4s glide</small></div></div>
+        <div class="cell"><div class="stage"><span class="g-dot g-tick"></span></div><div class="label">Tick<small>Analytics · 3.6s steps</small></div></div>
+        <div class="cell"><div class="stage"><span class="g-caret"></span></div><div class="label">Caret<small>Notes · 1.1s blink</small></div></div>
+      </div>
+      <div class="table-wrap" style="margin-bottom:26px;">
+        <table>
+          <thead><tr><th>Product</th><th>Gesture</th><th>What it is</th><th>Timing / easing</th><th>The idea</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Studio</strong></td><td>Broadcast</td><td>Wordmark period sends concentric rings outward, once</td><td class="num">one-shot</td><td>The umbrella, sending</td></tr>
+            <tr><td><strong>Tasks</strong></td><td>Pulse</td><td>Dot breathes at rest, quickens with load</td><td class="num">2.6s ease-in-out</td><td>Now — the queue is alive</td></tr>
+            <tr><td><strong>Roadmap</strong></td><td>Sweep</td><td>Dot tracks left→right along a timeline</td><td class="num">5.4s cubic-bezier(.22,.7,.2,1)</td><td>Past to future</td></tr>
+            <tr><td><strong>Analytics</strong></td><td>Tick</td><td>Dot jumps between samples, never between them</td><td class="num">3.6s steps(1,end)</td><td>Discrete reads</td></tr>
+            <tr><td><strong>Notes</strong></td><td>Caret</td><td>Dot blinks like a held cursor</td><td class="num">1.1s steps(1,end)</td><td>There, then gone, then there</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Palette — one indigo, on paper</h3>
+      <div class="table-wrap" style="margin-bottom:26px;">
+        <table>
+          <thead><tr><th>Token</th><th>Hex</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Indigo (the accent)</strong></td><td class="num">#4f46e5</td><td>The dot, and the only accent. Never recoloured.</td></tr>
+            <tr><td>Indigo deep</td><td class="num">#4338ca</td><td>Hover / pressed / small text on white</td></tr>
+            <tr><td>Indigo soft</td><td class="num">#eef2ff</td><td>Tints, selection, washes</td></tr>
+            <tr><td>Paper</td><td class="num">#ffffff / #fafafa</td><td>Backgrounds. Never pure black behind type.</td></tr>
+            <tr><td>Ink</td><td class="num">#111111</td><td>Type. Off-black, never #000.</td></tr>
+            <tr><td>Status (functional only)</td><td class="num">#10b981 · #f59e0b · #71717a · #4f46e5</td><td>Shipped · in-flight · quiet-risk · focus. Only in briefing/roadmap UI, never decoration.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Type</h3>
+      <p><strong>Geist Sans</strong> for everything; <strong>Geist Mono</strong> for eyebrows, timers, status labels, version stamps. Display headings: weight 600, letter-spacing −0.045em, line-height 0.96. Eyebrows: 11px mono, uppercase, tracked 0.14em. No Inter-alone, no Roboto, no Space Grotesk, never more than two families on screen.</p>
+
+      <h3 style="margin-top:30px;">Sound vocabulary</h3>
+      <p>One audio system across the reel, tied to the gestures. Tactile, not musical. Silence is a legitimate choice — often the strongest one.</p>
+      <div class="grid-3">
+        <div class="card"><span class="eyebrow">Pulse</span><p>Soft heartbeat sub-bass. Warmth, presence.</p></div>
+        <div class="card"><span class="eyebrow">Sweep</span><p>Airy glide, held under lateral moves.</p></div>
+        <div class="card"><span class="eyebrow">Tick</span><p>Dry mechanical step-click. Discrete, precise.</p></div>
+        <div class="card"><span class="eyebrow">Caret</span><p>Clean blink tick; dampened keystrokes; warm commit tone.</p></div>
+        <div class="card"><span class="eyebrow">Broadcast</span><p>A single deep bloom. Used once.</p></div>
+        <div class="card"><span class="eyebrow">Negative space</span><p>True silence after noise. The punchline in several films.</p></div>
+      </div>
+
+      <h3 style="margin-top:30px;">Words allowed on screen</h3>
+      <p>Copy is locked. Use the lines verbatim from each film's card and the library in the Reference section. The non-negotiables:</p>
+      <ul class="clean">
+        <li><strong>No exclamation marks.</strong> Anywhere. Ever.</li>
+        <li><strong>Locked taglines:</strong> "Clarity, not configuration." · "Everything important. Nothing distracting." · "Project management for the 80% not in tech."</li>
+        <li><strong>Locked CTAs:</strong> Open the workspace · Open the roadmap · Open the briefing · Open the notebook. Never "Get started", "Try it", "Sign up free".</li>
+        <li><strong>Wordmark:</strong> <code>signal studio.</code> (lowercase, period) and <code>tasks·</code> <code>roadmap·</code> <code>analytics·</code> <code>notes·</code>. Never "Signal" alone.</li>
+      </ul>
+      <p style="margin-top:14px;">See the full banned-word list and the refusal checklist in the Reference section.</p>
+    </section>
+
+    <!-- 3 · CATALOGUE -->
+    <section id="catalogue">
+      <div class="section-head">
+        <span class="eyebrow">Section 3</span>
+        <h2>The catalogue</h2>
+        <p class="lead" style="margin-top:10px;">Thirty films across three reels, categorised four ways: by <strong>purpose</strong>, <strong>production mode</strong>, <strong>cost</strong>, and <strong>where it pays rent</strong>.</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:28px;">
+        <div class="card"><span class="eyebrow" style="color:var(--accent-deep)">Reel One · Foundations</span><p><strong>10 films.</strong> The dot-as-hero system and the four product stories. Mostly 2D-achievable; the spine of the brand.</p></div>
+        <div class="card"><span class="eyebrow" style="color:#065f46">Reel Three · Pure 2D</span><p><strong>10 films.</strong> No camera, no cast. Kinetic type and UI choreography. Cheapest, fastest, and reusable as live-site Lottie.</p></div>
+        <div class="card"><span class="eyebrow" style="color:#991b1b">Reel Two · Belief</span><p><strong>10 films.</strong> The brand takes a side. Live-action and experimental craft. Highest cost, highest brand-building power.</p></div>
+      </div>
+
+      <p class="eyebrow" style="display:block;margin-bottom:10px;">Legend</p>
+      <div class="meta-row" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+        <span class="pill p2d">2D</span>
+        <span class="pill phybrid">Hybrid</span>
+        <span class="pill plive">Live-action</span>
+        <span class="pill pcraft">Craft</span>
+        <span class="pill"><span class="cost"><span class="on">$</span><span class="off">$$$</span></span> &nbsp;cost tier</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Film</th><th>Purpose</th><th>Mode</th><th>Cost</th><th>Pays rent as</th><th>Phase</th></tr></thead>
+          <tbody>
+            <tr><td class="num">01</td><td><strong>The Dot</strong></td><td>Suite anthem</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Umbrella hero</td><td class="num">1</td></tr>
+            <tr><td class="num">21</td><td><strong>The Line</strong></td><td>Suite system</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>signalstudio.ie hero loop</td><td class="num">1</td></tr>
+            <tr><td class="num">22</td><td><strong>Lane to Week</strong></td><td>Product · Tasks</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>Tasks hero loop · Lottie</td><td class="num">1</td></tr>
+            <tr><td class="num">23</td><td><strong>The Briefing Writes Itself</strong></td><td>Product · Analytics</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>Analytics hero · email header</td><td class="num">1</td></tr>
+            <tr><td class="num">24</td><td><strong>Three Seconds, Drawn</strong></td><td>Product · Notes</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>Notes hero loop · Lottie</td><td class="num">1</td></tr>
+            <tr><td class="num">25</td><td><strong>The Sweep</strong></td><td>Product · Roadmap</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>Roadmap hero loop · Lottie</td><td class="num">1</td></tr>
+            <tr><td class="num">26</td><td><strong>Everything. Nothing.</strong></td><td>Brand principle</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>About / principles</td><td class="num">2</td></tr>
+            <tr><td class="num">27</td><td><strong>Number, Meet Sentence</strong></td><td>Brand · Analytics</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>"Briefing, not a dashboard" section</td><td class="num">2</td></tr>
+            <tr><td class="num">28</td><td><strong>Plain English</strong></td><td>Brand position</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>/method · /about</td><td class="num">2</td></tr>
+            <tr><td class="num">29</td><td><strong>The Cycle</strong></td><td>Suite system</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$</span><span class="off">$$$</span></span></td><td>Suite explainer · footer</td><td class="num">2</td></tr>
+            <tr><td class="num">30</td><td><strong>Hairlines</strong></td><td>Brand craft</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Brand-kit · press</td><td class="num">2</td></tr>
+            <tr><td class="num">07</td><td><strong>What We Don't Build</strong></td><td>Brand refusal</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>/about manifesto</td><td class="num">2</td></tr>
+            <tr><td class="num">10</td><td><strong>Same Shape, Every Scale</strong></td><td>Brand craft</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Identity / press</td><td class="num">2</td></tr>
+            <tr><td class="num">04</td><td><strong>Not a Dashboard</strong></td><td>Product · Analytics</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Analytics hero · paid social</td><td class="num">3</td></tr>
+            <tr><td class="num">06</td><td><strong>One Wedding, Four Views</strong></td><td>Suite flagship</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Homepage flagship · sales</td><td class="num">3</td></tr>
+            <tr><td class="num">02</td><td><strong>See Your Week</strong></td><td>Product · Tasks</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Tasks hero · paid social</td><td class="num">3</td></tr>
+            <tr><td class="num">05</td><td><strong>Show Your Work</strong></td><td>Product · Roadmap</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Roadmap hero · paid social</td><td class="num">3</td></tr>
+            <tr><td class="num">03</td><td><strong>Three Seconds</strong></td><td>Product · Notes</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Notes hero · social</td><td class="num">3</td></tr>
+            <tr><td class="num">08</td><td><strong>For the 80%</strong></td><td>Audience position</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Umbrella · audience pages</td><td class="num">3</td></tr>
+            <tr><td class="num">09</td><td><strong>The Morning</strong></td><td>Emotional · Analytics</td><td><span class="pill phybrid">Hybrid</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Brand · paid social</td><td class="num">3</td></tr>
+            <tr><td class="num">14</td><td><strong>Translation Debt</strong></td><td>Belief · enemy</td><td><span class="pill plive">Live</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Brand campaign · ownable phrase</td><td class="num">4</td></tr>
+            <tr><td class="num">15</td><td><strong>From the Van</strong></td><td>Belief · dignity</td><td><span class="pill plive">Live</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Trades campaign</td><td class="num">4</td></tr>
+            <tr><td class="num">16</td><td><strong>Midnight, Nine Days Out</strong></td><td>Belief · archetype</td><td><span class="pill plive">Live</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Weddings campaign</td><td class="num">4</td></tr>
+            <tr><td class="num">17</td><td><strong>The Productivity-Industrial Complex</strong></td><td>Belief · manifesto</td><td><span class="pill plive">Live</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Brand centrepiece</td><td class="num">4</td></tr>
+            <tr><td class="num">18</td><td><strong>The No's</strong></td><td>Belief · manifesto</td><td><span class="pill p2d">2D</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>/about · /method</td><td class="num">4</td></tr>
+            <tr><td class="num">20</td><td><strong>What the World Runs On</strong></td><td>Belief · cultural</td><td><span class="pill plive">Live</span></td><td><span class="cost"><span class="on">$$$$</span></span></td><td>Brand closer · hero campaign</td><td class="num">4</td></tr>
+            <tr><td class="num">11</td><td><strong>Diffusion</strong></td><td>Craft prestige</td><td><span class="pill pcraft">Craft</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Brand prestige · titles</td><td class="num">5</td></tr>
+            <tr><td class="num">12</td><td><strong>Room Tone</strong></td><td>Craft · sound-first</td><td><span class="pill pcraft">Craft</span></td><td><span class="cost"><span class="on">$$</span><span class="off">$$</span></span></td><td>Brand prestige · audio-led</td><td class="num">5</td></tr>
+            <tr><td class="num">13</td><td><strong>365</strong></td><td>Craft · generative</td><td><span class="pill pcraft">Craft</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Personalised · year-in-review</td><td class="num">5</td></tr>
+            <tr><td class="num">19</td><td><strong>Cyanotype</strong></td><td>Craft · analog</td><td><span class="pill pcraft">Craft</span></td><td><span class="cost"><span class="on">$$$</span><span class="off">$</span></span></td><td>Brand prestige · Roadmap</td><td class="num">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4 · PLAN -->
+    <section id="plan">
+      <div class="section-head">
+        <span class="eyebrow">Section 4</span>
+        <h2>The production plan</h2>
+        <p class="lead" style="margin-top:10px;">Build cheap-and-reusable first; build expensive-and-emotional once the motion language is proven. Six phases, sequenced by cost, leverage, and dependency.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 0 · Foundation</span><span class="eyebrow">~1–2 weeks · no public film</span></div>
+        <h3>Lock the motion language</h3>
+        <p>Before any film, produce a 15–20 second system test: the five gestures animated to their locked timings, the sound vocabulary recorded, the type and palette in motion. This is not advertising — it is the spec every later film inherits, and the thing you approve once so you never re-litigate it mid-production.</p>
+        <p style="margin-bottom:0;"><strong>Why first:</strong> every other film is faster and more coherent once this exists. <strong>Output:</strong> a reference reel + a Lottie/AE source pack handed to every designer.</p>
+        <div class="films"><span class="chip"><b>Deliverable:</b> gesture + sound + type system test</span></div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 1 · The 2D core</span><span class="eyebrow">Lowest cost · highest reuse</span></div>
+        <h3>Product loops that double as the live site</h3>
+        <p>The suite line plus one loop per product, all pure 2D. These are the films <em>and</em> the website hero animations (exportable as Lottie), so the spend funds marketing and product polish at once. They also establish the motion language in public before any money goes near a camera.</p>
+        <div class="films">
+          <span class="chip"><b>21</b> The Line</span><span class="chip"><b>22</b> Lane to Week</span><span class="chip"><b>23</b> Briefing Writes Itself</span><span class="chip"><b>24</b> Three Seconds, Drawn</span><span class="chip"><b>25</b> The Sweep</span><span class="chip"><b>01</b> The Dot</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 2 · Brand 2D</span><span class="eyebrow">Cheap · position-building · no cast</span></div>
+        <h3>Take a position, in kinetic type</h3>
+        <p>Brand films that argue the thesis without a single actor — refusal, restraint, plain English, the design system itself. These move the brand from "a tool" to "a point of view" while staying inside the AE/Lottie budget.</p>
+        <div class="films">
+          <span class="chip"><b>26</b> Everything. Nothing.</span><span class="chip"><b>27</b> Number, Meet Sentence</span><span class="chip"><b>28</b> Plain English</span><span class="chip"><b>29</b> The Cycle</span><span class="chip"><b>30</b> Hairlines</span><span class="chip"><b>07</b> What We Don't Build</span><span class="chip"><b>10</b> Same Shape, Every Scale</span><span class="chip"><b>18</b> The No's</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 3 · Signature hybrid</span><span class="eyebrow">Medium cost · stylised, light production</span></div>
+        <h3>The stories, with real UI and light shoots</h3>
+        <p>The flagship suite story and the emotional product films. Most are 2D-and-screen-capture hybrids; the demo UI must be <strong>real and honestly populated</strong> — no faked, over-full demo workspace. Produce these once the language is set, so they inherit a proven look.</p>
+        <div class="films">
+          <span class="chip"><b>04</b> Not a Dashboard</span><span class="chip"><b>06</b> One Wedding, Four Views</span><span class="chip"><b>02</b> See Your Week</span><span class="chip"><b>05</b> Show Your Work</span><span class="chip"><b>03</b> Three Seconds</span><span class="chip"><b>08</b> For the 80%</span><span class="chip"><b>09</b> The Morning</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 4 · Belief / live-action</span><span class="eyebrow">High cost · highest brand-building power</span></div>
+        <h3>The reel with nerve</h3>
+        <p>The films that win belief — casting, locations, a director. Greenlight only after Phases 1–3 prove the motion language and the brand has shown warmth and a spine. Governance: cap the reel at <strong>two register-breaks</strong> (#17 plus a benched alternate), never let a break open a reel, and cast real operators — dignity, never pity.</p>
+        <div class="films">
+          <span class="chip"><b>14</b> Translation Debt</span><span class="chip"><b>15</b> From the Van</span><span class="chip"><b>16</b> Midnight, Nine Days Out</span><span class="chip"><b>17</b> Productivity-Industrial Complex</span><span class="chip"><b>20</b> What the World Runs On</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-top"><span class="tag">Phase 5 · Craft prestige</span><span class="eyebrow">Premium · festival-grade · when budget allows</span></div>
+        <h3>The flexes</h3>
+        <p>Experimental craft pieces that buy prestige and prove the brand has taste beyond utility. Each is genuinely novel — real ink, real sun-prints, generated-from-data, sound-as-subject. Produce opportunistically; none is on the critical path.</p>
+        <div class="films">
+          <span class="chip"><b>11</b> Diffusion</span><span class="chip"><b>12</b> Room Tone</span><span class="chip"><b>13</b> 365</span><span class="chip"><b>19</b> Cyanotype</span>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="eyebrow">The shortest possible greenlight</span>
+        <p>If you fund nothing else this quarter, fund <strong>Phase 0 + Phase 1</strong>. Six pieces, lowest cost, and five of them ship straight onto the live site. Everything after that is upside built on a proven foundation.</p>
+      </div>
+    </section>
+
+    <!-- ════════════════ THE 30 FILMS ════════════════ -->
+    <section id="reel-one" style="padding-bottom:20px;">
+      <div class="reel-divider">
+        <span class="eyebrow">The 30 films · full detail</span>
+        <h2>Reel One — Foundations</h2>
+        <p>The dot-as-hero system and the four product stories. The spine of the brand.</p>
+      </div>
+
+      <!-- 01 -->
+      <article class="film" id="film-01">
+        <div class="film-head"><span class="fnum">01</span><div class="ftitle"><span class="eyebrow">Suite anthem · Phase 1</span><h3>The Dot</h3></div></div>
+        <p class="logline">A single indigo dot on white broadcasts once, then pulses, sweeps, ticks and blinks — revealing four products as four behaviours of one mark.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~30s</span><span class="pill">Umbrella hero</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Establish the entire visual system in one film. The dot is the cast; the products are how it moves.</dd>
+          <dt>Motion + camera</dt><dd>Slow 8–10s push-in. Rings broadcast on a sub-bass hit. Gesture morphs are match-cuts on the dot — it never leaves frame. Pull back to the wordmark.</dd>
+          <dt>Sound</dt><dd>Defines the audio system: pulse heartbeat, sweep glide, tick click, caret blink, broadcast bloom. No music bed, or one sustained pad.</dd>
+          <dt>On screen</dt><dd><span class="copy">signal studio.</span><span class="copy">Everything important. Nothing distracting.</span></dd>
+          <dt>The wow</dt><dd>The whole brand language, taught in 30 seconds, with one object.</dd>
+        </dl>
+      </article>
+
+      <!-- 02 -->
+      <article class="film" id="film-02">
+        <div class="film-head"><span class="fnum">02</span><div class="ftitle"><span class="eyebrow">Product · Tasks · Phase 3</span><h3>See Your Week</h3></div></div>
+        <p class="logline">A scatter of fragments — a text, a voice memo, a sticky — settles into one calm week view as the pulse dot breathes.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~20s</span><span class="pill">Tasks hero · social</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Chaos to order in one camera move. The core promise, shown not said.</dd>
+          <dt>Motion + camera</dt><dd>Open macro on one fragment; pull back as fragments physically settle into the week grid (weighted spring). Parallax depth between layers.</dd>
+          <dt>Sound</dt><dd>Paper thocks descending in pitch as they settle; pulse heartbeat fades in under the resolved view.</dd>
+          <dt>On screen</dt><dd><span class="copy">tasks·</span><span class="copy">See your week.</span> &nbsp;CTA <span class="copy">Open the workspace</span></dd>
+          <dt>The wow</dt><dd>The relief of a settled week, in a single continuous motion.</dd>
+        </dl>
+      </article>
+
+      <!-- 03 -->
+      <article class="film" id="film-03">
+        <div class="film-head"><span class="fnum">03</span><div class="ftitle"><span class="eyebrow">Product · Notes · Phase 3</span><h3>Three Seconds</h3></div></div>
+        <p class="logline">One unbroken real-time shot. A blinking caret. A thought becomes text in exactly three seconds. One indigo dot = sent to Tasks.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~12s</span><span class="pill">Notes hero · social</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The honesty of real-time. No cut to hide behind — capture genuinely takes three seconds.</dd>
+          <dt>Motion + camera</dt><dd>Locked, static frame. No cuts. Caret blinks (1.1s). Mono timer 0.0→3.0. On commit, one indigo dot eases in beside the line.</dd>
+          <dt>Sound</dt><dd>Caret tick; dampened keystrokes; a single warm confirm tone. Ambient room tone only.</dd>
+          <dt>On screen</dt><dd><span class="copy">notes·</span><span class="copy">Capture in three seconds.</span> &nbsp;CTA <span class="copy">Open the notebook</span></dd>
+          <dt>The wow</dt><dd>It's true on camera. The clock proves it.</dd>
+        </dl>
+      </article>
+
+      <!-- 04 -->
+      <article class="film" id="film-04">
+        <div class="film-head"><span class="fnum">04</span><div class="ftitle"><span class="eyebrow">Product · Analytics · Phase 3</span><h3>Not a Dashboard</h3></div></div>
+        <p class="logline">A parody dashboard — twelve gauges, red numbers, charts — collapses and compresses into four plain sentences. The tick dot.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~20s</span><span class="pill">Analytics hero · paid social</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The anti-product reveal. Sell the refusal — the briefing replaces the dashboard.</dd>
+          <dt>Motion + camera</dt><dd>Start cluttered, faintly cold-blue. Everything funnels to centre and compresses (scale-down + blur-to-sharp) into four lines. Z-axis collapse.</dd>
+          <dt>Sound</dt><dd>Dense, slightly ugly dashboard hum that <strong>cuts to silence</strong> at the collapse. Four lines arrive on four dry ticks.</dd>
+          <dt>On screen</dt><dd><span class="copy">analytics·</span><span class="copy">A briefing, not a dashboard.</span><span class="copy">Two minutes a day.</span> &nbsp;CTA <span class="copy">Open the briefing</span></dd>
+          <dt>The wow</dt><dd>The silence after the noise is the entire argument.</dd>
+        </dl>
+      </article>
+
+      <!-- 05 -->
+      <article class="film" id="film-05">
+        <div class="film-head"><span class="fnum">05</span><div class="ftitle"><span class="eyebrow">Product · Roadmap · Phase 3</span><h3>Show Your Work</h3></div></div>
+        <p class="logline">The sweep dot tracks left→right along a timeline; a readable plan writes itself behind it. One shareable link lands.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~18s</span><span class="pill">Roadmap hero · paid social</span></div>
+        <dl>
+          <dt>The idea</dt><dd>A whole product carried by one lateral move.</dd>
+          <dt>Motion + camera</dt><dd>Single continuous lateral dolly following the sweep dot (5.4s glide). Plan text writes in just behind it. A share-link card slides up.</dd>
+          <dt>Sound</dt><dd>Airy glide held under the move; each line sets with a soft type-set tick; link lands with a light snap.</dd>
+          <dt>On screen</dt><dd><span class="copy">roadmap·</span><span class="copy">Show your work, not your Jira.</span> &nbsp;CTA <span class="copy">Open the roadmap</span></dd>
+          <dt>The wow</dt><dd>The plan appears to write itself, exactly at reading speed.</dd>
+        </dl>
+      </article>
+
+      <!-- 06 -->
+      <article class="film" id="film-06">
+        <div class="film-head"><span class="fnum">06</span><div class="ftitle"><span class="eyebrow">Suite flagship · Phase 3</span><h3>One Wedding, Four Views</h3></div></div>
+        <p class="logline">Follow one wedding through the loop: a note at the venue → a task → a line the couple sees → a morning briefing. The dot changes gesture as it travels.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">60–90s</span><span class="pill">Homepage flagship · sales</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Prove "four products, one system." The GTM hero film, built on the wedding wedge.</dd>
+          <dt>Motion + camera</dt><dd>Push-in at the venue (note); whip-transition on the dot into Tasks (pulse); lateral into Roadmap (sweep); dawn dissolve into Analytics (tick). The dot is the cut every time.</dd>
+          <dt>Sound</dt><dd>Each product carries its gesture sound; transitions are whooshes that resolve into the next signature. One evolving pad ties it together.</dd>
+          <dt>On screen</dt><dd>Per-segment wordmarks; close on <span class="copy">signal studio.</span><span class="copy">Project management for the 80% not in tech.</span> (80% carries the indigo marker)</dd>
+          <dt>The wow</dt><dd>One dot, one story, four products — the suite as a single object.</dd>
+        </dl>
+      </article>
+
+      <!-- 07 -->
+      <article class="film" id="film-07">
+        <div class="film-head"><span class="fnum">07</span><div class="ftitle"><span class="eyebrow">Brand refusal · Phase 2</span><h3>What We Don't Build</h3></div></div>
+        <p class="logline">Words appear and are cut: sprint, burndown, velocity, AI copilot. Each banned word struck and dissolved to paper.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~20s</span><span class="pill">/about manifesto</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The moat as a film. Refusal shown as confidently as others show features.</dd>
+          <dt>Motion + camera</dt><dd>Type-driven, heavy negative space. Each word fades up confident, then a hairline cuts through it and it dissolves. Rhythmic, escalating.</dd>
+          <dt>Sound</dt><dd>ASMR-grade: each cut is a crisp, satisfying slice with a tiny sub-tail. Ends on one soft resolve tone.</dd>
+          <dt>On screen</dt><dd><span class="copy strike">sprint.</span><span class="copy strike">burndown.</span><span class="copy strike">velocity.</span><span class="copy strike">AI copilot.</span> → <span class="copy">Clarity, not configuration.</span></dd>
+          <dt>The wow</dt><dd>The most distinctive film in the system — and the cheapest belief film to make.</dd>
+        </dl>
+      </article>
+
+      <!-- 08 -->
+      <article class="film" id="film-08">
+        <div class="film-head"><span class="fnum">08</span><div class="ftitle"><span class="eyebrow">Audience position · Phase 3</span><h3>For the 80%</h3></div></div>
+        <p class="logline">Not engineers. A floor plan, a trade quote, a lesson plan, a shift rota — real artifacts of real work, no stock people.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~25s</span><span class="pill">Umbrella · audience pages</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Name the audience through their work, not their faces.</dd>
+          <dt>Motion + camera</dt><dd>Macro pans across real work artifacts on warm-white paper. Slow, respectful dolly. No people. The indigo dot rests in each corner like a maker's mark.</dd>
+          <dt>Sound</dt><dd>Quiet and tactile: paper, a pen set down, distant room. A single indigo "present" tone per artifact.</dd>
+          <dt>On screen</dt><dd><span class="copy">Project management for the 80% not in tech.</span> (80% indigo) <span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>Respect, rendered as restraint. The work is the hero.</dd>
+        </dl>
+      </article>
+
+      <!-- 09 -->
+      <article class="film" id="film-09">
+        <div class="film-head"><span class="fnum">09</span><div class="ftitle"><span class="eyebrow">Emotional · Analytics · Phase 3</span><h3>The Morning</h3></div></div>
+        <p class="logline">Dawn light, a phone face-down. The briefing arrives — four short lines. The feeling of starting the day knowing the one thing that matters.</p>
+        <div class="meta-row"><span class="pill phybrid">Hybrid</span><span class="pill">~30s</span><span class="pill">Brand · paid social</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The only feeling-first film in the foundational reel. Calm, cinematic.</dd>
+          <dt>Motion + camera</dt><dd>Slowest pacing. Soft rack-focus from window light to a face-down phone; it turns up; four lines rise (0.6s, 60ms stagger). Hold on calm. Optional six-word calm VO.</dd>
+          <dt>Sound</dt><dd>Real dawn ambience; one soft, non-alert chime (calm, never a notification ping); sub-bass warmth.</dd>
+          <dt>On screen</dt><dd><span class="copy">analytics·</span><span class="copy">The one thing that matters today.</span> &nbsp;CTA <span class="copy">Open the briefing</span></dd>
+          <dt>The wow</dt><dd>It sells a feeling — composure — not a feature.</dd>
+        </dl>
+      </article>
+
+      <!-- 10 -->
+      <article class="film" id="film-10">
+        <div class="film-head"><span class="fnum">10</span><div class="ftitle"><span class="eyebrow">Brand craft · Phase 2</span><h3>Same Shape, Every Scale</h3></div></div>
+        <p class="logline">The dot at a 16px favicon. One unbroken zoom-out, never cutting — until it's on a billboard. Same indigo, same shape, every scale.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~20s</span><span class="pill">Identity · press</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The Apple scale-reveal — a craft flex on the design discipline.</dd>
+          <dt>Motion + camera</dt><dd>One continuous zoom-out, no cuts: favicon → app → screen → poster → billboard at night. The dot stays pixel-perfect round at every scale.</dd>
+          <dt>Sound</dt><dd>A single rising sub-bass drone as scale increases; a deep bloom at the billboard reveal. Near-silent otherwise.</dd>
+          <dt>On screen</dt><dd><span class="copy">Same shape. Every scale.</span><span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>The discipline made visible — one object holding across nine orders of magnitude.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <!-- REEL THREE -->
+    <section id="reel-three" style="padding-bottom:20px;">
+      <div class="reel-divider">
+        <span class="eyebrow">The 30 films · full detail</span>
+        <h2>Reel Three — Pure 2D</h2>
+        <p>No camera, no cast. Kinetic type and UI choreography. The cheapest reel, and the one that ships straight onto the live site as Lottie.</p>
+      </div>
+
+      <!-- 21 -->
+      <article class="film" id="film-21">
+        <div class="film-head"><span class="fnum">21</span><div class="ftitle"><span class="eyebrow">Suite system · Phase 1</span><h3>The Line</h3></div></div>
+        <p class="logline">One unbroken indigo stroke travels across the screen, morphing through caret → pulse → sweep → tick as it passes each product wordmark.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~18s</span><span class="pill">signalstudio.ie hero loop · Lottie</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The loop, in 2D, in one take — the four gestures as a single continuous path.</dd>
+          <dt>Motion</dt><dd>SVG <code>stroke-dashoffset</code> path-draw; gesture morphs are shape-tweens on the dot at each wordmark. No camera — the line carries the eye.</dd>
+          <dt>Sound</dt><dd>Each gesture sounds its signature as the line reaches it; one sustained pad underneath.</dd>
+          <dt>On screen</dt><dd><span class="copy">signal studio.</span><span class="copy">Everything important. Nothing distracting.</span></dd>
+          <dt>The wow</dt><dd>The suite told as one unbroken gesture. Loops forever on the homepage.</dd>
+        </dl>
+      </article>
+
+      <!-- 22 -->
+      <article class="film" id="film-22">
+        <div class="film-head"><span class="fnum">22</span><div class="ftitle"><span class="eyebrow">Product · Tasks · Phase 1</span><h3>Lane to Week</h3></div></div>
+        <p class="logline">Scattered task cards slide into clean lanes (todo → doing → done), then fold into one calm week view.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~15s</span><span class="pill">Tasks hero loop · Lottie</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Pure UI choreography — the app moving, no narrator.</dd>
+          <dt>Motion</dt><dd>Card transforms with weighted springs; staggered lane settle; final fold via mask-wipe into the week grid.</dd>
+          <dt>Sound</dt><dd>Soft paper thocks descending in pitch; pulse heartbeat fades in on the resolved view.</dd>
+          <dt>On screen</dt><dd><span class="copy">tasks·</span><span class="copy">See your week.</span> &nbsp;CTA <span class="copy">Open the workspace</span></dd>
+          <dt>The wow</dt><dd>It is the product, animated — and it ships as the homepage loop.</dd>
+        </dl>
+      </article>
+
+      <!-- 23 -->
+      <article class="film" id="film-23">
+        <div class="film-head"><span class="fnum">23</span><div class="ftitle"><span class="eyebrow">Product · Analytics · Phase 1</span><h3>The Briefing Writes Itself</h3></div></div>
+        <p class="logline">The four-block briefing authors itself line by line, dots colouring in (amber, green, grey, indigo).</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~15s</span><span class="pill">Analytics hero · email header</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Show the artifact being written — the briefing, not a dashboard.</dd>
+          <dt>Motion</dt><dd>Type-on with 60ms stagger; four status dots key in by colour; a number ticker spins up, then is replaced by a sentence.</dd>
+          <dt>Sound</dt><dd>Four dry ticks for four blocks; a soft confirm when the briefing completes.</dd>
+          <dt>On screen</dt><dd><span class="copy">analytics·</span><span class="copy">A briefing, not a dashboard.</span><span class="copy">Two minutes a day.</span> &nbsp;CTA <span class="copy">Open the briefing</span></dd>
+          <dt>The wow</dt><dd>Words, not numbers, arriving in real time — the whole product thesis in 15 seconds.</dd>
+        </dl>
+      </article>
+
+      <!-- 24 -->
+      <article class="film" id="film-24">
+        <div class="film-head"><span class="fnum">24</span><div class="ftitle"><span class="eyebrow">Product · Notes · Phase 1</span><h3>Three Seconds, Drawn</h3></div></div>
+        <p class="logline">A blinking caret. Text appears in 3.0s (mono timer). One indigo dot buds off and travels to a small Tasks mark — the one-way extraction edge.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~12s</span><span class="pill">Notes hero loop · Lottie</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The animated twin of #03 — capture and the one-way edge, no camera.</dd>
+          <dt>Motion</dt><dd>Caret blink (1.1s steps); text reveal on a clip mask; the dot detaches and eases along a path to the Tasks mark. Paper background.</dd>
+          <dt>Sound</dt><dd>Caret tick; dampened keystrokes; warm commit tone as the dot lands.</dd>
+          <dt>On screen</dt><dd><span class="copy">notes·</span><span class="copy">Capture in three seconds.</span> &nbsp;CTA <span class="copy">Open the notebook</span></dd>
+          <dt>The wow</dt><dd>You can see capture become commitment — one deliberate edge, not automation.</dd>
+        </dl>
+      </article>
+
+      <!-- 25 -->
+      <article class="film" id="film-25">
+        <div class="film-head"><span class="fnum">25</span><div class="ftitle"><span class="eyebrow">Product · Roadmap · Phase 1</span><h3>The Sweep</h3></div></div>
+        <p class="logline">A timeline draws itself; the sweep dot tracks left→right; status pills snap in; a share-link card rises.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~15s</span><span class="pill">Roadmap hero loop · Lottie</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The animated twin of #05 — the readable plan, pure 2D.</dd>
+          <dt>Motion</dt><dd>Timeline via path-draw; sweep dot on the 5.4s glide; pills snap with overshoot; share card on a glide spring.</dd>
+          <dt>Sound</dt><dd>Airy glide under the move; each pill sets with a soft tick; link lands with a light snap.</dd>
+          <dt>On screen</dt><dd><span class="copy">roadmap·</span><span class="copy">Show your work, not your Jira.</span> &nbsp;CTA <span class="copy">Open the roadmap</span></dd>
+          <dt>The wow</dt><dd>The plan and the share moment in one clean motion — ready for the hero slot.</dd>
+        </dl>
+      </article>
+
+      <!-- 26 -->
+      <article class="film" id="film-26">
+        <div class="film-head"><span class="fnum">26</span><div class="ftitle"><span class="eyebrow">Brand principle · Phase 2</span><h3>Everything. Nothing.</h3></div></div>
+        <p class="logline">A screen crowded with 2D noise — badges, counters, red dots, notification bubbles — drains away one element at a time until one dot and one line remain.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~18s</span><span class="pill">About / principles</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The operating principle as motion: subtraction as the spectacle.</dd>
+          <dt>Motion</dt><dd>Each noise element has its own exit (fade, drop, shrink), de-staggered so the screen quiets progressively. Ends on negative space.</dd>
+          <dt>Sound</dt><dd>Layered UI noise thinning element by element to near-silence; one soft resolve tone.</dd>
+          <dt>On screen</dt><dd><span class="copy">Everything important. Nothing distracting.</span></dd>
+          <dt>The wow</dt><dd>The relief is physical. You feel the noise leave.</dd>
+        </dl>
+      </article>
+
+      <!-- 27 -->
+      <article class="film" id="film-27">
+        <div class="film-head"><span class="fnum">27</span><div class="ftitle"><span class="eyebrow">Brand · Analytics · Phase 2</span><h3>Number, Meet Sentence</h3></div></div>
+        <p class="logline">A metric tries to render — and a plain sentence overwrites it. Repeats, building rhythm.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~18s</span><span class="pill">"Briefing, not a dashboard" section</span></div>
+        <dl>
+          <dt>The idea</dt><dd>"Briefing, not a dashboard," distilled to pure kinetic typography.</dd>
+          <dt>Motion</dt><dd>The metric renders cold and grey; the sentence types over it in ink and the number dissolves. Rhythm builds across 3–4 pairs.</dd>
+          <dt>Sound</dt><dd>A flat bureaucratic thud per number; a clean exhale per sentence.</dd>
+          <dt>On screen</dt><dd>rejected: <span class="copy strike">velocity 14%</span> → <span class="copy">This project is slowing down.</span> &nbsp;closing <span class="copy">Plain English.</span></dd>
+          <dt>The wow</dt><dd>You watch the dashboard lose the argument to a sentence.</dd>
+        </dl>
+        <div class="note refuse" style="margin-top:18px;"><span class="eyebrow">Care note</span><p>The metric (<span class="strike">velocity 14%</span>) only ever appears as the <strong>rejected</strong> artifact being overwritten. It is never the brand's own voice. Keep the framing unmistakable.</p></div>
+      </article>
+
+      <!-- 28 -->
+      <article class="film" id="film-28">
+        <div class="film-head"><span class="fnum">28</span><div class="ftitle"><span class="eyebrow">Brand position · Phase 2</span><h3>Plain English</h3></div></div>
+        <p class="logline">Jargon morphs letter-by-letter into its plain-English twin.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~18s</span><span class="pill">/method · /about</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Translation debt, made gentle and 2D — confiscate the jargon, hand back the meaning.</dd>
+          <dt>Motion</dt><dd>Letter-level morph (variable-width interpolation) — jargon transforms into plain words in place. Calm, not comic.</dd>
+          <dt>Sound</dt><dd>One soft "set" tone per completed morph. Quiet throughout.</dd>
+          <dt>On screen</dt><dd><span class="copy">stakeholder → the people you answer to</span><span class="copy">blocker → what's in the way</span> closing <span class="copy">Clarity, not configuration.</span></dd>
+          <dt>The wow</dt><dd>The brand's whole position, performed by the type itself.</dd>
+        </dl>
+      </article>
+
+      <!-- 29 -->
+      <article class="film" id="film-29">
+        <div class="film-head"><span class="fnum">29</span><div class="ftitle"><span class="eyebrow">Suite system · Phase 2</span><h3>The Cycle</h3></div></div>
+        <p class="logline">The workflow loop — capture → execute → plan → measure — animated as a clean 2D ring, the dot travelling and changing gesture, closing into a circle.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~15s</span><span class="pill">Suite explainer · footer</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Show the system as a closed loop — the four products as one rhythm.</dd>
+          <dt>Motion</dt><dd>Four nodes on a ring; the dot travels the loop changing gesture at each; ring closes with a path-draw. Loops seamlessly.</dd>
+          <dt>Sound</dt><dd>Each node sounds its gesture as the dot arrives; a gentle close tone when the ring completes.</dd>
+          <dt>On screen</dt><dd><span class="copy">Capture. Run. Share. See.</span><span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>The suite's logic in one seamless loop — perfect for a footer or explainer.</dd>
+        </dl>
+      </article>
+
+      <!-- 30 -->
+      <article class="film" id="film-30">
+        <div class="film-head"><span class="fnum">30</span><div class="ftitle"><span class="eyebrow">Brand craft · Phase 2</span><h3>Hairlines</h3></div></div>
+        <p class="logline">The design system assembles itself: hairlines draw the grid, cards form from lines, the wordmark sets, the dot lands. Restraint as the spectacle.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~20s</span><span class="pill">Brand-kit · press</span></div>
+        <dl>
+          <dt>The idea</dt><dd>A systems film — the brand's craft on display, Linear-grade.</dd>
+          <dt>Motion</dt><dd>Hairlines draw via <code>stroke-dashoffset</code>; cards assemble from intersecting lines; wordmark sets with the display feature-set; dot lands last.</dd>
+          <dt>Sound</dt><dd>Fine architectural ticks as lines meet; a single warm tone as the dot lands.</dd>
+          <dt>On screen</dt><dd><span class="copy">Same system. One dot.</span><span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>The discipline itself, choreographed. Proof the restraint is a decision.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <!-- REEL TWO -->
+    <section id="reel-two" style="padding-bottom:20px;">
+      <div class="reel-divider">
+        <span class="eyebrow">The 30 films · full detail</span>
+        <h2>Reel Two — Belief</h2>
+        <p>The brand takes a side — for the people the industry ignored, against the busywork it sells. Mostly live-action and experimental craft; the highest cost and the highest brand-building power. Two films deliberately bend the calm register; both are flagged.</p>
+      </div>
+
+      <!-- 14 -->
+      <article class="film" id="film-14">
+        <div class="film-head"><span class="fnum">14</span><div class="ftitle"><span class="eyebrow">Belief · the enemy · Phase 4</span><h3>Translation Debt</h3></div></div>
+        <p class="logline">Every tool made you learn its language. Jargon piles up like an unpaid bill — sprint, velocity, stakeholder — then clears to one plain sentence.</p>
+        <div class="meta-row"><span class="pill plive">Live</span><span class="pill">~40s</span><span class="pill">Brand campaign · ownable phrase</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>Name the enemy and own a phrase. "Translation debt" is a term we can own the way Linear owns "issues".</dd>
+          <dt>Core visual</dt><dd>A real person mid-sentence; jargon overlays stack into a wall (type-as-architecture), then the wall clears in one wipe to a single plain line.</dd>
+          <dt>Sound</dt><dd>Each jargon word lands with a dull, bureaucratic thud; the clear is a clean exhale.</dd>
+          <dt>On screen</dt><dd><span class="copy">You shouldn't need a dictionary to plan your week.</span></dd>
+          <dt>The wow</dt><dd>A film that hands you a phrase you own — a brand line and a brand film at once.</dd>
+        </dl>
+        <div class="note" style="margin-top:18px;"><span class="eyebrow">Dissent on record</span><p>"Debt" is faintly jargon-coded itself. The film defines the term in plain language on screen, so we're confiscating the jargon, not borrowing it. If the phrase tests cold with real planners and tradespeople, keep the film, retitle it <em>A Dictionary You Never Asked For</em>. Don't fall in love with the phrase before the 80% do.</p></div>
+      </article>
+
+      <!-- 15 -->
+      <article class="film" id="film-15">
+        <div class="film-head"><span class="fnum">15</span><div class="ftitle"><span class="eyebrow">Belief · dignity · Phase 4</span><h3>From the Van</h3></div></div>
+        <p class="logline">A tradesperson quotes a job from a parked van and shares a Roadmap link. The client opens it on a cracked phone — no login, no app — and just reads it.</p>
+        <div class="meta-row"><span class="pill plive">Live</span><span class="pill">~35s</span><span class="pill">Trades campaign</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>Dignity of trade work plus a real competitive knife (no-login Roadmap sharing) in one frame.</dd>
+          <dt>Core visual</dt><dd>Intimate handheld in the van, rain on glass. Cut to the client's cracked phone — clean macro of the plan rendering, no login screen.</dd>
+          <dt>Sound</dt><dd>Rain, a kettle, an engine turning over. The link opens with one soft confirm tone.</dd>
+          <dt>On screen</dt><dd><span class="copy">roadmap·</span><span class="copy">No login. No app. Just the plan, where they can read it.</span> &nbsp;CTA <span class="copy">Open the roadmap</span></dd>
+          <dt>The wow</dt><dd>Our most specific film — and specificity is what makes a brand believable.</dd>
+        </dl>
+      </article>
+
+      <!-- 16 -->
+      <article class="film" id="film-16">
+        <div class="film-head"><span class="fnum">16</span><div class="ftitle"><span class="eyebrow">Belief · archetype · Phase 4</span><h3>Midnight, Nine Days Out</h3></div></div>
+        <p class="logline">A wedding planner at a kitchen table, 11:52pm, a hundred tabs. She captures one thing in Notes. The chaos isn't solved — the panic gets smaller. Lights off.</p>
+        <div class="meta-row"><span class="pill plive">Live</span><span class="pill">~40s</span><span class="pill">Weddings campaign</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>Calm reframed as mercy, at the hour the person has none left. The archetype film for the wedding wedge.</dd>
+          <dt>Core visual</dt><dd>Slow push from the oven clock (11:52) to her face. One capture. Pull back as the laptop closes; rack-focus to dark. Nothing is "solved".</dd>
+          <dt>Sound</dt><dd>Late-night room tone, fridge hum, the caret tick. One slow breath out as the lights go.</dd>
+          <dt>On screen</dt><dd><span class="copy">Some nights, capturing it is enough to sleep.</span></dd>
+          <dt>The wow</dt><dd>It refuses the lie that software solves everything. It just makes the night survivable.</dd>
+        </dl>
+        <div class="note warn" style="margin-top:18px;"><span class="eyebrow">Care note</span><p>Dignity, never pity. Cast a real planner; let her carry the scene. One condescending frame and the 80% smell it.</p></div>
+      </article>
+
+      <!-- 17 -->
+      <article class="film break" id="film-17">
+        <div class="film-head"><span class="fnum">17</span><div class="ftitle"><span class="eyebrow">Belief · manifesto · Phase 4</span><h3>The Productivity-Industrial Complex</h3><div style="margin-top:8px;"><span class="break-flag">Register-break · operator sign-off required</span></div></div></div>
+        <p class="logline">The busywork aesthetic — streaks, badges, hustle type — accelerates to nausea, hard-cuts to silence, a phone goes face-down.</p>
+        <div class="meta-row"><span class="pill plive">Live</span><span class="pill">~45s</span><span class="pill">Brand centrepiece</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>The reel's spine. The moment the calm brand reveals it has a position, not just a mood. Contempt for busywork is on-brand even delivered cold.</dd>
+          <dt>Core visual</dt><dd>Archive-feel montage of the busywork aesthetic accelerating into overload, then a hard cut to silent paper. A real hand sets a phone face-down.</dd>
+          <dt>Sound</dt><dd>Layered notification noise compounding to nausea — cut to total silence. The silence is the line.</dd>
+          <dt>On screen</dt><dd><strong>Bolder line:</strong> <span class="copy">Productivity culture is a scam for tired people. We're not it.</span></dd>
+          <dt>The break</dt><dd>Breaks the <em>gentleness</em> rule, not the <em>no-hype</em> rule — flat, cold, no exclamation. Use as centrepiece, <strong>never the opener</strong>. Cap the whole reel at two breaks.</dd>
+        </dl>
+      </article>
+
+      <!-- 18 -->
+      <article class="film" id="film-18">
+        <div class="film-head"><span class="fnum">18</span><div class="ftitle"><span class="eyebrow">Belief · manifesto · Phase 4</span><h3>The No's</h3></div></div>
+        <p class="logline">The features we'll never build, typeset like a museum wall. Each line lands and holds.</p>
+        <div class="meta-row"><span class="pill p2d">2D</span><span class="pill">~25s</span><span class="pill">/about · /method</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>Refusal shown as proudly as others show features. (2D — the cheapest belief film; could be pulled forward into Phase 2.)</dd>
+          <dt>Motion</dt><dd>Lateral dolly along a museum wall of refusals; each line keys in and holds with weight. Heavy negative space.</dd>
+          <dt>Sound</dt><dd>Gallery-quiet. Each "No" sets with a single dry, confident tick.</dd>
+          <dt>On screen</dt><dd><span class="copy">No streaks.</span><span class="copy">No leaderboards.</span><span class="copy">No AI assistant.</span> → <span class="copy">A decision is only legible if you can see what we said no to.</span></dd>
+          <dt>The wow</dt><dd>A wall of "no" that reads as confidence, not lack.</dd>
+        </dl>
+        <div class="note refuse" style="margin-top:18px;"><span class="eyebrow">Stay silent on AI</span><p>"No AI assistant" appears <strong>once</strong>, flatly. No film attacks AI hype — doing so hauls the enemy's frame into our house. That one line is the whole dose.</p></div>
+      </article>
+
+      <!-- 20 -->
+      <article class="film" id="film-20">
+        <div class="film-head"><span class="fnum">20</span><div class="ftitle"><span class="eyebrow">Belief · cultural closer · Phase 4</span><h3>What the World Runs On</h3></div></div>
+        <p class="logline">A town wakes up — market stalls, the school, the salon, the plumber, the food bank, the venue. None are tech companies. All are running something.</p>
+        <div class="meta-row"><span class="pill plive">Live</span><span class="pill">~50s</span><span class="pill">Brand closer · hero campaign</span></div>
+        <dl>
+          <dt>Strategic thesis</dt><dd>Scale the dignity to civic weight without ever saying "platform" or "AI". The reel's closing breath.</dd>
+          <dt>Core visual</dt><dd>Wide, slow, public-information-film register. Soft dawn dolly across a waking town. Product appears only at the very end.</dd>
+          <dt>Sound</dt><dd>Ambient town waking — shutters, a bell, distant traffic. One sustained pad.</dd>
+          <dt>On screen</dt><dd><span class="copy">Most of the world isn't run from a tech office. It's run from a van, a kitchen, a counter.</span><span class="copy">Project management for the 80% not in tech.</span></dd>
+          <dt>The wow</dt><dd>It makes the audience feel seen at the scale of a society, not a market segment.</dd>
+        </dl>
+      </article>
+
+      <div class="reel-divider" style="margin-top:36px;">
+        <span class="eyebrow">Reel Two · Phase 5</span>
+        <h2>Craft prestige</h2>
+        <p>The flexes. Genuinely novel craft — none on the critical path; produce opportunistically for brand prestige.</p>
+      </div>
+
+      <!-- 11 -->
+      <article class="film" id="film-11">
+        <div class="film-head"><span class="fnum">11</span><div class="ftitle"><span class="eyebrow">Craft prestige · Phase 5</span><h3>Diffusion</h3></div></div>
+        <p class="logline">A single drop of indigo ink hits water, blooms into chaos, then the cloud resolves and falls away to one clean dot.</p>
+        <div class="meta-row"><span class="pill pcraft">Craft</span><span class="pill">~25s</span><span class="pill">Brand prestige · titles</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Noise to clarity as pure physics. The brand colour as a living material. No UI.</dd>
+          <dt>Motion + camera</dt><dd>Extreme macro, locked frame. The bloom unfurls in slow-mo; slow pull-back as the cloud settles and one dot remains. In-camera, real ink — no CGI.</dd>
+          <dt>Sound</dt><dd>A deep underwater bloom on impact, sub-bass swell, then near-silence as it clears.</dd>
+          <dt>On screen</dt><dd><span class="copy">From noise, one thing.</span><span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>The brand's whole metaphor, performed by real ink in water.</dd>
+        </dl>
+      </article>
+
+      <!-- 12 -->
+      <article class="film" id="film-12">
+        <div class="film-head"><span class="fnum">12</span><div class="ftitle"><span class="eyebrow">Craft · sound-first · Phase 5</span><h3>Room Tone</h3></div></div>
+        <p class="logline">A working day told only in sound — a venue, a workshop, a classroom — and the small sounds of capture inside it. Near-black screen, type only.</p>
+        <div class="meta-row"><span class="pill pcraft">Craft</span><span class="pill">~40s</span><span class="pill">Brand prestige · audio-led</span></div>
+        <dl>
+          <dt>The idea</dt><dd>A brand film where the ear is the hero. Nobody in the category dares make it.</dd>
+          <dt>Motion</dt><dd>Screen stays near-black/paper; mono captions name the place and time. The one visual: the caret blink on commit.</dd>
+          <dt>Sound</dt><dd>The whole film. Real foley — a marquee in wind, a saw, chalk, a kettle — punctuated by the caret tick and a warm commit tone. No music, no VO.</dd>
+          <dt>On screen</dt><dd><span class="copy">notes·</span><span class="copy">Capture in three seconds.</span> &nbsp;CTA <span class="copy">Open the notebook</span></dd>
+          <dt>The wow</dt><dd>It trusts the audience's ears completely. Unmistakably ours.</dd>
+        </dl>
+      </article>
+
+      <!-- 13 -->
+      <article class="film" id="film-13">
+        <div class="film-head"><span class="fnum">13</span><div class="ftitle"><span class="eyebrow">Craft · generative · Phase 5</span><h3>365</h3></div></div>
+        <p class="logline">One real operator's year rendered as a living field of dots that pulse, sweep and tick through the seasons; their actual cadence becomes sound.</p>
+        <div class="meta-row"><span class="pill pcraft">Craft</span><span class="pill">~45s</span><span class="pill">Personalised · year-in-review</span></div>
+        <dl>
+          <dt>The idea</dt><dd>Generative — every render is unique to a real workspace. Personalisable at scale (a year-in-review asset).</dd>
+          <dt>Motion</dt><dd>Continuous slow zoom-out across a year; dots multiply into a field; gestures shift with the seasons; ends pulling back to one dot. Procedurally generated from real data.</dd>
+          <dt>Sound</dt><dd>Data sonification — the operator's real cadence drives a soft generative score. Each gesture keeps its tone.</dd>
+          <dt>On screen</dt><dd><span class="copy">A year of your work.</span><span class="copy">signal studio.</span></dd>
+          <dt>The wow</dt><dd>It's literally about the viewer — their year, their rhythm, made beautiful.</dd>
+        </dl>
+      </article>
+
+      <!-- 19 -->
+      <article class="film" id="film-19">
+        <div class="film-head"><span class="fnum">19</span><div class="ftitle"><span class="eyebrow">Craft · analog · Phase 5</span><h3>Cyanotype</h3></div></div>
+        <p class="logline">A plan is sun-printed — objects laid on light-sensitive paper, exposed, developed in water, the roadmap appearing in deep Prussian-indigo.</p>
+        <div class="meta-row"><span class="pill pcraft">Craft</span><span class="pill">~25s</span><span class="pill">Brand prestige · Roadmap</span></div>
+        <dl>
+          <dt>The idea</dt><dd>The brand colour <em>is</em> a photographic chemical. Handmade, tactile, the opposite of AI. The most genuinely novel craft idea in the system.</dd>
+          <dt>Motion + camera</dt><dd>Real cyanotype process in macro and time-lapse: exposure under sun, the water develop, the indigo rising. Tactile, handmade.</dd>
+          <dt>Sound</dt><dd>Paper, water, a breeze. A single warm tone as the image resolves.</dd>
+          <dt>On screen</dt><dd><span class="copy">roadmap·</span><span class="copy">Made by hand. Read by anyone.</span> &nbsp;CTA <span class="copy">Open the roadmap</span></dd>
+          <dt>The wow</dt><dd>Our exact indigo, produced by sunlight on paper. No tool on earth could fake it.</dd>
+        </dl>
+      </article>
+
+      <div class="note" style="margin-top:22px;"><span class="eyebrow">On the bench</span><p>Strong concepts held in reserve, not in the reel of 30: <strong>The Last Email of the Day</strong> (emotional, overlaps #16) · <strong>Project-Manager Energy</strong> (mild register-break, the reserved second break) · <strong>Slit-scan / time-smear</strong> · <strong>Inversion / negative</strong> · <strong>Tactile card gravity</strong> · <strong>The People Who Run Real Things</strong> (folded into #20).</p></div>
+    </section>
+
+    <!-- ════════════════ REFERENCE ════════════════ -->
+    <section id="copy">
+      <div class="section-head">
+        <span class="eyebrow">Reference</span>
+        <h2>Locked copy library</h2>
+        <p>Every line below is verbatim. Use exactly as written. No exclamation marks, ever.</p>
+      </div>
+      <div class="copylib">
+        <div class="line"><span class="src">Umbrella H1</span><span class="txt">Project management for the 80% not in tech.</span></div>
+        <div class="line"><span class="src">Operating principle</span><span class="txt">Everything important. Nothing distracting.</span></div>
+        <div class="line"><span class="src">Suite tagline (locked)</span><span class="txt">Clarity, not configuration.</span></div>
+        <div class="line"><span class="src">Tasks H1</span><span class="txt">See your week.</span></div>
+        <div class="line"><span class="src">Roadmap H1</span><span class="txt">Show your work, not your Jira.</span></div>
+        <div class="line"><span class="src">Analytics H1</span><span class="txt">A briefing, not a dashboard.</span></div>
+        <div class="line"><span class="src">Notes promise</span><span class="txt">Capture in three seconds.</span></div>
+        <div class="line"><span class="src">CTA · Tasks</span><span class="txt">Open the workspace</span></div>
+        <div class="line"><span class="src">CTA · Roadmap</span><span class="txt">Open the roadmap</span></div>
+        <div class="line"><span class="src">CTA · Analytics</span><span class="txt">Open the briefing</span></div>
+        <div class="line"><span class="src">CTA · Notes</span><span class="txt">Open the notebook</span></div>
+        <div class="line"><span class="src">Wordmarks</span><span class="txt">signal studio. · tasks· · roadmap· · analytics· · notes·</span></div>
+        <div class="line"><span class="src">Contact</span><span class="txt">hello@signalstudio.ie</span></div>
+      </div>
+    </section>
+
+    <section id="refusals">
+      <div class="section-head">
+        <span class="eyebrow">Reference</span>
+        <h2>The refusal checklist</h2>
+        <p>Run every script, board, and cut against this before review. A single hit is a rejection, not a note.</p>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h4 style="margin-bottom:10px;">Banned words on screen</h4>
+          <ul class="clean refuse">
+            <li>AI · AI-powered · intelligent · smart · copilot · agent · assistant · autonomous</li>
+            <li>world-class · best-in-class · seamless · supercharge · transform · revolutionise · robust · turnkey</li>
+            <li>sprint · epic · burndown · velocity · stakeholder · kanban · backlog · OKR</li>
+            <li>Any exclamation mark, anywhere</li>
+            <li>3-adjective trios ("Modern, simple, beautiful")</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:10px;">Banned visuals</h4>
+          <ul class="clean refuse">
+            <li>Holographic gradients, glow blooms, robot / AI motifs</li>
+            <li>More than one accent colour; category-coloured products</li>
+            <li>Purple (#7c5cff) — purged suite-wide</li>
+            <li>Stock people, mascots, illustrated peoplework</li>
+            <li>Faked / over-populated demo workspaces (the demo-vs-reality gap)</li>
+            <li>The "feature × icon × verb" 3-up SaaS grid</li>
+            <li>Fast-cut hustle edits; confetti; gamification</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note" style="margin-top:24px;"><span class="eyebrow">Register-break governance</span><p>At most <strong>two</strong> films in the whole system may bend the calm register (currently #17, plus the benched "Project-Manager Energy"). A break never opens a reel. A break never uses an exclamation mark. Breaks mock a <em>behaviour</em>, never a person. Dignity films are cast with real operators — pity is a rejection.</p></div>
+    </section>
+
+    <section id="template">
+      <div class="section-head">
+        <span class="eyebrow">Reference</span>
+        <h2>Film-spec template</h2>
+        <p>For any new film proposed after v1.0. Fill every field. If it can't pass the refusal checklist, it doesn't enter the catalogue.</p>
+      </div>
+      <div class="table-wrap" style="max-width:var(--content);">
+        <table>
+          <tbody>
+            <tr><th>Title</th><td>Short, declarative, no exclamation.</td></tr>
+            <tr><th>Reel / phase</th><td>Foundations / 2D / Belief · Phase 0–5.</td></tr>
+            <tr><th>Purpose</th><td>Comprehension or belief? Which product or brand idea?</td></tr>
+            <tr><th>Mode &amp; cost</th><td>2D / Hybrid / Live / Craft · $–$$$$.</td></tr>
+            <tr><th>Logline</th><td>One sentence. The film in a breath.</td></tr>
+            <tr><th>Motion + camera</th><td>The signature move (pan / zoom / transition) and which gesture leads.</td></tr>
+            <tr><th>Sound</th><td>From the locked vocabulary. Name the silence if there is one.</td></tr>
+            <tr><th>On-screen copy</th><td>Verbatim, from the locked library. Flag any register-break.</td></tr>
+            <tr><th>The wow</th><td>The single mechanism that makes it memorable.</td></tr>
+            <tr><th>Pays rent as</th><td>Where it lives beyond the ad (site loop, Lottie, social, festival).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wm">signal studio<span class="dot"></span></div>
+      <p style="margin-top:10px;max-width:var(--content);">The Film System · v1.0 · 3 Jun 2026. A living document — when this brief and BRAND.md disagree, BRAND.md wins, and this file is corrected. Owner: hello@signalstudio.ie.</p>
+      <p style="font-family:var(--mono);font-size:11px;color:var(--ink-ghost);letter-spacing:0.04em;">Clarity, not configuration.</p>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>

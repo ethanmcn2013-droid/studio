@@ -144,7 +144,7 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Umbrella naming
 - **Full form:** `Signal Studio` (capital S, capital S).
-- **Wordmark form:** lowercase `signal studio.` with antique-gold period.
+- **Wordmark form:** lowercase `signal studio.` with indigo period.
 - **Cross-product nav prefix:** lowercase `signal studio.` (consistent across all four products).
 - **Never:** just "Signal" alone in body copy — collides with Signal Messenger.
 
@@ -164,9 +164,9 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 - **Avoid:** Jira, Monday, Tableau, PowerBI, Salesforce.
 
 ### Color
-- **Brand indigo:** `#4f46e5` (`--brand` / `--indigo-600`). Used sparingly — accent only, not surface.
-- **Antique gold:** `#c9a96a` (`--accent`). **Reserved exclusively for Signal Studio umbrella.** Never on individual products.
-- **Background:** warm-stone `#fafaf7` (`--bg`). Never pure white in elevated surfaces.
+- **Brand indigo:** `#4f46e5` (`--brand` / `--accent` / `--indigo-600`). Used as the single accent across umbrella and products — the brand. Differentiation comes from gesture (§4), not colour.
+- **Antique gold:** `#c9a96a` — **retired 2026-05-11.** Was previously reserved for the Signal Studio umbrella; do not reintroduce it for new work.
+- **Background:** paper `#ffffff` (`--paper` / `--bg`) with `#fafafa` and `#f4f4f5` for recessed surfaces. Hairlines do the work shadows would.
 - **Status palette:** shipped `#10b981` · in-progress / flight `#f59e0b` · blocked `#ef4444` · next / todo `#6366f1`.
 
 ### Banned visuals

@@ -63,14 +63,14 @@ export default async function HqCrmPage({
         <div className="hq-crm-header-top">
           <span className="hq-crm-eyebrow">signal hq · outreach crm</span>
           <span className="hq-crm-stamp">
-            {prospects.length} total · {dueToday.length} due today
+            {prospects.length} total · {dueToday.length} due or stale
           </span>
         </div>
         <h1 className="hq-crm-title">venue pipeline</h1>
         {dueToday.length > 0 && (
           <p className="hq-crm-due-banner">
             <span className="hq-crm-due-pip" aria-hidden="true" />
-            {dueToday.length} follow-up{dueToday.length === 1 ? "" : "s"} due today
+            {dueToday.length} follow-up{dueToday.length === 1 ? "" : "s"} due or stale
           </p>
         )}
       </header>

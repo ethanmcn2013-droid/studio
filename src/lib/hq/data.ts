@@ -2,15 +2,12 @@
  * Signal HQ seed data — operator surfaces + types only (HQ v2 closure, 2026-05-15).
  *
  * Most HQ state lives in `content/hq/<section>/*.md` and is loaded by
- * `src/lib/hq/dashboard-data.ts`. This file carries only what has no
+ * `src/lib/hq/markdown.ts`. This file carries only what has no
  * other source of truth:
  *
  *   focus       — operator-set strategic frame (stage/week/theme/focus).
  *                 The derived signal layer (phase.md, atlas drift, commits,
- *                 cron, log) renders separately in `hq-today.tsx`. The
- *                 dashboard's OverviewTab focus card supplements the
- *                 operator theme with the phase headline (piped through
- *                 HqDashboardMarkdown).
+ *                 cron, log) feeds the HQ operating system and proof spine.
  *   prospects   — outbound CRM, browser-edited via /hq.
  *   feedback    — operator capture, browser-edited via /hq.
  *   weeklyRhythm — operator cadence, browser-edited via /hq.
@@ -27,11 +24,11 @@
  * ecosystem-flows, collaboration-loop, shared-objects, access-roles,
  * collaborator-first-view, shareable-artifacts, features,
  * launch-readiness, segments, campaigns, content, demos, templates,
- * pilots, decisions, risks, growth-workflow, messaging. The dashboard
- * reads them via `getHqDashboardMarkdown()` and renders directly.
+ * pilots, decisions, risks, growth-workflow, messaging. The current HQ
+ * registry points to the relevant live routes and canonical sources.
  *
- * Types below stay the canonical shape; `dashboard-data.ts` and
- * `signals.ts` import them as the dashboard contract.
+ * Types below stay as the transitional content contract for older HQ
+ * material and seed fallback paths.
  */
 
 export type ReadinessStatus = "Clear" | "Needs attention" | "At risk" | "Blocked";

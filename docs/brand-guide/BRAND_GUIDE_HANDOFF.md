@@ -41,11 +41,11 @@ Each product's dot animates differently — encoding that product's relationship
 **Changes from previous BRAND.md §4:**
 - Notes: was "underline writes itself" → now **caret** (the dot blinks like a typewriter cursor; aligns with the notebook's actual capture-cursor language).
 - Analytics: was "static dot" → now **tick** (discrete data ticks, mirrors the briefing-as-sampled-attention model).
-- Studio umbrella: gold-period treatment is still allowed in marks where the antique-gold reads, but the animated variant is **pulse-slow** in indigo.
+- Studio umbrella: antique-gold period treatment is retired; the animated variant is **pulse-slow** in indigo.
 
 ### 3 · Color tokens (additions to current palette)
 
-The core palette (warm-stone `#fafaf7`, indigo `#4f46e5`, antique gold `#c9a96a`) is unchanged. **New tokens added** for layered surfaces and finer hairlines:
+The core palette is white paper, off-black ink, and indigo `#4f46e5`. Antique gold `#c9a96a` is retired. **New tokens added** for layered surfaces and finer hairlines:
 
 ```
 --paper:     #ffffff

@@ -2,11 +2,11 @@ import Link from "next/link";
 import type { Verdict } from "@/lib/hq/verdict";
 
 /**
- * HQ Masthead — the one line you read before anything else.
+ * HQ Masthead — the proof status block inside the founder console.
  *
  * HQ v3 (2026-05-16). The old masthead led with the phase headline and
  * a flat 4-stat strip (four equal-weight numbers, no triage). It now
- * leads with the Verdict: one mechanically-derived sentence + the one
+ * renders the Verdict: one mechanically-derived sentence + the one
  * action. The phase line (the operator's own words from phase.md) is
  * kept but subordinate — context, not the headline. The stat strip is
  * demoted into a one-click "inputs" disclosure so the verdict is always
@@ -42,12 +42,15 @@ export function HqMasthead({
       </div>
 
       {phaseHeadline !== "—" && (
-        <p className="hq-mast-phase">{phaseHeadline}</p>
+        <details className="hq-mast-phase">
+          <summary>current operating note</summary>
+          <p>{phaseHeadline}</p>
+        </details>
       )}
 
-      <h1 className="hq-mast-headline" data-level={verdict.level}>
+      <h2 className="hq-mast-headline" data-level={verdict.level}>
         {verdict.headline}
-      </h1>
+      </h2>
 
       <p className="hq-mast-action">
         <span className="hq-mast-action-arrow" aria-hidden="true">
@@ -76,35 +79,6 @@ export function HqMasthead({
         </ul>
       </details>
 
-      <nav className="hq-mast-nav" aria-label="hq surfaces">
-        <Link href="/hq/crm" className="hq-mast-link">
-          outreach
-        </Link>
-        <Link href="/hq/atlas" className="hq-mast-link">
-          atlas
-        </Link>
-        <Link href="/hq/health" className="hq-mast-link">
-          health
-        </Link>
-        <Link href="/hq/entitlements" className="hq-mast-link">
-          entitlements
-        </Link>
-        <Link href="/hq/partners" className="hq-mast-link">
-          partners
-        </Link>
-        <Link href="/hq/venues" className="hq-mast-link">
-          venues
-        </Link>
-        <Link href="/hq/marketing" className="hq-mast-link">
-          marketing
-        </Link>
-        <Link href="/hq/plan" className="hq-mast-link">
-          marketing plan
-        </Link>
-        <Link href="/hq/one-pagers" className="hq-mast-link">
-          one-pagers
-        </Link>
-      </nav>
     </header>
   );
 }
