@@ -17,14 +17,24 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+// CSP allowlists mirrored from notes/next.config.ts (suite-locked enforce model). Report-Only until cross-suite verification — see audit/ISSUES.md suite-01.
+// Clerk's prod Frontend API is a CNAME under our own domain, so the
+// wildcard `https://*.signalstudio.ie` covers whatever label Clerk
+// uses without a deploy-time guess. Dev instances live on
+// *.clerk.accounts.dev; Clerk infra/telemetry on *.clerk.com +
+// clerk-telemetry.com; Turnstile bot-protection on Cloudflare.
+const clerkHosts =
+  "https://*.signalstudio.ie https://*.clerk.accounts.dev https://*.clerk.com https://clerk-telemetry.com";
+const turnstile = "https://challenges.cloudflare.com";
+
 const csp = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile}`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https:`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://va.vercel-scripts.com`,
-  `frame-src 'self'`,
+  `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts}`,
+  `frame-src 'self' ${turnstile}`,
   `worker-src 'self' blob:`,
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
