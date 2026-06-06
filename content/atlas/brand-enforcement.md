@@ -76,7 +76,7 @@ The enforcement is *operational*, not technical. There's no linter checking bann
 - Handbook stable since 2026-05-12 (moved into studio repo from a previous shared location).
 - §5 D01 (indigo `#4f46e5`) retired the antique gold `#c9a96a` on 2026-05-11. Gold survives only as a wordmark-period detail. globals.css codifies this: `--accent: #4f46e5`, `--paper: #ffffff`, `--ink: #111111`, hairline borders doing the work shadows would in a louder system.
 - Umbrella H1 is "Project management for the 80% not in tech." since the 2026-05-15 operator ratification; "Cut through the noise." is retired as the umbrella signature.
-- Voice version: Stark+Jobs locked. Audience archetypes (§2.1) carry five named personas — wedding, trades, student, freelance, marketing — with public-coordinator and small-business-operator flagged in BRAND.md but not yet landed as audience pages.
+- Voice version: Stark+Jobs locked. Audience archetypes (§2.1) carry five named personas — wedding, trades, student, freelance, small-business operator, public-facing coordinator — all of which now have dedicated Tasks landing pages (`/for/{freelancers,trades,students,small-business,community}`, plus `/weddings` on the studio umbrella). Closed 2026-06-06.
 - The /brand public asset hub at signalstudio.ie/brand is the externally-visible expression of the handbook (wordmarks, palette, type scale, voice rules, nineteen downloadable SVGs).
 - S·26 (2026-05-14) added `loading="lazy" decoding="async"` to those images and stepped the wordmark + motion grids from a 1→5 jump to 2→3→5. CSS register, no copy or palette change. Handbook unaffected.
 

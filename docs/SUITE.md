@@ -106,7 +106,7 @@ Plans are the suite's unit of work. Plans 1–6 are closed. Plan 7 is in flight.
 - **Direction C — Daily Signal as page.** Alternative for the Studio umbrella landing: the umbrella IS a Daily Signal briefing. Branch off main, do NOT replace production.
 - **Notes scaffolding.** Stand the fourth product up. PRODUCT.md is drafted at `~/Projects/personal/notes/docs/PRODUCT.md`. Lock 1 · Cycle 1.2 already closed (one-way Notes→Tasks promotion only; never auto-detect todos).
 - **Cross-product chrome — top-bar product switcher, shared auth seam.** Deferred until Notes ships. Studio is currently ahead; chrome work waits for parity.
-- **Audience archetype completion.** BRAND.md §2.1 names 5 archetypes; only 3 of 5 have dedicated landing pages on Tasks. Missing: small-business operators (restaurants, shops, clinics, studios) and public-facing coordinators (teachers, school admins, club coaches, community organisers). ~500 lines of brand-coherent writing per page.
+- ~~**Audience archetype completion.**~~ Closed 2026-06-06. All 5 of 5 BRAND.md §2.1 archetypes now have dedicated landing pages on Tasks: `/for/freelancers`, `/for/trades`, `/for/students`, `/for/small-business` (operators), `/for/community` (public-facing coordinators). Sitemap and footer Resources column carry all five. Surface complete.
 - **Performance pass.** Plan 4 closed pragmatically without browser access. Owed: Lighthouse / Core Web Vitals run against each deployed product, identify Largest Contentful Paint + Cumulative Layout Shift outliers, fix.
 - **CSP enforce-mode promotion.** Currently Report-Only across all four products. Promote after browser verification confirms no false-positive blocks.
 
