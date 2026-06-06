@@ -94,15 +94,44 @@ reading docs.
   the load-bearing differentiator from Tasks. Silence is also brand:
   no no-op dispatch shipped.
 
-**Next:**
-- Signal Tasks — consider whether the same `needsAttention` derived
-  signal should surface as a per-row indicator on the board (parity
-  with Roadmap), or whether the My Week "Needs attention" section
-  already covers the same need.
+**Next:** none. The calm-vocab thread closes here.
 
-**Refusal:** "Needs Attention" stays a *derived* state on the analytics
-layer, not a fifth manual lane. Adding a 5th lane would touch board drag,
-templates, exports, and CSV across four repos for a state every product
-can compute from idle days, missing owners, and overdue children. The
-spec's own restraint principle — "choose the simpler, calmer option" —
-favours derived over manual here.
+**Refusal — manual lane:** "Needs Attention" stays a *derived* state on
+the analytics layer, not a fifth manual lane. Adding a 5th lane would
+touch board drag, templates, exports, and CSV across four repos for a
+state every product can compute from idle days, missing owners, and
+overdue children. The spec's own restraint principle — "choose the
+simpler, calmer option" — favours derived over manual here.
+
+**Refusal — Tasks per-row pill on the board (parity with Roadmap R·21,
+decided 2026-06-06):** The open question was whether the same
+`needsAttention` derived signal should surface as a per-row pill on the
+Tasks board for parity with Roadmap ItemRow. We refuse, for three
+reasons:
+
+1. **My Week is the briefing.** Tasks already ships the calm-attention
+   layer — `/app/my-tasks` is the five-section editorial briefing with a
+   dedicated "Needs attention" bucket (T·82, idle ≥ 4 days in the
+   Moving lane, sorted by idleness descending). That surface was built
+   *as* the answer to "how does an owner see what's drifting?" Adding a
+   second answer on the board splits attention across two surfaces.
+   Roadmap needed per-row because Roadmap has no My Week equivalent —
+   the public roadmap *is* the owner's main surface.
+2. **The board is for state movement, not analytics.** A Tasks board
+   row already carries lane, title, assignees, due date, priority, and
+   labels. A persistent owner-only pill on the same row is visual
+   noise on the column where the owner is dragging cards between
+   lanes. Roadmap's ItemRow is a read surface; the Tasks board is an
+   edit surface — the analytics layer belongs on the read surface.
+3. **The thresholds disagree on purpose.** Roadmap idle = 14 days
+   (matches blocker dwell badge). Tasks idle = 4 days (matches the
+   weekly cadence of My Week). The 4-day threshold would light up most
+   of the Moving column on most workspaces — the noise floor is too
+   high for a per-row indicator to read as a calm signal. The same
+   threshold works in My Week because My Week is *selected* for the
+   user, not the whole board.
+
+The spec's restraint principle holds: each derived signal surfaces in
+exactly one canonical place per product. Roadmap → ItemRow + workspace
+BigStat. Tasks → My Week "Needs attention" bucket. Notes → silence.
+Analytics → briefing phrasing. No parity for parity's sake.
