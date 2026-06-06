@@ -31,11 +31,23 @@ reading docs.
   on you · This week · Done this week) instead of a lane-grouped table
   (T·82). Restated the brief's claim that the personal view should
   feel like an editorial briefing, not a dashboard.
+- Signal Roadmap — status pill, public workspace BigStats (both header
+  treatments), project drill-down BigStat, project card stat strip,
+  and the activity feed all render the `blocked` status as "Waiting"
+  (R·19). The cinematic showcase demo's `held` label was aligned to
+  "Waiting" to match — the demo contract requires its vocabulary
+  mirror the product. DB enum `blocked` and CSS tokens
+  (`--status-blocked`, `--status-blocked-bg`) untouched, so the
+  semantic colour (amber, calm) and per-workspace column overrides
+  carry through. The §1.6 public-view comment was updated to explain
+  why "Waiting" reads calmer than "Blocked in red" to a recipient
+  who doesn't speak the internal language.
 
 **Next:**
-- Signal Roadmap — DB status enum currently uses `blocked`; replace with
-  `waiting` (semantic-equivalent) and surface "Needs Attention" as a
-  derived signal (Tier 3 attention layer) rather than a manual state.
+- Signal Roadmap — surface "Needs Attention" as a derived signal
+  (Tier 3 attention layer) rather than a manual state. Consider
+  renaming the `blocker` KIND pill from "Blocked" to "Blocker" so
+  KIND and STATUS no longer share a word.
 - Signal Notes — note status / checklist vocabulary audit.
 - Signal Analytics — align "Overdue / Waiting too long / At risk"
   attention cards to the same language.
