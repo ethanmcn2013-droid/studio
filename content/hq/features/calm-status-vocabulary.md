@@ -70,13 +70,29 @@ reading docs.
   nodes use the underlying Tasks row's timestamp, manual nodes use
   the overlay row's timestamp — so the pure `attentionReason(task,
   now)` selector has the data it needs, type-checked end to end.
-- Signal Analytics — audited and confirmed clean. The briefing block
-  taxonomy already speaks the calm vocabulary natively: "Needs
-  attention / Moving well / Quiet risks / Suggested focus" lives in
-  `BLOCK_META` (compression/types.ts).
+- Signal Roadmap — DB rename closes the thread end-to-end (R·23). The
+  `Status` enum value `blocked` is now `waiting` at the persistence
+  layer (`drizzle/0006_rename_status_blocked_to_waiting.sql` UPDATEs
+  every `tasks` and `node_overlays.manual_status` row). The visual
+  also disentangles: `--status-waiting` is calm sky (`#1d6fa3` on
+  `#eff6fc`) and the old alarm red moves to its own `--alarm`
+  token, reserved for surfaces that genuinely alarm (GTM blocker
+  card, form validation, error text). A "Waiting" pill can never
+  again look like an emergency because status and alarm no longer
+  share a paint. Studio template sources rewritten + regenerated.
+- Signal Analytics — three briefing engine sites where "blocked"
+  was leading the phrasing as a status label now lead with "waiting"
+  (A·2): the no-blocker fallback in `BLOCKED_TOO_LONG[0]`, two
+  `blocked.ts` phrasings, and the why-this reason string in
+  `triggers.ts`. The relational `"blocked by ${blocker}"` phrasings
+  stay because they name the data, not the status. BLOCK_META
+  taxonomy already spoke the calm vocabulary natively, so the
+  block-titles themselves needed no change.
 - Signal Notes — audited and confirmed clean. Notes has no status
   vocabulary surface (it's plain markdown editing, no checklist or
-  lane primitive).
+  lane primitive). PRODUCT.md §8 explicitly: "No status concept" is
+  the load-bearing differentiator from Tasks. Silence is also brand:
+  no no-op dispatch shipped.
 
 **Next:**
 - Signal Tasks — consider whether the same `needsAttention` derived
