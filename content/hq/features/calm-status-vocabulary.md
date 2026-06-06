@@ -26,6 +26,11 @@ reading docs.
 - Signal Tasks default board lanes — `doing` renders as "Moving", `review`
   renders as "Waiting" (T·81). LaneId enum and per-workspace column
   renames untouched.
+- Signal Tasks personal landing — `/app/my-tasks` is now "My week", a
+  five-section editorial briefing (Today · Needs attention · Waiting
+  on you · This week · Done this week) instead of a lane-grouped table
+  (T·82). Restated the brief's claim that the personal view should
+  feel like an editorial briefing, not a dashboard.
 
 **Next:**
 - Signal Roadmap — DB status enum currently uses `blocked`; replace with
