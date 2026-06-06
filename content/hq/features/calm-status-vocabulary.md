@@ -61,6 +61,15 @@ reading docs.
   regression from silently leaking the indicator. The project
   drill-down also gained the same owner-only Needs attention BigStat,
   so the count is present at both workspace and project scopes.
+- Signal Roadmap — drift now surfaces at edit time too (R·22). The
+  curation/plan editor's NodeCard wears the same calm Idle/Overdue
+  pill as ItemRow, so the owner sees the attention signal while
+  authoring, not only while reading the public view. The curation
+  surface is owner-only by route, so no `isOwner` gate is required.
+  `EffectiveNode` gained a required `updatedAt: Date` field — synced
+  nodes use the underlying Tasks row's timestamp, manual nodes use
+  the overlay row's timestamp — so the pure `attentionReason(task,
+  now)` selector has the data it needs, type-checked end to end.
 - Signal Analytics — audited and confirmed clean. The briefing block
   taxonomy already speaks the calm vocabulary natively: "Needs
   attention / Moving well / Quiet risks / Suggested focus" lives in
@@ -70,9 +79,6 @@ reading docs.
   lane primitive).
 
 **Next:**
-- Signal Roadmap — wire the same `needs-attention` selector into the
-  curation/plan editor surface so drift is visible at edit time, not
-  just on the public/owner reading surface.
 - Signal Tasks — consider whether the same `needsAttention` derived
   signal should surface as a per-row indicator on the board (parity
   with Roadmap), or whether the My Week "Needs attention" section
