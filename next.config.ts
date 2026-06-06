@@ -55,6 +55,12 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Tree-shake heavy barrel imports — motion is used across reveal
+    // hero, manifesto, products, closing; the full barrel ships ~5× what
+    // we call. The other four products carry the same shape (Phase 6.2).
+    optimizePackageImports: ["motion"],
+  },
   // Bundle the per-entry dispatch files into the /dispatch + RSS server
   // functions. Without this, readDispatchEntries() in src/lib/changelog.ts
   // hits ENOENT on Vercel (content/dispatch/*.md sits outside the
