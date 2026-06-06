@@ -52,7 +52,7 @@ export type NoteSeed = {
  * (see roadmap/src/server/db/schema.ts). Authoring against the product
  * model directly avoids a translation layer.
  */
-export type RoadmapStatus = "shipped" | "in-flight" | "next" | "blocked" | "refused";
+export type RoadmapStatus = "shipped" | "in-flight" | "next" | "waiting" | "refused";
 
 /**
  * A seeded project inside a workspace. Roadmap supports many projects

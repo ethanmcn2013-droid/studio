@@ -57,7 +57,7 @@ export const roadmap: RoadmapSeed = {
       title: "Renewal review",
       description:
         "Supplier or service contract coming up for renewal. Terms reviewed before any auto-renew kicks in.",
-      status: "blocked",
+      status: "waiting",
     },
     {
       projectSlug: "monthly-rhythm",

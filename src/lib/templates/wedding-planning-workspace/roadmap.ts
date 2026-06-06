@@ -43,7 +43,7 @@ export const roadmap: RoadmapSeed = {
       title: "Supplier arrival times need confirmation",
       description:
         "Photographer, florist, and band arrival times are not all confirmed yet. This is the main planning risk.",
-      status: "blocked",
+      status: "waiting",
     },
     {
       projectSlug: "planning",
