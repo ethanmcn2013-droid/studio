@@ -53,15 +53,30 @@ reading docs.
   cases. The `blocker` KIND pill renamed "Blocked" → "Blocker"
   (R·20) — KIND and STATUS no longer share a word; "Waiting" is
   the only place blocked-semantics surface as a label.
+- Signal Roadmap — per-row attention indicator lands (R·21). ItemRow
+  now renders a calm "Idle" or "Overdue" pill when the owner is
+  reading; visitors receive `null` and the pill never renders.
+  `isOwner` is threaded as a required prop through `OverviewView`
+  and `ItemListByProject` so type-checking prevents a future
+  regression from silently leaking the indicator. The project
+  drill-down also gained the same owner-only Needs attention BigStat,
+  so the count is present at both workspace and project scopes.
+- Signal Analytics — audited and confirmed clean. The briefing block
+  taxonomy already speaks the calm vocabulary natively: "Needs
+  attention / Moving well / Quiet risks / Suggested focus" lives in
+  `BLOCK_META` (compression/types.ts).
+- Signal Notes — audited and confirmed clean. Notes has no status
+  vocabulary surface (it's plain markdown editing, no checklist or
+  lane primitive).
 
 **Next:**
-- Signal Notes — note status / checklist vocabulary audit.
-- Signal Analytics — align "Overdue / Waiting too long / At risk"
-  attention cards to the same language.
-- Signal Roadmap — consider per-row Needs attention indicator on
-  ItemRow when the owner is viewing (currently the signal lives only
-  in the count). And consider wiring the same selector into the
-  curation/plan editor surface so drift is visible at edit time.
+- Signal Roadmap — wire the same `needs-attention` selector into the
+  curation/plan editor surface so drift is visible at edit time, not
+  just on the public/owner reading surface.
+- Signal Tasks — consider whether the same `needsAttention` derived
+  signal should surface as a per-row indicator on the board (parity
+  with Roadmap), or whether the My Week "Needs attention" section
+  already covers the same need.
 
 **Refusal:** "Needs Attention" stays a *derived* state on the analytics
 layer, not a fifth manual lane. Adding a 5th lane would touch board drag,
