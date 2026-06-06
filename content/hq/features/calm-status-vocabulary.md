@@ -42,15 +42,26 @@ reading docs.
   carry through. The §1.6 public-view comment was updated to explain
   why "Waiting" reads calmer than "Blocked in red" to a recipient
   who doesn't speak the internal language.
+- Signal Roadmap — Tier 3 calm-attention layer lands (R·20). A pure
+  `needs-attention.ts` selector flags tasks as `overdue` (target date
+  past, status not settled) or `idle` (active state, 14+ days
+  untouched — same cadence as the existing blocker dwell badge).
+  Overdue wins precedence over idle. The count surfaces as one quiet
+  "Needs attention" BigStat on the workspace overview, gated by
+  `isOwner` — public stakeholders never see a number that would
+  alarm without giving them agency. 14 unit tests cover the boundary
+  cases. The `blocker` KIND pill renamed "Blocked" → "Blocker"
+  (R·20) — KIND and STATUS no longer share a word; "Waiting" is
+  the only place blocked-semantics surface as a label.
 
 **Next:**
-- Signal Roadmap — surface "Needs Attention" as a derived signal
-  (Tier 3 attention layer) rather than a manual state. Consider
-  renaming the `blocker` KIND pill from "Blocked" to "Blocker" so
-  KIND and STATUS no longer share a word.
 - Signal Notes — note status / checklist vocabulary audit.
 - Signal Analytics — align "Overdue / Waiting too long / At risk"
   attention cards to the same language.
+- Signal Roadmap — consider per-row Needs attention indicator on
+  ItemRow when the owner is viewing (currently the signal lives only
+  in the count). And consider wiring the same selector into the
+  curation/plan editor surface so drift is visible at edit time.
 
 **Refusal:** "Needs Attention" stays a *derived* state on the analytics
 layer, not a fifth manual lane. Adding a 5th lane would touch board drag,
