@@ -4,6 +4,7 @@ import { RevealHero } from "@/components/reveal/reveal-hero";
 import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
 import { RevealStory } from "@/components/reveal/reveal-story";
 import { RevealLoadingShowcase } from "@/components/reveal/reveal-loading-showcase";
+import { RevealWeddingWedge } from "@/components/reveal/reveal-wedding-wedge";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
@@ -42,6 +43,7 @@ export default async function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
+      <RevealWeddingWedge />
       <RevealLoadingShowcase />
       <RevealHero />
       <RevealManifesto />

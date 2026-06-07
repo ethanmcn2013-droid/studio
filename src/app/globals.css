@@ -975,6 +975,91 @@ body::after { content: none; }
   50%      { transform: translateY(4px); }
 }
 
+/* ── Wedding wedge ───────────────────────────────────────────── */
+/* Walkover #4 (Da Vinci): one hairline band above the loader. The
+   umbrella stays neutral; the wedge is visible at the front door
+   for the wedding audience that brought the page its first revenue
+   path. Server-rendered, zero JS, reduced-motion-safe. */
+.reveal-wedge {
+  border-top: 1px solid var(--ink-200);
+  border-bottom: 1px solid var(--ink-200);
+  background: var(--ink-50, #fafaf8);
+}
+.reveal-wedge-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-700);
+}
+.reveal-wedge-eyebrow {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.reveal-wedge-dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+.reveal-wedge-sep {
+  color: var(--ink-400);
+}
+.reveal-wedge-line {
+  color: var(--ink-800);
+  text-wrap: pretty;
+  flex: 1 1 auto;
+  min-width: 240px;
+}
+.reveal-wedge-link {
+  color: var(--ink-950);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-300);
+  transition: border-color 160ms ease, color 160ms ease;
+  white-space: nowrap;
+}
+.reveal-wedge-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.reveal-wedge-link .cta-arrow {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+.reveal-wedge-link:hover .cta-arrow {
+  transform: translateX(2px);
+}
+@media (max-width: 640px) {
+  .reveal-wedge-inner {
+    padding: 12px 20px;
+    gap: 8px;
+  }
+  .reveal-wedge-sep {
+    display: none;
+  }
+  .reveal-wedge-line {
+    flex-basis: 100%;
+    order: 2;
+  }
+  .reveal-wedge-link {
+    order: 3;
+  }
+}
+
 /* ── Manifesto ───────────────────────────────────────────────── */
 /* Walkover #10 (2026-06-07): vertical rhythm compressed ~30% (was
    144/144 → 104/104) to tighten the page after the hero demotion. */
