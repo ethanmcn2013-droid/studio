@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { RevealEngine } from "@/components/reveal/reveal-engine";
 import { RevealHero } from "@/components/reveal/reveal-hero";
 import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
+import { RevealStory } from "@/components/reveal/reveal-story";
 import { RevealLoadingShowcase } from "@/components/reveal/reveal-loading-showcase";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
@@ -44,6 +45,7 @@ export default async function Home() {
       <RevealLoadingShowcase />
       <RevealHero />
       <RevealManifesto />
+      <RevealStory />
       <RevealProducts />
       <RevealClosing />
       <RevealEngine />
