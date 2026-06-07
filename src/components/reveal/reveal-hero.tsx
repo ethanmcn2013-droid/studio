@@ -58,8 +58,12 @@ export function RevealHero() {
         </span>
       </h1>
 
+      {/*
+        Walkover #7 (2026-06-07): subhead in the operator register —
+        names the parts, names the audience, refuses the "workflow" word.
+      */}
       <TypewriterSub
-        text="Four small tools. Plain English. Built for the work, not the workflow."
+        text="Plans, tasks, notes, and a morning briefing — for people who have work to manage, not software to manage."
         startDelayMs={700}
         speed={28}
       />
