@@ -168,16 +168,21 @@ export function RevealLoadingShowcase() {
 
 /* Fully scoped. Single-iteration roll → freeze; only the dot keeps a slow breathe. */
 const SLX_CSS = `
-/* HERO-SCALE: the assembling wordmark is the front-door hero. In-flow,
-   overflow-clipped (the dot rolls in from off-canvas) — never fixed. */
+/* HERO-PRELUDE: the assembling wordmark is the brand signature, but it
+   no longer eats the first viewport. Walkover #1 (2026-06-07): demoted
+   from min(86vh,860px) to ~28vh so the proposition (H1 + subhead) wins
+   the first frame. In-flow, overflow-clipped (dot rolls in off-canvas)
+   — never fixed. */
 .reveal-loading-showcase{display:flex;align-items:center;
   justify-content:center;width:100%;overflow:hidden;background:transparent;
-  min-height:min(86vh,860px);
-  padding:clamp(92px,15vh,184px) 16px clamp(36px,7vh,88px);}
+  min-height:clamp(180px,28vh,300px);
+  padding:clamp(32px,5vh,72px) 16px clamp(8px,1.5vh,24px);}
 .slx{
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
-  --slx-wm:clamp(58px,11.5vw,208px);
+  /* Wordmark scale dropped in proportion with the reduced height — the
+     loader is now a prelude, not the hero. Was clamp(58,11.5vw,208). */
+  --slx-wm:clamp(34px,5.6vw,84px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
   --slx-iter:1;   /* MUST equal CYCLES in the component. */
