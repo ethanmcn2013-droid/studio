@@ -7,6 +7,7 @@ import { RevealLoadingShowcase } from "@/components/reveal/reveal-loading-showca
 import { RevealWeddingWedge } from "@/components/reveal/reveal-wedding-wedge";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
+import { RevealShipped } from "@/components/reveal/reveal-shipped";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
 
@@ -49,6 +50,7 @@ export default async function Home() {
       <RevealManifesto />
       <RevealStory />
       <RevealProducts />
+      <RevealShipped />
       <RevealClosing />
       <RevealEngine />
     </main>
