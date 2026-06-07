@@ -161,6 +161,7 @@ export function RevealProducts() {
         products' gestures slot in here when their loaders land.
       */}
       <style>{`
+        /* Notes · the dot morphs into a blinking text caret. */
         .reveal-product-row[data-key="notes"] .dot{
           transform-origin:center bottom;
           animation:rpn-caret .55s cubic-bezier(.22,.7,.2,1) .25s 1 forwards,
@@ -171,9 +172,101 @@ export function RevealProducts() {
           100%{width:.075em;height:.78em;border-radius:.02em}
         }
         @keyframes rpn-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+
+        /* Tasks · the dot becomes a checkbox tick. Settled state overrides
+           the canonical pulse on this row only — the hero stack still
+           pulses, so the suite-system gesture survives. (Walkover #5,
+           2026-06-07.) The square is the dot's own footprint; a stroke
+           inscribes inside it on a 2.4s loop. */
+        .reveal-product-row[data-key="tasks"] .mark .dot{
+          animation:none;
+          position:relative;
+          width:.6em;height:.6em;
+          border-radius:.08em;
+          background:transparent;
+          border:.075em solid var(--indigo-600);
+          transform:translateY(-.04em);
+        }
+        .reveal-product-row[data-key="tasks"] .mark .dot::after{
+          content:'';position:absolute;
+          left:18%;top:48%;
+          width:.22em;height:.42em;
+          border:solid var(--indigo-600);
+          border-width:0 .075em .075em 0;
+          transform:rotate(45deg) scale(0);
+          transform-origin:left top;
+          animation:rpt-tick 2.4s cubic-bezier(.22,.7,.2,1) .4s infinite;
+        }
+        @keyframes rpt-tick{
+          0%,30%{transform:rotate(45deg) scale(0);opacity:0}
+          40%{transform:rotate(45deg) scale(1);opacity:1}
+          80%{transform:rotate(45deg) scale(1);opacity:1}
+          100%{transform:rotate(45deg) scale(0);opacity:0}
+        }
+
+        /* Roadmap · the dot extrudes a milestone line, then drops a second
+           dot at the end — a track being laid. Scoped to the product
+           row; the hero stack still sweeps. (Walkover #5, 2026-06-07.) */
+        .reveal-product-row[data-key="roadmap"] .mark .dot{
+          animation:none;
+          position:relative;
+        }
+        .reveal-product-row[data-key="roadmap"] .mark .dot::before{
+          content:'';position:absolute;
+          left:100%;top:50%;
+          width:0;height:1px;
+          background:var(--indigo-600);
+          transform:translateY(-50%);
+          animation:rpr-extrude 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+        }
+        .reveal-product-row[data-key="roadmap"] .mark .dot::after{
+          content:'';position:absolute;
+          left:calc(100% + 1.4em);top:50%;
+          width:.14em;height:.14em;border-radius:50%;
+          background:var(--indigo-600);
+          transform:translate(-50%,-50%) scale(0);
+          animation:rpr-milestone 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+        }
+        @keyframes rpr-extrude{
+          0%{width:0;opacity:1}
+          40%{width:1.4em;opacity:1}
+          80%{width:1.4em;opacity:1}
+          100%{width:0;opacity:0}
+        }
+        @keyframes rpr-milestone{
+          0%,38%{transform:translate(-50%,-50%) scale(0);opacity:0}
+          48%{transform:translate(-50%,-50%) scale(1);opacity:1}
+          80%{transform:translate(-50%,-50%) scale(1);opacity:1}
+          100%{transform:translate(-50%,-50%) scale(0);opacity:0}
+        }
+
+        /* Daily Signal (Analytics row) · the dot pulses like a heartbeat —
+           two quick beats, then a held rest. ECG cadence, not the
+           discrete tick the hero stack runs. Scoped to the product
+           row; hero stack still ticks through discrete samples.
+           (Walkover #5, 2026-06-07.) */
+        .reveal-product-row[data-key="analytics"] .mark .dot{
+          animation:rpa-heartbeat 2.2s ease-in-out infinite;
+        }
+        @keyframes rpa-heartbeat{
+          0%   {transform:translateY(-.04em) scale(1)}
+          8%   {transform:translateY(-.04em) scale(1.55)}
+          16%  {transform:translateY(-.04em) scale(1)}
+          24%  {transform:translateY(-.04em) scale(1.35)}
+          32%  {transform:translateY(-.04em) scale(1)}
+          100% {transform:translateY(-.04em) scale(1)}
+        }
+
         @media (prefers-reduced-motion:reduce){
           .reveal-product-row[data-key="notes"] .dot{
             animation:none;width:.075em;height:.78em;border-radius:.02em}
+          .reveal-product-row[data-key="tasks"] .mark .dot::after,
+          .reveal-product-row[data-key="roadmap"] .mark .dot::before,
+          .reveal-product-row[data-key="roadmap"] .mark .dot::after,
+          .reveal-product-row[data-key="analytics"] .mark .dot{
+            animation:none}
+          .reveal-product-row[data-key="tasks"] .mark .dot::after{
+            transform:rotate(45deg) scale(1);opacity:1}
         }
       `}</style>
     </section>
