@@ -178,6 +178,19 @@ export const HQ_HUBS: HqHub[] = [
     secondaryMetric: "operator detail withheld",
     action: "prepare the update",
   },
+  {
+    key: "org",
+    label: "Org",
+    title: "Executive Leadership Team",
+    href: "/hq/org",
+    audience: ["founder", "operator", "hire"],
+    mode: "library",
+    summary:
+      "17 Directors and one Founder. Who owns what, at which autonomy layer, on which cadence.",
+    primaryMetric: "17 directors",
+    secondaryMetric: "5 clusters",
+    action: "open the org",
+  },
 ];
 
 export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [

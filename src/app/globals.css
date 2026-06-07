@@ -6036,3 +6036,248 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
     gap: 0.5rem;
   }
 }
+
+/* ── /hq/org — Executive Leadership Team chart ────────────────────── */
+
+.org-apex {
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+.org-apex-card {
+  padding: 1.4rem 1.6rem 1.5rem;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 560px;
+}
+.org-apex-eyebrow {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.org-apex-name {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.org-apex-role {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 0.1rem;
+}
+.org-apex-note {
+  margin-top: 0.6rem;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-quiet);
+}
+.org-apex-seam {
+  position: absolute;
+  left: 32px;
+  top: 100%;
+  width: 1px;
+  height: 2rem;
+  background: var(--hairline);
+}
+
+.org-cluster {
+  margin-bottom: 3rem;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.5rem;
+}
+.org-cluster-head {
+  margin-bottom: 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.75rem 1.5rem;
+}
+.org-cluster-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.org-cluster-subtitle {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+  max-width: 60ch;
+}
+.org-cluster-count {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: lowercase;
+}
+.org-cluster-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  border-top: 1px solid var(--hairline-2);
+  border-left: 1px solid var(--hairline-2);
+}
+.org-card-wrap { display: contents; }
+.org-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.05rem 1.1rem;
+  border-right: 1px solid var(--hairline-2);
+  border-bottom: 1px solid var(--hairline-2);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.12s ease-out, box-shadow 0.12s ease-out;
+  min-height: 168px;
+}
+.org-card:hover {
+  background: var(--paper);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+.org-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+.org-card-shortname {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.org-card-layer {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border: 1px solid var(--hairline);
+  color: var(--accent);
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.org-card-product {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  background: var(--paper);
+  color: var(--ink-quiet);
+  border-radius: 2px;
+  text-transform: lowercase;
+}
+.org-card-product[data-product="roadmap"]   { color: #4f46e5; }
+.org-card-product[data-product="tasks"]     { color: #b45309; }
+.org-card-product[data-product="notes"]     { color: #7c3aed; }
+.org-card-product[data-product="analytics"] { color: #0f766e; }
+.org-card-oneline {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.org-card-meta {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-transform: lowercase;
+  margin-top: auto;
+}
+.org-card-veto {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-transform: lowercase;
+}
+.org-card-open {
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--ink-quiet);
+  text-transform: lowercase;
+}
+.org-card:hover .org-card-open { color: var(--accent); }
+
+/* ── /hq/org/[slug] — director drill-down ─────────────────────────── */
+
+.org-portfolio {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.org-portfolio-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.org-portfolio-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+.org-neighbours {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+.org-neighbour-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--hairline-2);
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.12s ease-out;
+}
+.org-neighbour-row:hover { color: var(--accent); }
+.org-neighbour-name {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.org-neighbour-line {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.org-neighbour-arrow {
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.org-neighbour-row:hover .org-neighbour-arrow { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .org-cluster-grid {
+    grid-template-columns: 1fr;
+  }
+  .org-neighbour-row {
+    grid-template-columns: 1fr auto;
+  }
+  .org-neighbour-line {
+    grid-column: 1 / -1;
+  }
+}
