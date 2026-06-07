@@ -88,7 +88,7 @@ export function RevealHero() {
         </a>
         <a className="stack-row" data-key="analytics" href="#analytics">
           <span className="mark">
-            <span className="word">analytics</span>
+            <span className="word">daily signal</span>
             <span className="dot" />
           </span>
         </a>

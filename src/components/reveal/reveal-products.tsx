@@ -86,8 +86,13 @@ function ProductRow({
 export function RevealProducts() {
   return (
     <section className="reveal-products">
+      {/*
+        Walkover #13 (2026-06-07): pushback on the "four products · one
+        system" framing. The reader's mental model isn't products and a
+        system — it's a day of work and where the parts of it live.
+      */}
       <div className="reveal-products-head reveal">
-        Four products <span className="gold">·</span> one system
+        One day&rsquo;s work <span className="gold">·</span> four places it lives
       </div>
       <p className="reveal-products-connective">
         Notes is where it starts. Tasks is where it gets done. Roadmap is what
@@ -127,11 +132,18 @@ export function RevealProducts() {
         href={ROADMAP_URL}
         external
       />
+      {/*
+        Daily Signal prominence (2026-06-07 walkover #3): the product the
+        suite hangs on. The mono eyebrow now carries "Analytics" as the
+        small position label; the wordmark itself reads `daily signal` —
+        the noun customers actually receive. The href + gesture key
+        stay on `analytics` (the product, the URL, the dot identity).
+      */}
       <ProductRow
         id="analytics"
         dataKey="analytics"
-        position="What needs attention"
-        word="analytics"
+        position="Analytics · what needs attention"
+        word="daily signal"
         essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
