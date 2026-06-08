@@ -51,15 +51,22 @@ export function RevealEngine() {
 
       // ─── Char-split product wordmarks for per-char hover lift ──
       const splitChars = (wordEl: HTMLElement) => {
+        // Idempotency guard: bfcache restore re-mounts the engine; re-splitting
+        // an already-split wordmark turns each .char into nested per-letter
+        // spans and visually corrupts the mark.
+        if (wordEl.dataset.split === "1") return;
         const text = wordEl.textContent ?? "";
         if (!text) return;
+        wordEl.dataset.split = "1";
         wordEl.textContent = "";
         const frag = document.createDocumentFragment();
         [...text].forEach((ch, i) => {
           const span = document.createElement("span");
-          span.className = "char";
+          span.className = ch === " " ? "char char-space" : "char";
           span.style.setProperty("--ci", String(i));
-          span.textContent = ch === " " ? " " : ch;
+          // Non-breaking space keeps multi-word marks ("daily signal")
+          // from wrapping between words after char-split.
+          span.textContent = ch === " " ? "\u00a0" : ch;
           frag.appendChild(span);
         });
         wordEl.appendChild(frag);

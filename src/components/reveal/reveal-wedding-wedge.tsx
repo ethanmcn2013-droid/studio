@@ -26,7 +26,7 @@ export function RevealWeddingWedge() {
           Plans, tasks, briefings, and a public roadmap, ready to use.
         </span>
         <Link href="/weddings" className="reveal-wedge-link">
-          Open the wedding workspace
+          See it for weddings
           <span className="cta-arrow" aria-hidden>
             {" "}→
           </span>

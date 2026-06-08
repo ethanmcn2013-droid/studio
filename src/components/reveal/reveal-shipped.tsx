@@ -14,6 +14,18 @@
 import Link from "next/link";
 import { readDispatchEntries, type DispatchEntry } from "@/lib/changelog";
 
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+function formatShippedDate(iso: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if (!m) return iso;
+  const month = MONTHS[Number(m[2]) - 1];
+  return `${month} ${Number(m[3])}`;
+}
+
 const VERB_COLOR: Record<DispatchEntry["verb"], string> = {
   ships: "var(--accent)",
   tightens: "var(--ink-700)",
@@ -49,7 +61,7 @@ export async function RevealShipped() {
                 className="reveal-shipped-date"
                 dateTime={entry.date}
               >
-                {entry.date}
+                {formatShippedDate(entry.date)}
               </time>
               <span
                 className="reveal-shipped-verb"

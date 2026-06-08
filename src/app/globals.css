@@ -820,7 +820,7 @@ body::after { content: none; }
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px 22px;
+  gap: 4px 28px;
   align-items: baseline;
   line-height: 1;
 }
@@ -835,6 +835,7 @@ body::after { content: none; }
   padding: 7px 14px;
   border-radius: 6px;
   transition: background var(--motion-base) var(--ease-out);
+  flex-shrink: 0;
 }
 .reveal-stack .stack-row:hover {
   background: color-mix(in srgb, var(--ink-900) 3%, transparent);
@@ -849,11 +850,14 @@ body::after { content: none; }
   color: var(--ink-950);
   display: inline-flex;
   align-items: baseline;
+  flex-wrap: nowrap;
   gap: 0;
+  white-space: nowrap;
 }
 .reveal-stack .word {
   position: relative;
   display: inline-block;
+  white-space: nowrap;
 }
 .reveal-stack .dot {
   width: 0.13em;
@@ -986,7 +990,7 @@ body::after { content: none; }
   background: var(--ink-50, #fafaf8);
 }
 .reveal-wedge-inner {
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 14px 32px;
   display: flex;
@@ -1321,7 +1325,7 @@ body::after { content: none; }
 
 .reveal-product-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 64px;
   padding: 40px 0;
   border-top: 1px solid var(--ink-200);
@@ -1356,10 +1360,20 @@ body::after { content: none; }
   color: var(--ink-950);
   display: inline-flex;
   align-items: baseline;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 .reveal-product-row .mark .word {
   position: relative;
   display: inline-block;
+  white-space: nowrap;
+}
+/* Daily Signal is two words — scale down so the mark + dot stay on
+   one line after char-split (reveal-engine.tsx). Without this, the
+   11-character wordmark overflows the left column and breaks as
+   "dailysigna·" / "l" with the period stranded mid-word. */
+.reveal-product-row[data-key="analytics"] .mark {
+  font-size: clamp(40px, 5.4vw, 72px);
 }
 .reveal-product-row .mark .dot {
   width: 0.14em;
@@ -1446,8 +1460,12 @@ body::after { content: none; }
 @media (hover: hover) and (pointer: fine) {
   .reveal-product-row .mark .word .char {
     display: inline-block;
+    white-space: nowrap;
     transition: transform var(--motion-moderate) var(--reveal-ease-mass) 0s;
     will-change: transform;
+  }
+  .reveal-product-row .mark .word .char.char-space {
+    width: 0.22em;
   }
   .reveal-product-row:hover .mark .word .char {
     transform: translateY(-3px);
@@ -1624,6 +1642,9 @@ body::after { content: none; }
   .reveal-product-row .mark {
     font-size: clamp(44px, 11vw, 64px);
   }
+  .reveal-product-row[data-key="analytics"] .mark {
+    font-size: clamp(34px, 9.5vw, 52px);
+  }
   .reveal-product-row .essence {
     font-size: 18px;
   }
@@ -1659,6 +1680,9 @@ body::after { content: none; }
   }
   .reveal-product-row .mark {
     font-size: clamp(36px, 12vw, 56px);
+  }
+  .reveal-product-row[data-key="analytics"] .mark {
+    font-size: clamp(30px, 10.5vw, 46px);
   }
   .reveal-closing-sign {
     font-size: clamp(24px, 7vw, 32px);

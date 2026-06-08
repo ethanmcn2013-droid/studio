@@ -143,7 +143,7 @@ export function RevealProducts() {
         id="analytics"
         dataKey="analytics"
         position="Analytics · what needs attention"
-        word="daily signal"
+        word={"daily\u00a0signal"}
         essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"

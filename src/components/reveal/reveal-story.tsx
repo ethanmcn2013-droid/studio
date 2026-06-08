@@ -60,6 +60,7 @@ export function RevealStory() {
       return;
     }
 
+    const timers: number[] = [];
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -68,14 +69,19 @@ export function RevealStory() {
           const beats = root.querySelectorAll<HTMLElement>(".rsy-beat");
           // Cue offsets: 0, 3, 6, 9s — twelve-second scene.
           [0, 3000, 6000, 9000].forEach((t, i) => {
-            window.setTimeout(() => beats[i]?.classList.add("rsy-in"), t);
+            timers.push(
+              window.setTimeout(() => beats[i]?.classList.add("rsy-in"), t),
+            );
           });
         });
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.2 },
     );
     io.observe(root);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      timers.forEach((t) => window.clearTimeout(t));
+    };
   }, []);
 
   return (

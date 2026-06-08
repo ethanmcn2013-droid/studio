@@ -44,10 +44,10 @@ export default async function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
-      <RevealWeddingWedge />
       <RevealLoadingShowcase />
       <RevealHero />
       <RevealManifesto />
+      <RevealWeddingWedge />
       <RevealStory />
       <RevealProducts />
       <RevealShipped />

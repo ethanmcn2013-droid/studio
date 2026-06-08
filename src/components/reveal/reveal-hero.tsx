@@ -50,10 +50,7 @@ export function RevealHero() {
             <span className="word-inner">in</span>
           </span>{" "}
           <span className="word">
-            <span className="word-inner">tech</span>
-          </span>
-          <span className="word">
-            <span className="word-inner">.</span>
+            <span className="word-inner">tech.</span>
           </span>
         </span>
       </h1>
@@ -92,7 +89,7 @@ export function RevealHero() {
         </a>
         <a className="stack-row" data-key="analytics" href="#analytics">
           <span className="mark">
-            <span className="word">daily signal</span>
+            <span className="word">daily{"\u00a0"}signal</span>
             <span className="dot" />
           </span>
         </a>
