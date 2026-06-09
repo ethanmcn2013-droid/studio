@@ -161,47 +161,42 @@ export function RevealProducts() {
         products' gestures slot in here when their loaders land.
       */}
       <style>{`
-        /* Notes · the dot morphs into a blinking text caret. */
+        /* Notes · the dot IS the blinking text caret. No morph — start as
+           caret, blink immediately. (Walkover #6, 2026-06-09: the morph
+           wasn't replaying on reveal, so the row settled as a dot.) */
         .reveal-product-row[data-key="notes"] .dot{
+          width:.075em;height:.78em;border-radius:.02em;
           transform-origin:center bottom;
-          animation:rpn-caret .55s cubic-bezier(.22,.7,.2,1) .25s 1 forwards,
-                    rpn-blink 1.06s steps(1,end) .9s infinite;
-        }
-        @keyframes rpn-caret{
-          0%{width:.16em;height:.16em;border-radius:50%}
-          100%{width:.075em;height:.78em;border-radius:.02em}
+          animation:rpn-blink 1.06s steps(1,end) infinite;
         }
         @keyframes rpn-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
 
-        /* Tasks · the dot becomes a checkbox tick. Settled state overrides
-           the canonical pulse on this row only — the hero stack still
-           pulses, so the suite-system gesture survives. (Walkover #5,
-           2026-06-07.) The square is the dot's own footprint; a stroke
-           inscribes inside it on a 2.4s loop. */
+        /* Tasks · the wordmark itself gets crossed out — the "done" gesture
+           rendered directly on the word, not in a checkbox glyph. A line
+           draws left → right, holds, then clears. The dot is hidden; the
+           strike IS the identity here. (Walkover #6, 2026-06-09.) */
         .reveal-product-row[data-key="tasks"] .mark .dot{
-          animation:none;
+          display:none;
+        }
+        .reveal-product-row[data-key="tasks"] .mark .word{
           position:relative;
-          width:.6em;height:.6em;
-          border-radius:.08em;
-          background:transparent;
-          border:.075em solid var(--indigo-600);
-          transform:translateY(-.04em);
         }
-        .reveal-product-row[data-key="tasks"] .mark .dot::after{
+        .reveal-product-row[data-key="tasks"] .mark .word::after{
           content:'';position:absolute;
-          left:18%;top:48%;
-          width:.22em;height:.42em;
-          border:solid var(--indigo-600);
-          border-width:0 .075em .075em 0;
-          transform:rotate(45deg) scale(0);
-          transform-origin:left top;
-          animation:rpt-tick 2.4s cubic-bezier(.22,.7,.2,1) .4s infinite;
+          left:-.04em;top:58%;
+          width:calc(100% + .08em);height:.055em;
+          background:var(--indigo-600);
+          transform-origin:left center;
+          transform:scaleX(0);
+          animation:rpt-strike 3.2s cubic-bezier(.22,.7,.2,1) .4s infinite;
+          pointer-events:none;
         }
-        @keyframes rpt-tick{
-          0%,30%{transform:rotate(45deg) scale(0);opacity:0}
-          40%{transform:rotate(45deg) scale(1);opacity:1}
-          80%{transform:rotate(45deg) scale(1);opacity:1}
-          100%{transform:rotate(45deg) scale(0);opacity:0}
+        @keyframes rpt-strike{
+          0%   {transform:scaleX(0);transform-origin:left center;opacity:1}
+          38%  {transform:scaleX(1);transform-origin:left center;opacity:1}
+          72%  {transform:scaleX(1);transform-origin:right center;opacity:1}
+          92%  {transform:scaleX(0);transform-origin:right center;opacity:0}
+          100% {transform:scaleX(0);transform-origin:right center;opacity:0}
         }
 
         /* Roadmap · the dot extrudes a milestone line, then drops a second
@@ -259,14 +254,14 @@ export function RevealProducts() {
 
         @media (prefers-reduced-motion:reduce){
           .reveal-product-row[data-key="notes"] .dot{
-            animation:none;width:.075em;height:.78em;border-radius:.02em}
-          .reveal-product-row[data-key="tasks"] .mark .dot::after,
+            animation:none;width:.075em;height:.78em;border-radius:.02em;opacity:1}
+          .reveal-product-row[data-key="tasks"] .mark .word::after,
           .reveal-product-row[data-key="roadmap"] .mark .dot::before,
           .reveal-product-row[data-key="roadmap"] .mark .dot::after,
           .reveal-product-row[data-key="analytics"] .mark .dot{
             animation:none}
-          .reveal-product-row[data-key="tasks"] .mark .dot::after{
-            transform:rotate(45deg) scale(1);opacity:1}
+          .reveal-product-row[data-key="tasks"] .mark .word::after{
+            transform:scaleX(1);opacity:1}
         }
       `}</style>
     </section>

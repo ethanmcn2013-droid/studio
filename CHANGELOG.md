@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-06-09 · S·70 · fix · Tasks wordmark gets a strikethrough, Notes wordmark gets a caret — landing-page gesture identities corrected
+
+**The four-products row on signalstudio.ie now reads with each product's own gesture identity instead of an oversized broken checkbox glyph and a settled-as-dot Notes mark.** Two scoped fixes in `src/components/reveal/reveal-products.tsx`: (1) Tasks — the per-row dot is hidden, and an animated strikethrough is drawn across the wordmark `tasks` itself (left→right inscribe, hold, right→left clear, 3.2s loop). The "done" gesture now lives on the word, not in a checkbox box. Removes the previously-rendered oversized indigo square + tick, which was sizing against the wordmark's em context and reading as a broken UI element. (2) Notes — the dot→caret morph is collapsed into a caret-from-the-start. The morph wasn't replaying on reveal so the row settled as a dot; now the caret blink runs immediately and continuously, matching the "held thought, awaiting input" gesture the operator wanted. Reduced-motion fallback updated for both. Roadmap (extrude+milestone) and Daily Signal (heartbeat) untouched. Typecheck + build clean.
+
 ## 2026-05-30 · S·69 · ships · Signal HQ CRM + environment distinction — internal surface unmistakable at a glance
 
 **Signal HQ is now unmistakably internal, and the Outreach CRM is live as a first-class surface.** Any employee navigating to `/hq/*` encounters three compounding signals that make the boundary between external and internal unambiguous: a 28px sticky environment strip reading "● Signal HQ · Internal" in `--paper-deep`, a 44px persistent nav with the full section list and a "← signalstudio.ie" escape link, and a `--paper-soft` body temperature that visually separates every HQ page from the public site's pure white. The strip is sticky so it persists on scroll; the exit link is intentional — an external surface never needs one.
