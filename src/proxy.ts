@@ -12,6 +12,29 @@ import {
 
 const PUBLIC_HQ_PATHS = ["/hq/access", "/hq/logout"];
 
+const CONFIDENTIAL_BRAND_PATHS = new Set([
+  "/brand/business-loan-pack-2026.html",
+]);
+
+async function confidentialBrandGate(
+  request: NextRequest,
+): Promise<NextResponse | null> {
+  const { pathname } = request.nextUrl;
+  if (!CONFIDENTIAL_BRAND_PATHS.has(pathname)) return null;
+
+  const password = getHqPassword();
+  const accessCookie = request.cookies.get(HQ_ACCESS_COOKIE)?.value;
+
+  if (password && accessCookie === (await createHqAccessToken(password))) {
+    return NextResponse.next();
+  }
+
+  const accessUrl = request.nextUrl.clone();
+  accessUrl.pathname = "/hq/access";
+  accessUrl.searchParams.set("from", "/hq/loan-pack");
+  return NextResponse.redirect(accessUrl);
+}
+
 async function hqGate(request: NextRequest): Promise<NextResponse | null> {
   const { pathname } = request.nextUrl;
   if (!pathname.startsWith("/hq")) return null;
@@ -105,6 +128,10 @@ function suiteRedirect(request: NextRequest): NextResponse | null {
 // ── Composed proxy ────────────────────────────────────────────────────────
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
+  // 0. Confidential static brand assets (lender pack — HQ password required)
+  const brandResult = await confidentialBrandGate(request);
+  if (brandResult) return brandResult;
+
   // 1. HQ gate (must run first — /hq is excluded from suite redirect logic)
   const hqResult = await hqGate(request);
   if (hqResult) return hqResult;
@@ -118,6 +145,7 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 
 export const config = {
   matcher: [
+    "/brand/business-loan-pack-2026.html",
     // /hq subtree (existing HQ gate)
     "/hq/:path*",
     // Marketing routes (M) that trigger the suite redirect

@@ -55,6 +55,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/students",
+        destination: "/students.html",
+        permanent: false,
+      },
+    ];
+  },
   experimental: {
     // Tree-shake heavy barrel imports — motion is used across reveal
     // hero, manifesto, products, closing; the full barrel ships ~5× what
@@ -80,6 +89,18 @@ const nextConfig: NextConfig = {
         // X-Frame-Options: DENY blocks that and renders a broken-doc icon
         // in the phone frame. Allow same-origin framing for this asset only.
         source: "/brand/loader.html",
+        headers: securityHeaders.map((h) =>
+          h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
+        ),
+      },
+      {
+        source: "/brand/business-loan-pack-2026.html",
+        headers: securityHeaders.map((h) =>
+          h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
+        ),
+      },
+      {
+        source: "/brand/pitch-deck-2026.html",
         headers: securityHeaders.map((h) =>
           h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
         ),

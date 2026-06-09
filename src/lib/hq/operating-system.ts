@@ -294,6 +294,18 @@ export const HQ_ASSETS: HqAsset[] = [
     note: "Static HTML deck source for shareholder conversations.",
   },
   {
+    id: "business-loan-pack",
+    title: "Business loan pack",
+    group: "shareholder",
+    audience: ["founder", "shareholder"],
+    state: "ready",
+    owner: "Founder",
+    href: "/hq/loan-pack",
+    source: "public/brand/business-loan-pack-2026.html",
+    action: "Open lender deck",
+    note: "€40k facility · password-gated · Student Edition adjacent wedge included.",
+  },
+  {
     id: "venue-sales-pack",
     title: "Venue sales pack",
     group: "sales",

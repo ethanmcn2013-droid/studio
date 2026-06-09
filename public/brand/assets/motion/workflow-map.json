@@ -1,0 +1,95 @@
+{
+  "capturedAt": "2026-06-06T00:00:57.763Z",
+  "reelSlide": "business-loan-pack-2026.html · slide 06",
+  "loopDurationSec": 24,
+  "workflow": [
+    {
+      "step": 0,
+      "phase": "Before",
+      "action": "Coordination scattered across WhatsApp, spreadsheets, email",
+      "scene": "reel-scene s0"
+    },
+    {
+      "step": 1,
+      "product": "Notes",
+      "url": "https://notes.signalstudio.ie",
+      "action": "Capture half-formed context before it becomes work",
+      "demoAction": "Florist callback note → Send to Tasks",
+      "flowsTo": "Tasks",
+      "scene": "reel-scene s1",
+      "screenshot": "assets/motion/notes-demo.png"
+    },
+    {
+      "step": 2,
+      "product": "Tasks",
+      "url": "https://tasks.signalstudio.ie",
+      "action": "Plain-English tasks · board · list · timeline",
+      "demoAction": "Confirm tasting menu card moves To do → Done",
+      "flowsTo": "Roadmap",
+      "scene": "reel-scene s2",
+      "screenshot": "assets/motion/tasks-demo.png"
+    },
+    {
+      "step": 3,
+      "product": "Roadmap",
+      "url": "https://roadmap.signalstudio.ie",
+      "action": "Public plan · one link · no login",
+      "demoAction": "Suppliers see Done / Doing / Held up status",
+      "flowsTo": "Analytics",
+      "scene": "reel-scene s3",
+      "screenshot": "assets/motion/roadmap-demo.png",
+      "note": "Public demo at homepage; /wedding-spring-26 returns 404"
+    },
+    {
+      "step": 4,
+      "product": "Analytics",
+      "url": "https://analytics.signalstudio.ie",
+      "action": "Morning briefing · 3 items per block · hard cap",
+      "demoAction": "06:00 daily briefing · signal not noise",
+      "flowsTo": "Notes",
+      "scene": "reel-scene s4",
+      "screenshot": "assets/motion/analytics-demo.png"
+    }
+  ],
+  "screens": [
+    {
+      "id": "notes",
+      "url": "https://notes.signalstudio.ie",
+      "label": "Signal Notes · capture",
+      "file": "assets/motion/notes.png",
+      "thumb": "assets/motion/notes-thumb.png",
+      "demo": "assets/motion/notes-demo.png"
+    },
+    {
+      "id": "tasks",
+      "url": "https://tasks.signalstudio.ie",
+      "label": "Signal Tasks · Hartwell Wedding board",
+      "file": "assets/motion/tasks.png",
+      "thumb": "assets/motion/tasks-thumb.png",
+      "demo": "assets/motion/tasks-demo.png"
+    },
+    {
+      "id": "roadmap",
+      "url": "https://roadmap.signalstudio.ie",
+      "label": "Signal Roadmap · Spring wedding (public)",
+      "file": "assets/motion/roadmap.png",
+      "thumb": "assets/motion/roadmap-thumb.png",
+      "demo": "assets/motion/roadmap-demo.png"
+    },
+    {
+      "id": "analytics",
+      "url": "https://analytics.signalstudio.ie",
+      "label": "Signal Analytics · daily briefing",
+      "file": "assets/motion/analytics.png",
+      "thumb": "assets/motion/analytics-thumb.png",
+      "demo": "assets/motion/analytics-demo.png"
+    },
+    {
+      "id": "suite",
+      "url": "https://signalstudio.ie",
+      "label": "Signal Studio · suite",
+      "file": "assets/motion/suite.png",
+      "thumb": "assets/motion/suite-thumb.png"
+    }
+  ]
+}
