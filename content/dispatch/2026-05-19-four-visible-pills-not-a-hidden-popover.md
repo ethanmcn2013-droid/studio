@@ -9,6 +9,6 @@ other three products were a click away.**
 The pills carry the umbrella anchor once, the dot-morph transition
 on hop, hover-prefetch, and origin preconnect. The popover is kept
 where a pill row does not fit or does not belong — the unauthed
-marketing nav, the narrow Tasks sidebar, and the public Roadmap
+marketing nav, the narrow Tasks sidebar, and the public Timeline
 header (pills must not leak to a guest). Restraint held: the pills
 are quiet at rest, only the current one carries the indigo dot.

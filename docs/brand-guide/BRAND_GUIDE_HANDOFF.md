@@ -40,7 +40,7 @@ Each product's dot animates differently — encoding that product's relationship
 
 **Changes from previous BRAND.md §4:**
 - Notes: was "underline writes itself" → now **caret** (the dot blinks like a typewriter cursor; aligns with the notebook's actual capture-cursor language).
-- Analytics: was "static dot" → now **tick** (discrete data ticks, mirrors the briefing-as-sampled-attention model).
+- Signal: was "static dot" → now **tick** (discrete data ticks, mirrors the briefing-as-sampled-attention model).
 - Studio umbrella: antique-gold period treatment is retired; the animated variant is **pulse-slow** in indigo.
 
 ### 3 · Color tokens (additions to current palette)
@@ -95,8 +95,8 @@ NOT to the notebook product surface itself, which retains its own visual registe
 |---|---|---|
 | **11.1** | Notes wordmark | Underline-writes → caret (dot blink). Geist + dot grammar applied to suite-strip nav. Notebook surface unchanged. |
 | **11.2** | Studio umbrella | Wordmark animated with pulse-slow (replacing the static gold period in some contexts) |
-| **11.3** | Analytics wordmark | Static dot → tick gesture |
-| **11.4** | Tasks + Roadmap wordmark | Verify pulse + slide match the locked timing curves; align where they don't |
+| **11.3** | Signal wordmark | Static dot → tick gesture |
+| **11.4** | Tasks + Timeline wordmark | Verify pulse + slide match the locked timing curves; align where they don't |
 | **11.5** | Universal dot vocabulary | Add the dot primitives (status pips, bullet, nav active-dot, progress thumb) as shared CSS utilities to studio's globals.css |
 | **11.6** | Favicons | Re-issue all icons to the new 22%-radius dark-tile + dot pattern |
 

@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  ANALYTICS_URL,
+  SIGNAL_URL,
   NOTES_URL,
-  ROADMAP_URL,
+  TIMELINE_URL,
   TASKS_URL,
 } from "@/lib/product-urls";
 
-type ProductSlug = "tasks" | "roadmap" | "notes" | "analytics";
+type ProductSlug = "tasks" | "timeline" | "notes" | "signal";
 
 const PRODUCTS: {
   slug: ProductSlug;
@@ -16,18 +16,18 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
   { slug: "notes", word: "notes", tagline: "Capture clarity", url: NOTES_URL },
   { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: TASKS_URL },
-  { slug: "roadmap", word: "roadmap", tagline: "Direction clarity", url: ROADMAP_URL },
-  { slug: "analytics", word: "analytics", tagline: "Attention clarity", url: ANALYTICS_URL },
+  { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: TIMELINE_URL },
+  { slug: "signal", word: "signal", tagline: "Attention clarity", url: SIGNAL_URL },
 ];
 
 const INDIGO = "#4f46e5";
 
 /**
  * Umbrella-side product switcher. Mirrors the SuiteLauncher contract
- * used inside each product (Tasks/Roadmap/Analytics/Notes) — same
+ * used inside each product (Tasks/Timeline/Signal/Notes) — same
  * popover chrome, same product order — but the trigger here reads
  * "Products" because the user is on signalstudio.ie itself.
  */

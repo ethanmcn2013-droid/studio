@@ -11,7 +11,7 @@ Closed 2026-05-13.
 - `src/lib/cron/runs.ts` — `getLatestCronRun(source)` + `getCronHealth(source)` with `green | amber | red | never` status thresholds (green < 12h, amber 12–26h, red > 26h or `ok=0`)
 - `src/app/hq/health/page.tsx` — server-rendered `/hq/health` page, HQ-cookie-gated, same chrome pattern as `/hq/partners`
 
-**Analytics** (`~/Projects/personal/analytics`):
+**Signal** (`~/Projects/personal/analytics`):
 - `src/lib/ops/ping-studio.ts` — `pingStudio(payload)` helper with 2s AbortController timeout, never throws
 - `src/app/api/cron/briefings/route.ts` — added `pingStudio()` call after counts are aggregated, before the JSON response
 
@@ -19,7 +19,7 @@ Both repos: `tsc --noEmit` clean.
 
 ## What is gated on operator actions
 
-The system gracefully no-ops without env vars (analytics's `pingStudio` returns early if either env var is missing; studio's endpoint rejects unauthed requests). To make the signal actually flow:
+The system gracefully no-ops without env vars (signal's `pingStudio` returns early if either env var is missing; studio's endpoint rejects unauthed requests). To make the signal actually flow:
 
 ### 1. Apply the migration to prod Turso (studio)
 
@@ -45,7 +45,7 @@ vercel env add CRON_PING_SECRET production --sensitive
 
 Also add to studio's `.env.local` for local dev.
 
-### 3. Set `STUDIO_CRON_PING_URL` and `STUDIO_CRON_PING_SECRET` on analytics Vercel
+### 3. Set `STUDIO_CRON_PING_URL` and `STUDIO_CRON_PING_SECRET` on signal Vercel
 
 ```bash
 vercel env add STUDIO_CRON_PING_URL production
@@ -54,15 +54,15 @@ vercel env add STUDIO_CRON_PING_SECRET production --sensitive
 # Same value as studio's CRON_PING_SECRET
 ```
 
-Also add to analytics's `.env.local`.
+Also add to signal's `.env.local`.
 
 ### 4. Redeploy both
 
-Both repos need a redeploy to pick up the new env vars. The analytics cron runs daily at 06:00 UTC — first signal arrives the morning after redeploy.
+Both repos need a redeploy to pick up the new env vars. The signal cron runs daily at 06:00 UTC — first signal arrives the morning after redeploy.
 
 ## Smoke test (after all 4 operator actions)
 
-Manually invoke the analytics cron via the existing `/api/cron/briefings` handler with the proper `CRON_SECRET` Bearer (separate from `CRON_PING_SECRET`):
+Manually invoke the signal cron via the existing `/api/cron/briefings` handler with the proper `CRON_SECRET` Bearer (separate from `CRON_PING_SECRET`):
 
 ```bash
 curl -X POST https://analytics.signalstudio.ie/api/cron/briefings \
@@ -83,4 +83,4 @@ Then load `https://signalstudio.ie/hq/health` — should show green status with 
 If this turns out to be over-built:
 - Drop the route + helper + endpoint + schema entry
 - Migration is additive (CREATE TABLE), so no schema rollback needed
-- Analytics-side `pingStudio` import is one line; remove it + delete the helper file
+- Signal-side `pingStudio` import is one line; remove it + delete the helper file

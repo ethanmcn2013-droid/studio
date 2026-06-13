@@ -25,7 +25,7 @@ const SECTIONS = [
     heading: "What works today",
     body: [
       "Every page can be navigated by keyboard. Focus rings are visible. Tab order is meaningful.",
-      "Every product respects prefers-reduced-motion. The cinematic homepage demos on Tasks, Roadmap, and Analytics fall back to a static frame for readers who have asked the OS to reduce motion.",
+      "Every product respects prefers-reduced-motion. The cinematic homepage demos on Tasks, Timeline, and Signal fall back to a static frame for readers who have asked the OS to reduce motion.",
       "Text colours meet WCAG AA contrast against the white background. Body sizes are at least 14px on marketing surfaces.",
       "All form fields are labelled. Required fields are announced as required, not just visually marked.",
       "Headings follow a logical hierarchy on every page. Skip links land users at main content.",

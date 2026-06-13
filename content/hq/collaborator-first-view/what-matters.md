@@ -1,7 +1,7 @@
 ---
 id: what-matters
 title: What matters now
-sourceProduct: Signal Analytics
+sourceProduct: Signal
 status: Draft
 nextAction: Design the first Today Signal block for a wedding workspace.
 ---

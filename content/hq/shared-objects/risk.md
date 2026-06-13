@@ -1,7 +1,7 @@
 ---
 id: risk
 title: Risk
-usedBy: [Analytics, Roadmap, Tasks, Notes, HQ]
+usedBy: [Signal, Timeline, Tasks, Notes, HQ]
 status: Defined
 ---
 
@@ -11,4 +11,4 @@ Something that could affect delivery, direction, attention, or trust if ignored.
 
 ## Next Action
 
-Unify task blockers and roadmap risk language.
+Unify task blockers and timeline risk language.

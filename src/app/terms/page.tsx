@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 export const metadata: Metadata = {
   title: "Terms — Signal Studio",
   description:
-    "The agreement between you and Signal Studio when you use Signal Tasks, Roadmap, Analytics, or Notes.",
+    "The agreement between you and Signal Studio when you use Signal Tasks, Timeline, Signal, or Notes.",
 };
 
 const SECTIONS = [
@@ -17,7 +17,7 @@ const SECTIONS = [
   {
     heading: "What Signal Studio is",
     body: [
-      "Signal Studio is a small suite of four products: Signal Notes, Signal Tasks, Signal Roadmap, and Signal Analytics. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
+      "Signal Studio is a small suite of four products: Signal Notes, Signal Tasks, Signal Timeline, and Signal. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
       "The suite is operated by Ethan McNamara, a sole trader registered in Ireland.",
     ],
   },
@@ -40,7 +40,7 @@ const SECTIONS = [
     heading: "Your content",
     body: [
       "You keep ownership of everything you put into a Signal Studio product. We do not claim a licence to your content beyond what is necessary to operate the service for you (storing it, displaying it back to you, transmitting it to people you share it with).",
-      "Public roadmaps, shared updates, and other public surfaces are visible to anyone with the link. You choose what to make public. We don't index public surfaces for our own benefit beyond making them work.",
+      "Public timelines, shared updates, and other public surfaces are visible to anyone with the link. You choose what to make public. We don't index public surfaces for our own benefit beyond making them work.",
     ],
   },
   {

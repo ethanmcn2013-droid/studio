@@ -4,9 +4,9 @@ slug: log-cycle-cross-repo-writer
 lens: Processes
 owner: Ethan
 lastVerified: 2026-05-22
-links: [plan-cycle, five-products-as-a-system, turso-databases-and-reads, analytics-daily-cron]
+links: [plan-cycle, five-products-as-a-system, turso-databases-and-reads, signal-daily-cron]
 tags: [cross-repo, ping, authed HTTP, fire-and-forget, recipient-owns-the-table, Cycle 8.4.9, Cycle 9.4b, STUDIO_CRON_PING_SECRET, NOTES_TO_TASKS_SECRET, tasks_digest]
-references: [~/Projects/personal/analytics/src/lib/ops/ping-studio.ts, ~/Projects/personal/tasks/src/lib/ops/ping-studio.ts, ~/Projects/personal/notes/src/server/actions/notes.ts, ~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts, ~/Projects/personal/studio/src/lib/db/schema.ts]
+references: [~/Projects/personal/signal/src/lib/ops/ping-studio.ts, ~/Projects/personal/tasks/src/lib/ops/ping-studio.ts, ~/Projects/personal/notes/src/server/actions/notes.ts, ~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts, ~/Projects/personal/studio/src/lib/db/schema.ts]
 summary: When one product's cycle produces a signal another product needs, the caller fires an authed HTTP ping; the recipient owns the table. Three real instances today.
 status: complete
 pinned: false
@@ -21,9 +21,9 @@ Some signals belong in one product's database but are useful to another. Cross-r
 
 Three real instances ship today:
 
-1. **Analytics → Studio** — cron staleness. Established Cycle 8.4.9 (2026-05-10ish). When the analytics daily cron finishes, it pings Studio so HQ knows the engine ran. Studio's `cron_runs` table is the source of truth for "did the briefing job actually fire today".
+1. **Signal → Studio** — cron staleness. Established Cycle 8.4.9 (2026-05-10ish). When the signal daily cron finishes, it pings Studio so HQ knows the engine ran. Studio's `cron_runs` table is the source of truth for "did the briefing job actually fire today".
 2. **Notes → Tasks** — note promote. Established Cycle 9.4b. When a user promotes a Note to a task, Notes POSTs to Tasks's API with the extracted content. Tasks owns the created row.
-3. **Tasks → Studio** — digest staleness. Established S·44 (2026-05-16). When the Tasks 09:00 UTC daily digest finishes, it pings Studio with `source: "tasks_digest"`. Closes what was a structural blind spot — HQ used to carry a hardcoded "tasks digest unmonitored" nag because Tasks never reported back; now it is a real `cron_runs`-derived health signal like analytics.
+3. **Tasks → Studio** — digest staleness. Established S·44 (2026-05-16). When the Tasks 09:00 UTC daily digest finishes, it pings Studio with `source: "tasks_digest"`. Closes what was a structural blind spot — HQ used to carry a hardcoded "tasks digest unmonitored" nag because Tasks never reported back; now it is a real `cron_runs`-derived health signal like signal.
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ Ethan owns both sides of every instance. There's no third-party caller, no webho
 
 ## WHERE
 
-**Analytics → Studio (cron staleness)**
+**Signal → Studio (cron staleness)**
 
 - Caller: `~/Projects/personal/analytics/src/lib/ops/ping-studio.ts`. Reads `STUDIO_CRON_PING_URL` + `STUDIO_CRON_PING_SECRET` from env. POSTs JSON with a short fetch timeout.
 - Receiver: `~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts`. Validates `Authorization: Bearer ${CRON_PING_SECRET}` (note the receiver-side env name differs from the caller-side — deliberate so a leaked one doesn't compromise both).
@@ -54,7 +54,7 @@ Ethan owns both sides of every instance. There's no third-party caller, no webho
 
 **Tasks → Studio (digest staleness)**
 
-- Caller: `~/Projects/personal/tasks/src/lib/ops/ping-studio.ts`. A near-exact mirror of the analytics caller (same `https://*.signalstudio.ie` allowlist, same 2s timeout, same fail-silent contract), `source: "tasks_digest"`. Invoked at the end of `tasks/src/app/api/cron/digest/route.ts`.
+- Caller: `~/Projects/personal/tasks/src/lib/ops/ping-studio.ts`. A near-exact mirror of the signal caller (same `https://*.signalstudio.ie` allowlist, same 2s timeout, same fail-silent contract), `source: "tasks_digest"`. Invoked at the end of `tasks/src/app/api/cron/digest/route.ts`.
 - Receiver: the same `studio/src/app/api/internal/cron-ping/route.ts` — one receiver, source-discriminated by the `CRON_RUN_SOURCES` tuple.
 - Until `STUDIO_CRON_PING_URL` + `STUDIO_CRON_PING_SECRET` are set on the Tasks Vercel project the caller is a silent no-op and HQ reads the digest cron as `never` (honest, not a hardcoded nag) — it self-heals to green on the first run after the env lands.
 
@@ -76,12 +76,12 @@ The pattern has five invariants. Skip any of them and you've built fragile coupl
 
 ## WHEN — current state
 
-- Three instances live (Analytics→Studio cron-ping, Notes→Tasks promote, Tasks→Studio digest-ping).
+- Three instances live (Signal→Studio cron-ping, Notes→Tasks promote, Tasks→Studio digest-ping).
 - Pattern stable since Cycle 8.4.9. No deprecations.
-- A·5 (2026-05-15) hardened the Analytics→Studio caller: `ping-studio.ts` now validates `STUDIO_CRON_PING_URL` against an `https://*.signalstudio.ie` allowlist and refuses to send if it fails — an env misconfig or DNS hijack can no longer exfiltrate the bearer to an arbitrary host. This strengthens invariant 1 (the secret only ever travels to the intended recipient); the fire-and-forget shape and the other four invariants are unchanged.
-- S·44 (2026-05-16) added the Tasks→Studio digest-ping, deliberately built as a near-exact copy of the hardened analytics caller (same allowlist, timeout, fail-silent contract) — the third instance closes the prior "tasks digest unmonitored" blind spot and tightens the consistency the quiet-gap note below was worried about.
-- One frequent extension candidate: Roadmap → Studio (when a public workspace ships an item, ping HQ). Not built — no demand signal yet.
-- Quiet gap: there's still no shared utility module across repos — each caller writes its own ~30-line fetcher. That's intentional (no shared dep, no monorepo). The Tasks caller was written to mirror the analytics one line-for-line to keep the drift low; if a fourth instance lands, factoring a copied-by-convention snippet into the atlas as the canonical template is the move, not a shared package.
+- A·5 (2026-05-15) hardened the Signal→Studio caller: `ping-studio.ts` now validates `STUDIO_CRON_PING_URL` against an `https://*.signalstudio.ie` allowlist and refuses to send if it fails — an env misconfig or DNS hijack can no longer exfiltrate the bearer to an arbitrary host. This strengthens invariant 1 (the secret only ever travels to the intended recipient); the fire-and-forget shape and the other four invariants are unchanged.
+- S·44 (2026-05-16) added the Tasks→Studio digest-ping, deliberately built as a near-exact copy of the hardened signal caller (same allowlist, timeout, fail-silent contract) — the third instance closes the prior "tasks digest unmonitored" blind spot and tightens the consistency the quiet-gap note below was worried about.
+- One frequent extension candidate: Timeline → Studio (when a public workspace ships an item, ping HQ). Not built — no demand signal yet.
+- Quiet gap: there's still no shared utility module across repos — each caller writes its own ~30-line fetcher. That's intentional (no shared dep, no monorepo). The Tasks caller was written to mirror the signal one line-for-line to keep the drift low; if a fourth instance lands, factoring a copied-by-convention snippet into the atlas as the canonical template is the move, not a shared package.
 
 ## WHY
 
@@ -95,5 +95,5 @@ The fire-and-forget shape is the most counter-intuitive piece. It feels wrong to
 
 ## Reverification trail
 
-- 2026-05-16 (S·44) — re-verified against current code and extended. Third instance added: Tasks→Studio digest-ping (`tasks/src/lib/ops/ping-studio.ts` → the existing `cron-ping` receiver, `source: "tasks_digest"`). `CRON_RUN_SOURCES` is now `["analytics_daily", "tasks_digest"]`; Studio's pulse/inbox/today derive the Tasks digest health from `cron_runs` instead of carrying a hardcoded "unmonitored" nag. The five invariants are unchanged — the new caller obeys all of them and was written as a deliberate mirror of the hardened analytics caller. Analytics→Studio and Notes→Tasks instances re-checked against `analytics/src/lib/ops/ping-studio.ts` and `notes/src/server/actions/notes.ts`: still accurate as documented.
-- 2026-05-16 (S·46) — re-verified in an atlas-only commit to clear the sidecar after S·44's `schema.ts` + T·62's `tasks/src/lib/ops/ping-studio.ts` changes (both already documented above). Shared cron-ping secret was wired across Studio/Analytics/Tasks production env this run, so all three instances now have their credentials in place; the receiver-owns-the-table invariant is unchanged.
+- 2026-05-16 (S·44) — re-verified against current code and extended. Third instance added: Tasks→Studio digest-ping (`tasks/src/lib/ops/ping-studio.ts` → the existing `cron-ping` receiver, `source: "tasks_digest"`). `CRON_RUN_SOURCES` is now `["analytics_daily", "tasks_digest"]`; Studio's pulse/inbox/today derive the Tasks digest health from `cron_runs` instead of carrying a hardcoded "unmonitored" nag. The five invariants are unchanged — the new caller obeys all of them and was written as a deliberate mirror of the hardened signal caller. Signal→Studio and Notes→Tasks instances re-checked against `analytics/src/lib/ops/ping-studio.ts` and `notes/src/server/actions/notes.ts`: still accurate as documented.
+- 2026-05-16 (S·46) — re-verified in an atlas-only commit to clear the sidecar after S·44's `schema.ts` + T·62's `tasks/src/lib/ops/ping-studio.ts` changes (both already documented above). Shared cron-ping secret was wired across Studio/Signal/Tasks production env this run, so all three instances now have their credentials in place; the receiver-owns-the-table invariant is unchanged.

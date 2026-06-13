@@ -9,9 +9,9 @@ Convened: strategy + ux-director + creative-director + architect (parallel revie
 
 ## The question
 
-"Consolidate the four products (Tasks / Roadmap / Notes / Analytics) system-wise into
+"Consolidate the four products (Tasks / Timeline / Notes / Signal) system-wise into
 one signed-in system with instant, zero-load jumps between products — still presented
-as separate products, and marketed that way." Trigger observation: Roadmap's board is
+as separate products, and marketed that way." Trigger observation: Timeline's board is
 "just a kanban" and Tasks already has a better one; repeated views look like an oversight.
 
 ## The reframe (load-bearing)
@@ -32,11 +32,11 @@ required to get the experience.
 
 - **Strategy:** One workspace branded as four. Consolidate the runtime, never market it
   ("if you can't describe it without sounding like ClickUp, don't say it"). Hard condition:
-  public Roadmap stays a **no-account, forwardable** surface — it must not be dragged
+  public Timeline stays a **no-account, forwardable** surface — it must not be dragged
   behind auth, or the lead-product story fractures. Gate behind ≥1 paid venue pilot.
 - **UX:** Real pain is the *second sign-in*, not reload latency. Venue coordinator switches
   contextually, not rapid-fire. Fix: one Clerk session, SuiteLauncher → same-tab, URL-passed
-  context. Auth fragmentation already forces hacks (Analytics joins on email, not clerk_id).
+  context. Auth fragmentation already forces hacks (Signal joins on email, not clerk_id).
 - **Creative:** Yes only if the inter-product transition is a brand primitive — a dot-morph
   shared element that travels the jump and re-tunes to the destination gesture. Ships **with
   v1 or not at all**; deferring it = "Linear with a Signal logo."
@@ -53,17 +53,17 @@ quiet about it.
 
 ## Two-kanban question
 
-Not true duplication. Tasks board = private granular execution. Roadmap view = public,
+Not true duplication. Tasks board = private granular execution. Timeline view = public,
 no-account, milestone-level direction ("public IS the architecture" — locked refusal). Same
-shape, different altitude, different audience. **Do not merge.** Cheap fix: relabel Roadmap's
-internal markdown editor so the altitude is legible ("Edit your public roadmap"). Perception
+shape, different altitude, different audience. **Do not merge.** Cheap fix: relabel Timeline's
+internal markdown editor so the altitude is legible ("Edit your public timeline"). Perception
 bug, not structural.
 
 ## Sequenced plan
 
 | Phase | Action | Tier | Gate |
 |---|---|---|---|
-| 0 | Clear Roadmap Upstash prod blocker (live outage, unrelated, outranks this) | S | Now — operator |
+| 0 | Clear Timeline Upstash prod blocker (live outage, unrelated, outranks this) | S | Now — operator |
 | 1 | Let the 3 live context windows (venue / entitlements / front-door) land + quiesce | — | Hard prereq for any repo-structural work |
 | 2 | One Clerk app, `.signalstudio.ie` cookie. Scheduled solo cutover, one-time re-auth | L | After Phase 1 |
 | 3 | SuiteLauncher → same-tab + cross-product prefetch + shared shell + **dot-morph transition shipped with it** | M | With Phase 2 |
@@ -73,7 +73,7 @@ bug, not structural.
 ## Make-or-break verifications (owned by whoever builds)
 
 1. Dot-morph holds 60fps on a mid-range Android **before** it is called a feature.
-2. Public Roadmap proven no-auth + forwardable **on a branch** before the Clerk merge commits.
+2. Public Timeline proven no-auth + forwardable **on a branch** before the Clerk merge commits.
 
 ## PM dissent (recorded)
 

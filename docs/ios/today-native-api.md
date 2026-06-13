@@ -96,9 +96,9 @@ type TodayNativePayload = {
 The shaper picks the most-interesting headline in this order:
 
 1. **Tasks shipped in the last 24h** — positive momentum signal. Includes a supporting line when there are still items in court.
-2. **Roadmap milestones shipped this week** — forward-look momentum.
+2. **Timeline milestones shipped this week** — forward-look momentum.
 3. **Items currently in your court** — the unfinished-work signal when nothing has shipped.
-4. **Notes captured** — the lightest hook when no task/roadmap data exists.
+4. **Notes captured** — the lightest hook when no task/timeline data exists.
 5. **"Your day starts here."** — first-run / fully empty state.
 
 ### Section visibility rules (§2)
@@ -107,7 +107,7 @@ The shaper picks the most-interesting headline in this order:
 | --------- | ------------------------------------------------------------------------- |
 | `today`   | Always.                                                                   |
 | `evening` | Local hour ∈ [15:00, 02:59]. Hidden 03:00–14:59. Driven by user timezone. |
-| `upcoming`| ≥1 upcoming Roadmap milestone in the response.                            |
+| `upcoming`| ≥1 upcoming Timeline milestone in the response.                            |
 | `caught`  | Notes touched within the last 36 hours.                                   |
 
 The native client trusts the `visible` flag — it does not re-derive these rules.
@@ -132,7 +132,7 @@ These are honest gaps named so they aren't surprises when the iOS build starts.
 - **Evening section mirrors Today.** Until the aggregator returns per-task due-time, the Evening section's items are the same as Today's. The visibility logic is correct; the item discrimination is the gap. Same follow-up cycle as above.
 - **`canCheck` / `isComplete` are always false.** Native check-off lights up once aggregator returns item-level data.
 - **Notes "caught" surfaces only the single most-recent note.** Multi-note surface needs aggregator extension (`recentNotes: NoteItem[]`).
-- **Roadmap member workspaces are silently omitted** (inherited from `aggregate.ts`).
+- **Timeline member workspaces are silently omitted** (inherited from `aggregate.ts`).
 
 When item-level data lands, the route signature does not need to change — the `items[]` array grows fidelity, the iOS client renders more.
 
@@ -145,10 +145,10 @@ No new env vars beyond what `/api/today` already requires (see `docs/ios/today-a
 `pnpm test` runs `src/server/today/shape-native.test.ts` — 20+ assertions covering:
 - Greeting bands across all four time-of-day windows + edge hours (3, 4, 11, 12, 15, 18, 19, 23, 0, 2).
 - Evening visibility across timezones (Dublin and Pacific at the same UTC moment).
-- Anchor priority (shipped-24h → roadmap-7d → in-court → notes → welcome) including singular/plural label correctness.
+- Anchor priority (shipped-24h → timeline-7d → in-court → notes → welcome) including singular/plural label correctness.
 - Section visibility flags and item shaping (workspace metadata, deep-link composition).
 - Name resolution (full name → first; email local-part fallback).
-- Timezone fallback chain (request → analytics.timezone → UTC).
+- Timezone fallback chain (request → signal.timezone → UTC).
 - Reads health-map pass-through.
 
 The shaper is a pure function — all tests run against synthetic `TodayResponse` fixtures, no network, no DB, no real time.

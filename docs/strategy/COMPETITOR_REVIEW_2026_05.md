@@ -10,7 +10,7 @@ Result: **24 unanimous passes. 22 killed.** The kill rate is the point — the m
 
 ## The 24 that cleared all 3 directors
 
-### Roadmap (the lead product story — most pitches landed here, as the strategy predicts)
+### Timeline (the lead product story — most pitches landed here, as the strategy predicts)
 
 | Pitch | From | The adopted idea (brand-shaped) | Value within brand | Condition / watch |
 |---|---|---|---|---|
@@ -20,7 +20,7 @@ Result: **24 unanimous passes. 22 killed.** The kill rate is the point — the m
 | Canny-3 | Canny | Visible "sharing is on" line + one-tap stop-sharing / rotate-link | De-risks the forward loop; the owner shares because they can un-share | None |
 | CraftBear-2 | Craft/Bear | Reading-width document-object typography on the shared page (no cover uploader) | The artifact reads as "a venue would be proud to put its name on it" | Confirm current viewer isn't already this disciplined |
 | Apple-1 | Apple | One-tap "send this" → clean, no-account recipient link | The forwarding verb made trivial; directly serves metric 5 | Ship as exactly one verb; no permissions/expiry options |
-| Trades-1 | Jobber/Tradify | One-tap "send the update" on a trades job phase, forwards the existing Roadmap | Closes the homeowner-artifact loop for the ratified 2nd wedge | Phone-first execution is the gate, not scope |
+| Trades-1 | Jobber/Tradify | One-tap "send the update" on a trades job phase, forwards the existing Timeline | Closes the homeowner-artifact loop for the ratified 2nd wedge | Phone-first execution is the gate, not scope |
 
 ### Notes (where work begins)
 
@@ -38,7 +38,7 @@ Result: **24 unanimous passes. 22 killed.** The kill rate is the point — the m
 |---|---|---|---|---|
 | Things-3 | Things 3 | A dateless "Someday" list **+ publish 3 new locked refusals** (no NLP dates, no tag taxonomy, no deep nesting) | A sanctioned place for "not now"; the refusals are compounding moat capital | Only worth a cycle if the refusals get *published* in PRODUCT.md §7 and enforced |
 
-### Analytics (what needs attention)
+### Signal (what needs attention)
 
 | Pitch | From | The adopted idea | Value within brand | Condition / watch |
 |---|---|---|---|---|
@@ -66,7 +66,7 @@ Result: **24 unanimous passes. 22 killed.** The kill rate is the point — the m
 **Unanimous 3-red (the panel actively refused these):**
 - **Monday-1** — a *derived/computed* status sentence on the public view. The line the whole panel drew: a human writing one status line (Linear-1) is brand; a system computing it and presenting it as the operator's voice is a moat breach. All three directors independently flagged this as the one to veto.
 - **Productboard-2** — no-account "email me when this changes" field. Funnel-shaped infrastructure on the public artifact; unbounded compliance/discipline tail.
-- **Canny-1** — per-visitor "since you were last here" diff strip. Device-scoped state that fails first visit and punishes the exact forwarding behaviour Roadmap exists to enable.
+- **Canny-1** — per-visitor "since you were last here" diff strip. Device-scoped state that fails first visit and punishes the exact forwarding behaviour Timeline exists to enable.
 
 **2-green near-misses (one director's principled red — worth the founder knowing they were close):**
 - **Asana-1** (brand+ux green, pm red) — only failed as a *duplicate* of Linear-1. Same idea, already passing under Linear-1. Not a rejection of the idea.
@@ -80,4 +80,4 @@ Result: **24 unanimous passes. 22 killed.** The kill rate is the point — the m
 
 ## Reading the result
 
-Nearly half the surfaced pitches converged on **Roadmap** — independent agents, different competitors, same conclusion: the highest-value brand-safe moves cluster on the forwardable public artifact, exactly where the ratified strategy says value should land. The second cluster is **named refusals** (ClickUp-1, ReclaimMotion-1, Apple-3, Things-3's published refusals) — competitors' headline features becoming Signal's published "no." That is the moat compounding, on schedule. No pitch that added a configurable surface, an AI-register behaviour, or a second brand voice survived all three directors. The gate behaved exactly as the brand requires.
+Nearly half the surfaced pitches converged on **Timeline** — independent agents, different competitors, same conclusion: the highest-value brand-safe moves cluster on the forwardable public artifact, exactly where the ratified strategy says value should land. The second cluster is **named refusals** (ClickUp-1, ReclaimMotion-1, Apple-3, Things-3's published refusals) — competitors' headline features becoming Signal's published "no." That is the moat compounding, on schedule. No pitch that added a configurable surface, an AI-register behaviour, or a second brand voice survived all three directors. The gate behaved exactly as the brand requires.

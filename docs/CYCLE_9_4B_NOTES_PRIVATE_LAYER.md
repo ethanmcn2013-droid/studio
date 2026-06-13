@@ -15,9 +15,9 @@ selected part of the note into work.
 This means raw Notes content should be excluded from:
 
 - shared workspaces
-- shared roadmap updates
+- shared timeline updates
 - task views
-- analytics summaries
+- signal summaries
 - workspace briefings
 - public or guest-facing collaboration surfaces
 

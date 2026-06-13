@@ -432,7 +432,7 @@ export const VAULT: VaultDomain[] = [
       {
         id: "one-pagers",
         title: "Product one-pagers",
-        note: "A4 exports for Tasks, Roadmap, Analytics, Notes, and Studio.",
+        note: "A4 exports for Tasks, Timeline, Signal, Notes, and Studio.",
         kind: "route",
         state: "ready",
         href: "/hq/one-pagers",

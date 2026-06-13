@@ -3,7 +3,7 @@
 **Until today the pricing page promised features only one product
 actually enforced. That gap closed. Workspace upgrades and one-time
 event passes are now live, and the entitlement follows you across
-Tasks, Roadmap, Analytics, and Notes — pay once, every product
+Tasks, Timeline, Signal, and Notes — pay once, every product
 recognises you.**
 
 Student .edu emails stay free, comp codes stay free, the .edu and

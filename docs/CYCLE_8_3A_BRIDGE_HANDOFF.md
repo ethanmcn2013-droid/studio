@@ -132,10 +132,10 @@ After successful redemption, the user lands in Tasks. Two UX changes (per `VENUE
 
 **How does Tasks read studio's entitlements long-term?** Two options:
 
-- **Option A — Direct DB read.** Tasks holds `TURSO_STUDIO_*` env and imports `getEntitlement` from a duplicated `tasks/src/lib/entitlements/` (copy of studio's). Pro: fastest, simplest, matches the Cycle 6.3 precedent (analytics reads Tasks's DB this way). Con: schema knowledge duplicated.
+- **Option A — Direct DB read.** Tasks holds `TURSO_STUDIO_*` env and imports `getEntitlement` from a duplicated `tasks/src/lib/entitlements/` (copy of studio's). Pro: fastest, simplest, matches the Cycle 6.3 precedent (signal reads Tasks's DB this way). Con: schema knowledge duplicated.
 - **Option B — HTTP fetch.** Tasks calls `signalstudio.ie/api/entitlements/[clerkId]` (a new studio endpoint protected by a shared secret). Pro: schema owned in one place. Con: extra network hop on every paywall check (mitigated by per-request caching).
 
-Recommendation: **Option A for 8.3b.** Mirrors the existing pattern in the codebase. Revisit if Notes/Roadmap/Analytics also need entitlement reads (then HTTP starts looking better).
+Recommendation: **Option A for 8.3b.** Mirrors the existing pattern in the codebase. Revisit if Notes/Timeline/Signal also need entitlement reads (then HTTP starts looking better).
 
 ## Acceptance checklist for 8.3a
 

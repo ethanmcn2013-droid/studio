@@ -12,7 +12,7 @@
 
 Three tensions in the brief that need naming before any designer or engineer touches this:
 
-**1. "World-class" and "single page" fight hardest on Analytics.**
+**1. "World-class" and "single page" fight hardest on Signal.**
 The briefing engine, the six triggers, the prose rotation, the daily-vs-weekly cadence — this is a system, not a feature. A single page can carry the *promise* ("what needs focus before it becomes a problem") but cannot explain the mechanism without turning into a manual. Decision: the one-pager tells the reader what it feels like to use it. The mechanism lives nowhere on the page. This is the correct cut — the spec enforces it.
 
 **2. Notes is the thinnest product in the suite.**
@@ -131,8 +131,8 @@ The gesture cannot animate in print. Here is how each one translates:
 | Product | Animated gesture | Print translation |
 |---|---|---|
 | Tasks · pulse | Dot breathes, 2.6s ease-in-out | A single indigo dot, full opacity, no blur. The stillness reads as present-moment. |
-| Roadmap · sweep | Dot tracks left→right | A short indigo rule (0.4pt, 12mm wide) to the left of the wordmark period. Suggests a timeline without labeling one. |
-| Analytics · tick | Dot jumps between samples | Three indigo dots in a row (2pt diameter each, 3mm gap), the third at full opacity, the first two at 30% opacity. Arrested-motion. |
+| Timeline · sweep | Dot tracks left→right | A short indigo rule (0.4pt, 12mm wide) to the left of the wordmark period. Suggests a timeline without labeling one. |
+| Signal · tick | Dot jumps between samples | Three indigo dots in a row (2pt diameter each, 3mm gap), the third at full opacity, the first two at 30% opacity. Arrested-motion. |
 | Notes · caret | Dot blinks like a cursor | A vertical bar (0.4pt × 7pt) in indigo immediately after the closing letter of `notes`. The static cursor. It simply is there. |
 | Studio · broadcast | Rings outward | Two concentric hairline circles (0.25pt) around the period dot on the umbrella wordmark. The rings are `#4F46E5` at 15% and 8% opacity — nearly invisible, present. |
 
@@ -174,7 +174,7 @@ EXECUTION CLARITY
 1. Tasks, lanes, and assignees in plain English. No sprints, no epics, no status meetings required to decode the board.
 2. Invite anyone to a shared workspace. The work is visible the moment they open it — no onboarding step, no permission taxonomy.
 3. A plain-English activity log. What changed, who did it, when — written as a sentence, not a database row.
-4. Connects to Signal Notes for capturing work in progress, and Signal Roadmap for showing where the work is going.
+4. Connects to Signal Notes for capturing work in progress, and Signal Timeline for showing where the work is going.
 
 **Brand treatment:**
 
@@ -185,7 +185,7 @@ EXECUTION CLARITY
 
 ---
 
-### 2.2 Signal Roadmap
+### 2.2 Signal Timeline
 
 **What a tired reader must feel:** I can send this to someone who doesn't use software and they'll understand it.
 
@@ -197,31 +197,31 @@ What people should expect.
 ```
 
 **What it is (one line):**
-A shareable roadmap that non-technical collaborators can open and understand in under sixty seconds.
+A shareable timeline that non-technical collaborators can open and understand in under sixty seconds.
 
 **Purpose paragraph (body, max 55 words):**
-Roadmap gives the work a public face. Write your plan once. Share a link. Anyone — a client, a venue coordinator, a course supervisor — sees what's in progress, what shipped, and what comes next, without being asked to understand the tool behind it. The shared update page is for people who don't work in the workspace.
+Timeline gives the work a public face. Write your plan once. Share a link. Anyone — a client, a venue coordinator, a course supervisor — sees what's in progress, what shipped, and what comes next, without being asked to understand the tool behind it. The shared update page is for people who don't work in the workspace.
 
 **Mission line:**
 DIRECTION CLARITY
 
 **Substance points:**
 
-1. A markdown editor that produces a structured, publicly shareable roadmap. Write it; share the link; the reader sees progress, not source.
+1. A markdown editor that produces a structured, publicly shareable timeline. Write it; share the link; the reader sees progress, not source.
 2. Milestones as a first-class object, with countdown and per-milestone progress. The reader knows how close the work is to done.
 3. A shared update page — a page the workspace owner can send to anyone, with "invited by" attribution and a reply-by-email option. No account required to read.
-4. Public guest view. The roadmap is the architecture: being public is not a feature toggle, it is how Roadmap works.
+4. Public guest view. The timeline is the architecture: being public is not a feature toggle, it is how Timeline works.
 
 **Brand treatment:**
 
 - Gesture: **sweep** — a short 12mm indigo rule (0.4pt) sits to the left of the masthead period, suggesting a timeline without labeling one. Left-to-right direction implied.
 - Accent/period: `signal roadmap.` in masthead, period in indigo.
 - Type hierarchy: headline at 36pt display. The three lines share one display block — no extra leading between them. Body 10pt. Substance points use the same left-rule treatment as Tasks.
-- Deliberately left OFF: the markdown syntax, the editor UI, the word "workspace," pricing tiers, anything that requires the reader to already be a user. The page is for the person the roadmap is being *sent to*, not the person writing it. This is the editorial cut that makes Roadmap's one-pager different from the others.
+- Deliberately left OFF: the markdown syntax, the editor UI, the word "workspace," pricing tiers, anything that requires the reader to already be a user. The page is for the person the roadmap is being *sent to*, not the person writing it. This is the editorial cut that makes Timeline's one-pager different from the others.
 
 ---
 
-### 2.3 Signal Analytics
+### 2.3 Signal
 
 **What a tired reader must feel:** This knows what I should look at. I don't have to decide.
 
@@ -237,7 +237,7 @@ Three lines, set as one flowing sentence broken for rhythm. The line break after
 A daily briefing — not a dashboard — that names the three things in your work worth attention today.
 
 **Purpose paragraph (body, max 55 words):**
-Analytics reads your Signal Tasks workspace every morning and sends one email. Not a report. Not a chart. Three items, ranked by what matters most: what's been stuck the longest, what's due soon, what you shipped. If nothing moved, nothing arrives. The briefing is as useful as the work it describes — no more.
+Signal reads your Signal Tasks workspace every morning and sends one email. Not a report. Not a chart. Three items, ranked by what matters most: what's been stuck the longest, what's due soon, what you shipped. If nothing moved, nothing arrives. The briefing is as useful as the work it describes — no more.
 
 **Mission line:**
 ATTENTION CLARITY
@@ -257,7 +257,7 @@ ATTENTION CLARITY
 - Deliberately left OFF: any chart, any graph, any screenshot of the brief, the word "dashboard," pricing, the cron schedule, the word "algorithm," any implication of AI or prediction. The page must read like the briefing itself: calm, specific, earned.
 
 **Tension named explicitly:**
-"World-class" and "single page" fight here. Analytics has the deepest mechanism in the suite. The spec resolves this by making the page feel like the briefing — not a manual for it. What's dropped: the trigger system detail, the prose rotation mechanism, the Resend/Vercel cron infrastructure, the cadence switching (daily vs weekly). None of that is on the page. A reader does not need to know how the engine works to trust that it does.
+"World-class" and "single page" fight here. Signal has the deepest mechanism in the suite. The spec resolves this by making the page feel like the briefing — not a manual for it. What's dropped: the trigger system detail, the prose rotation mechanism, the Resend/Vercel cron infrastructure, the cadence switching (daily vs weekly). None of that is on the page. A reader does not need to know how the engine works to trust that it does.
 
 ---
 
@@ -324,7 +324,7 @@ Everything important. Nothing distracting.
 Set as a section heading. Not a display. It is a discipline, not a promise.
 
 **What the suite is (body, max 60 words):**
-Signal Studio is four products that read as one. Each solves one kind of clarity: Notes captures context before it's ready to share. Tasks organises action and ownership. Roadmap communicates direction to people outside the work. Analytics surfaces what needs attention before it becomes a problem. Together they are a system. Separately, each one works.
+Signal Studio is four products that read as one. Each solves one kind of clarity: Notes captures context before it's ready to share. Tasks organises action and ownership. Timeline communicates direction to people outside the work. Signal surfaces what needs attention before it becomes a problem. Together they are a system. Separately, each one works.
 
 **The through-line (pull quote style — body 10.5pt, 2pt indigo left rule, 14mm wide):**
 The moat is not features. It is disciplined refusal sustained across four products over time. Every banned word, every refused dashboard, every plain-English error message is the same decision made again. Incumbents can copy a feature. They cannot copy a discipline that has been held for two years.

@@ -26,9 +26,9 @@ easing only, one earned accent event, end on stillness. It stays inside BRAND.md
 (cadence/restraint, not gloss; field stays flat warm-stone).
 
 TOP OF LIST — unanimous 3/3 (also added as individual cards): motion-the-80,
-motion-tasks-product, motion-analytics-7am, motion-venue-edition, motion-the-morning.
+motion-tasks-product, motion-signal-7am, motion-venue-edition, motion-the-morning.
 
-QUEUED — 2/3, in the Desktop doc, promote individually when ready: #3 Roadmap product;
+QUEUED — 2/3, in the Desktop doc, promote individually when ready: #3 Timeline product;
 #5 Notes; #6 Four-Layer Wedding Loop (Brand+Mktg yes, CD flagged 40s will drift in-tool —
 hand-direct timing post-export); #8 Anti-SaaS (CONTESTED — CD+Mktg yes, Brand rejected
 because it puts SPRINT/EPIC/BURNDOWN on screen; Ethan's tiebreak); #9 The Dot;

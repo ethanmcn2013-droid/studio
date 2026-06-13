@@ -14,8 +14,8 @@ Each product lives in its own repo, deploying to its own Vercel project, on its 
 |---|---|---|---|---|
 | Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. Also hosts private `/hq` for internal operations. No public auth or CMS. |
 | Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
-| Signal Roadmap | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Roadmap workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
-| Signal Analytics | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
+| Signal Timeline | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Timeline workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
+| Signal | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
 | Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Private build | Capture clarity. First live surface exists; PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Full v1 still pending. |
 
 **Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.
@@ -66,24 +66,24 @@ All four products run the same baseline:
 - **TypeScript** everywhere, strict mode
 
 Variations by product:
-- **Tasks + Roadmap + Analytics:** Clerk for auth.
-- **Tasks + Roadmap + Analytics:** each owns its **own Turso (libSQL)** database. Analytics's DB stores user prefs only — the actual task data it reads comes from Tasks's DB via a read-only token.
-- **Roadmap:** Stripe for Pro tier; Sentry for error monitoring (with PII scrubbing — see §5).
-- **Analytics:** Resend for email dispatch.
+- **Tasks + Timeline + Signal:** Clerk for auth.
+- **Tasks + Timeline + Signal:** each owns its **own Turso (libSQL)** database. Signal's DB stores user prefs only — the actual task data it reads comes from Tasks's DB via a read-only token.
+- **Timeline:** Stripe for Pro tier; Sentry for error monitoring (with PII scrubbing — see §5).
+- **Signal:** Resend for email dispatch.
 - **Studio:** public site stays static-ish with one client component (`RevealEngine`) for the motion stack. Private `/hq` uses `SIGNAL_HQ_PASSWORD`, an HTTP-only cookie, localStorage persistence, and JSON export/import.
 
 ---
 
 ## 4 · How data flows across the suite
 
-The intended cross-product data flow is **Tasks → Analytics**. Treat it as a launch claim only after the current Analytics repo contains the engine files and the preview proves the briefing path. The contract is:
+The intended cross-product data flow is **Tasks → Signal**. Treat it as a launch claim only after the current Signal repo contains the engine files and the preview proves the briefing path. The contract is:
 
 1. Tasks's Turso DB is the source of truth for task data, project data (mapped from tags — see below), and user-Clerk linkage.
-2. Analytics has a **read-only Turso token** (`turso db tokens create ... --read-only`, JWT flag `"a":"ro"`). Writes are blocked at the token layer.
-3. Analytics's `tasksDbSource` (`analytics/src/lib/data/tasks-db-source.ts`) implements the `DataSource` interface against this read-only connection.
+2. Signal has a **read-only Turso token** (`turso db tokens create ... --read-only`, JWT flag `"a":"ro"`). Writes are blocked at the token layer.
+3. Signal's `tasksDbSource` (`analytics/src/lib/data/tasks-db-source.ts`) implements the `DataSource` interface against this read-only connection.
 4. The briefing pipeline runs: `data → triggers → insights → prose → compression → briefing` and renders to web (`/app`) or email (via Resend).
 
-**Architectural decision worth knowing about:** Tasks does **not** have a `projects` table. Tags-as-projects is the locked mapping. Each unique tag in a workspace = one synthesized `ProjectRead` (slug = tag verbatim, name = title-cased, members = union of assignees on tasks bearing that tag). This was deliberate — adding a `projects` table to Tasks would have violated the anti-configuration positioning per BRAND.md §2.2 ("Configuration tax"). Analytics flexes here, not Tasks.
+**Architectural decision worth knowing about:** Tasks does **not** have a `projects` table. Tags-as-projects is the locked mapping. Each unique tag in a workspace = one synthesized `ProjectRead` (slug = tag verbatim, name = title-cased, members = union of assignees on tasks bearing that tag). This was deliberate — adding a `projects` table to Tasks would have violated the anti-configuration positioning per BRAND.md §2.2 ("Configuration tax"). Signal flexes here, not Tasks.
 
 ---
 
@@ -91,13 +91,13 @@ The intended cross-product data flow is **Tasks → Analytics**. Treat it as a l
 
 Plans are the suite's unit of work. Plans 1–6 are closed. Plan 7 is in flight.
 
-- **Plan 1 — Strategic Foundation.** Locked Analytics PRODUCT.md (rules + curated prose, no LLM in v1). Locked Notes PRODUCT.md (one-way Notes→Tasks promotion; never auto-detect todos). Added BRAND.md §2.1–§2.3 (audience archetypes, what fails them, the moat = discipline-sustained-across-suite-over-time).
-- **Plan 2 — Visual Ecosystem Coherence.** Notes underline-writes-itself gesture designed. Suite-shared favicon system. Tasks + Roadmap navs upgraded to client components with `usePathname` active-state + `<details>/<summary>` mobile menu (parity with Analytics).
-- **Plan 3 — Roadmap Parity Buildout.** Workspace creation form (slug→URL purge, live preview). Editor surface (mechanism-first → outcome-first copy). Public viewer (universalised demo banner, Pro CTA reframed, "iCal" jargon purged). Marketing surface depth (purged "engineering team", "engineers", "front-matter spec", "prefill"). Demo seed data ("Signal Roadmap" workspace, "Stakeholders"→"Anyone with an account").
-- **Plan 4 — Security + Performance.** Suite-wide HSTS + X-Frame + Permissions-Policy in enforce mode + CSP in **Report-Only** mode (promotion to enforce owed). Sentry PII scrubbing (`beforeSend` + `sendDefaultPii: false`) on all 5 init points across Tasks + Roadmap. Orphan-asset purge (~790KB removed from Tasks bundle).
+- **Plan 1 — Strategic Foundation.** Locked Signal PRODUCT.md (rules + curated prose, no LLM in v1). Locked Notes PRODUCT.md (one-way Notes→Tasks promotion; never auto-detect todos). Added BRAND.md §2.1–§2.3 (audience archetypes, what fails them, the moat = discipline-sustained-across-suite-over-time).
+- **Plan 2 — Visual Ecosystem Coherence.** Notes underline-writes-itself gesture designed. Suite-shared favicon system. Tasks + Timeline navs upgraded to client components with `usePathname` active-state + `<details>/<summary>` mobile menu (parity with Signal).
+- **Plan 3 — Timeline Parity Buildout.** Workspace creation form (slug→URL purge, live preview). Editor surface (mechanism-first → outcome-first copy). Public viewer (universalised demo banner, Pro CTA reframed, "iCal" jargon purged). Marketing surface depth (purged "engineering team", "engineers", "front-matter spec", "prefill"). Demo seed data ("Signal Timeline" workspace, "Stakeholders"→"Anyone with an account").
+- **Plan 4 — Security + Performance.** Suite-wide HSTS + X-Frame + Permissions-Policy in enforce mode + CSP in **Report-Only** mode (promotion to enforce owed). Sentry PII scrubbing (`beforeSend` + `sendDefaultPii: false`) on all 5 init points across Tasks + Timeline. Orphan-asset purge (~790KB removed from Tasks bundle).
 - **Plan 5 — 80% Audience Refinement.** Tasks `DOMAIN_ORDER` reordered (wedding → trades → student → freelance → marketing — service-operators-with-clients lead). Audience landing pages audited (~1000 lines, already strong). Cross-product banned-word catch-net (single real fix: "autonomous demo" → "scripted demo").
-- **Plan 6 — Analytics MVP.** Architecture + data layer + auth + Tasks DB read + 10 triggers + curated prose with rotation/self/focus variants + compression + web render + email render + Resend dispatch + Vercel daily cron + marketing alignment to shipped reality. Engine end-to-end production-ready.
-- **Plan 7 (in flight) — Demo.** 7.1 30s narrative + storyboard locked. 7.2 Remotion scaffold (`~/Projects/personal/analytics-demo/`) + first typography cut rendered (~2.4MB MP4) and embedded at analytics-phi-ten.vercel.app/demo.
+- **Plan 6 — Signal MVP.** Architecture + data layer + auth + Tasks DB read + 10 triggers + curated prose with rotation/self/focus variants + compression + web render + email render + Resend dispatch + Vercel daily cron + marketing alignment to shipped reality. Engine end-to-end production-ready.
+- **Plan 7 (in flight) — Demo.** 7.1 30s narrative + storyboard locked. 7.2 Remotion scaffold (`~/Projects/personal/analytics-demo/`) + first typography cut rendered (~2.4MB MP4) and embedded at signal-phi-ten.vercel.app/demo.
 
 ---
 
@@ -105,7 +105,7 @@ Plans are the suite's unit of work. Plans 1–6 are closed. Plan 7 is in flight.
 
 - **Direction C — Daily Signal as page.** Alternative for the Studio umbrella landing: the umbrella IS a Daily Signal briefing. Branch off main, do NOT replace production.
 - ~~**Notes scaffolding.**~~ Closed 2026-06-06. Signal Notes is standing at N·21 with: marketing site + animated hero, full notebook (capture / search / long-press tray / promote-to-Tasks / archive), capture-by-email API, account + danger-zone, Clerk-backed sign-in/up, four drizzle migrations (FTS5 search, user prefs, note-extract columns, archived_at), and the canonical SuiteSwitcher pills shipped (N·18) so the chrome reads as suite-coherent. PRODUCT.md remains locked. The brand-locked refusal stands: one-way Notes→Tasks promotion only, never auto-detect todos.
-- **Cross-product chrome — top-bar product switcher, shared auth seam.** All four products carry the SuiteSwitcher pills (T·18-equivalent, N·18, R·… , A·…). Remaining: a shared auth seam so Tasks/Roadmap/Notes/Analytics share session, not four parallel Clerk sessions. That's the real chrome work — name it precisely instead of "deferred until Notes."
+- **Cross-product chrome — top-bar product switcher, shared auth seam.** All four products carry the SuiteSwitcher pills (T·18-equivalent, N·18, R·… , A·…). Remaining: a shared auth seam so Tasks/Timeline/Notes/Signal share session, not four parallel Clerk sessions. That's the real chrome work — name it precisely instead of "deferred until Notes."
 - ~~**Audience archetype completion.**~~ Closed 2026-06-06. All 5 of 5 BRAND.md §2.1 archetypes now have dedicated landing pages on Tasks: `/for/freelancers`, `/for/trades`, `/for/students`, `/for/small-business` (operators), `/for/community` (public-facing coordinators). Sitemap and footer Resources column carry all five. Surface complete.
 - **Performance pass.** Plan 4 closed pragmatically without browser access. Owed: Lighthouse / Core Web Vitals run against each deployed product, identify Largest Contentful Paint + Cumulative Layout Shift outliers, fix.
 - **CSP enforce-mode promotion.** Currently Report-Only across all four products. Promote after browser verification confirms no false-positive blocks.
@@ -116,9 +116,9 @@ Plans are the suite's unit of work. Plans 1–6 are closed. Plan 7 is in flight.
 
 These are setup-ish tasks that need a human in the loop because they touch secrets, billing, or third-party admin consoles.
 
-- **`CRON_SECRET` + `RESEND_API_KEY` on Vercel (Analytics project).** Sensitive-flagged. Without these, the daily cron handler will return 401 / fail to dispatch email.
+- **`CRON_SECRET` + `RESEND_API_KEY` on Vercel (Signal project).** Sensitive-flagged. Without these, the daily cron handler will return 401 / fail to dispatch email.
 - **DKIM completion in Google Workspace Admin Console** for `hello@signalstudio.ie`. Domain verified, alias added; DKIM still pending generation. Once generated, agent can add the DNS record via Vercel API.
-- **Live demo seed for Roadmap.** `roadmap/scripts/seed-demo.ts` was edited in Plan 3.5 but `npm run seed:demo` against prod Turso has not run — `/tasks` demo workspace on Roadmap won't reflect the rewrites until the seed runs.
+- **Live demo seed for Timeline.** `roadmap/scripts/seed-demo.ts` was edited in Plan 3.5 but `npm run seed:demo` against prod Turso has not run — `/tasks` demo workspace on Timeline won't reflect the rewrites until the seed runs.
 
 ---
 
@@ -126,12 +126,12 @@ These are setup-ish tasks that need a human in the loop because they touch secre
 
 These apply to *any* product in the suite, not just Studio:
 
-- **No "AI-powered" anything in marketing.** Ambient AI is fine inside engines (Analytics's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed.
-- **No team tier on Roadmap.** v1 lock. Solo + Pro only.
-- **No private workspaces on Roadmap.** Public-by-default is the position.
-- **No comment threading on Roadmap.** Refused.
-- **No public directory of Roadmap workspaces.** Refused in v1.
-- **No projects table in Tasks.** Tags-as-projects is the locked mapping (per §4 above). Any feature that would require a projects table is a refusal candidate — flex Analytics's read model instead.
+- **No "AI-powered" anything in marketing.** Ambient AI is fine inside engines (Signal's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed.
+- **No team tier on Timeline.** v1 lock. Solo + Pro only.
+- **No private workspaces on Timeline.** Public-by-default is the position.
+- **No comment threading on Timeline.** Refused.
+- **No public directory of Timeline workspaces.** Refused in v1.
+- **No projects table in Tasks.** Tags-as-projects is the locked mapping (per §4 above). Any feature that would require a projects table is a refusal candidate — flex Signal's read model instead.
 - **No auto-detect-todos in Notes.** One-way Notes → Tasks promotion only, user-initiated.
 - **No demo-vs-reality gap.** Marketing reflects what's shipped. Planned features marked planned.
 - **No category-fragmentation visuals** (mascots, robot iconography, 3-adjective hero grids, holographic gradients, glow blooms, generic SaaS hero stock).

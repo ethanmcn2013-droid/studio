@@ -1,6 +1,6 @@
-## 2026-05-10 · ships · Analytics learns how to email the morning brief
+## 2026-05-10 · ships · Signal learns how to email the morning brief
 
-**At 06:00 UTC every weekday, Analytics reads the Tasks workspace,
+**At 06:00 UTC every weekday, Signal reads the Tasks workspace,
 runs ten trigger checks against what changed yesterday, and emails
 the operator a four-sentence brief — only the parts that earned a
 sentence. Nothing changed, nothing arrives. The default is silence.**

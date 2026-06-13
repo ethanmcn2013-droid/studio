@@ -11,13 +11,17 @@
 
 import {
   TASKS_URL,
-  ROADMAP_URL,
-  ANALYTICS_URL,
+  TIMELINE_URL,
+  SIGNAL_URL,
   NOTES_URL,
 } from "@/lib/product-urls";
 
 interface ProductRowProps {
   id: string;
+  // dataKey is the internal gesture-identity hook (drives the per-product
+  // dot animation in globals.css). Kept stable across the 2026-06-13 rename
+  // so the CSS selectors + hero anchors don't move; only the visible `word`
+  // changed (roadmap→timeline, analytics→signal).
   dataKey: "tasks" | "roadmap" | "analytics" | "notes";
   position: string;
   word: string;
@@ -95,8 +99,8 @@ export function RevealProducts() {
         One day&rsquo;s work <span className="gold">·</span> four places it lives
       </div>
       <p className="reveal-products-connective">
-        Notes is where it starts. Tasks is where it gets done. Roadmap is what
-        everyone else sees. Analytics tells you where to look.
+        Notes is where it starts. Tasks is where it gets done. Timeline is what
+        everyone else sees. Signal tells you where to look.
       </p>
 
       <ProductRow
@@ -125,29 +129,29 @@ export function RevealProducts() {
         id="roadmap"
         dataKey="roadmap"
         position="What people see"
-        word="roadmap"
+        word="timeline"
         essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
-        pills={["Private preview", "Public roadmaps"]}
-        cta="Open the roadmap →"
-        href={ROADMAP_URL}
+        pills={["Private preview", "Public timelines"]}
+        cta="Open the timeline →"
+        href={TIMELINE_URL}
         external
       />
       {/*
-        Daily Signal prominence (2026-06-07 walkover #3): the product the
-        suite hangs on. The mono eyebrow now carries "Analytics" as the
-        small position label; the wordmark itself reads `daily signal` —
-        the noun customers actually receive. The href + gesture key
-        stay on `analytics` (the product, the URL, the dot identity).
+        Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
+        product the suite hangs on. The wordmark reads `signal` — the product
+        name, matching its siblings; the Daily Signal briefing it delivers
+        lives in the pill + essence. The href + internal gesture key stay
+        `analytics` (the dot identity / CSS hook); the URL is SIGNAL_URL.
       */}
       <ProductRow
         id="analytics"
         dataKey="analytics"
-        position="Analytics · what needs attention"
-        word={"daily\u00a0signal"}
+        position="What needs attention"
+        word="signal"
         essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
-        href={ANALYTICS_URL}
+        href={SIGNAL_URL}
         external
       />
 
@@ -199,7 +203,7 @@ export function RevealProducts() {
           100% {transform:scaleX(0);transform-origin:right center;opacity:0}
         }
 
-        /* Roadmap · the dot extrudes a milestone line, then drops a second
+        /* Timeline · the dot extrudes a milestone line, then drops a second
            dot at the end — a track being laid. Scoped to the product
            row; the hero stack still sweeps. (Walkover #5, 2026-06-07.) */
         .reveal-product-row[data-key="roadmap"] .mark .dot{
@@ -235,7 +239,7 @@ export function RevealProducts() {
           100%{transform:translate(-50%,-50%) scale(0);opacity:0}
         }
 
-        /* Daily Signal (Analytics row) · the dot pulses like a heartbeat —
+        /* Signal · the dot pulses like a heartbeat —
            two quick beats, then a held rest. ECG cadence, not the
            discrete tick the hero stack runs. Scoped to the product
            row; hero stack still ticks through discrete samples.

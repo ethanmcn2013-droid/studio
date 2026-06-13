@@ -8,5 +8,5 @@ those five rungs has to argue for its existence in code review.**
 The argument almost never wins. The rare exceptions earn a token; the
 common ones get rewritten. The ladder is the same on every product,
 every route, every device, so a wedding planner who learned to read
-Tasks reads Roadmap, Analytics, and Notes with no second cognitive
+Tasks reads Timeline, Signal, and Notes with no second cognitive
 load. The grammar is the shared one.

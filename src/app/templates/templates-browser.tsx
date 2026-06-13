@@ -130,7 +130,7 @@ export function TemplatesBrowser({
                 {t.shape === "anchor" ? (
                   <span
                     className="tbrowse-card-badge tbrowse-card-badge--anchor"
-                    title="Seeds Tasks, Notes, Roadmap, and Analytics in one go"
+                    title="Seeds Tasks, Notes, Timeline, and Signal in one go"
                   >
                     All 4 products
                   </span>

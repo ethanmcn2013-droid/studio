@@ -1,7 +1,7 @@
 ---
 id: roadmap-public-pages
-title: Shareable roadmap pages
-product: Signal Roadmap
+title: Shareable timeline pages
+product: Signal Timeline
 category: Growth
 status: Built
 priority: High

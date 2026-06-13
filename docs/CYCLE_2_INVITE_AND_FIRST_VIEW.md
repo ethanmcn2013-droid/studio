@@ -41,11 +41,11 @@ The first view should answer five questions:
 
 | Section | Question | Source |
 | --- | --- | --- |
-| What matters now | What needs my attention? | Analytics |
+| What matters now | What needs my attention? | Signal |
 | My work | What do I own? | Tasks |
-| What changed | What moved since I last looked? | Updates / Roadmap |
+| What changed | What moved since I last looked? | Updates / Timeline |
 | What was decided | What did we agree? | Notes |
-| Where this is going | What happens next? | Roadmap |
+| Where this is going | What happens next? | Timeline |
 
 This view should appear before a dense list, board, or timeline.
 
@@ -75,7 +75,7 @@ The couple should not need to:
 
 Prioritise these three:
 
-1. Planning roadmap
+1. Planning timeline
 2. Venue meeting follow-up
 3. Today Signal briefing
 
@@ -94,11 +94,11 @@ V1 source fields:
 
 | Field | Example |
 | --- | --- |
-| source | invite, roadmap_share, note_followup, briefing_share, template |
+| source | invite, timeline_share, note_followup, briefing_share, template |
 | segment | weddings, students, freelancers |
 | role | creator, collaborator, guest, viewer |
 | campaign | founding_venue, planner_pilot, collaboration_proof |
-| artefact | planning_roadmap, venue_followup, today_signal |
+| artefact | planning_timeline, venue_followup, today_signal |
 
 Do not overbuild attribution before the first share path works.
 

@@ -259,11 +259,11 @@ function IncludedStack() {
           <span className="text-ink-quiet">— private capture, promotes to Tasks.</span>
         </li>
         <li>
-          <span className="text-ink">Signal Roadmap</span>{" "}
+          <span className="text-ink">Signal Timeline</span>{" "}
           <span className="text-ink-quiet">— share what&rsquo;s coming.</span>
         </li>
         <li>
-          <span className="text-ink">Signal Analytics</span>{" "}
+          <span className="text-ink">Signal</span>{" "}
           <span className="text-ink-quiet">— a daily briefing on what needs attention.</span>
         </li>
       </ul>
@@ -328,7 +328,7 @@ function claimableCopy(
   return {
     eyebrow: null,
     headline: "Welcome to Signal Studio.",
-    sub: "A complimentary account, on us. Four small tools — Tasks, Roadmap, Analytics, Notes.",
+    sub: "A complimentary account, on us. Four small tools — Tasks, Timeline, Signal, Notes.",
     cta: "Open your account",
   };
 }

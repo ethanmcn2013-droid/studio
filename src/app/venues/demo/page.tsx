@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ROADMAP_URL, TASKS_URL, NOTES_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import { TIMELINE_URL, TASKS_URL, NOTES_URL, SIGNAL_URL } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Venue Edition Demo - Signal Studio",
   description:
-    "One wedding Tuesday, shown across Signal Notes, Tasks, Roadmap, and Analytics. A venue-facing demo for the paid Venue Edition.",
+    "One wedding Tuesday, shown across Signal Notes, Tasks, Timeline, and Signal. A venue-facing demo for the paid Venue Edition.",
   openGraph: {
     title: "Venue Edition Demo - Signal Studio",
     description:
@@ -27,7 +27,7 @@ const venueHref = withTracking("/venues", {
   artifact: "venue_page",
 });
 
-const couplePlanRawHref = `${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`;
+const couplePlanRawHref = `${TIMELINE_URL.replace(/\/$/, "")}/the-wedding`;
 const couplePlanHref = withTracking(couplePlanRawHref, {
   ...VENUE_SITE_TRACKING,
   artifact: "couple_plan",
@@ -70,7 +70,7 @@ const demoSteps = [
   },
   {
     time: "0:38",
-    product: "Signal Roadmap",
+    product: "Signal Timeline",
     role: "Plan",
     title: "The couple gets one readable plan.",
     copy:
@@ -87,12 +87,12 @@ const demoSteps = [
   },
   {
     time: "0:52",
-    product: "Signal Analytics",
+    product: "Signal",
     role: "Attention",
     title: "The next morning is a short briefing, not a dashboard.",
     copy:
       "The briefing names the few things that need attention before they become another thread in the coordinator inbox.",
-    href: `${ANALYTICS_URL.replace(/\/$/, "")}/wedding-planning`,
+    href: `${SIGNAL_URL.replace(/\/$/, "")}/wedding-planning`,
     venueEyebrow: "Morning briefing · three things, not thirty",
     label: "Morning briefing",
     lines: [

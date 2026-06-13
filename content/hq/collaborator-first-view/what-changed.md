@@ -1,7 +1,7 @@
 ---
 id: what-changed
 title: What changed
-sourceProduct: Signal Roadmap / Updates
+sourceProduct: Signal Timeline / Updates
 status: Needs design
 nextAction: Define the minimum event list needed for the first view.
 ---

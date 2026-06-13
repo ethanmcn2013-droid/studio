@@ -14,7 +14,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal Analytics — one-pager",
+  title: "Signal — one-pager",
   description: "Attention clarity. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
@@ -27,8 +27,8 @@ export default async function AnalyticsOnePager() {
 
   return (
     <OnePager
-      wordmark="signal analytics."
-      eyebrow="Signal Analytics · Attention clarity"
+      wordmark="signal."
+      eyebrow="Signal · Attention clarity"
       gesture="tick"
     >
       <OPHeadline>
@@ -45,7 +45,7 @@ export default async function AnalyticsOnePager() {
       </OPWhatIs>
 
       <OPPurpose>
-        Analytics reads your Signal Tasks workspace every morning and sends
+        Signal reads your Signal Tasks workspace every morning and sends
         one email. Not a report. Not a chart. Three items, ranked by what
         matters most: what&rsquo;s been stuck the longest, what&rsquo;s due
         soon, what you shipped. If nothing moved, nothing arrives. The

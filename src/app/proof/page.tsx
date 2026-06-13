@@ -6,15 +6,15 @@ import { CaptureReveal } from "@/components/proof/capture-reveal";
 import { ReadingProgress } from "@/components/reading-progress";
 import {
   TASKS_URL,
-  ROADMAP_URL,
-  ANALYTICS_URL,
+  TIMELINE_URL,
+  SIGNAL_URL,
   NOTES_URL,
 } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Proof — Signal Studio",
   description:
-    "One scene, four products, end to end. A wedding planner sits down for a venue call. Forty-five minutes later, the work is in motion across Signal Notes, Tasks, Roadmap, and Analytics. This is that scene.",
+    "One scene, four products, end to end. A wedding planner sits down for a venue call. Forty-five minutes later, the work is in motion across Signal Notes, Tasks, Timeline, and Signal. This is that scene.",
 };
 
 const LAYERS = [
@@ -68,17 +68,17 @@ const LAYERS = [
   },
   {
     n: "3",
-    product: "Signal Roadmap",
-    productHref: ROADMAP_URL,
+    product: "Signal Timeline",
+    productHref: TIMELINE_URL,
     role: "Direction clarity",
     when: "Same evening.",
     title: "One link goes to the couple. The plan is now public to them.",
     body: [
-      "The planner publishes a Roadmap update from the same workspace. Public link. Plain English. No private notes. No vendor pricing. Just the milestones the couple care about and the next decision they have to make.",
+      "The planner publishes a Timeline update from the same workspace. Public link. Plain English. No private notes. No vendor pricing. Just the milestones the couple care about and the next decision they have to make.",
       "The couple read it at midnight on their phone. No login. No app to install. No tax on their attention.",
     ],
     artefact: {
-      label: "Public roadmap · sarah-and-james.signal.example",
+      label: "Public timeline · sarah-and-james.signal.example",
       lines: [
         "Now → Save-the-dates by July 15",
         "Next → Final headcount by August 1",
@@ -91,13 +91,13 @@ const LAYERS = [
   },
   {
     n: "4",
-    product: "Signal Analytics",
-    productHref: ANALYTICS_URL,
+    product: "Signal",
+    productHref: SIGNAL_URL,
     role: "Attention clarity",
     when: "The next morning.",
     title: "At 6am, the briefing names what needs the planner's attention.",
     body: [
-      "Analytics reads the state of the workspace overnight. Ten rules look for held-up work, overdue items, quiet projects, and concentration of work on one person. Three items per block. Always three. Silence is signal too.",
+      "Signal reads the state of the workspace overnight. Ten rules look for held-up work, overdue items, quiet projects, and concentration of work on one person. Three items per block. Always three. Silence is signal too.",
       "Every sentence is drawn from a curated library written by hand. No LLM in the path. The briefing tells you what changed; it does not decide what you should do about it.",
     ],
     artefact: {
@@ -157,7 +157,7 @@ export default function ProofPage() {
           >
             A wedding planner sits down for the first venue call.
             Forty-five minutes later, the work is in motion across
-            Signal Notes, Tasks, Roadmap, and Analytics. This page is
+            Signal Notes, Tasks, Timeline, and Signal. This page is
             that scene, layer by layer.
           </p>
 
@@ -281,7 +281,7 @@ export default function ProofPage() {
             <p className="mb-10 max-w-[58ch] text-[15.5px] leading-[1.7] text-ink-soft">
               The suite is four small tools that already know how to talk to
               each other. Notes promotes to Tasks. Tasks publishes to
-              Roadmap. Tasks feeds Analytics. The handoffs are the product.
+              Timeline. Tasks feeds Signal. The handoffs are the product.
             </p>
 
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-[14px] text-ink">

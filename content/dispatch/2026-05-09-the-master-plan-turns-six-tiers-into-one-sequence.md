@@ -1,8 +1,8 @@
 ## 2026-05-09 · reads · The master plan turns six tiers into one sequence
 
 **A working document inside Signal HQ ratifies the order of the
-remaining build — strategic foundation, visual coherence, roadmap
-parity, security pass, audience refinement, analytics MVP — and
+remaining build — strategic foundation, visual coherence, timeline
+parity, security pass, audience refinement, signal MVP — and
 commits to one cycle of each in sequence. No parallel tracks. No
 "we'll come back to that." Six cycles, in this order.**
 

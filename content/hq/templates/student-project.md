@@ -3,7 +3,7 @@ id: student-project
 title: Student group project workspace
 targetSegment: Students
 status: Idea
-includedProducts: [Tasks, Notes, Roadmap]
+includedProducts: [Tasks, Notes, Timeline]
 relatedCampaign: Student Group Project Programme
 activationGoal: At least two students join and update work within seven days.
 ---

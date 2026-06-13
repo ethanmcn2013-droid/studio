@@ -1,10 +1,10 @@
 ---
 id: planning-roadmap
-title: Planning roadmap
+title: Planning timeline
 wedge: Weddings and events
-ownerProduct: Signal Roadmap
+ownerProduct: Signal Timeline
 defaultVisibility: Owner controlled
-sourceTracking: source=roadmap_share, segment=weddings, role=viewer
+sourceTracking: source=timeline_share, segment=weddings, role=viewer
 cta: Use this planning workspace
 status: Draft
 nextAction: Define public/private copy and Created with Signal Studio placement.

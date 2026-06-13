@@ -1,7 +1,7 @@
 ---
 id: briefing
 title: Workspace briefing
-usedBy: [Analytics, Tasks, Roadmap, Notes]
+usedBy: [Signal, Tasks, Timeline, Notes]
 status: Partly working
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: today-signal
 title: Today Signal briefing
-product: Signal Analytics
+product: Signal
 category: Integration
 status: Idea
 priority: High
@@ -9,7 +9,7 @@ effort: Large
 impact: High
 owner: Ethan
 principleAlignment: 96
-relatedCampaign: Public Roadmap Content Campaign
+relatedCampaign: Public Timeline Content Campaign
 relatedMetric: Weekly active workspaces
 ---
 

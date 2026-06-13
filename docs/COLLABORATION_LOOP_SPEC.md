@@ -32,7 +32,7 @@ Contract:
 - Tracking params identify **the artefact and the channel, never the person.** No email, no Person.id, no workspace name in a shareable URL. A `noteId`/`workspaceId` may appear only as an opaque key with no read-back grant (SHARED_OBJECT_MODEL §0.4).
 - Attribution is recorded against the *artefact*, not a fingerprinted visitor. "This shared update produced 3 new workspaces" is allowed; "this person opened it" is not.
 - Links are revocable (CYCLE_2). A revoked link 404s; it does not leak who held it.
-- No third-party analytics script on shared/guest surfaces. First-party artefact counters only — consistent with the suite's no-modal, no-tracker register (DESIGN.md §10).
+- No third-party signal script on shared/guest surfaces. First-party artefact counters only — consistent with the suite's no-modal, no-tracker register (DESIGN.md §10).
 
 ## 4 · Public / private controls (GAP — specified here)
 
@@ -42,14 +42,14 @@ Three visibility states, creator-controlled, per workspace and per shareable out
 |---|---|---|---|
 | **Private** | Creator + explicitly invited Persons | Full workspace per their role | Workspace default |
 | **Shared link** | Anyone with the link | One shareable output (Update `kind:'shared-summary'`, approved Decision/Risk extracts) — never the workspace, never raw Notes | Output default when shared |
-| **Public** | Anyone | A read-only artefact intended for discovery (e.g. a public roadmap page) | Off — opt-in per output |
+| **Public** | Anyone | A read-only artefact intended for discovery (e.g. a public timeline page) | Off — opt-in per output |
 
 Rules:
 - Visibility is **per output, not just per workspace.** Making one update public never makes the workspace public.
 - Raising visibility is always an explicit creator action with a plain-language confirmation ("Anyone with this link will see this update. Your workspace stays private."). Lowering it is one click and immediate.
 - Private Notes bodies are categorically excluded from every state above by `CYCLE_9_4C` — no control can expose them, including "Public".
 - A guest/public surface renders only approved extracts and `shared-summary` updates. There is no "view workspace" affordance from a shared artefact (Cycle 2: viewers cannot browse private context).
-- Per-product ceiling (SPRINT_2, do not exceed): Tasks = multi-user private workspaces; Roadmap = one-way public artefacts, no comments; Notes = single-user, no sharing; Analytics = private to one person. This spec never grants a product more collaboration than its locked definition allows.
+- Per-product ceiling (SPRINT_2, do not exceed): Tasks = multi-user private workspaces; Timeline = one-way public artefacts, no comments; Notes = single-user, no sharing; Signal = private to one person. This spec never grants a product more collaboration than its locked definition allows.
 
 ## 5 · Definition of done
 

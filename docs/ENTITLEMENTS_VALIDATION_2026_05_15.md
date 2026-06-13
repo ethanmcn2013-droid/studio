@@ -21,19 +21,19 @@ gate location, and verification status.
 
 | Pricing claim                                       | Enforcing repo | Gate location                                                | Verified |
 |-----------------------------------------------------|----------------|--------------------------------------------------------------|----------|
-| Free · One workspace                                | roadmap        | `src/server/actions/workspaces.ts:114` (`FREE_WORKSPACE_CAP = 1`) | code ✓   |
+| Free · One workspace                                | timeline        | `src/server/actions/workspaces.ts:114` (`FREE_WORKSPACE_CAP = 1`) | code ✓   |
 | Free · Three editing guests                         | tasks          | `src/server/db/membership.ts:25` (`FREE_WORKSPACE_MEMBER_CAP = 4`, owner + 3) | code ✓   |
 | Free · All four products                            | (no gate)      | All four ship without tier-gated entry — match ✓             | code ✓   |
-| Workspace · Unlimited workspaces                    | roadmap        | `src/server/actions/workspaces.ts:114-126` (skipped when `tierAtLeast(tier, "workspace")`) | code ✓   |
+| Workspace · Unlimited workspaces                    | timeline        | `src/server/actions/workspaces.ts:114-126` (skipped when `tierAtLeast(tier, "workspace")`) | code ✓   |
 | Workspace · Unlimited guests                        | tasks          | `src/server/db/membership.ts:111-118` (`isUnlimited` covers workspace/studio/wedding/event → `max: null`) | code ✓   |
 | Workspace · Drops to Free after window              | shared DB      | `src/lib/entitlements-db/reads.ts:62` (`gt(expiresAt, now)` SQL filter) | code ✓   |
 | Workspace · Cancel anytime                          | stripe         | Tasks `/api/webhooks/stripe` handles `subscription.deleted`  | code ✓   |
-| Event · One workspace for one event                 | roadmap        | `src/server/actions/workspaces.ts:114-126` (`tier === "event"` branch returns event-shaped error) | code ✓   |
+| Event · One workspace for one event                 | timeline        | `src/server/actions/workspaces.ts:114-126` (`tier === "event"` branch returns event-shaped error) | code ✓   |
 | Event · 12-month window                             | shared DB      | `durationDays` honored in grant payload; expiry filter as above | code ✓   |
-| Event · Workspace keeps reading forever after expiry | (no read gate) | Tasks/Roadmap read paths are not tier-gated — workspaces remain readable post-expiry | code ✓   |
+| Event · Workspace keeps reading forever after expiry | (no read gate) | Tasks/Timeline read paths are not tier-gated — workspaces remain readable post-expiry | code ✓   |
 | Student · .edu verification                         | (manual)       | Pricing CTA is `mailto:hello@signalstudio.ie` — no automated flow | honest gap (operator grants via `/api/internal/entitlements/grant`) |
-| Analytics · Daily briefing email (Workspace+)       | analytics      | `src/app/api/cron/briefings/route.ts:107-108` (skip non-paid users) | code ✓   |
-| Analytics · Briefing visible on /app (Free)         | analytics      | `src/app/app/brief/page.tsx:26-27` (UI renders; `emailDispatchEnabled` only gates the email banner) | code ✓   |
+| Signal · Daily briefing email (Workspace+)       | signal      | `src/app/api/cron/briefings/route.ts:107-108` (skip non-paid users) | code ✓   |
+| Signal · Briefing visible on /app (Free)         | signal      | `src/app/app/brief/page.tsx:26-27` (UI renders; `emailDispatchEnabled` only gates the email banner) | code ✓   |
 | Notes · all features Free                           | notes          | `src/server/entitlements.ts` predicate has **0 call sites** — Notes deliberately ships no Pro gate today | code ✓   |
 
 ### Verdict
@@ -56,11 +56,11 @@ For future operators tracing a gate decision through the stack.
 - `src/app/api/webhooks/stripe/route.ts` — webhook → Tasks DB → mirror to shared DB.
 - `src/app/api/internal/reconcile-entitlements/route.ts` — manual reconcile endpoint.
 
-**Roadmap** (workspace count + event-shape gate):
+**Timeline** (workspace count + event-shape gate):
 - `src/lib/entitlements-shared/` — shared client.
 - `src/server/actions/workspaces.ts:114-126` — `createWorkspace` gate. Reads `resolveEntitlement(userId)`; rejects with tier-specific error message when free user owns 1+ workspaces.
 
-**Analytics** (email-dispatch gate):
+**Signal** (email-dispatch gate):
 - `src/lib/entitlements-shared/` — shared client.
 - `src/app/api/cron/briefings/route.ts:107-108` — gate inside `processOne()`. Free users are skipped with `reason: "free-tier-no-email"`.
 - `src/app/app/brief/page.tsx:26-27` — `emailDispatchEnabled` computed; banner shown to Free users with /pricing upgrade link.
@@ -118,12 +118,12 @@ agent-side prerequisite are marked **NOW**.
    - Complete checkout.
    - Confirm in Tasks DB that the user has an active `workspace` row.
    - Confirm in shared signal-entitlements DB that the same user has an active `workspace` row (the mirror).
-   - Verify Roadmap allows creating a 2nd workspace (cap lifted).
-   - Verify Analytics next briefing email is dispatched (or trigger cron manually).
+   - Verify Timeline allows creating a 2nd workspace (cap lifted).
+   - Verify Signal next briefing email is dispatched (or trigger cron manually).
 2. **NOW — Free-tier gate walk in browser.** Sign in as a free user.
    - Tasks: invite a 4th member to a workspace → confirm gate fires with upgrade message.
-   - Roadmap: try to create a 2nd workspace → confirm "Free includes one workspace" error.
-   - Analytics: visit `/app/brief` → confirm the upgrade banner shows.
+   - Timeline: try to create a 2nd workspace → confirm "Free includes one workspace" error.
+   - Signal: visit `/app/brief` → confirm the upgrade banner shows.
    - Notes: confirm there is no gate (deliberate).
 3. **NOW — Comp-code regression test.** Redeem a Lamb's Hill code
    (any unused `LAMBSHIL-*`). Confirm:

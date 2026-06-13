@@ -81,8 +81,8 @@ export default async function TemplatesPage({
           </p>
           <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-ink-faint">
             Two shapes. <strong className="font-medium text-ink-soft">Anchor</strong>{" "}
-            workspaces seed a Tasks list, a Notes notebook, a Roadmap, and
-            an Analytics briefing in one go.{" "}
+            workspaces seed a Tasks list, a Notes notebook, a Timeline, and
+            an Signal briefing in one go.{" "}
             <strong className="font-medium text-ink-soft">Specialty</strong>{" "}
             templates drop into Tasks.
           </p>

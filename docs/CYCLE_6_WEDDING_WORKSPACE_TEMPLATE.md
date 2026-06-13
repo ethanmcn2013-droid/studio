@@ -24,7 +24,7 @@ A workspace creator should not begin from a blank project-management shell.
 
 For the wedding/events wedge, the first repeatable asset is now:
 
-1. a wedding planning shared update in Roadmap
+1. a wedding planning shared update in Timeline
 2. a wedding conversion page in Studio
 3. a wedding planning workspace template in Tasks
 
@@ -37,6 +37,6 @@ Shared update -> `/weddings` -> template -> workspace -> collaboration.
 Build the same wedding scene across the rest of the ecosystem:
 
 - Notes: venue meeting follow-up with actions, decisions, risks, and open questions
-- Roadmap: connect the template to the wedding shared update
-- Analytics: Today Signal briefing for the wedding workspace
+- Timeline: connect the template to the wedding shared update
+- Signal: Today Signal briefing for the wedding workspace
 - Growth: source tracking from shared update to template use to workspace creation

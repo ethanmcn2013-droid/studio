@@ -14,7 +14,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal Roadmap — one-pager",
+  title: "Signal Timeline — one-pager",
   description: "Direction clarity. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
@@ -27,8 +27,8 @@ export default async function RoadmapOnePager() {
 
   return (
     <OnePager
-      wordmark="signal roadmap."
-      eyebrow="Signal Roadmap · Direction clarity"
+      wordmark="signal timeline."
+      eyebrow="Signal Timeline · Direction clarity"
       gesture="sweep"
     >
       <OPHeadline>
@@ -40,12 +40,12 @@ export default async function RoadmapOnePager() {
       </OPHeadline>
 
       <OPWhatIs>
-        A shareable roadmap that non-technical collaborators can open and
+        A shareable timeline that non-technical collaborators can open and
         understand in under sixty seconds.
       </OPWhatIs>
 
       <OPPurpose>
-        Roadmap gives the work a public face. Write your plan once. Share a
+        Timeline gives the work a public face. Write your plan once. Share a
         link. Anyone — a client, a venue coordinator, a course supervisor —
         sees what&rsquo;s in progress, what shipped, and what comes next,
         without being asked to understand the tool behind it. The shared
@@ -55,10 +55,10 @@ export default async function RoadmapOnePager() {
       <OPKicker>What it does</OPKicker>
       <OPSubstance
         items={[
-          "A plain-text editor that produces a structured, publicly shareable roadmap. Write it; share the link; the reader sees progress, not source.",
+          "A plain-text editor that produces a structured, publicly shareable timeline. Write it; share the link; the reader sees progress, not source.",
           "Milestones as a first-class object, with countdown and per-milestone progress. The reader knows how close the work is to done.",
           "A shared update page the owner can send to anyone, with “invited by” attribution and a reply-by-email option. No account required to read.",
-          "Public guest view is the architecture, not a toggle: being readable by people outside the work is how Roadmap works.",
+          "Public guest view is the architecture, not a toggle: being readable by people outside the work is how Timeline works.",
         ]}
       />
     </OnePager>

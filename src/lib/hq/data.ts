@@ -63,7 +63,7 @@ export interface OperatingFocus {
 
 export interface ProductStatus {
   id: string;
-  name: "Signal Tasks" | "Signal Roadmap" | "Signal Analytics" | "Signal Notes";
+  name: "Signal Tasks" | "Signal Timeline" | "Signal" | "Signal Notes";
   layer: "Execution" | "Direction" | "Attention" | "Context";
   role: string;
   maturity: number;
@@ -1695,7 +1695,7 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-14",
       status: "To do",
-      relatedObject: "Signal Analytics",
+      relatedObject: "Signal",
       notes: "Phase C closing assumed the cron fires at 06:00 UTC daily but nobody's checked the log timestamps recently. The Suite Review pass added idempotency (lastSentAt cutoff) and concurrency, but neither matters if the cron is silently 405ing or never being dispatched. Operator opens Vercel dashboard → analytics project → Logs, filters for /api/cron/briefings, confirms a daily 06:00 UTC entry exists. If missing, the cron config in vercel.json needs investigation.",
     },
     {

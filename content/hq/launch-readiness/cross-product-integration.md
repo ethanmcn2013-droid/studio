@@ -10,4 +10,4 @@ nextAction: Use the shared update page to define the first common Update and Sha
 
 ## Notes
 
-Roadmap now has the first visible shared-output surface, but shared objects and events still need to become consistent.
+Timeline now has the first visible shared-output surface, but shared objects and events still need to become consistent.

@@ -87,7 +87,7 @@ https://signalstudio.ie/contact?subject=founding-venue&source=founder_email&camp
 
 ## Event Names
 
-If/when client analytics are wired, use these event names. Until then, query strings plus contact source logging are enough.
+If/when client signal are wired, use these event names. Until then, query strings plus contact source logging are enough.
 
 | Event | Trigger | Required properties |
 | --- | --- | --- |
@@ -97,8 +97,8 @@ If/when client analytics are wired, use these event names. Until then, query str
 | `venue_video_complete` | Proof video reaches 90%. | source, campaign, touch, venue, video_length |
 | `venue_sales_pack_click` | PDF clicked/opened. | source, campaign, touch, venue |
 | `venue_contact_click` | Venue CTA clicked. | source, campaign, touch, venue, route |
-| `venue_couple_plan_click` | Roadmap proof link clicked. | source, campaign, touch, venue |
-| `venue_product_proof_click` | Notes/Tasks/Roadmap/Analytics proof link clicked from demo. | source, campaign, touch, venue, product |
+| `venue_couple_plan_click` | Timeline proof link clicked. | source, campaign, touch, venue |
+| `venue_product_proof_click` | Notes/Tasks/Timeline/Signal proof link clicked from demo. | source, campaign, touch, venue, product |
 | `wedding_template_click` | Self-serve `/weddings` clicks Tasks template. | source, campaign, audience, artifact |
 | `venue_code_redeemed` | Sponsor code redeemed. | sponsor_slug, source_type, tier |
 | `venue_workspace_reached` | Redeemed couple reaches wedding workspace. | sponsor_slug, code, workspace_id |
@@ -139,7 +139,7 @@ These are the only numbers that matter for the venue motion.
 | Booked call | A real conversation is scheduled. | 1+ from first 20 sends. |
 | Paid venue | Annual fee paid before codes issued. | 1 by first proof cycle. |
 | Couples activated | Redeemed couple reaches workspace and uses it beyond day one. | 30% of issued codes redeemed; 50% of redeemed active past day one. |
-| Shared artifacts | Roadmap or plan forwarded outside the workspace. | At least 1 per active workspace. |
+| Shared artifacts | Timeline or plan forwarded outside the workspace. | At least 1 per active workspace. |
 
 ---
 
@@ -148,9 +148,9 @@ These are the only numbers that matter for the venue motion.
 | Area | Current state | Next action |
 | --- | --- | --- |
 | Link query tracking | Exists through `withTracking()` and canonical `formatTrackingRef()`. | Use it for every venue link. |
-| Page view analytics | Not confirmed in this doc. | Add only when analytics destination is decided. |
-| CTA click analytics | Query strings exist, but client events may not. | Implement after destination is chosen. |
+| Page view signal | Not confirmed in this doc. | Add only when signal destination is decided. |
+| CTA click signal | Query strings exist, but client events may not. | Implement after destination is chosen. |
 | Sponsor redemption | Existing code/coupon flow and partner stats exist. | Verify dry run before outreach. |
 | Contact route/source capture | `/contact?subject=founding-venue` preserves source, campaign, audience, artifact, touch, and venue in the generated email body. | Keep mailto route; do not add a form unless a real failure appears. |
 
-Do not block the first outreach draft on a full analytics stack. Do block actual sending on the ability to identify which venue clicked/contacted.
+Do not block the first outreach draft on a full signal stack. Do block actual sending on the ability to identify which venue clicked/contacted.

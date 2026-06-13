@@ -171,7 +171,7 @@ export const VENUE_CREATIVE_PRODUCTION_CHECKLIST: CreativeProductionItem[] = [
     state: "open",
     owner: "founder/operator",
     nextAction:
-      "Capture the eight proof frames: Notes, Tasks, Roadmap, Analytics, code redeem, venue eyebrow, and closing card.",
+      "Capture the eight proof frames: Notes, Tasks, Timeline, Signal, code redeem, venue eyebrow, and closing card.",
     source: "docs/strategy/VENUE_CREATIVE_PRODUCTION_PACK.md",
   },
   {
@@ -433,7 +433,7 @@ export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
   {
     objection: "Can we see the couple workspace?",
     answer:
-      "The couple workspace is private by default. The venue sees what the couple chooses to share: roadmap, updates, and the artefacts that belong in the planning relationship.",
+      "The couple workspace is private by default. The venue sees what the couple chooses to share: timeline, updates, and the artefacts that belong in the planning relationship.",
     useWhen: "The buyer asks about privacy and oversight.",
   },
   {
@@ -565,7 +565,7 @@ export const WAVE_ONE_VENUES: VenueTarget[] = [
     firstLine:
       "Boyne Hill sells a private-estate experience; Signal is designed to keep the couple-side planning just as private, current, and composed.",
     proofAsset:
-      "60 second venue walkthrough showing how a couple moves from roadmap to task list to final-month analytics.",
+      "60 second venue walkthrough showing how a couple moves from timeline to task list to final-month signal.",
     risk:
       "Keep the note specific to the estate experience; generic wedding SaaS language will miss.",
     nextAction:
@@ -593,7 +593,7 @@ export const WAVE_ONE_VENUES: VenueTarget[] = [
     firstLine:
       "The Millhouse looks built for couples who care about detail; Signal gives that detail one calm home from booking to final handoff.",
     proofAsset:
-      "Venue demo using a bespoke wedding scenario with notes, tasks, roadmap, and analytics moving together.",
+      "Venue demo using a bespoke wedding scenario with notes, tasks, timeline, and signal moving together.",
     risk:
       "Do not flatten the venue into a generic estate pitch. Keep the copy on detail, character, and handoff.",
     nextAction:

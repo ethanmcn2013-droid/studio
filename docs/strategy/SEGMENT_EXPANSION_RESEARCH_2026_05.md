@@ -37,9 +37,9 @@ Teachers' cost-to-serve is 4 *only* if scoped to adult teachers with zero pupil 
 | Teachers | ~5.2M | ~260,000 | Personal pocket (mostly already covered free) | €96/yr personal · €500/yr school | **No** — school = 18–24mo procurement | €748K *optimistic*, structurally unreachable solo |
 | Students | ~25.5M | ~200,000 paying | Student's own / free-tier expectation | €60/yr or **€0** (we already give .edu free) | **No** — university = worse procurement | €480K *if not free* (it is free) |
 | Small-business | ~11M | ~500,000 | **Business revenue (no free-plan expectation)** | €144/yr | **No** — acquired one at a time | **€3.6M–€7.2M** |
-| Contractors/trades | ~1.5M | ~200,000 | Business revenue | €144/yr | **Partial** — a general contractor activating subs; client-facing build-Roadmap is the loop | €1.7M |
+| Contractors/trades | ~1.5M | ~200,000 | Business revenue | €144/yr | **Partial** — a general contractor activating subs; client-facing build-Timeline is the loop | €1.7M |
 
-Read the cohort-buyer column, not the TAM column. The venue wedge works because one signature activates ~30–80 couples and every forwarded Roadmap exposes the brand to a non-user. Teachers and students have no such buyer and no such loop. Small-business has the biggest pot but every customer is won individually (linear, funnel-dependent). Trades is the only non-wedding segment where both wedge halves — a buyer who activates others, and a forwardable client artifact — are at least partially present. (Figures: researcher lens, cited sources in panel transcript; revenue ceilings are Fermi, conversion rates illustrative not modelled.)
+Read the cohort-buyer column, not the TAM column. The venue wedge works because one signature activates ~30–80 couples and every forwarded Timeline exposes the brand to a non-user. Teachers and students have no such buyer and no such loop. Small-business has the biggest pot but every customer is won individually (linear, funnel-dependent). Trades is the only non-wedding segment where both wedge halves — a buyer who activates others, and a forwardable client artifact — are at least partially present. (Figures: researcher lens, cited sources in panel transcript; revenue ceilings are Fermi, conversion rates illustrative not modelled.)
 
 ---
 
@@ -47,11 +47,11 @@ Read the cohort-buyer column, not the TAM column. The venue wedge works because 
 
 | Segment | Honest answer | Which products actually have a job |
 |---|---|---|
-| Weddings | Yes — but one-and-done by design | Tasks ✓ · Roadmap ✓ (forward to venue/family) · Notes ✓ · Analytics ~ (too thin/short) |
-| **Teachers** | **Mostly no** for a full-suite play | Tasks ~ (personal marking/admin overflow only) · Roadmap ✗ (no audience) · Notes ~ (SEN/lesson capture) · Analytics ✗ (teaching load is calendar-baseline, not anomaly the briefing fires on). The job they have lives in school-mandated systems they can't leave; we get the sticky-note residue. |
-| Students (postgrad) | Yes, for multi-stream postgrads | Tasks ✓ · Notes ✓ (lecture→task) · Roadmap ~ (thesis timeline w/ supervisor) · Analytics ~ (fires in crunch, dead in holidays) |
-| Small-business | Yes — strongest non-wedding full-suite fit | Tasks ✓ · Notes ✓ · Analytics ✓ (highest task density) · Roadmap ~ (project-shaped subset). Breaks at crew scale (no manager view). |
-| Contractors | Yes — clearest non-wedding Roadmap use | Tasks ✓ (job=workspace) · Roadmap ✓ (forward build phases to homeowner) · Notes ~ · Analytics ~. Gated by phone-first/offline reality. |
+| Weddings | Yes — but one-and-done by design | Tasks ✓ · Timeline ✓ (forward to venue/family) · Notes ✓ · Signal ~ (too thin/short) |
+| **Teachers** | **Mostly no** for a full-suite play | Tasks ~ (personal marking/admin overflow only) · Timeline ✗ (no audience) · Notes ~ (SEN/lesson capture) · Signal ✗ (teaching load is calendar-baseline, not anomaly the briefing fires on). The job they have lives in school-mandated systems they can't leave; we get the sticky-note residue. |
+| Students (postgrad) | Yes, for multi-stream postgrads | Tasks ✓ · Notes ✓ (lecture→task) · Timeline ~ (thesis timeline w/ supervisor) · Signal ~ (fires in crunch, dead in holidays) |
+| Small-business | Yes — strongest non-wedding full-suite fit | Tasks ✓ · Notes ✓ · Signal ✓ (highest task density) · Timeline ~ (project-shaped subset). Breaks at crew scale (no manager view). |
+| Contractors | Yes — clearest non-wedding Timeline use | Tasks ✓ (job=workspace) · Timeline ✓ (forward build phases to homeowner) · Notes ~ · Signal ~. Gated by phone-first/offline reality. |
 
 ---
 

@@ -5,7 +5,7 @@ productOwner: Signal Studio
 status: Built
 readiness: 58
 growthSurface: Template landing page and wedge onboarding
-nextAction: Connect the wedding template to Roadmap shared updates, Notes follow-ups, and Analytics briefings.
+nextAction: Connect the wedding template to Timeline shared updates, Notes follow-ups, and Signal briefings.
 metric: Workspaces created
 ---
 

@@ -16,7 +16,7 @@ Most venues know the moment. A couple books. Everyone is warm. Then the emails s
 
 That confusion reaches your team as admin. Not the interesting kind of admin — the repetitive kind. The same questions, the same reassurance, the same chasing of information that should have been in one place from the start. Over a full wedding season that adds up. It erodes the looked-after feeling your venue sells. Not dramatically — quietly. But a coordinator fielding the same question for the eighth time that month is not fully present for the thing they are actually there to do.
 
-Signal Studio gives each couple a single calm place to plan. Notes to capture what they are thinking. Tasks to track what needs to happen. A Roadmap they can share with suppliers and family so everyone is working from the same picture. And a morning briefing — three things, in plain English — so nothing slips. Four products. One calm place.
+Signal Studio gives each couple a single calm place to plan. Notes to capture what they are thinking. Tasks to track what needs to happen. A Timeline they can share with suppliers and family so everyone is working from the same picture. And a morning briefing — three things, in plain English — so nothing slips. Four products. One calm place.
 
 The Venue Edition puts your venue's name on it. Not as a logo wall — as a quiet line at the top of the workspace. An eyebrow. The couple's plan stays the thing in focus. Your name is just there, part of the experience, carrying the signal that this venue looks after you.
 
@@ -109,7 +109,7 @@ Not in the product — the suite is built for coordination across event types. B
 
 **"What happens after 12 months?"**
 
-The couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 12 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and roadmap stay intact on the free tier. Nothing is held hostage.
+The couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 12 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and timeline stay intact on the free tier. Nothing is held hostage.
 
 **"What about our couples' data and privacy?"**
 
@@ -152,9 +152,9 @@ These map directly to the five in the spine (§6). For a single pilot venue spec
 | 2. Booked call | A scheduled conversation — not a "send me more info" handoff | One call, owner present |
 | 3. Paid pilot | Prepaid invoice settled before codes are issued | One invoice paid. This is the proof gate. |
 | 4. Couples activated | Couples who opened a workspace and used it beyond day one (i.e., added a note or a task) | ≥ 30% of codes redeemed; ≥ 50% of redeemed workspaces used past day one |
-| 5. Shared artifacts | A Roadmap forwarded outside the workspace — to a supplier, family member, or planner | ≥ 1 per active workspace over the 12-month window |
+| 5. Shared artifacts | A Timeline forwarded outside the workspace — to a supplier, family member, or planner | ≥ 1 per active workspace over the 12-month window |
 
-A pilot venue that settles the invoice, sees 30% of codes redeemed, and produces at least three shared Roadmaps is a strong result. That is enough to write a specific case study and to justify the outreach of a second wave.
+A pilot venue that settles the invoice, sees 30% of codes redeemed, and produces at least three shared Timelines is a strong result. That is enough to write a specific case study and to justify the outreach of a second wave.
 
 A pilot venue that settles the invoice but sees zero couples activate is a stop signal — not a reason to iterate the venue pitch. That means the product is the problem. Do not send the second wave until the activation gap is understood.
 

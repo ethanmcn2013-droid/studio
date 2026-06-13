@@ -24,11 +24,14 @@ const SIZE: Record<Size, string> = {
   xl: "text-[clamp(2.25rem,1.6rem+2.8vw,4rem)]",
 };
 
+// Keys are the internal variant identity (coupled to motion + CSS
+// data-variant); values are the visible wordmark text. The 2026-06-13
+// rename changes only the text: roadmap→timeline, analytics→signal.
 const LABEL: Record<Variant, string> = {
   signal: "signal studio",
   tasks: "tasks",
-  roadmap: "roadmap",
-  analytics: "analytics",
+  roadmap: "timeline",
+  analytics: "signal",
   notes: "notes",
 };
 

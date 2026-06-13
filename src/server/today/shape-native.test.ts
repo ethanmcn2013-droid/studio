@@ -260,7 +260,7 @@ test("sections: 'upcoming' visible only with milestones", () => {
   assert.equal(upcoming.items.length, 1);
   assert.equal(upcoming.items[0]!.title, "Final walkthrough");
   assert.match(upcoming.items[0]!.meta!, /Lamb's Hill/);
-  assert.equal(upcoming.items[0]!.deepLink, "https://roadmap.signalstudio.ie/lambs-hill");
+  assert.equal(upcoming.items[0]!.deepLink, "https://timeline.signalstudio.ie/lambs-hill");
 });
 
 test("sections: 'caught' surfaces only notes touched within 36h", () => {

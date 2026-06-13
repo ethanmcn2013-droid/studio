@@ -43,10 +43,10 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | --- | --- | --- | --- |
 | One-page PDF | The quiet leave-behind for a venue owner or wedding lead. | Feels like a premium operating memo, not a SaaS flyer. Uses one strong product visual and one clear commercial offer. | blocked |
 | 30 second proof video | The quickest "I get it" artifact. | Opens inside Signal, shows couple workspace, venue view, and the planning handoff in motion. | blocked |
-| 60 second venue walkthrough | The link to send when a venue wants substance. | Shows Notes, Tasks, Roadmap, and Analytics as one live planning system. | blocked |
+| 60 second venue walkthrough | The link to send when a venue wants substance. | Shows Notes, Tasks, Timeline, and Signal as one live planning system. | blocked |
 | 2 minute founder walkthrough | Optional Loom-style founder explanation. | Calm, specific, no feature dumping. Must feel like partnership, not sales pressure. | open |
 | Product capture frames | Stills for PDF, page, and video. | Desktop and mobile captures are clean, current, and on-brand. | open |
-| Motion tests | Micro motion for the four product areas. | Notes, Tasks, Roadmap, and Analytics each get a small moment that makes the product feel alive. | open |
+| Motion tests | Micro motion for the four product areas. | Notes, Tasks, Timeline, and Signal each get a small moment that makes the product feel alive. | open |
 | Batch A first-line review | The founder taste check before any email. | Every opener sounds like it could only go to that venue. | drafted, held |
 | Wave 1 tracked links | Venue page, demo, and contact path for each target. | 36/36 Signal-owned links resolve before any send. | ready |
 
@@ -61,7 +61,7 @@ This is the working checklist for getting the venue strategy from "smart on pape
 | 3 | Design the one-page PDF. | The PDF should inherit the video story, not compete with it. |
 | 4 | Cut the 60 second walkthrough. | Longer proof becomes easier once the short proof has discipline. |
 | 5 | Read Batch A aloud. | Only after the assets exist can the outreach tone be judged honestly. |
-| 6 | Dry-run all tracked links. | Venue page, demo, contact, and analytics attribution must work before anything leaves. |
+| 6 | Dry-run all tracked links. | Venue page, demo, contact, and signal attribution must work before anything leaves. |
 | 7 | Mark Batch A `ready-unsent`. | This is the first point where an email draft can safely be prepared. |
 
 ---

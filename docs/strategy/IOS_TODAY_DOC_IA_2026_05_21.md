@@ -3,7 +3,7 @@
 **Status:** Canonical design source for the iOS app's native home surface.
 **Authored:** 2026-05-21 (post 5-director panel review of 14-app iOS canon teardown).
 **Supersedes:** none — first formal spec.
-**Build state:** PRE-BUILD. iOS submission gated on Roadmap + Analytics reaching ≥9.5 (memo `project-ios-app-research-2026-05-19.md`).
+**Build state:** PRE-BUILD. iOS submission gated on Timeline + Signal reaching ≥9.5 (memo `project-ios-app-research-2026-05-19.md`).
 **Read alongside:** `~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md`, studio repo `BRAND.md`, studio repo `DESIGN.md`, studio repo `docs/SEAMLESS_ECOSYSTEM_PLAN.md` (the same "one suite, four products, native today" thesis as the web seamless plan, rendered for iOS).
 
 ---
@@ -60,10 +60,10 @@ The Today Document is not a navigation surface. It is the brand. The iOS suite a
 |---|---|---|---|---|
 | R1 | Status bar | OS native | always | n/a |
 | R2 | Greeting band | native (clock + Clerk profile) | always | n/a — never a button |
-| R3 | Anchor card | Analytics briefing engine | always (loading state if empty) | opens Analytics product at the matching insight deep link |
+| R3 | Anchor card | Signal briefing engine | always (loading state if empty) | opens Signal product at the matching insight deep link |
 | R4 | TODAY | Tasks (due:today + overdue collapsed) | always | row tap → Tasks WebView at that task; check-tap → native haptic + optimistic UI + bridge event |
 | R5 | THIS EVENING | Tasks (due:today + tag:evening OR due:today + first-tagged-after-3pm) | 15:00–02:59 local | same as R4 |
-| R6 | COMING UP | Roadmap (next 7 days, public + private workspaces user owns) | always (collapses to header if empty) | row tap → Roadmap WebView at the milestone |
+| R6 | COMING UP | Timeline (next 7 days, public + private workspaces user owns) | always (collapses to header if empty) | row tap → Timeline WebView at the milestone |
 | R7 | CAUGHT YESTERDAY | Notes (captured <24h ago, not yet promoted to Tasks) | conditional — shows if ≥1 item exists | row tap → Notes WebView at the note; long-press → "Promote to Task" sheet (native) |
 | R8 | Product switcher | native, 4 product identities | always | tap → product WebView; double-tap own = jump to product home; swipe-up = two-context flick (see §5) |
 
@@ -94,9 +94,9 @@ Greeting and section visibility are recomputed on app foreground, never on a tim
 | **Offline** | Cached snapshot from last successful fetch + thin banner at top: *"Showing your day from 9:42 AM."* No errors thrown. | No blocking modal. No "you are offline" full-screen. |
 | **Multi-day gap** (returning user, last open >7d) | All overdue collapsed into one row at top of TODAY: *"23 items overdue. Open ›"* — expandable in place, never a separate screen | No shame copy. No notification spam to "catch up." |
 | **Slow network (>2s)** | Document renders with cached data immediately; spinner overlay only on the anchor card if it's >2s stale | No skeleton screens. No blinking placeholders. Stripe pattern — data loads before UI when possible. |
-| **Push-permission denied** | Today doc loads normally; one passive line in Analytics insight card on day 3: *"Want a morning brief? Enable notifications in Settings."* — once, never again | No re-prompt loop. No nag dot. |
+| **Push-permission denied** | Today doc loads normally; one passive line in Signal insight card on day 3: *"Want a morning brief? Enable notifications in Settings."* — once, never again | No re-prompt loop. No nag dot. |
 | **All four products zero data** | Onboarding + single primary card: *"Pick where to start."* with the four product cards larger, equal weight | No card grid. No "explore" tab. No empty enterprise dashboard. |
-| **Product down (e.g. Analytics outage)** | Anchor card hides silently; the rest of the document is unaffected; tiny passive line in the gap: *"Insights resume soon."* | No suite-wide error. No retry button. The other 3 products are still fully usable. |
+| **Product down (e.g. Signal outage)** | Anchor card hides silently; the rest of the document is unaffected; tiny passive line in the gap: *"Insights resume soon."* | No suite-wide error. No retry button. The other 3 products are still fully usable. |
 
 ---
 
@@ -154,7 +154,7 @@ All sizes in pt. Line-height ratio is the second number.
 
 **Haptic contract (panel decision #12):**
 - `UIImpactFeedbackGenerator(.light)` on task check-off
-- `UIImpactFeedbackGenerator(.medium)` on milestone publish (bridge event from Roadmap WebView)
+- `UIImpactFeedbackGenerator(.medium)` on milestone publish (bridge event from Timeline WebView)
 - `UINotificationFeedbackGenerator.notificationOccurred(.success)` on streak crossed — **only fires once per streak crossed in a session**, debounced
 - No haptic anywhere else. No haptic on tap. No haptic on scroll. No haptic on swipe. The scarcity *is* the design.
 
@@ -168,7 +168,7 @@ All sizes in pt. Line-height ratio is the second number.
 | Tap circle | R4/R5 leading circle | Toggle complete, optimistic UI + bridge event | The check-off ritual — the Tasks signature on the suite home. |
 | Long-press row | R7 (Caught) | "Promote to task" native action sheet | The Notes→Tasks bridge already shipped on web (memo `project-notes-elevation-2026-05-19`); native sheet is the iOS surface. |
 | Swipe right on row | any list row | Open in product (same as tap) | Reeder-derived. Backup gesture for users who developed RSS habits. Adopted *once* across the doc — never different swipes for different rows. |
-| Swipe left on row | any list row | "Snooze to tomorrow" (Tasks) / "Dismiss" (Notes/Roadmap) | One swipe direction per row, consistent across products. |
+| Swipe left on row | any list row | "Snooze to tomorrow" (Tasks) / "Dismiss" (Notes/Timeline) | One swipe direction per row, consistent across products. |
 | Swipe up on product switcher | R8 | **Two-context flick** — swap to last-active product | The Arc Search move. The shareable suite-only moment. |
 | Pull down on document | any scroll position above top | Refresh all four product summaries | OS standard, repurposed. |
 
@@ -239,10 +239,10 @@ These are the cross-product coupling events (panel #13 IMPLEMENT). Each product 
 
 | Event | From | Native does | Re-fetch? |
 |---|---|---|---|
-| `task.completed` | Tasks WebView | Animate Analytics anchor count + light haptic | No — optimistic |
+| `task.completed` | Tasks WebView | Animate Signal anchor count + light haptic | No — optimistic |
 | `task.created` | Tasks WebView | Insert row into TODAY section if due:today | No — optimistic |
 | `note.captured` | Notes WebView | Insert row into CAUGHT YESTERDAY section | No — optimistic |
-| `milestone.published` | Roadmap WebView | Medium haptic + insert into COMING UP if within 7d | Yes — debounced 1s |
+| `milestone.published` | Timeline WebView | Medium haptic + insert into COMING UP if within 7d | Yes — debounced 1s |
 | `workspace.opened` | any product | Update "last-active product" for two-context flick | No |
 | `app.foreground` | native | Re-fetch `/api/native/today` if last fetch >5 min ago | Yes |
 
@@ -290,7 +290,7 @@ Each row is the 4.2 reviewer-checkable claim and the spec line that satisfies it
 |---|---|---|
 | "Has substantial native UI beyond a webview" | §1 (8 native regions) | The Today doc is fully native SwiftUI; reviewer sees this immediately on launch. |
 | "Native auth, not in-webview sign-in" | §9 | Clerk hosted sign-in via ASWebAuthenticationSession (native), not inside the product WebView. |
-| "Native push notifications (APNs)" | panel #5 | Daily APNs push wired to the Analytics briefing engine. |
+| "Native push notifications (APNs)" | panel #5 | Daily APNs push wired to the Signal briefing engine. |
 | "Native offline state" | §3 (offline row) | Cached snapshot + banner — not a generic "no internet" page. |
 | "Native gestures / haptics" | §6, §7 | 6 distinct gestures, 3 calibrated haptics — all native shell. |
 | "Account deletion in-app" | (out of scope this doc) | Required separate sheet; reuses Clerk + Turso purge. Tracked in iOS submission punch list. |
@@ -322,7 +322,7 @@ Inherits from the panel's near-perfect punch list (Phase A/B/C). Re-stated here 
 - B6. Pull-to-refresh wired to `/api/native/today`
 
 **Phase C — Retention + delight**
-- C1. Daily APNs push from Analytics briefing engine — permission ask deferred until first organic value moment (per panel #5 dissent resolution)
+- C1. Daily APNs push from Signal briefing engine — permission ask deferred until first organic value moment (per panel #5 dissent resolution)
 - C2. Long-press on Notes row → native "Promote to task" sheet
 - C3. Multi-day-gap collapse behavior per §3
 - C4. Time-of-day greeting + This Evening conditional rendering per §2
@@ -349,7 +349,7 @@ Inherits from the panel's near-perfect punch list (Phase A/B/C). Re-stated here 
 
 ## 13. Risks named (the panel's strongest counter-arguments preserved)
 
-1. **Three highest-leverage moves depend on Analytics + Roadmap maturity.** Items B1 (anchor numeral), B5 (bridge events), C1 (daily push) all require the Analytics briefing engine + cross-product event bus at production quality. The operator already accepted this in the iOS memo (submission gated post-July). Re-stated so it is not a July surprise.
+1. **Three highest-leverage moves depend on Signal + Timeline maturity.** Items B1 (anchor numeral), B5 (bridge events), C1 (daily push) all require the Signal briefing engine + cross-product event bus at production quality. The operator already accepted this in the iOS memo (submission gated post-July). Re-stated so it is not a July surprise.
 2. **iOS 26 Liquid Glass material.** Post-WWDC 2026, the native chrome may shift. Spec assumes pre-Liquid-Glass iOS 17–18 system materials. If WWDC 2026 reshapes navigation chrome, §6/§7 may need a revision pass.
 3. **Server timezone logic carries truth.** §8b's server-decides-visibility is correct but means a server bug can break the Today doc for all users. Mitigation: visibility flags must be unit-tested, and the iOS client must render a sane default (all sections visible) if a flag is missing — never an empty document.
 4. **The serif numeral is a one-shot decision.** §4 commits the app to New York for the anchor. If we ever want a second serif moment (e.g. greeting), we lose the singularity. Spec line: *the serif is the anchor numeral, and only the anchor numeral, until the spec is amended.*

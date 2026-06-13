@@ -7,17 +7,17 @@ lastVerified: 2026-05-20
 links: [signal-studio-umbrella, five-products-as-a-system, brand-enforcement]
 tags: [iOS, App Store, SwiftUI, native, Apple, Capacitor, signal-ios, 4.2, IAP, Clerk, suite app]
 references: [signal-ios/IOS_PLAN.md, signal-ios/FUNCTIONING_APP_PLAN.md, signal-ios/SignalStudio/, ~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md]
-summary: Native SwiftUI suite app — Today spine + four product surfaces. Front-end-built through Cycle 5 (Bucket B). Submission gated post-Roadmap+Analytics quality (~July). No IAP, login-only, no paid third-party services.
+summary: Native SwiftUI suite app — Today spine + four product surfaces. Front-end-built through Cycle 5 (Bucket B). Submission gated post-Timeline+Signal quality (~July). No IAP, login-only, no paid third-party services.
 status: partial
 pinned: true
-execWhat: A single native iOS app that wraps the Signal Studio suite. Today screen as cross-product spine, four product surfaces (Notes / Tasks / Roadmap / Analytics) as native SwiftUI views. Not a Capacitor remote-URL webview, not four separate apps.
+execWhat: A single native iOS app that wraps the Signal Studio suite. Today screen as cross-product spine, four product surfaces (Notes / Tasks / Timeline / Signal) as native SwiftUI views. Not a Capacitor remote-URL webview, not four separate apps.
 execMatters: The suite app — not a Tasks-only beachhead — is what makes the brand credible on iOS. A lone product app on App Store contradicts the umbrella story. The operator (2026-05-19) chose suite over beachhead, accepting that this gates submission on every product reaching quality.
-execRisk: The submission floor equals the weakest product in the suite. Both Roadmap and Analytics are now shipped to prod, but iOS launch is gated on product *quality*, not ship-state. Any quality drift between now and the July submission window puts the entire iOS launch on hold.
+execRisk: The submission floor equals the weakest product in the suite. Both Timeline and Signal are now shipped to prod, but iOS launch is gated on product *quality*, not ship-state. Any quality drift between now and the July submission window puts the entire iOS launch on hold.
 ---
 
 ## WHAT
 
-A native SwiftUI app that ports the Signal Studio suite to iPhone and iPad. Today screen aggregates across products (Tasks slices, Notes counts, Roadmap milestones, Analytics briefing). Four tabs underneath give product-specific surfaces. One shared session, native nav chrome, native APNs push, no IAP, no paid third-party services.
+A native SwiftUI app that ports the Signal Studio suite to iPhone and iPad. Today screen aggregates across products (Tasks slices, Notes counts, Timeline milestones, Signal briefing). Four tabs underneath give product-specific surfaces. One shared session, native nav chrome, native APNs push, no IAP, no paid third-party services.
 
 ```mermaid
 flowchart TB
@@ -42,7 +42,7 @@ Ethan owns the app outright. No iOS-team, no separate stakeholders. The agentic 
 ## WHERE
 
 - `~/Projects/personal/signal-ios/` — the Xcode project (xcodegen-generated; `.xcodeproj` itself is gitignored). Schema in `project.yml`.
-- `~/Projects/personal/signal-ios/SignalStudio/` — the Swift source root, organised by feature (App / Brand / Today / Notes / Tasks / Roadmap / Analytics / Settings / Loading / Empty / Onboarding / Fonts / Assets.xcassets / Preview Content).
+- `~/Projects/personal/signal-ios/SignalStudio/` — the Swift source root, organised by feature (App / Brand / Today / Notes / Tasks / Timeline / Signal / Settings / Loading / Empty / Onboarding / Fonts / Assets.xcassets / Preview Content).
 - `~/Projects/personal/signal-ios/panel-reviews/` — gate-keeping reports for cycles 1 (baseline + final), 2 (final), 3 (status + final), and 5 (final). Cycle 4 ran as in-cycle remediation without a standalone report.
 - `~/Projects/personal/signal-ios/IOS_PLAN.md` — original 13-screen plan, 9.5-gate rubric, mock-data strategy.
 - `~/Projects/personal/signal-ios/FUNCTIONING_APP_PLAN.md` — Bucket A (operator-gated) and Bucket B (agent-shippable) split.
@@ -69,12 +69,12 @@ The suite app is a Swift-native build, not a Capacitor wrapper. Three operating 
 ## WHEN — current state (as of 2026-05-20)
 
 **Front-end:**
-- Cycles 0–5 shipped. Bucket B (13 batches) all closed: real voice recording (AVAudioRecorder + SFSpeechRecognizer), NotesStore + TasksStore + RoadmapMock + AnalyticsMock, SuiteCoordinator cross-product nav, accessibility helpers, pull-to-refresh + swipe-to-delete + context menus, Settings wiring, workspace switcher, Timeline + Updates + List views, polish (skeletons + form validation + date formatter), brand-voice sweep.
-- 20 surfaces panel-verified at ≥9.5 from all three panelists through Cycle 2 final (the strict-bar moment). Cycles 3–4 added secondary screens that rode the established patterns. Cycle 5 added ~7 functional surfaces (Tasks Timeline, Roadmap Updates, Workspace switcher, About, AddTaskSheet, Today populated, List view) that were not individually paneled — token-budget call documented in `panel-reviews/cycle-5-final.md` §honest-dissent.
+- Cycles 0–5 shipped. Bucket B (13 batches) all closed: real voice recording (AVAudioRecorder + SFSpeechRecognizer), NotesStore + TasksStore + TimelineMock + SignalMock, SuiteCoordinator cross-product nav, accessibility helpers, pull-to-refresh + swipe-to-delete + context menus, Settings wiring, workspace switcher, Timeline + Updates + List views, polish (skeletons + form validation + date formatter), brand-voice sweep.
+- 20 surfaces panel-verified at ≥9.5 from all three panelists through Cycle 2 final (the strict-bar moment). Cycles 3–4 added secondary screens that rode the established patterns. Cycle 5 added ~7 functional surfaces (Tasks Timeline, Timeline Updates, Workspace switcher, About, AddTaskSheet, Today populated, List view) that were not individually paneled — token-budget call documented in `panel-reviews/cycle-5-final.md` §honest-dissent.
 - Builds clean (0 warnings, 0 errors) across all 9 panel-driven iteration cycles.
 
 **Web-side iOS-prep (this cycle, 2026-05-20):**
-- PWA manifests + apple-touch-icons + maskable variants shipped across all 5 web repos (studio/tasks/roadmap/analytics/notes) — 3-director panel cleared at 9.5+ from each.
+- PWA manifests + apple-touch-icons + maskable variants shipped across all 5 web repos (studio/tasks/timeline/signal/notes) — 3-director panel cleared at 9.5+ from each.
 - `docs/ios/` submission artifacts drafted in the studio repo (privacy labels, data-flow doc, PrivacyInfo.xcprivacy template, App Store listing copy through signal-brand-voice).
 - `ios/CLAUDE.md` scaffold added to give agentic-toolchain guard-rails for the next iOS cycle.
 
@@ -92,7 +92,7 @@ The suite app is a Swift-native build, not a Capacitor wrapper. Three operating 
 - Real recorded audio on a physical microphone (simulator mic is the Mac's).
 - A handful of brand-strategic copy decisions accumulated through cycles 1–5.
 
-**Submission window:** post-Roadmap + Analytics quality, realistically after July 1.
+**Submission window:** post-Timeline + Signal quality, realistically after July 1.
 
 ## WHY
 
@@ -102,7 +102,7 @@ The 4.2 risk is what forces this to be native, not Capacitor. The agentic toolch
 
 The no-IAP rule is commercial discipline. App Store IAP is 15–30% forever, and IAP wiring is agent-hard (Apple's StoreKit2 has Xcode-GUI-and-cert-gated capabilities). The §3.1.3(b) reader-app carveout requires no commerce surface inside the app — which the suite respects by design (sign-in only; pricing lives on the web).
 
-The submission floor equals the weakest product in the suite. With Roadmap and Analytics at ~20% / ~50% completeness in early May (now both shipped to prod through the suite-wide elevation sprints), iOS launch is realistically post-July, gated specifically by sustained product quality through that window. The trade is recorded; it's not a July surprise.
+The submission floor equals the weakest product in the suite. With Timeline and Signal at ~20% / ~50% completeness in early May (now both shipped to prod through the suite-wide elevation sprints), iOS launch is realistically post-July, gated specifically by sustained product quality through that window. The trade is recorded; it's not a July surprise.
 
 ## Reverification trail
 

@@ -16,5 +16,5 @@ export const meta: TemplateMeta = {
   problem:
     "Running a small business is part operations, part people, part sales — and nobody is watching for what's slipping. The monthly rhythm catches it before the bank reconciliation does.",
   seoSummary:
-    "A starter workspace for restaurants, shops, clinics, and studios. The monthly cadence that keeps payroll on time, suppliers paid, marketing posted, staff one-to-ones happening, and the month-end close honest — without a status meeting, a manager, or a project-management vocabulary. Pairs with a private Notes notebook for owner thinking, a shared Roadmap update for the staff, and a daily Analytics briefing that catches the renewal coming up before it slips.",
+    "A starter workspace for restaurants, shops, clinics, and studios. The monthly cadence that keeps payroll on time, suppliers paid, marketing posted, staff one-to-ones happening, and the month-end close honest — without a status meeting, a manager, or a project-management vocabulary. Pairs with a private Notes notebook for owner thinking, a shared Timeline update for the staff, and a daily Signal briefing that catches the renewal coming up before it slips.",
 };

@@ -100,7 +100,7 @@ vercel --prod
 
 - **`sponsors` + `license_codes` tables** — Cycle 8.2. They'll be a second migration on the same DB.
 - **`/redeem/[code]` route** — Cycle 8.2.
-- **Cross-product consumption pattern** — how does Tasks read this entitlement when it lives on a different repo's DB? Cycle 8.3 decision. Likely approach: Tasks gets a read-only Turso token to `ethanmcnamara-studio` and imports a copy of `getEntitlement()` (per the Cycle 6.3 precedent where analytics read tasks's DB).
+- **Cross-product consumption pattern** — how does Tasks read this entitlement when it lives on a different repo's DB? Cycle 8.3 decision. Likely approach: Tasks gets a read-only Turso token to `ethanmcnamara-studio` and imports a copy of `getEntitlement()` (per the Cycle 6.3 precedent where signal read tasks's DB).
 - **Paywall rewiring across the four product repos** — also Cycle 8.3+.
 
 ## Acceptance checklist for Cycle 8.1

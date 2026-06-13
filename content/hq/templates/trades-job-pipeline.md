@@ -3,7 +3,7 @@ id: trades-job-pipeline
 title: Trades job pipeline workspace
 targetSegment: Tradespeople / installers / small contractors
 status: Idea
-includedProducts: [Tasks, Notes, Roadmap, Analytics]
+includedProducts: [Tasks, Notes, Timeline, Signal]
 relatedCampaign: TBD
 activationGoal: Tradesperson runs one real job through quote → invoice in the workspace.
 ---

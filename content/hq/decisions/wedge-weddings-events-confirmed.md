@@ -14,7 +14,7 @@ Lead outbound, demo production, and pilots with the weddings and events wedge th
 
 ## Reason
 
-The four-layer wedding loop is now walkable end-to-end (Notes venue meeting, Tasks template, Roadmap shared update, Analytics daily briefing). Wedding workspaces are the strongest workspace-creator shape we can demonstrate today. Ireland is the validation market.
+The four-layer wedding loop is now walkable end-to-end (Notes venue meeting, Tasks template, Timeline shared update, Signal daily briefing). Wedding workspaces are the strongest workspace-creator shape we can demonstrate today. Ireland is the validation market.
 
 ## Alternatives considered
 

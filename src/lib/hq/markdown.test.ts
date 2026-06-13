@@ -25,7 +25,7 @@ test("parseFrontmatter: inline arrays without commas in values", () => {
   const raw = `---
 id: alpha
 title: Alpha decision
-relatedObjects: [Signal Tasks, Signal Roadmap]
+relatedObjects: [Signal Tasks, Signal Timeline]
 ---
 
 ## Decision
@@ -35,7 +35,7 @@ The body.
   const { fm, body } = parseFrontmatter(raw);
   assert.equal(fm.id, "alpha");
   assert.equal(fm.title, "Alpha decision");
-  assert.deepEqual(fm.relatedObjects, ["Signal Tasks", "Signal Roadmap"]);
+  assert.deepEqual(fm.relatedObjects, ["Signal Tasks", "Signal Timeline"]);
   assert.ok(body.startsWith("## Decision"));
 });
 

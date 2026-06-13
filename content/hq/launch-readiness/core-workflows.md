@@ -10,4 +10,4 @@ nextAction: Define the smallest useful Notes to Tasks flow.
 
 ## Notes
 
-Tasks and Roadmap are strongest. Notes needs v1 depth.
+Tasks and Timeline are strongest. Notes needs v1 depth.

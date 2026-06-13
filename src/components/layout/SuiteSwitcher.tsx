@@ -26,10 +26,10 @@
  *   Footer  — "Back to Signal Studio →" link → signalstudio.ie (same-tab)
  *
  * Verb pattern (locked — matches suite-launcher.tsx, IA_COHERENCE.md §1C):
- *   roadmap   "Open roadmap"
+ *   timeline  "Open timeline"
  *   tasks     "Open tasks"
  *   notes     "Open notes"
- *   analytics "Open analytics"
+ *   signal    "Open signal"
  *
  * ── Accessibility ─────────────────────────────────────────────────
  *
@@ -68,7 +68,7 @@ import { useEffect, useRef, useState } from "react";
 
 const STUDIO_URL = "https://signalstudio.ie";
 
-type ProductSlug = "roadmap" | "tasks" | "notes" | "analytics";
+type ProductSlug = "timeline" | "tasks" | "notes" | "signal";
 
 const PRODUCTS: {
   slug: ProductSlug;
@@ -77,7 +77,7 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
   {
     slug: "notes",
     word: "notes",
@@ -93,18 +93,18 @@ const PRODUCTS: {
     url: "https://tasks.signalstudio.ie/app",
   },
   {
-    slug: "roadmap",
-    word: "roadmap",
-    verb: "Open roadmap",
+    slug: "timeline",
+    word: "timeline",
+    verb: "Open timeline",
     tagline: "Direction clarity",
-    url: "https://roadmap.signalstudio.ie/app",
+    url: "https://timeline.signalstudio.ie/app",
   },
   {
-    slug: "analytics",
-    word: "analytics",
-    verb: "Open analytics",
+    slug: "signal",
+    word: "signal",
+    verb: "Open signal",
     tagline: "Attention clarity",
-    url: "https://analytics.signalstudio.ie/app",
+    url: "https://signal.signalstudio.ie/app",
   },
 ];
 

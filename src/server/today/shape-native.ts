@@ -40,8 +40,8 @@ import type {
 const PRODUCT_HOSTS = {
   tasks: "https://tasks.signalstudio.ie",
   notes: "https://notes.signalstudio.ie",
-  roadmap: "https://roadmap.signalstudio.ie",
-  analytics: "https://analytics.signalstudio.ie",
+  roadmap: "https://timeline.signalstudio.ie",
+  analytics: "https://signal.signalstudio.ie",
 } as const;
 
 // ── Time-of-day (§2) ──────────────────────────────────────────────────────

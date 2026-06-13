@@ -1,8 +1,8 @@
-## 2026-03-11 · ships · Analytics learns how to read tasks
+## 2026-03-11 · ships · Signal learns how to read tasks
 
 **The third product opens by reading the second — not by asking the
 user to wire up a new source, not by importing a spreadsheet, not by
-connecting an integration. The Tasks workspace and the Analytics
+connecting an integration. The Tasks workspace and the Signal
 workspace share a database. If you have one, you have the other.**
 
 This is the moat the suite gets to argue for. Four products from one

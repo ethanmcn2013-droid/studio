@@ -1,7 +1,7 @@
 # Cycle 9.1 — Settings screen (roll-our-own, polished)
 
 **Locked:** 2026-05-13 (end of session).
-**Owner:** Tasks repo. Roadmap / Notes / Analytics inherit the chassis later as separate cycles.
+**Owner:** Tasks repo. Timeline / Notes / Signal inherit the chassis later as separate cycles.
 **Estimate:** ~76 hours of focused work for v1, closer to 3 weeks with normal iteration.
 
 ---
@@ -125,7 +125,7 @@ CREATE TABLE user_preferences (
 
 Migration: `drizzle/0002_user_preferences.sql`. Apply on prod Turso before deploy.
 
-**Cross-product preferences unification deferred.** Analytics has its own `user_preferences` table. For v1 they stay separate; unify in a later cycle when Notes also needs preferences. Tasks reads its own table here; Analytics's cron continues reading Analytics's.
+**Cross-product preferences unification deferred.** Signal has its own `user_preferences` table. For v1 they stay separate; unify in a later cycle when Notes also needs preferences. Tasks reads its own table here; Signal's cron continues reading Signal's.
 
 **Server actions:**
 
@@ -203,8 +203,8 @@ Two solid weeks for v1 assuming no rework. Three with normal iteration.
 - **Workspaces management tab.** Tasks already lets users switch workspaces; full rename/transfer/delete is its own cycle.
 - **Data export.** Same reasoning. Mailto for v1.
 - **Email open-tracking stats.** Brand violation. The notifications page tells users what they'll receive going forward, not what they did in the past.
-- **Cross-product preferences unification.** Tasks has its own table; Analytics has its own. Unify when Notes needs preferences too.
-- **Settings on Roadmap / Notes / Analytics.** Tasks first. The other products inherit the chassis as separate cycles once it's proven.
+- **Cross-product preferences unification.** Tasks has its own table; Signal has its own. Unify when Notes needs preferences too.
+- **Settings on Timeline / Notes / Signal.** Tasks first. The other products inherit the chassis as separate cycles once it's proven.
 
 ---
 

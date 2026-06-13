@@ -35,7 +35,7 @@ The venue is not buying seats. It is backing the couple's planning year.
 | Buyer | Premium venue owner/operator | A clear commercial reason to pay | `/venues` |
 | Operator | Venue coordinator or planner | Fewer repeated questions and a cleaner handoff | `/venues/demo` |
 | User | Couple and/or planner | One calm place to plan | Tasks workspace after redemption |
-| Viewer | Supplier, family, coordinator | One readable plan | Roadmap `/the-wedding` or a live shared plan |
+| Viewer | Supplier, family, coordinator | One readable plan | Timeline `/the-wedding` or a live shared plan |
 | Self-serve buyer | Couple or independent planner who found Signal Studio directly | Event or Workspace pricing | `/weddings` and `/pricing` |
 
 The buyer and the user are deliberately different in the venue motion. Pages must not flatten them into "venues, couples, planners, and suppliers" as one audience.
@@ -60,7 +60,7 @@ The venue buyer page.
 The canonical product proof.
 
 - Audience: venue owner/operator and coordinator.
-- Job: show one wedding moving through Notes, Tasks, Roadmap, and Analytics.
+- Job: show one wedding moving through Notes, Tasks, Timeline, and Signal.
 - Shape: one wedding Tuesday, end to end.
 - Allowed CTA: start a venue conversation.
 - Must not introduce Event `EUR79` or Workspace `EUR12/mo` as the main path.

@@ -1,6 +1,6 @@
 ## 2026-05-16 · ships · One gesture per product, the same word everywhere
 
-**Tasks pulses, Roadmap sweeps, Analytics ticks, Notes carets,
+**Tasks pulses, Timeline sweeps, Signal ticks, Notes carets,
 Studio broadcasts. Five gestures, five words, one canonical
 definition each, live on every production domain. The same noun
 means the same motion in code, in the brand book, and in the

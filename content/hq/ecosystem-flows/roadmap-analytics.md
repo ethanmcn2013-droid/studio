@@ -1,14 +1,14 @@
 ---
 id: roadmap-analytics
-title: Signal Roadmap
-to: Signal Analytics
+title: Signal Timeline
+to: Signal
 status: Not started
 health: At risk
 ---
 
 ## Purpose
 
-Surface roadmap risk from movement and confidence changes.
+Surface timeline risk from movement and confidence changes.
 
 ## Next Action
 

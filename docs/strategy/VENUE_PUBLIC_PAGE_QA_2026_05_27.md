@@ -35,7 +35,7 @@ Boundary: public route QA only. No outreach sent and no contact form submitted.
 | Surface | Pass |
 | --- | --- |
 | Venue page | Buyer/user split remains clear: venue pays, couple uses, team has nothing to run. |
-| Demo page | The four product moments now match the creative production pack: Notes, Tasks, Roadmap, Analytics. |
+| Demo page | The four product moments now match the creative production pack: Notes, Tasks, Timeline, Signal. |
 | Contact page | A venue reply can be logged by source, campaign, audience, artifact, touch, and venue without adding a form. |
 | HQ venues | Empty conversion ledger exists before any send, so the first real action has a place to land. |
 

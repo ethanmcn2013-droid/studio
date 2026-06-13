@@ -26,7 +26,7 @@ That makes it a strong early product-led growth surface.
 
 ## Current Implementation
 
-Signal Roadmap now includes bundled wedding planning proof data for `/wedding-planning/update`.
+Signal Timeline now includes bundled wedding planning proof data for `/wedding-planning/update`.
 
 This is intentionally not a full live template yet. It proves the output format first.
 
@@ -35,6 +35,6 @@ This is intentionally not a full live template yet. It proves the output format 
 - Build the full wedding planning workspace template.
 - Add venue meeting follow-up from Signal Notes.
 - Add assigned follow-ups from Signal Tasks.
-- Add Today Signal from Signal Analytics.
+- Add Today Signal from Signal.
 - Add source tracking for view-to-creator conversion.
 - Turn the proof path into a short demo video and venue outreach asset.

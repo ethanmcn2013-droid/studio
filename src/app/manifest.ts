@@ -66,8 +66,8 @@ export default function manifest(): MetadataRoute.Manifest {
         description: "Workspace, Event, Student — one page.",
       },
       {
-        name: "Roadmap",
-        short_name: "Roadmap",
+        name: "Timeline",
+        short_name: "Timeline",
         url: "/roadmap",
         description: "What's shipping next.",
       },
@@ -75,7 +75,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Demo",
         short_name: "Demo",
         url: "/the-wedding",
-        description: "What a finished roadmap looks like.",
+        description: "What a finished timeline looks like.",
       },
     ],
   };

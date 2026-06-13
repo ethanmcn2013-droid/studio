@@ -13,7 +13,7 @@ As of 2026-05-20 the signal-ios target has no Clerk integration. `SignalStudio/A
 
 ## The constraint
 
-The four product backends (Tasks, Roadmap, Analytics, Notes) use Clerk middleware on Next.js. Their authed surfaces today rely on Clerk's `HttpOnly` cookie. Native iOS can't read `HttpOnly` cookies — so the native app needs Bearer-token auth: present `Authorization: Bearer <Clerk JWT>` on every API call.
+The four product backends (Tasks, Timeline, Signal, Notes) use Clerk middleware on Next.js. Their authed surfaces today rely on Clerk's `HttpOnly` cookie. Native iOS can't read `HttpOnly` cookies — so the native app needs Bearer-token auth: present `Authorization: Bearer <Clerk JWT>` on every API call.
 
 ## The Clerk-iOS SDK
 

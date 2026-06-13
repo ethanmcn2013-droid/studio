@@ -1,7 +1,7 @@
 ---
 id: where-going
 title: Where this is going
-sourceProduct: Signal Roadmap
+sourceProduct: Signal Timeline
 status: Draft
 nextAction: Map wedding phases into Now / Next / Later.
 ---

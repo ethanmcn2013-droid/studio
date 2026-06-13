@@ -12,7 +12,7 @@ const SECTIONS = [
     heading: "What we collect",
     body: [
       "Signing in to a Signal Studio product creates an account through Clerk, our authentication provider. Clerk stores your email, name (if you provide one), and an opaque user identifier. We never see your password.",
-      "Inside each product, we store the work you create: tasks, notes, roadmap items, briefing preferences. We store who made what, who shared what with whom, and when. We do not store anything you didn't enter yourself.",
+      "Inside each product, we store the work you create: tasks, notes, timeline items, briefing preferences. We store who made what, who shared what with whom, and when. We do not store anything you didn't enter yourself.",
       "If you reach out to hello@signalstudio.ie, we keep the message in a standard email inbox.",
     ],
   },

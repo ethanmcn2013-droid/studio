@@ -2,8 +2,8 @@
 
 **Same wordmark in the corner, same four links across the top, same
 ratio of paper to ink, same place to sign in. Walk from Tasks to
-Roadmap to Analytics to Notes and the only thing that changes is the
-gesture on the wordmark — Tasks pulses, Roadmap sweeps, Analytics
+Timeline to Signal to Notes and the only thing that changes is the
+gesture on the wordmark — Tasks pulses, Timeline sweeps, Signal
 ticks, Notes carets — every other pixel holds.**
 
 Shared chrome is the cheapest moat a suite can buy and almost no

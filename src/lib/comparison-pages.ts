@@ -1,4 +1,4 @@
-import { ANALYTICS_URL, NOTES_URL, ROADMAP_URL, TASKS_URL } from "@/lib/product-urls";
+import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
 
 export type ComparisonPage = {
   slug: string;
@@ -38,7 +38,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "One link for the people outside the work",
-        copy: "Signal Roadmap gives the couple, supplier, or family one readable plan. No login. No app to install. The public plan carries the latest state without exposing private notes.",
+        copy: "Signal Timeline gives the couple, supplier, or family one readable plan. No login. No app to install. The public plan carries the latest state without exposing private notes.",
       },
       {
         title: "Less setup, fewer explanations",
@@ -105,8 +105,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
         copy: "Signal Tasks turns the next action into owned work with dates and plain-language status. It does not ask the planner to become a project manager.",
       },
       {
-        title: "Roadmap is what the couple sees",
-        copy: "Signal Roadmap gives the couple the part they need: what changed, what is waiting, and what happens next.",
+        title: "Timeline is what the couple sees",
+        copy: "Signal Timeline gives the couple the part they need: what changed, what is waiting, and what happens next.",
       },
     ],
     primaryCta: {
@@ -170,7 +170,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "A briefing, not a dashboard",
-        copy: "Signal Analytics reads the work and writes a short briefing. What is late, what is moving, and what deserves attention today.",
+        copy: "Signal reads the work and writes a short briefing. What is late, what is moving, and what deserves attention today.",
       },
     ],
     primaryCta: {
@@ -179,7 +179,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
     },
     secondaryCta: {
       label: "Open the briefing",
-      href: ANALYTICS_URL,
+      href: SIGNAL_URL,
     },
   },
 ];

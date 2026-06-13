@@ -2,9 +2,9 @@
 id: wedding-planning-shared-update
 title: Wedding planning shared update
 wedge: Weddings and events
-ownerProduct: Signal Roadmap
+ownerProduct: Signal Timeline
 defaultVisibility: Public
-sourceTracking: source=roadmap_share, segment=weddings, role=viewer, campaign=founding_venue, artefact=shared_update
+sourceTracking: source=timeline_share, segment=weddings, role=viewer, campaign=founding_venue, artefact=shared_update
 cta: See Signal Studio
 status: Built
 nextAction: Use `/wedding-planning/update` in the wedding demo script and venue outreach.

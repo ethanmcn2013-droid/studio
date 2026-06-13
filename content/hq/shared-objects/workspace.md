@@ -1,7 +1,7 @@
 ---
 id: workspace
 title: Workspace
-usedBy: [Tasks, Roadmap, Analytics, Notes]
+usedBy: [Tasks, Timeline, Signal, Notes]
 status: Defined
 ---
 

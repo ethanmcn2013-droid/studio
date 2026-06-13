@@ -34,7 +34,7 @@ interface Workspace {
   templateId?: string;
 }
 ```
-The shared place where one real piece of work lives across context → execution → direction → attention. Created in Tasks; referenced by Roadmap/Analytics/Notes. No product redefines it.
+The shared place where one real piece of work lives across context → execution → direction → attention. Created in Tasks; referenced by Timeline/Signal/Notes. No product redefines it.
 
 ### Person — *Needs model → Modelled here*
 ```ts
@@ -88,7 +88,7 @@ interface Update {
   kind: 'change' | 'shared-summary';
 }
 ```
-Feeds changelog, shared roadmap update, and the briefing. `kind: 'shared-summary'` is the only kind that may leave the workspace to a guest surface, and only as the Notes `summary` extract type when it originates from a note (`CYCLE_9_4C`).
+Feeds changelog, shared timeline update, and the briefing. `kind: 'shared-summary'` is the only kind that may leave the workspace to a guest surface, and only as the Notes `summary` extract type when it originates from a note (`CYCLE_9_4C`).
 
 ### Briefing — *Partly working*
 ```ts
@@ -101,13 +101,13 @@ interface Briefing {
   needsAttention: string[];// the few, ranked
 }
 ```
-A *derived projection*, never a stored owned object — it is recomputed from Workspace/Update/Risk/Task. Analytics owns generation; Tasks/Roadmap/Notes may render it. It must never be assembled from raw Notes bodies (`CYCLE_9_4C` §4).
+A *derived projection*, never a stored owned object — it is recomputed from Workspace/Update/Risk/Task. Signal owns generation; Tasks/Timeline/Notes may render it. It must never be assembled from raw Notes bodies (`CYCLE_9_4C` §4).
 
 ---
 
 ## 2 · Per-product projection (who touches what)
 
-| Object | Tasks | Roadmap | Analytics | Notes |
+| Object | Tasks | Timeline | Signal | Notes |
 |---|---|---|---|---|
 | Workspace | **owns** | reads | reads | references |
 | Person | reads | reads | reads | single-user (creator only) |

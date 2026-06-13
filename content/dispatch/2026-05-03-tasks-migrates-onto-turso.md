@@ -8,6 +8,6 @@ nothing — which is the right amount.**
 
 Why move it at all? Because the read path now travels milliseconds
 instead of round-trips, and because the same substrate carries
-Roadmap, Analytics, and Notes on the way in. Picking one substrate
+Timeline, Signal, and Notes on the way in. Picking one substrate
 that holds for the suite means the substrate gets tuned once, hard,
 instead of four times, softly.

@@ -14,7 +14,7 @@ Claude Code and Codex must keep Signal HQ current.
 
 ## Reason
 
-Future coding sessions should not change product, brand, GTM, roadmap, or launch state without updating the internal source of truth.
+Future coding sessions should not change product, brand, GTM, timeline, or launch state without updating the internal source of truth.
 
 ## Alternatives considered
 

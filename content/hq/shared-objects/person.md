@@ -1,7 +1,7 @@
 ---
 id: person
 title: Person
-usedBy: [Tasks, Roadmap, Notes, CRM]
+usedBy: [Tasks, Timeline, Notes, CRM]
 status: Defined
 ---
 

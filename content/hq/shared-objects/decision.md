@@ -1,7 +1,7 @@
 ---
 id: decision
 title: Decision
-usedBy: [Notes, Roadmap, Tasks, Analytics, HQ]
+usedBy: [Notes, Timeline, Tasks, Signal, HQ]
 status: Defined
 ---
 

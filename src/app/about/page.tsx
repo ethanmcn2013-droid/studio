@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
-import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
+import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "About — Signal Studio",
@@ -48,8 +48,8 @@ export default function AboutPage() {
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
                 Four products. One register. One job: show you what matters.
-                Signal Tasks runs the work. Signal Roadmap explains it. Signal
-                Analytics surfaces what matters in it. Signal Notes captures it
+                Signal Tasks runs the work. Signal Timeline explains it. Signal
+                Signal surfaces what matters in it. Signal Notes captures it
                 as it happens. Each solves one slice. Together they read as one
                 system.
               </p>
@@ -109,13 +109,13 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={ROADMAP_URL}
+                    href={TIMELINE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Roadmap
+                      Signal Timeline
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
@@ -125,13 +125,13 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={ANALYTICS_URL}
+                    href={SIGNAL_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Analytics
+                      Signal
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"

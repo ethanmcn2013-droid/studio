@@ -48,7 +48,7 @@ That is the clearest way to say it.
 
 The 80% are not unsophisticated. They are experienced, capable people managing complexity that would challenge any team. What they lack is not skill — it is tools that were designed with them in mind from the beginning, not adapted for them afterward.
 
-Signal Studio is building those tools. Not a single product, but a suite: a task manager, a roadmap tool, an analytics layer, and a capture surface for notes. Each is a standalone product, useful on its own. Together, they form something more complete.
+Signal Studio is building those tools. Not a single product, but a suite: a task manager, a timeline tool, an signal layer, and a capture surface for notes. Each is a standalone product, useful on its own. Together, they form something more complete.
 
 The aim is not the largest possible user base. The aim is the right tools for the people who need them — built well and sustained by people who find them genuinely useful.
 

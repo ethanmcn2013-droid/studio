@@ -7,11 +7,11 @@ date: 2026-05-16
 
 ## Positioning
 
-Signal Studio is project management for the 80% who don't work in tech. Four products, one system. Signal Notes is where it starts, catching context before it slips. Signal Tasks is where the work gets done. Signal Roadmap is what people outside the work can see — a plain-English page anyone can open, no account needed. Signal Analytics is the daily briefing that tells you where to look.
+Signal Studio is project management for the 80% who don't work in tech. Four products, one system. Signal Notes is where it starts, catching context before it slips. Signal Tasks is where the work gets done. Signal Timeline is what people outside the work can see — a plain-English page anyone can open, no account needed. Signal is the daily briefing that tells you where to look.
 
 ## Ecosystem line
 
-Notes is where it starts. Tasks is where it gets done. Roadmap is what everyone else sees. Analytics tells you where to look.
+Notes is where it starts. Tasks is where it gets done. Timeline is what everyone else sees. Signal tells you where to look.
 
 ## Founder story
 

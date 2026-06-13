@@ -36,7 +36,7 @@
 
 Signal Studio extends free, full-suite access to its 80% audience through **two named programs**:
 
-- **Venue Editions** — a venue (or other channel partner) sponsors free Signal Studio access for their customers. License bound to the *user*, not the venue. First partner: Lamb's Hill. Wedding venues use the existing Wedding package (Tasks + Notes + Roadmap + Analytics, wedding-coded onboarding, 12-month duration).
+- **Venue Editions** — a venue (or other channel partner) sponsors free Signal Studio access for their customers. License bound to the *user*, not the venue. First partner: Lamb's Hill. Wedding venues use the existing Wedding package (Tasks + Notes + Timeline + Signal, wedding-coded onboarding, 12-month duration).
 - **With our compliments / Review access** — direct gifts dispensed by Ethan. "Compliments" for friends and family (no fixed duration — just an open account). "Review access" for press, 90 days, named as such on the gift surface.
 
 These programs ride a shared **entitlements layer** (built in Cycle 8.1).
@@ -111,7 +111,7 @@ Ships:
 - Drizzle migration applied to studio's Turso prod
 - One seeded test row for development
 
-Defers: entitlement-aware paywall rewiring in Roadmap / Analytics / Notes. Tasks-only in Cycle 8.3.
+Defers: entitlement-aware paywall rewiring in Timeline / Signal / Notes. Tasks-only in Cycle 8.3.
 
 Acceptance: `getEntitlement()` returns the correct shape for a hand-seeded `venue_edition` row. `pnpm typecheck` + `pnpm build` clean on studio. Migration applied via Turso CLI (per the 6.4 pattern — Vercel Sensitive env vars blocked agent path).
 
@@ -142,7 +142,7 @@ Ships across studio + `~/Projects/personal/tasks`:
 - One-time, dismissible workspace welcome card: *"Compliments of [VENUE_NAME]. Plan your wedding without the noise."* — copy locked, no edits at venue boundary.
 - Replace `"Pick a starter so you have something to play with"` and `"Loaded · ready to open"` strings in the welcome picker even for non-redeemed users (ux-tester caught these as on-brand violations regardless).
 
-Defers: Notes / Roadmap / Analytics auto-provisioning. Tasks first; the others open on demand once the user is signed in. Notes/Roadmap/Analytics entitlement-aware paywall rewiring deferred to Cycle 8.7+.
+Defers: Notes / Timeline / Signal auto-provisioning. Tasks first; the others open on demand once the user is signed in. Notes/Timeline/Signal entitlement-aware paywall rewiring deferred to Cycle 8.7+.
 
 Acceptance: a fresh sign-up from `/redeem/LAMBSHIL-XXX` lands directly in a wedding workspace, sees the compliments card, never touches the picker, and the corresponding `license_codes` row flips to `redeemed`. Tasks + studio `pnpm typecheck` clean.
 

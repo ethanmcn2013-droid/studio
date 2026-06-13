@@ -2,22 +2,22 @@
 
 import { useEffect, useRef } from "react";
 import {
-  ANALYTICS_URL,
+  SIGNAL_URL,
   NOTES_URL,
-  ROADMAP_URL,
+  TIMELINE_URL,
   TASKS_URL,
 } from "@/lib/product-urls";
 
 const INDIGO = "#4f46e5";
 const INK = "#111111";
 
-type ProductSlug = "notes" | "tasks" | "roadmap" | "analytics";
+type ProductSlug = "notes" | "tasks" | "timeline" | "signal";
 
 const PRODUCTS = [
-  { slug: "notes"     as ProductSlug, name: "notes",     tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: NOTES_URL     },
-  { slug: "tasks"     as ProductSlug, name: "tasks",     tagline: "Execution clarity", description: "Track what matters without the noise.",    url: TASKS_URL     },
-  { slug: "roadmap"   as ProductSlug, name: "roadmap",   tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: ROADMAP_URL   },
-  { slug: "analytics" as ProductSlug, name: "analytics", tagline: "Attention clarity", description: "Surface what's working, simply.",          url: ANALYTICS_URL },
+  { slug: "notes"    as ProductSlug, name: "notes",    tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: NOTES_URL    },
+  { slug: "tasks"    as ProductSlug, name: "tasks",    tagline: "Execution clarity", description: "Track what matters without the noise.",    url: TASKS_URL    },
+  { slug: "timeline" as ProductSlug, name: "timeline", tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: TIMELINE_URL },
+  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what's working, simply.",          url: SIGNAL_URL   },
 ] as const;
 
 /* ── Embedded stylesheet ──────────────────────────────────────────
@@ -271,10 +271,10 @@ function AnalyticsVisual() {
 }
 
 const VISUAL_MAP: Record<ProductSlug, () => React.ReactElement> = {
-  notes:     NotesVisual,
-  tasks:     TasksVisual,
-  roadmap:   RoadmapVisual,
-  analytics: AnalyticsVisual,
+  notes:    NotesVisual,
+  tasks:    TasksVisual,
+  timeline: RoadmapVisual,
+  signal:   AnalyticsVisual,
 };
 
 /* ── Component ───────────────────────────────────────────────── */

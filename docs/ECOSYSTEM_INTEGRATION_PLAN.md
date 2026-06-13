@@ -12,8 +12,8 @@ Anyone should be able to open a shared Signal workspace and understand the state
 | --- | --- | --- |
 | Signal Notes | Context | What was captured, decided, or learned? |
 | Signal Tasks | Execution | What needs doing, by whom, and by when? |
-| Signal Roadmap | Direction | Where is this going, what changed, and what is next? |
-| Signal Analytics | Attention | What needs attention before it becomes a problem? |
+| Signal Timeline | Direction | Where is this going, what changed, and what is next? |
+| Signal | Attention | What needs attention before it becomes a problem? |
 
 ## Integration Thesis
 
@@ -41,9 +41,9 @@ These objects should be defined once and reused across all product repos.
 | Note | Captured context that can produce actions, decisions, risks, and references. |
 | Decision | A dated choice with reason, owner, linked work, and review point. |
 | Risk | Something that may affect delivery, direction, attention, or trust. |
-| Update | A meaningful change that can feed activity, changelog, briefing, and analytics. |
+| Update | A meaningful change that can feed activity, changelog, briefing, and signal. |
 | Signal | A derived plain-language observation about what needs attention. |
-| Shareable output | Roadmap, update, checklist, decision summary, template, or briefing. |
+| Shareable output | Timeline, update, checklist, decision summary, template, or briefing. |
 
 ## Build Sequence
 
@@ -57,7 +57,7 @@ Make the collaboration growth loop explicit across all four product repos before
 
 Deliverables:
 
-- product-specific collaboration loop docs in Tasks, Roadmap, Analytics, and Notes
+- product-specific collaboration loop docs in Tasks, Timeline, Signal, and Notes
 - shared object language aligned across repos
 - HQ Collab Loop data kept current
 - first implementation targets named for invites, guest value, shareable outputs, and source tracking
@@ -85,7 +85,7 @@ Deliverables:
 - collaborator first-view model
 - first three wedding/events shareable artefacts
 - V1 source tracking fields
-- product-specific Cycle 2 notes in Tasks, Roadmap, Analytics, and Notes
+- product-specific Cycle 2 notes in Tasks, Timeline, Signal, and Notes
 
 Acceptance criteria:
 
@@ -107,14 +107,14 @@ Build the first real shareable output so collaboration becomes visible outside a
 
 Deliverables:
 
-- Signal Roadmap shared update page at `/[workspace]/update`
+- Signal Timeline shared update page at `/[workspace]/update`
 - source-tracking query fields on shared-output links
 - "Created with Signal Studio" discovery surface
 - HQ tracking for the first built shareable artefact
 
 Acceptance criteria:
 
-- a viewer can understand the state of the work without opening the full roadmap
+- a viewer can understand the state of the work without opening the full timeline
 - the output does not expose private notes or internal work
 - the share link can carry source, segment, role, campaign, and artefact fields
 - the page can be used in the first collaboration demo
@@ -156,7 +156,7 @@ Deliverables:
 
 - public Studio `/weddings` route
 - wedding shared-update CTAs route viewers to `/weddings`
-- page explains Notes, Tasks, Roadmap, and Analytics as one planning workspace
+- page explains Notes, Tasks, Timeline, and Signal as one planning workspace
 - Founding Venue Pilot CTA is present
 
 Acceptance criteria:
@@ -169,7 +169,7 @@ Acceptance criteria:
 
 Detailed spec: `docs/TEMPLATES_STRATEGY.md`.
 
-Templates are owned by the studio repo. Tasks is the only product with a template gallery; Notes, Roadmap, and Analytics consume template metadata via lazy expression on first visit. No per-product template galleries beyond Tasks.
+Templates are owned by the studio repo. Tasks is the only product with a template gallery; Notes, Timeline, and Signal consume template metadata via lazy expression on first visit. No per-product template galleries beyond Tasks.
 
 Canonical shape — `WorkspaceTemplate { id, name, domain, audience, problem, seoSummary, tasks[], notes[], roadmap, analytics }` — lives in `studio/src/lib/templates/`. Each product runs a build-time sync to pull the slices it needs.
 
@@ -204,19 +204,19 @@ Acceptance criteria:
 
 - a venue, planner, or couple can open a useful wedding workspace starter
 - the public weddings page has a clear creator action after the shared update
-- the next cross-product cycle can connect Notes, Roadmap, and Analytics to the same wedding scene
+- the next cross-product cycle can connect Notes, Timeline, and Signal to the same wedding scene
 
 ### Phase 1: Shared language and links
 
 - Align product copy around workspace, owner, date, status, blocker, decision, risk, update, and briefing.
 - Add cross-product deep links where they are useful before adding heavy sync.
-- Keep Roadmap public-sharing strength visible as the first shareable artefact.
+- Keep Timeline public-sharing strength visible as the first shareable artefact.
 
 ### Phase 2: Shared event model
 
-- Define common events: task created, owner changed, date moved, blocker added, note created, decision logged, roadmap item changed, signal detected, briefing generated.
+- Define common events: task created, owner changed, date moved, blocker added, note created, decision logged, timeline item changed, signal detected, briefing generated.
 - Keep the first implementation pragmatic. A shared event shape matters more than a perfect event bus.
-- Use events to power activity, briefings, changelogs, and later analytics.
+- Use events to power activity, briefings, changelogs, and later signal.
 
 ### Phase 3: Collaboration and guest value
 
@@ -227,10 +227,10 @@ Acceptance criteria:
 
 ### Phase 4: Shareable outputs
 
-- Roadmap: public plan, change log, and shared update.
+- Timeline: public plan, change log, and shared update.
 - Notes: decision summary and action summary.
 - Tasks: checklist and status update.
-- Analytics: Today Signal / workspace briefing.
+- Signal: Today Signal / workspace briefing.
 - Templates: duplicable wedge workspaces.
 
 ### Phase 5: Creator loop and attribution
@@ -249,7 +249,7 @@ The demo should include:
 - a venue meeting note
 - approved actions
 - supplier follow-ups
-- a 12-month or final-week roadmap
+- a 12-month or final-week timeline
 - a decision summary
 - a Today Signal briefing
 - a shareable update with a clear next step

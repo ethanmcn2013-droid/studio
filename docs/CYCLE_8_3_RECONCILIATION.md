@@ -101,7 +101,7 @@ Webhook user.created has already provisioned users + workspaces row
 
 - **Production deploys of both repos.** Holding until the end-to-end test plan is run locally OR you're ready to ship a real venue test.
 - **Vercel env vars on Tasks for cross-DB write.** Not needed — issue-codes.ts runs locally from studio (operator-only), not from a deployed surface.
-- **Cross-product entitlements** for compliments/review-access reaching Notes/Roadmap/Analytics. Cycle 9+ scope. Today, those redemptions still go through Tasks's flow and grant a Tasks-only entitlement; using studio tier in those other products will read as Free until cross-product identity ships.
+- **Cross-product entitlements** for compliments/review-access reaching Notes/Timeline/Signal. Cycle 9+ scope. Today, those redemptions still go through Tasks's flow and grant a Tasks-only entitlement; using studio tier in those other products will read as Free until cross-product identity ships.
 - **Signal HQ data.ts entry.** Will write when Cycle 8.5 launches with Lamb's Hill (visible stakeholder scope).
 
 ## Open architectural debt

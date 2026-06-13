@@ -1,6 +1,6 @@
 # /api/today — Today cross-suite aggregation
 
-Per-user "today" digest that aggregates state across the four products (Tasks / Notes / Roadmap / Analytics). Powers the native iOS app's Today home screen and the web seamless-ecosystem widget.
+Per-user "today" digest that aggregates state across the four products (Tasks / Notes / Timeline / Signal). Powers the native iOS app's Today home screen and the web seamless-ecosystem widget.
 
 Type contract: `~/Projects/personal/studio/src/server/today/types.ts`.
 Aggregator: `~/Projects/personal/studio/src/server/today/aggregate.ts`.
@@ -31,9 +31,9 @@ Content-Type: application/json
 
 ## Known v1 limitations
 
-- **Roadmap member workspaces are silently omitted.** Roadmap's schema has no `workspace_members` table — only the workspace OWNER's milestones surface here. Membership-only users see empty Roadmap summary. Tracked in the aggregator file header.
+- **Timeline member workspaces are silently omitted.** Timeline's schema has no `workspace_members` table — only the workspace OWNER's milestones surface here. Membership-only users see empty Timeline summary. Tracked in the aggregator file header.
 - **`shippedLast24h` is approximate.** Tasks' schema has no transition-time column; `updated_at` is the proxy. A shipped-lane task that was edited (title, comment) within 24h registers here even if the actual ship was earlier. Named in the type's JSDoc and the aggregator comment.
-- **Cadence comes from Tasks' `user_preferences.daily_signal_cadence`,** not the Analytics email-subscription DB. This is the same column Analytics reads at briefing time, so it's the canonical source — but it does mean the Analytics email-subscription DB is not consulted by this endpoint.
+- **Cadence comes from Tasks' `user_preferences.daily_signal_cadence`,** not the Signal email-subscription DB. This is the same column Signal reads at briefing time, so it's the canonical source — but it does mean the Signal email-subscription DB is not consulted by this endpoint.
 
 ## Operator provisioning
 
@@ -46,10 +46,10 @@ Five environment variables on the studio Vercel deployment (production AND previ
 | `TASKS_TURSO_TOKEN`      | **Read-only** Tasks Turso token. Mint via `turso db tokens create --read-only signal-tasks`. |
 | `NOTES_TURSO_URL`        | Notes production Turso URL.                                                              |
 | `NOTES_TURSO_TOKEN`      | **Read-only** Notes Turso token.                                                          |
-| `ROADMAP_TURSO_URL`      | Roadmap production Turso URL.                                                            |
-| `ROADMAP_TURSO_TOKEN`    | **Read-only** Roadmap Turso token.                                                        |
-| `ANALYTICS_TURSO_URL`    | Analytics prefs DB URL (the `analytics_users` / `phrasing_rotations` instance).           |
-| `ANALYTICS_TURSO_TOKEN`  | **Read-only** Analytics prefs DB token.                                                  |
+| `ROADMAP_TURSO_URL`      | Timeline production Turso URL.                                                            |
+| `ROADMAP_TURSO_TOKEN`    | **Read-only** Timeline Turso token.                                                        |
+| `ANALYTICS_TURSO_URL`    | Signal prefs DB URL (the `analytics_users` / `phrasing_rotations` instance).           |
+| `ANALYTICS_TURSO_TOKEN`  | **Read-only** Signal prefs DB token.                                                  |
 
 When any pair is missing the endpoint gracefully degrades — `reads.<product> = "skipped_no_env"` and the corresponding slice is null. Apple's reviewer hitting the endpoint with `SUITE_API_KEY` only and no Turso tokens will see an empty-but-well-formed response (the iOS client renders the "set up" state).
 

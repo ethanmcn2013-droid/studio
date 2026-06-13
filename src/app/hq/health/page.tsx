@@ -57,7 +57,7 @@ export default async function HealthPage() {
       ) : analyticsDaily ? (
         <div className="grid gap-4">
           <CronRow
-            label="Analytics · daily briefings"
+            label="Signal · daily briefings"
             schedule="06:00 UTC daily"
             health={analyticsDaily}
           />

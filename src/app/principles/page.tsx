@@ -20,7 +20,7 @@ const PRINCIPLES = [
     n: "2",
     title: "Every product publishes its refusals.",
     body:
-      "Each product in the suite has a locked refusals list in its PRODUCT.md. Tasks refuses sprints, epics, and per-seat pricing. Roadmap refuses private workspaces, team tiers, comment threading, and a public directory. Notes refuses sharing on raw notes — only creator-approved extracts cross the boundary. Analytics refuses the LLM in the path — every sentence is human-written, slot-filled by rules.",
+      "Each product in the suite has a locked refusals list in its PRODUCT.md. Tasks refuses sprints, epics, and per-seat pricing. Timeline refuses private workspaces, team tiers, comment threading, and a public directory. Notes refuses sharing on raw notes — only creator-approved extracts cross the boundary. Signal refuses the LLM in the path — every sentence is human-written, slot-filled by rules.",
     why: "Notion cannot refuse to be a wiki; it is a wiki. Asana cannot refuse to surface metrics; metrics are its conversion bait. We can refuse, because refusing is what makes the brand.",
   },
   {
@@ -34,7 +34,7 @@ const PRINCIPLES = [
     n: "4",
     title: "Suite coherence is a single product surface.",
     body:
-      "Cross-product navigation, footer chrome, the changelog, the contact page, the legal stack — these live once, in one place, and every product points to them. A visitor moving from Tasks to Roadmap to Analytics should feel one continuous voice, not three separate brands sharing a parent company.",
+      "Cross-product navigation, footer chrome, the changelog, the contact page, the legal stack — these live once, in one place, and every product points to them. A visitor moving from Tasks to Timeline to Signal should feel one continuous voice, not three separate brands sharing a parent company.",
     why: "An incumbent attacking one of these has to attack all four — against a brand that has been speaking with one voice while they did so.",
   },
   {

@@ -1,7 +1,7 @@
 # Suite SSO + Instant-Jump — Prod Walkthrough (2026-05-17)
 
 Goal: verify (not rebuild) that a human can sign in **once** and move
-Tasks ⇄ Roadmap ⇄ Analytics ⇄ Notes with zero re-auth, instantly.
+Tasks ⇄ Timeline ⇄ Signal ⇄ Notes with zero re-auth, instantly.
 Method: real authenticated session driven through prod via Playwright.
 Email-code factor read via the connected Gmail.
 
@@ -22,8 +22,8 @@ Then, **without signing in again**:
 | Hop | URL hit | Final URL | Re-auth? | Session id observed | Load / TTFB |
 |---|---|---|---|---|---|
 | baseline | tasks…/sign-up | tasks…/app/board | n/a (initial) | sess_3Dpnq6… | — |
-| Tasks→Roadmap | roadmap…/app | roadmap…/app | **NO** (pass) | sess_3Dpnq6… (identical) | 3127ms / 1877ms |
-| Tasks→Analytics | analytics…/app | analytics…/app | **NO** (pass) | sess_3Dpnq6… (identical) | 1113ms / 436ms |
+| Tasks→Timeline | timeline…/app | timeline…/app | **NO** (pass) | sess_3Dpnq6… (identical) | 3127ms / 1877ms |
+| Tasks→Signal | signal…/app | signal…/app | **NO** (pass) | sess_3Dpnq6… (identical) | 1113ms / 436ms |
 | Tasks→Notes | notes…/app | notes…/app | **NO** (pass) | sess_3Dpnq6… (identical) | 2174ms / 414ms |
 | Notes→Tasks (via SuiteLauncher click) | launcher → tasks | tasks…/ | **NO** (pass) | sess_3Dpnq6… (identical) | new tab |
 
@@ -52,10 +52,10 @@ products in the Notes app chrome and is reachable.
    Phase-3 claim — at least Notes did not get that treatment. Because it
    opens a new tab, the dot-morph (a same-tab transition) does not play
    on this path. Engineering fix in `notes` repo `suite-launcher.tsx`.
-3. **Analytics marketing nav omits the SuiteLauncher** (Tasks shows it);
+3. **Signal marketing nav omits the SuiteLauncher** (Tasks shows it);
    `analytics/src/components/marketing/site-nav-conditional.tsx` gates it.
    The authenticated `/app` shell is correct. Discoverability only.
-4. **CSP enforce-mode landmine.** tasks/roadmap/analytics CSP is
+4. **CSP enforce-mode landmine.** tasks/timeline/signal CSP is
    Report-Only and omits `clerk.signalstudio.ie`/`*.clerk.com`. Harmless
    today; flipping to enforce without fixing the allowlist breaks Clerk
    there. Notes already enforces correctly.
@@ -74,9 +74,9 @@ products in the Notes app chrome and is reachable.
 ## Proposed phase line (confirm before saving to .claude/state/phase.md)
 
 > SC·4 — Suite SSO PROD-WALKTHROUGH-VERIFIED 2026-05-17: one live Clerk
-> session (sess_3Dpnq6…) carried Tasks→Roadmap→Analytics→Notes→Tasks
+> session (sess_3Dpnq6…) carried Tasks→Timeline→Signal→Notes→Tasks
 > with zero re-auth, observed per-hop. Google OAuth live. SuiteLauncher
 > present in all 4 app shells. Owed: (a) operator rename Clerk app off
-> "(Dev)"; (b) Notes launcher same-tab/dot-morph fix; (c) analytics
+> "(Dev)"; (b) Notes launcher same-tab/dot-morph fix; (c) signal
 > marketing-nav launcher; (d) CSP enforce-mode allowlist on
-> tasks/roadmap/analytics.
+> tasks/timeline/signal.

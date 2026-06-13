@@ -5,7 +5,7 @@ import type { TemplateAudience } from "@/components/marketing/template-pills";
  *
  * Two shapes:
  *  - "anchor" → canonical four-layer WorkspaceTemplate from
- *    `src/lib/templates/index.ts` (seeds Tasks + Notes + Roadmap + Analytics).
+ *    `src/lib/templates/index.ts` (seeds Tasks + Notes + Timeline + Signal).
  *    Suite-wide reach.
  *  - "specialty" → drop-in Tasks template (Tasks-only). Lifted by
  *    metadata mirror from `tasks/src/lib/templates.ts`. Single-layer.

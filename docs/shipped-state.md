@@ -20,15 +20,15 @@ the 2026-05-14 suite audits).
 | Product | URL | State | Safe to claim |
 |---|---|---|---|
 | Signal Tasks | tasks.signalstudio.ie | **Live** | "Live now." Plain-English task workspace. Multi-view. Real persistence (Turso). |
-| Signal Roadmap | roadmap.signalstudio.ie | **Live, with one caveat** | "Live now." Public roadmap, shared updates. **Caveat below — do not claim write reliability in prod until Upstash is provisioned.** |
+| Signal Timeline | timeline.signalstudio.ie | **Live, with one caveat** | "Live now." Public timeline, shared updates. **Caveat below — do not claim write reliability in prod until Upstash is provisioned.** |
 | Signal Notes | notes.signalstudio.ie | **Live** | "Live now." Capture, then promote a note into a task in one tap. Never auto-detected. |
-| Signal Analytics | analytics.signalstudio.ie | **Live** | "Live now." The daily briefing — three things in plain English. Real Tasks-DB read, daily + Monday cron. |
+| Signal | signal.signalstudio.ie | **Live** | "Live now." The daily briefing — three things in plain English. Real Tasks-DB read, daily + Monday cron. |
 | Signal Studio (umbrella) | signalstudio.ie | **Live** | Marketing surface, pricing, /weddings, /venues, /redeem, /dispatch, /brand. |
 
-**The `/pricing` "in build" labels for Notes and Analytics are stale as of
-2026-05-16.** Both shipped (Notes 2026-05-14, Analytics end-to-end
+**The `/pricing` "in build" labels for Notes and Signal are stale as of
+2026-05-16.** Both shipped (Notes 2026-05-14, Signal end-to-end
 2026-05-13). The pricing rebuild corrects this. Until the page is redeployed,
-treat Notes/Analytics as **live** for copy purposes — saying "in build" about a
+treat Notes/Signal as **live** for copy purposes — saying "in build" about a
 shipped product is itself a reality violation.
 
 ---
@@ -43,12 +43,12 @@ shipped product is itself a reality violation.
 - **Do not claim:** features behind Turnstile+Clerk that are env-blocked from
   live-cert. The `/app` live walkthrough is not operator-verified end-to-end.
 
-### Signal Roadmap — live, one hard caveat
-- roadmap.signalstudio.ie responds 200. Public viewer + 3-view switcher shipped.
+### Signal Timeline — live, one hard caveat
+- timeline.signalstudio.ie responds 200. Public viewer + 3-view switcher shipped.
 - **Caveat (load-bearing):** production has no Upstash env. The rate limiter
   denies 100% of writes until the operator provisions Upstash and redeploys.
-  **Copy may say Roadmap is live and show the public/read experience. Copy may
-  not invite a reader to create or edit a roadmap in prod** until this clears.
+  **Copy may say Timeline is live and show the public/read experience. Copy may
+  not invite a reader to create or edit a timeline in prod** until this clears.
   The marketing plan gates M1 on this exact fix.
 
 ### Signal Notes — live
@@ -56,8 +56,8 @@ shipped product is itself a reality violation.
 - Cross-repo Notes→Tasks extract edge shipped (Cycle 9.4b).
 - Deferred (do not claim): email-to-capture, FTS5 search UI, mobile share sheet.
 
-### Signal Analytics — live
-- analytics.signalstudio.ie shipped end-to-end 2026-05-13.
+### Signal — live
+- signal.signalstudio.ie shipped end-to-end 2026-05-13.
 - Real Tasks-DB read → briefing engine (triggers + phrasings) → web render at
   `/app` + Resend email with RFC 8058 unsubscribe → Vercel cron 06:00 UTC
   daily + Mondays weekly.

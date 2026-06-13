@@ -1,7 +1,7 @@
 ---
 id: roadmap-shared-update
-title: Shared roadmap update page
-product: Signal Roadmap
+title: Shared timeline update page
+product: Signal Timeline
 category: Growth
 status: Built
 priority: High

@@ -9,7 +9,7 @@ the one record missing.
 
 **Why it matters:** Without DKIM, `hello@signalstudio.ie` is SPF-only-
 signed. Functional, but Outlook / corporate filters may flag it as
-suspicious. The Sinéad email at Lamb's Hill and the analytics daily
+suspicious. The Sinéad email at Lamb's Hill and the signal daily
 briefing emails both ship from `hello@`; both need DKIM-pass to stay
 out of spam folders.
 
@@ -141,7 +141,7 @@ verification, click the link. Done.
 - **Sinéad email at Lamb's Hill** — DKIM-pass means the email lands
   in Sinéad's primary inbox and not Promotions. Runbook gate #3 in
   `signal-growth/outbound/lambs-hill-pilot-send.md` closes.
-- **Analytics daily briefing emails** — the briefing engine sends
+- **Signal daily briefing emails** — the briefing engine sends
   from `hello@`. DKIM-pass measurably improves inbox placement vs
   SPF-only-signed mail. Recipients with strict filters (Outlook,
   most corporate Gmail with `dmarc=p=quarantine`) currently get the

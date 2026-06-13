@@ -1,10 +1,10 @@
 ---
 id: shared-roadmap-update
-title: Shared roadmap update
+title: Shared timeline update
 wedge: All, starting with weddings and events
-ownerProduct: Signal Roadmap
+ownerProduct: Signal Timeline
 defaultVisibility: Public
-sourceTracking: source=roadmap_share, segment=weddings, role=viewer, artefact=shared_update
+sourceTracking: source=timeline_share, segment=weddings, role=viewer, artefact=shared_update
 cta: See Signal Studio
 status: Built
 nextAction: Use `/tasks/update` as the first proof, then shape the wedding/events version.
@@ -12,4 +12,4 @@ nextAction: Use `/tasks/update` as the first proof, then shape the wedding/event
 
 ## Purpose
 
-Give viewers a short state-of-work page before asking them to open the full roadmap.
+Give viewers a short state-of-work page before asking them to open the full timeline.

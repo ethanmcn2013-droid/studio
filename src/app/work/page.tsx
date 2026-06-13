@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ANALYTICS_URL, NOTES_URL, ROADMAP_URL, TASKS_URL } from "@/lib/product-urls";
+import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Work — Signal Studio",
   description:
-    "Four products for operational clarity — Signal Notes, Signal Tasks, Signal Roadmap, Signal Analytics.",
+    "Four products for operational clarity — Signal Notes, Signal Tasks, Signal Timeline, Signal.",
 };
 
 interface WorkItem {
@@ -26,20 +26,20 @@ const items: WorkItem[] = [
     href: TASKS_URL,
   },
   {
-    name: "Signal Roadmap",
+    name: "Signal Timeline",
     descriptor:
       "Direction clarity for public plans, changes, and decisions people can read.",
     year: "2026",
     status: "Private preview",
-    href: ROADMAP_URL,
+    href: TIMELINE_URL,
   },
   {
-    name: "Signal Analytics",
+    name: "Signal",
     descriptor:
       "Attention clarity through short briefings that surface what matters in the work.",
     year: "2026",
     status: "Private preview",
-    href: ANALYTICS_URL,
+    href: SIGNAL_URL,
   },
   {
     name: "Signal Notes",

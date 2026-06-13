@@ -10,11 +10,11 @@ Read this after BRAND.md, before touching code or copy.
 
 Signal Studio is a four-product suite for the 80% of working people who don't work in tech and have been failed by every productivity tool ever made for them. Wedding planners. Tradespeople. Freelance designers. Students. Small-business operators. Teachers. People whose work is real, deadline-bound, money-attached, and not described in the vocabulary of software product managers.
 
-The operating category is **operational clarity**. The current homepage tests "Project Management for the 80% who don't work in tech" as market-facing shorthand, but the product should still avoid productivity-platform framing, PM jargon, and analytics-as-dashboard theatre. The four products each surface a different kind of clarity:
+The operating category is **operational clarity**. The current homepage tests "Project Management for the 80% who don't work in tech" as market-facing shorthand, but the product should still avoid productivity-platform framing, PM jargon, and signal-as-dashboard theatre. The four products each surface a different kind of clarity:
 
 - **Signal Tasks** — execution clarity. Run the work.
-- **Signal Roadmap** — direction clarity. Explain the work.
-- **Signal Analytics** — attention clarity. Surface what matters in the work.
+- **Signal Timeline** — direction clarity. Explain the work.
+- **Signal** — attention clarity. Surface what matters in the work.
 - **Signal Notes** — capture clarity. Hold the work as it happens. *(Private build; full v1 still pending.)*
 
 Each product solves one slice. The suite is the system. The umbrella site (this repo) is the brand surface that makes the relationship between the four legible without forcing a "platform" story.
@@ -37,8 +37,8 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 |---|---|---|
 | Signal Studio (umbrella) | signalstudio.ie | **Live private preview.** Reveal v3 shipped as the umbrella brand surface. |
 | Signal Tasks | tasks.signalstudio.ie | **Private preview.** Auth, persistence, app workspace, cinematic demo, and audience pages are in active refinement. |
-| Signal Roadmap | roadmap.signalstudio.ie | **Private preview.** Core roadmap, editor, and public viewer are in active refinement. Launch claims must stay tied to what the repo and preview prove. |
-| Signal Analytics | analytics.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
+| Signal Timeline | timeline.signalstudio.ie | **Private preview.** Core timeline, editor, and public viewer are in active refinement. Launch claims must stay tied to what the repo and preview prove. |
+| Signal | signal.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
 | Signal Notes | notes.signalstudio.ie | **Private build.** First capture-clarity surface is live; PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; full v1 product work remains pending. |
 
 **Signal HQ:** `/hq` is the private operating dashboard for building and launching Signal Studio. It is password-gated, `noindex`, absent from public navigation, and local-first in v1.
@@ -51,7 +51,7 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 
 ## 5 · Where we're heading (next 2–4 cycles)
 
-- **Direction C — Daily Signal as page.** Alternative experiment for the umbrella landing: the umbrella IS a Daily Signal briefing (Analytics's product format applied to the studio itself, dated, timestamped, sectioned). Strategically distinctive — only Signal Studio could ship this. Build off main on a fresh branch, do NOT replace production.
+- **Direction C — Daily Signal as page.** Alternative experiment for the umbrella landing: the umbrella IS a Daily Signal briefing (Signal's product format applied to the studio itself, dated, timestamped, sectioned). Strategically distinctive — only Signal Studio could ship this. Build off main on a fresh branch, do NOT replace production.
 - **Notes v1 scaffolding.** Turn the first live Notes surface into the real product. Position: capture clarity. One-way Notes→Tasks promotion only — never auto-detect todos (that's a refusal locked in `notes/docs/PRODUCT.md`).
 - **Signal HQ operating cadence.** Keep product, launch, growth, decisions, risks, and next actions current inside `/hq` as the suite changes. HQ is now the internal source of truth for meaningful strategic movement.
 - **Cross-product chrome.** Top-bar product switcher, shared auth seam. Deferred until all four products are at parity. All four now have public surfaces; shared chrome work waits for product parity.
@@ -63,11 +63,11 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 
 These are locked refusals. Not "maybe later" — refusals.
 
-- **No "AI-powered" anything.** Ambient AI is fine inside the engine (Analytics's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed in marketing.
-- **No "team tier" on Roadmap.** v1 lock. Solo + Pro only.
-- **No private workspaces on Roadmap.** Public-by-default is the position.
-- **No comment threading on Roadmap.** Refused.
-- **No public directory of Roadmap workspaces.** Refused in v1.
+- **No "AI-powered" anything.** Ambient AI is fine inside the engine (Signal's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed in marketing.
+- **No "team tier" on Timeline.** v1 lock. Solo + Pro only.
+- **No private workspaces on Timeline.** Public-by-default is the position.
+- **No comment threading on Timeline.** Refused.
+- **No public directory of Timeline workspaces.** Refused in v1.
 - **No "all-in-one productivity platform" framing.** Anywhere. Ever.
 - **No three-adjective hero grids** ("Calm. Clear. Confident."). Anywhere.
 - **No purple gradients.** The historical Tasks accent was purple-leaning; that was purged. Don't reintroduce.

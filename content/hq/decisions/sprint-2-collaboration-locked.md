@@ -1,16 +1,16 @@
 ---
 id: sprint-2-collaboration-locked
-title: Sprint 2 = Collaboration moat. Five gestures, seven cycles, Tasks + Roadmap only.
+title: Sprint 2 = Collaboration moat. Five gestures, seven cycles, Tasks + Timeline only.
 category: Product
 date: 2026-05-11
 status: Active
 reviewDate: 2026-06-15
-relatedObjects: [studio/docs/SPRINT_2_COLLABORATION.md, Tasks workspace_members, Roadmap shared update, Collaboration Loop]
+relatedObjects: [studio/docs/SPRINT_2_COLLABORATION.md, Tasks workspace_members, Timeline shared update, Collaboration Loop]
 ---
 
 ## Decision
 
-Sprint 2 = Collaboration moat. Five gestures, seven cycles, Tasks + Roadmap only.
+Sprint 2 = Collaboration moat. Five gestures, seven cycles, Tasks + Timeline only.
 
 ## Reason
 
@@ -18,7 +18,7 @@ Collaboration is the brand's structural moat: 'the invited person feels nothing.
 
 ## Alternatives considered
 
-Generic 'add collab everywhere' (would break Notes locked single-user and Analytics private positioning). Or defer collaboration until after Analytics ships (loses the moat-building window).
+Generic 'add collab everywhere' (would break Notes locked single-user and Signal private positioning). Or defer collaboration until after Signal ships (loses the moat-building window).
 
 ## Risks
 
@@ -26,4 +26,4 @@ Sprint 2 is multi-cycle and cross-repo. Pacing matters. Don't half-start it befo
 
 ## Notes
 
-Notes stays single-user, Analytics stays private. Sprint 2 changes only Tasks + Roadmap.
+Notes stays single-user, Signal stays private. Sprint 2 changes only Tasks + Timeline.

@@ -419,7 +419,7 @@ export const DECK: Slide[] = [
     body: (
       <>
         <Lead>
-          Pre-launch readiness. Operator: provision Roadmap Upstash, clear
+          Pre-launch readiness. Operator: provision Timeline Upstash, clear
           the four Lamb&rsquo;s Hill steps. Agent-side: write shipped
           state, fix the pricing-surface drift, stand up the factory.
         </Lead>

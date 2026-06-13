@@ -2,7 +2,7 @@
 
 **Trigger.** Operator is sending the suite URL to an interviewer. The link must read as the work of someone with taste, restraint, and motion sense — not just a competent ship.
 
-**Scope (5 surfaces).** Studio root (signalstudio.ie) · Notes (notes.signalstudio.ie) · Tasks (tasks public landing — reference, but reviewed) · Analytics (analytics.signalstudio.ie) · Roadmap (roadmap.signalstudio.ie).
+**Scope (5 surfaces).** Studio root (signalstudio.ie) · Notes (notes.signalstudio.ie) · Tasks (tasks public landing — reference, but reviewed) · Signal (signal.signalstudio.ie) · Timeline (timeline.signalstudio.ie).
 
 **Gate.** Each cycle scores against a 3-director panel: creative-director, ux-director, senior-engineer. **All three ≥9.5** AND **average ≥9.65** before prod push. Single 9.4 holds the cycle.
 
@@ -14,8 +14,8 @@ Cloning Tasks' anatomy three times would impress once. Per-product tempo + metap
 
 - **Tasks** — energetic, live-presence (shipped)
 - **Notes** — quiet, solitary, no live ticking
-- **Analytics** — data-pulse, quantified
-- **Roadmap** — narrative one-shot, no infinite loops
+- **Signal** — data-pulse, quantified
+- **Timeline** — narrative one-shot, no infinite loops
 
 ---
 
@@ -37,8 +37,8 @@ Wordmark `.stack-row` entrance:
 Gesture fire times (each rides slightly behind its row landing):
 - notes `1.0 → 1.55`
 - tasks `1.16 → 1.85`
-- roadmap `1.28 → 2.15`
-- analytics `1.4 → 2.45`
+- timeline `1.28 → 2.15`
+- signal `1.4 → 2.45`
 
 Scroll-cue lands at ~2.95s (was ~2.4s).
 
@@ -94,9 +94,9 @@ Mobile rebalanced to a 96-unit base:
 
 ---
 
-## P·3 — Analytics: upgrade existing briefing-anatomy.tsx to motion-grade
+## P·3 — Signal: upgrade existing briefing-anatomy.tsx to motion-grade
 
-**File.** `src/components/marketing/briefing-anatomy.tsx` in analytics repo.
+**File.** `src/components/marketing/briefing-anatomy.tsx` in signal repo.
 
 **Status.** Structure already shipped (left card + right annotations 1-6). It's mostly static. Add the choreography while preserving the six annotations.
 
@@ -116,9 +116,9 @@ Mobile rebalanced to a 96-unit base:
 
 ---
 
-## P·4 — Roadmap: upgrade existing anatomy.tsx to motion-grade
+## P·4 — Timeline: upgrade existing anatomy.tsx to motion-grade
 
-**File.** `src/components/marketing/anatomy.tsx` in roadmap repo.
+**File.** `src/components/marketing/anatomy.tsx` in timeline repo.
 
 **Status.** Currently four annotations (Status, Decision, Reason, Refusal). Fully static.
 
@@ -133,11 +133,11 @@ Mobile rebalanced to a 96-unit base:
 - T+3.6s: public-link icon rises
 - Hold final state — don't reset
 
-**Why one-shot here:** Roadmap's metaphor is *publishing* — a one-way action. A looping anatomy would lie about the gesture. This is the cycle where restraint earns the score.
+**Why one-shot here:** Timeline's metaphor is *publishing* — a one-way action. A looping anatomy would lie about the gesture. This is the cycle where restraint earns the score.
 
 **Panel rubric (P·4).**
 - CD: one-shot reads as composed, not abandoned? Final hold state is the right final state?
-- UXD: does the sequence teach what a Roadmap item *is* without requiring the visitor to scroll?
+- UXD: does the sequence teach what a Timeline item *is* without requiring the visitor to scroll?
 - SE: intersection observer fires once and exactly once; re-enters don't replay; reduced-motion lands in final state immediately.
 
 ---
@@ -165,5 +165,5 @@ P·5 last — has to wait for all four to be live.
 
 - Copy-pasting Tasks' choreography. Tempting; wrong.
 - Adding ornament that doesn't *teach* the product. The anatomy section is a comprehension tool — motion must serve that, not steal from it.
-- Looping on Roadmap. Don't.
+- Looping on Timeline. Don't.
 - Forgetting reduced-motion. Every cycle's SE score is gated on a real reduced-motion check.

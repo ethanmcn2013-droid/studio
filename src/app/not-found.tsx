@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TASKS_URL, ROADMAP_URL } from "@/lib/product-urls";
+import { TASKS_URL, TIMELINE_URL } from "@/lib/product-urls";
 
 /**
  * 404 — on-brand, calm. Two product links as the primary action.
@@ -50,7 +50,7 @@ export default function NotFound() {
               Signal Tasks &rarr;
             </a>
             <a
-              href={ROADMAP_URL}
+              href={TIMELINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors"
@@ -60,7 +60,7 @@ export default function NotFound() {
                 color: "var(--ink-soft)",
               }}
             >
-              Signal Roadmap &rarr;
+              Signal Timeline &rarr;
             </a>
           </div>
 

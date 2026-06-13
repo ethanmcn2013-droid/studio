@@ -26,9 +26,9 @@ A note can produce, by deliberate creator approval, exactly four kinds of extrac
 | Extract type | Maps to shared object | What it is | Destination edge | What it must never carry |
 |---|---|---|---|---|
 | **Action** | `task` | A creator-authored, owned next step. Shipped today as `extract_body`. | `POST /api/notes-extract` → Tasks | The note body. Any text the creator did not type into the extract field. |
-| **Decision** | `decision` | A choice the creator has settled and is willing to make legible. | Deferred edge → Roadmap shared update / Tasks decision log | Reasoning the creator kept in the note. Rejected alternatives unless re-typed into the extract. |
-| **Risk** | `risk` | A named exposure the creator chooses to surface. | Deferred edge → Roadmap / Analytics attention | Mitigation detail or blame framing left in the note. |
-| **Summary** | `update` | A creator-authored synopsis for a shared update or briefing. | Deferred edge → Roadmap update / Analytics briefing | Verbatim note prose. A summary is *re-authored*, never a substring lift. |
+| **Decision** | `decision` | A choice the creator has settled and is willing to make legible. | Deferred edge → Timeline shared update / Tasks decision log | Reasoning the creator kept in the note. Rejected alternatives unless re-typed into the extract. |
+| **Risk** | `risk` | A named exposure the creator chooses to surface. | Deferred edge → Timeline / Signal attention | Mitigation detail or blame framing left in the note. |
+| **Summary** | `update` | A creator-authored synopsis for a shared update or briefing. | Deferred edge → Timeline update / Signal briefing | Verbatim note prose. A summary is *re-authored*, never a substring lift. |
 
 **Authorship rule (the load-bearing one).** Every extract is *typed by the creator into a dedicated extract field*, exactly as `extract_body` works today. The system never derives an extract by summarising, parsing, or excerpting the note body. This is what makes the privacy boundary mechanical rather than aspirational — there is no code path from note body to shared surface to audit, because none is ever written. It also keeps Notes inside its banned-word position: no "AI summary", no auto-detect (PRODUCT.md §"Not AI-marketed", DESIGN.md §10).
 
@@ -50,9 +50,9 @@ A note can produce, by deliberate creator approval, exactly four kinds of extrac
 
 These are the queries that must be impossible, not merely discouraged. Stated as forbidden joins so a reviewer can grep for them:
 
-- No shared workspace, roadmap update, analytics briefing, guest view, or public surface may `SELECT` from the Notes `notes.body` column. Ever. For any reason.
+- No shared workspace, timeline update, signal briefing, guest view, or public surface may `SELECT` from the Notes `notes.body` column. Ever. For any reason.
 - No cross-repo edge may transit `notes.body`. The only payload the Notes→Tasks edge carries remains `{ clerkUserId, noteId, extract_body }` (PRODUCT.md). New extract types extend the *type* enum and the *body* field; they never add the raw body.
-- No analytics aggregate, count, or signal may be computed over raw note bodies — not even a word count, not even "notes written this week" if that figure is derived by reading bodies. Counts come from extract rows or note metadata (`created_at`), never body content.
+- No signal aggregate, count, or signal may be computed over raw note bodies — not even a word count, not even "notes written this week" if that figure is derived by reading bodies. Counts come from extract rows or note metadata (`created_at`), never body content.
 - `noteId` may cross as an opaque correlation key only. No surface may use a `noteId` to fetch the body. The Tasks-side handler stores the id for provenance; it has no read-back grant to Notes.
 
 If a future feature appears to need one of these joins, that is the signal to add an extract type in §2 — not to pierce the boundary.
@@ -74,7 +74,7 @@ The model now exists (this document). The tests below are specified now and **bu
 When the multi-type extract schema is built, these tests must exist and pass:
 
 1. **Boundary-isolation test.** For each of the four extract types, assert the cross-repo payload contains exactly `{clerkUserId, noteId, <type>, body}` and that `body` is byte-identical to the creator-typed extract field — never a substring of, superset of, or transform of `notes.body`. Property test with adversarial note bodies (note body ⊄ payload, payload ⊄ note body unless creator literally retyped it).
-2. **No-read-back test.** Assert the Tasks-side / Roadmap-side / Analytics-side handlers have no credential or code path that can `GET` a Notes body by `noteId`. Static assertion: grep the destination repos for any Notes body fetch and fail CI if found.
+2. **No-read-back test.** Assert the Tasks-side / Timeline-side / Signal-side handlers have no credential or code path that can `GET` a Notes body by `noteId`. Static assertion: grep the destination repos for any Notes body fetch and fail CI if found.
 3. **Forbidden-join test.** Static check (extends the §4 list): fail CI if any non-Notes repo references `notes.body` / `note_body` / a `notes` table body column.
 4. **Revocation test.** Revoke each extract type; assert the extract row is gone, the destination link is nulled, the destination object survives detached, and no body leaked into the destination during its lifetime.
 5. **Edit-no-propagate test.** Mutate a note after extraction; assert no destination surface observes the change.
@@ -86,7 +86,7 @@ Test 3 is the cheapest and highest-leverage — it is a static grep guard and sh
 ## 7 · What this contract does NOT do
 
 - Does not build the multi-type extract schema. Today only `extract_body` (action) exists. Decision/risk/summary edges are *contracted* here and built when there is a surface that needs them — not speculatively.
-- Does not add a Notes→Analytics edge. Still deferred to v2+ (PRODUCT.md). When it lands it conforms to §4.
+- Does not add a Notes→Signal edge. Still deferred to v2+ (PRODUCT.md). When it lands it conforms to §4.
 - Does not make Notes collaborative, exportable, or AI-marketed. Those refusals (PRODUCT.md §7) are untouched.
 - Does not change the shipped action edge. It is the reference implementation; the other three types copy its shape exactly.
 

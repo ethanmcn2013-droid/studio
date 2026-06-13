@@ -10,4 +10,4 @@ nextAction: Turn `/[workspace]/update` into the first wedding/events demo path.
 
 ## Notes
 
-The first shared output exists in Roadmap. Invitations, guest value, and tracking still need implementation depth.
+The first shared output exists in Timeline. Invitations, guest value, and tracking still need implementation depth.

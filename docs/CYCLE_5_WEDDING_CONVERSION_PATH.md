@@ -27,7 +27,7 @@ Signal Studio now has a public `/weddings` route with:
 - a plain-language explanation of the four-product loop
 - Founding Venue Pilot CTA
 
-Signal Roadmap now sends `segment=weddings` shared-update CTAs to `/weddings`.
+Signal Timeline now sends `segment=weddings` shared-update CTAs to `/weddings`.
 
 ## Next Iteration
 

@@ -8,13 +8,13 @@
 
 ---
 
-## 1 · Roadmap write paths are paused
+## 1 · Timeline write paths are paused
 
-**What.** Signal Roadmap's production environment has no Upstash credentials, so the rate-limiter fails closed on every write request.
+**What.** Signal Timeline's production environment has no Upstash credentials, so the rate-limiter fails closed on every write request.
 
 **Current behaviour.** Read paths (the public viewer, the three-view switcher, shared workspace URLs) work. Workspace creation, project edits, and any other write surface return a paused-write banner instead of writing.
 
-**Resolves.** Operator-pending. Upstash provisioning on Vercel, then a redeploy. Marketing may describe Roadmap as live for the public viewer only. Do not invite a reader to create or edit a roadmap until this clears.
+**Resolves.** Operator-pending. Upstash provisioning on Vercel, then a redeploy. Marketing may describe Timeline as live for the public viewer only. Do not invite a reader to create or edit a timeline until this clears.
 
 **Reference.** `audit/ISSUES.md` row `roadmap-01`. `studio/docs/shipped-state.md` lines 23 and 47–51.
 
@@ -44,13 +44,13 @@
 
 ---
 
-## 4 · Analytics cron and email are not yet wired in production
+## 4 · Signal cron and email are not yet wired in production
 
-**What.** Signal Analytics's daily and weekly briefings depend on two environment variables that are not set on Vercel: `CRON_SECRET` (protects the cron endpoint) and `RESEND_API_KEY` (sends the briefing email).
+**What.** Signal's daily and weekly briefings depend on two environment variables that are not set on Vercel: `CRON_SECRET` (protects the cron endpoint) and `RESEND_API_KEY` (sends the briefing email).
 
 **Current behaviour.** The web `/app` briefing renders for a signed-in user reading the live read-model. The 06:00 UTC daily cron and the Monday weekly cron do not fire, and no briefing email is sent.
 
-**Resolves.** Operator-pending. Set `CRON_SECRET` and `RESEND_API_KEY` in Vercel project settings, then redeploy. Marketing may describe Analytics as live for the web briefing. Do not promise a daily email until this clears.
+**Resolves.** Operator-pending. Set `CRON_SECRET` and `RESEND_API_KEY` in Vercel project settings, then redeploy. Marketing may describe Signal as live for the web briefing. Do not promise a daily email until this clears.
 
 **Reference.** `audit/ISSUES.md` Deferred-to-operator list. `studio/docs/shipped-state.md` lines 60–66.
 
@@ -82,7 +82,7 @@
 
 ## 7 · Pricing labels lag the shipped state
 
-**What.** `signalstudio.ie/pricing` carries "in build" labels for Notes and Analytics that are stale. Both products shipped in May.
+**What.** `signalstudio.ie/pricing` carries "in build" labels for Notes and Signal that are stale. Both products shipped in May.
 
 **Current behaviour.** Source has been corrected to read "live" / "Shipping now" but the production deploy has not been verified to reflect the new labels.
 

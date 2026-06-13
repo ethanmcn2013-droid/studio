@@ -25,12 +25,12 @@ The line a generic competitor would never write: *We measure ourselves by how li
 
 The brief asks for two things that sound like one and are not. Holding them apart is the whole strategy.
 
-- **Roadmap is the lead _product_ story.** It is the one surface an outsider can see without an account. It is how the suite becomes legible to someone who will never log in. On the homepage and in the demo, Roadmap leads because it is the proof you can forward.
+- **Timeline is the lead _product_ story.** It is the one surface an outsider can see without an account. It is how the suite becomes legible to someone who will never log in. On the homepage and in the demo, Timeline leads because it is the proof you can forward.
 - **Premium venues are the lead _commercial_ wedge.** They are who pays first, why, and how we learn whether anyone will pay real money. The venue motion is the go-to-market, not the narrative.
 
-These do not compete. They stack: the venue is sold on a calmer planning experience for its couples (Notes → Tasks), and the artifact that makes that experience visible and forwardable — to the couple, the planner, the venue's own team — is a Roadmap. Roadmap is the shop window. Tasks is the engine room. The venue buys the engine room and shows the window.
+These do not compete. They stack: the venue is sold on a calmer planning experience for its couples (Notes → Tasks), and the artifact that makes that experience visible and forwardable — to the couple, the planner, the venue's own team — is a Timeline. Timeline is the shop window. Tasks is the engine room. The venue buys the engine room and shows the window.
 
-**Dissent, named inside the recommendation:** the risk in "make Roadmap the lead story" is building a homepage that sells a public roadmap to an audience whose actual first product is private (a couple wants a calm private plan, not a public page). If we lead with Roadmap *as a feature*, we mis-sell. We lead with Roadmap *as the visible proof that the work is under control* — the artifact, not the tool. That framing survives the venue wedge. The other framing does not. Every homepage edit downstream of this doc must pass that test.
+**Dissent, named inside the recommendation:** the risk in "make Timeline the lead story" is building a homepage that sells a public timeline to an audience whose actual first product is private (a couple wants a calm private plan, not a public page). If we lead with Timeline *as a feature*, we mis-sell. We lead with Timeline *as the visible proof that the work is under control* — the artifact, not the tool. That framing survives the venue wedge. The other framing does not. Every homepage edit downstream of this doc must pass that test.
 
 ---
 
@@ -38,15 +38,15 @@ These do not compete. They stack: the venue is sold on a calmer planning experie
 
 One sentence each. This order is canonical and replaces every other ordering in the repo.
 
-1. **Roadmap — what people see.** The shareable public artifact. Plain English, on a page anyone can open without an account. This is how the work becomes legible to the people outside the workspace.
+1. **Timeline — what people see.** The shareable public artifact. Plain English, on a page anyone can open without an account. This is how the work becomes legible to the people outside the workspace.
 2. **Tasks — where the work happens.** The operational engine. Multi-view, plain-language, no project-manager voice. Where the doing lives.
 3. **Notes — where work begins.** Private context capture. Nothing leaves until you send it. A note becomes a task in one tap, never auto-detected.
-4. **Analytics — what tells you what needs attention.** A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal.
+4. **Signal — what tells you what needs attention.** A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal.
 
 The connective sentence (for messaging.md and ecosystem copy, adapt — do not paste):
-*Notes is where it starts. Tasks is where it gets done. Roadmap is what everyone else sees. Analytics tells you where to look.*
+*Notes is where it starts. Tasks is where it gets done. Timeline is what everyone else sees. Signal tells you where to look.*
 
-"Why people outside the workspace matter": coordination only fails at the edges — the couple who didn't get the update, the supplier working off an old email, the venue answering the same question for the ninth time. Roadmap exists for the people who will never log in. That is the point of leading with it.
+"Why people outside the workspace matter": coordination only fails at the edges — the couple who didn't get the update, the supplier working off an old email, the venue answering the same question for the ninth time. Timeline exists for the people who will never log in. That is the point of leading with it.
 
 ---
 
@@ -79,8 +79,8 @@ Pricing, objections, qualification, success metrics, and kill triggers for the v
 
 The frame: **ambition is separated from proof.** The first goal is not €250k. The first goal is one premium venue paying real money, unprompted by a discount. Until that exists, every revenue number in the marketing plan is a hypothesis, labelled as one.
 
-1. **Finish one complete wedding-venue demo.** End to end, not a slice. A real couple's planning year, walkable, from first note to forwardable roadmap. No dramatization beyond what the product does.
-2. **Build one premium public Roadmap example.** The artifact a venue would be proud to have its name on. This is the shop window the whole pitch points at.
+1. **Finish one complete wedding-venue demo.** End to end, not a slice. A real couple's planning year, walkable, from first note to forwardable timeline. No dramatization beyond what the product does.
+2. **Build one premium public Timeline example.** The artifact a venue would be proud to have its name on. This is the shop window the whole pitch points at.
 3. **Create one venue-facing landing page.** Calm, founder-led, commercially clear. One page, the core venue promise, the founding terms. Not a funnel.
 4. **Send 20 founder-signed venue outreaches.** Hand-picked premium venues. Signed by a person, not a brand. No sequence, no automation, no volume.
 5. **Track only the five metrics below.** Nothing else gets a number this month.
@@ -97,7 +97,7 @@ Only these. Everything else is noise this cycle.
 2. **Booked calls** — a scheduled conversation with someone who can sign.
 3. **Paid pilots** — prepaid invoices settled. This is the proof gate. Target for the cycle: **≥ 1**.
 4. **Couples activated** — couples who opened a workspace and did real planning in it (not redeemed-and-abandoned).
-5. **Shared artifacts** — Roadmaps forwarded outside the workspace. The clearest signal the loop closed.
+5. **Shared artifacts** — Timelines forwarded outside the workspace. The clearest signal the loop closed.
 
 If only one number can move this month, it is metric 3.
 
@@ -108,7 +108,7 @@ If only one number can move this month, it is metric 3.
 1. **Wedding trap.** The market starts reading us as wedding software and the 80% positioning collapses into a vertical. Mitigation: the suite copy stays category-level; venue language lives only on venue surfaces; we never let "wedding" into the umbrella H1.
 2. **Buyer ≠ sufferer.** The person who feels the admin pain (coordinator) is not the person who signs (owner). Sale stalls in the gap. Mitigation: the pilot qualification explicitly filters for owner-operator decision-makers.
 3. **Diffuse pain, no urgency.** Real but low-grade pain rarely buys. Mitigation: founding-venue scarcity and a price that holds, framed as standing not discount.
-4. **Roadmap mis-sell.** Leading with Roadmap reads as "we sell a public page" to a privacy-sensitive audience. Mitigation: Roadmap framed as proof-of-control artifact, not a feature. Section 1 test applies to every surface.
+4. **Timeline mis-sell.** Leading with Timeline reads as "we sell a public page" to a privacy-sensitive audience. Mitigation: Timeline framed as proof-of-control artifact, not a feature. Section 1 test applies to every surface.
 5. **Demo-vs-reality drift.** A polished demo that promises more than the product does. Mitigation: the 30-day demo is constrained to shipped behaviour; no dramatization.
 6. **Founder-time concentration.** The whole motion is founder-signed and founder-sold. Does not scale and is not meant to yet — but it is a single point of failure for 30 days. Accepted, not mitigated.
 
@@ -131,7 +131,7 @@ No trigger fires on vanity metrics. Only on the five.
 
 Full production-ready brief: `docs/strategy/VENUE_EDITION_VIDEO_BRIEF.md` (30s / 60s / 90s, storyboard, voiceover, on-screen text, product shots, motion + sound direction, website / LinkedIn / outreach variants).
 
-The story in one line: *planning confusion creates hidden venue admin; Signal Studio creates calm — Notes where it starts, Tasks where it happens, Roadmap what everyone sees, Analytics what needs attention — and it carries the venue's name.* Ends on the venue promise: *Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name.* No music swell, no exclamation, no feature montage. The register is calm, premium, founder-led — the video should feel like the product feels.
+The story in one line: *planning confusion creates hidden venue admin; Signal Studio creates calm — Notes where it starts, Tasks where it happens, Timeline what everyone sees, Signal what needs attention — and it carries the venue's name.* Ends on the venue promise: *Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name.* No music swell, no exclamation, no feature montage. The register is calm, premium, founder-led — the video should feel like the product feels.
 
 ---
 
@@ -140,7 +140,7 @@ The story in one line: *planning confusion creates hidden venue admin; Signal St
 Verb-first. Owner in brackets.
 
 1. Lock this doc and `VENUE_EDITION_STRATEGY.md` as the source of truth; align messaging.md and pricing copy to section 2. [done this cycle]
-2. Rewrite homepage hierarchy so Roadmap leads as the visible artifact, Tasks/Notes/Analytics support, and "people outside the workspace" is explicit. [this cycle]
+2. Rewrite homepage hierarchy so Timeline leads as the visible artifact, Tasks/Notes/Signal support, and "people outside the workspace" is explicit. [this cycle]
 3. Ship the venue-facing landing page against the core venue promise and founding terms. [this cycle — /venues update]
 4. Produce the venue video brief; queue the 30s cut first. [this cycle — brief; production after]
 5. Revise `MARKETING_PLAN_6MO.md` to put a proof-gate layer above the revenue scenarios. [this cycle]

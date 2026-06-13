@@ -8,7 +8,7 @@ Linked from: `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md` §9
 
 ## The one-line story
 
-Planning confusion creates hidden venue admin. Signal Studio creates calm — Notes where it starts, Tasks where it happens, Roadmap what everyone sees, Analytics what needs attention — and it carries the venue's name.
+Planning confusion creates hidden venue admin. Signal Studio creates calm — Notes where it starts, Tasks where it happens, Timeline what everyone sees, Signal what needs attention — and it carries the venue's name.
 
 ---
 
@@ -43,8 +43,8 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 00:04–00:08 | Cut to: coordinator desk, suggestion of emails, a stack. No dialogue. Ambient room sound. |
 | 00:08–00:13 | Product surface — Notes. One quiet note being written. Simple. The venue name sits at the top as an eyebrow. Text card: "Notes, where it starts." |
 | 00:13–00:18 | Cut to Tasks. A task checked off. Clean. Text card: "Tasks, where it gets done." |
-| 00:18–00:22 | Cut to Roadmap — the shareable view. The artifact a couple could forward. Text card: "Roadmap, what everyone sees." |
-| 00:22–00:26 | Cut to Analytics morning briefing — three plain-English lines. Text card: "Analytics, what needs attention." |
+| 00:18–00:22 | Cut to Timeline — the shareable view. The artifact a couple could forward. Text card: "Timeline, what everyone sees." |
+| 00:22–00:26 | Cut to Signal morning briefing — three plain-English lines. Text card: "Signal, what needs attention." |
 | 00:26–00:30 | Closing card: "Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name." — Signal Studio wordmark below. Silence. |
 
 ---
@@ -63,8 +63,8 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 00:06–00:14 | The mood shift — subtle. A coordinator at a screen, reading. VO: "Then the questions start. Questions you've already answered. Plans you sent last week, not seen." |
 | 00:14–00:20 | Text card only, no VO. "This is not the couple's fault. They're managing something complicated with the wrong tools." |
 | 00:20–00:28 | Product intro, hierarchy order. Notes → Tasks. Two quiet product shots. VO: "Signal Studio gives every couple one calm place. Notes where it starts. Tasks where it gets done." |
-| 00:28–00:36 | Roadmap surface — the forwarded view. VO: "A Roadmap their suppliers and family can open without an account. Everyone working from the same picture." |
-| 00:36–00:42 | Analytics briefing — three lines. VO: "And a morning briefing. Three things that need attention. Silence on the other days." |
+| 00:28–00:36 | Timeline surface — the forwarded view. VO: "A Timeline their suppliers and family can open without an account. Everyone working from the same picture." |
+| 00:36–00:42 | Signal briefing — three lines. VO: "And a morning briefing. Three things that need attention. Silence on the other days." |
 | 00:42–00:50 | The venue angle. Eyebrow detail on screen — venue name, quiet. VO: "The Venue Edition puts your name on it. Quietly. The couple's plan stays the thing in focus." |
 | 00:50–00:56 | The operational simplicity. VO: "You pay once a year. Hand out codes at booking. There's nothing for your team to run." |
 | 00:56–01:00 | Closing card. The venue promise, verbatim: "Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name." Wordmark. Silence. |
@@ -87,8 +87,8 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 00:24–00:32 | Text card: "The confusion is structural. It reaches your team as admin." No VO. Sit with it. |
 | 00:32–00:42 | Product introduction. Notes surface. A quiet note, the venue eyebrow at the top. VO: "Signal Studio gives every couple one place. Notes is where it starts — private, simple, nothing leaves until you send it." |
 | 00:42–00:52 | Tasks surface. A small list. One item checked. VO: "Tasks is where it gets done. No project-manager voice. Plain language." |
-| 00:52–01:02 | Roadmap — the shared view. Clear, readable. VO: "Roadmap is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account." |
-| 01:02–01:10 | Analytics briefing. Three lines. Clean. VO: "Analytics is the morning briefing. Three things that need attention. On quiet days, nothing is sent. Silence is the signal." |
+| 00:52–01:02 | Timeline — the shared view. Clear, readable. VO: "Timeline is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account." |
+| 01:02–01:10 | Signal briefing. Three lines. Clean. VO: "Signal is the morning briefing. Three things that need attention. On quiet days, nothing is sent. Silence is the signal." |
 | 01:10–01:20 | The venue angle. Eyebrow in focus — the venue name, small, at the top of the workspace. VO: "The Venue Edition puts your name on it. An eyebrow — not a logo wall. The couple's plan stays what matters." |
 | 01:20–01:28 | Operational simplicity. No product on screen — just space. VO: "You pay once a year. Every couple you book gets twelve months of the full suite. You hand out codes. That's the whole operation on your side." |
 | 01:28–01:35 | Founding terms, text card only. No VO. "The first fifteen venues lock €1,500 a year for as long as they stay. A price that holds." |
@@ -121,9 +121,9 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 00:24–00:32 | Card — text only, no image | "The confusion is structural. It reaches your team as admin." | — | — |
 | 00:32–00:42 | Phone or desktop — Notes surface. A couple's note being written. Top of screen: venue name eyebrow (small, restrained). | "Notes, where it starts." (lower-third) | "Signal Studio gives every couple one place. Notes is where it starts — private, simple, nothing leaves until you send it." | Notes — capture surface, new entry being typed |
 | 00:42–00:52 | Tasks surface. A short task list. One item checked. Not a long backlog — three to five items visible. | "Tasks, where it gets done." (lower-third) | "Tasks is where it gets done. No project-manager voice. Plain language." | Tasks — kanban or list view, one item completing |
-| 00:52–01:02 | Roadmap surface — public view. Clean, legible, readable on screen. Not a phone screen — a wide view a supplier could open. | "Roadmap, what everyone sees." (lower-third) | "Roadmap is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account." | Roadmap — public viewer, wedding planning milestones visible |
-| 01:02–01:10 | Analytics morning briefing. Three plain-English lines on screen. Spare. | "Analytics, what needs attention." (lower-third) | "Analytics is the morning briefing. Three things that need attention. On quiet days, nothing is sent." | Analytics — briefing surface, three items |
-| 01:10–01:13 | Pause on Analytics. No motion. | "Silence is the signal." | — | — |
+| 00:52–01:02 | Timeline surface — public view. Clean, legible, readable on screen. Not a phone screen — a wide view a supplier could open. | "Timeline, what everyone sees." (lower-third) | "Timeline is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account." | Timeline — public viewer, wedding planning milestones visible |
+| 01:02–01:10 | Signal morning briefing. Three plain-English lines on screen. Spare. | "Signal, what needs attention." (lower-third) | "Signal is the morning briefing. Three things that need attention. On quiet days, nothing is sent." | Signal — briefing surface, three items |
+| 01:10–01:13 | Pause on Signal. No motion. | "Silence is the signal." | — | — |
 | 01:13–01:20 | Close: the venue eyebrow on the workspace. Legible. The couple's name below it. The venue name above, small, in the eyebrow position. | — | "The Venue Edition puts your name on it. An eyebrow — not a logo wall. The couple's plan stays what matters." | Notes or Tasks — eyebrow detail, tight crop |
 | 01:20–01:28 | Clean space. No product on screen. Empty table, natural light. Or a doorway to the venue — the physical space, not a screen. | — | "You pay once a year. Every couple you book gets twelve months of the full suite. You hand out codes. That's the whole operation on your side." | — |
 | 01:28–01:35 | Card — text only | "The first fifteen venues lock €1,500 a year for as long as they stay. A price that holds." | — | — |
@@ -132,10 +132,10 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 
 ### Framing notes
 
-- All product surfaces: use real data. A couple named "Sarah & Tom" or "James & Clara" — common Irish names, specific enough to feel real. Planning a 2027 wedding. Real tasks, real roadmap items (venue deposit, florist briefing, ceremony music, menu tasting). Not "Lorem Ipsum Couple."
+- All product surfaces: use real data. A couple named "Sarah & Tom" or "James & Clara" — common Irish names, specific enough to feel real. Planning a 2027 wedding. Real tasks, real timeline items (venue deposit, florist briefing, ceremony music, menu tasting). Not "Lorem Ipsum Couple."
 - Coordinator desk: natural, not staged. A real desk or a desk that could be real. The inbox visible but not dramatised — do not emphasise the volume of email, just let it be present.
 - The venue eyebrow on-screen: it should be readable. Frame so the venue name is legible without zooming in. This is the single most important product shot in the piece.
-- Analytics: the three lines should be real Signal Studio prose — not placeholder copy. Pull from the shipped briefing engine. They should read like plain English observations, not system outputs.
+- Signal: the three lines should be real Signal Studio prose — not placeholder copy. Pull from the shipped briefing engine. They should read like plain English observations, not system outputs.
 
 ---
 
@@ -155,9 +155,9 @@ Signal Studio gives every couple one place. Notes is where it starts — private
 
 Tasks is where it gets done. No project-manager voice. Plain language.
 
-Roadmap is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account.
+Timeline is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account.
 
-Analytics is the morning briefing. Three things that need attention. On quiet days, nothing is sent.
+Signal is the morning briefing. Three things that need attention. On quiet days, nothing is sent.
 
 [SILENCE — on screen: "Silence is the signal."]
 
@@ -183,7 +183,7 @@ Opening text card cut. Begin in the venue space.
 
 The couple is doing their best with the tools they have. Usually a shared doc and a thread — not built for this.
 
-Signal Studio gives every couple one place. Notes where it starts. Tasks where it gets done. Roadmap what everyone else sees. Analytics — three things that need attention. Silence on the quiet days.
+Signal Studio gives every couple one place. Notes where it starts. Tasks where it gets done. Timeline what everyone else sees. Signal — three things that need attention. Silence on the quiet days.
 
 The Venue Edition puts your name on it. Quietly. The couple's plan stays what matters.
 
@@ -201,7 +201,7 @@ Minimal VO. Let the text cards carry the product hierarchy.
 
 Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name."
 
-The four product hierarchy beats (Notes / Tasks / Roadmap / Analytics) are text-card only in the 30s — no VO for them.
+The four product hierarchy beats (Notes / Tasks / Timeline / Signal) are text-card only in the 30s — no VO for them.
 
 ---
 
@@ -230,10 +230,10 @@ Every text card, verbatim. Brand gate compliant.
 **Product hierarchy lower-thirds (all cuts):**
 - "Notes, where it starts."
 - "Tasks, where it gets done."
-- "Roadmap, what everyone sees."
-- "Analytics, what needs attention."
+- "Timeline, what everyone sees."
+- "Signal, what needs attention."
 
-**Analytics pause card (90s and 60s):**
+**Signal pause card (90s and 60s):**
 "Silence is the signal."
 
 **Founding terms card (90s only):**
@@ -265,16 +265,16 @@ Exact surfaces to capture. In order of appearance.
 - Framing: close enough to read the task names. Not so close that only one task is visible.
 - What it must show: the plain-language register of the tasks — no project-manager jargon. The checked item should produce a quiet, satisfying visual state.
 
-### 3. Roadmap — public viewer
+### 3. Timeline — public viewer
 
-- Surface: Roadmap product, public view. This is the view a supplier opens without an account.
-- Content: a real wedding planning roadmap. Milestones: "Venue booked", "Guest list first draft", "Save the dates sent", "Florist confirmed", "Menu tasting", "Ceremony music locked", "Final headcount". Plain English. Dates visible. No placeholder text.
-- Framing: wide — this should read like a web page, not a phone screen. The couple's name visible at the top. The venue name visible if it can be shown on the Roadmap surface.
+- Surface: Timeline product, public view. This is the view a supplier opens without an account.
+- Content: a real wedding planning timeline. Milestones: "Venue booked", "Guest list first draft", "Save the dates sent", "Florist confirmed", "Menu tasting", "Ceremony music locked", "Final headcount". Plain English. Dates visible. No placeholder text.
+- Framing: wide — this should read like a web page, not a phone screen. The couple's name visible at the top. The venue name visible if it can be shown on the Timeline surface.
 - What it must show: that this is legible to someone who did not build it. It should look like something you could forward to your mother or your caterer.
 
-### 4. Analytics — morning briefing
+### 4. Signal — morning briefing
 
-- Surface: Analytics product, morning briefing view.
+- Surface: Signal product, morning briefing view.
 - Content: three real briefing items, pulled from the shipped prose engine. Something like: "You have a menu tasting in four days and the catering confirmation is still pending." / "The guest list has moved three times this week — the florist count may be out of date." / "Two tasks in the ceremony section have been sitting since last Tuesday." Plain English. Specific. Not generic.
 - Framing: phone or desktop — either works. Close enough to read the three lines. Nothing else on screen.
 - What it must show: that this is three things, not thirty. Sparse by design.

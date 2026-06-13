@@ -1,7 +1,7 @@
 ---
 id: shareable-briefing
 title: Shareable workspace briefing
-product: Signal Analytics
+product: Signal
 category: Integration
 status: Idea
 priority: High

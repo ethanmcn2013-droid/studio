@@ -110,12 +110,12 @@ A standing multi-agent pipeline running overnight. Your job is not to produce �
 
 ## 5 · Six-month plan
 
-**Pre-launch gates (must be true before M1):** Roadmap Upstash provisioned (it is currently broken in prod — no traffic to a broken product); `/redeem/[code]` verified end-to-end; `docs/shipped-state.md` written; the 4 Lamb's Hill operator steps cleared; factory infra running (Copy + Brand QA + Reality Anchor minimum). **Venue-tier ratification (§1) is gate zero.**
+**Pre-launch gates (must be true before M1):** Timeline Upstash provisioned (it is currently broken in prod — no traffic to a broken product); `/redeem/[code]` verified end-to-end; `docs/shipped-state.md` written; the 4 Lamb's Hill operator steps cleared; factory infra running (Copy + Brand QA + Reality Anchor minimum). **Venue-tier ratification (§1) is gate zero.**
 
 | Month | Theme | Core moves | Leading metric | Revenue checkpoint |
 |---|---|---|---|---|
 | **M1** | Foundations + first signal | Lamb's Hill paid conversation; 2 SEO posts (real intent, .ie low-competition); umbrella `/about` (founder-voiced); factory live | 1 qualified venue conversation | €0 expected — open the motion |
-| **M2** | SEO flywheel + pilot activation | 4 more posts; activate Lamb's Hill code → 1 real couple; draft (don't publish) case study; analytics funnel on `/pricing`+`/redeem`; low-freq Bluesky/X | Search Console CTR on first posts | First paid venue is the experiment, don't force |
+| **M2** | SEO flywheel + pilot activation | 4 more posts; activate Lamb's Hill code → 1 real couple; draft (don't publish) case study; signal funnel on `/pricing`+`/redeem`; low-freq Bluesky/X | Search Console CTR on first posts | First paid venue is the experiment, don't force |
 | **M3** | First public proof | Publish Lamb's Hill case study (honest, specific); quiet footer email capture; video 1 (founder-voiced product walkthrough); pitch 2 venues *with* the case study; `/pricing` conversion audit | Email subs (50) + pricing visits | First Event €79; first paid venue |
 | **M4** | Venue channel repeatable | 3rd venue (Wicklow/Dublin belt — proximity credibility); 8 posts pivot to construction/freelance (→ Workspace); video 2 = the **refusal-list explainer** (founder-voiced, brand-defining); first list email | Active venue codes (target 3) | 3 Event + 2 Workspace |
 | **M5** | Workspace growth + shareable proof | Template library (5 anchors, per TEMPLATES_STRATEGY); "Made with Signal" opt-in showcase; venue-sponsor explainer video; honest Indie Hackers builder post | Workspace MRR (target €60+) | €200+ cumulative; venue tier live |
@@ -159,7 +159,7 @@ Product Hunt (wrong audience) · Show HN (out of scope) · paid ads (constraint)
 2. **Solo sales throughput (the math killer).** *Iterate:* if ≥3/10 venues reply positively but none activate → it's the redeem/activation UX, fix the product. *Kill:* if 1/10 reply by M3 → the one-pager under-sells or the coordinator read-view is the missing retention surface (product call, not copy).
 3. **SEO is slow.** No kill before M3 (expected). At M5 < 1,000 organic clicks/mo → keyword strategy wrong, return SEO agent to strategy not execution.
 4. **Factory ships slop.** Two off-register published pieces → pause all output, audit Brand QA prompt, resume only when tightened. The rejected-queue weekly review is the early-warning system.
-5. **Roadmap still broken.** If unfixed by M2w1, strip all Roadmap mentions from active marketing until provisioned.
+5. **Timeline still broken.** If unfixed by M2w1, strip all Timeline mentions from active marketing until provisioned.
 6. **Concentration.** 75%+ one motion/one buyer. Mitigation: the construction/freelance SEO pivot in M4 is the deliberate second leg.
 
 ---
@@ -184,4 +184,4 @@ Hit those five and €500k arrives months 9–15 with the voice intact. That is 
 2. ~~Workspace €120/yr annual prepay~~ — **RATIFIED 2026-05-16**.
 3. ~~Goal reframe €250k/6mo · €500k/12mo · brand-integrity gating~~ — **ACCEPTED 2026-05-16**.
 4. ~~Video direction: restrained craft~~ — **CONFIRMED 2026-05-16**.
-5. **OUTSTANDING — the only thing between this plan and M1:** clear the pre-launch gates — Roadmap Upstash provisioned · `/redeem/[code]` verified · `docs/shipped-state.md` written · the 4 Lamb's Hill operator steps cleared · factory infra (Copy + Brand QA + Reality Anchor) running. Items here are operator/agent split; Upstash + the Lamb's Hill steps are operator-only.
+5. **OUTSTANDING — the only thing between this plan and M1:** clear the pre-launch gates — Timeline Upstash provisioned · `/redeem/[code]` verified · `docs/shipped-state.md` written · the 4 Lamb's Hill operator steps cleared · factory infra (Copy + Brand QA + Reality Anchor) running. Items here are operator/agent split; Upstash + the Lamb's Hill steps are operator-only.

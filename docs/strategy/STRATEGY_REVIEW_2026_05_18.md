@@ -24,8 +24,8 @@ That is the review. Everything below is detail and what to do about it.
 These are settled. Re-litigating them is itself a form of the avoidance described in §3.
 
 - **Positioning.** Coordination clarity for the 80% who don't work in tech. Not productivity, not wedding software, not a dashboard. Unchanged.
-- **The two-wedge distinction.** Roadmap = lead *product* story (the forwardable artifact). Premium venues = lead *commercial* wedge (who pays first). They stack; they do not compete. Unchanged and load-bearing.
-- **Product hierarchy.** Notes → Tasks → Roadmap → Analytics. Reordered by operator directive 2026-05-18 (was Roadmap-first per 2026-05-16 partner review).
+- **The two-wedge distinction.** Timeline = lead *product* story (the forwardable artifact). Premium venues = lead *commercial* wedge (who pays first). They stack; they do not compete. Unchanged and load-bearing.
+- **Product hierarchy.** Notes → Tasks → Timeline → Signal. Reordered by operator directive 2026-05-18 (was Timeline-first per 2026-05-16 partner review).
 - **Segment sequencing.** Venues now; contractors as the designated second wedge *only if venues prove*; small-business inbound-only; teachers/students never a paid wedge. Ratified, anti-drift, do not reason from population/TAM.
 - **Kill / pivot triggers.** Pre-committed in the spine §8. Still correct. The discipline of having decided in advance is worth more than the specific thresholds.
 
@@ -40,7 +40,7 @@ The spine's 30-day plan has five items. Honest status:
 | # | 30-day item | Status | Read |
 |---|-------------|--------|------|
 | 1 | Finish one complete wedding-venue demo | **Substantially done** | `/the-wedding` is a bespoke calm Glenmara plan, panel-verbatim; venue example shipped. Demo-vs-reality drift risk is low because it was constrained to shipped behaviour. |
-| 2 | One premium public Roadmap example | **Done** | Roadmap live in prod, no-JS public viewer verified, evergreen copy. This is the shop window and it stands up. |
+| 2 | One premium public Timeline example | **Done** | Timeline live in prod, no-JS public viewer verified, evergreen copy. This is the shop window and it stands up. |
 | 3 | One venue-facing landing page | **Done, not exercised** | `/venues` + core promise live; founding-venue CTA wired to `/contact?subject=founding-venue`. Built. Never put in front of a venue. |
 | 4 | 20 founder-signed venue outreaches | **Not sent** | Outreach set drafted (S·55, not pushed/sent). Top-50 prospect list verified and in the HQ CRM. The list exists. The send does not. |
 | 5 | Track only the five metrics | **Cannot be true yet** | Four of five metrics are downstream of an outreach being sent. With zero sends, four metrics are structurally zero, not measured. |
@@ -59,7 +59,7 @@ Of the spine's six strategic risks, one has materially changed since 16 May. The
 
 The mechanism: every cycle since the spine was ratified has had a legitimate-sounding product reason (UX bar not met → fix it; auth outage → fix it; authed users see marketing → fix it). Each was individually defensible. In aggregate they have consumed the entire 30-day window with zero progress on the only metric the spine says matters. The product is now, by the team's own rubric, world-class and shipped — and not one venue has been asked to pay for it. The longer this continues, the more the eventual proof test gets framed (internally) as "the product wasn't ready" when the truth will be "we never ran the test."
 
-The other five risks unchanged: wedding trap (mitigated by discipline, holding), buyer≠sufferer (untested — can only be tested by §4), diffuse pain (untested, same), Roadmap mis-sell (mitigated, holding — the artifact framing survived every homepage pass), demo-vs-reality drift (low, demo was constrained honestly).
+The other five risks unchanged: wedding trap (mitigated by discipline, holding), buyer≠sufferer (untested — can only be tested by §4), diffuse pain (untested, same), Timeline mis-sell (mitigated, holding — the artifact framing survived every homepage pass), demo-vs-reality drift (low, demo was constrained honestly).
 
 The point: **five of six risks cannot be retired by more building. They can only be retired by contact with a real buyer.** Continued product investment does not lower the portfolio risk; it raises it, by burning the founder-time the spine flagged as the single point of failure.
 
@@ -71,7 +71,7 @@ A strategy review that just says "stop building" would be lazy. One piece of in-
 
 The seamless-ecosystem plan (agreed today, 2026-05-18) fixes a real defect: a logged-in user clicking a product lands on its public marketing page with a "Sign in / Start for free" CTA, looking logged-out. **In a live, founder-led venue demo, that is a credibility wound** — you are showing a premium buyer the product and the product appears to log you out and sell to you. Layers 2–3 of that plan (auth-aware entry; kill the false "Sign in"; owner escape-hatch for the demo-as-logged-out motion) are demo-critical and therefore commercially load-bearing.
 
-Layer 4 (persistent shared shell) and the Roadmap draft/publish model are *not* demo-critical for the first pilot and should be deferred behind the proof gate with everything else.
+Layer 4 (persistent shared shell) and the Timeline draft/publish model are *not* demo-critical for the first pilot and should be deferred behind the proof gate with everything else.
 
 So the carve-out is narrow and time-boxed: **ship seamless-ecosystem Layers 0–3 only, as the last product work before outreach, on a hard time-box. Then product freeze until the proof gate is honestly tested.** Layer 4 and draft/publish wait.
 
@@ -98,7 +98,7 @@ The forcing function is the 2026-05-25 date. Everything in §1–§4 is in servi
 
 Verb-first. These are the calls only you can make.
 
-1. **Ratify the product freeze** behind seamless-ecosystem Layers 0–3. Everything net-new (Layer 4, Roadmap draft/publish build-out, suite-consolidation Phase 4/5, any new audience surface) is out of scope until a pilot is settled or the kill clock expires. Phase 4/5 are already decided-against; this just extends the same logic to the rest.
+1. **Ratify the product freeze** behind seamless-ecosystem Layers 0–3. Everything net-new (Layer 4, Timeline draft/publish build-out, suite-consolidation Phase 4/5, any new audience surface) is out of scope until a pilot is settled or the kill clock expires. Phase 4/5 are already decided-against; this just extends the same logic to the rest.
 2. **Commit to the 2026-05-25 outreach-start date** in writing, here. Not "after the demo is perfect" — the demo is done (§2).
 3. **Confirm the five-metric instrument exists or assign building it** as the *only* permitted measurement work. If we cannot currently see qualified-replies / booked-calls / paid-pilots / couples-activated / shared-artifacts on one surface, that instrument — and nothing else — is in scope. Everything else is noise per spine §6.
 4. **Accept or amend the concrete kill-clock dates in §5.** Pre-committing the dates is the whole point; a strategy that can't name when it would quit isn't a strategy.
@@ -110,9 +110,9 @@ My recommendation is yes to all four as written. The strongest counter-argument 
 ## 7. What I would push back on if it came up
 
 - *"The product still has residual drags, we should get those to zero first."* No. The residual list is sub-threshold cosmetic by the team's own rubric. Zero residuals is not the proof gate. A venue paying is.
-- *"Build Roadmap draft/publish first so the demo is cleaner."* No. The demo is already done and constrained to shipped behaviour (§2 item 1). Draft/publish is a model change motivated by a leaked-messy-roadmaps concern that has zero users today. It is post-gate.
+- *"Build Timeline draft/publish first so the demo is cleaner."* No. The demo is already done and constrained to shipped behaviour (§2 item 1). Draft/publish is a model change motivated by a leaked-messy-timelines concern that has zero users today. It is post-gate.
 - *"There are far more [contractors / small businesses / X] than premium venues."* This is the population-axis drift the segment-sequencing memory exists to stop. Cite and clear `SEGMENT_EXPANSION_RESEARCH_2026_05` before this gets entertained. It will not clear.
-- *"Let's revisit the umbrella positioning to make Roadmap land harder."* The positioning is ratified and survived every homepage pass. Reopening it now is §3 avoidance with a strategy costume on.
+- *"Let's revisit the umbrella positioning to make Timeline land harder."* The positioning is ratified and survived every homepage pass. Reopening it now is §3 avoidance with a strategy costume on.
 
 ---
 

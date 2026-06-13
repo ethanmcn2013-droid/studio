@@ -2,7 +2,7 @@
 id: today-signal-briefing
 title: Today Signal briefing
 wedge: Weddings and events
-ownerProduct: Signal Analytics
+ownerProduct: Signal
 defaultVisibility: Owner controlled
 sourceTracking: source=briefing_share, segment=weddings, role=collaborator
 cta: See what needs attention

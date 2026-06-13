@@ -19,22 +19,22 @@ Webview-wrapped iOS UI inherits the website's responsive bugs and magnifies them
 | 414   | iPhone Plus, older Max                            | Pre-15 Plus targets.                                              |
 | 430   | iPhone 14/15/16 Pro Max, Plus                     | The current widest standard iPhone.                                |
 
-Plus orientation rotation when relevant (Roadmap viewer benefits from landscape per the manifest `orientation: "any"` we shipped in Item 1).
+Plus orientation rotation when relevant (Timeline viewer benefits from landscape per the manifest `orientation: "any"` we shipped in Item 1).
 
 ## Static-audit findings (run 2026-05-20)
 
 | Product   | Viewport meta | Safe-area-inset usage  | Fixed-width potential clips | Verdict |
 | --------- | ------------- | ---------------------- | --------------------------- | ------- |
 | Tasks     | viewportFit:"cover", themeColor:#fff ✓ | Multiple `env(safe-area-inset-bottom)` references (board + sidebar) ✓ | No hard `min-w-[Npx]` floors above 280px in /app surfaces | Clean |
-| Roadmap   | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the responsive footer ✓ | One sm:-gated `min-w-[260px]` settings field (sm+ only) | Clean |
-| Analytics | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the marketing footer ✓ | `min-w-[160px]` on a desktop nav popover (auto-hidden on phone) | Clean |
+| Timeline   | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the responsive footer ✓ | One sm:-gated `min-w-[260px]` settings field (sm+ only) | Clean |
+| Signal | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the marketing footer ✓ | `min-w-[160px]` on a desktop nav popover (auto-hidden on phone) | Clean |
 | Notes     | viewportFit:"cover", themeColor:#fff ✓ | **No env(safe-area-inset-*) anywhere** | No fixed/sticky bottom elements today, so no clip today | Watch — see future-proofing below |
 
 ### Notes — future-proofing for safe-area
 
 Notes today has no fixed/sticky bottom element, so the absent safe-area-inset usage doesn't currently regress on a notched device. But the iOS suite app and any future Notes phone-composer will add one — when it lands, the home-indicator overlap will be silent until someone screenshots at 430×932 with the notch simulator turned on.
 
-Recommended future-proofing (not applied in this cycle since it would touch the Notebook layout): when Notes adds any bottom-anchored UI, wrap with `style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}` matching the pattern Tasks/Roadmap/Analytics already use.
+Recommended future-proofing (not applied in this cycle since it would touch the Notebook layout): when Notes adds any bottom-anchored UI, wrap with `style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}` matching the pattern Tasks/Timeline/Signal already use.
 
 ## Visual-audit findings (deferred to operator)
 
@@ -70,21 +70,21 @@ The following only surface under live render — the Playwright script catches t
 - **Home-indicator overlap** — the bottom 34pt is the swipe-up gesture zone. Anything tappable there is unreliable.
 - **iOS Safari URL-bar collapse** — viewport height changes as the user scrolls; 100vh references mid-scroll can over-shoot. Prefer `100dvh` (dynamic viewport height) or explicit `min-h-screen` with `viewport-fit: cover`.
 - **Touch target ≥ 44pt** — Apple HIG floor. Currently Clerk's social buttons use `!min-h-[48px]` (above the floor) per all four products' `socialButtonsBlockButton` override. Suite-wide tap targets should match.
-- **iOS Safari input zoom on focus** — any input with `font-size < 16px` triggers auto-zoom. Tasks/Roadmap have `!text-[16px]` on `formFieldInput`; Notes/Analytics should match if their inputs sit under 16px.
+- **iOS Safari input zoom on focus** — any input with `font-size < 16px` triggers auto-zoom. Tasks/Timeline have `!text-[16px]` on `formFieldInput`; Notes/Signal should match if their inputs sit under 16px.
 - **PWA install vs Safari tab** — the manifest's `display: "standalone"` (we ship this) changes URL-bar presence. The audit script's `--pwa` pass exercises the JS path (`navigator.standalone`); the CSS `@media (display-mode: standalone)` path still requires a physical installed-PWA pass before iOS submission.
 
 ## Suite-wide patterns that survive
 
 - All five sites set `viewportFit: "cover"`. This is what makes `env(safe-area-inset-*)` meaningful — without it, iOS pads the viewport itself and the env vars return 0.
 - All five set `themeColor: "#ffffff"` to prevent the dark-flash transition between products on cross-domain navigation (R18 fix from the 2026-05-17 recording remediation wave).
-- The Clerk appearance overrides use `!min-h-[48px] !text-[16px]` on form fields across Tasks/Roadmap/Analytics. iPhone Safari's input auto-zoom is suppressed and the WCAG 2.5.5 tap target floor (44px) is exceeded.
+- The Clerk appearance overrides use `!min-h-[48px] !text-[16px]` on form fields across Tasks/Timeline/Signal. iPhone Safari's input auto-zoom is suppressed and the WCAG 2.5.5 tap target floor (44px) is exceeded.
 
 ## Operator follow-up
 
 | What                                                  | Owner                  | Close condition                                                                                |
 | ----------------------------------------------------- | ---------------------- | ---------------------------------------------------------------------------------------------- |
 | Run `scripts/responsive-audit.mjs` on prod URLs       | Operator               | Captures the 24-screenshot baseline at six widths × five sites; default is public-only.        |
-| Provision `CLERK_SESSION_<PRODUCT>` env per product   | Operator               | One `__session` cookie value per product (Tasks/Roadmap/Analytics/Notes); enables authed pass. |
+| Provision `CLERK_SESSION_<PRODUCT>` env per product   | Operator               | One `__session` cookie value per product (Tasks/Timeline/Signal/Notes); enables authed pass. |
 | Visually inspect every captured PNG, flag `-REDIRECT` | Operator + ux-director | No `-REDIRECT.png` files for authed surfaces; no visible clipping at 390 or 430.                |
 | Apply safe-area-inset to Notes' bottom composer       | Senior-engineer        | When Notes adds any bottom-anchored UI element; not needed today; ticketed on Notes elevation cycle. |
 | Re-run audit on every cycle that touches `/app`       | Senior-engineer        | Tasks T·58's lesson — "voice-verified ≠ pixel-verified" — applies to every responsive surface. |

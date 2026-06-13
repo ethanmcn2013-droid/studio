@@ -19,9 +19,9 @@ What the Signal Studio iOS app collects, where it goes, who can read it. Source 
 | Notes body + voice transcripts | Notes     | User capture          | Turso (notes DB)  | Turso only (no third-party processing)   | Yes             | No        |
 | Voice audio (transient) | Notes     | On-device mic         | Written by `AudioRecorder` (signal-ios `SignalStudio/Notes/AudioRecorder.swift:83-84`) to `FileManager.default.temporaryDirectory` as `signal-voice-<UUID>.m4a` for the duration of the transcription job. Not persisted to the user's notebook — the persisted output is the transcript text. | **On-device when the active locale supports it** (`SpeechTranscriber.swift:54-56` sets `requiresOnDeviceRecognition = true` only when `supportsOnDeviceRecognition` is true). For locales without on-device support, the audio is sent to Apple's speech servers under Apple's standard speech-recognition channel. | N/A             | No        |
 | Tasks (cards, status, dates) | Tasks     | User input            | Turso (tasks DB)  | Turso only                              | Yes             | No        |
-| Workspaces + projects | Tasks / Roadmap | User input         | Turso (per-product) | Turso only                              | Yes             | No        |
-| Roadmap milestones + updates | Roadmap   | User input            | Turso (roadmap DB) | Turso only                              | Yes             | No        |
-| Analytics briefing source data | Analytics | **Derived** from Tasks DB (read-only) | Turso (analytics DB read-cache) | Resend (when user opts into email briefings) | Yes             | No        |
+| Workspaces + projects | Tasks / Timeline | User input         | Turso (per-product) | Turso only                              | Yes             | No        |
+| Timeline milestones + updates | Timeline   | User input            | Turso (timeline DB) | Turso only                              | Yes             | No        |
+| Signal briefing source data | Signal | **Derived** from Tasks DB (read-only) | Turso (signal DB read-cache) | Resend (when user opts into email briefings) | Yes             | No        |
 
 ## Diagnostics + crash
 
@@ -29,9 +29,9 @@ What the Signal Studio iOS app collects, where it goes, who can read it. Source 
 | --------------- | ------------ | ----------------- | ----------------------------------------- | --------------- | --------- |
 | Crash logs      | iOS system    | iOS device + Xcode Cloud (if enrolled) | Apple only (no third-party crash reporter) | Anonymous (UUID, not user ID) | No        |
 | Performance metrics | Not collected | —                 | —                                         | —               | —         |
-| Analytics events (product usage) | **Not collected** — refusal | —                 | —                                         | —               | —         |
+| Signal events (product usage) | **Not collected** — refusal | —                 | —                                         | —               | —         |
 
-Locked refusal: no third-party analytics SDK (no Mixpanel, no Segment, no Firebase Analytics). The "no paid third-party services" rule per the iOS research memo also covers free-tier analytics tools.
+Locked refusal: no third-party signal SDK (no Mixpanel, no Segment, no Firebase Signal). The "no paid third-party services" rule per the iOS research memo also covers free-tier signal tools.
 
 ## Push notifications
 
@@ -46,15 +46,15 @@ Push payload is generated server-side from the user's own product data — never
 | Service     | Role                       | Data sent                                          | Data received        | Privacy posture                     |
 | ----------- | -------------------------- | -------------------------------------------------- | -------------------- | ----------------------------------- |
 | Clerk       | Auth provider (managed)    | Email, password (hashed), OAuth tokens             | Session JWT          | Clerk processes; we never see passwords. SOC 2 Type II. |
-| Turso       | Per-product SQLite-over-HTTP | All user-generated product content (Notes, Tasks, Roadmap, Analytics) | DB rows on read       | Self-hosted-grade; we are the only data owner. |
-| Resend      | Transactional email (Analytics briefings + magic-link if Clerk uses it) | Email address + briefing body content              | Delivery status       | Used only when user opts in. Free-tier. |
+| Turso       | Per-product SQLite-over-HTTP | All user-generated product content (Notes, Tasks, Timeline, Signal) | DB rows on read       | Self-hosted-grade; we are the only data owner. |
+| Resend      | Transactional email (Signal briefings + magic-link if Clerk uses it) | Email address + briefing body content              | Delivery status       | Used only when user opts in. Free-tier. |
 | Apple APNs  | Push notification delivery | Device token + push payload                        | Delivery receipts    | Apple's standard provider channel. |
 | Apple Sign-in | OAuth identity provider    | App-specific user identifier (Apple-relayed email if user chooses) | Identity token        | Required if Google/MS sign-in is shown (App Review 4.8). |
 
 ## What we do NOT do
 
 - No advertising SDKs, no ad targeting, no IDFA collection.
-- No third-party analytics (no Mixpanel, no Segment, no GA, no Firebase Analytics).
+- No third-party signal (no Mixpanel, no Segment, no GA, no Firebase Signal).
 - No data brokers, no data sales, no data sharing for marketing purposes.
 - No user-content scanning for ML training.
 - No location data collection (no `CLLocationManager` use).
@@ -68,7 +68,7 @@ In-app account deletion is **shipped** across all four web products. Each produc
 - `src/server/account.ts` — `deleteAccountForUser(clerkId)` purges that product's Turso footprint
 - `src/app/api/account/delete/route.ts` — POST handler (auth → purge → Clerk admin delete)
 - A `DangerZone` client component with typed-email confirmation
-- A reachable Settings/Account surface (Tasks: `/settings/profile`; Roadmap: `/app/account`; Analytics: `/app/settings/account`; Notes: `/app/account`)
+- A reachable Settings/Account surface (Tasks: `/settings/profile`; Timeline: `/app/account`; Signal: `/app/settings/account`; Notes: `/app/account`)
 - A `UserButton.Link` from the Clerk avatar dropdown to the account-settings surface (added in the same cycle so Apple's reviewer can find the path without knowing the URL)
 
 The shipped flow:
@@ -85,7 +85,7 @@ The deletion is irreversible and visible to the user before they confirm. No "gr
 
 Each product's `deleteAccountForUser` purges only that product's Turso. When the route then calls Clerk admin delete, the user's Clerk identity is gone — but the OTHER three products still hold rows referencing the now-deleted clerkId. The DangerZone copy says "closes your account across every product"; for the Clerk identity that's true, for the data that's only true in the product you deleted from.
 
-The clean fix is a Clerk `user.deleted` webhook to each product's `/api/webhooks/clerk` endpoint that triggers each product's local purge. This requires Clerk Dashboard config per product (operator-gated). Tasks already has a Clerk webhook handler for `user.created`; extending it to handle `user.deleted` is a small follow-up. Roadmap, Analytics, and Notes need a new `/api/webhooks/clerk` endpoint built. Tracked here as the open work before iOS submission.
+The clean fix is a Clerk `user.deleted` webhook to each product's `/api/webhooks/clerk` endpoint that triggers each product's local purge. This requires Clerk Dashboard config per product (operator-gated). Tasks already has a Clerk webhook handler for `user.created`; extending it to handle `user.deleted` is a small follow-up. Timeline, Signal, and Notes need a new `/api/webhooks/clerk` endpoint built. Tracked here as the open work before iOS submission.
 
 ### Hardening to-dos (named so they aren't lost)
 

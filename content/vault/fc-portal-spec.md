@@ -76,7 +76,7 @@ No shared password. Each Founder Circle member is invited by email via Clerk. Th
 
 **2. Reports are read, not downloaded.** The primary experience of a quarterly report is reading it in the portal, in the same beautiful typography as the physical version. The PDF download is secondary.
 
-**3. No dashboard metrics.** No charts, no trend lines, no sparklines. Numbers in clean DM Mono tables. The portal is a document experience, not an analytics product.
+**3. No dashboard metrics.** No charts, no trend lines, no sparklines. Numbers in clean DM Mono tables. The portal is a document experience, not an signal product.
 
 **4. Minimal navigation.** Four sections: Home, Reports, Documents, Ownership. Navigation is a top bar — simple, unobtrusive.
 

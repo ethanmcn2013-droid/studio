@@ -121,7 +121,7 @@ export async function HqToday() {
         </article>
 
         <article className="hq-today-block">
-          <div className="hq-today-label">analytics cron</div>
+          <div className="hq-today-label">signal cron</div>
           {data.cron.length === 0 ? (
             <p className="hq-today-empty">No cron source resolved.</p>
           ) : (

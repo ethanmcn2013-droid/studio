@@ -1,14 +1,14 @@
 ---
 id: shareable-output
 title: Shareable output
-usedBy: [Roadmap, Notes, Analytics, Growth Studio]
+usedBy: [Timeline, Notes, Signal, Growth Studio]
 status: Partly working
 ---
 
 ## Definition
 
-A roadmap, update, checklist, decision summary, template, or briefing that can be safely shared outside the creator account.
+A timeline, update, checklist, decision summary, template, or briefing that can be safely shared outside the creator account.
 
 ## Next Action
 
-Use Roadmap's shared update page as the proof path, then add owner controls and view tracking.
+Use Timeline's shared update page as the proof path, then add owner controls and view tracking.

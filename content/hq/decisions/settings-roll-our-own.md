@@ -5,7 +5,7 @@ category: Product
 date: 2026-05-13
 status: Active
 reviewDate: 2026-06-13
-relatedObjects: [Signal Tasks, Signal Roadmap, Signal Notes, Signal Analytics]
+relatedObjects: [Signal Tasks, Signal Timeline, Signal Notes, Signal]
 ---
 
 ## Decision
@@ -14,7 +14,7 @@ Roll our own bespoke Settings surface in Tasks — Profile, What we send you, Yo
 
 ## Reason
 
-Settings is a high-frequency touchpoint where a borrowed UI undercuts the brand. Voice rules ('Account' → never, 'Subscription' → 'Your plan', no project-manager register) cannot be applied through Clerk theming alone. Tasks ships first; Roadmap, Notes, Analytics inherit the chassis as separate later cycles.
+Settings is a high-frequency touchpoint where a borrowed UI undercuts the brand. Voice rules ('Account' → never, 'Subscription' → 'Your plan', no project-manager register) cannot be applied through Clerk theming alone. Tasks ships first; Timeline, Notes, Signal inherit the chassis as separate later cycles.
 
 ## Alternatives considered
 

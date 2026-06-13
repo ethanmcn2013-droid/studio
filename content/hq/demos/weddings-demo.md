@@ -6,7 +6,7 @@ scriptStatus: Planned
 recordingStatus: Idea
 editingStatus: Idea
 cta: Ask for the private wedding pilot.
-keyScenes: [Venue meeting note, approved actions, planning roadmap, Today Signal]
+keyScenes: [Venue meeting note, approved actions, planning timeline, Today Signal]
 voiceoverNotes: Plain, calm, practical. Show work moving without explaining software.
 motionNotes: Use the product surfaces. No abstract animation.
 relatedProduct: Signal Studio
@@ -15,4 +15,4 @@ relatedCampaign: Founding Venue Programme
 
 ## Objective
 
-Show how one meeting becomes tasks, decisions, a roadmap, and a briefing.
+Show how one meeting becomes tasks, decisions, a timeline, and a briefing.

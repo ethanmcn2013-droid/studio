@@ -14,7 +14,7 @@
 
 **What to say** (≈90 words, ≈40 seconds at a measured pace):
 
-> Signal Studio is project management for the eighty percent not in tech. Wedding planners, freelance designers, tradespeople, students, the people the work routes through. It is four products that read as one. Tasks runs the work. Roadmap explains the work. Analytics surfaces what matters. Notes captures what is not ready for the room yet. The brand promise is one line. Clarity, not configuration. Every product opens usable on first paint, in plain English, with no setup.
+> Signal Studio is project management for the eighty percent not in tech. Wedding planners, freelance designers, tradespeople, students, the people the work routes through. It is four products that read as one. Tasks runs the work. Timeline explains the work. Signal surfaces what matters. Notes captures what is not ready for the room yet. The brand promise is one line. Clarity, not configuration. Every product opens usable on first paint, in plain English, with no setup.
 
 **What to show.**
 
@@ -31,7 +31,7 @@
 
 ## Section 2 · Four-product flow tour — 1:40 (25 seconds each)
 
-The tour shows one operating year compressed: a wedding planner books a couple, opens a workspace, shares it, gets a daily briefing, captures what isn't ready. The order is Tasks → Roadmap → Analytics → Notes.
+The tour shows one operating year compressed: a wedding planner books a couple, opens a workspace, shares it, gets a daily briefing, captures what isn't ready. The order is Tasks → Timeline → Signal → Notes.
 
 ### 2a · Tasks (0:25)
 
@@ -49,11 +49,11 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 - App entry: `tasks/src/app/app/page.tsx`
 - Wordmark gesture (`tasks-dot-pulse`, 2.6s ease-in-out infinite): `tasks/src/app/globals.css:397`
 
-### 2b · Roadmap (0:25)
+### 2b · Timeline (0:25)
 
 **Say.**
 
-> Roadmap is the public version of the workspace. The same plan, written so anyone can read it. Share a link. The recipient sees direction without a login.
+> Timeline is the public version of the workspace. The same plan, written so anyone can read it. Share a link. The recipient sees direction without a login.
 
 **Show.**
 
@@ -66,11 +66,11 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 - Public viewer: `roadmap/src/app/[workspace]/page.tsx`
 - Wordmark gesture (`roadmap-dot-ambient`, 3s opacity pulse): `roadmap/src/app/globals.css:912`
 
-### 2c · Analytics (0:25)
+### 2c · Signal (0:25)
 
 **Say.**
 
-> Analytics is a briefing, not a dashboard. Three things in plain English. It arrives at six in the morning. If nothing moved yesterday, silence — the briefing skips, because silence is the message.
+> Signal is a briefing, not a dashboard. Three things in plain English. It arrives at six in the morning. If nothing moved yesterday, silence — the briefing skips, because silence is the message.
 
 **Show.**
 
@@ -159,6 +159,6 @@ The close. Show the two doors the audience can walk through after the pitch.
 
 ## Notes for the presenter
 
-- The `/redeem` and `/venues` flows are live on the umbrella. Roadmap workspace creation is paused in production until Upstash is provisioned — do not invite the audience to create a roadmap during the live pitch. Read-only viewing is fine. See `KNOWN_LIMITATIONS.md` for the current caveat list.
+- The `/redeem` and `/venues` flows are live on the umbrella. Timeline workspace creation is paused in production until Upstash is provisioned — do not invite the audience to create a timeline during the live pitch. Read-only viewing is fine. See `KNOWN_LIMITATIONS.md` for the current caveat list.
 - If the Tasks `/app` walkthrough behaves unexpectedly, fall back to `tasks.signalstudio.ie` (the marketing home with the cinematic demo) — the homepage demo is reliable and tells the same story.
 - Reduced-motion preference is honoured everywhere. If the presenter has it on, gestures will be static — say so out loud rather than apologising for them.

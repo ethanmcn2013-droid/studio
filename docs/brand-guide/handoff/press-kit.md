@@ -15,8 +15,8 @@ Signal Studio is the umbrella. Four products live under it.
 | Product | Position | Domain |
 |---|---|---|
 | Signal Tasks | Execution clarity | tasks.signalstudio.ie |
-| Signal Roadmap | Direction clarity | roadmap.signalstudio.ie |
-| Signal Analytics | Operational clarity | analytics.signalstudio.ie |
+| Signal Timeline | Direction clarity | timeline.signalstudio.ie |
+| Signal | Operational clarity | signal.signalstudio.ie |
 | Signal Notes | Capture clarity | notes.signalstudio.ie |
 
 Umbrella domain: signalstudio.ie. Defensive: signalhq.ie (301 redirects).

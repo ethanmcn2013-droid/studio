@@ -2,9 +2,9 @@
 id: wedding-planning-daily-briefing
 title: Wedding planning daily briefing
 wedge: Weddings and events
-ownerProduct: Signal Analytics
+ownerProduct: Signal
 defaultVisibility: Public
-sourceTracking: source=studio_weddings, segment=weddings, role=creator, campaign=founding_venue, artefact=analytics_demo
+sourceTracking: source=studio_weddings, segment=weddings, role=creator, campaign=founding_venue, artefact=signal_demo
 cta: See the rest of the loop
 status: Built
 nextAction: The /app live briefing product does not exist yet — note this is a static artefact, and decide whether to build the product or keep the marketing-only proof.

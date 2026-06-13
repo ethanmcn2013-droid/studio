@@ -72,13 +72,13 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 
 ---
 
-## 3 · Roadmap — `roadmap·` ambient opacity pulse
+## 3 · Timeline — `roadmap·` ambient opacity pulse
 
 **Wordmark:** `roadmap·` — same lowercase Geist semibold + middot dot.
 
 **Gesture:** A low-key ambient opacity pulse (not the "slide" gesture aspirationally named in BRAND.md §4). The slide was deferred 2026-05-18 per `ELEVATION_C2_TICKET.md:24–36` to avoid competing with SuiteLoader during page load.
 
-**Live values (roadmap repo: `src/app/globals.css:912`)**
+**Live values (timeline repo: `src/app/globals.css:912`)**
 - Duration: `3s`
 - Easing: `ease-in-out`
 - Iterations: `infinite alternate`
@@ -92,13 +92,13 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 
 ---
 
-## 4 · Analytics — `analytics·` tick (sampled)
+## 4 · Signal — `analytics·` tick (sampled)
 
 **Wordmark:** `analytics·` — same lowercase Geist semibold + middot dot.
 
 **Gesture:** The dot **jumps** between 4 discrete sample positions, never glides between them. `steps(1, end)` ensures the transition is instantaneous; the dot snaps to a new Y once per cycle, then holds. Read: discrete samples, not a continuous signal.
 
-**Live values (analytics repo: `src/app/globals.css:441`)**
+**Live values (signal repo: `src/app/globals.css:441`)**
 - Duration: `3.6s`
 - Easing: `steps(1, end)` (timing function snaps between samples)
 - Iterations: `infinite`
@@ -147,8 +147,8 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 |-----------|----------|----------------------------|------------------------|--------------------|
 | Studio    | 2.6s     | `cubic-bezier(.16,1,.3,1)` | scale + ring expand    | 1 (one-shot)       |
 | Tasks     | 2.6s     | `ease-in-out` (live) / spring-glide (umbrella) | paired-beat scale | infinite           |
-| Roadmap   | 3s       | `ease-in-out`              | opacity 0.85↔1.0       | infinite alternate |
-| Analytics | 3.6s     | `steps(1, end)`            | 4 discrete translateY  | infinite           |
+| Timeline   | 3s       | `ease-in-out`              | opacity 0.85↔1.0       | infinite alternate |
+| Signal | 3.6s     | `steps(1, end)`            | 4 discrete translateY  | infinite           |
 | Notes     | 1.1s     | `steps(1, end)`            | opacity 1↔0 (sharp)    | infinite           |
 
 ## Reduced-motion contract (universal)
@@ -172,8 +172,8 @@ Result: brand presence is preserved (dot is visible at full opacity); motion is 
 - `studio/src/app/globals.css:1680–1719` — brand-signal-emit / brand-signal-ring
 - `tasks/src/app/globals.css:397–419` — tasks-dot-pulse (live product)
 - `studio/src/app/globals.css:441–469` — tasks-dot-pulse (umbrella variant)
-- `roadmap/src/app/globals.css:905–928` — roadmap-dot-ambient
-- `analytics/src/app/globals.css:420–449` — analytics-dot-tick
+- `roadmap/src/app/globals.css:905–928` — timeline-dot-ambient
+- `analytics/src/app/globals.css:420–449` — signal-dot-tick
 - `notes/src/app/globals.css:399–410` — notes-dot-caret (notebook header)
 
 ## Authority chain
@@ -181,4 +181,4 @@ Result: brand presence is preserved (dot is visible at full opacity); motion is 
 When this doc, BRAND.md §4, and live CSS disagree:
 1. Live CSS wins (per AGENTS.md in each repo).
 2. This doc is the snapshot of live CSS at handoff.
-3. BRAND.md §4 captures the brand intent; mismatches with live CSS are tracked as decisions (e.g., roadmap-slide deferred per ELEVATION_C2_TICKET.md).
+3. BRAND.md §4 captures the brand intent; mismatches with live CSS are tracked as decisions (e.g., timeline-slide deferred per ELEVATION_C2_TICKET.md).

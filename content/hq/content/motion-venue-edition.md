@@ -20,4 +20,4 @@ layer value, names product + audience + €1,500/yr + season. No pricing grid, n
 no wedding stock. CD-resolved: the single indigo accent lands on "She didn't have to ask."
 Full package in ~/Desktop/signal-motion-queue.md (★7). Prepend the Apple-grade block.
 Brand caveat carried into production: keep the briefing card impressionistic (a designed
-prop, not a screen recording) — Analytics is in-flight, don't let it read as shipped.
+prop, not a screen recording) — Signal is in-flight, don't let it read as shipped.

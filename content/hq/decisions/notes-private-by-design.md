@@ -22,8 +22,8 @@ Let Notes behave like another shared workspace object.
 
 ## Risks
 
-Future extraction, briefing, or analytics work could accidentally leak raw note content unless permissions are enforced at the object boundary.
+Future extraction, briefing, or signal work could accidentally leak raw note content unless permissions are enforced at the object boundary.
 
 ## Notes
 
-Only creator-approved extracts can leave Notes. Raw note bodies stay out of Tasks, Roadmap, Analytics, shared updates, and briefings by default.
+Only creator-approved extracts can leave Notes. Raw note bodies stay out of Tasks, Timeline, Signal, shared updates, and briefings by default.

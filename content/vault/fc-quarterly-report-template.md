@@ -37,7 +37,7 @@ Delivery: via the Founder Circle portal (founders.signalstudio.ie) and, optional
 
 **What we worked on**
 
-[2–3 paragraphs on the main work of the quarter. What shipped? What changed? What was the focus? Keep it specific — not "we improved the product" but "the roadmap tool now handles public viewing without authentication, which removes a friction point we have seen in early venue testing."]
+[2–3 paragraphs on the main work of the quarter. What shipped? What changed? What was the focus? Keep it specific — not "we improved the product" but "the timeline tool now handles public viewing without authentication, which removes a friction point we have seen in early venue testing."]
 
 ---
 
@@ -51,7 +51,7 @@ Delivery: via the Founder Circle portal (founders.signalstudio.ie) and, optional
 
 **Looking ahead**
 
-[One paragraph on the next quarter. What is the focus? What is the main thing that needs to happen? Not a roadmap presentation — just the honest forward-look from the founder's perspective.]
+[One paragraph on the next quarter. What is the focus? What is the main thing that needs to happen? Not a timeline presentation — just the honest forward-look from the founder's perspective.]
 
 ---
 

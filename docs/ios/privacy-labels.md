@@ -2,7 +2,7 @@
 
 App Store Connect → My App → App Privacy → Data Types disclosure.
 
-Apple's taxonomy has 14 data-type categories. For each, we declare: collected? linked to user identity? used for tracking? used for the four allowed purposes (App Functionality, Analytics, Product Personalization, Other)?
+Apple's taxonomy has 14 data-type categories. For each, we declare: collected? linked to user identity? used for tracking? used for the four allowed purposes (App Functionality, Signal, Product Personalization, Other)?
 
 We don't track users across apps or websites. The "Used for Tracking" disclosure is not checked for any data type in the matrix below.
 
@@ -47,7 +47,7 @@ All categories: **No**. The app does not access the device address book.
 | Audio Data       | **Special case** — see note below | —    | —                  | —                 |
 | Gameplay Content | No                      | —               | —                  | —                 |
 | Customer Support | No                      | —               | —                  | —                 |
-| Other User Content | Yes (Notes, Tasks, Roadmap, Analytics content) | Yes | No                 | App Functionality |
+| Other User Content | Yes (Notes, Tasks, Timeline, Signal content) | Yes | No                 | App Functionality |
 
 **Audio note.** Notes' voice capture uses `AVAudioRecorder` to write a temp `.m4a` file that is fed to `SFSpeechRecognizer`. When the active locale supports on-device recognition (most major locales on modern iOS), the audio never leaves the device — see `data-flow.md` for the exact code path. Per Apple's guidance, transient on-device processing where data is not persisted or transmitted does not require an "Audio Data" disclosure.
 
@@ -74,7 +74,7 @@ All categories: **No**. No IAP, no in-app purchases.
 
 ### Usage Data
 
-All categories: **No**. No product analytics SDK; no advertising metrics; no first-party event tracking.
+All categories: **No**. No product signal SDK; no advertising metrics; no first-party event tracking.
 
 ### Diagnostics
 

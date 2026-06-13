@@ -14,4 +14,4 @@ relatedMetric: Demo requests
 
 ## Notes
 
-Show Notes, Tasks, Roadmap, and a briefing as one loop.
+Show Notes, Tasks, Timeline, and a briefing as one loop.

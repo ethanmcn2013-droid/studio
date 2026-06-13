@@ -1,6 +1,6 @@
 ## 2026-01-28 · ships · The umbrella has its first homepage
 
-**Four wordmarks stacked vertically — Tasks, Roadmap, Analytics, Notes
+**Four wordmarks stacked vertically — Tasks, Timeline, Signal, Notes
 — each one a working link to a route that 404s on purpose. The
 products do not exist yet. The promise that there will be four does.**
 

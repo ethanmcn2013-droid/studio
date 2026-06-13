@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Project management for the 80% who don't work in tech. Four small tools — Signal Notes, Signal Tasks, Signal Roadmap, Signal Analytics — that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Four small tools — Signal Notes, Signal Tasks, Signal Timeline, Signal — that read as one system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -82,7 +82,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks, Signal Roadmap, and Signal Analytics read as one system.",
+      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks, Signal Timeline, and Signal read as one system.",
     offers: [
       {
         "@type": "Offer",
@@ -159,10 +159,10 @@ export default async function RootLayout({
             for browsers that don't support preconnect. */}
         <link rel="preconnect" href="https://tasks.signalstudio.ie" />
         <link rel="dns-prefetch" href="https://tasks.signalstudio.ie" />
-        <link rel="preconnect" href="https://roadmap.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://roadmap.signalstudio.ie" />
-        <link rel="preconnect" href="https://analytics.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://analytics.signalstudio.ie" />
+        <link rel="preconnect" href="https://timeline.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://timeline.signalstudio.ie" />
+        <link rel="preconnect" href="https://signal.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://signal.signalstudio.ie" />
         <link rel="preconnect" href="https://notes.signalstudio.ie" />
         <link rel="dns-prefetch" href="https://notes.signalstudio.ie" />
       </head>

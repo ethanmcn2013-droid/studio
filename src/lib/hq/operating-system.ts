@@ -267,7 +267,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/hq/one-pagers",
     source: "src/lib/hq/one-pagers.ts",
     action: "Open exports",
-    note: "A4 print-ready documents for Tasks, Roadmap, Analytics, Notes, and Studio.",
+    note: "A4 print-ready documents for Tasks, Timeline, Signal, Notes, and Studio.",
   },
   {
     id: "six-month-plan",

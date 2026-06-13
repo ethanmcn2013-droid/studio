@@ -7,7 +7,7 @@ This runbook is the operator path. The work is dashboard-only (Apple Developer P
 ## Pre-flight
 
 - Apple Developer Program membership active ($99/year — required, see iOS suite-app atlas).
-- Operator has Clerk Dashboard access for all four product Clerk instances (Tasks, Roadmap, Analytics, Notes).
+- Operator has Clerk Dashboard access for all four product Clerk instances (Tasks, Timeline, Signal, Notes).
 - Decision recorded in `auth-bridge.md` § Vercel-side audit: whether the four products share one Clerk application or each runs its own.
   - **If one shared instance:** the Apple config below is done once, applied to all four sign-in surfaces.
   - **If four separate instances:** Apple config is done four times, once per Clerk app. The runbook below repeats per product.
@@ -45,7 +45,7 @@ You now have three pieces of info needed for Clerk:
 
 > **If your four products share one Clerk application** (see pre-flight), complete Steps 2.1–2.6 **once** — the Apple config propagates to all four sign-in surfaces automatically. Do not repeat per product, or you'll create duplicate Service IDs in the Apple Developer Portal. If you run four separate Clerk instances, repeat per instance.
 
-At <https://dashboard.clerk.com/> (once on the shared instance, or once per instance if the four products run separate Clerk apps — Tasks, Roadmap, Analytics, Notes):
+At <https://dashboard.clerk.com/> (once on the shared instance, or once per instance if the four products run separate Clerk apps — Tasks, Timeline, Signal, Notes):
 
 1. Select the Clerk application.
 2. **User & Authentication → Social Connections**.
@@ -86,7 +86,7 @@ Each should render an "Continue with Apple" button alongside the existing "Conti
 
 If the button doesn't show, hard-refresh — Clerk caches provider config briefly. If it still doesn't show, re-check Clerk Dashboard → Social Connections → Apple is toggled on.
 
-If the button renders **invisible** (white-on-white or black-on-black, a known Clerk CSS regression in some versions): check that no custom `elements.socialButtonsBlockButton` class in the per-product `layout.tsx` overrides Clerk's Apple-specific background. The shared override is `!min-h-[48px] !text-[15px]` (Tasks / Analytics / Notes) or the equivalent in `roadmap/src/lib/clerk-appearance.ts` — none of those touch `background-color`, so the Apple button should keep its branded surface. If a future cycle adds a `bg-*` class to that key, Apple's button will get overridden — flag and remove.
+If the button renders **invisible** (white-on-white or black-on-black, a known Clerk CSS regression in some versions): check that no custom `elements.socialButtonsBlockButton` class in the per-product `layout.tsx` overrides Clerk's Apple-specific background. The shared override is `!min-h-[48px] !text-[15px]` (Tasks / Signal / Notes) or the equivalent in `roadmap/src/lib/clerk-appearance.ts` — none of those touch `background-color`, so the Apple button should keep its branded surface. If a future cycle adds a `bg-*` class to that key, Apple's button will get overridden — flag and remove.
 
 ## Step 5 — App Store listing
 
@@ -97,7 +97,7 @@ Once Apple sign-in is rendering on all four web surfaces, update the App Store s
 - **Paste the .p8 verbatim, including the BEGIN/END lines.** Open the .p8 in a text editor and copy everything — `-----BEGIN PRIVATE KEY-----`, the base64 body, and `-----END PRIVATE KEY-----`. Pasting only the base64 body causes Clerk to silently fail validation; the dashboard says "saved" but the Apple flow then errors at sign-in time with no useful hint.
 - **Apple's .p8 download is one-time.** Lose it and you regenerate the entire key. Store in the operator's password manager before pasting into Clerk.
 - **Service ID + Return URL must match exactly.** A trailing slash, an http-vs-https mismatch, or a missing subdomain causes Apple to reject the auth dance with no useful error message.
-- **Apple Email Privacy.** Users can hide their real email; Apple relays through a `@privaterelay.appleid.com` address. Clerk handles the relay-to-real-email mapping internally — but downstream email flows (Analytics briefings, password resets) need to send to the relay address Clerk surfaces, not "infer" a real one. Verified handled by `@clerk/nextjs` today.
+- **Apple Email Privacy.** Users can hide their real email; Apple relays through a `@privaterelay.appleid.com` address. Clerk handles the relay-to-real-email mapping internally — but downstream email flows (Signal briefings, password resets) need to send to the relay address Clerk surfaces, not "infer" a real one. Verified handled by `@clerk/nextjs` today.
 - **Sign in with Apple on Web vs iOS** uses different flows (web uses Services ID + Return URL; iOS native uses an App ID + bundle ID + capability). For iOS, the Clerk-iOS SDK handles both — but the dashboard's Apple toggle covers the web flow only. iOS native sign-in adds the `Sign In with Apple` capability in `project.yml` + `Info.plist`'s `com.apple.developer.applesignin` array. Tracked in `auth-bridge.md` for the Bucket B Clerk-iOS wire-up cycle.
 
 ## Reverification

@@ -21,7 +21,7 @@ All copy in this file passes `BRAND.md §3` banned-list before submission. The `
 
 (13 / 30)
 
-The full umbrella name. Apple recommends keeping the App Name to the brand mark — no subtitle words baked in. The product surfaces ("Notes", "Tasks", "Roadmap", "Analytics") live inside the app and on the web, not in the App Store name.
+The full umbrella name. Apple recommends keeping the App Name to the brand mark — no subtitle words baked in. The product surfaces ("Notes", "Tasks", "Timeline", "Signal") live inside the app and on the web, not in the App Store name.
 
 ## Subtitle (30)
 
@@ -39,7 +39,7 @@ Alternate (held as backup): **One app, four small tools** (27 / 30) — reads as
 
 (170 / 170)
 
-The four-product preview sentence by sentence — capture (Notes), move (Tasks), share (Roadmap), read (Analytics). Plain verbs. No banned words. No SaaS register.
+The four-product preview sentence by sentence — capture (Notes), move (Tasks), share (Timeline), read (Signal). Plain verbs. No banned words. No SaaS register.
 
 ## Description (4,000)
 

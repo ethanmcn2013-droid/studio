@@ -32,6 +32,8 @@ type Tier = {
 };
 
 type InsideProduct = {
+  // key is the internal CSS/animation hook (globals.css .pricing-mark[data-key=…]);
+  // it stays on the original gesture identity. Only `word` carries the rename.
   key: "tasks" | "roadmap" | "notes" | "analytics";
   word: string;
   position: string;
@@ -128,7 +130,7 @@ const SUITE: InsideProduct[] = [
   },
   {
     key: "roadmap",
-    word: "roadmap",
+    word: "timeline",
     position: "Direction",
     desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
     status: "shipped",
@@ -136,7 +138,7 @@ const SUITE: InsideProduct[] = [
   },
   {
     key: "analytics",
-    word: "analytics",
+    word: "signal",
     position: "Attention",
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",
     status: "shipped",
@@ -222,7 +224,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Why one price for four products?",
-    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Roadmap, and Analytics — which is the exact translation tax Signal Studio exists to remove.",
+    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Timeline, and Signal — which is the exact translation tax Signal Studio exists to remove.",
   },
 ];
 
@@ -934,8 +936,8 @@ export default async function PricingPage({
                 Signal Studio is one subscription. Today,{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>,{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Roadmap</strong>, and{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Analytics</strong> are live.
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Timeline</strong>, and{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal</strong> are live.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
                 Your price stays the same as the suite deepens. You pay for

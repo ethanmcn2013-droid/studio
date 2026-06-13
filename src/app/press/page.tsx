@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import {
   TASKS_URL,
-  ROADMAP_URL,
-  ANALYTICS_URL,
+  TIMELINE_URL,
+  SIGNAL_URL,
   NOTES_URL,
 } from "@/lib/product-urls";
 
@@ -67,8 +67,8 @@ export default function PressPage() {
 
             <Section title="One-line description">
               <Quote>
-                Signal Studio is a four-product suite — Tasks, Roadmap,
-                Analytics, Notes — that brings operational clarity to the
+                Signal Studio is a four-product suite — Tasks, Timeline,
+                Signal, Notes — that brings operational clarity to the
                 eighty percent of the world who don&rsquo;t work in tech.
               </Quote>
             </Section>
@@ -78,7 +78,7 @@ export default function PressPage() {
                 Signal Studio is a four-product suite built for everyone the
                 productivity category ignored: wedding planners, freelancers,
                 tradespeople, students, small-business operators. Signal
-                Tasks runs the work. Roadmap explains it publicly. Analytics
+                Tasks runs the work. Timeline explains it publicly. Signal
                 surfaces what needs attention today. Notes captures the
                 thinking that comes before all of it. Plain English. No
                 sprints. No per-seat bill.
@@ -91,14 +91,14 @@ export default function PressPage() {
                 designed for the eighty percent of working people who do not
                 live inside a software stack. Signal Tasks renders the same
                 to-do list as a board, list, timeline, or calendar — switch
-                lenses without re-entering anything. Signal Roadmap is a
-                public roadmap your customers can actually read, written in
-                plain English. Signal Analytics is a daily briefing that
+                lenses without re-entering anything. Signal Timeline is a
+                public timeline your customers can actually read, written in
+                plain English. Signal is a daily briefing that
                 names what needs your attention today — no LLM in the path,
                 every sentence written by hand. Signal Notes is a private
                 capture surface that promotes to Tasks when the thinking is
                 ready. The suite shares one register and one accent colour.
-                The roadmap is public. The principles page lists features
+                The timeline is public. The principles page lists features
                 that will never ship. Designed and shipped by Ethan
                 McNamara, a designer in Dublin.
               </Quote>
@@ -120,9 +120,9 @@ export default function PressPage() {
                 workspace that renders the same items as a board, a list, a
                 timeline, or a calendar — switch lenses without re-entering
                 anything, with real-time presence and shareable read-only
-                views on the free tier. Signal Roadmap is a public roadmap
+                views on the free tier. Signal Timeline is a public timeline
                 your customers can read at midnight on a phone — plain
-                English, one link, no login. Signal Analytics is a daily
+                English, one link, no login. Signal is a daily
                 briefing that surfaces what needs your attention today: a
                 rules engine reads your Tasks workspace overnight,
                 identifies held-up work, overdue items, and quiet risks,
@@ -156,11 +156,11 @@ export default function PressPage() {
                   same items.
                 </li>
                 <li>
-                  <ExternalLink href={ROADMAP_URL}>Signal Roadmap</ExternalLink>{" "}
-                  — direction clarity. Public roadmaps customers can read.
+                  <ExternalLink href={TIMELINE_URL}>Signal Timeline</ExternalLink>{" "}
+                  — direction clarity. Public timelines customers can read.
                 </li>
                 <li>
-                  <ExternalLink href={ANALYTICS_URL}>Signal Analytics</ExternalLink>{" "}
+                  <ExternalLink href={SIGNAL_URL}>Signal</ExternalLink>{" "}
                   — attention clarity. A daily briefing, no LLM in the path.
                 </li>
                 <li>
@@ -203,10 +203,10 @@ export default function PressPage() {
                   (open in browser, screenshot freely)
                 </li>
                 <li>
-                  <ExternalLink href={ROADMAP_URL}>Signal Roadmap — live</ExternalLink>
+                  <ExternalLink href={TIMELINE_URL}>Signal Timeline — live</ExternalLink>
                 </li>
                 <li>
-                  <ExternalLink href={ANALYTICS_URL}>Signal Analytics — live</ExternalLink>
+                  <ExternalLink href={SIGNAL_URL}>Signal — live</ExternalLink>
                 </li>
               </ul>
               <p className="mt-3">

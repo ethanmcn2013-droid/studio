@@ -7,9 +7,9 @@ order. Item 1 is the only true emergency.
 
 ---
 
-## 1. Turn Signal Roadmap's "save" back on (≈5 minutes, free) — URGENT
+## 1. Turn Signal Timeline's "save" back on (≈5 minutes, free) — URGENT
 
-**What's wrong, in plain words:** Signal Roadmap's website is live, but
+**What's wrong, in plain words:** Signal Timeline's website is live, but
 its safety lock for spam is wired to a service that was never set up.
 Because the safety lock can't reach that service, it fails shut — so
 every attempt to *create a workspace, add a project, or save a source*
@@ -32,27 +32,27 @@ billing-bearing accounts on your behalf.
 5. When it asks which Vercel account/team: choose your account
    (**ethanmcn2013-1730s-projects**).
 6. When it asks which projects to connect: choose **Specific Projects**
-   and tick **roadmap** only. Continue.
+   and tick **timeline** only. Continue.
 7. On the Upstash side, when prompted to create a database: pick the
    **Free** plan, any name (e.g. `signal-roadmap`), nearest region,
    and confirm. Approve the connection back to Vercel.
 8. That's it — the integration automatically adds the two settings
-   Roadmap needs (`UPSTASH_REDIS_REST_URL` and
-   `UPSTASH_REDIS_REST_TOKEN`) to the Roadmap project.
-9. **Tell me "Upstash is connected to roadmap"** and I'll verify the
+   Timeline needs (`UPSTASH_REDIS_REST_URL` and
+   `UPSTASH_REDIS_REST_TOKEN`) to the Timeline project.
+9. **Tell me "Upstash is connected to timeline"** and I'll verify the
    two settings landed and trigger a fresh deploy so the fix goes live.
-   (If you'd rather, in Vercel open the **roadmap** project →
+   (If you'd rather, in Vercel open the **timeline** project →
    **Deployments** → the latest one → the **⋯** menu → **Redeploy** —
    that also works.)
 
 **How you'll know it worked:** after redeploy, creating a workspace on
-the live Roadmap site succeeds instead of saying "Too many requests".
+the live Timeline site succeeds instead of saying "Too many requests".
 
 ---
 
-## 2. Make the daily Analytics email trustworthy (≈10 minutes) — IMPORTANT, not urgent
+## 2. Make the daily Signal email trustworthy (≈10 minutes) — IMPORTANT, not urgent
 
-**Context:** the Analytics morning-briefing cron is already configured
+**Context:** the Signal morning-briefing cron is already configured
 on Vercel (it has its run key and its email key). During this run I
 wired the missing piece so Signal HQ can finally *see* it run — within
 a day HQ will show it green automatically, no action from you. The two
@@ -107,7 +107,7 @@ ever want preview builds to go green too, that's a separate small setup
 - "Tasks digest cron unmonitored" — replaced a permanent fake warning
   with real cross-repo monitoring; wired the secrets across all three
   projects. Goes green on its own within a day.
-- "Analytics daily cron never ran" — the missing heartbeat wiring is
+- "Signal daily cron never ran" — the missing heartbeat wiring is
   done; HQ will see it within a day.
 - All 8 HQ risks — honestly re-graded against what actually shipped.
   The two genuinely-open ones (this document's items 1 and 2) are kept

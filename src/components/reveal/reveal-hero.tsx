@@ -66,8 +66,10 @@ export function RevealHero() {
       />
 
       {/* Stack order follows the operator-directed product order
-          (Notes → Tasks → Roadmap → Analytics, 2026-05-18) so the
-          first product impression matches the grid + meta + pricing. */}
+          (Notes → Tasks → Timeline → Signal, 2026-05-18) so the
+          first product impression matches the grid + meta + pricing.
+          data-key/href stay on the internal gesture keys (roadmap/
+          analytics) — only the visible word changed (2026-06-13 rename). */}
       <nav className="reveal-stack" aria-label="Signal Studio products">
         <a className="stack-row" data-key="notes" href="#notes">
           <span className="mark">
@@ -83,13 +85,13 @@ export function RevealHero() {
         </a>
         <a className="stack-row" data-key="roadmap" href="#roadmap">
           <span className="mark">
-            <span className="word">roadmap</span>
+            <span className="word">timeline</span>
             <span className="dot" />
           </span>
         </a>
         <a className="stack-row" data-key="analytics" href="#analytics">
           <span className="mark">
-            <span className="word">daily{"\u00a0"}signal</span>
+            <span className="word">signal</span>
             <span className="dot" />
           </span>
         </a>

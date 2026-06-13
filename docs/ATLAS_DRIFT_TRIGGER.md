@@ -32,7 +32,7 @@ match the new reality.
 ## Where the trigger fires
 
 The trigger is **per-repo**, not centralized. Each of the five product
-repos (studio + tasks + roadmap + analytics + notes) gets a pre-commit
+repos (studio + tasks + timeline + signal + notes) gets a pre-commit
 hook that runs against its own staged files and writes drift into the
 canonical sidecar at:
 
@@ -201,7 +201,7 @@ and disposable.
   git.** The studio-side script auto-stages it as part of the
   triggering commit; the sidecar then travels with the PR/commit that
   caused the drift, which makes drift state reviewable rather than
-  silent. Cross-repo runs (Tasks/Roadmap/Analytics/Notes) write to the
+  silent. Cross-repo runs (Tasks/Timeline/Signal/Notes) write to the
   studio working tree but skip the auto-stage — the studio operator
   picks it up next time, which is the right ownership split. Confirmed
   in Cycle A.11 fan-out: the shared script gates `git add` on

@@ -53,7 +53,7 @@ Workspace created -> collaborators invited -> work becomes clearer -> shareable 
 
 Cycle 2 adds the invite/access model, collaborator first view, and first shareable artefacts to that tab.
 
-Cycle 3 tracks Roadmap's first built shared output: `/[workspace]/update`, with source fields and a "Created with Signal Studio" discovery surface.
+Cycle 3 tracks Timeline's first built shared output: `/[workspace]/update`, with source fields and a "Created with Signal Studio" discovery surface.
 
 The deeper product architecture lives in `docs/ECOSYSTEM_INTEGRATION_PLAN.md`.
 
@@ -74,7 +74,7 @@ Because HQ v1 is local-first, existing browser data may be newer or different fr
 
 ## Required Agent Rule
 
-Whenever a meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change is made, update Signal HQ before the task is considered complete.
+Whenever a meaningful product, brand, GTM, marketing, timeline, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change is made, update Signal HQ before the task is considered complete.
 
 If the change affects growth strategy or messaging, also update the relevant file under `signal-growth/`.
 

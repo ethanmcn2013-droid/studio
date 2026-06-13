@@ -52,7 +52,7 @@ export default async function HqEntitlementsPage() {
         <p className="mt-2 max-w-[60ch] text-[13.5px] leading-[1.55] text-ink-soft">
           Active entitlements across the suite. Grants flow into the shared
           signal-entitlements DB and are visible to all five products
-          (Tasks, Roadmap, Analytics, Notes, Studio). Use this surface for
+          (Tasks, Timeline, Signal, Notes, Studio). Use this surface for
           off-Stripe support grants, pilot users, and revokes. Origin
           `studio-hq` in metadata marks rows created from here.
         </p>

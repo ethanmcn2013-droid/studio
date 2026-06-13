@@ -10,7 +10,7 @@ references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/brand/wo
 summary: What the umbrella owns and what it refuses. Wordmark, /brand asset hub, unified /pricing, BRAND.md as source of truth. Strict four-product cardinality.
 status: complete
 pinned: false
-execWhat: Signal Studio is the parent brand over four products — Tasks, Roadmap, Analytics, Notes. The umbrella owns the wordmark, the pricing page, the brand handbook, and the public brand asset library at signalstudio.ie/brand.
+execWhat: Signal Studio is the parent brand over four products — Tasks, Timeline, Signal, Notes. The umbrella owns the wordmark, the pricing page, the brand handbook, and the public brand asset library at signalstudio.ie/brand.
 execMatters: The umbrella is what lets one operator credibly position a multi-product suite. Without it, the products would look like four unrelated apps. With it, paying customers see one company shipping a coordinated line of tools.
 execRisk: The biggest risk is brand cardinality drift — adding a fifth product, or naming an internal tool as a "Signal X" sibling. Each addition dilutes the four-product story and makes the suite harder to explain in one sentence.
 ---
@@ -48,7 +48,7 @@ Ethan owns the umbrella outright. The studio repo (~/Projects/personal/studio) i
 - `signalstudio.ie/brand` — the public brand asset hub: wordmark anatomy, motion catalogue, palette, type scale, voice rules, 19 downloadable SVGs (house wordmark + four product wordmarks + lockups + square marks), plain-text email signatures.
 - `signalstudio.ie/hq` — the private operating dashboard. Password-gated. The atlas you're reading lives here at `/hq/atlas`.
 - `~/Projects/personal/studio/BRAND.md` — the handbook (see [[brand-enforcement]] for the catch-net details).
-- `~/Projects/personal/studio/src/components/brand/wordmark.tsx` — the canonical `<Wordmark>` component with five variants and five gestures (signal broadcast 2.6s, tasks pulse 2.6s, roadmap sweep 5.4s, analytics tick 3.6s, notes caret 1.1s).
+- `~/Projects/personal/studio/src/components/brand/wordmark.tsx` — the canonical `<Wordmark>` component with five variants and five gestures (signal broadcast 2.6s, tasks pulse 2.6s, timeline sweep 5.4s, signal tick 3.6s, notes caret 1.1s).
 - `~/Projects/personal/studio/src/app/pricing/` — the unified pricing surface every product 308s to (see [[pricing-and-entitlements]]).
 
 ## HOW
@@ -61,9 +61,9 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 
 ### The refusal list (current as of 2026-05-16)
 
-- **No fifth product.** Tasks, Roadmap, Analytics, Notes. Four. The temptation to scaffold a "Signal Chat" or "Signal Inbox" is the most common cardinality risk.
+- **No fifth product.** Tasks, Timeline, Signal, Notes. Four. The temptation to scaffold a "Signal Chat" or "Signal Inbox" is the most common cardinality risk.
 - **No team tier.** The suite is sold to individuals and small teams. Enterprise tier would require multi-seat billing, role-based access, audit logs — features that change the product shape, not just the pricing page.
-- **No private workspaces in Roadmap.** Roadmap is public-facing by design. Adding private mode would gut the moat.
+- **No private workspaces in Timeline.** Timeline is public-facing by design. Adding private mode would gut the moat.
 - **No comment threading.** Anywhere. Comments are a productivity-tool trap.
 - **No public directory.** Of users, of workspaces, of templates. The suite refuses the "discover other users' content" surface.
 - **No engineering-team-flavored language.** The audience is wedding planners, freelancers, tradespeople, students, marketing operators — not "engineering teams". Banned in copy (see [[brand-enforcement]]).
@@ -82,7 +82,7 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 
 A single-operator portfolio with five separately-named apps reads as five hobby projects. A single-operator portfolio with four apps + a clearly-articulated umbrella reads as a company. The difference is entirely brand work — same code, same operator, same products, different perception.
 
-The four-product cardinality is deliberate. Three products is too few to look like a suite; six is too many to coordinate. Four is the sweet spot where the umbrella story is concrete ("Tasks, Roadmap, Analytics, Notes") and the operator can credibly ship updates across the line.
+The four-product cardinality is deliberate. Three products is too few to look like a suite; six is too many to coordinate. Four is the sweet spot where the umbrella story is concrete ("Tasks, Timeline, Signal, Notes") and the operator can credibly ship updates across the line.
 
 The refusal list is the umbrella's most strategic artifact. Every product wants to add features; the umbrella's job is to say no on behalf of the suite identity. Almost every refusal could be argued in the affirmative for an individual product — a team tier in Tasks alone would make sense — but adding it would change what the umbrella *is*. The refusals are the moat.
 

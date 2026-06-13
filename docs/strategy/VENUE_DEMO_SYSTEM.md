@@ -14,8 +14,8 @@ The demo is not a feature tour. It is one wedding moving through the suite:
 
 1. Notes captures the messy conversation.
 2. Tasks turns it into owned work.
-3. Roadmap becomes the readable plan.
-4. Analytics names what needs attention.
+3. Timeline becomes the readable plan.
+4. Signal names what needs attention.
 
 The venue sees the operational promise: pay once, hand out codes, nothing to run.
 
@@ -45,8 +45,8 @@ Use this exact content across product surfaces unless a real venue/couple pilot 
 | Couple workspace title | Aoife & Ciaran - Wedding planning |
 | Date | 12 Sep 2027 |
 | Note title | Tuesday venue call |
-| Roadmap title | Your wedding plan |
-| Analytics title | Morning briefing |
+| Timeline title | Your wedding plan |
+| Signal title | Morning briefing |
 
 ### Notes Surface
 
@@ -77,7 +77,7 @@ Still open:
 | Confirm band load-in time | Band | Waiting on supplier |
 | Decide table runner plan | Couple | Open decision |
 
-### Roadmap Surface
+### Timeline Surface
 
 | Section | Item | State | Plain note |
 | --- | --- | --- | --- |
@@ -88,7 +88,7 @@ Still open:
 | Later | Week-of plan | Coming up | One page for arrivals, setup, weather, and coordinator contacts. |
 | Later | Final walkthrough | Coming up | Walk the whole day two weeks before. |
 
-### Analytics Surface
+### Signal Surface
 
 ```text
 Morning briefing
@@ -110,8 +110,8 @@ Use this for the main venue proof cut.
 | 6-12s | Coordinator desk: inbox, notes, supplier tabs. | "Then the planning year starts. Questions already answered begin to come back." | The noise is structural. |
 | 12-22s | Notes. The Tuesday venue call appears. | "Notes captures the conversation before it becomes another thread." | Notes, where it starts. |
 | 22-34s | Tasks. Three follow-ups become owned work. One task checks off. | "Tasks turns it into plain work: final numbers, supplier access, music, walkthrough." | Tasks, where it gets done. |
-| 34-46s | Roadmap. The public plan is readable without login. | "Roadmap is the plan the couple can forward. Suppliers, family, planner - one current picture." | Roadmap, what everyone sees. |
-| 46-54s | Analytics. Morning briefing shows three lines. | "Analytics names what needs attention. On quiet days, nothing is sent." | Analytics, what needs attention. |
+| 34-46s | Timeline. The public plan is readable without login. | "Timeline is the plan the couple can forward. Suppliers, family, planner - one current picture." | Timeline, what everyone sees. |
+| 46-54s | Signal. Morning briefing shows three lines. | "Signal names what needs attention. On quiet days, nothing is sent." | Signal, what needs attention. |
 | 54-60s | Venue eyebrow close, then closing card. | "Your venue pays once a year. The couple never sees a price." | Fewer confused couples. Fewer repetitive emails. |
 
 ### 60-Second No-Voice Variant
@@ -122,8 +122,8 @@ Use the same visuals and hold these text cards:
 2. Then the planning year starts.
 3. Notes captures the conversation.
 4. Tasks turns it into owned work.
-5. Roadmap gives everyone one current picture.
-6. Analytics says what needs attention.
+5. Timeline gives everyone one current picture.
+6. Signal says what needs attention.
 7. Your venue pays once a year.
 8. The couple never sees a price.
 9. A better planning experience under your venue's name.
@@ -140,8 +140,8 @@ Use this as the narrated walkthrough on `/venues/demo`, founder Loom, or sales-c
 | 10-24s | Notes surface. | "The planning starts in a note. Not a feature. Just the real conversation: final numbers, supplier access, music, table decisions." |
 | 24-40s | Highlight venue eyebrow. | "Glenmara's name sits quietly at the top. The venue is present, but the couple's plan stays the thing in focus." |
 | 40-60s | Tasks surface. | "The note becomes work. Aoife owns final numbers. Ciaran owns ceremony music. The venue has already confirmed supplier access. The band still owes a load-in time." |
-| 60-82s | Roadmap public view. | "The Roadmap is the important part for everyone outside the workspace. It reads like a plan, not a project-management board. Family, suppliers, and planners can open it without an account." |
-| 82-100s | Analytics briefing. | "The next morning, Analytics does not create a dashboard. It writes three things in plain English. Final numbers are blocking catering. Band load-in is missing. The walkthrough is booked, so no venue action is needed today." |
+| 60-82s | Timeline public view. | "The Timeline is the important part for everyone outside the workspace. It reads like a plan, not a project-management board. Family, suppliers, and planners can open it without an account." |
+| 82-100s | Signal briefing. | "The next morning, Signal does not create a dashboard. It writes three things in plain English. Final numbers are blocking catering. Band load-in is missing. The walkthrough is booked, so no venue action is needed today." |
 | 100-112s | Venue mechanic card. | "For the venue, the mechanic is small. Pay once a year. Give each couple a code. Nothing else to run." |
 | 112-120s | Closing card. | "The couple never sees a price. The venue backs the planning year. That is the product." |
 
@@ -155,8 +155,8 @@ Use this as the narrated walkthrough on `/venues/demo`, founder Loom, or sales-c
 | Coordinator context | Desk, inbox, or planning notes. | Shows planning noise without melodrama. |
 | Notes | Tuesday venue call being written or highlighted. | Venue eyebrow legible. Real text visible. |
 | Tasks | Wedding task workspace with six tasks. | One task changes state or gets checked. No placeholder content. |
-| Roadmap | Public `/the-wedding` style plan. | Readable at desktop crop; no login shown. |
-| Analytics | Three-line morning briefing. | Plain English, no chart overload. |
+| Timeline | Public `/the-wedding` style plan. | Readable at desktop crop; no login shown. |
+| Signal | Three-line morning briefing. | Plain English, no chart overload. |
 | Venue mechanic | Pay once/year -> codes -> couple workspace. | Understood in under five seconds. |
 | Close | Signal Studio wordmark and venue promise. | Long enough to read without rushing. |
 
@@ -168,8 +168,8 @@ Use this as the narrated walkthrough on `/venues/demo`, founder Loom, or sales-c
 | --- | --- |
 | Notes | Text appears as if written, but not typewriter-fast. Calm reveal. |
 | Tasks | One task moves from waiting to done. 250-350ms, no bounce. |
-| Roadmap | Current section gently settles into place; avoid scrolling past too much content. |
-| Analytics | Three lines appear one at a time with a short hold. |
+| Timeline | Current section gently settles into place; avoid scrolling past too much content. |
+| Signal | Three lines appear one at a time with a short hold. |
 | Venue eyebrow | Slow crop or focus shift. This is the brand proof. |
 | Closing card | Hold in silence. Do not animate the CTA. |
 
@@ -184,8 +184,8 @@ When presenting live to a venue:
 | 1 | "Here is one wedding Tuesday." | `/venues/demo` hero. |
 | 2 | "The call starts as a note." | Notes wedding-planning page or capture mock. |
 | 3 | "The note becomes owned work." | Tasks wedding template. |
-| 4 | "The couple gets a plan they can forward." | Roadmap `/the-wedding`. |
-| 5 | "The next morning says what needs attention." | Analytics wedding-planning page. |
+| 4 | "The couple gets a plan they can forward." | Timeline `/the-wedding`. |
+| 5 | "The next morning says what needs attention." | Signal wedding-planning page. |
 | 6 | "Your side is just codes." | Venue mechanic panel. |
 | 7 | "The couple never sees a price." | Close. Stop talking. |
 

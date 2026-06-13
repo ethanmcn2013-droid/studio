@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { TASKS_URL, ROADMAP_URL, ANALYTICS_URL, NOTES_URL } from "@/lib/product-urls";
+import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 // Social channels. Placeholder hrefs — replace with the real handles when
 // the accounts go live. Order is text → video → professional: X first
@@ -127,22 +127,22 @@ export function SiteFooter() {
               Signal Tasks
             </a>
             <a
-              href={ROADMAP_URL}
+              href={TIMELINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
             >
-              Signal Roadmap
+              Signal Timeline
             </a>
             <a
-              href={ANALYTICS_URL}
+              href={SIGNAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
             >
-              Signal Analytics
+              Signal
             </a>
           </nav>
 

@@ -5,7 +5,7 @@ category: Pricing
 date: 2026-05-12
 status: Active
 reviewDate: 2026-08-12
-relatedObjects: [Signal Studio, Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes]
+relatedObjects: [Signal Studio, Signal Tasks, Signal Timeline, Signal, Signal Notes]
 ---
 
 ## Decision
@@ -18,7 +18,7 @@ Per-product pricing pages contradict the one-ecosystem-four-layers brand positio
 
 ## Alternatives considered
 
-Keep per-product tiers under one brand; cross-product credit at depth; two-product bundle (Tasks + Roadmap only) until Notes and Analytics ship.
+Keep per-product tiers under one brand; cross-product credit at depth; two-product bundle (Tasks + Timeline only) until Notes and Signal ship.
 
 ## Risks
 
@@ -26,4 +26,4 @@ Notion-trap perceived overpay if users only use one of the four. Vapor risk if m
 
 ## Notes
 
-Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/roadmap/analytics /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Notes has no pricing surface yet (was never built).
+Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/timeline/signal /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Notes has no pricing surface yet (was never built).

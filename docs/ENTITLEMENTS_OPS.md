@@ -127,7 +127,7 @@ pnpm issue:codes lambs-hill 10 venue_edition wedding 365
 
 ## Troubleshooting
 
-**A user paid but Roadmap/Analytics/Notes still show free.**
+**A user paid but Timeline/Signal/Notes still show free.**
 → Check Tasks's local row first:
 ```sql
 turso db shell ethanmcnamara-tasks

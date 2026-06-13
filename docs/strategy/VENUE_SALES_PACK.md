@@ -40,8 +40,8 @@ Signal Studio gives each couple one calm place to plan, with your venue's name i
 | --- | --- |
 | Notes | Where ideas, decisions, and meeting notes start. Private until shared. |
 | Tasks | Where the actual work lives: venue, suppliers, guest list, final week, decisions, risks. |
-| Roadmap | The readable plan they can forward to family, suppliers, and planners without asking anyone to log in. |
-| Analytics | A short morning briefing when something needs attention. Quiet on the days that do not. |
+| Timeline | The readable plan they can forward to family, suppliers, and planners without asking anyone to log in. |
+| Signal | A short morning briefing when something needs attention. Quiet on the days that do not. |
 
 ### What The Venue Does
 
@@ -57,8 +57,8 @@ The couple never sees a price. They get twelve months of Signal Studio because y
 | --- | --- |
 | Repeated questions | One plan answers the things couples keep asking. |
 | Scattered supplier details | Notes and tasks keep decisions tied to the work. |
-| Planner/couple/venue drift | Roadmap gives everyone the same readable picture. |
-| Coordinator inbox noise | Analytics surfaces attention before it becomes another chase. |
+| Planner/couple/venue drift | Timeline gives everyone the same readable picture. |
+| Coordinator inbox noise | Signal surfaces attention before it becomes another chase. |
 | Brand experience drops after booking | The venue stays quietly present throughout planning. |
 
 ### Pricing
@@ -122,7 +122,7 @@ Signal Studio does not make the venue more technical. It makes the planning year
 | "Our couples already have planners." | Good planners benefit from one readable source of truth. This does not replace the planner; it gives the planner, couple, suppliers, and venue a calmer shared picture. |
 | "We do not want to run software." | You do not. The venue hands out codes. Signal Studio supports the product. The venue is the sponsor, not the admin. |
 | "What if couples do not use it?" | Nothing breaks. The couples who do use it get a materially calmer year, and the venue loses nothing on couples who ignore the code. Usage is learned through the founding cohort. |
-| "Is this visible to us?" | The venue name is visible to the couple. The couple's private workspace is not visible to the venue unless the couple chooses to share a Roadmap or artifact. |
+| "Is this visible to us?" | The venue name is visible to the couple. The couple's private workspace is not visible to the venue unless the couple chooses to share a Timeline or artifact. |
 | "Why annual prepay?" | Because the couple should never see a card form or monthly prompt from the venue's gift. One annual payment makes the couple experience seamless. |
 | "Why not per couple?" | The venue is not buying seats. It is backing the planning year for every couple it books. Flat annual pricing keeps the mechanic simple. |
 

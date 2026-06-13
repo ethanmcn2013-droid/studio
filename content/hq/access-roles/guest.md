@@ -11,4 +11,4 @@ nextAction: Design guest view before exposing public/private controls.
 
 ## Purpose
 
-Receives a clear page, checklist, roadmap, or briefing without becoming a full user first.
+Receives a clear page, checklist, timeline, or briefing without becoming a full user first.

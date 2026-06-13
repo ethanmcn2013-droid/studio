@@ -2,7 +2,7 @@
 
 Cycle 3 turns the collaboration growth loop into a visible output.
 
-The first built artefact is the Signal Roadmap shared update page:
+The first built artefact is the Signal Timeline shared update page:
 
 `/[workspace]/update`
 
@@ -33,7 +33,7 @@ V1 links carry:
 
 | Field | Example |
 | --- | --- |
-| source | roadmap_share |
+| source | timeline_share |
 | segment | weddings |
 | role | viewer |
 | campaign | collaboration_proof |
@@ -62,4 +62,4 @@ For the weddings/events wedge, adapt the same pattern into a planning update tha
 - Add owner-controlled visibility and revocation.
 - Track shared-update views and creator conversions.
 - Add a wedding/events version with venue meeting context.
-- Connect the shared update to Today Signal once Analytics is ready.
+- Connect the shared update to Today Signal once Signal is ready.

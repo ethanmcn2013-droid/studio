@@ -1,6 +1,6 @@
 ---
 id: analytics-tasks
-title: Signal Analytics
+title: Signal
 to: Signal Tasks
 status: Planned
 health: Needs attention

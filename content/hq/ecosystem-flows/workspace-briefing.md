@@ -1,6 +1,6 @@
 ---
 id: workspace-briefing
-title: Tasks / Roadmap / Notes
+title: Tasks / Timeline / Notes
 to: Workspace Briefing
 status: Planned
 health: Needs attention

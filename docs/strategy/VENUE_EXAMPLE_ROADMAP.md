@@ -1,10 +1,10 @@
-# The Premium Venue Example Roadmap
+# The Premium Venue Example Timeline
 
 Status: production-ready content artifact · 2026-05-16
-Serves: BUSINESS_PARTNER_REVIEW §5 item 2 ("Build one premium public Roadmap example") AND the Superhuman-3 seed shape (the content a redeemed couple's workspace opens pre-shaped to — venue-written, never generated).
+Serves: BUSINESS_PARTNER_REVIEW §5 item 2 ("Build one premium public Timeline example") AND the Superhuman-3 seed shape (the content a redeemed couple's workspace opens pre-shaped to — venue-written, never generated).
 Owner: founder. This is the reference content. The venue name, dates, and couple names are placeholders set per real wedding in the setup ritual.
 
-This is what a couple sees when a premium venue forwards them their planning Roadmap. No account, no login, plain English, the venue's name in one quiet line. It is the artifact the venue is proud to have its name on. It is deliberately calm — a couple reading it should feel the wedding is in hand, not feel managed.
+This is what a couple sees when a premium venue forwards them their planning Timeline. No account, no login, plain English, the venue's name in one quiet line. It is the artifact the venue is proud to have its name on. It is deliberately calm — a couple reading it should feel the wedding is in hand, not feel managed.
 
 Voice rules held: plain English, short declarative lines, no exclamation, no planning jargon, no feature names, the venue named once and quietly. Status words are the four plain states only: **Done · Underway · Waiting on you · Coming up.**
 
@@ -62,7 +62,7 @@ Two weeks before, you and Glenmara's coordinator walk the whole day start to fin
 
 ## Notes for the founder (not shown to the couple)
 
-- **Why this shape works:** every item answers a question a couple would otherwise email the venue about. The Roadmap is the venue's repeated-question pain, closed. That is the core promise rendered, not claimed.
+- **Why this shape works:** every item answers a question a couple would otherwise email the venue about. The Timeline is the venue's repeated-question pain, closed. That is the core promise rendered, not claimed.
 - **The four states do all the work.** "Waiting on you" is the only one that asks for action, and there are never more than two at once — that restraint is the product. If a venue's plan needs a fifth state, the answer is plainer language, not more states (this is why the panel killed the computed/colour-coded status pitches).
 - **The Superhuman-3 seed:** a redeemed couple workspace opens pre-shaped to exactly this skeleton, with the venue's real dates filled in during the setup ritual. It is venue-written content, never generated — that constraint is load-bearing and was a condition of the panel green-light.
 - **Voice gate:** no exclamation, no jargon, the venue named once at the top and once at the foot in a quiet line, no product names anywhere. A generic competitor would write "Track your wedding tasks" — this writes "the email you stop having to send." Keep that gap.

@@ -22,8 +22,8 @@ Veo 3 = cinematic brand films / abstract atmosphere / vertical social; Premiere 
 assembly; ElevenLabs = calm founder VO. Build 20–40 reusable clip primitives, not
 monoliths. Three buckets: Brand Films (Veo), Product Films (Claude Design), Founder
 Credibility. ~12 concepts to author + review: Noise→Signal (flagship), Built for the 80%,
-Calm Software, Tasks "One plan four views", Notes emotional/privacy, Analytics "Answers
-not charts", Roadmap "See the future move", Founder philosophy mini-series.
+Calm Software, Tasks "One plan four views", Notes emotional/privacy, Signal "Answers
+not charts", Timeline "See the future move", Founder philosophy mini-series.
 
 REQUESTED PROCESS: same as motion-queue-2026-05-16 — multi-agent authoring, 3 independent
 reviewers (creative-director / brand-strategist / marketing-strategist), 3-of-3 / 2-of-3 /

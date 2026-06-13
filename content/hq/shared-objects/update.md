@@ -1,13 +1,13 @@
 ---
 id: update
 title: Update
-usedBy: [Tasks, Roadmap, Analytics, Notes, HQ]
+usedBy: [Tasks, Timeline, Signal, Notes, HQ]
 status: Defined
 ---
 
 ## Definition
 
-A meaningful change that can feed activity, changelog, briefing, analytics, and shared update summaries.
+A meaningful change that can feed activity, changelog, briefing, signal, and shared update summaries.
 
 ## Next Action
 

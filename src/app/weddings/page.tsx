@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ROADMAP_URL, TASKS_URL, NOTES_URL, ANALYTICS_URL } from "@/lib/product-urls";
+import {
+  TIMELINE_URL,
+  TASKS_URL,
+  NOTES_URL,
+  SIGNAL_URL,
+  tasksSignUpUrl,
+} from "@/lib/product-urls";
 import { withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
@@ -24,7 +30,7 @@ export const metadata: Metadata = {
  * calendar proximity is the 80% audience's actual mental model.
  */
 const daysToEvent = 28;
-// /the-wedding is the confirmed bespoke static route on Signal Roadmap.
+// /the-wedding is the confirmed bespoke static route on Signal Timeline.
 const weddingTracking = {
   source: "studio_weddings",
   campaign: "self_serve_wedding",
@@ -32,7 +38,7 @@ const weddingTracking = {
   touch: "site",
   venue: "unknown",
 };
-const sharedUpdateHref = withTracking(`${ROADMAP_URL.replace(/\/$/, "")}/the-wedding`, {
+const sharedUpdateHref = withTracking(`${TIMELINE_URL.replace(/\/$/, "")}/the-wedding`, {
   ...weddingTracking,
   artifact: "roadmap_example",
 });
@@ -40,11 +46,15 @@ const templateHref = withTracking(`${TASKS_URL.replace(/\/$/, "")}/templates/wed
   ...weddingTracking,
   artifact: "wedding_template",
 });
+const signUpHref = withTracking(tasksSignUpUrl("wedding"), {
+  ...weddingTracking,
+  artifact: "wedding_signup",
+});
 const notesDemoHref = withTracking(`${NOTES_URL.replace(/\/$/, "")}/wedding-planning`, {
   ...weddingTracking,
   artifact: "notes_demo",
 });
-const analyticsDemoHref = withTracking(`${ANALYTICS_URL.replace(/\/$/, "")}/wedding-planning`, {
+const analyticsDemoHref = withTracking(`${SIGNAL_URL.replace(/\/$/, "")}/wedding-planning`, {
   ...weddingTracking,
   artifact: "analytics_demo",
 });
@@ -92,14 +102,14 @@ const ecosystemSteps = [
     cta: "Open the workspace template",
   },
   {
-    product: "Signal Roadmap",
+    product: "Signal Timeline",
     role: "Direction",
     copy: "Show the planning timeline and what changed.",
     href: sharedUpdateHref,
     cta: "Open the shared update",
   },
   {
-    product: "Signal Analytics",
+    product: "Signal",
     role: "Attention",
     copy: "Surface the few things that need attention before they become problems.",
     href: analyticsDemoHref,
@@ -141,6 +151,17 @@ export default function WeddingsPage() {
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Open the wedding workspace
+              </a>
+              <a
+                href={signUpHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Create your account{" "}
+                <span className="cta-arrow" aria-hidden>
+                  →
+                </span>
               </a>
               <a
                 href={sharedUpdateHref}

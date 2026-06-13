@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const examplePlanHref = withTracking(
-  "https://roadmap.signalstudio.ie/the-wedding",
+  "https://timeline.signalstudio.ie/the-wedding",
   { ...VENUE_SITE_TRACKING, artifact: "example_plan" },
 );
 const demoHref = withTracking("/venues/demo", {

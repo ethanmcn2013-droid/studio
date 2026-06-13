@@ -15,8 +15,8 @@ import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
 import {
   TASKS_URL,
-  ROADMAP_URL,
-  ANALYTICS_URL,
+  TIMELINE_URL,
+  SIGNAL_URL,
   NOTES_URL,
 } from "@/lib/product-urls";
 
@@ -28,7 +28,7 @@ const PRODUCTS: {
   url: string;
   description: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Roadmap → Analytics
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
   {
     slug: "notes",
     word: "notes",
@@ -44,17 +44,17 @@ const PRODUCTS: {
     description: "Execution clarity",
   },
   {
-    slug: "roadmap",
-    word: "roadmap",
-    label: "Open the roadmap",
-    url: `${ROADMAP_URL}/app`,
+    slug: "timeline",
+    word: "timeline",
+    label: "Open the timeline",
+    url: `${TIMELINE_URL}/app`,
     description: "Direction clarity",
   },
   {
-    slug: "analytics",
-    word: "analytics",
+    slug: "signal",
+    word: "signal",
     label: "Open the briefing",
-    url: `${ANALYTICS_URL}/app`,
+    url: `${SIGNAL_URL}/app`,
     description: "Attention clarity",
   },
 ];

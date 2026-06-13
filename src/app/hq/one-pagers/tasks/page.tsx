@@ -58,7 +58,7 @@ export default async function TasksOnePager() {
           "Tasks, lanes, and assignees in plain English. No status meeting required to decode the board.",
           "Invite anyone to a shared workspace. The work is visible the moment they open it — no onboarding step, no permission taxonomy.",
           "A plain-English activity log. What changed, who did it, when — written as a sentence, not a database row.",
-          "Connects to Signal Notes for capturing work in progress, and Signal Roadmap for showing where the work is going.",
+          "Connects to Signal Notes for capturing work in progress, and Signal Timeline for showing where the work is going.",
         ]}
       />
     </OnePager>

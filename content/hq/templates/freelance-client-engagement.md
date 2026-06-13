@@ -3,7 +3,7 @@ id: freelance-client-engagement
 title: Freelance client engagement workspace
 targetSegment: Freelancers / solo consultants
 status: Idea
-includedProducts: [Tasks, Notes, Roadmap, Analytics]
+includedProducts: [Tasks, Notes, Timeline, Signal]
 relatedCampaign: TBD
 activationGoal: Freelancer onboards one real client through the workspace.
 ---

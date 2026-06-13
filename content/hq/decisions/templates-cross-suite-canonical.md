@@ -10,7 +10,7 @@ relatedObjects: [docs/TEMPLATES_STRATEGY.md, tasks/lib/templates.ts, signal-grow
 
 ## Decision
 
-Templates are a cross-suite primitive owned by the studio repo. Tasks is the only product with a template gallery; Notes, Roadmap, and Analytics consume template metadata via lazy expression on first visit.
+Templates are a cross-suite primitive owned by the studio repo. Tasks is the only product with a template gallery; Notes, Timeline, and Signal consume template metadata via lazy expression on first visit.
 
 ## Reason
 
@@ -18,7 +18,7 @@ The workspace creator persona searches for the artefact ('wedding planning check
 
 ## Alternatives considered
 
-Per-product template galleries (each of Tasks, Roadmap, Notes maintains its own list). Faster to ship in any one product; corrodes the cross-suite discipline that is the moat.
+Per-product template galleries (each of Tasks, Timeline, Notes maintains its own list). Faster to ship in any one product; corrodes the cross-suite discipline that is the moat.
 
 ## Risks
 

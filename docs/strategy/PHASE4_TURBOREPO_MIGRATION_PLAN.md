@@ -13,7 +13,7 @@ dot-morph instant-jump (Phase 3). That is ~80% of the felt benefit at near-zero
 risk. Phase 4 (collapse 5 repos into one Turborepo) is an XL re-platform whose
 value over the shipped state is marginal and whose blast radius is all 5 prod
 apps at once. It must be staged and verified, never big-banged. Phase 5 (merge
-the separate Turso DBs) is rejected: it collapses the Analytics read-only
+the separate Turso DBs) is rejected: it collapses the Signal read-only
 isolation boundary and the Notes→Tasks cross-DB edge — a security/correctness
 regression, not a refactor.
 
@@ -30,11 +30,11 @@ regression, not a refactor.
 - **S1 — Scaffold (no app code moved).** New repo `signal-suite`, Turborepo +
   pnpm workspaces. `apps/` empty, `packages/` empty, shared `tsconfig`/`eslint`/
   `tailwind` presets only. CI green on an empty build. Zero prod impact.
-- **S2 — One app, shadow-deployed.** Move *Analytics* in first (lowest traffic,
+- **S2 — One app, shadow-deployed.** Move *Signal* in first (lowest traffic,
   read-only DB, smallest blast radius). It deploys from the monorepo to a
   *preview* alias only; prod still served by the standalone repo. Verify parity
   for 72h.
-- **S3 — Promote Analytics; repeat per app.** Notes → Roadmap → Tasks, one at a
+- **S3 — Promote Signal; repeat per app.** Notes → Timeline → Tasks, one at a
   time, each: monorepo preview → 72h parity → flip prod alias → 1 week soak →
   archive standalone repo. Never two apps mid-flight.
 - **S4 — Shared packages.** Only after all 4 are in: extract the genuinely

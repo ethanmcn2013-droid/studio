@@ -44,8 +44,8 @@ export default async function BrandOnePager() {
       <OPPurpose>
         Signal Studio is four products that read as one. Each solves one kind
         of clarity: Notes captures context before it&rsquo;s ready to share.
-        Tasks organises action and ownership. Roadmap communicates direction
-        to people outside the work. Analytics surfaces what needs attention
+        Tasks organises action and ownership. Timeline communicates direction
+        to people outside the work. Signal surfaces what needs attention
         before it becomes a problem. Together they are a system. Separately,
         each one works.
       </OPPurpose>
@@ -62,8 +62,8 @@ export default async function BrandOnePager() {
         rows={[
           { k: "Signal Notes", v: "Capture context before it's ready for the room." },
           { k: "Signal Tasks", v: "Own the work. Know what's stuck. See who's on it." },
-          { k: "Signal Roadmap", v: "Share direction with people who aren't in the workspace." },
-          { k: "Signal Analytics", v: "Read what matters before it becomes a problem." },
+          { k: "Signal Timeline", v: "Share direction with people who aren't in the workspace." },
+          { k: "Signal", v: "Read what matters before it becomes a problem." },
         ]}
       />
 

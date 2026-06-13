@@ -5,7 +5,7 @@ category: Product
 date: 2026-05-10
 status: Active
 reviewDate: 2026-06-10
-relatedObjects: [Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes]
+relatedObjects: [Signal Tasks, Signal Timeline, Signal, Signal Notes]
 ---
 
 ## Decision

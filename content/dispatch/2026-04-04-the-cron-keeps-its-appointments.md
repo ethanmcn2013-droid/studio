@@ -1,7 +1,7 @@
 ## 2026-04-04 · ships · The cron keeps its appointments
 
 **The daily six-AM-UTC brief, the daily atlas check, the weekly
-Monday Roadmap rollup — three scheduled jobs land at the same time
+Monday Timeline rollup — three scheduled jobs land at the same time
 of day every day, log their outcome to a shared ledger, and ping
 the umbrella HQ when they finish. A job that fails silently is the
 worst kind of job; the ledger refuses to allow it.**

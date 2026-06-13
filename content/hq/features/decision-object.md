@@ -15,4 +15,4 @@ relatedMetric: Workspaces with notes created
 
 ## Notes
 
-Connects Notes, Roadmap, Tasks, and HQ.
+Connects Notes, Timeline, Tasks, and HQ.
