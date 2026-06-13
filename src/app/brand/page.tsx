@@ -143,8 +143,11 @@ const ASSET_GROUPS: AssetGroup[] = [
     ),
     assets: [
       { base: "tasks", name: "tasks·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
-      { base: "roadmap", name: "roadmap·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
-      { base: "analytics", name: "analytics·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      // 2026-06-13 rename: labels updated; `base` still points at the OLD
+      // PNG assets (roadmap-*/analytics-*) — regenerate as timeline-*/signal-*
+      // and switch `base` once the new wordmark PNGs exist.
+      { base: "roadmap", name: "timeline·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "analytics", name: "signal·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
       { base: "notes", name: "notes.", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
     ],
   },
