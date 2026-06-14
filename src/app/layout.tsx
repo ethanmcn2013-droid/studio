@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
+import { DevBanner } from "@/components/dev-banner";
 import { SITE_URL } from "@/lib/site-url";
 
 const geistSans = Geist({
@@ -185,6 +186,7 @@ export default async function RootLayout({
         </a>
         {!isAuthedLauncher && <SiteNav />}
         {children}
+        <DevBanner />
       </body>
     </html>
   );
