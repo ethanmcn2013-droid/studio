@@ -62,8 +62,12 @@ npm run dev                        # studio uses pnpm
 ```
 
 **Preview deployment (Vercel):** set both env vars to `demo` (or `review`) on
-the preview environment for that product. No Clerk or Turso keys are required
-for the app to render — preview deploys work standalone.
+the preview environment for that product. Keep the Clerk keys present (they
+already are across all Vercel environments — Clerk's middleware needs them to
+instantiate). Demo mode does **not** require a valid user session, and does
+**not** require any database (Turso/Upstash) — the seed renders with no session
+and no DB. If the publishable key happens to be unset, `clerkPublishableKey()`
+substitutes an inert placeholder so `ClerkProvider` still mounts.
 
 To run the whole suite in review mode, set the two vars on all five Vercel
 projects (studio, notes, tasks, signal, timeline).
