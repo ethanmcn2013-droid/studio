@@ -58,9 +58,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/students",
-        destination: "/students.html",
-        permanent: false,
+        // /students is now a first-class route on the suite design system.
+        // Forward the old static file path for any links that point at it.
+        source: "/students.html",
+        destination: "/students",
+        permanent: true,
       },
     ];
   },

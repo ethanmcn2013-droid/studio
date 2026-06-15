@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { ReadingProgress } from "@/components/reading-progress";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
@@ -124,6 +125,7 @@ const mechanicLines = [
 export default function VenuesPage() {
   return (
     <>
+      <ReadingProgress />
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
 
         {/* ── Hero ── */}
@@ -200,7 +202,7 @@ export default function VenuesPage() {
                   </span>
                   <span
                     className="text-[12px] font-medium"
-                    style={{ color: "var(--status-flight, #f59e0b)" }}
+                    style={{ color: "var(--flight, #f59e0b)" }}
                   >
                     28 days to event
                   </span>
@@ -230,7 +232,7 @@ export default function VenuesPage() {
                   </p>
                   <p
                     className="mt-1.5 text-[12px] font-medium"
-                    style={{ color: "var(--status-flight, #f59e0b)" }}
+                    style={{ color: "var(--flight, #f59e0b)" }}
                   >
                     Due in 3 days
                   </p>
