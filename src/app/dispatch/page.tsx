@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 
 function renderInline(text: string): React.ReactNode[] {
   const out: React.ReactNode[] = [];
-  const parts = text.split(/(\*[^*]+\*|`[^`]+`)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
   parts.forEach((part, i) => {
-    if (part.startsWith("**")) {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
       out.push(<strong key={i}>{part.slice(2, -2)}</strong>);
     } else if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
       out.push(

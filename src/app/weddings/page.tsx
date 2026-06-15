@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { ReadingProgress } from "@/components/reading-progress";
 import {
   TIMELINE_URL,
   TASKS_URL,
@@ -120,6 +121,7 @@ const ecosystemSteps = [
 export default function WeddingsPage() {
   return (
     <>
+      <ReadingProgress />
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="border-b border-border-soft px-6 pb-16 pt-14 md:pb-20 md:pt-20">
           <div className="mx-auto w-full max-w-[1040px]">
@@ -213,7 +215,7 @@ export default function WeddingsPage() {
                   </p>
                   <p
                     className="mt-1 text-[12px] font-medium"
-                    style={{ color: "var(--status-flight, #f59e0b)" }}
+                    style={{ color: "var(--flight, #f59e0b)" }}
                   >
                     {daysToEvent} days to event
                   </p>
