@@ -6884,6 +6884,23 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 .bp-metric-label { font-size: 13px; color: var(--bp-soft); font-weight: 500; margin-top: 6px; }
 .bp-metric-target { font-family: var(--font-mono-stack); font-size: 10.5px; color: var(--bp-faint); }
 .bp-metric-source { font-family: var(--font-mono-stack); font-size: 10px; color: var(--bp-quiet); margin-top: 2px; }
+/* Live overlay: a metric reading from a real source this render. Placeholder
+   metrics ("—") stay muted; live ones lift to full ink and carry a dot. */
+.bp-metric[data-live="true"] .bp-metric-value { color: var(--bp-ink); }
+.bp-metric[data-live="true"][data-tone="accent"] .bp-metric-value { color: var(--bp-accent); }
+.bp-metric[data-live="true"][data-tone="critical"] .bp-metric-value { color: var(--bp-crit); }
+.bp-metric[data-live="true"] .bp-metric-source { color: var(--bp-faint); }
+.bp-metric-live {
+  display: inline-block; width: 6px; height: 6px; margin-left: 7px; vertical-align: middle;
+  border-radius: 999px; background: var(--bp-done);
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); animation: bp-live-pulse 2.4s ease-out infinite;
+}
+@keyframes bp-live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.45); }
+  70% { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .bp-metric-live { animation: none; } }
 
 /* ── 9 · Risk & decision log ────────────────────────────────────────── */
 .bp-log { position: relative; }

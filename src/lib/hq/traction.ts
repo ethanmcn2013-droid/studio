@@ -133,6 +133,8 @@ export type TractionState =
       pilotVenues: number;
       /** Couple-side venue_edition entitlements — distribution, not revenue. */
       couplesSeeded: number;
+      /** Active student_edu grants — the second-wedge signup count. */
+      studentSignups: number;
       workspaceSubs: number;
       workspaceAnnualisedEur: number;
       activeEntitlements: number;
@@ -213,6 +215,7 @@ export async function getTraction(): Promise<TractionState> {
 
     const bySource = new Map(sourceRows.map((r) => [String(r.source), r.n]));
     const couplesSeeded = bySource.get("venue_edition") ?? 0;
+    const studentSignups = bySource.get("student_edu") ?? 0;
     const workspaceSubs = bySource.get("workspace_subscription") ?? 0;
 
     const codeMap = new Map(codeRows.map((r) => [String(r.status), r.n]));
@@ -248,6 +251,7 @@ export async function getTraction(): Promise<TractionState> {
       signedUnpaidVenues,
       pilotVenues,
       couplesSeeded,
+      studentSignups,
       workspaceSubs,
       workspaceAnnualisedEur,
       activeEntitlements,

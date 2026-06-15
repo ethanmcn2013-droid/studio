@@ -4,7 +4,6 @@ import { BlueprintCanvas } from "@/components/hq/blueprint-canvas";
 import {
   ABSORBED_BY_SYSTEM,
   BLUEPRINT_META,
-  BLUEPRINT_METRICS,
   BLUEPRINT_SECTIONS,
   CUSTOMER_SEGMENTS,
   DIRECTOR_REVIEW_CYCLES,
@@ -15,9 +14,13 @@ import {
   PRODUCT_FLOW,
   PRODUCTS,
   RISK_LOG,
+  resolveBlueprintMetrics,
 } from "@/lib/hq/blueprint";
 import { CLUSTERS, directorsByCluster, formatCadence } from "@/lib/hq/elt";
 import { requireHqAccess } from "@/lib/hq/access-guard";
+import { getTraction } from "@/lib/hq/traction";
+import { getProspects } from "@/lib/hq/crm-db";
+import { PIPELINE_STAGES } from "@/lib/hq/crm-utils";
 
 export const dynamic = "force-dynamic";
 
@@ -51,6 +54,24 @@ export default async function BlueprintPage() {
     members: directorsByCluster(c.id),
   }));
   const directorCount = directorClusters.reduce((n, c) => n + c.members.length, 0);
+
+  // ── Live metrics ──────────────────────────────────────────────────────
+  // Read the Studio ledger (traction) + CRM (prospects) and overlay the four
+  // wired figures onto the metric catalog. Prospects fall back to seed when
+  // the table is absent, so venue pipeline is always readable; traction goes
+  // `null` (→ honest placeholder) when Studio Turso is unreachable.
+  const [traction, prospects] = await Promise.all([getTraction(), getProspects()]);
+  const venuePipeline = prospects.filter((p) =>
+    PIPELINE_STAGES.includes(p.stage),
+  ).length;
+  const metrics = resolveBlueprintMetrics({
+    mrrEur: traction.available ? traction.workspaceSubs * 12 : null,
+    activeGrants: traction.available ? traction.activeEntitlements : null,
+    venuePipeline,
+    studentSignups: traction.available ? traction.studentSignups : null,
+  });
+  const liveCount = metrics.filter((m) => m.live).length;
+  const tractionUnread = !traction.available;
 
   return (
     <div className="blueprint-os">
@@ -295,17 +316,23 @@ export default async function BlueprintPage() {
         {/* ── 8 · METRICS ───────────────────────────────────────────── */}
         <Section id="metrics" index={8} label="Metrics" title="How we measure">
           <p className="bp-section-note">
-            Only the numbers that matter. Values are placeholders until wired —
-            see <span className="bp-mono">// LIVE DATA</span> in{" "}
-            <span className="bp-mono">blueprint.ts</span>. Honest beats vanity.
+            Only the numbers that matter. {liveCount} are live from the Studio
+            ledger + CRM{tractionUnread ? " (ledger unread this load)" : ""}; the
+            rest await wiring to the product apps&rsquo; analytics or the finance
+            model — honest placeholders, never vanity. See{" "}
+            <span className="bp-mono">resolveBlueprintMetrics</span> in{" "}
+            <span className="bp-mono">blueprint.ts</span>.
           </p>
           <div className="bp-metrics">
-            {BLUEPRINT_METRICS.map((m) => (
-              <div key={m.label} className="bp-metric" data-tone={m.tone}>
-                <span className="bp-metric-value">{m.value}</span>
+            {metrics.map((m) => (
+              <div key={m.key} className="bp-metric" data-tone={m.tone} data-live={m.live ? "true" : undefined}>
+                <span className="bp-metric-value">
+                  {m.display}
+                  {m.live ? <span className="bp-metric-live" title="live from source" aria-label="live" /> : null}
+                </span>
                 <span className="bp-metric-label">{m.label}</span>
                 <span className="bp-metric-target">target · {m.target}</span>
-                <span className="bp-metric-source">{m.source}</span>
+                <span className="bp-metric-source">{m.liveNote ?? m.source}</span>
               </div>
             ))}
           </div>

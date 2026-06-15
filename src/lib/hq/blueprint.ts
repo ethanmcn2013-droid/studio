@@ -15,15 +15,20 @@
  * directors at /hq/org, atlas at /hq/atlas, numbers at /hq/reporting).
  *
  * ── LIVE DATA ───────────────────────────────────────────────────────
- * Everything marked `// LIVE DATA:` is a placeholder the founder can
- * later wire to a real source. The connect-points are deliberately
- * thin so wiring one never forces a redesign:
- *   - Metrics  → src/lib/hq/traction.ts + getHqSnapshot (Turso ledger)
- *   - Pipeline → src/lib/hq/crm-db.ts (prospects)
- *   - Risks/decisions → content/hq/risks/*.md, content/hq/decisions/*.md
- *   - Directors → src/lib/hq/elt.ts (already live in this file's render)
- * Until wired, placeholders are clearly marked and honest (no vanity
- * numbers presented as real).
+ * The metrics section is now wired. The page fetches getTraction()
+ * (Turso ledger) + getProspects() (CRM), reduces them to BlueprintLiveData
+ * primitives, and resolveBlueprintMetrics() overlays them onto the catalog.
+ * Wired live today:
+ *   - MRR             → workspace_subscription grants × €12/mo (traction)
+ *   - Active users    → active entitlement grants (traction)
+ *   - Venue pipeline  → prospects in active CRM funnel (crm-db)
+ *   - Student signups → active student_edu grants (traction)
+ *   - Directors       → src/lib/hq/elt.ts (live in the section render)
+ * Still placeholder (no source in this repo — they live in the four product
+ * apps' analytics or the finance model): activation, retention, churn,
+ * onboarding completion, usage by module, support sentiment, runway. Each
+ * is marked `// LIVE DATA:` at its `case`/field and carries an honest
+ * source label — no vanity numbers presented as real.
  * ────────────────────────────────────────────────────────────────────
  */
 
@@ -538,9 +543,24 @@ export const ABSORBED_BY_SYSTEM: AbsorbedWork[] = [
    8 · METRICS DASHBOARD — only the critical numbers
    ════════════════════════════════════════════════════════════════════ */
 
+/** Stable id per metric — the seam the live resolver keys off. */
+export type MetricKey =
+  | "mrr"
+  | "active-users"
+  | "activation"
+  | "retention"
+  | "churn"
+  | "onboarding"
+  | "usage-by-module"
+  | "venue-pipeline"
+  | "student-signups"
+  | "support-sentiment"
+  | "runway";
+
 export type BlueprintMetric = {
+  key: MetricKey;
   label: string;
-  // LIVE DATA: every `value` here is a placeholder until wired to source.
+  /** Placeholder shown when no live source feeds this metric (yet). */
   value: string;
   target: string;
   source: string;
@@ -548,18 +568,100 @@ export type BlueprintMetric = {
 };
 
 export const BLUEPRINT_METRICS: BlueprintMetric[] = [
-  { label: "MRR", value: "—", target: "first paid licence", source: "traction.ts", tone: "critical" },
-  { label: "Active users", value: "—", target: "growing WoW", source: "app analytics", tone: "quiet" },
-  { label: "Activation rate", value: "—", target: ">40%", source: "onboarding funnel", tone: "quiet" },
-  { label: "Retention", value: "—", target: ">60% M1", source: "app analytics", tone: "quiet" },
-  { label: "Churn", value: "—", target: "<5% / mo", source: "app analytics", tone: "quiet" },
-  { label: "Onboarding completion", value: "—", target: ">70%", source: "onboarding funnel", tone: "quiet" },
-  { label: "Usage by module", value: "—", target: "all four touched", source: "per-app analytics", tone: "quiet" },
-  { label: "Venue pipeline", value: "—", target: "10 by M3", source: "/hq/crm", tone: "accent" },
-  { label: "Student signups", value: "—", target: "term-start cohort", source: "signups by source", tone: "quiet" },
-  { label: "Support sentiment", value: "—", target: "positive", source: "support inbox", tone: "quiet" },
-  { label: "Runway", value: "—", target: ">12 months", source: "finance model", tone: "critical" },
+  // Wired live from the Studio Turso ledger (see resolveBlueprintMetrics):
+  { key: "mrr", label: "MRR", value: "—", target: "first paid licence", source: "traction.ts", tone: "critical" },
+  { key: "active-users", label: "Active users", value: "—", target: "growing WoW", source: "entitlements", tone: "quiet" },
+  { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "10 by M3", source: "/hq/crm", tone: "accent" },
+  { key: "student-signups", label: "Student signups", value: "—", target: "term-start cohort", source: "student_edu grants", tone: "quiet" },
+  // Awaiting wiring — these live in the four product apps' analytics or the
+  // finance model, not the Studio DB. Honest placeholders until connected.
+  { key: "activation", label: "Activation rate", value: "—", target: ">40%", source: "onboarding funnel", tone: "quiet" },
+  { key: "retention", label: "Retention", value: "—", target: ">60% M1", source: "app analytics", tone: "quiet" },
+  { key: "churn", label: "Churn", value: "—", target: "<5% / mo", source: "app analytics", tone: "quiet" },
+  { key: "onboarding", label: "Onboarding completion", value: "—", target: ">70%", source: "onboarding funnel", tone: "quiet" },
+  { key: "usage-by-module", label: "Usage by module", value: "—", target: "all four touched", source: "per-app analytics", tone: "quiet" },
+  { key: "support-sentiment", label: "Support sentiment", value: "—", target: "positive", source: "support inbox", tone: "quiet" },
+  { key: "runway", label: "Runway", value: "—", target: ">12 months", source: "finance model", tone: "critical" },
 ];
+
+/* ── Live overlay ─────────────────────────────────────────────────────
+   The page fetches the Studio ledger (getTraction) + CRM (getProspects),
+   reduces them to these primitives, and hands them to the resolver. Keeping
+   this seam as plain numbers means blueprint.ts pulls in no server-only
+   module, and a future wiring (activation, retention, runway, …) is just a
+   new field here + a new case below — never a redesign.
+   `null` means "source exists but was unreadable this render" (e.g. Turso
+   down); the metric falls back to its honest placeholder and is flagged.
+   ──────────────────────────────────────────────────────────────────── */
+
+export type BlueprintLiveData = {
+  // LIVE DATA: workspace MRR = workspace_subscription grants × €12/mo.
+  mrrEur: number | null;
+  // LIVE DATA: active entitlement grants (access ledger). Proxy for DAU.
+  activeGrants: number | null;
+  // LIVE DATA: prospects in the active CRM funnel (non-parked stages).
+  venuePipeline: number | null;
+  // LIVE DATA: active student_edu entitlement grants.
+  studentSignups: number | null;
+};
+
+export type ResolvedMetric = BlueprintMetric & {
+  /** Value to render — live figure when wired, else the placeholder. */
+  display: string;
+  /** True when `display` came from a live source this render. */
+  live: boolean;
+  /** Source nuance shown under a live value (kept honest, never vanity). */
+  liveNote?: string;
+};
+
+/** €1234 → "€1.23m" / "€48k" / "€0". Local + pure so this file stays client-safe. */
+function eur(n: number): string {
+  if (n <= 0) return "€0";
+  if (n >= 1_000_000) return `€${(n / 1_000_000).toFixed(2)}m`;
+  if (n >= 1_000) return `€${Math.round(n / 1_000)}k`;
+  return `€${n}`;
+}
+
+const UNREAD_NOTE = "Studio Turso unread";
+
+export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric[] {
+  const wired = (m: BlueprintMetric, display: string, liveNote: string): ResolvedMetric => ({
+    ...m,
+    display,
+    live: true,
+    liveNote,
+  });
+  const placeholder = (m: BlueprintMetric, liveNote?: string): ResolvedMetric => ({
+    ...m,
+    display: m.value,
+    live: false,
+    liveNote,
+  });
+
+  return BLUEPRINT_METRICS.map((m) => {
+    switch (m.key) {
+      case "mrr":
+        return live.mrrEur == null
+          ? placeholder(m, UNREAD_NOTE)
+          : wired(m, `${eur(live.mrrEur)}/mo`, "workspace subscriptions");
+      case "active-users":
+        return live.activeGrants == null
+          ? placeholder(m, UNREAD_NOTE)
+          : wired(m, String(live.activeGrants), "active access grants");
+      case "venue-pipeline":
+        return live.venuePipeline == null
+          ? placeholder(m)
+          : wired(m, String(live.venuePipeline), "prospects in funnel");
+      case "student-signups":
+        return live.studentSignups == null
+          ? placeholder(m, UNREAD_NOTE)
+          : wired(m, String(live.studentSignups), "student_edu grants");
+      default:
+        // Not yet wired — honest placeholder, source label carries the plan.
+        return placeholder(m);
+    }
+  });
+}
 
 /* ════════════════════════════════════════════════════════════════════
    9 · RISK & DECISION LOG
