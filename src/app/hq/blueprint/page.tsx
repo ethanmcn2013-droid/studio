@@ -21,6 +21,7 @@ import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getTraction } from "@/lib/hq/traction";
 import { getProspects } from "@/lib/hq/crm-db";
 import { PIPELINE_STAGES } from "@/lib/hq/crm-utils";
+import { getProductAnalytics } from "@/lib/hq/product-analytics";
 
 export const dynamic = "force-dynamic";
 
@@ -60,7 +61,11 @@ export default async function BlueprintPage() {
   // wired figures onto the metric catalog. Prospects fall back to seed when
   // the table is absent, so venue pipeline is always readable; traction goes
   // `null` (→ honest placeholder) when Studio Turso is unreachable.
-  const [traction, prospects] = await Promise.all([getTraction(), getProspects()]);
+  const [traction, prospects, product] = await Promise.all([
+    getTraction(),
+    getProspects(),
+    getProductAnalytics(),
+  ]);
   const venuePipeline = prospects.filter((p) =>
     PIPELINE_STAGES.includes(p.stage),
   ).length;
@@ -69,9 +74,17 @@ export default async function BlueprintPage() {
     activeGrants: traction.available ? traction.activeEntitlements : null,
     venuePipeline,
     studentSignups: traction.available ? traction.studentSignups : null,
+    activationPct: product.activationPct,
+    retentionPct: product.retentionPct,
+    churnPct: product.churnPct,
+    onboardingPct: product.onboardingPct,
+    modulesActive: product.modulesActive,
   });
   const liveCount = metrics.filter((m) => m.live).length;
   const tractionUnread = !traction.available;
+  // Product-analytics read health, for an honest line under the metrics.
+  const productOk = Object.values(product.reads).filter((r) => r === "ok").length;
+  const productUnread = productOk === 0;
 
   return (
     <div className="blueprint-os">
@@ -316,10 +329,11 @@ export default async function BlueprintPage() {
         {/* ── 8 · METRICS ───────────────────────────────────────────── */}
         <Section id="metrics" index={8} label="Metrics" title="How we measure">
           <p className="bp-section-note">
-            Only the numbers that matter. {liveCount} are live from the Studio
-            ledger + CRM{tractionUnread ? " (ledger unread this load)" : ""}; the
-            rest await wiring to the product apps&rsquo; analytics or the finance
-            model — honest placeholders, never vanity. See{" "}
+            Only the numbers that matter. {liveCount} of {metrics.length} are
+            live — from the Studio ledger, the CRM, and the four product
+            apps&rsquo; analytics{tractionUnread ? "; ledger unread this load" : ""}
+            {productUnread ? "; product analytics unread this load" : ""}. Support
+            sentiment and runway stay placeholders (no DB source). See{" "}
             <span className="bp-mono">resolveBlueprintMetrics</span> in{" "}
             <span className="bp-mono">blueprint.ts</span>.
           </p>

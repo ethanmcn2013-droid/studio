@@ -15,20 +15,26 @@
  * directors at /hq/org, atlas at /hq/atlas, numbers at /hq/reporting).
  *
  * ── LIVE DATA ───────────────────────────────────────────────────────
- * The metrics section is now wired. The page fetches getTraction()
- * (Turso ledger) + getProspects() (CRM), reduces them to BlueprintLiveData
- * primitives, and resolveBlueprintMetrics() overlays them onto the catalog.
- * Wired live today:
- *   - MRR             → workspace_subscription grants × €12/mo (traction)
- *   - Active users    → active entitlement grants (traction)
- *   - Venue pipeline  → prospects in active CRM funnel (crm-db)
- *   - Student signups → active student_edu grants (traction)
- *   - Directors       → src/lib/hq/elt.ts (live in the section render)
- * Still placeholder (no source in this repo — they live in the four product
- * apps' analytics or the finance model): activation, retention, churn,
- * onboarding completion, usage by module, support sentiment, runway. Each
- * is marked `// LIVE DATA:` at its `case`/field and carries an honest
- * source label — no vanity numbers presented as real.
+ * The metrics section is wired. The page fetches getTraction() (Turso
+ * ledger), getProspects() (CRM), and getProductAnalytics() (the four
+ * product Tursos), reduces them to BlueprintLiveData primitives, and
+ * resolveBlueprintMetrics() overlays them onto the catalog.
+ * Wired live today (9 of 11):
+ *   - MRR              → workspace_subscription grants × €12/mo (traction)
+ *   - Active users     → active entitlement grants (traction)
+ *   - Venue pipeline   → prospects in active CRM funnel (crm-db)
+ *   - Student signups  → active student_edu grants (traction)
+ *   - Activation       → Tasks workspaces with a task (product-analytics)
+ *   - Retention (M1)   → Tasks workspace-activity cohort (product-analytics)
+ *   - Churn            → 100 − M1 retention (product-analytics)
+ *   - Onboarding       → Tasks onboarding_completed_at (product-analytics)
+ *   - Usage by module  → active users across the 4 apps (product-analytics)
+ *   - Directors        → src/lib/hq/elt.ts (live in the section render)
+ * Still placeholder (not product-app analytics — no source in the suite):
+ *   - Support sentiment → support inbox (no DB)
+ *   - Runway            → finance model (no DB)
+ * Each placeholder carries an honest source label — no vanity numbers
+ * presented as real; null from any source falls back to the placeholder.
  * ────────────────────────────────────────────────────────────────────
  */
 
@@ -603,6 +609,17 @@ export type BlueprintLiveData = {
   venuePipeline: number | null;
   // LIVE DATA: active student_edu entitlement grants.
   studentSignups: number | null;
+  // ── From the product apps' analytics (src/lib/hq/product-analytics.ts) ──
+  // LIVE DATA: Tasks workspaces with ≥1 task ÷ all workspaces (0–100).
+  activationPct: number | null;
+  // LIVE DATA: M1 workspace-activity retention (0–100); null = no cohort.
+  retentionPct: number | null;
+  // LIVE DATA: 100 − M1 retention (0–100); null = no cohort.
+  churnPct: number | null;
+  // LIVE DATA: Tasks workspaces past the onboarding flow ÷ all (0–100).
+  onboardingPct: number | null;
+  // LIVE DATA: modules with ≥1 active user (30d) out of those readable.
+  modulesActive: { active: number; readable: number } | null;
 };
 
 export type ResolvedMetric = BlueprintMetric & {
@@ -656,6 +673,30 @@ export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric
         return live.studentSignups == null
           ? placeholder(m, UNREAD_NOTE)
           : wired(m, String(live.studentSignups), "student_edu grants");
+      case "activation":
+        return live.activationPct == null
+          ? placeholder(m)
+          : wired(m, `${live.activationPct}%`, "Tasks · workspaces activated");
+      case "retention":
+        return live.retentionPct == null
+          ? placeholder(m)
+          : wired(m, `${live.retentionPct}%`, "Tasks · M1 cohort");
+      case "churn":
+        return live.churnPct == null
+          ? placeholder(m)
+          : wired(m, `${live.churnPct}%`, "Tasks · M1 cohort");
+      case "onboarding":
+        return live.onboardingPct == null
+          ? placeholder(m)
+          : wired(m, `${live.onboardingPct}%`, "Tasks · onboarding flow");
+      case "usage-by-module":
+        return live.modulesActive == null
+          ? placeholder(m)
+          : wired(
+              m,
+              `${live.modulesActive.active}/${live.modulesActive.readable}`,
+              "modules active · 30d",
+            );
       default:
         // Not yet wired — honest placeholder, source label carries the plan.
         return placeholder(m);
