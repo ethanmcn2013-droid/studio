@@ -60,7 +60,11 @@ export type DriftSidecar = Record<
 const LENSES: AtlasLens[] = ["Products", "Processes", "Data Flows"];
 
 function parseFrontmatter(raw: string): { fm: Record<string, unknown>; body: string } {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  // Tolerate a UTF-8 BOM and CRLF line endings before matching. The repo
+  // stores LF, but an editor (or a Windows checkout with autocrlf) can hand
+  // us CRLF, and a strict ^---\n match would reject a perfectly good entry.
+  const normalized = raw.replace(/^﻿/, "").replace(/\r\n/g, "\n");
+  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) {
     throw new Error("Atlas entry is missing frontmatter block.");
   }
@@ -175,16 +179,26 @@ export async function readAtlasEntries(): Promise<AtlasEntry[]> {
     return [];
   }
   const mdFiles = files.filter((f) => f.endsWith(".md") && f !== "README.md");
-  const [drift, entries] = await Promise.all([
+  const [drift, parsed] = await Promise.all([
     readDriftSidecar(),
     Promise.all(
-      mdFiles.map(async (file) => {
-        const raw = await fs.readFile(path.join(dir, file), "utf-8");
-        const { fm, body } = parseFrontmatter(raw);
-        return toEntry(fm, body, file.replace(/\.md$/, ""));
+      mdFiles.map(async (file): Promise<AtlasEntry | null> => {
+        try {
+          const raw = await fs.readFile(path.join(dir, file), "utf-8");
+          const { fm, body } = parseFrontmatter(raw);
+          return toEntry(fm, body, file.replace(/\.md$/, ""));
+        } catch (err) {
+          // One malformed entry must not take down the whole atlas room.
+          // Skip it, leave a breadcrumb, and render everything else.
+          console.warn(
+            `[atlas] skipping ${file}: ${err instanceof Error ? err.message : String(err)}`,
+          );
+          return null;
+        }
       }),
     ),
   ]);
+  const entries = parsed.filter((e): e is AtlasEntry => e !== null);
   for (const entry of entries) {
     const drifted = drift[entry.slug]?.drifted ?? [];
     if (drifted.length > 0) {

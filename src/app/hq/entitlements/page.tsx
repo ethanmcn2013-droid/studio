@@ -26,19 +26,28 @@ export default async function HqEntitlementsPage() {
   if (!valid) redirect("/hq/access?from=/hq/entitlements");
 
   const now = Date.now();
-  const db = entitlementsDb();
-  const rows = await db
-    .select()
-    .from(entitlements)
-    .where(
-      and(
-        eq(entitlements.status, "active"),
-        or(isNull(entitlements.expiresAt), gt(entitlements.expiresAt, now)),
-      ),
-    )
-    .orderBy(entitlements.createdAt);
-  // newest first
-  rows.reverse();
+  let rows: (typeof entitlements.$inferSelect)[] = [];
+  let loadError: string | null = null;
+  try {
+    const db = entitlementsDb();
+    rows = await db
+      .select()
+      .from(entitlements)
+      .where(
+        and(
+          eq(entitlements.status, "active"),
+          or(isNull(entitlements.expiresAt), gt(entitlements.expiresAt, now)),
+        ),
+      )
+      .orderBy(entitlements.createdAt);
+    // newest first
+    rows.reverse();
+  } catch (err) {
+    // The shared entitlements DB is unreachable (commonly: env not set in a
+    // local checkout). Degrade to a named error rather than crashing the room
+    // — same posture as /hq/partners.
+    loadError = err instanceof Error ? err.message : "Unknown error";
+  }
 
   return (
     <main id="main" className="mx-auto w-full max-w-[1080px] px-5 py-12 text-ink">
@@ -58,6 +67,37 @@ export default async function HqEntitlementsPage() {
         </p>
       </header>
 
+      {loadError ? (
+        <div
+          className="mb-12"
+          style={{
+            padding: "20px 24px",
+            border: "1px solid var(--border)",
+            borderLeft: "2px solid #f43f5e",
+            background: "var(--bg-elev)",
+          }}
+        >
+          <div
+            className="text-ink"
+            style={{ fontSize: 15, fontWeight: 500, marginBottom: 8 }}
+          >
+            Couldn&rsquo;t load entitlements.
+          </div>
+          <pre
+            className="text-ink-soft"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 12,
+              whiteSpace: "pre-wrap",
+              lineHeight: 1.5,
+              margin: 0,
+            }}
+          >
+            {loadError}
+          </pre>
+        </div>
+      ) : (
+        <>
       <section className="mb-12">
         <h2 className="mb-3 text-[14px] font-semibold tracking-[-0.01em]">
           Active grants ({rows.length})
@@ -119,6 +159,8 @@ export default async function HqEntitlementsPage() {
           expired later by ref. Leave duration blank for a perpetual grant.
         </p>
       </section>
+        </>
+      )}
     </main>
   );
 }
