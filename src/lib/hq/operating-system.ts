@@ -191,6 +191,19 @@ export const HQ_HUBS: HqHub[] = [
     secondaryMetric: "5 clusters",
     action: "open the org",
   },
+  {
+    key: "blueprint",
+    label: "Blueprint",
+    title: "Founder Operating System",
+    href: "/hq/blueprint",
+    audience: ["founder", "operator", "hire", "shareholder"],
+    mode: "library",
+    summary:
+      "The zoomable operating map: how the company works, grows, ships, thinks, and stays focused — in one place.",
+    primaryMetric: "10 sections",
+    secondaryMetric: "one map",
+    action: "open the map",
+  },
 ];
 
 export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
