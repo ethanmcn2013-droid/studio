@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/landing/site-footer";
+import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
   title: "Terms — Signal Studio",
@@ -108,53 +108,18 @@ const SECTIONS = [
 
 export default function TermsPage() {
   return (
-    <>
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
-        <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
-          <div
-            className="mb-6 text-[11px] font-semibold uppercase"
-            style={{
-              color: "var(--accent)",
-              letterSpacing: "var(--tracking-eyebrow)",
-            }}
-          >
-            Terms
-          </div>
-
-          <h1 className="h-section mb-6 max-w-[620px] text-balance text-ink">
-            The agreement between you and Signal Studio.
-          </h1>
-
-          <p
-            className="mb-2 max-w-[58ch] leading-[1.7] text-ink-soft"
-            style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
-          >
-            Plain language where the law lets us, careful language where it
-            doesn&apos;t. Read this once. We have tried to make sure you only
-            need to.
-          </p>
-
-          <p className="mb-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
-            Last updated 2026-05-12
-          </p>
-
-          <div className="space-y-12">
-            {SECTIONS.map((s) => (
-              <section key={s.heading}>
-                <h2 className="mb-4 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-ink">
-                  {s.heading}
-                </h2>
-                <div className="space-y-4 text-[15px] leading-[1.7] text-ink-soft">
-                  {s.body.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+    <LegalDocument
+      eyebrow="Terms"
+      title={<>The agreement between you and Signal Studio.</>}
+      intro={
+        <>
+          Plain language where the law lets us, careful language where it
+          doesn&apos;t. Read this once. We have tried to make sure you only need
+          to.
+        </>
+      }
+      updated="2026-05-12"
+      sections={SECTIONS}
+    />
   );
 }

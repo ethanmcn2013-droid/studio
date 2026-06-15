@@ -49,8 +49,8 @@ export default function AboutPage() {
               >
                 Four products. One register. One job: show you what matters.
                 Signal Tasks runs the work. Signal Timeline explains it. Signal
-                Signal surfaces what matters in it. Signal Notes captures it
-                as it happens. Each solves one slice. Together they read as one
+                surfaces what matters in it. Signal Notes captures it as it
+                happens. Each solves one slice. Together they read as one
                 system.
               </p>
 

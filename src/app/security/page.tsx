@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/landing/site-footer";
+import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
   title: "Security — Signal Studio",
@@ -68,53 +68,18 @@ const SECTIONS = [
 
 export default function SecurityPage() {
   return (
-    <>
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
-        <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
-          <div
-            className="mb-6 text-[11px] font-semibold uppercase"
-            style={{
-              color: "var(--accent)",
-              letterSpacing: "var(--tracking-eyebrow)",
-            }}
-          >
-            Security
-          </div>
-
-          <h1 className="h-section mb-6 max-w-[620px] text-balance text-ink">
-            The controls we actually run.
-          </h1>
-
-          <p
-            className="mb-2 max-w-[58ch] leading-[1.7] text-ink-soft"
-            style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
-          >
-            A trust page should be specific, not aspirational. This one is. If
-            something below is wrong, write to hello@signalstudio.ie and we will
-            either fix the page or fix the system.
-          </p>
-
-          <p className="mb-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
-            Last updated 2026-05-12
-          </p>
-
-          <div className="space-y-12">
-            {SECTIONS.map((s) => (
-              <section key={s.heading}>
-                <h2 className="mb-4 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-ink">
-                  {s.heading}
-                </h2>
-                <div className="space-y-4 text-[15px] leading-[1.7] text-ink-soft">
-                  {s.body.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+    <LegalDocument
+      eyebrow="Security"
+      title={<>The controls we actually run.</>}
+      intro={
+        <>
+          A trust page should be specific, not aspirational. This one is. If
+          something below is wrong, write to hello@signalstudio.ie and we will
+          either fix the page or fix the system.
+        </>
+      }
+      updated="2026-05-12"
+      sections={SECTIONS}
+    />
   );
 }
