@@ -82,7 +82,7 @@ export default async function TemplatesPage({
           <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-ink-faint">
             Two shapes. <strong className="font-medium text-ink-soft">Anchor</strong>{" "}
             workspaces seed a Tasks list, a Notes notebook, a Timeline, and
-            an Signal briefing in one go.{" "}
+            a Signal briefing in one go.{" "}
             <strong className="font-medium text-ink-soft">Specialty</strong>{" "}
             templates drop into Tasks.
           </p>
@@ -112,7 +112,7 @@ export default async function TemplatesPage({
             <p className="text-[14px] leading-[1.55] text-ink-soft">
               Studying?{" "}
               <Link
-                href="/for-students"
+                href="/students"
                 className="underline decoration-ink-ghost decoration-1 underline-offset-[3px] hover:decoration-ink"
               >
                 Signal is free with a .edu address
