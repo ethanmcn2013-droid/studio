@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CountUp } from "@/components/hq/count-up";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
@@ -142,7 +143,7 @@ export default async function HqPage() {
             data-tone={metric.tone ?? "quiet"}
           >
             <span className="hq-os-metric-label">{metric.label}</span>
-            <span className="hq-os-metric-value">{metric.value}</span>
+            <CountUp className="hq-os-metric-value" value={metric.value} />
             <span className="hq-os-metric-note">{metric.note}</span>
           </Link>
         ))}

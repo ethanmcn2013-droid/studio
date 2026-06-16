@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlueprintCanvas } from "@/components/hq/blueprint-canvas";
+import { CountUp } from "@/components/hq/count-up";
 import {
   ABSORBED_BY_SYSTEM,
   BLUEPRINT_META,
@@ -341,7 +342,7 @@ export default async function BlueprintPage() {
             {metrics.map((m) => (
               <div key={m.key} className="bp-metric" data-tone={m.tone} data-live={m.live ? "true" : undefined}>
                 <span className="bp-metric-value">
-                  {m.display}
+                  <CountUp value={m.display} />
                   {m.live ? <span className="bp-metric-live" title="live from source" aria-label="live" /> : null}
                 </span>
                 <span className="bp-metric-label">{m.label}</span>

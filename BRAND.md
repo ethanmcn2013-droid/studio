@@ -192,6 +192,20 @@ Sparingly. Rise stagger on hero entries (`0.6s`, 60ms stagger). Subtle fade betw
 
 `prefers-reduced-motion` is respected everywhere via `useReducedMotion()`.
 
+### 5.1 · Signal HQ — design refusals (locked 2026-06-16)
+
+Signal HQ is the founder's instrument, and its quality bar is *out-restraint everyone* — a tool that looks more considered than any CRM or dashboard precisely because it does less. The craft budget goes to typography, hierarchy, and two or three unforgettable moments, never to surface area. The refusals below are enforced like the rest of the brand; breaking one is a regression, not a feature.
+
+- **No vanity metrics.** Every number on screen names its source, or it shows `—`. A placeholder is always preferable to a flattering guess. (The blueprint metrics live by this — `resolveBlueprintMetrics` returns `—` rather than fake a figure.)
+- **No chart junk.** No gradient-filled area charts, no 3-D, no pie charts, no decorative sparklines. A single honest number with one line of context beats a graph.
+- **Indigo is rationed.** Indigo means *the action / the live thing / the next move* — nothing decorative. Amber is attention; red is the rare acute truth (`on-fire`, gate expired). Everything else is ink and hairline.
+- **One earned celebration.** The only moment HQ is allowed a flourish is the proof gate moving (first paid venue). Because nothing else celebrates, that one lands. No confetti, no gamification, no streaks.
+- **Motion = meaning.** Animation may signal freshness, change, attention, or completion — never delight for its own sake. Count-ups say "this resolved from a live source"; the status dot's breath says "this is fresh." All of it yields to `prefers-reduced-motion`, and the still version stays fully legible.
+- **The verdict is first and honest.** The one derived sentence — "are we winning, what's the one thing" — leads, even when it's uncomfortable. Polish must never bury the commercial truth; the forcing-function spine exists to prevent exactly that.
+- **No bolted-on AI chat, no notification theatre, no dense enterprise tables.** HQ is a calm instrument, not an everything-app. New backend rooms get their own route; they never crowd the spine.
+
+The signature, ownable moves that *earn* the craft budget: the **living dot** (the company's pulse, the verdict miniaturised and made global), the **⌘K palette** (the whole system navigable in one keystroke), and the **AI Director layer** (personality as signal, restraint as the container). Sharpen these; resist importing generic dashboard features.
+
 ---
 
 ## 6 · Page-level conventions

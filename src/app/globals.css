@@ -6946,3 +6946,134 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   .bp-northstar { grid-template-columns: 1fr; }
   .bp-canvas { padding-bottom: 96px; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNAL HQ — next-level layer (2026-06-16)
+   The living dot, the ⌘K palette, count-up motion, and the staggered
+   room reveal. Same light register as the rest of HQ: paper, ink, one
+   indigo, hairlines. Motion encodes meaning (freshness, change), never
+   decoration — and every animation yields to prefers-reduced-motion.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── The living status dot ──────────────────────────────────────────── */
+.hq-statusdot { position: relative; display: inline-flex; align-items: center; }
+.hq-statusdot-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; margin: 0 2px; padding: 0;
+  background: transparent; border: 0; border-radius: var(--r-pill); cursor: pointer;
+}
+.hq-statusdot-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hq-statusdot-dot {
+  width: 8px; height: 8px; border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 0 transparent;
+  transition: background var(--motion-base) var(--ease-out);
+}
+/* Verdict colour language, tuned for the dark HQ chrome the dot lives in:
+   calm = quiet white · one-thing = the indigo accent (as the strip pip) ·
+   on-fire = the functional red. Same meaning as the light masthead. */
+.hq-statusdot[data-level="calm"] .hq-statusdot-dot { background: rgba(255, 255, 255, 0.55); animation: hq-breath 3.6s ease-in-out infinite; }
+.hq-statusdot[data-level="one-thing"] .hq-statusdot-dot { background: var(--accent); animation: hq-breath 3s ease-in-out infinite; }
+.hq-statusdot[data-level="on-fire"] .hq-statusdot-dot { background: #dc2626; animation: hq-pulse-fire 1.8s ease-out infinite; }
+.hq-statusdot[data-level="idle"] .hq-statusdot-dot { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.22); }
+@keyframes hq-breath {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 0%, transparent); opacity: 0.9; }
+  50% { opacity: 1; }
+}
+@keyframes hq-pulse-fire {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45); }
+  70% { box-shadow: 0 0 0 7px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+.hq-statusdot-pop {
+  position: absolute; top: calc(100% + 10px); left: 0; z-index: 60;
+  width: min(320px, 78vw); padding: 14px 15px;
+  background: var(--bg-elev); border: 1px solid var(--border-soft);
+  border-radius: var(--r-3); box-shadow: var(--shadow-3);
+  animation: hq-pop-in var(--motion-fast) var(--ease-out);
+}
+@keyframes hq-pop-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.hq-statusdot-pop-level {
+  display: inline-block; font-family: var(--font-mono-stack); font-size: 9.5px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-quiet); margin-bottom: 7px;
+}
+.hq-statusdot-pop-level[data-level="one-thing"] { color: var(--accent); }
+.hq-statusdot-pop-level[data-level="on-fire"] { color: #dc2626; }
+.hq-statusdot-pop-headline { margin: 0 0 6px; font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.hq-statusdot-pop-action { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--ink-quiet); text-decoration: none; display: block; }
+a.hq-statusdot-pop-action:hover { color: var(--accent); }
+.hq-statusdot-pop-stamp { display: block; margin-top: 9px; font-family: var(--font-mono-stack); font-size: 10px; color: var(--ink-ghost); }
+
+/* ── The ⌘K trigger in the nav (dark chrome) ─────────────────────────── */
+.hq-env-nav-cmdk {
+  display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0;
+  padding: 4px 8px 4px 11px; background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15); border-radius: var(--r-pill);
+  font-family: var(--font-mono-stack); font-size: 11px; letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45); cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+.hq-env-nav-cmdk:hover { border-color: var(--accent); color: #ffffff; }
+.hq-env-nav-cmdk kbd {
+  font-family: var(--font-mono-stack); font-size: 10px; color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-1); padding: 1px 5px;
+}
+@media (max-width: 720px) { .hq-env-nav-cmdk { display: none; } }
+
+/* ── The ⌘K command palette ──────────────────────────────────────────── */
+.hq-cmdk {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: clamp(60px, 14vh, 160px) 16px 16px;
+  background: color-mix(in srgb, var(--ink) 32%, transparent);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  animation: hq-cmdk-fade var(--motion-fast) var(--ease-out);
+}
+@keyframes hq-cmdk-fade { from { opacity: 0; } to { opacity: 1; } }
+.hq-cmdk-panel {
+  width: min(560px, 100%); max-height: 64vh; display: flex; flex-direction: column;
+  background: var(--bg-elev); border: 1px solid var(--border-soft);
+  border-radius: var(--r-4); box-shadow: var(--shadow-3); overflow: hidden;
+  animation: hq-cmdk-rise var(--motion-base) var(--ease-out);
+}
+@keyframes hq-cmdk-rise { from { opacity: 0; transform: translateY(-8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.hq-cmdk-search { display: flex; align-items: center; gap: 10px; padding: 13px 15px; border-bottom: 1px solid var(--border-soft); }
+.hq-cmdk-prompt { font-family: var(--font-mono-stack); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-quiet); white-space: nowrap; }
+.hq-cmdk-prompt-dot { color: var(--accent); }
+.hq-cmdk-input { flex: 1; min-width: 0; border: 0; background: transparent; font-size: 15px; color: var(--ink); outline: none; }
+.hq-cmdk-input::placeholder { color: var(--ink-ghost); }
+.hq-cmdk-esc { font-family: var(--font-mono-stack); font-size: 10px; color: var(--ink-quiet); border: 1px solid var(--border-soft); border-radius: var(--r-1); padding: 2px 6px; }
+.hq-cmdk-list { list-style: none; margin: 0; padding: 6px; overflow-y: auto; }
+.hq-cmdk-row {
+  display: flex; align-items: baseline; gap: 10px; width: 100%; text-align: left;
+  padding: 10px 11px; background: transparent; border: 0; border-radius: var(--r-2); cursor: pointer;
+}
+.hq-cmdk-row[data-active="true"] { background: var(--accent-soft); }
+.hq-cmdk-row-label { font-size: 13.5px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.hq-cmdk-row[data-active="true"] .hq-cmdk-row-label { color: var(--accent-deep); }
+.hq-cmdk-row-hint { font-size: 12.5px; color: var(--ink-quiet); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hq-cmdk-empty { padding: 18px 12px; font-size: 13px; color: var(--ink-quiet); }
+.hq-cmdk-foot { display: flex; gap: 16px; padding: 9px 15px; border-top: 1px solid var(--border-soft); font-size: 11px; color: var(--ink-ghost); }
+.hq-cmdk-foot kbd { font-family: var(--font-mono-stack); font-size: 10px; color: var(--ink-quiet); margin-right: 3px; }
+
+/* ── Staggered room reveal (hub board + metrics) ─────────────────────── */
+.hq-hub-grid .hq-hub-card, .hq-os-metrics .hq-os-metric {
+  animation: hq-rise var(--motion-moderate) var(--ease-out) both;
+}
+.hq-os-metrics .hq-os-metric:nth-child(n) { animation-delay: 0ms; }
+.hq-hub-grid .hq-hub-card:nth-child(1) { animation-delay: 30ms; }
+.hq-hub-grid .hq-hub-card:nth-child(2) { animation-delay: 70ms; }
+.hq-hub-grid .hq-hub-card:nth-child(3) { animation-delay: 110ms; }
+.hq-hub-grid .hq-hub-card:nth-child(4) { animation-delay: 150ms; }
+.hq-hub-grid .hq-hub-card:nth-child(5) { animation-delay: 190ms; }
+.hq-hub-grid .hq-hub-card:nth-child(6) { animation-delay: 230ms; }
+.hq-hub-grid .hq-hub-card:nth-child(7) { animation-delay: 270ms; }
+.hq-hub-grid .hq-hub-card:nth-child(n+8) { animation-delay: 300ms; }
+@keyframes hq-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hq-statusdot-dot { animation: none !important; }
+  .hq-cmdk, .hq-cmdk-panel, .hq-statusdot-pop { animation: none !important; }
+  .hq-hub-grid .hq-hub-card, .hq-os-metrics .hq-os-metric { animation: none !important; opacity: 1; transform: none; }
+}

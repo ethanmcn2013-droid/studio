@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HqCommandPalette } from "@/components/hq/hq-command-palette";
+import { HqStatusDot } from "@/components/hq/hq-status-dot";
 
 const operatorLinks = [
   { href: "/hq/vault", label: "vault" },
@@ -22,6 +24,9 @@ export function HqShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const boardMode = pathname === "/hq/founders-circle";
   const links = boardMode ? boardLinks : operatorLinks;
+  // The access gate renders this shell pre-auth — keep the live, authed
+  // pieces (status dot + palette) off it; they have nothing to read yet.
+  const authed = pathname !== "/hq/access";
 
   return (
     <div className="hq-env" data-mode={boardMode ? "board" : "operator"}>
@@ -39,6 +44,7 @@ export function HqShell({ children }: { children: React.ReactNode }) {
           <Link href={boardMode ? "/hq/founders-circle" : "/hq"} className="hq-env-nav-home" aria-label="Signal HQ home">
             signal hq<span className="hq-env-nav-dot" aria-hidden="true">.</span>
           </Link>
+          {authed ? <HqStatusDot /> : null}
           <div className="hq-env-nav-links" role="list">
             {links.map((link) => (
               <Link key={link.href} href={link.href} className="hq-env-nav-link" role="listitem">
@@ -46,6 +52,16 @@ export function HqShell({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </div>
+          {authed ? (
+            <button
+              type="button"
+              className="hq-env-nav-cmdk"
+              onClick={() => window.dispatchEvent(new Event("hq:open-palette"))}
+              aria-label="Open the command palette"
+            >
+              jump<kbd>⌘K</kbd>
+            </button>
+          ) : null}
           <Link href="/" className="hq-env-nav-exit">
             ← signalstudio.ie
           </Link>
@@ -53,6 +69,8 @@ export function HqShell({ children }: { children: React.ReactNode }) {
       </nav>
 
       <div className="hq-env-body">{children}</div>
+
+      {authed ? <HqCommandPalette /> : null}
     </div>
   );
 }
