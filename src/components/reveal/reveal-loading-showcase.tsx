@@ -175,14 +175,17 @@ const SLX_CSS = `
    — never fixed. */
 .reveal-loading-showcase{display:flex;align-items:center;
   justify-content:center;width:100%;overflow:hidden;background:transparent;
-  min-height:clamp(180px,28vh,300px);
-  padding:clamp(32px,5vh,72px) 16px clamp(8px,1.5vh,24px);}
+  min-height:clamp(220px,32vh,360px);
+  padding:clamp(36px,5.5vh,80px) 16px clamp(8px,1.5vh,24px);}
 .slx{
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
-  /* Wordmark scale dropped in proportion with the reduced height — the
-     loader is now a prelude, not the hero. Was clamp(58,11.5vw,208). */
-  --slx-wm:clamp(34px,5.6vw,84px);
+  /* Wordmark scale: the umbrella name is the first brand moment and must
+     read as the dominant element — clearly larger than the H1 proposition
+     below it (which tops out at 66px). Operator direction 2026-06-16:
+     "signal studio" was reading smaller than its own subtext; restored to
+     a true hero scale. Was clamp(34,5.6vw,84). */
+  --slx-wm:clamp(50px,8.6vw,118px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
   --slx-iter:1;   /* MUST equal CYCLES in the component. */
