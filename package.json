@@ -17,7 +17,8 @@
     "issue:codes": "tsx scripts/issue-codes.ts",
     "venue:paid": "tsx scripts/mark-venue-paid.ts",
     "partner:digest": "tsx scripts/partner-digest.ts",
-    "check:dead": "tsx scripts/cross-repo-symbol-check.ts"
+    "check:dead": "tsx scripts/cross-repo-symbol-check.ts",
+    "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
