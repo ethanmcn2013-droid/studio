@@ -307,6 +307,18 @@ export const HQ_ASSETS: HqAsset[] = [
     note: "Static HTML deck source for shareholder conversations.",
   },
   {
+    id: "market-entry-deck",
+    title: "Market entry & growth strategy deck",
+    group: "shareholder",
+    audience: ["founder", "shareholder", "marketing"],
+    state: "ready",
+    owner: "Founder",
+    href: "/hq/market-entry",
+    source: "public/brand/market-entry-deck-2026.html",
+    action: "Open deck",
+    note: "70 slides · the go-to-market companion to the business plan: where every euro of spend goes and exactly how the market is entered.",
+  },
+  {
     id: "business-loan-pack",
     title: "Business loan pack",
     group: "shareholder",

@@ -95,6 +95,25 @@ export default async function MarketingPage() {
         load-bearing, not optional.
       </p>
 
+      <Link
+        href="/hq/market-entry"
+        className="mkt-deck"
+        aria-label="Open the Market Entry, Brand and Growth Strategy deck"
+      >
+        <div className="mkt-deck-body">
+          <span className="mkt-deck-eyebrow">the deck · 70 slides</span>
+          <span className="mkt-deck-title">
+            Market Entry, Brand &amp; Growth Strategy 2026–2028
+          </span>
+          <span className="mkt-deck-note">
+            The full go-to-market plan — companion to the business plan. Where
+            every euro of marketing spend goes, and exactly how the market is
+            entered.
+          </span>
+        </div>
+        <span className="mkt-deck-action">open the deck →</span>
+      </Link>
+
       <div className="mkt-summary">
         <Stat n={String(MARKETING_TOTAL)} label="panel-cleared approaches" />
         <Stat n={String(MARKETING_BUCKETS.length)} label="strategic buckets" />
