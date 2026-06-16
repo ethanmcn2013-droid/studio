@@ -440,7 +440,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     cadence: "Monthly finance review",
     outputs: ["Runway read", "Cash collected", "Use-of-funds"],
     metrics: ["Runway (months)", "Cash collected"],
-    risk: "€50k facility pending CRO number; €0 founder salary.",
+    risk: "€40k facility pending CRO number; €0 founder salary.",
   },
   {
     key: "legal",
@@ -740,7 +740,7 @@ export const RISK_LOG = {
     { label: "Inbound capture DNS", detail: "capture@notes needs secret + DNS to go live." },
   ] satisfies LogItem[],
   dependencies: [
-    { label: "Funding", detail: "€50k MFI facility pending incorporation." },
+    { label: "Funding", detail: "€40k MFI facility pending incorporation." },
     { label: "iOS / MacBook", detail: "Native + motion work blocked without Apple hardware." },
     { label: "Motion graphics", detail: "Brand films gate the demand engine." },
   ] satisfies LogItem[],
