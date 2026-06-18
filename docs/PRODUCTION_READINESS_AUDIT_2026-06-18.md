@@ -282,4 +282,54 @@ If only #1 and #2 get done, do those two — they cover the two irreversible ris
 7. **Rate-limit wrapper on Signal public routes.** *(Now; Upstash binding is operator.)*
 8. **`ROLLBACK.md` + `RECOVERY.md`.** *(Now.)*
 
+---
+
+## Progress — started same day (2026-06-18)
+
+Two of the launch blockers were started immediately:
+
+**Blocker #3 — CI gate on all five repos: DONE (pending operator wiring).**
+A `ci.yml` now exists in `studio`, `notes`, `roadmap`, `analytics`, and a
+corrected one in `tasks` (its old workflow used `npm ci` but the repo is
+pnpm-only — it could not have installed). Required gates: **typecheck +
+test**, both verified green locally across all five. Lint runs as an
+informational (non-blocking) step because it is currently red/broken in
+several repos (roadmap ~18 errors, analytics ~11, and Next 16 removed
+`next lint` in studio) — clearing that lint debt is a fast follow. **Operator
+action:** mark the `verify` check **Required** on the `main` branch in each
+repo's GitHub settings so a red gate actually blocks merge.
+
+Along the way this surfaced and fixed a real bug: the `check-suiteloader-identity.sh`
+guard's sealed `CANONICAL_SHA` was stale — **studio was failing its own
+canonical identity check** — so the `test` gate was red across the whole
+suite. All five `SuiteLoader.tsx` files are byte-identical (`aaa5246…`); the
+constant was re-sealed to match.
+
+**Blocker #2 — cross-tenant isolation tests: STARTED (notes shipped).**
+A static isolation guard now ships in **notes** (`src/server/cross-tenant-isolation.test.mjs`,
+wired into `pnpm test` → CI). It scans every server-side data-access file
+and fails if a read/mutation of an owner-scoped table is neither tenant-scoped
+nor carries an explicit `isolation-ok:` justification. It already proved its
+worth: it flagged the fleet-wide calendar-spawn cron (correctly global — now
+documented with a waiver) and confirmed every tenant-facing notes query is
+scoped.
+
+The guard is **not** one-size-fits-all, and that's the key finding for the
+rest:
+- **tasks** isolates via **workspace access-guards then query-by-id**
+  (`getTaskById(id)` after a workspace check), not inline scope on every
+  query — so an inline-token guard false-positives ~30×. Tasks needs an
+  *access-guard-aware* test (assert the guard is called), designed next.
+- **roadmap** is **public-by-default** — published timelines are intentionally
+  world-readable, so its guard must classify public-read paths vs. private
+  mutations. Different test, by design.
+- **analytics** (Signal) has a tiny data surface (1 write site); a focused
+  guard is quick to add next.
+
+Net: CI is in place everywhere; isolation is proven on the cleanest product
+and the correct per-repo approach for the other three is now understood and
+documented rather than rushed.
+
+---
+
 — End of audit. Brutally honest summary: **you built a real product, not a polished demo. What you have not yet built is the boring operational armor that keeps a real product from losing or leaking data on a bad day. That armor is ~a week of work, most of it portable from `tasks`.**
