@@ -1,4 +1,4 @@
-## 2026-05-19 · ships · Four visible pills, not a hidden popover
+## 2026-05-19 · ships · Every product is one click away when you're signed in
 
 **Signed in, every surface in the suite now shows the four products
 as always-visible pills at the top — one click to switch, zero
