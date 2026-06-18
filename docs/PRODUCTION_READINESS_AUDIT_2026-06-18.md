@@ -305,7 +305,7 @@ canonical identity check** — so the `test` gate was red across the whole
 suite. All five `SuiteLoader.tsx` files are byte-identical (`aaa5246…`); the
 constant was re-sealed to match.
 
-**Blocker #2 — cross-tenant isolation tests: STARTED (notes shipped).**
+**Blocker #2 — cross-tenant isolation tests: DONE (all four products).**
 A static isolation guard now ships in **notes** (`src/server/cross-tenant-isolation.test.mjs`,
 wired into `pnpm test` → CI). It scans every server-side data-access file
 and fails if a read/mutation of an owner-scoped table is neither tenant-scoped
@@ -314,21 +314,39 @@ worth: it flagged the fleet-wide calendar-spawn cron (correctly global — now
 documented with a waiver) and confirmed every tenant-facing notes query is
 scoped.
 
-The guard is **not** one-size-fits-all, and that's the key finding for the
-rest:
-- **tasks** isolates via **workspace access-guards then query-by-id**
-  (`getTaskById(id)` after a workspace check), not inline scope on every
-  query — so an inline-token guard false-positives ~30×. Tasks needs an
-  *access-guard-aware* test (assert the guard is called), designed next.
-- **roadmap** is **public-by-default** — published timelines are intentionally
-  world-readable, so its guard must classify public-read paths vs. private
-  mutations. Different test, by design.
-- **analytics** (Signal) has a tiny data surface (1 write site); a focused
-  guard is quick to add next.
+**Update — all four products now have isolation guards (shipped).** Each was
+tailored to that product's real isolation model rather than forced into one
+shape:
+- **notes** — inline scope guard (per-user `WHERE user_id`). Waived the
+  fleet-wide calendar-spawn cron.
+- **analytics (Signal)** — inline scope guard (`clerkId`/`userId`). Waived the
+  CRON_SECRET-guarded daily-briefing fanout.
+- **roadmap (Timeline)** — public-by-default guard (`workspaceSlug`/
+  `ownerUserId`/`published` are scope-equivalent). Waived `getWorkspace(slug)`
+  (public read by design — no private workspaces) and two owner-scoped
+  account-deletion cascade deletes.
+- **tasks** — **access-guard-aware** guard (tasks isolates via a validated
+  active workspace + query-by-id, not inline scope). Asserts the choke points
+  hold: `getActiveWorkspace` validates cookie membership before honoring it,
+  `getCurrentUser` fails closed in production, and every mutating action
+  resolves the tenant through those helpers.
 
-Net: CI is in place everywhere; isolation is proven on the cleanest product
-and the correct per-repo approach for the other three is now understood and
-documented rather than rushed.
+**Secondary finding surfaced by the tasks guard (NEW, for triage):**
+`tasks/src/server/actions/roadmap.ts` exposes 7 `"use server"` actions
+(`cycleRoadmapStatusAction`, `setRoadmapNoteAction`, …) that mutate the
+GLOBAL GTM-roadmap tables (`roadmap_items`/`blockers`/`action_items`, parsed
+from `docs/gtm-plan.md`) **by id with no authentication at all**. This is not
+a cross-tenant leak — the data is shared operator/marketing state, not per-user
+— but any caller who can reach the action can flip the status or notes of the
+shared `/roadmap` view. **Risk: Low–Medium** (integrity/defacement of an
+internal-ish surface). **Recommended fix:** decide who may edit the GTM
+roadmap (almost certainly operator-only) and gate these actions accordingly —
+at minimum `getCurrentUser()`, ideally an operator check. Left for an operator
+product call, not fixed unilaterally.
+
+Net: CI is in place everywhere, and cross-tenant isolation now has an
+automated, per-model guard on all four products — each one already either
+caught a real gap or proved the existing scoping holds.
 
 ---
 
