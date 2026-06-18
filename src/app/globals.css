@@ -7101,3 +7101,88 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   .hq-cmdk, .hq-cmdk-panel, .hq-statusdot-pop { animation: none !important; }
   .hq-hub-grid .hq-hub-card, .hq-os-metrics .hq-os-metric { animation: none !important; opacity: 1; transform: none; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNAL HQ — launch readiness + data room (2026-06-18)
+   Light register: paper, ink, one indigo, hairlines. A clear gate is the
+   one place green is earned; pending stays quiet ink.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Launch readiness countdown ──────────────────────────────────────── */
+.hq-launch {
+  display: grid; grid-template-columns: minmax(180px, 240px) 1fr; gap: clamp(20px, 4vw, 48px);
+  align-items: center; margin: 0 0 2.5rem; padding: 22px 24px;
+  border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px); background: var(--bg-elev);
+}
+.hq-launch-clock { display: flex; flex-direction: column; gap: 4px; }
+.hq-launch-days { font-size: clamp(40px, 7vw, 56px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: var(--ink); }
+.hq-launch-days-unit { font-size: 20px; font-weight: 500; color: var(--ink-quiet); letter-spacing: -0.01em; }
+.hq-launch-sub { font-size: 13px; color: var(--ink-quiet); }
+.hq-launch-gatecount {
+  margin-top: 6px; font-family: var(--font-mono-stack); font-size: 11px; letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+}
+.hq-launch-gatecount[data-all-clear="true"] { color: #16a34a; }
+.hq-launch-gates { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.hq-launch-gate { border-top: 1px solid var(--border-soft); }
+.hq-launch-gate:first-child { border-top: 0; }
+.hq-launch-gate-link, .hq-launch-gate > .hq-launch-gate-dot {
+  display: grid; grid-template-columns: 14px 180px 1fr; align-items: baseline; gap: 12px;
+  padding: 11px 0; text-decoration: none;
+}
+.hq-launch-gate-link { color: inherit; }
+.hq-launch-gate-link:hover .hq-launch-gate-label { color: var(--accent); }
+.hq-launch-gate-dot {
+  width: 8px; height: 8px; align-self: center; border-radius: var(--r-pill, 999px);
+  background: var(--ink-ghost);
+}
+.hq-launch-gate-dot[data-state="clear"] { background: #16a34a; }
+.hq-launch-gate-dot[data-state="pending"] { background: transparent; box-shadow: inset 0 0 0 1.5px var(--border-soft); }
+.hq-launch-gate-label { font-size: 13.5px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.hq-launch-gate-manual { font-family: var(--font-mono-stack); font-size: 9.5px; font-weight: 400; color: var(--ink-ghost); letter-spacing: 0.04em; }
+.hq-launch-gate-detail { font-size: 12.5px; color: var(--ink-quiet); line-height: 1.45; }
+@media (max-width: 720px) {
+  .hq-launch { grid-template-columns: 1fr; gap: 18px; }
+  .hq-launch-gate-link { grid-template-columns: 14px 1fr; }
+  .hq-launch-gate-detail { grid-column: 2; }
+}
+
+/* ── Data room ───────────────────────────────────────────────────────── */
+.hq-dr { display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; }
+.hq-dr-section { display: grid; grid-template-columns: minmax(180px, 220px) 1fr; gap: clamp(16px, 3vw, 40px); }
+.hq-dr-head { position: sticky; top: 88px; align-self: start; }
+.hq-dr-title { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; margin: 0 0 5px; }
+.hq-dr-blurb { font-size: 12.5px; color: var(--ink-quiet); line-height: 1.5; margin: 0; }
+.hq-dr-ledger { display: flex; flex-direction: column; border-top: 1px solid var(--border-soft); }
+.hq-dr-row {
+  display: grid; grid-template-columns: 76px 1.1fr 2fr auto; align-items: baseline; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--border-soft); text-decoration: none; color: inherit;
+  transition: background var(--motion-fast) var(--ease-out);
+}
+.hq-dr-row:hover:not(.hq-dr-row--static) { background: var(--paper-soft); }
+.hq-dr-row--static { opacity: 0.72; }
+.hq-dr-state {
+  font-family: var(--font-mono-stack); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 7px; border-radius: var(--r-pill, 999px); border: 1px solid var(--border-soft);
+  color: var(--ink-quiet); white-space: nowrap; justify-self: start;
+}
+.hq-dr-state[data-state="ready"] { color: var(--accent-deep); border-color: var(--accent); background: var(--accent-soft); }
+.hq-dr-state[data-state="external"] { color: var(--ink-quiet); }
+.hq-dr-state[data-state="pending"] { color: var(--ink-ghost); }
+.hq-dr-label { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.hq-dr-row:hover:not(.hq-dr-row--static) .hq-dr-label { color: var(--accent); }
+.hq-dr-note { font-size: 12.5px; color: var(--ink-quiet); line-height: 1.45; }
+.hq-dr-action { font-family: var(--font-mono-stack); font-size: 11px; color: var(--ink-ghost); white-space: nowrap; justify-self: end; }
+.hq-dr-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 36px;
+  padding-top: 18px; border-top: 1px solid var(--border-soft);
+  font-family: var(--font-mono-stack); font-size: 12px; color: var(--ink-quiet);
+}
+.hq-dr-back { color: var(--ink-soft); text-decoration: none; }
+.hq-dr-back:hover { color: var(--accent); }
+@media (max-width: 720px) {
+  .hq-dr-section { grid-template-columns: 1fr; gap: 12px; }
+  .hq-dr-head { position: static; }
+  .hq-dr-row { grid-template-columns: 64px 1fr; }
+  .hq-dr-note, .hq-dr-action { grid-column: 2; }
+}

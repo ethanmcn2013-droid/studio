@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CountUp } from "@/components/hq/count-up";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
+import { HqLaunchReadiness } from "@/components/hq/hq-launch-readiness";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
 import { HqProofGate } from "@/components/hq/hq-proof-gate";
@@ -17,6 +18,7 @@ import {
   HQ_HUBS,
   HQ_REVIEW_PRINCIPLES,
 } from "@/lib/hq/operating-system";
+import { getLaunchReadiness } from "@/lib/hq/launch";
 import { getProofGate } from "@/lib/hq/proofgate";
 import { getPulseState } from "@/lib/hq/pulse";
 import { getTodayData } from "@/lib/hq/today";
@@ -78,6 +80,9 @@ export default async function HqPage() {
   const verdict = deriveVerdict({ inbox, pulse, traction });
   const proofGate = getProofGate(traction, prospects);
   const snapshot = getHqSnapshot(prospects, traction);
+  const readiness = getLaunchReadiness(
+    traction.available ? traction.paidVenues : null,
+  );
 
   const masthead = (
     <HqMasthead
@@ -148,6 +153,8 @@ export default async function HqPage() {
           </Link>
         ))}
       </section>
+
+      <HqLaunchReadiness readiness={readiness} />
 
       <section className="hq-hub-board" aria-labelledby="hq-hubs-title">
         <div className="hq-hub-head">

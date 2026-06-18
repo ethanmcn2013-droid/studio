@@ -204,6 +204,19 @@ export const HQ_HUBS: HqHub[] = [
     secondaryMetric: "one map",
     action: "open the map",
   },
+  {
+    key: "data-room",
+    label: "Data Room",
+    title: "The one link",
+    href: "/hq/data-room",
+    audience: ["founder", "shareholder", "hire"],
+    mode: "library",
+    summary:
+      "The curated diligence index for a lender, investor, or collaborator — narrative, ask, numbers, company, product, legal, proof.",
+    primaryMetric: "7 sections",
+    secondaryMetric: "launch countdown",
+    action: "open the room",
+  },
 ];
 
 export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
