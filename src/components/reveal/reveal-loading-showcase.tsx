@@ -175,18 +175,22 @@ const SLX_CSS = `
    — never fixed. */
 .reveal-loading-showcase{display:flex;align-items:center;
   justify-content:center;width:100%;overflow:hidden;background:transparent;
-  min-height:clamp(360px,46vh,560px);
-  padding:clamp(48px,7vh,104px) 16px clamp(8px,1.5vh,24px);}
+  min-height:clamp(300px,40vh,460px);
+  padding:clamp(44px,6vh,92px) 16px clamp(8px,1.5vh,24px);}
 .slx{
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
   /* Wordmark scale: the umbrella name is the first brand moment and must
      read as the dominant element — clearly larger than the H1 proposition
-     below it (which tops out at 66px). Operator direction 2026-06-16:
-     "signal studio" was reading smaller than its own subtext; restored to
-     a true hero scale, then doubled again per operator on the same day for
-     a full-bleed brand statement. Was clamp(34,5.6vw,84) → clamp(50,8.6vw,118). */
-  --slx-wm:clamp(100px,17.2vw,236px);
+     below it (which tops out at 66px). It must ALSO never overflow: the
+     parent is overflow:hidden, so an oversize mark gets clipped on both
+     sides. "signal studio" is ~6.3em wide, so the vw term is the fit
+     guarantee (~13vw ≈ 82% of viewport width on one line) and the cap keeps
+     it from ballooning on large monitors. History: clamp(34,5.6vw,84) →
+     clamp(50,8.6vw,118) → doubled to clamp(100,17.2vw,236) which OVERFLOWED
+     and clipped the mark on every screen ≤1440 (2026-06-18 fix). Now a
+     true-hero scale that always fits one line. */
+  --slx-wm:clamp(46px,12.6vw,152px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
   --slx-iter:1;   /* MUST equal CYCLES in the component. */
