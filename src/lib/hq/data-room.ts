@@ -56,7 +56,7 @@ export const DATA_ROOM: DataRoomSection[] = [
     items: [
       { label: "Reporting", note: "Only the numbers that matter — read from source.", href: "/hq/reporting", state: "ready" },
       { label: "Live metrics", note: "9 of 11 blueprint metrics wired to the ledger + apps.", href: "/hq/blueprint#bp-metrics", state: "ready" },
-      { label: "Financial model", note: "3-statement / unit-economics model — not yet a standalone artifact.", state: "pending" },
+      { label: "Financial model", note: "Cash-basis projection · revenue build, runway, unit economics.", href: "/hq/financial-model", state: "ready" },
     ],
   },
   {

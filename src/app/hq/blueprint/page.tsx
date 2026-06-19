@@ -23,6 +23,7 @@ import { getTraction } from "@/lib/hq/traction";
 import { getProspects } from "@/lib/hq/crm-db";
 import { PIPELINE_STAGES } from "@/lib/hq/crm-utils";
 import { getProductAnalytics } from "@/lib/hq/product-analytics";
+import { getModeledRunway } from "@/lib/hq/financial-model";
 
 export const dynamic = "force-dynamic";
 
@@ -80,6 +81,7 @@ export default async function BlueprintPage() {
     churnPct: product.churnPct,
     onboardingPct: product.onboardingPct,
     modulesActive: product.modulesActive,
+    runway: getModeledRunway(traction.available ? traction.cashCollectedEur : null),
   });
   const liveCount = metrics.filter((m) => m.live).length;
   const tractionUnread = !traction.available;

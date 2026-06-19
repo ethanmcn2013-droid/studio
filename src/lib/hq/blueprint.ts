@@ -19,7 +19,7 @@
  * ledger), getProspects() (CRM), and getProductAnalytics() (the four
  * product Tursos), reduces them to BlueprintLiveData primitives, and
  * resolveBlueprintMetrics() overlays them onto the catalog.
- * Wired live today (9 of 11):
+ * Wired live today (10 of 11):
  *   - MRR              → workspace_subscription grants × €12/mo (traction)
  *   - Active users     → active entitlement grants (traction)
  *   - Venue pipeline   → prospects in active CRM funnel (crm-db)
@@ -29,10 +29,10 @@
  *   - Churn            → 100 − M1 retention (product-analytics)
  *   - Onboarding       → Tasks onboarding_completed_at (product-analytics)
  *   - Usage by module  → active users across the 4 apps (product-analytics)
+ *   - Runway           → modeled by src/lib/hq/financial-model.ts (cash basis)
  *   - Directors        → src/lib/hq/elt.ts (live in the section render)
- * Still placeholder (not product-app analytics — no source in the suite):
+ * Still placeholder (no source in the suite yet):
  *   - Support sentiment → support inbox (no DB)
- *   - Runway            → finance model (no DB)
  * Each placeholder carries an honest source label — no vanity numbers
  * presented as real; null from any source falls back to the placeholder.
  * ────────────────────────────────────────────────────────────────────
@@ -620,6 +620,8 @@ export type BlueprintLiveData = {
   onboardingPct: number | null;
   // LIVE DATA: modules with ≥1 active user (30d) out of those readable.
   modulesActive: { active: number; readable: number } | null;
+  // LIVE DATA: modeled runway in months (finance model); defaultAlive caps it.
+  runway: { months: number; defaultAlive: boolean } | null;
 };
 
 export type ResolvedMetric = BlueprintMetric & {
@@ -696,6 +698,14 @@ export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric
               m,
               `${live.modulesActive.active}/${live.modulesActive.readable}`,
               "modules active · 30d",
+            );
+      case "runway":
+        return live.runway == null
+          ? placeholder(m)
+          : wired(
+              m,
+              live.runway.defaultAlive ? "18+ mo" : `${live.runway.months} mo`,
+              "modeled · finance model",
             );
       default:
         // Not yet wired — honest placeholder, source label carries the plan.

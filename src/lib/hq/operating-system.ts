@@ -332,6 +332,18 @@ export const HQ_ASSETS: HqAsset[] = [
     note: "70 slides · the go-to-market companion to the business plan: where every euro of spend goes and exactly how the market is entered.",
   },
   {
+    id: "financial-model",
+    title: "Financial model",
+    group: "shareholder",
+    audience: ["founder", "shareholder"],
+    state: "ready",
+    owner: "Founder",
+    href: "/hq/financial-model",
+    source: "src/lib/hq/financial-model.ts",
+    action: "Open model",
+    note: "Cash-basis projection · revenue build, runway, and unit economics (LTV:CAC, payback). Modeled assumptions with live ledger overlaid.",
+  },
+  {
     id: "business-loan-pack",
     title: "Business loan pack",
     group: "shareholder",

@@ -7229,3 +7229,54 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   .hq-dr-row { grid-template-columns: 64px 1fr; }
   .hq-dr-note, .hq-dr-action { grid-column: 2; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNAL HQ — financial model (2026-06-19)
+   Light register. A projection, dressed honestly: assumptions read as
+   assumptions, the one accent reserved for the numbers a lender checks.
+   ════════════════════════════════════════════════════════════════════ */
+.hq-fm-mono { font-family: var(--font-mono-stack); font-size: 0.92em; color: var(--ink-quiet); }
+
+.hq-fm-heads {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px;
+  margin: 0 0 2rem; border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px);
+  overflow: hidden; background: var(--border-soft);
+}
+.hq-fm-head { background: var(--bg-elev); padding: 18px 18px; display: flex; flex-direction: column; gap: 3px; }
+.hq-fm-head-value { font-size: 28px; font-weight: 600; letter-spacing: -0.025em; color: var(--ink); line-height: 1; }
+.hq-fm-head[data-tone="accent"] .hq-fm-head-value { color: var(--accent); }
+.hq-fm-head-label { font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-top: 6px; }
+.hq-fm-head-note { font-size: 11.5px; color: var(--ink-quiet); }
+
+.hq-fm-unit, .hq-fm-overlay, .hq-fm-table-wrap { margin-top: 2.5rem; }
+.hq-fm-unit-head { margin-bottom: 1rem; }
+.hq-fm-unit-head p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-quiet); line-height: 1.5; max-width: 70ch; }
+
+.hq-fm-unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px); overflow: hidden; background: var(--border-soft); }
+.hq-fm-unit-cell { background: var(--bg-elev); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.hq-fm-unit-value { font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.hq-fm-unit-cell[data-tone="accent"] .hq-fm-unit-value { color: var(--accent); }
+.hq-fm-unit-label { font-family: var(--font-mono-stack); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-quiet); }
+
+.hq-fm-overlay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.hq-fm-overlay-cell { border: 1px solid var(--border-soft); border-radius: var(--r-3); padding: 14px 16px; background: var(--bg-elev); }
+.hq-fm-overlay-label { font-size: 13px; font-weight: 600; color: var(--ink); }
+.hq-fm-overlay-vals { display: flex; gap: 18px; margin-top: 8px; }
+.hq-fm-overlay-plan { font-family: var(--font-mono-stack); font-size: 13px; color: var(--ink-quiet); }
+.hq-fm-overlay-actual { font-family: var(--font-mono-stack); font-size: 13px; color: var(--ink); }
+.hq-fm-overlay-note { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-quiet); line-height: 1.5; max-width: 72ch; }
+
+.hq-fm-scroll { overflow-x: auto; border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px); }
+.hq-fm-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 720px; }
+.hq-fm-table th, .hq-fm-table td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--border-soft); white-space: nowrap; }
+.hq-fm-table thead th { font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-quiet); font-weight: 600; background: var(--paper-soft); position: sticky; top: 0; }
+.hq-fm-table thead th:first-child, .hq-fm-table tbody th { text-align: left; }
+.hq-fm-table tbody th { font-weight: 600; color: var(--ink); }
+.hq-fm-table tbody tr:hover td, .hq-fm-table tbody tr:hover th { background: var(--paper-soft); }
+.hq-fm-table tr[data-launch="true"] th, .hq-fm-table tr[data-launch="true"] td { background: var(--accent-soft); }
+.hq-fm-table td { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.hq-fm-cost { color: var(--ink-quiet); }
+.hq-fm-cash { font-weight: 600; color: var(--ink); }
+.hq-fm-table td[data-neg="true"] { color: #dc2626; }
+.hq-fm-launch { margin-left: 8px; font-family: var(--font-mono-stack); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-deep); border: 1px solid var(--accent); border-radius: var(--r-pill, 999px); padding: 1px 6px; }
+@media (max-width: 600px) { .hq-fm-head-value { font-size: 24px; } }
