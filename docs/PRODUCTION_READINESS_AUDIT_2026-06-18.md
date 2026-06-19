@@ -344,9 +344,23 @@ roadmap (almost certainly operator-only) and gate these actions accordingly —
 at minimum `getCurrentUser()`, ideally an operator check. Left for an operator
 product call, not fixed unilaterally.
 
-Net: CI is in place everywhere, and cross-tenant isolation now has an
-automated, per-model guard on all four products — each one already either
-caught a real gap or proved the existing scoping holds.
+**Blocker #4 — Sentry in Notes + Signal: DONE.** Both repos now carry the
+Tasks reference setup verbatim — `instrumentation.ts` (server + edge +
+`onRequestError`), `instrumentation-client.ts` (browser), and a PII scrubber
+(`sendDefaultPii:false`, cookies/IP/Clerk tokens stripped). All DSN-gated, so
+they no-op until the operator pastes the project DSNs into Vercel. Signal's
+init runs on the Node runtime, so the daily-briefing cron's failures are now
+captured (closing the silent-cron blind spot). CSP extended with Sentry ingest
+hosts in both (Notes enforces CSP, so this was required, not optional). Both
+typecheck + production-build clean.
+
+Net: CI is in place everywhere; cross-tenant isolation has an automated
+per-model guard on all four products; and error tracking now covers the whole
+suite (Tasks, Notes, Signal strong; Studio + Timeline already had partial).
+The remaining blockers are the operator-gated ones: **verified backups + a
+rehearsed restore** (the one Critical, irreversible risk), making the CI
+`verify` check **Required**, rate-limiting Signal's public endpoints, and
+flipping CSP to enforce.
 
 ---
 
