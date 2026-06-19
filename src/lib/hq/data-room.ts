@@ -65,8 +65,8 @@ export const DATA_ROOM: DataRoomSection[] = [
     blurb: "Who owns it and its legal standing.",
     items: [
       { label: "Founders Circle", note: "The board / shareholder view.", href: "/hq/founders-circle", state: "ready" },
-      { label: "Incorporation", note: "Pending CRO number — gates the facility.", state: "pending" },
-      { label: "Cap table", note: "To publish once incorporation lands.", state: "pending" },
+      { label: "Cap table", note: "Class A voting (90%) · Class B Founder Circle (10%) · pre-incorporation.", href: "/hq/cap-table", state: "ready" },
+      { label: "Incorporation pack", note: "CRO runbook + timeline · decisions confirmed, filing targeted July 2026.", href: "/hq/incorporation", state: "ready" },
     ],
   },
   {

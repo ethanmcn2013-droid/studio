@@ -31,6 +31,8 @@ const ROOMS: Room[] = [
   { label: "Reporting", hint: "only the numbers that matter", href: "/hq/reporting", keywords: "metrics numbers traction kpi" },
   { label: "Data room", hint: "the one link for diligence", href: "/hq/data-room", keywords: "diligence lender investor due diligence data room launch countdown" },
   { label: "Financial model", hint: "projection · runway · unit economics", href: "/hq/financial-model", keywords: "finance model runway cac ltv revenue projection cash burn" },
+  { label: "Cap table", hint: "ownership · share structure", href: "/hq/cap-table", keywords: "cap table equity shares ownership shareholders class a b founder circle" },
+  { label: "Incorporation pack", hint: "CRO runbook + timeline", href: "/hq/incorporation", keywords: "incorporation cro company formation ltd limited registration constitution" },
   { label: "CRM", hint: "the venue pipeline", href: "/hq/crm", keywords: "prospects pipeline outreach venues sales" },
   { label: "Marketing", hint: "the six-month plan", href: "/hq/marketing", keywords: "growth campaigns demand plan" },
   { label: "Market entry deck", hint: "70-slide go-to-market strategy", href: "/hq/market-entry", keywords: "deck slides gtm growth strategy presentation pitch" },

@@ -7280,3 +7280,79 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
 .hq-fm-table td[data-neg="true"] { color: #dc2626; }
 .hq-fm-launch { margin-left: 8px; font-family: var(--font-mono-stack); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-deep); border: 1px solid var(--accent); border-radius: var(--r-pill, 999px); padding: 1px 6px; }
 @media (max-width: 600px) { .hq-fm-head-value { font-size: 24px; } }
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNAL HQ — company: cap table + incorporation (2026-06-19)
+   Light register. Pre-incorporation honesty: the status banner says so,
+   confirmed steps earn the one tick, everything else stays quiet.
+   ════════════════════════════════════════════════════════════════════ */
+.hq-co-status {
+  display: inline-block; margin-top: 14px; padding: 5px 12px;
+  font-family: var(--font-mono-stack); font-size: 11px; letter-spacing: 0.04em;
+  color: var(--ink-soft); background: var(--paper-deep);
+  border: 1px solid var(--border-soft); border-radius: var(--r-pill, 999px);
+}
+.hq-co-status[data-status="pre-incorporation"] { color: #92400e; background: #fef3c7; border-color: #fde68a; }
+
+/* Ownership bar */
+.hq-co-ownerbar { display: flex; gap: 2px; margin: 2rem 0; height: 64px; border-radius: var(--r-3); overflow: hidden; }
+.hq-co-ownerbar-seg {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  padding: 0 16px; background: var(--paper-deep); color: var(--ink-soft); min-width: 0;
+}
+.hq-co-ownerbar-seg[data-voting="true"] { background: var(--accent); color: #fff; }
+.hq-co-ownerbar-pct { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.hq-co-ownerbar-who { font-family: var(--font-mono-stack); font-size: 11px; opacity: 0.85; white-space: nowrap; }
+
+/* Cap table extras (reuses .hq-fm-table / .hq-fm-scroll) */
+.hq-co-table-wrap { margin-top: 0.5rem; }
+.hq-co-role { display: block; font-family: var(--font-mono-stack); font-size: 10.5px; font-weight: 400; color: var(--ink-quiet); margin-top: 2px; }
+.hq-co-class { color: var(--ink-soft); }
+.hq-co-table tr.hq-co-total th, .hq-co-table tr.hq-co-total td { border-top: 2px solid var(--border-soft); font-weight: 600; color: var(--ink); }
+.hq-co-foot-note { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-quiet); line-height: 1.5; }
+
+/* Generic company blocks */
+.hq-co-block { margin-top: 2.5rem; }
+.hq-co-rights { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.hq-co-right { border: 1px solid var(--border-soft); border-radius: var(--r-3); padding: 16px 18px; background: var(--bg-elev); }
+.hq-co-right-cls { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
+.hq-co-right-body { font-size: 13px; line-height: 1.55; color: var(--ink-quiet); margin: 0; }
+.hq-co-bo { list-style: none; margin: 0 0 4px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.hq-co-bo li { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.hq-co-bo-who { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.hq-co-bo-basis { font-size: 12.5px; color: var(--ink-quiet); }
+.hq-co-srclink { color: var(--ink-soft); text-decoration: none; }
+.hq-co-srclink:hover { color: var(--accent); }
+
+/* Company facts (incorporation) */
+.hq-co-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; margin: 0 0 1rem; border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px); overflow: hidden; background: var(--border-soft); }
+.hq-co-fact { background: var(--bg-elev); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.hq-co-fact-label { font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-quiet); }
+.hq-co-fact-value { font-size: 13px; color: var(--ink); line-height: 1.4; }
+.hq-co-target { font-family: var(--font-mono-stack); color: var(--ink); white-space: nowrap; }
+.hq-co-gates { color: var(--ink-quiet); white-space: normal; text-align: left; }
+
+/* Incorporation phased checklist */
+.hq-incorp { display: flex; flex-direction: column; gap: 22px; }
+.hq-incorp-phase-head { margin-bottom: 10px; }
+.hq-incorp-phase-title { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0; }
+.hq-incorp-phase-blurb { font-size: 12.5px; color: var(--ink-quiet); margin: 3px 0 0; }
+.hq-incorp-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border-soft); }
+.hq-incorp-step { display: grid; grid-template-columns: 20px 1fr auto; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.hq-incorp-step-mark { justify-self: center; align-self: center; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--r-pill, 999px); font-size: 9px; color: #fff; }
+.hq-incorp-step[data-status="done"] .hq-incorp-step-mark { background: #16a34a; }
+.hq-incorp-step[data-status="todo"] .hq-incorp-step-mark { box-shadow: inset 0 0 0 1.5px var(--border-soft); }
+.hq-incorp-step[data-status="future"] .hq-incorp-step-mark { box-shadow: inset 0 0 0 1.5px var(--paper-deep); }
+.hq-incorp-step-label { font-size: 13px; color: var(--ink); line-height: 1.45; }
+.hq-incorp-step[data-status="future"] .hq-incorp-step-label { color: var(--ink-quiet); }
+.hq-incorp-step-note { color: var(--ink-quiet); font-size: 12px; }
+.hq-incorp-step-status { font-family: var(--font-mono-stack); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-ghost); white-space: nowrap; }
+.hq-incorp-step[data-status="done"] .hq-incorp-step-status { color: #16a34a; }
+.hq-co-notneeded { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px 18px; }
+.hq-co-notneeded li { font-size: 13px; color: var(--ink-quiet); padding-left: 18px; position: relative; }
+.hq-co-notneeded li::before { content: "—"; position: absolute; left: 0; color: var(--ink-ghost); }
+@media (max-width: 600px) {
+  .hq-co-ownerbar { height: 56px; }
+  .hq-incorp-step { grid-template-columns: 20px 1fr; }
+  .hq-incorp-step-status { grid-column: 2; }
+}
