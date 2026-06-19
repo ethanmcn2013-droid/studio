@@ -364,4 +364,40 @@ flipping CSP to enforce.
 
 ---
 
+## Progress — 2026-06-19 (second pass)
+
+Three more areas closed, mostly in code:
+
+- **Recovery (blocker #1 groundwork): `studio/docs/RECOVERY.md`** — suite backup/
+  restore runbook (DB inventory, provider failure modes, PITR + daily-dump strategy,
+  restore procedure, rehearsal checklist). The enabling steps (enable Turso PITR,
+  rehearse one restore) remain operator actions — that's still the one open Critical
+  risk. Also documented Timeline's real migration workflow (`roadmap/drizzle/
+  MIGRATIONS.md`) and annotated `migrate-prod.sql` as `ALREADY APPLIED — DO NOT RUN`
+  (it deploys via `drizzle-kit push`, so there was no journal to "convert" it into).
+
+- **Rate limiting (audit §9): DONE for Signal.** A gated Upstash sliding-window
+  limiter (`analytics/src/lib/ratelimit.ts`) — no-ops/allows until Upstash is
+  provisioned, fails open on Redis errors. Applied to `/api/unsubscribe/[token]`
+  (60/min per IP) and `/api/account/delete` (5/min per user). Operator: provision
+  Upstash for the Signal project to switch it on.
+
+- **Env validation (audit §6): DONE across all five repos.** Each has a `src/env.ts`
+  that checks the vars the app cannot run without and fails loudly **at boot** in
+  real production (skips demo/review/dev), instead of 500ing at runtime. Per-repo
+  shape: tasks/notes/Signal throw on missing DB + Clerk; Timeline throws on its DB
+  (Clerk recommended — public timelines need no auth); **Studio is warn-only by
+  design** (the public marketing umbrella must stay up even if HQ's DB is
+  misconfigured). Dependency-free (no zod). Wired via `instrumentation.ts`.
+
+Net after this pass: of the launch blockers, **#2 isolation, #3 CI, #4 observability,
+§6 env validation, and §9 rate-limiting (Signal) are done in code.** What remains is
+genuinely operator-gated: **verified Turso backups + one rehearsed restore** (the only
+Critical, irreversible risk), pasting the **Sentry DSNs** and provisioning **Upstash**
+into Vercel, marking the CI **`verify` check Required**, and the **CSP enforce** flip
+(plus the small `tasks/actions/roadmap.ts` authz call). The code armor is largely on;
+the remaining work is dashboard configuration and one rehearsed restore.
+
+---
+
 — End of audit. Brutally honest summary: **you built a real product, not a polished demo. What you have not yet built is the boring operational armor that keeps a real product from losing or leaking data on a bad day. That armor is ~a week of work, most of it portable from `tasks`.**
