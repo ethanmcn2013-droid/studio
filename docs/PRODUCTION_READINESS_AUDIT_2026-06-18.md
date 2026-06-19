@@ -331,6 +331,14 @@ shape:
   `getCurrentUser` fails closed in production, and every mutating action
   resolves the tenant through those helpers.
 
+**Secondary finding — RESOLVED 2026-06-19:** the GTM-roadmap actions in
+`tasks/src/server/actions/roadmap.ts` are now gated operator-only via a shared
+`requireAdmin()` (`src/server/admin.ts`, `ADMIN_USER_IDS` allowlist, fail-closed),
+factored out of the comp-code minter that already used it. **Operator: set
+`ADMIN_USER_IDS`** (your Clerk user id) in the Tasks Vercel project — until then the
+roadmap editor is locked to everyone in production (safe default). Original finding
+kept below for the record.
+
 **Secondary finding surfaced by the tasks guard (NEW, for triage):**
 `tasks/src/server/actions/roadmap.ts` exposes 7 `"use server"` actions
 (`cycleRoadmapStatusAction`, `setRoadmapNoteAction`, …) that mutate the
