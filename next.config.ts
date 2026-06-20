@@ -40,6 +40,10 @@ const csp = [
   `base-uri 'self'`,
   `form-action 'self'`,
   `object-src 'none'`,
+  // CSP violation reporting — collected at /api/csp-report so we can verify
+  // the policy is clean before promoting Report-Only → enforce.
+  `report-uri /api/csp-report`,
+  `report-to csp`,
   // upgrade-insecure-requests removed — the directive is ignored in
   // report-only policies and was spamming the console on every page.
   // Add it back when CSP is promoted to enforce mode.
@@ -47,6 +51,7 @@ const csp = [
 
 const securityHeaders = [
   { key: "Content-Security-Policy-Report-Only", value: csp },
+  { key: "Reporting-Endpoints", value: 'csp="/api/csp-report"' },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
