@@ -19,18 +19,33 @@ export const metadata: Metadata = {
 
 /**
  * /hq/cap-table — the ownership read-out. Transcribed from the constitution
- * blueprint in the vault; honest that the company is pre-incorporation (the
- * structure is defined, the shares are not yet issued).
+ * blueprint in the vault; honest that the company is pre-incorporation.
+ *
+ * Two views, toggled by ?view=external:
+ *   - internal (default): full personal names + vault source links.
+ *   - external (redacted): names → roles, no source links, no cross-link to
+ *     the incorporation page (which still carries the registered address) —
+ *     safe to screen-share or export to a lender/investor. Still behind the
+ *     HQ gate: the URL stays private, the *content* is what's made shareable.
  */
-export default async function CapTablePage() {
+export default async function CapTablePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string }>;
+}) {
   await requireHqAccess();
 
+  const external = (await searchParams).view === "external";
   const { shareholders, totalShares, totalNominalEur } = CAP_TABLE;
+  const nameOf = (s: (typeof shareholders)[number]) =>
+    external ? s.redactedHolder : s.holder;
 
   return (
-    <main id="main" className="hq-page">
+    <main id="main" className="hq-page" data-view={external ? "external" : "internal"}>
       <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Cap Table</span>
+        <span className="hq-page-eyebrow">
+          Signal HQ · Cap Table{external ? " · external" : ""}
+        </span>
         <h1 className="hq-page-title">{COMPANY_META.legalName}<span aria-hidden="true">.</span></h1>
         <p className="hq-page-intro">
           {COMPANY_META.type}. The structure is defined in the constitution and
@@ -41,20 +56,39 @@ export default async function CapTablePage() {
         <span className="hq-co-status" data-status={COMPANY_META.status}>
           {COMPANY_META.statusLabel}
         </span>
+
+        {/* View toggle */}
+        <div className="hq-co-viewtoggle" role="group" aria-label="cap table view">
+          <Link href="/hq/cap-table" className="hq-co-viewtab" data-active={!external ? "true" : undefined}>
+            Internal
+          </Link>
+          <Link href="/hq/cap-table?view=external" className="hq-co-viewtab" data-active={external ? "true" : undefined}>
+            External (redacted)
+          </Link>
+        </div>
+        {external ? (
+          <p className="hq-co-redactnote">
+            External view — personal names and the registered address are
+            redacted to roles. Safe to screen-share or export to a lender or
+            investor.
+          </p>
+        ) : null}
       </header>
 
       {/* Ownership bar */}
       <section className="hq-co-ownerbar" aria-label="ownership split">
         {shareholders.map((s) => (
           <div
-            key={s.holder}
+            key={s.shareClass}
             className="hq-co-ownerbar-seg"
             data-voting={s.voting ? "true" : undefined}
             style={{ flexGrow: s.pct }}
-            title={`${s.holder} — ${s.pct}%`}
+            title={`${nameOf(s)} — ${s.pct}%`}
           >
             <span className="hq-co-ownerbar-pct">{s.pct}%</span>
-            <span className="hq-co-ownerbar-who">{s.holder.split(" ")[0]}</span>
+            <span className="hq-co-ownerbar-who">
+              {external ? s.redactedHolder : s.holder.split(" ")[0]}
+            </span>
           </div>
         ))}
       </section>
@@ -75,9 +109,9 @@ export default async function CapTablePage() {
             </thead>
             <tbody>
               {shareholders.map((s) => (
-                <tr key={s.holder}>
+                <tr key={s.shareClass}>
                   <th scope="row">
-                    {s.holder}
+                    {nameOf(s)}
                     <span className="hq-co-role">{s.role}</span>
                   </th>
                   <td className="hq-co-class">{s.shareClass}</td>
@@ -127,8 +161,8 @@ export default async function CapTablePage() {
         </div>
         <ul className="hq-co-bo">
           {BENEFICIAL_OWNERS.owners.map((o) => (
-            <li key={o.holder}>
-              <span className="hq-co-bo-who">{o.holder}</span>
+            <li key={o.basis}>
+              <span className="hq-co-bo-who">{external ? o.redactedHolder : o.holder}</span>
               <span className="hq-co-bo-basis">{o.basis}</span>
             </li>
           ))}
@@ -137,14 +171,25 @@ export default async function CapTablePage() {
       </section>
 
       <footer className="hq-dr-foot">
-        <Link href="/hq/incorporation" className="hq-dr-back">incorporation pack →</Link>
+        {external ? (
+          <span className="hq-dr-back hq-dr-back--static">redacted external view</span>
+        ) : (
+          <Link href="/hq/incorporation" className="hq-dr-back">incorporation pack →</Link>
+        )}
         <span className="hq-dr-source">
-          source · {COMPANY_META.sources.map((s, i) => (
-            <span key={s.href}>
-              {i > 0 ? " · " : ""}
-              <Link href={s.href} className="hq-co-srclink">{s.label}</Link>
-            </span>
-          ))}
+          {external ? (
+            "source on file · Signal Studio Limited constitution"
+          ) : (
+            <>
+              source ·{" "}
+              {COMPANY_META.sources.map((s, i) => (
+                <span key={s.href}>
+                  {i > 0 ? " · " : ""}
+                  <Link href={s.href} className="hq-co-srclink">{s.label}</Link>
+                </span>
+              ))}
+            </>
+          )}
         </span>
       </footer>
     </main>

@@ -40,6 +40,8 @@ export const COMPANY_META = {
 
 export type Shareholder = {
   holder: string;
+  /** Redacted label for the external view — no personal name. */
+  redactedHolder: string;
   role: string;
   shareClass: "A — ordinary" | "B — Founder Circle";
   voting: boolean;
@@ -56,6 +58,7 @@ export const CAP_TABLE: {
   shareholders: [
     {
       holder: "Ethan McNamara",
+      redactedHolder: "Founder",
       role: "Founder · sole director",
       shareClass: "A — ordinary",
       voting: true,
@@ -65,6 +68,7 @@ export const CAP_TABLE: {
     },
     {
       holder: "Sheauveen McCallig",
+      redactedHolder: "Founding Member",
       role: "Founding Member (Founder Circle)",
       shareClass: "B — Founder Circle",
       voting: false,
@@ -93,7 +97,11 @@ export const CLASS_RIGHTS: Array<{ cls: string; rights: string }> = [
 export const BENEFICIAL_OWNERS = {
   note: "RBO (Central Register of Beneficial Ownership) — >25% test on shares or voting.",
   owners: [
-    { holder: "Ethan McNamara", basis: "90% — the only beneficial owner over the 25% threshold" },
+    {
+      holder: "Ethan McNamara",
+      redactedHolder: "Founder",
+      basis: "90% — the only beneficial owner over the 25% threshold",
+    },
   ],
   excluded: "The Founding Member at 10% non-voting is below the threshold and is not a beneficial owner.",
 };
