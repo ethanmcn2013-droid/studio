@@ -96,7 +96,7 @@ export const DATA_ROOM: DataRoomSection[] = [
     blurb: "Evidence the thing works — growing as the wedge converts.",
     items: [
       { label: "Venue sales pack", note: "Founder-signed venue material.", href: "/hq/assets", state: "ready" },
-      { label: "Product demo film", note: "Motion-graphics demo — dependency, in progress.", state: "pending" },
+      { label: "Product demo film", note: "Production scaffold ready (script + storyboard); render pending the motion pipeline.", href: "/hq/demo-film", state: "pending" },
       { label: "First venue case study", note: "Reserved — lands the day Gate 0 clears.", state: "pending" },
     ],
   },

@@ -7365,3 +7365,24 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   .hq-incorp-step { grid-template-columns: 20px 1fr; }
   .hq-incorp-step-status { grid-column: 2; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNAL HQ — demo film scaffold (2026-06-20)
+   ════════════════════════════════════════════════════════════════════ */
+.hq-film-board { display: flex; flex-direction: column; }
+.hq-film-scene { display: grid; grid-template-columns: 92px 1fr; gap: 18px; padding: 16px 0; border-top: 1px solid var(--border-soft); }
+.hq-film-scene:first-child { border-top: 0; }
+.hq-film-scene-rail { display: flex; flex-direction: column; gap: 3px; }
+.hq-film-scene-n { font-size: 22px; font-weight: 600; color: var(--ink-ghost); letter-spacing: -0.02em; line-height: 1; }
+.hq-film-scene-t { font-family: var(--font-mono-stack); font-size: 11px; color: var(--accent); }
+.hq-film-scene-beat { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.hq-film-scene-caption { margin: 7px 0 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--accent-deep); }
+.hq-film-scene-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 9px; }
+.hq-film-scene-gesture { font-family: var(--font-mono-stack); font-size: 10.5px; letter-spacing: 0.04em; color: var(--ink-soft); border: 1px solid var(--border-soft); border-radius: var(--r-pill, 999px); padding: 2px 9px; }
+.hq-film-scene-sound { font-family: var(--font-mono-stack); font-size: 11px; color: var(--ink-quiet); align-self: center; }
+.hq-film-grammar-product { font-family: var(--font-mono-stack); font-size: 10.5px; font-weight: 400; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+.hq-incorp-step-status[data-blocked="true"] { color: #b45309; }
+@media (max-width: 600px) {
+  .hq-film-scene { grid-template-columns: 1fr; gap: 8px; }
+  .hq-film-scene-rail { flex-direction: row; align-items: baseline; gap: 10px; }
+}

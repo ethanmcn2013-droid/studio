@@ -423,6 +423,18 @@ export const HQ_ASSETS: HqAsset[] = [
     action: "Open source",
     note: "Proof-video script, scenes, and distribution notes.",
   },
+  {
+    id: "demo-film",
+    title: "Demo film — One Wedding, Four Views",
+    group: "proof",
+    audience: ["founder", "marketing", "shareholder"],
+    state: "working",
+    owner: "Creative",
+    href: "/hq/demo-film",
+    source: "src/lib/hq/demo-film.ts",
+    action: "Open the scaffold",
+    note: "Hero 30s product film · logline, spec, storyboard, motion grammar, build checklist. Scaffold ready; render pending the motion pipeline.",
+  },
 ];
 
 export const FOUNDER_CIRCLE_PACKS: FounderCirclePack[] = [
