@@ -73,8 +73,10 @@ red run only *reports* — it doesn't block a merge until you mark it required.
 
 ## 4 · Promote CSP to enforce (after a clean week)
 
-Every product now has a `/api/csp-report` collector. Report-Only currently *observes*;
-enforce *blocks*. Don't flip blind — use the data.
+All five products — including **Notes** — now have a `/api/csp-report` collector (route +
+`report-uri`/`report-to`/`Reporting-Endpoints`, allowlisted in `proxy.ts` where the matcher
+gates `/api/*`). Report-Only currently *observes*; enforce *blocks*. Don't flip blind —
+use the data.
 
 - [ ] Watch the Vercel function logs of each product for **`[csp-report]`** lines.
 - [ ] For each real violation, add the blocked host to that product's CSP allowlist in
@@ -82,8 +84,9 @@ enforce *blocks*. Don't flip blind — use the data.
 - [ ] Once a product logs no violations for ~a week, flip its header from
       `Content-Security-Policy-Report-Only` → `Content-Security-Policy` in `next.config.ts`.
       *(Tell me a product is clean and I'll make the one-line change.)*
-- [ ] **Notes already enforces** — treat any `[csp-report]` line there as a live user-facing
-      block to fix now.
+- [ ] **Notes already enforces** (no flip needed) — its collector is live, so any
+      `[csp-report]` line in the Notes logs is a **real, user-facing block** to fix now by
+      adding the host to its CSP allowlist.
 
 ---
 
