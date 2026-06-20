@@ -24,8 +24,15 @@ export const FILM_META = {
   why:
     "The venue wedge needs a 30-second film that makes the four-products-one-system idea felt, not explained. It doubles as the homepage loop and the top of the market-entry deck.",
   status: "scaffold" as const,
-  statusLabel: "Scaffold ready · script + storyboard locked draft, render pending",
+  statusLabel: "Scaffold + Remotion skeleton ready · per-scene UI + render pending",
   revisedOn: "2026-06-20",
+  // The buildable Remotion project — sibling to analytics-demo.
+  build: {
+    project: "demo-film/ — standalone Remotion project (sibling of analytics-demo)",
+    run: "npm install && npm start (Remotion Studio)",
+    state:
+      "Skeleton typechecks; both compositions (1920×1080 + 1080×1920, 900 frames) register and bundle. The five gestures and all seven scenes are wired; per-scene product UI is fill-in-the-shots. Render needs the Mac/motion pipeline.",
+  },
   spec: {
     duration: "30s",
     frames: "900 frames @ 30fps",
@@ -121,8 +128,10 @@ export const PRODUCTION: Array<{ step: string; status: ProdStatus; note?: string
   { step: "Logline + concept locked", status: "done" },
   { step: "Storyboard / shot list (this scaffold)", status: "done" },
   { step: "Motion language reconciled with the Film System brief", status: "done" },
+  { step: "Remotion composition skeleton — scenes + motion alphabet wired", status: "done", note: "demo-film/ · typechecks, both compositions register" },
   { step: "Founder sign-off on script + captions", status: "todo" },
-  { step: "Build the hero cut in Remotion (1920×1080)", status: "blocked", note: "needs the Mac / motion pipeline" },
+  { step: "Fill in per-scene product UI mockups (replace placeholders)", status: "todo" },
+  { step: "Render the hero cut (1920×1080) on the pipeline", status: "blocked", note: "needs the Mac / motion pipeline" },
   { step: "Vertical cut (1080×1920) for social + outreach", status: "blocked", note: "follows the hero cut" },
   { step: "Sound pass (taps, swell, indigo chime)", status: "todo" },
   { step: "Render + poster still; review gate", status: "todo" },

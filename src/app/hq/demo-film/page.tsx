@@ -38,6 +38,10 @@ export default async function DemoFilmPage() {
         <span className="hq-co-status" data-status="pre-incorporation">
           {FILM_META.statusLabel} · {progress.done}/{progress.total} steps done
         </span>
+        <p className="hq-film-build">
+          <span className="hq-film-build-label">build</span> {FILM_META.build.project} ·{" "}
+          <span className="hq-fm-mono">{FILM_META.build.run}</span> — {FILM_META.build.state}
+        </p>
       </header>
 
       {/* Spec */}

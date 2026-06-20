@@ -7386,3 +7386,5 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   .hq-film-scene { grid-template-columns: 1fr; gap: 8px; }
   .hq-film-scene-rail { flex-direction: row; align-items: baseline; gap: 10px; }
 }
+.hq-film-build { margin: 14px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--ink-quiet); max-width: 78ch; }
+.hq-film-build-label { font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
