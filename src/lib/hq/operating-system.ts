@@ -155,6 +155,19 @@ export const HQ_HUBS: HqHub[] = [
     action: "open the source asset",
   },
   {
+    key: "asset-command",
+    label: "Asset Command",
+    title: "Asset Command System",
+    href: "/hq/asset-command",
+    audience: ["founder", "marketing", "shareholder"],
+    mode: "working",
+    summary:
+      "The launch-asset operating layer: panel, taxonomy, ranked priorities, the first ten, the quality gate, and the Claude Design prompt framework.",
+    primaryMetric: "the minimum complete bank",
+    secondaryMetric: "one asset at a time",
+    action: "open the first prompt",
+  },
+  {
     key: "reporting",
     label: "Reporting",
     title: "Simple metrics",
@@ -378,6 +391,18 @@ export const HQ_ASSETS: HqAsset[] = [
     source: "public/brand/business-loan-pack-2026.html",
     action: "Open lender deck",
     note: "€40k facility · password-gated · Student Edition adjacent wedge included.",
+  },
+  {
+    id: "asset-command-system",
+    title: "Asset Command System",
+    group: "sales",
+    audience: ["founder", "marketing", "shareholder"],
+    state: "working",
+    owner: "Founder",
+    href: "/hq/asset-command",
+    source: "src/lib/hq/asset-command.ts",
+    action: "Open the system",
+    note: "The launch-asset operating layer: director panel, scored taxonomy, ranked priorities, the first ten assets, the quality gate, and the reusable Claude Design prompt framework. Governs which assets get made, in what order.",
   },
   {
     id: "venue-sales-pack",
