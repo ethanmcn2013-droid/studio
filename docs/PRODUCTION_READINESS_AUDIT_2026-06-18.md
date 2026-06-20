@@ -398,13 +398,27 @@ Three more areas closed, mostly in code:
   design** (the public marketing umbrella must stay up even if HQ's DB is
   misconfigured). Dependency-free (no zod). Wired via `instrumentation.ts`.
 
+- **GTM-roadmap authz (secondary finding): DONE.** `tasks/actions/roadmap.ts` is now
+  operator-gated via `requireAdmin()` (`ADMIN_USER_IDS`). Operator: set that env.
+
+- **CSP reporting (precursor to §8 enforce): DONE for the four Report-Only repos.**
+  The Report-Only policies were reporting to nowhere — there was no evidence any was
+  clean. Each of tasks/Signal/Studio/Timeline now has a `/api/csp-report` collector
+  (logs one `[csp-report]` line per violation) wired via `report-uri` + `report-to` +
+  a `Reporting-Endpoints` header (tasks also allowlists the route in `proxy.ts`).
+  **This de-risks the enforce flip:** watch the function logs for `[csp-report]` for a
+  week; once clean, flip `Content-Security-Policy-Report-Only` → `Content-Security-Policy`
+  per product. (Notes already enforces; it could get the same collector to catch real
+  blocks — a quick follow-up.)
+
 Net after this pass: of the launch blockers, **#2 isolation, #3 CI, #4 observability,
-§6 env validation, and §9 rate-limiting (Signal) are done in code.** What remains is
-genuinely operator-gated: **verified Turso backups + one rehearsed restore** (the only
-Critical, irreversible risk), pasting the **Sentry DSNs** and provisioning **Upstash**
-into Vercel, marking the CI **`verify` check Required**, and the **CSP enforce** flip
-(plus the small `tasks/actions/roadmap.ts` authz call). The code armor is largely on;
-the remaining work is dashboard configuration and one rehearsed restore.
+§6 env validation, §9 rate-limiting (Signal), the GTM-roadmap authz gate, and CSP
+reporting are done in code.** What remains is genuinely operator-gated: **verified Turso
+backups + one rehearsed restore** (the only Critical, irreversible risk), pasting the
+**Sentry DSNs** / provisioning **Upstash** / setting **`ADMIN_USER_IDS`** in Vercel,
+marking the CI **`verify` check Required**, and **flipping CSP to enforce** once the
+collector shows a clean week. The code armor is on; the remaining work is dashboard
+configuration and one rehearsed restore.
 
 ---
 
