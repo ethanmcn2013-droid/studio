@@ -4,8 +4,8 @@ import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   ACS_META,
   assetById,
+  COMPLETED_PROMPTS,
   EXECUTIVE_JUDGEMENT,
-  FIRST_PROMPT,
   FIRST_TEN,
   OPEN_QUESTIONS,
   PANEL,
@@ -345,18 +345,31 @@ export default async function AssetCommandPage() {
         </div>
       </section>
 
-      {/* 9 · First completed prompt */}
-      <section className="hq-co-block" aria-label="first completed prompt">
+      {/* 9 · Completed prompt library */}
+      <section className="hq-co-block" aria-label="completed prompt library">
         <div className="hq-fm-unit-head">
-          <span className="hq-os-eyebrow">09 · first completed prompt</span>
+          <span className="hq-os-eyebrow">09 · completed prompt library</span>
           <p>
-            The highest-priority asset, written in full and ready to paste into
-            Claude Design: <strong>{FIRST_PROMPT.asset}</strong>.
+            Each prompt is written in full and ready to paste into Claude Design,
+            alongside the brand guide. The library grows one asset at a time, in
+            priority order. {COMPLETED_PROMPTS.length} ready.
           </p>
         </div>
-        <pre className="hq-ff-mono" style={prePromptStyle}>
-          {FIRST_PROMPT.body}
-        </pre>
+        {COMPLETED_PROMPTS.map((p, i) => (
+          <details key={p.id} className="hq-co-right" open={i === 0} style={{ marginBottom: 14 }}>
+            <summary style={{ cursor: "pointer", listStyle: "revert" }}>
+              <span className="hq-co-right-cls">
+                {String(i + 1).padStart(2, "0")} · {p.asset}
+              </span>
+              <span className="hq-co-right-body" style={{ display: "block", marginTop: 6 }}>
+                {p.intent}
+              </span>
+            </summary>
+            <pre className="hq-ff-mono" style={prePromptStyle}>
+              {p.body}
+            </pre>
+          </details>
+        ))}
       </section>
 
       {/* 10 · Open questions */}

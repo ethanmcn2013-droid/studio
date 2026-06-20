@@ -301,11 +301,24 @@ export const PROMPT_FRAMEWORK: FrameworkSection[] = [
   { n: 16, title: "Self-review checklist", guidance: "A short checklist Claude Design runs before returning the draft — the gate, in question form." },
 ];
 
-// ── The first completed Claude Design prompt — the venue one-pager ──
+// ── Completed Claude Design prompts — the growing, paste-ready library ──
 
-export const FIRST_PROMPT = {
-  asset: "Venue one-pager (A4, single-sided, print + screen PDF)",
-  body: `1 · ASSET NAME
+export type CompletedPrompt = {
+  id: string;
+  asset: string;
+  intent: string;
+  status: "ready" | "blocked";
+  body: string;
+};
+
+export const COMPLETED_PROMPTS: CompletedPrompt[] = [
+  {
+    id: "venue-onepager",
+    asset: "Venue one-pager (A4, single-sided, print + screen PDF)",
+    intent:
+      "The revenue keystone — explains the offer in seven seconds and instantiates the print system every other physical object inherits.",
+    status: "ready",
+    body: `1 · ASSET NAME
 Signal Studio — Venue One-Pager. A4, single-sided. Print version (heavy uncoated leave-behind) and a screen PDF for email attachment.
 
 2 · BUSINESS OBJECTIVE
@@ -364,7 +377,204 @@ Would a premium venue keep this on its desk? Is there exactly one indigo accent?
 
 HOW TO JUDGE SUCCESS
 The one-pager succeeds if a busy wedding coordinator, reading it alone for under a minute, understands the offer, trusts the company, and wants the demo — and if the founder would be proud to see it sitting on the front desk of the best venue in Limerick.`,
-};
+  },
+  {
+    id: "founder-card",
+    asset: "Founder business card (85×55mm, double-sided, print + screen preview)",
+    intent:
+      "The cheapest premium-signal object; the first thing a venue holds, and it sets the card grammar the café and A6 cards inherit.",
+    status: "ready",
+    body: `1 · ASSET NAME
+Signal Studio — Founder business card. Double-sided, standard 85×55mm. Print-ready (heavy uncoated) plus a screen preview.
+
+2 · BUSINESS OBJECTIVE
+The first object a venue holds. The cheapest possible premium signal: it must make the founder and the company read as a respected, established business in the opening seconds of a face-to-face introduction, and carry one clear way to make contact. It also sets the card grammar the café card and A6 card inherit.
+
+3 · AUDIENCE
+A wedding-venue owner or coordinator in Limerick — premium, time-poor, judges credibility instantly. Also handed to partners, press, and peers.
+
+4 · MOMENT OF USE
+Handed across a table at the start or end of a short in-person meeting; later found in a pocket or on a desk. It is judged by touch and at a glance.
+
+5 · SOURCE CONTEXT
+Brand handbook: white/black/indigo #4f46e5, Geist Sans + Geist Mono, hairlines not shadows, one earned accent, lowercase wordmark "signal studio." with the indigo period. Voice: declarative, plain English. The dot is the brand's hero gesture.
+
+6 · REQUIRED COPY (use as written; confirm name/title before print)
+Front:
+ — Wordmark: signal studio. (lowercase, indigo period), optically centred
+ — Nothing else, or at most a single mono micro-label: CALM COORDINATION
+Back:
+ — Name: Ethan McNamara  [confirm exact spelling]
+ — Role: Founder  [confirm preferred title]
+ — hello@signalstudio.ie
+ — signalstudio.ie
+ — Limerick, Ireland
+ — Optional single quiet line (one only, if any): Four products, one system.
+No phone number unless the founder wants one; no social handles; no QR unless it resolves to a real destination.
+
+7 · VISUAL HIERARCHY
+Front is the brand: the wordmark and its indigo period, centred in calm space — that is the whole front. Back is the contact: name first, then role, then the two ways to reach (email, site), then place. The eye should rest, not work.
+
+8 · LAYOUT REQUIREMENTS
+Front: wordmark optically centred, generous margins, one hairline only if it earns its place. Back: left-aligned block, mono micro-labels for the field rows, the email as the one emphasised line. This card defines the card grammar — margins, micro-label style, and the single-accent rule — that the café and A6 cards reuse.
+
+9 · BRAND RULES
+Paper white. Ink-black text. Exactly one indigo accent (the wordmark period is the natural place). Geist Sans for the name; Geist Mono for micro-labels and the URL/email. Hairlines, no shadows, no gradient. Heavy uncoated stock; the card should feel substantial.
+
+10 · WHAT TO AVOID
+No gloss, no lamination, no rounded-corner gimmicks, no spot-UV trickery. No logo soup. No second colour. No stock icons (no phone/mail glyph clutter). No tagline stack. No QR to a placeholder. Nothing that looks like a generic startup card.
+
+11 · PRINT / EXPORT SPECIFICATIONS
+85×55mm, double-sided. 3mm bleed, 4mm safe margin. CMYK, print-ready PDF/X-1a, 350–400gsm uncoated (duplex for weight if available). Supply front and back as separate artboards. Also export an RGB screen preview (front + back) for review.
+
+12 · ACCESSIBILITY REQUIREMENTS
+WCAG AA contrast (black on white passes; if indigo touches text, confirm it also passes). Smallest type no less than 7–8pt at print size; the email no smaller than the name's secondary line. Don't rely on the accent alone to carry meaning.
+
+13 · VARIANTS REQUIRED
+(a) Print PDF (CMYK, bleed, separate front/back). (b) Screen preview PNG/PDF (RGB). Optional (c) a "with phone number" variant if the founder decides to include one.
+
+14 · QUALITY BAR
+Passes all ten checks of the Asset Quality Gate, with particular weight on brand restraint, premium front-desk, and print/export. Do not return a draft that fails any check.
+
+15 · FINAL DELIVERABLES
+founder-card-front.pdf · founder-card-back.pdf (CMYK, bleed) · founder-card-preview.png (RGB) · the editable source · and a one-line print note (stock weight + finish).
+
+16 · SELF-REVIEW CHECKLIST
+Does it feel substantial and restrained? One indigo accent only? Is the email the clear way to make contact? Any gloss, gradient, icon clutter, or second colour? Correct at 85×55mm with bleed? Does it set a card grammar the next card can inherit?
+
+HOW TO JUDGE SUCCESS
+The card succeeds if a premium venue owner, handed it across a table, reads the company as established and trustworthy before a word is spoken — and if the founder is glad to leave it behind.`,
+  },
+  {
+    id: "fp-social",
+    asset: "\"Founding Limerick Partner No. __\" social post system (LinkedIn · IG square · IG story · website card)",
+    intent:
+      "The compounding proof engine — numbered, restrained, recognisable; built so it is impossible to publish before a partner is real and permissioned.",
+    status: "ready",
+    body: `1 · ASSET NAME
+Signal Studio — "Founding Limerick Partner No. __" social post system. A template set across LinkedIn, Instagram square, Instagram story, and a website card.
+
+2 · BUSINESS OBJECTIVE
+The compounding proof engine. Each real signed venue becomes a numbered, restrained, instantly recognisable announcement that builds credibility without hype. The system must make proof feel earned and premium — and must be impossible to use before a partner is real and has given written permission.
+
+3 · AUDIENCE
+Other premium venues and coordinators watching quietly; the local Limerick business community; press. People who trust calm proof and distrust noise.
+
+4 · MOMENT OF USE
+Published when a venue signs and has given written permission — one post per partner, occasionally a milestone recap. Seen in a fast-scrolling feed; it must read in one second and reward a second look.
+
+5 · SOURCE CONTEXT
+Brand handbook: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent. Voice: declarative, plain, no exclamation. The number is the hero — Geist Mono, large, calm. Permission and specimen discipline are non-negotiable: no invented partners, ever.
+
+6 · REQUIRED COPY (template; bracketed fields filled per real, permissioned partner)
+Hero (mono): Founding Limerick Partner No. [01]
+Line 1: [Venue Name] is a Founding Limerick Partner of Signal Studio.
+Line 2 (optional, plain): One of the first venues in Limerick running calm coordination — capture, run-sheet, shared timeline, and the day's one priority.
+Footer: signalstudio.ie · Limerick
+SPECIMEN RULE: until a real partner is signed and has signed the permission form, every export must carry a visible "SPECIMEN — not a real partner" mark and use a placeholder name like "[Venue Name]". Deliver both the specimen build and the clean template.
+Do not add: metrics, quotes, logos, or any claim that is not in writing.
+
+7 · VISUAL HIERARCHY
+First: the number ("No. 01"). Second: the venue name. Third: the single supporting line and the site. The number and the partner's name carry the post; everything else recedes.
+
+8 · LAYOUT REQUIREMENTS
+A calm card on paper white with one hairline frame and one indigo accent (the period, or a single dot beside the number). The number sits large in mono; the venue name in Geist Sans beneath. Generous margins. The same composition adapts across the four formats by re-flowing, not redesigning.
+
+9 · BRAND RULES
+White background. Black text. One indigo accent only. Geist Mono for the number and micro-labels; Geist Sans for the venue name and line. Hairlines, no shadow, no gradient, no photo background. The Signal Studio wordmark appears once, small, as the signer.
+
+10 · WHAT TO AVOID
+No confetti, balloons, or emoji. No exclamation marks. No "thrilled / excited to announce". No fabricated logos or venue photos without permission. No metrics. No gradient or glow. No template that could be posted with a real-looking name before the partner is signed.
+
+11 · EXPORT SPECIFICATIONS (screen)
+LinkedIn: 1200×1200 (square reads best in-feed); also supply 1200×627 if used as a link image. Instagram square: 1080×1080. Instagram story: 1080×1920, text inside safe margins clear of top/bottom UI. Website card: a responsive component spec (16:9 + a compact variant), supplied as SVG. Export PNG for social, SVG for web. RGB / sRGB.
+
+12 · ACCESSIBILITY REQUIREMENTS
+WCAG AA contrast. Provide an alt-text template: "Signal Studio — Founding Limerick Partner number [01], [Venue Name]." Story text within the safe area. The accent is never the sole carrier of meaning.
+
+13 · VARIANTS REQUIRED
+(a) LinkedIn 1200×1200. (b) Instagram square 1080×1080. (c) Instagram story 1080×1920. (d) Website card (SVG / responsive). (e) A clearly-marked SPECIMEN version of each, for internal review only.
+
+14 · QUALITY BAR
+Passes all ten checks of the Asset Quality Gate, with particular weight on proof/claims and permission. A draft that omits the specimen mark, or that could imply an unsigned partner, fails automatically.
+
+15 · FINAL DELIVERABLES
+fp-no-__-linkedin.png · fp-no-__-ig-square.png · fp-no-__-ig-story.png · fp-card.svg (website) · the matching SPECIMEN exports · the editable source with the number and name as the only fields to change · and the alt-text + permission-gate note.
+
+16 · SELF-REVIEW CHECKLIST
+Is the number the hero, calm in mono? One indigo accent only? Any hype word, emoji, or exclamation? Is there a visible specimen mark on the review build? Could this be posted with a real name before the partner is signed (it must not)? Does every format share one composition? Alt text present?
+
+HOW TO JUDGE SUCCESS
+The system succeeds if a single numbered post makes a watching venue think "I want to be one of those" — quietly, with no hype — and if it is structurally impossible to publish before a partner is real and has given written permission.`,
+  },
+  {
+    id: "email-sig",
+    asset: "Founder email signature (HTML + plain text) + A4 letterhead (print + PDF)",
+    intent:
+      "Cheap consistency used daily — makes every founder email and letter read as a real, premium company; inherits the one-pager's document shell.",
+    status: "ready",
+    body: `1 · ASSET NAME
+Signal Studio — Founder email signature (HTML) + A4 letterhead (print + PDF).
+
+2 · BUSINESS OBJECTIVE
+Make every founder email and letter read as a real, premium company. Low effort, used daily — cheap consistency that compounds trust across outreach, press, and partner correspondence.
+
+3 · AUDIENCE
+Venues, press, partners, advisors — anyone the founder writes to.
+
+4 · MOMENT OF USE
+Signature: the foot of every founder email. Letterhead: formal letters (welcome letters, partner correspondence), printed or as PDF.
+
+5 · SOURCE CONTEXT
+Brand handbook: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent, lowercase "signal studio." wordmark with indigo period. Canonical address hello@signalstudio.ie.
+
+6 · REQUIRED COPY
+Signature:
+ — Ethan McNamara [confirm] · Founder
+ — Signal Studio
+ — hello@signalstudio.ie · signalstudio.ie
+ — Limerick, Ireland
+ — (no quotes, no banner, no "sent from", no social icons)
+Letterhead:
+ — Header: signal studio. wordmark (indigo period) + a hairline rule.
+ — Footer (mono, small): Signal Studio · Limerick, Ireland · hello@signalstudio.ie · signalstudio.ie
+
+7 · VISUAL HIERARCHY
+Signature: name first, then role, then the one contact line. Letterhead: the wordmark sits quietly top-left; the letter body is the focus; the footer is a faint mono line.
+
+8 · LAYOUT REQUIREMENTS
+Signature: a compact left-aligned block, web-safe, no images that break in clients (use a unicode middot for separators; an inline SVG dot only if it renders reliably). Letterhead: A4 with a quiet header band, generous body margins, a footer rule. Inherits the document shell from the one-pager.
+
+9 · BRAND RULES
+White, black, one indigo accent (the wordmark period). Geist where it renders, with a clean fallback stack for email (Geist → Helvetica Neue → Arial → sans-serif). Hairlines, no shadow, no gradient.
+
+10 · WHAT TO AVOID
+No logo image that fails to load, no banner ads, no quotes or aphorisms, no wall of confidentiality text unless legally required (keep it minimal), no social-icon row, no second colour, no marketing tagline.
+
+11 · EXPORT SPECIFICATIONS
+Signature: HTML snippet (inline CSS, robust across Gmail / Apple Mail / Outlook) plus a plain-text fallback. Letterhead: A4 (210×297mm), 15–20mm margins, print-ready PDF + an editable template (Docs/Word + source).
+
+12 · ACCESSIBILITY REQUIREMENTS
+WCAG AA contrast. Real selectable text, not an image (screen-reader friendly). Any image carries alt text.
+
+13 · VARIANTS REQUIRED
+(a) HTML signature. (b) Plain-text signature. (c) A4 letterhead PDF. (d) Editable letterhead template.
+
+14 · QUALITY BAR
+Passes the Asset Quality Gate, with weight on brand restraint, copy precision, accessibility, and reusability.
+
+15 · FINAL DELIVERABLES
+signature.html · signature.txt · letterhead.pdf · letterhead-template (editable) · a one-line install note for the signature.
+
+16 · SELF-REVIEW CHECKLIST
+Does the signature render without broken images in major clients? Real selectable text? One indigo accent only? Any banner, quote, or icon clutter? Letterhead correct at A4 with sensible margins? Does it inherit the one-pager's document shell?
+
+HOW TO JUDGE SUCCESS
+Succeeds if a recipient's eye goes to the message, not the chrome — yet the email or letter unmistakably reads as Signal Studio: quiet, consistent, premium.`,
+  },
+];
+
+export const FIRST_PROMPT = COMPLETED_PROMPTS[0];
 
 export const OPEN_QUESTIONS: Array<{ q: string; why: string }> = [
   { q: "Launch-date contract: BRAND.md §8 says 'no launch dates / build until it's right', but this brief sets a hard 1 Sep 2026. Confirm 1 Sep is an internal asset-readiness deadline only, not a public countdown.", why: "Determines whether any asset may reference a date publicly. Current assumption: internal only." },
