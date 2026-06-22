@@ -200,42 +200,87 @@ export default function AboutPage() {
                   letterSpacing: "-0.025em",
                 }}
               >
-                Project management shouldn&rsquo;t need translation.
+                Built for the work people actually manage.
               </h2>
 
-              {/* Conviction */}
+              {/* Lead — the thesis, set slightly stronger */}
               <p
-                className="leading-[1.7] text-ink-soft"
-                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+                className="leading-[1.6] text-ink"
+                style={{ fontSize: "clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem)" }}
               >
-                Most project tools were built by software teams, for software
-                teams. That worked for software. But the habits arrived with a
-                vocabulary &mdash; sprints, epics, backlogs, burndown &mdash; and
-                somewhere along the way that vocabulary became the price of entry
-                for everyone else.
+                Project management software was built by tech companies, for tech
+                companies.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                It shouldn&rsquo;t be. A wedding planner, a final-year student, a
-                venue manager, a small crew running a busy month &mdash; they all
-                manage real work against real deadlines. None of them should have
-                to learn a profession before they can see what&rsquo;s next.
+                That is not a criticism. It explains why so many tools make sense
+                to the people who built them, and feel strangely distant to
+                everyone else. They arrive with a vocabulary of their own:
+                sprints, epics, backlogs, tickets, workflows, statuses,
+                dependencies.
+              </p>
+
+              {/* Pivot line */}
+              <p
+                className="mt-6 leading-[1.6] text-ink"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Useful words in the right rooms. Heavy everywhere else.
+              </p>
+
+              <p
+                className="mt-6 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Most people do not begin with a methodology. They begin with
+                something that needs to happen. A wedding to plan. A college year
+                to keep on top of. A venue team trying to stay aligned. A small
+                business keeping customers, deadlines, and ideas moving.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Signal Studio is built on a simpler idea: a system should reduce
-                friction, not hand you a new language to learn first. Notes to
-                capture the work, Tasks to run it, Timeline to explain it, Signal
-                to surface what matters &mdash; four products that read as one calm
-                whole. The goal was never to make people do project management
-                properly. It was to help them organise the work in front of them,
-                in <span className="marker">plain words</span>, without the tax.
+                The barrier is not only technical. It is linguistic. It is the
+                quiet assumption that you already know the method, the vocabulary,
+                and the shape the work is supposed to take.
+              </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                You open a tool looking for clarity, then spend your energy
+                translating real work into someone else&rsquo;s system.
+              </p>
+
+              {/* Turn of the essay */}
+              <p
+                className="mt-6 leading-[1.6] text-ink"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                We built Signal Studio to remove that{" "}
+                <span className="marker">translation layer</span>.
+              </p>
+
+              <p
+                className="mt-6 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Notes are where the work starts. Tasks are what needs doing.
+                Timeline shows what is next. Signal shows what needs attention.
+              </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Four products, one system, built so people can organise the work
+                in front of them without learning a new language first.
               </p>
 
               {/* Signature */}
