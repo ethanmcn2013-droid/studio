@@ -165,12 +165,14 @@ const PALETTE = [
 ];
 
 // Canon: DESIGN.md §5 (ratified 2026-05-16, deployed + live-verified).
+// Order: the house first, then the four products in workflow order
+// (Notes captures → Tasks runs → Timeline shows → Signal surfaces).
 const MOTIONS: Array<{ code: string; variant: "signal" | "tasks" | "roadmap" | "analytics" | "notes"; name: string; cycle: string; line: string }> = [
-  { code: "M·01", variant: "signal", name: "broadcast", cycle: "once", line: "One ring radiates from the period and is gone. The house announcing itself on arrival — said once, never repeated." },
-  { code: "M·02", variant: "tasks", name: "pulse", cycle: "2.6s", line: "The dot breathes at rest and quickens under load. Work — alive, but unhurried." },
-  { code: "M·03", variant: "roadmap", name: "sweep", cycle: "5.4s", line: "The dot tracks left to right along an unseen timeline, then resets. Direction without urgency." },
-  { code: "M·04", variant: "analytics", name: "tick", cycle: "3.6s", line: "The dot snaps between discrete sample heights and holds — never gliding. Reading the signal, not streaming it." },
-  { code: "M·05", variant: "notes", name: "caret", cycle: "1.1s", line: "Blinks like a held cursor. A thought mid-formation." },
+  { code: "M·01", variant: "signal", name: "broadcast", cycle: "once", line: "One ring radiates from the period and is gone. The house announcing itself on arrival: said once, never repeated." },
+  { code: "M·02", variant: "notes", name: "caret", cycle: "1.1s", line: "Blinks like a held cursor. A thought mid-formation." },
+  { code: "M·03", variant: "tasks", name: "pulse", cycle: "2.6s", line: "The dot breathes at rest and quickens under load. Work, alive but unhurried." },
+  { code: "M·04", variant: "roadmap", name: "sweep", cycle: "5.4s", line: "The dot tracks left to right along an unseen timeline, then resets. Direction without urgency." },
+  { code: "M·05", variant: "analytics", name: "tick", cycle: "3.6s", line: "The dot snaps between discrete sample heights and holds, never gliding. Reading the signal, not streaming it." },
 ];
 
 const REFUSALS = [
@@ -180,7 +182,7 @@ const REFUSALS = [
   { num: "N·04", text: "AI-workspace framing. \"Your second brain.\" \"Magical.\"" },
   { num: "N·05", text: "Stock photography of teams pointing at screens." },
   { num: "N·06", text: "Emoji as decoration. Anywhere. Including in product copy." },
-  { num: "N·07", text: "A roadmap that promises features the team won't ship." },
+  { num: "N·07", text: "A plan that promises features the team won't deliver." },
 ];
 
 const CONSTRUCTION = [
@@ -337,7 +339,18 @@ export default function BrandPage() {
           </em>
           <br />
           Boring on purpose
-          <span className="text-[var(--indigo)] font-semibold">.</span>
+          <span
+            aria-hidden
+            style={{
+              display: "inline-block",
+              width: "0.16em",
+              height: "0.16em",
+              borderRadius: "50%",
+              background: "var(--indigo)",
+              marginLeft: "0.04em",
+              verticalAlign: "0.02em",
+            }}
+          />
         </h1>
 
         <div className="grid grid-cols-1 items-end gap-12 md:grid-cols-[1fr_320px]">
@@ -402,7 +415,7 @@ export default function BrandPage() {
               baseline-seated. The verbs take a{" "}
               <em className="not-italic font-medium text-[var(--indigo)]">middot</em>,
               lifted toward the cap-height. Each wordmark carries its own
-              ambient motion — a pulse fitting the product&apos;s job.
+              ambient motion, a pulse fitting the product&apos;s job.
             </>
           }
         />
@@ -437,7 +450,13 @@ export default function BrandPage() {
                 {m.code} · {m.name}
               </span>
               <h4 className="m-0 mt-1.5 mb-1.5 text-[15px] font-medium tracking-[-0.015em] text-[var(--ink)]">
-                {m.variant === "signal" ? "signal studio." : m.variant + (m.variant === "notes" ? "." : "·")}
+                {m.variant === "signal"
+                  ? "signal studio."
+                  : (m.variant === "roadmap"
+                      ? "timeline"
+                      : m.variant === "analytics"
+                        ? "signal"
+                        : m.variant) + (m.variant === "notes" ? "." : "·")}
               </h4>
               <p className="m-0 text-[12.5px] leading-[1.5] text-[var(--ink-soft)]">{m.line}</p>
             </div>

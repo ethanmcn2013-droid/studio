@@ -1954,18 +1954,39 @@ body::after { content: none; }
   100% { transform: translateY(-0.62em); }
 }
 
-.brand-mark[data-variant="notes"].is-live .pd {
-  animation: brand-notes-caret 1.1s steps(1,end) infinite;
+/* notes · M·05 caret — the period reads as a blinking text caret: a tall
+   thin indigo bar that blinks like a held cursor (DESIGN.md §5). The '.'
+   glyph is hidden and the caret bar is drawn in its place. (Review 3
+   issue 05: the old gesture was a scaling/pulsing period, which read as a
+   square dot rather than a caret.) */
+.brand-mark[data-variant="notes"] .pd {
+  color: transparent;
+  position: relative;
+  width: 0.1em;
+}
+.brand-mark[data-variant="notes"] .pd::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.02em;
+  width: 0.085em;
+  height: 0.62em;
+  border-radius: 0.02em;
+  background: var(--indigo);
+}
+.brand-mark[data-variant="notes"].is-live .pd::after {
+  animation: brand-notes-caret 1.1s steps(1, end) infinite;
 }
 @keyframes brand-notes-caret {
-  0%, 100% { transform: scale(0.92); opacity: 0.85; }
-  50%      { transform: scale(1.05); opacity: 1; }
+  0%, 50%      { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .brand-mark .pd,
   .brand-mark .md,
   .brand-mark .ring { animation: none !important; opacity: 1 !important; }
+  .brand-mark[data-variant="notes"] .pd::after { animation: none !important; opacity: 1 !important; }
 }
 
 /* ─── Atlas start-here pin ───────────────────────────────────────────────

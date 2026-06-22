@@ -23,9 +23,18 @@ import { Wordmark } from "@/components/brand/wordmark";
 
 type Variant = "signal" | "tasks" | "roadmap" | "analytics" | "notes";
 
+// The visible word (post 2026-06-13 rename: roadmap→timeline,
+// analytics→signal). The `variant` key stays on the internal gesture
+// identity; only the displayed word changes.
+function wordFor(variant: Variant): string {
+  if (variant === "roadmap") return "timeline";
+  if (variant === "analytics") return "signal";
+  return variant;
+}
+
 function glyph(variant: Variant) {
   if (variant === "signal") return "signal studio.";
-  return variant + (variant === "notes" ? "." : "·");
+  return wordFor(variant) + (variant === "notes" ? "." : "·");
 }
 
 export function MotionSpecimen({
@@ -123,7 +132,7 @@ export function MotionSpecimen({
       <div className="flex flex-1 items-center justify-center py-4">
         <Wordmark
           variant={variant}
-          size={variant === "signal" || variant === "analytics" ? "md" : "lg"}
+          size="md"
           animate
         />
       </div>
