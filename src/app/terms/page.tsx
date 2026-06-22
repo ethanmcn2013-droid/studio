@@ -101,7 +101,7 @@ const SECTIONS = [
   {
     heading: "Contact",
     body: [
-      "Questions about these terms: hello@signalstudio.ie. Signal Studio is operated by Ethan McNamara, Dublin, Ireland.",
+      "Questions about these terms: hello@signalstudio.ie. Signal Studio is operated by Ethan McNamara, Limerick, Ireland.",
     ],
   },
 ] as const;

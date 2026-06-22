@@ -839,7 +839,7 @@ export default function BrandPage() {
 Founder · signal studio.
 
 hello@signalstudio.ie
-Dublin · Ireland · signalstudio.ie`}
+Limerick · Ireland · signalstudio.ie`}
             </pre>
             <div className="flex gap-2">
               <a
@@ -955,7 +955,7 @@ Dublin · Ireland · signalstudio.ie`}
           {[
             ["Maintainer", "Ethan McNamara"],
             ["House", "signal studio."],
-            ["Address", "Dublin, Ireland"],
+            ["Address", "Limerick, Ireland"],
             ["Mail", "hello@signalstudio.ie"],
             ["Version", "1.1 · 2026-05-18"],
             ["Status", "Living document"],

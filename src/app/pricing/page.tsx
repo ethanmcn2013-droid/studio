@@ -1280,7 +1280,7 @@ export default async function PricingPage({
               hello@signalstudio.ie
             </a>
             <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
-            Dublin
+            Limerick
             <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
             2026
           </div>

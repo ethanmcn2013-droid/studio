@@ -167,7 +167,7 @@ export default async function ContactPage({
           ) : null}
 
           <p className="mt-6 text-[13px] leading-[1.6] text-ink-faint">
-            Designed and operated by Ethan McNamara. Dublin &middot; Ireland.
+            Designed and operated by Ethan McNamara. Limerick &middot; Ireland.
           </p>
 
           <p

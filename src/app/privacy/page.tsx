@@ -74,7 +74,7 @@ const SECTIONS = [
     heading: "Contact",
     body: [
       "Questions, complaints, data requests: hello@signalstudio.ie. The address is read by a person.",
-      "The data controller is Ethan McNamara, Dublin, Ireland.",
+      "The data controller is Ethan McNamara, Limerick, Ireland.",
     ],
   },
 ] as const;
