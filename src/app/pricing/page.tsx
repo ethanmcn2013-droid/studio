@@ -6,7 +6,7 @@ import { TASKS_URL } from "@/lib/product-urls";
 export const metadata: Metadata = {
   title: "Pricing — Signal Studio",
   description:
-    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €120 a year, for the workspace tier. €79 one-time for an event. Free for students. Venues stand behind their couples from €1,500 a year.",
+    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €100 a year, for the workspace tier. €79 one-time for an event. €9.99 a year for students.",
   openGraph: {
     title: "Pricing — Signal Studio",
     description:
@@ -69,15 +69,15 @@ const TIERS: Tier[] = [
   },
   {
     name: "Student",
-    price: "€0",
-    cadence: "with verified .edu",
-    body: "Workspace tier, free. Two-year window. For students running multi-stream work with real deadlines.",
+    price: "€9.99",
+    cadence: "/ year · verified student email",
+    body: "The full Workspace tier at a student price. Verify once with a student email, renew each year while you study.",
     pills: [
-      { label: "Workspaces", value: "One" },
+      { label: "Workspaces", value: "Unlimited" },
       { label: "Guests", value: "Unlimited" },
-      { label: "Window", value: "Two years" },
+      { label: "Window", value: "Yearly" },
     ],
-    cta: "Verify .edu",
+    cta: "Verify student email",
     href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
   },
   {
@@ -85,7 +85,7 @@ const TIERS: Tier[] = [
     recommended: true,
     price: "€12",
     cadence: "/ month · per workspace",
-    annual: "or €120 a year, paid once",
+    annual: "or €100 a year, paid once",
     annualHref: TASKS_CHECKOUT_WORKSPACE_ANNUAL,
     body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
     pills: [
@@ -151,14 +151,14 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
     label: "Who it's for",
     values: [
       "Solo, just starting",
-      "Verified .edu, two-year window",
+      "Verified student, renews yearly",
       "Crews running ongoing work",
       "One wedding, launch, move, conference",
     ],
   },
   {
     label: "Workspaces",
-    values: ["One", "One", "Unlimited", "One, event-shaped"],
+    values: ["One", "Unlimited", "Unlimited", "One, event-shaped"],
   },
   {
     label: "All four products",
@@ -170,11 +170,11 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
   },
   {
     label: "Price",
-    values: ["€0", "€0", "€12 / month", "€79 one-time"],
+    values: ["€0", "€9.99 / year", "€12 / month", "€79 one-time"],
   },
   {
     label: "Window",
-    values: ["Forever", "Two years", "Monthly, cancel anytime", "12 months"],
+    values: ["Forever", "Yearly", "Monthly, cancel anytime", "12 months"],
   },
   {
     label: "After the window",
@@ -630,10 +630,12 @@ export default async function PricingPage({
                       style={{
                         padding: "22px 24px",
                         borderBottom: "1px solid var(--border-soft)",
-                        borderLeft: "1px solid var(--border-soft)",
+                        borderTop: t.recommended
+                          ? "2px solid var(--accent)"
+                          : "2px solid transparent",
                         color: "var(--ink)",
                         background: t.recommended
-                          ? "linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 60%, var(--bg-elev)) 0%, var(--bg-elev) 100%)"
+                          ? "color-mix(in srgb, var(--accent-soft) 50%, var(--bg-elev))"
                           : "transparent",
                         verticalAlign: "bottom",
                       }}
@@ -702,12 +704,11 @@ export default async function PricingPage({
                               borderBottom: isLast
                                 ? "none"
                                 : "1px solid var(--border-soft)",
-                              borderLeft: "1px solid var(--border-soft)",
                               fontSize: 15,
                               lineHeight: 1.5,
-                              color: "var(--ink-soft)",
+                              color: tier.recommended ? "var(--ink)" : "var(--ink-soft)",
                               background: tier.recommended
-                                ? "color-mix(in srgb, var(--accent-soft) 35%, var(--bg-elev))"
+                                ? "color-mix(in srgb, var(--accent-soft) 30%, var(--bg-elev))"
                                 : "transparent",
                               verticalAlign: "top",
                             }}
@@ -1053,105 +1054,12 @@ export default async function PricingPage({
           </div>
         </section>
 
-        {/* ── 6.5 · For venues (paid patronage, ratified 2026-05-16) ─ */}
-        <section
-          style={{
-            background: "var(--bg-deep)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div className="mb-6" style={eyebrowStyle()}>
-              For venues
-            </div>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:gap-16 md:items-start">
-              <div>
-                <h2
-                  className="h-title text-balance text-ink"
-                  style={{ maxWidth: "20ch" }}
-                >
-                  Stand behind every couple who books with you.
-                </h2>
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 20,
-                    fontSize: 17,
-                    lineHeight: 1.6,
-                    maxWidth: "56ch",
-                  }}
-                >
-                  The Venue Edition is patronage, not software. The venue pays
-                  once a year. Every couple it sends gets twelve months of
-                  Signal Studio to plan their wedding, with the venue&apos;s
-                  name in a quiet line at the top. No seats. No per-couple
-                  maths. Nothing for your team to run.
-                </p>
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 18,
-                    fontSize: 17,
-                    lineHeight: 1.6,
-                    maxWidth: "56ch",
-                  }}
-                >
-                  The first fifteen venues lock €1,500 for as long as they
-                  stay. Not a discount — a standing. The couples never see a
-                  price. They see a venue that thought ahead.
-                </p>
-                <div style={{ marginTop: 28 }}>
-                  <Link
-                    href="/venues"
-                    style={{
-                      color: "var(--accent)",
-                      fontSize: 15,
-                      fontWeight: 500,
-                    }}
-                  >
-                    See the Founding Venue Programme{" "}
-                    <span className="cta-arrow" aria-hidden>
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
-              <div className="flex flex-col md:items-end" style={{ gap: 14 }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "var(--tracking-eyebrow)",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                    display: "block",
-                  }}
-                >
-                  Annual · prepaid
-                </span>
-                <span
-                  className="text-ink"
-                  style={{
-                    fontSize: "clamp(2.25rem, 1.7rem + 1.8vw, 3.25rem)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.045em",
-                    lineHeight: 1,
-                    display: "block",
-                  }}
-                >
-                  €1,500–€4,000
-                </span>
-                <span
-                  className="text-ink-quiet"
-                  style={{ fontSize: 13, lineHeight: 1.5, display: "block" }}
-                >
-                  a year, by venue size
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Venue patronage moved off /pricing → it lives on its own page
+            (/venues, the Founding Venue Programme). Venues are a different
+            audience and motion from the four self-serve tiers; keeping the
+            consumer pricing page about the consumer tiers. A quiet pointer
+            for the rare couple who lands here first stays in the Event lane
+            above ("Planning a wedding? Ask your venue."). */}
 
         {/* ── 7 · What this isn't ───────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
