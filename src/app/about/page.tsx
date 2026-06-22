@@ -25,7 +25,7 @@ export default function AboutPage() {
 
           {/* Page H1 */}
           <h1 className="h-section mb-10 max-w-[620px] text-balance text-ink">
-            Operational clarity software for the 80%.
+            For the 80% who don&rsquo;t work in tech.
           </h1>
 
           {/* Two-column layout */}
@@ -36,32 +36,30 @@ export default function AboutPage() {
                 className="leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Signal Studio builds software for the people the work routes
-                through. Wedding planners. Tradespeople. Freelancers. Students.
-                Small-business operators. The 80% of the world who run real work
-                with real deadlines, and have no patience for a tool that wants
-                them to learn project management first.
+                Signal Studio is for the people work runs through. Wedding
+                planners. Tradespeople. Freelancers. Students. Small-business
+                operators. People with real deadlines and no patience for a
+                tool that wants them to learn project management first.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Four products. One register. One job: show you what matters.
-                Signal Tasks runs the work. Signal Timeline explains it. Signal
-                surfaces what matters in it. Signal Notes captures it as it
-                happens. Each solves one slice. Together they read as one
-                system.
+                Four products, one system. Notes catches the work as it
+                happens. Tasks runs it. Timeline shows where it&rsquo;s going.
+                Signal tells you what needs attention. Each does one thing;
+                together they read as one calm whole.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Not a productivity suite. Productivity tools tell you to do
-                more. These ones tell you what matters. Not a project manager.
-                Plain English, no sprints, no epics, no burndown. Not an AI
-                workspace. The system is ambient. We don&rsquo;t market it.
+                Not a productivity suite &mdash; those tell you to do more; this
+                tells you what matters. Not a project manager &mdash; no sprints,
+                no epics, no burndown, just plain English. Calm coordination,
+                not enterprise power.
               </p>
             </div>
 

@@ -108,7 +108,7 @@ export function RevealProducts() {
         dataKey="notes"
         position="Where work begins"
         word="notes"
-        essence="Catch what was said before it slips. Turn a note into a task in one tap. Nothing leaves until you send it."
+        essence="Write it down before it fades. Keep it as a note, or turn it into a task when you're ready. Nothing leaves on its own."
         pills={["Private preview", "Capture"]}
         cta="Open the notebook →"
         href={NOTES_URL}

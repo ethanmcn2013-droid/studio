@@ -106,15 +106,15 @@ export default async function ContactPage({
           ) : null}
 
           <h1 className="h-section mb-8 max-w-[620px] text-balance text-ink">
-            A real human, on the other end.
+            Write to a person, not a form.
           </h1>
 
           <p
             className="leading-[1.7] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Everything sent to this address is read. Usually within 48 hours,
-            sometimes faster, occasionally slower if I&apos;m deep in the work.
+            Everything sent here is read by me, usually within a day or two. No
+            form, no CRM, no autoresponder pretending to be a person.
           </p>
 
           <div className="mt-10 grid gap-8 md:grid-cols-2">
