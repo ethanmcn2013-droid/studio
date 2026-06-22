@@ -1344,14 +1344,44 @@ body::after { content: none; }
   margin-top: 4px;
 }
 .reveal-product-row .meta .pill {
-  background: color-mix(in srgb, var(--ink-900) 4%, transparent);
-  padding: 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border: 1px solid var(--border);
   border-radius: 999px;
+  background: transparent;
   color: var(--ink-600);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  transition:
+    border-color var(--motion-base) var(--ease-out),
+    color var(--motion-base) var(--ease-out);
+}
+/* The leading pill carries the indigo brand dot — an availability cue,
+   the same status grammar as the green "Live now" dot on /pricing. */
+.reveal-product-row .meta .pill:first-child::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--indigo-600);
+  flex: 0 0 auto;
+}
+/* On row hover the hairline firms from faint to defined — quiet feedback. */
+.reveal-product-row:hover .meta .pill {
+  border-color: var(--ink-300);
+  color: var(--ink-700);
 }
 .reveal-product-row .meta .pill.soon {
-  background: color-mix(in srgb, var(--indigo-600) 12%, transparent);
-  color: var(--indigo-600);
+  border-color: color-mix(in srgb, var(--indigo-600) 26%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+}
+.reveal-product-row:hover .meta .pill.soon {
+  border-color: color-mix(in srgb, var(--indigo-600) 40%, transparent);
+  color: var(--accent-deep);
 }
 .reveal-product-row .meta .open {
   margin-left: auto;
