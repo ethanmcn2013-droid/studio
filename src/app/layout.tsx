@@ -65,7 +65,7 @@ const structuredData = [
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Dublin",
+      addressLocality: "Limerick",
       addressCountry: "IE",
     },
     sameAs: [
