@@ -115,9 +115,9 @@ export default async function TemplatesPage({
                 href="/students"
                 className="underline decoration-ink-ghost decoration-1 underline-offset-[3px] hover:decoration-ink"
               >
-                Signal is free with a .edu address
-              </Link>{" "}
-              — and the final-paper push, midterm week, and job-application
+                Students get the full tier for €9.99 a year
+              </Link>
+              . The final-paper push, midterm week, and job-application
               templates live in the{" "}
               <a
                 href="https://tasks.signalstudio.ie/templates?domain=student"

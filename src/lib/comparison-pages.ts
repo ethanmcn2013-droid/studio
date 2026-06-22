@@ -161,8 +161,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       "Students do not need the vocabulary of a software team. They need one place for the group project, the thesis chapter, the notes from supervision, and the few things that matter this week.",
     sections: [
       {
-        title: "Free for verified students",
-        copy: "The student tier carries the Workspace plan for two years with a verified .edu address. The price does not become another thing to manage.",
+        title: "The student rate",
+        copy: "The student tier carries the full Workspace plan for €9.99 a year, verified with any student email. The price does not become another thing to manage.",
       },
       {
         title: "Four views, same work",
