@@ -214,6 +214,13 @@ export function SiteFooter() {
         </Link>
         <span aria-hidden className="opacity-50">·</span>
         <Link
+          href="/privacy#your-rights"
+          className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
+        >
+          GDPR
+        </Link>
+        <span aria-hidden className="opacity-50">·</span>
+        <Link
           href="/terms"
           className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
         >

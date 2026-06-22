@@ -19,6 +19,39 @@ export function RevealHero() {
     >
       <div className="reveal-gold-rule" aria-hidden />
 
+      {/* Launch note — restrained, static. The suite is in private preview;
+          this names the public-launch date without a ticking counter
+          ("nothing distracting"). Review issue 14. */}
+      <p
+        className="reveal-launch-note"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          margin: "0 0 22px",
+          padding: "5px 13px",
+          border: "1px solid var(--border)",
+          borderRadius: 999,
+          background: "var(--paper-soft)",
+          fontFamily: "var(--font-mono)",
+          fontSize: 11,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "var(--ink-quiet)",
+        }}
+      >
+        <span
+          aria-hidden
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            background: "var(--accent)",
+          }}
+        />
+        Arriving 1 September 2026
+      </p>
+
       <h1
         className="reveal-headline"
         aria-label="Project management for the 80% not in tech."
