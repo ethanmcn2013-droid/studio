@@ -5,7 +5,7 @@ import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-ur
 export const metadata: Metadata = {
   title: "Work — Signal Studio",
   description:
-    "Four products for operational clarity — Signal Notes, Signal Tasks, Signal Timeline, Signal.",
+    "Four products for operational clarity: Notes, Tasks, Timeline, Signal.",
 };
 
 interface WorkItem {
@@ -16,9 +16,19 @@ interface WorkItem {
   href?: string;
 }
 
+// Workflow order: Notes captures, Tasks runs, Timeline shows, Signal
+// surfaces. Product names carry no "Signal" prefix — the house is Signal
+// Studio; the products are Notes, Tasks, Timeline, Signal.
 const items: WorkItem[] = [
   {
-    name: "Signal Tasks",
+    name: "Notes",
+    descriptor: "Capture clarity for fast notes that can become work when they earn it.",
+    year: "2026",
+    status: "Private build",
+    href: NOTES_URL,
+  },
+  {
+    name: "Tasks",
     descriptor:
       "Execution clarity for live work, daily attention, and plain-English follow-through.",
     year: "2026",
@@ -26,7 +36,7 @@ const items: WorkItem[] = [
     href: TASKS_URL,
   },
   {
-    name: "Signal Timeline",
+    name: "Timeline",
     descriptor:
       "Direction clarity for public plans, changes, and decisions people can read.",
     year: "2026",
@@ -40,13 +50,6 @@ const items: WorkItem[] = [
     year: "2026",
     status: "Private preview",
     href: SIGNAL_URL,
-  },
-  {
-    name: "Signal Notes",
-    descriptor: "Capture clarity for fast notes that can become work when they earn it.",
-    year: "2026",
-    status: "Private build",
-    href: NOTES_URL,
   },
 ];
 
@@ -76,9 +79,8 @@ export default function WorkPage() {
             className="mb-12 leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Four products. One operating system for clarity. Private preview
-            or private build means early, not closed — follow a name to open
-            it. Free to start, no card.
+            Four products, one system. Private preview means early, not
+            closed: follow a name to open it. Free to start, no card.
           </p>
 
           <ol className="flex flex-col">

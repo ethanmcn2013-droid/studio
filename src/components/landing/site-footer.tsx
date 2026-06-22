@@ -115,7 +115,7 @@ export function SiteFooter() {
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
             >
-              Signal Notes
+              Notes
             </a>
             <a
               href={TASKS_URL}
@@ -124,7 +124,7 @@ export function SiteFooter() {
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
             >
-              Signal Tasks
+              Tasks
             </a>
             <a
               href={TIMELINE_URL}
@@ -133,7 +133,7 @@ export function SiteFooter() {
               className="text-[12.5px] text-ink-quiet transition-colors hover:text-ink"
               style={{ letterSpacing: "0.01em" }}
             >
-              Signal Timeline
+              Timeline
             </a>
             <a
               href={SIGNAL_URL}

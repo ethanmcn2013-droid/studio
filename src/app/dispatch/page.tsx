@@ -6,9 +6,9 @@ import { readDispatchEntries } from "@/lib/changelog";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "The dispatch — Signal Studio",
+  title: "The dispatch · Signal Studio",
   description:
-    "What gets sent, not what accumulates. The Signal Studio suite dispatch — shipped work across Signal Tasks, Timeline, Signal, Notes, and the umbrella.",
+    "What gets sent, not what accumulates. The Signal Studio suite dispatch: recent work across Notes, Tasks, Timeline, Signal, and the umbrella.",
   alternates: {
     types: {
       "application/rss+xml": "/changelog.rss",
@@ -70,34 +70,22 @@ export default async function DispatchPage() {
             className="mb-4 max-w-[58ch] leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Shipped work across the suite — Signal Tasks, Timeline, Signal,
-            Notes, and the umbrella. Updated when something is worth saying out
-            loud.
+            Recent work across the suite: Notes, Tasks, Timeline, Signal, and
+            the umbrella. Updated when something is worth saying out loud.
           </p>
 
           <p
-            className="mb-2 font-mono text-[12px] text-ink-quiet"
+            className="mb-12 font-mono text-[12px] text-ink-quiet"
             style={{ letterSpacing: "0.01em" }}
           >
-            (It&apos;s the changelog. This one&apos;s for the nerds — you know
+            (It&apos;s the changelog. This one&apos;s for the nerds, you know
             who you are. Everyone else: the product just got better.)
-          </p>
-
-          <p className="mb-12 max-w-[58ch] text-[13.5px] leading-[1.6] text-ink-quiet">
-            Subscribe via{" "}
-            <a
-              href="/changelog.rss"
-              className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
-            >
-              RSS
-            </a>
-            .
           </p>
 
           {entries.length === 0 ? (
             <p className="max-w-[58ch] text-[15px] leading-[1.6] text-ink-soft">
-              Nothing has shipped that's worth saying out loud yet. Subscribe
-              via RSS and you'll get it when it arrives.
+              Nothing has gone out that&apos;s worth saying out loud yet.
+              Subscribe via RSS and you&apos;ll get it when it arrives.
             </p>
           ) : (
             <div className="space-y-16">
@@ -116,8 +104,8 @@ export default async function DispatchPage() {
 
           <div className="mt-24 border-t border-border-soft pt-6 text-[13px] leading-[1.6] text-ink-quiet">
             Engineering detail lives in each repo. This page is the
-            operator-voice version. Each entry is one update — something
-            shipped. Larger arcs of work are called passes. Conventions:{" "}
+            operator-voice version. Each entry is one update, something
+            sent. Larger arcs of work are called passes. Conventions:{" "}
             <a
               href="/brand"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
