@@ -114,7 +114,7 @@ export default async function ContactPage({
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Everything sent to this address is read. Usually within 48 hours,
-            sometimes faster, occasionally slower if I&apos;m shipping.
+            sometimes faster, occasionally slower if I&apos;m deep in the work.
           </p>
 
           <div className="mt-10 grid gap-8 md:grid-cols-2">
@@ -165,16 +165,6 @@ export default async function ContactPage({
               Ref preserved: {trackingRef}
             </p>
           ) : null}
-
-          <p className="mt-6 text-[13px] leading-[1.6] text-ink-faint">
-            Designed and operated by Ethan McNamara. Limerick &middot; Ireland.
-          </p>
-
-          <p
-            className="mt-12 font-mono text-[11px] leading-[1.8] text-ink-faint"
-          >
-            Set in Geist &middot; Geist Mono &middot; 2026
-          </p>
         </section>
       </main>
       <SiteFooter />

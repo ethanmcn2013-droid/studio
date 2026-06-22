@@ -118,7 +118,7 @@ const SUITE: InsideProduct[] = [
     position: "Context",
     desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
     status: "shipped",
-    statusLabel: "Shipping now",
+    statusLabel: "Live now",
   },
   {
     key: "tasks",
@@ -126,7 +126,7 @@ const SUITE: InsideProduct[] = [
     position: "Execution",
     desc: "Run the work. Plain-language workspace for weddings, freelance, students, trades.",
     status: "shipped",
-    statusLabel: "Shipping now",
+    statusLabel: "Live now",
   },
   {
     key: "roadmap",
@@ -134,7 +134,7 @@ const SUITE: InsideProduct[] = [
     position: "Direction",
     desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
     status: "shipped",
-    statusLabel: "Shipping now",
+    statusLabel: "Live now",
   },
   {
     key: "analytics",
@@ -142,7 +142,7 @@ const SUITE: InsideProduct[] = [
     position: "Attention",
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",
     status: "shipped",
-    statusLabel: "Shipping now",
+    statusLabel: "Live now",
   },
 ];
 
@@ -912,7 +912,7 @@ export default async function PricingPage({
           </div>
         </section>
 
-        {/* ── 5 · Shipping truth ────────────────────────────────── */}
+        {/* ── 5 · What's live today ─────────────────────────────── */}
         <section
           style={{
             background: "var(--bg-deep)",
@@ -922,7 +922,7 @@ export default async function PricingPage({
         >
           <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
             <div className="mb-6" style={eyebrowStyle()}>
-              What we ship today
+              What&rsquo;s live today
             </div>
             <div
               className="text-ink-soft"
