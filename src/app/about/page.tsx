@@ -14,7 +14,7 @@ export default function AboutPage() {
     <>
       <ReadingProgress />
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
-        <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
+        <section className="mx-auto w-full max-w-[760px] px-6 pb-16 pt-16 md:pb-20 md:pt-24">
           {/* Section label */}
           <div
             className="mb-6 text-[11px] font-semibold uppercase"
@@ -175,6 +175,85 @@ export default function AboutPage() {
                 Boring on purpose. Built slowly. Everything important, nothing
                 distracting.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Founder note — restrained, text-led, set apart on a soft inset panel */}
+        <section className="mx-auto w-full max-w-[760px] px-6 pb-28">
+          <div className="rounded-[14px] border border-border-soft bg-[var(--paper-soft)] px-7 py-10 md:px-12 md:py-14">
+            <div className="mx-auto max-w-[560px]">
+              {/* Eyebrow */}
+              <div
+                className="mb-5 text-[11px] font-semibold uppercase text-ink-faint"
+                style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+              >
+                Founder Note
+              </div>
+
+              {/* Headline — secondary to the page H1 */}
+              <h2
+                className="mb-7 text-balance font-semibold text-ink"
+                style={{
+                  fontSize: "clamp(1.375rem, 1.1rem + 1vw, 1.875rem)",
+                  lineHeight: 1.12,
+                  letterSpacing: "-0.025em",
+                }}
+              >
+                Project management shouldn&rsquo;t need translation.
+              </h2>
+
+              {/* Conviction */}
+              <p
+                className="leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Most project tools were built by software teams, for software
+                teams. That worked for software. But the habits arrived with a
+                vocabulary &mdash; sprints, epics, backlogs, burndown &mdash; and
+                somewhere along the way that vocabulary became the price of entry
+                for everyone else.
+              </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                It shouldn&rsquo;t be. A wedding planner, a final-year student, a
+                venue manager, a small crew running a busy month &mdash; they all
+                manage real work against real deadlines. None of them should have
+                to learn a profession before they can see what&rsquo;s next.
+              </p>
+
+              <p
+                className="mt-5 leading-[1.7] text-ink-soft"
+                style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+              >
+                Signal Studio is built on a simpler idea: a system should reduce
+                friction, not hand you a new language to learn first. Notes to
+                capture the work, Tasks to run it, Timeline to explain it, Signal
+                to surface what matters &mdash; four products that read as one calm
+                whole. The goal was never to make people do project management
+                properly. It was to help them organise the work in front of them,
+                in <span className="marker">plain words</span>, without the tax.
+              </p>
+
+              {/* Signature */}
+              <div className="mt-9 flex items-center gap-3 border-t border-border-soft pt-6">
+                <span
+                  aria-hidden
+                  className="h-[7px] w-[7px] flex-shrink-0 rounded-full"
+                  style={{ background: "var(--accent)" }}
+                />
+                <div className="leading-tight">
+                  <div className="text-[14px] font-medium text-ink">
+                    Ethan McNamara
+                  </div>
+                  <div className="text-[12.5px] text-ink-faint">
+                    Founder, Signal Studio
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
