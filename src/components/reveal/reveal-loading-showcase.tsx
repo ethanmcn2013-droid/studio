@@ -189,8 +189,14 @@ const SLX_CSS = `
      it from ballooning on large monitors. History: clamp(34,5.6vw,84) →
      clamp(50,8.6vw,118) → doubled to clamp(100,17.2vw,236) which OVERFLOWED
      and clipped the mark on every screen ≤1440 (2026-06-18 fix). Now a
-     true-hero scale that always fits one line. */
-  --slx-wm:clamp(46px,12.6vw,152px);
+     true-hero scale that always fits one line. Signal Review 2026-06-22:
+     aligned to the shared product-hero wordmark scale clamp(56,12vw,168)
+     — notes/tasks/timeline/signal all render their hero mark at this size,
+     so the umbrella must match (was clamp(46,12.6vw,152), reading smaller
+     than every product). "signal studio" is ~6.3em wide, so at the 168px
+     cap the line is ~1058px (fits ≥1340px) and the 12vw term holds it to
+     ~76vw below that — still inside the overflow-clipped parent. */
+  --slx-wm:clamp(56px,12vw,168px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
   --slx-iter:1;   /* MUST equal CYCLES in the component. */

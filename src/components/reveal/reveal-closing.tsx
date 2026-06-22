@@ -45,7 +45,7 @@ export function RevealClosing() {
       <p className="reveal-closing-addr reveal">
         <a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
         <span className="sep" aria-hidden>·</span>
-        <span>Dublin, {new Date().getFullYear()}</span>
+        <span>Limerick, {new Date().getFullYear()}</span>
       </p>
     </section>
   );
