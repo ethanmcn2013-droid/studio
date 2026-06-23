@@ -26,8 +26,15 @@ The sources, by section:
 | voice, naming, banned words, visual register                       | `BRAND.md`                                           |
 | the active cycle / phase line                                      | `~/.claude/state/phase.md`                           |
 | something shipped that users or leadership should know about       | `CHANGELOG.md` — dispatch shape per BRAND.md §6.5    |
+| a founder/operator-gated task (API key, account, prod env var, legal doc, cost limit, policy) | `content/hq/operator-todos/<id>.md` |
 
 **Live operator surfaces (browser-edited, localStorage-backed):** the four sections that have no markdown source — `prospects` (CRM), `feedback`, `weeklyRhythm`, `nextActions` — stay editable in the `/hq` dashboard at runtime. Don't migrate these to markdown unless there's a real reason.
+
+## Mandatory Operator To-Do Rule (codified 2026-06-23)
+
+Any founder/operator-gated task — work that **only the founder can do**: provision an account, get an API key, set a production env var, publish a legal/privacy doc, approve a cost limit, decide a policy — must be logged as a file in `content/hq/operator-todos/<id>.md`. It renders on the `/hq` main page via `HqOperatorTodos`. This applies to work surfaced in **any** Signal product repo, not just Studio.
+
+Never leave an operator blocker in a chat message or a buried doc — the ledger is the single place the founder sees what they are blocking and the agent records what is gating the work. Mark `status: done` only when genuinely complete; nothing is optimistically green. File shape is documented in `content/hq/operator-todos/README.md`.
 
 **What this rule replaces.** The old rule said "update `src/lib/hq/data.ts` before the task is complete". That contract created drift between the seed and the operator's localStorage edits, and it made every cycle re-write a 2,334-line file. The new contract is *no separate update step* — the markdown is the change. HQ is the view.
 

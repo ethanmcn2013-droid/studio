@@ -7143,6 +7143,67 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   .hq-launch-gate-detail { grid-column: 2; }
 }
 
+/* ── Operator to-do ledger ───────────────────────────────────────────
+   The founder accountability surface: every operator-gated task in the
+   suite, logged from `content/hq/operator-todos/*.md`. Open P0 blockers
+   read loud; done tasks sink and grey. Calm, no chrome. */
+.hq-optodo {
+  margin: 0 0 2.5rem; padding: 22px 24px;
+  border: 1px solid var(--border-soft); border-radius: var(--r-4, 14px); background: var(--bg-elev);
+}
+.hq-optodo-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.hq-optodo-title { font-size: clamp(20px, 3vw, 26px); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin: 2px 0 0; }
+.hq-optodo-sub { font-size: 13px; color: var(--ink-quiet); line-height: 1.5; max-width: 60ch; }
+.hq-optodo-count {
+  margin-top: 6px; font-family: var(--font-mono-stack); font-size: 11px; letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+}
+.hq-optodo-count[data-clear="true"] { color: #16a34a; }
+.hq-optodo-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.hq-optodo-row { border-top: 1px solid var(--border-soft); }
+.hq-optodo-row:first-child { border-top: 0; }
+.hq-optodo-row[data-status="done"] { opacity: 0.5; }
+.hq-optodo-details { width: 100%; }
+.hq-optodo-summary {
+  display: grid; grid-template-columns: 18px 1fr auto; align-items: baseline; gap: 12px;
+  padding: 13px 0; cursor: pointer; list-style: none;
+}
+.hq-optodo-summary::-webkit-details-marker { display: none; }
+.hq-optodo-summary:hover .hq-optodo-row-title { color: var(--accent); }
+.hq-optodo-check {
+  align-self: center; width: 16px; height: 16px; border-radius: var(--r-pill, 999px);
+  box-shadow: inset 0 0 0 1.5px var(--border-soft);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; color: transparent;
+}
+.hq-optodo-check[data-status="done"] { background: #16a34a; box-shadow: none; color: #fff; }
+.hq-optodo-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hq-optodo-row-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+.hq-optodo-why { font-size: 12.5px; color: var(--ink-quiet); line-height: 1.45; }
+.hq-optodo-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.hq-optodo-tag {
+  font-family: var(--font-mono-stack); font-size: 9.5px; font-weight: 500; letter-spacing: 0.04em;
+  padding: 2px 6px; border-radius: var(--r-pill, 999px); white-space: nowrap;
+  border: 1px solid var(--border-soft); color: var(--ink-quiet);
+}
+.hq-optodo-tag--prio[data-priority="P0"] { color: #b91c1c; border-color: rgba(185, 28, 28, 0.3); }
+.hq-optodo-tag--prio[data-priority="P1"] { color: var(--ink-quiet); }
+.hq-optodo-tag--prio[data-priority="P2"] { color: var(--ink-ghost); }
+.hq-optodo-tag--block { color: #b45309; border-color: rgba(180, 83, 9, 0.3); }
+.hq-optodo-tag--phase { color: var(--ink-ghost); }
+.hq-optodo-body { padding: 2px 0 14px 30px; }
+.hq-optodo-steps {
+  font-family: var(--font-mono-stack); font-size: 12px; line-height: 1.6; color: var(--ink-quiet);
+  white-space: pre-wrap; margin: 0; padding: 0; background: none; border: 0;
+}
+.hq-optodo-link { display: inline-block; margin-top: 8px; font-size: 12.5px; color: var(--accent); text-decoration: none; }
+.hq-optodo-link:hover { text-decoration: underline; }
+@media (max-width: 720px) {
+  .hq-optodo-summary { grid-template-columns: 18px 1fr; }
+  .hq-optodo-tags { grid-column: 2; justify-content: flex-start; margin-top: 4px; }
+  .hq-optodo-body { padding-left: 0; }
+}
+
 /* ── Data room ───────────────────────────────────────────────────────── */
 .hq-dr { display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; }
 .hq-dr-section { display: grid; grid-template-columns: minmax(180px, 220px) 1fr; gap: clamp(16px, 3vw, 40px); }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CountUp } from "@/components/hq/count-up";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqLaunchReadiness } from "@/components/hq/hq-launch-readiness";
+import { HqOperatorTodos } from "@/components/hq/hq-operator-todos";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
 import { HqProofGate } from "@/components/hq/hq-proof-gate";
@@ -19,6 +20,7 @@ import {
   HQ_REVIEW_PRINCIPLES,
 } from "@/lib/hq/operating-system";
 import { getLaunchReadiness } from "@/lib/hq/launch";
+import { getOperatorTodos } from "@/lib/hq/operator-todos";
 import { getProofGate } from "@/lib/hq/proofgate";
 import { getPulseState } from "@/lib/hq/pulse";
 import { getTodayData } from "@/lib/hq/today";
@@ -83,6 +85,7 @@ export default async function HqPage() {
   const readiness = getLaunchReadiness(
     traction.available ? traction.paidVenues : null,
   );
+  const operatorTodos = await getOperatorTodos();
 
   const masthead = (
     <HqMasthead
@@ -155,6 +158,8 @@ export default async function HqPage() {
       </section>
 
       <HqLaunchReadiness readiness={readiness} />
+
+      <HqOperatorTodos board={operatorTodos} />
 
       <section className="hq-hub-board" aria-labelledby="hq-hubs-title">
         <div className="hq-hub-head">
