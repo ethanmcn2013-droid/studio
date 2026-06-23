@@ -10,7 +10,9 @@ Same family across all five repos: Studio (umbrella), Tasks, Roadmap, Analytics,
 
 ## 1 · Identity
 
-- **Name:** Signal Studio. The wordmark is `signal studio.` (lowercase, with period). In running body copy use `Signal Studio` (title case). Never `Signal` alone — collides with Signal Messenger.
+- **Name:** Signal Studio. The wordmark is `signal studio.` (lowercase, with period). In running body copy use `Signal Studio` (title case) for the umbrella.
+- **Product names (operator decision 2026-06-22):** in product lists, footers, nav, and wordmarks, the products are bare words — `Notes`, `Tasks`, `Timeline`, `Signal` — with no `Signal` prefix. Reserve the full `Signal Tasks` / `Signal Notes` form for prose that needs to disambiguate from the generic word. `Signal Studio` stays for the umbrella. The fourth product is `Signal` (the analytics rebrand); never write `Signal` to mean the suite.
+- **Student pricing (operator decision 2026-06-22):** the student rate is **€9.99 a year**, not free. Verify with any student email (honour system); `.edu` is not required. Never say "free for students" or "two years".
 - **Headline (umbrella):** `Cut through the noise.`
 - **Operating principle:** `Everything important. Nothing distracting.`
 - **Suite tagline (locked):** `Clarity, not configuration.`
@@ -299,6 +301,7 @@ These are not "guidelines." They are refusals that compound across the suite.
 - More than two type families on a page
 - Centred body paragraphs longer than two lines
 - All-caps body text (eyebrows and status labels excepted)
+- **Em dashes (`—`) in public-facing copy.** Operator decision 2026-06-22. Use a comma, colon, or full stop instead. (Page-title separators use a middot `·`, not an em dash.)
 
 ### Banned copy
 - AI-marketing register: `AI`, `AI-powered`, `intelligent`, `smart`, `copilot`, `agent`, `assistant`, `moves itself`, `thinks`, `knows`, `decides`, `predicts`, `recommends`, `autonomous`

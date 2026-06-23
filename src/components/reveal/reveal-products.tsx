@@ -171,6 +171,9 @@ export function RevealProducts() {
         .reveal-product-row[data-key="notes"] .dot{
           width:.075em;height:.78em;border-radius:.02em;
           transform-origin:center bottom;
+          /* Seat the caret a touch lower so it sits on the baseline like a
+             real text cursor (review 3 issue 42). */
+          position:relative;top:.05em;
           animation:rpn-blink 1.06s steps(1,end) infinite;
         }
         @keyframes rpn-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
