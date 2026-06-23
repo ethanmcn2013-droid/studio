@@ -11,11 +11,11 @@ import {
 import type { TemplateAudience } from "@/components/marketing/template-pills";
 
 export const metadata: Metadata = {
-  title: "Templates — Signal Studio",
+  title: "Templates · Signal Studio",
   description:
-    "Wedding planning workspaces, a monthly rhythm for a small operation, the jobsite punchlist, tax season. The work, pre-written. Apply to any workspace in one click — your existing tasks stay put.",
+    "Wedding planning workspaces, a monthly rhythm for a small operation, the jobsite punchlist, tax season. The work, pre-written. Apply to any workspace in one click. Your existing tasks stay put.",
   openGraph: {
-    title: "Templates — Signal Studio",
+    title: "Templates · Signal Studio",
     description:
       "The recurring stuff, already shaped. Wedding planning, monthly rhythms, the punchlist, tax season. Apply in one click.",
     type: "website",
@@ -77,14 +77,14 @@ export default async function TemplatesPage({
           >
             Wedding planning workspaces. The monthly rhythm of a small
             operation. The jobsite punchlist. Tax season. Apply to any
-            workspace — your existing tasks stay put.
+            workspace, and your existing tasks stay put.
           </p>
           <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-ink-faint">
-            Two shapes. <strong className="font-medium text-ink-soft">Anchor</strong>{" "}
-            workspaces seed a Tasks list, a Notes notebook, a Timeline, and
-            a Signal briefing in one go.{" "}
+            Two shapes.{" "}
+            <strong className="font-medium text-ink-soft">Anchor</strong>{" "}
+            workspaces set up Notes, Tasks, Timeline, and Signal in one go.{" "}
             <strong className="font-medium text-ink-soft">Specialty</strong>{" "}
-            templates drop into Tasks.
+            templates drop straight into Tasks.
           </p>
         </section>
 
@@ -100,33 +100,79 @@ export default async function TemplatesPage({
           />
         </section>
 
-        {/* ── Footer link · Students ─────────────────────── */}
-        <section className="mx-auto w-full max-w-[760px] px-6 pb-20 pt-12">
+        {/* ── For students ───────────────────────────────── */}
+        <section className="mx-auto w-full max-w-[1080px] px-6 pb-20 pt-8">
           <div
-            className="rounded-2xl border px-6 py-5"
-            style={{
-              borderColor: "var(--hairline)",
-              background: "var(--paper-soft)",
-            }}
+            className="mb-6 text-[11px] font-semibold uppercase"
+            style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow, 0.14em)" }}
           >
-            <p className="text-[14px] leading-[1.55] text-ink-soft">
-              Studying?{" "}
-              <Link
-                href="/students"
-                className="underline decoration-ink-ghost decoration-1 underline-offset-[3px] hover:decoration-ink"
-              >
-                Students get the full tier for €9.99 a year
-              </Link>
-              . The final-paper push, midterm week, and job-application
-              templates live in the{" "}
+            For students
+          </div>
+          <h2
+            className="mb-4 max-w-[620px] text-balance font-semibold text-ink"
+            style={{ fontSize: "clamp(1.375rem, 1.1rem + 1vw, 1.875rem)", letterSpacing: "-0.025em", lineHeight: 1.12 }}
+          >
+            A semester, pre-shaped.
+          </h2>
+          <p
+            className="mb-8 max-w-[58ch] leading-[1.6] text-ink-soft"
+            style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
+          >
+            Three templates for the work a semester actually throws at you.
+            Students get the full Workspace tier for €9.99 a year, verified
+            with any student email.
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {[
+              {
+                title: "Final paper push",
+                meta: "8 tasks · thesis to submit",
+                body: "Pick a thesis, gather sources, outline, draft, edit, submit. The order that beats the 4am panic.",
+                href: "https://tasks.signalstudio.ie/templates/final-paper-push",
+              },
+              {
+                title: "Midterm week",
+                meta: "7 tasks · review, sleep",
+                body: "Review sheets, practice problems, the study group, eight hours of sleep. The boring stuff that wins.",
+                href: "https://tasks.signalstudio.ie/templates/midterm-week",
+              },
+              {
+                title: "Job application push",
+                meta: "8 tasks · apply with intent",
+                body: "CV, cover letter, portfolio, the follow-up. Show up looking like you meant to.",
+                href: "https://tasks.signalstudio.ie/templates/job-application-push",
+              },
+            ].map((t) => (
               <a
-                href="https://tasks.signalstudio.ie/templates?domain=student"
-                className="underline decoration-ink-ghost decoration-1 underline-offset-[3px] hover:decoration-ink"
+                key={t.title}
+                href={t.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-2xl border p-5 no-underline transition-colors hover:border-ink-soft/40"
+                style={{ borderColor: "var(--hairline)", background: "var(--paper-soft)" }}
               >
-                Tasks gallery
+                <div className="text-[15px] font-semibold text-ink">{t.title}</div>
+                <div className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                  {t.meta}
+                </div>
+                <p className="mt-3 text-[13.5px] leading-[1.55] text-ink-soft">{t.body}</p>
+                <div className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium text-ink">
+                  Open the template
+                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+                    &rarr;
+                  </span>
+                </div>
               </a>
-              .
-            </p>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/pricing"
+              className="text-[14px] font-medium transition-colors hover:text-ink"
+              style={{ color: "var(--accent)" }}
+            >
+              See the student rate &rarr;
+            </Link>
           </div>
         </section>
       </main>

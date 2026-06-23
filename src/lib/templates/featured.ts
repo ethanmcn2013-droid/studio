@@ -46,7 +46,7 @@ export const FEATURED_TEMPLATES: FeaturedTemplate[] = [
     id: "wedding-planning-workspace",
     name: "Wedding planning workspace",
     description:
-      "Venue, suppliers, guest decisions, final-week walkthrough — one calm list the couple, the planner, and the venue can read in under a minute.",
+      "Venue, suppliers, guest decisions, final-week walkthrough. One calm list the couple, the planner, and the venue can read in under a minute.",
     icon: "target",
     audience: "wedding",
     shape: "anchor",
@@ -68,7 +68,7 @@ export const FEATURED_TEMPLATES: FeaturedTemplate[] = [
     id: "wedding-day-of-run-of-show",
     name: "Day-of run of show",
     description:
-      "Vendor arrivals, ceremony, reception — minute by minute, nothing forgotten.",
+      "Vendor arrivals, ceremony, reception, minute by minute, nothing forgotten.",
     icon: "clock",
     audience: "wedding",
     shape: "specialty",
@@ -140,7 +140,7 @@ export const FEATURED_TEMPLATES: FeaturedTemplate[] = [
     id: "local-business-monthly-rhythm",
     name: "Monthly business rhythm",
     description:
-      "Month-end close, payroll, suppliers, marketing, staff one-to-ones — a cadence that holds a small operation together.",
+      "Month-end close, payroll, suppliers, marketing, staff one-to-ones. A cadence that holds a small operation together.",
     icon: "calendar",
     audience: "marketing",
     shape: "anchor",
@@ -151,7 +151,7 @@ export const FEATURED_TEMPLATES: FeaturedTemplate[] = [
     id: "product-launch",
     name: "Product launch",
     description:
-      "Positioning, landing, email blast, post-mortem — ship the story, not just the feature.",
+      "Positioning, landing, email blast, post-mortem. Tell the story, not just the feature.",
     icon: "target",
     audience: "marketing",
     shape: "specialty",
