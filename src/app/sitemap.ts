@@ -13,6 +13,7 @@ const routes: Array<{
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
   { path: "/work", priority: 0.7, changeFrequency: "monthly" },
   { path: "/proof", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/ios", priority: 0.6, changeFrequency: "monthly" },
   { path: "/weddings", priority: 0.8, changeFrequency: "monthly" },
   { path: "/venues", priority: 0.9, changeFrequency: "monthly" },
   { path: "/venues/demo", priority: 0.7, changeFrequency: "monthly" },
