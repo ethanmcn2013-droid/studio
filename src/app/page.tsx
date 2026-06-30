@@ -8,6 +8,7 @@ import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProducts } from "@/components/reveal/reveal-products";
 import { RevealClosing } from "@/components/reveal/reveal-closing";
 import { SuiteLauncher } from "@/components/layout/suite-launcher";
+import { SiteFooter } from "@/components/landing/site-footer";
 
 /**
  * Home page — two variants, one URL (DESIGN.md §14).
@@ -41,14 +42,17 @@ export default async function Home() {
   }
 
   return (
-    <main id="main" tabIndex={-1}>
-      <RevealLoadingShowcase />
-      <RevealHero />
-      <RevealManifesto />
-      <RevealWeddingWedge />
-      <RevealProducts />
-      <RevealClosing />
-      <RevealEngine />
-    </main>
+    <>
+      <main id="main" tabIndex={-1}>
+        <RevealLoadingShowcase />
+        <RevealHero />
+        <RevealManifesto />
+        <RevealWeddingWedge />
+        <RevealProducts />
+        <RevealClosing />
+        <RevealEngine />
+      </main>
+      <SiteFooter />
+    </>
   );
 }

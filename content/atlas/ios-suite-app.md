@@ -3,7 +3,7 @@ title: iOS — the suite app
 slug: ios-suite-app
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-20
+lastVerified: 2026-06-30
 links: [signal-studio-umbrella, five-products-as-a-system, brand-enforcement]
 tags: [iOS, App Store, SwiftUI, native, Apple, Capacitor, signal-ios, 4.2, IAP, Clerk, suite app]
 references: [signal-ios/IOS_PLAN.md, signal-ios/FUNCTIONING_APP_PLAN.md, signal-ios/SignalStudio/, ~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md]
@@ -49,6 +49,7 @@ Ethan owns the app outright. No iOS-team, no separate stakeholders. The agentic 
 - `~/Projects/personal/signal-ios/README.md` — what's running on simulator today.
 - `~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md` — the strategic memo: feasibility scissors, scope rationale, gate logic.
 - `~/Projects/personal/studio/docs/ios/` — submission artifact drafts (privacy labels, listing copy, data-flow doc — drafted in this cycle).
+- `https://signalstudio.ie/ios` — public web status page linked from suite footers while the App Store listing is not live.
 
 ## HOW
 
@@ -77,6 +78,11 @@ The suite app is a Swift-native build, not a Capacitor wrapper. Three operating 
 - PWA manifests + apple-touch-icons + maskable variants shipped across all 5 web repos (studio/tasks/timeline/signal/notes) — 3-director panel cleared at 9.5+ from each.
 - `docs/ios/` submission artifacts drafted in the studio repo (privacy labels, data-flow doc, PrivacyInfo.xcprivacy template, App Store listing copy through signal-brand-voice).
 - `ios/CLAUDE.md` scaffold added to give agentic-toolchain guard-rails for the next iOS cycle.
+
+**Web-side iOS signal (2026-06-30):**
+- A public `/ios` page now exists on signalstudio.ie and is linked from Studio, Tasks, Timeline, Signal, and Notes footers as `iOS app`.
+- The page is intentionally a status page, not an App Store badge: it says the app is in build, names the current gates, and says the App Store link follows after submission.
+- Footer linkage uses `NEXT_PUBLIC_IOS_APP_URL` with a default of `https://signalstudio.ie/ios` so the destination can switch to the App Store when the listing is real.
 
 **Bucket A — operator-gated (cannot be agent-completed):**
 - Live-device verification on a physical iPhone.
@@ -108,3 +114,4 @@ The submission floor equals the weakest product in the suite. With Timeline and 
 
 - 2026-05-20 (this entry created) — written during the iOS-prep panel-cleared work cycle. Confirms current state against `signal-ios/` filesystem, `panel-reviews/cycle-5-final.md`, and the iOS app research memory. Status: `partial` (front-end built, Bucket A operator items pending). Pinned because it's gating the post-July product launch decision.
 - 2026-05-20 (panel review of this entry) — corrected three drifts: (1) execRisk no longer self-contradicts (separating ship-state from quality risk); (2) "27+ surfaces panel-verified" softened to "20 surfaces strict-panel ≥9.5 through Cycle 2 + ~7 Cycle-5 surfaces not individually paneled"; (3) panel-reviews dir contents clarified (no cycle-4 standalone report — in-cycle remediation only); (4) WHY reordered to lead with the brand-decision pivot. Atlas structure unchanged.
+- 2026-06-30 — public web signal added: `/ios` status page and suite-wide footer links are live in code while App Store availability remains gated. Status stays `partial`.
