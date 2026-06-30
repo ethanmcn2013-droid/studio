@@ -119,8 +119,8 @@ export default async function TemplatesPage({
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Three templates for the work a semester actually throws at you.
-            Students get the full Workspace tier for €9.99 a year, verified
-            with any student email.
+            Signal Studio for Students is €9.99 a year, verified with any
+            working student email.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {[
@@ -167,11 +167,11 @@ export default async function TemplatesPage({
           </div>
           <div className="mt-8">
             <Link
-              href="/pricing"
+              href="/students"
               className="text-[14px] font-medium transition-colors hover:text-ink"
               style={{ color: "var(--accent)" }}
             >
-              See the student rate &rarr;
+              See Signal Studio for Students &rarr;
             </Link>
           </div>
         </section>

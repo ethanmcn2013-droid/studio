@@ -5,7 +5,7 @@ import type { TemplateAudience } from "@/components/marketing/template-pills";
  *
  * Two shapes:
  *  - "anchor" → canonical four-layer WorkspaceTemplate from
- *    `src/lib/templates/index.ts` (seeds Tasks + Notes + Timeline + Signal).
+ *    `src/lib/templates/index.ts` (seeds Tasks + Notes + Timeline+ Signal).
  *    Suite-wide reach.
  *  - "specialty" → drop-in Tasks template (Tasks-only). Lifted by
  *    metadata mirror from `tasks/src/lib/templates.ts`. Single-layer.
@@ -14,7 +14,7 @@ import type { TemplateAudience } from "@/components/marketing/template-pills";
  * pill shows real count. Trades has 1, Wedding has 3 — we do not pad.
  *
  * Students is intentionally absent from this list and from the pill row.
- * The /templates page links to /for-students from below the grid, per
+ * The /templates page links to /for/students from below the grid, per
  * the segment-sequencing canon (2026-05-16): students never a paid wedge.
  *
  * Apply path — clicking a template card sends the visitor to Tasks at
