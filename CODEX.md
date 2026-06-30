@@ -1,27 +1,42 @@
-# Codex Instructions — Signal Studio
+# Codex Instructions - Signal Studio
 
-Read `AGENTS.md` first. It is the main operating contract for this repo.
+Read `../CODEX.md` first, then `AGENTS.md`.
 
-This file exists so Codex sessions that look for a Codex-specific instruction file still inherit the Signal HQ rule.
+This file is a repo-local shim. The workspace-level operating contract lives one
+directory up and should stay the source for Codex behavior across the suite.
 
-## Signal HQ Is Mandatory
+## Signal HQ Rule
 
-Any meaningful change to product, brand, GTM, marketing, roadmap, features, campaigns, workflows, templates, outreach, demos, reports, decisions, risks, metrics, or strategic learning must be reflected in Signal HQ before the task is complete.
+Any meaningful change to product, brand, GTM, marketing, pricing, roadmap,
+features, campaigns, workflows, templates, outreach, demos, reports, decisions,
+risks, metrics, or strategic learning must be reflected in Signal HQ before the
+task is complete.
 
-Use these files as the source for HQ updates:
+Use the canonical HQ sources:
 
-- `src/lib/hq/data.ts` for objects and seed dashboard state
-- `src/lib/hq/signals.ts` for derived operating signals
-- `signal-growth/` for growth memory and reusable learning
-- `docs/ECOSYSTEM_INTEGRATION_PLAN.md` for cross-product flows, sharing, invitations, templates, guest access, public outputs, and source tracking
-- `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md` for invite roles, guest access, first-view behaviour, and source tracking
-- `docs/SIGNAL_HQ.md` for HQ operating rules
-- `CHANGELOG.md` for meaningful changes
+- `content/hq/decisions/<id>.md`
+- `content/hq/risks/<id>.md`
+- `content/hq/features/<id>.md`
+- `content/hq/campaigns/<id>.md`
+- `content/hq/products/<id>.md`
+- `content/hq/operator-todos/<id>.md`
+- `content/atlas/<slug>.md`
+- `signal-growth/**`
+- `CHANGELOG.md`
 
-If the task happens in a sibling Signal product repo, update the Studio repo's Signal HQ data as part of the same work or explicitly leave a follow-up action in Signal HQ.
+`src/lib/hq/data.ts` is no longer the default strategic source. It is a seed
+fallback and type substrate. Touch it only when the live code path still reads
+from it.
 
-Collaboration is the organic outreach loop: workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered.
+Collaboration is the organic outreach loop: workspace created -> collaborators
+invited -> work becomes clearer -> shareable output created -> new creator
+discovered.
 
-## Local-First Caveat
+## Before Finishing
 
-HQ v1 persists browser edits in `localStorage`. When repo-backed HQ data changes, bump `seedHqData.updatedAt` so the dashboard can notice that the repo version is newer than the browser copy.
+Run the available checks. At minimum:
+
+- `pnpm typecheck`
+- `pnpm build`
+
+If `pnpm` is unavailable, use `corepack pnpm`.
