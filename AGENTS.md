@@ -6,12 +6,14 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 1. **This file** — locked rules + workflow.
 2. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
 3. **`docs/BRAND.md`** — full voice/brand handbook (audience archetypes, banned words, visual register, page conventions). Source of truth for the suite.
-4. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
-5. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or roadmap work.
-6. **`docs/ECOSYSTEM_INTEGRATION_PLAN.md`** — shared object model and collaboration growth loop. Read before cross-product, sharing, invite, template, or collaboration work.
-7. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
-8. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
-9. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+4. **`docs/brand-guide/naming/LOCKED_OPERATING_VOCABULARY.md`** — exact operating words: Initiative, Project, Cycle, Task, Problem, Queue, Finding.
+5. **`docs/brand-guide/naming/NAMING_CONSTITUTION.md`** — product names, rename rules, and do-not-rename boundaries.
+6. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
+7. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or timeline work.
+8. **`docs/ECOSYSTEM_INTEGRATION_PLAN.md`** — shared object model and collaboration growth loop. Read before cross-product, sharing, invite, template, or collaboration work.
+9. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
+10. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
+11. **`CHANGELOG.md`** — narrative log; read for tonal reference.
 
 If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
 
@@ -19,7 +21,7 @@ If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wi
 
 ## What this is
 
-This is the **umbrella site for Signal Studio** — a four-product suite (Signal Tasks, Signal Roadmap, Signal Analytics, Signal Notes). The umbrella lives at `signalstudio.ie`. The public site is a single-page choreographed entrance ("The Reveal v3") that introduces the suite. Static-ish Next.js 16 with one client orchestrator for motion.
+This is the **umbrella site for Signal Studio** — a four-product suite (Signal Tasks, Signal Timeline, Signal, Signal Notes). The umbrella lives at `signalstudio.ie`. The public site is a single-page choreographed entrance ("The Reveal v3") that introduces the suite. Static-ish Next.js 16 with one client orchestrator for motion.
 
 The repo also contains **Signal HQ** at `/hq`: a private, password-gated internal operating dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. It is not public marketing, is not linked from public navigation, and must stay `noindex`.
 
@@ -32,9 +34,10 @@ The repo's job is to be the most restrained, premium, brand-coherent surface in 
 These are not suggestions. Breaking any of them is a regression that will be reverted on review.
 
 ### Naming
-- Brand is **Signal Studio** in body copy. Never just "Signal" in a sentence — collides with Signal Messenger and is unownable. "Signal" alone is permissible only as a wordmark device or visual mark.
-- Products are **Signal Tasks**, **Signal Roadmap**, **Signal Analytics**, **Signal Notes**. Never abbreviate to "Tasks" alone in marketing/footer/nav unless inside a product surface.
-- Wordmark stylization: lowercase wordmarks (`tasks.`, `roadmap.`, `analytics.`, `notes.`) appear only as motion-typographic elements. Body copy is title case.
+- Brand is **Signal Studio** in body copy. Do not shorten the company to "Signal".
+- Products are **Signal Tasks**, **Signal Timeline**, **Signal**, **Signal Notes**. "Signal" alone is reserved for the briefing/attention product or the visual mark; never use it as a casual company shorthand.
+- Wordmark stylization: lowercase wordmarks (`tasks.`, `timeline.`, `signal.`, `notes.`) appear only as motion-typographic elements. Body copy is title case.
+- Operating spine is **Initiative -> Project -> Cycle -> Task -> Step**. Use **Problem** instead of bug, **Queue** instead of backlog, **Finding** instead of issue, and **Review** instead of retro/post-mortem.
 
 ### Voice (full version in `~/Projects/personal/BRAND.md` §3)
 - Declarative. Periods, not exclamation marks. Anywhere.
@@ -45,7 +48,7 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 ### Banned words (non-exhaustive — full list in BRAND.md §3)
 - AI-marketing: `AI`, `AI-powered`, `intelligent`, `smart`, `copilot`, `agent`, `autonomous`, `predicts`, `recommends`
 - SaaS fluff: `seamless`, `world-class`, `cutting-edge`, `transform`, `revolutionize`, `unleash`, `supercharge`, `delight`, `pleasure` (as UX qualifier), `leverage` (as verb)
-- PM jargon: `sprint`, `epic`, `story point`, `burndown`, `stakeholder`, `MVP` (in body copy), `Kanban`, `Scrum`, `Agile` (capitalized)
+- PM jargon: `sprint`, `epic`, `ticket`, `backlog`, `bug`, `story point`, `burndown`, `stakeholder`, `MVP` (in body copy), `Kanban`, `Scrum`, `Agile` (capitalized)
 - Tech jargon on user-facing pages: `API`, `webhook`, `endpoint`, `OAuth`, `deploy`, `build`, `repo`, `PR`, `merge`, `commit`, `integration` (use "connect" or "works with")
 - Three-adjective trios ("modern, simple, beautiful") — anywhere, any order.
 
@@ -97,7 +100,7 @@ src/app/page.tsx
 3. **PR, don't merge.** Open a PR against `main`. Vercel will post a preview URL on the PR — review the preview, not just the diff. Brand drift is invisible in diffs.
 4. **Local dev.** `pnpm dev` (Turbopack). The motion stack only fires on production builds in some cases; if a motion change looks broken, also test `pnpm build && pnpm start`.
 5. **No new dependencies** without naming why in the PR description. The dependency surface here is deliberately small.
-6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, roadmap, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ data/dashboard and, when relevant, `signal-growth/` memory files before the task is complete. In practice, update `src/lib/hq/data.ts`, `src/lib/hq/signals.ts` if derived logic changes, and bump `seedHqData.updatedAt` so the dashboard can detect newer repo-backed HQ data.
+6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, timeline, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ before the task is complete. In practice, update the canonical source file for the change: `content/hq/decisions/<id>.md`, `content/hq/risks/<id>.md`, `content/hq/features/<id>.md`, `content/hq/campaigns/<id>.md`, `content/hq/products/<id>.md`, `content/hq/operator-todos/<id>.md`, `content/atlas/<slug>.md`, `signal-growth/**`, or `CHANGELOG.md`. `src/lib/hq/data.ts` is a seed fallback and type substrate; touch it only when the live code path still reads from it.
 7. **Collaboration is the growth loop.** Cross-product work should strengthen the loop: workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered. If a feature touches invites, sharing, templates, guest access, public outputs, or source tracking, update `docs/ECOSYSTEM_INTEGRATION_PLAN.md` and the HQ Collab Loop data.
 8. **Operator-gated work goes on the HQ operator to-do ledger.** Whenever any cycle — in this repo or any Signal product repo — surfaces a task that **only the founder/operator can do** (provision an account, get an API key, set a production env var, publish a legal doc, approve a cost limit, decide a policy), add it as a file in `content/hq/operator-todos/<id>.md` so it renders on the `/hq` main page. Never bury an operator blocker in a chat message or a doc. This keeps the founder accountable and gives both sides full visibility on what is being blocked. Mark a task `status: done` only when it is genuinely complete — never optimistically. See `content/hq/operator-todos/README.md` for the file shape.
 
