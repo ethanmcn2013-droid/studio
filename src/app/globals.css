@@ -16,6 +16,10 @@
   --accent-soft:  #eef2ff; /* indigo-50 */
   --accent-glow:  rgba(79, 70, 229, 0.32);
 
+  /* ── Status pips (semantic state — NOT brand accents) ─────── */
+  --status-live:     #10b981; /* emerald — shipped / live */
+  --status-building: #f59e0b; /* amber — in build / design */
+
   /* ── Ink ramp (neutrals — shared with Tasks + Roadmap) ────── */
   --ink-0:   #ffffff;
   --ink-50:  #fafafa;
