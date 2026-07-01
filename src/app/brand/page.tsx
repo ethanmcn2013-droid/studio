@@ -102,12 +102,14 @@ const ASSET_GROUPS: AssetGroup[] = [
     title: "The brand, at any size.",
     blurb: (
       <>
-        One indigo circle. Same shape from a 16px favicon to a billboard.
-        Don&apos;t recolour it — it <em className="not-italic font-medium text-[var(--indigo)]">is</em> the
+        One indigo circle — or dot with broadcast ring for favicons. Same shape
+        from a 16px favicon to a billboard. Don&apos;t recolour it — it{" "}
+        <em className="not-italic font-medium text-[var(--indigo)]">is</em> the
         brand. Seven PNG sizes, plus the vector.
       </>
     ),
     assets: [
+      { base: "dot-ring-indigo", name: "dot + ring · indigo", family: "mark", png: [...KIND_SIZES.mark], surface: "ink", fit: "tile" },
       { base: "dot-indigo", name: "dot · indigo", family: "mark", png: [...KIND_SIZES.mark], surface: "deep", fit: "tile" },
       { base: "dot-ink", name: "dot · ink", family: "mark", png: [...KIND_SIZES.mark], surface: "deep", fit: "tile" },
       { base: "dot-paper", name: "dot · paper", family: "mark", png: [...KIND_SIZES.mark], surface: "ink", fit: "tile" },
