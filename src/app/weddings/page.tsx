@@ -184,7 +184,7 @@ export default function WeddingsPage() {
                   <span
                     aria-hidden
                     className="h-2.5 w-2.5 rounded-full"
-                    style={{ background: "#be185d" }}
+                    style={{ background: "var(--accent)" }}
                   />
                   <span className="text-[13px] font-semibold text-ink">
                     Harbour House wedding
@@ -215,7 +215,7 @@ export default function WeddingsPage() {
                   </p>
                   <p
                     className="mt-1 text-[12px] font-medium"
-                    style={{ color: "var(--flight, #f59e0b)" }}
+                    style={{ color: "var(--flight)" }}
                   >
                     {daysToEvent} days to event
                   </p>
@@ -364,7 +364,7 @@ function PreviewLine({
       <span
         aria-hidden
         className="h-2 w-2 rounded-full"
-        style={{ background: muted ? "var(--ink-300)" : "#be185d" }}
+        style={{ background: muted ? "var(--ink-300)" : "var(--accent)" }}
       />
       <span
         className={
