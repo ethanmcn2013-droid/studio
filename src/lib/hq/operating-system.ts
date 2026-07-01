@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "collateral-identity",
+    title: "Identity & stationery set",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "ready",
+    owner: "Brand",
+    href: "/brand/collateral/identity/index.html",
+    source: "public/brand/collateral/identity",
+    action: "Open the set",
+    note: "Founder card (85×55mm), café card (A6), letterhead, email signature — print PDFs with bleed and crop marks, previews, and print notes. Founder sign-off gates any print run.",
+  },
+  {
     id: "brand-kit",
     title: "Signal Studio brand kit",
     group: "brand",
