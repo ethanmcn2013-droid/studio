@@ -74,6 +74,16 @@
   --brand-soft: var(--accent-soft);
   --brand-glow: var(--accent-glow);
 
+  /* ── Status / event semantics (NOT brand accents) ─────────── */
+  /* Semantic state colours for status pills and event-countdown copy on
+     venues/weddings. Tokenized so they live in the system instead of as
+     scattered literals. Values unchanged — no visual diff. */
+  --flight:             #f59e0b; /* amber — event-countdown / time-pressure copy */
+  --pill-ontrack-bg:    #dcfce7; /* green-100 */
+  --pill-ontrack-ink:   #16a34a; /* green-600 */
+  --pill-attention-bg:  #fef3c7; /* amber-100 */
+  --pill-attention-ink: #d97706; /* amber-600 */
+
   /* ── Motion Contract v1 — suite-locked durations ─────────── */
   /* Identical values across all 5 repos. Do not alter numbers. */
   --motion-instant:  80ms;

@@ -36,7 +36,7 @@ const PRODUCTS: Product[] = [
     line: "Capture clarity. Three-second notebook, one-way extract to Tasks.",
     appUrl: `${NOTES_URL.replace(/\/$/, "")}/app`,
     siteUrl: NOTES_URL,
-    accent: "#7c8b3a",
+    accent: "var(--accent)",
   },
   {
     name: "Tasks",
@@ -44,7 +44,7 @@ const PRODUCTS: Product[] = [
     line: "Execution clarity. The board for the 80% who don't work in tech.",
     appUrl: `${TASKS_URL.replace(/\/$/, "")}/app`,
     siteUrl: TASKS_URL,
-    accent: "#4f46e5",
+    accent: "var(--accent)",
   },
   {
     name: "Timeline",
@@ -52,7 +52,7 @@ const PRODUCTS: Product[] = [
     line: "Direction clarity. A plan in plain English, shareable by link.",
     appUrl: `${TIMELINE_URL.replace(/\/$/, "")}/app`,
     siteUrl: TIMELINE_URL,
-    accent: "#4f46e5",
+    accent: "var(--accent)",
   },
   {
     name: "Signal",
@@ -60,7 +60,7 @@ const PRODUCTS: Product[] = [
     line: "Attention clarity. A daily briefing on what actually moved.",
     appUrl: `${SIGNAL_URL.replace(/\/$/, "")}/app`,
     siteUrl: SIGNAL_URL,
-    accent: "#4f46e5",
+    accent: "var(--accent)",
   },
 ];
 

@@ -196,13 +196,13 @@ export default function VenuesPage() {
                 <div className="flex items-center gap-3">
                   <span
                     className="rounded-full px-2.5 py-1 text-[11px] font-semibold"
-                    style={{ background: "#dcfce7", color: "#16a34a" }}
+                    style={{ background: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" }}
                   >
                     On track
                   </span>
                   <span
                     className="text-[12px] font-medium"
-                    style={{ color: "var(--flight, #f59e0b)" }}
+                    style={{ color: "var(--flight)" }}
                   >
                     28 days to event
                   </span>
@@ -232,7 +232,7 @@ export default function VenuesPage() {
                   </p>
                   <p
                     className="mt-1.5 text-[12px] font-medium"
-                    style={{ color: "var(--flight, #f59e0b)" }}
+                    style={{ color: "var(--flight)" }}
                   >
                     Due in 3 days
                   </p>
@@ -630,11 +630,11 @@ const statusMap: Record<
   CoordinatorStatus,
   { label: string; bg: string; color: string }
 > = {
-  "on-track": { label: "On track", bg: "#dcfce7", color: "#16a34a" },
+  "on-track": { label: "On track", bg: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" },
   "needs-attention": {
     label: "Needs attention",
-    bg: "#fef3c7",
-    color: "#d97706",
+    bg: "var(--pill-attention-bg)",
+    color: "var(--pill-attention-ink)",
   },
   "not-started": {
     label: "Not started",

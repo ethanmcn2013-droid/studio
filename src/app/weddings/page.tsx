@@ -215,7 +215,7 @@ export default function WeddingsPage() {
                   </p>
                   <p
                     className="mt-1 text-[12px] font-medium"
-                    style={{ color: "var(--flight, #f59e0b)" }}
+                    style={{ color: "var(--flight)" }}
                   >
                     {daysToEvent} days to event
                   </p>
