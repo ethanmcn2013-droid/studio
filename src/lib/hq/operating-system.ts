@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "collateral-press",
+    title: "Press kit shell",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "working",
+    owner: "Founder / Brand",
+    href: "/brand/press/index.html",
+    source: "public/brand/press",
+    action: "Open the press page",
+    note: "Draft release (embargo 1 Sep), checkable fact sheet, founder story, brand usage notes, kit zip. Photography and product screenshots reserved for July — drafts need founder approval before any outreach.",
+  },
+  {
     id: "collateral-social",
     title: "Social system — S·1–S·6 + banners",
     group: "brand",

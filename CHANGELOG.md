@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-01 · S·91 · ships · the press kit shell — armed, gated, checkable
+
+**The press kit the growth deck promised for July now exists at `/brand/press/`: a draft one-page release under the 1 September embargo, a fact sheet where every number also appears in the business plan, the founder story (the venue forty-seven days out), brand usage notes for designers on deadline, and one zip carrying all of it.** The release and fact sheet are visibly marked DRAFT — nothing is distributable until the founder approves, and the two slots that cannot be code-rendered stay honestly open: founder photography and real product screenshots, both listed as pending on the page itself. Pricing on the fact sheet uses the shipped 30 June ladder. **Operator gate:** approve the drafts, confirm the €2,500 venue-licence line for public use, and book the photography (`collateral-press-signoff`).
+
 ## 2026-07-01 · S·90 · ships · the social grammar becomes real, rendered objects
 
 **The S·1–S·6 social system from the growth deck is now a rendered specimen bank at `/brand/collateral/social/` — the number, the belief, the before/after, the partner, the founder note, and the quiet-demonstration end cards, each reflowing across Instagram and LinkedIn sizes from one master, plus LinkedIn company, LinkedIn personal, and X banners.** Every line of copy is deck-locked; the compositions are data-driven (one HTML per format, copy in JSON), so a new specimen is a JSON edit, not a redesign. The partner format is specimen by construction — a visible red mark and a placeholder name until a real venue signs and permissions. Alt text ships alongside every image. **Operator gate:** approve the specimens and install the banners (`collateral-social-signoff`); approved posts can seed the 90-day calendar.
