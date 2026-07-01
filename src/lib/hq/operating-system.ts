@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "collateral-social",
+    title: "Social system — S·1–S·6 + banners",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "ready",
+    owner: "Brand",
+    href: "/brand/collateral/social/index.html",
+    source: "public/brand/collateral/social",
+    action: "Open the gallery",
+    note: "Six post formats with deck-locked specimen copy across IG and LinkedIn sizes, quiet-demo end cards, LinkedIn and X banners, and alt text for every image. Partner format is a marked specimen; nothing posts without founder approval.",
+  },
+  {
     id: "collateral-identity",
     title: "Identity & stationery set",
     group: "brand",

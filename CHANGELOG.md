@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-01 · S·90 · ships · the social grammar becomes real, rendered objects
+
+**The S·1–S·6 social system from the growth deck is now a rendered specimen bank at `/brand/collateral/social/` — the number, the belief, the before/after, the partner, the founder note, and the quiet-demonstration end cards, each reflowing across Instagram and LinkedIn sizes from one master, plus LinkedIn company, LinkedIn personal, and X banners.** Every line of copy is deck-locked; the compositions are data-driven (one HTML per format, copy in JSON), so a new specimen is a JSON edit, not a redesign. The partner format is specimen by construction — a visible red mark and a placeholder name until a real venue signs and permissions. Alt text ships alongside every image. **Operator gate:** approve the specimens and install the banners (`collateral-social-signoff`); approved posts can seed the 90-day calendar.
+
 ## 2026-07-01 · S·89 · ships · the first physical objects, rendered from the real tokens
 
 **The identity and stationery set is live at `/brand/collateral/identity/` — founder card (85×55mm front and back), café card (A6, campaign line), A4 letterhead, and a refreshed email signature, all print-ready with bleed and crop marks.** A new private `collateral` repo renders every object from the suite tokens themselves: HTML/CSS masters, vendored Geist, a Playwright pipeline that emits exact-millimetre PDFs and runs an automated gate (dimensions, copy binding, one-indigo restraint, SPECIMEN discipline). The document shell the Asset Command called for was extracted from a venue one-pager draft, as doctrine required; the one-pager itself stays a marked draft until real wedding-workflow screenshots exist. **Operator gate:** founder sign-off before any print run, and the location line moved Dublin→Limerick — confirm it (`collateral-identity-signoff`).

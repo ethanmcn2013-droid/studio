@@ -1,0 +1,30 @@
+Signal Studio - social system alt text
+======================================
+
+S.1 The Number
+  [n01] Signal Studio — 19,898 weddings in Ireland last year. Most were planned in a group chat.
+  [n02] Signal Studio — €36,641, the average spend on an Irish wedding.
+
+S.2 The Belief
+  [b00] Signal Studio belief — Calm is a feature. We build it on purpose.
+  [b03] Signal Studio belief three — Elegance is restraint.
+  [b01] Signal Studio belief one — Meetings happen because visibility is poor.
+
+S.3 Before/After
+  [schedule] Signal Studio — before: an email thread titled Re: Re: Re: FINAL schedule v7. After: one plan, everyone sees it.
+
+S.4 The Partner
+  [sp01] Signal Studio — Founding Limerick Partner number four, venue name placeholder. Specimen, not a real partner.
+
+S.5 Founder Note
+  [quote01] Quote from Ethan McNamara, founder of Signal Studio — Most of the projects in this country never get called one. We built the software those projects deserve.
+
+S.6 Quiet Demonstration end card
+  [suite] Signal Studio end card — the indigo dot, the signal studio wordmark, and the line Calm coordination.
+  [tasks] Signal Tasks end card — the tasks wordmark and the line Calm coordination.
+  [timeline] Signal Timeline end card — the timeline wordmark and the line Calm coordination.
+  [signal] Signal end card — the signal wordmark and the line Calm coordination.
+  [notes] Signal Notes end card — the notes wordmark and the line Calm coordination.
+
+Profile banners
+  [default] Signal Studio banner — the signal studio wordmark with the line Calm coordination, built in Limerick.
