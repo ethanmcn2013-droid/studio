@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-01 · S·92 · ships · the ambassador kit — nine boxes, ready to assemble
+
+**The student ambassador kit from the growth deck is designed and print-ready at `/brand/collateral/ambassador/`: the signed welcome letter ("Nine students in Limerick are getting this letter."), a six-page onboarding guide on moving a committee off the group chat without a fight, four committee templates set as usable A5 checklists — The Ball, The Trip, The Campaign, The AGM Handover — the committee QR card on the venue-card grammar, and a procurement spec for the one quality object (A5 cloth-bound notebook, debossed dot, no logo).** The letter copy is deck-verbatim; the guide and templates are written in plain student English with the one rule that matters repeated where it counts: one owner, one date, per task. The QR card renders as a marked SPECIMEN until its destination is decided. **Operator gate:** decide the QR destination, order a notebook sample, and approve the kit before the August assembly (`collateral-ambassador-signoff`).
+
 ## 2026-07-01 · S·91 · ships · the press kit shell — armed, gated, checkable
 
 **The press kit the growth deck promised for July now exists at `/brand/press/`: a draft one-page release under the 1 September embargo, a fact sheet where every number also appears in the business plan, the founder story (the venue forty-seven days out), brand usage notes for designers on deadline, and one zip carrying all of it.** The release and fact sheet are visibly marked DRAFT — nothing is distributable until the founder approves, and the two slots that cannot be code-rendered stay honestly open: founder photography and real product screenshots, both listed as pending on the page itself. Pricing on the fact sheet uses the shipped 30 June ladder. **Operator gate:** approve the drafts, confirm the €2,500 venue-licence line for public use, and book the photography (`collateral-press-signoff`).

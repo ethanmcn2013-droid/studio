@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "collateral-ambassador",
+    title: "Student ambassador kit (K·0–K·4)",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "working",
+    owner: "Founder / Brand",
+    href: "/brand/collateral/ambassador/index.html",
+    source: "public/brand/collateral/ambassador",
+    action: "Open the kit",
+    note: "Welcome letter (print + sign), six-page onboarding guide, four committee templates, QR card (specimen until destination confirmed), notebook procurement spec. Nine kits: UL, TUS, MIC — assembled in August.",
+  },
+  {
     id: "collateral-press",
     title: "Press kit shell",
     group: "brand",
