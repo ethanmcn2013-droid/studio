@@ -611,7 +611,7 @@ function MockLine({
       <span
         aria-hidden
         className="h-2 w-2 flex-shrink-0 rounded-full"
-        style={{ background: muted ? "var(--ink-300)" : "#be185d" }}
+        style={{ background: muted ? "var(--ink-300)" : "var(--accent)" }}
       />
       <span
         className={
