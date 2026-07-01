@@ -1,14 +1,43 @@
 ---
 id: staging-turso-db
 title: Provision a separate staging/preview Turso DB per app
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
-why: Preview deploys have no DB — the fail-closed guard throws, so Tasks/Signal/Roadmap previews never build and remote UI verification is blocked. Prod creds exist but are Production-scoped only.
+why: Preview deploys had no DB — the fail-closed guard threw, so Tasks/Signal/Roadmap previews never built and remote UI verification was blocked. Now provisioned as isolated forks.
 href: /hq/health
 date: 2026-06-23
 ---
+
+## Done (2026-07-01)
+
+Provisioned end to end. Six isolated `*-preview` Turso databases created as
+**seeded forks** of their prod counterparts (group `default`, org `ethan387`,
+region `aws-eu-west-1`) — fully isolated, so a preview write can never touch
+prod:
+
+`ethanmcnamara-tasks-preview`, `ethanmcnamara-notes-preview`,
+`ethanmcnamara-roadmap-preview`, `ethanmcnamara-analytics-preview`,
+`signal-analytics-preview`, `signal-entitlements-preview`.
+
+Minted one full-access auth token per DB and set the **Preview-scoped**
+(`target: ["preview"]`, all branches) env vars across `tasks`, `notes`,
+`roadmap`, `analytics` — 22 variables total, per the map below. Verified by
+redeploying a previously-erroring `tasks` preview: it built **✓ Ready** where
+every prior preview hit the DB guard and errored.
+
+Note: preview DBs hold a point-in-time snapshot of prod data (fork). Acceptable
+pre-launch; recreate empty if that ever changes.
+
+Follow-ups: the throwaway tokens from earlier attempts were invalidated via a
+Turso `auth/rotate` before the final mint. The **Turso Platform API token** used
+for provisioning can now be revoked — nothing depends on it (the per-DB tokens
+live in Vercel). Notes remote-render is still gated by SSO — see
+[[notes-preview-sso-bypass]].
+
+---
+
 
 ## Steps
 
