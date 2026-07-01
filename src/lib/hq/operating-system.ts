@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "collateral-venue",
+    title: "Venue set — one-pager + leave-behind",
+    group: "sales",
+    audience: ["founder", "marketing"],
+    state: "ready",
+    owner: "Founder / Brand",
+    href: "/brand/collateral/venue/index.html",
+    source: "public/brand/collateral/venue",
+    action: "Open the set",
+    note: "The keystone A4 one-pager and the A5 leave-behind, print-ready with bleed and crop marks. Partner line is a marked specimen; screenshot finishing pass waits on a real wedding workspace. Founder sign-off gates printing.",
+  },
+  {
     id: "collateral-ambassador",
     title: "Student ambassador kit (K·0–K·4)",
     group: "brand",
