@@ -242,8 +242,10 @@ function eyebrowStyle(): React.CSSProperties {
 }
 
 function statusPipColor(s: InsideProduct["status"]): string {
-  if (s === "shipped") return "#10b981";
-  return "#f59e0b";
+  // Tokenized in globals.css. The non-shipped branch is a defensive fallback
+  // for the "build"/"design" states the type allows — kept (not deleted) so a
+  // product moving off "shipped" still renders a pip.
+  return s === "shipped" ? "var(--status-live)" : "var(--status-building)";
 }
 
 /* ── Page ─────────────────────────────────────────────────────────── */
