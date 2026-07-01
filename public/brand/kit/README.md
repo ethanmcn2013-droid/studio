@@ -38,7 +38,7 @@ brand-assets/
 | Logo in a slide / doc / Notion page | `svg/wordmark/signal-studio-indigo.svg` |
 | Logo on a dark slide background | `svg/wordmark/signal-studio-paper.svg` |
 | Hero / share card (16 : 9) | `svg/lockup/on-cream.svg` (or ink / indigo) |
-| Favicon | `svg/mark/dot-indigo.svg` (or any size PNG from `png/mark/`) |
+| Favicon | `svg/mark/dot-ring-indigo.svg` (or any size PNG from `png/mark/`) |
 | App / launcher icon | `svg/app-icon/cream.svg` |
 | Product-specific lockup | `svg/product-wordmarks/tasks.svg` etc. |
 
