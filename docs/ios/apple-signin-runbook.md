@@ -21,7 +21,7 @@ Apple's identity provider has its own provisioning surface. Once per Clerk app (
 3. Identifier: `ie.signalstudio.web.signin` (or `ie.signalstudio.tasks.web.signin` etc — must be globally unique).
 4. Enable **Sign In with Apple** → Configure:
    - Primary App ID: pick the existing umbrella App ID or create one (`ie.signalstudio.app`).
-   - Web Domain: `signalstudio.ie` (and per-product subdomains if separate instances: `tasks.signalstudio.ie`, `roadmap.signalstudio.ie`, etc).
+   - Web Domain: `signalstudio.ie` (and per-product subdomains if separate instances: `tasks.signalstudio.ie`, `timeline.signalstudio.ie`, etc).
    - Return URLs: the exact callback URL Clerk provides — see Step 2 below. Copy from Clerk Dashboard.
 5. Save → Continue → Register.
 
@@ -78,8 +78,8 @@ The script reads each product's `CLERK_SECRET_KEY` from environment and hits Cle
 After Apple is enabled in Clerk Dashboard, visit each product's sign-in page in a browser:
 
 - `https://tasks.signalstudio.ie/sign-in`
-- `https://roadmap.signalstudio.ie/sign-in`
-- `https://analytics.signalstudio.ie/sign-in`
+- `https://timeline.signalstudio.ie/sign-in`
+- `https://signal.signalstudio.ie/sign-in`
 - `https://notes.signalstudio.ie/sign-in`
 
 Each should render an "Continue with Apple" button alongside the existing "Continue with Google" button. The order is Clerk-controlled (alphabetical / by-priority); the styling honours Apple's HIG: **black background, white Apple logo, white text in light mode** (and white background / black logo / black text in dark mode).

@@ -1,16 +1,16 @@
 ---
-id: sprint2-branded-workspaces-kill
-title: Kill Sprint 2 Cycle 10.6 (branded workspaces — venue logo + accent on shared view).
+id: cycle2-branded-workspaces-kill
+title: Kill Initiative 2 Cycle 10.6 (branded workspaces — venue logo + accent on shared view).
 category: Brand
 date: 2026-05-12
 status: Active
 reviewDate: 2026-08-01
-relatedObjects: [Sprint 2, BRAND.md §5, Signal Timeline, Founding Venue Programme]
+relatedObjects: [Initiative 2, BRAND.md §5, Signal Timeline, Founding Venue Programme]
 ---
 
 ## Decision
 
-Kill Sprint 2 Cycle 10.6 (branded workspaces — venue logo + accent on shared view).
+Kill Initiative 2 Cycle 10.6 (branded workspaces — venue logo + accent on shared view).
 
 ## Reason
 
@@ -18,7 +18,7 @@ BRAND.md §5 locks 'one accent across the suite, differentiation comes from gest
 
 ## Alternatives considered
 
-Ship as a delight feature in Sprint 2. Or move to a paid-tier gesture later.
+Ship as a delight feature in Initiative 2. Or move to a paid-tier gesture later.
 
 ## Risks
 

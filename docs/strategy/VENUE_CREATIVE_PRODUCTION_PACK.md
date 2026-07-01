@@ -61,7 +61,7 @@ Planning a wedding produces a lot of noise.
 
 Signal Studio gives every couple one calm place, under your venue's name.
 
-Notes where it starts. Tasks where it gets done. Roadmap what everyone sees. Analytics what needs attention.
+Notes where it starts. Tasks where it gets done. Timeline what everyone sees. Signal what needs attention.
 
 The venue pays once. The couple gets a code. There is nothing for your team to run.
 

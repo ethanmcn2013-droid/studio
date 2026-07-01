@@ -164,12 +164,12 @@ const PANEL_CSS = `
 }
 
 /* roadmap · sweep */
-.mroadmap-dot {
+.mtimeline-dot {
   transform-box: fill-box;
   transform-origin: center;
-  animation: mroadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: mtimeline-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes mroadmap-sweep {
+@keyframes mtimeline-sweep {
   0%   { transform: translateX(0);    opacity: 1; }
   60%  { transform: translateX(79px); opacity: 1; }
   62%  { transform: translateX(79px); opacity: 0; }
@@ -179,11 +179,11 @@ const PANEL_CSS = `
 }
 
 /* analytics · tick */
-.manalytics-bar { transform-box: fill-box; transform-origin: bottom; }
-.manalytics-bar-1 { animation: mbar1 3.6s steps(1,end) infinite 0s; }
-.manalytics-bar-2 { animation: mbar2 3.6s steps(1,end) infinite 0.9s; }
-.manalytics-bar-3 { animation: mbar3 3.6s steps(1,end) infinite 1.8s; }
-.manalytics-bar-4 { animation: mbar4 3.6s steps(1,end) infinite 0.45s; }
+.msignal-bar { transform-box: fill-box; transform-origin: bottom; }
+.msignal-bar-1 { animation: mbar1 3.6s steps(1,end) infinite 0s; }
+.msignal-bar-2 { animation: mbar2 3.6s steps(1,end) infinite 0.9s; }
+.msignal-bar-3 { animation: mbar3 3.6s steps(1,end) infinite 1.8s; }
+.msignal-bar-4 { animation: mbar4 3.6s steps(1,end) infinite 0.45s; }
 @keyframes mbar1 {
   0%  { transform: scaleY(0.55); } 25% { transform: scaleY(0.85); }
   50% { transform: scaleY(0.35); } 75% { transform: scaleY(1.00); }
@@ -211,10 +211,10 @@ const PANEL_CSS = `
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .mpanel, .mpanel-card { animation: none !important; }
-  .mnotes-cursor, .mtasks-dot, .mroadmap-dot, .manalytics-bar { animation: none !important; }
+  .mnotes-cursor, .mtasks-dot, .mtimeline-dot, .msignal-bar { animation: none !important; }
   .mnotes-cursor { opacity: 1; }
-  .mroadmap-dot  { transform: none; }
-  .manalytics-bar { transform: scaleY(0.7); }
+  .mtimeline-dot  { transform: none; }
+  .msignal-bar { transform: scaleY(0.7); }
 }
 `;
 
@@ -245,7 +245,7 @@ function TasksVisual() {
   );
 }
 
-function RoadmapVisual() {
+function TimelineVisual() {
   return (
     <svg width="88" height="52" viewBox="0 0 88 52" fill="none" aria-hidden>
       <rect x="2" y="26" width="82" height="1.5" rx="0.75" fill={INK} opacity="0.09" />
@@ -253,7 +253,7 @@ function RoadmapVisual() {
       <rect x="30" y="20" width="1.5" height="12" rx="0.75" fill={INK} opacity="0.18" />
       <rect x="57" y="20" width="1.5" height="12" rx="0.75" fill={INK} opacity="0.18" />
       <rect x="83" y="20" width="1.5" height="12" rx="0.75" fill={INK} opacity="0.18" />
-      <circle cx="4" cy="26.75" r="5" fill={INDIGO} className="mroadmap-dot" />
+      <circle cx="4" cy="26.75" r="5" fill={INDIGO} className="mtimeline-dot" />
     </svg>
   );
 }
@@ -262,10 +262,10 @@ function AnalyticsVisual() {
   return (
     <svg width="88" height="52" viewBox="0 0 88 52" fill="none" aria-hidden>
       <rect x="0" y="48" width="88" height="1" rx="0.5" fill={INK} opacity="0.07" />
-      <rect x="6"  y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-1" />
-      <rect x="27" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-2" />
-      <rect x="48" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-3" />
-      <rect x="69" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-4" />
+      <rect x="6"  y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="msignal-bar msignal-bar-1" />
+      <rect x="27" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="msignal-bar msignal-bar-2" />
+      <rect x="48" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="msignal-bar msignal-bar-3" />
+      <rect x="69" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="msignal-bar msignal-bar-4" />
     </svg>
   );
 }
@@ -273,7 +273,7 @@ function AnalyticsVisual() {
 const VISUAL_MAP: Record<ProductSlug, () => React.ReactElement> = {
   notes:    NotesVisual,
   tasks:    TasksVisual,
-  timeline: RoadmapVisual,
+  timeline: TimelineVisual,
   signal:   AnalyticsVisual,
 };
 

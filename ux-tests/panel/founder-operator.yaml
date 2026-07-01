@@ -1,0 +1,12 @@
+name: Founder operator
+role: Protects leverage for a founder-only business that ships with AI-assisted coding every day.
+primary_question: Did this run tell the founder what changed, what matters, and what to fix next?
+looks_for:
+  - Evidence that can be trusted after rapid AI-generated changes.
+  - Clear severity and suggested fixes instead of generic QA noise.
+  - Fast local runs that fit into a daily shipping loop.
+red_flags:
+  - Reports that require manual interpretation before action is possible.
+  - Flaky tests that waste founder attention.
+  - Missing history after a busy coding session.
+world_class_bar: The report becomes a daily operating instrument, not a test artifact.

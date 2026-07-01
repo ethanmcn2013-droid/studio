@@ -60,8 +60,8 @@ Share screen. Open the live wedding workspace at `tasks.signalstudio.ie/template
 
 1. **The notebook entry** — open `notes.signalstudio.ie/wedding-planning/`. "This is the venue meeting note. Real prose, no auto-detect. The next move is approving extracts into the workspace."
 2. **The workspace** — the 18 tasks across Venue / Suppliers / Guest list / Final week / Decisions / Risks. "This is what couples and the coordinator both see. Same workspace, different views."
-3. **The shared update** — `roadmap.signalstudio.ie/wedding-planning/update`. "This is the artefact you forward to the couple. One URL, no login. They read it in 30 seconds."
-4. **The briefing** — `analytics.signalstudio.ie/wedding-planning`. "This is what arrives on the Sunday before the wedding. The three things to chase that week."
+3. **The shared update** — `timeline.signalstudio.ie/wedding-planning/update`. "This is the artefact you forward to the couple. One URL, no login. They read it in 30 seconds."
+4. **The briefing** — `signal.signalstudio.ie/wedding-planning`. "This is what arrives on the Sunday before the wedding. The three things to chase that week."
 
 **Pause every 90 seconds**: "What's missing? What's wrong? What's interesting?"
 

@@ -71,8 +71,8 @@ Use `signal-growth/outbound/venue-edition-outreach.md` as the sending source. Th
 - `/venues/demo` timeline.
 - `/weddings` shared update mock.
 - `tasks.signalstudio.ie/templates/wedding-planning-workspace`
-- `roadmap.signalstudio.ie/the-wedding`
-- `analytics.signalstudio.ie` Daily Signal sample.
+- `timeline.signalstudio.ie/the-wedding`
+- `signal.signalstudio.ie` Daily Signal sample.
 - `notes.signalstudio.ie` capture surface.
 
 ## Reuse Rules

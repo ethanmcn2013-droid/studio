@@ -26,4 +26,6 @@ Notion-trap perceived overpay if users only use one of the four. Vapor risk if m
 
 ## Notes
 
+Amounts and public plan names were superseded on 2026-06-30 by [[pricing-ladder-2026-06-30]]: Free Workspace €0, Student €8.99/year, Pro €12/month or €119/year for one paid workspace, Event Workspace €89.99 once for 18 months.
+
 Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/timeline/signal /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Notes has no pricing surface yet (was never built).

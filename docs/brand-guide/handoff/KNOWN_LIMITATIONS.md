@@ -2,7 +2,7 @@
 
 **Purpose.** A short, honest list of what is not yet working as intended in production. Marketing copy must not claim any of the flows below as fully live until the resolution line moves.
 
-**Source.** Compiled from `audit/ISSUES.md` and the operator deferral list in `studio/docs/shipped-state.md`. Current as of 2026-06-05.
+**Source.** Compiled from `audit/FINDINGS.md` and the operator deferral list in `studio/docs/shipped-state.md`. Current as of 2026-06-05.
 
 **Read first.** Anything not listed here is safe to claim as live per `studio/docs/shipped-state.md`. When in doubt, default to silence rather than fabrication.
 
@@ -16,7 +16,7 @@
 
 **Resolves.** Operator-pending. Upstash provisioning on Vercel, then a redeploy. Marketing may describe Timeline as live for the public viewer only. Do not invite a reader to create or edit a timeline until this clears.
 
-**Reference.** `audit/ISSUES.md` row `roadmap-01`. `studio/docs/shipped-state.md` lines 23 and 47–51.
+**Reference.** `audit/FINDINGS.md` row `roadmap-01`. `studio/docs/shipped-state.md` lines 23 and 47–51.
 
 ---
 
@@ -40,7 +40,7 @@
 
 **Resolves.** Operator-pending. Complete DKIM in Google Workspace Admin and verify against a mail-tester run.
 
-**Reference.** `audit/ISSUES.md` Deferred-to-operator list.
+**Reference.** `audit/FINDINGS.md` Deferred-to-operator list.
 
 ---
 
@@ -52,7 +52,7 @@
 
 **Resolves.** Operator-pending. Set `CRON_SECRET` and `RESEND_API_KEY` in Vercel project settings, then redeploy. Marketing may describe Signal as live for the web briefing. Do not promise a daily email until this clears.
 
-**Reference.** `audit/ISSUES.md` Deferred-to-operator list. `studio/docs/shipped-state.md` lines 60–66.
+**Reference.** `audit/FINDINGS.md` Deferred-to-operator list. `studio/docs/shipped-state.md` lines 60–66.
 
 ---
 
@@ -64,7 +64,7 @@
 
 **Resolves.** Operator-pending. Set the inbound secret on Vercel and configure DNS. Marketing may describe Notes as live for the in-app capture and the promote action. Do not claim email-to-capture as live until this clears.
 
-**Reference.** `audit/ISSUES.md` Deferred-to-operator list. `studio/docs/shipped-state.md` line 58.
+**Reference.** `audit/FINDINGS.md` Deferred-to-operator list. `studio/docs/shipped-state.md` line 58.
 
 ---
 
@@ -88,7 +88,7 @@
 
 **Resolves.** Verify on next prod deploy. If labels still read "in build" after deploy, raise it — saying "in build" about a shipped product is itself a reality violation.
 
-**Reference.** `audit/ISSUES.md` row `studio-02`. `studio/docs/shipped-state.md` lines 28–32.
+**Reference.** `audit/FINDINGS.md` row `studio-02`. `studio/docs/shipped-state.md` lines 28–32.
 
 ---
 

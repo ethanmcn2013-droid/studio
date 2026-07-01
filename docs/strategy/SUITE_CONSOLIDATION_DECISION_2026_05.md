@@ -3,7 +3,7 @@
 Date: 2026-05-17
 Status: **Decided (conditional) — build gated, not started**
 Decision owner: Ethan
-Convened: strategy + ux-director + creative-director + architect (parallel review), PM synthesis
+Convened: strategy + ux-advisor + creative-advisor + architect (parallel review), PM synthesis
 
 ---
 
@@ -28,7 +28,7 @@ The question bundles four separate decisions:
 The felt instant-jump is a property of #1 + #2, not #3. A monorepo/DB merge is **not**
 required to get the experience.
 
-## Director positions (converged independently)
+## Advisor positions (converged independently)
 
 - **Strategy:** One workspace branded as four. Consolidate the runtime, never market it
   ("if you can't describe it without sounding like ClickUp, don't say it"). Hard condition:

@@ -44,8 +44,8 @@ const WIDTHS = [320, 375, 390, 393, 414, 430];
 const PRODUCTS_PROD = {
   studio:    "https://signalstudio.ie",
   tasks:     "https://tasks.signalstudio.ie",
-  roadmap:   "https://roadmap.signalstudio.ie",
-  analytics: "https://analytics.signalstudio.ie",
+  roadmap:   "https://timeline.signalstudio.ie",
+  analytics: "https://signal.signalstudio.ie",
   notes:     "https://notes.signalstudio.ie",
 };
 

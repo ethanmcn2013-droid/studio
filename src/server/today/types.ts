@@ -39,7 +39,7 @@ export type NoteSummary = {
   lastExcerpt: string | null;
 };
 
-export type RoadmapMilestone = {
+export type TimelineMilestone = {
   workspaceSlug: string;
   workspaceName: string;
   /** Milestone title. */
@@ -50,21 +50,21 @@ export type RoadmapMilestone = {
   status: string;
 };
 
-export type RoadmapSummary = {
+export type TimelineSummary = {
   /** Up to 5 upcoming milestones across the user's workspaces. */
-  upcoming: RoadmapMilestone[];
+  upcoming: TimelineMilestone[];
   /** Count of milestones shipped in the last 7 days. */
   shippedLast7d: number;
 };
 
-/** Closed enum of Analytics briefing cadences, mirroring the Tasks
- *  `user_preferences.daily_signal_cadence` column (which Analytics
+/** Closed enum of Signal briefing cadences, mirroring the Tasks
+ *  `user_preferences.daily_signal_cadence` column (which Signal
  *  reads at briefing time). iOS / web clients can pattern-match this
  *  enum closed. */
 export type AnalyticsCadence = "off" | "weekdays" | "daily";
 
 export type AnalyticsSummary = {
-  /** Whether the user has the Analytics product set up at all (has a
+  /** Whether the user has the Signal product set up at all (has a
    *  user_preferences row in Tasks with a known cadence). */
   enabled: boolean;
   /** IANA timezone the user's briefing fires in. Null if not set. */
@@ -80,7 +80,7 @@ export type TodayResponse = {
    *  OR the suite has no read-token configured for that product. */
   tasks: TaskSummary[] | null;
   notes: NoteSummary | null;
-  roadmap: RoadmapSummary | null;
+  roadmap: TimelineSummary | null;
   analytics: AnalyticsSummary | null;
   /** Health flags — names which product reads failed so the client can
    *  show "(briefing unavailable)" rather than a confidently-empty state. */

@@ -1,0 +1,23 @@
+name: Third-level student
+context: A third-level student balancing lectures, part-time work, and a group assignment with classmates who do not all use the same tools.
+goal: Plan a group assignment from first notes through tasks, timeline, and a final daily signal.
+likely_language:
+  - group assignment
+  - lecture notes
+  - who is doing what
+  - due Friday
+  - keep it simple
+workflow_expectations:
+  - Capture messy ideas quickly without choosing a project first.
+  - Turn useful notes into clear tasks without losing the original thought.
+  - See what is due soon without reading a project-management manual.
+  - Get one calm summary of what needs attention.
+friction_risks:
+  - Jargon like sprint, epic, roadmap, or trigger may feel technical.
+  - Too many setup steps can make the student return to chat messages.
+  - Hidden cross-product movement can make the suite feel disconnected.
+success_criteria:
+  - The next step is obvious at each stage.
+  - No broken buttons, routes, forms, or console errors.
+  - The full Notes -> Tasks -> Timeline -> Signal path is understandable.
+  - The experience reduces assignment noise rather than adding another dashboard.

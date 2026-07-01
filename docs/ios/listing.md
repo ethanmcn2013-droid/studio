@@ -44,7 +44,7 @@ The four-product preview sentence by sentence — capture (Notes), move (Tasks),
 ## Description (4,000)
 
 ```
-Signal Studio is project management for the 80% who don't work in tech. Four small tools that read as one system — Notes, Tasks, Roadmap, Analytics. Plain English. Built for the work, not the workflow.
+Signal Studio is project management for the 80% who don't work in tech. Four small tools that read as one system — Notes, Tasks, Timeline, Signal. Plain English. Built for the work, not the workflow.
 
 What's inside
 
@@ -52,9 +52,9 @@ Notes. A private place for thoughts before they become work. Write it down in th
 
 Tasks. A live workspace built for momentum. Three views of the same list — board, list, timeline. Plain-English dates. Enough motion to show what changed.
 
-Roadmap. Direction clarity. Public plans, decisions, and changes written in plain English. A shareable link, not a PowerPoint.
+Timeline. Direction clarity. Public plans, decisions, and changes written in plain English. A shareable link, not a PowerPoint.
 
-Analytics. Not a dashboard. A briefing. Reads the state of your work and writes you a short morning note. What needs you. What's moving. What's quiet.
+Signal. Not a dashboard. A briefing. Reads the state of your work and writes you a short morning note. What needs you. What's moving. What's quiet.
 
 Today
 
@@ -72,7 +72,7 @@ We collect what we need to run the app. Email, your name if you give it, your ow
 
 Pricing
 
-Free to start. Workspace plans for individuals and small teams. Student plans free with a .edu email. Event plans for one-time projects like weddings. All pricing on signalstudio.ie/pricing.
+Free to start. Pro for ongoing work. Student access is €8.99 a year with a student email. Event Workspace is €89.99 once for one event. All pricing on signalstudio.ie/pricing.
 
 Sign in once on your phone, see your work everywhere. signalstudio.ie
 ```
@@ -114,7 +114,7 @@ Cycle-1 / v1.0 candidate:
 ```
 1.0 — First release.
 
-Four small tools that read as one system. Notes, Tasks, Roadmap, Analytics, plus a Today screen that knows what needs you.
+Four small tools that read as one system. Notes, Tasks, Timeline, Signal, plus a Today screen that knows what needs you.
 
 Built over twelve weeks with restraint as a feature. Sign in with the same account you use on the web — your work follows you.
 

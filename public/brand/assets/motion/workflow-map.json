@@ -25,30 +25,30 @@
       "url": "https://tasks.signalstudio.ie",
       "action": "Plain-English tasks · board · list · timeline",
       "demoAction": "Confirm tasting menu card moves To do → Done",
-      "flowsTo": "Roadmap",
+      "flowsTo": "Timeline",
       "scene": "reel-scene s2",
       "screenshot": "assets/motion/tasks-demo.png"
     },
     {
       "step": 3,
-      "product": "Roadmap",
-      "url": "https://roadmap.signalstudio.ie",
+      "product": "Timeline",
+      "url": "https://timeline.signalstudio.ie",
       "action": "Public plan · one link · no login",
       "demoAction": "Suppliers see Done / Doing / Held up status",
-      "flowsTo": "Analytics",
+      "flowsTo": "Signal",
       "scene": "reel-scene s3",
-      "screenshot": "assets/motion/roadmap-demo.png",
+      "screenshot": "assets/motion/timeline-demo.png",
       "note": "Public demo at homepage; /wedding-spring-26 returns 404"
     },
     {
       "step": 4,
-      "product": "Analytics",
-      "url": "https://analytics.signalstudio.ie",
+      "product": "Signal",
+      "url": "https://signal.signalstudio.ie",
       "action": "Morning briefing · 3 items per block · hard cap",
       "demoAction": "06:00 daily briefing · signal not noise",
       "flowsTo": "Notes",
       "scene": "reel-scene s4",
-      "screenshot": "assets/motion/analytics-demo.png"
+      "screenshot": "assets/motion/signal-demo.png"
     }
   ],
   "screens": [
@@ -70,19 +70,19 @@
     },
     {
       "id": "roadmap",
-      "url": "https://roadmap.signalstudio.ie",
-      "label": "Signal Roadmap · Spring wedding (public)",
-      "file": "assets/motion/roadmap.png",
-      "thumb": "assets/motion/roadmap-thumb.png",
-      "demo": "assets/motion/roadmap-demo.png"
+      "url": "https://timeline.signalstudio.ie",
+      "label": "Signal Timeline · Spring wedding (public)",
+      "file": "assets/motion/timeline.png",
+      "thumb": "assets/motion/timeline-thumb.png",
+      "demo": "assets/motion/timeline-demo.png"
     },
     {
       "id": "analytics",
-      "url": "https://analytics.signalstudio.ie",
-      "label": "Signal Analytics · daily briefing",
-      "file": "assets/motion/analytics.png",
-      "thumb": "assets/motion/analytics-thumb.png",
-      "demo": "assets/motion/analytics-demo.png"
+      "url": "https://signal.signalstudio.ie",
+      "label": "Signal · daily briefing",
+      "file": "assets/motion/signal.png",
+      "thumb": "assets/motion/signal-thumb.png",
+      "demo": "assets/motion/signal-demo.png"
     },
     {
       "id": "suite",

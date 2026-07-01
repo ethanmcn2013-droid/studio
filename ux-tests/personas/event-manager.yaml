@@ -1,0 +1,23 @@
+name: Event manager
+context: An event manager coordinating guests, suppliers, timelines, dependencies, and last-minute changes across multiple stakeholders.
+goal: Keep event work coordinated from raw notes to task board, public timeline, and daily review.
+likely_language:
+  - run-sheet
+  - supplier access
+  - waiting on client
+  - schedule
+  - today only
+workflow_expectations:
+  - Capture decisions fast during calls and site visits.
+  - Convert the right notes into accountable tasks.
+  - Show stakeholders a readable status timeline.
+  - Use Signal to spot risk without scanning every task.
+friction_risks:
+  - Ambiguous states can hide risk.
+  - A noisy board can make the user miss the urgent item.
+  - Repeated sign-in or disconnected domains can break flow.
+success_criteria:
+  - The path across products feels connected.
+  - The public timeline is readable by clients and suppliers.
+  - The daily signal is short enough to read before a meeting.
+  - The experience remains calm under deadline pressure.

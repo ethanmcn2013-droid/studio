@@ -60,7 +60,7 @@ export default function NotFound() {
                 color: "var(--ink-soft)",
               }}
             >
-              Signal Timeline &rarr;
+              Signal Timeline&rarr;
             </a>
           </div>
 

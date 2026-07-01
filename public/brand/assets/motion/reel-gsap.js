@@ -26,7 +26,7 @@
   var captions = reel.querySelectorAll('.reel-caption span');
   var dots = reel.querySelectorAll('.reel-dots-progress i');
   var chaosCards = reel.querySelectorAll('.reel-chaos-card');
-  var shine = reel.querySelector('.ui-analytics-shine');
+  var shine = reel.querySelector('.ui-signal-shine');
 
   var shotNotes = reel.querySelector('.reel-shot-notes img');
   var shotTasks = reel.querySelector('.reel-shot-tasks img');
@@ -232,7 +232,7 @@
   pulseTag(tagTasks, hiTasks, 6.05, 4.7);
   kenBurns(shotTasks, 6.15, 4.6, -6, 1.03);
 
-  /* Beat 3 · Roadmap (11.1s – 16.1s) */
+  /* Beat 3 · Timeline (11.1s – 16.1s) */
   tl.addLabel('roadmap', 11.1);
   crossfade(scenes[2], scenes[3], 11.1);
   tl.call(function () { setActiveStep(3); setDots(3); }, null, 11.15);
@@ -242,7 +242,7 @@
   pulseTag(tagRoadmap, hiRoadmap, 11.15, 4.8);
   kenBurns(shotRoadmap, 11.25, 4.7, -5, 1.02);
 
-  /* Beat 4 · Analytics (16.3s – 22.1s) */
+  /* Beat 4 · Signal (16.3s – 22.1s) */
   tl.addLabel('analytics', 16.3);
   crossfade(scenes[3], scenes[4], 16.3);
   tl.call(function () { setActiveStep(4); setDots(4); }, null, 16.35);

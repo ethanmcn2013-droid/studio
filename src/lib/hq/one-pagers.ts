@@ -42,7 +42,7 @@ export const ONE_PAGERS: OnePagerDoc[] = [
   {
     slug: "roadmap",
     wordmark: "signal timeline.",
-    eyebrow: "Signal Timeline · Direction clarity",
+    eyebrow: "Signal Timeline· Direction clarity",
     summary: "A shareable timeline a non-technical reader understands in under a minute.",
     gesture: "sweep",
     href: "/hq/one-pagers/roadmap",

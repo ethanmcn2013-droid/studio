@@ -47,8 +47,8 @@ Started May 11, 2026.
 Cycle 1 is the collaboration foundation cycle:
 
 - Tasks owns execution clarity for invited collaborators.
-- Roadmap owns the shareable direction artefact.
-- Analytics owns the briefing and attention signal.
+- Timeline owns the shareable direction artefact.
+- Signal owns the briefing and attention signal.
 - Notes owns context-to-work extraction.
 
 The next strategic decisions are guest access, public/private controls, source tracking, and the first wedding/events shareable artefacts.
@@ -72,7 +72,7 @@ Started May 11, 2026.
 
 Cycle 3 builds the first real shareable artefact:
 
-- Signal Roadmap shared update page at `/[workspace]/update`.
+- Signal Timeline shared update page at `/[workspace]/update`.
 - Source fields on shared-output links.
 - A tasteful "Created with Signal Studio" discovery link.
 - A proof URL that can be used before heavier invite, template, or analytics infrastructure exists.

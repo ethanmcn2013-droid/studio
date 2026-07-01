@@ -6,7 +6,7 @@
  * to whichever pill is hovered/focused, and on click it travels to the
  * target pill before the page navigates ("the cool dot transition").
  *
- * Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+ * Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline→ Signal
  *
  * SAFETY (post-2026-05-18 SEV-0): fully scoped (`pp-*`), IN-FLOW only —
  * no position:fixed, no inset:0, no high z-index, no global @keyframes.

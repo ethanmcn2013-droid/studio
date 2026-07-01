@@ -1,7 +1,7 @@
 # Approved Phrases
 
 - Plain-language software for clear work.
-- Notes captures context. Tasks organises action. Roadmap communicates direction. Analytics finds what needs attention.
+- Notes captures context. Tasks organises action. Timeline communicates direction. Signal finds what needs attention.
 - Project clarity without project-management theatre.
 - No Jira translator required.
 - Wedding planning without spreadsheet chaos.

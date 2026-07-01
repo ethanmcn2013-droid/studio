@@ -1,6 +1,6 @@
-# Sprint 2 — Collaboration as the moat
+# Initiative 2 — Collaboration as the moat
 
-**Status**: locked plan · execution begins after Sprint 1 closes
+**Status**: locked plan · execution begins after Initiative 1 closes
 **Owner of plan**: Ethan (decisions) + Claude (execution)
 **Drafted**: 2026-05-11
 
@@ -38,13 +38,13 @@ Not every product collaborates the same way. Treating it as uniform would break 
 | Signal Notes | Single-user. Locked. | notes/docs/PRODUCT.md §7: "Not collaborative." |
 | Signal | Private — the briefing is for one person | Signal PRODUCT.md positioning |
 
-**Implication:** Sprint 2 changes Tasks + Timeline. It does NOT change Notes or Signal.
+**Implication:** Initiative 2 changes Tasks + Timeline. It does NOT change Notes or Signal.
 
 ---
 
 ## The five gestures that earn "wow this is intuitive"
 
-These are the load-bearing user moments. Everything else in Sprint 2 hangs off them.
+These are the load-bearing user moments. Everything else in Initiative 2 hangs off them.
 
 1. **One-click invite.** A single input in a Tasks workspace: email or copy-link. No "configure permissions first" modal. Default: read + comment.
 2. **No-signup guest view.** The invited person clicks the link → sees the workspace immediately. Sign-up is offered when they try to *change* something, not when they try to *see* something.
@@ -94,7 +94,7 @@ If these five ship well, collaboration feels intuitive. Everything else is decor
 
 ## Success signal
 
-When a venue coordinator forwards the shared Timeline link to a couple — and the couple opens it, understands what's happening, and replies — and the venue forwards three more couples that week — Sprint 2 has paid out.
+When a venue coordinator forwards the shared Timeline link to a couple — and the couple opens it, understands what's happening, and replies — and the venue forwards three more couples that week — Initiative 2 has paid out.
 
 The metric in HQ to watch: **active venue pilots** (target 3 within 30 days of collaboration shipping) and **guest views per invite** (a healthy number is one creator-invite producing 2-4 guest views, indicating the invite is being forwarded).
 
@@ -102,7 +102,7 @@ The metric in HQ to watch: **active venue pilots** (target 3 within 30 days of c
 
 ## Dependencies
 
-- Sprint 1 must close first. Notes Cycle 9.4 (promote-to-tasks API endpoint) IS the first piece of cross-product collab plumbing — it sharpens what Sprint 2 needs.
+- Initiative 1 must close first. Notes Cycle 9.4 (promote-to-tasks API endpoint) IS the first piece of cross-product collab plumbing — it sharpens what Initiative 2 needs.
 - The shared Clerk app must remain stable across the four products. (Decided 2026-05-11, suite-wide.)
 - The shared Turso architecture stays per-product DBs keyed by Clerk userId.
 

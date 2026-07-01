@@ -53,7 +53,7 @@ export default async function IncorporationPage() {
         <Fact label="Registered office" value={COMPANY_META.registeredOffice} />
       </section>
 
-      {/* Timeline */}
+      {/* Timeline*/}
       <section className="hq-co-block" aria-label="timeline">
         <div className="hq-fm-unit-head">
           <span className="hq-os-eyebrow">timeline · against the real deadlines</span>

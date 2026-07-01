@@ -21,7 +21,7 @@ export async function generateMetadata({
   const d = getDirector(slug);
   return {
     title: d ? `${d.shortName} · ${d.name} — org` : "org — signal hq",
-    description: d?.oneLine ?? "Director profile.",
+    description: d?.oneLine ?? "Advisor profile.",
     robots: {
       index: false,
       follow: false,
@@ -31,10 +31,10 @@ export async function generateMetadata({
 }
 
 /**
- * /hq/org/[slug] — Director drill-down.
+ * /hq/org/[slug] — Advisor drill-down.
  * Profile + portfolio + neighbours in the same cluster + link to full charter.
  */
-export default async function DirectorPage({
+export default async function AdvisorPage({
   params,
 }: {
   params: Promise<{ slug: string }>;

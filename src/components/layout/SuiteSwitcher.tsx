@@ -17,7 +17,7 @@
  * Clicking "signal studio." opens the switcher panel. No separate
  * "Products" button. No "Products ▾" label. The wordmark is the trigger.
  *
- * This matches the Notes/Roadmap pattern and resolves the Tasks outlier
+ * This matches the Notes/Timeline pattern and resolves the Tasks outlier
  * (D6: "Tasks SuiteChrome is the outlier causing 'signal studio.×3'").
  *
  * Panel anatomy:
@@ -77,7 +77,7 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline→ Signal
   {
     slug: "notes",
     word: "notes",

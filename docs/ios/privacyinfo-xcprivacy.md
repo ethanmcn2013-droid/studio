@@ -82,7 +82,7 @@ Drop into the Xcode project as `SignalStudio/PrivacyInfo.xcprivacy` and confirm 
       </array>
     </dict>
 
-    <!-- Other User Content — Notes, Tasks, Roadmap, Analytics content -->
+    <!-- Other User Content — Notes, Tasks, Timeline, Signal content -->
     <dict>
       <key>NSPrivacyCollectedDataType</key>
       <string>NSPrivacyCollectedDataTypeOtherUserContent</string>

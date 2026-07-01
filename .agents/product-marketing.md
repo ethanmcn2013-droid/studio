@@ -12,8 +12,8 @@ One work-clarity suite, not four adjacent apps. Five surfaces:
 
 - **Signal Studio** (signalstudio.ie) — umbrella.
 - **Signal Tasks** — execution. What needs doing, by whom, by when.
-- **Signal Roadmap** — direction. Where it's going, what changed, what's next. Shareable public pages.
-- **Signal Analytics** — attention. A plain-language daily briefing, not a dashboard.
+- **Signal Timeline** — direction. Where it's going, what changed, what's next. Shareable public pages.
+- **Signal** — attention. A plain-language daily briefing, not a dashboard.
 - **Signal Notes** — context. Private capture; one-way approved extracts to Tasks.
 
 Operating principle: *Everything important. Nothing distracting.*

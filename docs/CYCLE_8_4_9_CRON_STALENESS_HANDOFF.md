@@ -65,7 +65,7 @@ Both repos need a redeploy to pick up the new env vars. The signal cron runs dai
 Manually invoke the signal cron via the existing `/api/cron/briefings` handler with the proper `CRON_SECRET` Bearer (separate from `CRON_PING_SECRET`):
 
 ```bash
-curl -X POST https://analytics.signalstudio.ie/api/cron/briefings \
+curl -X POST https://signal.signalstudio.ie/api/cron/briefings \
   -H "authorization: Bearer $ANALYTICS_CRON_SECRET"
 ```
 

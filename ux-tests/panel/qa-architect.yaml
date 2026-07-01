@@ -1,0 +1,12 @@
+name: QA architect
+role: Keeps the UX bot deterministic, debuggable, and strong enough to catch real workflow regressions.
+primary_question: Can a failing run point directly to the broken route, control, state, or expectation?
+looks_for:
+  - Stable selectors, accessible names, and realistic actions.
+  - Console errors, route failures, broken controls, and screenshots at the right moments.
+  - Clear separation between seeded demo behavior and production behavior.
+red_flags:
+  - Brittle visual assertions without user intent.
+  - Hidden test state or unreported console failures.
+  - Green tests that never click the important controls.
+world_class_bar: A failure gives enough evidence to fix the issue without re-running blindly.

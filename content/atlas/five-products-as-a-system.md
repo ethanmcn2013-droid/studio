@@ -29,8 +29,8 @@ The four products share one design system (see [[brand-enforcement]] and the sui
 ```mermaid
 flowchart LR
   N[Notes — capture] -->|promote| T[Tasks — work]
-  T -->|read-only| A[Analytics — attention]
-  T -.->|optional surface| R[Roadmap — plan]
+  T -->|read-only| A[Signal — attention]
+  T -.->|optional surface| R[Timeline — plan]
   A -->|cron ping| ST[Studio HQ — operator dashboard]
 ```
 
@@ -41,8 +41,8 @@ Ethan owns every product. Each lives in its own repo under `~/Projects/personal/
 ## WHERE
 
 - **Tasks** — `~/Projects/personal/tasks/`. Live at `tasks.signalstudio.ie`. Persistence on Turso since 2026-05-08.
-- **Timeline** — `~/Projects/personal/roadmap/`. Live at `roadmap.signalstudio.ie` (and `roadmap-ebon-eight.vercel.app`). Phases 1–5 shipped 2026-05-09.
-- **Signal** — `~/Projects/personal/analytics/`. Live at `analytics.signalstudio.ie`. End-to-end pipeline shipped 2026-05-13.
+- **Timeline** — `~/Projects/personal/roadmap/`. Live at `timeline.signalstudio.ie` (and `roadmap-ebon-eight.vercel.app`). Phases 1–5 shipped 2026-05-09.
+- **Signal** — `~/Projects/personal/analytics/`. Live at `signal.signalstudio.ie`. End-to-end pipeline shipped 2026-05-13.
 - **Notes** — `~/Projects/personal/notes/`. Live at `notes.signalstudio.ie`. Cross-repo Notes→Tasks extract shipped Cycle 9.4b.
 - **Studio (umbrella)** — `~/Projects/personal/studio/`. Live at `signalstudio.ie`. The umbrella site, brand hub, pricing, HQ.
 

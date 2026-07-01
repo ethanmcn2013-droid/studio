@@ -69,7 +69,7 @@ That critique would be right if the moat were features. It isn't.
 
 The moat is **disciplined refusal sustained across a suite of products over time.** Specifically:
 
-- **Voice discipline.** Every page, every empty state, every error message, every email passes through one register (BRAND.md §3). Drift is treated as a bug. An incumbent cannot retrofit this without alienating their existing power-user audience, who are paying for the jargon.
+- **Voice discipline.** Every page, every empty state, every error message, every email passes through one register (BRAND.md §3). Drift is treated as a problem. An incumbent cannot retrofit this without alienating their existing power-user audience, who are paying for the jargon.
 - **Refusal discipline.** Each product publishes its locked refusals (`PRODUCT.md` §7). Notion cannot refuse to be a wiki; it *is* a wiki. Asana cannot refuse to surface metrics; metrics are its conversion bait. Signal Studio's refusals compound — every "no" deepens the brand and shrinks the surface area, the inverse of standard SaaS timeline dynamics.
 - **Visual restraint.** One accent color across the suite. One per-product gesture. No category-colour fragmentation. No mascots. No 3-adjective hero grids. Boring on purpose. The rules are in BRAND.md §5 and they are easier to copy than to *sustain* against the gravitational pull of "let's just ship a chart".
 - **Suite coherence as a single product surface.** Tasks, Timeline, Signal, Notes are four products that read as one. Cross-product chrome is consistent (BRAND.md §6). An incumbent attacking one of these has to attack all four, against a brand that has been speaking with one voice while they did so.
@@ -133,12 +133,12 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Product naming
 - **Full form (in marketing copy, footer suite, cross-product nav):** `Signal Tasks`, `Signal Timeline`, `Signal`, `Signal Notes`.
-- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `roadmap·`, `analytics·`, `notes·` — each with its own indigo gesture inside **one shared mark grammar** (Geist 500, letter-spacing -0.025em, dot 0.16em indigo at the baseline lower-right). The dot is the brand. Same construction from a 16px favicon to a billboard. Per-product gestures encode each product's *relationship to time*:
-  - `tasks·` — **pulse** (continuous, ~2.6s). Now — the queue is alive.
-  - `roadmap·` — **slide** (forward, ~5.4s). Timeline — past to future.
-  - `analytics·` — **tick** (sampled, ~3.6s steps). Discrete reads — jumps between samples, never between them.
-  - `notes·` — **caret** (input, ~1.1s sharp on/off). A held cursor — there, then gone, then there. (Updated 2026-05-11: was "underline writes itself"; new gesture aligns the wordmark with the notebook's own capture caret.)
-  - `signal studio.` — **pulse-slow** (ambient, ~5.2s). The umbrella, calmer than tasks.
+- **Wordmark form (in each product's own header/logo):** lowercase `tasks.`, `timeline.`, `signal.`, `notes.` - each with its own indigo gesture inside one shared mark grammar:
+  - `tasks.` - **pulse** (continuous, ~2.6s). Now: the queue is alive.
+  - `timeline.` - **slide** (forward, ~5.4s). Timeline: past to future.
+  - `signal.` - **tick** (sampled, ~3.6s steps). Discrete reads: jumps between samples, never between them.
+  - `notes.` - **caret** (input, ~1.1s sharp on/off). A held cursor: there, then gone, then there. (Updated 2026-05-11: was "underline writes itself"; new gesture aligns the wordmark with the notebook's own capture caret.)
+  - `signal studio.` - **pulse-slow** (ambient, ~5.2s). The umbrella, calmer than tasks.
   - All five respect `prefers-reduced-motion`.
   - Full keyframe spec lives in `studio/docs/brand-guide/BRAND_GUIDE_HANDOFF.md`.
 - **Conversational form (within the product itself):** drop "Signal" — e.g. "Welcome to Tasks."
@@ -148,7 +148,7 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 - **Full form:** `Signal Studio` (capital S, capital S).
 - **Wordmark form:** lowercase `signal studio.` with antique-gold period.
 - **Cross-product nav prefix:** lowercase `signal studio.` (consistent across all four products).
-- **Never:** just "Signal" alone in body copy — collides with Signal Messenger.
+- **Never:** use "Signal" as shorthand for the company. In body copy it means the product, not the umbrella.
 
 ### Email
 Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `support@`, not `team@`.
@@ -204,7 +204,7 @@ Signal HQ is the founder's instrument, and its quality bar is *out-restraint eve
 - **The verdict is first and honest.** The one derived sentence — "are we winning, what's the one thing" — leads, even when it's uncomfortable. Polish must never bury the commercial truth; the forcing-function spine exists to prevent exactly that.
 - **No bolted-on AI chat, no notification theatre, no dense enterprise tables.** HQ is a calm instrument, not an everything-app. New backend rooms get their own route; they never crowd the spine.
 
-The signature, ownable moves that *earn* the craft budget: the **living dot** (the company's pulse, the verdict miniaturised and made global), the **⌘K palette** (the whole system navigable in one keystroke), and the **AI Director layer** (personality as signal, restraint as the container). Sharpen these; resist importing generic dashboard features.
+The signature, ownable moves that *earn* the craft budget: the **living dot** (the company's pulse, the verdict miniaturised and made global), the **⌘K palette** (the whole system navigable in one keystroke), and the **advisor layer** (personality as signal, restraint as the container). Sharpen these; resist importing generic dashboard features.
 
 ---
 
@@ -227,7 +227,7 @@ CTA secondary: [product-specific deeper link]
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
 - Tasks: `Open the workspace`
-- Timeline: `Open the roadmap`
+- Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`
 
@@ -301,7 +301,7 @@ Four header elements, separated by middle dot (` · `, U+00B7 with spaces):
 | **holds**   | a refusal — what was chosen *not* to build, and why           |
 | **reads**   | copy, naming, voice, tone hygiene                             |
 
-`holds` is the Signal-specific category. Every other product log buries refusals inside "Changed" or never writes them at all. The brand brags about refusals on `/about` and `/method`; the dispatch brags about them in the same register. Earn its use — typically once per sprint, not every entry.
+`holds` is the Signal-specific category. Every other product log buries refusals inside "Changed" or never writes them at all. The brand brags about refusals on `/about` and `/method`; the dispatch brags about them in the same register. Earn its use — typically once per cycle, not every entry.
 
 **Compound entries split.** If a date covers three distinct beats with different verbs, write three entries, not one. Splitting is the most expensive part of this convention — name the cost up front.
 
@@ -350,34 +350,40 @@ brand promises to cut through the noise; the briefing that lands on a
 day with nothing to say is itself noise.
 ```
 
-### 6.6 · Operating vocabulary (locked 2026-05-22)
+### 6.6 - Locked operating vocabulary (updated 2026-06-29)
 
-How Signal Studio talks about its own work. Plain English. No PM-tool jargon. Two layers — one for readers (dispatch + umbrella copy), one for the operator (HQ, phase, commits, log).
+How Signal Studio talks about its own work. Plain English. No project-management theatre. The vocabulary is shared across HQ, agent briefs, planning docs, handoffs, and current operating records.
 
-**The principle.** §2.2 "no special vocabulary for the 80%" applies to *how Signal describes itself*, not just to product features. *Sprint, cycle, phase, epic, iteration, milestone, quarter, standup, backlog, velocity, kanban* are PM-tool words with a learning curve. They never reach the dispatch, the umbrella, or any user-facing surface. The operator vocabulary below is what replaces them — also plain English, slight studio-craft tilt, no metaphor that needs a glossary.
+**The spine.** Initiative -> Project -> Cycle -> Task -> Step.
 
-| word            | what it names                                  | replaces                          | example                                                |
-|-----------------|------------------------------------------------|-----------------------------------|--------------------------------------------------------|
-| **pass**        | one focused arc of work on a theme             | sprint / phase / plan             | "the Tasks elevation pass"                             |
-| **step**        | one unit of work inside a pass                 | cycle / task / story              | "step three of the elevation pass"                     |
-| **update**      | something that went live for users             | release / deployment / shipment   | "an update on 20 May — wordmark loaders"               |
-| **fix**         | a small correction to something that shipped   | patch / hotfix                    | "a fix to Notes inline-edit scroll"                    |
-| **re-do**       | a larger rebuild of something that already existed | refactor / pivot / overhaul   | "a re-do of the suite switcher — one pill row, not two"|
-| **push**        | a focused initiative spanning many passes      | epic / initiative / workstream    | "the calm push — quieter loading, slower fades"        |
-| **look-back**   | what was learned after a pass closed           | retro / post-mortem               | "the look-back from the wordmark loader pass"          |
-| **look-ahead**  | what is coming up next                         | timeline / forecast / pipeline     | "the look-ahead: iOS suite app, gated post-July"       |
-| **mark**        | a date or moment that matters                  | milestone / checkpoint            | "a mark on the calendar — first venue conversation"    |
-| **week**        | a recurring chunk of time                      | sprint / iteration / quarter      | "the week of 19 May"                                   |
+| word | what it names | replaces | example |
+|---|---|---|---|
+| **Initiative** | a named phase of build, deployment, or operating change | phase / program / workstream | "Initiative 02 - Visible Copy" |
+| **Project** | a meaningful body of work with an outcome | epic / major ticket / work package | "the public Timeline project" |
+| **Cycle** | a focused time-box or implementation pass inside a project | sprint / iteration | "Cycle 03 closes the invite path" |
+| **Task** | one owned unit of work | ticket / story / chore | "add the operator to-do task" |
+| **Step** | one ordered action inside a task | subtask / checklist item | "Step 2: update the CTA" |
+| **Queue** | ordered work waiting for attention | backlog | "founder approval queue" |
+| **Finding** | a review or audit observation | issue | "P1 finding" |
+| **Problem** | something broken or harmful | bug | "checkout problem" |
+| **Risk** | a known threat to outcome, trust, cost, or timing | blocker / concern | "legal naming risk" |
+| **Decision** | a choice that changes direction or constraints | call / ruling | "rename Timeline and Signal" |
+| **Record** | durable memory of a decision, finding, review, or release | log / artifact | "decision record" |
+| **Release** | something made available | deployment / shipment | "June release" |
+| **Review** | structured look-back or quality pass | retro / post-mortem | "launch review" |
+| **Owner** | the person accountable for completion | assignee / stakeholder | "owner: Ethan" |
+| **Status** | the current state of work | state / stage | "status: in progress" |
 
-**Layer A — user-facing (dispatch + umbrella).** *Update · fix · re-do · look-back · look-ahead* are the words the dispatch reaches for in prose when one is needed. Per-entry verbs stay as `ships / tightens / cuts / holds / reads` per §6.5 — those are the entry-shape contract, untouched. The new words live in the dispatch *preamble*, in umbrella copy that describes how Signal works (`/principles`, `/press`, `/about`), and in any place the suite explains its own rhythm to a reader.
+**Default replacements.** Epic -> Project. Sprint -> Cycle. Ticket -> Task. Bug -> Problem. Backlog -> Queue. Issue board -> Findings list. Roadmap -> Timeline. Analytics -> Signal.
 
-**Layer B — operator-facing (HQ, phase, commits, log).** *Pass · step · push · mark · week* are how the operator names the work internally. They appear in `~/.claude/state/phase.md`, in `content/hq/*.md`, in commit message verbs, and in cross-agent briefings. The X·NN cycle-code grep target (S·67, T·56) stays — it's a code, not a word. It survives because it never reaches the dispatch (§6.5 banned-list) and never reaches a user.
+**Use the old words only when one of these is true:**
 
-**Historical entries are not rewritten.** The same rule as §6.5: prior CHANGELOG entries, older `docs/CYCLE_*.md` filenames, and committed messages from before 2026-05-22 keep their original wording. The new vocabulary starts at the next pass. Rewriting history is the worse drift.
+- The word appears in a deliberate refusal list that names what Signal Studio does not speak.
+- The word is part of a stable route, package name, database field, repo folder, generated asset name, or external integration.
+- The word is in historical changelog text, old commits, or archived records.
+- The word is the normal term in a security, legal, or standards context and replacing it would reduce clarity.
 
-**The PM-jargon refusal list stays loud.** Where the umbrella names PM-tool words on purpose — `/about`, `/brand`, `/principles` refusal lists, the §3 banned terms — *sprints, epics, burndown, velocity* stay verbatim, because they are what Signal refuses to speak. The refusal is the brand posture. The new vocabulary is what Signal speaks *instead*.
-
-**Dissent preserved.** Strategy's note on record: the operator/reader split adds discipline cost — *pass* and *update* will leak into each other under pressure. The mitigation is not vigilance but the fact that the dispatch banned-list (§6.5) already filters file paths and internal codes; *cycle* and *sprint* now join that filter. If the discipline cracks after two passes, retire Layer A entirely and let plain English ("we shipped this", "we fixed that") do the job without a vocabulary at all.
+Current work uses the locked vocabulary. Historical entries are not rewritten just to make the past look tidy.
 
 ### "What this isn't" pattern
 On every product's `/about` (or homepage anti-features section):
@@ -430,7 +436,7 @@ When agents (or future-Ethan) ask "what's the Signal Studio voice?" — point th
 
 ## 10 · Living document — recent decisions
 
-- **2026-05-14:** §6.5 Changelog convention rewritten as **the dispatch convention.** Supersedes the 2026-05-12 lock. Five-agent deliberation (creative-director / ux-director / strategy / pm / tech-writer) converged on: rename "changelog" → "the dispatch"; replace Keep-a-Changelog's Added/Changed/Fixed/Removed with five Signal verbs (ships / tightens / cuts / holds / reads); lock a single header-line shape (`YYYY-MM-DD · X·NN · verb · headline`); require a bold impact-lead sentence as the body's first line; ban emoji, badge chips, semver, audience-impact pills, and in-product "what's new" toasts. The `holds` category is the Signal-specific bet — refusals as a first-class entry type, the §6 brand posture finally on the log. Strategy's dissent preserved inline in the recommendation: if scaffolding flattens the prose voice after two cycles, drop the verb tag and keep only the name, the headline grammar, and the `holds` concept. No retroactive rewrite of prior entries. The new shape starts at the next cycle. `signalstudio.ie/dispatch` to be built as a half-day curated read-surface after the next cycle ships — not before venue calls.
+- **2026-05-14:** §6.5 Changelog convention rewritten as **the dispatch convention.** Supersedes the 2026-05-12 lock. Five-agent deliberation (creative-advisor / ux-advisor / strategy / pm / tech-writer) converged on: rename "changelog" → "the dispatch"; replace Keep-a-Changelog's Added/Changed/Fixed/Removed with five Signal verbs (ships / tightens / cuts / holds / reads); lock a single header-line shape (`YYYY-MM-DD · X·NN · verb · headline`); require a bold impact-lead sentence as the body's first line; ban emoji, badge chips, semver, audience-impact pills, and in-product "what's new" toasts. The `holds` category is the Signal-specific bet — refusals as a first-class entry type, the §6 brand posture finally on the log. Strategy's dissent preserved inline in the recommendation: if scaffolding flattens the prose voice after two cycles, drop the verb tag and keep only the name, the headline grammar, and the `holds` concept. No retroactive rewrite of prior entries. The new shape starts at the next cycle. `signalstudio.ie/dispatch` to be built as a half-day curated read-surface after the next cycle ships — not before venue calls.
 - **2026-05-11:** Brand guide handoff received from Claude Design canvas. Direction **D01 — Refined Indigo Dot** committed. Three explorations rejected (D02 quadrant glyph, D03 mono wordmark with cursor, D04 serif Fraunces monogram). The locked four-temporality framework: tasks=pulse, timeline=slide, signal=tick, notes=caret, umbrella=pulse-slow. Two per-product gestures changed from prior BRAND.md §4: Signal (static→tick) and Notes (underline-writes→caret). Full spec at `studio/docs/brand-guide/BRAND_GUIDE_HANDOFF.md`. Rolling out across products in cycles 11.1–11.6.
 - **2026-05-11:** Wedge confirmed — **weddings and events** are the first GTM wedge. Other §2.1 archetypes (freelancers, students, tradespeople, small-business operators, public-facing coordinators) remain part of the suite positioning, but outbound, demo production, and pilot programmes lead with weddings/events through the rest of 2026 Q2. Validates: Ireland is the validation market, venues are the workspace-creator persona, the four-layer wedding loop (Notes venue meeting → Tasks workspace → Timeline shared update → Signal daily briefing) is the proof. Reversible decision; revisit after 10 venue conversations.
 - **2026-05-11:** Cycles 1–7 (Codex/GPT-5.5 reframing) published end-to-end. Signal Studio reframed as one integrated ecosystem with four layers (context/execution/direction/attention) rather than four products with shared chrome. Strategic enemy named: *translation debt*. Growth loop locked: workspace created → collaborators invited → shareable artefact → new creator discovered. Internal `/hq` dashboard now live as the operational source of truth.
@@ -441,7 +447,7 @@ When agents (or future-Ethan) ask "what's the Signal Studio voice?" — point th
 - **2026-05-09:** Plan 1 (Strategic Foundation) closed. Cycle 1.1 → `analytics/docs/PRODUCT.md` locked (briefing mechanism = rules + curated prose library, no LLM in v1). Cycle 1.2 → `notes/docs/PRODUCT.md` locked (one-way Notes→Tasks promotion only; never auto-detect todos). Cycle 1.3 → BRAND.md §2.1–§2.3 added (the 80%, what fails them, the moat = discipline-sustained-across-suite-over-time, not feature). The moat-watch metric: unprompted user language. Brief paying out when users describe Signal Studio in our register; breached when they describe it in incumbents'.
 - **2026-05-09:** Plan 2 · Cycle 2.1 (Per-product wordmark gestures) shipped. Notes "underline-writes-itself" gesture designed in `studio/src/app/globals.css` as `.notes-mark` and applied in `studio/src/components/landing/products-grid.tsx` (NotesWordmark replaces prior static-dot variant). Tasks pulse / Timeline slide-on-mount / Signal static dot verified intact. `notes-mark` deliberately not applied in suite-strip nav at 11px (gesture too small to read; lives where Notes has visual weight). BRAND.md §4 gesture enumeration updated to source-of-truth. Carry-forward `/method` copy edits applied in signal: "patterns it recognises" → "patterns we built in"; added "Today the Engine reads from your Signal Tasks workspace; other sources will be added when they earn it."
 - **2026-05-09:** Plan 2 · Cycle 2.2 (Chrome unification + favicon system) shipped. Six favicon files created (`icon.tsx` + `apple-icon.tsx` for timeline, signal, studio) modeled on Tasks's existing pattern. Suite-shared brand-soft tile `#eef2ff` for the family read; product-specific letter (r/a/s) + accent (indigo dot for products, gold period for Studio umbrella). Tasks and Timeline nav components converted to client components and brought to behavior parity with Signal: `usePathname` active-state on desktop nav, native `<details>/<summary>` mobile menu pattern. Cost: ~2KB JS bundle on Tasks/Timeline nav (was server-rendered). Benefit: brand-coherent active state and mobile menu across all three product navs. All four projects typecheck clean. Plan 2 closed.
-- **2026-05-09:** Plan 3 · Cycle 3.1 (Workspace creation flow — Timeline polish) shipped. Found that Timeline already had a working CreateWorkspaceForm + server action — Plan 3.1 became a brand-coherence polish, not a build. Replaced "slug" terminology with "URL" throughout the form + server-action error messages (slug is banned tech jargon for the 80% per BRAND.md §3). Added live URL preview that shows `roadmap.signalstudio.ie/<slug>` in mono as the user types, with placeholder italic state when empty. Reframed sub-copy from "Pick a slug — it's the URL where your timeline lives publicly" to "Your timeline gets a URL. Pick a name and an address you can share." Submit button "Create workspace" → "Create it". Added quiet footer hint "Next: add a project. You can change the name later." closing the loop on what comes after creation. Timeline typechecks clean.
+- **2026-05-09:** Plan 3 · Cycle 3.1 (Workspace creation flow — Timeline polish) shipped. Found that Timeline already had a working CreateWorkspaceForm + server action — Plan 3.1 became a brand-coherence polish, not a build. Replaced "slug" terminology with "URL" throughout the form + server-action error messages (slug is banned tech jargon for the 80% per BRAND.md §3). Added live URL preview that shows `timeline.signalstudio.ie/<slug>` in mono as the user types, with placeholder italic state when empty. Reframed sub-copy from "Pick a slug — it's the URL where your timeline lives publicly" to "Your timeline gets a URL. Pick a name and an address you can share." Submit button "Create workspace" → "Create it". Added quiet footer hint "Next: add a project. You can change the name later." closing the loop on what comes after creation. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.2 (Timeline editor surface — polish) shipped. Six voice fixes across page.tsx + source-editor.tsx: page sub-heading "Markdown source" → "Write your timeline. Save. Share." (was redundant with breadcrumb + jargon-coded). Toolbar button "Insert example markdown" → "Show an example". Pending button "Parsing…" → "Saving…". Confirm dialog "your current source" → "what you have". Status copy "X items parsed" → "X items in your timeline"; "No items found. Check your markdown headings and bullet syntax." → "Nothing here yet. Use # for headings and - for items." Default placeholder copy from "Paste your timeline markdown" → "Write your timeline below". The technical reality is markdown — the editor still teaches the syntax via placeholder + example button — but every user-facing string moved from mechanism-first to outcome-first. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.3 (Public viewer polish) shipped. Tight pass — both public pages already well-shaped. Workspace page: demo banner copy "your team's timeline" → "your timeline" (universalised — the 80% audience includes solo operators); metadata description prefers `workspace.description`, falls back to "Where {name} is going. The public timeline." (was generic "Public timeline for X"). Workspace + project page: Pro-gated calendar CTA reframed from "Pro: subscribe in calendar" / title "Upgrade to Pro for iCal" → "Subscribe in calendar (Pro)" / title "Pro plan adds calendar subscriptions". Action leads, gate-marker is parenthetical; "iCal" jargon purged. 4 occurrences replaced across desktop + mobile rails. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.4 (Marketing surface depth) shipped. 5 string fixes across 3 of 5 marketing pages — tight surgical pass, not wholesale rewrites. About: anti-feature 03 "Not for your engineering team" → "Not for the people building it" + note "Your engineers already know what's happening" → "The people doing the work already know what's happening" (purged BRAND.md §3 explicit ban on "engineering teams" / "engineers" while preserving the audience-vs-makers distinction the section was making). Pricing: Free tier feature "Markdown source editor" → "Markdown editor" (jargon purge); migration FAQ "Timeline's source format is Markdown with a lightweight front-matter spec" → "Timeline reads plain markdown with a lightweight tag for dates" (front-matter spec is unhelpful jargon for the 80% audience asking the migration question). Templates: "Create a project with no prefill" → "Create a project with no template" (prefill is dev-jargon). Security page deliberately untouched — security/docs pages get jargon exemption per BRAND.md §3. Changelog deliberately untouched — craft artifact with strong distinctive voice; per saved feedback, changelog entries should read with personality, not procedural minutes. Timeline typecheck clean.

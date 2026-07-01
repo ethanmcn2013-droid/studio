@@ -40,7 +40,7 @@ const ROOMS: Room[] = [
   { label: "Loan pack", hint: "the lender business plan deck", href: "/hq/loan-pack", keywords: "loan lender funding deck business plan facility" },
   { label: "Vault", hint: "every document the business runs on", href: "/hq/vault", keywords: "documents legal docs files" },
   { label: "Assets", hint: "brand kit, decks, exports", href: "/hq/assets", keywords: "brand deck press kit downloads" },
-  { label: "Directors", hint: "the standing AI org", href: "/hq/org", keywords: "org chart directors people roles" },
+  { label: "Advisors", hint: "the standing advisory org", href: "/hq/org", keywords: "org chart advisors people roles" },
   { label: "Atlas", hint: "how the systems connect", href: "/hq/atlas", keywords: "systems data flows crons architecture" },
   { label: "Partners", hint: "outreach + founder letters", href: "/hq/partners", keywords: "outreach letters venues sponsors" },
   { label: "Plan", hint: "the lender business plan", href: "/hq/plan", keywords: "business plan lender funding" },

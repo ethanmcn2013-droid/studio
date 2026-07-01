@@ -5,7 +5,7 @@ category: Product
 date: 2026-05-12
 status: Active
 reviewDate: 2026-07-12
-relatedObjects: [Signal, Sprint 2, Cycle 11.4 cinematic demo]
+relatedObjects: [Signal, Initiative 2, Cycle 11.4 cinematic demo]
 ---
 
 ## Decision
@@ -18,11 +18,11 @@ Signal's product premise is signal worth briefing. Signal requires multi-actor, 
 
 ## Alternatives considered
 
-Restart immediately and hope Sprint 2 multi-user state arrives in time. Or restart on a calendar date with no usage trigger.
+Restart immediately and hope Initiative 2 multi-user state arrives in time. Or restart on a calendar date with no usage trigger.
 
 ## Risks
 
-Cooling-off cost on the engine architecture in canonical-state memory — picking it back up after Sprint 2 will take ramp time.
+Cooling-off cost on the engine architecture in canonical-state memory — picking it back up after Initiative 2 will take ramp time.
 
 ## Notes
 

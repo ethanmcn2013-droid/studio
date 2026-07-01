@@ -27,7 +27,7 @@ export const metadata: Metadata = {
  * Days-to-event for the hero mock. Static — the demo represents a
  * planner four weeks out, which is the moment the wedge most clearly
  * earns its keep (date held, decisions made, final-week work pending).
- * Replacing the abstract "Planning Roadmap - 2026-05-14" stamp with
+ * Replacing the abstract "Planning Timeline- 2026-05-14" stamp with
  * calendar proximity is the 80% audience's actual mental model.
  */
 const daysToEvent = 28;

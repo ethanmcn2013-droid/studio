@@ -274,7 +274,7 @@ export interface FeedbackItem {
   source: string;
   segment: string;
   productArea: string;
-  type: "Bug" | "Confusion" | "Feature request" | "Objection" | "Praise" | "Pricing" | "Positioning";
+  type: "Problem" | "Confusion" | "Feature request" | "Objection" | "Praise" | "Pricing" | "Positioning";
   rawFeedback: string;
   insight: string;
   frequency: number;
@@ -346,9 +346,9 @@ export interface GrowthWorkflowItem {
   repurposing: string[];
   status: GrowthStatus;
   roleOwner:
-    | "Strategy Director"
-    | "Creative Director"
-    | "Brand Director"
+    | "Strategy Advisor"
+    | "Creative Advisor"
+    | "Brand Advisor"
     | "Content Producer"
     | "Outbound Operator"
     | "SEO & Template Strategist"
@@ -431,7 +431,7 @@ export const seedHqData: HqData = {
     weekOf: "2026-05-11",
     theme: "Venue-pilot pull · three conversations by 2026-06-02, regardless of polish.",
     focus:
-      "T0-T3.b polish work is closed (verified 2026-05-12 across /weddings, Tasks /welcome, Roadmap demo). The next forcing function is not another sprint - it is venues. Three real conversations by 2026-06-02. Sprint 1 (Notes 9.3 + 9.4b) and Sprint 2 (collaboration gestures) continue, but in service of the pilot, not as a prerequisite.",
+      "T0-T3.b polish work is closed (verified 2026-05-12 across /weddings, Tasks /welcome, Timeline demo). The next forcing function is not another cycle - it is venues. Three real conversations by 2026-06-02. Initiative 1 (Notes 9.3 + 9.4b) and Initiative 2 (collaboration gestures) continue, but in service of the pilot, not as a prerequisite.",
   },
   prospects: [
     {
@@ -1546,17 +1546,17 @@ export const seedHqData: HqData = {
       dueDate: "2026-05-13",
       status: "Done",
       relatedObject: "Wedding planning workspace",
-      notes: "The Tasks starter template and Roadmap shared update now exist. Next cycle should add the Notes follow-up and Today Signal examples.",
+      notes: "The Tasks starter template and Timeline shared update now exist. Next cycle should add the Notes follow-up and Today Signal examples.",
     },
     {
       id: "shared-update-demo-path",
-      action: "Use the Roadmap shared update page in the first collaboration demo.",
+      action: "Use the Timeline shared update page in the first collaboration demo.",
       category: "GTM",
       priority: "High",
       dueDate: "2026-05-14",
       status: "Done",
       relatedObject: "Shared roadmap update",
-      notes: "`/wedding-planning/update` routes viewers to the self-serve `/weddings` page. Venue-led proof uses `/venues/demo` and the no-CTA couple artifact at Roadmap `/the-wedding`.",
+      notes: "`/wedding-planning/update` routes viewers to the self-serve `/weddings` page. Venue-led proof uses `/venues/demo` and the no-CTA couple artifact at Timeline`/the-wedding`.",
     },
     {
       id: "collaboration-loop-spec",
@@ -1595,7 +1595,7 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-11",
       status: "Done",
-      relatedObject: "Tasks, Roadmap, Analytics, Notes",
+      relatedObject: "Tasks, Timeline, Signal, Notes",
       notes: "Each product now has a role-specific collaboration-loop doc and agent pointer.",
     },
     {
@@ -1686,11 +1686,11 @@ export const seedHqData: HqData = {
       dueDate: "2026-05-18",
       status: "To do",
       relatedObject: "Suite design system",
-      notes: "Working session with Claude Design at 11:00 on Monday 2026-05-18 to design the new suite-wide design system. Holds the visual + interaction primitives that Studio, Tasks, Roadmap, Analytics, and Notes share (typographic scale, colour tokens, spacing rhythm, motion register, component primitives). Owner-led; agent prep is read BRAND.md §4 + the four product surfaces beforehand. Output target: a written spec in studio/docs/ that the four products import from, replacing the per-product token drift accumulating today.",
+      notes: "Working session with Claude Design at 11:00 on Monday 2026-05-18 to design the new suite-wide design system. Holds the visual + interaction primitives that Studio, Tasks, Timeline, Signal, and Notes share (typographic scale, colour tokens, spacing rhythm, motion register, component primitives). Owner-led; agent prep is read BRAND.md §4 + the four product surfaces beforehand. Output target: a written spec in studio/docs/ that the four products import from, replacing the per-product token drift accumulating today.",
     },
     {
       id: "verify-analytics-cron",
-      action: "Verify the Analytics daily-briefing cron is actually firing in Vercel logs.",
+      action: "Verify the Signal daily-briefing cron is actually firing in Vercel logs.",
       category: "Operations",
       priority: "High",
       dueDate: "2026-05-14",

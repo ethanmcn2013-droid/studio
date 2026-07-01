@@ -23,8 +23,8 @@ import { createClient, type Client } from "@libsql/client";
  *
  * Timestamp units differ per DB and are easy to get wrong, so they are
  * named at every query:
- *   - Tasks, Roadmap  → seconds   (`unixepoch()`)
- *   - Notes, Analytics → milliseconds (`unixepoch() * 1000`)
+ *   - Tasks, Timeline → seconds   (`unixepoch()`)
+ *   - Notes, Signal → milliseconds (`unixepoch() * 1000`)
  *
  * Metric definitions (all from product data, the founder's ask):
  *   - activation     = Tasks workspaces with ≥1 task ÷ all workspaces
@@ -184,7 +184,7 @@ export async function getProductAnalytics(): Promise<ProductAnalytics> {
       "SELECT COUNT(DISTINCT user_id) AS n FROM activities WHERE created_at >= ?",
       d30s,
     ),
-    // Roadmap/Timeline (s): distinct workspaces with item edits in 30d.
+    // Timeline(s): distinct workspaces with item edits in 30d.
     readModuleActive(
       "ROADMAP_TURSO_URL",
       "ROADMAP_TURSO_TOKEN",

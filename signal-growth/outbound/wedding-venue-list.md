@@ -110,7 +110,7 @@ The reason-sentence above couldn't be sent to a different venue without editing.
 - **Capacity (approx)**: up to 240 (marquee), smaller in the main house
 - **Coordinator name**: **Jessica Booth** (confirmed — manager, in-house wedding coordinator; Bridebook + multiple recent testimonials confirm she runs the planning process)
 - **Coordinator email**: info@martinstownhouse.com (a direct address for Jessica is worth a 30-second phone ask)
-- **Reason this venue**: Martinstown is run by four named family members across roles — Edward and Róisín Booth own it, their son Andrew is the head chef, and his wife Jessica is the manager. Coordinating across owner-chef-manager-couple is the exact four-corner shape Signal Tasks plus Signal Roadmap was designed for, and the family-at-the-centre brand is the same value the suite operates on.
+- **Reason this venue**: Martinstown is run by four named family members across roles — Edward and Róisín Booth own it, their son Andrew is the head chef, and his wife Jessica is the manager. Coordinating across owner-chef-manager-couple is the exact four-corner shape Signal Tasks plus Signal Timeline was designed for, and the family-at-the-centre brand is the same value the suite operates on.
 - **Source**: martinstownhouse.com/weddings — owners/family detail
 - **Email 1 sent**: —
 - **Email 2 sent**: —
@@ -222,7 +222,7 @@ The reason-sentence above couldn't be sent to a different venue without editing.
 - **Capacity (approx)**: 96 in the Manor, 200 in Hunter's Yard
 - **Coordinator name**: Angela, Alma, or Lil (Mount Juliet's events team has multiple coordinators surfaced in recent wedding reviews — verify who's assigned to the wedding stream specifically). The "Ayesha" theory from the prior draft was wrong — `ays@mountjuliet.ie` doesn't surface as a personal-abbreviation pattern in any public source. Use `events@mountjuliet.ie` instead.
 - **Coordinator email**: events@mountjuliet.ie (preferred over the unverified `ays@` address; phone +353 56 77 73 000 for direct routing)
-- **Reason this venue**: Mount Juliet stretches weddings into multi-day events — rehearsal dinner the night before, day-two BBQ, with golf, falconry and equestrian for guests in between. That's three to five distinct activity threads each with its own vendor and timeline. The multi-track shape is exactly what Tasks and Roadmap surface, and the briefing on the Sunday before tells the coordinator which thread needs attention first.
+- **Reason this venue**: Mount Juliet stretches weddings into multi-day events — rehearsal dinner the night before, day-two BBQ, with golf, falconry and equestrian for guests in between. That's three to five distinct activity threads each with its own vendor and timeline. The multi-track shape is exactly what Tasks and Timeline surface, and the briefing on the Sunday before tells the coordinator which thread needs attention first.
 - **Source**: mountjuliet.ie/weddings — multi-day positioning
 - **Email 1 sent**: —
 - **Email 2 sent**: —

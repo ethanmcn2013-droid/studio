@@ -84,7 +84,7 @@ A recurring theme: **`tasks` is the reference implementation.** It has CI, the s
 **Gaps.**
 - **Production deploys are ungated on four of five repos.** Only `tasks` has CI (§7); for `studio`, `notes`, `roadmap`, `analytics` a push to `main` goes **straight to production** via Vercel with no lint/typecheck/test gate. A broken commit ships.
 - **No env-var validation at boot** (see §6) means a missing Vercel env surfaces as a runtime 500, not a failed build.
-- Operator-pending env items historically tracked in `docs/OPERATOR_ACTIONS_*` (Upstash for Roadmap rate-limit, `CRON_SECRET`, `RESEND_API_KEY`, DKIM, `NOTES_CAPTURE_INBOUND_SECRET`) — **confirm each is set in the right Vercel project before launch.**
+- Operator-pending env items historically tracked in `docs/OPERATOR_ACTIONS_*` (Upstash for Timeline rate-limit, `CRON_SECRET`, `RESEND_API_KEY`, DKIM, `NOTES_CAPTURE_INBOUND_SECRET`) — **confirm each is set in the right Vercel project before launch.**
 
 **Bucket:** A. **Risk:** High. **Areas:** all repos' Vercel settings, `.github/workflows` (absent in 4/5).
 **Fix:** add the `tasks` CI workflow to the other four repos (lint + typecheck + test) as a required check; add env validation. **Can implement now:** CI workflows — Yes. Vercel required-checks + env vars — operator.
@@ -134,15 +134,15 @@ A recurring theme: **`tasks` is the reference implementation.** It has CI, the s
 
 ## 9. Rate limiting
 
-**What I found.** Uneven. Refs to Upstash/ratelimit: `roadmap` (4), `studio` (3), `tasks` (2), `notes` (1), **`analytics`/Signal (0 — none).** Roadmap's rate limiting historically depends on an **operator-provisioned Upstash** instance (without it, writes were documented as failing/limited in prod).
+**What I found.** Uneven. Refs to Upstash/ratelimit: `roadmap` (4), `studio` (3), `tasks` (2), `notes` (1), **`analytics`/Signal (0 — none).** Timeline's rate limiting historically depends on an **operator-provisioned Upstash** instance (without it, writes were documented as failing/limited in prod).
 
 **Gaps.**
 - **Signal (`analytics`) has no rate limiting** on any endpoint — if it exposes a public briefing/API route, it is unprotected against abuse.
 - Auth endpoints are Clerk-hosted (Clerk rate-limits its own), but **app-level public endpoints** (capture email, public timelines, briefing) need coverage.
-- Verify the Roadmap Upstash instance is actually provisioned in Vercel (long-standing operator action).
+- Verify the TimelineUpstash instance is actually provisioned in Vercel (long-standing operator action).
 
 **Bucket:** A for any public write endpoint; B for the rest. **Risk:** Medium–High. **Areas:** `analytics/src` routes; `roadmap` Upstash binding.
-**Fix:** add a shared Upstash rate-limit wrapper to Signal's public routes; confirm Roadmap's Upstash binding. **Can implement now:** Code — Yes. Upstash provisioning — operator.
+**Fix:** add a shared Upstash rate-limit wrapper to Signal's public routes; confirm Timeline's Upstash binding. **Can implement now:** Code — Yes. Upstash provisioning — operator.
 
 ---
 
@@ -220,8 +220,8 @@ A 64 means: **the product is launchable, the operations are not yet trustworthy.
 2. **Cross-tenant isolation test per product** proving user A cannot read user B. *(High.)* — me.
 3. **CI gate on all five repos** (lint + typecheck + test) as a required check before prod. *(High.)* — me (workflows) + operator (Vercel required checks).
 4. **Sentry in Notes and Signal.** *(High — core flows currently blind.)* — me + operator (DSN).
-5. **Roadmap manual migration → tracked migration**, and confirm it has run in prod. *(High.)* — me.
-6. **Confirm operator env items are set** (Upstash for Roadmap, `CRON_SECRET`, `RESEND_API_KEY`, Sentry DSNs, `NOTES_CAPTURE_INBOUND_SECRET`). *(High.)* — operator.
+5. **Timeline manual migration → tracked migration**, and confirm it has run in prod. *(High.)* — me.
+6. **Confirm operator env items are set** (Upstash for Timeline, `CRON_SECRET`, `RESEND_API_KEY`, Sentry DSNs, `NOTES_CAPTURE_INBOUND_SECRET`). *(High.)* — operator.
 7. **Rate-limit Signal's public endpoints.** *(Medium–High.)* — me + operator (Upstash binding).
 8. **Promote CSP from Report-Only to enforce** once the report stream is clean. *(High.)* — me + judgment.
 
@@ -239,7 +239,7 @@ If only #1 and #2 get done, do those two — they cover the two irreversible ris
 
 **Day 4 — see failures.** Add Sentry to Notes and Signal; add cron success assertions / a dead-man's switch; verify the daily briefing actually sends.
 
-**Day 5 — close abuse + headers.** Rate-limit Signal's public routes; confirm Roadmap Upstash; flip CSP to enforce per product after reviewing reports.
+**Day 5 — close abuse + headers.** Rate-limit Signal's public routes; confirm TimelineUpstash; flip CSP to enforce per product after reviewing reports.
 
 **Buffer — operator items.** Confirm every Vercel env var and required-check is set; run the `tasks` e2e against a preview URL once.
 
@@ -341,7 +341,7 @@ kept below for the record.
 
 **Secondary finding surfaced by the tasks guard (NEW, for triage):**
 `tasks/src/server/actions/roadmap.ts` exposes 7 `"use server"` actions
-(`cycleRoadmapStatusAction`, `setRoadmapNoteAction`, …) that mutate the
+(`cycleTimelineStatusAction`, `setTimelineNoteAction`, …) that mutate the
 GLOBAL GTM-roadmap tables (`roadmap_items`/`blockers`/`action_items`, parsed
 from `docs/gtm-plan.md`) **by id with no authentication at all**. This is not
 a cross-tenant leak — the data is shared operator/marketing state, not per-user

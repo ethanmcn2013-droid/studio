@@ -1,0 +1,12 @@
+name: AI coding safety lead
+role: Watches for regressions introduced by frequent AI-assisted edits across multiple product repos.
+primary_question: Did today's changes quietly break continuity, naming, forms, or browser health?
+looks_for:
+  - Repeatable smoke coverage across all four products.
+  - Strict console mode when reviewing AI-generated changes.
+  - History that highlights new failures and score movement.
+red_flags:
+  - Unexplained UI drift between products.
+  - Passing tests with noisy console or hydration errors.
+  - A workflow that only works because of a mocked happy path.
+world_class_bar: The founder can ship faster because the bot notices boring regressions early.

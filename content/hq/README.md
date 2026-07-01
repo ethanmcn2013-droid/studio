@@ -72,7 +72,7 @@ category: Brand | Product | Pricing | ... # section-specific taxonomy
 date: 2026-05-14                          # YYYY-MM-DD
 status: Active | Closed | Superseded      # section-specific
 reviewDate: 2026-08-14                    # optional
-relatedObjects: [Signal Tasks, Signal Roadmap]   # inline array
+relatedObjects: [Signal Tasks, Signal Timeline]   # inline array
 ---
 
 ## Decision

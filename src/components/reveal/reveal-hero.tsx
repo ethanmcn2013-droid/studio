@@ -99,7 +99,7 @@ export function RevealHero() {
       />
 
       {/* Stack order follows the operator-directed product order
-          (Notes → Tasks → Timeline → Signal, 2026-05-18) so the
+          (Notes → Tasks → Timeline→ Signal, 2026-05-18) so the
           first product impression matches the grid + meta + pricing.
           data-key/href stay on the internal gesture keys (roadmap/
           analytics) — only the visible word changed (2026-06-13 rename). */}

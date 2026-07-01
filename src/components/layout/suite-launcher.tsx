@@ -28,7 +28,7 @@ const PRODUCTS: {
   url: string;
   description: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline→ Signal
   {
     slug: "notes",
     word: "notes",

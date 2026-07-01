@@ -979,7 +979,7 @@
   .reel-step.chaos .reel-step-dot { animation: dotChaos 24s ease-in-out infinite; }
   .reel-rail .reel-step:nth-child(4) { animation: stepNotes 24s ease-in-out infinite; }
   .reel-rail .reel-step:nth-child(5) { animation: stepTasks 24s ease-in-out infinite; }
-  .reel-rail .reel-step:nth-child(6) { animation: stepRoadmap 24s ease-in-out infinite; }
+  .reel-rail .reel-step:nth-child(6) { animation: stepTimeline24s ease-in-out infinite; }
   .reel-rail .reel-step:nth-child(7) { animation: stepAnalytics 24s ease-in-out infinite; }
 
   @keyframes stepChaos {
@@ -997,7 +997,7 @@
     25%, 44% { opacity: 1; }
     46%, 100% { opacity: 0.35; }
   }
-  @keyframes stepRoadmap {
+  @keyframes stepTimeline {
     0%, 45% { opacity: 0.35; }
     47%, 66% { opacity: 1; }
     68%, 100% { opacity: 0.35; }
@@ -1010,7 +1010,7 @@
 
   .reel-rail .reel-step:nth-child(4) .reel-step-dot { animation: dotNotes 24s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
   .reel-rail .reel-step:nth-child(5) .reel-step-dot { animation: dotTasks 24s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
-  .reel-rail .reel-step:nth-child(6) .reel-step-dot { animation: dotRoadmap 24s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+  .reel-rail .reel-step:nth-child(6) .reel-step-dot { animation: dotTimeline24s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
   .reel-rail .reel-step:nth-child(7) .reel-step-dot { animation: dotAnalytics 24s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
   @keyframes dotChaos {
     0%, 5% { border-color: #ef4444; background: rgba(239,68,68,0.2); box-shadow: 0 0 16px rgba(239,68,68,0.3); }
@@ -1027,7 +1027,7 @@
     25%, 44% { border-color: var(--indigo); background: var(--indigo); color: var(--white); box-shadow: 0 0 20px rgba(79,70,229,0.5); }
     46%, 100% { border-color: rgba(255,255,255,0.15); background: #09090b; color: rgba(255,255,255,0.5); box-shadow: none; }
   }
-  @keyframes dotRoadmap {
+  @keyframes dotTimeline {
     0%, 45% { border-color: rgba(255,255,255,0.15); background: #09090b; color: rgba(255,255,255,0.5); box-shadow: none; }
     47%, 66% { border-color: var(--indigo); background: var(--indigo); color: var(--white); box-shadow: 0 0 20px rgba(79,70,229,0.5); }
     68%, 100% { border-color: rgba(255,255,255,0.15); background: #09090b; color: rgba(255,255,255,0.5); box-shadow: none; }
@@ -1039,7 +1039,7 @@
   }
   .reel-rail .reel-step:nth-child(4) .reel-step-name { animation: nameNotes 24s ease-in-out infinite; }
   .reel-rail .reel-step:nth-child(5) .reel-step-name { animation: nameTasks 24s ease-in-out infinite; }
-  .reel-rail .reel-step:nth-child(6) .reel-step-name { animation: nameRoadmap 24s ease-in-out infinite; }
+  .reel-rail .reel-step:nth-child(6) .reel-step-name { animation: nameTimeline24s ease-in-out infinite; }
   .reel-rail .reel-step:nth-child(7) .reel-step-name { animation: nameAnalytics 24s ease-in-out infinite; }
   @keyframes nameNotes {
     0%, 5% { color: rgba(255,255,255,0.55); }
@@ -1051,7 +1051,7 @@
     25%, 44% { color: var(--white); }
     46%, 100% { color: rgba(255,255,255,0.55); }
   }
-  @keyframes nameRoadmap {
+  @keyframes nameTimeline {
     0%, 45% { color: rgba(255,255,255,0.55); }
     47%, 66% { color: var(--white); }
     68%, 100% { color: rgba(255,255,255,0.55); }
@@ -1182,9 +1182,9 @@
   .reel-shot-roadmap img {
     top: -14%;
     width: 106%;
-    animation: shotRoadmap 24s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    animation: shotTimeline24s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   }
-  @keyframes shotRoadmap {
+  @keyframes shotTimeline {
     0%, 45% { transform: translateX(-50%) scale(1); }
     47%, 66% { transform: translateX(-50%) scale(1.02) translateY(-5px); }
     68%, 100% { transform: translateX(-50%) scale(1); }
@@ -1221,7 +1221,7 @@
     left: 42%; width: 3px; top: 22%; height: 58%;
     border-radius: 2px;
     box-shadow: 0 0 0 2px rgba(79,70,229,0.8), 0 0 32px rgba(79,70,229,0.4);
-    animation-name: highlightRoadmap;
+    animation-name: highlightTimeline;
   }
   .reel-highlight.h-analytics {
     left: 22%; right: 22%; top: 28%; height: 22%;
@@ -1237,7 +1237,7 @@
     32%, 40% { opacity: 1; }
     42%, 100% { opacity: 0; }
   }
-  @keyframes highlightRoadmap {
+  @keyframes highlightTimeline {
     0%, 50% { opacity: 0; }
     54%, 64% { opacity: 1; }
     66%, 100% { opacity: 0; }
@@ -1265,7 +1265,7 @@
   }
   .reel-tag.t-notes { left: 16px; bottom: 14px; animation-name: tagNotes; }
   .reel-tag.t-tasks { right: 16px; bottom: 14px; animation-name: tagTasks; }
-  .reel-tag.t-roadmap { left: 16px; bottom: 14px; animation-name: tagRoadmap; }
+  .reel-tag.t-roadmap { left: 16px; bottom: 14px; animation-name: tagTimeline; }
   .reel-tag.t-analytics { right: 16px; bottom: 14px; animation-name: tagAnalytics; }
   @keyframes tagNotes {
     0%, 8% { opacity: 0; transform: translateY(6px); }
@@ -1277,7 +1277,7 @@
     25%, 44% { opacity: 1; transform: translateY(0); }
     46%, 100% { opacity: 0; transform: translateY(6px); }
   }
-  @keyframes tagRoadmap {
+  @keyframes tagTimeline {
     0%, 45% { opacity: 0; transform: translateY(6px); }
     47%, 66% { opacity: 1; transform: translateY(0); }
     68%, 100% { opacity: 0; transform: translateY(6px); }
@@ -1288,7 +1288,7 @@
     93%, 100% { opacity: 0; transform: translateY(6px); }
   }
 
-  .ui-analytics-shine {
+  .ui-signal-shine {
     position: absolute;
     inset: 0;
     background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
@@ -1445,7 +1445,7 @@
   @media (prefers-reduced-motion: reduce) {
     .reel-scene, .reel-device, .reel-step, .reel-step-dot, .reel-step-name,
     .reel-rail-progress, .reel-chaos-card, .reel-shot img,
-    .reel-highlight, .reel-tag, .ui-analytics-shine, .reel-caption span,
+    .reel-highlight, .reel-tag, .ui-signal-shine, .reel-caption span,
     .reel-dots-progress i, .reel-url .u0, .reel-url .u1, .reel-url .u2, .reel-url .u3, .reel-url .u4
     { animation: none !important; }
     .reel-scene.s4 { opacity: 1; transform: none; }
@@ -2312,15 +2312,15 @@
         <div class="product-detail-cell"><div class="product-headline">Plain-language tasks. List, board, calendar.</div><div class="product-desc">No sprint jargon. One place to see what is done and what is next — for a wedding couple or a contractor alike.</div></div>
       </div>
       <div class="product-row">
-        <div class="product-name-cell"><div class="product-mark">Signal Roadmap</div><div class="product-mark-sub">share</div></div>
+        <div class="product-name-cell"><div class="product-mark">Signal Timeline</div><div class="product-mark-sub">share</div></div>
         <div class="product-detail-cell"><div class="product-headline">Shareable project page. No account to view.</div><div class="product-desc">Suppliers and vendors get a link — not a login. External parties stay informed without adding coordination overhead.</div></div>
       </div>
       <div class="product-row">
-        <div class="product-name-cell"><div class="product-mark">Signal Analytics</div><div class="product-mark-sub">prioritize</div></div>
+        <div class="product-name-cell"><div class="product-mark">Signal</div><div class="product-mark-sub">prioritize</div></div>
         <div class="product-detail-cell"><div class="product-headline">Daily briefing in plain English — not a dashboard.</div><div class="product-desc">Three things that need attention, once a day. The responsible person knows where to look without reading every thread.</div></div>
       </div>
     </div>
-    <div class="callout-neutral callout" style="margin-top:14px;padding:12px 14px;"><p style="font-weight:500;font-size:12px;color:var(--ink);"><strong>Pain → solution map:</strong> scattered threads &amp; duplicate entry → Notes (capture) → Tasks (execute) → Roadmap (share) → Analytics (prioritize) → one accountable owner, one source of truth.</p></div>
+    <div class="callout-neutral callout" style="margin-top:14px;padding:12px 14px;"><p style="font-weight:500;font-size:12px;color:var(--ink);"><strong>Pain → solution map:</strong> scattered threads &amp; duplicate entry → Notes (capture) → Tasks (execute) → Timeline (share) → Signal (prioritize) → one accountable owner, one source of truth.</p></div>
   </div>
   <div class="slide-label">signal studio · business plan 2026</div>
   <div class="slide-num">04</div>
@@ -2330,8 +2330,8 @@
   <div class="reel-print-grid" aria-hidden="true" style="display:none;">
     <img src="assets/motion/notes-demo.png" alt="Notes">
     <img src="assets/motion/tasks-demo.png" alt="Tasks">
-    <img src="assets/motion/roadmap-demo.png" alt="Roadmap">
-    <img src="assets/motion/analytics-demo.png" alt="Analytics">
+    <img src="assets/motion/timeline-demo.png" alt="Timeline">
+    <img src="assets/motion/signal-demo.png" alt="Signal">
   </div>
   <div class="reel-layout">
     <div class="reel-head">
@@ -2366,14 +2366,14 @@
       <div class="reel-step">
         <div class="reel-step-dot">3</div>
         <div class="reel-step-body">
-          <div class="reel-step-name">Signal Roadmap</div>
+          <div class="reel-step-name">Signal Timeline</div>
           <div class="reel-step-desc">Public plan · one link · no login</div>
         </div>
       </div>
       <div class="reel-step">
         <div class="reel-step-dot">4</div>
         <div class="reel-step-body">
-          <div class="reel-step-name">Signal Analytics</div>
+          <div class="reel-step-name">Signal</div>
           <div class="reel-step-desc">Morning briefing · 3 items · hard cap</div>
         </div>
       </div>
@@ -2387,8 +2387,8 @@
             <span class="u0">coordination chaos</span>
             <span class="u1">notes.signalstudio.ie</span>
             <span class="u2">tasks.signalstudio.ie</span>
-            <span class="u3">roadmap.signalstudio.ie</span>
-            <span class="u4">analytics.signalstudio.ie</span>
+            <span class="u3">timeline.signalstudio.ie</span>
+            <span class="u4">signal.signalstudio.ie</span>
           </div>
           <div class="reel-live"><span class="live-pip"></span> LIVE</div>
         </div>
@@ -2423,22 +2423,22 @@
             <div class="reel-tag t-tasks">Confirm catering tasting menu · In progress</div>
           </div>
 
-          <!-- Scene 3 · Roadmap (live demo) -->
+          <!-- Scene 3 · Timeline (live demo) -->
           <div class="reel-scene s3">
             <div class="reel-shot reel-shot-roadmap">
-              <img src="assets/motion/roadmap-demo.png" alt="Signal Roadmap · Spring wedding schedule">
+              <img src="assets/motion/timeline-demo.png" alt="Signal Timeline · Spring wedding schedule">
             </div>
             <div class="reel-highlight h-roadmap"></div>
             <div class="reel-tag t-roadmap">Public · Schedule view · TODAY marker</div>
           </div>
 
-          <!-- Scene 4 · Analytics (live demo) -->
+          <!-- Scene 4 · Signal (live demo) -->
           <div class="reel-scene s4">
             <div class="reel-shot reel-shot-analytics">
-              <img src="assets/motion/analytics-demo.png" alt="Signal Analytics · daily briefing">
+              <img src="assets/motion/signal-demo.png" alt="Signal · daily briefing">
             </div>
             <div class="reel-highlight h-analytics"></div>
-            <div class="ui-analytics-shine"></div>
+            <div class="ui-signal-shine"></div>
             <div class="reel-tag t-analytics">06:00 briefing · 3 needs attention · hard cap</div>
           </div>
         </div>
@@ -2450,8 +2450,8 @@
         <span class="c0">Before Signal — coordination scattered across channels</span>
         <span class="c1">Notes — write in three seconds · florist callback lands in the stream</span>
         <span class="c2">Tasks — Hartwell Wedding board · plain English · no vocabulary tax</span>
-        <span class="c3">Roadmap — public schedule · one URL · TODAY marker on florist deposit</span>
-        <span class="c4">Analytics — Good morning briefing · needs attention · moving well · quiet risks</span>
+        <span class="c3">Timeline — public schedule · one URL · TODAY marker on florist deposit</span>
+        <span class="c4">Signal — Good morning briefing · needs attention · moving well · quiet risks</span>
       </div>
       <div class="reel-dots-progress"><i></i><i></i><i></i><i></i><i></i></div>
     </div>
@@ -2489,9 +2489,9 @@
           <div class="domain-row compact" style="grid-column:1/-1;border-color:rgba(79,70,229,0.25);background:var(--indigo-light);"><span class="product-mark" style="font-size:10px;">Signal Studio iOS</span><span><span class="mono-label" style="color:var(--indigo);font-size:8px;">APP STORE · 1 SEPT 2026</span></span></div>
           <div class="domain-row compact"><span class="product-mark" style="font-size:10px;">signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
           <div class="domain-row compact"><span class="product-mark" style="font-size:10px;">tasks.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
-          <div class="domain-row compact"><span class="product-mark" style="font-size:10px;">roadmap.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
+          <div class="domain-row compact"><span class="product-mark" style="font-size:10px;">timeline.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
           <div class="domain-row compact"><span class="product-mark" style="font-size:10px;">notes.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
-          <div class="domain-row compact" style="grid-column:1/-1;"><span class="product-mark" style="font-size:10px;">analytics.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
+          <div class="domain-row compact" style="grid-column:1/-1;"><span class="product-mark" style="font-size:10px;">signal.signalstudio.ie</span><span><span class="live-pip"></span><span class="mono-label" style="color:var(--indigo);font-size:8px;">LIVE</span></span></div>
         </div>
         <div class="verify-box"><p><strong>Verify in 60 seconds:</strong> open tasks.signalstudio.ie → create a task → share a roadmap link. Auth, database, email, and public sharing operational — assessable at signalstudio.ie without a sales call.</p></div>
         <p class="footnote" style="margin-top:0;">Stack · Next.js · TypeScript · Turso · Clerk · Vercel · Resend · Upstash</p>
@@ -2501,8 +2501,8 @@
         <div class="product-mocks-grid">
           <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">notes.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-notes" data-pm="notes"><div class="nhv-composer"><span class="nhv-word"><span class="nhv-letter">n</span><span class="nhv-letter">o</span><span class="nhv-letter">t</span><span class="nhv-letter">e</span><span class="nhv-letter">s</span></span><span class="nhv-trail nhv-t1"></span><span class="nhv-trail nhv-t2"></span><span class="nhv-trail nhv-t3"></span><span class="nhv-ripple-slow"></span><span class="nhv-ripple"></span><span class="nhv-mark"></span></div></div></div></div>
           <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">tasks.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-tasks" data-pm="tasks"><div class="txr-panel"><div class="txr-rule txr-rule-top"></div><div class="txr-meta"><span class="txr-meta-tag"></span><span class="txr-meta-dots"></span></div><div class="txr-text-wrap"><div class="txr-flip-text"><div class="txr-strike"></div></div></div><div class="txr-rule txr-rule-bot"></div></div><div class="txr-wm"><div class="txr-wm-panel"><div class="txr-wm-inner"><span class="txr-wmdot"></span></div></div></div></div></div></div>
-          <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">roadmap.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-roadmap" data-pm="roadmap"><div class="pm-rml-wrap"><svg class="pm-rml-sketch" viewBox="0 0 200 90" aria-hidden="true"><path d="M18 62 Q55 18 98 42 T178 28"/><circle class="pm-node-a" cx="18" cy="62" r="2.5"/><circle class="pm-node-b" cx="98" cy="42" r="2.5"/><circle class="pm-node-c" cx="178" cy="28" r="2.5"/></svg><span class="pm-rml-ring"></span><span class="pm-rml-ring pm-rml-ring-soft"></span><div class="rml-composer"><span class="rml-word"><span class="rml-letter">r</span><span class="rml-letter">o</span><span class="rml-letter">a</span><span class="rml-letter">d</span><span class="rml-letter">m</span><span class="rml-letter">a</span><span class="rml-letter">p</span></span><span class="rml-dot"></span></div></div></div></div></div>
-          <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">analytics.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-analytics" data-pm="analytics"><div class="anl-composer-with-bars"><div class="anl-composer"><span class="anl-word"><span class="anl-letter">a</span><span class="anl-letter">n</span><span class="anl-letter">a</span><span class="anl-letter">l</span><span class="anl-letter">y</span><span class="anl-letter">t</span><span class="anl-letter">i</span><span class="anl-letter">c</span><span class="anl-letter">s</span></span><span class="anl-dot"></span></div><div class="anl-bars-row"><span class="anl-bar anl-tall"></span><span class="anl-bar anl-medium"></span><span class="anl-bar anl-short"></span><span class="anl-bar anl-medium"></span><span class="anl-bar anl-tall"></span><span class="anl-bar anl-short"></span></div></div></div></div></div>
+          <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">timeline.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-timeline" data-pm="timeline"><div class="pm-rml-wrap"><svg class="pm-rml-sketch" viewBox="0 0 200 90" aria-hidden="true"><path d="M18 62 Q55 18 98 42 T178 28"/><circle class="pm-node-a" cx="18" cy="62" r="2.5"/><circle class="pm-node-b" cx="98" cy="42" r="2.5"/><circle class="pm-node-c" cx="178" cy="28" r="2.5"/></svg><span class="pm-rml-ring"></span><span class="pm-rml-ring pm-rml-ring-soft"></span><div class="rml-composer"><span class="rml-word"><span class="rml-letter">r</span><span class="rml-letter">o</span><span class="rml-letter">a</span><span class="rml-letter">d</span><span class="rml-letter">m</span><span class="rml-letter">a</span><span class="rml-letter">p</span></span><span class="rml-dot"></span></div></div></div></div></div>
+          <div class="browser-frame thumb"><div class="browser-chrome"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span><span class="browser-url">signal.signalstudio.ie</span></div><div class="browser-body pm-body"><div class="pm-stage pm-signal" data-pm="signal"><div class="anl-composer-with-bars"><div class="anl-composer"><span class="anl-word"><span class="anl-letter">a</span><span class="anl-letter">n</span><span class="anl-letter">a</span><span class="anl-letter">l</span><span class="anl-letter">y</span><span class="anl-letter">t</span><span class="anl-letter">i</span><span class="anl-letter">c</span><span class="anl-letter">s</span></span><span class="anl-dot"></span></div><div class="anl-bars-row"><span class="anl-bar anl-tall"></span><span class="anl-bar anl-medium"></span><span class="anl-bar anl-short"></span><span class="anl-bar anl-medium"></span><span class="anl-bar anl-tall"></span><span class="anl-bar anl-short"></span></div></div></div></div></div>
         </div>
         <span class="live-link">Full suite · signalstudio.ie</span>
       </div>
@@ -2914,7 +2914,7 @@
     <div class="slide-eyebrow">Appendix A1 · Signal HQ</div>
     <div class="slide-title">Signal HQ unifies pipeline, finance, and planning<br>in <span>one internal system — no fragmented tool stack.</span></div>
     <div class="slide-kicker">Internal operating system · not sold to customers · not part of revenue model</div>
-    <p class="appendix-lead"><strong>Signal HQ</strong> is the founder's back office: sales pipeline, cashflow, milestones, legal records, and launch materials in one place. Customer-facing products (Notes, Tasks, Roadmap, Analytics) sit above — sold to venues, not lenders.</p>
+    <p class="appendix-lead"><strong>Signal HQ</strong> is the founder's back office: sales pipeline, cashflow, milestones, legal records, and launch materials in one place. Customer-facing products (Notes, Tasks, Timeline, Signal) sit above — sold to venues, not lenders.</p>
     <div class="org-chart org-chart-a1">
       <svg class="org-lines" viewBox="0 0 1088 340" preserveAspectRatio="none" aria-hidden="true">
         <path d="M544 52 L544 78" stroke="#e5e5e3" stroke-width="1.5" fill="none"/>
@@ -2933,7 +2933,7 @@
         <div class="org-node revenue" style="min-width:420px;">
           <div class="org-role">Customer products · revenue</div>
           <div class="org-name">Signal Studio</div>
-          <div class="org-detail">Notes · Tasks · Roadmap · Analytics — sold to venues</div>
+          <div class="org-detail">Notes · Tasks · Timeline · Signal — sold to venues</div>
         </div>
       </div>
       <div class="org-v-gap sm"></div>

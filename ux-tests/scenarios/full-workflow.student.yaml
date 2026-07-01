@@ -1,0 +1,14 @@
+persona: student
+goal: plan a group assignment
+starting_state: demo_user
+journey:
+  - create project
+  - add notes
+  - convert notes to tasks
+  - create timeline
+  - review signal
+success_criteria:
+  - user understands what to do next
+  - no broken buttons
+  - no console errors
+  - full workflow completed

@@ -26,7 +26,7 @@ Plus orientation rotation when relevant (Timeline viewer benefits from landscape
 | Product   | Viewport meta | Safe-area-inset usage  | Fixed-width potential clips | Verdict |
 | --------- | ------------- | ---------------------- | --------------------------- | ------- |
 | Tasks     | viewportFit:"cover", themeColor:#fff ✓ | Multiple `env(safe-area-inset-bottom)` references (board + sidebar) ✓ | No hard `min-w-[Npx]` floors above 280px in /app surfaces | Clean |
-| Timeline   | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the responsive footer ✓ | One sm:-gated `min-w-[260px]` settings field (sm+ only) | Clean |
+| Timeline  | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the responsive footer ✓ | One sm:-gated `min-w-[260px]` settings field (sm+ only) | Clean |
 | Signal | viewportFit:"cover", themeColor:#fff ✓ | `env(safe-area-inset-bottom)` on the marketing footer ✓ | `min-w-[160px]` on a desktop nav popover (auto-hidden on phone) | Clean |
 | Notes     | viewportFit:"cover", themeColor:#fff ✓ | **No env(safe-area-inset-*) anywhere** | No fixed/sticky bottom elements today, so no clip today | Watch — see future-proofing below |
 

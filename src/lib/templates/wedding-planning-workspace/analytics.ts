@@ -1,11 +1,11 @@
 import type { AnalyticsHint } from "../types";
 
 /**
- * Analytics hint — detector ids the briefing engine weights up for
+ * Signal hint — detector ids the briefing engine weights up for
  * workspaces created from this template. Consumed lazily at
  * briefing-build time; users never pick from these.
  *
- * Detector ids are forward-looking — the Analytics product surface is
+ * Detector ids are forward-looking — the Signal product surface is
  * marketing-only as of 2026-05-11 (see canonical state). When the
  * briefing pipeline ships, these ids become the contract.
  */

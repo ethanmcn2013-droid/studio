@@ -14,7 +14,7 @@ Hard venue-pilot dates: 10-venue list by 2026-05-15; first outreach batch by 202
 
 ## Reason
 
-T0–T3.b suite-review polish closed today (verified live: /weddings amber countdown, Tasks /welcome leading card, Timeline demo no-comment-thread). Without a hard pilot date, Sprint 1 (Notes 9.3 + 9.4b) and Sprint 2 (collaboration gestures) will absorb every available hour. The brand mission is 'cut through the noise' — that mission betrays itself if refusal discipline becomes product cowardice. Three real venue conversations are the only thing that validates the wedge.
+T0–T3.b suite-review polish closed today (verified live: /weddings amber countdown, Tasks /welcome leading card, Timeline demo no-comment-thread). Without a hard pilot date, Initiative 1 (Notes 9.3 + 9.4b) and Initiative 2 (collaboration gestures) will absorb every available hour. The brand mission is 'cut through the noise' — that mission betrays itself if refusal discipline becomes product cowardice. Three real venue conversations are the only thing that validates the wedge.
 
 ## Alternatives considered
 

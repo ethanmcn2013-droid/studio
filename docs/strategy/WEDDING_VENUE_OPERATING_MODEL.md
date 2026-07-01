@@ -51,7 +51,7 @@ The venue buyer page.
 - Audience: premium venue owner/operator.
 - Job: earn a venue conversation.
 - Allowed CTA: talk to us about your venue.
-- Allowed proof links: `/venues/demo`, `roadmap.signalstudio.ie/the-wedding`.
+- Allowed proof links: `/venues/demo`, `timeline.signalstudio.ie/the-wedding`.
 - Pricing: `EUR1,500-EUR4,000/year`, founding venues lock `EUR1,500`.
 - Must not route a venue buyer into self-serve wedding pricing as the primary path.
 
@@ -65,7 +65,7 @@ The canonical product proof.
 - Allowed CTA: start a venue conversation.
 - Must not introduce Event `EUR79` or Workspace `EUR12/mo` as the main path.
 
-### `roadmap.signalstudio.ie/the-wedding`
+### `timeline.signalstudio.ie/the-wedding`
 
 The couple-facing artifact.
 

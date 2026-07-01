@@ -14,5 +14,5 @@ brandRisk: Low
 complianceRisk: Low
 repurposing: [landing page section, email hook, demo intro, FAQ]
 status: Selected
-roleOwner: Creative Director
+roleOwner: Creative Advisor
 ---

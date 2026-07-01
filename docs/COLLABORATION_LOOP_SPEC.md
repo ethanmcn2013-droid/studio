@@ -8,7 +8,7 @@
 
 | Concern | Source of truth |
 |---|---|
-| The loop's intent, what we are / are not, per-product collab model | `docs/SPRINT_2_COLLABORATION.md` |
+| The loop's intent, what we are / are not, per-product collab model | `docs/CYCLE_2_COLLABORATION.md` |
 | Roles, invite path, what each role sees first | `docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md` |
 | Collaborator first-view (the five questions, per surface) | `content/hq/collaborator-first-view/*.md` |
 | Object shapes crossing the boundary | `docs/SHARED_OBJECT_MODEL.md` |

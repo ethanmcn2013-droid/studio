@@ -9,14 +9,14 @@ import {
   ELT_SNAPSHOT,
   directorsByCluster,
   formatCadence,
-  type Director,
+  type Advisor,
 } from "@/lib/hq/elt";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "org — signal hq",
-  description: "The Executive Leadership Team — 17 Directors, one Founder.",
+  description: "Signal Advisors — 17 advisors, one Founder.",
   robots: {
     index: false,
     follow: false,
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
 };
 
 /**
- * /hq/org — Live ELT org chart.
+ * /hq/org — live advisory org chart.
  *
  * Data lives in `src/lib/hq/elt.ts`, mirrored from
- * `signal-directors/config/directors.yaml`. Tufte register:
+ * `signal-directors/config/advisors.yaml`. Tufte register:
  * cluster bands, no boxes-and-lines, every chip is a link.
  */
 export default async function HqOrgPage() {
@@ -52,21 +52,21 @@ export default async function HqOrgPage() {
         </div>
 
         <h1 className="h-section mb-6 max-w-[720px] text-balance text-ink">
-          One Founder. {total} Directors. One company.
+          One Founder. {total} advisors. One company.
         </h1>
 
         <p
           className="mb-4 max-w-[60ch] leading-[1.7] text-ink-soft"
           style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
         >
-          The Executive Leadership Team — the standing answer to who owns
-          what. Each Director runs a portfolio at Layer{" "}
+          Signal Advisors are the standing answer to who owns
+          what. Each advisor runs a portfolio at Layer{" "}
           <span className="font-mono">2</span> (recommend) or Layer{" "}
           <span className="font-mono">3</span> (decide, then log).
         </p>
 
         <p className="mb-12 max-w-[60ch] font-mono text-[12px] leading-[1.6] text-ink-quiet">
-          {total} directors · {productLeads} on the product excellence
+          {total} advisors · {productLeads} on the product excellence
           council · {layer3} at layer-3 default ·{" "}
           <span title={`source: ${ELT_SNAPSHOT.source} v${ELT_SNAPSHOT.sourceVersion}`}>
             snapshot {ELT_SNAPSHOT.generatedAt}
@@ -80,14 +80,14 @@ export default async function HqOrgPage() {
             <h2 className="org-apex-name">{ELT_SNAPSHOT.founderName}</h2>
             <p className="org-apex-role">{ELT_SNAPSHOT.founderRole}</p>
             <p className="org-apex-note">
-              Tier-3 founder approval gates: adding/removing a Director,
+              Tier-3 founder approval gates: adding/removing an advisor,
               adding/removing a product, pricing, external publication.
             </p>
           </div>
           <div className="org-apex-seam" aria-hidden />
         </section>
 
-        {/* Director clusters */}
+        {/* Advisor clusters */}
         {CLUSTERS.filter((c) => c.id !== "apex").map((cluster) => {
           const members = directorsByCluster(cluster.id);
           return (
@@ -102,12 +102,12 @@ export default async function HqOrgPage() {
                 </h3>
                 <p className="org-cluster-subtitle">{cluster.subtitle}</p>
                 <p className="org-cluster-count">
-                  {members.length} director{members.length === 1 ? "" : "s"}
+                  {members.length} advisor{members.length === 1 ? "" : "s"}
                 </p>
               </div>
               <ul className="org-cluster-grid" role="list">
                 {members.map((d) => (
-                  <DirectorCard key={d.id} director={d} />
+                  <AdvisorCard key={d.id} advisor={d} />
                 ))}
               </ul>
             </section>
@@ -126,9 +126,7 @@ export default async function HqOrgPage() {
               className="hover:text-accent"
               target="_blank"
               rel="noreferrer"
-            >
-              signal-directors
-            </a>
+            >advisor source</a>
           </span>
         </div>
       </section>
@@ -136,7 +134,7 @@ export default async function HqOrgPage() {
   );
 }
 
-function DirectorCard({ director: d }: { director: Director }) {
+function AdvisorCard({ advisor: d }: { advisor: Advisor }) {
   return (
     <li className="org-card-wrap">
       <Link href={`/hq/org/${d.id}`} className="org-card group">

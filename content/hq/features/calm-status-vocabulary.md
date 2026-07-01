@@ -18,7 +18,7 @@ relatedMetric: First-five-seconds legibility for non-technical owners
 A suite-wide Tier 1 move from the calm-coordination brief: every product
 defaults to a small, human status vocabulary — `To do · Moving · Waiting ·
 Needs Attention · Done` — replacing PM-flavoured words like "In progress",
-"In review", "Backlog", and "Blocked". The goal is that a venue owner can
+"In review", "Queued", and "Blocked". The goal is that a venue owner can
 open any Signal Studio product and know what each column means without
 reading docs.
 

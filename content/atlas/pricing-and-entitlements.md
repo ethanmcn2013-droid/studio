@@ -3,21 +3,21 @@ title: Pricing and entitlements — one DB, every product
 slug: pricing-and-entitlements
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-06-30
 links: [signal-studio-umbrella, five-products-as-a-system, turso-databases-and-reads, log-cycle-cross-repo-writer]
 tags: [pricing, entitlements, Stripe, free, event, wedding, workspace, studio, Venue Edition, sponsors-ledger, entitlementsDb, signal-entitlements DB, entitlements-shared, resolveEntitlement, /api/checkout, STRIPE_SETUP, STUDIO_OPS_SECRET, ENTITLEMENTS_OPS]
 references: [signalstudio.ie/pricing, src/app/pricing/, src/app/hq/entitlements/, src/app/api/internal/entitlements/grant/, src/app/api/internal/entitlements/expire/, src/lib/entitlements-db/, src/lib/entitlements-db/client.ts, src/lib/entitlements-db/schema.ts, src/lib/entitlements-db/reads.ts, src/lib/entitlements-db/writes.ts, drizzle-entitlements/, drizzle-entitlements.config.ts, ~/Projects/personal/tasks/src/app/api/checkout/, ~/Projects/personal/tasks/src/app/api/webhooks/stripe/, ~/Projects/personal/tasks/src/lib/entitlements-shared/, ~/Projects/personal/timeline/src/lib/entitlements-shared/, ~/Projects/personal/signal/src/lib/entitlements-shared/, ~/Projects/personal/notes/src/lib/entitlements-shared/, docs/ENTITLEMENTS_OPS.md, ~/Projects/personal/tasks/docs/STRIPE_SETUP.md]
-summary: One pricing surface at signalstudio.ie/pricing. Five tiers, one shared signal-entitlements DB, copy-pasted resolver in every product. Tasks owns Stripe; Studio owns admin grants.
+summary: One pricing surface at signalstudio.ie/pricing. Four public access shapes map onto five internal entitlement tiers in one shared signal-entitlements DB. Tasks owns Stripe; Studio owns admin grants.
 status: complete
 pinned: false
-execWhat: One pricing page for the whole suite, one shared record of who has paid for what, five products that all read from the same source of truth.
+execWhat: One pricing page for the whole suite, one shared record of who has paid for what, and every product reading from the same source of truth.
 execMatters: Pricing honesty is the lever between the suite being a hobby and a business. Until 2026-05-14, only Tasks enforced the paywall — every other product was effectively free. Now every product gates against the same record, so paying customers get access everywhere within seconds, and non-paying readers hit the same gates everywhere.
 execRisk: If the shared payments record goes wrong, customers either lose access they paid for (refund risk, churn risk) or get access they didn't pay for (revenue leak). A daily reconciliation job is the safety net; reading these atlas pages is how the operator stays oriented when things drift.
 ---
 
 ## WHAT
 
-Pricing across the five products is unified at `signalstudio.ie/pricing`. Five tiers — `free`, `event`, `wedding`, `workspace`, `studio` — ranked 0–4. One shared `signal-entitlements` Turso DB carries every active grant. Every product reads from it via a copy-pasted `entitlements-shared` module — no monorepo, no shared package, just identical code in each repo. Tasks owns the Stripe wiring (webhook + checkout). Studio owns the admin surfaces (operator grants, HQ list, reconcile) and the writer-side library.
+Pricing across the suite is unified at `signalstudio.ie/pricing`. The public surface now has four access shapes: Free Workspace (€0 forever), Student (€8.99/year with student email), Pro (€12/month or €119/year for one paid workspace), and Event Workspace (€89.99 once for 18 months). Internally the entitlement vocabulary remains five tiers — `free`, `event`, `wedding`, `workspace`, `studio` — ranked 0–4. Pro maps to the existing `workspace` entitlement. One shared `signal-entitlements` Turso DB carries every active grant. Every product reads from it via a copy-pasted `entitlements-shared` module — no monorepo, no shared package, just identical code in each repo. Tasks owns the Stripe wiring (webhook + checkout). Studio owns the admin surfaces (operator grants, HQ list, reconcile) and the writer-side library.
 
 The entitlements sprint E-1 → E-8 closed this gap on 2026-05-14. Before the sprint, only Tasks enforced tiers; Timeline, Signal, and Notes were paid-tier-blind; Studio's `getEntitlement` was dead code. After the sprint, every product gates against the same DB.
 
@@ -65,7 +65,7 @@ The resolve path (read side) is simple. The grant path (write side) is the part 
 
 ### Granting via Stripe (the happy path)
 
-1. User clicks CTA on `signalstudio.ie/pricing`. The CTA deep-links to `tasks.signalstudio.ie/api/checkout?tier=workspace` (or `&interval=annual`, or `tier=event`).
+1. User clicks CTA on `signalstudio.ie/pricing`. Pro deep-links to `tasks.signalstudio.ie/api/checkout?tier=workspace`, annual Pro adds `&interval=annual`, and Event Workspace deep-links to `tier=event`.
 2. Tasks's checkout route mints a Stripe Checkout session and redirects.
 3. User pays. Stripe POSTs a webhook to Tasks's `/api/webhooks/stripe`.
 4. The webhook validates the signature, looks up the price → tier mapping, and **dual-writes** the entitlement: one row in Tasks's local DB (for Tasks's own historical reasons) and one in the shared `signal-entitlements` DB (the canonical store every product reads).
@@ -81,7 +81,7 @@ Two surfaces for support, pilot ops, and comp issuance:
 
 ### The sponsors paid-ledger (Venue Edition)
 
-The `sponsors` table carries the paid Venue Edition ledger, ratified 2026-05-16 (`venue-editions-paid-tier` — the venue pays, not the couple). Additive, nullable columns: `venuePlan` (`none`/`pilot`/`founding`/`paid`), `annualAmountCents`, `foundingLocked`, `termStartsAt`, `termEndsAt`, `paidAt`, `codeAllotment`. `isPaidVenue()` returns true only when `venuePlan` is `founding` or `paid` **and** `paidAt` is set — cash landing is the gate, not the plan label. Shape is kept identical to Studio's local `src/lib/db/schema.ts` so the stack can dual-write sponsor rows the same way it dual-writes entitlements. The public surface is `/pricing` §6.5 "For venues": €1,500–€4,000 a year by venue size, with the first fifteen venues locking €1,500 for as long as they stay (`foundingLocked`). The Workspace tier also gained an annual prepay link — `€120 a year` → `tasks.signalstudio.ie/api/checkout?tier=workspace&interval=annual`.
+The `sponsors` table carries the paid Venue Edition ledger, ratified 2026-05-16 (`venue-editions-paid-tier` — the venue pays, not the couple). Additive, nullable columns: `venuePlan` (`none`/`pilot`/`founding`/`paid`), `annualAmountCents`, `foundingLocked`, `termStartsAt`, `termEndsAt`, `paidAt`, `codeAllotment`. `isPaidVenue()` returns true only when `venuePlan` is `founding` or `paid` **and** `paidAt` is set — cash landing is the gate, not the plan label. Shape is kept identical to Studio's local `src/lib/db/schema.ts` so the stack can dual-write sponsor rows the same way it dual-writes entitlements. The public venue surface lives off `/pricing` on `/venues`: €1,500–€4,000 a year by venue size, with the first fifteen venues locking €1,500 for as long as they stay (`foundingLocked`). Pro has an annual prepay link — `€119 a year` → `tasks.signalstudio.ie/api/checkout?tier=workspace&interval=annual`.
 
 ### Reconcile sweep (the safety net)
 
@@ -100,7 +100,8 @@ The five-tier vocabulary (free / event / wedding / workspace / studio) was chose
 ## WHEN — current state
 
 - E-1 through E-8 shipped 2026-05-14. All five products enforce tiers against the shared DB.
-- Stripe is sandbox-wired end-to-end. Live mode promotion is an operator action (see entitlements sprint operator action #1 in phase.md).
+- Public pricing was corrected 2026-06-30: Free Workspace €0, Student €8.99/year, Pro €12/month or €119/year for one paid workspace, Event Workspace €89.99 once for 18 months and one event workspace. The internal `workspace` entitlement remains the Pro billing tier.
+- Stripe is sandbox-wired end-to-end. Live mode promotion is an operator action, and the 2026-06-30 ladder requires live Stripe prices for Pro annual and Event Workspace before production checkout can charge the corrected amounts.
 - A `?status=checkout-offline` banner renders on `/pricing` if Stripe envs aren't yet set in production, so the umbrella never silently grants free upgrades during the configuration window.
 - 5 changelogs backfilled across the suite. 3 runbooks committed.
 - The tier vocabulary is canonical — any new tier requires editing `TIER_RANK` in every repo's `entitlements-shared/tiers.ts`. The copy-paste cost is the deliberate price for not having a monorepo.

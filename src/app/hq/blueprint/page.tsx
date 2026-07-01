@@ -38,7 +38,7 @@ export const metadata: Metadata = {
  *
  * A single zoomable operating map that explains how Signal Studio works,
  * grows, ships, thinks, and stays focused. Content is curated in
- * `src/lib/hq/blueprint.ts`; the AI Director Layer reads the live org from
+ * `src/lib/hq/blueprint.ts`; the Advisor Layer reads the live org from
  * `src/lib/hq/elt.ts`. This page is a *map*, not a system of record — the
  * deep surfaces (CRM, reporting, atlas, org) live at their own routes and
  * are linked from here.
@@ -252,7 +252,7 @@ export default async function BlueprintPage() {
                   <h4 className="bp-card-title">{f.name}</h4>
                   <span className="bp-function-owner">{f.owner}</span>
                 </header>
-                <p className="bp-function-director">{f.director}</p>
+                <p className="bp-function-advisor">{f.advisor}</p>
                 <Field label="tools" items={f.tools} chips />
                 <div className="bp-function-rows">
                   <Row label="cadence" value={f.cadence} />
@@ -265,28 +265,28 @@ export default async function BlueprintPage() {
           </div>
         </Section>
 
-        {/* ── 6 · AI DIRECTOR LAYER (live org) ──────────────────────── */}
-        <Section id="directors" index={6} label="AI Directors" title="How it decides">
+        {/* ── 6 · AI ADVISOR LAYER (live org) ──────────────────────── */}
+        <Section id="advisors" index={6} label="Signal Advisors" title="How it decides">
           <p className="bp-section-note">
-            {directorCount} Directors and one Founder run the company as a standing org.
-            This is the live chart — open any director at{" "}
+            {directorCount} advisors and one Founder run the company as a standing advisory org.
+            This is the live chart — open any advisor at{" "}
             <Link href="/hq/org" className="bp-inline-link">/hq/org</Link>.
           </p>
-          <div className="bp-directors">
+          <div className="bp-advisors">
             {directorClusters.map(({ cluster, members }) => (
-              <div key={cluster.id} className="bp-director-cluster">
-                <div className="bp-director-cluster-head">
+              <div key={cluster.id} className="bp-advisor-cluster">
+                <div className="bp-advisor-cluster-head">
                   <h4 className="bp-card-title">{cluster.label}</h4>
-                  <span className="bp-director-count">{members.length}</span>
+                  <span className="bp-advisor-count">{members.length}</span>
                 </div>
-                <p className="bp-director-cluster-sub">{cluster.subtitle}</p>
-                <ul className="bp-director-chips">
+                <p className="bp-advisor-cluster-sub">{cluster.subtitle}</p>
+                <ul className="bp-advisor-chips">
                   {members.map((d) => (
                     <li key={d.id}>
-                      <Link href={`/hq/org/${d.id}`} className="bp-director-chip" title={d.oneLine}>
-                        <span className="bp-director-name">{d.shortName}</span>
-                        {d.product ? <span className="bp-director-product">{d.product}</span> : null}
-                        <span className="bp-director-cadence">{formatCadence(d.cadence)}</span>
+                      <Link href={`/hq/org/${d.id}`} className="bp-advisor-chip" title={d.oneLine}>
+                        <span className="bp-advisor-name">{d.shortName}</span>
+                        {d.product ? <span className="bp-advisor-product">{d.product}</span> : null}
+                        <span className="bp-advisor-cadence">{formatCadence(d.cadence)}</span>
                       </Link>
                     </li>
                   ))}

@@ -49,21 +49,21 @@ export const ACS_META = {
   ] as Array<{ label: string; href: string; external: boolean }>,
 };
 
-export const EXECUTIVE_JUDGEMENT = [
+export const ADVISORY_JUDGEMENT = [
   "The brand system, decks, financial pack, and product are well ahead of the sales-and-proof objects a venue actually touches. Signal Studio can describe itself beautifully to an investor and barely at all to a wedding coordinator across a table. That is the gap to close before 1 September.",
   "The bottleneck is not design capacity. It is the absence of a single keystone object — the venue one-pager — that locks the venue message and the print system that every other physical asset inherits. Build it first; extract the document shell and micro-label system from it rather than designing an abstract system in a vacuum.",
   "The discipline that wins here is refusal. No merch, no flyers, no laminated anything, no fabricated proof. The numbered Founding Partner system is the highest-leverage proof engine in the bank — but it stays a specimen placeholder until a real venue signs. Build the machine now so it fires the day proof is real.",
 ];
 
-// ── The director panel — operating lenses, not roleplay. One decisive line each. ──
+// ── The advisor panel — operating lenses, not roleplay. One decisive line each. ──
 
-export type Director = {
+export type Advisor = {
   name: string;
   lens: string;
   call: string;
 };
 
-export const PANEL: Director[] = [
+export const PANEL: Advisor[] = [
   { name: "Jobs", lens: "Product strategy · restraint · say no", call: "One object decides everything: the venue one-pager. Make it perfect, ship nothing else until it is, and refuse the merch reflex entirely." },
   { name: "Cook", lens: "Brand trust · premium execution · consistency", call: "Every printed object must pass the front-desk test of a premium venue. One print system, heavy uncoated stock, one earned indigo per object — no exceptions." },
   { name: "Norman", lens: "UX · cognitive load · non-technical clarity", call: "A coordinator must grasp the offer in seven seconds with no product vocabulary. If a sentence needs explaining, cut it." },
@@ -76,7 +76,7 @@ export const PANEL: Director[] = [
   { name: "Jensen", lens: "Technical feasibility · product truth · demo integrity", call: "Every screenshot must be a real screen with real-shaped data. No fake dashboards. The wedding workflow shown must be one a coordinator can actually run today." },
   { name: "Da Vinci", lens: "Notes — capture clarity", call: "Show capture as the calm first move: a wedding enquiry caught in three seconds. Notes is where the story starts on every asset." },
   { name: "Dali", lens: "Tasks — execution clarity", call: "Show the run-sheet writing itself from the note. Tasks is the proof that nothing falls through — the coordinator's relief, made visible." },
-  { name: "Caravaggio", lens: "Timeline — direction clarity", call: "Show the shared timeline the couple can see. Timeline is the trust object — the venue looks organised to its own client." },
+  { name: "Caravaggio", lens: "Timeline— direction clarity", call: "Show the shared timeline the couple can see. Timeline is the trust object — the venue looks organised to its own client." },
   { name: "Einstein", lens: "Signal — attention clarity", call: "Show the one thing due today, everything else quiet. Signal is the payoff line of every asset: the status meeting that never had to happen." },
 ];
 
@@ -201,7 +201,7 @@ export const TAXONOMY: Asset[] = [
   { id: "demo-film", name: "Hero demo film — One Wedding, Four Views", family: "H · Motion & film", audience: "Homepage / deck / social", purpose: "The four-products-one-system idea felt, not explained.", funnel: "Awareness", revenue: "Medium", proof: "Medium", brandRisk: "Medium", difficulty: "High", required: false, dependency: "screenshots", owner: "Creative", format: "30s film (Remotion) + vertical cut", copy: "exists", design: "partial", score: 65, rationale: "Scaffold ready; render when the pipeline is free — not a blocker." },
 
   // I · Product demonstration
-  { id: "screenshots", name: "Product screenshots — wedding workflow (real)", family: "I · Product demonstration", audience: "Every visual asset", purpose: "Notes → Tasks → Timeline → Signal, shown on real screens with real-shaped data.", funnel: "Proof", revenue: "High", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "wedding workspace seed", owner: "Founder / Product", format: "PNG set + device frames", copy: "partial", design: "missing", score: 86, rationale: "Feeds one-pager, deck, press, film; must be real, never faked." },
+  { id: "screenshots", name: "Product screenshots — wedding workflow (real)", family: "I · Product demonstration", audience: "Every visual asset", purpose: "Notes → Tasks → Timeline→ Signal, shown on real screens with real-shaped data.", funnel: "Proof", revenue: "High", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "wedding workspace seed", owner: "Founder / Product", format: "PNG set + device frames", copy: "partial", design: "missing", score: 86, rationale: "Feeds one-pager, deck, press, film; must be real, never faked." },
   { id: "device-frames", name: "Device frames + before/after examples", family: "I · Product demonstration", audience: "Decks / web / press", purpose: "Consistent framing and the calm before/after of a venue's week.", funnel: "Proof", revenue: "Medium", proof: "High", brandRisk: "Medium", difficulty: "Low", required: false, dependency: "screenshots", owner: "Brand", format: "Frame set + layouts", copy: "missing", design: "missing", score: 63, rationale: "Multiplies the value of the screenshots; build alongside them." },
 
   // J · Launch week
@@ -331,7 +331,7 @@ A wedding coordinator or venue owner in Limerick. Runs many weddings at once, li
 Left on a desk at the end of a short founder meeting, or attached to a founder-signed email. It is read alone, after the founder has gone, in under a minute. It must survive sitting on a premium front desk for a week without looking out of place.
 
 5 · SOURCE CONTEXT
-Stay true to: the Signal Studio brand handbook (voice: declarative, plain English, no jargon, no exclamation marks; visual: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent), the growth deck (growth.signalstudio.ie), and the real product. The four products are Notes (capture), Tasks (execution), Timeline (direction), Signal (attention) — four products, one system.
+Stay true to: the Signal Studio brand handbook (voice: declarative, plain English, no jargon, no exclamation marks; visual: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent), the growth deck (growth.signalstudio.ie), and the real product. The four products are Notes (capture), Tasks (execution), Timeline(direction), Signal (attention) — four products, one system.
 
 6 · REQUIRED COPY (use as written; placeholders clearly marked)
 Eyebrow (mono, uppercase): SIGNAL STUDIO · FOR WEDDING VENUES

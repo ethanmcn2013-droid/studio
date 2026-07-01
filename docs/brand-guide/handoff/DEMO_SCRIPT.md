@@ -57,7 +57,7 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 
 **Show.**
 
-- Switch to `roadmap.signalstudio.ie/signal-roadmap` (the live demo workspace).
+- Switch to `timeline.signalstudio.ie/signal-roadmap` (the live demo workspace).
 - Show the public viewer with the three-view switcher. Land on the list view.
 - Optional: open the calendar view to make the shareability concrete.
 
@@ -74,14 +74,14 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 
 **Show.**
 
-- Switch to `analytics.signalstudio.ie/app`.
+- Switch to `signal.signalstudio.ie/app`.
 - Show the rendered daily briefing — three blocks, hard cap of three. Read the bold impact-lead line out loud.
 
 **Source paths.**
 
 - Briefing render: `analytics/src/app/app/page.tsx`
 - Builder pipeline: `analytics/src/lib/briefing/build.ts`
-- Wordmark gesture (`analytics-dot-tick`, 3.6s steps(1) infinite): `analytics/src/app/globals.css:441`
+- Wordmark gesture (`signal-dot-tick`, 3.6s steps(1) infinite): `analytics/src/app/globals.css:441`
 
 ### 2d · Notes (0:25)
 

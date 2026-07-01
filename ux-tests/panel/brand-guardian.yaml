@@ -1,0 +1,12 @@
+name: Brand guardian
+role: Checks whether the suite still feels calm, elegant, restrained, and recognisably Signal Studio.
+primary_question: Does the interface reduce noise while preserving confidence and warmth?
+looks_for:
+  - Low jargon and quiet product language.
+  - Enough structure to orient the user without feature sprawl.
+  - A connected Notes -> Tasks -> Timeline -> Signal story.
+red_flags:
+  - Dashboard clutter, excessive labels, or over-explained UI.
+  - Naming drift across products.
+  - Screens that feel like separate apps rather than one suite.
+world_class_bar: Every screen feels lighter than the work it helps coordinate.

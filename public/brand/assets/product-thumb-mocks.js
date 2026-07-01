@@ -145,7 +145,7 @@
     }
   }
 
-  /* ── Analytics ── */
+  /* ── Signal ── */
   async function loopAnalytics(root) {
     const letters = [...root.querySelectorAll('.anl-letter')];
     const dot = root.querySelector('.anl-dot');
@@ -175,7 +175,7 @@
     }
   }
 
-  /* ── Roadmap ── */
+  /* ── Timeline ── */
   async function loopRoadmap(root) {
     const letters = [...root.querySelectorAll('.rml-letter')];
     const dot = root.querySelector('.rml-dot');

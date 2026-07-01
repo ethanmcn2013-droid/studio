@@ -1,17 +1,17 @@
-import type { RoadmapSeed } from "../types";
+import type { TimelineSeed } from "../types";
 
 /**
- * Roadmap seed — one "Planning Roadmap" project with the wedding
- * planning items grouped by status. Shape matches Roadmap product's
+ * Timeline seed — one "Planning Timeline" project with the wedding
+ * planning items grouped by status. Shape matches Timeline product's
  * data model (workspaces → projects → tasks); status vocabulary is
- * Roadmap's enum. Item bodies are written for a shared update view
+ * Timeline's enum. Item bodies are written for a shared update view
  * the couple, venue, and suppliers can read in under a minute.
  */
-export const roadmap: RoadmapSeed = {
+export const roadmap: TimelineSeed = {
   projects: [
     {
       slug: "planning",
-      name: "Planning Roadmap",
+      name: "Planning Timeline",
       oneLiner:
         "What is decided, what is moving, and what needs attention before the day.",
       accent: "#be185d",

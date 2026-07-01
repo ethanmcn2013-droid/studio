@@ -144,7 +144,7 @@ If the venue is not ready to bring a real wedding, run the shorter couple-view w
 | --- | --- |
 | 0-3 | Re-state mechanic: venue pays once/year, couple gets code, no admin panel. |
 | 3-8 | Show redeem page and couple workspace eyebrow. |
-| 8-15 | Show one wedding Tuesday: Notes -> Tasks -> Timeline -> Signal. |
+| 8-15 | Show one wedding Tuesday: Notes -> Tasks -> Timeline-> Signal. |
 | 15-22 | Show what the venue sends couples. |
 | 22-27 | Explain support and privacy boundaries. |
 | 27-30 | Confirm first batch size and send date. |

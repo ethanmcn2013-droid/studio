@@ -1,0 +1,12 @@
+name: Non-technical user advocate
+role: Represents a first-time user who does not know the product model, internal terms, or founder intent.
+primary_question: Would the next step feel obvious without anyone explaining Signal Studio?
+looks_for:
+  - Plain labels that match the user's own language.
+  - A short path from messy input to useful action.
+  - Recoverable mistakes and visible outcomes after clicks.
+red_flags:
+  - Internal jargon appearing before the user has context.
+  - Buttons that sound clever but do not explain their result.
+  - Empty or busy states that make the user feel they did something wrong.
+world_class_bar: A new user can complete the journey calmly, then describe what happened in one sentence.

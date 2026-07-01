@@ -4,8 +4,8 @@ import type {
   AnalyticsCadence,
   AnalyticsSummary,
   NoteSummary,
-  RoadmapMilestone,
-  RoadmapSummary,
+  TimelineMilestone,
+  TimelineSummary,
   TaskSummary,
   TodayRequest,
   TodayResponse,
@@ -39,12 +39,12 @@ import type {
  * incorrectly-empty state.
  *
  * **Known v1 limitations** (named so they're not surprises later):
- *  - Roadmap member workspaces are silently omitted. Roadmap's schema
+ *  - Timeline member workspaces are silently omitted. Timeline's schema
  *    has no workspace_members table — only the workspace OWNER's
  *    milestones surface here. Membership-only users see empty.
- *  - The Analytics email-subscription DB is not read here; cadence
+ *  - The Signal email-subscription DB is not read here; cadence
  *    comes from Tasks' `user_preferences.daily_signal_cadence` which
- *    Analytics treats as the source of truth at briefing time.
+ *    Signal treats as the source of truth at briefing time.
  *
  * **Future evolution** — when studio gains Clerk middleware, this
  * route should migrate from the `SUITE_API_KEY` Bearer to a Clerk
@@ -200,14 +200,14 @@ async function readNotes(
   }
 }
 
-async function readRoadmap(
+async function readTimeline(
   req: TodayRequest,
-): Promise<{ data: RoadmapSummary | null; read: ProductRead }> {
+): Promise<{ data: TimelineSummary | null; read: ProductRead }> {
   const client = clientForEnv("ROADMAP_TURSO_URL", "ROADMAP_TURSO_TOKEN");
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
-    // Roadmap schema has no `workspace_members` table — only owner
+    // Timeline schema has no `workspace_members` table — only owner
     // surfaces here. Membership-only users see an empty summary.
     // Named as a v1 limitation in the file header.
     const wsRows = await client.execute({
@@ -237,7 +237,7 @@ async function readRoadmap(
       args: slugs,
     });
 
-    const upcoming: RoadmapMilestone[] = upcomingRes.rows.map((r) => ({
+    const upcoming: TimelineMilestone[] = upcomingRes.rows.map((r) => ({
       workspaceSlug: String(r.workspace_slug),
       workspaceName: String(r.name),
       title: String(r.title),
@@ -271,7 +271,7 @@ async function readAnalytics(
     "ANALYTICS_TURSO_TOKEN",
   );
   const tasksClient = clientForEnv("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
-  // The cadence is the source of truth for whether Analytics is on,
+  // The cadence is the source of truth for whether Signal is on,
   // and it lives on the Tasks DB. If the Tasks token isn't wired we
   // can't answer the question — report `skipped_no_env` rather than
   // a confidently-wrong `"off"` cadence. The analytics-only token is
@@ -293,8 +293,8 @@ async function readAnalytics(
     }
 
     // Cadence lives on Tasks' `user_preferences.daily_signal_cadence`
-    // — the same column Analytics reads at briefing time. Pulling it
-    // from there (rather than the Analytics email-subscription DB)
+    // — the same column Signal reads at briefing time. Pulling it
+    // from there (rather than the Signal email-subscription DB)
     // gives us the canonical answer with the token we already have.
     let cadence: AnalyticsCadence = "off";
     if (tasksClient) {
@@ -328,7 +328,7 @@ export async function aggregateToday(req: TodayRequest): Promise<TodayResponse> 
   const [tasksRes, notesRes, roadmapRes, analyticsRes] = await Promise.all([
     readTasks(req),
     readNotes(req),
-    readRoadmap(req),
+    readTimeline(req),
     readAnalytics(req),
   ]);
 

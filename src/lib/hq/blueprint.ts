@@ -12,7 +12,7 @@
  * Keep product language plain; keep internal-operating language sharp.
  * Don't grow this into a CRM/PM tool — it is a *map*, not a system of
  * record. The systems of record already exist (CRM at /hq/crm,
- * directors at /hq/org, atlas at /hq/atlas, numbers at /hq/reporting).
+ * advisors at /hq/org, atlas at /hq/atlas, numbers at /hq/reporting).
  *
  * ── LIVE DATA ───────────────────────────────────────────────────────
  * The metrics section is wired. The page fetches getTraction() (Turso
@@ -30,7 +30,7 @@
  *   - Onboarding       → Tasks onboarding_completed_at (product-analytics)
  *   - Usage by module  → active users across the 4 apps (product-analytics)
  *   - Runway           → modeled by src/lib/hq/financial-model.ts (cash basis)
- *   - Directors        → src/lib/hq/elt.ts (live in the section render)
+ *   - Advisors        → src/lib/hq/elt.ts (live in the section render)
  * Still placeholder (no source in the suite yet):
  *   - Support sentiment → support inbox (no DB)
  * Each placeholder carries an honest source label — no vanity numbers
@@ -105,7 +105,7 @@ export const NORTH_STAR = {
 
 /* ════════════════════════════════════════════════════════════════════
    2 · PRODUCT SYSTEM BLUEPRINT
-   Notes → Tasks → Timeline → Signal → better decisions → less chaos
+   Notes → Tasks → Timeline→ Signal → better decisions → less chaos
    ════════════════════════════════════════════════════════════════════ */
 
 export type ProductBlueprint = {
@@ -151,7 +151,7 @@ export const PRODUCTS: ProductBlueprint[] = [
     href: "https://taskshq.com",
     purpose: "Make a clear, owned, dated list of what actually has to happen.",
     inputs: ["Extracts from Notes", "Quick adds", "Templates", "Shared assignments"],
-    outputs: ["Owned tasks", "Status the team can see", "Feeds Timeline + Signal"],
+    outputs: ["Owned tasks", "Status the team can see", "Feeds Timeline+ Signal"],
     keyActions: ["Add", "Assign", "Set a date", "Mark done"],
     neverBecome: "Jira. No sprints, story points, custom workflows, or burndown.",
     // LIVE DATA: tasks created / completed, WAU (tasks app analytics).
@@ -356,7 +356,7 @@ export type OperatingFunction = {
   key: string;
   name: string;
   owner: string;
-  director: string;      // links to the AI director layer
+  advisor: string;      // links to the AI advisor layer
   tools: string[];
   cadence: string;
   outputs: string[];
@@ -369,7 +369,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "founder-office",
     name: "Founder Office",
     owner: "Founder",
-    director: "Drucker · management",
+    advisor: "Drucker · management",
     tools: ["Signal HQ", "Atlas", "Reporting"],
     cadence: "Daily review",
     outputs: ["The one decision of the day", "Direction held"],
@@ -379,8 +379,8 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
   {
     key: "product",
     name: "Product",
-    owner: "Founder + product directors",
-    director: "Jobs · product & strategy",
+    owner: "Founder + product advisors",
+    advisor: "Jobs · product & strategy",
     tools: ["The four apps", "PRODUCT.md specs", "GSD planning"],
     cadence: "Weekly product review",
     outputs: ["Locked specs", "Shipped scope", "What we said no to"],
@@ -391,7 +391,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "engineering",
     name: "Engineering",
     owner: "Founder",
-    director: "Jensen · engineering · Turing · architecture",
+    advisor: "Jensen · engineering · Turing · architecture",
     tools: ["Next.js 16", "Turso", "Vercel", "Drizzle"],
     cadence: "Continuous",
     outputs: ["Shipped features", "Green typecheck + build"],
@@ -402,7 +402,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "ux",
     name: "UX / UI",
     owner: "Founder",
-    director: "Norman / Ive · UX · Rams · taste",
+    advisor: "Norman / Ive · UX · Rams · taste",
     tools: ["DESIGN.md", "BRAND.md", "design-audit"],
     cadence: "Per-surface review",
     outputs: ["Consistent surfaces", "Quiet, certain interactions"],
@@ -413,7 +413,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "brand",
     name: "Brand & Creative",
     owner: "Founder",
-    director: "Cook · brand · Pixar · creative",
+    advisor: "Cook · brand · Pixar · creative",
     tools: ["BRAND.md", "Motion brief", "Remotion"],
     cadence: "Launch-driven",
     outputs: ["Wordmarks", "Motion films", "Voice canon"],
@@ -424,7 +424,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "marketing",
     name: "Marketing & Growth",
     owner: "Founder",
-    director: "Cuban · growth · Hormozi · demand",
+    advisor: "Cuban · growth · Hormozi · demand",
     tools: ["Six-month plan", "/hq/marketing", "CRM"],
     cadence: "Weekly growth review",
     outputs: ["Shipped assets", "Outreach sent", "Demand created"],
@@ -435,7 +435,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "finance",
     name: "Finance",
     owner: "Founder",
-    director: "Buffett · finance",
+    advisor: "Buffett · finance",
     tools: ["Reporting", "Loan pack", "Sponsor ledger"],
     cadence: "Monthly finance review",
     outputs: ["Runway read", "Cash collected", "Use-of-funds"],
@@ -446,7 +446,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "legal",
     name: "Legal",
     owner: "Founder",
-    director: "Specter · legal & risk",
+    advisor: "Specter · legal & risk",
     tools: ["Vault", "Terms / Privacy", "DPA"],
     cadence: "Triggered",
     outputs: ["Incorporation", "Contracts", "GDPR posture"],
@@ -457,7 +457,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "operations",
     name: "Operations",
     owner: "Founder",
-    director: "Grove / Cook · operations",
+    advisor: "Grove / Cook · operations",
     tools: ["Atlas", "Operator actions", "Cron jobs"],
     cadence: "Weekly",
     outputs: ["Systems documented", "Operator blockers cleared"],
@@ -468,7 +468,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     key: "customer-success",
     name: "Customer Success",
     owner: "Founder",
-    director: "Sagan · research & insight",
+    advisor: "Sagan · research & insight",
     tools: ["Support inbox", "Feedback", "Pilot notes"],
     cadence: "Triggered + weekly",
     outputs: ["Resolved tickets", "Insight back to product"],
@@ -478,17 +478,17 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
 ];
 
 /* ════════════════════════════════════════════════════════════════════
-   6 · AI DIRECTOR LAYER
+   6 · AI ADVISOR LAYER
    Rendered from the live org (src/lib/hq/elt.ts). This section only
-   maps *which business function each director answers to* and the
-   review cycle the founder runs them on. The directors themselves are
+   maps *which business function each advisor answers to* and the
+   review cycle the founder runs them on. The advisors themselves are
    the source of truth at /hq/org.
    ════════════════════════════════════════════════════════════════════ */
 
 export type DirectorReviewCycle = {
   cycle: string;
   question: string;
-  // director shortNames present in this review
+  // advisor shortNames present in this review
   seats: string[];
 };
 
@@ -542,7 +542,7 @@ export const ABSORBED_BY_SYSTEM: AbsorbedWork[] = [
   { area: "Support triage", what: "Classify + route incoming, draft replies.", mode: "human-gate", surface: "support inbox" },
   { area: "Metrics summaries", what: "Turn raw ledger into a plain read.", mode: "automated", surface: "getHqSnapshot" },
   { area: "Decision logs", what: "Capture decisions + review dates.", mode: "human-gate", surface: "content/hq/decisions" },
-  { area: "Roadmap hygiene", what: "Flag drift between source + shipped.", mode: "automated", surface: ".githooks pre-commit" },
+  { area: "Timeline hygiene", what: "Flag drift between source + shipped.", mode: "automated", surface: ".githooks pre-commit" },
 ];
 
 /* ════════════════════════════════════════════════════════════════════
@@ -736,13 +736,13 @@ export const RISK_LOG = {
   openDecisions: [
     { label: "Paid-ads trigger", detail: "What organic proof switches paid on?" },
     { label: "Incorporation timing", detail: "Pending CRO number; gates the lender facility." },
-    { label: "Public 'Roadmap' view label", detail: "Timeline app still shows a board labelled 'Roadmap'." },
+    { label: "Public 'Timeline' view label", detail: "Timeline app still shows a board labelled 'Timeline'." },
   ] satisfies LogItem[],
   decisionsMade: [
     { label: "Indigo dot, retire gold", detail: "Suite-locked accent #4f46e5 since 2026-05-11." },
     { label: "Venue-first wedge", detail: "Limerick venues before any other segment." },
     { label: "Founder stays at Verizon, €0 salary", detail: "Criteria-based transition, not date-based." },
-    { label: "Roadmap → Timeline, Analytics → Signal", detail: "Renamed across the suite 2026-06-13." },
+    { label: "Timeline→ Timeline, Signal → Signal", detail: "Renamed across the suite 2026-06-13." },
   ] satisfies LogItem[],
   launchBlockers: [
     { label: "First paid venue (Gate 0)", detail: "The single headline metric the plan depends on." },
@@ -789,11 +789,11 @@ export type BlueprintSection = {
 
 export const BLUEPRINT_SECTIONS: BlueprintSection[] = [
   { id: "north-star", index: 1, label: "North Star", title: "Why we exist", blurb: "Mission, positioning, principles, flywheel." },
-  { id: "product-system", index: 2, label: "Product System", title: "How the product works", blurb: "Notes → Tasks → Timeline → Signal." },
+  { id: "product-system", index: 2, label: "Product System", title: "How the product works", blurb: "Notes → Tasks → Timeline→ Signal." },
   { id: "customers", index: 3, label: "Customers", title: "Who it's for", blurb: "Venues, students, small business, personal." },
   { id: "growth", index: 4, label: "Growth Machine", title: "How it grows", blurb: "Wedge → demand → compounding → expansion." },
   { id: "functions", index: 5, label: "Signal HQ", title: "How it operates", blurb: "Ten functions, owners, cadence, risk." },
-  { id: "directors", index: 6, label: "AI Directors", title: "How it decides", blurb: "The standing org and review cycles." },
+  { id: "advisors", index: 6, label: "Signal Advisors", title: "How it decides", blurb: "The standing advisory org and review cycles." },
   { id: "automation", index: 7, label: "Automation", title: "Absorbed by the system", blurb: "What the system does so the founder doesn't." },
   { id: "metrics", index: 8, label: "Metrics", title: "How we measure", blurb: "Only the numbers that matter." },
   { id: "risk", index: 9, label: "Risk & Decisions", title: "How we stay honest", blurb: "Risks, decisions, blockers, dependencies." },

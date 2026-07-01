@@ -14,8 +14,8 @@ Each product lives in its own repo, deploying to its own Vercel project, on its 
 |---|---|---|---|---|
 | Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. Also hosts private `/hq` for internal operations. No public auth or CMS. |
 | Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
-| Signal Timeline | `roadmap.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Timeline workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
-| Signal | `analytics.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
+| Signal Timeline | `timeline.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Timeline workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
+| Signal | `signal.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
 | Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Private build | Capture clarity. First live surface exists; PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Full v1 still pending. |
 
 **Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.

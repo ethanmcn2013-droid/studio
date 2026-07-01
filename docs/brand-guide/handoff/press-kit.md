@@ -41,8 +41,8 @@ All masters live under `studio/public/brand/kit/`. Two parallel trees: `svg/` (v
 **Per-product wordmarks** (`tasks·`, `roadmap·`, `analytics·`, `notes·`):
 
 - `studio/public/brand/kit/svg/product-wordmarks/tasks.svg`
-- `studio/public/brand/kit/svg/product-wordmarks/roadmap.svg`
-- `studio/public/brand/kit/svg/product-wordmarks/analytics.svg`
+- `studio/public/brand/kit/svg/product-wordmarks/timeline.svg`
+- `studio/public/brand/kit/svg/product-wordmarks/signal.svg`
 - `studio/public/brand/kit/svg/product-wordmarks/notes.svg`
 
 **Lockups** (wordmark on background, 16:9 share-card aspect):

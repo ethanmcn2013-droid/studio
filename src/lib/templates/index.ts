@@ -16,7 +16,7 @@ import { localBusinessMonthlyRhythm } from "./local-business-monthly-rhythm";
  * template registry (jobsite-punchlist, new-client-onboarding,
  * final-paper-sprint, midterm-week, tax-season). Lifting those
  * specialty templates to canonical shape only matters once the lazy
- * Notes/Roadmap/Analytics expansion path is being exercised for those
+ * Notes/Timeline/Signal expansion path is being exercised for those
  * archetypes — and that signal will come from pilot demand, not a
  * pre-emptive build.
  */
@@ -33,10 +33,10 @@ export {
   type AudienceArchetype,
   type TaskSeed,
   type NoteSeed,
-  type RoadmapSeed,
-  type RoadmapProjectSeed,
-  type RoadmapItemSeed,
-  type RoadmapStatus,
+  type TimelineSeed,
+  type TimelineProjectSeed,
+  type TimelineItemSeed,
+  type TimelineStatus,
   type AnalyticsHint,
   type TasksTemplateSlice,
 } from "./types";

@@ -194,13 +194,13 @@ export const HQ_HUBS: HqHub[] = [
   {
     key: "org",
     label: "Org",
-    title: "Executive Leadership Team",
+    title: "Signal Advisors",
     href: "/hq/org",
     audience: ["founder", "operator", "hire"],
     mode: "library",
     summary:
-      "17 Directors and one Founder. Who owns what, at which autonomy layer, on which cadence.",
-    primaryMetric: "17 directors",
+      "17 advisors and one Founder. Who owns what, at which autonomy layer, on which cadence.",
+    primaryMetric: "17 advisors",
     secondaryMetric: "5 clusters",
     action: "open the org",
   },
@@ -402,7 +402,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/hq/asset-command",
     source: "src/lib/hq/asset-command.ts",
     action: "Open the system",
-    note: "The launch-asset operating layer: director panel, scored taxonomy, ranked priorities, the first ten assets, the quality gate, and the reusable Claude Design prompt framework. Governs which assets get made, in what order.",
+    note: "The launch-asset operating layer: advisor panel, scored taxonomy, ranked priorities, the first ten assets, the quality gate, and the reusable Claude Design prompt framework. Governs which assets get made, in what order.",
   },
   {
     id: "venue-sales-pack",

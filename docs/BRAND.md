@@ -69,7 +69,7 @@ That critique would be right if the moat were features. It isn't.
 
 The moat is **disciplined refusal sustained across a suite of products over time.** Specifically:
 
-- **Voice discipline.** Every page, every empty state, every error message, every email passes through one register (BRAND.md §3). Drift is treated as a bug. An incumbent cannot retrofit this without alienating their existing power-user audience, who are paying for the jargon.
+- **Voice discipline.** Every page, every empty state, every error message, every email passes through one register (BRAND.md §3). Drift is treated as a problem. An incumbent cannot retrofit this without alienating their existing power-user audience, who are paying for the jargon.
 - **Refusal discipline.** Each product publishes its locked refusals (`PRODUCT.md` §7). Notion cannot refuse to be a wiki; it *is* a wiki. Asana cannot refuse to surface metrics; metrics are its conversion bait. Signal Studio's refusals compound — every "no" deepens the brand and shrinks the surface area, the inverse of standard SaaS timeline dynamics.
 - **Visual restraint.** One accent color across the suite. One per-product gesture. No category-colour fragmentation. No mascots. No 3-adjective hero grids. Boring on purpose. The rules are in BRAND.md §5 and they are easier to copy than to *sustain* against the gravitational pull of "let's just ship a chart".
 - **Suite coherence as a single product surface.** Tasks, Timeline, Signal, Notes are four products that read as one. Cross-product chrome is consistent (BRAND.md §6). An incumbent attacking one of these has to attack all four, against a brand that has been speaking with one voice while they did so.
@@ -133,20 +133,20 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Product naming
 - **Full form (in marketing copy, footer suite, cross-product nav):** `Signal Tasks`, `Signal Timeline`, `Signal`, `Signal Notes`.
-- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `roadmap·`, `analytics·`, `notes·` — each with its own indigo gesture inside one shared mark grammar:
-  - `tasks·` — dot **pulses** (live signal). `.tasks-dot` in CSS. Continuous.
-  - `roadmap·` — dot **slides on mount** (motion toward a destination, settles). `.roadmap-dot` in CSS. Plays once.
-  - `analytics·` — dot is **static** (ambient presence). Inline-styled, no class. The quietest of the four.
-  - `notes·` — **underline writes itself** under the word, stops just before the dot, persists. `.notes-mark` in CSS (lives in studio/globals.css until Notes carries the gesture natively). Plays once on first paint. The line is the act of capture; the dot is the destination.
-  - All four respect `prefers-reduced-motion`.
-- **Conversational form (within the product itself):** drop "Signal" — e.g. "Welcome to Tasks."
+- **Wordmark form (in each product's own header/logo):** lowercase `tasks.`, `timeline.`, `signal.`, `notes.` - each with its own indigo gesture inside one shared mark grammar:
+  - `tasks.` - dot **pulses** (live signal). `.tasks-dot` in CSS. Continuous.
+  - `timeline.` - dot **slides** (motion toward a destination, settles). `.roadmap-dot` in CSS until the asset/class migration lands.
+  - `signal.` - dot **ticks** (sampled, ~3.6s steps). Inline-styled until the asset/class migration lands.
+  - `notes.` - **caret** (input, ~1.1s sharp on/off). A held cursor: there, then gone, then there.
+  - All five respect `prefers-reduced-motion`.
+- **Conversational form (within the product itself):** drop "Signal" except for the Signal product, where the product name is already singular.
 - **Never:** "the Tasks app" · "our task manager" · "the suite of products" (use "Signal Studio").
 
 ### Umbrella naming
 - **Full form:** `Signal Studio` (capital S, capital S).
 - **Wordmark form:** lowercase `signal studio.` with indigo period.
 - **Cross-product nav prefix:** lowercase `signal studio.` (consistent across all four products).
-- **Never:** just "Signal" alone in body copy — collides with Signal Messenger.
+- **Never:** use "Signal" as shorthand for the company. In body copy it means the product, not the umbrella.
 
 ### Email
 Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `support@`, not `team@`.
@@ -208,12 +208,47 @@ The H1 is the umbrella headline on every product. The eyebrow + sub do the diffe
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
 - Tasks: `Open the workspace`
-- Timeline: `Open the roadmap`
+- Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`
 
 ### Footer columns
 4-column on desktop, cascading down: Product · Company · Resources · Suite. Cross-product links live in the Suite column with `↗` external arrows.
+
+### 6.6 - Locked operating vocabulary (updated 2026-06-29)
+
+How Signal Studio talks about its own work. Plain English. No project-management theatre. The vocabulary is shared across HQ, agent briefs, planning docs, handoffs, and current operating records.
+
+**The spine.** Initiative -> Project -> Cycle -> Task -> Step.
+
+| word | what it names | replaces | example |
+|---|---|---|---|
+| **Initiative** | a named phase of build, deployment, or operating change | phase / program / workstream | "Initiative 02 - Visible Copy" |
+| **Project** | a meaningful body of work with an outcome | epic / major ticket / work package | "the public Timeline project" |
+| **Cycle** | a focused time-box or implementation pass inside a project | sprint / iteration | "Cycle 03 closes the invite path" |
+| **Task** | one owned unit of work | ticket / story / chore | "add the operator to-do task" |
+| **Step** | one ordered action inside a task | subtask / checklist item | "Step 2: update the CTA" |
+| **Queue** | ordered work waiting for attention | backlog | "founder approval queue" |
+| **Finding** | a review or audit observation | issue | "P1 finding" |
+| **Problem** | something broken or harmful | bug | "checkout problem" |
+| **Risk** | a known threat to outcome, trust, cost, or timing | blocker / concern | "legal naming risk" |
+| **Decision** | a choice that changes direction or constraints | call / ruling | "rename Timeline and Signal" |
+| **Record** | durable memory of a decision, finding, review, or release | log / artifact | "decision record" |
+| **Release** | something made available | deployment / shipment | "June release" |
+| **Review** | structured look-back or quality pass | retro / post-mortem | "launch review" |
+| **Owner** | the person accountable for completion | assignee / stakeholder | "owner: Ethan" |
+| **Status** | the current state of work | state / stage | "status: in progress" |
+
+**Default replacements.** Epic -> Project. Sprint -> Cycle. Ticket -> Task. Bug -> Problem. Backlog -> Queue. Issue board -> Findings list. Roadmap -> Timeline. Analytics -> Signal.
+
+**Use the old words only when one of these is true:**
+
+- The word appears in a deliberate refusal list that names what Signal Studio does not speak.
+- The word is part of a stable route, package name, database field, repo folder, generated asset name, or external integration.
+- The word is in historical changelog text, old commits, or archived records.
+- The word is the normal term in a security, legal, or standards context and replacing it would reduce clarity.
+
+Current work uses the locked vocabulary. Historical entries are not rewritten just to make the past look tidy.
 
 ### "What this isn't" pattern
 On every product's `/about` (or homepage anti-features section):
@@ -269,7 +304,7 @@ When agents (or future-Ethan) ask "what's the Signal Studio voice?" — point th
 - **2026-05-09:** Plan 1 (Strategic Foundation) closed. Cycle 1.1 → `analytics/docs/PRODUCT.md` locked (briefing mechanism = rules + curated prose library, no LLM in v1). Cycle 1.2 → `notes/docs/PRODUCT.md` locked (one-way Notes→Tasks promotion only; never auto-detect todos). Cycle 1.3 → BRAND.md §2.1–§2.3 added (the 80%, what fails them, the moat = discipline-sustained-across-suite-over-time, not feature). The moat-watch metric: unprompted user language. Brief paying out when users describe Signal Studio in our register; breached when they describe it in incumbents'.
 - **2026-05-09:** Plan 2 · Cycle 2.1 (Per-product wordmark gestures) shipped. Notes "underline-writes-itself" gesture designed in `studio/src/app/globals.css` as `.notes-mark` and applied in `studio/src/components/landing/products-grid.tsx` (NotesWordmark replaces prior static-dot variant). Tasks pulse / Timeline slide-on-mount / Signal static dot verified intact. `notes-mark` deliberately not applied in suite-strip nav at 11px (gesture too small to read; lives where Notes has visual weight). BRAND.md §4 gesture enumeration updated to source-of-truth. Carry-forward `/method` copy edits applied in signal: "patterns it recognises" → "patterns we built in"; added "Today the Engine reads from your Signal Tasks workspace; other sources will be added when they earn it."
 - **2026-05-09:** Plan 2 · Cycle 2.2 (Chrome unification + favicon system) shipped. Six favicon files created (`icon.tsx` + `apple-icon.tsx` for timeline, signal, studio) modeled on Tasks's existing pattern. Suite-shared brand-soft tile `#eef2ff` for the family read; product-specific letter (r/a/s) + accent (indigo dot for products, gold period for Studio umbrella). Tasks and Timeline nav components converted to client components and brought to behavior parity with Signal: `usePathname` active-state on desktop nav, native `<details>/<summary>` mobile menu pattern. Cost: ~2KB JS bundle on Tasks/Timeline nav (was server-rendered). Benefit: brand-coherent active state and mobile menu across all three product navs. All four projects typecheck clean. Plan 2 closed.
-- **2026-05-09:** Plan 3 · Cycle 3.1 (Workspace creation flow — Timeline polish) shipped. Found that Timeline already had a working CreateWorkspaceForm + server action — Plan 3.1 became a brand-coherence polish, not a build. Replaced "slug" terminology with "URL" throughout the form + server-action error messages (slug is banned tech jargon for the 80% per BRAND.md §3). Added live URL preview that shows `roadmap.signalstudio.ie/<slug>` in mono as the user types, with placeholder italic state when empty. Reframed sub-copy from "Pick a slug — it's the URL where your timeline lives publicly" to "Your timeline gets a URL. Pick a name and an address you can share." Submit button "Create workspace" → "Create it". Added quiet footer hint "Next: add a project. You can change the name later." closing the loop on what comes after creation. Timeline typechecks clean.
+- **2026-05-09:** Plan 3 · Cycle 3.1 (Workspace creation flow — Timeline polish) shipped. Found that Timeline already had a working CreateWorkspaceForm + server action — Plan 3.1 became a brand-coherence polish, not a build. Replaced "slug" terminology with "URL" throughout the form + server-action error messages (slug is banned tech jargon for the 80% per BRAND.md §3). Added live URL preview that shows `timeline.signalstudio.ie/<slug>` in mono as the user types, with placeholder italic state when empty. Reframed sub-copy from "Pick a slug — it's the URL where your timeline lives publicly" to "Your timeline gets a URL. Pick a name and an address you can share." Submit button "Create workspace" → "Create it". Added quiet footer hint "Next: add a project. You can change the name later." closing the loop on what comes after creation. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.2 (Timeline editor surface — polish) shipped. Six voice fixes across page.tsx + source-editor.tsx: page sub-heading "Markdown source" → "Write your timeline. Save. Share." (was redundant with breadcrumb + jargon-coded). Toolbar button "Insert example markdown" → "Show an example". Pending button "Parsing…" → "Saving…". Confirm dialog "your current source" → "what you have". Status copy "X items parsed" → "X items in your timeline"; "No items found. Check your markdown headings and bullet syntax." → "Nothing here yet. Use # for headings and - for items." Default placeholder copy from "Paste your timeline markdown" → "Write your timeline below". The technical reality is markdown — the editor still teaches the syntax via placeholder + example button — but every user-facing string moved from mechanism-first to outcome-first. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.3 (Public viewer polish) shipped. Tight pass — both public pages already well-shaped. Workspace page: demo banner copy "your team's timeline" → "your timeline" (universalised — the 80% audience includes solo operators); metadata description prefers `workspace.description`, falls back to "Where {name} is going. The public timeline." (was generic "Public timeline for X"). Workspace + project page: Pro-gated calendar CTA reframed from "Pro: subscribe in calendar" / title "Upgrade to Pro for iCal" → "Subscribe in calendar (Pro)" / title "Pro plan adds calendar subscriptions". Action leads, gate-marker is parenthetical; "iCal" jargon purged. 4 occurrences replaced across desktop + mobile rails. Timeline typechecks clean.
 - **2026-05-09:** Plan 3 · Cycle 3.4 (Marketing surface depth) shipped. 5 string fixes across 3 of 5 marketing pages — tight surgical pass, not wholesale rewrites. About: anti-feature 03 "Not for your engineering team" → "Not for the people building it" + note "Your engineers already know what's happening" → "The people doing the work already know what's happening" (purged BRAND.md §3 explicit ban on "engineering teams" / "engineers" while preserving the audience-vs-makers distinction the section was making). Pricing: Free tier feature "Markdown source editor" → "Markdown editor" (jargon purge); migration FAQ "Timeline's source format is Markdown with a lightweight front-matter spec" → "Timeline reads plain markdown with a lightweight tag for dates" (front-matter spec is unhelpful jargon for the 80% audience asking the migration question). Templates: "Create a project with no prefill" → "Create a project with no template" (prefill is dev-jargon). Security page deliberately untouched — security/docs pages get jargon exemption per BRAND.md §3. Changelog deliberately untouched — craft artifact with strong distinctive voice; per saved feedback, changelog entries should read with personality, not procedural minutes. Timeline typecheck clean.

@@ -4,13 +4,13 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Pricing — Signal Studio",
+  title: "Pricing - Signal Studio",
   description:
-    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €100 a year, for the workspace tier. €79 one-time for an event. €9.99 a year for students.",
+    "Four access shapes. Free forever for solo. €12 a month, or €119 a year, for Pro. €89.99 one-time for one event workspace. €8.99 a year for students.",
   openGraph: {
-    title: "Pricing — Signal Studio",
+    title: "Pricing - Signal Studio",
     description:
-      "One subscription. Four kinds of clarity. No per-seat tax. No per-product tax.",
+      "Four products, four access shapes. No per-seat tax. No per-product tax.",
     type: "website",
   },
 };
@@ -48,14 +48,16 @@ type InsideProduct = {
  * endpoint. Tasks owns the Stripe integration; the resulting entitlement
  * is mirrored to the shared signal-entitlements DB on success, so all
  * five products see the new tier without per-product checkout wiring.
+ * The public paid workspace plan is called Pro; the internal entitlement
+ * tier remains `workspace`.
  */
-const TASKS_CHECKOUT_WORKSPACE = `${TASKS_URL}/api/checkout?tier=workspace`;
-const TASKS_CHECKOUT_WORKSPACE_ANNUAL = `${TASKS_URL}/api/checkout?tier=workspace&interval=annual`;
+const TASKS_CHECKOUT_PRO = `${TASKS_URL}/api/checkout?tier=workspace`;
+const TASKS_CHECKOUT_PRO_ANNUAL = `${TASKS_URL}/api/checkout?tier=workspace&interval=annual`;
 const TASKS_CHECKOUT_EVENT = `${TASKS_URL}/api/checkout?tier=event`;
 
 const TIERS: Tier[] = [
   {
-    name: "Free",
+    name: "Free Workspace",
     price: "€0",
     cadence: "forever",
     body: "One workspace. All four products. Three editing guests. No card needed.",
@@ -69,11 +71,11 @@ const TIERS: Tier[] = [
   },
   {
     name: "Student",
-    price: "€9.99",
+    price: "€8.99",
     cadence: "/ year · verified student email",
-    body: "The full Workspace tier at a student price. Verify once with a student email, renew each year while you study.",
+    body: "One study workspace for the year. All four products, unlimited guests, and a price that fits student work.",
     pills: [
-      { label: "Workspaces", value: "Unlimited" },
+      { label: "Workspaces", value: "One study year" },
       { label: "Guests", value: "Unlimited" },
       { label: "Window", value: "Yearly" },
     ],
@@ -81,30 +83,30 @@ const TIERS: Tier[] = [
     href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
   },
   {
-    name: "Workspace",
+    name: "Pro",
     recommended: true,
     price: "€12",
-    cadence: "/ month · per workspace",
-    annual: "or €100 a year, paid once",
-    annualHref: TASKS_CHECKOUT_WORKSPACE_ANNUAL,
-    body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
+    cadence: "/ month",
+    annual: "or €119 a year, paid once",
+    annualHref: TASKS_CHECKOUT_PRO_ANNUAL,
+    body: "One ongoing paid workspace. All four products. Invite anyone; the price does not move.",
     pills: [
-      { label: "Workspaces", value: "Unlimited" },
+      { label: "Workspaces", value: "One paid workspace" },
       { label: "Guests", value: "Unlimited" },
-      { label: "Window", value: "Monthly" },
+      { label: "Window", value: "Monthly or yearly" },
     ],
-    cta: "Start a workspace",
-    href: TASKS_CHECKOUT_WORKSPACE,
+    cta: "Start Pro",
+    href: TASKS_CHECKOUT_PRO,
   },
   {
-    name: "Event",
-    price: "€79",
-    cadence: "one-time · 12 months",
-    body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
+    name: "Event Workspace",
+    price: "€89.99",
+    cadence: "one-time · 18 months",
+    body: "One workspace for one event. Wedding, launch, move, conference. Plan intensely, then keep the record readable forever.",
     pills: [
       { label: "Workspaces", value: "One" },
       { label: "Guests", value: "Unlimited" },
-      { label: "Window", value: "12 months" },
+      { label: "Window", value: "18 months" },
     ],
     cta: "Plan an event",
     href: TASKS_CHECKOUT_EVENT,
@@ -158,7 +160,7 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
   },
   {
     label: "Workspaces",
-    values: ["One", "Unlimited", "Unlimited", "One, event-shaped"],
+    values: ["One", "One study year", "One paid workspace", "One event workspace"],
   },
   {
     label: "All four products",
@@ -170,15 +172,15 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
   },
   {
     label: "Price",
-    values: ["€0", "€9.99 / year", "€12 / month", "€79 one-time"],
+    values: ["€0", "€8.99 / year", "€12 / month", "€89.99 once"],
   },
   {
     label: "Window",
-    values: ["Forever", "Yearly", "Monthly, cancel anytime", "12 months"],
+    values: ["Forever", "Yearly", "Monthly or yearly", "18 months"],
   },
   {
     label: "After the window",
-    values: ["—", "Drops to Free", "Drops to Free", "Workspace keeps reading forever"],
+    values: ["Free", "Drops to Free", "Drops to Free", "Workspace keeps reading forever"],
   },
 ];
 
@@ -200,7 +202,7 @@ const REFUSALS: { neg: string; pos: string }[] = [
 const FAQ: { q: string; a: string }[] = [
   {
     q: "Why a one-time price for events?",
-    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €79 captures the value while you need it. The workspace stays readable forever after.",
+    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €89.99 captures the value while you need it. The workspace stays readable forever after.",
   },
   {
     q: "Do I have to pay per person?",
@@ -220,7 +222,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I switch tiers?",
-    a: "Anytime. Up, down, sideways. No annual contracts on the Workspace plan. Cancel and you keep access through the end of the current month.",
+    a: "Anytime. Up, down, sideways. Pro can be monthly or annual. Cancel and you keep access through the end of the current paid window.",
   },
   {
     q: "Why one price for four products?",
@@ -278,8 +280,8 @@ export default async function PricingPage({
               <strong style={{ color: "var(--ink)" }}>
                 Checkout is temporarily offline.
               </strong>{" "}
-              Workspace and Event purchases will resume when resolved. Free and
-              Student access remain available — start there, or email{" "}
+              Pro and Event purchases will resume when resolved. Free and
+              Student access remain available. Start there, or email{" "}
               <a
                 href="mailto:hello@signalstudio.ie"
                 style={{ color: "var(--ink)" }}
@@ -300,13 +302,15 @@ export default async function PricingPage({
             className="h-display max-w-[22ch] text-balance text-ink"
             style={{ marginBottom: 24 }}
           >
-            One price. All the clarity you need.
+            Pricing that matches the work.
           </h1>
           <p
             className="max-w-[56ch] text-ink-soft"
             style={{ fontSize: 19, lineHeight: 1.55 }}
           >
-            One subscription. Use what you need — no per-seat tax, no per-product tax.
+            Free when you are starting. Pro when the work is ongoing. Event
+            when the project has a real finish line. No per-seat tax, no
+            per-product tax.
           </p>
         </section>
 
@@ -385,7 +389,7 @@ export default async function PricingPage({
               marginBottom: 20,
             }}
           >
-            Monthly billing
+            Four access shapes
           </div>
 
           <p
@@ -397,7 +401,7 @@ export default async function PricingPage({
               maxWidth: "44ch",
             }}
           >
-            Planning one event? The €79 Event tier is the last card below.
+            Planning one event? The €89.99 Event Workspace is the last card below.
           </p>
 
           <div
@@ -591,8 +595,8 @@ export default async function PricingPage({
               marginBottom: 36,
             }}
           >
-            The tiers don't differ on which products you get. All four, every
-            plan. They differ on shape — who it's for, how long it lasts, what
+            The tiers do not differ on which products you get. All four, every
+            plan. They differ on shape: who it is for, how long it lasts, what
             stays when it ends.
           </p>
 
@@ -829,9 +833,9 @@ export default async function PricingPage({
             }}
           >
             All tiers include every product, and every plan can read every
-            briefing in the app. Two things that come to you instead — the
+            briefing in the app. Two things that come to you instead, the
             morning briefing by email, and a forward-to address that turns mail
-            into notes — are part of the Workspace tier. Nothing you make is
+            into notes, are part of Pro. Nothing you make is
             ever locked away by plan.
           </p>
         </section>
@@ -845,7 +849,7 @@ export default async function PricingPage({
             className="h-title text-balance text-ink"
             style={{ maxWidth: "20ch", marginBottom: 40 }}
           >
-            Four products. One subscription.
+            Four products. One studio.
           </h2>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
@@ -980,9 +984,9 @@ export default async function PricingPage({
                     maxWidth: "52ch",
                   }}
                 >
-                  €79 one-time. 12 months of full access. All four products in a
-                  single event-shaped workspace. When the event is over, the
-                  workspace keeps reading forever — a record of how the work
+                  €89.99 one-time. 18 months of full access. All four products
+                  in one event workspace. When the event is over, the workspace
+                  keeps reading forever, a record of how the work
                   actually ran.
                 </p>
               </div>
@@ -1008,7 +1012,7 @@ export default async function PricingPage({
                     lineHeight: 1,
                   }}
                 >
-                  €79
+                  €89.99
                 </span>
                 <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
                   <Link

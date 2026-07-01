@@ -139,7 +139,7 @@ It includes:
 
 - a place to capture decisions and meeting notes
 - a wedding task workspace shaped around venue, suppliers, guests, final week, decisions, and risks
-- a shared Roadmap they can forward to anyone who needs the plan
+- a shared Timeline they can forward to anyone who needs the plan
 - a short morning briefing when something needs attention
 
 Your venue's name appears quietly at the top. It is not a logo wall. The couple's plan stays the focus.

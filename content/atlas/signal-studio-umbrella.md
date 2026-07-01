@@ -3,7 +3,7 @@ title: Signal Studio — the umbrella
 slug: signal-studio-umbrella
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-06-30
 links: [five-products-as-a-system, pricing-and-entitlements, brand-enforcement, plan-cycle]
 tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella, refusal list, four products]
 references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/brand/wordmark.tsx, src/components/landing/]
@@ -27,8 +27,8 @@ flowchart TB
   U --> A[/brand asset hub]
   U --> H[/hq + atlas]
   U --> T[Tasks]
-  U --> R[Roadmap]
-  U --> AN[Analytics]
+  U --> R[Timeline]
+  U --> AN[Signal]
   U --> N[Notes]
   T -.-> B
   R -.-> B
@@ -71,7 +71,7 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 ## WHEN — current state
 
 - Suite design system v1 shipped 2026-05-13 across all four products.
-- Unified pricing surface live with four tiers — Free (€0 forever), Student (€0, verified .edu), Workspace (€12/mo or €120/yr, recommended), Event (€79 one-time, 12 months) — plus the Venue Edition patronage band (€1,500–€4,000/year by venue size, first fifteen venues lock €1,500), ratified 2026-05-16.
+- Unified pricing surface live with four public access shapes — Free Workspace (€0 forever), Student (€8.99/year with student email), Pro (€12/mo or €119/yr for one paid workspace, internal `workspace` entitlement), Event Workspace (€89.99 once, 18 months, one event workspace) — plus the Venue Edition patronage band (€1,500–€4,000/year by venue size, first fifteen venues lock €1,500).
 - `/brand` asset hub public.
 - BRAND.md stable at the location `studio/BRAND.md` since 2026-05-12.
 - The wordmark "signal studio." (with the period) is locked. The collision risk with Signal Messenger means "Signal" alone is never used in body copy.

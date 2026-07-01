@@ -49,7 +49,7 @@ export const FILM_META = {
   ],
   references: [
     { label: "The Film System — motion brief", href: "/brand/motion-brief.html", external: false },
-    { label: "Technical precedent — analytics demo", href: "https://analytics.signalstudio.ie/demo", external: true },
+    { label: "Technical precedent — analytics demo", href: "https://signal.signalstudio.ie/demo", external: true },
   ] as Array<{ label: string; href: string; external: boolean }>,
 };
 

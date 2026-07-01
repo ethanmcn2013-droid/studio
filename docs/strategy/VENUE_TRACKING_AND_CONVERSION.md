@@ -56,7 +56,7 @@ Keep this. Do not introduce a second attribution model.
 | `/venues/demo` | Venue buyer/operator | Prove one wedding end to end. | `venue_demo_contact_click` |
 | `/weddings` | Self-serve couple/planner | Route to wedding workspace/template/pricing. | `wedding_template_click` |
 | `tasks.signalstudio.ie/for/weddings` | Legacy | Redirect to Studio self-serve route. | Redirect only. |
-| `roadmap.signalstudio.ie/the-wedding` | Couple artifact/viewer | Show the plan. | No CTA pressure. |
+| `timeline.signalstudio.ie/the-wedding` | Couple artifact/viewer | Show the plan. | No CTA pressure. |
 
 ---
 

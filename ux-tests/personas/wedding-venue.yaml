@@ -1,0 +1,23 @@
+name: Wedding venue manager
+context: A venue manager coordinating couples, suppliers, dates, deposits, menus, and handoffs across a busy wedding calendar.
+goal: Keep a wedding plan current and turn scattered details into visible next actions.
+likely_language:
+  - final numbers
+  - supplier arrival
+  - tasting menu
+  - couple needs to confirm
+  - no login for the couple
+workflow_expectations:
+  - Capture operational details in the moment.
+  - Send clear follow-ups into tasks without exposing private notes.
+  - Share a calm timeline that couples can read without training.
+  - Review a daily signal that highlights only what needs attention.
+friction_risks:
+  - Public pages that look like internal software can worry couples.
+  - Too many states or labels can make the plan feel bureaucratic.
+  - Cross-product handoff failures can create trust issues before an event.
+success_criteria:
+  - A non-technical manager can complete the flow without help.
+  - The couple-facing timeline uses plain English and no login wall.
+  - Signal highlights the few things that matter today.
+  - The suite feels like one calm operating rhythm.

@@ -1,0 +1,14 @@
+persona: small-business
+goal: confirm today's AI-assisted code changes did not make Signal Studio louder, less clear, or less connected
+starting_state: demo_user
+journey:
+  - scan notes capture
+  - add a task
+  - review timeline
+  - review signal
+  - compare report with previous run
+success_criteria:
+  - no new browser console errors
+  - score does not drop without a clear explanation
+  - no broken buttons, links, forms, or routes
+  - the suite still feels calm and connected

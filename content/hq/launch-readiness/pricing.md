@@ -1,13 +1,13 @@
 ---
 id: pricing
 title: Pricing readiness
-score: 78
+score: 84
 weight: 5
 status: Needs attention
-blockers: ["Shared entitlements layer across Tasks + Timeline not yet built — single Stripe price ID + shared Turso entitlements table needed so one umbrella checkout unlocks both apps. Until then, new Workspace-tier signups effectively pause (acceptable: private preview, no live conversion to disrupt)."]
-nextAction: Architect the shared entitlements layer; design grandfather migration for existing Tasks subscribers (price-lock at current rate, no forced upgrade); wire one Stripe product/price that both Tasks + Timeline entitlement gates check.
+blockers: ["Stripe live prices must be provisioned for Pro annual (€119/year) and Event Workspace (€89.99 one-time) before production checkout can charge the corrected ladder."]
+nextAction: Create or update the Stripe Price objects, set `STRIPE_PRICE_WORKSPACE_ANNUAL` and `STRIPE_PRICE_EVENT_ONETIME` in Tasks production, then run one test checkout for Pro annual and Event Workspace.
 ---
 
 ## Notes
 
-Unified Signal Studio pricing shipped 2026-05-12: signalstudio.ie/pricing (Free / Workspace €12mo / Event €79 one-time / Student .edu-free). Per-product /pricing routes on Tasks + Timeline + Signal all retired and 308-redirect to umbrella; in-product Pricing links across all three repos repointed to umbrella URL. In-app Tasks upsell renamed Team → Workspace. The umbrella is now the single canonical pricing surface in the suite.
+Unified Signal Studio pricing shipped 2026-05-12 and was corrected 2026-06-30 around four public access shapes: Free Workspace (€0 forever), Student (€8.99/year with student email), Pro (€12/month or €119/year for one paid workspace, internal `workspace` entitlement), and Event Workspace (€89.99 once for 18 months, one event workspace). Per-product /pricing routes on Tasks + Timeline + Signal remain retired and 308-redirect to the umbrella. The umbrella is the single canonical pricing surface in the suite; Tasks owns checkout and Stripe webhooks.

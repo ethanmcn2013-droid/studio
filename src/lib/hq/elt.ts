@@ -1,13 +1,13 @@
 /**
- * Signal Studio Executive Leadership Team — snapshot.
+ * Signal Studio Advisors — snapshot.
  *
  * Mirrors the source of truth at
- * `signal-directors/config/directors.yaml` (v2, 2026-06-07).
+ * `signal-directors/config/advisors.yaml` (v2, 2026-06-07).
  * When that file changes, mirror the change here and bump `generatedAt`.
  *
  * The chart at /hq/org reads this; the drill-down at /hq/org/<id>
  * reads the same record. Charter prose lives in
- * `signal-directors/directors/<id>.md` — link out, don't copy.
+ * `signal-directors/advisors/<id>.md` — link out, don't copy.
  */
 
 export type Cadence =
@@ -25,7 +25,7 @@ export type Cluster =
   | "build_ship"
   | "growth_commercial";
 
-export type Director = {
+export type Advisor = {
   id: string;
   name: string;
   shortName: string;
@@ -35,7 +35,7 @@ export type Director = {
   cadence: Cadence;
   autonomyLayer: 2 | 3;
   cluster: Cluster;
-  product?: "roadmap" | "tasks" | "notes" | "analytics";
+  product?: "timeline" | "tasks" | "notes" | "signal";
   owns: string[];
   oneLine: string;
   veto?: string[];
@@ -69,36 +69,36 @@ export const CLUSTERS: { id: Cluster; label: string; subtitle: string }[] = [
   },
 ];
 
-export const DIRECTORS: Director[] = [
+export const DIRECTORS: Advisor[] = [
   {
     id: "product-strategy",
-    name: "Director of Product, Strategy & Prioritization",
+    name: "Advisor for Product, Strategy & Prioritization",
     shortName: "Jobs",
     persona: "Steve Jobs",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/product-strategy.md",
-    slackChannel: "#director-product-strategy",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/product-strategy.md",
+    slackChannel: "#advisor-product-strategy",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "strategy_voice",
     oneLine:
       "Chief of staff. Keeps the company focused on the right things at the right time.",
     owns: [
-      "roadmap sequencing",
+      "timeline sequencing",
       "launch sequencing",
-      "weekly executive review",
-      "monthly strategic review",
+      "weekly advisory review",
+      "monthly strategy review",
       "quarterly company-evolution review",
     ],
   },
   {
     id: "brand-narrative-positioning",
-    name: "Director of Brand, Narrative & Positioning",
+    name: "Advisor for Brand, Narrative & Positioning",
     shortName: "Jobs-Brand",
     persona: "Steve Jobs (brand voice)",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/brand-narrative-positioning.md",
-    slackChannel: "#director-brand-narrative",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/brand-narrative-positioning.md",
+    slackChannel: "#advisor-brand-narrative",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "strategy_voice",
@@ -113,12 +113,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "customer-success-research-insight",
-    name: "Director of Customer Success, Research & Insight",
+    name: "Advisor for Customer Success, Research & Insight",
     shortName: "Sagan",
     persona: "Carl Sagan",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/customer-success-research-insight.md",
-    slackChannel: "#director-customer-insight",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/customer-success-research-insight.md",
+    slackChannel: "#advisor-customer-insight",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "strategy_voice",
@@ -126,28 +126,28 @@ export const DIRECTORS: Director[] = [
     owns: ["feedback synthesis", "interview cadence", "real problem identification"],
   },
   {
-    id: "roadmap-product-excellence",
-    name: "Director of Roadmap Product Excellence",
+    id: "timeline-product-excellence",
+    name: "Advisor for Timeline Product Excellence",
     shortName: "Da Vinci",
     persona: "Leonardo da Vinci",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/roadmap-product-excellence.md",
-    slackChannel: "#director-roadmap-excellence",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/timeline-product-excellence.md",
+    slackChannel: "#advisor-timeline-excellence",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
-    product: "roadmap",
+    product: "timeline",
     oneLine: "Planning should feel clear and calm.",
-    owns: ["roadmap product quality", "planning clarity", "feature excellence (roadmap)"],
+    owns: ["timeline product quality", "planning clarity", "feature excellence (timeline)"],
   },
   {
     id: "tasks-product-excellence",
-    name: "Director of Tasks Product Excellence",
+    name: "Advisor for Tasks Product Excellence",
     shortName: "Caravaggio",
     persona: "Caravaggio",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/tasks-product-excellence.md",
-    slackChannel: "#director-tasks-excellence",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/tasks-product-excellence.md",
+    slackChannel: "#advisor-tasks-excellence",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
@@ -157,12 +157,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "notes-product-excellence",
-    name: "Director of Notes Product Excellence",
+    name: "Advisor for Notes Product Excellence",
     shortName: "Dalí",
     persona: "Salvador Dalí",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/notes-product-excellence.md",
-    slackChannel: "#director-notes-excellence",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/notes-product-excellence.md",
+    slackChannel: "#advisor-notes-excellence",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
@@ -171,28 +171,28 @@ export const DIRECTORS: Director[] = [
     owns: ["notes product quality", "capture effortlessness", "feature excellence (notes)"],
   },
   {
-    id: "analytics-product-excellence",
-    name: "Director of Analytics Product Excellence",
+    id: "signal-product-excellence",
+    name: "Advisor for Signal Product Excellence",
     shortName: "Einstein",
     persona: "Albert Einstein",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/analytics-product-excellence.md",
-    slackChannel: "#director-analytics-excellence",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/signal-product-excellence.md",
+    slackChannel: "#advisor-signal-excellence",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
-    product: "analytics",
+    product: "signal",
     oneLine: "Surface signal without overwhelm.",
-    owns: ["analytics product quality", "signal without overwhelm", "feature excellence (analytics)"],
+    owns: ["Signal product quality", "signal without overwhelm", "feature excellence (Signal)"],
   },
   {
     id: "product-experience-ux",
-    name: "Director of Product Experience (UX)",
+    name: "Advisor for Product Experience (UX)",
     shortName: "Ive",
     persona: "Jony Ive",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/product-experience-ux.md",
-    slackChannel: "#director-product-experience",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/product-experience-ux.md",
+    slackChannel: "#advisor-product-experience",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
@@ -201,12 +201,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "product-taste-design-integrity",
-    name: "Director of Product Taste & Design Integrity",
+    name: "Advisor for Product Taste & Design Integrity",
     shortName: "Rams",
     persona: "Dieter Rams",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/product-taste-design-integrity.md",
-    slackChannel: "#director-product-taste",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/product-taste-design-integrity.md",
+    slackChannel: "#advisor-product-taste",
     cadence: "triggered",
     autonomyLayer: 2,
     cluster: "product_excellence",
@@ -216,12 +216,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "performance-excellence-innovation",
-    name: "Director of Product Performance, Technical Excellence & Innovation",
+    name: "Advisor for Product Performance, Technical Excellence & Innovation",
     shortName: "Jensen",
     persona: "Jensen Huang",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/performance-excellence-innovation.md",
-    slackChannel: "#director-performance-excellence",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/performance-excellence-innovation.md",
+    slackChannel: "#advisor-performance-excellence",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "product_excellence",
@@ -236,12 +236,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "engineering-systems-architecture",
-    name: "Director of Engineering, Systems & Architecture",
+    name: "Advisor for Engineering, Systems & Architecture",
     shortName: "Turing",
     persona: "Alan Turing",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/engineering-systems-architecture.md",
-    slackChannel: "#director-engineering-systems",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/engineering-systems-architecture.md",
+    slackChannel: "#advisor-engineering-systems",
     cadence: "weekly",
     autonomyLayer: 3,
     cluster: "build_ship",
@@ -256,12 +256,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "creative-motion-experience",
-    name: "Director of Creative, Motion & Experience Design",
+    name: "Advisor for Creative, Motion & Experience Design",
     shortName: "Pixar",
     persona: "Pixar",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/creative-motion-experience.md",
-    slackChannel: "#director-creative-motion",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/creative-motion-experience.md",
+    slackChannel: "#advisor-creative-motion",
     cadence: "launch_driven",
     autonomyLayer: 2,
     cluster: "build_ship",
@@ -276,12 +276,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "operations-admin-founder-support",
-    name: "Director of Operations, Administration & Founder Support",
+    name: "Advisor for Operations, Administration & Founder Support",
     shortName: "Cook",
     persona: "Tim Cook",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/operations-admin-founder-support.md",
-    slackChannel: "#director-operations",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/operations-admin-founder-support.md",
+    slackChannel: "#advisor-operations",
     cadence: "daily",
     autonomyLayer: 3,
     cluster: "build_ship",
@@ -296,12 +296,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "marketing-growth-audience-insight",
-    name: "Director of Marketing, Growth & Audience Insight",
+    name: "Advisor for Marketing, Growth & Audience Insight",
     shortName: "Hormozi",
     persona: "Alex Hormozi",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/marketing-growth-audience-insight.md",
-    slackChannel: "#director-marketing-growth",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/marketing-growth-audience-insight.md",
+    slackChannel: "#advisor-marketing-growth",
     cadence: "weekly",
     autonomyLayer: 2,
     cluster: "growth_commercial",
@@ -315,12 +315,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "revenue-partnerships-business-development",
-    name: "Director of Revenue, Partnerships & Business Development",
+    name: "Advisor for Revenue, Partnerships & Business Development",
     shortName: "Cuban",
     persona: "Mark Cuban",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/revenue-partnerships-business-development.md",
-    slackChannel: "#director-revenue-partnerships",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/revenue-partnerships-business-development.md",
+    slackChannel: "#advisor-revenue-partnerships",
     cadence: "opportunity_driven",
     autonomyLayer: 2,
     cluster: "growth_commercial",
@@ -333,12 +333,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "finance-capital-commercial-planning",
-    name: "Director of Finance, Capital & Commercial Planning",
+    name: "Advisor for Finance, Capital & Commercial Planning",
     shortName: "Buffett",
     persona: "Warren Buffett",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/finance-capital-commercial-planning.md",
-    slackChannel: "#director-finance",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/finance-capital-commercial-planning.md",
+    slackChannel: "#advisor-finance",
     cadence: "weekly_or_biweekly",
     autonomyLayer: 2,
     cluster: "growth_commercial",
@@ -352,12 +352,12 @@ export const DIRECTORS: Director[] = [
   },
   {
     id: "legal-risk-corporate-affairs",
-    name: "Director of Legal, Risk & Corporate Affairs",
+    name: "Advisor for Legal, Risk & Corporate Affairs",
     shortName: "Specter",
     persona: "Harvey Specter",
     charterHref:
-      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/directors/legal-risk-corporate-affairs.md",
-    slackChannel: "#director-legal-risk",
+      "https://github.com/ethanmcn2013-droid/signal-directors/blob/main/advisors/legal-risk-corporate-affairs.md",
+    slackChannel: "#advisor-legal-risk",
     cadence: "triggered",
     autonomyLayer: 2,
     cluster: "growth_commercial",
@@ -375,16 +375,16 @@ export const DIRECTORS: Director[] = [
 export const ELT_SNAPSHOT = {
   generatedAt: "2026-06-07",
   sourceVersion: 2,
-  source: "signal-directors/config/directors.yaml",
+  source: "signal-directors/config/advisors.yaml",
   founderName: "Ethan",
   founderRole: "Founder & Final Call",
 } as const;
 
-export function getDirector(id: string): Director | undefined {
+export function getDirector(id: string): Advisor | undefined {
   return DIRECTORS.find((d) => d.id === id);
 }
 
-export function directorsByCluster(cluster: Cluster): Director[] {
+export function directorsByCluster(cluster: Cluster): Advisor[] {
   return DIRECTORS.filter((d) => d.cluster === cluster);
 }
 

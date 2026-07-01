@@ -4,7 +4,7 @@
 
 This file is the consumable subset of [`BRAND.md`](./BRAND.md) for AI agents (Claude Code, Codex, Stitch, any DESIGN.md-aware tool). It contains tokens, primitives, and refusals — *not* positioning or voice strategy. For the strategic register, read BRAND.md first. When the two conflict, BRAND.md wins; fix this file to match.
 
-Same family across all five repos: Studio (umbrella), Tasks, Roadmap, Analytics, Notes. Differentiation comes from one per-product gesture, not from colour or typography variation.
+Same family across all five repos: Studio (umbrella), Tasks, Timeline, Signal, Notes. Differentiation comes from one per-product gesture, not from colour or typography variation.
 
 ---
 
@@ -12,7 +12,7 @@ Same family across all five repos: Studio (umbrella), Tasks, Roadmap, Analytics,
 
 - **Name:** Signal Studio. The wordmark is `signal studio.` (lowercase, with period). In running body copy use `Signal Studio` (title case) for the umbrella.
 - **Product names (operator decision 2026-06-22):** in product lists, footers, nav, and wordmarks, the products are bare words — `Notes`, `Tasks`, `Timeline`, `Signal` — with no `Signal` prefix. Reserve the full `Signal Tasks` / `Signal Notes` form for prose that needs to disambiguate from the generic word. `Signal Studio` stays for the umbrella. The fourth product is `Signal` (the analytics rebrand); never write `Signal` to mean the suite.
-- **Student pricing (operator decision 2026-06-22):** the student rate is **€9.99 a year**, not free. Verify with any student email (honour system); `.edu` is not required. Never say "free for students" or "two years".
+- **Student pricing (operator decision 2026-06-30):** the student rate is **€8.99 a year**, not free. Verify with any student email (honour system); `.edu` is not required. Never say "free for students" or "two years".
 - **Headline (umbrella):** `Cut through the noise.`
 - **Operating principle:** `Everything important. Nothing distracting.`
 - **Suite tagline (locked):** `Clarity, not configuration.`
@@ -172,19 +172,19 @@ differently per product.
 |---|---|---|---|
 | Studio | broadcast | Wordmark period sends concentric rings outward, once | one-shot |
 | Tasks | pulse | Dot breathes at rest, quickens with load | 2.6s ease-in-out |
-| Roadmap | sweep | Dot tracks left→right along a timeline | 5.4s `cubic-bezier(.22,.7,.2,1)` |
-| Analytics | tick | Dot jumps between samples, never between them | 3.6s `steps(1,end)` |
+| Timeline | sweep | Dot tracks left→right along a timeline | 5.4s `cubic-bezier(.22,.7,.2,1)` |
+| Signal | tick | Dot jumps between samples, never between them | 3.6s `steps(1,end)` |
 | Notes | caret | Dot blinks like a held cursor | 1.1s `steps(1,end)` |
 
 These are the *only* product-level animations. Don't invent new
 gestures. **Suite-wide migration complete (2026-05-16):** all five
 repos now implement the canonical vocabulary in code/CSS — keyframes,
 animation tokens, timings, easings, and component docstrings conformed
-(Tasks `heartbeat`→`pulse` 2.6s ease-in-out, Roadmap `advance`→`sweep`
-5.4s cubic-bezier(.22,.7,.2,1), Analytics continuous-pulse→`tick` 3.6s
+(Tasks `heartbeat`→`pulse` 2.6s ease-in-out, Timeline `advance`→`sweep`
+5.4s cubic-bezier(.22,.7,.2,1), Signal continuous-pulse→`tick` 3.6s
 steps(1,end), Notes `settle`→`caret` 1.1s steps(1,end), Studio
 `broadcast` one-shot). The old vocabulary (Tasks `tick` — now
-Analytics, Roadmap `advance`, Analytics `heartbeat`, Notes `settle`)
+Signal, Timeline `advance`, Signal `heartbeat`, Notes `settle`)
 is fully retired from product code. **White-lock held, ratified again
 2026-05-16:** the handed brand guide's warm Stone neutral ramp was
 *not* adopted for product use — paper stays `#ffffff`/`#fafafa`, ink
@@ -206,7 +206,7 @@ chrome only, never product tokens.
 
 **Secondary** — hairline outline, ink text, pill radius. No `bg-`.
 
-**CTA verbs (locked):** `Open the [product]`. Tasks: *Open the workspace*. Roadmap: *Open the roadmap*. Analytics: *Open the briefing*. Notes: *Open the notebook*. Never "Get started", "Try it", "Sign up free".
+**CTA verbs (locked):** `Open the [product]`. Tasks: *Open the workspace*. Timeline: *Open the roadmap*. Signal: *Open the briefing*. Notes: *Open the notebook*. Never "Get started", "Try it", "Sign up free".
 
 ### Hero pattern (every product homepage)
 ```
@@ -293,7 +293,7 @@ These are not "guidelines." They are refusals that compound across the suite.
 - Pure black `#000000` for text
 - Pure white `#FFFFFF` for elevated surfaces *in any colour-aware context* (use `--paper`)
 - More than one accent colour
-- Category-coloured products (Tasks ≠ green, Roadmap ≠ orange, etc.)
+- Category-coloured products (Tasks ≠ green, Timeline ≠ orange, etc.)
 
 ### Banned typography
 - Inter alone as the display face
@@ -327,8 +327,8 @@ The suite is one design system. Each product carries one structural accent the o
 |---|---|---|---|
 | Studio | signalstudio.ie | broadcast wordmark gesture; umbrella footer 2-col | umbrella, oriented to the suite as one thing |
 | Tasks | tasks.signalstudio.ie | pulse-dot gesture; cinematic demo on homepage | execution-first, present tense, "your week" |
-| Roadmap | roadmap.signalstudio.ie | sweep-dot gesture; public-viewer share surface | direction-first, plain prose for non-tech stakeholders |
-| Analytics | analytics.signalstudio.ie | tick-dot gesture; briefing-not-dashboard layout | observational, never prescriptive, "you might want to look at" |
+| Timeline | timeline.signalstudio.ie | sweep-dot gesture; public-viewer share surface | direction-first, plain prose for non-tech stakeholders |
+| Signal | signal.signalstudio.ie | tick-dot gesture; briefing-not-dashboard layout | observational, never prescriptive, "you might want to look at" |
 | Notes | notes.signalstudio.ie | caret-dot gesture; warm-paper notebook chrome | sotto voce, single-column reading, no chrome on focus |
 
 Notes's green/mustard/Inter aesthetic is **intentional and locked** (see [`feedback_notes_aesthetic.md`](~/.claude/projects/-Users-ethanmcnamara/memory/feedback_notes_aesthetic.md)). Do not file it as a BRAND.md violation.
@@ -341,7 +341,7 @@ Notes's green/mustard/Inter aesthetic is **intentional and locked** (see [`feedb
 
 ## 13 · Loading boundary (canonical spec — all five repos)
 
-**Authored 2026-05-17. This section is the contract that Notes, Tasks, Roadmap, and Analytics implement against — copy the spec exactly, do not diverge.**
+**Authored 2026-05-17. This section is the contract that Notes, Tasks, Timeline, and Signal implement against — copy the spec exactly, do not diverge.**
 
 ### Problem
 Zero `loading.tsx` files exist across the suite. Without a Suspense fallback the bare RSC shell paints during route-transition and hydration. The wordmark `.md` (middot dot) is `0.16em` — before Geist Sans resolves, the em unit inherits from the root element's unhydrated size, and the dot balloons to ~250px. This reads as a crash.
@@ -350,7 +350,7 @@ Zero `loading.tsx` files exist across the suite. Without a Suspense fallback the
 
 Every App Router repo mounts a `loading.tsx` at the app root. The file:
 
-1. **Visual** — renders the product's per-product brand gesture mark (the `.md` dot for verbs: Tasks/Roadmap/Analytics/Notes; the `.pd` period for nouns: Studio/Notes) as a static indigo circle, centered on the product's paper background.
+1. **Visual** — renders the product's per-product brand gesture mark (the `.md` dot for verbs: Tasks/Timeline/Signal/Notes; the `.pd` period for nouns: Studio/Notes) as a static indigo circle, centered on the product's paper background.
 2. **Background** — `var(--paper, #ffffff)`. Never bare white via `background: white` — always the CSS custom property so it inherits the product's paper token if it ever diverges.
 3. **Size** — `10px × 10px` hard-coded in `px` (not `em`). This is the intended ceiling: `0.16em` at the wordmark's `xl` size (`clamp(2.25rem,…,4rem)`) = ~10.24px at max viewport. Hard-coding in px makes the loading dot immune to font-size inheritance before the web font resolves.
 4. **Dot ceiling in CSS** — The `.brand-mark .md` rule in every product's `globals.css` (or equivalent) must also apply `width: min(0.16em, 10px); height: min(0.16em, 10px)` so the dot is clamped in *all* contexts (nav, footer, loading state), not only inside `loading.tsx`.
@@ -409,15 +409,15 @@ export default function Loading() {
 |---|---|---|
 | Studio | `--paper` | `#ffffff` |
 | Tasks | `--paper` | `#ffffff` |
-| Roadmap | `--paper` | `#ffffff` |
-| Analytics | `--paper` | `#ffffff` |
+| Timeline | `--paper` | `#ffffff` |
+| Signal | `--paper` | `#ffffff` |
 | Notes | `--paper` | `#ffffff` (Notes green/mustard is typography, not background) |
 
 All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lock). The white-lock ratified 2026-05-16 (warm Stone ramp rejected for product use).
 
-### Shimmer skeleton — Roadmap-only (2026-05-22 clarification)
+### Shimmer skeleton — Timeline-only (2026-05-22 clarification)
 
-The §13 dot loader above is the canonical loading-boundary pattern for **all five** repos. Roadmap **also** carries a `.skeleton-shimmer` CSS rule and a paired `--paper-bone` (#ebebec, ~L*92) trough token in its own `globals.css`, used inside the curation surface for in-flow row skeletons. This is intentional and Roadmap-only — the other four repos do not (and as of 2026-05-22 should not) carry the shimmer rule or the `--paper-bone` token. If a future suite-wide skeleton pattern is reintroduced, the canonical pairing is trough `--paper-bone` at 0%/100% + peak `--paper-deep` (#f4f4f5, ~L*96) at 40-60% — a ~4 L* delta that reads as motion without flashing. Provenance: `roadmap/ELEVATION_C2_TICKET.md § SUITE-SKELETON-RECONCILE` (closed 2026-05-22 as not-applicable post-wordmark-loader pass).
+The §13 dot loader above is the canonical loading-boundary pattern for **all five** repos. Timeline **also** carries a `.skeleton-shimmer` CSS rule and a paired `--paper-bone` (#ebebec, ~L*92) trough token in its own `globals.css`, used inside the curation surface for in-flow row skeletons. This is intentional and Timeline-only — the other four repos do not (and as of 2026-05-22 should not) carry the shimmer rule or the `--paper-bone` token. If a future suite-wide skeleton pattern is reintroduced, the canonical pairing is trough `--paper-bone` at 0%/100% + peak `--paper-deep` (#f4f4f5, ~L*96) at 40-60% — a ~4 L* delta that reads as motion without flashing. Provenance: `roadmap/ELEVATION_C2_TASK.md § SUITE-SKELETON-RECONCILE` (closed 2026-05-22 as not-applicable post-wordmark-loader pass).
 
 ---
 
@@ -436,7 +436,7 @@ The §13 dot loader above is the canonical loading-boundary pattern for **all fi
 
 ## 14 · Suite shell and auth-aware switcher (canonical spec — all five repos)
 
-**Authored 2026-05-18. This section is the contract that Tasks, Notes, Analytics, and Roadmap implement against. Copy the spec exactly; do not diverge. Studio is the reference implementation.**
+**Authored 2026-05-18. This section is the contract that Tasks, Notes, Signal, and Timeline implement against. Copy the spec exactly; do not diverge. Studio is the reference implementation.**
 
 > **AMENDMENT 2026-05-19 — the authed switcher is always-visible pills, not a popover.**
 > The original §14 specified the cross-product switcher as a *dropdown behind
@@ -455,7 +455,7 @@ The §13 dot loader above is the canonical loading-boundary pattern for **all fi
 > correct affordance in two contexts where a pill row does not fit or does
 > not belong: (1) the **unauthed marketing nav** (low chrome, one product in
 > view), and (2) **narrow/public surfaces** — the Tasks app sidebar (252px
-> vertical rail) and the Roadmap public workspace-header (a forwarded
+> vertical rail) and the Timeline public workspace-header (a forwarded
 > shared-plan view guests see; suite pills must not leak there).
 >
 > Restraint clause: an always-on bar is more chrome than "Nothing
@@ -506,13 +506,13 @@ The switcher dropdown has two modes based on auth state.
 - Each product entry deep-links to that product's **app entry**, not its marketing homepage:
   - Tasks → `https://tasks.signalstudio.ie/app`
   - Notes → `https://notes.signalstudio.ie/app`
-  - Analytics → `https://analytics.signalstudio.ie/app`
-  - Roadmap → `https://roadmap.signalstudio.ie/app`
+  - Signal → `https://signal.signalstudio.ie/app`
+  - Timeline → `https://timeline.signalstudio.ie/app`
 - Each item shows an **app-context label** (not a marketing tagline):
   - Tasks: "Open the workspace"
   - Notes: "Open the notebook"
-  - Analytics: "Open the briefing"
-  - Roadmap: "Open the roadmap"
+  - Signal: "Open the briefing"
+  - Timeline: "Open the roadmap"
 - The current product is indicated (bold or a subtle active state) but is still a tappable link (useful to reset to app home within the product).
 - Studio entry: "Back to Signal Studio" → `https://signalstudio.ie` (the suite launcher if authed, the hero if unauthed — the redirect handles it).
 
@@ -568,7 +568,7 @@ if (isAuthed && !isPreview && MARKETING_ROUTES.has(pathname)) {
 Studio has no end-user product app. Its authed destination is the **suite launcher** — the existing cross-product switcher rendered as a full page.
 
 - **Route:** `/` (authed variant). Same URL, different render. The middleware (or a server component auth check) determines which variant to return.
-- **Content:** "Jump back in" header + a 2×2 grid of product cards (same four products, operator-directed order 2026-05-18: Notes → Tasks → Roadmap → Analytics). Each card: product wordmark + app-context label ("Open the notebook", "Open the workspace", etc.) + a right-arrow. Card links go to app entries (as in authed switcher above). Below the grid: the account menu inline or a "Sign out" text link via Clerk.
+- **Content:** "Jump back in" header + a 2×2 grid of product cards (same four products, operator-directed order 2026-05-18: Notes → Tasks → Timeline → Signal). Each card: product wordmark + app-context label ("Open the notebook", "Open the workspace", etc.) + a right-arrow. Card links go to app entries (as in authed switcher above). Below the grid: the account menu inline or a "Sign out" text link via Clerk.
 - **Chrome:** mounts the persistent top chrome from this spec (§14 above). Left slot shows `signal studio.` only (no `/ product` — the launcher IS studio). Right slot: switcher + account menu.
 - **Unauthed `/`:** unchanged marketing hero. The middleware passes through; `page.tsx` renders `<RevealHero />` etc. as today.
 - **Brand voice on new copy:** "Jump back in." is the only heading. No marketing copy on the launcher. No taglines. No "Get started." One verb per card. This is a utility surface, not a selling surface.
@@ -640,11 +640,11 @@ if (isAuthed && !isPreview) {
 
 ### Per-product M route lists (implementing repos)
 
-Each product repo defines its own `MARKETING_PATHS` set matching the Layer 0 allowlist for that product. The redirect target is always that product's own app entry (not studio). Tasks/Notes/Analytics redirect to `/app`. Roadmap redirects to `/app` (the owner's workspace). None of the products' middlewares should redirect to studio — they redirect within their own subdomain.
+Each product repo defines its own `MARKETING_PATHS` set matching the Layer 0 allowlist for that product. The redirect target is always that product's own app entry (not studio). Tasks/Notes/Signal redirect to `/app`. Timeline redirects to `/app` (the owner's workspace). None of the products' middlewares should redirect to studio — they redirect within their own subdomain.
 
 ### Verification gates (all repos before merge)
 
-1. Authed request to a **C** route returns the public view (HTTP 200), not a redirect. Test `roadmap.signalstudio.ie/the-wedding`, an analytics shared briefing, `signalstudio.ie/brand`. This is the single most critical test.
+1. Authed request to a **C** route returns the public view (HTTP 200), not a redirect. Test `timeline.signalstudio.ie/the-wedding`, an analytics shared briefing, `signalstudio.ie/brand`. This is the single most critical test.
 2. Authed request to an **M** route (e.g. `signalstudio.ie/`, `tasks.signalstudio.ie/`) renders the app surface, not marketing.
 3. Unauthed request to an **M** route renders marketing — no redirect, no auth wall.
 4. Product nav renders **no** "Sign in" or "Start for free" string when the user is authed.
@@ -658,11 +658,11 @@ One spec, all four product marketing surfaces. The umbrella (`signalstudio.ie`)
 is the visual reference; products carry a breadcrumb + wider container because
 they sit one level down and need cross-product reach.
 
-- **Container.** `mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6`. (Analytics was `max-w-[80rem]` — corrected.)
+- **Container.** `mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6`. (Signal was `max-w-[80rem]` — corrected.)
 - **Left lockup.** `SuiteLauncher current=<product>` + `/` separator (`var(--ink-faint)`, 12px) + `<Wordmark size="md" />`. No size variants — analytics' `0.9375rem` corrected to `md`.
 - **Breadcrumb dot.** Static indigo `#4f46e5`, tight to the wordmark. Per-product motion gestures (caret/pulse/sweep/tick) live ONLY in the big hero wordmark — never the nav chrome. (Notes' breadcrumb dot was running the caret blink; corrected to static.)
 - **Nav links.** `text-[13px] text-ink-soft`, `gap-7`, `hover:text-ink`. Labels are product-specific (real routes) — the spec governs treatment, not the label set. `Pricing` points at the umbrella.
-- **Sign in.** ALWAYS present when unauthed — a visible affordance, never a gate. Public scanning stays fully open; the user signs in when *they* decide, and knows where to click. Canonical treatment: `rounded-full px-3.5 py-1.5 text-[13px] font-medium text-ink-soft hover:text-ink`. Replaced by the account menu (`UserButton`) when authed (see "Kill the false Sign in"). Analytics and Notes were missing it entirely; added. Notes renders the affordance in its own register (protected aesthetic, §11) rather than the suite pill.
+- **Sign in.** ALWAYS present when unauthed — a visible affordance, never a gate. Public scanning stays fully open; the user signs in when *they* decide, and knows where to click. Canonical treatment: `rounded-full px-3.5 py-1.5 text-[13px] font-medium text-ink-soft hover:text-ink`. Replaced by the account menu (`UserButton`) when authed (see "Kill the false Sign in"). Signal and Notes were missing it entirely; added. Notes renders the affordance in its own register (protected aesthetic, §11) rather than the suite pill.
 
 ### Cross-product pivot arrows (v1, 2026-06-02)
 

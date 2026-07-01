@@ -153,7 +153,7 @@ export default function PressPage() {
                   (open in browser, screenshot freely)
                 </li>
                 <li>
-                  <ExternalLink href={TIMELINE_URL}>Signal Timeline — live</ExternalLink>
+                  <ExternalLink href={TIMELINE_URL}>Signal Timeline— live</ExternalLink>
                 </li>
                 <li>
                   <ExternalLink href={SIGNAL_URL}>Signal — live</ExternalLink>

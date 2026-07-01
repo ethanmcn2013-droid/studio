@@ -1,0 +1,23 @@
+name: Small business owner
+context: A small business owner managing customer follow-ups, supplier work, cash-flow reminders, and weekly planning without a dedicated operations team.
+goal: Move loose business notes into tasks, publish a simple plan, and check what needs attention.
+likely_language:
+  - follow up Friday
+  - invoice
+  - supplier
+  - this week
+  - what needs attention
+workflow_expectations:
+  - Capture work as it appears during the day.
+  - Create small, plain-language tasks with dates and owners.
+  - See a timeline that can be shared with a client or helper.
+  - Get a short signal instead of another analytics dashboard.
+friction_risks:
+  - Setup, billing, or workspace language can feel like admin overhead.
+  - Heavy dashboards can make the product feel too big for the business.
+  - Missing save states can reduce trust quickly.
+success_criteria:
+  - The suite feels lighter than a spreadsheet.
+  - Buttons and forms explain themselves through labels and results.
+  - The user can recover from mistakes.
+  - The final signal points to useful action, not generic metrics.

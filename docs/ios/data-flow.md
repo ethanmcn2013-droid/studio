@@ -20,7 +20,7 @@ What the Signal Studio iOS app collects, where it goes, who can read it. Source 
 | Voice audio (transient) | Notes     | On-device mic         | Written by `AudioRecorder` (signal-ios `SignalStudio/Notes/AudioRecorder.swift:83-84`) to `FileManager.default.temporaryDirectory` as `signal-voice-<UUID>.m4a` for the duration of the transcription job. Not persisted to the user's notebook — the persisted output is the transcript text. | **On-device when the active locale supports it** (`SpeechTranscriber.swift:54-56` sets `requiresOnDeviceRecognition = true` only when `supportsOnDeviceRecognition` is true). For locales without on-device support, the audio is sent to Apple's speech servers under Apple's standard speech-recognition channel. | N/A             | No        |
 | Tasks (cards, status, dates) | Tasks     | User input            | Turso (tasks DB)  | Turso only                              | Yes             | No        |
 | Workspaces + projects | Tasks / Timeline | User input         | Turso (per-product) | Turso only                              | Yes             | No        |
-| Timeline milestones + updates | Timeline   | User input            | Turso (timeline DB) | Turso only                              | Yes             | No        |
+| Timeline milestones + updates | Timeline  | User input            | Turso (timeline DB) | Turso only                              | Yes             | No        |
 | Signal briefing source data | Signal | **Derived** from Tasks DB (read-only) | Turso (signal DB read-cache) | Resend (when user opts into email briefings) | Yes             | No        |
 
 ## Diagnostics + crash

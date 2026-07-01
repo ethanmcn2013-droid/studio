@@ -1,0 +1,127 @@
+import { expect, type Page, type TestInfo } from "@playwright/test";
+import { productUrl } from "./products";
+import { gotoAndReport, takeStepScreenshot, slugify } from "./reporting";
+import { addUxFriction } from "./ux-lens";
+
+const SCENARIO_NOTE_TITLE = "Scenario note confirm who owns the next handoff";
+const SCENARIO_ACTION_TITLE = "Scenario action confirm the next handoff owner";
+
+export async function runScenarioInstruction(
+  page: Page,
+  testInfo: TestInfo,
+  instruction: string,
+) {
+  const step = normalizeInstruction(instruction);
+  testInfo.annotations.push({
+    type: "scenario-step",
+    description: instruction,
+  });
+
+  switch (step) {
+    case "create project":
+      await gotoAndReport(page, testInfo, productUrl("timeline", "/app"), "Timeline app");
+      await expect(page.getByRole("heading", { name: /Tasks.*Product Timeline/i })).toBeVisible();
+      addUxFriction(
+        testInfo,
+        "medium",
+        "Scenario step 'create project' currently validates seeded project access rather than creating a new project.",
+        "Add a demo-safe project creation adapter so YAML scenarios can exercise true first-run setup without production credentials.",
+      );
+      await takeStepScreenshot(page, testInfo, "scenario-create-project");
+      return;
+
+    case "add notes":
+    case "scan notes capture": {
+      await gotoAndReport(page, testInfo, productUrl("notes", "/app"), "Notes app");
+      const capture = page.getByLabel("Capture a private note");
+      await capture.fill(SCENARIO_NOTE_TITLE);
+      await expect(capture).toHaveValue(SCENARIO_NOTE_TITLE);
+      await capture.press("Enter");
+      await expect(capture).toHaveValue("");
+      await expect(noteRow(page, SCENARIO_NOTE_TITLE)).toBeVisible();
+      await takeStepScreenshot(page, testInfo, `scenario-${slugify(instruction)}`);
+      return;
+    }
+
+    case "convert notes to tasks":
+      await gotoAndReport(page, testInfo, productUrl("notes", "/app"), "Notes app");
+      await page.getByLabel("Search").fill("Scenario note");
+      await expect(noteRow(page, SCENARIO_NOTE_TITLE)).toBeVisible();
+      await noteRow(page, SCENARIO_NOTE_TITLE).click();
+      await expect(page.getByRole("article", { name: "Open note" })).toBeVisible();
+      await page.getByRole("button", { name: "Shape the wording before sending to Tasks" }).click();
+      await page
+        .getByPlaceholder(/Type the action wording/i)
+        .fill(SCENARIO_ACTION_TITLE);
+      await expect(page.getByRole("button", { name: "Save" })).toBeEnabled();
+      await page.getByRole("button", { name: "Save" }).click();
+      await expect(page.getByText("Saved. Ready to send to Signal Tasks.")).toBeVisible();
+      await page
+        .getByRole("article", { name: "Open note" })
+        .getByRole("button", { name: "Send to Tasks", exact: true })
+        .click();
+      await expect(
+        page
+          .getByRole("article", { name: "Open note" })
+          .getByText("Added to your Tasks workspace."),
+      ).toBeVisible({ timeout: 10_000 });
+      await gotoAndReport(page, testInfo, productUrl("tasks", "/app/board"), "Tasks board");
+      await expect(page.getByText(SCENARIO_ACTION_TITLE)).toBeVisible({
+        timeout: 10_000,
+      });
+      await takeStepScreenshot(page, testInfo, "scenario-convert-notes-to-tasks");
+      return;
+
+    case "add a task":
+      await gotoAndReport(page, testInfo, productUrl("tasks", "/app/board"), "Tasks board");
+      await page.getByRole("button", { name: "Add task" }).first().click();
+      await page
+        .getByPlaceholder(/What's next/i)
+        .fill("Scenario task: confirm the next handoff");
+      await page.getByPlaceholder(/What's next/i).press("Enter");
+      await expect(page.getByText("Scenario task")).toBeVisible();
+      await takeStepScreenshot(page, testInfo, "scenario-add-task");
+      return;
+
+    case "create timeline":
+    case "review timeline":
+      await gotoAndReport(
+        page,
+        testInfo,
+        productUrl("timeline", "/the-wedding"),
+        "Timeline public plan",
+      );
+      await expect(page.getByRole("heading", { name: "Your wedding plan." })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Final numbers" })).toBeVisible();
+      await takeStepScreenshot(page, testInfo, `scenario-${slugify(instruction)}`);
+      return;
+
+    case "review signal":
+      await gotoAndReport(page, testInfo, productUrl("signal", "/app"), "Signal app");
+      await expect(page.getByText(/Daily Signal/i)).toBeVisible();
+      await expect(page.getByRole("heading", { name: /Needs attention/i })).toBeVisible();
+      await takeStepScreenshot(page, testInfo, "scenario-review-signal");
+      return;
+
+    case "compare report with previous run":
+      testInfo.annotations.push({
+        type: "ux-scenario-note",
+        description:
+          "Report comparison is generated by the custom reporter after the browser journey completes.",
+      });
+      return;
+
+    default:
+      throw new Error(
+        `Unknown scenario instruction "${instruction}". Add it to ux-tests/utils/scenario-engine.ts.`,
+      );
+  }
+}
+
+function noteRow(page: Page, text: string) {
+  return page.locator("[data-note-row]").filter({ hasText: text }).first();
+}
+
+function normalizeInstruction(instruction: string) {
+  return instruction.trim().toLowerCase().replace(/\s+/g, " ");
+}

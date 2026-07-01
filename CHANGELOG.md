@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-06-30 · S·88 · tightens · pricing now matches how people buy
+
+**The public pricing ladder now reads as four access shapes instead of backend tier names: Free Workspace (€0), Student (€8.99/year), Pro (€12/month or €119/year for one paid workspace), and Event Workspace (€89.99 once for 18 months).** Pro keeps using the internal `workspace` entitlement so checkout and cross-product gates do not need a tier migration. Event is explicitly one workspace for one wedding, launch, move, conference, or equivalent bounded event, not a cheap substitute for ongoing Pro work. Durable records were updated in the atlas and HQ decisions. **Operator gate:** Tasks production still needs the matching Stripe prices set for `STRIPE_PRICE_WORKSPACE_ANNUAL` and `STRIPE_PRICE_EVENT_ONETIME` before live checkout charges the corrected amounts.
+
 ## 2026-06-30 · S·87 · tightens · the public footers carry one suite shape, and iOS gets an honest home
 
 **Every public footer in the suite now follows the same readable structure: Product, Company, Resources, Suite, with Signal Studio named as the maker and the five surfaces linked in one place.** The pass covered Studio, Tasks, Timeline, Signal, and Notes, replacing the drifted per-product footer shapes with one consistent product/company/resources/suite frame while preserving each product's own voice and mark. The new Resources entry is `iOS app` across the suite, but it points to `/ios`, not a fake App Store destination: the new Studio page says plainly that Signal Studio for iPhone is in build, names the current gates, and will become the App Store landing page once review is complete. Studio's public homepage now carries the shared footer too, so the flagship page is not the exception to the system it introduces. Typecheck and production builds are clean across all five repos; browser footer checks passed across representative public pages in every product, including the Timeline demo path.
@@ -341,7 +345,7 @@ Canon (DESIGN.md §5) defines analytics as `tick`: the dot *jumps* between
 discrete sample heights, `3.6s steps(1,end)`, never gliding between them —
 the gesture means "discrete samples, not a continuous signal". The live
 Analytics product implements exactly that. Studio's showcase did not: both
-`reveal-analytics-tick` and `brand-analytics-tick` ran a `2.4s` scaleY
+`reveal-signal-tick` and `brand-signal-tick` ran a `2.4s` scaleY
 squash-stretch on an ease-glide — a blink, not a tick. The flagship was
 misrepresenting one of the five gestures it exists to demonstrate. Both now
 mirror the live product: `3.6s steps(1,end)`, discrete translateY jumps.
@@ -2838,7 +2842,7 @@ optional `action` link (rendered below the body with a brand arrow).
 `TemplatedToast` now also handles `?remixed=<id>` — for canonical
 workspace templates (currently just wedding-planning-workspace), the
 remix-success toast carries a "Create a Roadmap for this" link to
-`roadmap.signalstudio.ie/onboarding/from-template/<id>`, opening in a
+`timeline.signalstudio.ie/onboarding/from-template/<id>`, opening in a
 new tab. Specialty Tasks-only templates skip the action.
 
 The wedge demo loop is now four-layer discoverable: someone remixes

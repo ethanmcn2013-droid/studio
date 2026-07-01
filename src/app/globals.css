@@ -3,7 +3,7 @@
 /* ────────────────────────────────────────────────────────────
    Design tokens — Studio (umbrella brand)
    Shared foundation: ink ramp, type scale, springs, radii,
-   shadows — same family as Tasks and Roadmap.
+   shadows — same family as Tasks and Timeline.
    Own identity: the indigo dot. (Antique gold retired 2026-05-11
    per the new brand guide — D01 Refined Indigo Dot.)
    ──────────────────────────────────────────────────────────── */
@@ -16,7 +16,7 @@
   --accent-soft:  #eef2ff; /* indigo-50 */
   --accent-glow:  rgba(79, 70, 229, 0.32);
 
-  /* ── Ink ramp (neutrals — shared with Tasks + Roadmap) ────── */
+  /* ── Ink ramp (neutrals — shared with Tasks + Timeline) ────── */
   --ink-0:   #ffffff;
   --ink-50:  #fafafa;
   --ink-100: #f4f4f5;
@@ -476,8 +476,8 @@ body::after { content: none; }
    left-to-right under "notes" on mount and settles. Stops
    short of the dot — the dot is the destination, the line is
    the path. Plays once. Quieter than Tasks's pulse (live),
-   quieter than Roadmap's slide (motion), louder than
-   Analytics's static dot (ambient). Each of the four products
+   quieter than Timeline's slide (motion), louder than
+   Signal's static dot (ambient). Each of the four products
    carries its own gesture inside one shared mark grammar.
    ──────────────────────────────────────────────────────────── */
 @keyframes notes-mark-write {
@@ -905,9 +905,9 @@ body::after { content: none; }
 }
 .reveal-stack .stack-row[data-key="roadmap"].fire .dot {
   opacity: 1;
-  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: reveal-timeline-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes reveal-roadmap-sweep {
+@keyframes reveal-timeline-sweep {
   0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
@@ -917,8 +917,8 @@ body::after { content: none; }
 }
 
 /* analytics · M·04 tick — discrete sample JUMPS, never a glide.
-   steps(1,end) + 3.6s mirrors the live Analytics product exactly
-   (analytics-dot-tick). The old 2.4s scaleY squash read as a
+   steps(1,end) + 3.6s mirrors the live Signal product exactly
+   (signal-dot-tick). The old 2.4s scaleY squash read as a
    blink/pulse — the wrong gesture. Tick = the dot snaps between
    discrete Y samples and holds. Canon: DESIGN.md §5. */
 .reveal-stack .stack-row[data-key="analytics"] .dot {
@@ -928,9 +928,9 @@ body::after { content: none; }
 }
 .reveal-stack .stack-row[data-key="analytics"].fire .dot {
   opacity: 1;
-  animation: reveal-analytics-tick 3.6s steps(1, end) infinite;
+  animation: reveal-signal-tick 3.6s steps(1, end) infinite;
 }
-@keyframes reveal-analytics-tick {
+@keyframes reveal-signal-tick {
   0%   { transform: translateY(-0.04em); }
   25%  { transform: translateY(-0.16em); }
   50%  { transform: translateY(0.02em); }
@@ -1302,15 +1302,15 @@ body::after { content: none; }
 }
 .reveal-product-row[data-key="roadmap"] .mark .dot {
   transform-origin: center;
-  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: reveal-timeline-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
 .reveal-product-row[data-key="analytics"] .mark .dot {
   transform-origin: center;
   /* tick = discrete sample jumps. Shares the now-canon
-     reveal-analytics-tick keyframe; must run it at 3.6s steps(1,end)
-     like the hero stack + live Analytics product, not a 2.4s glide
+     reveal-signal-tick keyframe; must run it at 3.6s steps(1,end)
+     like the hero stack + live Signal product, not a 2.4s glide
      (which would smear between the discrete samples). DESIGN.md §5. */
-  animation: reveal-analytics-tick 3.6s steps(1, end) infinite;
+  animation: reveal-signal-tick 3.6s steps(1, end) infinite;
 }
 .reveal-product-row[data-key="notes"] .mark .dot {
   transform-origin: center;
@@ -1726,7 +1726,7 @@ body::after { content: none; }
 }
 
 /* analytics · M·04 tick — discrete sample JUMPS, 3.6s steps(1,end).
-   Canon (DESIGN.md §5) + the live Analytics product: the dot snaps
+   Canon (DESIGN.md §5) + the live Signal product: the dot snaps
    between discrete Y samples and holds; it never glides between
    them. The old 2.4s scaleY squash read as a blink — wrong gesture. */
 .pricing-mark[data-key="analytics"] .dot {
@@ -1929,9 +1929,9 @@ body::after { content: none; }
 }
 
 .brand-mark[data-variant="roadmap"].is-live .md {
-  animation: brand-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: brand-timeline-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes brand-roadmap-sweep {
+@keyframes brand-timeline-sweep {
   0%   { transform: translateY(-0.62em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.62em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.62em) translateX(4px); opacity: 0; }
@@ -1941,12 +1941,12 @@ body::after { content: none; }
 }
 
 /* tick = discrete sample jumps, 3.6s steps(1,end) — mirrors the
-   live Analytics product (analytics-dot-tick) and DESIGN.md §5.
+   live Signal product (signal-dot-tick) and DESIGN.md §5.
    .md is the cap-height-lifted middot baseline (-0.62em). */
 .brand-mark[data-variant="analytics"].is-live .md {
-  animation: brand-analytics-tick 3.6s steps(1, end) infinite;
+  animation: brand-signal-tick 3.6s steps(1, end) infinite;
 }
-@keyframes brand-analytics-tick {
+@keyframes brand-signal-tick {
   0%   { transform: translateY(-0.62em); }
   25%  { transform: translateY(-0.74em); }
   50%  { transform: translateY(-0.56em); }
@@ -2734,7 +2734,7 @@ body::after { content: none; }
  * register. Targets are class selectors set up by the dashboard component;
  * see hq-dashboard.tsx for the matching JSX.
  */
-/* .hq-panel — see definition earlier in file (Phase 2 cleanup removed
+/* .hq-panel — see definition earlier in file (Initiative 2 cleanup removed
  * the !important overrides since Panel's className no longer ships the
  * rounded chrome). */
 .hq-tab {
@@ -3200,7 +3200,7 @@ body::after { content: none; }
 }
 .hq-mast-dot { color: var(--accent); }
 
-/* Phase line — the operator's own words, now subordinate context. */
+/* Initiative line — the operator's own words, now subordinate context. */
 .hq-mast-phase {
   margin: 1.4rem 0 0;
   max-width: 70ch;
@@ -3809,7 +3809,7 @@ body::after { content: none; }
 /* ── Mobile: the between-meetings phone glance ─────────────────────────
  * Not "the desktop reflowed". The phone question is "am I on fire / what
  * is the one thing" — so the verdict + the one action are the only
- * things that earn the first screen. Phase line is clamped so it can't
+ * things that earn the first screen. Initiative line is clamped so it can't
  * push the verdict down; audit and nav are pushed below; the traction
  * grid stays two-up but the burndown caption is what's actually read.
  */
@@ -3820,7 +3820,7 @@ body::after { content: none; }
     padding-top: 2rem;
   }
 
-  /* Phase: kept, but never more than two lines above the verdict. */
+  /* Initiative: kept, but never more than two lines above the verdict. */
   .hq-mast-phase {
     margin-top: 1rem;
   }
@@ -4445,7 +4445,7 @@ body::after { content: none; }
    - Cards stagger in: translateY(-4px→0) + opacity 0→1,
      delay set inline per-card (0/55/110/165ms)
    - Gestures: mega-notes-caret / mega-tasks-pulse /
-     mega-roadmap-sweep / mega-analytics-bar-{1-4}
+     mega-timeline-sweep / mega-signal-bar-{1-4}
    ════════════════════════════════════════════════════════════ */
 
 /* Panel shell */
@@ -4581,8 +4581,8 @@ body::after { content: none; }
 
 /* ── Gesture animations — mega-panel context ─────────────────
    These share the same timing as the suite-canonical keyframes
-   (reveal-tasks-pulse / reveal-roadmap-sweep / reveal-notes-caret
-   / reveal-analytics-tick) but are prefixed `mega-` so they can
+   (reveal-tasks-pulse / reveal-timeline-sweep / reveal-notes-caret
+   / reveal-signal-tick) but are prefixed `mega-` so they can
    be composed independently without inheriting selector specificity.
    ─────────────────────────────────────────────────────────── */
 
@@ -4621,13 +4621,13 @@ body::after { content: none; }
 }
 
 /* roadmap · sweep — dot travels along the timeline track */
-.mega-roadmap-sweep-dot {
+.mega-timeline-sweep-dot {
   transform-box: fill-box;
   transform-origin: center;
-  animation: mega-roadmap-sweep 5.4s cubic-bezier(.22, .7, .2, 1) infinite;
+  animation: mega-timeline-sweep 5.4s cubic-bezier(.22, .7, .2, 1) infinite;
 }
 
-@keyframes mega-roadmap-sweep {
+@keyframes mega-timeline-sweep {
   0%   { transform: translateX(0);    opacity: 1; }
   60%  { transform: translateX(79px); opacity: 1; }
   62%  { transform: translateX(79px); opacity: 0; }
@@ -4639,45 +4639,45 @@ body::after { content: none; }
 /* analytics · tick — bars discretely jump between heights.
    transform-box: fill-box + transform-origin: bottom = scale
    from the baseline. steps(1,end) = discrete, never a glide. */
-.mega-analytics-bar {
+.mega-signal-bar {
   transform-box: fill-box;
   transform-origin: bottom;
 }
-.mega-analytics-bar-1 {
-  animation: mega-analytics-bar1 3.6s steps(1, end) infinite 0s;
+.mega-signal-bar-1 {
+  animation: mega-signal-bar1 3.6s steps(1, end) infinite 0s;
 }
-.mega-analytics-bar-2 {
-  animation: mega-analytics-bar2 3.6s steps(1, end) infinite 0.9s;
+.mega-signal-bar-2 {
+  animation: mega-signal-bar2 3.6s steps(1, end) infinite 0.9s;
 }
-.mega-analytics-bar-3 {
-  animation: mega-analytics-bar3 3.6s steps(1, end) infinite 1.8s;
+.mega-signal-bar-3 {
+  animation: mega-signal-bar3 3.6s steps(1, end) infinite 1.8s;
 }
-.mega-analytics-bar-4 {
-  animation: mega-analytics-bar4 3.6s steps(1, end) infinite 0.45s;
+.mega-signal-bar-4 {
+  animation: mega-signal-bar4 3.6s steps(1, end) infinite 0.45s;
 }
 
-@keyframes mega-analytics-bar1 {
+@keyframes mega-signal-bar1 {
   0%   { transform: scaleY(0.55); }
   25%  { transform: scaleY(0.85); }
   50%  { transform: scaleY(0.35); }
   75%  { transform: scaleY(1.00); }
   100% { transform: scaleY(0.55); }
 }
-@keyframes mega-analytics-bar2 {
+@keyframes mega-signal-bar2 {
   0%   { transform: scaleY(0.90); }
   25%  { transform: scaleY(0.45); }
   50%  { transform: scaleY(1.00); }
   75%  { transform: scaleY(0.60); }
   100% { transform: scaleY(0.90); }
 }
-@keyframes mega-analytics-bar3 {
+@keyframes mega-signal-bar3 {
   0%   { transform: scaleY(0.40); }
   25%  { transform: scaleY(0.75); }
   50%  { transform: scaleY(0.55); }
   75%  { transform: scaleY(0.25); }
   100% { transform: scaleY(0.40); }
 }
-@keyframes mega-analytics-bar4 {
+@keyframes mega-signal-bar4 {
   0%   { transform: scaleY(1.00); }
   25%  { transform: scaleY(0.55); }
   50%  { transform: scaleY(0.80); }
@@ -4707,13 +4707,13 @@ body::after { content: none; }
   }
   .mega-notes-cursor,
   .mega-tasks-dot,
-  .mega-roadmap-sweep-dot,
-  .mega-analytics-bar {
+  .mega-timeline-sweep-dot,
+  .mega-signal-bar {
     animation: none !important;
   }
   .mega-notes-cursor { opacity: 1; }
-  .mega-roadmap-sweep-dot { transform: none; }
-  .mega-analytics-bar { transform: scaleY(0.7); }
+  .mega-timeline-sweep-dot { transform: none; }
+  .mega-signal-bar { transform: scaleY(0.7); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -5534,14 +5534,14 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 }
 .hq-hub-action { color: var(--ink); }
 
-.hq-director-gate {
+.hq-advisor-gate {
   display: grid;
   grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
   gap: 2rem;
   align-items: start;
 }
 
-.hq-director-intro p {
+.hq-advisor-intro p {
   margin: 0.55rem 0 0;
   font-size: 14px;
   line-height: 1.65;
@@ -5549,11 +5549,11 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   max-width: 34ch;
 }
 
-.hq-director-list {
+.hq-advisor-list {
   border-top: 1px solid var(--hairline);
 }
 
-.hq-director-row {
+.hq-advisor-row {
   display: grid;
   grid-template-columns: 7rem minmax(0, 1fr);
   gap: 1rem;
@@ -5562,15 +5562,15 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   border-bottom: 1px solid var(--hairline-2);
 }
 
-.hq-director-role {
+.hq-advisor-role {
   font-family: var(--font-mono-stack);
   font-size: 11px;
   letter-spacing: 0.05em;
   text-transform: lowercase;
 }
 
-.hq-director-role { color: var(--ink-quiet); }
-.hq-director-finding {
+.hq-advisor-role { color: var(--ink-quiet); }
+.hq-advisor-finding {
   min-width: 0;
   font-size: 13px;
   line-height: 1.55;
@@ -5856,11 +5856,11 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 .hq-report-board--circle .hq-report-metric:nth-child(5n) { border-right: 0; }
-.hq-director-gate--circle { border-top: 1px solid var(--hairline); padding-top: 1.5rem; }
+.hq-advisor-gate--circle { border-top: 1px solid var(--hairline); padding-top: 1.5rem; }
 
 @media (max-width: 960px) {
   .hq-os-brief-grid,
-  .hq-director-gate,
+  .hq-advisor-gate,
   .hq-circle-summary,
   .hq-ledger-section,
   .hq-audience-paths,
@@ -5914,7 +5914,7 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
     border-right: 0;
   }
   .hq-ledger-row,
-  .hq-director-row {
+  .hq-advisor-row {
     grid-template-columns: 1fr;
     gap: 0.3rem;
   }
@@ -6264,7 +6264,7 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   }
 }
 
-/* ── /hq/org — Executive Leadership Team chart ────────────────────── */
+/* ── /hq/org — Signal Advisors chart ────────────────────── */
 
 .org-apex {
   margin-bottom: 3.5rem;
@@ -6402,10 +6402,10 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   border-radius: 2px;
   text-transform: lowercase;
 }
-.org-card-product[data-product="roadmap"]   { color: #4f46e5; }
+.org-card-product[data-product="timeline"]   { color: #4f46e5; }
 .org-card-product[data-product="tasks"]     { color: #b45309; }
 .org-card-product[data-product="notes"]     { color: #7c3aed; }
-.org-card-product[data-product="analytics"] { color: #0f766e; }
+.org-card-product[data-product="signal"] { color: #0f766e; }
 .org-card-oneline {
   font-size: 13px;
   line-height: 1.55;
@@ -6435,7 +6435,7 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 }
 .org-card:hover .org-card-open { color: var(--accent); }
 
-/* ── /hq/org/[slug] — director drill-down ─────────────────────────── */
+/* ── /hq/org/[slug] — advisor drill-down ─────────────────────────── */
 
 .org-portfolio {
   list-style: none;
@@ -6853,7 +6853,7 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 /* ── 5 · Functions ──────────────────────────────────────────────────── */
 .bp-function-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .bp-function-owner { font-size: 11.5px; color: var(--bp-faint); white-space: nowrap; }
-.bp-function-director { margin: 4px 0 12px; font-family: var(--font-mono-stack); font-size: 11px; color: var(--bp-accent); }
+.bp-function-advisor { margin: 4px 0 12px; font-family: var(--font-mono-stack); font-size: 11px; color: var(--bp-accent); }
 .bp-function-rows { margin: 12px 0; }
 .bp-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--bp-line-2); }
 .bp-row-label { font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bp-quiet); }
@@ -6862,22 +6862,22 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 .bp-risk-line { margin: 14px 0 0; font-size: 12.5px; color: var(--bp-faint); line-height: 1.5; padding-top: 12px; border-top: 1px dashed var(--bp-line); }
 .bp-risk-line span { color: var(--bp-warn); font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 6px; }
 
-/* ── 6 · AI Directors ───────────────────────────────────────────────── */
-.bp-directors { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
-.bp-director-cluster { border: 1px solid var(--bp-line); border-radius: var(--r-4, 14px); padding: 16px; background: var(--bp-panel); }
-.bp-director-cluster-head { display: flex; align-items: center; justify-content: space-between; }
-.bp-director-count { font-family: var(--font-mono-stack); font-size: 12px; color: var(--bp-accent); }
-.bp-director-cluster-sub { font-size: 12px; color: var(--bp-faint); margin: 5px 0 12px; line-height: 1.45; }
-.bp-director-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
-.bp-director-chip {
+/* ── 6 · Signal Advisors ───────────────────────────────────────────────── */
+.bp-advisors { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.bp-advisor-cluster { border: 1px solid var(--bp-line); border-radius: var(--r-4, 14px); padding: 16px; background: var(--bp-panel); }
+.bp-advisor-cluster-head { display: flex; align-items: center; justify-content: space-between; }
+.bp-advisor-count { font-family: var(--font-mono-stack); font-size: 12px; color: var(--bp-accent); }
+.bp-advisor-cluster-sub { font-size: 12px; color: var(--bp-faint); margin: 5px 0 12px; line-height: 1.45; }
+.bp-advisor-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.bp-advisor-chip {
   display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
   padding: 6px 11px; border: 1px solid var(--bp-line); border-radius: var(--r-pill, 999px);
   background: var(--bp-bg-2); transition: border-color var(--motion-fast, 140ms), background var(--motion-fast, 140ms);
 }
-.bp-director-chip:hover { border-color: var(--bp-accent); background: var(--bp-accent-bg); }
-.bp-director-name { font-size: 12.5px; font-weight: 600; color: var(--bp-ink); }
-.bp-director-product { font-family: var(--font-mono-stack); font-size: 9px; color: var(--bp-accent); text-transform: uppercase; letter-spacing: 0.06em; }
-.bp-director-cadence { font-family: var(--font-mono-stack); font-size: 9.5px; color: var(--bp-quiet); }
+.bp-advisor-chip:hover { border-color: var(--bp-accent); background: var(--bp-accent-bg); }
+.bp-advisor-name { font-size: 12.5px; font-weight: 600; color: var(--bp-ink); }
+.bp-advisor-product { font-family: var(--font-mono-stack); font-size: 9px; color: var(--bp-accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.bp-advisor-cadence { font-family: var(--font-mono-stack); font-size: 9.5px; color: var(--bp-quiet); }
 .bp-seats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 
 /* ── 7 · Automation ─────────────────────────────────────────────────── */

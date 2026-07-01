@@ -206,7 +206,7 @@ export function RevealProducts() {
           100% {transform:scaleX(0);transform-origin:right center;opacity:0}
         }
 
-        /* Timeline · the dot extrudes a milestone line, then drops a second
+        /* Timeline· the dot extrudes a milestone line, then drops a second
            dot at the end — a track being laid. Scoped to the product
            row; the hero stack still sweeps. (Walkover #5, 2026-06-07.) */
         .reveal-product-row[data-key="roadmap"] .mark .dot{

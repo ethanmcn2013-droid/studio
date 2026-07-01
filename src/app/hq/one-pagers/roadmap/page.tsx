@@ -14,12 +14,12 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal Timeline — one-pager",
+  title: "Signal Timeline— one-pager",
   description: "Direction clarity. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
 
-export default async function RoadmapOnePager() {
+export default async function TimelineOnePager() {
   const cookieStore = await cookies();
   const token = cookieStore.get(HQ_ACCESS_COOKIE)?.value ?? "";
   const valid = token ? await verifyHqToken(token) : false;
@@ -28,7 +28,7 @@ export default async function RoadmapOnePager() {
   return (
     <OnePager
       wordmark="signal timeline."
-      eyebrow="Signal Timeline · Direction clarity"
+      eyebrow="Signal Timeline· Direction clarity"
       gesture="sweep"
     >
       <OPHeadline>

@@ -25,8 +25,8 @@ flowchart TB
   R --> TD[Today · cross-product spine]
   R --> N[Notes · capture + voice]
   R --> T[Tasks · board / list / timeline]
-  R --> RM[Roadmap · viewer + milestones]
-  R --> A[Analytics · daily briefing]
+  R --> RM[Timeline · viewer + milestones]
+  R --> A[Signal · daily briefing]
   TD -.reads.-> N
   TD -.reads.-> T
   TD -.reads.-> RM

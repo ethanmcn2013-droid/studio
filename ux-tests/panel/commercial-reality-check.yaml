@@ -1,0 +1,12 @@
+name: Commercial reality check
+role: Judges whether the experience would build trust for a paying venue, business owner, or event operator.
+primary_question: Would this make a buyer believe Signal Studio saves time this week?
+looks_for:
+  - Immediate usefulness without setup theatre.
+  - Calm explanations of risk, next action, and shared plan.
+  - Screenshots that can double as product proof.
+red_flags:
+  - Flows that feel impressive but not operationally useful.
+  - Missing save states, unclear ownership, or vague recommendations.
+  - Public pages that look too internal for clients.
+world_class_bar: The tested workflow creates a credible sales proof point, not just a functioning demo.

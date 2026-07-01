@@ -1,0 +1,90 @@
+{
+  "profiles": {
+    "ux-demo": {
+      "description": "Minimum local requirements for deterministic UX Assurance runs. Secrets are not required because the runner starts each product in demo + UX assurance mode.",
+      "products": {
+        "studio": {
+          "requiredFiles": ["package.json", "node_modules/.bin/playwright.cmd"],
+          "requiredEnv": []
+        },
+        "notes": {
+          "requiredFiles": ["package.json", "node_modules/.bin/next.cmd"],
+          "requiredEnv": []
+        },
+        "tasks": {
+          "requiredFiles": ["package.json", "node_modules/.bin/next.cmd"],
+          "requiredEnv": []
+        },
+        "timeline": {
+          "requiredFiles": ["package.json", "node_modules/.bin/next.cmd"],
+          "requiredEnv": []
+        },
+        "signal": {
+          "requiredFiles": ["package.json", "node_modules/.bin/next.cmd"],
+          "requiredEnv": []
+        }
+      }
+    },
+    "production": {
+      "description": "Production-like credential readiness. The checker verifies presence only and never prints values.",
+      "products": {
+        "studio": {
+          "requiredFiles": ["package.json"],
+          "requiredEnv": ["SIGNAL_HQ_PASSWORD"]
+        },
+        "notes": {
+          "requiredFiles": ["package.json"],
+          "requiredEnv": [
+            "CLERK_SECRET_KEY",
+            "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+            "SIGNAL_ACCESS_MODE",
+            "NEXT_PUBLIC_SIGNAL_ACCESS_MODE"
+          ]
+        },
+        "tasks": {
+          "requiredFiles": ["package.json"],
+          "requiredEnv": [
+            "CLERK_SECRET_KEY",
+            "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+            "SIGNAL_ACCESS_MODE",
+            "NEXT_PUBLIC_SIGNAL_ACCESS_MODE"
+          ]
+        },
+        "timeline": {
+          "requiredFiles": ["package.json"],
+          "requiredEnv": [
+            "CLERK_SECRET_KEY",
+            "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+            "SIGNAL_ACCESS_MODE",
+            "NEXT_PUBLIC_SIGNAL_ACCESS_MODE"
+          ]
+        },
+        "signal": {
+          "requiredFiles": ["package.json"],
+          "requiredEnv": [
+            "CLERK_SECRET_KEY",
+            "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+            "TASKS_AUTH_TOKEN",
+            "TASKS_DATABASE_URL",
+            "TURSO_ANALYTICS_AUTH_TOKEN",
+            "TURSO_ANALYTICS_DATABASE_URL",
+            "TURSO_ENTITLEMENTS_AUTH_TOKEN",
+            "TURSO_ENTITLEMENTS_DATABASE_URL"
+          ],
+          "recommendedEnv": [
+            "CRON_SECRET",
+            "NEXT_PUBLIC_SITE_URL",
+            "RESEND_API_KEY",
+            "RESEND_FROM",
+            "SENTRY_DSN",
+            "SENTRY_ENVIRONMENT",
+            "STUDIO_CRON_PING_SECRET",
+            "STUDIO_CRON_PING_URL",
+            "UPSTASH_REDIS_REST_TOKEN",
+            "UPSTASH_REDIS_REST_URL"
+          ]
+        }
+      }
+    }
+  }
+}

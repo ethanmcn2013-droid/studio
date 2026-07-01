@@ -42,7 +42,7 @@ The Today Document is not a navigation surface. It is the brand. The iOS suite a
 │  ○  Pack rehearsal-dinner kit       │
 ├─────────────────────────────────────┤
 │  COMING UP                          │
-│  ▸  Lamb's Hill — final walkthrough │  ← Roadmap milestone
+│  ▸  Lamb's Hill — final walkthrough │  ← Timeline milestone
 │     Tuesday                         │
 │  ▸  Glenmara — handover             │
 │     Friday                          │
@@ -52,7 +52,7 @@ The Today Document is not a navigation surface. It is the brand. The iOS suite a
 │  ◇  Photo note — colour swatches    │
 ├─────────────────────────────────────┤
 │  R8  Product switcher (bottom-fixed)│
-│  ●Tasks  ◐Notes  ◑Roadmap  ◒Analy.  │  ← thumb-zone, native
+│  ●Tasks  ◐Notes  ◑Timeline ◒Analy.  │  ← thumb-zone, native
 └─────────────────────────────────────┘
 ```
 
@@ -178,7 +178,7 @@ All sizes in pt. Line-height ratio is the second number.
 
 ## 8. Native ↔ Capacitor contract (the bridge spec)
 
-> **Implementation status (2026-05-21):** `/api/native/today` is **SHIPPED** as a server stub on top of the existing `/api/today` aggregator. The pure shaper at `src/server/today/shape-native.ts` implements the server-decides logic in §8b below — greeting bands, editorial date string, anchor card priority, section visibility — with 23 unit-test assertions. The iOS client side (Phase A4 onward) is not yet built. Endpoint doc: `docs/ios/today-native-api.md`. Known v1 limitations (workspace-row vs task-row granularity in §1 R4/R5) are named in that doc and will close when the aggregator grows item-level fidelity.
+> **Implementation status (2026-05-21):** `/api/native/today` is **SHIPPED** as a server stub on top of the existing `/api/today` aggregator. The pure shaper at `src/server/today/shape-native.ts` implements the server-decides logic in §8b below — greeting bands, editorial date string, anchor card priority, section visibility — with 23 unit-test assertions. The iOS client side (Initiative A4 onward) is not yet built. Endpoint doc: `docs/ios/today-native-api.md`. Known v1 limitations (workspace-row vs task-row granularity in §1 R4/R5) are named in that doc and will close when the aggregator grows item-level fidelity.
 
 
 The Today doc is 100% native (SwiftUI). The four product surfaces are 100% remote-URL WebViews. The bridge is the conversation between them.
@@ -263,8 +263,8 @@ CD wanted zero-onboarding (Endel model). UX overruled — audience is wedding pl
 │                                     │
 │  Tasks      What's on today.        │
 │  Notes      What you don't lose.    │
-│  Roadmap    What others see.        │
-│  Analytics  What's working.         │
+│  Timeline   What others see.        │
+│  Signal  What's working.         │
 │                                     │
 │              ┌──────────────────┐   │
 │              │  Get started  →  │   │
@@ -303,9 +303,9 @@ This document specifically defeats the 4.2 "repackaged website" rejection. The T
 
 ## 11. Build sequencing (only the IMPLEMENT calls, in order)
 
-Inherits from the panel's near-perfect punch list (Phase A/B/C). Re-stated here as iOS-specific work units.
+Inherits from the panel's near-perfect punch list (Initiative A/B/C). Re-stated here as iOS-specific work units.
 
-**Phase A — Native shell foundation** (required before any external testflight)
+**Initiative A — Native shell foundation** (required before any external testflight)
 - A1. SwiftUI scaffold for the 8 regions per §1 with mock data
 - A2. Type/space/color tokens per §4–§5 wired as SwiftUI environment values
 - A3. `/api/native/today` endpoint on studio HQ (server-side) — server owns visibility/locale logic per §8b
@@ -313,7 +313,7 @@ Inherits from the panel's near-perfect punch list (Phase A/B/C). Re-stated here 
 - A5. Clerk hosted sign-in via ASWebAuthenticationSession, shared session to WebView cookies
 - A6. Splash → Today doc fade (200ms) per §6
 
-**Phase B — Signature interactions** (the "world-class" inflection)
+**Initiative B — Signature interactions** (the "world-class" inflection)
 - B1. Anchor card with New York serif numeral + count-flip animation per §6
 - B2. Spring card-open transition into product WebViews per §6
 - B3. Three calibrated haptics per §6
@@ -321,14 +321,14 @@ Inherits from the panel's near-perfect punch list (Phase A/B/C). Re-stated here 
 - B5. Capacitor bridge events with optimistic UI updates per §8c
 - B6. Pull-to-refresh wired to `/api/native/today`
 
-**Phase C — Retention + delight**
+**Initiative C — Retention + delight**
 - C1. Daily APNs push from Signal briefing engine — permission ask deferred until first organic value moment (per panel #5 dissent resolution)
 - C2. Long-press on Notes row → native "Promote to task" sheet
 - C3. Multi-day-gap collapse behavior per §3
 - C4. Time-of-day greeting + This Evening conditional rendering per §2
 - C5. Offline cached snapshot per §3
 
-**Phase D — App Store submission gating** (the 4.2 punch list per §10)
+**Initiative D — App Store submission gating** (the 4.2 punch list per §10)
 - D1. Account deletion sheet (Clerk + Turso purge)
 - D2. Privacy nutrition label + PrivacyInfo.xcprivacy
 - D3. Authed smoke test from first-launch through all 4 products

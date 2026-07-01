@@ -6,14 +6,14 @@ Demo assets show real product states and real coordination scenes. Avoid abstrac
 
 Ship two strong videos per month:
 
-- One product proof: a real flow across Notes, Tasks, Roadmap, or Analytics.
+- One product proof: a real flow across Notes, Tasks, Timeline, or Signal.
 - One founder or brand piece: refusal list, pricing shape, venue patronage, or why the 80% needs a different register.
 
 ## Priority Demos
 
 1. **One wedding Tuesday.** Venue call -> tasks -> public plan -> morning briefing. Public route: `/venues/demo`.
 2. **A briefing, not a dashboard.** Show the Daily Signal as a short read, not a metric screen.
-3. **The plan your client can read.** Signal Roadmap for a couple, client, or supplier with no account.
+3. **The plan your client can read.** Signal Timeline for a couple, client, or supplier with no account.
 4. **Not everything is ready for the room.** Signal Notes as private capture before work becomes work.
 5. **What Signal Studio refuses.** Founder voice over `/principles` and product refusals.
 
@@ -33,8 +33,8 @@ Ship two strong videos per month:
 
 - **Signal Notes:** "Write it here first." Capture field, stream, approved extract.
 - **Signal Tasks:** Wedding template, board/list/timeline/calendar over the same work.
-- **Signal Roadmap:** One public plan, no login, no private note exposure.
-- **Signal Analytics:** Three items per block, hard cap, one morning read.
+- **Signal Timeline:** One public plan, no login, no private note exposure.
+- **Signal:** Three items per block, hard cap, one morning read.
 
 ## Production Rule
 

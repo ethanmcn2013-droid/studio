@@ -16,7 +16,7 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline→ Signal
   { slug: "notes", word: "notes", tagline: "Capture clarity", url: NOTES_URL },
   { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: TASKS_URL },
   { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: TIMELINE_URL },

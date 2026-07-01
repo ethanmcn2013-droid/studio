@@ -1,7 +1,7 @@
 /**
  * Canonical workspace template types — Signal Studio source-of-truth.
  *
- * One template seeds all four layers (Tasks, Notes, Roadmap, Analytics).
+ * One template seeds all four layers (Tasks, Notes, Timeline, Signal).
  * Each consuming product runs `pnpm sync:templates` at build time to copy
  * the slices it needs into its own repo as a generated file. The
  * studio repo never ships its templates module to runtime — these types
@@ -48,17 +48,17 @@ export type NoteSeed = {
 };
 
 /**
- * Roadmap-product status vocabulary — matches Roadmap's `tasks.status` enum
+ * Timeline-product status vocabulary — matches Timeline's `tasks.status` enum
  * (see roadmap/src/server/db/schema.ts). Authoring against the product
  * model directly avoids a translation layer.
  */
-export type RoadmapStatus = "shipped" | "in-flight" | "next" | "waiting" | "refused";
+export type TimelineStatus = "shipped" | "in-flight" | "next" | "waiting" | "refused";
 
 /**
- * A seeded project inside a workspace. Roadmap supports many projects
+ * A seeded project inside a workspace. Timeline supports many projects
  * per workspace; most templates ship with one.
  */
-export type RoadmapProjectSeed = {
+export type TimelineProjectSeed = {
   slug: string;
   name: string;
   oneLiner: string;
@@ -68,25 +68,25 @@ export type RoadmapProjectSeed = {
 
 /**
  * A seeded item inside a project. "Item" here intentionally differs from
- * `TaskSeed` (which seeds Tasks-product tasks). The Roadmap product
+ * `TaskSeed` (which seeds Tasks-product tasks). The Timeline product
  * stores these in its `tasks` table; the rename avoids name collision.
  */
-export type RoadmapItemSeed = {
+export type TimelineItemSeed = {
   projectSlug: string;
   title: string;
   description: string;
-  status: RoadmapStatus;
+  status: TimelineStatus;
   /** Plain-English when label or YYYY-MM-DD. Optional. */
   targetDate?: string;
 };
 
-export type RoadmapSeed = {
-  projects: RoadmapProjectSeed[];
-  items: RoadmapItemSeed[];
+export type TimelineSeed = {
+  projects: TimelineProjectSeed[];
+  items: TimelineItemSeed[];
 };
 
 /**
- * Analytics hint — detector ids the briefing engine should weight up
+ * Signal hint — detector ids the briefing engine should weight up
  * for workspaces created from this template. Consumed lazily at
  * briefing-build time; not a user-pickable surface.
  */
@@ -113,7 +113,7 @@ export type WorkspaceTemplate = {
   // Layer seeds
   tasks: TaskSeed[];
   notes: NoteSeed[];
-  roadmap: RoadmapSeed;
+  roadmap: TimelineSeed;
   analytics: AnalyticsHint;
 };
 

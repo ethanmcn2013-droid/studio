@@ -22,7 +22,7 @@ Theme `<UserProfile/>` (hybrid: Clerk for Profile, ours for Notifications + Plan
 
 ## Risks
 
-Auth UX is the highest-stakes UX in the app — email change, 2FA setup, and password change have edge cases (race conditions, expired codes) that Clerk's component handles natively. We mitigate by leaning on Clerk's frontend SDK in client modals (bespoke chrome, Clerk handles the verification primitives) but the surface area is still real. Opportunity cost: ~2-3 weeks of settings work is not Lamb's Hill outreach, Notes 9.3, or Sprint 2 10.7.
+Auth UX is the highest-stakes UX in the app — email change, 2FA setup, and password change have edge cases (race conditions, expired codes) that Clerk's component handles natively. We mitigate by leaning on Clerk's frontend SDK in client modals (bespoke chrome, Clerk handles the verification primitives) but the surface area is still real. Opportunity cost: ~2-3 weeks of settings work is not Lamb's Hill outreach, Notes 9.3, or Initiative 2 10.7.
 
 ## Notes
 

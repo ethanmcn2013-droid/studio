@@ -8,7 +8,7 @@ It is not an autonomous publishing system. All meaningful publishing, outreach, 
 
 ## Workflow
 
-Backlog -> Selected -> Drafting -> Review -> Revision -> Ready for Ethan -> Approved -> Published -> Measured -> Repurposed / Archived.
+Queue -> Selected -> Drafting -> Review -> Revision -> Ready for Ethan -> Approved -> Published -> Measured -> Repurposed / Archived.
 
 Every asset should carry:
 
@@ -29,9 +29,9 @@ Every asset should carry:
 
 ## Roles
 
-- Strategy Director: GTM direction, segment priority, growth loops.
-- Creative Director: concepts, story, demo shape, emotional resonance.
-- Brand Director: plain language, tone, positioning discipline.
+- Strategy Advisor: GTM direction, segment priority, growth loops.
+- Creative Advisor: concepts, story, demo shape, emotional resonance.
+- Brand Advisor: plain language, tone, positioning discipline.
 - Content Producer: drafts, scripts, posts, pages, emails.
 - Outbound Operator: respectful outreach, follow-up, objections.
 - SEO & Template Strategist: search intent, template pages, acquisition surfaces.

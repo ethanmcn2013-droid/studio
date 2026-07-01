@@ -25,7 +25,7 @@
  */
 
 import type {
-  RoadmapMilestone,
+  TimelineMilestone,
   TaskSummary,
   TodayNativeAnchor,
   TodayNativeGreeting,
@@ -193,7 +193,7 @@ function buildTodayItems(tasks: TaskSummary[]): TodayNativeItem[] {
     });
 }
 
-function formatMilestoneMeta(m: RoadmapMilestone, nowMs: number): string {
+function formatMilestoneMeta(m: TimelineMilestone, nowMs: number): string {
   if (!m.targetDate) return m.status;
   const target = new Date(`${m.targetDate}T00:00:00Z`).getTime();
   if (!Number.isFinite(target)) return m.status;
@@ -206,7 +206,7 @@ function formatMilestoneMeta(m: RoadmapMilestone, nowMs: number): string {
 }
 
 function buildUpcomingItems(
-  milestones: RoadmapMilestone[],
+  milestones: TimelineMilestone[],
   nowMs: number,
 ): TodayNativeItem[] {
   return milestones.slice(0, 4).map((m, idx) => ({

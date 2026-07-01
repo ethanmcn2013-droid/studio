@@ -14,5 +14,5 @@ brandRisk: Low
 complianceRisk: Medium
 repurposing: [wedding demo, venue email, planner pitch, template intro]
 status: Selected
-roleOwner: Strategy Director
+roleOwner: Strategy Advisor
 ---

@@ -12,12 +12,12 @@ import type { NextConfig } from "next";
  *
  * Most restrictive of the four — Studio is the umbrella marketing
  * site with no auth, no payments, no errors-to-Sentry. Only Vercel
- * Analytics adds a third-party host.
+ * Signal adds a third-party host.
  */
 
 const isDev = process.env.NODE_ENV === "development";
 
-// CSP allowlists mirrored from notes/next.config.ts (suite-locked enforce model). Report-Only until cross-suite verification — see audit/ISSUES.md suite-01.
+// CSP allowlists mirrored from notes/next.config.ts (suite-locked enforce model). Report-Only until cross-suite verification — see audit/FINDINGS.md suite-01.
 // Clerk's prod Frontend API is a CNAME under our own domain, so the
 // wildcard `https://*.signalstudio.ie` covers whatever label Clerk
 // uses without a deploy-time guess. Dev instances live on

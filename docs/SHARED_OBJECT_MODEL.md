@@ -97,7 +97,7 @@ interface Briefing {
   generatedAt: string;
   whatChanged: string[];   // from Update[]
   whatIsStuck: string[];   // from Risk[] + blocked Task[]
-  whatIsNext: string[];    // from Roadmap direction
+  whatIsNext: string[];    // from Timeline direction
   needsAttention: string[];// the few, ranked
 }
 ```

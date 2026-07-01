@@ -21,10 +21,10 @@ Vercel Analytics already reads referrer + URL parameters by default — no custo
 
 | Question | Where to look | Filter |
 |---|---|---|
-| Who's landing on /weddings? | `studio` project · Analytics · Top Pages | Path = `/weddings` |
-| Where do /weddings visitors come from? | `studio` project · Analytics · Top Sources | Filter by referrer |
-| Which outbound email touch is converting? | `studio` project · Analytics · URL params | Group by `touch=1\|2\|3` |
-| Are demo clicks happening? | `notes` / `tasks` / `roadmap` / `analytics` projects · Analytics · Top Pages | Path = `/wedding-planning/...` |
+| Who's landing on /weddings? | `studio` project · Signal · Top Pages | Path = `/weddings` |
+| Where do /weddings visitors come from? | `studio` project · Signal · Top Sources | Filter by referrer |
+| Which outbound email touch is converting? | `studio` project · Signal · URL params | Group by `touch=1\|2\|3` |
+| Are demo clicks happening? | `notes` / `tasks` / `roadmap` / `analytics` projects · Signal · Top Pages | Path = `/wedding-planning/...` |
 | Are people walking all four demos? | Cross-reference visitors across the 4 projects · same day · same IP/region | Manual sweep, weekly |
 | Is the outreach kit working? | `studio` project · Top Sources filtered by `source=outbound_email` | Reply rate is the harder primary signal — track manually |
 

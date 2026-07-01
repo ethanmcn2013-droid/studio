@@ -654,7 +654,7 @@ const PROOF_NARRATIVE: Approach[] = [
     id: "PN-03",
     rank: 3,
     title: "The integrated four-product wedding demo",
-    what: "Notes → Tasks → Timeline → Signal, walked through one real wedding.",
+    what: "Notes → Tasks → Timeline→ Signal, walked through one real wedding.",
     edge: "The system a single-product competitor structurally cannot show.",
     impact: "Engine",
     effort: "Medium",

@@ -76,7 +76,7 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 
 **Wordmark:** `roadmap·` — same lowercase Geist semibold + middot dot.
 
-**Gesture:** A low-key ambient opacity pulse (not the "slide" gesture aspirationally named in BRAND.md §4). The slide was deferred 2026-05-18 per `ELEVATION_C2_TICKET.md:24–36` to avoid competing with SuiteLoader during page load.
+**Gesture:** A low-key ambient opacity pulse (not the "slide" gesture aspirationally named in BRAND.md §4). The slide was deferred 2026-05-18 per `ELEVATION_C2_TASK.md:24–36` to avoid competing with SuiteLoader during page load.
 
 **Live values (timeline repo: `src/app/globals.css:912`)**
 - Duration: `3s`
@@ -103,7 +103,7 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 - Easing: `steps(1, end)` (timing function snaps between samples)
 - Iterations: `infinite`
 - Geometry: `5px × 5px` (max `8px × 8px` pre-hydration clamp)
-- Keyframes (`analytics-dot-tick`):
+- Keyframes (`signal-dot-tick`):
   ```
   0%   → translateY(-3px)
   25%  → translateY(-6px)
@@ -147,7 +147,7 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 |-----------|----------|----------------------------|------------------------|--------------------|
 | Studio    | 2.6s     | `cubic-bezier(.16,1,.3,1)` | scale + ring expand    | 1 (one-shot)       |
 | Tasks     | 2.6s     | `ease-in-out` (live) / spring-glide (umbrella) | paired-beat scale | infinite           |
-| Timeline   | 3s       | `ease-in-out`              | opacity 0.85↔1.0       | infinite alternate |
+| Timeline  | 3s       | `ease-in-out`              | opacity 0.85↔1.0       | infinite alternate |
 | Signal | 3.6s     | `steps(1, end)`            | 4 discrete translateY  | infinite           |
 | Notes     | 1.1s     | `steps(1, end)`            | opacity 1↔0 (sharp)    | infinite           |
 
@@ -181,4 +181,4 @@ Result: brand presence is preserved (dot is visible at full opacity); motion is 
 When this doc, BRAND.md §4, and live CSS disagree:
 1. Live CSS wins (per AGENTS.md in each repo).
 2. This doc is the snapshot of live CSS at handoff.
-3. BRAND.md §4 captures the brand intent; mismatches with live CSS are tracked as decisions (e.g., timeline-slide deferred per ELEVATION_C2_TICKET.md).
+3. BRAND.md §4 captures the brand intent; mismatches with live CSS are tracked as decisions (e.g., timeline-slide deferred per ELEVATION_C2_TASK.md).

@@ -21,11 +21,11 @@ Five Turso libSQL databases serve the suite. Each product owns its own DB; one s
 
 ```mermaid
 flowchart LR
-  T[Tasks DB] -->|ro token| A[Analytics]
+  T[Tasks DB] -->|ro token| A[Signal]
   E[signal-entitlements DB] --> ST[Studio]
   E --> T
-  E --> R[Roadmap]
-  E --> AN[Analytics]
+  E --> R[Timeline]
+  E --> AN[Signal]
   E --> N[Notes]
   N -->|HTTP promote| T
 ```
@@ -64,7 +64,7 @@ The pattern across the five is consistent.
 - The Tasks→Signal read-only path was tightened 2026-05-15 (A·4): the cross-repo SQL now filters `parent_task_id IS NULL`, mirroring Tasks's own `getTasks`. Subtasks were leaking into the briefing engine as top-level signals. This is a reminder that the read query in `analytics/src/lib/briefing/tasks-db-source.ts` hand-mirrors Tasks's row-shape filters — a Tasks schema change to the parent/child model must be reflected here too.
 - A·5 (2026-05-15, Signal code-review remediation): Signal gained `drizzle/0001_cadence_last_sent_index.sql` — a composite `(cadence, last_sent_at)` index on `user_preferences` so the daily cron's `WHERE cadence = ? AND (last_sent_at IS NULL OR last_sent_at < ?)` filter doesn't full-scan as the subscriber table grows. Same migration discipline as the rest of the suite (drizzle generate → hand-applied via Turso CLI; operator owes the prod run). The same cycle made the Tasks-read client lazy + self-healing on token rotation, and added a deterministic `ORDER BY t.id` before the `LIMIT 200` so truncation is stable. Schema of the read side unchanged.
 - T·62 (2026-05-16, byCommit `3e06a63` — "the daily digest pings Studio HQ when it runs"): added `drizzle/0002_init_cron_runs.sql` to Studio's own DB plus a matching Tasks-side migration, which re-flagged this entry via the `drizzle/` + `~/Projects/personal/tasks/drizzle/` references. Re-verified: the `cron_runs` heartbeat table lives in Studio's own DB (the same DB that already backs the HQ surfaces — consistent with "each product its own DB, Studio carries HQ"), written by the cross-repo cron→Studio ping, not a new shared DB and not a change to any read-only-token boundary. The five-DB + one-entitlements-DB architecture this entry documents is unchanged; this is an additive heartbeat table for cron observability. Separately, the prod env wiring for that ping (`CRON_PING_SECRET` on studio; `STUDIO_CRON_PING_URL`/`_SECRET` + `CRON_SECRET` on tasks/signal) was provisioned 2026-05-16 — it was never actually set in production before, so the heartbeat had never recorded a run.
-- S·76 (2026-06-16): a second cross-product reader landed in Studio — `src/lib/hq/product-analytics.ts` reads all four product Tursos (read-only) for the Founder Operating System metrics at `/hq/blueprint`. It reuses the **same env pairs the Today API already uses** (`TASKS_/NOTES_/ROADMAP_/ANALYTICS_TURSO_URL` + `_TOKEN`) so no new tokens are needed. It hand-mirrors product row shapes — like the Tasks→Signal briefing read, a schema change must be reflected here: Tasks `workspaces.onboarding_completed_at` + `tasks.workspace_id` + `activities`, Notes `notes.{updated_at,archived_at}`, Roadmap `tasks.{workspace_slug,updated_at}`, Analytics `user_preferences.{cadence,last_sent_at}`. Unit trap encoded at each query: Tasks/Roadmap timestamps are **seconds** (`unixepoch()`), Notes/Analytics are **milliseconds** (`unixepoch()*1000`). No writes; no new token boundary.
+- S·76 (2026-06-16): a second cross-product reader landed in Studio — `src/lib/hq/product-analytics.ts` reads all four product Tursos (read-only) for the Founder Operating System metrics at `/hq/blueprint`. It reuses the **same env pairs the Today API already uses** (`TASKS_/NOTES_/ROADMAP_/ANALYTICS_TURSO_URL` + `_TOKEN`) so no new tokens are needed. It hand-mirrors product row shapes — like the Tasks→Signal briefing read, a schema change must be reflected here: Tasks `workspaces.onboarding_completed_at` + `tasks.workspace_id` + `activities`, Notes `notes.{updated_at,archived_at}`, Timeline `tasks.{workspace_slug,updated_at}`, Signal `user_preferences.{cadence,last_sent_at}`. Unit trap encoded at each query: Tasks/Timeline timestamps are **seconds** (`unixepoch()`), Notes/Signal are **milliseconds** (`unixepoch()*1000`). No writes; no new token boundary.
 - No live drift detection — when a schema changes, this entry has to be hand-updated. The v2 atlas drift-trigger is the planned mitigation; see `docs/ATLAS_DRIFT_TRIGGER.md`.
 
 ## WHY

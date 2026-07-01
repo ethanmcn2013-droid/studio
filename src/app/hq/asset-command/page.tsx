@@ -5,7 +5,7 @@ import {
   ACS_META,
   assetById,
   COMPLETED_PROMPTS,
-  EXECUTIVE_JUDGEMENT,
+  ADVISORY_JUDGEMENT,
   FIRST_TEN,
   OPEN_QUESTIONS,
   PANEL,
@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Asset Command System — Signal HQ",
   description:
-    "The launch-asset operating layer: director panel, master taxonomy, ranked priorities, the first ten assets, the quality gate, the Claude Design prompt framework, and the first completed prompt.",
+    "The launch-asset operating layer: advisor panel, master taxonomy, ranked priorities, the first ten assets, the quality gate, the Claude Design prompt framework, and the first completed prompt.",
   robots: { index: false, follow: false },
 };
 
@@ -58,13 +58,13 @@ export default async function AssetCommandPage() {
         </p>
       </header>
 
-      {/* 1 · Executive judgement */}
-      <section className="hq-co-block" aria-label="executive judgement">
+      {/* 1 · Advisory judgement */}
+      <section className="hq-co-block" aria-label="advisory judgement">
         <div className="hq-fm-unit-head">
-          <span className="hq-os-eyebrow">01 · executive judgement</span>
+          <span className="hq-os-eyebrow">01 · advisory judgement</span>
           <p>The distilled call before any asset is designed.</p>
         </div>
-        {EXECUTIVE_JUDGEMENT.map((para, i) => (
+        {ADVISORY_JUDGEMENT.map((para, i) => (
           <p key={i} className="hq-page-intro" style={{ fontSize: 15 }}>
             {para}
           </p>
@@ -120,10 +120,10 @@ export default async function AssetCommandPage() {
         </div>
       </section>
 
-      {/* 3 · Director panel consensus */}
-      <section className="hq-co-block" aria-label="director panel">
+      {/* 3 · Advisor panel consensus */}
+      <section className="hq-co-block" aria-label="advisor panel">
         <div className="hq-fm-unit-head">
-          <span className="hq-os-eyebrow">03 · director panel · consensus</span>
+          <span className="hq-os-eyebrow">03 · advisor panel · consensus</span>
           <p>
             Fourteen operating lenses, one decisive line each — then the
             distilled decision.

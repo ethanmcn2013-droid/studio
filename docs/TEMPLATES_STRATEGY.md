@@ -45,7 +45,7 @@ type WorkspaceTemplate = {
   // Layer seeds
   tasks:     TaskSeed[]         // existing shape in tasks/lib/templates.ts
   notes:     NoteSeed[]         // 0–3 prompted notes (e.g., "Venue site visit · capture decisions/questions/follow-up")
-  roadmap:   RoadmapSeed        // milestones + sections, plain-English voice
+  roadmap:   TimelineSeed        // milestones + sections, plain-English voice
   analytics: AnalyticsHint      // signal detectors that apply (e.g. RSVP-deadline-approaching, vendor-contract-signed)
 }
 ```
@@ -54,7 +54,7 @@ type WorkspaceTemplate = {
 
 - **Tasks's existing `Template` shape stays compatible.** `tasks: TaskSeed[]` is the same field tasks/lib/templates.ts already exports today.
 - **Notes's PRODUCT.md §7 refusal holds.** A workspace template can seed one or two _named_ notes (decision-capture prompts), but there is no "today template" or date-based scaffolding. Single-user discipline preserved.
-- **Timeline doesn't get its own gallery.** It gets a `RoadmapSeed` that the workspace template expresses. Timeline's pricing page already says it doesn't pre-seed projects with templates — that stays true; it pre-seeds workspaces that came in via a Tasks template.
+- **Timeline doesn't get its own gallery.** It gets a `TimelineSeed` that the workspace template expresses. Timeline's pricing page already says it doesn't pre-seed projects with templates — that stays true; it pre-seeds workspaces that came in via a Tasks template.
 - **Signal consumes a hint, not a feature.** When the user applies the wedding template, Signal's signal detectors load wedding-specific rules. No template picker on Signal's surface.
 
 ## Source-of-truth location
@@ -64,7 +64,7 @@ Templates live in **`studio/src/lib/templates/`** in the studio repo as the cano
 ```
 studio/src/lib/templates/
   index.ts                          # exports WorkspaceTemplate[] + types
-  types.ts                          # WorkspaceTemplate, TaskSeed, NoteSeed, RoadmapSeed, AnalyticsHint
+  types.ts                          # WorkspaceTemplate, TaskSeed, NoteSeed, TimelineSeed, AnalyticsHint
   wedding-planning-workspace/
     meta.ts
     tasks.ts
@@ -159,7 +159,7 @@ This is the implementation order. Each cycle should ship as a coordinated Studio
 
 ## Dependencies on other in-flight work
 
-- **Sprint 2 (Collaboration)** is in flight. Templates and Sprint 2 share the workspace concept but don't conflict — apply-template + invite-collaborator are orthogonal entry points. Sequence: Sprint 2 first or in parallel; templates T-1 can ship now without blocking Sprint 2.
+- **Initiative 2 (Collaboration)** is in flight. Templates and Initiative 2 share the workspace concept but don't conflict — apply-template + invite-collaborator are orthogonal entry points. Sequence: Initiative 2 first or in parallel; templates T-1 can ship now without blocking Initiative 2.
 - **Cycle 11.x brand rollout** is in flight (Refined Indigo Dot). Templates inherit brand tokens from each product's chrome; no specific blocker.
 - **Signal product code does not exist live.** Canonical state corrected this on 2026-05-11 — signal is marketing-only. T-2's Signal seed is dormant until the Signal briefing pipeline ships. Templates carry the `AnalyticsHint`; Signal will consume it when it exists.
 

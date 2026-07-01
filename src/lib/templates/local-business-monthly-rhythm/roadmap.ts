@@ -1,12 +1,12 @@
-import type { RoadmapSeed } from "../types";
+import type { TimelineSeed } from "../types";
 
 /**
- * Roadmap seed — one "Monthly rhythm" project with items grouped by
- * status. Shape matches Roadmap's data model. Item bodies are written
+ * Timeline seed — one "Monthly rhythm" project with items grouped by
+ * status. Shape matches Timeline's data model. Item bodies are written
  * for a shared update view the staff and operator can read in under a
  * minute (so the team knows what is moving and what needs a decision).
  */
-export const roadmap: RoadmapSeed = {
+export const roadmap: TimelineSeed = {
   projects: [
     {
       slug: "monthly-rhythm",
