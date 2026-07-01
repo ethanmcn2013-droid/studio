@@ -74,7 +74,18 @@ export function RevealLoadingShowcase() {
         el.style.transform = "translateY(0)";
       });
 
-    if (reduce) {
+    // First-visit-only (per-session): once the assembly has played through
+    // this session, a returning visitor lands straight on the settled
+    // wordmark — same static end-state as reduced-motion, without re-watching
+    // the 3.8s roll on the marketing front door. A new tab/session replays it.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("slx-seen") === "1";
+    } catch {
+      seen = false; // storage blocked (private mode) → treat as first visit
+    }
+
+    if (reduce || seen) {
       freeze();
       root.classList.add("slx-settled");
       return;
@@ -100,6 +111,11 @@ export function RevealLoadingShowcase() {
       if (elapsed >= ROLL_MS * CYCLES) {
         freeze();
         root.classList.add("slx-settled"); // settle → dot hands to breathe loop
+        try {
+          sessionStorage.setItem("slx-seen", "1"); // gate the next visit
+        } catch {
+          /* storage unavailable → the assembly simply replays next time */
+        }
         return; // STOP after CYCLES plays — never an infinite loop
       }
       const cycle = Math.floor(elapsed / ROLL_MS);
@@ -225,6 +241,14 @@ const SLX_CSS = `
 /* after roll, the settled dot just breathes — a gentle pulse/squeeze, forever,
    WITHOUT re-running the word assembly. */
 .slx-settled .slx-dot{animation:slx-breathe 3.8s ease-in-out infinite;}
+/* When the mark settles immediately (returning visitor this session, or
+   reduced-motion) the trail ghosts and ripples must not fire their one-shot
+   roll — suppress them so it reads as a clean static wordmark. During a
+   normal first play these have already completed by the time .slx-settled
+   lands, so this is a no-op for the animated path. */
+.slx-settled .slx-trail,
+.slx-settled .slx-ripple,
+.slx-settled .slx-ripple-slow{animation:none!important;opacity:0!important;}
 @keyframes slx-roll{
  0%{transform:translate(calc(-1 * var(--slx-roll)),0) scale(1,1);opacity:0}
  6%{transform:translate(calc(-1 * var(--slx-roll)),0) scale(1,1);opacity:1}
