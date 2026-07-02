@@ -1,6 +1,6 @@
 # Signal Studio · Brand Handbook
 
-> **⚠️ PARTIALLY DEPRECATED (2026-07-02).** The **visual register and all tokens** (colour, type, spacing, radii, motion, components) are superseded by **Signal Design System 2.0** — `signal-studio-foundation` repo, `docs/` + `tokens/tokens.css`. Where this document disagrees with @signal/ds 2.0 on visuals, the new system wins. The **voice, naming, positioning, and audience sections remain in force** until migrated.
+> **⚠️ PARTIALLY DEPRECATED (2026-07-02).** The **visual register and all tokens** (colour, type, spacing, radii, motion, components) are superseded by **Signal Design System 2.0** — `signal-design-system` repo, `docs/` + `tokens/tokens.css`. Where this document disagrees with @signal/ds 2.0 on visuals, the new system wins. The **voice, naming, positioning, and audience sections remain in force** until migrated.
 
 **Single source of truth for voice, naming, visual register, and audience tone across the Signal Studio suite.**
 
