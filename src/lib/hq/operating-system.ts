@@ -155,6 +155,19 @@ export const HQ_HUBS: HqHub[] = [
     action: "open the source asset",
   },
   {
+    key: "design-rooms",
+    label: "Design Rooms",
+    title: "Design Rooms",
+    href: "/hq/design-rooms",
+    audience: ["founder", "marketing", "shareholder"],
+    mode: "library",
+    summary:
+      "Every design decision, its explored directions, and its chosen object — the record of not taking the easy route. May go public at launch.",
+    primaryMetric: "6 decision rooms",
+    secondaryMetric: "6 galleries",
+    action: "open the rooms",
+  },
+  {
     key: "asset-command",
     label: "Asset Command",
     title: "Asset Command System",
