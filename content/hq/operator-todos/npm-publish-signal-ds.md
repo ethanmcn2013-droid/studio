@@ -1,7 +1,7 @@
 ---
 id: npm-publish-signal-ds
 title: Create/auth an npm account so @signal/ds can publish as a public package
-status: open
+status: done
 priority: P1
 blocking: false
 phase: SDS 2.0 rollout · Wave 0
@@ -10,10 +10,8 @@ href: /hq
 date: 2026-07-02
 ---
 
-## Steps
+## Done — 2026-07-02
 
-1. Create (or sign into) an npm account for Signal Studio — `npm login` on the workstation is enough.
-2. Decide the package name: `signal-ds` and `@signal-studio/ds` are both free (checked 2026-07-02). A scoped name needs the matching npm org created first.
-3. Tell the agent — publishing (`npm publish --access public` from the `signal-design-system` repo) and swapping the five repos from vendored files to the dependency is agent work from there.
+**`signal-ds@2.0.1` is live on the public registry** (https://www.npmjs.com/package/signal-ds). The founder created the npm account (`signalstudio`), enabled 2FA, and approved the publish; the package ships the tokens, the generated Tailwind theme, the sixteen primitives, the nine system docs, and the drift gate as a runnable bin (`npx signal-ds-check`).
 
-Approved at Checkpoint 4 of the design-system mandate (2026-07-02): public npm package is the chosen distribution; vendor-with-checksum is the sanctioned interim.
+Remaining agent work (not founder-gated): swap each of the five repos from the vendored `src/ds/` copies to the `signal-ds` dependency. Deliberately deferred from the publish night — each swap triggers a production deploy for zero visual change, and deploy quota was scarce (Notes was rate-limited). The swap happens per repo on its next natural touch: add the dependency, repoint the two `@import`s, delete `src/ds/` + `scripts/ds/`.
