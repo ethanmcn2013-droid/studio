@@ -34,8 +34,8 @@ import { useEffect } from "react";
  * scoped <style> for :hover. No Tailwind/token dependency, so the byte
  * for byte copy works in every repo regardless of its CSS config.
  *
- * Product order (operator-directed 2026-05-18): notes → tasks → timeline
- * → signal. Authed deep-links land on each product's /app entry.
+ * Product order (operator-directed 2026-05-18): notes → tasks → roadmap
+ * → analytics. Authed deep-links land on each product's /app entry.
  */
 
 const STUDIO_URL =
@@ -51,13 +51,13 @@ const SIGNAL_URL =
 
 const INDIGO = "#4f46e5";
 
-type ProductSlug = "tasks" | "timeline" | "notes" | "signal";
+type ProductSlug = "tasks" | "roadmap" | "notes" | "analytics";
 
 const PRODUCTS: { slug: ProductSlug; word: string; appUrl: string }[] = [
   { slug: "notes", word: "notes", appUrl: `${NOTES_URL}/app` },
   { slug: "tasks", word: "tasks", appUrl: `${TASKS_URL}/app` },
-  { slug: "timeline", word: "timeline", appUrl: `${TIMELINE_URL}/app` },
-  { slug: "signal", word: "signal", appUrl: `${SIGNAL_URL}/app` },
+  { slug: "roadmap", word: "timeline", appUrl: `${TIMELINE_URL}/app` },
+  { slug: "analytics", word: "signal", appUrl: `${SIGNAL_URL}/app` },
 ];
 
 const PRODUCT_ORIGINS = [NOTES_URL, TASKS_URL, TIMELINE_URL, SIGNAL_URL];
