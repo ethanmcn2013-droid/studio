@@ -175,8 +175,8 @@ const SLX_CSS = `
    — never fixed. */
 .reveal-loading-showcase{display:flex;align-items:center;
   justify-content:center;width:100%;overflow:hidden;background:transparent;
-  min-height:clamp(300px,40vh,460px);
-  padding:clamp(44px,6vh,92px) 16px clamp(8px,1.5vh,24px);}
+  min-height:clamp(220px,30dvh,340px);
+  padding:clamp(36px,5vh,72px) 16px 0;}
 .slx{
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
