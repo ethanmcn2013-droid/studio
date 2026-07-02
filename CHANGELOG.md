@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·106 · tightens · chrome becomes mainline, not branch memory
+
+**The accepted footer and product-header contract now live on top of current main instead of a stale side branch.** The public footer carries the shared Product, Company, Resources, Suite frame, `/ios` is a real status page for the native app, and the sticky product-header rule is recorded in HQ as an active decision: one 56px shell, one left lockup, one centered 1240px grid, with product meaning living in the page body rather than bespoke chrome.
+
 ## 2026-07-02 · S·105 · tightens · HQ speaks in operator verbs, and the QR moves to the front
 
 **Signal HQ reorganised around what a sole founder actually does: the nav is now Sell · Make · Tell · Run (+ board), and the hub board groups its rooms under the same four loops — a panel-session decision recorded in `hq-founder-loops`.** Design Rooms joined the hub map and lost its em dashes; every description is one breath. And the founder card trio changed on review: the QR now sits on the front, lower right, on a paper chip — the back stays pure contact. The proof-order package was rebuilt with the corrected files.
