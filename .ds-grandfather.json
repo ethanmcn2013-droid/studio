@@ -39,6 +39,10 @@
     "hex": 5,
     "ease": 0
   },
+  "src/app/hq/loading-review/page.tsx": {
+    "hex": 6,
+    "ease": 0
+  },
   "src/app/hq/market-entry/page.tsx": {
     "hex": 5,
     "ease": 0
