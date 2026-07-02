@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·100 · ships · the revenue spine — five objects that close a venue
+
+**The Asset Command's declared bottleneck is closed: `/hq/venue-kit` holds the venue pitch deck (ten slides, one idea each, slide six hands over to the live demo), the pricing explainer (€2,500, one invoice, no discount theatre), the founder outreach email with its single follow-up ("a one-word no is genuinely welcome"), the seven-minute demo script with the five objections answered in one calm sentence each, and the partner permission form — five tick-lines, each withdrawable by one email.** Everything before this was brand; this is the sale. Every claim is deck-locked; the email and objection answers are the only new copy, flagged for approval. **Operator gate (P0):** approve the kit, put the permission form past a solicitor once, confirm the EU-hosting and export promises — then outreach starts, one venue at a time (`venue-kit-signoff`).
+
 ## 2026-07-02 · S·99 · ships · the posting queue — six weeks, nothing written the day it posts
 
 **The specimen bank grew to the full grammar — all nine beliefs, three deck-defended numbers, three before/afters — and a gated queue at `/hq/socials` sequences twelve of them across six weeks, two a week, exactly as the deck's social rules demand: one idea per post, numbers only the deck defends, alt text always, no hashtag clouds, the founder answers every comment.** Each queued post carries its drafted caption (the only new copy — flagged for approval), its alt text ready to paste, its platform tags, and every rendered size. The partner format stays specimen-gated until a real venue signs. **Operator gate:** approve the queue or strike lines (`collateral-social-signoff`) — nothing posts without a yes.

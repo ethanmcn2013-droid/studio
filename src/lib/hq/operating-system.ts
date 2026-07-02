@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "venue-kit-room",
+    title: "The Venue Kit — the revenue spine",
+    group: "sales",
+    audience: ["founder"],
+    state: "needs-review",
+    owner: "Founder / Brand",
+    href: "/hq/venue-kit",
+    source: "public/brand/collateral/venue",
+    action: "Approve the kit",
+    note: "Deck (10 slides), pricing explainer, outreach email + one follow-up, demo script + five objections, permission form. Approval starts outreach.",
+  },
+  {
     id: "posting-queue",
     title: "The Posting Queue — six weeks drafted",
     group: "brand",
