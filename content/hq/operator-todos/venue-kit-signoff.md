@@ -1,7 +1,7 @@
 ---
 id: venue-kit-signoff
 title: Approve the venue kit — the five objects that start outreach
-status: open
+status: done
 priority: P0
 blocking: true
 phase: Collateral · Revenue spine
@@ -10,7 +10,11 @@ href: /hq/venue-kit
 date: 2026-07-02
 ---
 
-## Steps
+**APPROVED by the founder 2026-07-02.** Outreach may begin. One caveat
+carried forward in `send-proof-order`: the permission form goes past a
+solicitor before its first real signature.
+
+## Steps (completed by approval)
 
 1. Open `/hq/venue-kit` and review the five objects. Deck and pricing use
    only deck-locked claims; the outreach email and the five objection

@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·102 · marks · the venue kit and the queue are approved; the proof order is packaged
+
+**The founder approved the venue kit — outreach may begin — and the six-week posting queue is cleared to schedule as written.** The founder-card trio's proof order is packaged at `/brand/collateral/cards/proof-order-card-trio.zip`: six print PDFs and a printer-ready order note (stock, rich black, PMS 2726C, ten of each) written to be pasted into one email. Two operator threads remain: send the proof order to a printer — a Limerick one; the printer is a relationship too — and the permission form's single solicitor pass before its first real signature.
+
 ## 2026-07-02 · S·101 · tightens · the founder card trio, and the venue kit learns your name
 
 **Founder card decided: Ink, Indigo and Duo run as a trio — one reverse for all three, now carrying a QR to the site instead of the direct-line promise, which moved where it belongs: the Founding Partner card's reverse, the object reserved for people who have signed.** The venue kit gained its two boundary-pushing pieces: the pilot card — the close as a signable A5, so "no contract to read" is literally true on the desk — and prepared-for personalisation, where the one-pager and deck cover render "Prepared for [venue]" from a single parameter, a bespoke kit at zero marginal cost. **Operator gate:** proof the trio on stock; the venue-kit approval (P0) now covers seven objects.

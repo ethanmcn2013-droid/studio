@@ -1,7 +1,7 @@
 ---
 id: collateral-social-signoff
 title: Approve the social system specimens and install the profile banners
-status: open
+status: done
 priority: P1
 blocking: false
 phase: Collateral Phase 2
@@ -10,7 +10,9 @@ href: /hq/socials
 date: 2026-07-01
 ---
 
-## Steps
+**APPROVED by the founder 2026-07-02.** The six-week queue is cleared to schedule as written.
+
+## Steps (completed by approval)
 
 1. **Approve the posting queue:** open `/hq/socials` — twelve posts across
    six weeks, two a week, with drafted captions and alt text. Approve as
