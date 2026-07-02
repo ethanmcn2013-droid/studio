@@ -565,10 +565,10 @@ body::after { content: none; }
 
 /* WCAG 2.4.11 — sticky nav is 56px (h-14). Section anchor targets
    get scroll-margin-top so keyboard focus + skip-links land clear. */
-[id="roadmap"],
+[id="timeline"],
 [id="tasks"],
 [id="notes"],
-[id="analytics"] {
+[id="signal"] {
   scroll-margin-top: 72px;
 }
 
@@ -646,8 +646,8 @@ body::after { content: none; }
   /* Ensure reveal classes are immediately visible, no JS needed */
   .reveal,
   .reveal-subhead,
+  .reveal-house-mark,
   .reveal-stack .stack-row,
-  .reveal-scroll-cue,
   .reveal-product-row .position,
   .reveal-product-row .mark,
   .reveal-product-row .essence,
@@ -715,7 +715,7 @@ body::after { content: none; }
    first viewport without scroll. */
 .reveal-hero {
   position: relative;
-  min-height: calc(72vh);
+  min-height: 72dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -786,7 +786,7 @@ body::after { content: none; }
 .reveal-subhead {
   font-size: clamp(16px, 1.4vw, 19px);
   color: var(--ink-600);
-  margin: 0 0 56px;
+  margin: 0 0 36px;
   text-align: center;
   letter-spacing: -0.005em;
   /* JS-progressive: GSAP hijacks this to opacity:0/translateY(8px) on its
@@ -802,10 +802,8 @@ body::after { content: none; }
 }
 
 /* ── Live-doc caret on the typewriter sub-hero ────────────────── */
-/* The line types itself in letter by letter (TypewriterSub.tsx).
-   The caret appears with the first character and continues to blink
-   after the line finishes — the gesture that says "this work is
-   still happening". */
+/* Legacy cursor style for any reveal text that still opts into it.
+   The homepage hero no longer types the subhead. */
 .reveal-cursor {
   display: inline-block;
   width: 2px;
@@ -827,6 +825,69 @@ body::after { content: none; }
 }
 
 /* ── Four-product stack ───────────────────────────────────────── */
+.reveal-conductor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.reveal-house-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  color: var(--ink-700);
+  font-size: clamp(15px, 1.45vw, 19px);
+  font-weight: 500;
+  letter-spacing: -0.026em;
+  line-height: 1;
+  opacity: 1;
+  transform: none;
+  will-change: transform, opacity;
+}
+.reveal-house-mark .house-word {
+  white-space: nowrap;
+}
+.reveal-house-mark .house-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.08em;
+  border-radius: 50%;
+  background: var(--indigo-600);
+  transform: translateY(-0.04em);
+  transform-origin: center;
+}
+.reveal-house-mark .house-dot::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px solid var(--indigo-600);
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.72);
+  transform-origin: center;
+}
+.reveal-house-mark.broadcast .house-dot {
+  animation: reveal-house-dot 820ms cubic-bezier(.22,.7,.2,1) 1 both;
+}
+.reveal-house-mark.broadcast .house-dot::before {
+  animation: reveal-house-broadcast 820ms cubic-bezier(.22,.7,.2,1) 1 both;
+}
+.reveal-house-mark.settled .house-dot {
+  opacity: 1;
+  transform: translateY(-0.04em) scale(1);
+}
+@keyframes reveal-house-dot {
+  0%, 100% { transform: translateY(-0.04em) scale(1); }
+  38%      { transform: translateY(-0.04em) scale(1.28); }
+}
+@keyframes reveal-house-broadcast {
+  0%   { opacity: 0.45; transform: scale(0.72); }
+  72%  { opacity: 0.18; transform: scale(1.9); }
+  100% { opacity: 0; transform: scale(2.15); }
+}
+
 .reveal-stack {
   /* Horizontal product row (was a vertical column). Reads as one
      line of products, assembles left-to-right via RevealEngine. */
@@ -883,68 +944,66 @@ body::after { content: none; }
   display: inline-block;
   position: relative;
 }
+.reveal-stack .stack-row.settled .dot {
+  opacity: 1;
+  animation: none;
+  transform: translateY(-0.04em) scale(1);
+}
 
-/* Per-product brand gestures — aligned to suite design-system v1
-   motion catalogue (2026-05-13). Each gesture starts as a dimmed
-   waiting state, becomes fully visible when the row gets .fire (the
-   choreographed entrance still plays), then runs the canonical
-   motion: pulse 2.6s ease-in-out / sweep 5.4s / tick 3.6s
-   steps(1,end) / caret 1.1s. Same vocabulary — and the same
-   timings — that live at /brand, /pricing, and in each product. */
+/* Per-product brand gestures in the hero stack. The conductor fires
+   each dot once in work order, then RevealEngine swaps the row into
+   .settled so the final hero state rests without idle animation. */
 
 /* tasks · M·02 pulse */
 .reveal-stack .stack-row[data-key="tasks"] .dot {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(-0.04em) scale(1);
   transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="tasks"].fire .dot {
   opacity: 1;
-  animation: reveal-tasks-pulse 2.6s ease-in-out infinite;
+  animation: reveal-tasks-pulse 900ms ease-in-out 1 both;
 }
 @keyframes reveal-tasks-pulse {
-  0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
-  10%           { transform: translateY(-0.04em) scale(1.22); }
-  20%           { transform: translateY(-0.04em) scale(1); }
-  40%           { transform: translateY(-0.04em) scale(1.12); }
-  50%           { transform: translateY(-0.04em) scale(1); }
+  0%, 100% { transform: translateY(-0.04em) scale(1); }
+  38%      { transform: translateY(-0.04em) scale(1.22); }
+  70%      { transform: translateY(-0.04em) scale(1.08); }
 }
 
 /* roadmap · M·03 sweep */
-.reveal-stack .stack-row[data-key="roadmap"] .dot {
-  opacity: 0;
+.reveal-stack .stack-row[data-key="timeline"] .dot {
+  opacity: 1;
   transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
-.reveal-stack .stack-row[data-key="roadmap"].fire .dot {
+.reveal-stack .stack-row[data-key="timeline"].fire .dot {
   opacity: 1;
-  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: reveal-timeline-pass 1080ms cubic-bezier(.22,.7,.2,1) 1 both;
 }
-@keyframes reveal-roadmap-sweep {
+@keyframes reveal-timeline-pass {
   0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
-  60%  { transform: translateY(-0.04em) translateX(4px); opacity: 1; }
-  62%  { transform: translateY(-0.04em) translateX(4px); opacity: 0; }
-  70%  { transform: translateY(-0.04em) translateX(0); opacity: 0; }
-  78%  { transform: translateY(-0.04em) translateX(0); opacity: 1; }
+  58%  { transform: translateY(-0.04em) translateX(5px); opacity: 1; }
+  68%  { transform: translateY(-0.04em) translateX(5px); opacity: 0; }
+  78%  { transform: translateY(-0.04em) translateX(0); opacity: 0; }
   100% { transform: translateY(-0.04em) translateX(0); opacity: 1; }
 }
 
 /* analytics · M·04 tick — discrete sample JUMPS, never a glide.
    steps(1,end) + 3.6s mirrors the live Analytics product exactly
-   (analytics-dot-tick). The old 2.4s scaleY squash read as a
+   (signal-dot-tick). The old 2.4s scaleY squash read as a
    blink/pulse — the wrong gesture. Tick = the dot snaps between
    discrete Y samples and holds. Canon: DESIGN.md §5. */
-.reveal-stack .stack-row[data-key="analytics"] .dot {
-  opacity: 0;
+.reveal-stack .stack-row[data-key="signal"] .dot {
+  opacity: 1;
   transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
-.reveal-stack .stack-row[data-key="analytics"].fire .dot {
+.reveal-stack .stack-row[data-key="signal"].fire .dot {
   opacity: 1;
-  animation: reveal-analytics-tick 3.6s steps(1, end) infinite;
+  animation: reveal-signal-tick 860ms steps(1, end) 1 both;
 }
-@keyframes reveal-analytics-tick {
+@keyframes reveal-signal-tick {
   0%   { transform: translateY(-0.04em); }
   25%  { transform: translateY(-0.16em); }
   50%  { transform: translateY(0.02em); }
@@ -954,44 +1013,19 @@ body::after { content: none; }
 
 /* notes · M·05 caret */
 .reveal-stack .stack-row[data-key="notes"] .dot {
-  opacity: 0;
+  opacity: 1;
   transition: opacity var(--motion-slow) var(--ease-out);
   transform-origin: center;
 }
 .reveal-stack .stack-row[data-key="notes"].fire .dot {
   opacity: 1;
-  animation: reveal-notes-caret 1.1s steps(1,end) infinite;
+  animation: reveal-notes-caret 820ms steps(1,end) 1 both;
 }
 @keyframes reveal-notes-caret {
-  0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
-  50%      { transform: translateY(-0.04em) scale(1.05); opacity: 1; }
+  0%, 100% { transform: translateY(-0.04em) scale(1); opacity: 1; }
+  50%      { transform: translateY(-0.04em) scale(1.05); opacity: 0.7; }
 }
 
-/* Scroll cue */
-.reveal-scroll-cue {
-  margin-top: 64px;
-  font-family: var(--font-mono-stack);
-  font-size: 11px;
-  color: var(--ink-500);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  /* JS-progressive: GSAP hijacks to opacity:0/translateY(4px) on first
-     tick (reveal-engine.tsx:90). Default visible for no-JS. */
-  opacity: 1;
-  transform: none;
-  text-align: center;
-}
-.reveal-scroll-cue .arrow {
-  display: block;
-  margin-top: 8px;
-}
-.reveal-scroll-cue.bob .arrow {
-  animation: reveal-cue-bob 2.4s ease-in-out infinite;
-}
-@keyframes reveal-cue-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(4px); }
-}
 
 /* ── Wedding wedge ───────────────────────────────────────────── */
 /* Walkover #4 (Da Vinci): one hairline band above the loader. The
@@ -1314,17 +1348,17 @@ body::after { content: none; }
   transform-origin: center;
   animation: reveal-tasks-pulse 2.6s ease-in-out infinite;
 }
-.reveal-product-row[data-key="roadmap"] .mark .dot {
+.reveal-product-row[data-key="timeline"] .mark .dot {
   transform-origin: center;
-  animation: reveal-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: reveal-timeline-pass 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-.reveal-product-row[data-key="analytics"] .mark .dot {
+.reveal-product-row[data-key="signal"] .mark .dot {
   transform-origin: center;
   /* tick = discrete sample jumps. Shares the now-canon
-     reveal-analytics-tick keyframe; must run it at 3.6s steps(1,end)
+     reveal-signal-tick keyframe; must run it at 3.6s steps(1,end)
      like the hero stack + live Analytics product, not a 2.4s glide
      (which would smear between the discrete samples). DESIGN.md §5. */
-  animation: reveal-analytics-tick 3.6s steps(1, end) infinite;
+  animation: reveal-signal-tick 3.6s steps(1, end) infinite;
 }
 .reveal-product-row[data-key="notes"] .mark .dot {
   transform-origin: center;
@@ -1586,7 +1620,7 @@ body::after { content: none; }
 @media (max-width: 880px) {
   .reveal-hero {
     padding: 40px 24px 96px;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100dvh - 100px);
   }
   .reveal-headline {
     font-size: clamp(36px, 9vw, 72px);
@@ -1601,9 +1635,6 @@ body::after { content: none; }
   }
   .reveal-stack .mark {
     font-size: clamp(28px, 7.5vw, 44px);
-  }
-  .reveal-scroll-cue {
-    margin-top: 56px;
   }
   .reveal-manifesto {
     padding: 96px 24px 96px;
@@ -1727,7 +1758,7 @@ body::after { content: none; }
 }
 
 /* roadmap · M·03 sweep — dot tracks left→right, every 5.4s. */
-.pricing-mark[data-key="roadmap"] .dot {
+.pricing-mark[data-key="timeline"] .dot {
   animation: pricing-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
 @keyframes pricing-sweep {
@@ -1743,7 +1774,7 @@ body::after { content: none; }
    Canon (DESIGN.md §5) + the live Analytics product: the dot snaps
    between discrete Y samples and holds; it never glides between
    them. The old 2.4s scaleY squash read as a blink — wrong gesture. */
-.pricing-mark[data-key="analytics"] .dot {
+.pricing-mark[data-key="signal"] .dot {
   animation: pricing-tick 3.6s steps(1, end) infinite;
 }
 @keyframes pricing-tick {
@@ -1802,20 +1833,28 @@ body::after { content: none; }
   .reveal-gold-rule { width: 132px !important; }
   .reveal-headline .word-inner { transform: none !important; }
   .reveal-subhead,
-  .reveal-stack .stack-row,
-  .reveal-scroll-cue { opacity: 1 !important; transform: none !important; }
+  .reveal-house-mark,
+  .reveal-stack .stack-row { opacity: 1 !important; transform: none !important; }
+  .reveal-house-mark .house-dot,
+  .reveal-house-mark .house-dot::before {
+    animation: none !important;
+  }
+  .reveal-house-mark .house-dot {
+    opacity: 1 !important;
+    transform: translateY(-0.04em) !important;
+  }
   /* All four product dots: final visible state, no motion. */
   .reveal-stack .stack-row[data-key="tasks"] .dot,
-  .reveal-stack .stack-row[data-key="roadmap"] .dot,
-  .reveal-stack .stack-row[data-key="analytics"] .dot,
+  .reveal-stack .stack-row[data-key="timeline"] .dot,
+  .reveal-stack .stack-row[data-key="signal"] .dot,
   .reveal-stack .stack-row[data-key="notes"] .dot {
     animation: none !important;
     opacity: 1 !important;
     transform: translateY(-0.04em) !important;
   }
   .reveal-product-row[data-key="tasks"] .mark .dot,
-  .reveal-product-row[data-key="roadmap"] .mark .dot,
-  .reveal-product-row[data-key="analytics"] .mark .dot,
+  .reveal-product-row[data-key="timeline"] .mark .dot,
+  .reveal-product-row[data-key="signal"] .mark .dot,
   .reveal-product-row[data-key="notes"] .mark .dot {
     animation: none !important;
     opacity: 1 !important;
@@ -1943,9 +1982,9 @@ body::after { content: none; }
 }
 
 .brand-mark[data-variant="roadmap"].is-live .md {
-  animation: brand-roadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  animation: brand-timeline-pass 5.4s cubic-bezier(.22,.7,.2,1) infinite;
 }
-@keyframes brand-roadmap-sweep {
+@keyframes brand-timeline-pass {
   0%   { transform: translateY(-0.62em) translateX(0); opacity: 1; }
   60%  { transform: translateY(-0.62em) translateX(4px); opacity: 1; }
   62%  { transform: translateY(-0.62em) translateX(4px); opacity: 0; }
@@ -1955,12 +1994,12 @@ body::after { content: none; }
 }
 
 /* tick = discrete sample jumps, 3.6s steps(1,end) — mirrors the
-   live Analytics product (analytics-dot-tick) and DESIGN.md §5.
+   live Analytics product (signal-dot-tick) and DESIGN.md §5.
    .md is the cap-height-lifted middot baseline (-0.62em). */
 .brand-mark[data-variant="analytics"].is-live .md {
-  animation: brand-analytics-tick 3.6s steps(1, end) infinite;
+  animation: brand-signal-tick 3.6s steps(1, end) infinite;
 }
-@keyframes brand-analytics-tick {
+@keyframes brand-signal-tick {
   0%   { transform: translateY(-0.62em); }
   25%  { transform: translateY(-0.74em); }
   50%  { transform: translateY(-0.56em); }
@@ -4459,7 +4498,7 @@ body::after { content: none; }
    - Cards stagger in: translateY(-4px→0) + opacity 0→1,
      delay set inline per-card (0/55/110/165ms)
    - Gestures: mega-notes-caret / mega-tasks-pulse /
-     mega-roadmap-sweep / mega-analytics-bar-{1-4}
+     mega-timeline-pass / mega-signal-bar-{1-4}
    ════════════════════════════════════════════════════════════ */
 
 /* Panel shell */
@@ -4595,8 +4634,8 @@ body::after { content: none; }
 
 /* ── Gesture animations — mega-panel context ─────────────────
    These share the same timing as the suite-canonical keyframes
-   (reveal-tasks-pulse / reveal-roadmap-sweep / reveal-notes-caret
-   / reveal-analytics-tick) but are prefixed `mega-` so they can
+   (reveal-tasks-pulse / reveal-timeline-pass / reveal-notes-caret
+   / reveal-signal-tick) but are prefixed `mega-` so they can
    be composed independently without inheriting selector specificity.
    ─────────────────────────────────────────────────────────── */
 
@@ -4635,13 +4674,13 @@ body::after { content: none; }
 }
 
 /* roadmap · sweep — dot travels along the timeline track */
-.mega-roadmap-sweep-dot {
+.mega-timeline-pass-dot {
   transform-box: fill-box;
   transform-origin: center;
-  animation: mega-roadmap-sweep 5.4s cubic-bezier(.22, .7, .2, 1) infinite;
+  animation: mega-timeline-pass 5.4s cubic-bezier(.22, .7, .2, 1) infinite;
 }
 
-@keyframes mega-roadmap-sweep {
+@keyframes mega-timeline-pass {
   0%   { transform: translateX(0);    opacity: 1; }
   60%  { transform: translateX(79px); opacity: 1; }
   62%  { transform: translateX(79px); opacity: 0; }
@@ -4653,45 +4692,45 @@ body::after { content: none; }
 /* analytics · tick — bars discretely jump between heights.
    transform-box: fill-box + transform-origin: bottom = scale
    from the baseline. steps(1,end) = discrete, never a glide. */
-.mega-analytics-bar {
+.mega-signal-bar {
   transform-box: fill-box;
   transform-origin: bottom;
 }
-.mega-analytics-bar-1 {
-  animation: mega-analytics-bar1 3.6s steps(1, end) infinite 0s;
+.mega-signal-bar-1 {
+  animation: mega-signal-bar1 3.6s steps(1, end) infinite 0s;
 }
-.mega-analytics-bar-2 {
-  animation: mega-analytics-bar2 3.6s steps(1, end) infinite 0.9s;
+.mega-signal-bar-2 {
+  animation: mega-signal-bar2 3.6s steps(1, end) infinite 0.9s;
 }
-.mega-analytics-bar-3 {
-  animation: mega-analytics-bar3 3.6s steps(1, end) infinite 1.8s;
+.mega-signal-bar-3 {
+  animation: mega-signal-bar3 3.6s steps(1, end) infinite 1.8s;
 }
-.mega-analytics-bar-4 {
-  animation: mega-analytics-bar4 3.6s steps(1, end) infinite 0.45s;
+.mega-signal-bar-4 {
+  animation: mega-signal-bar4 3.6s steps(1, end) infinite 0.45s;
 }
 
-@keyframes mega-analytics-bar1 {
+@keyframes mega-signal-bar1 {
   0%   { transform: scaleY(0.55); }
   25%  { transform: scaleY(0.85); }
   50%  { transform: scaleY(0.35); }
   75%  { transform: scaleY(1.00); }
   100% { transform: scaleY(0.55); }
 }
-@keyframes mega-analytics-bar2 {
+@keyframes mega-signal-bar2 {
   0%   { transform: scaleY(0.90); }
   25%  { transform: scaleY(0.45); }
   50%  { transform: scaleY(1.00); }
   75%  { transform: scaleY(0.60); }
   100% { transform: scaleY(0.90); }
 }
-@keyframes mega-analytics-bar3 {
+@keyframes mega-signal-bar3 {
   0%   { transform: scaleY(0.40); }
   25%  { transform: scaleY(0.75); }
   50%  { transform: scaleY(0.55); }
   75%  { transform: scaleY(0.25); }
   100% { transform: scaleY(0.40); }
 }
-@keyframes mega-analytics-bar4 {
+@keyframes mega-signal-bar4 {
   0%   { transform: scaleY(1.00); }
   25%  { transform: scaleY(0.55); }
   50%  { transform: scaleY(0.80); }
@@ -4721,13 +4760,13 @@ body::after { content: none; }
   }
   .mega-notes-cursor,
   .mega-tasks-dot,
-  .mega-roadmap-sweep-dot,
-  .mega-analytics-bar {
+  .mega-timeline-pass-dot,
+  .mega-signal-bar {
     animation: none !important;
   }
   .mega-notes-cursor { opacity: 1; }
-  .mega-roadmap-sweep-dot { transform: none; }
-  .mega-analytics-bar { transform: scaleY(0.7); }
+  .mega-timeline-pass-dot { transform: none; }
+  .mega-signal-bar { transform: scaleY(0.7); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════

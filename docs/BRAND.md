@@ -133,12 +133,12 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Product naming
 - **Full form (in marketing copy, footer suite, cross-product nav):** `Signal Tasks`, `Signal Timeline`, `Signal`, `Signal Notes`.
-- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `roadmap·`, `analytics·`, `notes·` — each with its own indigo gesture inside one shared mark grammar:
+- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `timeline·`, `signal·`, `notes.` — each with its own indigo gesture inside one shared mark grammar:
   - `tasks·` — dot **pulses** (live signal). `.tasks-dot` in CSS. Continuous.
-  - `roadmap·` — dot **slides on mount** (motion toward a destination, settles). `.roadmap-dot` in CSS. Plays once.
-  - `analytics·` — dot is **static** (ambient presence). Inline-styled, no class. The quietest of the four.
-  - `notes·` — **underline writes itself** under the word, stops just before the dot, persists. `.notes-mark` in CSS (lives in studio/globals.css until Notes carries the gesture natively). Plays once on first paint. The line is the act of capture; the dot is the destination.
-  - All four respect `prefers-reduced-motion`.
+  - `timeline·` — dot **sweeps** forward. `.timeline-dot` in CSS. Direction without urgency.
+  - `signal·` — dot **ticks** between sampled positions. `.signal-dot` in CSS. Reading the signal, not streaming it.
+  - `notes.` — dot **blinks as a caret**. `.notes-dot-caret` in CSS. The capture surface is ready for input.
+  - All five, including `signal studio.`, respect `prefers-reduced-motion`.
 - **Conversational form (within the product itself):** drop "Signal" — e.g. "Welcome to Tasks."
 - **Never:** "the Tasks app" · "our task manager" · "the suite of products" (use "Signal Studio").
 
@@ -208,7 +208,7 @@ The H1 is the umbrella headline on every product. The eyebrow + sub do the diffe
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
 - Tasks: `Open the workspace`
-- Timeline: `Open the roadmap`
+- Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`
 

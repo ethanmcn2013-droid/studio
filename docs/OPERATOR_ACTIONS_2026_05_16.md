@@ -34,7 +34,7 @@ billing-bearing accounts on your behalf.
 6. When it asks which projects to connect: choose **Specific Projects**
    and tick **timeline** only. Continue.
 7. On the Upstash side, when prompted to create a database: pick the
-   **Free** plan, any name (e.g. `signal-roadmap`), nearest region,
+   **Free** plan, any name (e.g. `signal-timeline`), nearest region,
    and confirm. Approve the connection back to Vercel.
 8. That's it — the integration automatically adds the two settings
    Timeline needs (`UPSTASH_REDIS_REST_URL` and

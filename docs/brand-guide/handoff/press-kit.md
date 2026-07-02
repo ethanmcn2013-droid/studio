@@ -38,11 +38,11 @@ All masters live under `studio/public/brand/kit/`. Two parallel trees: `svg/` (v
 | Paper on dark (dark backgrounds) | `studio/public/brand/kit/svg/wordmark/signal-studio-paper.svg` |
 | Mark only (the dot) | `studio/public/brand/kit/svg/mark/dot-indigo.svg` |
 
-**Per-product wordmarks** (`tasks·`, `roadmap·`, `analytics·`, `notes·`):
+**Per-product wordmarks** (`tasks·`, `timeline·`, `signal·`, `notes.`):
 
 - `studio/public/brand/kit/svg/product-wordmarks/tasks.svg`
-- `studio/public/brand/kit/svg/product-wordmarks/roadmap.svg`
-- `studio/public/brand/kit/svg/product-wordmarks/analytics.svg`
+- `studio/public/brand/kit/svg/product-wordmarks/timeline.svg`
+- `studio/public/brand/kit/svg/product-wordmarks/signal.svg`
 - `studio/public/brand/kit/svg/product-wordmarks/notes.svg`
 
 **Lockups** (wordmark on background, 16:9 share-card aspect):
@@ -65,7 +65,7 @@ A full zipped kit lives at `studio/public/brand/signal-studio-brand-kit.zip` —
 ### Construction
 
 - The umbrella wordmark is `signal studio.` — lowercase, one space, indigo period.
-- Per-product wordmarks are `tasks·`, `roadmap·`, `analytics·`, `notes·` — lowercase, indigo middot.
+- Per-product wordmarks are `tasks·`, `timeline·`, `signal·`, `notes.` — lowercase, indigo middot.
 - The dot is the brand. Same shape from a 16px favicon to a billboard. Differentiation across products comes from gesture (`animation-specs.md`), not colour or letterform.
 - Construction is locked: dot diameter 0.16 × cap-height, 0.06em gap from the wordmark, baseline lower-right.
 
@@ -153,9 +153,9 @@ Two reference specs exist; the locked-spec for export is below. The live in-prod
 |---|---|---|---|
 | `signal studio.` | Geist Sans 600 | `-0.035em` | indigo period, 0.16 × cap-height |
 | `tasks·` | Geist Sans 600 | `-0.01em` (live `.tasks-mark`) | indigo middot |
-| `roadmap·` | Geist Sans 600 | `-0.025em` | indigo middot |
-| `analytics·` | Geist Sans 600 | `-0.025em` | indigo middot |
-| `notes·` | Geist Sans 600 | `-0.025em` | indigo middot |
+| `timeline·` | Geist Sans 600 | `-0.025em` | indigo middot |
+| `signal·` | Geist Sans 600 | `-0.025em` | indigo middot |
+| `notes.` | Geist Sans 600 | `-0.025em` | indigo middot |
 
 For motion (the dot gesture per product), read `animation-specs.md`.
 

@@ -16,7 +16,7 @@
 
 **Resolves.** Operator-pending. Upstash provisioning on Vercel, then a redeploy. Marketing may describe Timeline as live for the public viewer only. Do not invite a reader to create or edit a timeline until this clears.
 
-**Reference.** `audit/ISSUES.md` row `roadmap-01`. `studio/docs/shipped-state.md` lines 23 and 47–51.
+**Reference.** `audit/ISSUES.md` Timeline write-path row. `studio/docs/shipped-state.md` lines 23 and 47–51.
 
 ---
 

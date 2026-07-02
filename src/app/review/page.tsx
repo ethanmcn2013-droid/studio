@@ -32,7 +32,7 @@ type Product = {
 const PRODUCTS: Product[] = [
   {
     name: "Notes",
-    mark: "notes·",
+    mark: "notes.",
     line: "Capture clarity. Three-second notebook, one-way extract to Tasks.",
     appUrl: `${NOTES_URL.replace(/\/$/, "")}/app`,
     siteUrl: NOTES_URL,

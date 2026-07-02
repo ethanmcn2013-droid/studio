@@ -1,6 +1,6 @@
 # Signal Studio · Brand Assets
 
-A complete kit of the Signal Studio logo, mark, and product wordmarks in **SVG** and **PNG**.
+A SVG-first kit of the Signal Studio logo, mark, and product wordmarks, with PNG renders where exported.
 
 Drop this folder straight into Google Drive — every file previews correctly without needing Geist installed.
 
@@ -19,7 +19,7 @@ brand-assets/
 │   ├── lockup/              signal studio on cream / ink / indigo backgrounds
 │   ├── mark/                the dot — indigo / ink / paper
 │   ├── app-icon/            squircle tiles — cream / ink / indigo / paper
-│   └── product-wordmarks/   tasks · roadmap · analytics · notes
+│   └── product-wordmarks/   tasks · timeline · signal · notes
 │
 └── png/                     ← rendered raster versions
     ├── wordmark/            128, 256, 512 height
@@ -43,10 +43,12 @@ brand-assets/
 | Product-specific lockup | `svg/product-wordmarks/tasks.svg` etc. |
 
 ### SVGs are the master format
-Every SVG has the text **outlined to paths** — no font loading required. They render identically in Chrome, Safari, Firefox, Figma, Illustrator, Google Slides, Sheets, and Drive previews.
+The SVG masters are the source of truth. House marks are outlined where already exported; the current Timeline and Signal product wordmarks use rendered text in canonical SVG masters until the next path-outline export pass. They must still read `timeline` and `signal` in the asset itself, the aria-label, and the filename.
 
 ### PNGs are for places that can't take SVG
 Slack avatars, GitHub README badges, email signatures, anywhere SVG isn't supported.
+
+**PNG export TODO:** regenerate `png/product-wordmarks/timeline-{128,256,512}.png` and `png/product-wordmarks/signal-{128,256,512}.png` from the canonical SVG masters. Do not rename legacy rasters; render fresh files.
 
 ---
 
@@ -63,4 +65,6 @@ For the full design system, see `Signal Studio Design System.html` and the brand
 
 ## Re-exporting
 
-If you ever need a size that isn't here, open the SVG in Chrome, then **File → Print → Save as PDF** (or **Save Page As → png** in DevTools). The SVG is the source of truth — every PNG in this kit was generated from it.
+If you ever need a size that isn't here, open the SVG in Chrome, then **File → Print → Save as PDF** (or **Save Page As → png** in DevTools). The SVG is the source of truth.
+
+Run `node scripts/check-brand-assets.mjs` from the Studio worktree before handing off brand assets. It validates canonical Timeline/Signal SVG filenames, labels, and visible text, and reminds the operator about the pending PNG export.

@@ -1,4 +1,5 @@
-type Variant = "signal" | "tasks" | "roadmap" | "analytics" | "notes";
+type Kind = "studio" | "tasks" | "timeline" | "signal" | "notes";
+type Variant = "signal" | "tasks" | "roadmap" | "analytics" | "notes" | "timeline" | "studio";
 type Size = "sm" | "md" | "lg" | "xl";
 
 interface WordmarkProps {
@@ -13,7 +14,9 @@ interface WordmarkProps {
   intro?: boolean;
   size?: Size;
   as?: "span" | "div" | "h1";
-  /** Which wordmark — default "signal" (the umbrella). */
+  /** Canonical wordmark kind. Prefer this over variant for new code. */
+  kind?: Kind;
+  /** Legacy alias. `signal` means the umbrella mark for compatibility. */
   variant?: Variant;
 }
 
@@ -24,34 +27,39 @@ const SIZE: Record<Size, string> = {
   xl: "text-[clamp(2.25rem,1.6rem+2.8vw,4rem)]",
 };
 
-// Keys are the internal variant identity (coupled to motion + CSS
-// data-variant); values are the visible wordmark text. The 2026-06-13
-// rename changes only the text: roadmap→timeline, analytics→signal.
-const LABEL: Record<Variant, string> = {
-  signal: "signal studio",
+const LABEL: Record<Kind, string> = {
+  studio: "signal studio",
   tasks: "tasks",
-  roadmap: "timeline",
-  analytics: "signal",
+  timeline: "timeline",
+  signal: "signal",
   notes: "notes",
 };
 
-const USES_PERIOD: Record<Variant, boolean> = {
+const USES_PERIOD: Record<Kind, boolean> = {
+  studio: true,
   signal: true,
-  tasks: false,
-  roadmap: false,
-  analytics: false,
   notes: true,
+  tasks: false,
+  timeline: false,
+};
+
+const LEGACY_CSS_VARIANT: Record<Kind, "signal" | "tasks" | "roadmap" | "analytics" | "notes"> = {
+  studio: "signal",
+  tasks: "tasks",
+  timeline: "roadmap",
+  signal: "analytics",
+  notes: "notes",
 };
 
 /**
  * Canonical wordmark per the suite design system (v1, 2026-05-13).
  *
- * Five variants, five motions, one indigo:
- *   - signal studio.  broadcast  2.6s  (period + emit ring)
- *   - tasks·          pulse      2.6s  ease-in-out
- *   - roadmap·        sweep      5.4s  cubic-bezier(.22,.7,.2,1)
- *   - analytics·      tick       3.6s  steps(1,end)
- *   - notes.          caret      1.1s  steps(1,end)
+ * Five canonical kinds, five motions, one indigo:
+ *   - signal studio.  broadcast
+ *   - notes.          caret
+ *   - tasks·          pulse
+ *   - timeline·       sweep
+ *   - signal·         tick
  *
  * Period (.pd) is baseline-seated — used by umbrella + nouns.
  * Middot (.md) is lifted toward cap-height — used by verbs.
@@ -62,18 +70,30 @@ export function Wordmark({
   intro = false,
   size = "md",
   as: Tag = "span",
+  kind,
   variant = "signal",
 }: WordmarkProps) {
+  const resolvedKind: Kind =
+    kind ??
+    (variant === "roadmap"
+      ? "timeline"
+      : variant === "analytics"
+        ? "signal"
+        : variant === "signal"
+          ? "studio"
+          : variant);
   const sizeClass = SIZE[size] ?? SIZE.md;
-  const isIntro = intro && variant === "signal";
+  const isIntro = intro && resolvedKind === "studio";
   const liveClass = isIntro ? "is-intro" : animate ? "is-live" : "";
-  const label = LABEL[variant];
-  const usesPeriod = USES_PERIOD[variant];
+  const label = LABEL[resolvedKind];
+  const usesPeriod = USES_PERIOD[resolvedKind];
+  const legacyVariant = LEGACY_CSS_VARIANT[resolvedKind];
 
   return (
     <Tag
       className={`brand-mark ${liveClass} ${sizeClass} ${className}`.trim()}
-      data-variant={variant}
+      data-kind={resolvedKind}
+      data-variant={legacyVariant}
     >
       <span className="word">{label}</span>
       {usesPeriod ? (
@@ -81,7 +101,7 @@ export function Wordmark({
           <span className="pd" aria-hidden>
             .
           </span>
-          {variant === "signal" && (animate || isIntro) ? (
+          {resolvedKind === "studio" && (animate || isIntro) ? (
             <span className="ring" aria-hidden />
           ) : null}
         </>

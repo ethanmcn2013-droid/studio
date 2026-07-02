@@ -12,7 +12,7 @@ This file is the operating summary of the brand guide. The full canvas + the thr
 
 ### 1 · The mark (one construction across the suite)
 
-A single wordmark grammar — used for both the umbrella `signal studio` and each product `tasks`, `roadmap`, `analytics`, `notes`. Same shape from a 16px favicon to a billboard.
+A single wordmark grammar — used for both the umbrella `signal studio` and each product `tasks`, `timeline`, `signal`, `notes`. Same shape from a 16px favicon to a billboard.
 
 | Property | Value |
 |---|---|
@@ -33,15 +33,15 @@ Each product's dot animates differently — encoding that product's relationship
 | Product | Gesture | Reading time as… | CSS keyframe |
 |---|---|---|---|
 | `tasks·` | **pulse** (continuous) | now — the queue is alive | `@keyframes dot-pulse` · 2.6s ease-in-out infinite |
-| `roadmap·` | **slide** (forward) | timeline — from past to future | `@keyframes dot-slide` · 5.4s cubic-bezier infinite |
-| `analytics·` | **tick** (sampled) | discrete reads — jumps between samples | `@keyframes dot-tick` · 3.6s steps(1, end) infinite |
-| `notes·` | **caret** (input) | awaiting — a held cursor | `@keyframes dot-caret` · 1.1s steps(1, end) infinite |
+| `timeline·` | **sweep** (forward) | timeline — from past to future | `@keyframes timeline-sweep` · 5.4s cubic-bezier infinite |
+| `signal·` | **tick** (sampled) | discrete reads — jumps between samples | `@keyframes signal-tick` · 3.6s steps(1, end) infinite |
+| `notes.` | **caret** (input) | awaiting — a held cursor | `@keyframes dot-caret` · 1.1s steps(1, end) infinite |
 | `signal studio.` | **pulse-slow** (ambient) | the umbrella, calmer | `@keyframes dot-pulse-slow` · 5.2s ease-in-out infinite |
 
-**Changes from previous BRAND.md §4:**
-- Notes: was "underline writes itself" → now **caret** (the dot blinks like a typewriter cursor; aligns with the notebook's actual capture-cursor language).
-- Signal: was "static dot" → now **tick** (discrete data ticks, mirrors the briefing-as-sampled-attention model).
-- Studio umbrella: antique-gold period treatment is retired; the animated variant is **pulse-slow** in indigo.
+**Current motion canon:**
+- Notes: **caret** (the dot blinks like a typewriter cursor; aligns with the notebook's actual capture-cursor language).
+- Signal: **tick** (discrete data ticks, mirrors the briefing-as-sampled-attention model).
+- Studio umbrella: **pulse-slow** in indigo.
 
 ### 3 · Color tokens (additions to current palette)
 
@@ -93,7 +93,7 @@ NOT to the notebook product surface itself, which retains its own visual registe
 
 | Cycle | Product | What changes |
 |---|---|---|
-| **11.1** | Notes wordmark | Underline-writes → caret (dot blink). Geist + dot grammar applied to suite-strip nav. Notebook surface unchanged. |
+| **11.1** | Notes wordmark | Caret blink. Geist + dot grammar applied to suite-strip nav. Notebook surface unchanged. |
 | **11.2** | Studio umbrella | Wordmark animated with pulse-slow (replacing the static gold period in some contexts) |
 | **11.3** | Signal wordmark | Static dot → tick gesture |
 | **11.4** | Tasks + Timeline wordmark | Verify pulse + slide match the locked timing curves; align where they don't |

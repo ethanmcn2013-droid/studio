@@ -72,29 +72,33 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 
 ---
 
-## 3 · Timeline — `roadmap·` ambient opacity pulse
+## 3 · Timeline — `timeline·` sweep
 
-**Wordmark:** `roadmap·` — same lowercase Geist semibold + middot dot.
+**Wordmark:** `timeline·` — same lowercase Geist semibold + middot dot.
 
-**Gesture:** A low-key ambient opacity pulse (not the "slide" gesture aspirationally named in BRAND.md §4). The slide was deferred 2026-05-18 per `ELEVATION_C2_TICKET.md:24–36` to avoid competing with SuiteLoader during page load.
+**Gesture:** A forward sweep. The dot moves just enough to read as direction, then returns to rest. It does not glow, bounce, or chase attention.
 
 **Live values (timeline repo: `src/app/globals.css:912`)**
-- Duration: `3s`
-- Easing: `ease-in-out`
-- Iterations: `infinite alternate`
-- Keyframes (`roadmap-dot-ambient`):
+- Duration: `5.4s`
+- Easing: `cubic-bezier(.22,.7,.2,1)`
+- Iterations: `infinite`
+- Keyframes (`timeline-sweep`):
   ```
-  from → opacity: 0.85
-  to   → opacity: 1.0
+  0%   → translateX(0); opacity: 1
+  60%  → translateX(4px); opacity: 1
+  62%  → translateX(4px); opacity: 0
+  70%  → translateX(0); opacity: 0
+  78%  → translateX(0); opacity: 1
+  100% → translateX(0); opacity: 1
   ```
 
-**Motion-graphics note:** If a "slide" gesture is desired for marketing-only assets (where SuiteLoader is absent), commission a separate keyframe. Do **not** modify the live product gesture without raising it as a brand-canon change in BRAND.md §4 first.
+**Motion-graphics note:** For public brand assets, use the sweep. If a live product still carries an older ambient pulse during migration, do not present that as the public canon.
 
 ---
 
-## 4 · Signal — `analytics·` tick (sampled)
+## 4 · Signal — `signal·` tick (sampled)
 
-**Wordmark:** `analytics·` — same lowercase Geist semibold + middot dot.
+**Wordmark:** `signal·` — same lowercase Geist semibold + middot dot.
 
 **Gesture:** The dot **jumps** between 4 discrete sample positions, never glides between them. `steps(1, end)` ensures the transition is instantaneous; the dot snaps to a new Y once per cycle, then holds. Read: discrete samples, not a continuous signal.
 
@@ -103,7 +107,7 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
 - Easing: `steps(1, end)` (timing function snaps between samples)
 - Iterations: `infinite`
 - Geometry: `5px × 5px` (max `8px × 8px` pre-hydration clamp)
-- Keyframes (`analytics-dot-tick`):
+- Keyframes (`signal-tick`):
   ```
   0%   → translateY(-3px)
   25%  → translateY(-6px)
@@ -113,13 +117,13 @@ Reduced-motion contract (all 5): `@media (prefers-reduced-motion: reduce) { anim
   ```
 - Read: every 900ms (3.6s / 4 samples) the dot jumps to a new height. The eye reads it as data being sampled.
 
-**Open question (P3 from audit):** The 30s Remotion demo (`analytics-demo/`) currently renders a **static** dot at the closing wordmark, not the tick gesture. Decide before 7.3 grade pass: lock static (calmer for typography cut) or animate per spec above.
+**Open question (P3 from audit):** Any old motion demo that renders a static Signal dot should be treated as pre-canon. The public wordmark gesture is the tick above.
 
 ---
 
-## 5 · Notes — `notes·` caret blink
+## 5 · Notes — `notes.` caret blink
 
-**Wordmark:** `notes·` — same lowercase Geist semibold + middot dot. **Two variants** in this repo, deliberately different:
+**Wordmark:** `notes.` — same lowercase Geist semibold + middot dot. **Two variants** in this repo, deliberately different:
 
 **5a · Marketing breadcrumb (`.notes-mark .dot`)** — **static**. No animation. Suite-wide breadcrumb consistency.
 
@@ -172,8 +176,8 @@ Result: brand presence is preserved (dot is visible at full opacity); motion is 
 - `studio/src/app/globals.css:1680–1719` — brand-signal-emit / brand-signal-ring
 - `tasks/src/app/globals.css:397–419` — tasks-dot-pulse (live product)
 - `studio/src/app/globals.css:441–469` — tasks-dot-pulse (umbrella variant)
-- `roadmap/src/app/globals.css:905–928` — timeline-dot-ambient
-- `analytics/src/app/globals.css:420–449` — signal-dot-tick
+- `timeline/src/app/globals.css` — timeline-sweep
+- `signal/src/app/globals.css` — signal-tick
 - `notes/src/app/globals.css:399–410` — notes-dot-caret (notebook header)
 
 ## Authority chain

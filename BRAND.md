@@ -133,11 +133,11 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Product naming
 - **Full form (in marketing copy, footer suite, cross-product nav):** `Signal Tasks`, `Signal Timeline`, `Signal`, `Signal Notes`.
-- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `roadmap·`, `analytics·`, `notes·` — each with its own indigo gesture inside **one shared mark grammar** (Geist 500, letter-spacing -0.025em, dot 0.16em indigo at the baseline lower-right). The dot is the brand. Same construction from a 16px favicon to a billboard. Per-product gestures encode each product's *relationship to time*:
+- **Wordmark form (in each product's own header/logo):** lowercase `tasks·`, `timeline·`, `signal·`, `notes.` — each with its own indigo gesture inside **one shared mark grammar** (Geist 500, letter-spacing -0.025em, dot 0.16em indigo at the baseline lower-right). The dot is the brand. Same construction from a 16px favicon to a billboard. Per-product gestures encode each product's *relationship to time*:
   - `tasks·` — **pulse** (continuous, ~2.6s). Now — the queue is alive.
-  - `roadmap·` — **slide** (forward, ~5.4s). Timeline — past to future.
-  - `analytics·` — **tick** (sampled, ~3.6s steps). Discrete reads — jumps between samples, never between them.
-  - `notes·` — **caret** (input, ~1.1s sharp on/off). A held cursor — there, then gone, then there. (Updated 2026-05-11: was "underline writes itself"; new gesture aligns the wordmark with the notebook's own capture caret.)
+  - `timeline·` — **sweep** (forward, ~5.4s). Timeline — past to future.
+  - `signal·` — **tick** (sampled, ~3.6s steps). Discrete reads — jumps between samples, never between them.
+  - `notes.` — **caret** (input, ~1.1s sharp on/off). A held cursor — there, then gone, then there.
   - `signal studio.` — **pulse-slow** (ambient, ~5.2s). The umbrella, calmer than tasks.
   - All five respect `prefers-reduced-motion`.
   - Full keyframe spec lives in `studio/docs/brand-guide/BRAND_GUIDE_HANDOFF.md`.
@@ -146,7 +146,7 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 
 ### Umbrella naming
 - **Full form:** `Signal Studio` (capital S, capital S).
-- **Wordmark form:** lowercase `signal studio.` with antique-gold period.
+- **Wordmark form:** lowercase `signal studio.` with indigo period.
 - **Cross-product nav prefix:** lowercase `signal studio.` (consistent across all four products).
 - **Never:** just "Signal" alone in body copy — collides with Signal Messenger.
 
@@ -227,7 +227,7 @@ CTA secondary: [product-specific deeper link]
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
 - Tasks: `Open the workspace`
-- Timeline: `Open the roadmap`
+- Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`
 

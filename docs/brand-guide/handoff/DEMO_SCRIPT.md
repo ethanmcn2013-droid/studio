@@ -57,14 +57,14 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 
 **Show.**
 
-- Switch to `roadmap.signalstudio.ie/signal-roadmap` (the live demo workspace).
+- Switch to `timeline.signalstudio.ie/signal-timeline` (the live demo workspace).
 - Show the public viewer with the three-view switcher. Land on the list view.
 - Optional: open the calendar view to make the shareability concrete.
 
 **Source paths.**
 
-- Public viewer: `roadmap/src/app/[workspace]/page.tsx`
-- Wordmark gesture (`roadmap-dot-ambient`, 3s opacity pulse): `roadmap/src/app/globals.css:912`
+- Public viewer: `timeline/src/app/[workspace]/page.tsx`
+- Wordmark gesture (`timeline-sweep`, 5.4s sweep): `timeline/src/app/globals.css`
 
 ### 2c · Signal (0:25)
 
@@ -74,14 +74,14 @@ The tour shows one operating year compressed: a wedding planner books a couple, 
 
 **Show.**
 
-- Switch to `analytics.signalstudio.ie/app`.
+- Switch to `signal.signalstudio.ie/app`.
 - Show the rendered daily briefing — three blocks, hard cap of three. Read the bold impact-lead line out loud.
 
 **Source paths.**
 
-- Briefing render: `analytics/src/app/app/page.tsx`
-- Builder pipeline: `analytics/src/lib/briefing/build.ts`
-- Wordmark gesture (`analytics-dot-tick`, 3.6s steps(1) infinite): `analytics/src/app/globals.css:441`
+- Briefing render: `signal/src/app/app/page.tsx`
+- Builder pipeline: `signal/src/lib/briefing/build.ts`
+- Wordmark gesture (`signal-tick`, 3.6s steps(1) infinite): `signal/src/app/globals.css`
 
 ### 2d · Notes (0:25)
 

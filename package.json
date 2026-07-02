@@ -18,7 +18,9 @@
     "venue:paid": "tsx scripts/mark-venue-paid.ts",
     "partner:digest": "tsx scripts/partner-digest.ts",
     "check:dead": "tsx scripts/cross-repo-symbol-check.ts",
-    "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs"
+    "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs",
+    "render:brand-assets": "node scripts/render-brand-assets.mjs",
+    "check:brand-assets": "node scripts/check-brand-assets.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
