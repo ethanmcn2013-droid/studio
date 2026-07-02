@@ -1,0 +1,194 @@
+{
+  "src/app/brand/page.tsx": {
+    "hex": 21,
+    "ease": 0
+  },
+  "src/app/globals.css": {
+    "hex": 90,
+    "ease": 19
+  },
+  "src/app/hq/asset-command/page.tsx": {
+    "hex": 2,
+    "ease": 0
+  },
+  "src/app/hq/cards/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/hq/deck/page.tsx": {
+    "hex": 5,
+    "ease": 0
+  },
+  "src/app/hq/design-rooms/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/hq/entitlements/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/hq/health/page.tsx": {
+    "hex": 11,
+    "ease": 0
+  },
+  "src/app/hq/layout.tsx": {
+    "hex": 2,
+    "ease": 0
+  },
+  "src/app/hq/loan-pack/page.tsx": {
+    "hex": 5,
+    "ease": 0
+  },
+  "src/app/hq/market-entry/page.tsx": {
+    "hex": 5,
+    "ease": 0
+  },
+  "src/app/hq/one-pagers/page.tsx": {
+    "hex": 12,
+    "ease": 0
+  },
+  "src/app/hq/partners/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/hq/venues/page.tsx": {
+    "hex": 8,
+    "ease": 0
+  },
+  "src/app/hq/_review/ReviewRoom.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/layout.tsx": {
+    "hex": 6,
+    "ease": 0
+  },
+  "src/app/manifest.ts": {
+    "hex": 2,
+    "ease": 0
+  },
+  "src/app/opengraph-image.tsx": {
+    "hex": 5,
+    "ease": 0
+  },
+  "src/app/proof/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/review/page.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/app/templates/templates-browser.tsx": {
+    "hex": 13,
+    "ease": 4
+  },
+  "src/app/venues/demo/page.tsx": {
+    "hex": 0,
+    "ease": 1
+  },
+  "src/components/atlas/atlas-mermaid.tsx": {
+    "hex": 14,
+    "ease": 0
+  },
+  "src/components/dev-banner.tsx": {
+    "hex": 10,
+    "ease": 1
+  },
+  "src/components/hq/hq-inbox.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/components/hq/hq-today.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/components/hq/marketing-deck.tsx": {
+    "hex": 9,
+    "ease": 3
+  },
+  "src/components/hq/one-pager/DeckPrint.tsx": {
+    "hex": 11,
+    "ease": 0
+  },
+  "src/components/hq/one-pager/OnePager.tsx": {
+    "hex": 12,
+    "ease": 0
+  },
+  "src/components/layout/product-pills.tsx": {
+    "hex": 7,
+    "ease": 1
+  },
+  "src/components/layout/product-switcher.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/components/layout/products-mega-panel.tsx": {
+    "hex": 10,
+    "ease": 3
+  },
+  "src/components/layout/suite-launcher.tsx": {
+    "hex": 3,
+    "ease": 0
+  },
+  "src/components/layout/suite-switcher-pills.tsx": {
+    "hex": 9,
+    "ease": 2
+  },
+  "src/components/layout/SuiteSwitcher.tsx": {
+    "hex": 3,
+    "ease": 0
+  },
+  "src/components/marketing/template-pills.tsx": {
+    "hex": 13,
+    "ease": 0
+  },
+  "src/components/proof/handoff-trace.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/components/reading-progress.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/components/reveal/reveal-loading-showcase.tsx": {
+    "hex": 3,
+    "ease": 6
+  },
+  "src/components/reveal/reveal-products.tsx": {
+    "hex": 0,
+    "ease": 3
+  },
+  "src/components/system/SuiteLoader.tsx": {
+    "hex": 6,
+    "ease": 1
+  },
+  "src/lib/brand/suite-mark.tsx": {
+    "hex": 2,
+    "ease": 0
+  },
+  "src/lib/hq/asset-command.ts": {
+    "hex": 7,
+    "ease": 0
+  },
+  "src/lib/hq/blueprint.ts": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/lib/hq/crm-utils.ts": {
+    "hex": 6,
+    "ease": 0
+  },
+  "src/lib/hq/demo-film.ts": {
+    "hex": 2,
+    "ease": 0
+  },
+  "src/lib/templates/local-business-monthly-rhythm/roadmap.ts": {
+    "hex": 1,
+    "ease": 0
+  },
+  "src/lib/templates/wedding-planning-workspace/roadmap.ts": {
+    "hex": 1,
+    "ease": 0
+  }
+}
