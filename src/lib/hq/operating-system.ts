@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "card-batch-two",
+    title: "The Card — batch two, six directions",
+    group: "brand",
+    audience: ["founder"],
+    state: "needs-review",
+    owner: "Founder / Brand",
+    href: "/hq/cards",
+    source: "public/brand/collateral/cards",
+    action: "Choose the card",
+    note: "Ink, Indigo, Paper, Duo (black/indigo), The Dot, Broadcast — each duplex, print-ready, fronts and backs mix freely. Founder picks; the printer gets one file.",
+  },
+  {
     id: "collateral-venue",
     title: "Venue set — one-pager + leave-behind",
     group: "sales",

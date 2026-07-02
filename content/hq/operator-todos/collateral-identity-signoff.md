@@ -6,14 +6,17 @@ priority: P1
 blocking: false
 phase: Collateral Phase 1
 why: Quality-gate check 10 — nothing is printed or sent without an explicit founder yes.
-href: /brand/collateral/identity/index.html
+href: /hq/cards
 date: 2026-07-01
 ---
 
 ## Steps
 
-1. Open `/brand/collateral/identity/index.html` and review the founder card
-   (front + back), café card, letterhead, and email signature previews.
+1. **Choose the card:** open `/hq/cards` — six directions (Ink, Indigo,
+   Paper, Duo, The Dot, Broadcast), each duplex and print-ready. Fronts and
+   backs mix freely; name the pairing.
+2. Then review the rest of the set at `/brand/collateral/identity/index.html`
+   (café card, poster, letterhead, email signature).
 2. Confirm the location line: everything now reads **Limerick, Ireland** —
    the previous live signature (`/brand/email/signature.txt`) said Dublin.
    If Limerick is right, the old signature files should be superseded.

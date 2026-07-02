@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·96 · ships · six ways to hand someone the company
+
+**A gated review room at `/hq/cards` holds batch two of the founder card: Ink, Indigo, Paper, Duo (black front over indigo reverse), The Dot (the indigo dot alone on black), and Broadcast (the emit gesture as a hairline emblem, specced for blind deboss).** Each direction is duplex and print-ready at 85×55mm with bleed and crop marks; fronts and backs mix freely, and the page carries the print technique per direction — rich black builds, PMS 2726C, painted edges, deboss. The founder chooses; the printer gets one file. Behind HQ access by design — the card decision is an internal one until it's in someone's hand.
+
 ## 2026-07-02 · S·95 · re-does · the collateral speaks the deck's language
 
 **The full collateral bank was redesigned against the market-entry deck — the founder's chosen reference for look, feel and taste — replacing the earlier austerity with the deck's actual grammar: one indigo event per composition, not one pinprick.** Two-tone headlines land the payoff phrase in indigo; the founder card goes ink-dark over white reverse with the indigo stroke; a numbered solid-indigo Founding Partner card joins the system, presented at signing; the café and committee cards go dark with paper QR chips; the A2 campaign poster ships ("Most projects never get called one."); the six social formats become the deck's specimen cards — the dark stat card, the indigo partner card, the struck email subject answered in indigo; the venue one-pager takes the forwardable grammar with indigo-square rows and the €2,500 line; press documents get two-tone titles and indigo key columns; every gallery page wears the same chrome. 96 renders through the automated gate and a visual review. **Operator gates unchanged** — the five sign-off todos now review the v2 objects.
