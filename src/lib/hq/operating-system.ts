@@ -261,6 +261,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "posting-queue",
+    title: "The Posting Queue — six weeks drafted",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "needs-review",
+    owner: "Founder / Brand",
+    href: "/hq/socials",
+    source: "public/brand/collateral/social",
+    action: "Approve the queue",
+    note: "Twelve posts, two a week — deck-locked images, drafted captions, alt text on every one. Approve or strike lines; nothing posts without a yes.",
+  },
+  {
     id: "partner-card-room",
     title: "The Partner Card — chosen: Indigo + Numeral",
     group: "brand",

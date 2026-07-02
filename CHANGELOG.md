@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·99 · ships · the posting queue — six weeks, nothing written the day it posts
+
+**The specimen bank grew to the full grammar — all nine beliefs, three deck-defended numbers, three before/afters — and a gated queue at `/hq/socials` sequences twelve of them across six weeks, two a week, exactly as the deck's social rules demand: one idea per post, numbers only the deck defends, alt text always, no hashtag clouds, the founder answers every comment.** Each queued post carries its drafted caption (the only new copy — flagged for approval), its alt text ready to paste, its platform tags, and every rendered size. The partner format stays specimen-gated until a real venue signs. **Operator gate:** approve the queue or strike lines (`collateral-social-signoff`) — nothing posts without a yes.
+
 ## 2026-07-02 · S·98 · marks · three object decisions land
 
 **The founder chose: the café card is Campaign, the poster is Ink, and the partner card shortlist is Indigo + Numeral — with the reverse redesigned to the founder-contact grid (name, site, direct line), the same grammar as the founder card, so the honour answers its own next question.** The review rooms now carry the decisions visibly: chosen directions moved to the top with an indigo CHOSEN badge and accent border; alternates stay archived below. The sign-off ledger records all three with dates. Still open: the founder card itself (batch two) and the print run.

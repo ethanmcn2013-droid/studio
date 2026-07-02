@@ -6,19 +6,21 @@ priority: P1
 blocking: false
 phase: Collateral Phase 2
 why: Nothing posts without founder approval — the 90-day calendar can only be filled with approved objects.
-href: /brand/collateral/social/index.html
+href: /hq/socials
 date: 2026-07-01
 ---
 
 ## Steps
 
-1. Open `/brand/collateral/social/index.html` and review the six formats.
-   All copy is deck-locked (the number, the beliefs, the before/after line,
-   the founder quote); nothing was invented.
-2. The S·4 partner format is structurally a SPECIMEN — it stays that way
+1. **Approve the posting queue:** open `/hq/socials` — twelve posts across
+   six weeks, two a week, with drafted captions and alt text. Approve as
+   written or name the slots to change. The captions are the only new copy;
+   every image is deck-locked.
+2. The full bank (all nine beliefs, three numbers, three before/afters,
+   every size) is at `/brand/collateral/social/index.html`.
+3. The S·4 partner format is structurally a SPECIMEN — it stays that way
    until a venue signs and signs the permission form.
-3. Install the banners: LinkedIn company page (1128×191), LinkedIn personal
+4. Install the banners: LinkedIn company page (1128×191), LinkedIn personal
    profile (1584×396), X header (1500×500) — files in the gallery.
-4. Approve or amend the specimen posts; approved ones can seed the 90-day
-   launch calendar. Alt text for every image is in `alt-text.txt` — paste it
-   when posting.
+5. Alt text for every image is in `alt-text.txt` — the queue page carries
+   it per post, ready to paste.

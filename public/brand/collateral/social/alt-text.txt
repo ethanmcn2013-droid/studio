@@ -4,14 +4,24 @@ Signal Studio - social system alt text
 S.1 The Number
   [n01] Signal Studio — 19,898 weddings in Ireland last year. Most were planned in a group chat.
   [n02] Signal Studio — €36,641, the average spend on an Irish wedding.
+  [n03] Signal Studio — 70 plus societies at UL alone. Most run their year in a group chat.
 
 S.2 The Belief
   [b00] Signal Studio belief — Calm is a feature. We build it on purpose.
   [b03] Signal Studio belief three — Elegance is restraint.
   [b01] Signal Studio belief one — Meetings happen because visibility is poor.
+  [b02] Signal Studio belief B·02 — Clarity reduces stress.
+  [b04] Signal Studio belief B·04 — Great software should feel obvious.
+  [b05] Signal Studio belief B·05 — People want calm, not more features.
+  [b06] Signal Studio belief B·06 — Technology should disappear into the background.
+  [b07] Signal Studio belief B·07 — The best systems reduce cognitive load.
+  [b08] Signal Studio belief B·08 — Every feature must earn its place.
+  [b09] Signal Studio belief B·09 — Signal over noise — in product, brand, and plan.
 
 S.3 Before/After
   [schedule] Signal Studio — before: an email thread titled Re: Re: Re: FINAL schedule v7. After: one plan, everyone sees it.
+  [owner] Signal Studio — before: a file named final underscore FINAL v9 use this one. After: one owner, one date, per task.
+  [unread] Signal Studio — before: you have 47 unread messages. After: the one thing due today.
 
 S.4 The Partner
   [sp01] Signal Studio — Founding Limerick Partner number four, venue name placeholder. Specimen, not a real partner.
