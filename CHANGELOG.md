@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·98 · marks · three object decisions land
+
+**The founder chose: the café card is Campaign, the poster is Ink, and the partner card shortlist is Indigo + Numeral — with the reverse redesigned to the founder-contact grid (name, site, direct line), the same grammar as the founder card, so the honour answers its own next question.** The review rooms now carry the decisions visibly: chosen directions moved to the top with an indigo CHOSEN badge and accent border; alternates stay archived below. The sign-off ledger records all three with dates. Still open: the founder card itself (batch two) and the print run.
+
 ## 2026-07-02 · S·97 · ships · three more review rooms — the partner card, the café card, the poster
 
 **Three gated rooms join `/hq/cards`: `/hq/partner-card` (Indigo, Certificate, Numeral, Seal — the hand-numbered object presented at signing, with a hand-completed reverse on two directions), `/hq/cafe-card` (Ink, Campaign, Belief, Indigo — the permission-placed A6, choosable per counter), and `/hq/poster` (Ink, Indigo, Paper, The Dot — A2, one campaign line, chosen per wall).** Every direction is print-ready with bleed and crop marks; the rooms share one review surface (`ReviewRoom`) so every future object decision reads the same way. The sign-off ledger now walks the founder room by room. **Operator gate:** four decisions, one page each.

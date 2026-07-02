@@ -16,6 +16,7 @@ const DIRECTIONS: ReviewDirection[] = [
   {
     id: "ink",
     name: "01 · Ink",
+    chosen: "CHOSEN",
     spec: "A2 · rich black · the deck's poster",
     images: [
       { src: `${P}/posterx-ink-preview.png`, alt: "Ink campaign poster", caption: "White opening, indigo-mid payoff — the deck's poster, exactly." },
@@ -64,7 +65,7 @@ export default async function PosterPage() {
       title={<>One line, held across a room</>}
       intro="A2, one campaign line, no urgency theatre. The same line runs across the poster, the posts, and the café cards — repetition is the system working. All four are print-ready with bleed and crop marks."
       directions={DIRECTIONS}
-      advice="Posters are placements, not editions — choose per wall. Dark venue corridor: Ink. Bright campus board: Indigo. Café that hangs art: Paper or The Dot. The campaign line never changes; only the ground does."
+      advice="Decision recorded: Ink is the campaign poster — the deck's object, exactly. The other three grounds stay archived below for walls that ever need them."
     />
   );
 }

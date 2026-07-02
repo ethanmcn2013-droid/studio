@@ -11,6 +11,7 @@ export type ReviewDirection = {
   images: ReviewImage[];
   read: string;
   links: Array<{ label: string; href: string }>;
+  chosen?: string; // set when the founder has picked this direction
 };
 
 export function ReviewRoom({
@@ -44,10 +45,11 @@ export function ReviewRoom({
           <article
             key={d.id}
             style={{
-              border: "1px solid var(--hairline)",
+              border: d.chosen ? "1.5px solid var(--accent)" : "1px solid var(--hairline)",
               borderRadius: "10px",
               overflow: "hidden",
               background: "var(--paper)",
+              boxShadow: d.chosen ? "0 12px 32px -12px var(--accent-glow)" : undefined,
             }}
           >
             <div
@@ -65,7 +67,24 @@ export function ReviewRoom({
                 textTransform: "uppercase",
               }}
             >
-              <span style={{ fontWeight: 600 }}>{d.name}</span>
+              <span style={{ fontWeight: 600, display: "inline-flex", alignItems: "baseline", gap: "10px" }}>
+                {d.name}
+                {d.chosen ? (
+                  <span
+                    style={{
+                      background: "var(--accent)",
+                      color: "#ffffff",
+                      borderRadius: "999px",
+                      padding: "2px 10px",
+                      fontSize: "10px",
+                      fontWeight: 600,
+                      letterSpacing: "0.1em",
+                    }}
+                  >
+                    {d.chosen}
+                  </span>
+                ) : null}
+              </span>
               <span style={{ color: "var(--ink-faint)" }}>{d.spec}</span>
             </div>
             <div

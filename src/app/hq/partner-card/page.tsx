@@ -16,20 +16,36 @@ const DIRECTIONS: ReviewDirection[] = [
   {
     id: "indigo",
     name: "01 · Indigo",
-    spec: "solid indigo · PMS 2726C · hand-completed reverse",
+    chosen: "CHOSEN · PROOF BOTH",
+    spec: "solid indigo · PMS 2726C · founder contact reverse",
     images: [
       { src: `${P}/fpx-indigo-front-preview.png`, alt: "Indigo partner card front", caption: "The deck's card — solid indigo, the title and blank number low." },
-      { src: `${P}/fpx-indigo-back-preview.png`, alt: "Indigo partner card back", caption: "The reverse is completed by hand at signing: venue, signature — never reprinted." },
+      { src: `${P}/fpx-indigo-back-preview.png`, alt: "Indigo partner card back", caption: "The founder contact reverse — the person who answers, on the back of the honour." },
     ],
-    read: "The brand colour as the honour itself. The hand-filled reverse turns each card into a one-of-one artifact — the founder writes the venue's name in front of them.",
+    read: "The brand colour as the honour itself. The number on the front is still written by hand at signing — the reverse now carries the founder, so the card answers its own next question.",
     links: [
       { label: "front pdf", href: `${P}/fpx-indigo-front-print.pdf` },
       { label: "back pdf", href: `${P}/fpx-indigo-back-print.pdf` },
     ],
   },
   {
+    id: "numeral",
+    name: "02 · Numeral",
+    chosen: "CHOSEN · PROOF BOTH",
+    spec: "rich black · the number as hero · founder contact reverse",
+    images: [
+      { src: `${P}/fpx-numeral-front-preview.png`, alt: "Numeral partner card front", caption: "Ink-dark, the № monumental in indigo-mid — the position is the design." },
+      { src: `${P}/fpx-numeral-back-preview.png`, alt: "Numeral partner card back", caption: "The founder contact reverse — same grammar as the founder card." },
+    ],
+    read: "The S·4 post as a physical object — the number carries everything. Pairs perfectly with the social system when partners are announced.",
+    links: [
+      { label: "front pdf", href: `${P}/fpx-numeral-front-print.pdf` },
+      { label: "back pdf", href: `${P}/fpx-numeral-back-print.pdf` },
+    ],
+  },
+  {
     id: "certificate",
-    name: "02 · Certificate",
+    name: "03 · Certificate",
     spec: "600gsm · hairline frame · indigo reverse",
     images: [
       { src: `${P}/fpx-certificate-front-preview.png`, alt: "Certificate partner card front", caption: "A hairline frame and a centred stack — the number waits to be written." },
@@ -39,20 +55,6 @@ const DIRECTIONS: ReviewDirection[] = [
     links: [
       { label: "front pdf", href: `${P}/fpx-certificate-front-print.pdf` },
       { label: "back pdf", href: `${P}/fpx-certificate-back-print.pdf` },
-    ],
-  },
-  {
-    id: "numeral",
-    name: "03 · Numeral",
-    spec: "rich black · the number as hero · hand-completed reverse",
-    images: [
-      { src: `${P}/fpx-numeral-front-preview.png`, alt: "Numeral partner card front", caption: "Ink-dark, the № monumental in indigo-mid — the position is the design." },
-      { src: `${P}/fpx-numeral-back-preview.png`, alt: "Numeral partner card back", caption: "Hand-completed reverse: venue, signature, never reprinted." },
-    ],
-    read: "The S·4 post as a physical object — the number carries everything. Pairs perfectly with the social system when partners are announced.",
-    links: [
-      { label: "front pdf", href: `${P}/fpx-numeral-front-print.pdf` },
-      { label: "back pdf", href: `${P}/fpx-numeral-back-print.pdf` },
     ],
   },
   {
@@ -79,7 +81,7 @@ export default async function PartnerCardPage() {
       title={<>A position, not a purchase</>}
       intro="Twenty-five cards, numbered by hand, never reprinted. This is the object that makes joining the first twenty-five feel like what it is. Every direction is print-ready at 85×55mm; the number field stays blank until a real venue signs."
       directions={DIRECTIONS}
-      advice="The ceremony matters more than the card: whichever direction you choose, the number is written by hand, in front of the venue, at signing. Proof the top two on real stock — the deboss options need a sample to judge."
+      advice="Decision recorded: Indigo and Numeral are the shortlist — proof both on real stock and let touch make the final call. The number is still written by hand, in front of the venue, at signing. Certificate and Seal stay archived below."
     />
   );
 }

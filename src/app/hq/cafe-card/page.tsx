@@ -14,24 +14,25 @@ const P = "/brand/collateral/explorations";
 
 const DIRECTIONS: ReviewDirection[] = [
   {
-    id: "ink",
-    name: "01 · Ink",
-    spec: "A6 · rich black · ≥300gsm uncoated",
-    images: [
-      { src: `${P}/cafex-ink-preview.png`, alt: "Ink café card", caption: "The quiet introduction — wordmark, one line, the QR on a paper chip." },
-    ],
-    read: "Doesn't ask for attention; earns it. On a counter full of neon flyers, the calmest object wins the glance.",
-    links: [{ label: "print pdf", href: `${P}/cafex-ink-print.pdf` }],
-  },
-  {
     id: "campaign",
-    name: "02 · Campaign",
+    name: "01 · Campaign",
+    chosen: "CHOSEN",
     spec: "A6 · rich black · the poster at counter scale",
     images: [
       { src: `${P}/cafex-campaign-preview.png`, alt: "Campaign café card", caption: "The campaign line two-tone — the strongest hook of the four." },
     ],
     read: "Runs the same line as the poster and the posts — one campaign, every surface. The line does the work a logo can't: it makes a stranger nod.",
     links: [{ label: "print pdf", href: `${P}/cafex-campaign-print.pdf` }],
+  },
+  {
+    id: "ink",
+    name: "02 · Ink",
+    spec: "A6 · rich black · ≥300gsm uncoated",
+    images: [
+      { src: `${P}/cafex-ink-preview.png`, alt: "Ink café card", caption: "The quiet introduction — wordmark, one line, the QR on a paper chip." },
+    ],
+    read: "Doesn't ask for attention; earns it. On a counter full of neon flyers, the calmest object wins the glance.",
+    links: [{ label: "print pdf", href: `${P}/cafex-ink-print.pdf` }],
   },
   {
     id: "belief",
@@ -64,7 +65,7 @@ export default async function CafeCardPage() {
       title={<>Earn a stranger's glance, then reward it</>}
       intro="A6, heavy uncoated, placed by permission in cafés, venues, and on campus boards — never dropped, never stacked. One job: a stranger picks it up, scans, and lands somewhere calm. All four are print-ready."
       directions={DIRECTIONS}
-      advice="Cafés differ — a dark counter wants the indigo or belief card, a bright one wants ink. Nothing stops you running two: same campaign, chosen per placement. Placement rules hold either way: by permission, person to person, nothing laminated."
+      advice="Decision recorded: Campaign is the café card. One line across the poster, the posts, and the counter — repetition is the system working. The other three stay archived below if a placement ever wants a different ground."
     />
   );
 }
