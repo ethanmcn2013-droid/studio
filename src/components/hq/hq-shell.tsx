@@ -6,12 +6,11 @@ import { HqCommandPalette } from "@/components/hq/hq-command-palette";
 import { HqStatusDot } from "@/components/hq/hq-status-dot";
 
 const operatorLinks = [
-  { href: "/hq/vault", label: "vault" },
-  { href: "/hq/crm", label: "crm" },
-  { href: "/hq/marketing", label: "marketing" },
-  { href: "/hq/assets", label: "assets" },
-  { href: "/hq/reporting", label: "reporting" },
-  { href: "/hq/founders-circle", label: "shareholders" },
+  { href: "/hq/crm", label: "sell" },
+  { href: "/hq/design-rooms", label: "make" },
+  { href: "/hq/reporting", label: "tell" },
+  { href: "/hq/vault", label: "run" },
+  { href: "/hq/founders-circle", label: "board" },
 ];
 
 const boardLinks = [

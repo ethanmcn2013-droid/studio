@@ -24,8 +24,8 @@ const VARIANTS: CardVariant[] = [
     id: "ink",
     name: "01 · Ink",
     chosen: "CHOSEN",
-    front: "Ink-dark front — the wordmark high, the indigo stroke low.",
-    back: "White reverse — the contact grid with the QR to the site.",
+    front: "Ink-dark front — wordmark high, indigo stroke low, QR lower right.",
+    back: "White reverse — the contact grid.",
     read: "The deck's card. Serious, editorial, photographs beautifully. The safest world-class choice.",
     spec: "350–400gsm uncoated duplex · rich black front · one indigo event per side",
   },
@@ -191,7 +191,7 @@ export default async function CardsPage() {
         }}
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
-          Decision recorded: Ink, Indigo and Duo run as a trio — same reverse (contact grid + QR to the site), chosen per pocket and occasion. Proof all three on the real stock before the production run. The test is unchanged — would you be
+          Decision recorded: Ink, Indigo and Duo run as a trio — same reverse (the contact grid); the QR sits on every front, lower right, chosen per pocket and occasion. Proof all three on the real stock before the production run. The test is unchanged — would you be
           proud to leave it on the front desk of the best venue in Limerick?
           Fronts and backs mix freely; the print notes ship with whichever
           pairing you name.

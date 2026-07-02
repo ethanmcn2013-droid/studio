@@ -19,6 +19,7 @@ export type HqHub = {
   href: string;
   audience: HqAudience[];
   mode: "live" | "working" | "library" | "board";
+  loop: "sell" | "make" | "tell" | "run";
   summary: string;
   primaryMetric: string;
   secondaryMetric: string;
@@ -107,6 +108,7 @@ const vault = vaultStats();
 export const HQ_HUBS: HqHub[] = [
   {
     key: "vault",
+    loop: "run",
     label: "Vault",
     title: "The Vault",
     href: "/hq/vault",
@@ -120,6 +122,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "crm",
+    loop: "sell",
     label: "CRM",
     title: "Venue pipeline",
     href: "/hq/crm",
@@ -132,6 +135,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "marketing",
+    loop: "sell",
     label: "Marketing",
     title: "Six-month engine",
     href: "/hq/marketing",
@@ -144,6 +148,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "assets",
+    loop: "make",
     label: "Assets",
     title: "Brand and sales library",
     href: "/hq/assets",
@@ -156,6 +161,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "design-rooms",
+    loop: "make",
     label: "Design Rooms",
     title: "Design Rooms",
     href: "/hq/design-rooms",
@@ -169,6 +175,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "asset-command",
+    loop: "make",
     label: "Asset Command",
     title: "Asset Command System",
     href: "/hq/asset-command",
@@ -182,6 +189,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "reporting",
+    loop: "tell",
     label: "Reporting",
     title: "Simple metrics",
     href: "/hq/reporting",
@@ -194,6 +202,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "founders-circle",
+    loop: "tell",
     label: "Shareholders",
     title: "Founders Circle",
     href: "/hq/founders-circle",
@@ -206,6 +215,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "org",
+    loop: "run",
     label: "Org",
     title: "Executive Leadership Team",
     href: "/hq/org",
@@ -219,6 +229,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "blueprint",
+    loop: "run",
     label: "Blueprint",
     title: "Founder Operating System",
     href: "/hq/blueprint",
@@ -232,6 +243,7 @@ export const HQ_HUBS: HqHub[] = [
   },
   {
     key: "data-room",
+    loop: "tell",
     label: "Data Room",
     title: "The one link",
     href: "/hq/data-room",

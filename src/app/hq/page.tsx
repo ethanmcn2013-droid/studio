@@ -168,19 +168,29 @@ export default async function HqPage() {
             The rooms
           </h2>
         </div>
-        <div className="hq-hub-grid">
-          {HQ_HUBS.map((hub) => (
-            <Link key={hub.key} href={hub.href} className="hq-hub-card">
-              <span className="hq-hub-label">{hub.label}</span>
-              <span className="hq-hub-name">{hub.title}</span>
-              <span className="hq-hub-summary">{hub.summary}</span>
-              <span className="hq-hub-meta">
-                {hub.primaryMetric} · {hub.secondaryMetric}
-              </span>
-              <span className="hq-hub-action">{hub.action} →</span>
-            </Link>
-          ))}
-        </div>
+        {([
+          ["sell", "Sell — the venue engine"],
+          ["make", "Make — design and assets"],
+          ["tell", "Tell — numbers and story"],
+          ["run", "Run — the company itself"],
+        ] as const).map(([loop, label]) => (
+          <div key={loop} style={{ marginTop: "18px" }}>
+            <span className="hq-os-eyebrow">{label}</span>
+            <div className="hq-hub-grid" style={{ marginTop: "10px" }}>
+              {HQ_HUBS.filter((hub) => hub.loop === loop).map((hub) => (
+                <Link key={hub.key} href={hub.href} className="hq-hub-card">
+                  <span className="hq-hub-label">{hub.label}</span>
+                  <span className="hq-hub-name">{hub.title}</span>
+                  <span className="hq-hub-summary">{hub.summary}</span>
+                  <span className="hq-hub-meta">
+                    {hub.primaryMetric} · {hub.secondaryMetric}
+                  </span>
+                  <span className="hq-hub-action">{hub.action} →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
 
       <section className="hq-audience-paths" aria-labelledby="audience-paths-title">

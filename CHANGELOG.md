@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·105 · tightens · HQ speaks in operator verbs, and the QR moves to the front
+
+**Signal HQ reorganised around what a sole founder actually does: the nav is now Sell · Make · Tell · Run (+ board), and the hub board groups its rooms under the same four loops — a panel-session decision recorded in `hq-founder-loops`.** Design Rooms joined the hub map and lost its em dashes; every description is one breath. And the founder card trio changed on review: the QR now sits on the front, lower right, on a paper chip — the back stays pure contact. The proof-order package was rebuilt with the corrected files.
+
 ## 2026-07-02 · S·104 · ships · Design Rooms, and the wedding that unblocks the screenshots
 
 **Signal HQ gained a Design Rooms tab — every design decision, its explored directions, and its chosen object in one place: six decision rooms, six galleries, each with its state (decided, approved, shortlist).** It exists because the discipline deserves a record — six founder cards, four posters, a signable pilot — and some version of it may go public at launch as proof of how seriously the design is taken. And the screenshot blocker now has its answer written: `wedding-seed.md` — "Aoife & Dan · 17 October 2026" — a complete, real-shaped wedding (captures, run-sheet with owners, the couple's timeline, the morning view) plus the six-shot list. **Operator gate (P1, blocking):** enter the seed into a real workspace and shoot the six screens (`seed-wedding-workspace`) — that single session unblocks the one-pager finishing pass, press M·2, and the demo film.

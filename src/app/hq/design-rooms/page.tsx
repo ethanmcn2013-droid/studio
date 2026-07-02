@@ -13,21 +13,21 @@ export const metadata: Metadata = {
 type Room = { href: string; name: string; state: string; note: string };
 
 const ROOMS: Room[] = [
-  { href: "/hq/cards", name: "The Founder Card", state: "DECIDED · TRIO", note: "Six directions explored; Ink, Indigo and Duo chosen — one reverse, QR to the site. Proof order packaged." },
-  { href: "/hq/partner-card", name: "The Founding Partner Card", state: "SHORTLIST · 2", note: "Four directions; Indigo and Numeral shortlisted with the founder-contact reverse (direct line lives here)." },
-  { href: "/hq/cafe-card", name: "The Café Card", state: "DECIDED", note: "Four directions; Campaign chosen — the poster's line at counter scale. Alternates archived." },
-  { href: "/hq/poster", name: "The Campaign Poster", state: "DECIDED", note: "Four grounds; Ink chosen. Indigo, Paper and The Dot archived, choosable per wall." },
-  { href: "/hq/venue-kit", name: "The Venue Kit", state: "APPROVED", note: "Seven objects — deck, pricing, outreach, script, permission form, pilot card, prepared-for personalisation." },
-  { href: "/hq/socials", name: "The Posting Queue", state: "APPROVED", note: "Six weeks, twelve posts, drafted captions and alt text — cleared to schedule as written." },
+  { href: "/hq/cards", name: "The Founder Card", state: "DECIDED · TRIO", note: "Ink, Indigo and Duo chosen from six. One reverse, QR on the front. Proof order packaged." },
+  { href: "/hq/partner-card", name: "The Founding Partner Card", state: "SHORTLIST · 2", note: "Indigo and Numeral shortlisted from four. Founder-contact reverse carries the direct line." },
+  { href: "/hq/cafe-card", name: "The Café Card", state: "DECIDED", note: "Campaign chosen from four. The poster's line at counter scale." },
+  { href: "/hq/poster", name: "The Campaign Poster", state: "DECIDED", note: "Ink chosen from four grounds. Alternates archived, choosable per wall." },
+  { href: "/hq/venue-kit", name: "The Venue Kit", state: "APPROVED", note: "Seven objects: deck, pricing, outreach, script, permission form, pilot card, personalisation." },
+  { href: "/hq/socials", name: "The Posting Queue", state: "APPROVED", note: "Twelve posts over six weeks. Cleared to schedule as written." },
 ];
 
 const GALLERIES: Room[] = [
-  { href: "/brand/collateral/identity/index.html", name: "Identity & the card system", state: "GALLERY", note: "Cards, letterhead, poster, signature — every final with print notes." },
-  { href: "/brand/collateral/social/index.html", name: "The social system", state: "GALLERY", note: "S·1–S·6 across every size: nine beliefs, three numbers, three before/afters, end cards, banners." },
-  { href: "/brand/press/index.html", name: "The press kit", state: "GALLERY", note: "Release, fact sheet, founder story, usage notes — photography and screenshots pending." },
-  { href: "/brand/collateral/ambassador/index.html", name: "The ambassador kit", state: "GALLERY", note: "K·0–K·4: the letter, the guide, four templates, the QR card, the notebook spec." },
-  { href: "/brand/collateral/venue/index.html", name: "The venue set", state: "GALLERY", note: "One-pager, leave-behind, deck, pricing, pilot card — the revenue spine's objects." },
-  { href: "/brand", name: "The brand kit & motion canon", state: "LIVE", note: "Wordmarks, the dot, lockups, app icons, the five gestures — the system everything inherits." },
+  { href: "/brand/collateral/identity/index.html", name: "Identity & the card system", state: "GALLERY", note: "Cards, letterhead, poster, signature. Every final, with print notes." },
+  { href: "/brand/collateral/social/index.html", name: "The social system", state: "GALLERY", note: "S·1 to S·6 in every size. Nine beliefs, three numbers, three before/afters, end cards, banners." },
+  { href: "/brand/press/index.html", name: "The press kit", state: "GALLERY", note: "Release, fact sheet, founder story, usage notes. Photography and screenshots pending." },
+  { href: "/brand/collateral/ambassador/index.html", name: "The ambassador kit", state: "GALLERY", note: "The letter, the guide, four templates, the QR card, the notebook spec." },
+  { href: "/brand/collateral/venue/index.html", name: "The venue set", state: "GALLERY", note: "One-pager, leave-behind, deck, pricing, pilot card." },
+  { href: "/brand", name: "The brand kit & motion canon", state: "LIVE", note: "Wordmarks, the dot, lockups, app icons, the five gestures." },
 ];
 
 function Row({ r }: { r: Room }) {
@@ -79,11 +79,9 @@ export default async function DesignRoomsPage() {
           <span aria-hidden="true" style={{ color: "var(--accent)" }}>.</span>
         </h1>
         <p className="hq-page-intro">
-          Every physical and social object was explored in directions, argued
-          over, chosen, and recorded — six founder cards, four posters, four
-          partner cards, a signable pilot. This page is the record. On launch,
-          some version of it may go public: proof of how seriously the design
-          is taken, the way ten loading screens beat one.
+          Every object was explored in directions, chosen, and recorded.
+          This page is the record. Some version of it may go public at
+          launch: proof of how seriously the design is taken.
         </p>
       </header>
 
@@ -96,7 +94,7 @@ export default async function DesignRoomsPage() {
 
       <section aria-label="galleries" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden" }}>
         <div style={{ padding: "10px 18px", background: "var(--paper-soft)", borderBottom: "1px solid var(--hairline)", fontFamily: "var(--font-mono-stack)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          The galleries — every final, every size
+          The galleries. Every final, every size
         </div>
         {GALLERIES.map((r) => <Row key={r.href} r={r} />)}
       </section>
@@ -106,10 +104,9 @@ export default async function DesignRoomsPage() {
         style={{ marginTop: "32px", background: "var(--accent-soft)", borderLeft: "3px solid var(--accent)", borderRadius: "0 6px 6px 0", padding: "16px 20px" }}
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
-          The public version, if we ship it at launch: the chosen objects, the
-          archived directions, and one line of reasoning per decision — a
-          design annual report. Specimens stay marked, partners stay
-          unnamed until permissioned, and the review-room chrome comes with it.
+          The public version, if shipped: chosen objects, archived
+          directions, one line of reasoning per decision. Specimens stay
+          marked; partners stay unnamed until permissioned.
         </p>
       </section>
     </main>
