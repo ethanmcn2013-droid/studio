@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·108 · ships · SDS 2.0 lands in four codebases — tokens consumed, drift gated
+
+**Waves 0–3 of the design-system rollout executed on founder go-ahead: Signal, Studio, Tasks, and Timeline now consume the canonical @signal/ds 2.0 tokens (vendored with a version+commit stamp until the npm publish gate clears) and every merge runs a CI drift gate.** Each repo's `:root` shrank to repo-local aliases on a burn-down path; system values live in one file. Visible changes shipped deliberately: queued/next status is neutral instead of indigo-500 (the accent never means "todo"), status washes are canonical, easing unified on the 2.0 quintic, freelance indigos (`#6366f1`, `#5b6cff`, a stray `#e0deff`) became ramp tokens, Inter left the Tasks embed and email stacks, and metadata titles use the middot register. `ds-check` hard-fails banned colours, system-token redefinition, and non-Geist fonts, and ratchets ~190 files of grandfathered hex/easing debt via `.ds-grandfather.json` — it already caught two fresh drifts landing on main during the rollout. Builds, typechecks, and gates green in all four repos; tokens verified in production CSS per domain. **Not touched:** Notes (Wave 4, the green-retirement fold-in) awaits its own go-ahead; the npm publish operator todo (`npm-publish-signal-ds`) stands.
+
 ## 2026-07-02 · S·107 · tightens · product switching stays visible
 
 **The cross-product switcher contract is now executable, not just remembered.** Studio's `SuiteSwitcher` is back to the same portable pill implementation as the product repos, and `scripts/check-suite-switcher-contract.mjs` now runs before the test suite. The guard blocks the old authed dropdown from returning to `/app` chrome and keeps the visible four-product pills as the signed-in default.
