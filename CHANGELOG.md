@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·103 · ships · Signal Design System 2.0 — one source of truth for every surface
+
+**The suite's design system now has one canonical home: `@signal/ds` 2.0 in the `signal-studio-foundation` repo — nine system docs, a three-tier token file (`tokens/tokens.css`), a generated Tailwind v4 theme, and a designed-but-unshipped dark mode — produced under the founder's checkpoint mandate (audit → proposal → docs/tokens, each approved).** The audit (5.5/10, artifacts in `signal-studio-workspace/audit/design-system/`) found four namespaces for one accent, ~1,040 hardcoded hexes, three easing dialects, and no spacing scale; 2.0 answers with canonical `--accent #4f46e5` and the one-earned-indigo law, a nine-step Geist scale at three weights, a base-4 spacing scale, four radii, four durations on one quintic easing, and a `--x-` prefix for product-local tokens. Operator decisions locked in: white paper suite-wide, Notes folds into the suite register (green retires), dark designed but light-first. `DESIGN.md` and the visual sections of `BRAND.md` are deprecated with banners pointing at the new system; voice and naming sections remain in force. No product code changed — migration awaits the Phase 4 rollout plan and per-repo go-ahead.
+
 ## 2026-07-02 · S·102 · marks · the venue kit and the queue are approved; the proof order is packaged
 
 **The founder approved the venue kit — outreach may begin — and the six-week posting queue is cleared to schedule as written.** The founder-card trio's proof order is packaged at `/brand/collateral/cards/proof-order-card-trio.zip`: six print PDFs and a printer-ready order note (stock, rich black, PMS 2726C, ten of each) written to be pasted into one email. Two operator threads remain: send the proof order to a printer — a Limerick one; the printer is a relationship too — and the permission form's single solicitor pass before its first real signature.

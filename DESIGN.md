@@ -1,5 +1,8 @@
 # Signal Studio · DESIGN.md
 
+> **⚠️ DEPRECATED — superseded by Signal Design System 2.0 (2026-07-02).**
+> The canonical system now lives in the `signal-studio-foundation` repo (`@signal/ds`): docs in `docs/`, tokens in `tokens/tokens.css`. This file describes the v1 lock (2026-05-13) and is kept as history only — where it disagrees with @signal/ds 2.0, the new system wins. Do not extend this file.
+
 **Agent-readable design system for the Signal Studio suite.**
 
 This file is the consumable subset of [`BRAND.md`](./BRAND.md) for AI agents (Claude Code, Codex, Stitch, any DESIGN.md-aware tool). It contains tokens, primitives, and refusals — *not* positioning or voice strategy. For the strategic register, read BRAND.md first. When the two conflict, BRAND.md wins; fix this file to match.
@@ -418,6 +421,17 @@ All five products share `--paper: #ffffff` as of design-system v1 (2026-05-13 lo
 ### Shimmer skeleton — Roadmap-only (2026-05-22 clarification)
 
 The §13 dot loader above is the canonical loading-boundary pattern for **all five** repos. Roadmap **also** carries a `.skeleton-shimmer` CSS rule and a paired `--paper-bone` (#ebebec, ~L*92) trough token in its own `globals.css`, used inside the curation surface for in-flow row skeletons. This is intentional and Roadmap-only — the other four repos do not (and as of 2026-05-22 should not) carry the shimmer rule or the `--paper-bone` token. If a future suite-wide skeleton pattern is reintroduced, the canonical pairing is trough `--paper-bone` at 0%/100% + peak `--paper-deep` (#f4f4f5, ~L*96) at 40-60% — a ~4 L* delta that reads as motion without flashing. Provenance: `roadmap/ELEVATION_C2_TICKET.md § SUITE-SKELETON-RECONCILE` (closed 2026-05-22 as not-applicable post-wordmark-loader pass).
+
+### Loading canon amendments (2026-07-01 review)
+
+Ratified by the loading review (ten moments, one system — review room at `/hq/loading-review`, decision record `content/hq/decisions/loading-canon-2026-07.md`):
+
+1. **10px is the single dot authority.** The D8 remediation (2026-05-18, 10px→12px "perceptibility floor") is superseded — it forked the canon from §13.3's derivation, which ties the boundary dot to the wordmark ceiling `min(0.16em, 10px)`. `--load-dot-size` is 10px in all five repos; SuiteLoader inline fallbacks match; the SuiteLoader identity hash was resealed.
+2. **Visible loader names are `notes`, `tasks`, `timeline`, `signal` only.** Never `roadmap` or `analytics` (purged from the Timeline and Signal boot loaders this pass).
+3. **Cross-product handoff: source press ≤120ms, never delays navigation.** `suiteJump` holds 120ms, not 380ms. The destination's boundary owns the arrival.
+4. **Long-wait escalation is boot-only and honest.** After a real ~5s timer, one calm line ("Opening the workspace / the timeline / the briefing / the notebook") appears with `role="status"` + `aria-live="polite"`, outside the aria-hidden decorative mark. No extra animation. Never on local region fetches.
+5. **Wordmark boot loaders (the cold `/app` entry moment) may animate** — letters rise 280ms, dot lands 360ms, then the product's wait-safe gesture only while waiting. §13.5's "no animation" continues to govern the *root* Layer-0 boundary, which stays a static quiet dot.
+6. **Root fixed-overlay boundaries stay deliberate.** Studio's SEV-0 record (stuck root Suspense fallback covering every page) means new root `loading.tsx` overlays are added only with per-repo browser verification, not by contract default.
 
 ---
 
