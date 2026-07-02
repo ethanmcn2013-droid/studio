@@ -14,15 +14,14 @@
 # Linux CI runner — the original seal was taken from a CRLF checkout and
 # failed on every CI run. Normalizing first makes the guard test what it
 # means to test (the code), not the platform's line endings.
-# Re-sealed 2026-07-01 from git blob 1d2dc6760dce997823401f655e4fd32fcc13acf5,
-# identical across all five suite repos at the time of sealing.
+# Re-sealed 2026-07-02 (loading canon: boundary dot 10px, DESIGN.md §13).
 #
 # Usage: bash scripts/check-suiteloader-identity.sh
 # Wired via package.json "test" script so drift fails CI.
 
 set -euo pipefail
 
-CANONICAL_SHA="19c43b0315a719804900a3fd8c154a979abff45edc69ab48039be4bacaf947fe"
+CANONICAL_SHA="d2a08019850e304f8218792436b9995cb8fa0d95effa010a101ce18ce3d6015e"
 FILE="src/components/system/SuiteLoader.tsx"
 
 if [ ! -f "$FILE" ]; then

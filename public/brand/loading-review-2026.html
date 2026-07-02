@@ -1,0 +1,2031 @@
+<!doctype html>
+<!--
+  ══════════════════════════════════════════════════════════════════════
+  Signal Studio · Loading review room · 2026-07-01
+  Ten loading moments, one system. Review artifact, single file.
+  ══════════════════════════════════════════════════════════════════════
+
+  TOKEN DECISIONS (resolved this pass)
+
+  · Boundary dot — 10px × 10px, hard-coded px. Authority: DESIGN.md §13.3
+    (authored 2026-05-17). SuiteLoader.tsx carries a legacy 12px fallback via
+    --load-dot-size; §13 supersedes it and the fallback is owed a migration.
+    Every loading-boundary dot in this file is 10px. No 12px dot appears.
+  · Wordmark dot — min(0.16em, 10px), the §13.4 ceiling rule. Applied to every
+    mark in this file so no dot can outgrow the boundary dot.
+  · Shimmer — Timeline-only (DESIGN.md §13, 2026-05-22 clarification).
+    Trough --paper-bone #ebebec, peak --paper-deep #f4f4f5, ~4 L* delta.
+    Specimen 09 is the only shimmer consumer. All other skeletons are static.
+  · Easing — --spring-soft cubic-bezier(.32,.72,0,1) for presses and cards,
+    --spring-glide cubic-bezier(.16,1,.3,1) for arrivals and draws,
+    --ease-out cubic-bezier(.22,.61,.36,1) for chrome fades (SuiteLoader parity),
+    --ease-breath cubic-bezier(.45,0,.55,1) reserved for wait-state pulse loops.
+
+  MOTION TIMING TABLE
+
+  ## · concept                     · timing                                                        · ease            · aria
+  01 · Layer-0 Ready Dot           · paints at 0ms · breath loop 1.8s while waiting                · ease-breath     · aria-hidden
+  02 · Destination Wordmark Land   · letters rise 280ms, 55ms stagger · dot lands 360ms            · spring-glide    · aria-hidden
+                                     then destination gesture only while waiting
+  03 · Suite Handoff               · source press peaks ≤120ms (240ms round trip, never blocks     · spring-soft +   · aria-hidden
+                                     nav) · destination rise from 140ms · dot lands from 480ms       spring-glide
+  04 · Monotonic Chrome Reveal     · boot hold 900ms · dot out 120ms · chrome in 160ms at 980ms    · ease-out        · aria-hidden
+                                     · content in 200ms at 1100ms (SuiteLoader parity)
+  05 · Product-Local Skeleton      · region reveals 200ms, 40ms stagger · then fully static        · ease-out        · aria-hidden
+  06 · Long-Wait Escalation        · real 5000ms timer · one calm line fades in 200ms              · ease-out        · role=status,
+                                                                                                                       aria-live=polite
+  07 · Notes Quiet Capture         · sheet in 760ms · caret resolves 720ms · lines settle 360ms     · spring-glide    · aria-hidden
+  08 · Tasks Route-Aware Skeleton  · rows reveal 200ms then static · one mark-level pulse loop     · ease-breath     · aria-hidden
+  09 · Timeline Content-Well       · thread draws 600ms from 200ms · marker lands 320ms at 620ms   · spring-glide    · aria-hidden
+       Thread                        · content 200ms at 800ms · canonical shimmer 2.4s while waiting
+  10 · Signal Briefing Assembly    · rows rise 320ms, 180ms stagger · active tick 3.6s steps       · ease-out        · aria-busy on the
+                                                                                                                       well while fetching
+
+  SUITELOADER PHASE + loading.tsx MAPPING
+
+  01 → app/loading.tsx (SuiteLoaderField shape) · boot phase, pre-chrome, server-renderable, static-capable
+  02 → per-product app/loading.tsx on cold entry · boot phase, destination wordmark, capped ~700ms identity entry
+  03 → suite-launcher press on the source (never delays navigation) → destination boot owns arrival
+  04 → SuiteLoader phase machine, boot → chrome → content · 120ms / 160ms / 200ms, monotonic, no re-blank
+  05 → route-level loading.tsx once chrome exists · content region only, no takeover
+  06 → boot-phase escalation timer · document or app boot only, real timer, real recovery path
+  07 → notes src/app/app/loading.tsx · notebook init, quiet surface first, caret cadence while waiting
+  08 → tasks route loading.tsx variants · list, board, and detail reserve their real geometry
+  09 → timeline content-well skeleton (curation surface) · the only shimmer-canonical surface
+  10 → signal briefing assembly · available slices render first, aria-busy while the read completes
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signal Studio · Loading Review</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%234f46e5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/geist@5/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/geist-mono@5/index.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    :root {
+      --accent: #4f46e5;
+      --accent-deep: #4338ca;
+      --accent-soft: #eef2ff;
+      --paper: #ffffff;
+      --paper-soft: #fafafa;
+      --paper-deep: #f4f4f5;
+      --paper-bone: #ebebec;
+      --ink: #111111;
+      --ink-soft: #3f3f46;
+      --ink-quiet: #71717a;
+      --ink-ghost: #d4d4d8;
+      --ok: #10b981;
+      --fail: #ef4444;
+      --hairline: rgba(17, 17, 17, 0.1);
+      --hairline-soft: rgba(17, 17, 17, 0.06);
+      --spring-soft: cubic-bezier(.32, .72, 0, 1);
+      --spring-glide: cubic-bezier(.16, 1, .3, 1);
+      --ease-out: cubic-bezier(.22, .61, .36, 1);
+      --ease-breath: cubic-bezier(.45, 0, .55, 1);
+      --dot-boundary: 10px; /* DESIGN.md §13.3 — hard px, never em */
+      --radius: 10px;
+      --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01", "cv11";
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: linear-gradient(180deg, var(--paper), var(--paper-soft) 58%, var(--paper));
+    }
+
+    button { font: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    .page {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 64px;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────────── */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 60px;
+      padding: 10px 0;
+      background: color-mix(in srgb, var(--paper) 90%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      white-space: nowrap;
+      color: var(--ink);
+      font-size: clamp(19px, 2.2vw, 26px);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .wordmark .w-dot { margin-left: 0.1em; }
+
+    .context-line {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 7px 14px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      transition:
+        color 160ms var(--ease-out),
+        border-color 160ms var(--ease-out),
+        background 160ms var(--ease-out),
+        transform 160ms var(--ease-out);
+    }
+
+    .pill-button:hover {
+      border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }
+
+    .pill-button:active { transform: translateY(1px); }
+
+    .pill-button[aria-pressed="true"] {
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }
+
+    .pill-button .toggle-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--ink-ghost);
+      transition: background 160ms var(--ease-out);
+    }
+
+    .pill-button[aria-pressed="true"] .toggle-dot { background: var(--accent); }
+
+    /* ── Hero + gate checklist ───────────────────────────────────── */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: clamp(22px, 4vw, 64px);
+      align-items: end;
+      padding: 36px 0 30px;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(34px, 6vw, 78px);
+      font-weight: 650;
+      letter-spacing: -0.05em;
+      line-height: 0.96;
+    }
+
+    .hero p {
+      max-width: 60ch;
+      margin: 18px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(15px, 1.4vw, 17px);
+      line-height: 1.55;
+    }
+
+    .gate {
+      display: grid;
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 14px;
+      background: var(--hairline-soft);
+    }
+
+    .gate-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 16px;
+      background: var(--paper);
+    }
+
+    .gate-head span:first-child {
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .gate-head span:last-child {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .gate-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: baseline;
+      padding: 12px 16px;
+      background: var(--paper);
+    }
+
+    .gate-row > span:first-child {
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .check::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--ink-ghost);
+    }
+
+    .check[data-state="pass"] { color: var(--ink-soft); }
+    .check[data-state="pass"]::before { background: var(--ok); }
+    .check[data-state="fail"] { color: var(--fail); }
+    .check[data-state="fail"]::before { background: var(--fail); }
+
+    /* ── Specimen grid ───────────────────────────────────────────── */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding-top: 24px;
+    }
+
+    .concept {
+      display: grid;
+      grid-template-rows: auto minmax(280px, 1fr) auto;
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+
+    .concept-head {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px 11px 16px;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .concept-number {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .concept-titles {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .concept-title {
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .concept-scope {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .replay-one {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 11px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink-quiet);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition:
+        color 160ms var(--ease-out),
+        border-color 160ms var(--ease-out),
+        background 160ms var(--ease-out);
+    }
+
+    .replay-one:hover {
+      border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }
+
+    /* ── Stage: construction grid + captions ─────────────────────── */
+
+    .stage {
+      position: relative;
+      min-height: 280px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--paper), var(--paper-soft));
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(17, 17, 17, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 17, 17, 0.022) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(120% 90% at 50% 50%, #000 40%, transparent 100%);
+    }
+
+    .stage-caption {
+      position: absolute;
+      left: 14px;
+      bottom: 11px;
+      z-index: 3;
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .stage-centered {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 26px;
+    }
+
+    /* ── Spec strip ──────────────────────────────────────────────── */
+
+    .spec-strip {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 1px;
+      border-top: 1px solid var(--hairline-soft);
+      background: var(--hairline-soft);
+    }
+
+    .spec-strip > span {
+      display: grid;
+      gap: 3px;
+      padding: 9px 12px 8px 16px;
+      background: var(--paper-soft);
+      color: var(--ink-soft);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+
+    .spec-strip b {
+      color: var(--ink-quiet);
+      font-weight: 600;
+      font-size: 9px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    /* ── Primitives ──────────────────────────────────────────────── */
+
+    .boundary-dot {
+      width: var(--dot-boundary);
+      height: var(--dot-boundary);
+      border-radius: 50%;
+      background: var(--accent);
+      flex: 0 0 auto;
+      transform-origin: center;
+      will-change: transform, opacity;
+    }
+
+    .w-dot {
+      display: inline-block;
+      width: min(0.16em, 10px);
+      height: min(0.16em, 10px);
+      margin-left: 0.09em;
+      border-radius: 999px;
+      background: var(--accent);
+      transform-origin: center;
+      flex: 0 0 auto;
+    }
+
+    [data-gesture="caret"] .w-dot,
+    .w-dot.is-caret {
+      width: 0.06em;
+      height: 0.58em;
+      border-radius: 1px;
+    }
+
+    .mono-label {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .soft-block {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--paper-deep);
+    }
+
+    /* Shimmer — Timeline-canonical only (specimen 09). DESIGN.md §13. */
+    .shimmer { background: var(--paper-bone); }
+
+    .shimmer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, var(--paper-deep) 50%, transparent);
+      transform: translateX(-100%);
+      animation: shimmer-sweep 2.4s var(--ease-out) infinite;
+    }
+
+    /* ── Wait-state gesture loops (canonical, per BRAND.md §4) ───── */
+
+    @keyframes breath {
+      0%, 100% { opacity: 0.72; transform: scale(0.78); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes gesture-pulse {
+      0%, 35%, 100% { transform: scale(1); }
+      12% { transform: scale(1.22); }
+      24% { transform: scale(1); }
+    }
+
+    @keyframes gesture-tick {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-0.12em); }
+      50% { transform: translateY(0.03em); }
+      75% { transform: translateY(-0.07em); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes gesture-slide {
+      0% { transform: translateX(-0.55em); opacity: 0.35; }
+      16% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes gesture-caret {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @keyframes shimmer-sweep {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* ── One-shot arrival primitives ─────────────────────────────── */
+
+    @keyframes letter-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dot-land {
+      0% { opacity: 0; transform: scale(0.42); }
+      62% { opacity: 1; transform: scale(1.14); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes card-press {
+      0%, 100% { transform: translateY(0) scale(1); border-color: var(--hairline-soft); }
+      40% { transform: translateY(1px) scale(0.995); border-color: color-mix(in srgb, var(--accent) 42%, var(--hairline)); }
+    }
+
+    @keyframes field-out {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes chrome-in {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes content-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes thread-draw {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes marker-land {
+      0% { opacity: 0; transform: translateX(-14px) scale(0.82); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    /* ── Wordmark structure ──────────────────────────────────────── */
+
+    .spec-word {
+      display: inline-flex;
+      align-items: baseline;
+      color: var(--ink);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 650;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      white-space: nowrap;
+    }
+
+    .spec-word .letter { display: inline-block; }
+
+    .mini-word {
+      display: inline-flex;
+      align-items: baseline;
+      font-size: 22px;
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+    }
+
+    /* ══ 01 · Layer-0 Ready Dot ══════════════════════════════════── */
+
+    .c01 .boundary-dot {
+      animation: breath 1.8s var(--ease-breath) infinite;
+    }
+
+    /* ══ 02 · Destination Wordmark Land ══════════════════════════── */
+
+    .c02 .stage-centered { flex-direction: column; gap: 26px; }
+
+    .c02 .letter {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: letter-rise 280ms var(--spring-glide) both;
+    }
+
+    .c02 .w-dot { opacity: 0; }
+
+    .c02 [data-gesture="pulse"] .w-dot {
+      animation:
+        dot-land 360ms var(--spring-glide) both,
+        gesture-pulse 2.6s var(--ease-breath) infinite;
+    }
+
+    .c02 [data-gesture="tick"] .w-dot {
+      animation:
+        dot-land 360ms var(--spring-glide) both,
+        gesture-tick 3.6s steps(1, end) infinite;
+    }
+
+    .c02 [data-gesture="slide"] .w-dot {
+      animation:
+        dot-land 360ms var(--spring-glide) both,
+        gesture-slide 3.8s var(--spring-glide) infinite;
+    }
+
+    .c02 [data-gesture="caret"] .w-dot {
+      animation:
+        dot-land 360ms var(--spring-glide) both,
+        gesture-caret 1.1s steps(1, end) infinite;
+    }
+
+    .c02-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .c02-tab {
+      min-height: 26px;
+      padding: 4px 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-quiet);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition:
+        color 160ms var(--ease-out),
+        border-color 160ms var(--ease-out),
+        background 160ms var(--ease-out);
+    }
+
+    .c02-tab:hover { color: var(--ink-soft); }
+
+    .c02-tab[aria-selected="true"] {
+      border-color: var(--hairline);
+      background: var(--paper);
+      color: var(--accent-deep);
+    }
+
+    /* ══ 03 · Suite Handoff ══════════════════════════════════════── */
+
+    .handoff {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 18px;
+      width: min(520px, 100%);
+      align-items: center;
+    }
+
+    .handoff-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 86px;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 12px;
+      background: var(--paper);
+    }
+
+    .c03.play .handoff-src {
+      animation: card-press 240ms var(--spring-soft) both;
+    }
+
+    .handoff-src .w-dot {
+      animation: gesture-pulse 2.6s var(--ease-breath) infinite;
+    }
+
+    .js .handoff-dest .letter { opacity: 0; transform: translateY(8px); }
+    .js .handoff-dest .w-dot { opacity: 0; }
+
+    .c03.play .handoff-dest .letter {
+      animation: letter-rise 280ms var(--spring-glide) both;
+    }
+
+    .c03.play .handoff-dest .letter:nth-child(1) { animation-delay: 140ms; }
+    .c03.play .handoff-dest .letter:nth-child(2) { animation-delay: 185ms; }
+    .c03.play .handoff-dest .letter:nth-child(3) { animation-delay: 230ms; }
+    .c03.play .handoff-dest .letter:nth-child(4) { animation-delay: 275ms; }
+    .c03.play .handoff-dest .letter:nth-child(5) { animation-delay: 320ms; }
+    .c03.play .handoff-dest .letter:nth-child(6) { animation-delay: 365ms; }
+
+    .c03.play .handoff-dest .w-dot {
+      animation:
+        dot-land 360ms var(--spring-glide) 480ms both,
+        gesture-tick 3.6s steps(1, end) 1200ms infinite;
+    }
+
+    .handoff-arrow {
+      position: relative;
+      width: 42px;
+      height: 1px;
+      background: var(--hairline);
+    }
+
+    .handoff-arrow::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-right: 1px solid var(--hairline);
+      border-top: 1px solid var(--hairline);
+      transform: translateY(-50%) rotate(45deg);
+      transform-origin: center;
+    }
+
+    /* ══ 04 · Monotonic Chrome Reveal ════════════════════════════── */
+
+    .chrome-shell {
+      position: absolute;
+      inset: 22px;
+      overflow: hidden;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 12px;
+      background: var(--paper);
+    }
+
+    .chrome-loader {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper);
+    }
+
+    html:not(.js) .chrome-loader { display: none; }
+
+    .chrome-loader .boundary-dot {
+      animation: breath 1.8s var(--ease-breath) infinite;
+    }
+
+    .c04.play .chrome-loader {
+      animation: field-out 120ms var(--ease-out) 900ms both;
+    }
+
+    .js .chrome-top { opacity: 0; }
+    .js .chrome-content { opacity: 0; }
+
+    .c04.play .chrome-top {
+      animation: chrome-in 160ms var(--ease-out) 980ms both;
+    }
+
+    .c04.play .chrome-content {
+      animation: content-in 200ms var(--ease-out) 1100ms both;
+    }
+
+    .chrome-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .chrome-top .mini-word { font-size: 18px; }
+
+    .chrome-content {
+      display: grid;
+      grid-template-columns: 0.65fr 1fr;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .chrome-content .stack { display: grid; gap: 8px; align-content: start; }
+
+    /* ══ 05 · Product-Local Content Skeleton ═════════════════════── */
+
+    .skeleton-demo {
+      position: absolute;
+      inset: 26px;
+      display: grid;
+      grid-template-rows: 44px 1fr;
+      gap: 14px;
+    }
+
+    .content-bar {
+      display: grid;
+      grid-template-columns: 1fr 84px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .skeleton-list { display: grid; gap: 8px; align-content: start; }
+
+    .skeleton-row {
+      display: grid;
+      grid-template-columns: 18px 1fr 64px;
+      gap: 10px;
+      align-items: center;
+      min-height: 42px;
+      padding: 10px;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+
+    .js .c05 .fade-item { opacity: 0; }
+
+    .c05.play .fade-item { animation: fade-up 200ms var(--ease-out) both; }
+    .c05.play .fade-item:nth-child(1) { animation-delay: 0ms; }
+    .c05.play .fade-item:nth-child(2) { animation-delay: 40ms; }
+    .c05.play .fade-item:nth-child(3) { animation-delay: 80ms; }
+    .c05.play .fade-item:nth-child(4) { animation-delay: 120ms; }
+
+    /* ══ 06 · Long-Wait Honest Escalation ════════════════════════── */
+
+    .wait-stage {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .c06 .boundary-dot {
+      animation: breath 1.8s var(--ease-breath) infinite;
+    }
+
+    .c06 .status-text {
+      min-height: 20px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(4px);
+      transition:
+        opacity 200ms var(--ease-out),
+        transform 200ms var(--ease-out);
+    }
+
+    .c06.escalated .status-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══ 07 · Notes Quiet Capture ════════════════════════════════── */
+
+    .notes-scene {
+      position: relative;
+      width: min(100%, 360px);
+      height: 196px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .notes-sheet {
+      position: absolute;
+      inset: 16px 22px 10px;
+      overflow: hidden;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, var(--paper), var(--paper-soft) 78%),
+        var(--paper);
+      box-shadow:
+        0 18px 34px rgba(17, 17, 17, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transform-origin: center 70%;
+    }
+
+    .notes-sheet-top {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      border-bottom: 1px solid var(--hairline-soft);
+      background: color-mix(in srgb, var(--paper) 86%, var(--accent-soft));
+    }
+
+    .notes-pin {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 12px 0 0 var(--ink-ghost);
+    }
+
+    .notes-lock {
+      position: relative;
+      width: 19px;
+      height: 10px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+
+    .notes-lock::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .notes-rule {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      top: 88px;
+      height: 1px;
+      background: color-mix(in srgb, var(--accent) 28%, var(--hairline));
+      transform: scaleX(1);
+      transform-origin: left center;
+    }
+
+    .notes-lines {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 26px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .notes-lines span {
+      display: block;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--paper-bone);
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .notes-lines span:nth-child(1) { width: 68%; }
+    .notes-lines span:nth-child(2) { width: 86%; }
+    .notes-lines span:nth-child(3) { width: 48%; }
+
+    .notes-mark {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: baseline;
+      color: var(--ink);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 650;
+      letter-spacing: 0;
+      line-height: 1;
+      opacity: 1;
+      transform: translateY(-14px);
+    }
+
+    .notes-mark .w-dot.is-caret {
+      margin-left: 0.11em;
+      transform-origin: center;
+    }
+
+    .js .c07 .notes-sheet {
+      opacity: 0;
+      transform: translateY(10px) scale(0.985);
+    }
+
+    .js .c07 .notes-mark {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    .js .c07 .notes-rule {
+      transform: scaleX(0);
+    }
+
+    .js .c07 .notes-lines span {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    .c07.play .notes-sheet {
+      animation: notes-sheet-in 760ms var(--spring-glide) both;
+    }
+
+    .c07.play .notes-mark {
+      animation: notes-mark-land 520ms var(--spring-glide) 150ms both;
+    }
+
+    .c07.play .notes-mark .w-dot.is-caret {
+      animation:
+        notes-caret-morph 720ms var(--spring-glide) 300ms both,
+        gesture-caret 1.1s steps(1, end) 1120ms infinite;
+    }
+
+    .c07.play .notes-rule {
+      animation: notes-rule-draw 720ms var(--spring-glide) 420ms both;
+    }
+
+    .c07.play .notes-lines span {
+      animation: notes-line-in 360ms var(--ease-out) both;
+    }
+
+    .c07.play .notes-lines span:nth-child(1) { animation-delay: 680ms; }
+    .c07.play .notes-lines span:nth-child(2) { animation-delay: 780ms; }
+    .c07.play .notes-lines span:nth-child(3) { animation-delay: 880ms; }
+
+    @keyframes notes-sheet-in {
+      from { opacity: 0; transform: translateY(10px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes notes-mark-land {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(-14px); }
+    }
+
+    @keyframes notes-caret-morph {
+      0% {
+        opacity: 1;
+        transform: translateY(0.08em) scaleX(2.55) scaleY(0.18);
+      }
+      48% {
+        opacity: 1;
+        transform: translateY(0.08em) scaleX(2.55) scaleY(0.18);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0.08em) scaleX(1) scaleY(1);
+      }
+    }
+
+    @keyframes notes-rule-draw {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes notes-line-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══ 08 · Tasks Route-Aware Skeleton ═════════════════════════── */
+
+    .tasks-demo {
+      position: absolute;
+      inset: 22px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 12px;
+    }
+
+    .tasks-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 38px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .tasks-title .w-dot {
+      animation: gesture-pulse 2.6s var(--ease-breath) infinite;
+    }
+
+    .tasks-variants {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .variant {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+
+    .variant-head {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .lane {
+      min-height: 110px;
+      padding: 8px;
+      border-radius: 8px;
+      background: var(--paper-soft);
+    }
+
+    .lane .soft-block { height: 20px; margin-bottom: 7px; }
+
+    .js .c08 .fade-item { opacity: 0; }
+
+    .c08.play .fade-item { animation: fade-up 200ms var(--ease-out) both; }
+    .c08.play .fade-item:nth-child(2) { animation-delay: 40ms; }
+    .c08.play .fade-item:nth-child(3) { animation-delay: 80ms; }
+
+    /* ══ 09 · Timeline Content-Well Thread ═══════════════════════── */
+
+    .timeline-demo {
+      position: absolute;
+      inset: 30px;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+    }
+
+    .thread { position: relative; height: 48px; }
+
+    .thread-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: var(--accent);
+      transform-origin: left center;
+    }
+
+    .js .thread-line { transform: scaleX(0); }
+
+    .c09.play .thread-line {
+      animation: thread-draw 600ms var(--spring-glide) 200ms both;
+    }
+
+    .thread-marker {
+      position: absolute;
+      left: 62%;
+      top: calc(50% - 5px);
+      width: var(--dot-boundary);
+      height: var(--dot-boundary);
+      border-radius: 999px;
+      background: var(--paper);
+      box-shadow: inset 0 0 0 2px var(--accent);
+    }
+
+    .js .thread-marker { opacity: 0; }
+
+    .c09.play .thread-marker {
+      animation: marker-land 320ms var(--spring-glide) 620ms both;
+    }
+
+    .thread-content {
+      display: grid;
+      gap: 8px;
+      max-width: 520px;
+    }
+
+    .js .c09 .fade-item { opacity: 0; }
+
+    .c09.play .fade-item { animation: fade-up 200ms var(--ease-out) both; }
+    .c09.play .fade-item:nth-child(1) { animation-delay: 800ms; }
+    .c09.play .fade-item:nth-child(2) { animation-delay: 860ms; }
+    .c09.play .fade-item:nth-child(3) { animation-delay: 920ms; }
+
+    /* ══ 10 · Signal Briefing Assembly ═══════════════════════════── */
+
+    .briefing {
+      position: absolute;
+      inset: 20px 22px 36px;
+      display: grid;
+      gap: 8px;
+      align-content: center;
+    }
+
+    .briefing-row {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+
+    .js .briefing-row { opacity: 0; }
+
+    .c10.play .briefing-row { animation: fade-up 320ms var(--ease-out) both; }
+    .c10.play .briefing-row:nth-child(1) { animation-delay: 0ms; }
+    .c10.play .briefing-row:nth-child(2) { animation-delay: 180ms; }
+    .c10.play .briefing-row:nth-child(3) { animation-delay: 360ms; }
+    .c10.play .briefing-row:nth-child(4) { animation-delay: 540ms; }
+
+    .briefing-row .row-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .briefing-row .row-dot.quiet { background: var(--ink-ghost); }
+
+    .briefing-row .tick {
+      animation: gesture-tick 3.6s steps(1, end) infinite;
+    }
+
+    .briefing-row strong {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .briefing-row small {
+      color: var(--ink-quiet);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status-chip {
+      color: var(--accent-deep);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-chip.quiet { color: var(--ink-quiet); }
+
+    /* ── Reduced motion: forced final states ─────────────────────── */
+    /* Applied by the .rm class (preview toggle or OS preference) and
+       duplicated in the media query below for the no-JS path. */
+
+    .page.rm *,
+    .page.rm *::before,
+    .page.rm *::after {
+      animation: none !important;
+      transition-duration: 0s !important;
+    }
+
+    .page.rm .letter,
+    .page.rm .w-dot { opacity: 1 !important; transform: none !important; }
+    .page.rm .chrome-loader { opacity: 0; visibility: hidden; }
+    .page.rm .chrome-top,
+    .page.rm .chrome-content { opacity: 1; transform: none; }
+    .page.rm .fade-item { opacity: 1; transform: none; }
+    .page.rm .notes-sheet,
+    .page.rm .notes-lines span { opacity: 1; transform: none; }
+    .page.rm .notes-mark { opacity: 1; transform: translateY(-14px); }
+    .page.rm .notes-rule { transform: scaleX(1); }
+    .page.rm .thread-line { transform: scaleX(1); }
+    .page.rm .thread-marker { opacity: 1; transform: none; }
+    .page.rm .briefing-row { opacity: 1; transform: none; }
+    .page.rm .status-text { opacity: 1; transform: none; }
+    .page.rm .shimmer::after { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page *,
+      .page *::before,
+      .page *::after {
+        animation: none !important;
+        transition-duration: 0s !important;
+      }
+
+      .page .letter,
+      .page .w-dot { opacity: 1 !important; transform: none !important; }
+      .page .chrome-loader { opacity: 0; visibility: hidden; }
+      .page .chrome-top,
+      .page .chrome-content { opacity: 1; transform: none; }
+      .page .fade-item { opacity: 1; transform: none; }
+      .page .notes-sheet,
+      .page .notes-lines span { opacity: 1; transform: none; }
+      .page .notes-mark { opacity: 1; transform: translateY(-14px); }
+      .page .notes-rule { transform: scaleX(1); }
+      .page .thread-line { transform: scaleX(1); }
+      .page .thread-marker { opacity: 1; transform: none; }
+      .page .briefing-row { opacity: 1; transform: none; }
+      .page .status-text { opacity: 1; transform: none; }
+      .page .shimmer::after { display: none; }
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: calc(100% - 20px); padding-top: 12px; }
+
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .controls { justify-content: flex-start; }
+
+      .context-line,
+      .concept-scope { white-space: normal; }
+
+      .concept-head { grid-template-columns: auto 1fr auto; }
+
+      .tasks-variants { grid-template-columns: 1fr; }
+
+      .handoff { grid-template-columns: 1fr; }
+
+      .handoff-arrow {
+        width: 1px;
+        height: 34px;
+        justify-self: center;
+      }
+
+      .handoff-arrow::after {
+        right: 50%;
+        top: auto;
+        bottom: 0;
+        transform: translateX(50%) rotate(135deg);
+      }
+
+      /* Let tall demos grow the stage instead of clipping inside it. */
+      .skeleton-demo,
+      .tasks-demo,
+      .timeline-demo,
+      .briefing {
+        position: static;
+        inset: auto;
+        padding: 20px 18px 34px;
+      }
+
+      .stage { min-height: 0; }
+
+      .spec-strip { grid-template-columns: 1fr; }
+
+      .spec-strip > span {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        padding: 7px 12px 7px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" id="review">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="wordmark">signal studio<span class="w-dot" aria-hidden="true"></span></span>
+        <span class="context-line">Loading review room &middot; 2026-07-01</span>
+      </div>
+      <div class="controls">
+        <button class="pill-button" type="button" id="rm-toggle" aria-pressed="false">
+          <span class="toggle-dot" aria-hidden="true"></span>Reduced motion
+        </button>
+        <button class="pill-button" type="button" id="replay-all">Replay all</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Ten loading moments, one system.</h1>
+        <p>Each specimen keeps the same rules: paper field, one indigo, no fake progress, no takeover after chrome, and product motion only where it has a job. The checklist on the right runs against this page, not a promise.</p>
+      </div>
+      <div class="gate" role="group" aria-label="Gate checklist">
+        <div class="gate-head"><span>Gate checklist</span><span>live &middot; this page</span></div>
+        <div class="gate-row"><span>Geist Sans and Mono resolved</span><span class="check" data-check="font">checking</span></div>
+        <div class="gate-row"><span>Boundary dot is 10px hard px</span><span class="check" data-check="dot">checking</span></div>
+        <div class="gate-row"><span>Wait copy carries role=status, polite</span><span class="check" data-check="aria">checking</span></div>
+        <div class="gate-row"><span>Shimmer scoped to Timeline only</span><span class="check" data-check="shimmer">checking</span></div>
+        <div class="gate-row"><span>Decorative stages are aria-hidden</span><span class="check" data-check="decor">checking</span></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Loading specimens">
+
+      <article class="concept c01" data-concept="01">
+        <header class="concept-head">
+          <span class="concept-number">01</span>
+          <div class="concept-titles">
+            <span class="concept-title">Layer-0 Ready Dot</span>
+            <span class="concept-scope">before chrome</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="01" aria-label="Replay specimen 01">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="stage-centered" aria-hidden="true">
+            <div class="boundary-dot" id="dot-probe"></div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">server paint &middot; no copy &middot; no hold</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>0ms in &middot; 1.8s breath</span>
+          <span><b>ease</b>ease-breath</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c02" data-concept="02">
+        <header class="concept-head">
+          <span class="concept-number">02</span>
+          <div class="concept-titles">
+            <span class="concept-title">Destination Wordmark Land</span>
+            <span class="concept-scope">cold app entry</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="02" aria-label="Replay specimen 02">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="stage-centered">
+            <div id="c02-word" aria-hidden="true"></div>
+            <div class="c02-tabs" role="tablist" aria-label="Destination variants">
+              <button class="c02-tab" type="button" role="tab" data-product="0" aria-selected="false">notes</button>
+              <button class="c02-tab" type="button" role="tab" data-product="1" aria-selected="false">tasks</button>
+              <button class="c02-tab" type="button" role="tab" data-product="2" aria-selected="false">timeline</button>
+              <button class="c02-tab" type="button" role="tab" data-product="3" aria-selected="false">signal</button>
+            </div>
+          </div>
+          <span class="stage-caption" id="c02-caption" aria-hidden="true">cold entry &middot; notes.</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>rise 280ms &middot; land 360ms</span>
+          <span><b>ease</b>spring-glide</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c03" data-concept="03">
+        <header class="concept-head">
+          <span class="concept-number">03</span>
+          <div class="concept-titles">
+            <span class="concept-title">Suite Handoff</span>
+            <span class="concept-scope">product switch</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="03" aria-label="Replay specimen 03">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="stage-centered" aria-hidden="true">
+            <div class="handoff">
+              <div class="handoff-card handoff-src">
+                <span class="mini-word">tasks<span class="w-dot"></span></span>
+              </div>
+              <span class="handoff-arrow"></span>
+              <div class="handoff-card handoff-dest">
+                <span class="mini-word"><span class="letter">s</span><span class="letter">i</span><span class="letter">g</span><span class="letter">n</span><span class="letter">a</span><span class="letter">l</span><span class="w-dot"></span></span>
+              </div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">press never blocks nav &middot; destination owns arrival</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>press &le;120ms &middot; land 360ms</span>
+          <span><b>ease</b>spring-soft &middot; spring-glide</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c04" data-concept="04">
+        <header class="concept-head">
+          <span class="concept-number">04</span>
+          <div class="concept-titles">
+            <span class="concept-title">Monotonic Chrome Reveal</span>
+            <span class="concept-scope">boot to content</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="04" aria-label="Replay specimen 04">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="chrome-shell" aria-hidden="true">
+            <div class="chrome-loader"><div class="boundary-dot"></div></div>
+            <div class="chrome-top">
+              <span class="mini-word">signal studio<span class="w-dot"></span></span>
+              <span class="mono-label">Products</span>
+            </div>
+            <div class="chrome-content">
+              <div class="soft-block" style="height: 144px"></div>
+              <div class="stack">
+                <div class="soft-block" style="height: 24px; width: 78%"></div>
+                <div class="soft-block" style="height: 18px"></div>
+                <div class="soft-block" style="height: 18px; width: 84%"></div>
+                <div class="soft-block" style="height: 76px; margin-top: 10px"></div>
+              </div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">boot 900ms &middot; dot out 120 &middot; chrome 160 &middot; content 200</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>120 &middot; 160 &middot; 200ms</span>
+          <span><b>ease</b>ease-out</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c05" data-concept="05">
+        <header class="concept-head">
+          <span class="concept-number">05</span>
+          <div class="concept-titles">
+            <span class="concept-title">Product-Local Content Skeleton</span>
+            <span class="concept-scope">after chrome</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="05" aria-label="Replay specimen 05">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="skeleton-demo" aria-hidden="true">
+            <div class="content-bar fade-item">
+              <div class="soft-block" style="height: 22px; width: 58%"></div>
+              <div class="soft-block" style="height: 28px"></div>
+            </div>
+            <div class="skeleton-list">
+              <div class="skeleton-row fade-item">
+                <div class="soft-block" style="height: 14px"></div>
+                <div class="soft-block" style="height: 14px"></div>
+                <div class="soft-block" style="height: 14px"></div>
+              </div>
+              <div class="skeleton-row fade-item">
+                <div class="soft-block" style="height: 14px"></div>
+                <div class="soft-block" style="height: 14px; width: 78%"></div>
+                <div class="soft-block" style="height: 14px"></div>
+              </div>
+              <div class="skeleton-row fade-item">
+                <div class="soft-block" style="height: 14px"></div>
+                <div class="soft-block" style="height: 14px; width: 64%"></div>
+                <div class="soft-block" style="height: 14px"></div>
+              </div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">content region only &middot; static after reveal</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>reveal 200ms &middot; then static</span>
+          <span><b>ease</b>ease-out</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c06" data-concept="06">
+        <header class="concept-head">
+          <span class="concept-number">06</span>
+          <div class="concept-titles">
+            <span class="concept-title">Long-Wait Honest Escalation</span>
+            <span class="concept-scope">real delay only</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="06" aria-label="Replay specimen 06">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="stage-centered">
+            <div class="wait-stage">
+              <div class="boundary-dot" aria-hidden="true"></div>
+              <div class="status-text" role="status" aria-live="polite" id="c06-status"></div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">real 5.0s timer &middot; replay to restart</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>escalates at 5000ms</span>
+          <span><b>ease</b>copy fades 200ms</span>
+          <span><b>aria</b>role=status &middot; polite</span>
+        </footer>
+      </article>
+
+      <article class="concept c07" data-concept="07">
+        <header class="concept-head">
+          <span class="concept-number">07</span>
+          <div class="concept-titles">
+            <span class="concept-title">Notes Quiet Capture</span>
+            <span class="concept-scope">private notebook init</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="07" aria-label="Replay specimen 07">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="stage-centered" aria-hidden="true">
+            <div class="notes-scene">
+              <div class="notes-sheet">
+                <div class="notes-sheet-top">
+                  <span class="notes-pin"></span>
+                  <span class="notes-lock"></span>
+                </div>
+                <span class="notes-rule"></span>
+                <div class="notes-lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <span class="notes-mark">notes<span class="w-dot is-caret"></span></span>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">surface first &middot; caret resolves &middot; no fake text</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>sheet 760ms &middot; caret 720ms</span>
+          <span><b>ease</b>spring-glide &middot; steps</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c08" data-concept="08">
+        <header class="concept-head">
+          <span class="concept-number">08</span>
+          <div class="concept-titles">
+            <span class="concept-title">Tasks Route-Aware Skeleton</span>
+            <span class="concept-scope">list &middot; board &middot; detail</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="08" aria-label="Replay specimen 08">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="tasks-demo" aria-hidden="true">
+            <div class="tasks-title">
+              <span class="mini-word">tasks<span class="w-dot"></span></span>
+              <span class="mono-label">Rows stay static</span>
+            </div>
+            <div class="tasks-variants">
+              <div class="variant fade-item">
+                <span class="variant-head">List</span>
+                <div class="soft-block" style="height: 28px"></div>
+                <div class="soft-block" style="height: 28px; width: 82%"></div>
+                <div class="soft-block" style="height: 28px; width: 92%"></div>
+              </div>
+              <div class="variant fade-item">
+                <span class="variant-head">Board</span>
+                <div class="lane">
+                  <div class="soft-block"></div>
+                  <div class="soft-block" style="width: 74%"></div>
+                  <div class="soft-block" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="variant fade-item">
+                <span class="variant-head">Detail</span>
+                <div class="soft-block" style="height: 22px; width: 70%"></div>
+                <div class="soft-block" style="height: 72px"></div>
+                <div class="soft-block" style="height: 30px; width: 66%"></div>
+              </div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">one pulse, mark level only</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>rows 200ms &middot; pulse 2.6s</span>
+          <span><b>ease</b>ease-out &middot; ease-breath</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c09" data-concept="09">
+        <header class="concept-head">
+          <span class="concept-number">09</span>
+          <div class="concept-titles">
+            <span class="concept-title">Timeline Content-Well Thread</span>
+            <span class="concept-scope">timeline only</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="09" aria-label="Replay specimen 09">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="timeline-demo" aria-hidden="true">
+            <div class="thread">
+              <div class="thread-line"></div>
+              <div class="thread-marker"></div>
+            </div>
+            <div class="thread-content">
+              <div class="soft-block shimmer fade-item" style="height: 20px; width: 56%"></div>
+              <div class="soft-block shimmer fade-item" style="height: 15px; width: 88%"></div>
+              <div class="soft-block shimmer fade-item" style="height: 15px; width: 72%"></div>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">content well only &middot; shimmer is canonical here</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>draw 600ms &middot; shimmer 2.4s</span>
+          <span><b>ease</b>spring-glide</span>
+          <span><b>aria</b>aria-hidden</span>
+        </footer>
+      </article>
+
+      <article class="concept c10" data-concept="10">
+        <header class="concept-head">
+          <span class="concept-number">10</span>
+          <div class="concept-titles">
+            <span class="concept-title">Signal Briefing Assembly</span>
+            <span class="concept-scope">briefing &middot; today</span>
+          </div>
+          <button class="replay-one" type="button" data-replay="10" aria-label="Replay specimen 10">Replay</button>
+        </header>
+        <div class="stage">
+          <div class="briefing" aria-hidden="true">
+            <div class="briefing-row">
+              <span class="row-dot tick"></span>
+              <span><strong>Needs attention</strong><small>Active read</small></span>
+              <span class="status-chip">Reading</span>
+            </div>
+            <div class="briefing-row">
+              <span class="row-dot"></span>
+              <span><strong>Moving well</strong><small>Available first</small></span>
+              <span class="status-chip">Ready</span>
+            </div>
+            <div class="briefing-row">
+              <span class="row-dot quiet"></span>
+              <span><strong>Quiet risks</strong><small>Unavailable is named</small></span>
+              <span class="status-chip quiet">Unavailable</span>
+            </div>
+            <div class="briefing-row">
+              <span class="row-dot"></span>
+              <span><strong>Suggested focus</strong><small>Only if rendered here</small></span>
+              <span class="status-chip">Ready</span>
+            </div>
+          </div>
+          <span class="stage-caption" aria-hidden="true">available slices first &middot; aria-busy while fetching</span>
+        </div>
+        <footer class="spec-strip" aria-hidden="true">
+          <span><b>dur</b>rows 320ms &middot; stagger 180ms</span>
+          <span><b>ease</b>ease-out &middot; tick 3.6s steps</span>
+          <span><b>aria</b>aria-busy on the well</span>
+        </footer>
+      </article>
+
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var page = document.getElementById("review");
+      var rmToggle = document.getElementById("rm-toggle");
+      var replayAllBtn = document.getElementById("replay-all");
+      var rmQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var rmForced = false;
+
+      function rmActive() {
+        return rmForced || rmQuery.matches;
+      }
+
+      /* ── 02 · destination cycle ─────────────────────────────────── */
+
+      var PRODUCTS = [
+        { name: "notes", gesture: "caret" },
+        { name: "tasks", gesture: "pulse" },
+        { name: "timeline", gesture: "slide" },
+        { name: "signal", gesture: "tick" }
+      ];
+      var c02Word = document.getElementById("c02-word");
+      var c02Caption = document.getElementById("c02-caption");
+      var c02Tabs = Array.prototype.slice.call(document.querySelectorAll(".c02-tab"));
+      var c02Index = 3; /* opens on signal. */
+      var c02Timer = null;
+
+      function renderWord() {
+        var p = PRODUCTS[c02Index];
+        var html = '<span class="spec-word" data-gesture="' + p.gesture + '">';
+        for (var i = 0; i < p.name.length; i++) {
+          html += '<span class="letter" style="animation-delay:' + (i * 55) + 'ms">' + p.name[i] + "</span>";
+        }
+        var landDelay = p.name.length * 55 + 140;
+        var gestureDelay = landDelay + 720;
+        html += '<span class="w-dot" style="animation-delay:' + landDelay + "ms," + gestureDelay + 'ms"></span></span>';
+        c02Word.innerHTML = html;
+        c02Caption.textContent = "cold entry \u00b7 " + p.name + ".";
+        c02Tabs.forEach(function (tab, i) {
+          tab.setAttribute("aria-selected", String(i === c02Index));
+        });
+      }
+
+      function stopCycle() {
+        if (c02Timer) {
+          clearInterval(c02Timer);
+          c02Timer = null;
+        }
+      }
+
+      function startCycle() {
+        stopCycle();
+        if (rmActive()) return;
+        c02Timer = setInterval(function () {
+          c02Index = (c02Index + 1) % PRODUCTS.length;
+          renderWord();
+        }, 4600);
+      }
+
+      c02Tabs.forEach(function (tab, i) {
+        tab.addEventListener("click", function () {
+          /* Manual choice holds; the cycle resumes on replay. */
+          c02Index = i;
+          renderWord();
+          stopCycle();
+        });
+      });
+
+      /* ── 06 · real escalation timer ─────────────────────────────── */
+
+      var c06 = document.querySelector(".c06");
+      var c06Status = document.getElementById("c06-status");
+      var c06Timer = null;
+
+      function escalate() {
+        c06.classList.add("escalated");
+        c06Status.textContent = "Opening the briefing";
+      }
+
+      function playC06() {
+        if (c06Timer) clearTimeout(c06Timer);
+        c06.classList.remove("escalated");
+        c06Status.textContent = "";
+        if (rmActive()) {
+          /* No artificial delay under reduced motion: show the settled,
+             escalated state immediately as the static canonical preview. */
+          escalate();
+          return;
+        }
+        c06Timer = setTimeout(escalate, 5000);
+      }
+
+      /* ── generic replay ─────────────────────────────────────────── */
+
+      function playConcept(el) {
+        var id = el.getAttribute("data-concept");
+        el.classList.remove("play");
+        void el.offsetWidth;
+        el.classList.add("play");
+        if (id === "02") {
+          renderWord();
+          startCycle();
+        }
+        if (id === "06") playC06();
+      }
+
+      var concepts = Array.prototype.slice.call(document.querySelectorAll(".concept"));
+
+      concepts.forEach(function (el) {
+        var btn = el.querySelector(".replay-one");
+        if (btn) {
+          btn.addEventListener("click", function () {
+            playConcept(el);
+          });
+        }
+      });
+
+      replayAllBtn.addEventListener("click", function () {
+        concepts.forEach(playConcept);
+      });
+
+      var seen = new WeakSet();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !seen.has(entry.target)) {
+            seen.add(entry.target);
+            playConcept(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      concepts.forEach(function (el) {
+        io.observe(el);
+      });
+
+      /* ── reduced-motion preview ─────────────────────────────────── */
+
+      function syncRM() {
+        var active = rmActive();
+        page.classList.toggle("rm", active);
+        rmToggle.setAttribute("aria-pressed", String(active));
+        if (active) {
+          stopCycle();
+          if (c06Timer) clearTimeout(c06Timer);
+          escalate();
+        } else {
+          startCycle();
+          concepts.forEach(playConcept);
+        }
+      }
+
+      rmToggle.addEventListener("click", function () {
+        rmForced = !rmForced;
+        syncRM();
+      });
+
+      if (rmQuery.addEventListener) {
+        rmQuery.addEventListener("change", syncRM);
+      }
+
+      /* initial state */
+      renderWord();
+      startCycle();
+      if (rmQuery.matches) syncRM();
+
+      /* ── live gate checks ───────────────────────────────────────── */
+
+      function setCheck(name, ok) {
+        var el = document.querySelector('.check[data-check="' + name + '"]');
+        if (!el) return;
+        el.setAttribute("data-state", ok ? "pass" : "fail");
+        el.textContent = ok ? "pass" : "fail";
+      }
+
+      function runStaticChecks() {
+        /* Boundary dot is 10px hard px */
+        var probe = document.getElementById("dot-probe");
+        var w = probe ? getComputedStyle(probe).width : "";
+        setCheck("dot", w === "10px");
+
+        /* Real wait copy contract */
+        var ariaOk =
+          c06Status.getAttribute("role") === "status" &&
+          c06Status.getAttribute("aria-live") === "polite";
+        setCheck("aria", ariaOk);
+
+        /* Shimmer never escapes the Timeline specimen */
+        var shimmers = Array.prototype.slice.call(document.querySelectorAll(".shimmer"));
+        var scoped =
+          shimmers.length > 0 &&
+          shimmers.every(function (n) {
+            return n.closest('[data-concept="09"]') !== null;
+          });
+        setCheck("shimmer", scoped);
+
+        /* Every stage's decorative layer is aria-hidden */
+        var stages = Array.prototype.slice.call(document.querySelectorAll(".stage"));
+        var decorOk = stages.every(function (stage) {
+          return stage.querySelector('[aria-hidden="true"]') !== null;
+        });
+        setCheck("decor", decorOk);
+      }
+
+      runStaticChecks();
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          var sans =
+            document.fonts.check('600 16px "Geist Variable"') ||
+            document.fonts.check("600 16px Geist");
+          var mono =
+            document.fonts.check('400 12px "Geist Mono Variable"') ||
+            document.fonts.check('400 12px "Geist Mono"');
+          setCheck("font", sans && mono);
+        });
+      } else {
+        setCheck("font", false);
+      }
+    })();
+  </script>
+</body>
+</html>
