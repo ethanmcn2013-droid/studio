@@ -1,27 +1,14 @@
 /**
- * Reveal hero — indigo accent hairline + masked word-by-word headline +
- * typewriter subhead + four-product wordmark stack with the §4 brand
- * gestures.
- *
- * Mostly pure markup. The headline + stack choreography is owned by
- * RevealEngine which targets the class names in this file from a
- * client component. The subhead is a small client component
- * (TypewriterSub) which types itself in and keeps its caret blinking.
+ * Reveal hero: indigo accent hairline + headline + Studio conductor
+ * handoff. RevealEngine owns the house-mark broadcast and product
+ * gesture timing through the class names rendered here.
  */
-
-import { TypewriterSub } from "./typewriter-sub";
 
 export function RevealHero() {
   return (
-    <section
-      className="reveal-hero"
-      aria-label="Signal Studio — Project management for the 80% not in tech"
-    >
+    <section className="reveal-hero" aria-label="Signal Studio suite">
       <div className="reveal-gold-rule" aria-hidden />
 
-      {/* Launch note — restrained, static. The suite is in private preview;
-          this names the public-launch date without a ticking counter
-          ("nothing distracting"). Review issue 14. */}
       <p
         className="reveal-launch-note"
         style={{
@@ -88,51 +75,66 @@ export function RevealHero() {
         </span>
       </h1>
 
-      {/*
-        Walkover #7 (2026-06-07): subhead in the operator register —
-        names the parts, names the audience, refuses the "workflow" word.
-      */}
-      <TypewriterSub
-        text="Plans, tasks, notes, and a morning briefing — for people who have work to manage, not software to manage."
-        startDelayMs={700}
-        speed={28}
-      />
+      <p className="reveal-subhead">
+        Capture the note. Execute the task. Set the timeline. Read the signal.
+      </p>
 
-      {/* Stack order follows the operator-directed product order
-          (Notes → Tasks → Timeline → Signal, 2026-05-18) so the
-          first product impression matches the grid + meta + pricing.
-          data-key/href stay on the internal gesture keys (roadmap/
-          analytics) — only the visible word changed (2026-06-13 rename). */}
-      <nav className="reveal-stack" aria-label="Signal Studio products">
-        <a className="stack-row" data-key="notes" href="#notes">
-          <span className="mark">
-            <span className="word">notes</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a className="stack-row" data-key="tasks" href="#tasks">
-          <span className="mark">
-            <span className="word">tasks</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a className="stack-row" data-key="roadmap" href="#roadmap">
-          <span className="mark">
-            <span className="word">timeline</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a className="stack-row" data-key="analytics" href="#analytics">
-          <span className="mark">
-            <span className="word">signal</span>
-            <span className="dot" />
-          </span>
-        </a>
-      </nav>
+      <div className="reveal-conductor" aria-label="Signal Studio product handoff">
+        <div className="reveal-house-mark" aria-label="Signal Studio">
+          <span className="house-word">signal studio</span>
+          <span className="house-dot" aria-hidden />
+        </div>
 
-      <div className="reveal-scroll-cue" aria-hidden>
-        Read on
-        <span className="arrow">↓</span>
+        <nav className="reveal-stack" aria-label="Signal Studio products">
+          <a
+            className="stack-row"
+            data-key="notes"
+            data-stage="capture"
+            href="#notes"
+            aria-label="Notes: capture"
+          >
+            <span className="mark">
+              <span className="word">notes</span>
+              <span className="dot" />
+            </span>
+          </a>
+          <a
+            className="stack-row"
+            data-key="tasks"
+            data-stage="execution"
+            href="#tasks"
+            aria-label="Tasks: execution"
+          >
+            <span className="mark">
+              <span className="word">tasks</span>
+              <span className="dot" />
+            </span>
+          </a>
+          <a
+            className="stack-row"
+            data-key="timeline"
+            data-stage="direction"
+            href="#timeline"
+            aria-label="Timeline: direction"
+          >
+            <span className="mark">
+              <span className="word">timeline</span>
+              <span className="dot" />
+            </span>
+          </a>
+          <a
+            className="stack-row"
+            data-key="signal"
+            data-stage="attention"
+            href="#signal"
+            aria-label="Signal: attention"
+          >
+            <span className="mark">
+              <span className="word">signal</span>
+              <span className="dot" />
+            </span>
+          </a>
+        </nav>
       </div>
     </section>
   );

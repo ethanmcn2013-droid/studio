@@ -21,29 +21,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Wordmark } from "@/components/brand/wordmark";
 
-type Variant = "signal" | "tasks" | "roadmap" | "analytics" | "notes";
+type Kind = "studio" | "tasks" | "timeline" | "signal" | "notes";
 
-// The visible word (post 2026-06-13 rename: roadmap→timeline,
-// analytics→signal). The `variant` key stays on the internal gesture
-// identity; only the displayed word changes.
-function wordFor(variant: Variant): string {
-  if (variant === "roadmap") return "timeline";
-  if (variant === "analytics") return "signal";
-  return variant;
-}
-
-function glyph(variant: Variant) {
-  if (variant === "signal") return "signal studio.";
-  return wordFor(variant) + (variant === "notes" ? "." : "·");
+function glyph(kind: Kind) {
+  if (kind === "studio") return "signal studio.";
+  return kind + (kind === "notes" ? "." : "·");
 }
 
 export function MotionSpecimen({
-  variant,
+  kind,
   name,
   cycle,
   className = "",
 }: {
-  variant: Variant;
+  kind: Kind;
   name: string;
   cycle: string;
   className?: string;
@@ -109,7 +100,7 @@ export function MotionSpecimen({
       role="button"
       tabIndex={0}
       aria-pressed={paused}
-      aria-label={`${glyph(variant)} — ${name}, ${cycle}. ${
+      aria-label={`${glyph(kind)} — ${name}, ${cycle}. ${
         paused ? "Frozen. Activate to resume." : "Activate to freeze the motion."
       }`}
       data-paused={paused}
@@ -126,12 +117,12 @@ export function MotionSpecimen({
       }}
     >
       <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.04em] text-[var(--ink-faint)]">
-        <span className="text-[var(--ink)]">{glyph(variant)}</span>
-        <span>{variant === "signal" || variant === "notes" ? "noun" : "verb"}</span>
+        <span className="text-[var(--ink)]">{glyph(kind)}</span>
+        <span>{kind === "studio" || kind === "signal" || kind === "notes" ? "noun" : "verb"}</span>
       </div>
       <div className="flex flex-1 items-center justify-center py-4">
         <Wordmark
-          variant={variant}
+          kind={kind}
           size="md"
           animate
         />

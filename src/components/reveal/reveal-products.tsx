@@ -22,7 +22,7 @@ interface ProductRowProps {
   // dot animation in globals.css). Kept stable across the 2026-06-13 rename
   // so the CSS selectors + hero anchors don't move; only the visible `word`
   // changed (roadmap→timeline, analytics→signal).
-  dataKey: "tasks" | "roadmap" | "analytics" | "notes";
+  dataKey: "tasks" | "timeline" | "signal" | "notes";
   position: string;
   word: string;
   essence: string;
@@ -126,8 +126,8 @@ export function RevealProducts() {
         external
       />
       <ProductRow
-        id="roadmap"
-        dataKey="roadmap"
+        id="timeline"
+        dataKey="timeline"
         position="What people see"
         word="timeline"
         essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
@@ -144,8 +144,8 @@ export function RevealProducts() {
         `analytics` (the dot identity / CSS hook); the URL is SIGNAL_URL.
       */}
       <ProductRow
-        id="analytics"
-        dataKey="analytics"
+        id="signal"
+        dataKey="signal"
         position="What needs attention"
         word="signal"
         essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
@@ -209,33 +209,33 @@ export function RevealProducts() {
         /* Timeline · the dot extrudes a milestone line, then drops a second
            dot at the end — a track being laid. Scoped to the product
            row; the hero stack still sweeps. (Walkover #5, 2026-06-07.) */
-        .reveal-product-row[data-key="roadmap"] .mark .dot{
+        .reveal-product-row[data-key="timeline"] .mark .dot{
           animation:none;
           position:relative;
         }
-        .reveal-product-row[data-key="roadmap"] .mark .dot::before{
+        .reveal-product-row[data-key="timeline"] .mark .dot::before{
           content:'';position:absolute;
           left:100%;top:50%;
           width:0;height:1px;
           background:var(--indigo-600);
           transform:translateY(-50%);
-          animation:rpr-extrude 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+          animation:rptl-extrude 5.4s cubic-bezier(.22,.7,.2,1) infinite;
         }
-        .reveal-product-row[data-key="roadmap"] .mark .dot::after{
+        .reveal-product-row[data-key="timeline"] .mark .dot::after{
           content:'';position:absolute;
           left:calc(100% + 1.4em);top:50%;
           width:.14em;height:.14em;border-radius:50%;
           background:var(--indigo-600);
           transform:translate(-50%,-50%) scale(0);
-          animation:rpr-milestone 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+          animation:rptl-milestone 5.4s cubic-bezier(.22,.7,.2,1) infinite;
         }
-        @keyframes rpr-extrude{
+        @keyframes rptl-extrude{
           0%{width:0;opacity:1}
           40%{width:1.4em;opacity:1}
           80%{width:1.4em;opacity:1}
           100%{width:0;opacity:0}
         }
-        @keyframes rpr-milestone{
+        @keyframes rptl-milestone{
           0%,38%{transform:translate(-50%,-50%) scale(0);opacity:0}
           48%{transform:translate(-50%,-50%) scale(1);opacity:1}
           80%{transform:translate(-50%,-50%) scale(1);opacity:1}
@@ -247,10 +247,10 @@ export function RevealProducts() {
            discrete tick the hero stack runs. Scoped to the product
            row; hero stack still ticks through discrete samples.
            (Walkover #5, 2026-06-07.) */
-        .reveal-product-row[data-key="analytics"] .mark .dot{
-          animation:rpa-heartbeat 2.2s ease-in-out infinite;
+        .reveal-product-row[data-key="signal"] .mark .dot{
+          animation:rpsg-heartbeat 2.2s ease-in-out infinite;
         }
-        @keyframes rpa-heartbeat{
+        @keyframes rpsg-heartbeat{
           0%   {transform:translateY(-.04em) scale(1)}
           8%   {transform:translateY(-.04em) scale(1.55)}
           16%  {transform:translateY(-.04em) scale(1)}
@@ -263,9 +263,9 @@ export function RevealProducts() {
           .reveal-product-row[data-key="notes"] .dot{
             animation:none;width:.075em;height:.78em;border-radius:.02em;opacity:1}
           .reveal-product-row[data-key="tasks"] .mark .word::after,
-          .reveal-product-row[data-key="roadmap"] .mark .dot::before,
-          .reveal-product-row[data-key="roadmap"] .mark .dot::after,
-          .reveal-product-row[data-key="analytics"] .mark .dot{
+          .reveal-product-row[data-key="timeline"] .mark .dot::before,
+          .reveal-product-row[data-key="timeline"] .mark .dot::after,
+          .reveal-product-row[data-key="signal"] .mark .dot{
             animation:none}
           .reveal-product-row[data-key="tasks"] .mark .word::after{
             transform:scaleX(1);opacity:1}

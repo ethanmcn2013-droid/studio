@@ -34,7 +34,7 @@ type Tier = {
 type InsideProduct = {
   // key is the internal CSS/animation hook (globals.css .pricing-mark[data-key=…]);
   // it stays on the original gesture identity. Only `word` carries the rename.
-  key: "tasks" | "roadmap" | "notes" | "analytics";
+  key: "tasks" | "timeline" | "notes" | "signal";
   word: string;
   position: string;
   desc: string;
@@ -129,7 +129,7 @@ const SUITE: InsideProduct[] = [
     statusLabel: "Live now",
   },
   {
-    key: "roadmap",
+    key: "timeline",
     word: "timeline",
     position: "Direction",
     desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
@@ -137,7 +137,7 @@ const SUITE: InsideProduct[] = [
     statusLabel: "Live now",
   },
   {
-    key: "analytics",
+    key: "signal",
     word: "signal",
     position: "Attention",
     desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",

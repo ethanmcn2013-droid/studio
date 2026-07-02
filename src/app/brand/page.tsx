@@ -7,7 +7,7 @@ import { ReadingProgress } from "@/components/reading-progress";
 export const metadata: Metadata = {
   title: "Brand · signal studio.",
   description:
-    "The full signal studio brand system — wordmarks, palette, typography, the loader, and a complete downloadable kit in SVG and PNG. One umbrella. One indigo. Boring on purpose.",
+    "The full signal studio brand system — wordmarks, palette, typography, the loader, and a downloadable SVG-first kit. One umbrella. One indigo. Boring on purpose.",
   openGraph: {
     title: "signal studio. · brand system",
     description: "One umbrella. One indigo. Boring on purpose.",
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 
 /* ──────────────────────────────────────────────────────────────────────────
    ASSET KIT — maps the real /public/brand/kit/ directory 1:1.
-   Every SVG has its text outlined to paths (no font dependency); every PNG
-   was rendered from that SVG. Don't hand-list files — derive them here so
+   SVG masters are the source of truth; PNGs are linked when rendered.
+   Don't hand-list files — derive them here so
    the page can never drift from what actually shipped in the kit.
    ────────────────────────────────────────────────────────────────────────── */
 
@@ -145,11 +145,8 @@ const ASSET_GROUPS: AssetGroup[] = [
     ),
     assets: [
       { base: "tasks", name: "tasks·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
-      // 2026-06-13 rename: labels updated; `base` still points at the OLD
-      // PNG assets (roadmap-*/analytics-*) — regenerate as timeline-*/signal-*
-      // and switch `base` once the new wordmark PNGs exist.
-      { base: "roadmap", name: "timeline·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
-      { base: "analytics", name: "signal·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "timeline", name: "timeline·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
+      { base: "signal", name: "signal·", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
       { base: "notes", name: "notes.", family: "product-wordmarks", png: [...KIND_SIZES.product], surface: "deep", fit: "wide" },
     ],
   },
@@ -169,12 +166,12 @@ const PALETTE = [
 // Canon: DESIGN.md §5 (ratified 2026-05-16, deployed + live-verified).
 // Order: the house first, then the four products in workflow order
 // (Notes captures → Tasks runs → Timeline shows → Signal surfaces).
-const MOTIONS: Array<{ code: string; variant: "signal" | "tasks" | "roadmap" | "analytics" | "notes"; name: string; cycle: string; line: string }> = [
-  { code: "M·01", variant: "signal", name: "broadcast", cycle: "once", line: "One ring radiates from the period and is gone. The house announcing itself on arrival: said once, never repeated." },
-  { code: "M·02", variant: "notes", name: "caret", cycle: "1.1s", line: "Blinks like a held cursor. A thought mid-formation." },
-  { code: "M·03", variant: "tasks", name: "pulse", cycle: "2.6s", line: "The dot breathes at rest and quickens under load. Work, alive but unhurried." },
-  { code: "M·04", variant: "roadmap", name: "sweep", cycle: "5.4s", line: "The dot tracks left to right along an unseen timeline, then resets. Direction without urgency." },
-  { code: "M·05", variant: "analytics", name: "tick", cycle: "3.6s", line: "The dot snaps between discrete sample heights and holds, never gliding. Reading the signal, not streaming it." },
+const MOTIONS: Array<{ code: string; kind: "studio" | "tasks" | "timeline" | "signal" | "notes"; name: string; cycle: string; line: string }> = [
+  { code: "M·01", kind: "studio", name: "broadcast", cycle: "once", line: "One ring radiates from the period and is gone. The house announcing itself on arrival: said once, never repeated." },
+  { code: "M·02", kind: "notes", name: "caret", cycle: "1.1s", line: "Blinks like a held cursor. A thought mid-formation." },
+  { code: "M·03", kind: "tasks", name: "pulse", cycle: "2.6s", line: "The dot breathes at rest and quickens under load. Work, alive but unhurried." },
+  { code: "M·04", kind: "timeline", name: "sweep", cycle: "5.4s", line: "The dot tracks left to right along an unseen timeline, then resets. Direction without urgency." },
+  { code: "M·05", kind: "signal", name: "tick", cycle: "3.6s", line: "The dot snaps between discrete sample heights and holds, never gliding. Reading the signal, not streaming it." },
 ];
 
 const REFUSALS = [
@@ -213,6 +210,7 @@ function AssetCard({ asset }: { asset: Asset }) {
   const svgPath = `/brand/kit/svg/${asset.family}/${asset.base}.svg`;
   const sizes = asset.png;
   const largest = sizes[sizes.length - 1];
+  const hasPng = sizes.length > 0;
   const pngPath = (s: number) => `/brand/kit/png/${asset.family}/${asset.base}-${s}.png`;
 
   const previewClass =
@@ -252,14 +250,23 @@ function AssetCard({ asset }: { asset: Asset }) {
           >
             ↓ svg
           </a>
-          <a
-            href={pngPath(largest)}
-            download
-            className="inline-flex min-h-[38px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
-            title={`${largest}px PNG`}
-          >
-            ↓ png
-          </a>
+          {hasPng ? (
+            <a
+              href={pngPath(largest)}
+              download
+              className="inline-flex min-h-[38px] items-center rounded-full border border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-soft)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
+              title={`${largest}px PNG`}
+            >
+              ↓ png
+            </a>
+          ) : (
+            <span
+              className="inline-flex min-h-[38px] items-center rounded-full border border-dashed border-[var(--hairline)] bg-[var(--paper)] px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-[var(--ink-faint)]"
+              title="PNG export is tracked in the brand kit README."
+            >
+              png todo
+            </span>
+          )}
           <a
             href={svgPath}
             target="_blank"
@@ -271,16 +278,20 @@ function AssetCard({ asset }: { asset: Asset }) {
         </div>
         <div className="mt-2.5 flex flex-wrap gap-1 border-t border-dashed border-[var(--hairline-2)] pt-2.5 font-mono text-[10px] text-[var(--ink-faint)]">
           <span className="mr-1 text-[var(--ink-ghost)]">png</span>
-          {sizes.map((s) => (
-            <a
-              key={s}
-              href={pngPath(s)}
-              download
-              className="rounded-[4px] px-1.5 py-0.5 transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
-            >
-              {s}
-            </a>
-          ))}
+          {hasPng ? (
+            sizes.map((s) => (
+              <a
+                key={s}
+                href={pngPath(s)}
+                download
+                className="rounded-[4px] px-1.5 py-0.5 transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
+              >
+                {s}
+              </a>
+            ))
+          ) : (
+            <span>export pending</span>
+          )}
         </div>
       </div>
     </div>
@@ -359,7 +370,7 @@ export default function BrandPage() {
           <div>
             <p className="m-0 mb-6 max-w-[580px] text-[19px] leading-[1.5] text-[var(--ink-soft)] text-pretty">
               The brand system for{" "}
-              <Wordmark variant="signal" size="sm" animate />. One house, four
+              <Wordmark kind="studio" size="sm" animate />. One house, four
               products, one indigo. Built for the people the work routes
               through, not the people who run sprints.{" "}
               <strong className="font-semibold text-[var(--ink)]">
@@ -426,7 +437,7 @@ export default function BrandPage() {
           {MOTIONS.map((m, i) => (
             <MotionSpecimen
               key={m.code}
-              variant={m.variant}
+              kind={m.kind}
               name={m.name}
               cycle={m.cycle}
               className={`border-b border-[var(--hairline-2)] md:border-b-0 ${
@@ -452,13 +463,9 @@ export default function BrandPage() {
                 {m.code} · {m.name}
               </span>
               <h4 className="m-0 mt-1.5 mb-1.5 text-[15px] font-medium tracking-[-0.015em] text-[var(--ink)]">
-                {m.variant === "signal"
+                {m.kind === "studio"
                   ? "signal studio."
-                  : (m.variant === "roadmap"
-                      ? "timeline"
-                      : m.variant === "analytics"
-                        ? "signal"
-                        : m.variant) + (m.variant === "notes" ? "." : "·")}
+                  : m.kind + (m.kind === "notes" ? "." : "·")}
               </h4>
               <p className="m-0 text-[12.5px] leading-[1.5] text-[var(--ink-soft)]">{m.line}</p>
             </div>
@@ -795,15 +802,14 @@ export default function BrandPage() {
         <SectionHead
           num="05 / 06"
           kicker="Asset library"
-          title="The complete kit. SVG masters, PNG renders."
+          title="The complete kit. SVG masters, PNG renders where exported."
           intro={
             <>
               Every brand surface in one place — wordmark, lockup, the dot,
-              the app-icon tile, and four product wordmarks. SVGs have their
-              text{" "}
-              <strong className="text-[var(--ink)]">outlined to paths</strong>{" "}
-              (no font dependency, opens anywhere). PNGs are pre-rendered for
-              Slack, GitHub, and email. Use them. Don&apos;t recompose them.
+              the app-icon tile, and four product wordmarks. SVGs are the{" "}
+              <strong className="text-[var(--ink)]">canonical masters</strong>
+              . PNGs are linked where the export exists for Slack, GitHub, and
+              email. Use them. Don&apos;t recompose them.
             </>
           }
         />
@@ -811,7 +817,7 @@ export default function BrandPage() {
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4 rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] px-6 py-5">
           <div className="font-mono text-[12px] text-[var(--ink-soft)]">
             <span className="text-[var(--ink)]">{total} files</span> ·{" "}
-            {svg} SVG masters · {png} PNG renders · one zip
+            {svg} SVG masters · {png} PNG renders mapped here · one zip
           </div>
           <a
             href="/brand/signal-studio-brand-kit.zip"
