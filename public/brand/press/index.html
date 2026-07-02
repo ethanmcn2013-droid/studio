@@ -1,53 +1,33 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Signal Studio — press</title>
-<style>
-  :root {
-    --accent: #4f46e5; --ink: #111111; --ink-soft: #3f3f46; --ink-faint: #71717a;
-    --paper: #ffffff; --hairline: rgba(17,17,17,0.10);
-    --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
-  main { max-width: 720px; margin: 0 auto; padding: 72px 24px 96px; }
-  .mark { font-weight: 500; letter-spacing: -0.04em; font-size: 20px; }
-  .mark b { color: var(--accent); font-weight: 600; }
-  .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 40px; display: block; }
-  h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.035em; margin: 10px 0 6px; }
-  p.lede { color: var(--ink-soft); line-height: 1.55; margin: 0 0 8px; max-width: 58ch; }
-  .note { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.02em; line-height: 1.6; }
-  ul { list-style: none; padding: 0; margin: 28px 0 0; border-top: 1px solid var(--hairline); }
-  li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--hairline); }
-  li a { color: var(--ink); text-decoration: none; font-weight: 500; }
-  li a:hover { text-decoration: underline; }
-  li span { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.02em; white-space: nowrap; }
-  li.pending { color: var(--ink-faint); font-weight: 500; }
-  footer { margin-top: 48px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
-</style>
-</head>
-<body>
-<main>
-  <div class="mark">signal studio<b>.</b></div>
-  <span class="eyebrow">Press</span>
-  <h1>Built so the piece writes itself.</h1>
-  <p class="lede">Everything a journalist needs, without a second email. The release is under embargo until 1 September 2026; every number in the fact sheet also appears in the business plan, so it can be checked.</p>
-  <p class="note">Direct line to the founder, same-day reply through the launch window: hello@signalstudio.ie</p>
-  <ul>
-    <li><a href="press-kit.zip">The press kit — everything below, zipped</a><span>ZIP</span></li>
-    <li><a href="press-release-screen.pdf">Press release</a><span>draft · embargo 1 Sep</span></li>
-    <li><a href="facts-sheet-screen.pdf">Fact sheet</a><span>draft · checkable</span></li>
-    <li><a href="founder-story-screen.pdf">The founder story</a><span>PDF</span></li>
-    <li><a href="usage-notes-screen.pdf">Brand usage notes</a><span>PDF</span></li>
-    <li><a href="/brand/signal-studio-brand-kit.zip">Wordmarks & logo masters</a><span>SVG + PNG · ZIP</span></li>
-    <li class="pending">Founder photography<span>July</span></li>
-    <li class="pending">Product screenshots — all four products<span>July</span></li>
-  </ul>
-  <footer>Signal Studio · Limerick, Ireland · hello@signalstudio.ie · signalstudio.ie</footer>
-</main>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Signal Studio — press</title><style>
+:root { --accent:#4f46e5; --mid:#818cf8; --ink:#111; --deep:#0a0a0b; --soft:#3f3f46; --faint:#71717a;
+--warm:#f6f6f4; --rule:#e8e8e5; --hair:rgba(17,17,17,.1);
+--sans:"Geist",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace; }
+*{box-sizing:border-box} body{margin:0;font-family:var(--sans);color:var(--ink);background:#fff}
+.strip{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+color:rgba(255,255,255,.45);background:var(--deep);padding:14px 24px;display:flex;justify-content:space-between;gap:16px}
+.strip b{color:var(--mid);font-weight:600}
+main{max-width:840px;margin:0 auto;padding:56px 24px 96px}
+.mark{font-weight:500;letter-spacing:-.04em;font-size:20px}
+.mark i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:2px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.032em;line-height:1.1;margin:18px 0 8px;text-wrap:balance}
+h1 span{color:var(--accent)}
+p.lede{color:var(--soft);line-height:1.6;margin:0 0 8px;max-width:64ch}
+.callout{background:#eef2ff;border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:14px 18px;margin-top:18px}
+.callout p{color:var(--accent);font-weight:500;margin:0;line-height:1.5;font-size:14px}
+h2{font-size:15px;font-weight:700;letter-spacing:-.01em;margin:40px 0 10px}
+ul{list-style:none;padding:0;margin:20px 0 0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;box-shadow:0 4px 8px rgba(10,10,11,.04),0 16px 40px rgba(10,10,11,.07)}
+li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 18px;border-bottom:1px solid var(--rule);background:#fff}
+li:last-child{border-bottom:none}
+li a{color:var(--ink);text-decoration:none;font-weight:500} li a:hover{color:var(--accent)}
+li span{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
+.grid a{text-decoration:none;color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.grid img{width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;display:block;margin-bottom:6px;background:#fff;box-shadow:0 1px 2px rgba(10,10,11,.04),0 6px 16px rgba(10,10,11,.04)}
+footer{margin-top:56px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+</style></head><body>
+<div class="strip"><span>Story distribution · Press & PR</span><b>Built so the piece writes itself</b></div>
+<main><div class="mark">signal studio<i></i></div>
+<h1>This is a human-interest story — <span>the product announcement framing is banned.</span></h1><p class="lede">Everything a journalist needs, without a second email. The release is under embargo until 1 September 2026; every number in the fact sheet also appears in the business plan at plan.signalstudio.ie.</p><div class="callout"><p>Direct line to the founder, same-day reply through the launch window: hello@signalstudio.ie</p></div><ul><li><a href="press-kit.zip">The press kit — everything below, zipped</a><span>ZIP</span></li><li><a href="press-release-screen.pdf">Press release</a><span>draft · embargo 1 Sep</span></li><li><a href="facts-sheet-screen.pdf">Fact sheet</a><span>draft · checkable</span></li><li><a href="founder-story-screen.pdf">The founder story</a><span>PDF</span></li><li><a href="usage-notes-screen.pdf">Brand usage notes</a><span>PDF</span></li><li><a href="/brand/signal-studio-brand-kit.zip">Wordmarks & logo masters</a><span>SVG + PNG · ZIP</span></li><li>Founder photography<span>July</span></li><li>Product screenshots — all four products<span>July</span></li></ul>
+<footer>Signal Studio &middot; Limerick, Ireland &middot; hello@signalstudio.ie</footer></main></body></html>

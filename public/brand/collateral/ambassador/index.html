@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>Signal Studio — student ambassador kit</title>
-<style>
-:root { --accent:#4f46e5; --ink:#111; --soft:#3f3f46; --faint:#71717a; --hair:rgba(17,17,17,.1);
+<meta name="robots" content="noindex"><title>Signal Studio — student ambassador kit</title><style>
+:root { --accent:#4f46e5; --mid:#818cf8; --ink:#111; --deep:#0a0a0b; --soft:#3f3f46; --faint:#71717a;
+--warm:#f6f6f4; --rule:#e8e8e5; --hair:rgba(17,17,17,.1);
 --sans:"Geist",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace; }
-*{box-sizing:border-box} body{margin:0;font-family:var(--sans);color:var(--ink)}
-main{max-width:720px;margin:0 auto;padding:72px 24px 96px}
-.mark{font-weight:500;letter-spacing:-.04em;font-size:20px} .mark b{color:var(--accent);font-weight:600}
-.eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:40px;display:block}
-h1{font-size:30px;font-weight:600;letter-spacing:-.035em;margin:10px 0 6px}
-p.lede{color:var(--soft);line-height:1.55;margin:0 0 8px;max-width:58ch}
-ul{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--hair)}
-li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--hair)}
-li a{color:var(--ink);text-decoration:none;font-weight:500} li a:hover{text-decoration:underline}
-li span{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap}
-footer{margin-top:48px;font-family:var(--mono);font-size:11px;color:var(--faint)}
-</style></head><body><main>
-<div class="mark">signal studio<b>.</b></div>
-<span class="eyebrow">Collateral · Student ambassador kit</span>
-<h1>Nine kits. Three campuses.</h1>
-<p class="lede">UL, TUS and MIC — assembled in August, in hand before societies week. The welcome letter is printed and signed by hand; the QR card stays a specimen until its destination is confirmed; the notebook is a procurement spec, not a print file.</p>
-<ul>
-<li><a href="ambassador-kit.zip">The whole kit, zipped</a><span>ZIP</span></li>
-<li><a href="k0-welcome-print.pdf">K·0 — Welcome letter</a><span>A5 · print + sign</span></li>
-<li><a href="k1-onboarding-screen.pdf">K·1 — Onboarding guide</a><span>A5 · 6pp</span></li>
-<li><a href="k2-ball-screen.pdf">K·2 — The Ball</a><span>A5</span></li>
-<li><a href="k2-trip-screen.pdf">K·2 — The Trip</a><span>A5</span></li>
-<li><a href="k2-campaign-screen.pdf">K·2 — The Campaign</a><span>A5</span></li>
-<li><a href="k2-agm-screen.pdf">K·2 — The AGM Handover</a><span>A5</span></li>
-<li><a href="k3-qr-card-print.pdf">K·3 — Committee QR card</a><span>SPECIMEN</span></li>
-<li><a href="k4-notebook-spec-screen.pdf">K·4 — Notebook procurement spec</a><span>A4</span></li>
-</ul>
-<footer>Signal Studio · Limerick, Ireland · hello@signalstudio.ie</footer>
-</main></body></html>
+*{box-sizing:border-box} body{margin:0;font-family:var(--sans);color:var(--ink);background:#fff}
+.strip{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+color:rgba(255,255,255,.45);background:var(--deep);padding:14px 24px;display:flex;justify-content:space-between;gap:16px}
+.strip b{color:var(--mid);font-weight:600}
+main{max-width:840px;margin:0 auto;padding:56px 24px 96px}
+.mark{font-weight:500;letter-spacing:-.04em;font-size:20px}
+.mark i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:2px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.032em;line-height:1.1;margin:18px 0 8px;text-wrap:balance}
+h1 span{color:var(--accent)}
+p.lede{color:var(--soft);line-height:1.6;margin:0 0 8px;max-width:64ch}
+.callout{background:#eef2ff;border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:14px 18px;margin-top:18px}
+.callout p{color:var(--accent);font-weight:500;margin:0;line-height:1.5;font-size:14px}
+h2{font-size:15px;font-weight:700;letter-spacing:-.01em;margin:40px 0 10px}
+ul{list-style:none;padding:0;margin:20px 0 0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;box-shadow:0 4px 8px rgba(10,10,11,.04),0 16px 40px rgba(10,10,11,.07)}
+li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 18px;border-bottom:1px solid var(--rule);background:#fff}
+li:last-child{border-bottom:none}
+li a{color:var(--ink);text-decoration:none;font-weight:500} li a:hover{color:var(--accent)}
+li span{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
+.grid a{text-decoration:none;color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.grid img{width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;display:block;margin-bottom:6px;background:#fff;box-shadow:0 1px 2px rgba(10,10,11,.04),0 6px 16px rgba(10,10,11,.04)}
+footer{margin-top:56px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+</style></head><body>
+<div class="strip"><span>Collateral · The ambassador kit</span><b>Nine kits · UL · TUS · MIC</b></div>
+<main><div class="mark">signal studio<i></i></div>
+<h1>Nine boxes, <span>in hand before societies week.</span></h1><p class="lede">The welcome letter is printed and signed by hand; the QR card stays a specimen until its destination is confirmed; the notebook is a procurement spec, not a print file.</p><div class="callout"><p>The kit is built like the product: nothing in the box exists to advertise, everything exists to be used.</p></div><ul><li><a href="ambassador-kit.zip">The whole kit, zipped</a><span>ZIP</span></li><li><a href="k0-welcome-print.pdf">K·0 — Welcome letter</a><span>A5 · print + sign</span></li><li><a href="k1-onboarding-screen.pdf">K·1 — Onboarding guide</a><span>A5 · 6pp</span></li><li><a href="k2-ball-screen.pdf">K·2 — The Ball</a><span>A5</span></li><li><a href="k2-trip-screen.pdf">K·2 — The Trip</a><span>A5</span></li><li><a href="k2-campaign-screen.pdf">K·2 — The Campaign</a><span>A5</span></li><li><a href="k2-agm-screen.pdf">K·2 — The AGM Handover</a><span>A5</span></li><li><a href="k3-qr-card-print.pdf">K·3 — Committee QR card (ink-dark)</a><span>SPECIMEN</span></li><li><a href="k3-qr-card-preview.png">K·3 — preview</a><span>PNG</span></li><li><a href="k4-notebook-spec-screen.pdf">K·4 — Notebook procurement spec</a><span>A4</span></li></ul>
+<footer>Signal Studio &middot; Limerick, Ireland &middot; hello@signalstudio.ie</footer></main></body></html>

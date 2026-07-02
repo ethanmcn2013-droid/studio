@@ -1,32 +1,22 @@
-Signal Studio — identity & stationery print notes
-==================================================
+Signal Studio - identity & stationery print notes (v2, deck grammar)
+=====================================================================
 
-All PDFs are vector RGB (Chromium render). Ask the printer to convert to
-PDF/X-1a at prepress. Text is pure black (100K after conversion); the only
-colour is brand indigo #4f46e5 (front-of-card period, headline full stops).
-Crop marks and 3mm bleed are included on every *-print.pdf.
+All print PDFs: vector RGB, 3mm bleed + crop marks. Convert to PDF/X-1a at
+prepress. Dark objects (founder card front, cafe card, K3 card, A2 poster)
+use #0a0a0b panels - ask prepress for a RICH BLACK build (e.g. 60/40/40/100),
+not plain 100K, so the panel prints deep and even on uncoated stock.
 
 founder-card-front-print.pdf / founder-card-back-print.pdf
-  Trim 85×55mm · 3mm bleed · safe margin 6mm
-  Stock: 350–400gsm uncoated (duplex for weight if available) · no lamination, no gloss
-  Front and back supplied as separate artboards per printer convention.
+  85x55mm - ink-dark front over white reverse (the deck's card system).
+  Stock: 350-400gsm uncoated, duplex. founder-card-front-light-print.pdf
+  is the paper-front alternate, kept for comparison.
+fp-card-print.pdf
+  The Founding Partner variant - solid indigo (PMS 2726C is the closest
+  spot match to #4f46e5 if offset), numbered at print or by hand, never
+  reprinted. Presented at signing only.
+cafe-card-print.pdf          A6 dark - permission placement only.
+campaign-poster-print.pdf    A2 (420x594mm) dark - permission boards only.
+letterhead-print.pdf         A4 white, 100-120gsm uncoated.
 
-cafe-card-print.pdf
-  Trim 105×148mm (A6 portrait) · 3mm bleed · safe margin 10mm
-  Stock: ≥300gsm uncoated · placement is permission-led only, never stacked or dropped.
-
-letterhead-print.pdf
-  Trim 210×297mm (A4) · 3mm bleed · 18mm document margins
-  Stock: 100–120gsm uncoated. letterhead-screen.pdf is the emailable version;
-  the HTML master (collateral repo, masters/identity/letterhead.html) is the
-  editable source — set letter text inside .letter-body.
-
-signature.html / signature.txt
-  Copy the block between SIGNATURE START/END into the mail client.
-  Fonts fall back Geist → Helvetica Neue → Arial; no images, nothing to break.
-
-Before print (founder confirmations)
-  1. Location line reads "Limerick, Ireland" — the previous live signature said
-     Dublin. Confirm Limerick is correct everywhere.
-  2. Role title "Founder" and name spelling confirmed as printed.
-  3. Founder sign-off (quality gate check 10) before any print run.
+Before print: QR destinations confirmed, location line (Limerick) confirmed,
+founder sign-off (gate check 10). SPECIMEN-marked objects never print.
