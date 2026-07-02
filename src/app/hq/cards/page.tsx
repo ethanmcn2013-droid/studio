@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 type CardVariant = {
   id: string;
+  chosen?: string;
   name: string;
   front: string;
   back: string;
@@ -22,34 +23,37 @@ const VARIANTS: CardVariant[] = [
   {
     id: "ink",
     name: "01 · Ink",
+    chosen: "CHOSEN",
     front: "Ink-dark front — the wordmark high, the indigo stroke low.",
-    back: "White reverse — the contact grid, site in indigo mono.",
+    back: "White reverse — the contact grid with the QR to the site.",
     read: "The deck's card. Serious, editorial, photographs beautifully. The safest world-class choice.",
     spec: "350–400gsm uncoated duplex · rich black front · one indigo event per side",
   },
   {
     id: "indigo",
     name: "02 · Indigo",
+    chosen: "CHOSEN",
     front: "Solid indigo front — white wordmark, white stroke. The panel is the event.",
     back: "White reverse — the contact grid.",
     read: "The boldest of the six. Owns the brand colour completely; unmistakable in a stack of business cards.",
     spec: "350–400gsm uncoated duplex · PMS 2726C if offset · white reverse",
   },
   {
-    id: "paper",
-    name: "03 · Paper",
-    front: "White front — the wordmark alone, optically centred.",
-    back: "White reverse — the contact grid.",
-    read: "Quietest confidence. With an indigo painted edge it becomes the most tactile object of the set — the accent only appears when the card turns.",
-    spec: "600gsm duplexed uncoated · indigo edge paint (the one indigo event) · letterpress optional",
-  },
-  {
     id: "duo",
-    name: "04 · Duo",
+    name: "03 · Duo",
+    chosen: "CHOSEN",
     front: "Ink-dark front — wordmark and stroke.",
     back: "Solid indigo reverse — the contact grid in white.",
     read: "The mix-and-match: black hands the brand, indigo hands the person. Two panels, no white anywhere — the palette is the finish, literally.",
     spec: "350–400gsm uncoated duplex · rich black + PMS 2726C · no white face",
+  },
+  {
+    id: "paper",
+    name: "04 · Paper",
+    front: "White front — the wordmark alone, optically centred.",
+    back: "White reverse — the contact grid.",
+    read: "Quietest confidence. With an indigo painted edge it becomes the most tactile object of the set — the accent only appears when the card turns.",
+    spec: "600gsm duplexed uncoated · indigo edge paint (the one indigo event) · letterpress optional",
   },
   {
     id: "dot",
@@ -83,7 +87,7 @@ export default async function CardsPage() {
         <p className="hq-page-intro">
           The card is the first thing most of Limerick will hold — one accent,
           no finish to hide behind. Every direction below is print-ready at
-          85×55mm with bleed and crop marks. Choose a front and a back; they
+          85×55mm with bleed and crop marks. Three are chosen; they
           mix and match — say the pairing and the print file is ready the
           same day.
         </p>
@@ -115,7 +119,12 @@ export default async function CardsPage() {
                 textTransform: "uppercase",
               }}
             >
-              <span style={{ fontWeight: 600 }}>{v.name}</span>
+              <span style={{ fontWeight: 600, display: "inline-flex", alignItems: "baseline", gap: "10px" }}>
+                {v.name}
+                {v.chosen ? (
+                  <span style={{ background: "var(--accent)", color: "#fff", borderRadius: "999px", padding: "2px 10px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em" }}>{v.chosen}</span>
+                ) : null}
+              </span>
               <span style={{ color: "var(--ink-faint)" }}>{v.spec}</span>
             </div>
             <div
@@ -182,8 +191,7 @@ export default async function CardsPage() {
         }}
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
-          How to decide: order a short proof run of your top two on the real
-          stock and choose by touch. The test is unchanged — would you be
+          Decision recorded: Ink, Indigo and Duo run as a trio — same reverse (contact grid + QR to the site), chosen per pocket and occasion. Proof all three on the real stock before the production run. The test is unchanged — would you be
           proud to leave it on the front desk of the best venue in Limerick?
           Fronts and backs mix freely; the print notes ship with whichever
           pairing you name.

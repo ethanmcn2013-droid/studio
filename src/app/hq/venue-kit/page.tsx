@@ -49,6 +49,25 @@ const DIRECTIONS: ReviewDirection[] = [
     links: [{ label: "internal pdf", href: `${P}/demo-script-screen.pdf` }],
   },
   {
+    id: "pilot",
+    name: "06 · The pilot card",
+    spec: "A5 · signed on the desk · no contract to read",
+    images: [{ src: `${P}/pilot-card-preview.png`, alt: "The pilot on one page", caption: "One wedding, one coordinator, two weeks — then you decide. Costs nothing, data stays theirs, hosted in the EU." }],
+    read: "The close as an object. 'No contract to read' becomes literally true — the whole agreement fits on a card signed at the end of a good demo.",
+    links: [
+      { label: "screen pdf", href: `${P}/pilot-card-screen.pdf` },
+      { label: "print pdf", href: `${P}/pilot-card-print.pdf` },
+    ],
+  },
+  {
+    id: "prepared",
+    name: "07 · Prepared-for personalisation",
+    spec: "?venue= · every object renders bespoke · zero marginal cost",
+    images: [{ src: `${P}/venue-onepager-prepared-preview.png`, alt: "One-pager prepared for a named venue", caption: "The one-pager and the deck cover take a venue name and render 'Prepared for —' in the header strip. Shown here with a placeholder." }],
+    read: "The world-class move no venue expects from a software company: their name on the object before the first meeting. Say the venue and the personalised kit renders in minutes.",
+    links: [{ label: "specimen preview", href: `${P}/venue-onepager-prepared-preview.png` }],
+  },
+  {
     id: "permission",
     name: "05 · The permission form",
     spec: "A4 · one page · legal review before first use",
