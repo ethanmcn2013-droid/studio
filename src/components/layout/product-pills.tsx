@@ -60,10 +60,11 @@ export function ProductPills({ current }: { current?: string }) {
       if (reduce) return; // let the link navigate immediately
       e.preventDefault();
       moveDotTo(i);
-      // the dot travels, then we go — short, accessible.
+      // Source press <=120ms, never delays navigation (loading canon law 8).
+      // The dot starts travelling; the destination owns the arrival.
       window.setTimeout(() => {
         window.location.href = p.href;
-      }, 320);
+      }, 120);
     },
     [moveDotTo],
   );
