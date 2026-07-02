@@ -15,8 +15,14 @@ date: 2026-07-01
 1. **Choose the card:** open `/hq/cards` — six directions (Ink, Indigo,
    Paper, Duo, The Dot, Broadcast), each duplex and print-ready. Fronts and
    backs mix freely; name the pairing.
-2. Then review the rest of the set at `/brand/collateral/identity/index.html`
-   (café card, poster, letterhead, email signature).
+2. **Choose the partner card:** `/hq/partner-card` — Indigo, Certificate,
+   Numeral, Seal. Presented at signing, numbered by hand.
+3. **Choose the café card(s):** `/hq/cafe-card` — Ink, Campaign, Belief,
+   Indigo. Two can run at once, chosen per placement.
+4. **Choose the poster(s) per wall:** `/hq/poster` — Ink, Indigo, Paper,
+   The Dot.
+5. Then review the rest of the set at `/brand/collateral/identity/index.html`
+   (letterhead, email signature).
 2. Confirm the location line: everything now reads **Limerick, Ireland** —
    the previous live signature (`/brand/email/signature.txt`) said Dublin.
    If Limerick is right, the old signature files should be superseded.

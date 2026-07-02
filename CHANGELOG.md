@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-02 · S·97 · ships · three more review rooms — the partner card, the café card, the poster
+
+**Three gated rooms join `/hq/cards`: `/hq/partner-card` (Indigo, Certificate, Numeral, Seal — the hand-numbered object presented at signing, with a hand-completed reverse on two directions), `/hq/cafe-card` (Ink, Campaign, Belief, Indigo — the permission-placed A6, choosable per counter), and `/hq/poster` (Ink, Indigo, Paper, The Dot — A2, one campaign line, chosen per wall).** Every direction is print-ready with bleed and crop marks; the rooms share one review surface (`ReviewRoom`) so every future object decision reads the same way. The sign-off ledger now walks the founder room by room. **Operator gate:** four decisions, one page each.
+
 ## 2026-07-02 · S·96 · ships · six ways to hand someone the company
 
 **A gated review room at `/hq/cards` holds batch two of the founder card: Ink, Indigo, Paper, Duo (black front over indigo reverse), The Dot (the indigo dot alone on black), and Broadcast (the emit gesture as a hairline emblem, specced for blind deboss).** Each direction is duplex and print-ready at 85×55mm with bleed and crop marks; fronts and backs mix freely, and the page carries the print technique per direction — rich black builds, PMS 2726C, painted edges, deboss. The founder chooses; the printer gets one file. Behind HQ access by design — the card decision is an internal one until it's in someone's hand.
