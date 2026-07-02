@@ -1,7 +1,7 @@
 # Signal Studio · DESIGN.md
 
 > **⚠️ DEPRECATED — superseded by Signal Design System 2.0 (2026-07-02).**
-> The canonical system now lives in the `signal-studio-foundation` repo (`@signal/ds`): docs in `docs/`, tokens in `tokens/tokens.css`. This file describes the v1 lock (2026-05-13) and is kept as history only — where it disagrees with @signal/ds 2.0, the new system wins. Do not extend this file.
+> The canonical system now lives in the `signal-design-system` repo (`@signal/ds`): docs in `docs/`, tokens in `tokens/tokens.css`. This file describes the v1 lock (2026-05-13) and is kept as history only — where it disagrees with @signal/ds 2.0, the new system wins. Do not extend this file.
 
 **Agent-readable design system for the Signal Studio suite.**
 

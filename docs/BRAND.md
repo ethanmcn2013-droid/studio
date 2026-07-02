@@ -1,6 +1,6 @@
 # Signal Studio · Brand Handbook
 
-> **⚠️ DEPRECATED (2026-07-02).** This is an older copy of the root `BRAND.md`. For visuals and tokens, the source of truth is **Signal Design System 2.0** (`signal-studio-foundation` repo). For voice and naming, see the root `BRAND.md`. Kept as history only.
+> **⚠️ DEPRECATED (2026-07-02).** This is an older copy of the root `BRAND.md`. For visuals and tokens, the source of truth is **Signal Design System 2.0** (`signal-design-system` repo). For voice and naming, see the root `BRAND.md`. Kept as history only.
 
 **Single source of truth for voice, naming, visual register, and audience tone across the Signal Studio suite.**
 
