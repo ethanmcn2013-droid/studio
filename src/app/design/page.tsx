@@ -510,9 +510,9 @@ const JOBS = [
 ] as const;
 
 const NAMES = [
-  { name: "Signal Notes", does: "holds notes." },
-  { name: "Signal Tasks", does: "holds tasks." },
-  { name: "Signal Timeline", does: "shows the plan." },
+  { name: "Notes", does: "holds notes." },
+  { name: "Tasks", does: "holds tasks." },
+  { name: "Timeline", does: "shows the plan." },
   { name: "Signal", does: "tells you what changed." },
 ] as const;
 
