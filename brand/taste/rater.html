@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Signal Studio · taste</title>
+<style>
+  :root {
+    --ink: #111111; --ink-soft: #3f3f46; --ink-quiet: #6b7280; --ink-faint: #9ca3af;
+    --paper: #ffffff; --paper-soft: #fafafa; --accent: #4f46e5; --accent-soft: #eef0fe;
+    --hairline: rgba(17,17,17,.10); --hairline-soft: rgba(17,17,17,.06);
+    --geist: 'Geist','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono: 'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--geist); -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column; min-height: 100vh;
+  }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px; border-bottom: 1px solid var(--hairline-soft);
+  }
+  .wordmark { font-weight: 600; letter-spacing: -.02em; font-size: 15px; }
+  .wordmark b { color: var(--accent); }
+  .hstat { font-family: var(--mono); font-size: 11px; color: var(--ink-quiet); letter-spacing: .04em; }
+  .hbtns button {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+    background: transparent; border: 1px solid var(--hairline); border-radius: 999px;
+    color: var(--ink-soft); padding: 6px 11px; margin-left: 6px; cursor: pointer;
+    transition: border-color .15s, color .15s;
+  }
+  .hbtns button:hover { border-color: var(--accent); color: var(--accent); }
+  main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px; }
+  .prompt { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-quiet); margin-bottom: 26px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: min(1000px, 100%); }
+  .card {
+    position: relative; border: 1px solid var(--hairline); border-radius: 16px; background: var(--paper);
+    padding: 40px 34px; min-height: 240px; display: flex; flex-direction: column; justify-content: center;
+    cursor: pointer; transition: border-color .15s, background .15s, transform .12s;
+  }
+  .card:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .card:active { transform: translateY(1px); }
+  .card .key { position: absolute; top: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: .1em; }
+  .card.a .key { left: 16px; } .card.b .key { right: 16px; }
+  .card .subject { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .card .text { font-size: clamp(19px, 2.4vw, 26px); font-weight: 500; line-height: 1.28; letter-spacing: -.015em; color: var(--ink); }
+  .bothwrong {
+    margin-top: 22px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    background: transparent; border: 1px dashed var(--hairline); border-radius: 999px; color: var(--ink-quiet);
+    padding: 9px 16px; cursor: pointer; transition: border-color .15s, color .15s;
+  }
+  .bothwrong:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .hint { margin-top: 20px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: .04em; }
+  .hint b { color: var(--ink-soft); }
+  /* learned panel */
+  .learned { width: min(1000px, 100%); margin: 34px auto 0; border-top: 1px solid var(--hairline-soft); padding-top: 22px; }
+  .learned h2 { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-quiet); margin: 0 0 16px; }
+  .lg { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .lg h3 { font-size: 12px; font-weight: 600; margin: 0 0 8px; color: var(--ink); }
+  .lg .like h3 { color: var(--accent); }
+  .lg ol { margin: 0; padding-left: 18px; }
+  .lg li { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 5px; }
+  .axes { margin-top: 22px; }
+  .axis-row { display: flex; align-items: center; gap: 12px; font-size: 12.5px; margin-bottom: 6px; }
+  .axis-name { width: 110px; font-weight: 500; color: var(--ink); text-transform: capitalize; }
+  .axis-bar { flex: 1; height: 6px; background: var(--hairline-soft); border-radius: 999px; position: relative; }
+  .axis-fill { position: absolute; top: 0; bottom: 0; left: 50%; background: var(--accent); border-radius: 999px; }
+  .axis-lean { width: 190px; font-family: var(--mono); font-size: 11px; color: var(--ink-quiet); }
+  .muted { color: var(--ink-faint); font-size: 12.5px; }
+  footer { padding: 14px 28px; border-top: 1px solid var(--hairline-soft); font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .04em; text-align: center; }
+  @media (max-width: 720px) { .cards, .lg { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark">signal studio<b>.</b> · taste</div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <span class="hstat" id="stat">0 ratings</span>
+    <span class="hbtns">
+      <button id="exportBtn" title="Download your ratings for compile-taste.mjs">Export</button>
+      <button id="importBtn">Import</button>
+      <button id="resetBtn">Reset</button>
+      <input id="importFile" type="file" accept="application/json" style="display:none" />
+    </span>
+  </div>
+</header>
+
+<main>
+  <div class="prompt">Which is more Signal Studio?</div>
+  <div class="cards">
+    <div class="card a" id="cardA" role="button" tabindex="0">
+      <span class="key">← A</span>
+      <span class="subject" id="subA"></span>
+      <span class="text" id="textA"></span>
+    </div>
+    <div class="card b" id="cardB" role="button" tabindex="0">
+      <span class="key">B →</span>
+      <span class="subject" id="subB"></span>
+      <span class="text" id="textB"></span>
+    </div>
+  </div>
+  <button class="bothwrong" id="bothWrong">↓ both wrong</button>
+  <div class="hint"><b>←</b> A wins &nbsp;·&nbsp; <b>→</b> B wins &nbsp;·&nbsp; <b>↓</b> both wrong &nbsp;·&nbsp; <b>u</b> undo &nbsp;·&nbsp; <b>s</b> skip</div>
+
+  <section class="learned" id="learned" style="display:none">
+    <h2>What I've learned about your taste</h2>
+    <div class="lg">
+      <div class="like"><h3>Most Signal Studio</h3><ol id="topList"></ol></div>
+      <div class="dislike"><h3>Least Signal Studio</h3><ol id="botList"></ol></div>
+    </div>
+    <div class="axes" id="axesBox"></div>
+    <p class="muted" id="learnNote"></p>
+  </section>
+</main>
+
+<footer>Pairwise, mood-robust. Rate in 4-minute bursts. Export → run <span style="color:var(--ink-soft)">node compile-taste.mjs</span> to refresh the skill's TASTE.md.</footer>
+
+<script>
+/* ── Item bank (snapshot of items.json; canonical source is items.json, which
+   compile-taste.mjs reads. The rater fetches items.json to override this if it
+   can; on file:// it falls back to this embed so double-click still works). ── */
+const ITEMS_EMBED = {"items":[
+  {"id":"s01","subject":"mission","text":"Project management for the 80% who don't work in tech.","axes":{"stance":4,"altitude":3,"register":4,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"s02","subject":"mission","text":"We build clarity for everyone.","axes":{"stance":3,"altitude":0,"register":3,"motion":3,"breath":4,"temp":3,"rhythm":1}},
+  {"id":"s03","subject":"mission","text":"Software that learned you, not the other way around.","axes":{"stance":4,"altitude":2,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"s04","subject":"mission","text":"The operating system for modern work.","axes":{"stance":3,"altitude":0,"register":1,"motion":1,"breath":4,"temp":2,"rhythm":2}},
+  {"id":"s05","subject":"mission","text":"Boring on purpose. Built slowly.","axes":{"stance":4,"altitude":2,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"s06","subject":"mission","text":"Modern, simple, beautiful.","axes":{"stance":1,"altitude":0,"register":2,"motion":0,"breath":4,"temp":1,"rhythm":1}},
+  {"id":"a01","subject":"audience","text":"You are not a project manager. Stop being asked to act like one.","axes":{"stance":4,"altitude":3,"register":4,"motion":4,"breath":4,"temp":3,"rhythm":4}},
+  {"id":"a02","subject":"audience","text":"You shouldn't need a special vocabulary to run your own work.","axes":{"stance":2,"altitude":2,"register":4,"motion":2,"breath":4,"temp":4,"rhythm":3}},
+  {"id":"a03","subject":"audience","text":"For the wedding planner running eight jobs off the back of a notebook.","axes":{"stance":3,"altitude":4,"register":4,"motion":3,"breath":3,"temp":4,"rhythm":3}},
+  {"id":"a04","subject":"audience","text":"Built for teams that want to move faster.","axes":{"stance":3,"altitude":1,"register":2,"motion":3,"breath":4,"temp":2,"rhythm":2}},
+  {"id":"a05","subject":"audience","text":"A wedding to plan. A college year to keep on top of. A crew to keep aligned.","axes":{"stance":3,"altitude":4,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"a06","subject":"audience","text":"Finally, project management that gets you.","axes":{"stance":3,"altitude":1,"register":3,"motion":2,"breath":4,"temp":0,"rhythm":1}},
+  {"id":"t01","subject":"tasks","text":"Execution clarity for live work.","axes":{"stance":4,"altitude":2,"register":3,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"t02","subject":"tasks","text":"Board, list, timeline, calendar. Same work, four ways to see it.","axes":{"stance":4,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"t03","subject":"tasks","text":"A seamless, unified workspace to supercharge your team's productivity.","axes":{"stance":3,"altitude":0,"register":1,"motion":1,"breath":4,"temp":0,"rhythm":1}},
+  {"id":"t04","subject":"tasks","text":"Switch how you see the work without re-entering any of it.","axes":{"stance":4,"altitude":3,"register":4,"motion":4,"breath":4,"temp":4,"rhythm":3}},
+  {"id":"t05","subject":"tasks","text":"Tasks runs the work. Everything else assembles around it.","axes":{"stance":4,"altitude":2,"register":4,"motion":4,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"l01","subject":"timeline","text":"A public plan your customers can actually read.","axes":{"stance":4,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"l02","subject":"timeline","text":"Show your work, not your Jira.","axes":{"stance":4,"altitude":3,"register":4,"motion":4,"breath":4,"temp":3,"rhythm":4}},
+  {"id":"l03","subject":"timeline","text":"Increase stakeholder alignment with real-time roadmap visibility.","axes":{"stance":3,"altitude":0,"register":0,"motion":1,"breath":4,"temp":2,"rhythm":1}},
+  {"id":"l04","subject":"timeline","text":"One link. Plain English. No login, no app, no translation layer.","axes":{"stance":4,"altitude":3,"register":3,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"l05","subject":"timeline","text":"Your customers read it at midnight, on a phone, and understand it.","axes":{"stance":4,"altitude":4,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":3}},
+  {"id":"g01","subject":"signal","text":"A briefing, not a dashboard.","axes":{"stance":4,"altitude":3,"register":4,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"g02","subject":"signal","text":"One thing, first.","axes":{"stance":4,"altitude":2,"register":4,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"g03","subject":"signal","text":"Signal surfaces what matters in your work.","axes":{"stance":3,"altitude":1,"register":3,"motion":3,"breath":4,"temp":3,"rhythm":2}},
+  {"id":"g04","subject":"signal","text":"Signal cuts the noise so the important stuff rises.","axes":{"stance":3,"altitude":2,"register":4,"motion":3,"breath":4,"temp":3,"rhythm":3}},
+  {"id":"g05","subject":"signal","text":"Signal streamlines your operational visibility.","axes":{"stance":3,"altitude":0,"register":1,"motion":1,"breath":4,"temp":2,"rhythm":1}},
+  {"id":"g06","subject":"signal","text":"The one thing that needs you today, and the quiet list of what doesn't.","axes":{"stance":4,"altitude":3,"register":4,"motion":2,"breath":3,"temp":4,"rhythm":4}},
+  {"id":"n01","subject":"notes","text":"Write it here first. Before it fades.","axes":{"stance":4,"altitude":2,"register":4,"motion":4,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"n02","subject":"notes","text":"Not everything is ready for the room. Write it here first.","axes":{"stance":4,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"n03","subject":"notes","text":"Capture your thoughts and boost your personal productivity.","axes":{"stance":3,"altitude":1,"register":2,"motion":2,"breath":4,"temp":1,"rhythm":1}},
+  {"id":"n04","subject":"notes","text":"Your private layer.","axes":{"stance":4,"altitude":1,"register":0,"motion":0,"breath":4,"temp":3,"rhythm":2}},
+  {"id":"n05","subject":"notes","text":"The half-formed thought goes here. It leaves only when you say so.","axes":{"stance":4,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"e01","subject":"empty-state","text":"Nothing needs you right now.","axes":{"stance":4,"altitude":2,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"e02","subject":"empty-state","text":"You're all caught up. Enjoy the quiet.","axes":{"stance":4,"altitude":2,"register":4,"motion":3,"breath":4,"temp":3,"rhythm":3}},
+  {"id":"e03","subject":"empty-state","text":"No items to display.","axes":{"stance":3,"altitude":1,"register":3,"motion":1,"breath":4,"temp":1,"rhythm":1}},
+  {"id":"e04","subject":"empty-state","text":"Your board is empty. Add the first thing that needs doing.","axes":{"stance":4,"altitude":3,"register":4,"motion":4,"breath":4,"temp":4,"rhythm":3}},
+  {"id":"r01","subject":"error","text":"This may need attention.","axes":{"stance":3,"altitude":2,"register":4,"motion":2,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"r02","subject":"error","text":"Task overdue.","axes":{"stance":4,"altitude":2,"register":3,"motion":1,"breath":4,"temp":0,"rhythm":2}},
+  {"id":"r03","subject":"error","text":"Something went wrong. We couldn't save that. Try again in a moment.","axes":{"stance":3,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":3}},
+  {"id":"r04","subject":"error","text":"Oops! Looks like we hit a snag.","axes":{"stance":2,"altitude":1,"register":3,"motion":2,"breath":4,"temp":0,"rhythm":1}},
+  {"id":"c01","subject":"cta","text":"Open the workspace.","axes":{"stance":4,"altitude":3,"register":4,"motion":4,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"c02","subject":"cta","text":"Get started for free today!","axes":{"stance":4,"altitude":2,"register":3,"motion":3,"breath":4,"temp":0,"rhythm":1}},
+  {"id":"c03","subject":"cta","text":"See the plan, in plain English.","axes":{"stance":4,"altitude":3,"register":4,"motion":3,"breath":4,"temp":4,"rhythm":4}},
+  {"id":"c04","subject":"cta","text":"Start your free trial and unlock your team's full potential.","axes":{"stance":3,"altitude":1,"register":2,"motion":3,"breath":4,"temp":0,"rhythm":1}}
+]};
+
+const AXES = ["stance","altitude","register","motion","breath","temp","rhythm"];
+const LR = 0.28, RANDOM_RATE = 0.15, STORE_KEY = "signal-taste-v1";
+let ITEMS = ITEMS_EMBED.items;
+let theta = {};            // id -> Bradley-Terry score
+let shown = {};            // id -> times shown
+let judgements = [];       // {a,b,winner|'both', ts}
+let curA, curB, lastPairKey = "";
+
+const $ = (id) => document.getElementById(id);
+const sig = (x) => 1/(1+Math.exp(-x));
+const byId = (id) => ITEMS.find(i => i.id === id);
+
+function init() {
+  for (const it of ITEMS) { theta[it.id] = 0; shown[it.id] = 0; }
+  load();
+  // try to override embed with canonical items.json (works when served; harmless if it fails)
+  fetch("./items.json").then(r=>r.ok?r.json():null).then(j=>{
+    if (j && Array.isArray(j.items) && j.items.length) {
+      ITEMS = j.items;
+      for (const it of ITEMS) { if (theta[it.id]===undefined) theta[it.id]=0; if (shown[it.id]===undefined) shown[it.id]=0; }
+    }
+  }).catch(()=>{}).finally(nextPair);
+  nextPair();
+  render();
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (s.theta) theta = { ...theta, ...s.theta };
+    if (s.shown) shown = { ...shown, ...s.shown };
+    if (Array.isArray(s.judgements)) judgements = s.judgements;
+  } catch {}
+}
+function save() {
+  localStorage.setItem(STORE_KEY, JSON.stringify({ theta, shown, judgements, ts: Date.now() }));
+}
+
+function pairKey(a,b){ return [a,b].sort().join("|"); }
+
+function nextPair() {
+  const ids = ITEMS.map(i=>i.id);
+  let best = null, bestScore = Infinity;
+  const random = Math.random() < RANDOM_RATE || judgements.length < 3;
+  // sample candidate pairs
+  const tries = random ? 1 : 260;
+  for (let k=0;k<tries;k++) {
+    const i = ids[(Math.random()*ids.length)|0];
+    let j = ids[(Math.random()*ids.length)|0];
+    if (i===j) { continue; }
+    if (pairKey(i,j)===lastPairKey) continue;
+    if (random) { best=[i,j]; break; }
+    const p = sig(theta[i]-theta[j]);
+    let score = Math.abs(p-0.5);                 // uncertainty: lower is better
+    // bias toward single-axis-differing pairs (attributable)
+    const ai=byId(i).axes, aj=byId(j).axes;
+    let diffs=0; for (const ax of AXES) if (Math.abs((ai[ax]??2)-(aj[ax]??2))>=2) diffs++;
+    if (diffs===1) score -= 0.14;
+    // coverage: prefer under-shown items
+    score -= 0.02*(1/(1+shown[i])+1/(1+shown[j]));
+    if (score < bestScore) { bestScore=score; best=[i,j]; }
+  }
+  if (!best) best=[ids[0], ids[1]];
+  // randomize display side
+  if (Math.random()<0.5) best=[best[1],best[0]];
+  [curA,curB]=best; lastPairKey=pairKey(curA,curB);
+  const A=byId(curA), B=byId(curB);
+  $("subA").textContent=A.subject; $("textA").textContent=A.text;
+  $("subB").textContent=B.subject; $("textB").textContent=B.text;
+}
+
+function judge(kind) {
+  // kind: 'A' | 'B' | 'both'
+  shown[curA]++; shown[curB]++;
+  if (kind==="both") {
+    theta[curA]-=LR*0.5; theta[curB]-=LR*0.5;
+    judgements.push({ a:curA, b:curB, winner:"both", ts:Date.now() });
+  } else {
+    const w = kind==="A"?curA:curB, l = kind==="A"?curB:curA;
+    const err = 1 - sig(theta[w]-theta[l]);
+    theta[w]+=LR*err; theta[l]-=LR*err;
+    judgements.push({ a:curA, b:curB, winner:w, ts:Date.now() });
+  }
+  save(); nextPair(); render();
+}
+
+function undo() {
+  const last = judgements.pop();
+  if (!last) return;
+  // cheap correction: recompute from scratch is safest for small N
+  for (const it of ITEMS) theta[it.id]=0, shown[it.id]=0;
+  const keep=judgements; judgements=[];
+  for (const j of keep) { curA=j.a; curB=j.b;
+    if (j.winner==="both"){shown[j.a]++;shown[j.b]++;theta[j.a]-=LR*0.5;theta[j.b]-=LR*0.5;judgements.push(j);}
+    else {const w=j.winner,l=j.a===w?j.b:j.a;const err=1-sig(theta[w]-theta[l]);shown[j.a]++;shown[j.b]++;theta[w]+=LR*err;theta[l]-=LR*err;judgements.push(j);}
+  }
+  save(); nextPair(); render();
+}
+
+function pearson(xs, ys) {
+  const n=xs.length; if (n<2) return 0;
+  const mx=xs.reduce((a,b)=>a+b,0)/n, my=ys.reduce((a,b)=>a+b,0)/n;
+  let num=0,dx=0,dy=0;
+  for (let i=0;i<n;i++){const a=xs[i]-mx,b=ys[i]-my;num+=a*b;dx+=a*a;dy+=b*b;}
+  return (dx&&dy)?num/Math.sqrt(dx*dy):0;
+}
+
+function render() {
+  $("stat").textContent = judgements.length + (judgements.length===1?" rating":" ratings");
+  if (judgements.length < 6) { $("learned").style.display="none"; return; }
+  $("learned").style.display="block";
+  const ranked=[...ITEMS].sort((a,b)=>theta[b.id]-theta[a.id]);
+  const top=ranked.slice(0,6), bot=ranked.slice(-6).reverse();
+  $("topList").innerHTML=top.map(i=>`<li>${esc(i.text)}</li>`).join("");
+  $("botList").innerHTML=bot.map(i=>`<li>${esc(i.text)}</li>`).join("");
+  // axis leans (only over items that have been shown)
+  const seen=ITEMS.filter(i=>shown[i.id]>0);
+  const box=$("axesBox"); box.innerHTML="";
+  for (const ax of AXES) {
+    const xs=seen.map(i=>i.axes[ax]??2), ys=seen.map(i=>theta[i.id]);
+    const r=pearson(xs,ys);
+    const pct=Math.max(-1,Math.min(1,r))*50;
+    const dir = ax==="temp" ? (r>0?"prefers calm-confident":"prefers hotter/colder")
+              : r>0 ? `prefers more ${ax}` : `prefers less ${ax}`;
+    const strength = Math.abs(r)<0.15?"~ weak":Math.abs(r)<0.4?"leans":"strong";
+    const row=document.createElement("div"); row.className="axis-row";
+    row.innerHTML=`<span class="axis-name">${ax}</span>
+      <span class="axis-bar"><span class="axis-fill" style="${pct>=0?`left:50%;width:${pct}%`:`left:${50+pct}%;width:${-pct}%`}"></span></span>
+      <span class="axis-lean">${strength} · ${dir}</span>`;
+    box.appendChild(row);
+  }
+  const note = judgements.length<25
+    ? `Early read from ${judgements.length} ratings. Do ~3 sessions on different days before trusting it.`
+    : `${judgements.length} ratings in. Export and run compile-taste.mjs to refresh the skill.`;
+  $("learnNote").textContent = note;
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+// ── wiring ──
+$("cardA").onclick=()=>judge("A"); $("cardB").onclick=()=>judge("B"); $("bothWrong").onclick=()=>judge("both");
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft")judge("A"); else if(e.key==="ArrowRight")judge("B");
+  else if(e.key==="ArrowDown")judge("both"); else if(e.key==="u")undo(); else if(e.key==="s")nextPair();
+});
+$("exportBtn").onclick=()=>{
+  const jsonl=judgements.map(j=>JSON.stringify(j)).join("\n")+"\n";
+  const blob=new Blob([jsonl],{type:"application/x-ndjson"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="judgements.jsonl"; a.click();
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=e=>{
+  const f=e.target.files[0]; if(!f)return; const rd=new FileReader();
+  rd.onload=()=>{ try{
+    const lines=rd.result.trim().split("\n").map(l=>JSON.parse(l));
+    judgements=lines; for(const it of ITEMS){theta[it.id]=0;shown[it.id]=0;}
+    const keep=judgements; judgements=[];
+    for(const j of keep){curA=j.a;curB=j.b;
+      if(j.winner==="both"){shown[j.a]++;shown[j.b]++;theta[j.a]-=LR*0.5;theta[j.b]-=LR*0.5;judgements.push(j);}
+      else{const w=j.winner,l=j.a===w?j.b:j.a;const err=1-sig(theta[w]-theta[l]);shown[j.a]++;shown[j.b]++;theta[w]+=LR*err;theta[l]-=LR*err;judgements.push(j);}}
+    save();nextPair();render();
+  }catch(err){alert("Could not read that file.");} };
+  rd.readAsText(f);
+};
+$("resetBtn").onclick=()=>{ if(confirm("Clear all your ratings?")){localStorage.removeItem(STORE_KEY);location.reload();} };
+
+init();
+</script>
+</body>
+</html>

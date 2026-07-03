@@ -306,6 +306,13 @@ These are not "guidelines." They are refusals that compound across the suite.
 - All-caps body text (eyebrows and status labels excepted)
 - **Em dashes (`—`) in public-facing copy.** Operator decision 2026-06-22. Use a comma, colon, or full stop instead. (Page-title separators use a middot `·`, not an em dash.)
 
+> **Voice is enforced by a skill, not just this list.** For any front-facing copy, the
+> `brand-voice` skill (`~/.claude/skills/brand-voice/`) carries the full decision procedure
+> (seven axes), the WRITE / AUDIT checklists, and the founder's calibrated exemplars
+> (`studio/brand/taste/TASTE.md`). Canonical rules stay in [`BRAND.md`](./BRAND.md) §3; run
+> `node ~/.claude/skills/brand-voice/voice-check.mjs <path>` for the mechanical pass. The
+> banned lists below are the floor — the skill is the enforcement.
+
 ### Banned copy
 - AI-marketing register: `AI`, `AI-powered`, `intelligent`, `smart`, `copilot`, `agent`, `assistant`, `moves itself`, `thinks`, `knows`, `decides`, `predicts`, `recommends`, `autonomous`
 - Project-management register: `sprint`, `epic`, `kanban`, `stakeholder`, `OKR`, `burndown`, `velocity`, `at risk` (as a status)

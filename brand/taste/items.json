@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "axes": ["stance", "altitude", "register", "motion", "breath", "temp", "rhythm"],
+  "axisNote": "0-4 priors only (0=hedged/abstract/coded/noun-stacked/run-on/cringe/flat, 4=declared/concrete/plain/verb-led/short/calm-confident/lands). Ratings are the truth; priors just help the sampler pick pairs that differ on one axis. temp: 0=hype-or-cold, 4=calm-confident.",
+  "items": [
+    { "id": "s01", "subject": "mission", "text": "Project management for the 80% who don't work in tech.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "canonical pole" },
+    { "id": "s02", "subject": "mission", "text": "We build clarity for everyone.", "axes": { "stance": 3, "altitude": 0, "register": 3, "motion": 3, "breath": 4, "temp": 3, "rhythm": 1 }, "note": "abstract, safe-boring" },
+    { "id": "s03", "subject": "mission", "text": "Software that learned you, not the other way around.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 } },
+    { "id": "s04", "subject": "mission", "text": "The operating system for modern work.", "axes": { "stance": 3, "altitude": 0, "register": 1, "motion": 1, "breath": 4, "temp": 2, "rhythm": 2 }, "note": "SaaS-generic trap" },
+    { "id": "s05", "subject": "mission", "text": "Boring on purpose. Built slowly.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped pole" },
+    { "id": "s06", "subject": "mission", "text": "Modern, simple, beautiful.", "axes": { "stance": 1, "altitude": 0, "register": 2, "motion": 0, "breath": 4, "temp": 1, "rhythm": 1 }, "note": "retired: 3-adjective trio, anti-pole" },
+
+    { "id": "a01", "subject": "audience", "text": "You are not a project manager. Stop being asked to act like one.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 4, "breath": 4, "temp": 3, "rhythm": 4 }, "note": "blunt imperative" },
+    { "id": "a02", "subject": "audience", "text": "You shouldn't need a special vocabulary to run your own work.", "axes": { "stance": 2, "altitude": 2, "register": 4, "motion": 2, "breath": 4, "temp": 4, "rhythm": 3 }, "note": "softer, hedged verb" },
+    { "id": "a03", "subject": "audience", "text": "For the wedding planner running eight jobs off the back of a notebook.", "axes": { "stance": 3, "altitude": 4, "register": 4, "motion": 3, "breath": 3, "temp": 4, "rhythm": 3 }, "note": "hyper-concrete, trailing — cute or great?" },
+    { "id": "a04", "subject": "audience", "text": "Built for teams that want to move faster.", "axes": { "stance": 3, "altitude": 1, "register": 2, "motion": 3, "breath": 4, "temp": 2, "rhythm": 2 }, "note": "SaaS default; 'teams' is the tell" },
+    { "id": "a05", "subject": "audience", "text": "A wedding to plan. A college year to keep on top of. A crew to keep aligned.", "axes": { "stance": 3, "altitude": 4, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped, concrete triad" },
+    { "id": "a06", "subject": "audience", "text": "Finally, project management that gets you.", "axes": { "stance": 3, "altitude": 1, "register": 3, "motion": 2, "breath": 4, "temp": 0, "rhythm": 1 }, "note": "cringe/hype trap — should be hate" },
+
+    { "id": "t01", "subject": "tasks", "text": "Execution clarity for live work.", "axes": { "stance": 4, "altitude": 2, "register": 3, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped H1" },
+    { "id": "t02", "subject": "tasks", "text": "Board, list, timeline, calendar. Same work, four ways to see it.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 } },
+    { "id": "t03", "subject": "tasks", "text": "A seamless, unified workspace to supercharge your team's productivity.", "axes": { "stance": 3, "altitude": 0, "register": 1, "motion": 1, "breath": 4, "temp": 0, "rhythm": 1 }, "note": "banned-word pile, anti-pole" },
+    { "id": "t04", "subject": "tasks", "text": "Switch how you see the work without re-entering any of it.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 4, "breath": 4, "temp": 4, "rhythm": 3 } },
+    { "id": "t05", "subject": "tasks", "text": "Tasks runs the work. Everything else assembles around it.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 4, "breath": 4, "temp": 4, "rhythm": 4 } },
+
+    { "id": "l01", "subject": "timeline", "text": "A public plan your customers can actually read.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped" },
+    { "id": "l02", "subject": "timeline", "text": "Show your work, not your Jira.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 4, "breath": 4, "temp": 3, "rhythm": 4 }, "note": "shipped, names the enemy" },
+    { "id": "l03", "subject": "timeline", "text": "Increase stakeholder alignment with real-time roadmap visibility.", "axes": { "stance": 3, "altitude": 0, "register": 0, "motion": 1, "breath": 4, "temp": 2, "rhythm": 1 }, "note": "PM + abstract, anti-pole" },
+    { "id": "l04", "subject": "timeline", "text": "One link. Plain English. No login, no app, no translation layer.", "axes": { "stance": 4, "altitude": 3, "register": 3, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "'layer' is a small register risk" },
+    { "id": "l05", "subject": "timeline", "text": "Your customers read it at midnight, on a phone, and understand it.", "axes": { "stance": 4, "altitude": 4, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 3 } },
+
+    { "id": "g01", "subject": "signal", "text": "A briefing, not a dashboard.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped H1 pole" },
+    { "id": "g02", "subject": "signal", "text": "One thing, first.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped, terse" },
+    { "id": "g03", "subject": "signal", "text": "Signal surfaces what matters in your work.", "axes": { "stance": 3, "altitude": 1, "register": 3, "motion": 3, "breath": 4, "temp": 3, "rhythm": 2 }, "note": "cadence-clean but a bit flat" },
+    { "id": "g04", "subject": "signal", "text": "Signal cuts the noise so the important stuff rises.", "axes": { "stance": 3, "altitude": 2, "register": 4, "motion": 3, "breath": 4, "temp": 3, "rhythm": 3 }, "note": "warmer, casual 'stuff' — on-brand or sloppy?" },
+    { "id": "g05", "subject": "signal", "text": "Signal streamlines your operational visibility.", "axes": { "stance": 3, "altitude": 0, "register": 1, "motion": 1, "breath": 4, "temp": 2, "rhythm": 1 }, "note": "jargon-proximity trap — should be hate" },
+    { "id": "g06", "subject": "signal", "text": "The one thing that needs you today, and the quiet list of what doesn't.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 2, "breath": 3, "temp": 4, "rhythm": 4 } },
+
+    { "id": "n01", "subject": "notes", "text": "Write it here first. Before it fades.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 4, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped" },
+    { "id": "n02", "subject": "notes", "text": "Not everything is ready for the room. Write it here first.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped H1" },
+    { "id": "n03", "subject": "notes", "text": "Capture your thoughts and boost your personal productivity.", "axes": { "stance": 3, "altitude": 1, "register": 2, "motion": 2, "breath": 4, "temp": 1, "rhythm": 1 }, "note": "generic self-help, anti-pole" },
+    { "id": "n04", "subject": "notes", "text": "Your private layer.", "axes": { "stance": 4, "altitude": 1, "register": 0, "motion": 0, "breath": 4, "temp": 3, "rhythm": 2 }, "note": "retired: architecture register, anti-pole" },
+    { "id": "n05", "subject": "notes", "text": "The half-formed thought goes here. It leaves only when you say so.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 } },
+
+    { "id": "e01", "subject": "empty-state", "text": "Nothing needs you right now.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 } },
+    { "id": "e02", "subject": "empty-state", "text": "You're all caught up. Enjoy the quiet.", "axes": { "stance": 4, "altitude": 2, "register": 4, "motion": 3, "breath": 4, "temp": 3, "rhythm": 3 }, "note": "warmth — right amount or twee?" },
+    { "id": "e03", "subject": "empty-state", "text": "No items to display.", "axes": { "stance": 3, "altitude": 1, "register": 3, "motion": 1, "breath": 4, "temp": 1, "rhythm": 1 }, "note": "cold system default" },
+    { "id": "e04", "subject": "empty-state", "text": "Your board is empty. Add the first thing that needs doing.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 4, "breath": 4, "temp": 4, "rhythm": 3 } },
+
+    { "id": "r01", "subject": "error", "text": "This may need attention.", "axes": { "stance": 3, "altitude": 2, "register": 4, "motion": 2, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped emotional-intelligence pole" },
+    { "id": "r02", "subject": "error", "text": "Task overdue.", "axes": { "stance": 4, "altitude": 2, "register": 3, "motion": 1, "breath": 4, "temp": 0, "rhythm": 2 }, "note": "cold, anti-pole" },
+    { "id": "r03", "subject": "error", "text": "Something went wrong. We couldn't save that. Try again in a moment.", "axes": { "stance": 3, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 3 } },
+    { "id": "r04", "subject": "error", "text": "Oops! Looks like we hit a snag.", "axes": { "stance": 2, "altitude": 1, "register": 3, "motion": 2, "breath": 4, "temp": 0, "rhythm": 1 }, "note": "cutesy error, anti-pole" },
+
+    { "id": "c01", "subject": "cta", "text": "Open the workspace.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 4, "breath": 4, "temp": 4, "rhythm": 4 }, "note": "shipped" },
+    { "id": "c02", "subject": "cta", "text": "Get started for free today!", "axes": { "stance": 4, "altitude": 2, "register": 3, "motion": 3, "breath": 4, "temp": 0, "rhythm": 1 }, "note": "exclamation + SaaS CTA, anti-pole" },
+    { "id": "c03", "subject": "cta", "text": "See the plan, in plain English.", "axes": { "stance": 4, "altitude": 3, "register": 4, "motion": 3, "breath": 4, "temp": 4, "rhythm": 4 } },
+    { "id": "c04", "subject": "cta", "text": "Start your free trial and unlock your team's full potential.", "axes": { "stance": 3, "altitude": 1, "register": 2, "motion": 3, "breath": 4, "temp": 0, "rhythm": 1 }, "note": "hype CTA, anti-pole" }
+  ]
+}
