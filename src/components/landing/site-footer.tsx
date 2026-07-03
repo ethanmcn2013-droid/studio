@@ -56,7 +56,7 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="mt-32 w-full border-t border-border-soft pb-10 pt-16"
+      className="mt-32 w-full border-t border-hairline-soft pb-10 pt-16"
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
       <div className="mx-auto grid w-full max-w-[1240px] gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
@@ -111,7 +111,7 @@ export function SiteFooter() {
         />
       </div>
 
-      <div className="mx-auto mt-12 flex w-full max-w-[1240px] flex-col items-start justify-between gap-2 border-t border-border-soft px-6 pt-6 text-[12px] text-ink-quiet md:flex-row md:items-center">
+      <div className="mx-auto mt-12 flex w-full max-w-[1240px] flex-col items-start justify-between gap-2 border-t border-hairline-soft px-6 pt-6 text-[12px] text-ink-quiet md:flex-row md:items-center">
         <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
         <span>Clarity, not configuration.</span>
       </div>
@@ -200,7 +200,7 @@ function LegalLinks() {
   return (
     <nav
       aria-label="Legal"
-      className="mx-auto mt-4 flex w-full max-w-[1240px] flex-wrap items-center gap-x-1 gap-y-1 px-6 font-mono text-[12px] uppercase text-ink-faint"
+      className="mx-auto mt-4 flex w-full max-w-[1240px] flex-wrap items-center gap-x-1 gap-y-1 px-6 font-mono text-[12px] uppercase tracking-[0.08em] text-ink-quiet"
       style={{ letterSpacing: "0.08em" }}
     >
       {links.map((link, index) => (
