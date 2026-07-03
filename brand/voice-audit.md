@@ -220,3 +220,44 @@ they'll graduate into TASTE.md.
 
 **Two §3 proposals await your call:** the architecture-register banlist addition and
 the title-separator convention (both above).
+
+---
+
+## Founder ratings — shipped 2026-07-04
+
+The 23 founder-call lines were rated and dispositioned. **19 CHANGE (shipped), 4 KEEP.**
+Each shipped on the `voice/taste-calls` branch per repo, gate-clean, merged to main,
+prod-verified.
+
+**Shipped (CHANGE):**
+
+- **Studio** — "One workspace, four layers" → "four tools"; "The collaboration loop is
+  the product." → "The handoff is the product."; network error "went sideways" →
+  "Something broke on our end."; student mailto subject em dash → middot; umbrella
+  wedge "a public roadmap" → "a public timeline".
+- **Tasks** — "your team's rhythm" → "your rhythm" (CTA + Nudges); "thesis sprints" →
+  "thesis deadlines"; published freelance/student theme trailing em dashes cut; five
+  `/for/*` meta titles normalised to sentence case + middot.
+- **Signal** — "The hosting layer is Vercel" → "We host on Vercel"; "the marketing
+  surface never says" → "the marketing never says"; "integrations" → "connections";
+  method OG "Priority compression." → "Three items kept."
+- **Timeline** — "no translation layer" → "nothing to decode"; "Service operators
+  sharing…" → "A studio or venue, showing the client where things stand."
+- **Notes** — "capture clarity" tagline family (meta, OG title/image/alt) → "before it
+  fades"; footer "Capture clarity for the thought…" → "Catch the thought before it
+  becomes work."; "The decomposition behind…" → "The five parts behind…"; empty-state
+  "Writings you can't say out loud." → "Things you can't say out loud."; demo note
+  trailing em dash → ellipsis.
+
+**Kept (KEEP), with reason:**
+
+- Studio `/venues/demo` simulated task-card lines — reads like real task data.
+- Signal `/domains` "daily standup" and briefing "retro" — deliberate PM foils /
+  simulated user content, not Signal's own voice.
+- Tasks stale code comments ("em-dashes welcome") — comments, not front-facing copy;
+  hygiene sweep, not a voice fix.
+
+Two lines the ratings surfaced as genuinely HARD (not taste), fixed as such: the
+published-theme em dashes (Tasks) and the demo-note em dash (Notes).
+
+**Front-facing HARD = 0. Front-facing founder-calls resolved. The suite is on-voice.**
