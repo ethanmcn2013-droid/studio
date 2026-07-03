@@ -38,4 +38,4 @@ Derived from **28** pairwise ratings (recency-weighted, 90-day half-life). This 
 - "Show your work, not your Jira."  `timeline`
 
 ---
-_28 ratings · confident · items: 45_
+_28 ratings · confident · items: 79_
