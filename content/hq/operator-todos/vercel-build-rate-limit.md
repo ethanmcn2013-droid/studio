@@ -1,7 +1,7 @@
 ---
 id: vercel-build-rate-limit
 title: Vercel build rate limit — only Notes remains blocked (SDS Wave 4 + loading canon stuck there)
-status: open
+status: done
 priority: P0
 blocking: true
 phase: Phase 1
@@ -17,3 +17,5 @@ date: 2026-07-02
 3. Longer term: the concurrent autonomous committers push many small commits per day across five projects; consider batching pushes or using `[skip ci]`/ignored build steps for docs-only commits to stay under the cap.
 
 **Update 2026-07-02 (SDS Wave 4):** Notes' fold-in to the suite register (dispatch N·30/S·109) is merged to main and build-verified locally; only this deploy gate keeps it off production.
+
+**Resolved 2026-07-03:** the window reset at ~16:30 UTC; all five projects redeployed from latest main in one batch and live-verified (notes carried Wave 4 + loading canon out; signal carried the CSS encoding fix). Failed deploys do not auto-retry — the batch was triggered manually.

@@ -158,6 +158,8 @@ const DSN_CSS = `
   position: relative;
   padding: 34px 0 26px;
 }
+.dsn-rule--cap { top: 34px; }
+.dsn-rule--base { bottom: 26px; }
 .dsn-rule {
   position: absolute;
   left: 0;
@@ -209,6 +211,7 @@ const DSN_CSS = `
   overflow: hidden;
 }
 @media (min-width: 860px) { .dsn-jobs { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 859px) { .dsn-job:last-child { grid-column: span 2; } }
 .dsn-job {
   border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
@@ -578,7 +581,7 @@ function SectionHead({
         {title}
       </h2>
       {children ? (
-        <p className="mt-3 max-w-[54ch] text-[15.5px] leading-relaxed text-ink-soft">{children}</p>
+        <p className="mt-3 max-w-[54ch] text-pretty text-[15.5px] leading-relaxed text-ink-soft">{children}</p>
       ) : null}
     </div>
   );
@@ -599,7 +602,7 @@ function Plate({
   height,
   className = "",
   reject = false,
-  priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 400px",
 }: {
   src: string;
   alt: string;
@@ -607,7 +610,7 @@ function Plate({
   height: number;
   className?: string;
   reject?: boolean;
-  priority?: boolean;
+  sizes?: string;
 }) {
   return (
     <div className={`dsn-plate ${reject ? "dsn-reject" : ""} ${className}`}>
@@ -616,8 +619,7 @@ function Plate({
         alt={alt}
         width={width}
         height={height}
-        priority={priority}
-        sizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 400px"
+        sizes={sizes}
         className="h-auto w-full"
       />
     </div>
@@ -663,10 +665,10 @@ export default function DesignPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             <div className="dsn-cons">
               <div className="dsn-cons-stage">
-                <span className="dsn-rule" style={{ top: 0 }}>
+                <span className="dsn-rule dsn-rule--cap">
                   <span className="dsn-rule-label">cap height</span>
                 </span>
-                <span className="dsn-rule" style={{ bottom: 26 }}>
+                <span className="dsn-rule dsn-rule--base">
                   <span className="dsn-rule-label">baseline</span>
                 </span>
                 <div className="dsn-cons-mark" aria-label="notes.">
@@ -681,10 +683,10 @@ export default function DesignPage() {
 
             <div className="dsn-cons">
               <div className="dsn-cons-stage">
-                <span className="dsn-rule" style={{ top: 0 }}>
+                <span className="dsn-rule dsn-rule--cap">
                   <span className="dsn-rule-label">cap height</span>
                 </span>
-                <span className="dsn-rule" style={{ bottom: 26 }}>
+                <span className="dsn-rule dsn-rule--base">
                   <span className="dsn-rule-label">baseline</span>
                 </span>
                 <div className="dsn-cons-mark" aria-label="tasks·">
@@ -707,10 +709,10 @@ export default function DesignPage() {
             jobs — the whole system in miniature.
           </SectionHead>
 
-          <div className="dsn-jobs mt-10" aria-hidden>
+          <div className="dsn-jobs mt-10">
             {JOBS.map((job) => (
               <div key={job.name} className={`dsn-job ${job.cls}`}>
-                <div className="dsn-job-stage">
+                <div className="dsn-job-stage" aria-hidden>
                   <span className="dsn-job-dot" />
                 </div>
                 <div className="dsn-job-name">{job.name}</div>
@@ -740,7 +742,7 @@ export default function DesignPage() {
           <div className="mt-10">
             <Dissolve />
           </div>
-          <p className="mt-10 max-w-[54ch] text-[15.5px] leading-relaxed text-ink-soft">
+          <p className="mt-10 max-w-[54ch] text-pretty text-[15.5px] leading-relaxed text-ink-soft">
             We build for the 80% of people who don&rsquo;t work in tech. They
             don&rsquo;t need smaller ambitions — they need software in their
             own language.
@@ -760,10 +762,10 @@ export default function DesignPage() {
             ))}
           </div>
 
-          <div className="dsn-studies mt-5" aria-hidden>
+          <div className="dsn-studies mt-5">
             {STUDIES.map((s) => (
               <div key={s.name} className={`dsn-study ${s.cls}`}>
-                <div className="dsn-study-stage">
+                <div className="dsn-study-stage" aria-hidden>
                   <span className="dsn-study-dot" />
                 </div>
                 <div className="dsn-study-name">{s.name}</div>
@@ -830,7 +832,7 @@ export default function DesignPage() {
           </SectionHead>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Plate src={`${C}/cards/cardx-ink-front-preview.png`} alt="Business card, Ink — signal studio wordmark on black" width={748} height={522} priority />
+            <Plate src={`${C}/cards/cardx-ink-front-preview.png`} alt="Business card, Ink — signal studio wordmark on black" width={748} height={522} />
             <Plate src={`${C}/cards/cardx-indigo-front-preview.png`} alt="Business card, Indigo — wordmark on indigo" width={748} height={522} />
             <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Business card, Duo — split black and indigo face" width={748} height={522} />
           </div>
@@ -841,8 +843,8 @@ export default function DesignPage() {
           </div>
 
           <div className="mt-12 grid items-start gap-5 md:grid-cols-[2fr_3fr]">
-            <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign — “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} />
-            <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink — “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} />
+            <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign — “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} sizes="(max-width: 768px) 100vw, 480px" />
+            <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink — “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} sizes="(max-width: 768px) 100vw, 740px" />
           </div>
           <SpecLine>café card A5 · poster A2 · from the approved print set</SpecLine>
 
@@ -858,7 +860,7 @@ export default function DesignPage() {
             <h3 className="text-[clamp(18px,2.2vw,22px)] font-semibold tracking-[-0.01em] text-ink">
               What we said no to.
             </h3>
-            <p className="mt-2 max-w-[54ch] text-[14.5px] leading-relaxed text-ink-soft">
+            <p className="mt-2 max-w-[54ch] text-pretty text-[14.5px] leading-relaxed text-ink-soft">
               Three cards shipped; three didn&rsquo;t. Four café concepts; one
               counter. Taste is mostly the word no.
             </p>
