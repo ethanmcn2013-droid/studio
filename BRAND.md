@@ -83,6 +83,14 @@ The moat is **disciplined refusal sustained across a suite of products over time
 
 ## 3 · Voice — Stark+Jobs
 
+**North star: Musk × Jobs.** If Elon Musk and Steve Jobs had a baby, that is the voice. High signal. Cuts the BS. Zero corporate fluff. Direct. Every sentence earns its place or it dies.
+
+**Four absolutes. Never, no exceptions:**
+- **Em dashes.** Banned in all front-facing copy. Use a comma, colon, or full stop. Title separators use a middot `·`, never an em dash.
+- **Cringe marketing.** Banned. No hype, no "finally", no "supercharge", no exclamation-point energy, no "unlock your potential".
+- **Cringe copy.** Banned. If it would make you wince reading it aloud to a skeptical tradesperson, cut it.
+- **Jargon.** Banned. AI-marketing, SaaS-fluff, PM, and engineering jargon (lists below). Say it the way the 80% would.
+
 ### Cadence
 - **Declarative.** Periods, not colons or em-dashes. Make claims. End them.
 - **Plain English at ~7th-grade reading level.** Not childish — clean.
