@@ -516,6 +516,24 @@ const NAMES = [
   { name: "Signal", does: "tells you what changed." },
 ] as const;
 
+const VOICE = [
+  {
+    num: "V·01",
+    title: "Banned words.",
+    body: "unleash · empower · seamless · magical · revolutionary · 10x · delight · crush · disrupt · synergy · leverage. Strike on sight.",
+  },
+  {
+    num: "V·02",
+    title: "Banned PM vocabulary.",
+    body: "sprint · epic · backlog · burndown · velocity · ticket · stand-up · groom · refine. Talk like a person who has the work in front of them.",
+  },
+  {
+    num: "V·03",
+    title: "Refusal language is signature.",
+    body: "Not a productivity suite. Not a project manager. Not an AI workspace. The brand introduces itself by saying what it isn't first.",
+  },
+] as const;
+
 const MOTIONS: Array<{
   code: string;
   kind: "studio" | "tasks" | "timeline" | "signal" | "notes";
@@ -644,7 +662,7 @@ export default function DesignPage() {
               <Eyebrow>Design</Eyebrow>
               <h1
                 aria-label="It starts with a dot."
-                className="text-balance text-[clamp(36px,5.4vw,60px)] font-semibold leading-[1.04] tracking-[-0.02em] text-ink"
+                className="text-balance text-[clamp(44px,7.4vw,88px)] font-semibold leading-[1.02] tracking-[-0.025em] text-ink"
               >
                 <span aria-hidden>
                   It starts with a dot<span className="dsn-period" />
@@ -659,7 +677,7 @@ export default function DesignPage() {
           <SectionHead eyebrow="Construction" title="Two dots, actually.">
             The period sits on the baseline and ends a name. The middot floats
             toward cap-height and marks the working tools. Neither is
-            decoration — both are set, not placed.
+            decoration. Both are set, not placed.
           </SectionHead>
 
           <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -747,6 +765,24 @@ export default function DesignPage() {
             don&rsquo;t need smaller ambitions. They need software in their
             own language.
           </p>
+
+          {/* The vocabulary of the work — what the voice refuses to say. */}
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {VOICE.map((v) => (
+              <div
+                key={v.num}
+                className="rounded-[var(--r-3)] border border-[var(--hairline)] bg-[var(--paper-elev)] p-5"
+              >
+                <div className="mb-2 font-mono text-[10px] tracking-[0.06em] text-[var(--accent)]">
+                  {v.num}
+                </div>
+                <h4 className="m-0 mb-1.5 text-[16px] font-medium tracking-[-0.015em] text-ink">
+                  {v.title}
+                </h4>
+                <p className="m-0 text-[13.5px] leading-[1.5] text-ink-soft">{v.body}</p>
+              </div>
+            ))}
+          </div>
         </Arrive>
 
         {/* ── 6 · Motion ──────────────────────────────────────── */}
@@ -819,6 +855,53 @@ export default function DesignPage() {
               <div className="dsn-swatch">
                 <div className="dsn-swatch-face" style={{ background: "var(--accent)" }} />
                 <div className="dsn-swatch-meta"><span>Indigo</span><span>PMS 2726C</span></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Named to the hex — indigo, paper, ink, the whole system in three cards. */}
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-[2fr_1fr]">
+            <div
+              className="flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[var(--r-3)] p-8 text-white"
+              style={{ background: "var(--accent)" }}
+            >
+              <div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-70">
+                  Indigo &middot; brand primary
+                </div>
+                <div className="my-3 text-[clamp(34px,4.4vw,44px)] font-medium tracking-[-0.025em]" style={{ fontFeatureSettings: "'tnum'" }}>
+                  #4F46E5
+                </div>
+                <div className="max-w-[360px] text-[15.5px] leading-[1.45] opacity-90">
+                  The dot, every primary action, every product accent. There is
+                  no second brand colour.
+                </div>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-5 font-mono text-[11px] opacity-75">
+                <span>oklch(0.51 0.24 273)</span>
+                <span>RGB 79 70 229</span>
+                <span>AA on white &middot; 6.3</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div
+                className="flex aspect-[4/2.4] flex-col justify-between rounded-[var(--r-3)] border border-[var(--hairline)] p-5"
+                style={{ background: "var(--paper)", color: "var(--ink)" }}
+              >
+                <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-65">
+                  Paper &middot; surface
+                </div>
+                <div className="text-[22px] font-medium tracking-[-0.02em]">#FFFFFF</div>
+              </div>
+              <div
+                className="flex aspect-[4/2.4] flex-col justify-between rounded-[var(--r-3)] p-5"
+                style={{ background: "var(--ink)", color: "var(--paper)" }}
+              >
+                <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-65">
+                  Ink &middot; off-black
+                </div>
+                <div className="text-[22px] font-medium tracking-[-0.02em]">#111111</div>
               </div>
             </div>
           </div>

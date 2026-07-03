@@ -89,6 +89,40 @@ export default function IOSPage() {
               Read pricing
             </Link>
           </div>
+
+          {/* The loader, on a phone — the brand assembling itself, iOS-first. */}
+          <div className="mt-14 flex flex-col items-center gap-4">
+            <div
+              className="relative rounded-[44px] border border-[var(--hairline)] bg-[var(--ink)] p-[10px] shadow-[0_30px_60px_-20px_rgba(17,17,17,0.30)]"
+              style={{ width: 264 }}
+            >
+              <div
+                className="absolute left-1/2 top-[18px] z-10 h-[5px] w-[64px] -translate-x-1/2 rounded-full"
+                style={{ background: "rgba(255,255,255,0.18)" }}
+                aria-hidden
+              />
+              <div
+                className="overflow-hidden rounded-[34px] bg-[var(--paper-soft)]"
+                style={{ width: 244, height: 528 }}
+              >
+                <iframe
+                  src="/brand/loader.html"
+                  title="Signal Studio mobile loader"
+                  loading="lazy"
+                  className="block border-0 bg-[var(--paper-soft)]"
+                  style={{
+                    width: 390,
+                    height: 844,
+                    transformOrigin: "top left",
+                    transform: "scale(0.6257)",
+                  }}
+                />
+              </div>
+            </div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">
+              The loader, on a phone
+            </p>
+          </div>
         </section>
 
         <section className="border-t border-border-soft py-16">
