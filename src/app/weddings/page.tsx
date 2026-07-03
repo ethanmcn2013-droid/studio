@@ -276,10 +276,10 @@ export default function WeddingsPage() {
           <div className="mx-auto w-full max-w-[1040px]">
             <div className="mb-8 max-w-2xl">
               <p className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet">
-                One workspace, four layers
+                One workspace, four tools
               </p>
               <h2 className="text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
-                The collaboration loop is the product.
+                The handoff is the product.
               </h2>
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">

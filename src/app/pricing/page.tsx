@@ -78,7 +78,7 @@ const TIERS: Tier[] = [
       { label: "Window", value: "Yearly" },
     ],
     cta: "Verify student email",
-    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20—%20Signal%20Studio",
+    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20%C2%B7%20Signal%20Studio",
   },
   {
     name: "Workspace",

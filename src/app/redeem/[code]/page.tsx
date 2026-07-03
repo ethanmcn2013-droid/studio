@@ -210,7 +210,7 @@ function NetworkErrorView() {
   return (
     <>
       <h1 className="h-section mb-5 text-balance text-ink">
-        Something went sideways on our end.
+        Something broke on our end.
       </h1>
       <p className="mb-8 text-[17px] leading-[1.6] text-ink-soft">
         Try again in a minute, or email{" "}
