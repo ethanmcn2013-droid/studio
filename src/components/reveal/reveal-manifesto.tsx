@@ -24,7 +24,7 @@ export function RevealManifesto() {
       <p className="reveal-manifesto-body reveal">
         Built for the <strong>80%</strong> of people who run real work without
         working in tech — wedding planners, freelance designers, tradespeople,
-        students, small-shop owners, teachers. No setup. No vocabulary. Just
+        students, small-business owners, teachers. No setup. No vocabulary. Just
         open the page and start.
       </p>
     </section>

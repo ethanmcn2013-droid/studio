@@ -738,13 +738,13 @@ export default function DesignPage() {
 
         {/* ── 5 · The dissolve ────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Plain language" title="Most project software talks like this —" />
+          <SectionHead eyebrow="Plain language" title="Most project software talks like this:" />
           <div className="mt-10">
             <Dissolve />
           </div>
           <p className="mt-10 max-w-[54ch] text-pretty text-[15.5px] leading-relaxed text-ink-soft">
             We build for the 80% of people who don&rsquo;t work in tech. They
-            don&rsquo;t need smaller ambitions — they need software in their
+            don&rsquo;t need smaller ambitions. They need software in their
             own language.
           </p>
         </Arrive>
@@ -752,7 +752,7 @@ export default function DesignPage() {
         {/* ── 6 · Motion ──────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
           <SectionHead eyebrow="Motion" title="Nothing moves without a reason.">
-            Five wordmarks, five gestures — the entire animation vocabulary of
+            Five wordmarks, five gestures. The entire animation vocabulary of
             the suite. Hover to replay, click to freeze.
           </SectionHead>
 
