@@ -252,19 +252,19 @@ function IncludedStack() {
       <ul className="space-y-1.5 text-[14px] text-ink">
         <li>
           <span className="text-ink">Signal Tasks</span>{" "}
-          <span className="text-ink-quiet">— a live workspace for the work.</span>
+          <span className="text-ink-quiet">· a live workspace for the work.</span>
         </li>
         <li>
           <span className="text-ink">Signal Notes</span>{" "}
-          <span className="text-ink-quiet">— private capture, promotes to Tasks.</span>
+          <span className="text-ink-quiet">· private capture, promotes to Tasks.</span>
         </li>
         <li>
           <span className="text-ink">Signal Timeline</span>{" "}
-          <span className="text-ink-quiet">— share what&rsquo;s coming.</span>
+          <span className="text-ink-quiet">· share what&rsquo;s coming.</span>
         </li>
         <li>
           <span className="text-ink">Signal</span>{" "}
-          <span className="text-ink-quiet">— a daily briefing on what needs attention.</span>
+          <span className="text-ink-quiet">· a daily briefing on what needs attention.</span>
         </li>
       </ul>
     </div>

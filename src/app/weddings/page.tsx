@@ -12,11 +12,11 @@ import {
 import { withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Wedding Planning Workspace - Signal Studio",
+  title: "Wedding Planning Workspace · Signal Studio",
   description:
     "A self-serve wedding planning workspace for independent couples and planners who need notes, tasks, timelines, and updates in one calm place.",
   openGraph: {
-    title: "Wedding Planning Workspace - Signal Studio",
+    title: "Wedding Planning Workspace · Signal Studio",
     description:
       "Plan one wedding without building a system first. Notes, decisions, tasks, timelines, and updates in one workspace.",
     type: "website",

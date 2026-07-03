@@ -5,11 +5,11 @@ import { TIMELINE_URL, TASKS_URL, NOTES_URL, SIGNAL_URL } from "@/lib/product-ur
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Venue Edition Demo - Signal Studio",
+  title: "Venue Edition Demo · Signal Studio",
   description:
     "One wedding Tuesday, shown across Signal Notes, Tasks, Timeline, and Signal. A venue-facing demo for the paid Venue Edition.",
   openGraph: {
-    title: "Venue Edition Demo - Signal Studio",
+    title: "Venue Edition Demo · Signal Studio",
     description:
       "A venue-facing product walkthrough: the meeting note, the owned work, the couple plan, and the morning briefing.",
     type: "website",

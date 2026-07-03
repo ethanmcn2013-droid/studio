@@ -113,7 +113,7 @@ export function TemplatesBrowser({
       >
         {filtered.length === 0 ? (
           <div className="tbrowse-empty" role="listitem">
-            No templates for this audience yet. Tell us what would help —{" "}
+            No templates for this audience yet. Tell us what would help:{" "}
             <a
               href="/contact"
               style={{ color: "var(--accent)", textDecoration: "underline" }}

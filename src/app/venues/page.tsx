@@ -5,11 +5,11 @@ import { ReadingProgress } from "@/components/reading-progress";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Founding Venue Programme - Signal Studio",
+  title: "Founding Venue Programme · Signal Studio",
   description:
     "Stand behind every couple's planning. The Venue Edition is patronage, paid once a year from €1,500, the venue's name in a quiet line, nothing for the team to run. Founding venues lock €1,500 for as long as they stay.",
   openGraph: {
-    title: "Founding Venue Programme - Signal Studio",
+    title: "Founding Venue Programme · Signal Studio",
     description:
       "A venue stands behind its couples' planning, twelve months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
     type: "website",

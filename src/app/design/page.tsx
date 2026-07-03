@@ -815,7 +815,7 @@ export default function DesignPage() {
         {/* ── 7 · Type & colour ───────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
           <SectionHead eyebrow="Type &amp; colour" title="One typeface. Three colours.">
-            Geist, at every size we use and no others. Ink, paper, indigo —
+            Geist, at every size we use and no others. Ink, paper, indigo:
             the whole palette. Restraint is a feature.
           </SectionHead>
 

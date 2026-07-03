@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 export const metadata: Metadata = {
-  title: "iOS app - Signal Studio",
+  title: "iOS app · Signal Studio",
   description:
     "Signal Studio for iPhone is in build: one native home for Notes, Tasks, Timeline, and Signal.",
 };

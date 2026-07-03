@@ -24,13 +24,13 @@ export type ComparisonPage = {
 export const COMPARISON_PAGES: ComparisonPage[] = [
   {
     slug: "aisle-planner-alternative-ireland",
-    title: "Aisle Planner Alternative for Irish Venues - Signal Studio",
+    title: "Aisle Planner Alternative for Irish Venues · Signal Studio",
     description:
       "A plain-English wedding planning workspace for Irish venues that want couples to see the plan without learning planning software.",
     eyebrow: "Wedding venues",
-    h1: "A planning layer your couples can actually read.",
+    h1: "A plan your couples can actually read.",
     intro:
-      "Aisle Planner can be the system behind a wedding business. Signal Studio is the layer a venue can hand to a couple: notes, tasks, the public plan, and the morning briefing, all written without software vocabulary.",
+      "Aisle Planner can be the system behind a wedding business. Signal Studio is what a venue hands to a couple: notes, tasks, the public plan, and the morning briefing, all written without software vocabulary.",
     sections: [
       {
         title: "Built for the venue handoff",
@@ -56,7 +56,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
   },
   {
     slug: "wedding-planning-workspace-for-venues",
-    title: "Wedding Planning Workspace for Venues - Signal Studio",
+    title: "Wedding Planning Workspace for Venues · Signal Studio",
     description:
       "Signal Studio gives wedding venues a paid annual planning workspace they can give every couple.",
     eyebrow: "Venue Edition",
@@ -88,7 +88,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
   },
   {
     slug: "notion-alternative-wedding-planners",
-    title: "Notion Alternative for Wedding Planners - Signal Studio",
+    title: "Notion Alternative for Wedding Planners · Signal Studio",
     description:
       "Signal Studio is a clearer wedding planning workspace for planners who need notes, tasks, a client plan, and a daily briefing without building a system first.",
     eyebrow: "Wedding planners",
@@ -120,7 +120,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
   },
   {
     slug: "trello-alternative-builders",
-    title: "Trello Alternative for Builders - Signal Studio",
+    title: "Trello Alternative for Builders · Signal Studio",
     description:
       "A plain-English workspace for builders and trades operators who need site notes, follow-ups, client updates, and a short briefing.",
     eyebrow: "Builders and trades",
@@ -152,7 +152,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
   },
   {
     slug: "project-management-students-no-sprints",
-    title: "Project Management for Students Without Sprints - Signal Studio",
+    title: "Project Management for Students Without Sprints · Signal Studio",
     description:
       "A plain-English workspace for students carrying projects, deadlines, notes, group work, and a daily read on what needs attention.",
     eyebrow: "Students",
