@@ -5,7 +5,7 @@ import { ReadingProgress } from "@/components/reading-progress";
 import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "About — Signal Studio",
+  title: "About · Signal Studio",
   description:
     "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: show you what matters.",
 };
@@ -56,8 +56,8 @@ export default function AboutPage() {
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Not a productivity suite &mdash; those tell you to do more; this
-                tells you what matters. Not a project manager &mdash; no sprints,
+                Not a productivity suite. Those tell you to do more; this
+                tells you what matters. Not a project manager. No sprints,
                 no epics, no burndown, just plain English. Calm coordination,
                 not enterprise power.
               </p>
@@ -81,7 +81,7 @@ export default function AboutPage() {
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Notes
+                      Notes
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
@@ -97,7 +97,7 @@ export default function AboutPage() {
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Tasks
+                      Tasks
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
@@ -113,7 +113,7 @@ export default function AboutPage() {
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                      Signal Timeline
+                      Timeline
                     </span>
                     <span
                       className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"

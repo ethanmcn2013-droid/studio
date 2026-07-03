@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 export const metadata: Metadata = {
-  title: "Principles — Signal Studio",
+  title: "Principles · Signal Studio",
   description:
     "Five refusals Signal Studio sustains across the suite. The moat is discipline, not feature.",
 };
@@ -20,28 +20,28 @@ const PRINCIPLES = [
     n: "2",
     title: "Every product publishes its refusals.",
     body:
-      "Each product in the suite has a locked refusals list in its PRODUCT.md. Tasks refuses sprints, epics, and per-seat pricing. Timeline refuses private workspaces, team tiers, comment threading, and a public directory. Notes refuses sharing on raw notes — only creator-approved extracts cross the boundary. Signal refuses the LLM in the path — every sentence is human-written, slot-filled by rules.",
+      "Each product in the suite has a locked refusals list in its PRODUCT.md. Tasks refuses sprints, epics, and per-seat pricing. Timeline refuses private workspaces, team tiers, comment threading, and a public directory. Notes refuses sharing on raw notes; only creator-approved extracts cross the boundary. Signal refuses the LLM in the path; every sentence is human-written, slot-filled by rules.",
     why: "Notion cannot refuse to be a wiki; it is a wiki. Asana cannot refuse to surface metrics; metrics are its conversion bait. We can refuse, because refusing is what makes the brand.",
   },
   {
     n: "3",
     title: "One accent colour across the suite.",
     body:
-      "Brand indigo, used as a single accent across umbrella and products. The same shape from a 16px favicon to a billboard. Differentiation comes from per-product wordmark gestures — pulse, sweep, tick, caret — not from per-product palette. Antique gold was retired the day the brand guide flattened the umbrella to one indigo.",
+      "Brand indigo, used as a single accent across umbrella and products. The same shape from a 16px favicon to a billboard. Differentiation comes from per-product wordmark gestures (pulse, sweep, tick, caret), not from per-product palette. Antique gold was retired the day the brand guide flattened the umbrella to one indigo.",
     why: "Category-colour fragmentation is how a four-product suite stops reading as one product. We refuse it.",
   },
   {
     n: "4",
     title: "Suite coherence is a single product surface.",
     body:
-      "Cross-product navigation, footer chrome, the changelog, the contact page, the legal stack — these live once, in one place, and every product points to them. A visitor moving from Tasks to Timeline to Signal should feel one continuous voice, not three separate brands sharing a parent company.",
-    why: "An incumbent attacking one of these has to attack all four — against a brand that has been speaking with one voice while they did so.",
+      "Cross-product navigation, footer chrome, the changelog, the contact page, the legal stack: these live once, in one place, and every product points to them. A visitor moving from Tasks to Timeline to Signal should feel one continuous voice, not three separate brands sharing a parent company.",
+    why: "An incumbent attacking one of these has to attack all four, against a brand that has been speaking with one voice while they did so.",
   },
   {
     n: "5",
     title: "Audience first. Always. Before any feature decision.",
     body:
-      "Every pass asks one question: would a wedding planner, a freelance designer, a tradesperson, a student, a small-business operator, or a teacher use this? If yes, build it. If not, refuse it — even if it would look good in a comparison table. The 80% who don't work in tech do not need a special vocabulary. They need software that learned them, not the other way around.",
+      "Every pass asks one question: would a wedding planner, a freelance designer, a tradesperson, a student, a small-business owner, or a teacher use this? If yes, build it. If not, refuse it, even if it would look good in a comparison table. The 80% who don't work in tech do not need a special vocabulary. They need software that learned them, not the other way around.",
     why: "This is the most load-bearing discipline of all because it is the one most easily abandoned under growth pressure.",
   },
 ] as const;
@@ -143,7 +143,7 @@ export default function PrinciplesPage() {
               working, not failing. The metric that tells us it is paying out
               is the language readers use back to us. When a user says back
               &ldquo;this isn&rsquo;t a dashboard&rdquo; or &ldquo;this
-              doesn&rsquo;t talk like Jira&rdquo; — without prompting — the
+              doesn&rsquo;t talk like Jira&rdquo;, without prompting, the
               discipline is compounding.
             </p>
             <p className="max-w-[58ch] text-[15.5px] leading-[1.7] text-ink-soft">

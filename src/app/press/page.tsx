@@ -9,7 +9,7 @@ import {
 } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Press — Signal Studio",
+  title: "Press · Signal Studio",
   description:
     "Boilerplates, founder bio, brand assets, and a press contact who answers within a day.",
 };
@@ -69,12 +69,12 @@ export default function PressPage() {
             <Section title="One-line description">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a four-product suite — Tasks, Timeline, Signal, Notes — that brings operational clarity to the eighty percent of the world who don’t work in tech.",
+                  "Signal Studio brings operational clarity to the eighty percent of the world who don’t work in tech. Four products: Tasks, Timeline, Signal, Notes.",
                 ]}
               />
             </Section>
 
-            <Section title="Boilerplate — 50 words">
+            <Section title="Boilerplate: 50 words">
               <CopyableQuote
                 paragraphs={[
                   "Signal Studio is a four-product suite built for everyone the productivity category ignored: wedding planners, freelancers, tradespeople, students, small-business operators. Signal Tasks runs the work. Timeline explains it publicly. Signal surfaces what needs attention today. Notes captures the thinking that comes before all of it. Plain English. No sprints. No per-seat bill.",
@@ -82,20 +82,20 @@ export default function PressPage() {
               />
             </Section>
 
-            <Section title="Boilerplate — 150 words">
+            <Section title="Boilerplate: 150 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a suite of four small, opinionated products designed for the eighty percent of working people who do not live inside a software stack. Signal Tasks renders the same to-do list as a board, list, timeline, or calendar — switch lenses without re-entering anything. Signal Timeline is a public timeline your customers can actually read, written in plain English. Signal is a daily briefing that names what needs your attention today — no LLM in the path, every sentence written by hand. Signal Notes is a private capture surface that promotes to Tasks when the thinking is ready. The suite shares one register and one accent colour. The timeline is public. The principles page lists features that will never ship. Designed and shipped by Ethan McNamara, a designer in Limerick.",
+                  "Signal Studio is a suite of four small, opinionated products for the eighty percent of working people who do not live inside a software stack. Signal Tasks renders the same to-do list as a board, list, timeline, or calendar. Switch lenses without re-entering anything. Signal Timeline is a public timeline your customers can actually read, written in plain English. Signal is a daily briefing that names what needs your attention today. No LLM in the path; every sentence written by hand. Signal Notes is a private capture surface that promotes to Tasks when the thinking is ready. The suite shares one register and one accent colour. The timeline is public. The principles page lists features that will never ship. Designed and shipped by Ethan McNamara, a designer in Limerick.",
                 ]}
               />
             </Section>
 
-            <Section title="Boilerplate — 400 words">
+            <Section title="Boilerplate: 400 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a four-product suite designed for the eighty percent of working people the productivity category left behind. The suite is built around a single argument: that twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged — and that this is why wedding planners, freelance designers, tradespeople, students, and small-business operators keep churning out of every tool they try.",
-                  "The four products each do one thing. Signal Tasks is a live workspace that renders the same items as a board, a list, a timeline, or a calendar — switch lenses without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public timeline your customers can read at midnight on a phone — plain English, one link, no login. Signal is a daily briefing that surfaces what needs your attention today: a rules engine reads your Tasks workspace overnight, identifies held-up work, overdue items, and quiet risks, and writes the briefing in language drawn from a hand-curated phrasing library. No LLM in the path. Signal Notes is a private capture surface for the half-formed thought; it promotes selectively into Tasks when the thinking is ready to act on, but raw notes never leave the notebook.",
-                  "The four products share one register, one accent colour, one footer pattern, one cross-product nav. The brand discipline is the moat: every page, every empty state, every error message passes through the same voice, and every product publishes its locked refusals — features the product will not ship, regardless of customer ask.",
+                  "Signal Studio is a four-product suite for the eighty percent of working people the productivity category left behind. It runs on a single argument. Twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged. That is why wedding planners, freelance designers, tradespeople, students, and small-business owners keep churning out of every tool they try.",
+                  "The four products each do one thing. Signal Tasks is a live workspace that renders the same items as a board, a list, a timeline, or a calendar. Switch lenses without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public timeline your customers can read at midnight on a phone: plain English, one link, no login. Signal is a daily briefing that surfaces what needs your attention today. A rules engine reads your Tasks workspace overnight, finds held-up work, overdue items, and quiet risks, and writes the briefing in language drawn from a hand-curated phrasing library. No LLM in the path. Signal Notes is a private capture surface for the half-formed thought. It promotes selectively into Tasks when the thinking is ready to act on, but raw notes never leave the notebook.",
+                  "The four products share one register, one accent colour, one footer pattern, one cross-product nav. The brand discipline is the moat. Every page, every empty state, every error message passes through the same voice, and every product publishes its locked refusals: features it will not ship, whatever the customer asks.",
                   "Signal Studio is operated by Ethan McNamara, a designer in Limerick, who spent years inside enterprise software watching the wrong people get charged for the wrong things. The suite ships in passes, in public, against its own roadmap. signalstudio.ie. hello@signalstudio.ie.",
                 ]}
               />
@@ -104,65 +104,32 @@ export default function PressPage() {
             <Section title="The four products">
               <ul className="space-y-2 text-[15px]">
                 <li>
-                  <ExternalLink href={TASKS_URL}>Signal Tasks</ExternalLink> —
-                  execution clarity. Board, list, timeline, calendar over the
+                  <ExternalLink href={TASKS_URL}>Signal Tasks</ExternalLink>.
+                  Execution clarity. Board, list, timeline, calendar over the
                   same items.
                 </li>
                 <li>
-                  <ExternalLink href={TIMELINE_URL}>Signal Timeline</ExternalLink>{" "}
-                  — direction clarity. Public timelines customers can read.
+                  <ExternalLink href={TIMELINE_URL}>Signal Timeline</ExternalLink>.
+                  Direction clarity. Public timelines customers can read.
                 </li>
                 <li>
-                  <ExternalLink href={SIGNAL_URL}>Signal</ExternalLink>{" "}
-                  — attention clarity. A daily briefing, no LLM in the path.
+                  <ExternalLink href={SIGNAL_URL}>Signal</ExternalLink>.
+                  Attention clarity. A daily briefing, no LLM in the path.
                 </li>
                 <li>
-                  <ExternalLink href={NOTES_URL}>Signal Notes</ExternalLink> —
-                  capture clarity. Private by design; promotes selectively to
+                  <ExternalLink href={NOTES_URL}>Signal Notes</ExternalLink>.
+                  Capture clarity. Private by design; promotes selectively to
                   Tasks.
                 </li>
               </ul>
             </Section>
 
-            <Section title="Founder bio — 50 words">
+            <Section title="Founder bio: 50 words">
               <CopyableQuote
                 paragraphs={[
                   "Ethan McNamara is the designer and solo founder behind Signal Studio. He built the suite after watching Notion become a wiki, Asana become enterprise software, and the rest of the productivity category turn into a vocabulary tax. Previously designed inside large product organisations; now ships in passes, in public, from Limerick.",
                 ]}
               />
-            </Section>
-
-            <Section title="Brand assets">
-              <p>
-                Logos, OG cards, and screenshots — direct links, no asset
-                request form.
-              </p>
-              <ul className="mt-2 list-disc space-y-1.5 pl-5">
-                <li>
-                  <ExternalLink href="https://signalstudio.ie/opengraph-image">
-                    Umbrella OG card (1200×630, PNG)
-                  </ExternalLink>
-                </li>
-                <li>
-                  <ExternalLink href="https://signalstudio.ie/icon">
-                    Umbrella icon
-                  </ExternalLink>
-                </li>
-                <li>
-                  <ExternalLink href={TASKS_URL}>Signal Tasks — live</ExternalLink>{" "}
-                  (open in browser, screenshot freely)
-                </li>
-                <li>
-                  <ExternalLink href={TIMELINE_URL}>Signal Timeline — live</ExternalLink>
-                </li>
-                <li>
-                  <ExternalLink href={SIGNAL_URL}>Signal — live</ExternalLink>
-                </li>
-              </ul>
-              <p className="mt-3">
-                Wordmark SVG, per-product marks, and the full brand kit
-                (light and dark, PNG and SVG) on request — email below.
-              </p>
             </Section>
 
             <Section title="Press contact">
@@ -181,7 +148,7 @@ export default function PressPage() {
                   {COVERAGE.map((item) => (
                     <li key={item.href}>
                       <ExternalLink href={item.href}>{item.title}</ExternalLink>
-                      {" — "}
+                      {" · "}
                       <span className="text-ink-quiet">{item.outlet}, {item.date}</span>
                     </li>
                   ))}
