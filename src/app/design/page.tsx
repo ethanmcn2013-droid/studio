@@ -99,6 +99,47 @@ const SQUISH_CSS = `
   82%   { transform: scale(1.15, 1); opacity: 0.50; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
   100%  { transform: scale(1, 1);    opacity: 0.50; }
 }
+
+/* ── The opening — the dot lands as the period ──────────────────
+   The line arrives missing its full stop. The dot falls, squashes,
+   rebounds twice, and settles into place as the sentence's period —
+   baseline-seated, the wordmark's own rule. Runs once per visit;
+   reduced-motion sees the finished sentence, already at rest. */
+.dsn ::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+.dsn-open {
+  animation: dsn-arrive var(--motion-slow) var(--spring-glide) 250ms both;
+}
+.dsn-period {
+  display: inline-block;
+  width: 0.15em;
+  height: 0.15em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: var(--accent);
+  transform-origin: 50% 100%;
+  animation: dsn-settle 1.15s linear 950ms both; /* ds-allow — settle choreography, ball-canon cut */
+}
+@keyframes dsn-arrive {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes dsn-settle {
+  0%   { transform: translateY(-38vh) scale(0.94, 1.10); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
+  6%   { opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
+  38%  { transform: translateY(0) scale(1.48, 0.52); animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow — settle choreography, ball-canon cut */
+  52%  { transform: translateY(-0.55em) scale(0.88, 1.14); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
+  64%  { transform: translateY(0) scale(1.22, 0.80); animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow — settle choreography, ball-canon cut */
+  76%  { transform: translateY(-0.18em) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
+  85%  { transform: translateY(0) scale(1.10, 0.91); animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow — settle choreography, ball-canon cut */
+  92%  { transform: translateY(0) scale(0.97, 1.02); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — settle choreography, ball-canon cut */
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dsn-open, .dsn-period { animation: none; }
+}
 `;
 
 /* Motion canon — same five gestures the brand system ratified
@@ -185,24 +226,29 @@ export default function DesignPage() {
     <>
       <ReadingProgress />
       <style dangerouslySetInnerHTML={{ __html: SQUISH_CSS }} />
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
-        {/* ── Statement ─────────────────────────────────────────── */}
-        <section className="relative mx-auto w-full max-w-[1240px] px-6 pb-10 pt-16 md:pt-24">
+      <main id="main" tabIndex={-1} className="dsn flex flex-1 flex-col">
+        {/* ── 1 · The dot ───────────────────────────────────────────
+             A white field. One dot arrives, settles, and only then
+             does the line speak. The ball top-right is the same dot
+             in motion — the deck's gesture, kept. */}
+        <section className="relative mx-auto flex min-h-[68vh] w-full max-w-[1240px] flex-col justify-center px-6 pb-10 pt-16 md:pt-20">
           <div aria-hidden className="dsq-origin hidden sm:block">
             <span className="dsq-dot" />
             <span className="dsq-shadow" />
           </div>
 
           <div className="max-w-[760px]">
-            <Eyebrow>Design</Eyebrow>
-            <h1 className="text-balance text-[clamp(34px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em] text-ink">
-              The products launch in September. The standard is already here.
-            </h1>
-            <p className="mt-6 max-w-[52ch] text-[16.5px] leading-relaxed text-ink-soft">
-              Everything Signal Studio puts into the world gets the same care —
-              a business card, a poster, a loading dot. You can judge us on
-              this page before you can judge us on the software.
-            </p>
+            <div className="dsn-open">
+              <Eyebrow>Design</Eyebrow>
+              <h1
+                aria-label="It starts with a dot."
+                className="text-balance text-[clamp(36px,5.4vw,60px)] font-semibold leading-[1.04] tracking-[-0.02em] text-ink"
+              >
+                <span aria-hidden>
+                  It starts with a dot<span className="dsn-period" />
+                </span>
+              </h1>
+            </div>
           </div>
         </section>
 
