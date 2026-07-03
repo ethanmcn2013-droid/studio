@@ -124,7 +124,8 @@ Ordered by visibility.
 | **components/app/share/share-button.tsx:631** | in-app share callout | "{name} drew the most eyes — {visits} visits." | **HARD** | em dash | **Shipped**: "…the most eyes: {visits} visits." |
 | **components/showcase/celebration.tsx:73** | demo completion burst | "✨ Done!" | **HARD** | exclamation + emoji | **Shipped**: "Done" |
 | features.tsx:52 | homepage section H2 | "Six primitives. Stitched into one feel." | SOFT | register | **Shipped**: "Six parts. One feel." ("primitive" is the coded register) |
-| for/*/page.tsx:4–6 | 6 audience meta titles | "Wedding Planning Workspace - Signal Studio" / ", …" | SOFT (conv.) | separator | **Shipped**: separators → " · " |
+| for/weddings/page.tsx:4,11,18 | meta title | "Wedding Planning Workspace - Signal Studio" | SOFT (conv.) | separator | **Shipped**: " · Signal Studio" |
+| for/{community,freelancers,small-business,students,trades}/page.tsx:6 | 5 audience meta titles | "Tasks for Freelancers, Five Clients, One Inbox" (comma/colon + Title Case, mixed) | SOFT (conv.) | separator/case | **Founder call**: separator _and_ casing vary; normalizing both is a judgment call, not a mechanical fix. |
 | cta.tsx:19 | homepage CTA body | "Tasks runs entirely on your team's rhythm." | SOFT | altitude | **Founder call**: "your team's" leans abstract; the 80% aren't "teams." |
 | templates-gallery.tsx:132 | /templates body | "…thesis sprints, freelance onboarding…" | SOFT | banned echo | **Founder call**: "sprints" as a template type; brand loudly rejects the word. |
 | server/ai.ts:114 (comment 16–17 privacy) | stale guidance | "em-dashes welcome" in code comments | SOFT | — | **Founder call**: comments, not front-facing; update for hygiene. |
