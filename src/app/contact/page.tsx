@@ -7,7 +7,7 @@ import {
 } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Contact — Signal Studio",
+  title: "Contact · Signal Studio",
   description: "A real human reads everything sent to hello@signalstudio.ie.",
 };
 
@@ -17,7 +17,7 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
 };
 
 /**
- * /contact — one screen, three honest intents.
+ * /contact, one screen, three honest intents.
  *
  * Names what reaches a human, names what doesn't. No form. No CRM.
  * Same restraint as the rest of the umbrella. The one concession:
@@ -25,7 +25,7 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
  * (a bare mailto is a soft dead-end on mobile/webmail), and any
  * inbound attribution from an outreach link rides into a quiet Ref
  * footer so the founder can attribute the reply and log it in the
- * /hq Outbound CRM. Still a person writing to a person — no form.
+ * /hq Outbound CRM. Still a person writing to a person, no form.
  */
 function buildMailto(
   subject: string | undefined,
@@ -38,7 +38,7 @@ function buildMailto(
 
   const venueName = attr.venue && attr.venue !== "unknown" ? attr.venue : undefined;
   const subjectLabel = eyebrow ?? "Signal Studio enquiry";
-  const subjectLine = venueName ? `${subjectLabel} — ${venueName}` : subjectLabel;
+  const subjectLine = venueName ? `${subjectLabel}, ${venueName}` : subjectLabel;
 
   const body =
     subject === "founding-venue"

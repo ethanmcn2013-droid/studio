@@ -1,5 +1,5 @@
 /**
- * Signal Studio Executive Leadership Team — snapshot.
+ * Signal Studio Executive Leadership Team, snapshot.
  *
  * Mirrors the source of truth at
  * `signal-directors/config/directors.yaml` (v2, 2026-06-07).
@@ -7,7 +7,7 @@
  *
  * The chart at /hq/org reads this; the drill-down at /hq/org/<id>
  * reads the same record. Charter prose lives in
- * `signal-directors/directors/<id>.md` — link out, don't copy.
+ * `signal-directors/directors/<id>.md`, link out, don't copy.
  */
 
 export type Cadence =
@@ -60,7 +60,7 @@ export const CLUSTERS: { id: Cluster; label: string; subtitle: string }[] = [
   {
     id: "build_ship",
     label: "Build & Ship",
-    subtitle: "Engineering, creative, operations — the work landing on time.",
+    subtitle: "Engineering, creative, operations, the work landing on time.",
   },
   {
     id: "growth_commercial",

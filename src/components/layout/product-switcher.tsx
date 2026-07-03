@@ -27,8 +27,8 @@ const INDIGO = "#4f46e5";
 
 /**
  * Umbrella-side product switcher. Mirrors the SuiteLauncher contract
- * used inside each product (Tasks/Timeline/Signal/Notes) — same
- * popover chrome, same product order — but the trigger here reads
+ * used inside each product (Tasks/Timeline/Signal/Notes), same
+ * popover chrome, same product order, but the trigger here reads
  * "Products" because the user is on signalstudio.ie itself.
  */
 export function ProductSwitcher() {

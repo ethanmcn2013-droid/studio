@@ -17,7 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const entry = await readAtlasEntry(slug);
   return {
-    title: entry ? `${entry.title} — atlas` : "atlas — signal hq",
+    title: entry ? `${entry.title}, atlas` : "atlas, signal hq",
     description: entry?.summary ?? "atlas entry.",
     robots: {
       index: false,
@@ -84,7 +84,7 @@ export default async function AtlasEntryPage({
               className="ml-3 align-middle font-mono text-[13px] font-normal lowercase text-ink-quiet"
               style={{ letterSpacing: "0.04em" }}
             >
-              — {note}
+             , {note}
             </span>
           )}
         </h1>
@@ -133,7 +133,7 @@ export default async function AtlasEntryPage({
               )}
             </dl>
             <div className="atlas-exec-foot">
-              The body below carries the technical detail — file paths,
+              The body below carries the technical detail, file paths,
               flow, references. Skip it freely; the brief above is the
               load-bearing read.
             </div>
@@ -152,7 +152,7 @@ export default async function AtlasEntryPage({
                 letterSpacing: "0.06em",
               }}
             >
-              drifted — {entry.driftedRefs.length} reference{entry.driftedRefs.length === 1 ? "" : "s"} changed since {entry.lastVerified}
+              drifted, {entry.driftedRefs.length} reference{entry.driftedRefs.length === 1 ? "" : "s"} changed since {entry.lastVerified}
             </div>
             <ul className="space-y-1">
               {entry.driftedRefs.map((r) => (

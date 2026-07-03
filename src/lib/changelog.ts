@@ -4,11 +4,11 @@ import path from "node:path";
 /**
  * Two artifacts, two readers (see BRAND.md §6.5).
  *
- *   readDispatchEntries() reads `content/dispatch/*.md` — one entry per
+ *   readDispatchEntries() reads `content/dispatch/*.md`, one entry per
  *   file, operator-voice, four-line cap. Powers the public `/dispatch`
  *   surface at signalstudio.ie/dispatch.
  *
- *   readChangelogSections() reads `CHANGELOG.md` — the engineering log,
+ *   readChangelogSections() reads `CHANGELOG.md`, the engineering log,
  *   jargon welcome, audience is future-Ethan. Powers the legacy
  *   `/changelog.rss` feed.
  *
@@ -59,7 +59,7 @@ function parseDispatchFile(raw: string, filename: string): DispatchEntry | null 
     }
   }
   if (!header) {
-    console.warn(`[dispatch] skipping ${filename} — no valid header`);
+    console.warn(`[dispatch] skipping ${filename}, no valid header`);
     return null;
   }
   const body = lines.slice(headerIdx + 1).join("\n");
@@ -107,7 +107,7 @@ export function paragraphs(body: string): string[] {
 
 /**
  * Parse a section's date header into a Date for RSS pubDate.
- * The date string can carry trailing parenthetical context — we only
+ * The date string can carry trailing parenthetical context, we only
  * use the YYYY-MM-DD prefix and noon UTC as a stable wall-clock.
  */
 export function sectionDate(label: string): Date {

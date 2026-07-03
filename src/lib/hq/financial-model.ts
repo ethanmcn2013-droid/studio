@@ -1,9 +1,9 @@
 /**
- * Financial model — the projection behind the ask.
+ * Financial model, the projection behind the ask.
  *
  * A hand-curated, fully-transparent model: every figure below is an
  * ASSUMPTION the founder owns and edits here. It is cash-basis (venue
- * editions are annual prepay, so cash = ACV in the month signed — what
+ * editions are annual prepay, so cash = ACV in the month signed, what
  * matters for runway). Live actuals (cash collected, paid venues) are
  * overlaid by the page so plan and reality sit side by side; the model
  * never overwrites an assumption with a hope.
@@ -20,7 +20,7 @@
 export const FIN_META = {
   startMonth: "2026-06", // index 0
   horizonMonths: 18, // through 2027-11
-  launchMonth: "2026-09", // index 3 — the hard launch
+  launchMonth: "2026-09", // index 3, the hard launch
   basis: "cash" as const,
   // LIVE DATA: set to the real opening bank balance. Conservative placeholder.
   startingCashEur: 5_000,
@@ -29,7 +29,7 @@ export const FIN_META = {
   revisedOn: "2026-06-19",
 };
 
-/** Pricing — from the ratified Venue Edition model + workspace tier. */
+/** Pricing, from the ratified Venue Edition model + workspace tier. */
 export const FIN_PRICING = {
   foundingVenueEur: 1_500, // founding cohort, locked for life
   paidVenueAcvEur: 1_800, // blended paid ACV (band €1.5k–4k, conservative)
@@ -238,7 +238,7 @@ export function finEur(n: number): string {
 
 /**
  * Runway for the blueprint metric. Modeled, but blends the one live input we
- * have — actual cash collected extends the modeled opening position.
+ * have, actual cash collected extends the modeled opening position.
  * Returns a capped month count + whether the plan is default-alive.
  */
 export function getModeledRunway(cashCollectedActualEur: number | null): {

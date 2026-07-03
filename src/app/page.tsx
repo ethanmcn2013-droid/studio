@@ -11,7 +11,7 @@ import { SuiteLauncher } from "@/components/layout/suite-launcher";
 import { SiteFooter } from "@/components/landing/site-footer";
 
 /**
- * Home page — two variants, one URL (DESIGN.md §14).
+ * Home page, two variants, one URL (DESIGN.md §14).
  *
  * Authed: src/proxy.ts rewrites to / and sets x-signal-authed: 1.
  *         This component reads that header and renders the suite launcher.
@@ -26,7 +26,7 @@ export default async function Home() {
   const isAuthed = headersList.get("x-signal-authed") === "1";
 
   if (isAuthed) {
-    // §14 (amended 2026-05-19): the canonical SuiteSwitcher pills — the
+    // §14 (amended 2026-05-19): the canonical SuiteSwitcher pills, the
     // same component the four product app-chromes render, so the suite
     // feels like one surface. No `current` (you are on the umbrella, not
     // in a product); no umbrella anchor (you are already here). The

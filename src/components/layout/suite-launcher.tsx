@@ -1,5 +1,5 @@
 /**
- * Suite launcher — the authed variant of signalstudio.ie/.
+ * Suite launcher, the authed variant of signalstudio.ie/.
  *
  * This is NOT a new product. It is the shared cross-product switcher
  * rendered full-page. Mount point: src/app/page.tsx when authed.
@@ -73,7 +73,7 @@ export function SuiteLauncher() {
         background: "var(--paper, #ffffff)",
       }}
     >
-      {/* Chrome — persistent top bar per DESIGN.md §14 */}
+      {/* Chrome, persistent top bar per DESIGN.md §14 */}
       <header
         className="sticky top-0 z-40 w-full"
         style={{
@@ -89,7 +89,7 @@ export function SuiteLauncher() {
           <Link
             href="/"
             className="wordmark-hover flex items-baseline"
-            aria-label="Signal Studio — suite home"
+            aria-label="Signal Studio, suite home"
           >
             <Wordmark size="sm" animate={false} intro={false} />
           </Link>
@@ -126,7 +126,7 @@ export function SuiteLauncher() {
             Jump back in.
           </h1>
 
-          {/* Product grid — 2×2 on desktop, single column on mobile */}
+          {/* Product grid, 2×2 on desktop, single column on mobile */}
           <ul
             style={{
               display: "grid",
@@ -153,12 +153,12 @@ export function SuiteLauncher() {
                       {p.word}
                       <span style={{ color: INDIGO }}>·</span>
                     </div>
-                    {/* App-context label — not a marketing tagline */}
+                    {/* App-context label, not a marketing tagline */}
                     <div className="mt-0.5 text-[12px] text-ink-quiet">
                       {p.label}
                     </div>
                   </div>
-                  {/* Right arrow — appears on hover */}
+                  {/* Right arrow, appears on hover */}
                   <span
                     className="shrink-0 text-ink-ghost opacity-0 transition-opacity group-hover:opacity-100"
                     aria-hidden

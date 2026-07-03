@@ -8,7 +8,7 @@ import { getPartnerStats, type PartnerStat } from "@/lib/partners/stats";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Partners — Signal HQ",
+  title: "Partners · Signal HQ",
   description: "Per-sponsor Venue Editions activation state.",
   robots: { index: false, follow: false },
 };
@@ -50,7 +50,7 @@ export default async function PartnersPage() {
         Each sponsor and where their codes stand. Issued is from studio&rsquo;s
         license_codes audit. Redeemed, reached-board, and redeemed-30d are read
         live from Tasks. Reached-board counts couples whose first /app/board
-        render landed after they redeemed — the funnel-exit signal. Redeemed-30d
+        render landed after they redeemed, the funnel-exit signal. Redeemed-30d
         counts new redemptions in the last 30 days, NOT engagement.
       </p>
 

@@ -6,7 +6,7 @@ import { HQ_ASSETS, type HqAsset } from "@/lib/hq/operating-system";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Asset Hub — Signal HQ",
+  title: "Asset Hub · Signal HQ",
   description: "Brand, sales, proof, export, and shareholder assets.",
   robots: { index: false, follow: false },
 };

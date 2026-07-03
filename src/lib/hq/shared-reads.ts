@@ -26,7 +26,7 @@ export const readDriftSidecarCached = cache(async (): Promise<DriftSidecar> => {
       return parsed as DriftSidecar;
     }
   } catch {
-    // sidecar absent — no drift
+    // sidecar absent, no drift
   }
   return {};
 });

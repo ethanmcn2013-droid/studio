@@ -4,11 +4,11 @@ import { CommitteeDisclosure } from "@/components/students/committee-disclosure"
 import { tasksSignUpUrl } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Student Edition — Signal Studio",
+  title: "Student Edition · Signal Studio",
   description:
-    "Premium coordination, accessible for students. €9.99 a year, verified college email. Notes, Tasks, Timeline, and Signal — the same calm system venues use, without the enterprise price tag.",
+    "Premium coordination, accessible for students. €9.99 a year, verified college email. Notes, Tasks, Timeline, and Signal, the same calm system venues use, without the enterprise price tag.",
   openGraph: {
-    title: "Student Edition — Signal Studio",
+    title: "Student Edition · Signal Studio",
     description:
       "Run your committee without the WhatsApp chaos. €9.99 a year, verified college email. The same calm system venues use.",
     type: "website",
@@ -20,11 +20,11 @@ const signUpHref = tasksSignUpUrl("student");
 const FEATURES = [
   {
     name: "Notes",
-    copy: "Meeting notes and decisions in one place — not scattered across group chats.",
+    copy: "Meeting notes and decisions in one place, not scattered across group chats.",
   },
   {
     name: "Tasks",
-    copy: "Who owns what, and when. Plain language — no sprint boards or story points.",
+    copy: "Who owns what, and when. Plain language, no sprint boards or story points.",
   },
   {
     name: "Timeline",
@@ -32,13 +32,13 @@ const FEATURES = [
   },
   {
     name: "Signal",
-    copy: "A short briefing on what is on track and what is slipping — without building a spreadsheet.",
+    copy: "A short briefing on what is on track and what is slipping, without building a spreadsheet.",
   },
 ] as const;
 
 const COMMITTEE_PERKS = [
   "Unlimited society members on one workspace.",
-  "Committee handover kit — institutional memory survives officer turnover.",
+  "Committee handover kit, institutional memory survives officer turnover.",
   "Event planning without WhatsApp, Google Forms, and three spreadsheets.",
   "Refer another society and you both get three months free.",
 ] as const;
@@ -65,7 +65,7 @@ export default function StudentsPage() {
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Run your committee without the WhatsApp chaos. Notes, Tasks,
-            Timeline, and Signal — the same calm system venues use, without the
+            Timeline, and Signal, the same calm system venues use, without the
             enterprise price tag.
           </p>
 
@@ -96,7 +96,7 @@ export default function StudentsPage() {
             </p>
             <p className="mt-4 max-w-[48ch] text-[14px] leading-[1.6] text-ink">
               One annual membership. All four products. No ads. No data selling.
-              Premium software made accessible — not free software made cheap.
+              Premium software made accessible, not free software made cheap.
             </p>
             <a
               href={signUpHref}
@@ -153,7 +153,7 @@ export default function StudentsPage() {
                 </div>
                 <p className="mt-4 max-w-[52ch] text-[13.5px] leading-[1.6] text-ink-soft">
                   For treasurers and committee leads who need one shared
-                  workspace for the entire society — event planning, handovers,
+                  workspace for the entire society, event planning, handovers,
                   member onboarding. Not a separate product. Available when you
                   upgrade from Student Edition.
                 </p>
@@ -199,7 +199,7 @@ export default function StudentsPage() {
               Verification
             </div>
             <p className="text-[13px] leading-[1.6] text-ink-soft">
-              Sign up with your college email — <code>.ie</code>,{" "}
+              Sign up with your college email, <code>.ie</code>,{" "}
               <code>.ac.uk</code>, or your institution&rsquo;s domain. Re-verified
               once a year. Student Edition is for currently enrolled students,
               not a general free tier.

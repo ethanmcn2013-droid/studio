@@ -2,11 +2,11 @@ import Link from "next/link";
 import type { LaunchReadiness } from "@/lib/hq/launch";
 
 /**
- * HqLaunchReadiness — the countdown to the hard launch + the gates between
+ * HqLaunchReadiness, the countdown to the hard launch + the gates between
  * here and there. Calm, light register: one big number, three honest gate
  * states, no chrome. A gate is green only when a live signal says so.
  *
- * Server component (no interactivity) — the page computes readiness from
+ * Server component (no interactivity), the page computes readiness from
  * getLaunchReadiness(paidVenues) and hands it in.
  */
 export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness }) {

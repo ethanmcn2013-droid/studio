@@ -1,5 +1,5 @@
 /**
- * Vault markdown renderer — a compact, dependency-free markdown→HTML pass
+ * Vault markdown renderer, a compact, dependency-free markdown→HTML pass
  * sized for the founder-circle source documents (legal agreements, memos,
  * letters, brand systems). Unlike the atlas renderer, this one supports
  * GFM tables and the full H1–H4 heading range, because these documents
@@ -36,7 +36,7 @@ function renderInline(text: string): string {
   // Inline code first so its contents are not re-processed.
   out = out.replace(/`([^`]+)`/g, '<code class="vault-code">$1</code>');
 
-  // Links — http(s), mailto, or root-relative only.
+  // Links, http(s), mailto, or root-relative only.
   out = out.replace(
     /\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+|\/[^\s)]*)\)/g,
     '<a href="$2" rel="noreferrer">$1</a>',
@@ -111,7 +111,7 @@ export function renderVaultMarkdown(src: string): string {
       continue;
     }
 
-    // Table — header row followed by a delimiter row
+    // Table, header row followed by a delimiter row
     if (line.includes("|") && i + 1 < lines.length && isTableDelimiter(lines[i + 1])) {
       const header = splitRow(line);
       i += 2; // skip header + delimiter
@@ -172,7 +172,7 @@ export function renderVaultMarkdown(src: string): string {
       continue;
     }
 
-    // Paragraph — gather until blank line or block-starting token
+    // Paragraph, gather until blank line or block-starting token
     const buf: string[] = [];
     while (
       i < lines.length &&

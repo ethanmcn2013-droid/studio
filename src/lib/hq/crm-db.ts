@@ -1,7 +1,7 @@
 "use server";
 
 /**
- * Signal HQ Outreach CRM — DB layer (server-only).
+ * Signal HQ Outreach CRM, DB layer (server-only).
  *
  * Only async server functions live here: DB reads, writes, seed guard.
  * All sync utilities (stage counts, due-today, overdue, mailto builder,
@@ -25,7 +25,7 @@ import type { Prospect } from "@/lib/hq/data";
 
 // NOTE: Pure utilities (STAGE_LABELS, PIPELINE_STAGES, computeStageCounts,
 // computeOutreachSummary, buildMailtoHref, isOverdue, isDueToday, etc.)
-// live in crm-utils.ts. Import from there — not here — for any sync function.
+// live in crm-utils.ts. Import from there, not here, for any sync function.
 // Types (DbProspect, ProspectStage) are exported from @/lib/db/schema.
 // This file exports ONLY async server actions and async DB reads.
 
@@ -83,7 +83,7 @@ async function ensureSeeded(): Promise<void> {
     }
     _seeded = true;
   } catch {
-    // Table doesn't exist yet — skip, fall back to seed data in getProspects
+    // Table doesn't exist yet, skip, fall back to seed data in getProspects
   }
 }
 

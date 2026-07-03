@@ -8,7 +8,7 @@ import { ONE_PAGERS, DECK_EXPORT } from "@/lib/hq/one-pagers";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "One-pagers — Signal HQ",
+  title: "One-pagers · Signal HQ",
   description: "Print-ready brand documents, exported individually as PDF.",
   robots: { index: false, follow: false },
 };
@@ -64,7 +64,7 @@ export default async function OnePagersHub() {
       </h1>
       <p className="mt-3 max-w-[60ch] text-[14px] leading-relaxed text-[#71717a]">
         Six print-ready documents, one system. Open any one and use Export PDF
-        — the browser renders vector text at A4. White paper, one indigo
+       , the browser renders vector text at A4. White paper, one indigo
         period, each product&rsquo;s gesture as a typographic mark.
       </p>
 

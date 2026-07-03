@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const found = findVaultDoc(slug);
   return {
-    title: found ? `${found.item.title} — vault` : "vault — signal hq",
+    title: found ? `${found.item.title}, vault` : "vault, signal hq",
     description: found?.item.note ?? "Signal HQ vault document.",
     robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   };

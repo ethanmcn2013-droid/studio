@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
-  title: "Privacy — Signal Studio",
+  title: "Privacy · Signal Studio",
   description:
     "What Signal Studio collects, what it doesn't, where data lives, and how to request a copy or deletion.",
 };
@@ -34,13 +34,13 @@ const SECTIONS = [
   {
     heading: "Subprocessors",
     body: [
-      "Clerk — authentication.",
-      "Turso — application database.",
-      "Vercel — hosting, edge functions, anonymous analytics.",
-      "Sentry — error monitoring (PII scrubbed at the SDK before transmission).",
-      "Resend — outbound email delivery.",
-      "Stripe — payments for paid plans, when applicable. Stripe stores card details; we never see them.",
-      "Google Workspace — operator email at hello@signalstudio.ie.",
+      "Clerk, authentication.",
+      "Turso, application database.",
+      "Vercel, hosting, edge functions, anonymous analytics.",
+      "Sentry, error monitoring (PII scrubbed at the SDK before transmission).",
+      "Resend, outbound email delivery.",
+      "Stripe, payments for paid plans, when applicable. Stripe stores card details; we never see them.",
+      "Google Workspace, operator email at hello@signalstudio.ie.",
     ],
   },
   {
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
       footnote={
         <>
           No dark patterns, no buried clauses. If something here is unclear,
-          that&rsquo;s a bug — write to hello@signalstudio.ie and we&rsquo;ll
+          that&rsquo;s a bug, write to hello@signalstudio.ie and we&rsquo;ll
           fix the wording or the system.
         </>
       }

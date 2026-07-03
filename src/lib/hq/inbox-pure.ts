@@ -9,7 +9,7 @@
 export type InboxTier = "high" | "mid" | "low";
 
 /**
- * Inbox sources are human-decision only — things where *you choosing to
+ * Inbox sources are human-decision only, things where *you choosing to
  * act* is the resolution. System-decay signals (atlas drift/stale/stub,
  * cron health, repo silence, session failures) live in Pulse, never
  * here: a source appears in exactly one section so the founder never

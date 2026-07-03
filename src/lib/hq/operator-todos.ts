@@ -2,13 +2,13 @@ import "server-only";
 import { readHqSection } from "./markdown";
 
 /**
- * Operator to-do list — the standing accountability ledger of every
+ * Operator to-do list, the standing accountability ledger of every
  * founder/operator-gated task across Signal Studio.
  *
  * ── THE RULE (CLAUDE.md / AGENTS.md, codified 2026-06-23) ────────────
  * When any cycle surfaces work that only the founder/operator can do —
  * provision an account, get an API key, set a production env var,
- * publish a legal doc, approve a cost limit, decide a policy — it does
+ * publish a legal doc, approve a cost limit, decide a policy, it does
  * NOT live in a chat message or a buried doc. It becomes a file in
  * `content/hq/operator-todos/<id>.md` so it shows up here on the HQ
  * main page. The agent logs the blocker; the founder gets full
@@ -20,7 +20,7 @@ import { readHqSection } from "./markdown";
  * `content/hq/operator-todos/*.md` via `readHqSection`. To mark a task
  * done, set `status: done` in its file (the agent does this once the
  * founder confirms, or the founder edits the file directly). Nothing is
- * optimistically green — a task is only "done" when its source says so.
+ * optimistically green, a task is only "done" when its source says so.
  */
 
 export type OperatorTodoStatus = "open" | "done";
@@ -29,7 +29,7 @@ export type OperatorTodoPriority = "P0" | "P1" | "P2";
 export type OperatorTodo = {
   id: string;
   title: string;
-  /** One-line reason this is needed — the cost of leaving it undone. */
+  /** One-line reason this is needed, the cost of leaving it undone. */
   why: string;
   status: OperatorTodoStatus;
   priority: OperatorTodoPriority;

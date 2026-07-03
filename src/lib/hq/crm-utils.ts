@@ -1,5 +1,5 @@
 /**
- * CRM pure utilities — no server dependencies, safe for client import.
+ * CRM pure utilities, no server dependencies, safe for client import.
  *
  * Sync functions and constants that both server and client components need.
  * Server actions and DB reads live in crm-db.ts ("use server").
@@ -30,7 +30,7 @@ export const PIPELINE_STAGES: ProspectStage[] = [
   "pilot_active",
 ];
 
-/** Stages considered "parked" — shown separately. */
+/** Stages considered "parked", shown separately. */
 export const PARKED_STAGES: ProspectStage[] = ["not_interested", "later"];
 
 // ── Stage colours ────────────────────────────────────────────────────────────

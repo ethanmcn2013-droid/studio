@@ -1,4 +1,4 @@
-// Intentionally no `import "server-only"` — this module is consumed
+// Intentionally no `import "server-only"`, this module is consumed
 // by both the /hq/partners server component AND scripts/partner-digest.ts
 // (run via tsx). The server-only guard would crash the CLI invocation.
 import { eq } from "drizzle-orm";
@@ -17,7 +17,7 @@ export type PartnerStat = {
   redeemed30d: number;
   /** Couples who actually reached the wedding board after redeeming
    *  (the redemption funnel's exit signal). Read from Tasks's
-   *  entitlements.reached_board_at — set idempotently on first
+   *  entitlements.reached_board_at, set idempotently on first
    *  /app/board?welcome=venue render. The "did the next person
    *  finish?" answer. */
   reachedBoard: number;
@@ -50,7 +50,7 @@ const EMPTY_TASKS_STATS: TasksPartnerStats = {
  * The Tasks-side numbers now come over HTTP from Tasks's
  * `/api/internal/partner-stats?sponsor=<slug>` endpoint, authed with
  * `PARTNER_STATS_SECRET` (must match the same env var on Tasks).
- * Direct libSQL reads of Tasks's tables retired 2026-05-13 — the API
+ * Direct libSQL reads of Tasks's tables retired 2026-05-13, the API
  * is a versioned contract, schema changes on Tasks no longer silently
  * break /hq/partners.
  */
@@ -88,7 +88,7 @@ async function countIssued(sponsorId: string): Promise<number> {
 /**
  * Fetch the Tasks-side roll-up for one sponsor. On any failure
  * (Tasks down, secret unset, network error, non-OK response) returns
- * the empty shape and logs — /hq/partners still renders, the issued-
+ * the empty shape and logs, /hq/partners still renders, the issued-
  * vs-redeemed funnel just shows 0s for this sponsor. Failure-mode
  * matches the original try/catch around the entitlements query.
  */
@@ -96,7 +96,7 @@ async function fetchTasksStats(sponsorSlug: string): Promise<TasksPartnerStats> 
   const secret = process.env.PARTNER_STATS_SECRET;
   if (!secret) {
     console.warn(
-      "[partners/stats] PARTNER_STATS_SECRET is not set — Tasks roll-up unavailable. Set it on Studio AND Tasks (same value).",
+      "[partners/stats] PARTNER_STATS_SECRET is not set, Tasks roll-up unavailable. Set it on Studio AND Tasks (same value).",
     );
     return EMPTY_TASKS_STATS;
   }
@@ -106,7 +106,7 @@ async function fetchTasksStats(sponsorSlug: string): Promise<TasksPartnerStats> 
   try {
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${secret}` },
-      // Don't let Next cache this — partner counts change throughout
+      // Don't let Next cache this, partner counts change throughout
       // the day and /hq/partners is operator-facing.
       cache: "no-store",
       // Hard cap so a hung Tasks doesn't stall the page.

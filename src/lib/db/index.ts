@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
 /**
- * Lazy Turso/libSQL client — same convention as
+ * Lazy Turso/libSQL client, same convention as
  * entitlements-db/client.ts. The connection is built on first *use*,
  * not at module import. `next build` imports every route module to
  * collect page data; an eager connection would throw there whenever
@@ -36,7 +36,7 @@ function getDb(): DB {
 }
 
 /**
- * Drop-in replacement for the eager `db` export — same import surface
+ * Drop-in replacement for the eager `db` export, same import surface
  * (`import { db } from "@/lib/db"`) and the same typed Drizzle API.
  * Property access initialises the connection on first touch.
  */

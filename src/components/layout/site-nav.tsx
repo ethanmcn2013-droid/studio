@@ -91,12 +91,12 @@ export function SiteNav() {
       }}
     >
       <div className="mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6">
-        <Link href="/" className="wordmark-hover flex items-baseline" aria-label="Signal Studio — home">
+        <Link href="/" className="wordmark-hover flex items-baseline" aria-label="Signal Studio, home">
           <Wordmark size="sm" animate={false} intro={intro} />
         </Link>
 
         <nav aria-label="Site navigation" className="flex items-center gap-4 sm:gap-5">
-          {/* Products trigger — opens the full-width mega-panel */}
+          {/* Products trigger, opens the full-width mega-panel */}
           <button
             ref={productsTriggerRef}
             type="button"
@@ -129,7 +129,7 @@ export function SiteNav() {
             </svg>
           </button>
 
-          {/* Desktop links — hidden below sm */}
+          {/* Desktop links, hidden below sm */}
           <Link
             href="/work"
             className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
@@ -166,7 +166,7 @@ export function SiteNav() {
             Contact
           </Link>
 
-          {/* Mobile menu trigger — visible below sm only */}
+          {/* Mobile menu trigger, visible below sm only */}
           <button
             ref={triggerRef}
             type="button"
@@ -176,7 +176,7 @@ export function SiteNav() {
             onClick={() => setMobileOpen((o) => !o)}
             className="inline-flex h-9 w-9 items-center justify-center text-ink-quiet transition-colors hover:text-ink sm:hidden"
           >
-            {/* Hairline hamburger / close — reduced to two strokes for calm aesthetic */}
+            {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
             <svg
               width="18"
               height="18"
@@ -203,13 +203,13 @@ export function SiteNav() {
         </nav>
       </div>
 
-      {/* Products mega-panel — full-width, absolutely positioned below nav */}
+      {/* Products mega-panel, full-width, absolutely positioned below nav */}
       <ProductsMegaPanel
         open={productsOpen}
         onClose={closeProducts}
       />
 
-      {/* Mobile nav panel — paper-white, hairline border, no heavy shadow */}
+      {/* Mobile nav panel, paper-white, hairline border, no heavy shadow */}
       <div
         id="mobile-nav-panel"
         ref={panelRef}

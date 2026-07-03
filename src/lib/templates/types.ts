@@ -1,10 +1,10 @@
 /**
- * Canonical workspace template types — Signal Studio source-of-truth.
+ * Canonical workspace template types · Signal Studio source-of-truth.
  *
  * One template seeds all four layers (Tasks, Notes, Roadmap, Analytics).
  * Each consuming product runs `pnpm sync:templates` at build time to copy
  * the slices it needs into its own repo as a generated file. The
- * studio repo never ships its templates module to runtime — these types
+ * studio repo never ships its templates module to runtime, these types
  * exist for authoring discipline, not for runtime cross-product imports.
  *
  * Strategy: docs/TEMPLATES_STRATEGY.md (locked 2026-05-12).
@@ -33,13 +33,13 @@ export type TaskSeed = {
   title: string;
   lane: Lane;
   priority: Priority;
-  /** Human due label — same shape as `Task.due` ("Today", "Fri", "Mar 12"). */
+  /** Human due label, same shape as `Task.due` ("Today", "Fri", "Mar 12"). */
   due?: string;
   tags?: string[];
 };
 
 /**
- * Notes seed — 0 to 3 named-note prompts. Single capture surface preserved
+ * Notes seed, 0 to 3 named-note prompts. Single capture surface preserved
  * (Notes PRODUCT.md §7 refuses "today template" / date-scaffolding).
  */
 export type NoteSeed = {
@@ -48,7 +48,7 @@ export type NoteSeed = {
 };
 
 /**
- * Roadmap-product status vocabulary — matches Roadmap's `tasks.status` enum
+ * Roadmap-product status vocabulary, matches Roadmap's `tasks.status` enum
  * (see roadmap/src/server/db/schema.ts). Authoring against the product
  * model directly avoids a translation layer.
  */
@@ -86,7 +86,7 @@ export type RoadmapSeed = {
 };
 
 /**
- * Analytics hint — detector ids the briefing engine should weight up
+ * Analytics hint, detector ids the briefing engine should weight up
  * for workspaces created from this template. Consumed lazily at
  * briefing-build time; not a user-pickable surface.
  */
@@ -99,9 +99,9 @@ export type AnalyticsHint = {
 export type WorkspaceTemplate = {
   id: string;
   name: string;
-  /** Card description — shown in Tasks gallery. */
+  /** Card description, shown in Tasks gallery. */
   description: string;
-  /** Glyph slug — points at a stroke-SVG in tasks's template-glyph registry. */
+  /** Glyph slug, points at a stroke-SVG in tasks's template-glyph registry. */
   icon: string;
   domain: Domain;
   audience: AudienceArchetype;

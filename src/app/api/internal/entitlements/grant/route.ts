@@ -13,7 +13,7 @@ import {
  * Operator grant endpoint (2026-05-14).
  *
  * Writes an entitlement row directly to signal-entitlements. Bypasses
- * Stripe — used for support cases where a real grant didn't propagate,
+ * Stripe, used for support cases where a real grant didn't propagate,
  * or for pilot users we want on a tier without making them pay.
  *
  *   curl -X POST https://signalstudio.ie/api/internal/entitlements/grant \
@@ -21,7 +21,7 @@ import {
  *        -H "Content-Type: application/json" \
  *        -d '{"userClerkId":"user_xxx","tier":"workspace","source":"compliments","sourceRef":"manual-2026-05-14","durationDays":365}'
  *
- * Idempotent on (userClerkId, source, sourceRef) — re-running the
+ * Idempotent on (userClerkId, source, sourceRef), re-running the
  * same curl no-ops the second insert and returns created=false. Use
  * a unique sourceRef for distinct grants.
  *

@@ -15,16 +15,16 @@ import type { ProspectStage } from "@/lib/db/schema";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Outreach CRM — Signal HQ",
+  title: "Outreach CRM · Signal HQ",
   robots: { index: false, follow: false },
 };
 
 /**
- * Signal HQ Outreach CRM — venue pipeline view.
+ * Signal HQ Outreach CRM, venue pipeline view.
  *
  * Two panels:
- *   1. Pipeline rail — stage counts + due-today count. Visual at a glance.
- *   2. Prospect list — filterable by ?stage=, shows overdue in red.
+ *   1. Pipeline rail, stage counts + due-today count. Visual at a glance.
+ *   2. Prospect list, filterable by ?stage=, shows overdue in red.
  *
  * Server component: auth-checked, data fetched at render time, no client
  * state except the stage-select and contact-log interactions (scoped to

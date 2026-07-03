@@ -58,16 +58,16 @@ export type NewEntitlement = typeof entitlements.$inferInsert;
 
 /**
  * Venue patronage plan. Ratified 2026-05-16 (venue-editions-paid-tier):
- * the venue pays Signal Studio — it is no longer "with our compliments".
+ * the venue pays Signal Studio, it is no longer "with our compliments".
  *
- *  none     — legacy / not a venue / unclassified.
- *  pilot    — in-flight free pilot, not yet converted (e.g. Lamb's Hill
+ *  none    , legacy / not a venue / unclassified.
+ *  pilot   , in-flight free pilot, not yet converted (e.g. Lamb's Hill
  *             pre-conversion). Counts as distribution, never as revenue.
- *  founding — paid, founding-cohort price-locked at €1,500/yr for life.
- *  paid     — paid at the standard €1,500–€4,000/yr band.
+ *  founding, paid, founding-cohort price-locked at €1,500/yr for life.
+ *  paid    , paid at the standard €1,500–€4,000/yr band.
  *
  * Only `founding` and `paid` rows WITH a non-null `paidAt` are revenue.
- * "Cash in the door" is the honest metric — a signed-but-unpaid venue is
+ * "Cash in the door" is the honest metric, a signed-but-unpaid venue is
  * not money, and HQ Traction must never render it as money.
  */
 export const VENUE_PLANS = ["none", "pilot", "founding", "paid"] as const;
@@ -82,7 +82,7 @@ export const sponsors = sqliteTable(
     contactEmail: text("contact_email").notNull(),
     brandMeta: text("brand_meta"),
     /* ── Paid Venue Edition ledger (2026-05-16). Additive + nullable so
-       legacy sponsor rows stay valid. The venue PAYS — these fields are
+       legacy sponsor rows stay valid. The venue PAYS, these fields are
        the only source HQ Traction may treat as revenue. */
     venuePlan: text("venue_plan").notNull().default("none"),
     /** Annual patronage, in cents. The real number, not the band. */
@@ -198,7 +198,7 @@ export const prospectsTable = sqliteTable(
     website: text("website").notNull().default(""),
     location: text("location").notNull().default(""),
     source: text("source").notNull().default(""),
-    /** snake_case stage — see PROSPECT_STAGES */
+    /** snake_case stage, see PROSPECT_STAGES */
     stage: text("stage").$type<ProspectStage>().notNull().default("to_contact"),
     /** ISO date string "YYYY-MM-DD", null if never contacted */
     lastContactedAt: text("last_contacted_at"),

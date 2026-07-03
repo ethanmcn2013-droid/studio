@@ -3,7 +3,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { TASKS_URL, TIMELINE_URL } from "@/lib/product-urls";
 
 /**
- * 404 — on-brand, calm. Two product links as the primary action.
+ * 404, on-brand, calm. Two product links as the primary action.
  * Voice: direct without drama. No "error", no "oops".
  */
 export default function NotFound() {

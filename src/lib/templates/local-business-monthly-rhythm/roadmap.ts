@@ -1,7 +1,7 @@
 import type { RoadmapSeed } from "../types";
 
 /**
- * Roadmap seed — one "Monthly rhythm" project with items grouped by
+ * Roadmap seed, one "Monthly rhythm" project with items grouped by
  * status. Shape matches Roadmap's data model. Item bodies are written
  * for a shared update view the staff and operator can read in under a
  * minute (so the team knows what is moving and what needs a decision).

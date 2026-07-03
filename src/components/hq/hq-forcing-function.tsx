@@ -3,7 +3,7 @@ import type { NextAction } from "@/lib/hq/next-action";
 import type { ProofGate } from "@/lib/hq/proofgate";
 
 /**
- * HQ Forcing Function — the screen for the `inert` clock state.
+ * HQ Forcing Function, the screen for the `inert` clock state.
  *
  * One arm of the HQ state machine (see hq/page.tsx). Consumes the canonical
  * ProofGate (proofgate.ts) for clock truth and NextAction for the venue —
@@ -14,7 +14,7 @@ import type { ProofGate } from "@/lib/hq/proofgate";
  * and the whole stack collapses behind a disclosure the operator must
  * choose to open.
  *
- * Deliberately worse to linger in — the highest application of the brand's
+ * Deliberately worse to linger in, the highest application of the brand's
  * restraint, not a lack of design. Reverts to the scroll the moment the
  * clock leaves inert; dwell is earned then, not before. Register: paper,
  * ink, one indigo, hairlines, the functional red the inert state owns.
@@ -26,7 +26,7 @@ export function HqForcingFunction({
 }: {
   gate: ProofGate;
   next: NextAction;
-  /** The full stack — rendered, still derived, but behind the fold. */
+  /** The full stack, rendered, still derived, but behind the fold. */
   children: ReactNode;
 }) {
   const start = gate.clock.milestones.find((m) =>
@@ -36,7 +36,7 @@ export function HqForcingFunction({
   return (
     <section
       className="hq-ff"
-      aria-label="forcing function — the outreach clock is inert"
+      aria-label="forcing function, the outreach clock is inert"
     >
       <p className="hq-ff-eyebrow">proof gate · the clock is inert</p>
 
@@ -60,13 +60,13 @@ export function HqForcingFunction({
               Open the pre-addressed email →
             </a>
             <span className="hq-ff-act-then">
-              then log the send in the Outbound CRM — that is the event
+              then log the send in the Outbound CRM, that is the event
               the 60-day clock hangs on
             </span>
           </div>
           <p className="hq-ff-act-foot">
             The load-bearing sentence is yours to write, per send. It is
-            not in this dashboard — it is in{" "}
+            not in this dashboard, it is in{" "}
             <span className="hq-ff-mono">{next.draftDoc}</span>. If it
             could go to a different venue unedited it is the wrong
             sentence.
@@ -78,7 +78,7 @@ export function HqForcingFunction({
             All five Track A first-sends logged.
           </p>
           <p className="hq-ff-act-foot">
-            The clock should now be running, not inert — if you are still
+            The clock should now be running, not inert, if you are still
             seeing this screen the sends are not recorded in the committed
             CRM. Log them.
           </p>
@@ -95,7 +95,7 @@ export function HqForcingFunction({
 
       <details className="hq-ff-rest">
         <summary className="hq-ff-rest-summary">
-          everything else — proof gate, inbox, pulse, traction
+          everything else, proof gate, inbox, pulse, traction
         </summary>
         <p className="hq-ff-rest-note">
           Still here, still derived. It is behind this fold on purpose:

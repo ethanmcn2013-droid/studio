@@ -2,12 +2,12 @@ import Link from "next/link";
 import type { PulseSignal, PulseState } from "@/lib/hq/pulse";
 
 /**
- * HQ Pulse — is anything on fire or quietly rotting?
+ * HQ Pulse, is anything on fire or quietly rotting?
  *
  * Sits below the Inbox. Inbox = things that owe you an answer. Pulse =
  * things that are degrading whether or not you answer them: a dead
  * cron, a repo gone dark, a high-impact risk biting, the atlas map
- * drifting out of date. Severity is the whole point — critical first,
+ * drifting out of date. Severity is the whole point, critical first,
  * then watch, then the calm clear state. Same atlas register.
  */
 

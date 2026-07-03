@@ -16,7 +16,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal Studio — brand one-pager",
+  title: "Signal Studio, brand one-pager",
   description: "Five products, one discipline. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };

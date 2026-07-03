@@ -3,7 +3,7 @@
  *
  * Run: npx tsx --test src/lib/hq/markdown.test.ts
  *
- * Uses node:test + node:assert — no new dependency. Covers the
+ * Uses node:test + node:assert, no new dependency. Covers the
  * load-bearing pieces: frontmatter parsing across three array
  * syntaxes (inline-no-quotes / JSON / single-value), H2 body
  * section split, sort-by-date, status tally.

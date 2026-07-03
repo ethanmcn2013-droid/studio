@@ -43,7 +43,7 @@ function getIp(request: Request): string {
  *     the host/pathname checks run.
  *   - Host must exactly equal the request origin's host (same-origin only).
  *   - Pathname must be `/hq` or start with `/hq/` (no `/hqfoo` side-steps).
- *   - Returns only the pathname — no query string, no hash — so an attacker
+ *   - Returns only the pathname, no query string, no hash, so an attacker
  *     cannot smuggle parameters or fragment identifiers through a valid path.
  *   - Falls back to `/hq` on any validation failure.
  */
@@ -52,12 +52,12 @@ function sanitizeHqRedirect(from: string, origin: string): string {
   try {
     const target = new URL(from, origin);
     const requestOrigin = new URL(origin);
-    // Same-origin check — catches //evil.com, http://evil.com, etc.
+    // Same-origin check, catches //evil.com, http://evil.com, etc.
     if (target.host !== requestOrigin.host) return SAFE_DEFAULT;
     // Pathname must be exactly /hq or start with /hq/ (prevents /hqescape)
     const p = target.pathname;
     if (p !== "/hq" && !p.startsWith("/hq/")) return SAFE_DEFAULT;
-    // Return pathname only — strip query string and hash
+    // Return pathname only, strip query string and hash
     return p;
   } catch {
     return SAFE_DEFAULT;

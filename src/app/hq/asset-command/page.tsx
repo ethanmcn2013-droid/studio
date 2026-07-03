@@ -20,14 +20,14 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Asset Command System — Signal HQ",
+  title: "Asset Command System · Signal HQ",
   description:
     "The launch-asset operating layer: director panel, master taxonomy, ranked priorities, the first ten assets, the quality gate, the Claude Design prompt framework, and the first completed prompt.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/asset-command — the Asset Command System. The standing decision record
+ * /hq/asset-command, the Asset Command System. The standing decision record
  * for which launch assets exist, in what order, why, and to what bar, plus the
  * reusable quality gate and Claude Design prompt framework. Source of truth:
  * src/lib/hq/asset-command.ts.
@@ -80,7 +80,7 @@ export default async function AssetCommandPage() {
             <Link href="/hq/assets" className="hq-co-srclink">
               Assets room
             </Link>
-            . Strict, not flattering — copy and design status per asset live in
+            . Strict, not flattering, copy and design status per asset live in
             the taxonomy below.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default async function AssetCommandPage() {
           />
           <AuditCard
             title="Written, not designed"
-            body="Venue sales pack, outreach sequence, founder review pack — copy exists as source docs; none is a finished, on-brand object a venue would touch."
+            body="Venue sales pack, outreach sequence, founder review pack, copy exists as source docs; none is a finished, on-brand object a venue would touch."
           />
           <AuditCard
             title="Scaffolded, not production-ready"
@@ -99,7 +99,7 @@ export default async function AssetCommandPage() {
           />
           <AuditCard
             title="Referenced, missing as a file"
-            body="The single most-needed object — a venue one-pager built for the buyer, not a product feature sheet — does not exist as a designed artifact."
+            body="The single most-needed object, a venue one-pager built for the buyer, not a product feature sheet, does not exist as a designed artifact."
           />
           <AuditCard
             title="Required for venue sales"
@@ -111,7 +111,7 @@ export default async function AssetCommandPage() {
           />
           <AuditCard
             title="Required for press"
-            body="A press shell, fact sheet, headshot, and logo pack — armed but firing only on real proof. Release bodies must wait for a signed venue."
+            body="A press shell, fact sheet, headshot, and logo pack, armed but firing only on real proof. Release bodies must wait for a signed venue."
           />
           <AuditCard
             title="Required for launch week"
@@ -125,7 +125,7 @@ export default async function AssetCommandPage() {
         <div className="hq-fm-unit-head">
           <span className="hq-os-eyebrow">03 · director panel · consensus</span>
           <p>
-            Fourteen operating lenses, one decisive line each — then the
+            Fourteen operating lenses, one decisive line each, then the
             distilled decision.
           </p>
         </div>
@@ -164,7 +164,7 @@ export default async function AssetCommandPage() {
         <div className="hq-fm-unit-head">
           <span className="hq-os-eyebrow">04 · master asset taxonomy</span>
           <p>
-            The curated bank — not every conceivable asset. Scored on the
+            The curated bank, not every conceivable asset. Scored on the
             weighted model (revenue 30 · proof 20 · trust 20 · reuse 10 · timing
             10 · feasibility 10). Sorted by score.
           </p>
@@ -221,7 +221,7 @@ export default async function AssetCommandPage() {
           <span className="hq-os-eyebrow">05 · ranked priority lists</span>
           <p>
             Ruthless sequencing. The answer is not &ldquo;make everything&rdquo;
-            — it is the minimum complete premium bank, in order.
+           , it is the minimum complete premium bank, in order.
           </p>
         </div>
         <div className="hq-co-gates">
@@ -265,7 +265,7 @@ export default async function AssetCommandPage() {
           <span className="hq-os-eyebrow">06 · the first ten · in exact order</span>
           <p>
             One asset at a time, in Claude Design, until it is perfect. Chosen by
-            what matters most for launch — not by what is easiest.
+            what matters most for launch, not by what is easiest.
           </p>
         </div>
         <div className="hq-film-board">
@@ -330,7 +330,7 @@ export default async function AssetCommandPage() {
           <span className="hq-os-eyebrow">08 · claude design prompt framework</span>
           <p>
             Sixteen sections. Fill every one and Claude Design produces a
-            premium, usable first draft — not vague inspiration.
+            premium, usable first draft, not vague inspiration.
           </p>
         </div>
         <div className="hq-co-rights">

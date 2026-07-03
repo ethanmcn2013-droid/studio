@@ -30,7 +30,7 @@ import { deriveVerdict } from "@/lib/hq/verdict";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal HQ — Signal Studio",
+  title: "Signal HQ · Signal Studio",
   description: "Private operating dashboard for Signal Studio.",
   robots: {
     index: false,
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Signal HQ — the founder operating system. v5: HUBS + PROOF SPINE.
+ * Signal HQ, the founder operating system. v5: HUBS + PROOF SPINE.
  *
- * ── THE SEAM CONTRACT — read before editing this file ───────────────
+ * ── THE SEAM CONTRACT, read before editing this file ───────────────
  * The founder view now has two jobs:
  *   1. orient any operator in the backend system in under 60 seconds;
  *   2. keep the proof gate close enough that polish cannot hide the
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
  *              (section 0, "has it moved") → inbox → pulse → traction.
  *   expired  → same scroll; the proof gate itself renders the expired
  *              clock line + "§8 kill/pivot due" (proofgate.ts owns that
- *              copy, so no separate component — honest, not duplicated).
+ *              copy, so no separate component, honest, not duplicated).
  *
- * Everything derived from real sources every render — committed seed
+ * Everything derived from real sources every render, committed seed
  * baseline for derived truth, localStorage only for the four operator
  * surfaces CLAUDE.md names. Reference surfaces (atlas/health/
  * entitlements/partners/marketing/plan/one-pagers) live at their own
@@ -96,7 +96,7 @@ export default async function HqPage() {
   );
 
   // The scroll body, shared by running + expired. The proof gate is
-  // section 0 — "has the only thing that matters moved" — above inbox,
+  // section 0, "has the only thing that matters moved", above inbox,
   // because the review's finding is that product work was functioning as
   // avoidance of exactly this scoreboard.
   const scroll = (
@@ -169,10 +169,10 @@ export default async function HqPage() {
           </h2>
         </div>
         {([
-          ["sell", "Sell — the venue engine"],
-          ["make", "Make — design and assets"],
-          ["tell", "Tell — numbers and story"],
-          ["run", "Run — the company itself"],
+          ["sell", "Sell, the venue engine"],
+          ["make", "Make, design and assets"],
+          ["tell", "Tell, numbers and story"],
+          ["run", "Run, the company itself"],
         ] as const).map(([loop, label]) => (
           <div key={loop} style={{ marginTop: "18px" }}>
             <span className="hq-os-eyebrow">{label}</span>
@@ -243,7 +243,7 @@ export default async function HqPage() {
     );
   }
 
-  // running | expired — the earned scroll. proofgate.ts encodes the
+  // running | expired, the earned scroll. proofgate.ts encodes the
   // expired distinction in clock.line + the stamp; no separate arm
   // needed until expired warrants its own §8 surface.
   return (

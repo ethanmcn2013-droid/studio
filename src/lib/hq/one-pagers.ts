@@ -17,15 +17,15 @@ export interface OnePagerDoc {
   slug: string;
   /** Full-form document name as it reads in the masthead. */
   wordmark: string;
-  /** Mono eyebrow under the wordmark — uppercased at render. */
+  /** Mono eyebrow under the wordmark, uppercased at render. */
   eyebrow: string;
-  /** One line for the hub index — what the document is. */
+  /** One line for the hub index, what the document is. */
   summary: string;
   /** The product gesture, translated to a static typographic mark. */
   gesture: OnePagerGesture;
   /** Route to the print-ready page. */
   href: string;
-  /** Page format — one-pagers are A4 portrait; the deck is landscape. */
+  /** Page format, one-pagers are A4 portrait; the deck is landscape. */
   format: "a4-portrait" | "a4-landscape";
 }
 
@@ -34,7 +34,7 @@ export const ONE_PAGERS: OnePagerDoc[] = [
     slug: "tasks",
     wordmark: "signal tasks.",
     eyebrow: "Signal Tasks · Execution clarity",
-    summary: "What needs doing, who owns it, what's stuck — in plain English.",
+    summary: "What needs doing, who owns it, what's stuck, in plain English.",
     gesture: "pulse",
     href: "/hq/one-pagers/tasks",
     format: "a4-portrait",
@@ -52,7 +52,7 @@ export const ONE_PAGERS: OnePagerDoc[] = [
     slug: "analytics",
     wordmark: "signal.",
     eyebrow: "Signal · Attention clarity",
-    summary: "A daily briefing, not a dashboard — the three things worth attention today.",
+    summary: "A daily briefing, not a dashboard, the three things worth attention today.",
     gesture: "tick",
     href: "/hq/one-pagers/analytics",
     format: "a4-portrait",
@@ -70,7 +70,7 @@ export const ONE_PAGERS: OnePagerDoc[] = [
     slug: "brand",
     wordmark: "signal studio.",
     eyebrow: "Signal Studio · The system",
-    summary: "Five products, one discipline — the umbrella one-pager.",
+    summary: "Five products, one discipline, the umbrella one-pager.",
     gesture: "broadcast",
     href: "/hq/one-pagers/brand",
     format: "a4-portrait",

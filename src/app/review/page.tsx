@@ -4,14 +4,14 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Review — Signal Studio",
+  title: "Review · Signal Studio",
   description:
-    "One door into all four Signal Studio products for design review, demos, and visual inspection. Demo data only — no private user data.",
+    "One door into all four Signal Studio products for design review, demos, and visual inspection. Demo data only, no private user data.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /review — the suite review hub.
+ * /review, the suite review hub.
  *
  * A single, calm index that opens every product directly. Built for design
  * review cycles, collaborators, motion partners, and Claude Code / Fable
@@ -97,7 +97,7 @@ export default function ReviewPage() {
             className="mb-4 max-w-[620px] text-lg leading-relaxed"
             style={{ color: "var(--ink-soft)" }}
           >
-            Signal Studio is four rooms in one studio — capture, execute, plan,
+            Signal Studio is four rooms in one studio, capture, execute, plan,
             measure. Open any of them below for design review, demos, or visual
             inspection.
           </p>
@@ -112,7 +112,7 @@ export default function ReviewPage() {
             }}
           >
             <span aria-hidden>●</span>
-            Demo data only — no private user data. Production auth is unchanged.
+            Demo data only, no private user data. Production auth is unchanged.
           </div>
 
           {/* Product grid */}

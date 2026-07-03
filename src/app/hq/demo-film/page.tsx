@@ -12,14 +12,14 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Demo film — Signal HQ",
+  title: "Demo film · Signal HQ",
   description:
-    "Production scaffold for the hero product demo film — logline, spec, storyboard, motion grammar, and the build checklist. Not yet rendered.",
+    "Production scaffold for the hero product demo film, logline, spec, storyboard, motion grammar, and the build checklist. Not yet rendered.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/demo-film — the production scaffold for the hero product film. A
+ * /hq/demo-film, the production scaffold for the hero product film. A
  * buildable brief grounded in the Film System; honest that the film is not
  * yet rendered (the checklist tracks what's left).
  */
@@ -40,7 +40,7 @@ export default async function DemoFilmPage() {
         </span>
         <p className="hq-film-build">
           <span className="hq-film-build-label">build</span> {FILM_META.build.project} ·{" "}
-          <span className="hq-fm-mono">{FILM_META.build.run}</span> — {FILM_META.build.state}
+          <span className="hq-fm-mono">{FILM_META.build.run}</span>, {FILM_META.build.state}
         </p>
       </header>
 
@@ -84,7 +84,7 @@ export default async function DemoFilmPage() {
       <section className="hq-co-block" aria-label="motion grammar">
         <div className="hq-fm-unit-head">
           <span className="hq-os-eyebrow">the motion alphabet</span>
-          <p>Five gestures, distilled from the Film System brief — one per product, plus the hero dot.</p>
+          <p>Five gestures, distilled from the Film System brief, one per product, plus the hero dot.</p>
         </div>
         <div className="hq-co-rights">
           {MOTION_GRAMMAR.map((g) => (

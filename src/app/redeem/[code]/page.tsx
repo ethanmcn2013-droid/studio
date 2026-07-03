@@ -6,7 +6,7 @@ import { TASKS_URL } from "@/lib/product-urls";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Redeem your access — Signal Studio",
+  title: "Redeem your access · Signal Studio",
   robots: { index: false, follow: false },
 };
 
@@ -152,12 +152,12 @@ function AlreadyUsedView({
       <p className="mb-8 text-[17px] leading-[1.6] text-ink-soft">
         {view.sponsorName ? (
           <>
-            Ask {view.sponsorName} for a new one — they can issue another from
+            Ask {view.sponsorName} for a new one, they can issue another from
             their pool any time.
           </>
         ) : (
           <>
-            Ask the venue you booked through for a new one — they can issue
+            Ask the venue you booked through for a new one, they can issue
             another any time.
           </>
         )}
@@ -320,15 +320,15 @@ function claimableCopy(
     return {
       eyebrow: "Review access",
       headline: "Ninety days of Signal Studio.",
-      sub: "All four products, the same as the paying surface. Beat the system or break it — that’s the point.",
+      sub: "All four products, the same as the paying surface. Beat the system or break it, that’s the point.",
       cta: "Open the review account",
     };
   }
-  // compliments — personal gift register, no eyebrow.
+  // compliments, personal gift register, no eyebrow.
   return {
     eyebrow: null,
     headline: "Welcome to Signal Studio.",
-    sub: "A complimentary account, on us. Four small tools — Tasks, Timeline, Signal, Notes.",
+    sub: "A complimentary account, on us. Four small tools, Tasks, Timeline, Signal, Notes.",
     cta: "Open your account",
   };
 }

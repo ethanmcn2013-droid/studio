@@ -9,14 +9,14 @@ import { getTraction } from "@/lib/hq/traction";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Data room — Signal HQ",
+  title: "Data room · Signal HQ",
   description:
-    "The one curated index for a lender, investor, or collaborator doing diligence — narrative, ask, numbers, company, product, legal, proof.",
+    "The one curated index for a lender, investor, or collaborator doing diligence, narrative, ask, numbers, company, product, legal, proof.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/data-room — the "send this one link" view. A curated, ordered subset
+ * /hq/data-room, the "send this one link" view. A curated, ordered subset
  * of the asset library for an outsider doing diligence, with honest ready /
  * pending states. The launch countdown sits at the top so the first thing a
  * reader sees is where the company is against its hard date.

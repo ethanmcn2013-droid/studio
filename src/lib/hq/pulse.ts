@@ -3,21 +3,21 @@ import type { TodayData } from "@/lib/hq/today";
 import { readDriftSidecarCached } from "@/lib/hq/shared-reads";
 
 /**
- * Pulse — the "is anything on fire or quietly rotting?" layer.
+ * Pulse, the "is anything on fire or quietly rotting?" layer.
  *
  * A sole-founder CEO opens HQ to triage, not to browse. After "what
  * needs an answer" (Inbox) the next question is "is anything broken or
  * going stale while I wasn't looking?". Pulse answers exactly that and
  * nothing else. It derives entirely from sources HQ already reads
- * (git activity, cron_runs, risks markdown, atlas drift sidecar) — no
+ * (git activity, cron_runs, risks markdown, atlas drift sidecar), no
  * new wiring, no manual upkeep.
  *
  * Severity is the product, not the data. Every signal collapses to one
  * of three states and the section headline is the worst of them:
  *
- *   clear     — nothing to act on. Quiet is a valid state.
- *   watch     — drifting; not yet costing anything.
- *   critical  — costing you something now (a dead cron, a stuck
+ *   clear    , nothing to act on. Quiet is a valid state.
+ *   watch    , drifting; not yet costing anything.
+ *   critical , costing you something now (a dead cron, a stuck
  *               high-impact risk, a repo gone silent for a week).
  */
 
@@ -97,16 +97,16 @@ export async function getPulseState(today: TodayData): Promise<PulseState> {
   // it pings Studio's cron_runs as `tasks_digest`, so the data-driven
   // loop above now monitors it like analytics_daily. Until the Tasks
   // side's STUDIO_CRON_PING env is set it reads honestly as `never`,
-  // not a hardcoded nag — and self-heals to green on the first ping.
+  // not a hardcoded nag, and self-heals to green on the first ping.
 
   // Risks deliberately do NOT appear here. HQ v3 (2026-05-16) made the
   // Inbox/Pulse contract exclusive: a risk needs a *human decision*
   // (review, mitigate, accept) so it lives in the Inbox only. Pulse is
-  // system-decay — things degrading whether or not you act. Keeping
+  // system-decay, things degrading whether or not you act. Keeping
   // risks out of Pulse is what removes the back-to-back duplicate-list
   // stutter the redesign set out to kill.
 
-  // ── Atlas drift age — is the map going stale? ───────────────────────
+  // ── Atlas drift age, is the map going stale? ───────────────────────
   try {
     const sidecar = await readDriftSidecarCached();
     const slugs = Object.keys(sidecar);

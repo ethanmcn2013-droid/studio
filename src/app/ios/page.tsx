@@ -90,7 +90,7 @@ export default function IOSPage() {
             </Link>
           </div>
 
-          {/* The loader, on a phone — the brand assembling itself, iOS-first. */}
+          {/* The loader, on a phone, the brand assembling itself, iOS-first. */}
           <div className="mt-14 flex flex-col items-center gap-4">
             <div
               className="relative rounded-[44px] border border-[var(--hairline)] bg-[var(--ink)] p-[10px] shadow-[0_30px_60px_-20px_rgba(17,17,17,0.30)]"

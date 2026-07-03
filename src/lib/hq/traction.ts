@@ -9,42 +9,42 @@ import {
 } from "@/lib/db/schema";
 
 /**
- * Traction — "are we actually winning?".
+ * Traction, "are we actually winning?".
  *
  * Rebuilt 2026-05-16 for the paid Venue Edition model
  * (venue-editions-paid-tier). The earlier version multiplied COUPLE-side
- * `venue_edition` entitlements by the €1.5–4k band — that counted
+ * `venue_edition` entitlements by the €1.5–4k band, that counted
  * couples as if each were a paying venue, which over the paid model is
  * simply wrong. Revenue now comes from the sponsor ledger: a venue is
  * money only when its plan is founding|paid AND the prepay cash landed
- * (`paid_at`). Couples seeded are reported separately — they are
+ * (`paid_at`). Couples seeded are reported separately, they are
  * distribution, the thing the venue's money buys, never the revenue.
  *
  * Honesty contract (the plan's #1 success indicator is "zero brand-
- * integrity exceptions"): cash collected is exact, not a band — annual
+ * integrity exceptions"): cash collected is exact, not a band, annual
  * prepay means the full year lands at signature. Signed-but-unpaid
  * venues are shown as pipeline, never as money. Workspace MRR is the
  * only annualised estimate and is labelled as one, kept out of the
  * headline goal %. If the DB is unreachable the section says so.
  */
 
-/** Ratified target — memory: marketing-plan-6mo-2026-05-16. Cash, not ARR. */
+/** Ratified target, memory: marketing-plan-6mo-2026-05-16. Cash, not ARR. */
 export const GOAL_EUR_6MO = 250_000;
 /** Workspace subscription, €12/mo → annualised (estimate only). */
 const WORKSPACE_YR = 12 * 12;
 
 /**
  * The 6-month clock. Source: content/hq/decisions/venue-editions-paid-tier.md
- * — ratified by the founder 2026-05-16, €250k over six months, M3 gate
+ *, ratified by the founder 2026-05-16, €250k over six months, M3 gate
  * (≥10 paid venues) on 2026-08-16. These are the contract dates, not
- * derived — change them only if the decision file changes.
+ * derived, change them only if the decision file changes.
  */
 const CAMPAIGN_START = "2026-05-16";
 const CAMPAIGN_END = "2026-11-16";
 const CAMPAIGN_M3_GATE = "2026-08-16";
 
 /**
- * Burndown — the one temporal element on the one question that matters.
+ * Burndown, the one temporal element on the one question that matters.
  * Converts a static integer ("€0 collected") into a verdict ("week 3 of
  * 26, €X behind the slope you'd need to land €250k"). Linear required
  * pace, no smoothing: required-to-date is exactly goal × fraction of the
@@ -60,13 +60,13 @@ export type Burndown = {
   daysRemaining: number;
   weeksElapsed: number;
   totalWeeks: number;
-  /** 0..1 — fraction of the six-month window spent. */
+  /** 0..1, fraction of the six-month window spent. */
   fractionElapsed: number;
-  /** goal × fractionElapsed — the cash you'd have if perfectly on pace. */
+  /** goal × fractionElapsed, the cash you'd have if perfectly on pace. */
   requiredToDateEur: number;
   /** cashCollected − requiredToDate. Negative = behind the slope. */
   paceDeltaEur: number;
-  /** (goal − cash) ÷ weeks left — the run-rate needed from here on. */
+  /** (goal − cash) ÷ weeks left, the run-rate needed from here on. */
   requiredWeeklyFromHereEur: number;
   onPace: boolean;
   /** Before the clock starts ticking meaningfully (day 0). */
@@ -127,13 +127,13 @@ export type TractionState =
       paidVenues: number;
       /** Of those, founding cohort (€1,500 locked for life). */
       foundingVenues: number;
-      /** Signed founding|paid but `paid_at` still null — pipeline, not money. */
+      /** Signed founding|paid but `paid_at` still null, pipeline, not money. */
       signedUnpaidVenues: number;
       /** Free in-flight pilots (e.g. Lamb's Hill pre-conversion). */
       pilotVenues: number;
-      /** Couple-side venue_edition entitlements — distribution, not revenue. */
+      /** Couple-side venue_edition entitlements, distribution, not revenue. */
       couplesSeeded: number;
-      /** Active student_edu grants — the second-wedge signup count. */
+      /** Active student_edu grants, the second-wedge signup count. */
       studentSignups: number;
       workspaceSubs: number;
       workspaceAnnualisedEur: number;
@@ -147,7 +147,7 @@ export type TractionState =
       goalEur: number;
       /** Cash collected ÷ €250k. The honest number, no inflation. */
       goalPct: number;
-      /** The 6-month clock — required pace vs actual, days remaining. */
+      /** The 6-month clock, required pace vs actual, days remaining. */
       burndown: Burndown;
     };
 
@@ -271,7 +271,7 @@ export async function getTraction(): Promise<TractionState> {
       reason:
         err instanceof Error && /TURSO_STUDIO/.test(err.message)
           ? "Studio Turso not configured on this host."
-          : "Studio Turso unreachable — traction cannot be read.",
+          : "Studio Turso unreachable, traction cannot be read.",
     };
   }
 }

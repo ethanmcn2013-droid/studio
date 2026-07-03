@@ -1,5 +1,5 @@
 /**
- * Reveal wedding wedge — walkover row 4 (Da Vinci's plea).
+ * Reveal wedding wedge, walkover row 4 (Da Vinci's plea).
  *
  * A one-line entry rail above the hero loader: the umbrella stays
  * neutral, but the wedge is visible at the front door for the audience

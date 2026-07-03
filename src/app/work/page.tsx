@@ -3,7 +3,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Work — Signal Studio",
+  title: "Work · Signal Studio",
   description:
     "Four products for operational clarity: Notes, Tasks, Timeline, Signal.",
 };
@@ -17,7 +17,7 @@ interface WorkItem {
 }
 
 // Workflow order: Notes captures, Tasks runs, Timeline shows, Signal
-// surfaces. Product names carry no "Signal" prefix — the house is Signal
+// surfaces. Product names carry no "Signal" prefix, the house is Signal
 // Studio; the products are Notes, Tasks, Timeline, Signal.
 const items: WorkItem[] = [
   {
@@ -63,7 +63,7 @@ export default function WorkPage() {
     <>
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28 pt-16 md:pt-24">
-          {/* Visually-hidden page H1 — eyebrow div below is the visual label */}
+          {/* Visually-hidden page H1, eyebrow div below is the visual label */}
           <h1 className="sr-only">Work</h1>
 
           {/* Section eyebrow */}

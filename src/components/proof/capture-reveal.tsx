@@ -1,11 +1,11 @@
 "use client";
 
 /**
- * Proof Stage 1 capture reveal — the planner's notebook lines arrive
+ * Proof Stage 1 capture reveal, the planner's notebook lines arrive
  * one at a time as the artefact enters the viewport, the way captures
  * actually land during a call: a line at a time, not all at once.
  *
- * Stage 1 only. Stages 2–4 stay static — they are the *result* of the
+ * Stage 1 only. Stages 2–4 stay static, they are the *result* of the
  * capture, not the act of it; animating them would over-tell.
  *
  * No animation library, consistent with the rest of /proof. Native
@@ -14,7 +14,7 @@
  * the full list); the component arms the hidden state pre-paint only
  * when motion is allowed, so there is no post-hydration flash.
  *
- * No character streaming — the brief is explicit, and streaming would
+ * No character streaming, the brief is explicit, and streaming would
  * read as a typing gimmick, not as captured thought.
  */
 

@@ -14,18 +14,18 @@ import {
 import type { DbProspect, ProspectStage } from "@/lib/db/schema";
 
 /**
- * HQ CRM Row — one prospect, interactive.
+ * HQ CRM Row, one prospect, interactive.
  *
  * Client island inside the server-rendered list. Three interactions:
- *   1. Stage select — dropdown, fires server action, revalidates.
- *   2. Log contact — marks today as last-contacted, advances to "contacted".
- *   3. Compose — opens mailto: with the ratified subject pre-filled.
+ *   1. Stage select, dropdown, fires server action, revalidates.
+ *   2. Log contact, marks today as last-contacted, advances to "contacted".
+ *   3. Compose, opens mailto: with the ratified subject pre-filled.
  *
  * Overdue follow-ups render the date in --hq-crit red.
  * Due-today follow-ups render in --hq-warn amber.
  *
  * No optimistic UI: the row reflects server state after revalidation.
- * The slight round-trip is intentional — CRM data must not lie.
+ * The slight round-trip is intentional, CRM data must not lie.
  */
 export function HqCrmRow({ prospect: p }: { prospect: DbProspect }) {
   const [isPending, startTransition] = useTransition();

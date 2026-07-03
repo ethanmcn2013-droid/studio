@@ -8,7 +8,7 @@ import { getTraction } from "@/lib/hq/traction";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Reporting — Signal HQ",
+  title: "Reporting · Signal HQ",
   description: "Simple founder and shareholder metrics for Signal Studio.",
   robots: { index: false, follow: false },
 };

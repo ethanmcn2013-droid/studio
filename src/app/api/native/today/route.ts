@@ -9,12 +9,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * POST /api/native/today — iOS-shaped Today payload.
+ * POST /api/native/today, iOS-shaped Today payload.
  *
  * Wraps `/api/today` with the iOS presentation layer per the IA spec
  * at `docs/strategy/IOS_TODAY_DOC_IA_2026_05_21.md` § 8b. The native
  * client does not own greeting strings, anchor-card selection, or
- * "should This Evening render right now" — server-decides everything.
+ * "should This Evening render right now", server-decides everything.
  *
  * Auth: shared `SUITE_API_KEY` Bearer token, same pattern + timing-safe
  * compare as `/api/today`. The iOS app's backend proxy holds the key;

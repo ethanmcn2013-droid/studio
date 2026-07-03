@@ -1,12 +1,12 @@
 "use client";
 
 /**
- * Reading progress hairline — a 1px indigo bar fixed to the very top
+ * Reading progress hairline, a 1px indigo bar fixed to the very top
  * of the viewport that fills as the reader scrolls a long-form page
  * (/about, /proof, /brand). No track, no percentage, no label: it is
  * a position, not a stat.
  *
- * Desktop only — gated at (min-width: 768px). On a phone the sticky
+ * Desktop only, gated at (min-width: 768px). On a phone the sticky
  * nav already owns the top edge and the bar competes for 1px it can't
  * spare; the brief says skip mobile if it doesn't earn its keep, and
  * here it doesn't.

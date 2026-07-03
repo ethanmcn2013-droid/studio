@@ -4,16 +4,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 /**
- * HqCommandPalette — ⌘K / Ctrl-K to reach any room without learning the IA.
+ * HqCommandPalette, ⌘K / Ctrl-K to reach any room without learning the IA.
  *
  * Navigation-only by design (safe, fast, no side effects): it jumps to the
- * rooms HQ already has. The registry is a static, client-safe list — the
+ * rooms HQ already has. The registry is a static, client-safe list, the
  * deep operating modules (operating-system.ts, verdict.ts) are server-only,
  * and a palette should never drag those into the client bundle.
  *
  * Keyboard-first, in the brand register: paper surface, one indigo, hairline
  * dividers, mono eyebrows. Esc closes, ↑/↓ move, ⏎ opens. The whole point is
- * that the system is navigable in one keystroke — calm, not clever.
+ * that the system is navigable in one keystroke, calm, not clever.
  */
 
 type Room = {

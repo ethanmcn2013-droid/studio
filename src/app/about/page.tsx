@@ -30,7 +30,7 @@ export default function AboutPage() {
 
           {/* Two-column layout */}
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr] md:gap-16">
-            {/* Left column — manifesto */}
+            {/* Left column, manifesto */}
             <div>
               <p
                 className="leading-[1.7] text-ink-soft"
@@ -63,7 +63,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Right column — products + closing line */}
+            {/* Right column, products + closing line */}
             <div className="flex flex-col justify-between gap-10">
               {/* Product links */}
               <div className="flex flex-col gap-4">
@@ -141,7 +141,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Product work — link to /work */}
+              {/* Product work, link to /work */}
               <div className="mt-2">
                 <div
                   className="mb-3 text-[11px] font-semibold uppercase text-ink-faint"
@@ -177,7 +177,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Founder note — restrained, text-led, set apart on a soft inset panel */}
+        {/* Founder note, restrained, text-led, set apart on a soft inset panel */}
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28">
           <div className="rounded-[14px] border border-border-soft bg-[var(--paper-soft)] px-7 py-10 md:px-12 md:py-14">
             <div className="mx-auto max-w-[560px]">
@@ -189,7 +189,7 @@ export default function AboutPage() {
                 Founder Note
               </div>
 
-              {/* Headline — secondary to the page H1 */}
+              {/* Headline, secondary to the page H1 */}
               <h2
                 className="mb-7 text-balance font-semibold text-ink"
                 style={{
@@ -201,7 +201,7 @@ export default function AboutPage() {
                 Built for the work people actually manage.
               </h2>
 
-              {/* Lead — the thesis, set slightly stronger */}
+              {/* Lead, the thesis, set slightly stronger */}
               <p
                 className="leading-[1.6] text-ink"
                 style={{ fontSize: "clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem)" }}

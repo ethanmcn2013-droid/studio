@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * ProductPills — four pills at the top of the umbrella front door to jump
+ * ProductPills, four pills at the top of the umbrella front door to jump
  * between products. One indigo dot marks the product in use; the dot glides
  * to whichever pill is hovered/focused, and on click it travels to the
  * target pill before the page navigates ("the cool dot transition").

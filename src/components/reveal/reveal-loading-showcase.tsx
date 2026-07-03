@@ -1,18 +1,18 @@
 "use client";
 
 /**
- * RevealLoadingShowcase — the operator's loading-screen wordmark assembly,
+ * RevealLoadingShowcase, the operator's loading-screen wordmark assembly,
  * lifted into the hero as the first brand moment. Unframed: NO cream box,
- * NO frame, NO corner chrome — it lives on the page's own white canvas as
+ * NO frame, NO corner chrome, it lives on the page's own white canvas as
  * a single signature animation.
  *
  * Behaviour (operator direction 2026-05-18):
  *   - Plays ONCE: the dot rolls in, the letters of "signal studio." rise
- *     as it passes, the impulse ripples — then it SETTLES and stays.
+ *     as it passes, the impulse ripples, then it SETTLES and stays.
  *   - It does NOT re-loop the whole assembly. After it settles, only the
  *     dot keeps a gentle, slow pulse/squeeze (the period, breathing).
  *
- * SAFETY (post-2026-05-18 SEV-0 loader incident — non-negotiable):
+ * SAFETY (post-2026-05-18 SEV-0 loader incident, non-negotiable):
  *   - Fully scoped: every class `slx-*`, every @keyframes `slx-*`.
  *   - IN-FLOW only. No position:fixed, no inset:0, no high z-index.
  *     It can never cover a page.
@@ -31,7 +31,7 @@ const WORD = "signal studio";
  * equal to --slx-dur in SLX_CSS below (ms here = s there). The rAF freezes
  * the letters at ROLL_MS; the CSS dot roll runs for --slx-dur. If they
  * drift, the dot and letters desync. Slowed 2.6s → 3.8s (operator: "slow
- * it a small bit so people don't miss it") — savorable, still crisp.
+ * it a small bit so people don't miss it"), savorable, still crisp.
  */
 const ROLL_MS = 3800;
 const RISE_MS = 360; // per-letter rise; eased up from 260 to match the calmer pace
@@ -100,7 +100,7 @@ export function RevealLoadingShowcase() {
       if (elapsed >= ROLL_MS * CYCLES) {
         freeze();
         root.classList.add("slx-settled"); // settle → dot hands to breathe loop
-        return; // STOP after CYCLES plays — never an infinite loop
+        return; // STOP after CYCLES plays, never an infinite loop
       }
       const cycle = Math.floor(elapsed / ROLL_MS);
       const t = elapsed - cycle * ROLL_MS; // time within the current play
@@ -172,7 +172,7 @@ const SLX_CSS = `
    no longer eats the first viewport. Walkover #1 (2026-06-07): demoted
    from min(86vh,860px) to ~28vh so the proposition (H1 + subhead) wins
    the first frame. In-flow, overflow-clipped (dot rolls in off-canvas)
-   — never fixed. */
+  , never fixed. */
 .reveal-loading-showcase{display:flex;align-items:center;
   justify-content:center;width:100%;overflow:hidden;background:transparent;
   min-height:clamp(220px,30dvh,340px);
@@ -181,7 +181,7 @@ const SLX_CSS = `
   --slx-ink:#111;--slx-indigo:#4f46e5;--slx-indigo-300:#a5b4fc;
   --slx-hairline:rgba(17,17,17,0.05);
   /* Wordmark scale: the umbrella name is the first brand moment and must
-     read as the dominant element — clearly larger than the H1 proposition
+     read as the dominant element, clearly larger than the H1 proposition
      below it (which tops out at 66px). It must ALSO never overflow: the
      parent is overflow:hidden, so an oversize mark gets clipped on both
      sides. "signal studio" is ~6.3em wide, so the vw term is the fit
@@ -191,11 +191,11 @@ const SLX_CSS = `
      and clipped the mark on every screen ≤1440 (2026-06-18 fix). Now a
      true-hero scale that always fits one line. Signal Review 2026-06-22:
      aligned to the shared product-hero wordmark scale clamp(56,12vw,168)
-     — notes/tasks/timeline/signal all render their hero mark at this size,
+    , notes/tasks/timeline/signal all render their hero mark at this size,
      so the umbrella must match (was clamp(46,12.6vw,152), reading smaller
      than every product). "signal studio" is ~6.3em wide, so at the 168px
      cap the line is ~1058px (fits ≥1340px) and the 12vw term holds it to
-     ~76vw below that — still inside the overflow-clipped parent. */
+     ~76vw below that, still inside the overflow-clipped parent. */
   --slx-wm:clamp(56px,12vw,168px);
   --slx-roll:calc(var(--slx-wm) * 6);
   --slx-dur:3.8s; /* MUST equal ROLL_MS in the component (3800). */
@@ -222,7 +222,7 @@ const SLX_CSS = `
   background:var(--slx-indigo);margin-left:.06em;align-self:flex-end;
   margin-bottom:.06em;transform-origin:center bottom;
   animation:slx-roll var(--slx-dur,3.8s) cubic-bezier(.34,1.56,.64,1) var(--slx-iter,2) forwards;z-index:3;}
-/* after roll, the settled dot just breathes — a gentle pulse/squeeze, forever,
+/* after roll, the settled dot just breathes, a gentle pulse/squeeze, forever,
    WITHOUT re-running the word assembly. */
 .slx-settled .slx-dot{animation:slx-breathe 3.8s ease-in-out infinite;}
 @keyframes slx-roll{

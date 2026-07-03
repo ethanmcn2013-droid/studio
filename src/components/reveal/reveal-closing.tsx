@@ -1,5 +1,5 @@
 /**
- * Reveal closing — indigo accent hairline (mirrors the opening rule) +
+ * Reveal closing, indigo accent hairline (mirrors the opening rule) +
  * editorial sign-off + a two-path call to action + mono address line.
  * Page begins and ends on the indigo accent. Circular structure.
  *

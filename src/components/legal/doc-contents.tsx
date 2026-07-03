@@ -4,15 +4,15 @@
  * Contents rail for the long-form trust stack (/privacy, /terms,
  * /security, /accessibility). A quiet, numbered index that lives in
  * the left gutter on wide screens and tracks the section you are
- * reading — concierge-grade orientation for a document, not a stat.
+ * reading, concierge-grade orientation for a document, not a stat.
  *
  * Desktop only (lg+). On a phone the document reads top-to-bottom and
- * a sticky rail would steal width it can't spare — same call the
+ * a sticky rail would steal width it can't spare, same call the
  * ReadingProgress bar makes. The headings carry their own anchors, so
  * deep-linking still works everywhere; the rail is the wide-screen
  * affordance on top.
  *
- * Scroll-spy is a single IntersectionObserver — no library, no scroll
+ * Scroll-spy is a single IntersectionObserver, no library, no scroll
  * handler. The active id is whichever section last crossed the upper
  * third of the viewport, which matches where the eye actually reads.
  */
@@ -40,7 +40,7 @@ export function DocContents({ sections }: { sections: readonly DocSectionRef[] }
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      // Bias the "active" line to the top third — the reading line,
+      // Bias the "active" line to the top third, the reading line,
       // not the geometric centre.
       { rootMargin: "-12% 0px -68% 0px", threshold: 0 },
     );

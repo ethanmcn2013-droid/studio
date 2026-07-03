@@ -10,11 +10,11 @@ import { deriveVerdict } from "@/lib/hq/verdict";
 export const dynamic = "force-dynamic";
 
 /**
- * GET /hq/status — the one line the company is in, right now.
+ * GET /hq/status, the one line the company is in, right now.
  *
  * Powers the living status dot in the HQ nav (src/components/hq/hq-status-dot).
  * Returns the same mechanically-derived verdict the masthead shows, so the
- * dot is never authored — it is the verdict, miniaturised and made global.
+ * dot is never authored, it is the verdict, miniaturised and made global.
  *
  * Lives UNDER /hq (not /api) on purpose: the HQ access cookie is scoped to
  * `path=/hq`, so an /api/* endpoint would never receive it. A route handler

@@ -4,7 +4,7 @@ import type { InboxItem } from "@/lib/hq/inbox-pure";
 import { HqInboxDismissable } from "./hq-inbox-dismissable";
 
 /**
- * HQ Inbox — things you owe an answer to right now.
+ * HQ Inbox, things you owe an answer to right now.
  *
  * Lives at the very top of /hq, above the Today block. Severity-tiered
  * queue derived from atlas drift, cron health, risks, decisions, atlas

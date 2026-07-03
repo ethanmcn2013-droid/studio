@@ -7,23 +7,23 @@ import { Arrive } from "@/components/design/arrive";
 import { Dissolve } from "@/components/design/dissolve";
 
 export const metadata: Metadata = {
-  title: "Design — Signal Studio",
+  title: "Design · Signal Studio",
   description:
-    "It starts with a dot. The Signal Studio design system — the dot's construction, the naming rule, the plain-language rule, five motion gestures, one typeface, three colours, and the printed work.",
+    "It starts with a dot. The Signal Studio design system, the dot's construction, the naming rule, the plain-language rule, five motion gestures, one typeface, three colours, and the printed work.",
   openGraph: {
-    title: "Design — Signal Studio",
+    title: "Design · Signal Studio",
     description: "It starts with a dot.",
     type: "website",
   },
 };
 
 /* ══════════════════════════════════════════════════════════════════
-   Page stylesheet — self-contained, tokens only.
+   Page stylesheet, self-contained, tokens only.
 
    The named motion language (§6 documents it; everything here uses it):
-   · The Arrival         — 16px rise, --motion-slow, spring-glide, once
-   · The Acknowledgement — 140ms, --ease-out, on hover/focus
-   · The Settle          — 1.15s squash & stretch cut of the ball canon
+   · The Arrival        , 16px rise, --motion-slow, spring-glide, once
+   · The Acknowledgement, 140ms, --ease-out, on hover/focus
+   · The Settle         , 1.15s squash & stretch cut of the ball canon
    The ball's and settle's per-segment curves are the licensed
    choreography exception (ds-allow), identical to the documents deck.
    ══════════════════════════════════════════════════════════════════ */
@@ -33,7 +33,7 @@ const DSN_CSS = `
   color: var(--paper);
 }
 
-/* ── The Arrival — the page's only scroll effect ── */
+/* ── The Arrival, the page's only scroll effect ── */
 .dsn-arrive {
   opacity: 1;
 }
@@ -45,7 +45,7 @@ const DSN_CSS = `
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── §1 · the opening — the dot lands as the period ── */
+/* ── §1 · the opening, the dot lands as the period ── */
 .dsn-open {
   animation: dsn-arrive var(--motion-slow) var(--spring-glide) 250ms both;
 }
@@ -57,21 +57,21 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--accent);
   transform-origin: 50% 100%;
-  animation: dsn-settle 1.15s linear 950ms both; /* ds-allow — settle choreography, ball-canon cut */
+  animation: dsn-settle 1.15s linear 950ms both; /* ds-allow, settle choreography, ball-canon cut */
 }
 @keyframes dsn-settle {
-  0%   { transform: translateY(-38vh) scale(0.94, 1.10); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
-  6%   { opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
-  38%  { transform: translateY(0) scale(1.48, 0.52); animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  52%  { transform: translateY(-0.55em) scale(0.88, 1.14); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
-  64%  { transform: translateY(0) scale(1.22, 0.80); animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  76%  { transform: translateY(-0.18em) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
-  85%  { transform: translateY(0) scale(1.10, 0.91); animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  92%  { transform: translateY(0) scale(0.97, 1.02); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — settle choreography, ball-canon cut */
+  0%   { transform: translateY(-38vh) scale(0.94, 1.10); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, settle choreography, ball-canon cut */
+  6%   { opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, settle choreography, ball-canon cut */
+  38%  { transform: translateY(0) scale(1.48, 0.52); animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  52%  { transform: translateY(-0.55em) scale(0.88, 1.14); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, settle choreography, ball-canon cut */
+  64%  { transform: translateY(0) scale(1.22, 0.80); animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  76%  { transform: translateY(-0.18em) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, settle choreography, ball-canon cut */
+  85%  { transform: translateY(0) scale(1.10, 0.91); animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  92%  { transform: translateY(0) scale(0.97, 1.02); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, settle choreography, ball-canon cut */
   100% { transform: translateY(0) scale(1, 1); }
 }
 
-/* ── the ball, top-right — the dot in motion, deck parity ── */
+/* ── the ball, top-right, the dot in motion, deck parity ── */
 .dsq-origin {
   position: absolute;
   top: 16px;
@@ -107,42 +107,42 @@ const DSN_CSS = `
   animation: dsq-shadow 4.2s linear infinite;
 }
 @keyframes dsq-bounce {
-  0%    { transform: translateY(0)     scale(1, 1);         animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  7%    { transform: translateY(0)     scale(1.045, 0.965); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  14%   { transform: translateY(0)     scale(0.99, 1.01);   animation-timing-function: cubic-bezier(0.5, 0, 0.7, 0.2); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  20%   { transform: translateY(0)     scale(1.45, 0.55);   animation-timing-function: cubic-bezier(0.15, 0.7, 0.3, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  24%   { transform: translateY(-29px)  scale(0.70, 1.42);  animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  36%   { transform: translateY(-88px)  scale(0.95, 1.07);  animation-timing-function: cubic-bezier(0.35, 0.6, 0.6, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  43%   { transform: translateY(-97px)  scale(1.05, 0.96);  animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.3); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  52%   { transform: translateY(-23px)  scale(0.76, 1.34);  animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  55%   { transform: translateY(0)     scale(1.65, 0.42);   animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  58.5% { transform: translateY(-19px)  scale(0.84, 1.22);  animation-timing-function: cubic-bezier(0.3, 0.55, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  65%   { transform: translateY(-41px)  scale(0.99, 1.03);  animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  72%   { transform: translateY(-5px)   scale(0.85, 1.19);  animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  74%   { transform: translateY(0)     scale(1.36, 0.66);   animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  78%   { transform: translateY(-10px)  scale(0.95, 1.07);  animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  82%   { transform: translateY(0)     scale(1.17, 0.85);   animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  86%   { transform: translateY(0)     scale(0.93, 1.075);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  90%   { transform: translateY(0)     scale(1.05, 0.955);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  93.5% { transform: translateY(0)     scale(0.975, 1.025); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  96.5% { transform: translateY(0)     scale(1.012, 0.99);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
+  0%    { transform: translateY(0)     scale(1, 1);         animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  7%    { transform: translateY(0)     scale(1.045, 0.965); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  14%   { transform: translateY(0)     scale(0.99, 1.01);   animation-timing-function: cubic-bezier(0.5, 0, 0.7, 0.2); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  20%   { transform: translateY(0)     scale(1.45, 0.55);   animation-timing-function: cubic-bezier(0.15, 0.7, 0.3, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  24%   { transform: translateY(-29px)  scale(0.70, 1.42);  animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  36%   { transform: translateY(-88px)  scale(0.95, 1.07);  animation-timing-function: cubic-bezier(0.35, 0.6, 0.6, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  43%   { transform: translateY(-97px)  scale(1.05, 0.96);  animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.3); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  52%   { transform: translateY(-23px)  scale(0.76, 1.34);  animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  55%   { transform: translateY(0)     scale(1.65, 0.42);   animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  58.5% { transform: translateY(-19px)  scale(0.84, 1.22);  animation-timing-function: cubic-bezier(0.3, 0.55, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  65%   { transform: translateY(-41px)  scale(0.99, 1.03);  animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  72%   { transform: translateY(-5px)   scale(0.85, 1.19);  animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  74%   { transform: translateY(0)     scale(1.36, 0.66);   animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  78%   { transform: translateY(-10px)  scale(0.95, 1.07);  animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  82%   { transform: translateY(0)     scale(1.17, 0.85);   animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  86%   { transform: translateY(0)     scale(0.93, 1.075);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  90%   { transform: translateY(0)     scale(1.05, 0.955);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  93.5% { transform: translateY(0)     scale(0.975, 1.025); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  96.5% { transform: translateY(0)     scale(1.012, 0.99);  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
   100%  { transform: translateY(0)     scale(1, 1); }
 }
 @keyframes dsq-shadow {
-  0%    { transform: scale(1, 1);    opacity: 0.50; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  7%    { transform: scale(1.05, 1); opacity: 0.52; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  14%   { transform: scale(1, 1);    opacity: 0.50; animation-timing-function: cubic-bezier(0.5, 0, 0.7, 0.2); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  20%   { transform: scale(1.48, 1); opacity: 0.62; animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  24%   { transform: scale(0.78, 1); opacity: 0.30; animation-timing-function: cubic-bezier(0.35, 0.6, 0.6, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  36%   { transform: scale(0.44, 1); opacity: 0.13; animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.3); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  43%   { transform: scale(0.40, 1); opacity: 0.10; animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  52%   { transform: scale(0.80, 1); opacity: 0.33; animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  55%   { transform: scale(1.62, 1); opacity: 0.62; animation-timing-function: cubic-bezier(0.3, 0.55, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  58.5% { transform: scale(0.90, 1); opacity: 0.38; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  65%   { transform: scale(0.64, 1); opacity: 0.20; animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  74%   { transform: scale(1.32, 1); opacity: 0.56; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  78%   { transform: scale(0.94, 1); opacity: 0.40; animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
-  82%   { transform: scale(1.15, 1); opacity: 0.50; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — squish-bounce choreography, documents-deck parity */
+  0%    { transform: scale(1, 1);    opacity: 0.50; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  7%    { transform: scale(1.05, 1); opacity: 0.52; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  14%   { transform: scale(1, 1);    opacity: 0.50; animation-timing-function: cubic-bezier(0.5, 0, 0.7, 0.2); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  20%   { transform: scale(1.48, 1); opacity: 0.62; animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  24%   { transform: scale(0.78, 1); opacity: 0.30; animation-timing-function: cubic-bezier(0.35, 0.6, 0.6, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  36%   { transform: scale(0.44, 1); opacity: 0.13; animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.3); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  43%   { transform: scale(0.40, 1); opacity: 0.10; animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  52%   { transform: scale(0.80, 1); opacity: 0.33; animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  55%   { transform: scale(1.62, 1); opacity: 0.62; animation-timing-function: cubic-bezier(0.3, 0.55, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  58.5% { transform: scale(0.90, 1); opacity: 0.38; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  65%   { transform: scale(0.64, 1); opacity: 0.20; animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  74%   { transform: scale(1.32, 1); opacity: 0.56; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  78%   { transform: scale(0.94, 1); opacity: 0.40; animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
+  82%   { transform: scale(1.15, 1); opacity: 0.50; animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, squish-bounce choreography, documents-deck parity */
   100%  { transform: scale(1, 1);    opacity: 0.50; }
 }
 
@@ -386,18 +386,18 @@ const DSN_CSS = `
   38%, 42%           { transform: scale(0.82); }
 }
 .dsn-study--settle .dsn-study-dot {
-  animation: dsn-study-settle 4.2s linear infinite; /* ds-allow — settle choreography, ball-canon cut */
+  animation: dsn-study-settle 4.2s linear infinite; /* ds-allow, settle choreography, ball-canon cut */
 }
 @keyframes dsn-study-settle {
-  0%    { transform: translateY(-64px) scale(0.94, 1.10); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
-  2%    { opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow — settle choreography, ball-canon cut */
-  11%   { transform: translateY(0) scale(1.48, 0.52); animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  15%   { transform: translateY(-14px) scale(0.88, 1.14); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
-  19%   { transform: translateY(0) scale(1.22, 0.80); animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  22%   { transform: translateY(-4px) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow — settle choreography, ball-canon cut */
-  25%   { transform: translateY(0) scale(1.10, 0.91); animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  28%   { transform: translateY(0) scale(0.97, 1.02); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow — settle choreography, ball-canon cut */
-  31%, 88% { transform: translateY(0) scale(1, 1); opacity: 1; } /* rest — most of the loop is stillness */
+  0%    { transform: translateY(-64px) scale(0.94, 1.10); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, settle choreography, ball-canon cut */
+  2%    { opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); } /* ds-allow, settle choreography, ball-canon cut */
+  11%   { transform: translateY(0) scale(1.48, 0.52); animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  15%   { transform: translateY(-14px) scale(0.88, 1.14); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, settle choreography, ball-canon cut */
+  19%   { transform: translateY(0) scale(1.22, 0.80); animation-timing-function: cubic-bezier(0.25, 0.5, 0.4, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  22%   { transform: translateY(-4px) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45); } /* ds-allow, settle choreography, ball-canon cut */
+  25%   { transform: translateY(0) scale(1.10, 0.91); animation-timing-function: cubic-bezier(0.3, 0.5, 0.5, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  28%   { transform: translateY(0) scale(0.97, 1.02); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); } /* ds-allow, settle choreography, ball-canon cut */
+  31%, 88% { transform: translateY(0) scale(1, 1); opacity: 1; } /* rest, most of the loop is stillness */
   94%, 100% { transform: translateY(0) scale(1, 1); opacity: 0; }
 }
 .dsn-study-name {
@@ -488,7 +488,7 @@ const DSN_CSS = `
   margin-bottom: 26px;
 }
 
-/* ── reduced motion — everything already at rest ── */
+/* ── reduced motion, everything already at rest ── */
 @media (prefers-reduced-motion: reduce) {
   .dsn-open, .dsn-period, .dsn-arrive.is-in,
   .dsq-dot, .dsq-shadow,
@@ -502,7 +502,7 @@ const C = "/brand/collateral";
 /* Five gestures, recast as the dot's five jobs (§3). Timings are the
    ratified cycles (DESIGN.md §5). */
 const JOBS = [
-  { cls: "", name: "Ends the name", line: "signal studio. — said once, seated on the baseline." },
+  { cls: "", name: "Ends the name", line: "signal studio., said once, seated on the baseline." },
   { cls: "dsn-job--caret", name: "Blinks while you think", line: "The caret in Notes. A thought mid-formation." },
   { cls: "dsn-job--pulse", name: "Pulses while work runs", line: "Tasks at rest breathe; under load they quicken." },
   { cls: "dsn-job--sweep", name: "Travels the plan", line: "Timeline's dot walks the line. Direction without urgency." },
@@ -555,21 +555,21 @@ const STUDIES = [
 
 /* First six of the approved posting queue (founder-approved 2026-07-02). */
 const SOCIAL: Array<{ src: string; alt: string }> = [
-  { src: `${C}/social/s2-belief-b00-ig-square.png`, alt: "Social post — a belief statement, white type on black" },
-  { src: `${C}/social/s1-number-n01-ig-square.png`, alt: "Social post — one large number with a one-line claim" },
-  { src: `${C}/social/s3-beforeafter-schedule-ig-square.png`, alt: "Social post — a messy schedule beside a clear one" },
-  { src: `${C}/social/s2-belief-b03-ig-square.png`, alt: "Social post — a belief statement, indigo emphasis" },
-  { src: `${C}/social/s5-foundernote-quote01-ig-square.png`, alt: "Social post — a short founder note, set like a letter" },
-  { src: `${C}/social/s1-number-n02-ig-square.png`, alt: "Social post — one large number with a one-line claim" },
+  { src: `${C}/social/s2-belief-b00-ig-square.png`, alt: "Social post, a belief statement, white type on black" },
+  { src: `${C}/social/s1-number-n01-ig-square.png`, alt: "Social post, one large number with a one-line claim" },
+  { src: `${C}/social/s3-beforeafter-schedule-ig-square.png`, alt: "Social post, a messy schedule beside a clear one" },
+  { src: `${C}/social/s2-belief-b03-ig-square.png`, alt: "Social post, a belief statement, indigo emphasis" },
+  { src: `${C}/social/s5-foundernote-quote01-ig-square.png`, alt: "Social post, a short founder note, set like a letter" },
+  { src: `${C}/social/s1-number-n02-ig-square.png`, alt: "Social post, one large number with a one-line claim" },
 ];
 
 const REJECTS = [
-  { src: `${C}/cards/cardx-broadcast-front-preview.png`, alt: "Rejected card concept — Broadcast", w: 748, h: 522 },
-  { src: `${C}/cards/cardx-dot-front-preview.png`, alt: "Rejected card concept — Dot", w: 748, h: 522 },
-  { src: `${C}/cards/cardx-paper-front-preview.png`, alt: "Rejected card concept — Paper", w: 748, h: 522 },
-  { src: `${C}/explorations/cafex-belief-preview.png`, alt: "Rejected café concept — Belief", w: 900, h: 1224 },
-  { src: `${C}/explorations/cafex-indigo-preview.png`, alt: "Rejected café concept — Indigo", w: 900, h: 1224 },
-  { src: `${C}/explorations/cafex-ink-preview.png`, alt: "Rejected café concept — Ink", w: 900, h: 1224 },
+  { src: `${C}/cards/cardx-broadcast-front-preview.png`, alt: "Rejected card concept, Broadcast", w: 748, h: 522 },
+  { src: `${C}/cards/cardx-dot-front-preview.png`, alt: "Rejected card concept, Dot", w: 748, h: 522 },
+  { src: `${C}/cards/cardx-paper-front-preview.png`, alt: "Rejected card concept, Paper", w: 748, h: 522 },
+  { src: `${C}/explorations/cafex-belief-preview.png`, alt: "Rejected café concept, Belief", w: 900, h: 1224 },
+  { src: `${C}/explorations/cafex-indigo-preview.png`, alt: "Rejected café concept, Indigo", w: 900, h: 1224 },
+  { src: `${C}/explorations/cafex-ink-preview.png`, alt: "Rejected café concept, Ink", w: 900, h: 1224 },
 ] as const;
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -724,7 +724,7 @@ export default function DesignPage() {
           <SectionHead eyebrow="The thread" title="The dot becomes.">
             It ends our name. It blinks while you think. It pulses while work
             runs. It travels the plan. It reads the signal. One mark, five
-            jobs — the whole system in miniature.
+            jobs, the whole system in miniature.
           </SectionHead>
 
           <div className="dsn-jobs mt-10">
@@ -766,7 +766,7 @@ export default function DesignPage() {
             own language.
           </p>
 
-          {/* The vocabulary of the work — what the voice refuses to say. */}
+          {/* The vocabulary of the work, what the voice refuses to say. */}
           <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
             {VOICE.map((v) => (
               <div
@@ -859,7 +859,7 @@ export default function DesignPage() {
             </div>
           </div>
 
-          {/* Named to the hex — indigo, paper, ink, the whole system in three cards. */}
+          {/* Named to the hex, indigo, paper, ink, the whole system in three cards. */}
           <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-[2fr_1fr]">
             <div
               className="flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[var(--r-3)] p-8 text-white"
@@ -915,19 +915,19 @@ export default function DesignPage() {
           </SectionHead>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Plate src={`${C}/cards/cardx-ink-front-preview.png`} alt="Business card, Ink — signal studio wordmark on black" width={748} height={522} />
-            <Plate src={`${C}/cards/cardx-indigo-front-preview.png`} alt="Business card, Indigo — wordmark on indigo" width={748} height={522} />
-            <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Business card, Duo — split black and indigo face" width={748} height={522} />
+            <Plate src={`${C}/cards/cardx-ink-front-preview.png`} alt="Business card, Ink, signal studio wordmark on black" width={748} height={522} />
+            <Plate src={`${C}/cards/cardx-indigo-front-preview.png`} alt="Business card, Indigo, wordmark on indigo" width={748} height={522} />
+            <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Business card, Duo, split black and indigo face" width={748} height={522} />
           </div>
           <div className="mt-5 grid gap-5 lg:grid-cols-3">
-            <Plate src={`${C}/cards/cardx-ink-back-preview.png`} alt="Business card reverse — QR code, lower right" width={748} height={522} />
-            <Plate src={`${C}/identity/founder-card-front-preview.png`} alt="Founder card front — name and title" width={748} height={522} />
-            <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card reverse — QR to the site" width={748} height={522} />
+            <Plate src={`${C}/cards/cardx-ink-back-preview.png`} alt="Business card reverse, QR code, lower right" width={748} height={522} />
+            <Plate src={`${C}/identity/founder-card-front-preview.png`} alt="Founder card front, name and title" width={748} height={522} />
+            <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card reverse, QR to the site" width={748} height={522} />
           </div>
 
           <div className="mt-12 grid items-start gap-5 md:grid-cols-[2fr_3fr]">
-            <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign — “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} sizes="(max-width: 768px) 100vw, 480px" />
-            <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink — “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} sizes="(max-width: 768px) 100vw, 740px" />
+            <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign, “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} sizes="(max-width: 768px) 100vw, 480px" />
+            <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink, “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} sizes="(max-width: 768px) 100vw, 740px" />
           </div>
           <SpecLine>café card A5 · poster A2 · from the approved print set</SpecLine>
 
@@ -938,7 +938,7 @@ export default function DesignPage() {
           </div>
           <SpecLine>from the approved six-week queue · two a week · alt text on every image</SpecLine>
 
-          {/* the rejects — taste is choosing */}
+          {/* the rejects, taste is choosing */}
           <div className="mt-16 max-w-[760px]">
             <h3 className="text-[clamp(18px,2.2vw,22px)] font-semibold tracking-[-0.01em] text-ink">
               What we said no to.

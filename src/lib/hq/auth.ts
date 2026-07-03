@@ -36,7 +36,7 @@ export async function verifyHqPassword(submittedPassword: string) {
     sha256(`signal-hq-password:v1:${password}`),
   ]);
 
-  // Constant-time comparison — both are hex strings of equal length (64 chars)
+  // Constant-time comparison, both are hex strings of equal length (64 chars)
   const a = Buffer.from(submitted, "utf8");
   const b = Buffer.from(expected, "utf8");
   if (a.length !== b.length) return false;

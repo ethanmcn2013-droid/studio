@@ -18,7 +18,7 @@ import { createClient, type Client } from "@libsql/client";
  *
  * Honesty contract (mirrors traction.ts): every figure is computed from a
  * crisp, named definition or it is `null`. A missing token or a read that
- * throws returns `null` for that slice and a health flag — never a
+ * throws returns `null` for that slice and a health flag, never a
  * confidently-wrong number. No outage fails the whole aggregation.
  *
  * Timestamp units differ per DB and are easy to get wrong, so they are
@@ -36,7 +36,7 @@ import { createClient, type Client } from "@libsql/client";
  *                      user in the last 30 days, as "active / readable"
  *
  * Support sentiment (support inbox) and runway (finance model) are NOT
- * product-app analytics and are deliberately not read here — they stay
+ * product-app analytics and are deliberately not read here, they stay
  * honest placeholders on the blueprint.
  */
 

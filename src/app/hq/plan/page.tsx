@@ -7,7 +7,7 @@ import MarketingDeck from "@/components/hq/marketing-deck";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Marketing plan — Signal HQ",
+  title: "Marketing plan · Signal HQ",
   description: "Private. The ratified 6-month marketing plan as a deck.",
   robots: { index: false, follow: false },
 };

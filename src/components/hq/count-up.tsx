@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * CountUp — a calm number that resolves into place on first paint.
+ * CountUp, a calm number that resolves into place on first paint.
  *
  * Brand check: motion here means "this just resolved from a live source",
  * nothing more. It is short, eased, and silent. Non-numeric values
- * ("unread", "—") render verbatim — never animated, never faked. SSR and
+ * ("unread", "—") render verbatim, never animated, never faked. SSR and
  * no-JS render the final value, so the number is correct without the
  * animation; the count is pure enhancement.
  *

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { isHqPasswordConfigured } from "@/lib/hq/auth";
 
 export const metadata: Metadata = {
-  title: "Signal HQ Access — Signal Studio",
+  title: "Signal HQ Access · Signal Studio",
   robots: {
     index: false,
     follow: false,

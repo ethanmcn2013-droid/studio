@@ -5,8 +5,8 @@ import { requireHqAccess } from "@/lib/hq/access-guard";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Design Rooms — Signal HQ",
-  description: "Every design decision, its iterations, and its chosen direction — in one place.",
+  title: "Design Rooms · Signal HQ",
+  description: "Every design decision, its iterations, and its chosen direction, in one place.",
   robots: { index: false, follow: false },
 };
 

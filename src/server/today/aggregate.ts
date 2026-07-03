@@ -30,7 +30,7 @@ import type {
  *
  * When a product's env pair is missing we return `null` for that
  * slice and `"skipped_no_env"` in the `reads` health map. The
- * response is always well-formed JSON — no product outage causes the
+ * response is always well-formed JSON, no product outage causes the
  * whole aggregation to fail.
  *
  * Reads that throw are logged via `console.error` (Vercel's stdout
@@ -40,13 +40,13 @@ import type {
  *
  * **Known v1 limitations** (named so they're not surprises later):
  *  - Roadmap member workspaces are silently omitted. Roadmap's schema
- *    has no workspace_members table — only the workspace OWNER's
+ *    has no workspace_members table, only the workspace OWNER's
  *    milestones surface here. Membership-only users see empty.
  *  - The Analytics email-subscription DB is not read here; cadence
  *    comes from Tasks' `user_preferences.daily_signal_cadence` which
  *    Analytics treats as the source of truth at briefing time.
  *
- * **Future evolution** — when studio gains Clerk middleware, this
+ * **Future evolution**, when studio gains Clerk middleware, this
  * route should migrate from the `SUITE_API_KEY` Bearer to a Clerk
  * session check, and derive `clerkId` from the session rather than
  * trusting the request body. That's a one-cycle migration on top of
@@ -112,7 +112,7 @@ async function readTasks(
 
       // "In your court" = unfinished tasks that are either overdue,
       // due today, OR assigned to the user. No lower bound on due_at
-      // because an overdue task still belongs in your court — the
+      // because an overdue task still belongs in your court, the
       // field name + type comment both name this as the intent.
       // The assignees JSON-LIKE pattern uses the userId surrounded by
       // double-quotes so we don't substring-match nested ids.
@@ -137,7 +137,7 @@ async function readTasks(
       const blocked = Number(blockedRes.rows[0]?.c ?? 0);
 
       // Approximate ship-rate signal. Tasks has no transition-time
-      // column — `updated_at` is the closest proxy for "recently
+      // column, `updated_at` is the closest proxy for "recently
       // shipped." A shipped-lane task that was edited (title, comment)
       // within 24h registers here even if the ship happened earlier.
       // Named in the type's JSDoc.
@@ -207,7 +207,7 @@ async function readRoadmap(
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
-    // Roadmap schema has no `workspace_members` table — only owner
+    // Roadmap schema has no `workspace_members` table, only owner
     // surfaces here. Membership-only users see an empty summary.
     // Named as a v1 limitation in the file header.
     const wsRows = await client.execute({
@@ -273,7 +273,7 @@ async function readAnalytics(
   const tasksClient = clientForEnv("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
   // The cadence is the source of truth for whether Analytics is on,
   // and it lives on the Tasks DB. If the Tasks token isn't wired we
-  // can't answer the question — report `skipped_no_env` rather than
+  // can't answer the question, report `skipped_no_env` rather than
   // a confidently-wrong `"off"` cadence. The analytics-only token is
   // optional; it only fills in the timezone.
   if (!tasksClient) {
@@ -293,7 +293,7 @@ async function readAnalytics(
     }
 
     // Cadence lives on Tasks' `user_preferences.daily_signal_cadence`
-    // — the same column Analytics reads at briefing time. Pulling it
+    //, the same column Analytics reads at briefing time. Pulling it
     // from there (rather than the Analytics email-subscription DB)
     // gives us the canonical answer with the token we already have.
     let cadence: AnalyticsCadence = "off";

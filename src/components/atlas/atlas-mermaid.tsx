@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 /**
- * AtlasMermaid — client-side hydration of mermaid diagrams inside the
+ * AtlasMermaid, client-side hydration of mermaid diagrams inside the
  * server-rendered atlas prose.
  *
  * The server-side markdown renderer emits placeholder divs:
@@ -14,8 +14,8 @@ import { useEffect } from "react";
  * On mount, this component finds every such div on the page, decodes
  * the source, asks mermaid to render an SVG, and replaces the fallback.
  *
- * Mermaid is lazy-loaded (dynamic import) so the index page — which
- * never renders diagrams — doesn't pay the ~500KB cost. Only entry
+ * Mermaid is lazy-loaded (dynamic import) so the index page, which
+ * never renders diagrams, doesn't pay the ~500KB cost. Only entry
  * pages that contain at least one mermaid fence pull mermaid into the
  * browser.
  */
@@ -83,7 +83,7 @@ export function AtlasMermaidHydrator() {
           el.innerHTML = svg;
           el.setAttribute("data-rendered", "true");
         } catch (err) {
-          // Leave the fallback <pre> in place — operator can still read
+          // Leave the fallback <pre> in place, operator can still read
           // the source, which is its own kind of value.
           el.setAttribute("data-render-error", "true");
           // eslint-disable-next-line no-console

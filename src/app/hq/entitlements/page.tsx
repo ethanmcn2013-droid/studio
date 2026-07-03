@@ -15,7 +15,7 @@ import { ExpireButton } from "./ExpireButton";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "HQ · Entitlements — Signal Studio",
+  title: "HQ · Entitlements · Signal Studio",
   robots: { index: false, follow: false },
 };
 
@@ -45,7 +45,7 @@ export default async function HqEntitlementsPage() {
   } catch (err) {
     // The shared entitlements DB is unreachable (commonly: env not set in a
     // local checkout). Degrade to a named error rather than crashing the room
-    // — same posture as /hq/partners.
+    //, same posture as /hq/partners.
     loadError = err instanceof Error ? err.message : "Unknown error";
   }
 

@@ -1,15 +1,15 @@
 "use client";
 
 /**
- * The Arrival — the /design page's only scroll effect.
+ * The Arrival, the /design page's only scroll effect.
  *
  * Content enters with a 16px rise over --motion-slow on spring-glide,
  * once, when it crosses into view. One curve, one duration, everywhere
- * on the page — the consistency is the point (motion contract; the
+ * on the page, the consistency is the point (motion contract; the
  * page documents its own discipline in §6).
  *
  * Reduced motion: the CSS neutralises the transition entirely, so this
- * observer's class flip is a no-op visual — content is simply present.
+ * observer's class flip is a no-op visual, content is simply present.
  */
 
 import { useEffect, useRef } from "react";

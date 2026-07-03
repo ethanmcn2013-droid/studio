@@ -7,7 +7,7 @@ import {
 } from "@/lib/hq/auth";
 
 // ── Layer 0: /hq password gate ────────────────────────────────────────────
-// This gate is NOT Clerk — it is a simple shared-password gate for the
+// This gate is NOT Clerk, it is a simple shared-password gate for the
 // operator-only /hq surface. Do not touch this behaviour.
 
 const PUBLIC_HQ_PATHS = ["/hq/access", "/hq/logout"];
@@ -78,7 +78,7 @@ const MARKETING_PATHS = new Set([
 ]);
 
 // Clerk's shared-session cookie name (set by the shared prod Clerk instance
-// across *.signalstudio.ie). Studio has no Clerk SDK — we read the raw cookie.
+// across *.signalstudio.ie). Studio has no Clerk SDK, we read the raw cookie.
 // This is the same cookie the browser sends on every subdomain request.
 const CLERK_SESSION_COOKIE = "__session";
 
@@ -90,9 +90,9 @@ const PREVIEW_COOKIE = "signal_preview_public";
 function suiteRedirect(request: NextRequest): NextResponse | null {
   const { pathname } = request.nextUrl;
 
-  // C routes — always pass through
+  // C routes, always pass through
   if (pathname.startsWith("/brand")) return null;
-  // X routes — always pass through (hq handled above; api / infra below)
+  // X routes, always pass through (hq handled above; api / infra below)
   if (
     pathname.startsWith("/api") ||
     pathname.startsWith("/hq") ||
@@ -128,11 +128,11 @@ function suiteRedirect(request: NextRequest): NextResponse | null {
 // ── Composed proxy ────────────────────────────────────────────────────────
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
-  // 0. Confidential static brand assets (lender pack — HQ password required)
+  // 0. Confidential static brand assets (lender pack, HQ password required)
   const brandResult = await confidentialBrandGate(request);
   if (brandResult) return brandResult;
 
-  // 1. HQ gate (must run first — /hq is excluded from suite redirect logic)
+  // 1. HQ gate (must run first, /hq is excluded from suite redirect logic)
   const hqResult = await hqGate(request);
   if (hqResult) return hqResult;
 

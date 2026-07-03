@@ -1,10 +1,10 @@
 /**
- * Reveal products — four typographic-poster rows. Position-clarity label
+ * Reveal products, four typographic-poster rows. Position-clarity label
  * as mono eyebrow → giant wordmark → essence + meta. Hrefs point at the
  * real product subdomains via product-urls.ts.
  *
  * Each row's layout enters from both sides on scroll (left from -x,
- * right from +x) — directional, not generic fade-up. Per-character
+ * right from +x), directional, not generic fade-up. Per-character
  * hover lift on the wordmark is wired in RevealEngine, gated to
  * (hover: hover) devices.
  */
@@ -93,7 +93,7 @@ export function RevealProducts() {
       {/*
         Walkover #13 (2026-06-07): pushback on the "four products · one
         system" framing. The reader's mental model isn't products and a
-        system — it's a day of work and where the parts of it live.
+        system, it's a day of work and where the parts of it live.
       */}
       <div className="reveal-products-head reveal">
         One day&rsquo;s work <span className="gold">·</span> four places it lives
@@ -138,7 +138,7 @@ export function RevealProducts() {
       />
       {/*
         Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
-        product the suite hangs on. The wordmark reads `signal` — the product
+        product the suite hangs on. The wordmark reads `signal`, the product
         name, matching its siblings; the Daily Signal briefing it delivers
         lives in the pill + essence. The href + internal gesture key stay
         `analytics` (the dot identity / CSS hook); the URL is SIGNAL_URL.
@@ -159,13 +159,13 @@ export function RevealProducts() {
         Per-product dot identity (operator: "each product will have their own
         animated dot · every tiny piece feels individually cared for").
         Notes' signature, ported from the operator's Notes loader: the dot
-        morphs into a blinking text caret — the "held thought, awaiting input"
+        morphs into a blinking text caret, the "held thought, awaiting input"
         gesture. Scoped to the notes row only, in-flow, reduced-motion-safe,
         NO overlay/fixed (loader-safety canon). Seeds the pattern; the other
         products' gestures slot in here when their loaders land.
       */}
       <style>{`
-        /* Notes · the dot IS the blinking text caret. No morph — start as
+        /* Notes · the dot IS the blinking text caret. No morph, start as
            caret, blink immediately. (Walkover #6, 2026-06-09: the morph
            wasn't replaying on reveal, so the row settled as a dot.) */
         .reveal-product-row[data-key="notes"] .dot{
@@ -178,7 +178,7 @@ export function RevealProducts() {
         }
         @keyframes rpn-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
 
-        /* Tasks · the wordmark itself gets crossed out — the "done" gesture
+        /* Tasks · the wordmark itself gets crossed out, the "done" gesture
            rendered directly on the word, not in a checkbox glyph. A line
            draws left → right, holds, then clears. The dot is hidden; the
            strike IS the identity here. (Walkover #6, 2026-06-09.) */
@@ -207,7 +207,7 @@ export function RevealProducts() {
         }
 
         /* Timeline · the dot extrudes a milestone line, then drops a second
-           dot at the end — a track being laid. Scoped to the product
+           dot at the end, a track being laid. Scoped to the product
            row; the hero stack still sweeps. (Walkover #5, 2026-06-07.) */
         .reveal-product-row[data-key="timeline"] .mark .dot{
           animation:none;

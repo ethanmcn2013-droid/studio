@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
-  title: "Accessibility — Signal Studio",
+  title: "Accessibility · Signal Studio",
   description:
-    "How Signal Studio approaches accessibility — the target standard, what works today, what doesn't, and how to flag a barrier.",
+    "How Signal Studio approaches accessibility, the target standard, what works today, what doesn't, and how to flag a barrier.",
 };
 
 const SECTIONS = [
@@ -37,14 +37,14 @@ const SECTIONS = [
     body: [
       "Some interactive demos rely on motion to tell their story. Reduced-motion users see a static fallback, but the static fallback is less rich than the animated version. We are not yet at parity.",
       "Some long-form changelogs and shared updates use markdown rendering with default heading styles. The hierarchy is correct, but the visual rhythm could be sharper for low-vision readers.",
-      "Mobile menus on a small number of pages still use native details/summary patterns. They work — but they could be more discoverable.",
+      "Mobile menus on a small number of pages still use native details/summary patterns. They work, but they could be more discoverable.",
       "We have not yet completed an end-to-end audit with a professional screen-reader user. That audit is on the roadmap.",
     ],
   },
   {
     heading: "Flagging a barrier",
     body: [
-      "If you hit a wall — a page you cannot read, a flow you cannot complete, a button you cannot reach — write to hello@signalstudio.ie. Tell us what you were trying to do and what got in the way. We will reply within five working days and tell you whether and when we can fix it.",
+      "If you hit a wall, a page you cannot read, a flow you cannot complete, a button you cannot reach, write to hello@signalstudio.ie. Tell us what you were trying to do and what got in the way. We will reply within five working days and tell you whether and when we can fix it.",
       "We are not big enough to have a dedicated accessibility team. We are small enough to read every email.",
     ],
   },

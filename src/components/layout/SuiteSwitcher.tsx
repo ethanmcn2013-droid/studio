@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * SuiteSwitcher — canonical cross-product navigation component.
+ * SuiteSwitcher, canonical cross-product navigation component.
  *
  * Canonical source for ALL five repos (studio/tasks/roadmap/analytics/notes).
  * Copy byte-identical to each repo's src/components/layout/SuiteSwitcher.tsx.
@@ -13,7 +13,7 @@
  * ── Design contract ───────────────────────────────────────────────
  *
  * One switcher. One header line. One verb pattern. One footer link.
- * The trigger IS the wordmark — the left-side studio breadcrumb logo.
+ * The trigger IS the wordmark, the left-side studio breadcrumb logo.
  * Clicking "signal studio." opens the switcher panel. No separate
  * "Products" button. No "Products ▾" label. The wordmark is the trigger.
  *
@@ -21,11 +21,11 @@
  * (D6: "Tasks SuiteChrome is the outlier causing 'signal studio.×3'").
  *
  * Panel anatomy:
- *   Header  — "signal studio." + "Four products, one studio." tagline
- *   List    — 4 product rows: word·  / verb / tagline
- *   Footer  — "Back to Signal Studio →" link → signalstudio.ie (same-tab)
+ *   Header , "signal studio." + "Four products, one studio." tagline
+ *   List   , 4 product rows: word·  / verb / tagline
+ *   Footer , "Back to Signal Studio →" link → signalstudio.ie (same-tab)
  *
- * Verb pattern (locked — matches suite-launcher.tsx, IA_COHERENCE.md §1C):
+ * Verb pattern (locked, matches suite-launcher.tsx, IA_COHERENCE.md §1C):
  *   timeline  "Open timeline"
  *   tasks     "Open tasks"
  *   notes     "Open notes"
@@ -39,7 +39,7 @@
  *
  * ── Reduced motion ────────────────────────────────────────────────
  *
- * No animation on the panel open/close — it appears and disappears
+ * No animation on the panel open/close, it appears and disappears
  * instantly. The brand does not animate chrome transitions.
  *
  * ── Usage ─────────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ const INDIGO = "#4f46e5";
 interface SuiteSwitcherProps {
   /**
    * The currently active product. That row is shown with full opacity
-   * and a checkmark indicator — it does not navigate (you are here).
+   * and a checkmark indicator, it does not navigate (you are here).
    * Pass undefined on the marketing site (no active product).
    */
   currentProduct?: ProductSlug;
@@ -152,7 +152,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
 
   return (
     <div ref={wrapRef} className="relative">
-      {/* Trigger — the wordmark IS the switcher button. D6 contract. */}
+      {/* Trigger, the wordmark IS the switcher button. D6 contract. */}
       <button
         ref={triggerRef}
         type="button"
@@ -170,7 +170,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
           cursor: "pointer",
         }}
       >
-        {/* Wordmark inline render — matches DESIGN.md §14 breadcrumb spec.
+        {/* Wordmark inline render, matches DESIGN.md §14 breadcrumb spec.
             Geist 600 · letter-spacing -0.025em · ink colour.
             The indigo dot is rendered as a literal period in the brand voice. */}
         <span
@@ -187,7 +187,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
           signal studio
           <span style={{ color: INDIGO }}>.</span>
         </span>
-        {/* Caret — communicates trigger affordance without a chevron label */}
+        {/* Caret, communicates trigger affordance without a chevron label */}
         <svg
           width="8"
           height="8"
@@ -210,7 +210,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
         </svg>
       </button>
 
-      {/* Panel — floats below trigger on desktop, fixed-position on mobile */}
+      {/* Panel, floats below trigger on desktop, fixed-position on mobile */}
       {open && (
         <div
           role="listbox"
@@ -242,7 +242,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
               return (
                 <li key={p.slug} role="option" aria-selected={isCurrent}>
                   {isCurrent ? (
-                    // Current product — not a link, you are here.
+                    // Current product, not a link, you are here.
                     <div
                       className="flex items-center justify-between gap-3 rounded-md px-2.5 py-2"
                       style={{
@@ -316,7 +316,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
             })}
           </ul>
 
-          {/* Footer — §1F: "Back to Signal Studio →" same-tab (authed). */}
+          {/* Footer, §1F: "Back to Signal Studio →" same-tab (authed). */}
           <div
             className="border-t px-3.5 py-2.5"
             style={{

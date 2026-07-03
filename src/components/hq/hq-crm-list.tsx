@@ -4,13 +4,13 @@ import { STAGE_LABELS } from "@/lib/hq/crm-utils";
 import type { ProspectStage } from "@/lib/db/schema";
 
 /**
- * HQ CRM Prospect List — the body below the pipeline rail.
+ * HQ CRM Prospect List, the body below the pipeline rail.
  *
  * Server component: renders a list of `HqCrmRow` items. Each row is
  * a server-rendered table row with a client island (HqCrmRow) for
  * the stage-select interaction and compose button.
  *
- * Empty state is honest — "nothing here" with a suggestion.
+ * Empty state is honest, "nothing here" with a suggestion.
  */
 export function HqCrmList({
   prospects,
@@ -24,7 +24,7 @@ export function HqCrmList({
       <div className="hq-crm-empty">
         <p className="hq-crm-empty-line">
           {activeStage === "all"
-            ? "no prospects yet — run the seed or add one"
+            ? "no prospects yet, run the seed or add one"
             : `nothing in "${STAGE_LABELS[activeStage as ProspectStage]}" right now`}
         </p>
       </div>

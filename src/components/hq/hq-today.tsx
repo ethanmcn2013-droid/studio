@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatHoursAgo, getTodayData } from "@/lib/hq/today";
 
 /**
- * HQ Today — the derived, read-only signal block above the dashboard.
+ * HQ Today, the derived, read-only signal block above the dashboard.
  * Renders five sections:
  *
  *   - phase line (from ~/.claude/state/phase.md)

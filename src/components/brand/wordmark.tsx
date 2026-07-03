@@ -61,8 +61,8 @@ const LEGACY_CSS_VARIANT: Record<Kind, "signal" | "tasks" | "roadmap" | "analyti
  *   - timeline·       sweep
  *   - signal·         tick
  *
- * Period (.pd) is baseline-seated — used by umbrella + nouns.
- * Middot (.md) is lifted toward cap-height — used by verbs.
+ * Period (.pd) is baseline-seated, used by umbrella + nouns.
+ * Middot (.md) is lifted toward cap-height, used by verbs.
  */
 export function Wordmark({
   className = "",

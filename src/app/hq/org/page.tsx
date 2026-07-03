@@ -15,8 +15,8 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "org — signal hq",
-  description: "The Executive Leadership Team — 17 Directors, one Founder.",
+  title: "org, signal hq",
+  description: "The Executive Leadership Team, 17 Directors, one Founder.",
   robots: {
     index: false,
     follow: false,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * /hq/org — Live ELT org chart.
+ * /hq/org, Live ELT org chart.
  *
  * Data lives in `src/lib/hq/elt.ts`, mirrored from
  * `signal-directors/config/directors.yaml`. Tufte register:
@@ -59,7 +59,7 @@ export default async function HqOrgPage() {
           className="mb-4 max-w-[60ch] leading-[1.7] text-ink-soft"
           style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
         >
-          The Executive Leadership Team — the standing answer to who owns
+          The Executive Leadership Team, the standing answer to who owns
           what. Each Director runs a portfolio at Layer{" "}
           <span className="font-mono">2</span> (recommend) or Layer{" "}
           <span className="font-mono">3</span> (decide, then log).
@@ -73,7 +73,7 @@ export default async function HqOrgPage() {
           </span>
         </p>
 
-        {/* Apex — Founder */}
+        {/* Apex, Founder */}
         <section className="org-apex" aria-label="founder">
           <div className="org-apex-card">
             <span className="org-apex-eyebrow">apex</span>
@@ -143,7 +143,7 @@ function DirectorCard({ director: d }: { director: Director }) {
         <div className="org-card-head">
           <span className="org-card-shortname">{d.shortName}</span>
           {d.autonomyLayer === 3 ? (
-            <span className="org-card-layer" title="Layer-3 default — decides, then logs">
+            <span className="org-card-layer" title="Layer-3 default, decides, then logs">
               L3
             </span>
           ) : null}

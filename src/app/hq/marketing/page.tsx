@@ -10,7 +10,7 @@ import { getPartnerStats } from "@/lib/partners/stats";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Marketing — Signal HQ",
+  title: "Marketing · Signal HQ",
   description: "The six-month plan, as a working hub.",
   robots: { index: false, follow: false },
 };
@@ -25,7 +25,7 @@ export default async function MarketingPage() {
     (a) => a.impact === "Engine",
   ).length;
 
-  // Live Venue Edition funnel for the engine view — read, never fabricated.
+  // Live Venue Edition funnel for the engine view, read, never fabricated.
   let engine: {
     sponsors: number;
     issued: number;
@@ -75,7 +75,7 @@ export default async function MarketingPage() {
         className="mb-6 max-w-[68ch] text-ink-soft"
         style={{ fontSize: 17, lineHeight: 1.6 }}
       >
-        The six-month plan, as a working hub — not a deck. One hundred
+        The six-month plan, as a working hub, not a deck. One hundred
         approaches, each one cleared by the three-director panel with no
         reservation: Brand (logo-swap test, zero non-goals), Marketing
         (measurably moves the venue engine against the M1–M6 sequence), and
@@ -89,7 +89,7 @@ export default async function MarketingPage() {
       >
         Standing dissent worth keeping in view: the portfolio is deliberately
         venue-weighted, which means it inherits the plan&rsquo;s own #1
-        kill-trigger — single-buyer concentration. The{" "}
+        kill-trigger, single-buyer concentration. The{" "}
         <span style={{ color: "var(--ink)" }}>search &amp; comparison</span>{" "}
         bucket is the only structural hedge against it; treat it as
         load-bearing, not optional.
@@ -106,7 +106,7 @@ export default async function MarketingPage() {
             Market Entry, Brand &amp; Growth Strategy 2026–2028
           </span>
           <span className="mkt-deck-note">
-            The full go-to-market plan — companion to the business plan. Where
+            The full go-to-market plan, companion to the business plan. Where
             every euro of marketing spend goes, and exactly how the market is
             entered.
           </span>

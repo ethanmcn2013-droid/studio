@@ -1,16 +1,16 @@
 /**
- * Signal Studio — Founder Operating System Blueprint (data model).
+ * Signal Studio, Founder Operating System Blueprint (data model).
  *
  * This is the single typed source for the zoomable operating map at
  * `/hq/blueprint`. It is intentionally a hand-curated, founder-grade
- * document — not a live feed. The map's job is to explain how the
+ * document, not a live feed. The map's job is to explain how the
  * company works, grows, ships, thinks, and stays focused, in one place
  * the founder actually opens weekly.
  *
  * ── HOW TO UPDATE ───────────────────────────────────────────────────
  * Edit the exported constants below. The page re-renders from them.
  * Keep product language plain; keep internal-operating language sharp.
- * Don't grow this into a CRM/PM tool — it is a *map*, not a system of
+ * Don't grow this into a CRM/PM tool, it is a *map*, not a system of
  * record. The systems of record already exist (CRM at /hq/crm,
  * directors at /hq/org, atlas at /hq/atlas, numbers at /hq/reporting).
  *
@@ -33,7 +33,7 @@
  *   - Directors        → src/lib/hq/elt.ts (live in the section render)
  * Still placeholder (no source in the suite yet):
  *   - Support sentiment → support inbox (no DB)
- * Each placeholder carries an honest source label — no vanity numbers
+ * Each placeholder carries an honest source label, no vanity numbers
  * presented as real; null from any source falls back to the placeholder.
  * ────────────────────────────────────────────────────────────────────
  */
@@ -44,8 +44,8 @@ export const BLUEPRINT_META = {
   // LIVE DATA: set to the real freeze date when this map is reviewed.
   revisedOn: "2026-06-15",
   hardLaunch: "2026-09-01",
-  initialWedge: "Wedding venues — Ireland, starting in Limerick",
-  secondaryWedge: "Students — academic-year planning",
+  initialWedge: "Wedding venues, Ireland, starting in Limerick",
+  secondaryWedge: "Students, academic-year planning",
   expansion: "Ireland → UK → English-speaking → localized markets",
 } as const;
 
@@ -62,7 +62,7 @@ export type FlywheelStep = {
 
 export const NORTH_STAR = {
   mission:
-    "Give the 80% of people who don't work in tech a calm way to coordinate work — clarity without the enterprise tax.",
+    "Give the 80% of people who don't work in tech a calm way to coordinate work, clarity without the enterprise tax.",
   positioning: [
     "Four products, one system.",
     "Meetings happen because visibility is poor.",
@@ -92,7 +92,7 @@ export const NORTH_STAR = {
     },
   ] satisfies Principle[],
   brandPhilosophy:
-    "Apple-like restraint. White, ink, indigo, hairlines, and one dot. The product should feel quiet and certain — the opposite of a busy enterprise dashboard. What we leave out is the brand.",
+    "Apple-like restraint. White, ink, indigo, hairlines, and one dot. The product should feel quiet and certain, the opposite of a busy enterprise dashboard. What we leave out is the brand.",
   flywheel: [
     { step: "Capture clarity", detail: "Notes turns scattered thinking into one calm place." },
     { step: "Turn into action", detail: "Tasks converts thinking into owned, dated work." },
@@ -175,7 +175,7 @@ export const PRODUCTS: ProductBlueprint[] = [
     name: "Signal",
     role: "Show what needs attention",
     href: "https://signal.signalstudio.ie",
-    purpose: "Surface the one thing a human needs to look at — and nothing else.",
+    purpose: "Surface the one thing a human needs to look at, and nothing else.",
     inputs: ["Task + timeline state", "Deterministic rules", "Curated prose"],
     outputs: ["A daily briefing", "A short attention list"],
     keyActions: ["Read the daily signal", "Act on the top item", "Close the loop"],
@@ -314,14 +314,14 @@ export const GROWTH_MACHINE: GrowthStage[] = [
   {
     phase: "Demand",
     title: "Founder content",
-    detail: "Build-in-public narrative — the calm-coordination point of view.",
+    detail: "Build-in-public narrative, the calm-coordination point of view.",
     status: "building",
     metric: "reach → site visits",
   },
   {
     phase: "Demand",
     title: "Motion-graphics content",
-    detail: "The Film System — 30 motion-graphic films carrying the brand.",
+    detail: "The Film System, 30 motion-graphic films carrying the brand.",
     status: "building",
     metric: "films shipped / planned", // LIVE DATA: /brand/motion-brief
   },
@@ -349,7 +349,7 @@ export const GROWTH_MACHINE: GrowthStage[] = [
 ];
 
 /* ════════════════════════════════════════════════════════════════════
-   5 · SIGNAL HQ — INTERNAL OPERATING SYSTEM (business functions)
+   5 · SIGNAL HQ, INTERNAL OPERATING SYSTEM (business functions)
    ════════════════════════════════════════════════════════════════════ */
 
 export type OperatingFunction = {
@@ -429,7 +429,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     cadence: "Weekly growth review",
     outputs: ["Shipped assets", "Outreach sent", "Demand created"],
     metrics: ["Reply rate", "Booked-call rate"],
-    risk: "Channel before message — switching on paid too early.",
+    risk: "Channel before message, switching on paid too early.",
   },
   {
     key: "finance",
@@ -494,34 +494,34 @@ export type DirectorReviewCycle = {
 
 export const DIRECTOR_REVIEW_CYCLES: DirectorReviewCycle[] = [
   {
-    cycle: "Daily — Founder review",
+    cycle: "Daily, Founder review",
     question: "What is the one thing today?",
     seats: ["Jobs", "Cook"],
   },
   {
-    cycle: "Weekly — Product review",
+    cycle: "Weekly, Product review",
     question: "Did we ship the right scope, and say no enough?",
     seats: ["Jobs", "Da Vinci", "Caravaggio", "Dalí", "Einstein", "Ive", "Rams"],
   },
   {
-    cycle: "Weekly — Growth review",
+    cycle: "Weekly, Growth review",
     question: "Did demand move, and is the message proven before the channel?",
     seats: ["Cuban", "Hormozi", "Pixar"],
   },
   {
-    cycle: "Monthly — Finance review",
+    cycle: "Monthly, Finance review",
     question: "What's the runway, and where did the money go?",
     seats: ["Buffett", "Specter"],
   },
   {
-    cycle: "Monthly — Strategy review",
+    cycle: "Monthly, Strategy review",
     question: "Are we still absurdly focused on the one wedge?",
     seats: ["Jobs", "Sagan", "Turing"],
   },
 ];
 
 /* ════════════════════════════════════════════════════════════════════
-   7 · AUTOMATION LAYER — "Absorbed by the System"
+   7 · AUTOMATION LAYER, "Absorbed by the System"
    ════════════════════════════════════════════════════════════════════ */
 
 export type AbsorbedWork = {
@@ -546,10 +546,10 @@ export const ABSORBED_BY_SYSTEM: AbsorbedWork[] = [
 ];
 
 /* ════════════════════════════════════════════════════════════════════
-   8 · METRICS DASHBOARD — only the critical numbers
+   8 · METRICS DASHBOARD, only the critical numbers
    ════════════════════════════════════════════════════════════════════ */
 
-/** Stable id per metric — the seam the live resolver keys off. */
+/** Stable id per metric, the seam the live resolver keys off. */
 export type MetricKey =
   | "mrr"
   | "active-users"
@@ -579,7 +579,7 @@ export const BLUEPRINT_METRICS: BlueprintMetric[] = [
   { key: "active-users", label: "Active users", value: "—", target: "growing WoW", source: "entitlements", tone: "quiet" },
   { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "10 by M3", source: "/hq/crm", tone: "accent" },
   { key: "student-signups", label: "Student signups", value: "—", target: "term-start cohort", source: "student_edu grants", tone: "quiet" },
-  // Awaiting wiring — these live in the four product apps' analytics or the
+  // Awaiting wiring, these live in the four product apps' analytics or the
   // finance model, not the Studio DB. Honest placeholders until connected.
   { key: "activation", label: "Activation rate", value: "—", target: ">40%", source: "onboarding funnel", tone: "quiet" },
   { key: "retention", label: "Retention", value: "—", target: ">60% M1", source: "app analytics", tone: "quiet" },
@@ -595,7 +595,7 @@ export const BLUEPRINT_METRICS: BlueprintMetric[] = [
    reduces them to these primitives, and hands them to the resolver. Keeping
    this seam as plain numbers means blueprint.ts pulls in no server-only
    module, and a future wiring (activation, retention, runway, …) is just a
-   new field here + a new case below — never a redesign.
+   new field here + a new case below, never a redesign.
    `null` means "source exists but was unreadable this render" (e.g. Turso
    down); the metric falls back to its honest placeholder and is flagged.
    ──────────────────────────────────────────────────────────────────── */
@@ -625,7 +625,7 @@ export type BlueprintLiveData = {
 };
 
 export type ResolvedMetric = BlueprintMetric & {
-  /** Value to render — live figure when wired, else the placeholder. */
+  /** Value to render, live figure when wired, else the placeholder. */
   display: string;
   /** True when `display` came from a live source this render. */
   live: boolean;
@@ -708,7 +708,7 @@ export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric
               "modeled · finance model",
             );
       default:
-        // Not yet wired — honest placeholder, source label carries the plan.
+        // Not yet wired, honest placeholder, source label carries the plan.
         return placeholder(m);
     }
   });
@@ -777,7 +777,7 @@ export const OPERATING_CADENCE: CadenceBeat[] = [
   { rhythm: "Quarterly", name: "Reset", owner: "Founder", question: "What do we stop doing?", output: "Cut list + next bet." },
 ];
 
-/* ── Section registry — drives the zoom map legend + anchors ─────────── */
+/* ── Section registry, drives the zoom map legend + anchors ─────────── */
 
 export type BlueprintSection = {
   id: string;

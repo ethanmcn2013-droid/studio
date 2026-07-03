@@ -2,15 +2,15 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Signal Studio — Project Management for the 80% not in tech";
+export const alt = "Signal Studio, Project Management for the 80% not in tech";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * OG image — 1200×630.
+ * OG image, 1200×630.
  *
  * Warm-stone backdrop (#fafaf7) with the umbrella wordmark centered.
- * Indigo dot (#4f46e5) at the baseline — the brand. Same construction
+ * Indigo dot (#4f46e5) at the baseline, the brand. Same construction
  * as every other wordmark in the suite, scaled up.
  *
  * Antique gold retired 2026-05-11 per the new brand guide (D01 —

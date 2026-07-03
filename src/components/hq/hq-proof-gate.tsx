@@ -1,7 +1,7 @@
 import type { MetricCell, ProofGate } from "@/lib/hq/proofgate";
 
 /**
- * HQ Proof Gate — has the only thing that matters moved?
+ * HQ Proof Gate, has the only thing that matters moved?
  *
  * Built per the 2026-05-18 strategy review, decision #3 (the single
  * permitted measurement build). It sits directly under the masthead,
@@ -10,7 +10,7 @@ import type { MetricCell, ProofGate } from "@/lib/hq/proofgate";
  * operator should see "clock inert, N days to the deadline" before they
  * see anything they could comfortably build instead.
  *
- * Honesty contract: metrics 4 and 5 are shown dark, not zero — they are
+ * Honesty contract: metrics 4 and 5 are shown dark, not zero, they are
  * structurally downstream of a paid pilot and instrumenting them now
  * would itself be the avoidance the review names. Prospect counts read
  * the committed CRM baseline; the label says so.

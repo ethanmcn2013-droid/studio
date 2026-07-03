@@ -12,7 +12,7 @@ import { getTraction } from "@/lib/hq/traction";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Founders Circle — Signal HQ",
+  title: "Founders Circle · Signal HQ",
   description: "Shareholder-safe Signal Studio updates, metrics, and board pack.",
   robots: { index: false, follow: false },
 };

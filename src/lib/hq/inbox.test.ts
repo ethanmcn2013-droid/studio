@@ -5,8 +5,8 @@
  *
  * The fs/cron-reading bits live in inbox.ts behind `server-only` and
  * aren't easy to test without mocks. The pure finalize step that
- * gives the inbox its visible shape — tier ranking, date ordering,
- * tier counts — lives in inbox-pure and is what these tests cover.
+ * gives the inbox its visible shape, tier ranking, date ordering,
+ * tier counts, lives in inbox-pure and is what these tests cover.
  */
 
 import test from "node:test";

@@ -1,5 +1,5 @@
 /**
- * Cross-suite Today aggregation — shared types.
+ * Cross-suite Today aggregation, shared types.
  *
  * Powers `/api/today` and (eventually) the native iOS app's home
  * screen. The response shape is designed to be small enough to fit
@@ -16,7 +16,7 @@ export type TaskSummary = {
   workspaceId: string;
   /** Human-readable workspace name (e.g. "Hartwell Wedding · 6.14.26"). */
   workspaceName: string;
-  /** Count of items in your court — unfinished tasks that are either overdue,
+  /** Count of items in your court, unfinished tasks that are either overdue,
    *  due today, or have you in `assignees`. Open-ended on the past because
    *  "still due, still yours" is the iOS-home signal; an "overdue" badge can
    *  read this number too. */
@@ -24,7 +24,7 @@ export type TaskSummary = {
   /** Count of items explicitly blocked. */
   blocked: number;
   /** Count of items in the shipped lane touched in the last 24h. Approximate
-   *  ship-rate signal — Tasks' schema has no transition-time column, so this
+   *  ship-rate signal, Tasks' schema has no transition-time column, so this
    *  uses `updated_at` as a proxy. A shipped-lane task edited (title change,
    *  comment) within 24h will register here even if it shipped earlier. */
   shippedLast24h: number;
@@ -69,7 +69,7 @@ export type AnalyticsSummary = {
   enabled: boolean;
   /** IANA timezone the user's briefing fires in. Null if not set. */
   timezone: string | null;
-  /** Cadence — one of `off | weekdays | daily`. Closed enum. */
+  /** Cadence, one of `off | weekdays | daily`. Closed enum. */
   cadence: AnalyticsCadence;
 };
 
@@ -82,7 +82,7 @@ export type TodayResponse = {
   notes: NoteSummary | null;
   roadmap: RoadmapSummary | null;
   analytics: AnalyticsSummary | null;
-  /** Health flags — names which product reads failed so the client can
+  /** Health flags, names which product reads failed so the client can
    *  show "(briefing unavailable)" rather than a confidently-empty state. */
   reads: {
     tasks: "ok" | "skipped_no_env" | "error";
@@ -104,7 +104,7 @@ export type TodayRequest = {
 // ── iOS-native Today payload (per IOS_TODAY_DOC_IA_2026_05_21 §8b) ─────────
 //
 // The native iOS Today document is a server-rendered presentation layer
-// on top of `TodayResponse`. The native client is dumb — it does not
+// on top of `TodayResponse`. The native client is dumb, it does not
 // own timezone logic, greeting phrasing, or "should section X be
 // visible right now" decisions. The server owns all of that so a single
 // truth holds across the web suite and iOS.
@@ -120,9 +120,9 @@ export type TodayNativeItem = {
   id: string;
   /** Which product this row routes into. */
   productSlug: TodayProductSlug;
-  /** Display title — workspace name, milestone title, note excerpt. */
+  /** Display title, workspace name, milestone title, note excerpt. */
   title: string;
-  /** Secondary line — counts, target date, relative time. Optional. */
+  /** Secondary line, counts, target date, relative time. Optional. */
   meta?: string;
   /** Canonical product URL the iOS shell opens in the product WebView. */
   deepLink: string;
@@ -136,15 +136,15 @@ export type TodayNativeItem = {
 
 export type TodayNativeSection = {
   id: TodaySectionId;
-  /** Server-decides — iOS client renders if `true`, hides if `false`. */
+  /** Server-decides, iOS client renders if `true`, hides if `false`. */
   visible: boolean;
   items: TodayNativeItem[];
 };
 
 export type TodayNativeGreeting = {
-  /** "Good morning, Anya." — full phrase, ready to render. */
+  /** "Good morning, Anya.", full phrase, ready to render. */
   phrase: string;
-  /** "Thursday, 21 May" — editorial date string in user's locale. */
+  /** "Thursday, 21 May", editorial date string in user's locale. */
   dateString: string;
 };
 
@@ -163,7 +163,7 @@ export type TodayNativeAnchor = {
 };
 
 export type TodayNativeUser = {
-  /** Display name — first name preferred, falls back to email-local-part. */
+  /** Display name, first name preferred, falls back to email-local-part. */
   name: string;
   /** IANA timezone the user lives in. Drives §2 time-of-day logic. */
   timezone: string;
@@ -176,7 +176,7 @@ export type TodayNativeMeta = {
   lastUpdated: string;
   /** Unix ms when this shaped payload was generated. */
   serverGeneratedAt: string;
-  /** Reads health map — surfaces partial-product outages to the client. */
+  /** Reads health map, surfaces partial-product outages to the client. */
   reads: TodayResponse["reads"];
 };
 
@@ -189,11 +189,11 @@ export type TodayNativePayload = {
 };
 
 export type TodayNativeRequest = TodayRequest & {
-  /** User's display name. Client supplies — aggregator doesn't return it. */
+  /** User's display name. Client supplies, aggregator doesn't return it. */
   name?: string;
-  /** IANA timezone. Optional — falls back to analytics.timezone, then UTC. */
+  /** IANA timezone. Optional, falls back to analytics.timezone, then UTC. */
   timezone?: string;
-  /** BCP 47 locale. Optional — falls back to "en-IE". */
+  /** BCP 47 locale. Optional, falls back to "en-IE". */
   locale?: string;
   /** Override "now" for deterministic testing. Server-only. */
   nowMs?: number;

@@ -1,7 +1,7 @@
 import type { AnalyticsHint } from "../types";
 
 /**
- * Analytics hint — detector ids the briefing engine weights up for
+ * Analytics hint, detector ids the briefing engine weights up for
  * workspaces created from this template. The small-business operator
  * misses things in two patterns: deadlines that drift past month-end
  * (renewals, payroll, supplier pay), and people work that quietly

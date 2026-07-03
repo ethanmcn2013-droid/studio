@@ -5,8 +5,8 @@ import { ReviewRoom, type ReviewDirection } from "../_review/ReviewRoom";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "The Café Card — Signal HQ",
-  description: "Four directions for the A6 café card — the permission-placed object.",
+  title: "The Café Card · Signal HQ",
+  description: "Four directions for the A6 café card, the permission-placed object.",
   robots: { index: false, follow: false },
 };
 
@@ -19,9 +19,9 @@ const DIRECTIONS: ReviewDirection[] = [
     chosen: "CHOSEN",
     spec: "A6 · rich black · the poster at counter scale",
     images: [
-      { src: `${P}/cafex-campaign-preview.png`, alt: "Campaign café card", caption: "The campaign line two-tone — the strongest hook of the four." },
+      { src: `${P}/cafex-campaign-preview.png`, alt: "Campaign café card", caption: "The campaign line two-tone, the strongest hook of the four." },
     ],
-    read: "Runs the same line as the poster and the posts — one campaign, every surface. The line does the work a logo can't: it makes a stranger nod.",
+    read: "Runs the same line as the poster and the posts, one campaign, every surface. The line does the work a logo can't: it makes a stranger nod.",
     links: [{ label: "print pdf", href: `${P}/cafex-campaign-print.pdf` }],
   },
   {
@@ -29,7 +29,7 @@ const DIRECTIONS: ReviewDirection[] = [
     name: "02 · Ink",
     spec: "A6 · rich black · ≥300gsm uncoated",
     images: [
-      { src: `${P}/cafex-ink-preview.png`, alt: "Ink café card", caption: "The quiet introduction — wordmark, one line, the QR on a paper chip." },
+      { src: `${P}/cafex-ink-preview.png`, alt: "Ink café card", caption: "The quiet introduction, wordmark, one line, the QR on a paper chip." },
     ],
     read: "Doesn't ask for attention; earns it. On a counter full of neon flyers, the calmest object wins the glance.",
     links: [{ label: "print pdf", href: `${P}/cafex-ink-print.pdf` }],
@@ -39,7 +39,7 @@ const DIRECTIONS: ReviewDirection[] = [
     name: "03 · Belief",
     spec: "A6 · paper white · brand thinking in public",
     images: [
-      { src: `${P}/cafex-belief-preview.png`, alt: "Belief café card", caption: "One of the nine beliefs, set plainly — the S·2 post as an object." },
+      { src: `${P}/cafex-belief-preview.png`, alt: "Belief café card", caption: "One of the nine beliefs, set plainly, the S·2 post as an object." },
     ],
     read: "The most surprising in a café: a software company saying something true about calm, with no product pitch anywhere. Curiosity does the rest.",
     links: [{ label: "print pdf", href: `${P}/cafex-belief-print.pdf` }],
@@ -49,7 +49,7 @@ const DIRECTIONS: ReviewDirection[] = [
     name: "04 · Indigo",
     spec: "A6 · PMS 2726C · the bold introduction",
     images: [
-      { src: `${P}/cafex-indigo-preview.png`, alt: "Indigo café card", caption: "The brand colour owned completely — impossible to miss on any counter." },
+      { src: `${P}/cafex-indigo-preview.png`, alt: "Indigo café card", caption: "The brand colour owned completely, impossible to miss on any counter." },
     ],
     read: "The loudest the brand ever gets, and still no exclamation mark. Best for the venues and campuses where the black card would disappear into dark wood.",
     links: [{ label: "print pdf", href: `${P}/cafex-indigo-print.pdf` }],
@@ -63,9 +63,9 @@ export default async function CafeCardPage() {
       wide
       eyebrow="Signal HQ · The café card · Permission placement only"
       title={<>Earn a stranger's glance, then reward it</>}
-      intro="A6, heavy uncoated, placed by permission in cafés, venues, and on campus boards — never dropped, never stacked. One job: a stranger picks it up, scans, and lands somewhere calm. All four are print-ready."
+      intro="A6, heavy uncoated, placed by permission in cafés, venues, and on campus boards, never dropped, never stacked. One job: a stranger picks it up, scans, and lands somewhere calm. All four are print-ready."
       directions={DIRECTIONS}
-      advice="Decision recorded: Campaign is the café card. One line across the poster, the posts, and the counter — repetition is the system working. The other three stay archived below if a placement ever wants a different ground."
+      advice="Decision recorded: Campaign is the café card. One line across the poster, the posts, and the counter, repetition is the system working. The other three stay archived below if a placement ever wants a different ground."
     />
   );
 }

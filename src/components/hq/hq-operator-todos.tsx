@@ -2,19 +2,19 @@ import Link from "next/link";
 import type { OperatorTodo, OperatorTodoBoard } from "@/lib/hq/operator-todos";
 
 /**
- * HqOperatorTodos — the founder's standing accountability ledger.
+ * HqOperatorTodos, the founder's standing accountability ledger.
  *
  * Every founder/operator-gated task in the suite (provision an account,
  * get an API key, set a prod env var, publish a legal doc, approve a
  * cost limit) lands here as a `content/hq/operator-todos/*.md` file so
- * the founder has one place to see exactly what they are blocking — and
+ * the founder has one place to see exactly what they are blocking, and
  * the agent has one place to record what is still gating the work.
  *
  * Calm register, matched to the launch-readiness card: open blockers
  * read loud (P0 + blocking), done tasks sink and grey out. Each row
  * discloses its step-by-step on demand so the spine stays scannable.
  *
- * Server component — the page loads the board and hands it in.
+ * Server component, the page loads the board and hands it in.
  */
 export function HqOperatorTodos({ board }: { board: OperatorTodoBoard }) {
   const { todos, openCount, doneCount, blockingCount } = board;

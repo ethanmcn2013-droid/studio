@@ -1,5 +1,5 @@
 /**
- * Reveal manifesto — operating principle eyebrow → display H2 with
+ * Reveal manifesto, operating principle eyebrow → display H2 with
  * indigo accent highlight on "less" → two body paragraphs.
  *
  * Pure markup. ScrollTrigger reveals are wired in RevealEngine.
@@ -23,7 +23,7 @@ export function RevealManifesto() {
       </p>
       <p className="reveal-manifesto-body reveal">
         Built for the <strong>80%</strong> of people who run real work without
-        working in tech — wedding planners, freelance designers, tradespeople,
+        working in tech, wedding planners, freelance designers, tradespeople,
         students, small-business owners, teachers. No setup. No vocabulary. Just
         open the page and start.
       </p>

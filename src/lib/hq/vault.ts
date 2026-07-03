@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 /**
- * The Vault — Signal HQ's single index of everything the operator needs to
+ * The Vault · Signal HQ's single index of everything the operator needs to
  * run the business: ownership and legal instruments, the Founder Circle
  * system, brand and motion, marketing, sales, and the company numbers.
  *
@@ -84,7 +84,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "legal-constitution-clauses",
-        title: "Constitution — clauses",
+        title: "Constitution, clauses",
         note: "Clause-by-clause draft for the constitution.",
         kind: "doc",
         state: "draft",
@@ -166,7 +166,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-letter-mam",
-        title: "Letter — founding member",
+        title: "Letter, founding member",
         note: "The private letter to the founding member.",
         kind: "doc",
         state: "private",
@@ -175,7 +175,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-letter-friends",
-        title: "Letter — circle members",
+        title: "Letter, circle members",
         note: "Parked letter for the four-member friend grants.",
         kind: "doc",
         state: "parked",
@@ -184,7 +184,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-letters-master",
-        title: "Letters — master",
+        title: "Letters, master",
         note: "The canonical letter copy.",
         kind: "doc",
         state: "ready",
@@ -193,7 +193,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-letters-framework",
-        title: "Letters — framework",
+        title: "Letters, framework",
         note: "Voice and structure rules for every letter.",
         kind: "doc",
         state: "ready",
@@ -238,7 +238,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-portal-start-here",
-        title: "Portal — start here",
+        title: "Portal, start here",
         note: "Operator guide to configuring and deploying the member portal.",
         kind: "doc",
         state: "ready",
@@ -247,7 +247,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "fc-portal-spec",
-        title: "Portal — spec",
+        title: "Portal, spec",
         note: "Build specification for the member portal site.",
         kind: "doc",
         state: "ready",
@@ -284,7 +284,7 @@ export const VAULT: VaultDomain[] = [
       {
         id: "fc-portal-site",
         title: "Member portal (live site)",
-        note: "Password-gated gift portal — handbook, letter, contract, certificate. Carries personal data, so it is not served on a public URL. Preview locally via founder-circle/start.sh.",
+        note: "Password-gated gift portal, handbook, letter, contract, certificate. Carries personal data, so it is not served on a public URL. Preview locally via founder-circle/start.sh.",
         kind: "source",
         state: "source",
         source: "founder-circle/founder-portal/site/",
@@ -357,7 +357,7 @@ export const VAULT: VaultDomain[] = [
     label: "Brand & Motion",
     kicker: "04",
     blurb:
-      "The Signal Studio identity and the motion language — the canon every external surface inherits from.",
+      "The Signal Studio identity and the motion language, the canon every external surface inherits from.",
     items: [
       {
         id: "brand-hub",
@@ -379,7 +379,7 @@ export const VAULT: VaultDomain[] = [
       },
       {
         id: "motion-brief",
-        title: "The Film System — motion brief",
+        title: "The Film System, motion brief",
         note: "Strategy, the motion language, a phased plan, and 30 film specs.",
         kind: "asset",
         state: "ready",
@@ -539,7 +539,7 @@ export function allVaultDocSlugs(): string[] {
 }
 
 export async function readVaultDocBody(slug: string): Promise<string | null> {
-  // Guard against traversal — slugs are flat, alphanumeric + dashes only.
+  // Guard against traversal, slugs are flat, alphanumeric + dashes only.
   if (!/^[a-z0-9-]+$/.test(slug)) return null;
   const file = path.join(process.cwd(), "content", "vault", `${slug}.md`);
   try {

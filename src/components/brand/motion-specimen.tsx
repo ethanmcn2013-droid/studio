@@ -1,14 +1,14 @@
 "use client";
 
 /**
- * /brand motion specimen — one interactive cell in the "five
+ * /brand motion specimen, one interactive cell in the "five
  * wordmarks, five motions" grid.
  *
  * - Auto-plays on initial scroll-in (the gesture restarts cleanly as
  *   the cell enters view, so it is never caught mid-cycle).
  * - Hover-in restarts the gesture (pointer devices only).
  * - Click (or Enter/Space) freezes the gesture mid-motion and
- *   emphasises the spec — duration + motion name — inline. Click again
+ *   emphasises the spec, duration + motion name, inline. Click again
  *   resumes from a clean restart.
  *
  * No animation library: the gesture itself is the existing CSS on
@@ -100,7 +100,7 @@ export function MotionSpecimen({
       role="button"
       tabIndex={0}
       aria-pressed={paused}
-      aria-label={`${glyph(kind)} — ${name}, ${cycle}. ${
+      aria-label={`${glyph(kind)}, ${name}, ${cycle}. ${
         paused ? "Frozen. Activate to resume." : "Activate to freeze the motion."
       }`}
       data-paused={paused}

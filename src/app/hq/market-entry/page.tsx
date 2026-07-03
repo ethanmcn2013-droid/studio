@@ -6,14 +6,14 @@ import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Market entry deck — Signal HQ",
+  title: "Market entry deck · Signal HQ",
   description:
-    "Market Entry, Brand & Growth Strategy 2026–2028 — the 70-slide go-to-market plan, companion to the business plan.",
+    "Market Entry, Brand & Growth Strategy 2026–2028, the 70-slide go-to-market plan, companion to the business plan.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/market-entry — the full 70-slide Market Entry, Brand & Growth Strategy
+ * /hq/market-entry, the full 70-slide Market Entry, Brand & Growth Strategy
  * deck, served from the self-contained static HTML in public/brand. Same
  * iframe pattern as /hq/deck and /hq/loan-pack. Linked from the Marketing
  * hub and catalogued in the Asset library (shareholder group).
@@ -41,7 +41,7 @@ export default async function MarketEntryPage() {
       </div>
       <iframe
         src="/brand/market-entry-deck-2026.html"
-        title="Signal Studio — Market Entry, Brand & Growth Strategy 2026–2028"
+        title="Signal Studio, Market Entry, Brand & Growth Strategy 2026–2028"
         className="hq-deck-frame"
         loading="eager"
       />

@@ -11,14 +11,14 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Cap table — Signal HQ",
+  title: "Cap table · Signal HQ",
   description:
-    "Signal Studio Limited ownership — Class A voting (90%) and Class B Founder Circle (10%), as defined in the constitution. Pre-incorporation.",
+    "Signal Studio Limited ownership, Class A voting (90%) and Class B Founder Circle (10%), as defined in the constitution. Pre-incorporation.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/cap-table — the ownership read-out. Transcribed from the constitution
+ * /hq/cap-table, the ownership read-out. Transcribed from the constitution
  * blueprint in the vault; honest that the company is pre-incorporation.
  *
  * Two views, toggled by ?view=external:
@@ -49,7 +49,7 @@ export default async function CapTablePage({
         <h1 className="hq-page-title">{COMPANY_META.legalName}<span aria-hidden="true">.</span></h1>
         <p className="hq-page-intro">
           {COMPANY_META.type}. The structure is defined in the constitution and
-          the decisions are confirmed — but the company is{" "}
+          the decisions are confirmed, but the company is{" "}
           <strong>pre-incorporation</strong>: no shares are issued and there is
           no CRO number yet. This is the defined cap table, not a live register.
         </p>
@@ -68,7 +68,7 @@ export default async function CapTablePage({
         </div>
         {external ? (
           <p className="hq-co-redactnote">
-            External view — personal names and the registered address are
+            External view, personal names and the registered address are
             redacted to roles. Safe to screen-share or export to a lender or
             investor.
           </p>
@@ -83,7 +83,7 @@ export default async function CapTablePage({
             className="hq-co-ownerbar-seg"
             data-voting={s.voting ? "true" : undefined}
             style={{ flexGrow: s.pct }}
-            title={`${nameOf(s)} — ${s.pct}%`}
+            title={`${nameOf(s)}, ${s.pct}%`}
           >
             <span className="hq-co-ownerbar-pct">{s.pct}%</span>
             <span className="hq-co-ownerbar-who">

@@ -7,7 +7,7 @@ import { getCronHealth, type CronHealth } from "@/lib/cron/runs";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Health — Signal HQ",
+  title: "Health · Signal HQ",
   description: "Cron + scheduled-job health for the suite.",
   robots: { index: false, follow: false },
 };

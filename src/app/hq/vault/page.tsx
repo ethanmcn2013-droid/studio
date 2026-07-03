@@ -6,7 +6,7 @@ import { VAULT, vaultStats, type VaultItem } from "@/lib/hq/vault";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "The Vault — Signal HQ",
+  title: "The Vault · Signal HQ",
   description: "Every legal, brand, founder, and operating document in one place.",
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
@@ -85,7 +85,7 @@ export default async function VaultPage() {
           The Vault<span aria-hidden="true">.</span>
         </h1>
         <p className="vault-lede">
-          Everything the business runs on, in one place — ownership and legal,
+          Everything the business runs on, in one place, ownership and legal,
           the Founder Circle, brand and motion, the plan, the pipeline, and the
           numbers. One index, kept honest.
         </p>

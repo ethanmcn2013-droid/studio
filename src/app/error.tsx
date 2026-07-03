@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 
 /**
- * Root error boundary — Studio.
+ * Root error boundary, Studio.
  *
  * Voice: calm, anxiety-reducing. Never leads with "error" or "fail".
  * Two actions: reset the boundary, or navigate home.

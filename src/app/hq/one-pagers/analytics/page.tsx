@@ -14,7 +14,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal — one-pager",
+  title: "Signal, one-pager",
   description: "Attention clarity. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
@@ -40,7 +40,7 @@ export default async function AnalyticsOnePager() {
       </OPHeadline>
 
       <OPWhatIs>
-        A daily briefing — not a dashboard — that names the three things in
+        A daily briefing, not a dashboard, that names the three things in
         your work worth attention today.
       </OPWhatIs>
 
@@ -49,14 +49,14 @@ export default async function AnalyticsOnePager() {
         one email. Not a report. Not a chart. Three items, ranked by what
         matters most: what&rsquo;s been stuck the longest, what&rsquo;s due
         soon, what you shipped. If nothing moved, nothing arrives. The
-        briefing is as useful as the work it describes — no more.
+        briefing is as useful as the work it describes, no more.
       </OPPurpose>
 
       <OPKicker>What it does</OPKicker>
       <OPSubstance
         items={[
           "Six attention triggers: stuck work, due soon, just shipped, overload, crowded week, blocked too long. Each fires only when the condition is real.",
-          "Prose rotation — eighteen phrasings, one per reader per day — so the briefing never reads the same way twice.",
+          "Prose rotation, eighteen phrasings, one per reader per day, so the briefing never reads the same way twice.",
           "One-click unsubscribe, RFC 8058 compliant. The brand promise extends to the email: if you want silence, you get it immediately.",
           "The briefing skips quiet days. If nothing in your workspace moved yesterday, nothing arrives. Silence is the signal.",
         ]}

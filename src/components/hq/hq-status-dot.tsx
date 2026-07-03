@@ -5,21 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 /**
- * HqStatusDot — the company's pulse, made global.
+ * HqStatusDot, the company's pulse, made global.
  *
  * Signal Studio's whole identity is one dot. This makes it alive: its
  * colour is the verdict (the same one the masthead derives), its slow
  * breath says "this is fresh", and hovering/focusing it expands the one
- * line that is the company right now — then it collapses again. No new
+ * line that is the company right now, then it collapses again. No new
  * page, no panel.
  *
  * Brand language matches the masthead exactly:
  *   calm      → ink     (nothing owes you an answer)
  *   one-thing → indigo  (exactly one thing matters)
- *   on-fire   → red     (acute — costing you now)
+ *   on-fire   → red     (acute, costing you now)
  *
  * It reads the authed /hq/status. A 401/“locked” simply leaves the dot
- * idle (a quiet hairline ring) — it never invents a verdict it can't read.
+ * idle (a quiet hairline ring), it never invents a verdict it can't read.
  * Reduced-motion holds the colour with no breath; meaning survives.
  */
 
@@ -53,7 +53,7 @@ export function HqStatusDot() {
     return () => {
       alive = false;
     };
-    // Re-read when the room changes — the verdict can move as you work.
+    // Re-read when the room changes, the verdict can move as you work.
   }, [pathname]);
 
   const level = status.state === "ok" ? status.level : null;

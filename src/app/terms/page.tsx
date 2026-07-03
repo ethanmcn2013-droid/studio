@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
-  title: "Terms — Signal Studio",
+  title: "Terms · Signal Studio",
   description:
     "The agreement between you and Signal Studio when you use Signal Tasks, Timeline, Signal, or Notes.",
 };
@@ -46,7 +46,7 @@ const SECTIONS = [
   {
     heading: "Paid plans",
     body: [
-      "Some Signal Studio products have a paid plan. Pricing lives at signalstudio.ie/pricing and is the only source of truth — anything else is illustrative.",
+      "Some Signal Studio products have a paid plan. Pricing lives at signalstudio.ie/pricing and is the only source of truth, anything else is illustrative.",
       "Payments are processed by Stripe. We never see your card details. Subscriptions renew automatically until you cancel. Cancelling stops the next renewal but does not refund the current period.",
       "We may change pricing for new subscribers at any time. Existing subscribers will keep their current price for at least the remainder of the term they paid for, and we will give thirty days' notice before increasing it.",
     ],

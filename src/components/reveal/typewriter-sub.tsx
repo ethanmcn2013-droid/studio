@@ -1,15 +1,15 @@
 "use client";
 
 /**
- * Typewriter sub-hero — the line types in letter by letter at the same
+ * Typewriter sub-hero, the line types in letter by letter at the same
  * moment the headline finishes its word-stagger. A vertical caret sits
  * at the end of the typed text and continues blinking after the line
- * completes — the "live document" gesture: the work is still happening.
+ * completes, the "live document" gesture: the work is still happening.
  *
  * Honors prefers-reduced-motion: text appears instantly, caret renders
  * but does not blink.
  *
- * Timing coordinates with reveal-engine.tsx — that timeline fades the
+ * Timing coordinates with reveal-engine.tsx, that timeline fades the
  * .reveal-subhead wrapper in at ~0.35s, so the typewriter starts just
  * after (~0.7s). Fast cadence keeps the hero from making the visitor
  * wait on the UI (Kowalski: speed first).
@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 
 interface TypewriterSubProps {
   text: string;
-  /** ms per character. Default 28ms ≈ 36 cps — brisk, not a wait. */
+  /** ms per character. Default 28ms ≈ 36 cps, brisk, not a wait. */
   speed?: number;
   /** ms delay before the first character types in. Default 700ms to
    * coordinate with reveal-engine.tsx's subhead fade-in. */
@@ -43,7 +43,7 @@ export function TypewriterSub({
   }, []);
 
   // Kick off typing after the configured start delay (or immediately
-  // when reduced-motion is preferred — settle to final text and skip
+  // when reduced-motion is preferred, settle to final text and skip
   // the per-character animation).
   useEffect(() => {
     if (reduceMotion) {

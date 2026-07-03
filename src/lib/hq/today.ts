@@ -11,16 +11,16 @@ import {
   readLogJsonlCached,
 } from "@/lib/hq/shared-reads";
 
-// Cron health duplicated between Today and Inbox — cache it.
+// Cron health duplicated between Today and Inbox, cache it.
 const getCronHealthCached = cache(getCronHealth);
 
 /**
- * Today — the derived signal layer for Signal HQ.
+ * Today, the derived signal layer for Signal HQ.
  *
  * Reads from real sources of truth (phase.md, log.jsonl, git commits
  * across the 5 product repos, atlas _drift.json, cron_runs). No
  * localStorage. No seed prose. Every value here changes when the
- * underlying source changes — that's the whole point.
+ * underlying source changes, that's the whole point.
  *
  * Per the 2026-05-14 HQ audit: the "every session impacts HQ"
  * requirement is met by deriving state, not by enforcing an "update HQ"

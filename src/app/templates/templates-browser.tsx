@@ -9,13 +9,13 @@ import {
 import type { FeaturedTemplate } from "@/lib/templates/featured";
 
 /**
- * Templates browser — client wrapper around <TemplatePills> + the
+ * Templates browser, client wrapper around <TemplatePills> + the
  * filtered card grid. Holds the full FEATURED_TEMPLATES list in memory
  * so filter swaps are instant (no server round-trip).
  *
  * Cross-fade: on `current` change we remount the grid via `key={current}`,
  * which re-runs the keyframe fade-in (150ms opacity 0 → 1). One motion
- * per filter swap — the indigo dot on the pill is the secondary cue.
+ * per filter swap, the indigo dot on the pill is the secondary cue.
  * Reduced-motion users get instant swap (animation:none).
  *
  * Depth label is composed here (count + audience noun) and passed into
@@ -148,7 +148,7 @@ export function TemplatesBrowser({
                 <a
                   href={t.applyHref}
                   className="tbrowse-card-cta"
-                  aria-label={`Apply ${t.name} — opens in Signal Tasks`}
+                  aria-label={`Apply ${t.name}, opens in Signal Tasks`}
                 >
                   Apply in Tasks
                   <svg

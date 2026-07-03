@@ -61,7 +61,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
 
   const totalShown = filtered.reduce((n, g) => n + g.entries.length, 0);
 
-  // Sequential index across all visible entries — runs across groups.
+  // Sequential index across all visible entries, runs across groups.
   let runningIndex = 0;
 
   return (
@@ -97,7 +97,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
 
       {totalShown === 0 && (
         <p className="py-12 font-mono text-[12px] text-ink-quiet">
-          — no entries match. clear the filter.
+         , no entries match. clear the filter.
         </p>
       )}
 
@@ -128,7 +128,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
                           <span className="atlas-row-title group-hover:text-accent">
                             {e.title}
                             {note && (
-                              <span className="atlas-row-state"> — {note}</span>
+                              <span className="atlas-row-state">, {note}</span>
                             )}
                           </span>
                           <span className="atlas-row-summary block">

@@ -12,14 +12,14 @@ import { getTraction } from "@/lib/hq/traction";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Financial model — Signal HQ",
+  title: "Financial model · Signal HQ",
   description:
-    "The cash-basis projection behind the ask: revenue build, costs, runway, and unit economics — modeled assumptions with live actuals overlaid.",
+    "The cash-basis projection behind the ask: revenue build, costs, runway, and unit economics, modeled assumptions with live actuals overlaid.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/financial-model — the projection behind the ask. Modeled assumptions
+ * /hq/financial-model, the projection behind the ask. Modeled assumptions
  * (owned in financial-model.ts) with the live ledger overlaid as plan-vs-
  * actual. Cash-basis. Everything is labelled as a projection; the only live
  * reads are the overlay + the cash-collected comparison.
@@ -56,11 +56,11 @@ export default async function FinancialModelPage() {
         <span className="hq-page-eyebrow">Signal HQ · Financial Model</span>
         <h1 className="hq-page-title">The projection behind the ask<span aria-hidden="true">.</span></h1>
         <p className="hq-page-intro">
-          A cash-basis model — venue editions are annual prepay, so cash lands
+          A cash-basis model, venue editions are annual prepay, so cash lands
           at signature. Every figure is a <strong>modeled assumption</strong>{" "}
           owned in <span className="hq-fm-mono">src/lib/hq/financial-model.ts</span>;
           the live ledger is overlaid below as plan-vs-actual. This is a
-          projection, not actuals — read it as one.
+          projection, not actuals, read it as one.
         </p>
       </header>
 
@@ -107,7 +107,7 @@ export default async function FinancialModelPage() {
           <Overlay label="Venues signed" plan={String(planPaidVenuesToDate)} actual={actualVenues == null ? "—" : String(actualVenues)} />
         </div>
         <p className="hq-fm-overlay-note">
-          A gap here is the honest read, not a failure of the model — the plan
+          A gap here is the honest read, not a failure of the model, the plan
           is the slope; the ledger is the truth. Close it with outreach, the one
           thing the dashboard cannot move.
         </p>

@@ -7,11 +7,11 @@ import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 export const metadata: Metadata = {
   title: "Founding Venue Programme - Signal Studio",
   description:
-    "Stand behind every couple's planning. The Venue Edition is patronage, paid once a year from €1,500 — the venue's name in a quiet line, nothing for the team to run. Founding venues lock €1,500 for as long as they stay.",
+    "Stand behind every couple's planning. The Venue Edition is patronage, paid once a year from €1,500, the venue's name in a quiet line, nothing for the team to run. Founding venues lock €1,500 for as long as they stay.",
   openGraph: {
     title: "Founding Venue Programme - Signal Studio",
     description:
-      "A venue stands behind its couples' planning — twelve months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
+      "A venue stands behind its couples' planning, twelve months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
     type: "website",
   },
 };
@@ -30,13 +30,13 @@ const contactHref = withTracking("/contact?subject=founding-venue", {
 });
 
 /**
- * Founding Venue Programme — rebuilt 2026-05-26 (S·68).
+ * Founding Venue Programme, rebuilt 2026-05-26 (S·68).
  * Audience: warm leads who have already had an outreach conversation.
  * Job: prove the product is real, show the co-branded moment inline,
  * tease the coordinator view (coming for founding venues), state the
  * price plainly, and make the ask feel low-stakes.
  *
- * No fabricated product screenshot (DESIGN.md §8) — the mocks use
+ * No fabricated product screenshot (DESIGN.md §8), the mocks use
  * fictional venue and couple names throughout.
  */
 
@@ -79,7 +79,7 @@ const coordinatorRows: Array<{
 const coupleExperience = [
   {
     title: "One clear place",
-    copy: "Notes, decisions, tasks, and a plan anyone can forward — instead of a spreadsheet and a thread.",
+    copy: "Notes, decisions, tasks, and a plan anyone can forward, instead of a spreadsheet and a thread.",
   },
   {
     title: "Twelve months",
@@ -102,7 +102,7 @@ const foundingPerks = [
   },
   {
     title: "A short conversation, once",
-    copy: "What the planning year looks like from your side, and where it gets noisy. Thirty minutes, once — not a standing meeting.",
+    copy: "What the planning year looks like from your side, and where it gets noisy. Thirty minutes, once, not a standing meeting.",
   },
   {
     title: "First look at what is next",
@@ -110,7 +110,7 @@ const foundingPerks = [
   },
   {
     title: "The coordinator view, first",
-    copy: "The view that shows every couple's workspace at a glance — status, next step, days to event. Founding venues shape what it shows and get it before anyone else.",
+    copy: "The view that shows every couple's workspace at a glance, status, next step, days to event. Founding venues shape what it shows and get it before anyone else.",
   },
 ];
 
@@ -142,7 +142,7 @@ export default function VenuesPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
               Signal Studio gives every couple a clear place to plan their
-              wedding. The Venue Edition puts your name on it — paid once a
+              wedding. The Venue Edition puts your name on it, paid once a
               year, nothing for your team to run.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -171,7 +171,7 @@ export default function VenuesPage() {
             {/* Co-branded workspace mock */}
             <div className="mt-12 overflow-hidden rounded-[10px] border border-border-soft bg-bg-elev shadow-2">
 
-              {/* Venue identity bar — the co-branded line */}
+              {/* Venue identity bar, the co-branded line */}
               <div className="flex items-center gap-2.5 border-b border-border-soft bg-bg px-4 py-2.5">
                 <span
                   aria-hidden
@@ -337,7 +337,7 @@ export default function VenuesPage() {
           </div>
         </section>
 
-        {/* ── Venue coordinator view — wireframe ── */}
+        {/* ── Venue coordinator view, wireframe ── */}
         <section className="border-b border-border-soft bg-bg-deep px-6 py-16 md:py-20">
           <div className="mx-auto w-full max-w-[1040px]">
             <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
@@ -388,7 +388,7 @@ export default function VenuesPage() {
                 </span>
               </div>
 
-              {/* Column headers — desktop only */}
+              {/* Column headers, desktop only */}
               <div
                 className="hidden border-b border-dashed border-border-soft px-5 py-2.5 opacity-60 md:grid"
                 style={{
@@ -463,7 +463,7 @@ export default function VenuesPage() {
                   so the couple never has to think about it.
                 </p>
                 <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
-                  The founding cohort — the first fifteen venues — lock
+                  The founding cohort, the first fifteen venues, lock
                   €1,500 a year for as long as they stay. Not an
                   introductory rate that climbs. A standing that holds.
                 </p>

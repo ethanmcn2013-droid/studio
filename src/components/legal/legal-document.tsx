@@ -4,13 +4,13 @@ import { ReadingProgress } from "@/components/reading-progress";
 import { DocContents } from "./doc-contents";
 
 /**
- * Shared scaffold for the trust stack — /privacy, /terms, /security,
+ * Shared scaffold for the trust stack, /privacy, /terms, /security,
  * /accessibility. Principle 4 names the legal stack as one product
  * surface, so it gets one treatment: a numbered, deep-linkable
  * document with a quiet contents rail on wide screens.
  *
  * The brief is restraint, not decoration. A legal page earns care by
- * being navigable and honest, not by being loud — so the only moves
+ * being navigable and honest, not by being loud, so the only moves
  * here are rhythm (numbered sections), orientation (the rail), and
  * the ability to send someone a link straight to "§ Refunds".
  */

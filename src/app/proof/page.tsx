@@ -12,7 +12,7 @@ import {
 } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Proof — Signal Studio",
+  title: "Proof · Signal Studio",
   description:
     "One scene, four products, end to end. A wedding planner sits down for a venue call. Forty-five minutes later, the work is in motion across Signal Notes, Tasks, Timeline, and Signal. This is that scene.",
 };
@@ -32,12 +32,12 @@ const LAYERS = [
     artefact: {
       label: "From the planner's notebook",
       lines: [
-        "Venue confirmed — Powerscourt, Saturday Sept 26.",
+        "Venue confirmed, Powerscourt, Saturday Sept 26.",
         "Florist: Bloom & Co. Quote sent. Waiting reply.",
         "Marquee: only if rain forecast. Decide by 14 days out.",
         "Bride: wants save-the-dates posted by July 15.",
         "Catering: need final headcount by August 1.",
-        "Tom (groom's dad) — does the toast. Mention to MC.",
+        "Tom (groom's dad), does the toast. Mention to MC.",
         "Coordinator on the day: Aoife.",
       ],
     },
@@ -51,17 +51,17 @@ const LAYERS = [
     when: "After the meeting.",
     title: "Three notes become three tasks. The wedding workspace is live.",
     body: [
-      "The planner long-presses three captures. Each one promotes into a task in a fresh wedding workspace. Tags do the job that projects would do in a heavier tool — \"florist\" becomes a project, \"venue\" becomes a project, \"save-the-dates\" sits inside print.",
+      "The planner long-presses three captures. Each one promotes into a task in a fresh wedding workspace. Tags do the job that projects would do in a heavier tool, \"florist\" becomes a project, \"venue\" becomes a project, \"save-the-dates\" sits inside print.",
       "The workspace was seeded from the canonical wedding template, so the structure is already there. The planner did not configure anything.",
     ],
     artefact: {
-      label: "Workspace · Sarah and James — Sept 26",
+      label: "Workspace · Sarah and James, Sept 26",
       lines: [
-        "Confirm florist quote — florist · waiting on Bloom & Co",
-        "Decide marquee yes/no by 14 days out — venue · scheduled",
-        "Send save-the-dates by July 15 — print · doing",
-        "Final headcount to caterer by Aug 1 — catering",
-        "Brief MC on Tom's toast — ceremony",
+        "Confirm florist quote, florist · waiting on Bloom & Co",
+        "Decide marquee yes/no by 14 days out, venue · scheduled",
+        "Send save-the-dates by July 15, print · doing",
+        "Final headcount to caterer by Aug 1, catering",
+        "Brief MC on Tom's toast, ceremony",
       ],
     },
     outcome: "3 tasks promoted. 4 tags. 0 setup.",
@@ -84,7 +84,7 @@ const LAYERS = [
         "Next → Final headcount by August 1",
         "Then → Confirm florist (waiting on quote)",
         "Soon → Decide marquee 14 days before the date",
-        "Held up → Catering — need your guest list first",
+        "Held up → Catering, need your guest list first",
       ],
     },
     outcome: "One link the couple can read at midnight. No login.",
@@ -108,8 +108,8 @@ const LAYERS = [
         "Save-the-dates were due 3 days ago.",
         "",
         "Suggested focus",
-        "Chase Bloom & Co today — Confirm florist is waiting on them.",
-        "Close out save-the-dates today — they're 3 days late.",
+        "Chase Bloom & Co today, Confirm florist is waiting on them.",
+        "Close out save-the-dates today, they're 3 days late.",
       ],
     },
     outcome: "Two minutes of reading. The day is shaped before the inbox.",

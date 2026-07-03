@@ -225,11 +225,11 @@ test("sections: 'today' omits workspaces with zero court+blocked", () => {
 });
 
 test("sections: 'evening' tracks visibility per local hour", () => {
-  // NOW_MS = 14:30 UTC = 15:30 Dublin (May DST) — evening visible.
+  // NOW_MS = 14:30 UTC = 15:30 Dublin (May DST), evening visible.
   const dublin = shapeNativePayload(emptyResponse(), baseRequest);
   assert.equal(dublin.sections.find((s) => s.id === "evening")!.visible, true);
 
-  // 14:30 UTC = 07:30 Pacific — evening hidden.
+  // 14:30 UTC = 07:30 Pacific, evening hidden.
   const pacific = shapeNativePayload(emptyResponse(), {
     ...baseRequest,
     timezone: "America/Los_Angeles",
@@ -268,13 +268,13 @@ test("sections: 'caught' surfaces only notes touched within 36h", () => {
   response.notes = {
     total: 5,
     lastTouchedAt: NOW_MS - 3_600_000, // 1h ago
-    lastExcerpt: "Voice memo — caterer follow-up",
+    lastExcerpt: "Voice memo, caterer follow-up",
   };
   const recent = shapeNativePayload(response, baseRequest);
   const caught = recent.sections.find((s) => s.id === "caught")!;
   assert.equal(caught.visible, true);
   assert.equal(caught.items.length, 1);
-  assert.equal(caught.items[0]!.title, "Voice memo — caterer follow-up");
+  assert.equal(caught.items[0]!.title, "Voice memo, caterer follow-up");
 
   response.notes.lastTouchedAt = NOW_MS - 48 * 3_600_000; // 48h ago
   const stale = shapeNativePayload(response, baseRequest);

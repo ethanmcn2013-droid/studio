@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { BlueprintSection } from "@/lib/hq/blueprint";
 
 /**
- * BlueprintCanvas — the zoomable shell for the Founder Operating System map.
+ * BlueprintCanvas, the zoomable shell for the Founder Operating System map.
  *
  * Dependency-free by design (the repo already carries gsap/lenis, but a
  * blueprint map should not pull motion libs for a transform). It provides:
@@ -42,7 +42,7 @@ export function BlueprintCanvas({
 
   const reset = useCallback(() => setZoom(1), []);
 
-  // Keyboard camera controls — ignored while typing in a field.
+  // Keyboard camera controls, ignored while typing in a field.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
@@ -72,7 +72,7 @@ export function BlueprintCanvas({
     [zoomBy],
   );
 
-  // Drag-to-pan — only meaningful once zoomed in past the viewport.
+  // Drag-to-pan, only meaningful once zoomed in past the viewport.
   const drag = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
   const onPointerDown = (e: React.PointerEvent) => {
     if (zoom <= 1) return;
@@ -125,7 +125,7 @@ export function BlueprintCanvas({
 
   return (
     <div className="bp-stage">
-      {/* Legend rail — the minimap / jump list. */}
+      {/* Legend rail, the minimap / jump list. */}
       <aside className="bp-legend" aria-label="Blueprint sections">
         <span className="bp-legend-title">the map</span>
         <ol className="bp-legend-list">

@@ -4,11 +4,11 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
-  title: "Pricing — Signal Studio",
+  title: "Pricing · Signal Studio",
   description:
     "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €100 a year, for the workspace tier. €79 one-time for an event. €9.99 a year for students.",
   openGraph: {
-    title: "Pricing — Signal Studio",
+    title: "Pricing · Signal Studio",
     description:
       "One subscription. Four kinds of clarity. No per-seat tax. No per-product tax.",
     type: "website",
@@ -22,7 +22,7 @@ type Tier = {
   recommended?: boolean;
   price: string;
   cadence: string;
-  /** Plainly-stated annual prepay. No "SAVE %" theatre — the number is the number. */
+  /** Plainly-stated annual prepay. No "SAVE %" theatre, the number is the number. */
   annual?: string;
   annualHref?: string;
   body: string;
@@ -87,7 +87,7 @@ const TIERS: Tier[] = [
     cadence: "/ month · per workspace",
     annual: "or €100 a year, paid once",
     annualHref: TASKS_CHECKOUT_WORKSPACE_ANNUAL,
-    body: "Unlimited workspaces. All four products. Invite anyone — the price doesn't move.",
+    body: "Unlimited workspaces. All four products. Invite anyone, the price doesn't move.",
     pills: [
       { label: "Workspaces", value: "Unlimited" },
       { label: "Guests", value: "Unlimited" },
@@ -204,7 +204,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Do I have to pay per person?",
-    a: "No. One workspace is one price. You can invite ten people, or one, or none — the bill does not change.",
+    a: "No. One workspace is one price. You can invite ten people, or one, or none, the bill does not change.",
   },
   {
     q: "Can I cancel?",
@@ -224,7 +224,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Why one price for four products?",
-    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Timeline, and Signal — which is the exact translation tax Signal Studio exists to remove.",
+    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Timeline, and Signal, which is the exact translation tax Signal Studio exists to remove.",
   },
 ];
 
@@ -243,7 +243,7 @@ function eyebrowStyle(): React.CSSProperties {
 
 function statusPipColor(s: InsideProduct["status"]): string {
   // Tokenized in globals.css. The non-shipped branch is a defensive fallback
-  // for the "build"/"design" states the type allows — kept (not deleted) so a
+  // for the "build"/"design" states the type allows, kept (not deleted) so a
   // product moving off "shipped" still renders a pip.
   return s === "shipped" ? "var(--status-live)" : "var(--status-building)";
 }
@@ -281,7 +281,7 @@ export default async function PricingPage({
                 Checkout is temporarily offline.
               </strong>{" "}
               Workspace and Event purchases will resume when resolved. Free and
-              Student access remain available — start there, or email{" "}
+              Student access remain available, start there, or email{" "}
               <a
                 href="mailto:hello@signalstudio.ie"
                 style={{ color: "var(--ink)" }}
@@ -308,7 +308,7 @@ export default async function PricingPage({
             className="max-w-[56ch] text-ink-soft"
             style={{ fontSize: 19, lineHeight: 1.55 }}
           >
-            One subscription. Use what you need — no per-seat tax, no per-product tax.
+            One subscription. Use what you need, no per-seat tax, no per-product tax.
           </p>
         </section>
 
@@ -429,7 +429,7 @@ export default async function PricingPage({
                   position: "relative",
                 }}
               >
-                {/* Anchor row — only filled for recommended; renders only at md+ where horizontal alignment matters. */}
+                {/* Anchor row, only filled for recommended; renders only at md+ where horizontal alignment matters. */}
                 <div className="hidden md:block md:h-[26px] md:mb-[6px]">
                   {t.recommended ? (
                     <span
@@ -594,7 +594,7 @@ export default async function PricingPage({
             }}
           >
             The tiers don't differ on which products you get. All four, every
-            plan. They differ on shape — who it's for, how long it lasts, what
+            plan. They differ on shape, who it's for, how long it lasts, what
             stays when it ends.
           </p>
 
@@ -726,7 +726,7 @@ export default async function PricingPage({
             </table>
           </div>
 
-          {/* Mobile compare — stacked per-tier blocks, md:hidden */}
+          {/* Mobile compare, stacked per-tier blocks, md:hidden */}
           <div className="grid grid-cols-1 gap-4 md:hidden">
             {TIERS.map((t, ti) => (
               <div
@@ -831,9 +831,9 @@ export default async function PricingPage({
             }}
           >
             All tiers include every product, and every plan can read every
-            briefing in the app. Two things that come to you instead — the
+            briefing in the app. Two things that come to you instead, the
             morning briefing by email, and a forward-to address that turns mail
-            into notes — are part of the Workspace tier. Nothing you make is
+            into notes, are part of the Workspace tier. Nothing you make is
             ever locked away by plan.
           </p>
         </section>
@@ -984,7 +984,7 @@ export default async function PricingPage({
                 >
                   €79 one-time. 12 months of full access. All four products in a
                   single event-shaped workspace. When the event is over, the
-                  workspace keeps reading forever — a record of how the work
+                  workspace keeps reading forever, a record of how the work
                   actually ran.
                 </p>
               </div>
@@ -1038,7 +1038,7 @@ export default async function PricingPage({
                 </div>
               </div>
             </div>
-            {/* Venue Editions surface — quiet line, no CTA, no link.
+            {/* Venue Editions surface, quiet line, no CTA, no link.
                 The couples this is for arrive via their venue, not
                 via this page. The line exists for the small set of
                 couples who looked here first. */}

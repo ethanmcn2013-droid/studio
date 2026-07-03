@@ -9,11 +9,11 @@ import { SITE_URL } from "@/lib/site-url";
 export const dynamic = "force-dynamic";
 
 /**
- * /changelog.rss — RSS 2.0 feed mirroring the dispatch.
+ * /changelog.rss, RSS 2.0 feed mirroring the dispatch.
  *
  * The URL stays /changelog.rss for backwards compatibility with any
  * subscriber already set up; the content is the dispatch (operator
- * voice, four-line cap — see BRAND.md §6.5). One <item> per entry in
+ * voice, four-line cap, see BRAND.md §6.5). One <item> per entry in
  * content/dispatch/*.md. pubDate uses the entry date at noon UTC; GUID
  * is constructed from date + slugified headline so re-ordered files
  * don't collapse readers' caches.
@@ -49,7 +49,7 @@ export async function GET() {
     };
   });
 
-  const channelTitle = "Signal Studio — The dispatch";
+  const channelTitle = "Signal Studio, The dispatch";
   const channelDescription =
     "What gets sent, not what accumulates. Shipped work across the Signal Studio suite, in plain English. Updated when something is worth saying out loud.";
   const channelLink = `${SITE_URL}/dispatch`;

@@ -15,8 +15,8 @@ import { AtlasFilter } from "@/components/atlas/atlas-filter";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "atlas — signal hq",
-  description: "How the loop holds — systems written down, for one operator.",
+  title: "atlas, signal hq",
+  description: "How the loop holds, systems written down, for one operator.",
   robots: {
     index: false,
     follow: false,

@@ -4,7 +4,7 @@ import type { PulseState } from "@/lib/hq/pulse";
 import { formatEur, type TractionState } from "@/lib/hq/traction";
 
 /**
- * Verdict — the one line the founder reads before anything else.
+ * Verdict, the one line the founder reads before anything else.
  *
  * HQ v3 (2026-05-16). The masthead used to show a flat 4-stat strip:
  * four equal-weight numbers, no triage, the single most important thing
@@ -19,16 +19,16 @@ import { formatEur, type TractionState } from "@/lib/hq/traction";
  * click. The moment this reads like prose instead of a computed
  * judgment it has become the System-tab fiction with better typography.
  *
- * Priority is the whole point — acute beats chronic:
- *   on-fire   — a critical Pulse signal or a high-tier Inbox item is
+ * Priority is the whole point, acute beats chronic:
+ *   on-fire  , a critical Pulse signal or a high-tier Inbox item is
  *               costing you something now. Fix it.
- *   one-thing — nothing acute, but there is exactly one thing that
+ *   one-thing, nothing acute, but there is exactly one thing that
  *               matters. If €0 is collected and no venue is signed,
- *               that one thing is venue outreach — surfaced even though
+ *               that one thing is venue outreach, surfaced even though
  *               it is uncomfortable and is not a code task (strategy
  *               non-negotiable #3: the page must name the founder's own
  *               bottleneck, not the loudest list row).
- *   calm      — nothing owes an answer, nothing is rotting. The only
+ *   calm     , nothing owes an answer, nothing is rotting. The only
  *               number that matters is cash against the six-month clock.
  */
 
@@ -41,7 +41,7 @@ export type Verdict = {
   /** The single true next action. */
   action: string;
   actionHref?: string;
-  /** The exact numbers that produced the verdict — the audit trail. */
+  /** The exact numbers that produced the verdict, the audit trail. */
   inputs: Array<{ label: string; value: string }>;
 };
 
@@ -104,7 +104,7 @@ export function deriveVerdict(args: {
         ? ` Week ${traction.burndown.weeksElapsed} of ${traction.burndown.totalWeeks}.`
         : "";
 
-  // ── on-fire — acute, costing you now ────────────────────────────────
+  // ── on-fire, acute, costing you now ────────────────────────────────
   const topCritical = pulse.signals.find((s) => s.level === "critical");
   if (topCritical) {
     return {
@@ -126,13 +126,13 @@ export function deriveVerdict(args: {
     };
   }
 
-  // ── one-thing — the true bottleneck beats the loudest row ───────────
+  // ── one-thing, the true bottleneck beats the loudest row ───────────
   if (businessNotStarted) {
     return {
       level: "one-thing",
       headline: `Nothing sold, no venue signed.${week}`,
       action:
-        "Contact venues. The dashboard cannot move this number — outreach can. The prospect list is built and no outreach has been sent.",
+        "Contact venues. The dashboard cannot move this number, outreach can. The prospect list is built and no outreach has been sent.",
       actionHref: "/hq/partners",
       inputs,
     };
@@ -158,7 +158,7 @@ export function deriveVerdict(args: {
     };
   }
 
-  // ── calm — quiet is a valid state ──────────────────────────────────
+  // ── calm, quiet is a valid state ──────────────────────────────────
   const cashLine =
     traction.available && traction.cashCollectedEur > 0
       ? ` ${formatEur(traction.cashCollectedEur)} collected,${

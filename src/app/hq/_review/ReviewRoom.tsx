@@ -1,4 +1,4 @@
-/* The collateral review room — the shared surface for founder decisions on
+/* The collateral review room, the shared surface for founder decisions on
  * physical objects. Each direction shows its faces, its read, and its print
  * technique; the founder names one and the print file already exists. */
 

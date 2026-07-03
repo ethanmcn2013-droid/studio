@@ -1,16 +1,16 @@
 "use client";
 
 /**
- * Signal HQ · marketing-plan deck — brand-book edition.
+ * Signal HQ · marketing-plan deck, brand-book edition.
  *
  * Private (rendered only behind the /hq token gate). This deck is built
- * to the Signal Studio Brand Book §11 — Pitch Deck system: every slide
+ * to the Signal Studio Brand Book §11, Pitch Deck system: every slide
  * is a true 16:9 frame carrying the same four-corner chrome (kicker
  * top-left, ref top-right, wordmark + indigo dot bottom-left, slide
- * number bottom-right). Three palettes only — paper, ink, indigo —
+ * number bottom-right). Three palettes only, paper, ink, indigo —
  * cycled, never mixed: paper is the default, ink is the divider, indigo
  * is the closing slide and nothing else. Type is held at the projection
- * floor (≥ ~1.4cqi). Slides cut — they never fade, push, or build
+ * floor (≥ ~1.4cqi). Slides cut, they never fade, push, or build
  * (Brand Book §11.01.6); the only motion is the cover dot settling.
  *
  * Faithful to the book but not a VC pitch: this is a living strategy
@@ -19,7 +19,7 @@
  * chrome, mono labels, hairlines, one indigo. Read-mode renders the
  * whole plan as one document. Tokens are pinned locally to the book's
  * exact values so the deck reads as torn out of it, independent of the
- * app theme — and they sit inside the 2026-05-13 white/zinc lock.
+ * app theme, and they sit inside the 2026-05-13 white/zinc lock.
  *
  * Content source of truth: docs/MARKETING_PLAN_6MO.md.
  */
@@ -49,13 +49,13 @@ export type Slide = {
   section?: SectionId;
   kicker?: string;
   title: string;
-  /** statement only — the short line spoken under the headline */
+  /** statement only, the short line spoken under the headline */
   say?: string;
   body?: ReactNode;
 };
 
 /**
- * Title — renders a heading string with its trailing full-stop in
+ * Title, renders a heading string with its trailing full-stop in
  * indigo. "The period is a signal" (Brand Book §00): the dot is the
  * brand mark, so every titled statement lands on it.
  */
@@ -189,7 +189,7 @@ export const DECK: Slide[] = [
       <>
         <Lead>
           The Venue Edition is a paid annual tier. Patronage, not
-          enterprise software — the venue stands behind the couple&rsquo;s
+          enterprise software, the venue stands behind the couple&rsquo;s
           planning.
         </Lead>
         <Defs
@@ -197,7 +197,7 @@ export const DECK: Slide[] = [
             ["Venue Edition", "€1,500–€4,000 a year, prepaid"],
             ["Founding lock", "first ~15 venues hold €1,500 for life"],
             ["Workspace", "€120 a year, annual prepay"],
-            ["Event", "€79 one-time — unchanged"],
+            ["Event", "€79 one-time, unchanged"],
           ]}
         />
       </>
@@ -213,7 +213,7 @@ export const DECK: Slide[] = [
       <Lead>
         It pays Signal Studio to seed fifty to a hundred and fifty
         high-intent couples into the suite, every year, recurring. The
-        restraint is the pitch — a taste-driven venue owner is exactly the
+        restraint is the pitch, a taste-driven venue owner is exactly the
         buyer this brand was built for. Without it, the honest six-month
         number is under €75k.
       </Lead>
@@ -227,9 +227,9 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["One", "Paid Venue Edition — the engine, 75–85% of the number"],
-          ["Two", "Event €79 at volume — fed by sponsoring venues' couples"],
-          ["Three", "Workspace €12/mo — the compounding year-two annuity"],
+          ["One", "Paid Venue Edition, the engine, 75–85% of the number"],
+          ["Two", "Event €79 at volume, fed by sponsoring venues' couples"],
+          ["Three", "Workspace €12/mo, the compounding year-two annuity"],
         ]}
       />
     ),
@@ -251,7 +251,7 @@ export const DECK: Slide[] = [
           onIndex={1}
         />
         <Note>
-          The €500k path needs ~120 closed contracts in 26 weeks — a
+          The €500k path needs ~120 closed contracts in 26 weeks, a
           sales-team output. Plan to ~€250–300k; €500k is the month-twelve
           destination of the same motion.
         </Note>
@@ -301,10 +301,10 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["Brand QA", "BRAND.md compliance — hard-blocks banned register"],
-          ["Reality Anchor", "claims checked against shipped state — anti-drift"],
+          ["Brand QA", "BRAND.md compliance, hard-blocks banned register"],
+          ["Reality Anchor", "claims checked against shipped state, anti-drift"],
           ["Tone", "Stark + Jobs register, scored, rewritten below seven"],
-          ["Audience Fit", "the Sinéad test — would a coordinator forward it"],
+          ["Audience Fit", "the Sinéad test, would a coordinator forward it"],
         ]}
       />
     ),
@@ -355,10 +355,10 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["One", "Hand-written venue outreach — ≤50 a round, founder-signed"],
-          ["Two", "Sponsored-workspace loop — every shared artifact acquires"],
-          ["Three", "Comparison / alternative SEO pages — real angles only"],
-          ["Four", "Wedding-pro communities — value first, product second"],
+          ["One", "Hand-written venue outreach, ≤50 a round, founder-signed"],
+          ["Two", "Sponsored-workspace loop, every shared artifact acquires"],
+          ["Three", "Comparison / alternative SEO pages, real angles only"],
+          ["Four", "Wedding-pro communities, value first, product second"],
           ["Five", "Restrained founder video + a one-time directory pass"],
         ]}
       />
@@ -386,9 +386,9 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["Brand vs the number", "any motion needing a banned tactic — the motion is wrong"],
+          ["Brand vs the number", "any motion needing a banned tactic, the motion is wrong"],
           ["Solo throughput", "1/10 venue replies by M3 → product call, not copy"],
-          ["Concentration", "75% one buyer — the M4 SEO pivot is the second leg"],
+          ["Concentration", "75% one buyer, the M4 SEO pivot is the second leg"],
           ["Factory slop", "two off-register published → pause, tighten, resume"],
         ]}
       />
@@ -402,7 +402,7 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["By M3", "≥10 paid venues — the motion, not the deck"],
+          ["By M3", "≥10 paid venues, the motion, not the deck"],
           ["Repeatable", "≥25% close rate on qualified talks"],
           ["By M4", "≥1 inbound venue from a referral"],
           ["Distribution", "≥40% sponsored-couple → active user"],
@@ -436,7 +436,7 @@ function sectionOf(s: Slide): SectionId | null {
   return s.section ?? null;
 }
 
-/** The four corners every slide carries — the binding of the deck. */
+/** The four corners every slide carries, the binding of the deck. */
 function Chrome({
   index,
   total,
@@ -666,8 +666,8 @@ export default function MarketingDeck() {
                 ["→ space j", "next"],
                 ["← k", "previous"],
                 ["g · Esc", "contents"],
-                ["r", "read mode — the plan as one document"],
-                ["f", "fullscreen — present"],
+                ["r", "read mode, the plan as one document"],
+                ["f", "fullscreen, present"],
                 ["?", "this"],
               ]}
             />
@@ -716,7 +716,7 @@ export default function MarketingDeck() {
                   </h1>
                   <p className="mdk-title-sub">
                     The engine that takes Signal Studio to its first real
-                    revenue — one founder, a room of agents.
+                    revenue, one founder, a room of agents.
                   </p>
                 </div>
               ) : slide.kind === "divider" ? (
@@ -804,7 +804,7 @@ export default function MarketingDeck() {
           })}
         </div>
         <div className="mdk-bar-l">
-          {secMeta ? `Act ${secMeta.numeral} — ${secMeta.title}` : "Cover"}
+          {secMeta ? `Act ${secMeta.numeral}, ${secMeta.title}` : "Cover"}
         </div>
         <div className="mdk-bar-c">
           <button
@@ -866,9 +866,9 @@ export default function MarketingDeck() {
 }
 
 const CSS = `
-/* ═══ Signal HQ marketing deck — Brand Book §11 · Pitch Deck system.
+/* ═══ Signal HQ marketing deck, Brand Book §11 · Pitch Deck system.
  * Tokens pinned to the book's exact values so the deck reads as torn
- * out of it. Three palettes only — paper / ink / indigo — cycled,
+ * out of it. Three palettes only, paper / ink / indigo, cycled,
  * never mixed. Geist 500 lowercase headings, Geist Mono chrome, the
  * indigo period is the signature, hairlines never shadows. Type held
  * at the projection floor. Slides cut; they never build. Neutrals sit
@@ -941,7 +941,7 @@ const CSS = `
   border-radius:50%;background:var(--indigo);margin-right:.62em;
   vertical-align:.04em}
 
-/* ── TITLE — headline anchored bottom-left, the front door */
+/* ── TITLE, headline anchored bottom-left, the front door */
 .mdk-title .mdk-area{justify-content:flex-end;align-items:flex-start}
 .mdk-title-h{font-size:8.2cqi;line-height:.98;letter-spacing:-.03em;
   font-weight:500;margin:2.4cqi 0 0;text-transform:lowercase;
@@ -950,7 +950,7 @@ const CSS = `
 .mdk-title-sub{margin:3cqi 0 0;max-width:46cqi;font-size:1.9cqi;
   line-height:1.5;color:var(--ink-soft)}
 
-/* ── DIVIDER — ink only; giant indigo numeral + chapter title */
+/* ── DIVIDER, ink only; giant indigo numeral + chapter title */
 .mdk-divider .mdk-area{flex-direction:row;align-items:center;
   gap:6cqi;top:8cqi;bottom:8cqi}
 .mdk-div-num{font-family:var(--font-mono-stack);font-weight:500;
@@ -962,7 +962,7 @@ const CSS = `
 .mdk-div-line{margin:1cqi 0 0;max-width:34ch;font-size:1.8cqi;
   line-height:1.5;color:rgba(255,255,255,.62)}
 
-/* ── STATEMENT — one sentence is the slide */
+/* ── STATEMENT, one sentence is the slide */
 .mdk-statement-slide{}
 .mdk-statement .mdk-area{justify-content:center;align-items:flex-start}
 .mdk-statement{font-size:6.4cqi;line-height:1.04;letter-spacing:-.026em;
@@ -971,12 +971,12 @@ const CSS = `
 .mdk-statement-say{margin:3cqi 0 0;font-size:1.95cqi;line-height:1.5;
   color:var(--ink-soft);max-width:42cqi}
 
-/* ── METRICS — the number row, three figures, hairlines */
+/* ── METRICS, the number row, three figures, hairlines */
 .mdk-metrics .mdk-area{justify-content:center;gap:4cqi}
 .mdk-metrics-h{font-size:4.4cqi;line-height:1.05;letter-spacing:-.022em;
   font-weight:500;margin:0;max-width:20ch;text-transform:lowercase}
 
-/* ── CONTENT — the living-document frame, still in chrome.
+/* ── CONTENT, the living-document frame, still in chrome.
  * Top-anchored, not centred: predictable rhythm, never clips. */
 .mdk-area-content{justify-content:flex-start;gap:0}
 .mdk-content-h{font-size:3.5cqi;line-height:1.05;letter-spacing:-.024em;
@@ -984,7 +984,7 @@ const CSS = `
   text-transform:lowercase}
 .mdk-content-body{font-size:1.6cqi;line-height:1.5;color:var(--ink-soft)}
 
-/* ── CLOSING — indigo, the only one; ask high, address low */
+/* ── CLOSING, indigo, the only one; ask high, address low */
 .mdk-closing .mdk-area{justify-content:space-between}
 .mdk-close-top{display:flex;flex-direction:column;gap:1.8cqi}
 .mdk-close-h{font-size:6.2cqi;line-height:1;letter-spacing:-.026em;
@@ -1103,7 +1103,7 @@ const CSS = `
 .mdk-toc-i{font-family:var(--font-mono-stack);font-size:11px;font-weight:500;
   color:var(--ink-faint);min-width:1.75rem}
 
-/* ── read mode (the plan as one document — px, not a slide) */
+/* ── read mode (the plan as one document, px, not a slide) */
 .mdk-read{flex:1;overflow:auto;padding:clamp(3rem,10vh,7rem) clamp(1.5rem,5vw,5rem) 8rem}
 .mdk-read>*{max-width:42rem;margin-left:auto;margin-right:auto}
 .mdk-read-head h1{font-size:clamp(2rem,1.4rem+3vw,3.25rem);
@@ -1155,7 +1155,7 @@ const CSS = `
 .mdk-help-inner .mdk-def dt{font-size:12px}
 .mdk-help-inner .mdk-def dd{font-size:14px}
 
-/* slides cut — they never build (Brand Book §11.01.6).
+/* slides cut, they never build (Brand Book §11.01.6).
  * the only motion in the deck is the cover dot settling once. */
 :focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
 .mdk-title .mdk-c-dot{animation:mdk-settle .9s cubic-bezier(.22,.7,.2,1) both}

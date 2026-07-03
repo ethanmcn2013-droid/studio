@@ -2,13 +2,13 @@ import Link from "next/link";
 import type { Verdict } from "@/lib/hq/verdict";
 
 /**
- * HQ Masthead — the proof status block inside the founder console.
+ * HQ Masthead, the proof status block inside the founder console.
  *
  * HQ v3 (2026-05-16). The old masthead led with the phase headline and
  * a flat 4-stat strip (four equal-weight numbers, no triage). It now
  * renders the Verdict: one mechanically-derived sentence + the one
  * action. The phase line (the operator's own words from phase.md) is
- * kept but subordinate — context, not the headline. The stat strip is
+ * kept but subordinate, context, not the headline. The stat strip is
  * demoted into a one-click "inputs" disclosure so the verdict is always
  * auditable (strategy non-negotiable #1: derived, never authored).
  *

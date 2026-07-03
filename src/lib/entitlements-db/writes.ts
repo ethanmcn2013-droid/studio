@@ -12,7 +12,7 @@ import {
  * Insert a row into the shared signal-entitlements DB. Used by
  * Tasks (Stripe webhook + comp redemption) and Studio (admin grants).
  *
- * Idempotent on `sourceRef` + `source` — if a row with the same
+ * Idempotent on `sourceRef` + `source`, if a row with the same
  * (source, source_ref) already exists for the user, returns its id
  * without inserting. This makes the helper safe to retry from
  * webhook handlers.
@@ -46,7 +46,7 @@ export async function writeSharedEntitlement(input: {
 
   const id = `e-${randomUUID().replace(/-/g, "").slice(0, 16)}`;
 
-  // Retry on transient errors — Turso reads at the edge can briefly
+  // Retry on transient errors, Turso reads at the edge can briefly
   // reject writes during failover. Three attempts with short
   // exponential backoff narrows the divergence window from
   // "indefinite" to a sub-second blip. The daily reconcile sweep

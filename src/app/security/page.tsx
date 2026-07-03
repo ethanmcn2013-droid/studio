@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
 
 export const metadata: Metadata = {
-  title: "Security — Signal Studio",
+  title: "Security · Signal Studio",
   description:
-    "How Signal Studio protects your data — transport, storage, access controls, monitoring, subprocessors, and how to report a vulnerability.",
+    "How Signal Studio protects your data, transport, storage, access controls, monitoring, subprocessors, and how to report a vulnerability.",
 };
 
 const SECTIONS = [
@@ -26,7 +26,7 @@ const SECTIONS = [
   {
     heading: "Data storage",
     body: [
-      "Application data lives in Turso (managed libSQL), primarily in the Frankfurt region. The database is encrypted at rest. Database tokens are scoped per surface — Signal, for example, reads the Signal Tasks workspace through a token that physically cannot write back.",
+      "Application data lives in Turso (managed libSQL), primarily in the Frankfurt region. The database is encrypted at rest. Database tokens are scoped per surface, Signal, for example, reads the Signal Tasks workspace through a token that physically cannot write back.",
       "Static assets and serverless functions run on Vercel. Backups age out inside ninety days.",
     ],
   },
@@ -35,7 +35,7 @@ const SECTIONS = [
     body: [
       "Authentication is provided by Clerk. Multi-factor authentication is available on every account. We never see or store your password.",
       "Inside the operator stack, access to production data is limited to the operator account. Any third-party support access is logged.",
-      "Public surfaces — shared timelines, shared updates, public templates — are visible to anyone with the link. You decide what to make public.",
+      "Public surfaces, shared timelines, shared updates, public templates, are visible to anyone with the link. You decide what to make public.",
     ],
   },
   {

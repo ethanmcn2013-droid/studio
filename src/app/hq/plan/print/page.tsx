@@ -7,7 +7,7 @@ import { DeckPrint } from "@/components/hq/one-pager/DeckPrint";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Marketing plan — PDF export",
+  title: "Marketing plan, PDF export",
   description: "Print-fidelity export of the six-month marketing plan deck.",
   robots: { index: false, follow: false },
 };

@@ -22,7 +22,7 @@ export const IOS_APP_URL =
 
 const tasksBase = () => TASKS_URL.replace(/\/$/, "");
 
-/** Marketing deep link — pre-selects onboarding segment after sign-up. */
+/** Marketing deep link, pre-selects onboarding segment after sign-up. */
 export function tasksSignUpUrl(useCase?: string | null): string {
   if (!useCase) return `${tasksBase()}/sign-up`;
   return `${tasksBase()}/sign-up?use=${encodeURIComponent(useCase)}`;

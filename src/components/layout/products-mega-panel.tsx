@@ -25,7 +25,7 @@ const PRODUCTS = [
    Injected once via <style> at render time.
    ─────────────────────────────────────────────────────────────── */
 const PANEL_CSS = `
-/* Panel shell — absolute below sticky nav, full-width backdrop */
+/* Panel shell, absolute below sticky nav, full-width backdrop */
 .mpanel {
   position: absolute;
   top: 100%;
@@ -42,7 +42,7 @@ const PANEL_CSS = `
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Inner content — centred, matches nav max-width */
+/* Inner content, centred, matches nav max-width */
 .mpanel-inner {
   max-width: 760px;
   margin: 0 auto;
@@ -150,7 +150,7 @@ const PANEL_CSS = `
   50%,100% { opacity: 0; }
 }
 
-/* tasks · pulse — staggered across 3 dots */
+/* tasks · pulse, staggered across 3 dots */
 .mtasks-dot { transform-box: fill-box; transform-origin: center; }
 .mtasks-dot-1 { animation: mtasks-pulse 2.6s ease-in-out infinite 0s; }
 .mtasks-dot-2 { animation: mtasks-pulse 2.6s ease-in-out infinite 0.4s; }
@@ -201,7 +201,7 @@ const PANEL_CSS = `
   50% { transform: scaleY(0.80); } 75% { transform: scaleY(0.40); }
 }
 
-/* Footer row — quiet link to the design system */
+/* Footer row, quiet link to the design system */
 .mpanel-foot {
   display: flex;
   align-items: center;
@@ -218,7 +218,7 @@ const PANEL_CSS = `
 .mpanel-foot:hover { color: var(--ink); }
 .mpanel-foot svg { opacity: 0.7; }
 
-/* Mobile — 2×2 grid */
+/* Mobile, 2×2 grid */
 @media (max-width: 640px) {
   .mpanel-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
   .mpanel-inner { padding: 20px 16px 24px; }
@@ -317,7 +317,7 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
 
   return (
     <>
-      {/* Embedded stylesheet — self-contained, no build-cache dependency */}
+      {/* Embedded stylesheet, self-contained, no build-cache dependency */}
       <style dangerouslySetInnerHTML={{ __html: PANEL_CSS }} />
 
       <div
@@ -371,7 +371,7 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
           </div>
 
           <a href="/design" onClick={onClose} className="mpanel-foot">
-            <span>One system behind all four — see the design</span>
+            <span>One system behind all four, see the design</span>
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.4"
               strokeLinecap="round" strokeLinejoin="round" aria-hidden>

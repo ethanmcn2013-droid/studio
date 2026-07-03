@@ -53,7 +53,7 @@ const PRINT_CSS = `
   print-color-adjust:exact; -webkit-print-color-adjust:exact;
 }
 
-/* ── Masthead — one left-aligned identity stack ───────────── */
+/* ── Masthead, one left-aligned identity stack ───────────── */
 .op-mast{ display:flex; flex-direction:column; gap:6pt; }
 .op-mark{
   font-family:var(--sans); font-size:11pt; font-weight:500;
@@ -65,14 +65,14 @@ const PRINT_CSS = `
   font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
   color:var(--quiet); line-height:1;
 }
-/* The gesture is bound to the identity block — an elaboration of
+/* The gesture is bound to the identity block, an elaboration of
    the one indigo mark (spec §1.9), not an orphaned corner speck.
    Placement reads under the eyebrow: legible + print-robust over
    literal 8pt micro-placement. */
 .op-gesture{ height:5pt; display:flex; align-items:center;
   align-self:flex-start; margin-top:1pt; }
 
-/* gesture marks — typographic, never icons (spec §1.8) */
+/* gesture marks, typographic, never icons (spec §1.8) */
 .g-pulse{ width:3pt; height:3pt; border-radius:50%; background:var(--indigo); }
 .g-sweep{ width:14mm; height:0.6pt; background:var(--indigo); }
 .g-tick{ display:flex; align-items:center; gap:2.4mm; }
@@ -246,7 +246,7 @@ export function OnePager({
   );
 }
 
-// ── Body primitives — enforce the "one family" structure ──────
+// ── Body primitives, enforce the "one family" structure ──────
 
 export function OPHeadline({ children }: { children: ReactNode }) {
   return <h1 className="op-headline">{children}</h1>;

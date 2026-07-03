@@ -28,18 +28,18 @@ import { getModeledRunway } from "@/lib/hq/financial-model";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "blueprint — signal hq",
-  description: "Founder Operating System — the zoomable map of how Signal Studio works.",
+  title: "blueprint, signal hq",
+  description: "Founder Operating System, the zoomable map of how Signal Studio works.",
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
 
 /**
- * /hq/blueprint — the Founder Operating System Blueprint.
+ * /hq/blueprint, the Founder Operating System Blueprint.
  *
  * A single zoomable operating map that explains how Signal Studio works,
  * grows, ships, thinks, and stays focused. Content is curated in
  * `src/lib/hq/blueprint.ts`; the AI Director Layer reads the live org from
- * `src/lib/hq/elt.ts`. This page is a *map*, not a system of record — the
+ * `src/lib/hq/elt.ts`. This page is a *map*, not a system of record, the
  * deep surfaces (CRM, reporting, atlas, org) live at their own routes and
  * are linked from here.
  *
@@ -269,7 +269,7 @@ export default async function BlueprintPage() {
         <Section id="directors" index={6} label="AI Directors" title="How it decides">
           <p className="bp-section-note">
             {directorCount} Directors and one Founder run the company as a standing org.
-            This is the live chart — open any director at{" "}
+            This is the live chart, open any director at{" "}
             <Link href="/hq/org" className="bp-inline-link">/hq/org</Link>.
           </p>
           <div className="bp-directors">
@@ -333,7 +333,7 @@ export default async function BlueprintPage() {
         <Section id="metrics" index={8} label="Metrics" title="How we measure">
           <p className="bp-section-note">
             Only the numbers that matter. {liveCount} of {metrics.length} are
-            live — from the Studio ledger, the CRM, and the four product
+            live, from the Studio ledger, the CRM, and the four product
             apps&rsquo; analytics{tractionUnread ? "; ledger unread this load" : ""}
             {productUnread ? "; product analytics unread this load" : ""}. Support
             sentiment and runway stay placeholders (no DB source). See{" "}

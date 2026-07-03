@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Project management for the 80% who don't work in tech. Four small tools — Signal Notes, Signal Tasks, Signal Timeline, Signal — that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Four small tools · Signal Notes, Signal Tasks, Signal Timeline, Signal, that read as one system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -137,12 +137,12 @@ export default async function RootLayout({
       // stylesheet resolves. background:#fff kills the browser-default grey
       // on cross-origin first load. colorScheme:light prevents the UA from
       // painting a dark-mode void even when the OS is in dark mode.
-      // LOADING_SYSTEM.md §2 — "Frame 1 of every cross-origin destination
+      // LOADING_SYSTEM.md §2, "Frame 1 of every cross-origin destination
       // is paper white field, no content."
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
-        {/* D4 — belt-and-braces inline style: fires synchronously before the
+        {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}
         {/* eslint-disable-next-line react/no-danger */}
@@ -150,10 +150,10 @@ export default async function RootLayout({
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="Signal Studio — The dispatch"
+          title="Signal Studio, The dispatch"
           href={`${SITE_URL}/changelog.rss`}
         />
-        {/* D4 — preconnect + DNS-prefetch to all 4 product origins.
+        {/* D4, preconnect + DNS-prefetch to all 4 product origins.
             Marketing is the cross-product hub; establishing early connections
             shaves ~100-300ms from the first cross-domain navigation.
             Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
@@ -169,7 +169,7 @@ export default async function RootLayout({
       </head>
       <body
         className="flex min-h-full flex-col"
-        // D4 — inline style on body: same reason as html above.
+        // D4, inline style on body: same reason as html above.
         // background:#fff fires before the stylesheet link resolves,
         // removing the grey void on cross-origin first paint.
         style={{ background: "#fff" }}

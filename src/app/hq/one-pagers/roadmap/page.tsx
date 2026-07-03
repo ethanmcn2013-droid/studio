@@ -14,7 +14,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Signal Timeline — one-pager",
+  title: "Signal Timeline, one-pager",
   description: "Direction clarity. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
@@ -46,7 +46,7 @@ export default async function RoadmapOnePager() {
 
       <OPPurpose>
         Timeline gives the work a public face. Write your plan once. Share a
-        link. Anyone — a client, a venue coordinator, a course supervisor —
+        link. Anyone, a client, a venue coordinator, a course supervisor —
         sees what&rsquo;s in progress, what shipped, and what comes next,
         without being asked to understand the tool behind it. The shared
         update page is for people who don&rsquo;t work in the workspace.

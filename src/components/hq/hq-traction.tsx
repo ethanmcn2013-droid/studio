@@ -1,11 +1,11 @@
 import { type Burndown, formatEur, type TractionState } from "@/lib/hq/traction";
 
 /**
- * HQ Traction — are we winning?
+ * HQ Traction, are we winning?
  *
  * Rebuilt 2026-05-16 for the paid Venue Edition model. The headline is
  * cash actually collected (prepay landed), measured against the ratified
- * €250k/6mo target. Paid venues are the lead metric — the plan judges
+ * €250k/6mo target. Paid venues are the lead metric, the plan judges
  * success on "≥10 paid venues by M3", not on a vanity ARR figure.
  *
  * Honesty contract: cash collected is exact (annual prepay = full year
@@ -42,7 +42,7 @@ export function HqTraction({ state }: { state: TractionState }) {
         <p className="hq-trac-zero">
           No paid venue has put cash in the door yet. The number that decides
           the next six months is still{" "}
-          <strong className="hq-trac-strong">zero</strong> — that is the
+          <strong className="hq-trac-strong">zero</strong>, that is the
           signal, not a gap in the dashboard.
           {state.signedUnpaidVenues > 0 ? (
             <>
@@ -127,7 +127,7 @@ export function HqTraction({ state }: { state: TractionState }) {
 /**
  * The signature moment: a hairline pace track. Required-pace tick and
  * the M3-gate marker sit on a 1px rule; the actual fill is the only
- * thing that earns the indigo. Type + hairline, never chrome — the
+ * thing that earns the indigo. Type + hairline, never chrome, the
  * restraint *is* the brand. Honest at €0: the fill is a zero-width
  * sliver and the caption says the slope hasn't started.
  */
@@ -153,7 +153,7 @@ function BurndownTrack({
   const m3Left = `${Math.max(0, Math.min(100, m3Frac * 100))}%`;
 
   const verdict = b.notStarted
-    ? "the slope starts now — nothing collected yet"
+    ? "the slope starts now, nothing collected yet"
     : b.onPace
       ? `${formatEur(b.paceDeltaEur)} ahead of the slope`
       : `${formatEur(-b.paceDeltaEur)} behind the slope you'd need`;
@@ -173,7 +173,7 @@ function BurndownTrack({
         <span
           className="hq-trac-burn-tick hq-trac-burn-tick--m3"
           style={{ left: m3Left }}
-          title={`M3 gate ${b.m3Gate} — ≥10 paid venues`}
+          title={`M3 gate ${b.m3Gate}, ≥10 paid venues`}
         />
       </div>
       <p className="hq-trac-burn-caption">

@@ -45,7 +45,7 @@ export function parseFrontmatter(
     if (typeof value === "string") {
       const str = value;
       if (str.startsWith("[") && str.endsWith("]")) {
-        // JSON.parse first — survives commas inside string values.
+        // JSON.parse first, survives commas inside string values.
         try {
           const parsed = JSON.parse(str);
           if (Array.isArray(parsed)) {

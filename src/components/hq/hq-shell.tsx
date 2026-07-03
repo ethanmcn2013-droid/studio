@@ -23,7 +23,7 @@ export function HqShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const boardMode = pathname === "/hq/founders-circle";
   const links = boardMode ? boardLinks : operatorLinks;
-  // The access gate renders this shell pre-auth — keep the live, authed
+  // The access gate renders this shell pre-auth, keep the live, authed
   // pieces (status dot + palette) off it; they have nothing to read yet.
   const authed = pathname !== "/hq/access";
 

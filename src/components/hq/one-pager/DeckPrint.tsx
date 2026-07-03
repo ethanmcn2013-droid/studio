@@ -92,7 +92,7 @@ const DECK_PRINT_CSS = `
 .k-closing .dp-h{ font-size:40pt; line-height:1.1; }
 .k-closing .dp-area{ justify-content:center; }
 
-/* body primitives — single-sourced from the deck, restyled for print */
+/* body primitives, single-sourced from the deck, restyled for print */
 .dp-body{ font-family:var(--sans); font-size:12pt; line-height:1.5;
   color:inherit; }
 .dp-body .mdk-lead{ font-size:15pt; line-height:1.45; margin:0 0 5mm; }

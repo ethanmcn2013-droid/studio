@@ -8,7 +8,7 @@
  * Returns a `TodayNativePayload` shaped per the IA spec at
  * `docs/strategy/IOS_TODAY_DOC_IA_2026_05_21.md` § 8b.
  *
- * Pure — no I/O, no Date.now() except via the injected `nowMs`. This
+ * Pure, no I/O, no Date.now() except via the injected `nowMs`. This
  * is the module the unit tests target. The route module is the thin
  * I/O wrapper.
  *
@@ -60,7 +60,7 @@ function getLocalHour(nowMs: number, timezone: string): number {
     const hour = Number.parseInt(hourPart, 10);
     return Number.isFinite(hour) ? hour % 24 : 0;
   } catch {
-    // Unknown timezone — fall back to UTC. Never crash the shaper.
+    // Unknown timezone, fall back to UTC. Never crash the shaper.
     return new Date(nowMs).getUTCHours();
   }
 }
@@ -70,7 +70,7 @@ export function pickGreetingPhrase(firstName: string, localHour: number): string
   if (localHour >= 4 && localHour < 12) return `Good morning, ${safeName}.`;
   if (localHour >= 12 && localHour < 19) return `Afternoon, ${safeName}.`;
   if (localHour >= 19 || localHour < 3) return `Evening, ${safeName}.`;
-  // 03:00–03:59 — the spec's "Up late" band.
+  // 03:00–03:59, the spec's "Up late" band.
   return `Up late, ${safeName}.`;
 }
 
@@ -171,7 +171,7 @@ function pickAnchor(response: TodayResponse): TodayNativeAnchor {
 
 // ── Section composition (§1 R4–R7) ────────────────────────────────────────
 // V1 returns workspace-level rows for tasks. Item-level fidelity needs an
-// aggregator extension (TaskItem[] per workspace) — tracked in
+// aggregator extension (TaskItem[] per workspace), tracked in
 // docs/ios/today-native-api.md § Known v1 limitations.
 
 function buildTodayItems(tasks: TaskSummary[]): TodayNativeItem[] {
@@ -250,7 +250,7 @@ function buildSections(
   nowMs: number,
 ): TodayNativeSection[] {
   const todayItems = buildTodayItems(response.tasks ?? []);
-  // Evening section in v1 mirrors today's items — until aggregator gains
+  // Evening section in v1 mirrors today's items, until aggregator gains
   // due-time granularity. Named in the doc so it's not a surprise.
   const eveningItems = todayItems;
   const upcomingItems = buildUpcomingItems(response.roadmap?.upcoming ?? [], nowMs);

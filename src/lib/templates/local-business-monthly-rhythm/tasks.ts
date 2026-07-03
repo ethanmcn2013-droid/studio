@@ -2,12 +2,12 @@ import type { TaskSeed } from "../types";
 
 /**
  * Tasks seed for the small-business monthly rhythm. The pattern is one
- * full operating month — close, pay, supply, market, manage — written
+ * full operating month, close, pay, supply, market, manage, written
  * for an owner-operator running between front-of-house and back-office.
  */
 export const tasks: TaskSeed[] = [
   {
-    title: "Month-end revenue close — all takings reconciled",
+    title: "Month-end revenue close, all takings reconciled",
     lane: "done",
     priority: "p1",
     tags: ["close", "books"],
@@ -59,7 +59,7 @@ export const tasks: TaskSeed[] = [
     tags: ["people", "ops"],
   },
   {
-    title: "Renewal coming up — review terms before signing",
+    title: "Renewal coming up, review terms before signing",
     lane: "review",
     priority: "p1",
     tags: ["renewal", "books"],

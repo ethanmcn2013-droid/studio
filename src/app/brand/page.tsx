@@ -7,7 +7,7 @@ import { ReadingProgress } from "@/components/reading-progress";
 export const metadata: Metadata = {
   title: "Brand · signal studio.",
   description:
-    "The full signal studio brand system — wordmarks, palette, typography, the loader, and a downloadable SVG-first kit. One umbrella. One indigo. Boring on purpose.",
+    "The full signal studio brand system, wordmarks, palette, typography, the loader, and a downloadable SVG-first kit. One umbrella. One indigo. Boring on purpose.",
   openGraph: {
     title: "signal studio. · brand system",
     description: "One umbrella. One indigo. Boring on purpose.",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 };
 
 /* ──────────────────────────────────────────────────────────────────────────
-   ASSET KIT — maps the real /public/brand/kit/ directory 1:1.
+   ASSET KIT, maps the real /public/brand/kit/ directory 1:1.
    SVG masters are the source of truth; PNGs are linked when rendered.
-   Don't hand-list files — derive them here so
+   Don't hand-list files, derive them here so
    the page can never drift from what actually shipped in the kit.
    ────────────────────────────────────────────────────────────────────────── */
 
@@ -86,7 +86,7 @@ const ASSET_GROUPS: AssetGroup[] = [
     title: "Share cards. 16 : 9.",
     blurb: (
       <>
-        The wordmark centred and breathing on a full bleed — for hero images,
+        The wordmark centred and breathing on a full bleed, for hero images,
         OpenGraph cards, slide title pages. Three grounds: cream, ink, indigo.
       </>
     ),
@@ -102,8 +102,8 @@ const ASSET_GROUPS: AssetGroup[] = [
     title: "The brand, at any size.",
     blurb: (
       <>
-        One indigo circle — or dot with broadcast ring for favicons. Same shape
-        from a 16px favicon to a billboard. Don&apos;t recolour it — it{" "}
+        One indigo circle, or dot with broadcast ring for favicons. Same shape
+        from a 16px favicon to a billboard. Don&apos;t recolour it, it{" "}
         <em className="not-italic font-medium text-[var(--indigo)]">is</em> the
         brand. Seven PNG sizes, plus the vector.
       </>
@@ -122,7 +122,7 @@ const ASSET_GROUPS: AssetGroup[] = [
     blurb: (
       <>
         The dot, seated in a rounded tile for launchers, social avatars, and
-        anywhere a square is required. Four colourways — including the inverse.
+        anywhere a square is required. Four colourways, including the inverse.
       </>
     ),
     assets: [
@@ -186,11 +186,11 @@ const REFUSALS = [
 
 const CONSTRUCTION = [
   { k: "Face", v: "Geist · weight 500" },
-  { k: "Case", v: "lowercase — always" },
+  { k: "Case", v: "lowercase, always" },
   { k: "Kerning", v: "−0.025em" },
   { k: "The dot", v: "0.16 × cap-height" },
   { k: "Dot gap", v: "0.06em from the wordmark" },
-  { k: "Indigo", v: "#4F46E5 — never recoloured" },
+  { k: "Indigo", v: "#4F46E5, never recoloured" },
 ];
 
 function totalAssetCount() {
@@ -484,7 +484,7 @@ export default function BrandPage() {
             <p className="m-0 max-w-[440px] text-[14.5px] leading-[1.55] text-[var(--ink-soft)]">
               Every export in the kit holds these exact relationships. If a
               layout needs something the spec doesn&apos;t cover, the answer is
-              ask — not improvise.
+              ask, not improvise.
             </p>
           </div>
           <dl className="m-0 grid grid-cols-1 gap-0 self-center font-mono text-[12px]">
@@ -565,7 +565,7 @@ export default function BrandPage() {
           >
             <div>
               <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-70">
-                — Brand · primary
+               , Brand · primary
               </div>
               <div
                 className="my-3 text-[44px] font-medium tracking-[-0.025em]"
@@ -591,7 +591,7 @@ export default function BrandPage() {
               style={{ background: "#ffffff", color: "var(--ink)" }}
             >
               <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-65">
-                — Paper
+               , Paper
               </div>
               <div className="text-[22px] font-medium tracking-[-0.02em]">
                 #FFFFFF
@@ -602,7 +602,7 @@ export default function BrandPage() {
               style={{ background: "#111111", color: "var(--paper)" }}
             >
               <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-65">
-                — Ink
+               , Ink
               </div>
               <div className="text-[22px] font-medium tracking-[-0.02em]">
                 #111111
@@ -634,7 +634,7 @@ export default function BrandPage() {
               <em className="not-italic font-medium text-[var(--indigo)]">
                 Geist Mono
               </em>{" "}
-              sets every kicker, page-number, and timestamp — anything that
+              sets every kicker, page-number, and timestamp, anything that
               wants to read as{" "}
               <strong className="text-[var(--ink)]">
                 information, not voice
@@ -676,7 +676,7 @@ export default function BrandPage() {
           <TypeRow
             label="body"
             meta="17 / 1.55 · 0"
-            sample="Most software gives you more. Signal Studio gives you less — less to manage, less to monitor, less to remember."
+            sample="Most software gives you more. Signal Studio gives you less, less to manage, less to monitor, less to remember."
             sampleStyle={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)" }}
             usage="paragraphs · descriptions"
           />
@@ -706,7 +706,7 @@ export default function BrandPage() {
             <>
               The wait is part of the work. The wordmark rolls in, the four
               products rise once, the pip stays live. No spinner, no progress
-              bar — the house{" "}
+              bar, the house{" "}
               <strong className="text-[var(--ink)]">composing itself</strong>{" "}
               while the data lands. It honours{" "}
               <em className="not-italic font-medium text-[var(--indigo)]">
@@ -731,7 +731,7 @@ export default function BrandPage() {
               />
               {/* Loader.html is designed for a real phone viewport (390×844).
                   Render at native iPhone resolution and scale-transform to fit
-                  the 244×528 aperture — preserves hero wordmark scale + keeps
+                  the 244×528 aperture, preserves hero wordmark scale + keeps
                   the downloadable .html byte-identical to the standalone. */}
               <div
                 className="overflow-hidden rounded-[34px] bg-[#fafaf7]"
@@ -805,7 +805,7 @@ export default function BrandPage() {
           title="The complete kit. SVG masters, PNG renders where exported."
           intro={
             <>
-              Every brand surface in one place — wordmark, lockup, the dot,
+              Every brand surface in one place, wordmark, lockup, the dot,
               the app-icon tile, and four product wordmarks. SVGs are the{" "}
               <strong className="text-[var(--ink)]">canonical masters</strong>
               . PNGs are linked where the export exists for Slack, GitHub, and
@@ -894,7 +894,7 @@ Limerick · Ireland · signalstudio.ie`}
               <li>Light wordmark on light, paper wordmark on ink. Match the surface.</li>
               <li>Never recolour the indigo dot. It&apos;s the brand.</li>
               <li>App-icon tiles are for favicons, launchers, social avatars.</li>
-              <li>Lockups are the 16:9 share card — hero images and slide titles only.</li>
+              <li>Lockups are the 16:9 share card, hero images and slide titles only.</li>
               <li>Don&apos;t recompose the wordmark. If a layout needs something different, ask.</li>
             </ol>
             <a
@@ -920,7 +920,7 @@ Limerick · Ireland · signalstudio.ie`}
               A tradesperson doesn&apos;t run{" "}
               <em className="not-italic font-medium text-[var(--indigo)]">sprints</em>.
               Product copy reads like a thoughtful person describing what&apos;s
-              in front of them — calm, exact, never selling.
+              in front of them, calm, exact, never selling.
             </>
           }
         />

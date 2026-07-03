@@ -11,13 +11,13 @@ import type { TemplateAudience } from "@/components/marketing/template-pills";
  *    metadata mirror from `tasks/src/lib/templates.ts`. Single-layer.
  *
  * Honest-count rule (research steal #5 + segment-canon refusal): each
- * pill shows real count. Trades has 1, Wedding has 3 — we do not pad.
+ * pill shows real count. Trades has 1, Wedding has 3, we do not pad.
  *
  * Students is intentionally absent from this list and from the pill row.
  * The /templates page links to /for-students from below the grid, per
  * the segment-sequencing canon (2026-05-16): students never a paid wedge.
  *
- * Apply path — clicking a template card sends the visitor to Tasks at
+ * Apply path, clicking a template card sends the visitor to Tasks at
  * `tasks.signalstudio.ie/templates/<id>`, where the existing apply flow
  * (auth check + workspace pick + `applyTemplateAction`) runs. The
  * studio surface is positioning + browse; Tasks owns the apply moment.

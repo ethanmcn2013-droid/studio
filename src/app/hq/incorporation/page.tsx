@@ -13,14 +13,14 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Incorporation pack — Signal HQ",
+  title: "Incorporation pack · Signal HQ",
   description:
-    "The CRO incorporation runbook for Signal Studio Limited — phased checklist, timeline, and what gates the €40k facility. Pre-incorporation.",
+    "The CRO incorporation runbook for Signal Studio Limited, phased checklist, timeline, and what gates the €40k facility. Pre-incorporation.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/incorporation — the incorporation runbook as a live checklist.
+ * /hq/incorporation, the incorporation runbook as a live checklist.
  * Transcribed from the vault runbook; honest that incorporation is targeted
  * July 2026 and gates the facility. Decisions confirmed, filing pending.
  */
@@ -38,7 +38,7 @@ export default async function IncorporationPage() {
           The CRO runbook as a live checklist. The structural decisions are
           confirmed; filing is targeted <strong>{COMPANY_META.incorporationTarget}</strong>.
           Incorporation is the gate the €40k facility waits on. Statutory
-          references carry a Jan-2026 cutoff — verify on cro.ie at filing.
+          references carry a Jan-2026 cutoff, verify on cro.ie at filing.
         </p>
         <span className="hq-co-status" data-status={COMPANY_META.status}>
           {COMPANY_META.statusLabel} · {progress.done}/{progress.total} decisions confirmed

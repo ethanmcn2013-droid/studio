@@ -37,7 +37,7 @@ type EntryBlockProps = {
  * disappears and the body fades in. No animation past a 200ms opacity.
  *
  * The bold-lead is the existing TL;DR in the dispatch shape (BRAND.md
- * §6.5) — bold, leading sentence that names the impact. Collapsing the
+ * §6.5), bold, leading sentence that names the impact. Collapsing the
  * body below it preserves the skim-and-decide read on phones without
  * paginating or shortening the narrative for desktop readers.
  */

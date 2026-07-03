@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 /**
- * PWA manifest — Signal Studio umbrella.
+ * PWA manifest · Signal Studio umbrella.
  *
  * Home-screen install target for the suite. Used by iOS Safari
  * "Add to Home Screen" (which honours apple-touch-icon + theme-color
@@ -9,14 +9,14 @@ import type { MetadataRoute } from "next";
  * desktop Chrome install prompt.
  *
  * theme_color is paper white, mirroring layout.tsx's viewport
- * themeColor — same R18 fix: a non-white address bar between
+ * themeColor, same R18 fix: a non-white address bar between
  * white-surface products reads as a dark flash on light→light
  * cross-domain navigation.
  *
  * `id` is product-scoped (not "/") so each suite product registers
  * as a distinct PWA identity even when origins are consolidated.
  *
- * Maskable icon at /icon1 (512×512) lives in icon1.tsx — content
+ * Maskable icon at /icon1 (512×512) lives in icon1.tsx, content
  * inside the 80%-diameter safe zone so Android adaptive masks
  * don't clip the mark.
  *
@@ -63,7 +63,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Pricing",
         short_name: "Pricing",
         url: "/pricing",
-        description: "Workspace, Event, Student — one page.",
+        description: "Workspace, Event, Student, one page.",
       },
       {
         name: "Timeline",

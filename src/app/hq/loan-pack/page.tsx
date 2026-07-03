@@ -6,7 +6,7 @@ import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Business plan — Signal HQ",
+  title: "Business plan · Signal HQ",
   description: "€40,000 facility · lender-grade business plan · June 2026.",
   robots: { index: false, follow: false },
 };
@@ -32,7 +32,7 @@ export default async function LoanPackPage() {
       </div>
       <iframe
         src="/brand/business-loan-pack-2026.html"
-        title="Signal Studio — Business Loan Pack 2026"
+        title="Signal Studio, Business Loan Pack 2026"
         className="hq-deck-frame"
         loading="eager"
       />

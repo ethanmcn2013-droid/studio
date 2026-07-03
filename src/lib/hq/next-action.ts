@@ -2,14 +2,14 @@ import type { DbProspect } from "@/lib/db/schema";
 import { seedHqData } from "@/lib/hq/data";
 
 /**
- * The next physical act — derived, not authored.
+ * The next physical act, derived, not authored.
  *
  * Single responsibility: pick the next un-sent Track A venue. Clock /
  * inert-state truth lives in proofgate.ts (the canonical, adopted source);
- * this module deliberately does NOT duplicate it any more — one source for
+ * this module deliberately does NOT duplicate it any more, one source for
  * the clock, one source for the next venue, composed in page.tsx.
  *
- * The load-bearing personalised sentence is NOT in code — it is the
+ * The load-bearing personalised sentence is NOT in code, it is the
  * founder's to write per send (project_venue_outreach_drafted /
  * venue-edition-outreach.md). HQ surfaces the venue, the inbox, the
  * ratified subject, and points at the doc. It never fakes the sentence.
@@ -30,13 +30,13 @@ export type NextAction = {
   organisation: string;
   email: string;
   location: string;
-  /** Pre-addressed, subject set — one tap opens the draft. */
+  /** Pre-addressed, subject set, one tap opens the draft. */
   mailtoHref: string;
   /** Position in the ratified send order, 1-based. */
   ordinal: number;
   /** How many Track A venues remain unsent (this one included). */
   remaining: number;
-  /** Where the load-bearing sentence lives — HQ never authors it. */
+  /** Where the load-bearing sentence lives, HQ never authors it. */
   draftDoc: string;
 } | null;
 

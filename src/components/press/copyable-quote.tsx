@@ -5,13 +5,13 @@
  *
  *  1. Render multi-paragraph copy correctly. The old markup put
  *     {"\n\n"} between paragraphs inside a blockquote, which HTML
- *     collapses to a single space — the 400-word boilerplate rendered
+ *     collapses to a single space, the 400-word boilerplate rendered
  *     as one wall. Paragraphs are real <p> elements now.
  *
  *  2. Copy clean plain text. A press page exists to be used on a
  *     deadline; making someone marquee-select a justified paragraph is
  *     the opposite of hosted. The button copies the text with real
- *     punctuation and confirms quietly — no toast, no colour flash,
+ *     punctuation and confirms quietly, no toast, no colour flash,
  *     just the label changing to "Copied" for a beat.
  */
 

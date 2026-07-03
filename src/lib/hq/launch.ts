@@ -1,11 +1,11 @@
 /**
- * Launch readiness — the countdown to the hard launch and the gates that
+ * Launch readiness, the countdown to the hard launch and the gates that
  * stand between here and there.
  *
  * Pure + client-safe (no server-only import): the page passes in the one
  * live input it has (paid venues, for Gate 0) and everything else is
  * deterministic from the date or honestly marked pending. The gates mirror
- * RISK_LOG.launchBlockers in blueprint.ts — keep them in step.
+ * RISK_LOG.launchBlockers in blueprint.ts, keep them in step.
  *
  * Honesty contract (same as the rest of HQ): a gate is only "clear" when a
  * real signal says so. Gate 0 (first paid venue) reads the ledger; the
@@ -63,8 +63,8 @@ export function getLaunchReadiness(
       key: "first-paid-venue",
       label: "First paid venue",
       detail: gate0Clear
-        ? "the gate has moved — first cash venue in the door"
-        : "Gate 0 — the single number the plan depends on",
+        ? "the gate has moved, first cash venue in the door"
+        : "Gate 0, the single number the plan depends on",
       state: gate0Clear ? "clear" : "pending",
       live: paidVenues != null,
       href: "/hq/crm",

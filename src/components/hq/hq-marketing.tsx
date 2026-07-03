@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Bucket, Approach, BucketKey } from "@/lib/hq/marketing";
 
 /**
- * HQ Marketing hub — the operating surface for the six-month plan.
+ * HQ Marketing hub, the operating surface for the six-month plan.
  *
  * Not a library: a tool. Every approach holds state; the hub drives the
  * founder's actual weekly rhythm (Monday brief → Tue–Thu publish → Friday
@@ -12,13 +12,13 @@ import type { Bucket, Approach, BucketKey } from "@/lib/hq/marketing";
  *
  * Five modes, each earning its place against the plan:
  *   ideas      the 100, filterable, each with a status control
- *   this week  the Monday queue — never exceeds seven, by the plan
+ *   this week  the Monday queue, never exceeds seven, by the plan
  *   timeline   the M1–M6 sequence, as a board
  *   engine     the live Venue Edition funnel + the concentration guardrail
- *   ledger     what shipped or died, and what it taught — the memory
+ *   ledger     what shipped or died, and what it taught, the memory
  *
  * State is localStorage (the established HQ operator-surface pattern:
- * prospects/feedback/nextActions live the same way) — per-browser, no
+ * prospects/feedback/nextActions live the same way), per-browser, no
  * other source of truth, write-optimised. The relational approach→
  * prospect→close-rate join that would need Turso is deliberately not
  * faked: the engine funnel is read live, the outcome is operator-logged.
@@ -95,14 +95,14 @@ export function HqMarketing({
   const [fEffort, setFEffort] = useState<string>("all");
   const [fMonth, setFMonth] = useState<string>("all");
 
-  // Load once on mount — server render and first client paint both use the
+  // Load once on mount, server render and first client paint both use the
   // empty default, so there is no hydration mismatch.
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) setState(JSON.parse(raw) as HubState);
     } catch {
-      /* corrupt or unavailable — start clean */
+      /* corrupt or unavailable, start clean */
     }
     setMounted(true);
   }, []);
@@ -112,7 +112,7 @@ export function HqMarketing({
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      /* quota or unavailable — non-fatal */
+      /* quota or unavailable, non-fatal */
     }
   }, [state, mounted]);
 
@@ -515,7 +515,7 @@ function ThisWeekView({
           >
             {queued.length} queued ·{" "}
             {over > 0
-              ? `the queue never exceeds seven on a Monday — ${over} over`
+              ? `the queue never exceeds seven on a Monday, ${over} over`
               : "within the seven-item Monday limit"}
           </p>
           <ol className="mkt-list">
@@ -663,7 +663,7 @@ function EngineView({
         ) : (
           <p className="mkt-empty">
             Live partner funnel unavailable
-            {engine?.error ? ` — ${engine.error}` : ""}. The numbers read from
+            {engine?.error ? `, ${engine.error}` : ""}. The numbers read from
             studio&rsquo;s license_codes audit and Tasks; nothing is
             fabricated to fill the gap.
           </p>
@@ -683,7 +683,7 @@ function EngineView({
         </div>
         <p className="mkt-guard-caption">
           {band === "breach"
-            ? "Concentration kill-trigger breached: over 75% on one buyer. The search & comparison leg is the hedge — move effort there."
+            ? "Concentration kill-trigger breached: over 75% on one buyer. The search & comparison leg is the hedge, move effort there."
             : band === "watch"
               ? "Approaching the 75% single-buyer kill-trigger. Watch the mix."
               : "Within the concentration limit. The engine is the engine; the 75% line is the kill-trigger."}{" "}
@@ -751,7 +751,7 @@ function LedgerView({
     return (
       <p className="mkt-empty">
         Nothing closed yet. The ledger fills as approaches ship, park, or get
-        killed — and it keeps the reason. An approach with no outcome is just
+        killed, and it keeps the reason. An approach with no outcome is just
         an opinion.
       </p>
     );
@@ -771,7 +771,7 @@ function LedgerView({
               <p className="mkt-ledger-note">{noteOf(a.id)}</p>
             ) : (
               <p className="mkt-ledger-empty">
-                Closed without a recorded outcome — the reason is missing.
+                Closed without a recorded outcome, the reason is missing.
               </p>
             )}
           </div>

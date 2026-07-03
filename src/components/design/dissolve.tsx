@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * The Dissolve — §5's signature moment.
+ * The Dissolve, §5's signature moment.
  *
  * A paragraph of real PM-software jargon sits on the page. When it
  * crosses into view, the jargon dims to near-silence, the terms that
@@ -9,7 +9,7 @@
  * version arrives beneath it on the page's one entrance curve.
  *
  * Runs once per visit. Reduced motion (or JS off): the finished state
- * is the resting state — jargon already dimmed and struck, plain
+ * is the resting state, jargon already dimmed and struck, plain
  * version already present. Nothing is withheld from anyone.
  */
 
@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Piece = { text: string; strike?: boolean };
 
-/* The "before" — assembled from phrases project software actually
+/* The "before", assembled from phrases project software actually
    uses. Struck pieces are the vocabulary; the rest is connective
    tissue that goes quiet with it. */
 const JARGON: Piece[] = [

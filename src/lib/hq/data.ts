@@ -1,19 +1,19 @@
 /**
- * Signal HQ seed data — operator surfaces + types only (HQ v2 closure, 2026-05-15).
+ * Signal HQ seed data, operator surfaces + types only (HQ v2 closure, 2026-05-15).
  *
  * Most HQ state lives in `content/hq/<section>/*.md` and is loaded by
  * `src/lib/hq/markdown.ts`. This file carries only what has no
  * other source of truth:
  *
- *   focus       — operator-set strategic frame (stage/week/theme/focus).
+ *   focus      , operator-set strategic frame (stage/week/theme/focus).
  *                 The derived signal layer (phase.md, atlas drift, commits,
  *                 cron, log) feeds the HQ operating system and proof spine.
- *   prospects   — outbound CRM, browser-edited via /hq.
- *   feedback    — operator capture, browser-edited via /hq.
- *   weeklyRhythm — operator cadence, browser-edited via /hq.
- *   nextActions — operator todos, browser-edited via /hq.
+ *   prospects  , outbound CRM, browser-edited via /hq.
+ *   feedback   , operator capture, browser-edited via /hq.
+ *   weeklyRhythm, operator cadence, browser-edited via /hq.
+ *   nextActions, operator todos, browser-edited via /hq.
  *
- *   metrics     — DEFERRED. 13 seed values are display-only. There is
+ *   metrics    , DEFERRED. 13 seed values are display-only. There is
  *                 no real source of truth wired today (no analytics
  *                 read, no repo activity counter, no Vercel metrics
  *                 ingest). Values stay manually-set in localStorage
@@ -450,7 +450,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Independent group; General inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Independent · General inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Independent · General inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-ashford-castle",
@@ -468,7 +468,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Red Carnation group; Reservations inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Red Carnation · Reservations inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Red Carnation · Reservations inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-the-shelbourne",
@@ -594,7 +594,7 @@ export const seedHqData: HqData = {
       personalisationNote: "MHL/Marriott group; General inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · MHL/Marriott · General inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · MHL/Marriott · General inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-carton-house",
@@ -810,7 +810,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Hilton/Conrad group; General inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Hilton/Conrad · General inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Hilton/Conrad · General inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-fitzwilliam-hotel",
@@ -990,7 +990,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Vertu group; General inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Vertu · General inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Vertu · General inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-the-montenotte-hotel",
@@ -1098,7 +1098,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Independent group; General inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Independent · General inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Independent · General inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-the-killarney-park-hotel",
@@ -1116,7 +1116,7 @@ export const seedHqData: HqData = {
       personalisationNote: "Independent group; Reservations inbox.",
       offerSent: "Founding Venue Programme",
       outcome: "",
-      notes: "5★ · Independent · Reservations inbox · GENERIC INBOX — phone-first warm-up advised",
+      notes: "5★ · Independent · Reservations inbox · GENERIC INBOX, phone-first warm-up advised",
     },
     {
       id: "hotel-the-brehon-hotel-spa",
@@ -1645,8 +1645,8 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-14",
       status: "To do",
-      relatedObject: "Cycle 8.5 — Lamb's Hill send",
-      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #1. Clerk dashboard → endpoint → roll secret → `vercel env rm` + `add CLERK_WEBHOOK_SIGNING_SECRET production --sensitive` → redeploy if needed. Blocks send to Sinéad. Without it, new sign-ups get a Clerk session but no users/workspaces row — fallback provisioner now covers it, but webhook is the long-term fix.",
+      relatedObject: "Cycle 8.5, Lamb's Hill send",
+      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #1. Clerk dashboard → endpoint → roll secret → `vercel env rm` + `add CLERK_WEBHOOK_SIGNING_SECRET production --sensitive` → redeploy if needed. Blocks send to Sinéad. Without it, new sign-ups get a Clerk session but no users/workspaces row, fallback provisioner now covers it, but webhook is the long-term fix.",
     },
     {
       id: "pilot-block-incognito-walk",
@@ -1655,8 +1655,8 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-14",
       status: "To do",
-      relatedObject: "Cycle 8.5 — Lamb's Hill send",
-      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #2. Use one of the 3 seeded LAMBSHIL test codes (MP93X, 7U2DF, M52XX) — not Sinéad's batch. Verify: /redeem/CODE → Clerk sign-up with venue strip → return to /redeem → /app/board?welcome=venue&v=lambs-hill → rose result card. Last failed walk surfaced 3 defects beneath the bridge 500 — don't ship without re-walking.",
+      relatedObject: "Cycle 8.5, Lamb's Hill send",
+      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #2. Use one of the 3 seeded LAMBSHIL test codes (MP93X, 7U2DF, M52XX), not Sinéad's batch. Verify: /redeem/CODE → Clerk sign-up with venue strip → return to /redeem → /app/board?welcome=venue&v=lambs-hill → rose result card. Last failed walk surfaced 3 defects beneath the bridge 500, don't ship without re-walking.",
     },
     {
       id: "pilot-block-dkim-finalize",
@@ -1665,7 +1665,7 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-14",
       status: "To do",
-      relatedObject: "Cycle 8.5 — Lamb's Hill send",
+      relatedObject: "Cycle 8.5, Lamb's Hill send",
       notes: "Per project_email memory. Domain verified, alias added, DKIM still pending. Ethan generates the key in Admin Console; agent adds the DNS record via Vercel API. Without DKIM, hello@signalstudio.ie deliverability to Sinéad is at risk.",
     },
     {
@@ -1675,8 +1675,8 @@ export const seedHqData: HqData = {
       priority: "High",
       dueDate: "2026-05-14",
       status: "To do",
-      relatedObject: "Cycle 8.5 — Lamb's Hill send",
-      notes: "Draft staged at signal-growth/outbound/lambs-hill-pilot-send.md (uncommitted, awaiting Ethan voice rewrite). Send to operator inbox first — verify deliverability (DKIM active), CSV attachment formatting, all 10 LAMBSHIL codes correctly listed, subject line renders as intended. Only after this passes: send to Sinéad.",
+      relatedObject: "Cycle 8.5, Lamb's Hill send",
+      notes: "Draft staged at signal-growth/outbound/lambs-hill-pilot-send.md (uncommitted, awaiting Ethan voice rewrite). Send to operator inbox first, verify deliverability (DKIM active), CSV attachment formatting, all 10 LAMBSHIL codes correctly listed, subject line renders as intended. Only after this passes: send to Sinéad.",
     },
     {
       id: "design-system-claude-design-monday",

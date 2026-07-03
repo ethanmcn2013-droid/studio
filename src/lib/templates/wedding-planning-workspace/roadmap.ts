@@ -1,7 +1,7 @@
 import type { RoadmapSeed } from "../types";
 
 /**
- * Roadmap seed — one "Planning Roadmap" project with the wedding
+ * Roadmap seed, one "Planning Roadmap" project with the wedding
  * planning items grouped by status. Shape matches Roadmap product's
  * data model (workspaces → projects → tasks); status vocabulary is
  * Roadmap's enum. Item bodies are written for a shared update view

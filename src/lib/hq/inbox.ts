@@ -11,10 +11,10 @@ export type { InboxItem, InboxTier };
 export { finalizeInbox };
 
 /**
- * Signal HQ Inbox — things you owe an answer to right now.
+ * Signal HQ Inbox, things you owe an answer to right now.
  *
  * HQ v3 (2026-05-16) made the contract exclusive: the Inbox is
- * human-decision only — items where *you choosing to act* is the
+ * human-decision only, items where *you choosing to act* is the
  * resolution. System-decay signals (atlas drift/stale/stub, cron
  * health, repo silence, session failures) moved to Pulse. A source
  * appears in exactly one section so the founder never reads the same
@@ -26,7 +26,7 @@ export { finalizeInbox };
  *   - decisions markdown (low if reviewDate today/past)
  *   - prospects in seedHqData (mid if status To Contact / Contacted /
  *                              Replied / Demo Booked and follow-up due)
- *   - failed Vercel deploys in the last 24h (high — you must redeploy)
+ *   - failed Vercel deploys in the last 24h (high, you must redeploy)
  */
 
 export type InboxData = {
@@ -174,7 +174,7 @@ async function readVercelDeployItems(): Promise<InboxItem[]> {
         });
       }
     } catch {
-      // Network / timeout — skip silently
+      // Network / timeout, skip silently
     }
   }
   return items;

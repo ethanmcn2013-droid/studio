@@ -30,13 +30,13 @@ function escapeHtml(s: string): string {
 }
 
 function renderInline(text: string): string {
-  // Order matters — code first, then links, then emphasis.
+  // Order matters, code first, then links, then emphasis.
   let out = escapeHtml(text);
 
   // Inline code
   out = out.replace(/`([^`]+)`/g, '<code class="atlas-code">$1</code>');
 
-  // Links — keep restrictive: only http(s), mailto, or root-relative paths.
+  // Links, keep restrictive: only http(s), mailto, or root-relative paths.
   out = out.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
     (_m, label: string, href: string) => {
@@ -159,7 +159,7 @@ export function renderAtlasMarkdown(md: string): string {
       continue;
     }
 
-    // Blank line — paragraph break
+    // Blank line, paragraph break
     if (/^\s*$/.test(line)) {
       flushParagraph();
       closeList();

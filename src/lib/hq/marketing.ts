@@ -1,9 +1,9 @@
 /**
- * Signal HQ — Marketing hub data.
+ * Signal HQ, Marketing hub data.
  *
  * 100 marketing approaches, every one cleared by the three-director panel
  * (Brand · Marketing · Feasibility) with no reservation. This is authored
- * canon, not an operator-edited runtime surface — it follows the
+ * canon, not an operator-edited runtime surface, it follows the
  * `one-pagers.ts` precedent (a closed, typed, enumerated list), not the
  * localStorage operator surfaces.
  *
@@ -31,9 +31,9 @@ export type Approach = {
   id: string;
   rank: number;
   title: string;
-  /** What it actually is — one plain sentence. */
+  /** What it actually is, one plain sentence. */
   what: string;
-  /** The sentence a generic competitor would never publish — why it clears the panel. */
+  /** The sentence a generic competitor would never publish, why it clears the panel. */
   edge: string;
   impact: Impact;
   effort: Effort;
@@ -76,7 +76,7 @@ const VENUE_ENGINE: Approach[] = [
     rank: 2,
     title: "Founding 15 live scarcity lock",
     what: "One page: €1,500-for-life, a remaining-slots counter wired to real signings.",
-    edge: "Scarcity that is true because it reads from contract state — not a manufactured countdown.",
+    edge: "Scarcity that is true because it reads from contract state, not a manufactured countdown.",
     impact: "Engine",
     effort: "Low",
     month: "M1",
@@ -86,7 +86,7 @@ const VENUE_ENGINE: Approach[] = [
     rank: 3,
     title: "Coordinator-first collateral",
     what: "Every venue asset written for the coordinator who forwards it, not the owner who signs it.",
-    edge: "We design for the gatekeeper, not the buyer — the Sinéad test as the brief, not the review.",
+    edge: "We design for the gatekeeper, not the buyer, the Sinéad test as the brief, not the review.",
     impact: "Engine",
     effort: "Low",
     month: "M1",
@@ -105,7 +105,7 @@ const VENUE_ENGINE: Approach[] = [
     id: "VE-05",
     rank: 5,
     title: "Venue couple-handoff kit",
-    what: "The venue-branded artifact every booked couple receives — the seeding mechanic, productised.",
+    what: "The venue-branded artifact every booked couple receives, the seeding mechanic, productised.",
     edge: "The venue stands behind the couple's planning: patronage, not software resale.",
     impact: "Engine",
     effort: "Medium",
@@ -246,7 +246,7 @@ const VENUE_ENGINE: Approach[] = [
     rank: 19,
     title: "The couple's first sixty seconds",
     what: "A demo of exactly what a sponsored couple sees on day one.",
-    edge: "The venue buys what its couples will feel, shown — not described.",
+    edge: "The venue buys what its couples will feel, shown, not described.",
     impact: "High",
     effort: "Medium",
     month: "M3",
@@ -255,7 +255,7 @@ const VENUE_ENGINE: Approach[] = [
     id: "VE-20",
     rank: 20,
     title: "Dormant-prospect re-touch",
-    what: "One honest follow-up at the next season turn — never a chase sequence.",
+    what: "One honest follow-up at the next season turn, never a chase sequence.",
     edge: "A single human follow-up, not an automated drip the coordinator can smell.",
     impact: "Medium",
     effort: "Low",
@@ -275,7 +275,7 @@ const VENUE_ENGINE: Approach[] = [
     id: "VE-22",
     rank: 22,
     title: "One hand-delivered one-pager",
-    what: "A single physical artifact to one flagship venue, founder-signed — no circuit.",
+    what: "A single physical artifact to one flagship venue, founder-signed, no circuit.",
     edge: "One deliberate object for one venue, not a fair-booth handout.",
     impact: "Medium",
     effort: "Medium",
@@ -418,7 +418,7 @@ const SPONSORED_LOOP: Approach[] = [
     id: "SL-12",
     rank: 12,
     title: "'Your year in Signal', restrained",
-    what: "A tasteful recap that earns a forward — never Wrapped-loud.",
+    what: "A tasteful recap that earns a forward, never Wrapped-loud.",
     edge: "A year-in-review that whispers; the restraint is the brand.",
     impact: "Medium",
     effort: "Medium",
@@ -429,7 +429,7 @@ const SPONSORED_LOOP: Approach[] = [
     rank: 13,
     title: "Couple → trades/freelance crossover",
     what: "The same person, a second use case, with no new acquisition cost.",
-    edge: "One acquired human, two jobs done — the suite earns the second.",
+    edge: "One acquired human, two jobs done, the suite earns the second.",
     impact: "Medium",
     effort: "Medium",
     month: "M4",
@@ -481,7 +481,7 @@ const SEARCH_COMPARISON: Approach[] = [
     id: "SC-02",
     rank: 2,
     title: "'Wedding planning spreadsheet alternative'",
-    what: "Meet the actual current behaviour — the spreadsheet — honestly.",
+    what: "Meet the actual current behaviour, the spreadsheet, honestly.",
     edge: "We name the tool they really use, instead of pretending it's a rival app.",
     impact: "High",
     effort: "Medium",
@@ -621,7 +621,7 @@ const SEARCH_COMPARISON: Approach[] = [
     id: "SC-16",
     rank: 16,
     title: "Internal-link spine across four products",
-    what: "The suite reads as one — to readers and to search.",
+    what: "The suite reads as one, to readers and to search.",
     edge: "The four-product system is the SEO moat a single product can't build.",
     impact: "Medium",
     effort: "Medium",
@@ -644,7 +644,7 @@ const PROOF_NARRATIVE: Approach[] = [
     id: "PN-02",
     rank: 2,
     title: "One restrained founder video",
-    what: "'Why I refuse the dashboard' — one asset, reused everywhere, not a series.",
+    what: "'Why I refuse the dashboard', one asset, reused everywhere, not a series.",
     edge: "One video, made well; the refusal to make ten is the brand.",
     impact: "High",
     effort: "Medium",
@@ -694,7 +694,7 @@ const PROOF_NARRATIVE: Approach[] = [
     id: "PN-07",
     rank: 7,
     title: "Changelog as marketing",
-    what: "Per-product dispatches with genuine voice — already a strength.",
+    what: "Per-product dispatches with genuine voice, already a strength.",
     edge: "A changelog written as sentences, not release-note bullets.",
     impact: "Medium",
     effort: "Low",
@@ -724,7 +724,7 @@ const PROOF_NARRATIVE: Approach[] = [
     id: "PN-10",
     rank: 10,
     title: "'What we refused this quarter'",
-    what: "The moat made legible — once a quarter, never monthly.",
+    what: "The moat made legible, once a quarter, never monthly.",
     edge: "A report whose entire content is the things we chose not to do.",
     impact: "Medium",
     effort: "Low",
@@ -765,7 +765,7 @@ const PROOF_NARRATIVE: Approach[] = [
     rank: 14,
     title: "One well-made written AMA",
     what: "A single Q&A hosted on our own site, surfaced through communities.",
-    edge: "Owned, edited, permanent — not an hour that scrolls away.",
+    edge: "Owned, edited, permanent, not an hour that scrolls away.",
     impact: "Medium",
     effort: "Low",
     month: "M4",
@@ -857,7 +857,7 @@ const BRAND_MOAT: Approach[] = [
     id: "BM-07",
     rank: 7,
     title: "Anti-onboarding demo",
-    what: "'No setup, no vocabulary to learn' — shown in twenty seconds.",
+    what: "'No setup, no vocabulary to learn', shown in twenty seconds.",
     edge: "The demo is over before a competitor's onboarding would begin.",
     impact: "High",
     effort: "Medium",
@@ -907,7 +907,7 @@ const BRAND_MOAT: Approach[] = [
     id: "BM-12",
     rank: 12,
     title: "Named-only testimonial standard",
-    what: "Only real, named, coordinator-forwarded quotes — quality over count.",
+    what: "Only real, named, coordinator-forwarded quotes, quality over count.",
     edge: "We'd rather show one named quote than ten anonymous stars.",
     impact: "Medium",
     effort: "Low",
@@ -951,7 +951,7 @@ const COMMUNITY_PARTNERSHIPS: Approach[] = [
     rank: 2,
     title: "Free no-signup wedding-planning checklist",
     what: "Genuinely useful, links back, no gate.",
-    edge: "The useful thing is free with no email wall — that's the differentiator.",
+    edge: "The useful thing is free with no email wall, that's the differentiator.",
     impact: "High",
     effort: "Medium",
     month: "M2",
@@ -1000,7 +1000,7 @@ const COMMUNITY_PARTNERSHIPS: Approach[] = [
     id: "CP-07",
     rank: 7,
     title: "One wedding-industry podcast guest spot",
-    what: "Restrained, founder, exactly one — not a circuit.",
+    what: "Restrained, founder, exactly one, not a circuit.",
     edge: "One conversation chosen for fit, not a booking spree.",
     impact: "Medium",
     effort: "Low",
@@ -1040,7 +1040,7 @@ const COMMUNITY_PARTNERSHIPS: Approach[] = [
     id: "CP-11",
     rank: 11,
     title: "One-time curated directory pass",
-    what: "A single deliberate listing set — not the volume treadmill.",
+    what: "A single deliberate listing set, not the volume treadmill.",
     edge: "One considered pass, then we stop; the restraint is the point.",
     impact: "Medium",
     effort: "Low",
@@ -1082,7 +1082,7 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "venue-engine",
     label: "venue engine",
-    role: "The negative-CAC core — 75–85% of the six-month number.",
+    role: "The negative-CAC core, 75–85% of the six-month number.",
     rationale:
       "A paid venue is negative-CAC: it pays Signal Studio to seed fifty to a hundred and fifty high-intent couples into the suite every year, recurring. Without it the honest six-month number is under €75k. Every approach here moves the ≥10-paid-venues-by-M3 and ≥25%-close-rate metrics directly.",
     approaches: VENUE_ENGINE,
@@ -1090,7 +1090,7 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "sponsored-loop",
     label: "sponsored loop",
-    role: "Every shared artifact acquires — zero-marginal-cost compounding.",
+    role: "Every shared artifact acquires, zero-marginal-cost compounding.",
     rationale:
       "The couples a venue sponsors are the distribution. Each shared plan is seen by the next engaged couple with venue trust attached. This bucket owns the ≥40% sponsored-couple → active-user metric and the M5–M6 self-sustaining-referral goal.",
     approaches: SPONSORED_LOOP,
@@ -1098,15 +1098,15 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "search-comparison",
     label: "search & comparison",
-    role: "The second leg — the hedge against 75% single-buyer concentration.",
+    role: "The second leg, the hedge against 75% single-buyer concentration.",
     rationale:
-      "The plan's named #1 kill-trigger is concentration on one buyer. Real-angle comparison and refusal-led search pages are the only structural hedge. No AI-listicle volume, no fabricated rivalries — every claim is reality-anchored to shipped state.",
+      "The plan's named #1 kill-trigger is concentration on one buyer. Real-angle comparison and refusal-led search pages are the only structural hedge. No AI-listicle volume, no fabricated rivalries, every claim is reality-anchored to shipped state.",
     approaches: SEARCH_COMPARISON,
   },
   {
     key: "proof-narrative",
     label: "proof & narrative",
-    role: "Founder voice — one of each, reused everywhere, never a treadmill.",
+    role: "Founder voice, one of each, reused everywhere, never a treadmill.",
     rationale:
       "These are the conversion assets every channel points back to. One restrained video, one honest essay, one integrated demo. The honesty is the asset: a generic competitor will not publish the arithmetic that says the giveaway failed.",
     approaches: PROOF_NARRATIVE,
@@ -1114,7 +1114,7 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "brand-moat",
     label: "brand as moat",
-    role: "Productised refusal — the discipline made into distribution.",
+    role: "Productised refusal, the discipline made into distribution.",
     rationale:
       "Incumbents can copy a feature; they cannot copy a discipline held in public for two years. Publishing the refusals turns the moat into an acquisition surface that fails the logo-swap test by design.",
     approaches: BRAND_MOAT,
@@ -1122,7 +1122,7 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "community-partnerships",
     label: "community & partnerships",
-    role: "Value-first, non-paid — reach bought with usefulness, not spend.",
+    role: "Value-first, non-paid, reach bought with usefulness, not spend.",
     rationale:
       "Every approach here is free and value-first by construction. No mass-blast, no paid placement, no daily posting quota. We earn the room by being useful in it, product second.",
     approaches: COMMUNITY_PARTNERSHIPS,

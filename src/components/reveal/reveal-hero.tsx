@@ -1,5 +1,5 @@
 /**
- * Reveal hero — indigo accent hairline + masked word-by-word headline +
+ * Reveal hero, indigo accent hairline + masked word-by-word headline +
  * typewriter subhead + four-product wordmark stack with the §4 brand
  * gestures.
  *
@@ -15,11 +15,11 @@ export function RevealHero() {
   return (
     <section
       className="reveal-hero"
-      aria-label="Signal Studio — Project management for the 80% not in tech"
+      aria-label="Signal Studio, Project management for the 80% not in tech"
     >
       <div className="reveal-gold-rule" aria-hidden />
 
-      {/* Launch note — restrained, static. The suite is in private preview;
+      {/* Launch note, restrained, static. The suite is in private preview;
           this names the public-launch date without a ticking counter
           ("nothing distracting"). Review issue 14. */}
       <p
@@ -93,7 +93,7 @@ export function RevealHero() {
         names the parts, names the audience, refuses the "workflow" word.
       */}
       <TypewriterSub
-        text="Plans, tasks, notes, and a morning briefing — for people who have work to manage, not software to manage."
+        text="Plans, tasks, notes, and a morning briefing, for people who have work to manage, not software to manage."
         startDelayMs={700}
         speed={28}
       />

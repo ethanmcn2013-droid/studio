@@ -14,7 +14,7 @@ export const meta: TemplateMeta = {
   domain: "wedding",
   audience: "wedding-planner",
   problem:
-    "Wedding planning lives across email, group chats, and a venue's PDF — one place for what's done, what's blocked, and what's next.",
+    "Wedding planning lives across email, group chats, and a venue's PDF, one place for what's done, what's blocked, and what's next.",
   seoSummary:
-    "A starter workspace for wedding planning. Venue contracts, supplier timing, guest decisions, final-week walkthroughs — all in one workspace that the couple, the planner, and the venue can read in under a minute. Pairs with a private Notes notebook for venue meetings, a shared Timeline update for the couple, and a daily Signal briefing that catches RSVP and supplier-payment deadlines before they slip.",
+    "A starter workspace for wedding planning. Venue contracts, supplier timing, guest decisions, final-week walkthroughs, all in one workspace that the couple, the planner, and the venue can read in under a minute. Pairs with a private Notes notebook for venue meetings, a shared Timeline update for the couple, and a daily Signal briefing that catches RSVP and supplier-payment deadlines before they slip.",
 };

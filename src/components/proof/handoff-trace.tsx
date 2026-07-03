@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Proof handoff trace — a 1px indigo hairline that draws downward as
+ * Proof handoff trace, a 1px indigo hairline that draws downward as
  * each stage hands off to the next (1→2, 2→3, 3→4). The /proof thesis
  * is "the handoffs are the product"; this draws that handoff once, on
  * viewport entry, then goes quiet.

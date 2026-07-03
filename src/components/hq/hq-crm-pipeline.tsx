@@ -7,13 +7,13 @@ import {
 import type { ProspectStage } from "@/lib/db/schema";
 
 /**
- * HQ CRM Pipeline Rail — the funnel at a glance.
+ * HQ CRM Pipeline Rail, the funnel at a glance.
  *
  * Five stage buckets (to_contact → pilot_active) shown as a horizontal
  * rail of tappable pills. Each pill shows the stage label + count.
  * Active stage is highlighted in accent. "all" shows no highlight.
  *
- * The due-today count surfaces as a separate badge above the rail — it
+ * The due-today count surfaces as a separate badge above the rail, it
  * cuts across stages (any non-parked, non-pilot prospect with a
  * past-due or today follow-up date).
  *
@@ -46,7 +46,7 @@ export function HqCrmPipeline({
           <span className="hq-crm-stage-count">{total}</span>
         </Link>
 
-        {/* Stage pills — active funnel only */}
+        {/* Stage pills, active funnel only */}
         {PIPELINE_STAGES.map((stage) => {
           const isActive = activeStage === stage;
           const href = isActive ? "/hq/crm" : `/hq/crm?stage=${stage}`;

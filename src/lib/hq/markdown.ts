@@ -14,7 +14,7 @@ export type { HqMarkdownEntry, HqMarkdownFrontmatter };
 export { countByStatus } from "./markdown-parser";
 
 /**
- * HQ markdown loader — reads file-backed HQ content from
+ * HQ markdown loader, reads file-backed HQ content from
  * `content/hq/<section>/*.md`. Mirrors the atlas loader pattern.
  *
  * Pure parsing lives in `./markdown-parser` so tests can exercise it

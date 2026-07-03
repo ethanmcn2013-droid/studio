@@ -6,7 +6,7 @@ import { isDemoMode } from "@/lib/access-mode";
  *
  * WARN-ONLY by deliberate exception to the suite pattern. Studio is the
  * public marketing umbrella + the internal HQ. The marketing site is mostly
- * static and must stay up even if HQ's database is misconfigured — so we do
+ * static and must stay up even if HQ's database is misconfigured, so we do
  * NOT throw at boot here (that would take the public site down over an
  * internal-tool misconfig). Instead, missing production vars are surfaced
  * loudly in the boot logs (and Sentry), where the operator sees them, while
@@ -16,7 +16,7 @@ import { isDemoMode } from "@/lib/access-mode";
  * instrumentation.ts `register()`.
  */
 
-// Intentionally empty — see the warn-only rationale above.
+// Intentionally empty, see the warn-only rationale above.
 const REQUIRED_IN_PRODUCTION: ReadonlyArray<readonly [string, string]> = [];
 
 // HQ + entitlement enforcement need these; the public site does not.
@@ -42,7 +42,7 @@ export function validateEnv(): void {
   if (missingRecommended.length > 0) {
     console.warn(
       "[env] missing recommended production variables (HQ / entitlements degraded):\n" +
-        missingRecommended.map(([k, why]) => `  - ${k} — ${why}`).join("\n"),
+        missingRecommended.map(([k, why]) => `  - ${k}, ${why}`).join("\n"),
     );
   }
 
@@ -51,7 +51,7 @@ export function validateEnv(): void {
   );
   if (missingRequired.length > 0) {
     const detail = missingRequired
-      .map(([k, why]) => `  - ${k} — ${why}`)
+      .map(([k, why]) => `  - ${k}, ${why}`)
       .join("\n");
     throw new Error(
       `[env] FATAL: missing required production environment variables:\n${detail}`,

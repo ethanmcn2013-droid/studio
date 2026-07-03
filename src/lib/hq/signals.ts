@@ -15,7 +15,7 @@ import type {
 /**
  * Markdown override consumed by deriveHqState. Mirrors the shape exposed
  * by `src/lib/hq/dashboard-data.ts`. After the HQ v2 closure (2026-05-15)
- * these sections are markdown-only — no seed fallback. When the markdown
+ * these sections are markdown-only, no seed fallback. When the markdown
  * is absent (e.g. dev without content/hq), the derived state simply has
  * empty arrays and the readiness scores fall to 0.
  */
@@ -96,7 +96,7 @@ export function deriveHqState(
   data: HqData,
   markdown?: HqDerivedMarkdownOverride,
 ): HqDerivedState {
-  // Markdown-only for retired sections — seed fallback removed in the
+  // Markdown-only for retired sections, seed fallback removed in the
   // HQ v2 closure (2026-05-15). data still carries the operator-owned
   // surfaces (prospects, feedback).
   const products = markdown?.products ?? [];

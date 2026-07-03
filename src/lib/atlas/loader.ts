@@ -2,17 +2,17 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 /**
- * Signal Atlas — repo-backed system documentation.
+ * Signal Atlas, repo-backed system documentation.
  *
  * Each entry lives at content/atlas/<slug>.md with frontmatter:
  *   title, slug, lens, owner, lastVerified (YYYY-MM-DD), links[], summary, status
  *
  * Body is plain markdown with fixed top-level sections in order:
- *   ## WHAT / ## WHO / ## WHERE / ## HOW / ## WHEN — current state / ## WHY
+ *   ## WHAT / ## WHO / ## WHERE / ## HOW / ## WHEN, current state / ## WHY
  *
  * Design intent: the atlas is a forcing function, not a snapshot. Entries
  * untouched for STALE_THRESHOLD_DAYS surface a stale flag. Fix the entry,
- * then the code — reverses the usual rot direction.
+ * then the code, reverses the usual rot direction.
  */
 
 export const STALE_THRESHOLD_DAYS = 60;
@@ -47,7 +47,7 @@ export type AtlasEntry = AtlasFrontmatter & {
 };
 
 /**
- * Optional sidecar at content/atlas/_drift.json — written by the v2
+ * Optional sidecar at content/atlas/_drift.json, written by the v2
  * drift-trigger when files referenced by an entry change in git.
  * Shape: { "<slug>": { "drifted": ["path", ...], "updatedAt": "ISO" } }
  * Missing file / missing slug = no drift detected.
@@ -120,7 +120,7 @@ async function readDriftSidecar(): Promise<DriftSidecar> {
       return parsed as DriftSidecar;
     }
   } catch {
-    // Sidecar is optional — absence means no drift detected.
+    // Sidecar is optional, absence means no drift detected.
   }
   return {};
 }
@@ -207,7 +207,7 @@ export async function readAtlasEntries(): Promise<AtlasEntry[]> {
     }
   }
   // Stable order: lens (canonical) → drifted entries float up (truth age
-  // is the strongest signal — fix these first) → recency → title.
+  // is the strongest signal, fix these first) → recency → title.
   return entries.sort((a, b) => {
     const la = LENSES.indexOf(a.lens);
     const lb = LENSES.indexOf(b.lens);

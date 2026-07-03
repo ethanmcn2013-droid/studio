@@ -6,7 +6,7 @@ import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Pitch deck — Signal HQ",
+  title: "Pitch deck · Signal HQ",
   description: "12-month business plan · seed round · June 2026–May 2027.",
   robots: { index: false, follow: false },
 };
@@ -32,7 +32,7 @@ export default async function DeckPage() {
       </div>
       <iframe
         src="/brand/pitch-deck-2026.html"
-        title="Signal Studio — 12-Month Business Plan 2026"
+        title="Signal Studio, 12-Month Business Plan 2026"
         className="hq-deck-frame"
         loading="eager"
       />

@@ -4,7 +4,7 @@ import { requireHqAccess } from "@/lib/hq/access-guard";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "The Posting Queue — Signal HQ",
+  title: "The Posting Queue · Signal HQ",
   description: "Six weeks of social posts, drafted and sequenced. Founder approves; nothing posts without a yes.",
   robots: { index: false, follow: false },
 };
@@ -39,40 +39,40 @@ function post(slot: string, format: string, platforms: string, base: string, cap
 const QUEUE: QueuedPost[] = [
   post("W1 · Mon", "S·2 The Belief", "Instagram · LinkedIn", "s2-belief-b00",
     "Calm is a feature. We build it on purpose. One of the nine beliefs Signal Studio is built on. signalstudio.ie",
-    "Signal Studio belief — Calm is a feature. We build it on purpose."),
+    "Signal Studio belief, Calm is a feature. We build it on purpose."),
   post("W1 · Thu", "S·1 The Number", "Instagram · LinkedIn", "s1-number-n01",
     "19,898 weddings in Ireland last year. Most were planned in a group chat. We think the people running them deserve better tools. Built in Limerick.",
-    "Signal Studio — 19,898 weddings in Ireland last year. Most were planned in a group chat."),
+    "Signal Studio, 19,898 weddings in Ireland last year. Most were planned in a group chat."),
   post("W2 · Mon", "S·3 Before / After", "Instagram · TikTok", "s3-beforeafter-schedule",
     "One plan. Everyone sees it. signalstudio.ie",
-    "Signal Studio — before: an email thread titled Re: Re: Re: FINAL schedule v7. After: one plan, everyone sees it."),
+    "Signal Studio, before: an email thread titled Re: Re: Re: FINAL schedule v7. After: one plan, everyone sees it."),
   post("W2 · Thu", "S·2 The Belief", "Instagram · LinkedIn", "s2-belief-b03",
     "Elegance is restraint. Belief three of nine. signalstudio.ie",
-    "Signal Studio belief three — Elegance is restraint."),
+    "Signal Studio belief three, Elegance is restraint."),
   post("W3 · Mon", "S·5 Founder Note", "LinkedIn", "s5-foundernote-quote01",
-    "Most of the projects in this country never get called one. The weddings, the venues, the committees — real coordination, none of the tooling. We built the software those projects deserve. — Ethan",
+    "Most of the projects in this country never get called one. The weddings, the venues, the committees, real coordination, none of the tooling. We built the software those projects deserve., Ethan",
     "Quote from Ethan McNamara, founder of Signal Studio.", ["li-landscape"]),
   post("W3 · Thu", "S·1 The Number", "Instagram · LinkedIn", "s1-number-n02",
-    "€36,641 — the average spend on an Irish wedding. The plan holding it together deserves more than a group chat.",
-    "Signal Studio — €36,641, the average spend on an Irish wedding."),
+    "€36,641, the average spend on an Irish wedding. The plan holding it together deserves more than a group chat.",
+    "Signal Studio, €36,641, the average spend on an Irish wedding."),
   post("W4 · Mon", "S·3 Before / After", "Instagram · TikTok", "s3-beforeafter-owner",
     "One owner, one date, per task. That's the whole trick. signalstudio.ie",
-    "Signal Studio — before: a file named final underscore FINAL v9 use this one. After: one owner, one date, per task."),
+    "Signal Studio, before: a file named final underscore FINAL v9 use this one. After: one owner, one date, per task."),
   post("W4 · Thu", "S·2 The Belief", "Instagram · LinkedIn", "s2-belief-b05",
     "People want calm, not more features. Belief five of nine. signalstudio.ie",
-    "Signal Studio belief five — People want calm, not more features."),
+    "Signal Studio belief five, People want calm, not more features."),
   post("W5 · Mon", "S·1 The Number", "Instagram · LinkedIn", "s1-number-n03",
-    "70+ societies at UL alone. Most run their year in a group chat. The Student Edition is €8.99 a year with a college email — committee workspace included.",
-    "Signal Studio — 70 plus societies at UL alone."),
+    "70+ societies at UL alone. Most run their year in a group chat. The Student Edition is €8.99 a year with a college email, committee workspace included.",
+    "Signal Studio, 70 plus societies at UL alone."),
   post("W5 · Thu", "S·2 The Belief", "Instagram · LinkedIn", "s2-belief-b07",
     "The best systems reduce cognitive load. Belief seven of nine. signalstudio.ie",
-    "Signal Studio belief seven — The best systems reduce cognitive load."),
+    "Signal Studio belief seven, The best systems reduce cognitive load."),
   post("W6 · Mon", "S·3 Before / After", "Instagram · TikTok", "s3-beforeafter-unread",
     "The one thing due today. Everything else can wait its turn. signalstudio.ie",
-    "Signal Studio — before: you have 47 unread messages. After: the one thing due today."),
+    "Signal Studio, before: you have 47 unread messages. After: the one thing due today."),
   post("W6 · Thu", "S·2 The Belief", "Instagram · LinkedIn", "s2-belief-b09",
-    "Signal over noise — in product, brand, and plan. Belief nine of nine. signalstudio.ie",
-    "Signal Studio belief nine — Signal over noise, in product, brand, and plan."),
+    "Signal over noise, in product, brand, and plan. Belief nine of nine. signalstudio.ie",
+    "Signal Studio belief nine, Signal over noise, in product, brand, and plan."),
 ];
 
 const mono: React.CSSProperties = {
@@ -93,7 +93,7 @@ export default async function SocialsPage() {
           <span aria-hidden="true" style={{ color: "var(--accent)" }}>.</span>
         </h1>
         <p className="hq-page-intro">
-          Twelve posts, two a week, sequenced from the specimen bank — every
+          Twelve posts, two a week, sequenced from the specimen bank, every
           image deck-locked, every caption drafted for your approval, alt text
           on every one. Approve the queue (or strike lines) and the calendar
           fills itself. The partner format stays specimen-gated until a real
@@ -195,7 +195,7 @@ export default async function SocialsPage() {
         }}
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
-          The images are deck-locked; the captions are drafts — approve the
+          The images are deck-locked; the captions are drafts, approve the
           queue as written, or name the slots to change. Nothing posts without
           your yes. The full bank (all nine beliefs, every size, every format)
           lives at /brand/collateral/social/.

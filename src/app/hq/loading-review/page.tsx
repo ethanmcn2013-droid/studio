@@ -6,14 +6,14 @@ import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Loading review room — Signal HQ",
+  title: "Loading review room · Signal HQ",
   description:
     "Ten loading moments, one system. The canonical loading-system review board: tokens, motion timing, aria contracts, and the live gate checklist.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /hq/loading-review — the loading-system review room.
+ * /hq/loading-review, the loading-system review room.
  *
  * Embeds the panel-gated review artifact (ten loading moments, one
  * system) the suite's loading canon implements against. The artifact is
@@ -50,7 +50,7 @@ export default async function LoadingReviewPage() {
       </div>
       <iframe
         src="/brand/loading-review-2026.html"
-        title="Signal Studio — Loading review room"
+        title="Signal Studio, Loading review room"
         className="hq-deck-frame"
         loading="eager"
       />

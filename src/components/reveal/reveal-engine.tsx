@@ -1,17 +1,17 @@
 "use client";
 
 /**
- * Reveal engine — orchestrates the GSAP hero entrance timeline, Lenis
+ * Reveal engine, orchestrates the GSAP hero entrance timeline, Lenis
  * momentum scroll, char-split for per-character hover lift, and gesture
  * hover-replay.
  *
  * GSAP is used exclusively for the hero entrance choreography.
  * Secondary section reveals (manifesto, proof, products, closing) use
- * the CSS .reveal scroll-driven pattern in globals.css — no JS, no
+ * the CSS .reveal scroll-driven pattern in globals.css, no JS, no
  * ScrollTrigger, baseline-visible, reduced-motion safe.
  *
  * Targets the markup rendered by RevealHero via class selectors. No
- * props — this component is mount-and-forget.
+ * props, this component is mount-and-forget.
  *
  * Reduced-motion is honored: when the user prefers reduced motion,
  * the timeline + Lenis are skipped and final states are set
@@ -29,7 +29,7 @@
  * P3-3 fix (2026-05-18): notes dot added to the entrance cascade. All four
  * products in the hero stack now have their brand gesture active after
  * the entrance completes. fires at t=1.28s (between tasks 1.16 and
- * analytics 1.4 — one beat per product row).
+ * analytics 1.4, one beat per product row).
  */
 
 import { useEffect } from "react";
@@ -40,7 +40,7 @@ export function RevealEngine() {
 
     (async () => {
       // Dynamic imports keep GSAP/Lenis out of the initial server bundle.
-      // ScrollTrigger is intentionally not imported — secondary sections
+      // ScrollTrigger is intentionally not imported, secondary sections
       // now use the CSS .reveal scroll-driven pattern (no JS dependency).
       const { gsap } = await import("gsap");
       const Lenis = (await import("lenis")).default;
@@ -122,7 +122,7 @@ export function RevealEngine() {
         gsap.set(".reveal-gold-rule", { width: 132 });
         // Headline is server-rendered visible; no gsap.set needed.
         gsap.set(".reveal-subhead", { y: 0, opacity: 1 });
-        // Stack is now a horizontal row — clear x (and any legacy y).
+        // Stack is now a horizontal row, clear x (and any legacy y).
         gsap.set(".stack-row", { x: 0, y: 0, opacity: 1 });
         gsap.set(".reveal-scroll-cue", { y: 0, opacity: 1 });
         document.querySelector(".reveal-scroll-cue")?.classList.add("bob");
@@ -142,7 +142,7 @@ export function RevealEngine() {
 
         // bfcache handler: fires when the browser restores the page from
         // the back-forward cache (e.persisted === true). Without this, the
-        // page is restored mid-GSAP state — which is the P3-2 mid-animation
+        // page is restored mid-GSAP state, which is the P3-2 mid-animation
         // first-paint defect on back-nav.
         const onPageShow = (e: PageTransitionEvent) => {
           if (e.persisted) {
@@ -159,13 +159,13 @@ export function RevealEngine() {
         };
 
         if (alreadyPlayed) {
-          // Not first visit this session — skip entrance, go to final state.
+          // Not first visit this session, skip entrance, go to final state.
           // GSAP entrance would reset .stack-row to opacity:0 then animate
-          // up — that flash is visible before the animation starts. Skip it.
+          // up, that flash is visible before the animation starts. Skip it.
           restoreFinalState();
         } else {
           // ─── Lenis momentum scroll ────────────────────────────
-          // No ScrollTrigger sync needed — all secondary reveals are CSS-driven.
+          // No ScrollTrigger sync needed, all secondary reveals are CSS-driven.
           const lenis = new Lenis({
             duration: 1.15,
             easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -176,14 +176,14 @@ export function RevealEngine() {
           gsap.ticker.lagSmoothing(0);
 
           // ─── Initial states (defensive) ──────────────────────
-          // Headline is intentionally NOT set hidden — it's server-rendered
+          // Headline is intentionally NOT set hidden, it's server-rendered
           // visible to remove the ~800ms blank flash during GSAP's dynamic
           // import. The choreography below is for everything else.
           gsap.set(".reveal-gold-rule", { width: 0 });
           gsap.set(".reveal-subhead", { y: 8, opacity: 0 });
           // Horizontal row: rows start offset to the left + a tiny y to
           // add a vertical settle on arrival. fromTo in the timeline below
-          // re-declares these — gsap.set here ensures the pre-animation
+          // re-declares these, gsap.set here ensures the pre-animation
           // first paint isn't a flash of the final state.
           gsap.set(".stack-row", { x: -40, y: 6, opacity: 0 });
           gsap.set(".reveal-scroll-cue", { y: 4, opacity: 0 });
@@ -193,11 +193,11 @@ export function RevealEngine() {
 
           // Choreography pass (2026-05-20, flag #4): the prior 0.95s ride /
           // 0.18s stagger / back.out(0.7) timing still blew through the
-          // four products before the eye could resolve each wordmark — the
+          // four products before the eye could resolve each wordmark, the
           // overshoot bounce read as rushed at that duration. New cadence
           // is deliberately cinematic: each row gets a clear arrival beat,
           // a 0.3s breath, then its brand gesture punctuates. Total hero
-          // resolve ~3.9s — generous on purpose. Ethan flagged this four
+          // resolve ~3.9s, generous on purpose. Ethan flagged this four
           // times; trust the gut and let it breathe.
 
           // Accent hairline draws under the (already-visible) headline.
@@ -212,7 +212,7 @@ export function RevealEngine() {
             0.45
           );
 
-          // Four-product row — each wordmark arrives with momentum and
+          // Four-product row, each wordmark arrives with momentum and
           // settles firmly. expo.out (vs back.out) eliminates the bounce
           // that was reading as staccato at slower speeds. Subtle y:6
           // adds a vertical settle on top of the horizontal entry so the
@@ -266,7 +266,7 @@ export function RevealEngine() {
                 try {
                   sessionStorage.setItem(SESSION_KEY, "1");
                 } catch {
-                  // Blocked — entrance will replay next same-session visit.
+                  // Blocked, entrance will replay next same-session visit.
                   // Acceptable: the re-play is not a breakage.
                 }
               },
@@ -275,7 +275,7 @@ export function RevealEngine() {
           );
 
           // Secondary sections below the hero now use the CSS .reveal
-          // scroll-driven pattern (globals.css) — no GSAP/ScrollTrigger
+          // scroll-driven pattern (globals.css), no GSAP/ScrollTrigger
           // dependency, baseline-visible, reduced-motion safe. GSAP here
           // is reserved exclusively for the hero entrance above.
 
