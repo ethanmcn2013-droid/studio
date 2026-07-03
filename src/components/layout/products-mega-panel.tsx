@@ -201,6 +201,23 @@ const PANEL_CSS = `
   50% { transform: scaleY(0.80); } 75% { transform: scaleY(0.40); }
 }
 
+/* Footer row — quiet link to the design system */
+.mpanel-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: var(--ink-quiet);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+.mpanel-foot:hover { color: var(--ink); }
+.mpanel-foot svg { opacity: 0.7; }
+
 /* Mobile — 2×2 grid */
 @media (max-width: 640px) {
   .mpanel-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
@@ -352,6 +369,15 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
               );
             })}
           </div>
+
+          <a href="/design" onClick={onClose} className="mpanel-foot">
+            <span>One system behind all four — see the design</span>
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.4"
+              strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M7 17L17 7M17 7H8M17 7v9" />
+            </svg>
+          </a>
         </div>
       </div>
     </>
