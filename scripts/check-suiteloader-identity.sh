@@ -15,13 +15,18 @@
 # failed on every CI run. Normalizing first makes the guard test what it
 # means to test (the code), not the platform's line endings.
 # Re-sealed 2026-07-02 (loading canon: boundary dot 10px, DESIGN.md §13).
+# Re-sealed 2026-07-04: commit 6ae220e (voice em-dash sweep) rewrote SuiteLoader
+# comment em-dashes to commas across all 5 repos, byte-identical, no logic change,
+# which moved the normalized hash. The seal was stale (129ab39f), so `npm test`
+# was red suite-wide on a comment-only edit. New seal matches the current
+# canonical file; all 5 copies still hash identical to each other.
 #
 # Usage: bash scripts/check-suiteloader-identity.sh
 # Wired via package.json "test" script so drift fails CI.
 
 set -euo pipefail
 
-CANONICAL_SHA="129ab39f232e43f2febeb66e0dd3b6b2f1d24a18d55c46315ca29e383a88885f"
+CANONICAL_SHA="95e28dc4d049e0a215c3e9b820e9ceb6460440c8c3a65d2627bf99eb9649f185"
 FILE="src/components/system/SuiteLoader.tsx"
 
 if [ ! -f "$FILE" ]; then
