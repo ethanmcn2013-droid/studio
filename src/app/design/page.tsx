@@ -516,10 +516,10 @@ const JOBS = [
 ] as const;
 
 const NAMES = [
-  { name: "Notes", does: "holds notes." },
-  { name: "Tasks", does: "holds tasks." },
-  { name: "Timeline", does: "shows the plan." },
-  { name: "Signal", does: "tells you what changed." },
+  { name: "notes", does: "holds notes." },
+  { name: "tasks", does: "holds tasks." },
+  { name: "timeline", does: "shows the plan." },
+  { name: "signal", does: "tells you what changed." },
 ] as const;
 
 const VOICE = [
