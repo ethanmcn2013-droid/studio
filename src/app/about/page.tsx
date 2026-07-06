@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
@@ -140,37 +139,13 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Product work, link to /work */}
-              <div className="mt-2">
-                <div
-                  className="mb-3 text-[11px] font-semibold uppercase text-ink-faint"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  Product work
-                </div>
-                <Link
-                  href="/work"
-                  className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
-                >
-                  <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
-                    See the system
-                  </span>
-                  <span
-                    className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
-                    aria-hidden
-                  >
-                    &rarr;
-                  </span>
-                </Link>
-              </div>
-
               {/* Quiet closing note */}
               <p
                 className="text-[12.5px] leading-[1.6] text-ink-faint"
                 style={{ letterSpacing: "0.005em" }}
               >
                 Boring on purpose. Built slowly, in Limerick. Everything
-                important, nothing decorative.
+                important, nothing distracting.
               </p>
             </div>
           </div>
@@ -260,8 +235,7 @@ export default function AboutPage() {
                 className="mt-6 leading-[1.6] text-ink"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                We built Signal Studio to remove that{" "}
-                <span className="marker">translation layer</span>.
+                We built Signal Studio to remove that translation layer.
               </p>
 
               <p
