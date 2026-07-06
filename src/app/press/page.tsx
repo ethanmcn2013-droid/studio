@@ -59,17 +59,15 @@ export default function PressPage() {
 
           <div className="space-y-12 text-[15.5px] leading-[1.7] text-ink-soft">
             <p>
-              Signal Studio is a small suite of four products for the
-              80&thinsp;% of the world that doesn&apos;t work in tech.
-              Below are the boilerplates, brand assets, and founder bio
-              you might need. If something&rsquo;s missing, email and
-              we&rsquo;ll send it back the same day.
+              Everything a writer needs, on one page. Boilerplates, brand
+              assets, the founder bio. If something&rsquo;s missing, email
+              and you&rsquo;ll have it the same day.
             </p>
 
             <Section title="One-line description">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio brings operational clarity to the eighty percent of the world who don’t work in tech. Four products: Tasks, Timeline, Signal, Notes.",
+                  "Signal Studio is four small products: Notes, Tasks, Timeline, Signal. Together they give people outside tech a clear view of their work, in plain English.",
                 ]}
               />
             </Section>
@@ -77,7 +75,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 50 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a four-product suite built for everyone the productivity category ignored: wedding planners, freelancers, tradespeople, students, small-business operators. Signal Tasks runs the work. Timeline explains it publicly. Signal surfaces what needs attention today. Notes captures the thinking that comes before all of it. Plain English. No sprints. No per-seat bill.",
+                  "Signal Studio makes work software for people who don’t work in tech: wedding planners, tradespeople, freelancers, students, small businesses. Notes captures ideas. Tasks runs the work. Timeline shows the plan. Signal reports what changed. All of it in plain English. Launching 1 September 2026, from Limerick, Ireland.",
                 ]}
               />
             </Section>
@@ -85,7 +83,7 @@ export default function PressPage() {
             <Section title="Boilerplate: 150 words">
               <CopyableQuote
                 paragraphs={[
-                  "Signal Studio is a suite of four small, opinionated products for the eighty percent of working people who do not live inside a software stack. Signal Tasks renders the same to-do list as a board, list, timeline, or calendar. Switch lenses without re-entering anything. Signal Timeline is a public timeline your customers can actually read, written in plain English. Signal is a daily briefing that names what needs your attention today. No LLM in the path; every sentence written by hand. Signal Notes is a private capture surface that promotes to Tasks when the thinking is ready. The suite shares one register and one accent colour. The timeline is public. The principles page lists features that will never ship. Designed and shipped by Ethan McNamara, a designer in Limerick.",
+                  "Signal Studio is a suite of four small products for the eighty percent of working people who don’t live inside a software stack. Signal Tasks shows the same work as a board, a list, a timeline, or a calendar. Switch views without re-entering anything. Signal Timeline is a plan your customers can actually read: one public link, plain English, no login. Signal is a daily briefing that names what needs your attention today. Every sentence comes from a hand-written phrasing library. Nothing is machine-written. Signal Notes is a private notebook that hands a thought to Tasks when it’s ready to become work. Everything shares one typeface, one accent colour, and one rule: if a sentence needs translating, it gets rewritten. Built and run by one person, Ethan McNamara, in Limerick, Ireland. The roadmap is public, and every product says what it will never do.",
                 ]}
               />
             </Section>
@@ -94,9 +92,9 @@ export default function PressPage() {
               <CopyableQuote
                 paragraphs={[
                   "Signal Studio is a four-product suite for the eighty percent of working people the productivity category left behind. It runs on a single argument. Twenty years of project-management software has been written by tech companies for other tech companies, then sold downmarket with the vocabulary unchanged. That is why wedding planners, freelance designers, tradespeople, students, and small-business owners keep churning out of every tool they try.",
-                  "The four products each do one thing. Signal Tasks is a live workspace that renders the same items as a board, a list, a timeline, or a calendar. Switch lenses without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public timeline your customers can read at midnight on a phone: plain English, one link, no login. Signal is a daily briefing that surfaces what needs your attention today. A rules engine reads your Tasks workspace overnight, finds held-up work, overdue items, and quiet risks, and writes the briefing in language drawn from a hand-curated phrasing library. No LLM in the path. Signal Notes is a private capture surface for the half-formed thought. It promotes selectively into Tasks when the thinking is ready to act on, but raw notes never leave the notebook.",
-                  "The four products share one register, one accent colour, one footer pattern, one cross-product nav. The brand discipline is the moat. Every page, every empty state, every error message passes through the same voice, and every product publishes its locked refusals: features it will not ship, whatever the customer asks.",
-                  "Signal Studio is operated by Ethan McNamara, a designer in Limerick, who spent years inside enterprise software watching the wrong people get charged for the wrong things. The suite ships in passes, in public, against its own roadmap. signalstudio.ie. hello@signalstudio.ie.",
+                  "The four products each do one thing. Signal Tasks is a live workspace that shows the same items as a board, a list, a timeline, or a calendar. Switch views without re-entering anything, with real-time presence and shareable read-only views on the free tier. Signal Timeline is a public plan your customers can read at midnight on a phone: plain English, one link, no login. Signal is a daily briefing that surfaces what needs your attention today. A rules engine reads your Tasks workspace overnight, finds held-up work, overdue items, and quiet risks, and writes the briefing from a hand-curated phrasing library. Nothing is machine-written. Signal Notes is a private notebook for the half-formed thought. It hands the thought to Tasks when it’s ready to become work, and raw notes never leave the notebook.",
+                  "The four products share one typeface, one accent colour, one voice. Every page, every empty state, every error message reads the same way, and every product publishes the features it will never ship, whatever the customer asks. The roadmap is public.",
+                  "Signal Studio is built and run by one person, Ethan McNamara, in Limerick, Ireland. The products launch 1 September 2026. signalstudio.ie. hello@signalstudio.ie.",
                 ]}
               />
             </Section>
@@ -114,20 +112,37 @@ export default function PressPage() {
                 </li>
                 <li>
                   <ExternalLink href={SIGNAL_URL}>Signal</ExternalLink>.
-                  Attention clarity. A daily briefing, no LLM in the path.
+                  Attention clarity. A daily briefing. Nothing machine-written.
                 </li>
                 <li>
                   <ExternalLink href={NOTES_URL}>Signal Notes</ExternalLink>.
-                  Capture clarity. Private by design; promotes selectively to
-                  Tasks.
+                  Capture clarity. Private by design. Hands thoughts to Tasks
+                  when they&rsquo;re ready.
                 </li>
               </ul>
+            </Section>
+
+            <Section title="Brand assets">
+              <p>
+                Direct downloads, no request form. Wordmarks, product marks,
+                lockups, and app icons, SVG and PNG, with usage notes in the
+                README:{" "}
+                <ExternalLink href="https://signalstudio.ie/brand/kit/README.md">
+                  the kit
+                </ExternalLink>
+                . The products are live: open them in a browser and
+                screenshot freely. The design system itself is at{" "}
+                <ExternalLink href="https://signalstudio.ie/design">
+                  signalstudio.ie/design
+                </ExternalLink>
+                .
+              </p>
             </Section>
 
             <Section title="Founder bio: 50 words">
               <CopyableQuote
                 paragraphs={[
-                  "Ethan McNamara is the designer and solo founder behind Signal Studio. He built the suite after watching Notion become a wiki, Asana become enterprise software, and the rest of the productivity category turn into a vocabulary tax. Previously designed inside large product organisations; now ships in passes, in public, from Limerick.",
+                  "Ethan McNamara is the founder of Signal Studio and builds all of it: the design, the code, and the words. He started it for the people project software ignores, the 80% who don’t work in tech. He lives and works in Limerick, Ireland.",
                 ]}
               />
             </Section>
@@ -137,8 +152,7 @@ export default function PressPage() {
                 <ExternalLink href="mailto:hello@signalstudio.ie">
                   hello@signalstudio.ie
                 </ExternalLink>
-                . Replies within twenty-four hours, including weekends if
-                the deadline is real. No publicist between us.
+                . Replies within a day, sooner if you&rsquo;re on deadline.
               </p>
             </Section>
 
@@ -157,8 +171,8 @@ export default function PressPage() {
             ) : null}
 
             <p className="border-t border-border-soft pt-6 text-[14px] text-ink-quiet">
-              No publicist. No PR firm. No embargo dance. The email above
-              goes to the person who designed and shipped the suite.
+              No publicist. The email goes to the person who built
+              everything on this page.
             </p>
           </div>
         </article>

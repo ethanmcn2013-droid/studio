@@ -27,7 +27,7 @@ const GALLERIES: Room[] = [
   { href: "/brand/press/index.html", name: "The press kit", state: "GALLERY", note: "Release, fact sheet, founder story, usage notes. Photography and screenshots pending." },
   { href: "/brand/collateral/ambassador/index.html", name: "The ambassador kit", state: "GALLERY", note: "The letter, the guide, four templates, the QR card, the notebook spec." },
   { href: "/brand/collateral/venue/index.html", name: "The venue set", state: "GALLERY", note: "One-pager, leave-behind, deck, pricing, pilot card." },
-  { href: "/brand", name: "The brand kit & motion canon", state: "LIVE", note: "Wordmarks, the dot, lockups, app icons, the five gestures." },
+  { href: "/design", name: "The design page & motion canon", state: "LIVE", note: "The dot narrative, five gestures, print plates. Kit files at /brand/kit/." },
 ];
 
 function Row({ r }: { r: Room }) {
