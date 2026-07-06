@@ -25,7 +25,9 @@ type Kind = "studio" | "tasks" | "timeline" | "signal" | "notes";
 
 function glyph(kind: Kind) {
   if (kind === "studio") return "signal studio.";
-  return kind + (kind === "notes" ? "." : "·");
+  // Period for the finished things (notes. signal.), middot for the
+  // working tools (tasks· timeline·) — same rule as the Wordmark itself.
+  return kind + (kind === "notes" || kind === "signal" ? "." : "·");
 }
 
 export function MotionSpecimen({

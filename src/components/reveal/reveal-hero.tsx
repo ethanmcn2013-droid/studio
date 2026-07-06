@@ -20,9 +20,9 @@ export function RevealHero() {
       <div className="reveal-gold-rule" aria-hidden />
 
       {/* Launch note. Names the public-launch date without a ticking counter
-          ("nothing distracting"). A soft indigo aura sweeps its edge and
-          breathes (globals.css .reveal-launch-note) — alive, not flat; reduced
-          motion sees the plain pill. Review issue 4. */}
+          ("nothing distracting"). A quiet band of light crosses the pill's
+          face every few seconds (globals.css .reveal-launch-note), clipped by
+          the pill; reduced motion sees the plain pill. */}
       <p
         className="reveal-launch-note"
         style={{

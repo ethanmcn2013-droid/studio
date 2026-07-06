@@ -655,56 +655,41 @@ body::after { content: none; }
   margin: 0 auto 30px;
 }
 
-/* ── Launch-note pill: soft indigo aura (review issue 4, 2026-07-06) ────────
-   The date pill read flat. A slow indigo arc sweeps around its edge while a
-   gentle glow breathes underneath — Apple-Intelligence register: alive, not a
-   lava lamp. The sweep rotates the gradient (not the element) via a registered
-   custom angle, so the pill shape holds still and only the light travels.
-   Reduced motion gets the original flat pill, no aura. */
-@property --launch-aura-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
+/* ── Launch-note pill: a quiet sheen (recut 2026-07-07) ─────────────────────
+   The previous treatment swept a blurred conic arc around the pill's edge and
+   breathed a glow underneath. Cut: light belongs on the material, not around
+   it. Now one soft band of indigo light crosses the pill's face, clipped by
+   the pill itself. It travels for under two seconds, then the pill rests for
+   the remainder of the cycle. Transform-only, nothing painted outside the
+   shape, no layout shift. Reduced motion sees the plain pill. */
 .reveal-launch-note {
   position: relative;
+  overflow: hidden;
   isolation: isolate;
-}
-.reveal-launch-note::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  z-index: -1;
-  border-radius: 999px;
-  background: conic-gradient(
-    from var(--launch-aura-angle),
-    transparent 0deg,
-    color-mix(in srgb, var(--accent) 60%, transparent) 50deg,
-    transparent 122deg,
-    transparent 360deg
-  );
-  filter: blur(5px);
-  opacity: 0.85;
-  animation: launch-aura-sweep 7s linear infinite;
 }
 .reveal-launch-note::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
-  border-radius: 999px;
-  animation: launch-aura-breathe 4.6s ease-in-out infinite;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 34%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 46%,
+    color-mix(in srgb, var(--accent) 11%, transparent) 50%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 54%,
+    transparent 66%
+  );
+  transform: translateX(-100%);
+  animation: launch-sheen 7.5s ease-in-out infinite;
 }
-@keyframes launch-aura-sweep {
-  to { --launch-aura-angle: 360deg; }
-}
-@keyframes launch-aura-breathe {
-  0%, 100% { box-shadow: 0 0 14px -5px color-mix(in srgb, var(--accent) 20%, transparent); }
-  50% { box-shadow: 0 0 24px -3px color-mix(in srgb, var(--accent) 40%, transparent); }
+@keyframes launch-sheen {
+  0%   { transform: translateX(-100%); }
+  24%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal-launch-note::before { animation: none; opacity: 0; }
-  .reveal-launch-note::after { animation: none; box-shadow: none; }
+  .reveal-launch-note::after { animation: none; transform: translateX(-100%); }
 }
 .reveal-headline {
   /* Sized as a headline, not a hero wall — was clamp(44,104) which
@@ -1871,12 +1856,19 @@ body::after { content: none; }
   white-space: nowrap;
 }
 .brand-mark .word { display: inline-block; line-height: 0.95; }
+/* The period is DRAWN, not typed: Geist's full-stop glyph is square, and
+   the dot is round everywhere or it is not the dot (/design §2 construction:
+   0.15em, baseline-seated, +0.02em bearing). Same 10px ceiling as .md. */
 .brand-mark .pd {
-  color: var(--indigo);
-  font-weight: 600;
-  margin-left: 0.02em;
+  position: relative;
   display: inline-block;
+  width: min(0.15em, 10px);
+  height: min(0.15em, 10px);
+  border-radius: 50%;
+  background: var(--indigo);
+  margin-left: 0.02em;
   transform-origin: center;
+  flex: 0 0 auto;
 }
 .brand-mark .md {
   display: inline-block;
@@ -1906,8 +1898,8 @@ body::after { content: none; }
 }
 .brand-mark[data-variant="signal"].is-live .ring {
   position: absolute;
-  right: 0;
-  bottom: 0.06em;
+  right: -0.015em;
+  bottom: -0.015em;
   width: 0.18em;
   height: 0.18em;
   border-radius: 50%;
@@ -1937,8 +1929,8 @@ body::after { content: none; }
 }
 .brand-mark[data-variant="signal"].is-intro .ring {
   position: absolute;
-  right: 0;
-  bottom: 0.06em;
+  right: -0.015em;
+  bottom: -0.015em;
   width: 0.18em;
   height: 0.18em;
   border-radius: 50%;
@@ -1991,7 +1983,7 @@ body::after { content: none; }
    issue 05: the old gesture was a scaling/pulsing period, which read as a
    square dot rather than a caret.) */
 .brand-mark[data-variant="notes"] .pd {
-  color: transparent;
+  background: transparent; /* the caret bar replaces the drawn dot */
   position: relative;
   width: 0.1em;
 }

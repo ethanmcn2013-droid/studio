@@ -59,7 +59,7 @@ const LEGACY_CSS_VARIANT: Record<Kind, "signal" | "tasks" | "roadmap" | "analyti
  *   - notes.          caret
  *   - tasks·          pulse
  *   - timeline·       sweep
- *   - signal·         tick
+ *   - signal.         tick
  *
  * Period (.pd) is baseline-seated, used by umbrella + nouns.
  * Middot (.md) is lifted toward cap-height, used by verbs.
@@ -98,9 +98,8 @@ export function Wordmark({
       <span className="word">{label}</span>
       {usesPeriod ? (
         <>
-          <span className="pd" aria-hidden>
-            .
-          </span>
+          {/* Drawn, not typed: Geist's "." glyph is square, the dot is round. */}
+          <span className="pd" aria-hidden />
           {resolvedKind === "studio" && (animate || isIntro) ? (
             <span className="ring" aria-hidden />
           ) : null}

@@ -5,11 +5,12 @@ import { MotionSpecimen } from "@/components/brand/motion-specimen";
 import { ReadingProgress } from "@/components/reading-progress";
 import { Arrive } from "@/components/design/arrive";
 import { Dissolve } from "@/components/design/dissolve";
+import { RestDot } from "@/components/design/rest-dot";
 
 export const metadata: Metadata = {
   title: "Design · Signal Studio",
   description:
-    "It starts with a dot. The Signal Studio design system, the dot's construction, the naming rule, the plain-language rule, five motion gestures, one typeface, three colours, and the printed work.",
+    "It starts with a dot. The Signal Studio design system, the dot's construction, the naming rule, the plain-language rule, five motion gestures, ten loading moments, one typeface, three colours, the printed work, and the room where the rest was cut.",
   openGraph: {
     title: "Design · Signal Studio",
     description: "It starts with a dot.",
@@ -183,7 +184,9 @@ const DSN_CSS = `
   line-height: 1;
   color: var(--ink);
 }
-.dsn-cons-mark .dot-period {
+/* The two dot primitives, shared by the construction study (§2) and the
+   naming ledger (§4): em-relative, so they sit correctly at any size. */
+.dsn .dot-period {
   display: inline-block;
   width: 0.15em;
   height: 0.15em;
@@ -191,7 +194,7 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--accent);
 }
-.dsn-cons-mark .dot-middot {
+.dsn .dot-middot {
   display: inline-block;
   width: 0.15em;
   height: 0.15em;
@@ -437,7 +440,73 @@ const DSN_CSS = `
   color: var(--ink-quiet);
 }
 
-/* ── §7 · type specimen + colour ── */
+/* ── §7 · loading ──
+   Three of the ten canonical loading moments (DESIGN.md §13), recreated
+   live at specimen scale. The ready dot breathes forever; the wordmark
+   land and the honest wait play once on arrival, then rest settled. */
+.dsn-load-ready {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dsn-load-breathe 1.8s ease-in-out infinite;
+}
+@keyframes dsn-load-breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.12); opacity: 0.72; }
+}
+.dsn-load-mark {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.dsn-load-sp { width: 0.28em; }
+.dsn-load-ch { display: inline-block; }
+.dsn-arrive.is-in .dsn-load-ch {
+  animation: dsn-load-rise 280ms var(--spring-glide) both;
+}
+@keyframes dsn-load-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.dsn-load-dot {
+  display: inline-block;
+  width: 0.15em;
+  height: 0.15em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: var(--accent);
+  transform-origin: 50% 100%;
+}
+.dsn-arrive.is-in .dsn-load-dot {
+  animation: dsn-load-land 560ms linear 900ms both; /* ds-allow, settle choreography, ball-canon cut */
+}
+@keyframes dsn-load-land {
+  0%   { opacity: 0; transform: translateY(-22px) scale(0.94, 1.08); }
+  10%  { opacity: 1; }
+  45%  { transform: translateY(0) scale(1.36, 0.62); }
+  62%  { transform: translateY(-5px) scale(0.92, 1.10); }
+  78%  { transform: translateY(0) scale(1.14, 0.88); }
+  90%  { transform: translateY(0) scale(0.97, 1.03); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+.dsn-load-wait {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.dsn-arrive.is-in .dsn-load-wait {
+  animation: dsn-load-fade 200ms var(--ease-out) 1600ms both;
+}
+@keyframes dsn-load-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── §8 · type specimen + colour ── */
 .dsn-type-row {
   display: grid;
   grid-template-columns: 132px 1fr;
@@ -455,7 +524,7 @@ const DSN_CSS = `
   color: var(--ink-faint);
 }
 
-/* ── §8 · plates ── */
+/* ── §9–10 · plates ── */
 .dsn-plate {
   border-radius: var(--r-3);
   border: 1px solid var(--hairline);
@@ -479,7 +548,7 @@ const DSN_CSS = `
 }
 .dsn-reject:hover { opacity: 1; filter: saturate(1); }
 
-/* ── §9 · rest ── */
+/* ── rest ── */
 .dsn-bleed {
   position: relative;
   left: 50%;
@@ -492,13 +561,44 @@ const DSN_CSS = `
   height: 14px;
   border-radius: 50%;
   background: var(--accent);
+  transform-origin: 50% 100%;
+}
+.dsn-rest-shadow {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+/* Poke the closing dot and it answers: one volume-held bounce, shadow in
+   sync, then still again. The page's single character moment. */
+.dsn-rest.is-poked .dsn-rest-dot {
+  animation: dsn-poke-dot 640ms linear; /* ds-allow, settle choreography, ball-canon cut */
+}
+.dsn-rest.is-poked .dsn-rest-shadow {
+  animation: dsn-poke-shadow 640ms linear;
+}
+@keyframes dsn-poke-dot {
+  0%   { transform: translateY(0) scale(1, 1); }
+  16%  { transform: translateY(0) scale(1.34, 0.66); }
+  42%  { transform: translateY(-11px) scale(0.90, 1.10); }
+  60%  { transform: translateY(0) scale(1.18, 0.84); }
+  76%  { transform: translateY(-4px) scale(0.96, 1.04); }
+  88%  { transform: translateY(0) scale(1.06, 0.95); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes dsn-poke-shadow {
+  0%   { transform: translateX(-50%) scaleX(1); }
+  16%  { transform: translateX(-50%) scaleX(1.32); }
+  42%  { transform: translateX(-50%) scaleX(0.82); }
+  60%  { transform: translateX(-50%) scaleX(1.18); }
+  76%  { transform: translateX(-50%) scaleX(0.95); }
+  100% { transform: translateX(-50%) scaleX(1); }
 }
 
 /* ── reduced motion, everything already at rest ── */
 @media (prefers-reduced-motion: reduce) {
   .dsn-open, .dsn-period, .dsn-arrive.is-in,
   .dsq-dot, .dsq-shadow,
-  .dsn-job-dot, .dsn-study-dot { animation: none !important; }
+  .dsn-job-dot, .dsn-study-dot,
+  .dsn-load-ready, .dsn-load-ch, .dsn-load-dot, .dsn-load-wait,
+  .dsn-rest.is-poked .dsn-rest-dot, .dsn-rest.is-poked .dsn-rest-shadow { animation: none !important; }
   .dsn-jargon, .dsn-strike::after, .dsn-plain, .dsn-plain-caption { transition: none !important; }
 }
 `;
@@ -515,11 +615,13 @@ const JOBS = [
   { cls: "dsn-job--tick", name: "Reads the signal", line: "Snaps between sample heights. Reading, not streaming." },
 ] as const;
 
+/* Each name carries its own mark, per the §2 construction rule: the period
+   ends the finished things, the middot marks the working tools. */
 const NAMES = [
-  { name: "notes", does: "holds notes." },
-  { name: "tasks", does: "holds tasks." },
-  { name: "timeline", does: "shows the plan." },
-  { name: "signal", does: "tells you what changed." },
+  { name: "notes", mark: "period", does: "holds notes." },
+  { name: "tasks", mark: "middot", does: "holds tasks." },
+  { name: "timeline", mark: "middot", does: "shows the plan." },
+  { name: "signal", mark: "period", does: "tells you what changed." },
 ] as const;
 
 const VOICE = [
@@ -558,16 +660,6 @@ const STUDIES = [
   { cls: "dsn-study--ack", name: "The Acknowledgement", spec: "140ms · ease-out", line: "How a button answers your hand. Quick enough to feel, too quick to watch." },
   { cls: "dsn-study--settle", name: "The Settle", spec: "1.15s · squash & stretch", line: "How the dot lands. Volume held constant through every frame." },
 ] as const;
-
-/* First six of the approved posting queue (founder-approved 2026-07-02). */
-const SOCIAL: Array<{ src: string; alt: string }> = [
-  { src: `${C}/social/s2-belief-b00-ig-square.png`, alt: "Social post, a belief statement, white type on black" },
-  { src: `${C}/social/s1-number-n01-ig-square.png`, alt: "Social post, one large number with a one-line claim" },
-  { src: `${C}/social/s3-beforeafter-schedule-ig-square.png`, alt: "Social post, a messy schedule beside a clear one" },
-  { src: `${C}/social/s2-belief-b03-ig-square.png`, alt: "Social post, a belief statement, indigo emphasis" },
-  { src: `${C}/social/s5-foundernote-quote01-ig-square.png`, alt: "Social post, a short founder note, set like a letter" },
-  { src: `${C}/social/s1-number-n02-ig-square.png`, alt: "Social post, one large number with a one-line claim" },
-];
 
 const REJECTS = [
   { src: `${C}/cards/cardx-broadcast-front-preview.png`, alt: "Rejected card concept, Broadcast", w: 748, h: 522 },
@@ -759,7 +851,13 @@ export default function DesignPage() {
           <div className="mt-10 max-w-[860px]">
             {NAMES.map((n) => (
               <div key={n.name} className="dsn-name-row">
-                <span className="dsn-name">{n.name}</span>
+                <span className="dsn-name">
+                  {n.name}
+                  <span
+                    className={n.mark === "period" ? "dot-period" : "dot-middot"}
+                    aria-hidden
+                  />
+                </span>
                 <span className="dsn-name-does">{n.does}</span>
               </div>
             ))}
@@ -825,9 +923,70 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 7 · Type & colour ───────────────────────────────── */}
+        {/* ── 7 · Loading ─────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="07" eyebrow="Type &amp; colour" title="One typeface. Three colours.">
+          <SectionHead num="07" eyebrow="Loading" title="Even waiting has a shape.">
+            The easy version was one spinner. Instead, every wait in the
+            suite follows one contract: a ten-pixel dot before anything else,
+            a wordmark that lands to place you, and after five real seconds,
+            a sentence instead of a bar.
+          </SectionHead>
+
+          <div className="dsn-studies mt-10">
+            <div className="dsn-study">
+              <div className="dsn-study-stage" aria-hidden>
+                <span className="dsn-load-ready" />
+              </div>
+              <div className="dsn-study-name">The ready dot</div>
+              <div className="dsn-study-spec">10px · painted first</div>
+              <div className="dsn-study-line">
+                On screen before anything else renders. Breathing, not spinning.
+              </div>
+            </div>
+            <div className="dsn-study">
+              <div className="dsn-study-stage" aria-hidden>
+                <span className="dsn-load-mark">
+                  {"signal studio".split("").map((ch, i) =>
+                    ch === " " ? (
+                      <span key={i} className="dsn-load-sp" />
+                    ) : (
+                      <span
+                        key={i}
+                        className="dsn-load-ch"
+                        style={{ animationDelay: `${i * 55}ms` }}
+                      >
+                        {ch}
+                      </span>
+                    ),
+                  )}
+                  <span className="dsn-load-dot" />
+                </span>
+              </div>
+              <div className="dsn-study-name">The wordmark lands</div>
+              <div className="dsn-study-spec">55ms stagger · one landing</div>
+              <div className="dsn-study-line">
+                Cold entry. The name assembles, the dot lands, you know where
+                you are.
+              </div>
+            </div>
+            <div className="dsn-study">
+              <div className="dsn-study-stage" aria-hidden>
+                <span className="dsn-load-wait">Opening the briefing.</span>
+              </div>
+              <div className="dsn-study-name">The honest wait</div>
+              <div className="dsn-study-spec">5.0s · real timer</div>
+              <div className="dsn-study-line">
+                No fake progress. After five real seconds, a sentence says
+                what is happening.
+              </div>
+            </div>
+          </div>
+          <SpecLine>ten moments · five products · one contract · no spinner in the system</SpecLine>
+        </Arrive>
+
+        {/* ── 8 · Type & colour ───────────────────────────────── */}
+        <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
+          <SectionHead num="08" eyebrow="Type &amp; colour" title="One typeface. Three colours.">
             Geist, at every size we use and no others. Ink, paper, indigo:
             the whole palette. Restraint is a feature.
           </SectionHead>
@@ -905,32 +1064,27 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 8 · Care you can hold ───────────────────────────── */}
+        {/* ── 9 · Care you can hold ───────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="08" eyebrow="In the world" title="Care you can hold.">
-            350–400gsm uncoated. Rich black. One indigo, matched across every
-            piece. The QR goes where we go.
+          <SectionHead num="09" eyebrow="In the world" title="Care you can hold.">
+            Three cards. 350–400gsm uncoated, rich black, one indigo matched
+            across every piece. The QR goes where we go.
           </SectionHead>
 
+          {/* One card per colour: indigo, paper, ink. The whole palette,
+              held in the hand. */}
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Plate src={`${C}/cards/cardx-ink-front-preview.png`} alt="Business card, Ink, signal studio wordmark on black" width={748} height={522} />
-            <Plate src={`${C}/cards/cardx-indigo-front-preview.png`} alt="Business card, Indigo, wordmark on indigo" width={748} height={522} />
-            <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Business card, Duo, split black and indigo face" width={748} height={522} />
-          </div>
-          <div className="mt-5 grid gap-5 lg:grid-cols-3">
-            <Plate src={`${C}/cards/cardx-ink-back-preview.png`} alt="Business card reverse, QR code, lower right" width={748} height={522} />
-            <Plate src={`${C}/identity/founder-card-front-preview.png`} alt="Founder card front, name and title" width={748} height={522} />
-            <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card reverse, QR to the site" width={748} height={522} />
-          </div>
-
-          <div className="mt-12 grid items-start gap-5 sm:grid-cols-2">
-            <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign, “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} sizes="(max-width: 768px) 100vw, 480px" />
-            <div className="max-w-[42ch] pt-2">
-              <p className="text-pretty text-[15.5px] leading-relaxed text-ink-soft">
-                The café card sits by tills and counters around Limerick.
-                One sentence, one QR, nothing to explain.
-              </p>
-              <SpecLine>café card A5 · from the approved print set</SpecLine>
+            <div>
+              <Plate src={`${C}/identity/fp-card-preview.png`} alt="Founding Partner card, indigo, numbered one of twenty-five" width={748} height={522} />
+              <SpecLine>the founding partner card · one of 25 · indigo</SpecLine>
+            </div>
+            <div>
+              <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card, paper face, name and contact details" width={748} height={522} />
+              <SpecLine>the founder&rsquo;s card · paper · QR on the reverse</SpecLine>
+            </div>
+            <div>
+              <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Duo card, rich black face with QR, indigo reverse" width={748} height={522} />
+              <SpecLine>the duo card · ink face, indigo reverse · one QR</SpecLine>
             </div>
           </div>
 
@@ -945,41 +1099,28 @@ export default function DesignPage() {
               </p>
             </div>
           </div>
+        </Arrive>
 
-          <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
-            {SOCIAL.map((post) => (
-              <Plate key={post.src} src={post.src} alt={post.alt} width={1080} height={1080} />
-            ))}
-          </div>
-          <SpecLine>from the approved six-week queue · two a week · alt text on every image</SpecLine>
-
-          {/* the rejects, taste is choosing */}
-          <div className="mt-16 max-w-[760px]">
-            <h3 className="text-[clamp(18px,2.2vw,22px)] font-semibold tracking-[-0.01em] text-ink">
-              What we said no to.
-            </h3>
-            <p className="mt-2 max-w-[54ch] text-pretty text-[14.5px] leading-relaxed text-ink-soft">
-              Three cards shipped; three didn&rsquo;t. Four café concepts; one
-              counter. Taste is mostly the word no.
-            </p>
-          </div>
+        {/* ── 10 · The room ───────────────────────────────────── */}
+        <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
+          <SectionHead num="10" eyebrow="The room" title="Nothing ships its first draft.">
+            Every surface here spent time in a room first: built several
+            ways, compared side by side, cut to one. Signal&rsquo;s front page
+            auditioned five ways. Six cards were designed; three shipped.
+            Taste is mostly the word no.
+          </SectionHead>
           <div className="mt-8 grid grid-cols-3 gap-4 md:grid-cols-6">
             {REJECTS.map((r) => (
               <Plate key={r.src} src={r.src} alt={r.alt} width={r.w} height={r.h} reject />
             ))}
           </div>
+          <SpecLine>the concepts that lost · dimmed on purpose</SpecLine>
         </Arrive>
 
-        {/* ── 9 · Rest ────────────────────────────────────────── */}
+        {/* ── Rest ────────────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 pb-8 pt-16 md:pt-24">
           <div className="max-w-[760px]">
-            <div className="relative mb-7 h-[18px] w-[14px]" aria-hidden>
-              <span className="dsn-rest-dot absolute top-0" />
-              <span
-                className="absolute bottom-0 left-1/2 h-[3px] w-[16px] -translate-x-1/2 rounded-full"
-                style={{ background: "color-mix(in srgb, var(--accent) 30%, transparent)" }}
-              />
-            </div>
+            <RestDot />
             <p className="text-[clamp(20px,2.6vw,27px)] font-semibold leading-snug tracking-[-0.015em] text-ink">
               The products arrive 1 September.
               <br />
