@@ -69,6 +69,14 @@ const nextConfig: NextConfig = {
         destination: "/students",
         permanent: true,
       },
+      {
+        // The brand page retired 2026-07-06; /design carries the system now.
+        // Exact-path match only — /brand/* static assets (kit, collateral,
+        // loader.html) keep serving from public/brand/.
+        source: "/brand",
+        destination: "/design",
+        permanent: true,
+      },
     ];
   },
   experimental: {

@@ -107,14 +107,14 @@ export default async function DispatchPage() {
             operator-voice version. Each entry is one update, something
             sent. Larger arcs of work are called passes. Conventions:{" "}
             <a
-              href="/brand"
+              href="/design"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
               brand §6.5
             </a>{" "}
             (dispatch shape) ·{" "}
             <a
-              href="/brand"
+              href="/design"
               className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
               §6.6

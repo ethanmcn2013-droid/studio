@@ -36,30 +36,29 @@ export default function AboutPage() {
                 className="leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Signal Studio is for the people work runs through. Wedding
-                planners. Tradespeople. Freelancers. Students. Small-business
-                operators. People with real deadlines and no patience for a
-                tool that wants them to learn project management first.
+                Signal Studio makes work software for people who don&rsquo;t work
+                in software. Wedding planners. Tradespeople. Students. Small
+                businesses. People with real deadlines who shouldn&rsquo;t
+                have to learn project management to meet them.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Four products, one system. Notes catches the work as it
-                happens. Tasks runs it. Timeline shows where it&rsquo;s going.
-                Signal tells you what needs attention. Each does one thing;
-                together they read as one calm whole.
+                Four products, one system. Notes catches ideas before they get
+                lost. Tasks keeps the work moving. Timeline shows everyone
+                the plan. Signal tells you what changed and what needs you
+                today.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Not a productivity suite. Those tell you to do more; this
-                tells you what matters. Not a project manager. No sprints,
-                no epics, no burndown, just plain English. Calm coordination,
-                not enterprise power.
+                No sprints. No dashboards to babysit. No new vocabulary. If
+                software needs a training course, it has already failed
+                you.
               </p>
             </div>
 
@@ -170,8 +169,8 @@ export default function AboutPage() {
                 className="text-[12.5px] leading-[1.6] text-ink-faint"
                 style={{ letterSpacing: "0.005em" }}
               >
-                Boring on purpose. Built slowly. Everything important, nothing
-                distracting.
+                Boring on purpose. Built slowly, in Limerick. Everything
+                important, nothing decorative.
               </p>
             </div>
           </div>

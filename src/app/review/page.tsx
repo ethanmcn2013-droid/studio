@@ -70,7 +70,7 @@ const STUDIO_PAGES: { label: string; href: string }[] = [
   { label: "Venues", href: "/venues" },
   { label: "Weddings", href: "/weddings" },
   { label: "Press", href: "/press" },
-  { label: "Brand", href: "/brand" },
+  { label: "Design", href: "/design" },
   { label: "About", href: "/about" },
   { label: "Proof", href: "/proof" },
 ];

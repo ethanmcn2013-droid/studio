@@ -229,6 +229,23 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--accent);
 }
+.dsn-job--period .dsn-job-dot { position: relative; }
+.dsn-job--period .dsn-job-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+}
+.dsn-arrive.is-in .dsn-job--period .dsn-job-dot::after {
+  animation: dsn-job-broadcast 2.6s var(--spring-glide) 600ms 1 both;
+}
+@keyframes dsn-job-broadcast {
+  0%   { opacity: 0.9; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(3.4); }
+  100% { opacity: 0;   transform: scale(3.4); }
+}
 .dsn-job--sweep .dsn-job-stage::after {
   content: "";
   position: absolute;
@@ -437,23 +454,6 @@ const DSN_CSS = `
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-.dsn-swatch {
-  border-radius: var(--r-3);
-  border: 1px solid var(--hairline);
-  overflow: hidden;
-}
-.dsn-swatch-face { height: 104px; }
-.dsn-swatch-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 10px 12px;
-  font-family: var(--font-mono, monospace);
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-quiet);
-}
 
 /* ── §8 · plates ── */
 .dsn-plate {
@@ -480,12 +480,18 @@ const DSN_CSS = `
 .dsn-reject:hover { opacity: 1; filter: saturate(1); }
 
 /* ── §9 · rest ── */
+.dsn-bleed {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--ink);
+}
 .dsn-rest-dot {
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: var(--accent);
-  margin-bottom: 26px;
 }
 
 /* ── reduced motion, everything already at rest ── */
@@ -502,7 +508,7 @@ const C = "/brand/collateral";
 /* Five gestures, recast as the dot's five jobs (§3). Timings are the
    ratified cycles (DESIGN.md §5). */
 const JOBS = [
-  { cls: "", name: "Ends the name", line: "signal studio., said once, seated on the baseline." },
+  { cls: "dsn-job--period", name: "Ends the name", line: "signal studio., said once, seated on the baseline." },
   { cls: "dsn-job--caret", name: "Blinks while you think", line: "The caret in Notes. A thought mid-formation." },
   { cls: "dsn-job--pulse", name: "Pulses while work runs", line: "Tasks at rest breathe; under load they quicken." },
   { cls: "dsn-job--sweep", name: "Travels the plan", line: "Timeline's dot walks the line. Direction without urgency." },
@@ -510,10 +516,10 @@ const JOBS = [
 ] as const;
 
 const NAMES = [
-  { name: "Notes", does: "holds notes." },
-  { name: "Tasks", does: "holds tasks." },
-  { name: "Timeline", does: "shows the plan." },
-  { name: "Signal", does: "tells you what changed." },
+  { name: "notes", does: "holds notes." },
+  { name: "tasks", does: "holds tasks." },
+  { name: "timeline", does: "shows the plan." },
+  { name: "signal", does: "tells you what changed." },
 ] as const;
 
 const VOICE = [
@@ -572,29 +578,36 @@ const REJECTS = [
   { src: `${C}/explorations/cafex-ink-preview.png`, alt: "Rejected café concept, Ink", w: 900, h: 1224 },
 ] as const;
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ num, children }: { num?: string; children: React.ReactNode }) {
   return (
     <div
       className="mb-6 text-[11px] font-semibold uppercase"
       style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
     >
+      {num ? (
+        <span aria-hidden className="mr-2 font-mono font-normal text-ink-faint">
+          {num}
+        </span>
+      ) : null}
       {children}
     </div>
   );
 }
 
 function SectionHead({
+  num,
   eyebrow,
   title,
   children,
 }: {
+  num?: string;
   eyebrow: string;
   title: string;
   children?: React.ReactNode;
 }) {
   return (
     <div className="max-w-[760px]">
-      <Eyebrow>{eyebrow}</Eyebrow>
+      <Eyebrow num={num}>{eyebrow}</Eyebrow>
       <h2 className="text-balance text-[clamp(24px,3.2vw,34px)] font-semibold leading-[1.15] tracking-[-0.015em] text-ink">
         {title}
       </h2>
@@ -649,7 +662,7 @@ export default function DesignPage() {
     <>
       <ReadingProgress />
       <style dangerouslySetInnerHTML={{ __html: DSN_CSS }} />
-      <main id="main" tabIndex={-1} className="dsn flex flex-1 flex-col">
+      <main id="main" tabIndex={-1} className="dsn flex flex-1 flex-col overflow-x-clip">
         {/* ── 1 · The dot ─────────────────────────────────────── */}
         <section className="relative mx-auto flex min-h-[68vh] w-full max-w-[1240px] flex-col justify-center px-6 pb-10 pt-16 md:pt-20">
           <div aria-hidden className="dsq-origin hidden sm:block">
@@ -659,7 +672,7 @@ export default function DesignPage() {
 
           <div className="max-w-[760px]">
             <div className="dsn-open">
-              <Eyebrow>Design</Eyebrow>
+              <Eyebrow num="01">Design</Eyebrow>
               <h1
                 aria-label="It starts with a dot."
                 className="text-balance text-[clamp(44px,7.4vw,88px)] font-semibold leading-[1.02] tracking-[-0.025em] text-ink"
@@ -674,7 +687,7 @@ export default function DesignPage() {
 
         {/* ── 2 · Two dots, actually ──────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Construction" title="Two dots, actually.">
+          <SectionHead num="02" eyebrow="Construction" title="Two dots, actually.">
             The period sits on the baseline and ends a name. The middot floats
             toward cap-height and marks the working tools. Neither is
             decoration. Both are set, not placed.
@@ -721,7 +734,7 @@ export default function DesignPage() {
 
         {/* ── 3 · The dot becomes ─────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="The thread" title="The dot becomes.">
+          <SectionHead num="03" eyebrow="The thread" title="The dot becomes.">
             It ends our name. It blinks while you think. It pulses while work
             runs. It travels the plan. It reads the signal. One mark, five
             jobs, the whole system in miniature.
@@ -742,7 +755,7 @@ export default function DesignPage() {
 
         {/* ── 4 · Naming ──────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Names" title="Named so you don't have to ask." />
+          <SectionHead num="04" eyebrow="Names" title="Named so you don't have to ask." />
           <div className="mt-10 max-w-[860px]">
             {NAMES.map((n) => (
               <div key={n.name} className="dsn-name-row">
@@ -756,7 +769,7 @@ export default function DesignPage() {
 
         {/* ── 5 · The dissolve ────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Plain language" title="Most project software talks like this:" />
+          <SectionHead num="05" eyebrow="Plain language" title="Most project software talks like this:" />
           <div className="mt-10">
             <Dissolve />
           </div>
@@ -787,7 +800,7 @@ export default function DesignPage() {
 
         {/* ── 6 · Motion ──────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Motion" title="Nothing moves without a reason.">
+          <SectionHead num="06" eyebrow="Motion" title="Nothing moves without a reason.">
             Five wordmarks, five gestures. The entire animation vocabulary of
             the suite. Hover to replay, click to freeze.
           </SectionHead>
@@ -814,12 +827,12 @@ export default function DesignPage() {
 
         {/* ── 7 · Type & colour ───────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="Type &amp; colour" title="One typeface. Three colours.">
+          <SectionHead num="07" eyebrow="Type &amp; colour" title="One typeface. Three colours.">
             Geist, at every size we use and no others. Ink, paper, indigo:
             the whole palette. Restraint is a feature.
           </SectionHead>
 
-          <div className="mt-10 grid items-start gap-10 lg:grid-cols-[3fr_2fr]">
+          <div className="mt-10 max-w-[860px]">
             <div>
               <div className="dsn-type-row">
                 <span className="dsn-type-label">display · 600</span>
@@ -840,21 +853,6 @@ export default function DesignPage() {
               <div className="dsn-type-row">
                 <span className="dsn-type-label">mono · 400</span>
                 <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-quiet">Specs, labels, and the truth</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="dsn-swatch">
-                <div className="dsn-swatch-face" style={{ background: "var(--ink)" }} />
-                <div className="dsn-swatch-meta"><span>Ink</span><span>K100</span></div>
-              </div>
-              <div className="dsn-swatch">
-                <div className="dsn-swatch-face" style={{ background: "var(--paper)" }} />
-                <div className="dsn-swatch-meta"><span>Paper</span><span>uncoated</span></div>
-              </div>
-              <div className="dsn-swatch">
-                <div className="dsn-swatch-face" style={{ background: "var(--accent)" }} />
-                <div className="dsn-swatch-meta"><span>Indigo</span><span>PMS 2726C</span></div>
               </div>
             </div>
           </div>
@@ -909,7 +907,7 @@ export default function DesignPage() {
 
         {/* ── 8 · Care you can hold ───────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead eyebrow="In the world" title="Care you can hold.">
+          <SectionHead num="08" eyebrow="In the world" title="Care you can hold.">
             350–400gsm uncoated. Rich black. One indigo, matched across every
             piece. The QR goes where we go.
           </SectionHead>
@@ -925,11 +923,28 @@ export default function DesignPage() {
             <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card reverse, QR to the site" width={748} height={522} />
           </div>
 
-          <div className="mt-12 grid items-start gap-5 md:grid-cols-[2fr_3fr]">
+          <div className="mt-12 grid items-start gap-5 sm:grid-cols-2">
             <Plate src={`${C}/identity/cafe-card-preview.png`} alt="Café card, Campaign, “Calm coordination, built in Limerick.” on black with QR" width={900} height={1224} sizes="(max-width: 768px) 100vw, 480px" />
-            <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink, “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} sizes="(max-width: 768px) 100vw, 740px" />
+            <div className="max-w-[42ch] pt-2">
+              <p className="text-pretty text-[15.5px] leading-relaxed text-ink-soft">
+                The café card sits by tills and counters around Limerick.
+                One sentence, one QR, nothing to explain.
+              </p>
+              <SpecLine>café card A5 · from the approved print set</SpecLine>
+            </div>
           </div>
-          <SpecLine>café card A5 · poster A2 · from the approved print set</SpecLine>
+
+          {/* the poster gets a spread of its own: ink field, paper caption */}
+          <div className="dsn-bleed mt-16">
+            <div className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
+              <div className="mx-auto max-w-[820px]">
+                <Plate src={`${C}/identity/campaign-poster-preview.png`} alt="Poster, Ink, “Most projects never get called one.” in white and indigo on black" width={3280} height={4596} sizes="(max-width: 768px) 100vw, 820px" />
+              </div>
+              <p className="mx-auto mt-6 max-w-[820px] text-center font-mono text-[11px] uppercase tracking-[0.08em]" style={{ color: "color-mix(in srgb, var(--paper) 60%, transparent)" }}>
+                the poster · A2 · rich black · one indigo
+              </p>
+            </div>
+          </div>
 
           <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
             {SOCIAL.map((post) => (
@@ -958,7 +973,13 @@ export default function DesignPage() {
         {/* ── 9 · Rest ────────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 pb-8 pt-16 md:pt-24">
           <div className="max-w-[760px]">
-            <div className="dsn-rest-dot" aria-hidden />
+            <div className="relative mb-7 h-[18px] w-[14px]" aria-hidden>
+              <span className="dsn-rest-dot absolute top-0" />
+              <span
+                className="absolute bottom-0 left-1/2 h-[3px] w-[16px] -translate-x-1/2 rounded-full"
+                style={{ background: "color-mix(in srgb, var(--accent) 30%, transparent)" }}
+              />
+            </div>
             <p className="text-[clamp(20px,2.6vw,27px)] font-semibold leading-snug tracking-[-0.015em] text-ink">
               The products arrive 1 September.
               <br />

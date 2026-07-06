@@ -93,7 +93,7 @@ export function SiteFooter() {
           heading="Resources"
           links={[
             { href: "/dispatch", label: "Dispatch" },
-            { href: "/brand", label: "Brand" },
+            { href: "/design", label: "Design" },
             { href: "/ios", label: "iOS app" },
             { href: "/venues", label: "Venues" },
             { href: "/weddings", label: "Weddings" },
