@@ -19,9 +19,10 @@ export function RevealHero() {
     >
       <div className="reveal-gold-rule" aria-hidden />
 
-      {/* Launch note, restrained, static. The suite is in private preview;
-          this names the public-launch date without a ticking counter
-          ("nothing distracting"). Review issue 14. */}
+      {/* Launch note. Names the public-launch date without a ticking counter
+          ("nothing distracting"). A soft indigo aura sweeps its edge and
+          breathes (globals.css .reveal-launch-note) — alive, not flat; reduced
+          motion sees the plain pill. Review issue 4. */}
       <p
         className="reveal-launch-note"
         style={{

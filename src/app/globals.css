@@ -654,6 +654,58 @@ body::after { content: none; }
   background: var(--accent);
   margin: 0 auto 30px;
 }
+
+/* ── Launch-note pill: soft indigo aura (review issue 4, 2026-07-06) ────────
+   The date pill read flat. A slow indigo arc sweeps around its edge while a
+   gentle glow breathes underneath — Apple-Intelligence register: alive, not a
+   lava lamp. The sweep rotates the gradient (not the element) via a registered
+   custom angle, so the pill shape holds still and only the light travels.
+   Reduced motion gets the original flat pill, no aura. */
+@property --launch-aura-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.reveal-launch-note {
+  position: relative;
+  isolation: isolate;
+}
+.reveal-launch-note::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 999px;
+  background: conic-gradient(
+    from var(--launch-aura-angle),
+    transparent 0deg,
+    color-mix(in srgb, var(--accent) 60%, transparent) 50deg,
+    transparent 122deg,
+    transparent 360deg
+  );
+  filter: blur(5px);
+  opacity: 0.85;
+  animation: launch-aura-sweep 7s linear infinite;
+}
+.reveal-launch-note::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 999px;
+  animation: launch-aura-breathe 4.6s ease-in-out infinite;
+}
+@keyframes launch-aura-sweep {
+  to { --launch-aura-angle: 360deg; }
+}
+@keyframes launch-aura-breathe {
+  0%, 100% { box-shadow: 0 0 14px -5px color-mix(in srgb, var(--accent) 20%, transparent); }
+  50% { box-shadow: 0 0 24px -3px color-mix(in srgb, var(--accent) 40%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-launch-note::before { animation: none; opacity: 0; }
+  .reveal-launch-note::after { animation: none; box-shadow: none; }
+}
 .reveal-headline {
   /* Sized as a headline, not a hero wall — was clamp(44,104) which
      read at full hero scale and crowded the page. This sits a clear
