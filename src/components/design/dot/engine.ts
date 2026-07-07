@@ -233,7 +233,7 @@ export class DotEngine {
     };
     if (opts.bridge !== false && bt && bt !== "none") {
       const swap = M.origin !== this.origin;
-      const dur = swap ? 320 : 260;
+      const dur = swap ? 200 : 150;
       const bA = this.p.body.animate(
         [{ transform: bt, easing: EASE.out }, { transform: IDLE_T }],
         { duration: dur, fill: "forwards" },
