@@ -8,6 +8,7 @@ import { Dissolve } from "@/components/design/dissolve";
 import { RestDot } from "@/components/design/rest-dot";
 import { FlipCard } from "@/components/design/flip-card";
 import { DotCharacter } from "@/components/design/dot/dot-character";
+import { LoadingCanon } from "@/components/design/loading-canon";
 
 export const metadata: Metadata = {
   title: "Design · Signal Studio",
@@ -632,73 +633,10 @@ const DSN_CSS = `
   color: var(--ink-quiet);
 }
 
-/* ── §7 · loading ──
-   Three of the ten canonical loading moments (DESIGN.md §13), recreated
-   live at specimen scale. The ready dot breathes forever; the wordmark
-   land and the honest wait play once on arrival, then rest settled. */
-.dsn-load-ready {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: dsn-load-breathe 1.8s ease-in-out infinite;
-}
-@keyframes dsn-load-breathe {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.12); opacity: 0.72; }
-}
-.dsn-load-mark {
-  display: inline-flex;
-  align-items: baseline;
-  font-size: clamp(24px, 2.6vw, 32px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: var(--ink);
-}
-.dsn-load-sp { width: 0.28em; }
-.dsn-load-ch { display: inline-block; }
-.dsn-arrive.is-in .dsn-load-ch {
-  animation: dsn-load-rise 280ms var(--spring-glide) both;
-}
-@keyframes dsn-load-rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.dsn-load-dot {
-  display: inline-block;
-  width: 0.15em;
-  height: 0.15em;
-  margin-left: 0.06em;
-  border-radius: 50%;
-  background: var(--accent);
-  transform-origin: 50% 100%;
-}
-.dsn-arrive.is-in .dsn-load-dot {
-  animation: dsn-load-land 560ms linear 900ms both; /* ds-allow, settle choreography, ball-canon cut */
-}
-@keyframes dsn-load-land {
-  0%   { opacity: 0; transform: translateY(-22px) scale(0.94, 1.08); }
-  10%  { opacity: 1; }
-  45%  { transform: translateY(0) scale(1.36, 0.62); }
-  62%  { transform: translateY(-5px) scale(0.92, 1.10); }
-  78%  { transform: translateY(0) scale(1.14, 0.88); }
-  90%  { transform: translateY(0) scale(0.97, 1.03); }
-  100% { transform: translateY(0) scale(1, 1); }
-}
-.dsn-load-wait {
-  font-size: 14.5px;
-  color: var(--ink-soft);
-}
-.dsn-arrive.is-in .dsn-load-wait {
-  animation: dsn-load-fade 200ms var(--ease-out) 1600ms both;
-}
-@keyframes dsn-load-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+/* ── §8 loading lives in components/design/loading-canon.tsx: the ten
+   review-room specimens, played on the shared dsn-dot stage grammar ── */
 
-/* ── §8 · type specimen + colour ── */
+/* ── §9 · type specimen + colour ── */
 .dsn-type-row {
   display: grid;
   grid-template-columns: 132px 1fr;
@@ -842,7 +780,6 @@ const DSN_CSS = `
   .dsn-open, .dsn-period, .dsn-arrive.is-in,
   .dsq-dot, .dsq-shadow,
   .dsn-job-dot, .dsn-study-dot,
-  .dsn-load-ready, .dsn-load-ch, .dsn-load-dot, .dsn-load-wait,
   .dsn-dot-label,
   .dsn-rest.is-poked .dsn-rest-dot, .dsn-rest.is-poked .dsn-rest-shadow { animation: none !important; }
   .dsn-jargon, .dsn-strike::after, .dsn-plain, .dsn-plain-caption { transition: none !important; }
@@ -1187,62 +1124,23 @@ export default function DesignPage() {
         {/* ── 8 · Loading ─────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
           <SectionHead num="08" eyebrow="Loading" title="Even waiting has a shape.">
-            The easy version was one spinner. Instead, every wait in the
-            suite follows one contract: a ten-pixel dot before anything else,
-            a wordmark that lands to place you, and after five real seconds,
-            a sentence instead of a bar.
+            The easy version was one spinner. Instead, ten loading moments
+            share one contract: a ten-pixel dot before anything else, one
+            indigo, no fake progress, and nothing re-blanks once the chrome
+            is up. The reel plays all ten; the index jumps.
           </SectionHead>
 
-          <div className="dsn-studies mt-10">
-            <div className="dsn-study">
-              <div className="dsn-study-stage" aria-hidden>
-                <span className="dsn-load-ready" />
-              </div>
-              <div className="dsn-study-name">The ready dot</div>
-              <div className="dsn-study-spec">10px · painted first</div>
-              <div className="dsn-study-line">
-                On screen before anything else renders. Breathing, not spinning.
-              </div>
-            </div>
-            <div className="dsn-study">
-              <div className="dsn-study-stage" aria-hidden>
-                <span className="dsn-load-mark">
-                  {"signal studio".split("").map((ch, i) =>
-                    ch === " " ? (
-                      <span key={i} className="dsn-load-sp" />
-                    ) : (
-                      <span
-                        key={i}
-                        className="dsn-load-ch"
-                        style={{ animationDelay: `${i * 55}ms` }}
-                      >
-                        {ch}
-                      </span>
-                    ),
-                  )}
-                  <span className="dsn-load-dot" />
-                </span>
-              </div>
-              <div className="dsn-study-name">The wordmark lands</div>
-              <div className="dsn-study-spec">55ms stagger · one landing</div>
-              <div className="dsn-study-line">
-                Cold entry. The name assembles, the dot lands, you know where
-                you are.
-              </div>
-            </div>
-            <div className="dsn-study">
-              <div className="dsn-study-stage" aria-hidden>
-                <span className="dsn-load-wait">Opening the briefing.</span>
-              </div>
-              <div className="dsn-study-name">The honest wait</div>
-              <div className="dsn-study-spec">5.0s · real timer</div>
-              <div className="dsn-study-line">
-                No fake progress. After five real seconds, a sentence says
-                what is happening.
-              </div>
-            </div>
-          </div>
-          <SpecLine>ten moments · five products · one contract · no spinner in the system</SpecLine>
+          <LoadingCanon />
+
+          <SpecLine>
+            ten moments · five products · one contract · no spinner in the system ·{" "}
+            <a
+              href="/brand/loading-review-2026.html"
+              className="underline underline-offset-2 transition-colors hover:text-ink"
+            >
+              the review room
+            </a>
+          </SpecLine>
         </Arrive>
 
         {/* ── 9 · Type & colour ───────────────────────────────── */}
