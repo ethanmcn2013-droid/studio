@@ -1343,55 +1343,58 @@ body::after { content: none; }
   font-weight: 500;
   text-wrap: pretty;
 }
+/* The meta row is an editorial index line, not a row of chips (recut
+   2026-07-07, review issues 01–03): one hairline above, mono uppercase
+   terms separated by middots, the availability dot on the first term,
+   the open-CTA holding the right edge. Hairlines do the work of boxes. */
 .reveal-product-row .meta {
   display: flex;
-  gap: 14px;
-  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding-top: 11px;
+  margin-top: 14px;
   font-family: var(--font-mono-stack);
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--ink-500);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 4px;
+  transition: border-color var(--motion-base) var(--ease-out);
 }
-.reveal-product-row .meta .pill {
+/* On row hover the hairline firms from faint to defined — quiet feedback. */
+.reveal-product-row:hover .meta {
+  border-color: var(--ink-300);
+}
+.reveal-product-row .meta .term {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 11px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: transparent;
+  gap: 7px;
   color: var(--ink-600);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  transition:
-    border-color var(--motion-base) var(--ease-out),
-    color var(--motion-base) var(--ease-out);
+  line-height: 1.5;
+  white-space: nowrap;
+  transition: color var(--motion-base) var(--ease-out);
 }
-/* The leading pill carries the indigo brand dot — an availability cue,
-   the same status grammar as the green "Live now" dot on /pricing. */
-.reveal-product-row .meta .pill:first-child::before {
+.reveal-product-row .meta .term + .term::before {
+  content: "·";
+  margin: 0 12px;
+  color: var(--ink-300);
+}
+/* The first term carries the indigo availability dot — the same status
+   grammar as the green "Live now" dot on /pricing. */
+.reveal-product-row .meta .term:first-child::after {
   content: "";
+  order: -1;
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: var(--indigo-600);
   flex: 0 0 auto;
 }
-/* On row hover the hairline firms from faint to defined — quiet feedback. */
-.reveal-product-row:hover .meta .pill {
-  border-color: var(--ink-300);
+.reveal-product-row:hover .meta .term {
   color: var(--ink-700);
 }
-.reveal-product-row .meta .pill.soon {
-  border-color: color-mix(in srgb, var(--indigo-600) 26%, transparent);
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-}
-.reveal-product-row:hover .meta .pill.soon {
-  border-color: color-mix(in srgb, var(--indigo-600) 40%, transparent);
+.reveal-product-row .meta .term.soon {
   color: var(--accent-deep);
 }
 .reveal-product-row .meta .open {

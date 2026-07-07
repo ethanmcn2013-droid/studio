@@ -6,11 +6,13 @@ import { ReadingProgress } from "@/components/reading-progress";
 import { Arrive } from "@/components/design/arrive";
 import { Dissolve } from "@/components/design/dissolve";
 import { RestDot } from "@/components/design/rest-dot";
+import { FlipCard } from "@/components/design/flip-card";
+import { DotCharacter } from "@/components/design/dot/dot-character";
 
 export const metadata: Metadata = {
   title: "Design · Signal Studio",
   description:
-    "It starts with a dot. The Signal Studio design system, the dot's construction, the naming rule, the plain-language rule, five motion gestures, ten loading moments, one typeface, three colours, the printed work, and the room where the rest was cut.",
+    "It starts with a dot. The Signal Studio design system, the dot's construction, Dot the character and its ten moods, the naming rule, the plain-language rule, five motion gestures, ten loading moments, one typeface, three colours, the printed work, and the room where the rest was cut.",
   openGraph: {
     title: "Design · Signal Studio",
     description: "It starts with a dot.",
@@ -309,7 +311,197 @@ const DSN_CSS = `
   color: var(--ink-quiet);
 }
 
-/* ── §4 · naming ── */
+/* ── §4 · the character ──
+   One stage, one Dot, ten moods. Layout only; every movement is owned
+   by the WAAPI engine (components/design/dot). The stage geometry
+   (102px body, shadow plate, floor at 128px) is the model sheet's,
+   verbatim — the engine's pixel amplitudes are calibrated to it. */
+.dsn-dot-lab {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .dsn-dot-lab { grid-template-columns: 1fr; gap: 24px; }
+}
+.dsn-dot-label {
+  min-height: 96px;
+  animation: dsn-dot-swap 220ms var(--ease-out) both;
+}
+@keyframes dsn-dot-swap {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.dsn-dot-toprow { display: flex; align-items: baseline; gap: 10px; }
+.dsn-dot-idx {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.dsn-dot-name {
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.dsn-dot-cap {
+  margin: 10px 0 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+.dsn-dot-note {
+  margin: 6px 0 0;
+  min-height: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--accent);
+  transition: opacity 250ms var(--ease-out);
+}
+.dsn-dot-rail { margin-top: 10px; display: flex; flex-direction: column; }
+@media (max-width: 900px) {
+  .dsn-dot-rail { display: grid; grid-template-columns: 1fr 1fr; }
+}
+.dsn-dot-row {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  padding: 6.5px 12px;
+  margin: 0 -12px;
+  border: 0;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+@media (max-width: 900px) { .dsn-dot-row { margin: 0; } }
+.dsn-dot-row:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.dsn-dot-row:focus-visible { outline: 1.5px solid var(--accent); outline-offset: -1px; }
+.dsn-dot-tick {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  align-self: center;
+  transition: opacity 0.2s ease;
+}
+.dsn-dot-rownum {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  width: 22px;
+  flex: none;
+  transition: color 0.2s ease;
+}
+.dsn-dot-rownum[data-on] { color: var(--accent); }
+.dsn-dot-rowname {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-quiet);
+  flex: 1;
+  transition: color 0.2s ease;
+}
+.dsn-dot-rowname[data-on] { color: var(--ink); font-weight: 600; }
+.dsn-dot-rowdur {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+.dsn-dot-stage {
+  position: relative;
+  height: clamp(420px, 44vw, 540px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-3);
+  background: var(--paper);
+  overflow: hidden;
+}
+.dsn-dot-corner { position: absolute; width: 12px; height: 12px; }
+.dsn-dot-corner--tl { top: 10px; left: 10px; border-top: 1px solid var(--hairline); border-left: 1px solid var(--hairline); }
+.dsn-dot-corner--tr { top: 10px; right: 10px; border-top: 1px solid var(--hairline); border-right: 1px solid var(--hairline); }
+.dsn-dot-corner--bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--hairline); border-left: 1px solid var(--hairline); }
+.dsn-dot-corner--br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--hairline); border-right: 1px solid var(--hairline); }
+.dsn-dot-meta {
+  position: absolute;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.dsn-dot-meta--tl { top: 20px; left: 26px; }
+.dsn-dot-meta--tr { top: 20px; right: 26px; }
+.dsn-dot-meta--bl { bottom: 20px; left: 26px; font-size: 9.5px; }
+.dsn-dot-floor {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 128px;
+  height: 1px;
+  background: var(--hairline);
+}
+.dsn-dot-rig {
+  position: absolute;
+  left: calc(50% - 51px);
+  bottom: 128px;
+  width: 102px;
+  height: 102px;
+}
+.dsn-dot-shadow {
+  position: absolute;
+  left: -9px;
+  top: 97px;
+  width: 120px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.15;
+  filter: blur(11px);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.dsn-dot-ghostwrap { position: absolute; inset: 0; pointer-events: none; }
+.dsn-dot-ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.dsn-dot-drop {
+  position: absolute;
+  left: 57px;
+  top: 79px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.dsn-dot-body {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  transform-origin: 50% 100%;
+  will-change: transform;
+  cursor: grab;
+}
+.dsn-dot-body:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+/* ── §5 · naming ── */
 .dsn-name-row {
   display: flex;
   flex-wrap: wrap;
@@ -524,6 +716,59 @@ const DSN_CSS = `
   color: var(--ink-faint);
 }
 
+/* ── §9 · the card turn ──
+   Hover, click, or Enter turns a card over to its reverse, holds a
+   beat, and settles back. 3D transform only; the timing matches the
+   FlipCard component's FLIP_MS. Reduced motion turns instantly. */
+.dsn-flip {
+  perspective: 1400px;
+  cursor: pointer;
+  outline: none;
+}
+.dsn-flip:focus-visible .dsn-flip-inner {
+  box-shadow: 0 0 0 2px var(--accent);
+  border-radius: var(--r-3);
+}
+.dsn-flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 640ms cubic-bezier(0.3, 0.7, 0.25, 1); /* ds-allow, card-turn choreography, one settle curve */
+}
+.dsn-flip[data-flipped="true"] .dsn-flip-inner {
+  transform: rotateY(180deg);
+}
+.dsn-flip-face {
+  border-radius: var(--r-3);
+  border: 1px solid var(--hairline);
+  background: var(--paper-elev);
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 4%, transparent),
+              0 12px 32px -18px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.dsn-flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+/* The honest blank reverse: indigo stock, the mark alone. */
+.dsn-flip-blank {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+}
+.dsn-flip-blank i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dsn-flip-inner { transition: none; }
+}
+
 /* ── §9–10 · plates ── */
 .dsn-plate {
   border-radius: var(--r-3);
@@ -598,6 +843,7 @@ const DSN_CSS = `
   .dsq-dot, .dsq-shadow,
   .dsn-job-dot, .dsn-study-dot,
   .dsn-load-ready, .dsn-load-ch, .dsn-load-dot, .dsn-load-wait,
+  .dsn-dot-label,
   .dsn-rest.is-poked .dsn-rest-dot, .dsn-rest.is-poked .dsn-rest-shadow { animation: none !important; }
   .dsn-jargon, .dsn-strike::after, .dsn-plain, .dsn-plain-caption { transition: none !important; }
 }
@@ -845,9 +1091,24 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 4 · Naming ──────────────────────────────────────── */}
+        {/* ── 4 · Meet Dot ────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="04" eyebrow="Names" title="Named so you don't have to ask." />
+          <SectionHead num="04" eyebrow="The character" title="Meet Dot.">
+            The same mark, given a working day. Ten moods on one 1.4 second
+            bar: it idles, gets curious, ships something, takes a setback,
+            and finally sleeps. Poke it. Drag it. Or let the reel run.
+          </SectionHead>
+
+          <DotCharacter />
+
+          <SpecLine>
+            transform only · volume held · the shadow is computed, never drawn · rotation only in the air
+          </SpecLine>
+        </Arrive>
+
+        {/* ── 5 · Naming ──────────────────────────────────────── */}
+        <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
+          <SectionHead num="05" eyebrow="Names" title="Named so you don't have to ask." />
           <div className="mt-10 max-w-[860px]">
             {NAMES.map((n) => (
               <div key={n.name} className="dsn-name-row">
@@ -865,9 +1126,9 @@ export default function DesignPage() {
           <SpecLine>If a name needs explaining, it&rsquo;s the wrong name.</SpecLine>
         </Arrive>
 
-        {/* ── 5 · The dissolve ────────────────────────────────── */}
+        {/* ── 6 · The dissolve ────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="05" eyebrow="Plain language" title="Most project software talks like this:" />
+          <SectionHead num="06" eyebrow="Plain language" title="Most project software talks like this:" />
           <div className="mt-10">
             <Dissolve />
           </div>
@@ -896,9 +1157,9 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 6 · Motion ──────────────────────────────────────── */}
+        {/* ── 7 · Motion ──────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="06" eyebrow="Motion" title="Nothing moves without a reason.">
+          <SectionHead num="07" eyebrow="Motion" title="Nothing moves without a reason.">
             Five wordmarks, five gestures. The entire animation vocabulary of
             the suite. Hover to replay, click to freeze.
           </SectionHead>
@@ -923,9 +1184,9 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 7 · Loading ─────────────────────────────────────── */}
+        {/* ── 8 · Loading ─────────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="07" eyebrow="Loading" title="Even waiting has a shape.">
+          <SectionHead num="08" eyebrow="Loading" title="Even waiting has a shape.">
             The easy version was one spinner. Instead, every wait in the
             suite follows one contract: a ten-pixel dot before anything else,
             a wordmark that lands to place you, and after five real seconds,
@@ -984,9 +1245,9 @@ export default function DesignPage() {
           <SpecLine>ten moments · five products · one contract · no spinner in the system</SpecLine>
         </Arrive>
 
-        {/* ── 8 · Type & colour ───────────────────────────────── */}
+        {/* ── 9 · Type & colour ───────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="08" eyebrow="Type &amp; colour" title="One typeface. Three colours.">
+          <SectionHead num="09" eyebrow="Type &amp; colour" title="One typeface. Three colours.">
             Geist, at every size we use and no others. Ink, paper, indigo:
             the whole palette. Restraint is a feature.
           </SectionHead>
@@ -1064,26 +1325,46 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 9 · Care you can hold ───────────────────────────── */}
+        {/* ── 10 · Care you can hold ──────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="09" eyebrow="In the world" title="Care you can hold.">
+          <SectionHead num="10" eyebrow="In the world" title="Care you can hold.">
             Three cards. 350–400gsm uncoated, rich black, one indigo matched
             across every piece. The QR goes where we go.
           </SectionHead>
 
           {/* One card per colour: indigo, paper, ink. The whole palette,
-              held in the hand. */}
+              held in the hand. Each one turns over when asked. */}
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <Plate src={`${C}/identity/fp-card-preview.png`} alt="Founding Partner card, indigo, numbered one of twenty-five" width={748} height={522} />
+              <FlipCard
+                front={`${C}/identity/fp-card-preview.png`}
+                frontAlt="Founding Partner card, indigo, numbered one of twenty-five."
+                backAlt="a plain indigo face carrying only the dot."
+                width={748}
+                height={522}
+              />
               <SpecLine>the founding partner card · one of 25 · indigo</SpecLine>
             </div>
             <div>
-              <Plate src={`${C}/identity/founder-card-back-preview.png`} alt="Founder card, paper face, name and contact details" width={748} height={522} />
+              <FlipCard
+                front={`${C}/identity/founder-card-back-preview.png`}
+                back={`${C}/identity/founder-card-front-preview.png`}
+                frontAlt="Founder card, paper face, name and contact details."
+                backAlt="rich black with the wordmark and the QR."
+                width={748}
+                height={522}
+              />
               <SpecLine>the founder&rsquo;s card · paper · QR on the reverse</SpecLine>
             </div>
             <div>
-              <Plate src={`${C}/cards/cardx-duo-front-preview.png`} alt="Duo card, rich black face with QR, indigo reverse" width={748} height={522} />
+              <FlipCard
+                front={`${C}/cards/cardx-duo-front-preview.png`}
+                back={`${C}/cards/cardx-duo-back-preview.png`}
+                frontAlt="Duo card, rich black face with QR."
+                backAlt="indigo with the founder's name and contact."
+                width={748}
+                height={522}
+              />
               <SpecLine>the duo card · ink face, indigo reverse · one QR</SpecLine>
             </div>
           </div>
@@ -1101,9 +1382,9 @@ export default function DesignPage() {
           </div>
         </Arrive>
 
-        {/* ── 10 · The room ───────────────────────────────────── */}
+        {/* ── 11 · The room ───────────────────────────────────── */}
         <Arrive as="section" className="mx-auto w-full max-w-[1240px] px-6 py-16 md:py-24">
-          <SectionHead num="10" eyebrow="The room" title="Nothing ships its first draft.">
+          <SectionHead num="11" eyebrow="The room" title="Nothing ships its first draft.">
             Every surface here spent time in a room first: built several
             ways, compared side by side, cut to one. Signal&rsquo;s front page
             auditioned five ways. Six cards were designed; three shipped.

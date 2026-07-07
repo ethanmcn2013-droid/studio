@@ -66,11 +66,13 @@ function ProductRow({
       </div>
       <div className="right">
         <p className="essence">{essence}</p>
+        {/* Editorial index line, not chips: hairline above, mono terms
+            separated by middots, status dot on the first term. */}
         <div className="meta">
           {pills.map((label, i) => (
             <span
               key={label}
-              className={`pill${i === 0 && comingSoon ? " soon" : ""}`}
+              className={`term${i === 0 && comingSoon ? " soon" : ""}`}
             >
               {label}
             </span>

@@ -5,12 +5,11 @@
  *
  * The CTA pair is the conversion point the front door deliberately
  * withholds (the hero reads as a headline, not a wall). It serves both
- * audiences the suite actually has: the self-serve operator who can start
- * in Tasks today, and the venue/events buyer whose path is high-touch.
+ * audiences the suite actually has: the person waiting for 1 September
+ * (waiting list), and the venue/events buyer whose path is high-touch.
  */
 
 import Link from "next/link";
-import { tasksSignUpUrl } from "@/lib/product-urls";
 
 export function RevealClosing() {
   return (
@@ -23,11 +22,9 @@ export function RevealClosing() {
       <div className="reveal-closing-cta reveal">
         <a
           className="reveal-cta reveal-cta-primary"
-          href={tasksSignUpUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="mailto:hello@signalstudio.ie?subject=Waiting%20list"
         >
-          Start with Signal Tasks
+          Join the waiting list
           <span className="cta-arrow" aria-hidden>
             {" "}
             →
