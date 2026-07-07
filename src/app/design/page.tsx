@@ -703,6 +703,49 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--paper);
 }
+/* The Founding Partner reverse: typeset live, same geometry as the
+   card family (mark top-left, block bottom-left, mono contact line). */
+.dsn-flip-fpback {
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: var(--accent);
+}
+.dsn-flip-fpback-dot {
+  position: absolute;
+  left: 15.5%;
+  top: 21%;
+  width: 3.2cqw;
+  height: 3.2cqw;
+  border-radius: 50%;
+  background: var(--paper);
+}
+.dsn-flip-fpback-block {
+  position: absolute;
+  left: 15.5%;
+  right: 12%;
+  bottom: 20%;
+  display: grid;
+  gap: 2.4cqw;
+}
+.dsn-flip-fpback-email {
+  font-family: var(--font-mono, monospace);
+  font-size: 4.4cqw;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  line-height: 1;
+}
+.dsn-flip-fpback-line {
+  font-family: var(--font-mono, monospace);
+  font-size: 2.9cqw;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
+  line-height: 1.4;
+}
 @media (prefers-reduced-motion: reduce) {
   .dsn-flip-inner { transition: none; }
 }
@@ -1237,9 +1280,22 @@ export default function DesignPage() {
               <FlipCard
                 front={`${C}/identity/fp-card-preview.png`}
                 frontAlt="Founding Partner card, indigo, numbered one of twenty-five."
-                backAlt="a plain indigo face carrying only the dot."
+                backAlt="indigo reverse with the founder's address and the same-day promise."
                 width={748}
                 height={522}
+                backFace={
+                  <span className="dsn-flip-fpback">
+                    <i className="dsn-flip-fpback-dot" aria-hidden />
+                    <span className="dsn-flip-fpback-block">
+                      <span className="dsn-flip-fpback-email">
+                        ethan@signalstudio.ie
+                      </span>
+                      <span className="dsn-flip-fpback-line">
+                        Founding partners get a same-day reply.
+                      </span>
+                    </span>
+                  </span>
+                }
               />
               <SpecLine>the founding partner card · one of 25 · indigo</SpecLine>
             </div>

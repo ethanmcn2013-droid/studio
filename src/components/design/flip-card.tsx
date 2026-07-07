@@ -9,9 +9,9 @@ import { useEffect, useRef, useState } from "react";
  * One-shot with a hold, not a hover-held state, so the gesture reads as
  * "picking the card up to look at the back" rather than a UI toggle.
  *
- * `back` is optional: the Founding Partner card has no printed reverse
- * (its print PDF is one page), so it turns to an honest quiet face,
- * solid indigo carrying only the dot.
+ * `back` is optional; `backFace` lets a card carry a live-typeset
+ * reverse instead of an image (the Founding Partner card's reverse is
+ * set in code: the founder's address and the same-day promise).
  *
  * Reduced motion: the turn is instant (no rotation travels), same hold.
  */
@@ -22,6 +22,7 @@ const HOLD_MS = 1150;
 export function FlipCard({
   front,
   back,
+  backFace,
   frontAlt,
   backAlt,
   width,
@@ -29,6 +30,7 @@ export function FlipCard({
 }: {
   front: string;
   back?: string;
+  backFace?: React.ReactNode;
   frontAlt: string;
   backAlt: string;
   width: number;
@@ -99,9 +101,11 @@ export function FlipCard({
               className="h-auto w-full"
             />
           ) : (
-            <span className="dsn-flip-blank">
-              <i />
-            </span>
+            (backFace ?? (
+              <span className="dsn-flip-blank">
+                <i />
+              </span>
+            ))
           )}
         </div>
       </div>
