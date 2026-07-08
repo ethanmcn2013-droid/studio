@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { DIRECTORS } from "@/lib/hq/elt";
 import { OrgChart } from "@/features/org/org-chart";
+import { OrgOperating } from "@/features/org/org-operating";
 import { OrgListView } from "./org-list-view";
 
 export const dynamic = "force-dynamic";
@@ -76,7 +77,14 @@ export default async function HqOrgPage({
           </div>
         </div>
 
-        {isList ? <OrgListView /> : <OrgChart />}
+        {isList ? (
+          <OrgListView />
+        ) : (
+          <>
+            <OrgChart />
+            <OrgOperating />
+          </>
+        )}
 
         <div className="mt-20 border-t border-border-soft pt-6 font-mono text-[12px] text-ink-quiet">
           <Link href="/hq" className="atlas-link hover:text-accent">

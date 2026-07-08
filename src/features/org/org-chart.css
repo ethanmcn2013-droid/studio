@@ -380,6 +380,124 @@
   }
 }
 
+/* ── Operating rhythm (cadences + roadmap) ──────────────────────────────── */
+.orgc-operating {
+  margin-top: 52px;
+  padding-top: 34px;
+  border-top: 1px solid var(--hairline-soft);
+}
+.orgc-op-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow, 0.14em);
+  color: var(--accent);
+  font-weight: 600;
+}
+.orgc-op-lede {
+  margin-top: 10px;
+  max-width: 64ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.orgc-cadence-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.orgc-cadence {
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  padding: 15px 16px;
+}
+.orgc-cad-when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+}
+.orgc-cad-label {
+  margin-top: 6px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.orgc-cad-artefact {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.orgc-cad-owner {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-quiet);
+}
+.orgc-op-title {
+  margin-top: 34px;
+  margin-bottom: 12px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.orgc-roadmap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.orgc-phase {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.orgc-phase:last-child {
+  border-bottom: 0;
+}
+.orgc-phase-n {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-quiet);
+  width: 14px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+.orgc-phase-body {
+  flex: 1;
+  min-width: 0;
+}
+.orgc-phase-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.orgc-phase-detail {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-quiet);
+  margin-top: 1px;
+}
+.orgc-phase-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-quiet);
+  flex: 0 0 auto;
+}
+
 /* ── Reduced motion ─────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .orgc * {
