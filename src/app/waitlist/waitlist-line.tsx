@@ -9,10 +9,8 @@
  */
 
 import { useActionState } from "react";
-import {
-  initialWaitlistFormState,
-  joinWaitlistAction,
-} from "./actions";
+import { joinWaitlistAction } from "./actions";
+import { initialWaitlistFormState } from "./types";
 
 const WAITING = 16;
 

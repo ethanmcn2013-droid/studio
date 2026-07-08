@@ -2,16 +2,7 @@
 
 import { headers } from "next/headers";
 import { joinWaitlist } from "@/lib/waitlist";
-
-export type WaitlistFormState = {
-  status: "idle" | "success" | "error";
-  message: string;
-};
-
-export const initialWaitlistFormState: WaitlistFormState = {
-  status: "idle",
-  message: "",
-};
+import type { WaitlistFormState } from "./types";
 
 function value(formData: FormData, key: string): string | null {
   const raw = formData.get(key);
