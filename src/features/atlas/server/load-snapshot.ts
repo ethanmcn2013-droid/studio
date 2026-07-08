@@ -35,6 +35,20 @@ import type {
 /** Launch date, mirrors src/lib/hq/launch.ts LAUNCH_DATE. */
 const LAUNCH_DATE = "2026-09-01";
 
+/**
+ * Founder maturity estimates (0-100) for domains not yet scored in
+ * content/hq. Authored judgments, in the same spirit as the products' own
+ * `maturity` fields. Move these into source files later to make them live.
+ */
+const DOMAIN_MATURITY: Record<string, number> = {
+  design: 88, // SDS 2.0 shipped, fully documented, one system across four apps
+  engineering: 78, // hardened, CI gates, drift-flagged registry; integration gaps remain
+  ai: 62, // governance and directors org emerging; not fully wired into HQ yet
+  operations: 82, // decisions, risks, and operator work written down with review dates
+  metrics: 42, // instrumentation is genuinely thin today (tracking readiness is low)
+  business: 56, // pricing is solid; CRM and distribution are still early
+};
+
 /** Which domain each tracked risk belongs to. Unmapped risks fall to operations. */
 const RISK_DOMAIN: Record<string, string> = {
   "analytics-pipeline-silent": "product",
@@ -154,14 +168,14 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
     };
   }
 
-  // Design — documented, not scored numerically (honest).
+  // Design — one system across four apps, fully documented.
   domainSignals.design = {
     health: "healthy",
-    maturity: null,
+    maturity: DOMAIN_MATURITY.design,
     launchReadiness: null,
     metrics: [
       { label: "Documentation", value: "Complete", note: "BRAND.md, DESIGN.md, /design" },
-      { label: "Maturity", value: "Not scored", note: "qualitative for now" },
+      { label: "Design system", value: "SDS 2.0", note: "vendored tokens, one indigo" },
     ],
     risks: risksByDomain.design ?? [],
     nextActions: [],
@@ -170,7 +184,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
   // Engineering — count of registered systems is real.
   domainSignals.engineering = {
     health: worstHealth("healthy", risksByDomain.engineering?.length ? "attention" : "healthy"),
-    maturity: null,
+    maturity: DOMAIN_MATURITY.engineering,
     launchReadiness: null,
     metrics: [
       { label: "Systems registered", value: String(atlasEntries.length), note: "in the drift-flagged registry" },
@@ -192,7 +206,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
     const spendCapDone = aiTodos.some((t) => /spend|budget/i.test(t.title) && t.status === "done");
     domainSignals.ai = {
       health: "healthy",
-      maturity: null,
+      maturity: DOMAIN_MATURITY.ai,
       launchReadiness: null,
       metrics: [
         { label: "Spend cap", value: spendCapDone ? "Set" : "Tracked", note: "operator ledger" },
@@ -235,7 +249,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
     const trackingScore = tracking ? num(tracking.fm.score) : null;
     domainSignals.metrics = {
       health: healthFromScore(trackingScore, { attentionBelow: 55, blockedBelow: 25 }),
-      maturity: null,
+      maturity: DOMAIN_MATURITY.metrics,
       launchReadiness: null,
       metrics: [
         { label: "Tracking readiness", value: fmt(trackingScore), note: "instrumentation coverage" },
@@ -257,7 +271,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
         healthFromScore(crmScore),
         risksByDomain.business?.length ? "attention" : "healthy",
       ),
-      maturity: null,
+      maturity: DOMAIN_MATURITY.business,
       launchReadiness: null,
       metrics: [
         { label: "Pricing", value: fmt(pricingScore), note: "readiness" },
@@ -275,7 +289,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
     const opsHealth: AtlasHealth = todoBoard.blockingCount > 0 ? "attention" : "healthy";
     domainSignals.operations = {
       health: opsHealth,
-      maturity: null,
+      maturity: DOMAIN_MATURITY.operations,
       launchReadiness: null,
       metrics: [
         { label: "Decisions on file", value: String(decisions.length), note: `${openDecisions.length} active` },
@@ -375,7 +389,7 @@ export async function loadAtlasSnapshot(): Promise<AtlasSnapshot> {
   // ── Placeholders still needing real data ─────────────────────────────────
   const placeholders: string[] = [];
   if (productMaturity === null) placeholders.push("Product maturity: no numeric scores found in content/hq/products.");
-  placeholders.push("Design and Engineering maturity are not scored numerically in content/hq (see PRD open question Q1).");
+  placeholders.push("Domain maturity for Design, Engineering, AI, Operations, Metrics, and Business is a founder estimate (in load-snapshot.ts). Move into content/hq source files to make it live.");
   if (launchComposite === null) placeholders.push("Launch readiness: no gates found in content/hq/launch-readiness.");
   placeholders.push("AI directors count is read from a separate repo; not yet wired into HQ.");
 
