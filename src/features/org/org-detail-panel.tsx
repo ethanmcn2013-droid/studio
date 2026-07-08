@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { formatCadence, type Director } from "@/lib/hq/elt";
 import { roleTitle, autonomyLabel } from "./org-utils";
 import { OrgAvatar } from "./org-avatars";
+import { UNIVERSAL_TOOLS, mcpGrants } from "./org-coordination";
 
 export function OrgDetailPanel({
   director,
@@ -87,6 +88,17 @@ export function OrgDetailPanel({
           </div>
         </Section>
       ) : null}
+
+      <Section title="Tools">
+        <ul className="atlas-list">
+          {UNIVERSAL_TOOLS.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+          {mcpGrants(director.id).map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      </Section>
 
       <Section title="Go to">
         <div className="atlas-links">
