@@ -8,6 +8,7 @@ import { HqStatusDot } from "@/components/hq/hq-status-dot";
 const operatorLinks = [
   { href: "/hq/crm", label: "sell" },
   { href: "/hq/design-rooms", label: "make" },
+  { href: "/hq/experimentation-room", label: "lab" },
   { href: "/hq/reporting", label: "tell" },
   { href: "/hq/vault", label: "run" },
   { href: "/hq/founders-circle", label: "board" },
