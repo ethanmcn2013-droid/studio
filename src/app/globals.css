@@ -1398,8 +1398,13 @@ body::after { content: none; }
   color: var(--accent-deep);
 }
 .reveal-product-row .meta .open {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 0 auto;
+  gap: 0.45em;
   margin-left: auto;
   color: var(--ink-700);
+  white-space: nowrap;
   transition: transform var(--motion-moderate) var(--spring-glide), color var(--motion-base) var(--ease-out);
 }
 .reveal-product-row:hover .meta .open {

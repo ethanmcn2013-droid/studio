@@ -9,7 +9,7 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 ## 2026-07-08 · S·117 · tightens · the product rows speak as one spine
 
-**The homepage product rows stop acting like four mini feature explainers and read as one day of work: Notes catches the thought, Tasks runs it, Timeline shows where things stand, and Signal narrows the morning down.** The right rail now keeps each product to a direct job statement, cuts the overexplained Timeline login line, replaces Notes' "nothing leaves on its own" clause with a calmer hold-until-work frame, and trades Signal's slogan ending for a stronger attention promise. No layout changed.
+**The homepage product rows stop acting like four mini feature explainers and read as one-sentence work statements: keep the thought, keep ownership clear, show where things stand, show what actually needs you today.** The right rail now cuts the overexplained clauses and gives each product one direct job. The open link in the meta row also holds together, so "Open the timeline" no longer breaks across lines.
 
 ## 2026-07-07 · S·116 · tightens · the loading section plays the real canon
 

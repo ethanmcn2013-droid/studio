@@ -10,7 +10,7 @@ relatedObjects: [Homepage, Reveal products, Suite messaging, Brand handbook]
 
 ## Decision
 
-Make the homepage product-row copy read as one work spine: Notes catches the thought, Tasks runs the work, Timeline shows where things stand, and Signal narrows the morning down.
+Make the homepage product-row copy read as one-sentence work statements: Notes keeps the thought until it earns a task, Tasks keeps ownership clear, Timeline gives everyone one page, and Signal says what actually needs you today.
 
 ## Reason
 
@@ -26,4 +26,4 @@ The copy is tighter and gives fewer feature details. If a first-time reader need
 
 ## Notes
 
-Shipped in `RevealProducts` and mirrored in suite messaging so the public surface and HQ record stay aligned.
+Shipped in `RevealProducts` and mirrored in suite messaging so the public surface and HQ record stay aligned. The CTA meta row now keeps the open link on one line.
