@@ -8,6 +8,7 @@ import { ProductsMegaPanel } from "@/components/layout/products-mega-panel";
 
 const NAV_LINKS = [
   { href: "/design",  label: "Design"  },
+  { href: "/waitlist", label: "Waitlist" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about",   label: "About"   },
 ] as const;
@@ -134,6 +135,13 @@ export function SiteNav() {
             style={{ letterSpacing: "0.01em" }}
           >
             Design
+          </Link>
+          <Link
+            href="/waitlist"
+            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            Waitlist
           </Link>
           <Link
             href="/pricing"

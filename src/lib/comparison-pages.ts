@@ -1,4 +1,8 @@
-import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
+// Access is staged: comparison CTAs route through the public waitlist,
+// not product origins, until access opens.
+function waitlistHref(artifact: string): string {
+  return `/waitlist?source=comparison&campaign=pre_access_waitlist&artifact=${artifact}&touch=site`;
+}
 
 export type ComparisonPage = {
   slug: string;
@@ -50,8 +54,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/venues",
     },
     secondaryCta: {
-      label: "Open the wedding workspace",
-      href: `${TASKS_URL}/templates/wedding-planning-workspace`,
+      label: "Join the waitlist",
+      href: waitlistHref("wedding_workspace"),
     },
   },
   {
@@ -114,8 +118,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/proof",
     },
     secondaryCta: {
-      label: "Open Signal Notes",
-      href: NOTES_URL,
+      label: "Join the waitlist",
+      href: waitlistHref("notes"),
     },
   },
   {
@@ -146,8 +150,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/proof",
     },
     secondaryCta: {
-      label: "Open Signal Tasks",
-      href: TASKS_URL,
+      label: "Join the waitlist",
+      href: waitlistHref("tasks"),
     },
   },
   {
@@ -178,8 +182,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/pricing",
     },
     secondaryCta: {
-      label: "Open the briefing",
-      href: SIGNAL_URL,
+      label: "Join the waitlist",
+      href: waitlistHref("signal"),
     },
   },
 ];

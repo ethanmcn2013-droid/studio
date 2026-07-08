@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
-import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "About · Signal Studio",
   description:
     "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: show you what matters.",
 };
+
+function waitlistHref(product: string): string {
+  return `/waitlist?source=about&campaign=pre_access_waitlist&product=${product}&artifact=about_products_${product}&touch=site`;
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -73,9 +77,7 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <a
-                    href={NOTES_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={waitlistHref("notes")}
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
@@ -89,9 +91,7 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={TASKS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={waitlistHref("tasks")}
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
@@ -105,9 +105,7 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={TIMELINE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={waitlistHref("timeline")}
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
@@ -121,9 +119,7 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={SIGNAL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={waitlistHref("signal")}
                     className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">

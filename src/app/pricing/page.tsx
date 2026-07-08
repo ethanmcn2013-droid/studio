@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
@@ -44,14 +43,13 @@ type InsideProduct = {
 
 /* ── Static content ───────────────────────────────────────────────── */
 
-/* E-7 (2026-05-14): paid-tier CTAs route through Tasks's /api/checkout
- * endpoint. Tasks owns the Stripe integration; the resulting entitlement
- * is mirrored to the shared signal-entitlements DB on success, so all
- * five products see the new tier without per-product checkout wiring.
- */
-const TASKS_CHECKOUT_WORKSPACE = `${TASKS_URL}/api/checkout?tier=workspace`;
-const TASKS_CHECKOUT_WORKSPACE_ANNUAL = `${TASKS_URL}/api/checkout?tier=workspace&interval=annual`;
-const TASKS_CHECKOUT_EVENT = `${TASKS_URL}/api/checkout?tier=event`;
+/* Access is staged until 1 September. Every tier CTA routes through the
+ * public waitlist, not a live checkout, until the product opens. The
+ * checkout wiring (Tasks-owned /api/checkout, entitlements mirror) is
+ * reconnected when access opens. */
+function waitlistHref(artifact: string, plan: string): string {
+  return `/waitlist?source=pricing&campaign=pre_access_waitlist&artifact=${artifact}&plan=${plan}&touch=site`;
+}
 
 const TIERS: Tier[] = [
   {
@@ -64,8 +62,8 @@ const TIERS: Tier[] = [
       { label: "Guests", value: "Three" },
       { label: "Window", value: "Forever" },
     ],
-    cta: "Start free",
-    href: TASKS_URL,
+    cta: "Join the waitlist",
+    href: waitlistHref("pricing_free", "free"),
   },
   {
     name: "Student",
@@ -77,8 +75,8 @@ const TIERS: Tier[] = [
       { label: "Guests", value: "Unlimited" },
       { label: "Window", value: "Yearly" },
     ],
-    cta: "Verify student email",
-    href: "mailto:hello@signalstudio.ie?subject=Student%20access%20%C2%B7%20Signal%20Studio",
+    cta: "Join the waitlist",
+    href: waitlistHref("pricing_student", "student"),
   },
   {
     name: "Pro",
@@ -86,15 +84,15 @@ const TIERS: Tier[] = [
     price: "€12",
     cadence: "/ month · per workspace",
     annual: "or €100 a year, paid once",
-    annualHref: TASKS_CHECKOUT_WORKSPACE_ANNUAL,
+    annualHref: waitlistHref("pricing_pro_annual", "pro-annual"),
     body: "One paid workspace. All four products. Invite anyone, the price doesn't move.",
     pills: [
       { label: "Workspaces", value: "One paid" },
       { label: "Guests", value: "Unlimited" },
       { label: "Window", value: "Monthly" },
     ],
-    cta: "Start Pro",
-    href: TASKS_CHECKOUT_WORKSPACE,
+    cta: "Join the waitlist",
+    href: waitlistHref("pricing_pro", "pro"),
   },
   {
     name: "Event",
@@ -106,8 +104,8 @@ const TIERS: Tier[] = [
       { label: "Guests", value: "Unlimited" },
       { label: "Window", value: "12 months" },
     ],
-    cta: "Plan an event",
-    href: TASKS_CHECKOUT_EVENT,
+    cta: "Join the waitlist",
+    href: waitlistHref("pricing_event", "event"),
   },
 ];
 

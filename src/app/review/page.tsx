@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Review · Signal Studio",
@@ -29,37 +28,41 @@ type Product = {
   accent: string;
 };
 
+function waitlistHref(product: string): string {
+  return `/waitlist?source=review&campaign=pre_access_waitlist&product=${product}&artifact=review_${product}&touch=site`;
+}
+
 const PRODUCTS: Product[] = [
   {
     name: "Notes",
     mark: "notes.",
     line: "Capture clarity. Three-second notebook, one-way extract to Tasks.",
-    appUrl: `${NOTES_URL.replace(/\/$/, "")}/app`,
-    siteUrl: NOTES_URL,
+    appUrl: waitlistHref("notes"),
+    siteUrl: waitlistHref("notes"),
     accent: "var(--accent)",
   },
   {
     name: "Tasks",
     mark: "tasks·",
     line: "Execution clarity. The board for the 80% who don't work in tech.",
-    appUrl: `${TASKS_URL.replace(/\/$/, "")}/app`,
-    siteUrl: TASKS_URL,
+    appUrl: waitlistHref("tasks"),
+    siteUrl: waitlistHref("tasks"),
     accent: "var(--accent)",
   },
   {
     name: "Timeline",
     mark: "timeline·",
     line: "Direction clarity. A plan in plain English, shareable by link.",
-    appUrl: `${TIMELINE_URL.replace(/\/$/, "")}/app`,
-    siteUrl: TIMELINE_URL,
+    appUrl: waitlistHref("timeline"),
+    siteUrl: waitlistHref("timeline"),
     accent: "var(--accent)",
   },
   {
     name: "Signal",
     mark: "signal·",
     line: "Attention clarity. A daily briefing on what actually moved.",
-    appUrl: `${SIGNAL_URL.replace(/\/$/, "")}/app`,
-    siteUrl: SIGNAL_URL,
+    appUrl: waitlistHref("signal"),
+    siteUrl: waitlistHref("signal"),
     accent: "var(--accent)",
   },
 ];
@@ -98,8 +101,8 @@ export default function ReviewPage() {
             style={{ color: "var(--ink-soft)" }}
           >
             Signal Studio is four rooms in one studio, capture, execute, plan,
-            measure. Open any of them below for design review, demos, or visual
-            inspection.
+            measure. Public access is staged through the waitlist while the
+            product surfaces are prepared.
           </p>
 
           {/* Safety note */}
@@ -144,7 +147,7 @@ export default function ReviewPage() {
                     className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-px"
                     style={{ background: p.accent }}
                   >
-                    Open app
+                    Join waitlist
                     <span aria-hidden>→</span>
                   </a>
                   <a
@@ -152,7 +155,7 @@ export default function ReviewPage() {
                     className="text-sm font-medium underline-offset-4 hover:underline"
                     style={{ color: "var(--ink-quiet)" }}
                   >
-                    Marketing
+                    Waitlist
                   </a>
                 </div>
               </div>
@@ -186,11 +189,8 @@ export default function ReviewPage() {
             className="mt-14 max-w-[620px] text-sm leading-relaxed"
             style={{ color: "var(--ink-quiet)" }}
           >
-            Product apps open on a different subdomain, so each is a real
-            navigation, not an in-page swap. In demo / review deployments the
-            apps render from seed data with no sign-in wall. How this works and
-            how to restore production auth: see <code>docs/DEMO_REVIEW_MODE.md</code>{" "}
-            in the studio repo.
+            Internal review access should use the private review links in the
+            operator docs. Public visitors should join the waitlist.
           </p>
         </section>
       </main>

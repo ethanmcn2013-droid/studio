@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TIMELINE_URL, TASKS_URL, NOTES_URL, SIGNAL_URL } from "@/lib/product-urls";
+import { TIMELINE_URL } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   },
 };
 
-const contactHref = withTracking("/contact?subject=founding-venue", {
+const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
   ...VENUE_SITE_TRACKING,
-  artifact: "contact",
+  artifact: "venue_demo_waitlist",
   touch: "venue_demo",
 });
 
@@ -33,6 +33,14 @@ const couplePlanHref = withTracking(couplePlanRawHref, {
   artifact: "couple_plan",
 });
 
+function waitlistHref(product: string, artifact: string): string {
+  return withTracking(`/waitlist?useCase=venues&product=${product}`, {
+    ...VENUE_SITE_TRACKING,
+    artifact,
+    touch: "venue_demo",
+  });
+}
+
 const demoSteps = [
   {
     time: "0:00",
@@ -41,7 +49,8 @@ const demoSteps = [
     title: "The venue call is captured before it becomes work.",
     copy:
       "Sarah and Tom's venue meeting becomes one private note: decisions, open questions, and the next supplier follow-ups in plain sentences. Nothing is shared until it is ready.",
-    href: `${NOTES_URL.replace(/\/$/, "")}/wedding-planning`,
+    href: waitlistHref("notes", "venue_demo_notes"),
+    cta: "Join Notes waitlist",
     venueEyebrow: "Founding Venue Preview · Sarah and Tom · June 2027",
     label: "Private note",
     lines: [
@@ -58,7 +67,8 @@ const demoSteps = [
     title: "The right pieces become owned follow-ups.",
     copy:
       "The workspace already has the shape: venue, suppliers, guests, decisions, and final week. The couple starts with real work, not setup.",
-    href: `${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`,
+    href: waitlistHref("tasks", "venue_demo_tasks"),
+    cta: "Join Tasks waitlist",
     venueEyebrow: "Founding Venue Preview · wedding workspace",
     label: "Wedding workspace",
     lines: [
@@ -75,7 +85,8 @@ const demoSteps = [
     title: "The couple gets one readable plan.",
     copy:
       "The plan says what is done, what is underway, what is waiting on the couple, and what comes next. No account for people who only need to read.",
-    href: couplePlanRawHref,
+    href: couplePlanHref,
+    cta: "Preview plan",
     venueEyebrow: "Public plan · no account needed",
     label: "Couple plan",
     lines: [
@@ -92,7 +103,8 @@ const demoSteps = [
     title: "The next morning is a short briefing, not a dashboard.",
     copy:
       "The briefing names the few things that need attention before they become another thread in the coordinator inbox.",
-    href: `${SIGNAL_URL.replace(/\/$/, "")}/wedding-planning`,
+    href: waitlistHref("signal", "venue_demo_signal"),
+    cta: "Join Signal waitlist",
     venueEyebrow: "Morning briefing · three things, not thirty",
     label: "Morning briefing",
     lines: [
@@ -126,10 +138,10 @@ export default function VenueDemoPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href={contactHref}
+                href={venueWaitlistHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Start a venue conversation
+                Join the venue waitlist
               </Link>
               <a
                 href={couplePlanHref}
@@ -176,7 +188,7 @@ export default function VenueDemoPage() {
                   {[
                     "Venue pays once a year.",
                     "Each couple gets a code.",
-                    "The wedding workspace opens in under a minute.",
+                    "When access opens, the wedding workspace has one clear first step.",
                     "The couple never sees a price.",
                   ].map((line, i) => (
                     <li key={line} className="grid grid-cols-[auto_1fr] gap-3 px-5 py-4">
@@ -215,15 +227,10 @@ export default function VenueDemoPage() {
                       </span>
                     </div>
                     <a
-                      href={withTracking(step.href, {
-                        ...VENUE_SITE_TRACKING,
-                        artifact: `venue_demo_${step.product.toLowerCase().replaceAll(" ", "_")}`,
-                      })}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={step.href}
                       className="text-[12px] font-medium text-ink-quiet underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
                     >
-                      Open {step.product.replace("Signal ", "")} &rarr;
+                      {step.cta} &rarr;
                     </a>
                   </div>
                   <h3 className="text-[22px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
@@ -276,10 +283,10 @@ export default function VenueDemoPage() {
               </p>
             </div>
             <Link
-              href={contactHref}
+              href={venueWaitlistHref}
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
             >
-              Start the conversation
+              Join the venue waitlist
             </Link>
           </div>
         </section>
