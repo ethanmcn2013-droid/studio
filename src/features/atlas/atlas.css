@@ -9,9 +9,9 @@
 
 .atlas {
   /* Functional status palette — dots and bars only, never fills/decoration. */
-  --atlas-healthy: #10b981;
-  --atlas-attention: #f59e0b;
-  --atlas-blocked: #ef4444;
+  --atlas-healthy: var(--status-done);
+  --atlas-attention: var(--status-flight);
+  --atlas-blocked: var(--status-blocked);
   --atlas-unknown: var(--ink-ghost);
 
   --atlas-edge: rgba(17, 17, 17, 0.1);
