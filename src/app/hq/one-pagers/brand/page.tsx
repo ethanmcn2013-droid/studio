@@ -68,7 +68,7 @@ export default async function BrandOnePager() {
       />
 
       <OPEyeline>
-        signalstudio.ie · Free to start · Workspace €12/mo · Event €79
+        signalstudio.ie · Free to start · Pro €12/mo · Event €89
       </OPEyeline>
     </OnePager>
   );

@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-08 · S·118 · ships · Founder Copy Review enters HQ
+
+**Signal HQ now has a copy governance room: every meaningful line can be scanned, reviewed, approved, rejected, deferred, or promoted into guidance without pretending the approval survives a rewrite.** The room binds approval to the exact text hash, so a changed sentence returns to review on the next scan. It opens with 7,364 source-backed copy items, high-risk and legal/pricing filters, weekly review mode, search presets, diff context, founder comments, reusable guidance, and a Hall of Fame for lines worth teaching back to future writing passes.
+
+The operating layer ships with it: `copy:scan`, `copy:review`, `copy:report`, and `copy:guidance` keep inventory, state, reports, and editorial memory in `content/hq/copy-review/`. The first persistence choice is deliberate: repo-backed HQ JSON, easy to inspect and commit, with a documented path to database-backed review state when deployed writes need to become durable.
+
 ## 2026-07-08 · S·117 · tightens · the product rows speak as one spine
 
 **The homepage product rows stop acting like four mini feature explainers and read as one-sentence work statements: keep the thought, keep ownership clear, show where things stand, show what actually needs you today.** The right rail now cuts the overexplained clauses and gives each product one direct job. The open link in the meta row also holds together, so "Open the timeline" no longer breaks across lines.
@@ -14,6 +20,8 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 `/pricing` also stops delaying the price. The grey four-product strip under the hero is gone, so the page moves from the promise straight into Plans. The product explanation still exists lower down, where it supports the tiers instead of standing between the reader and the price.
 
 The pricing hero now says the quiet part directly: "One price. No seat tax." The subline carries the operating promise: "Use what you need. Invite who you need. The price does not move." No bundle theatre, no per-seat pricing game.
+
+The pricing surface also stops carrying stale commercial truth: the ongoing paid tier is Pro, Event is €89 one-time, and the four product labels say In development instead of Live now. The checkout parameter stays `workspace` for the entitlement layer; the public plan name does not have to leak the implementation name.
 
 ## 2026-07-07 · S·116 · tightens · the loading section plays the real canon
 

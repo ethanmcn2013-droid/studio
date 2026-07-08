@@ -26,4 +26,4 @@ Notion-trap perceived overpay if users only use one of the four. Vapor risk if m
 
 ## Notes
 
-Four tiers by relationship to work, not product: Free / Workspace €12mo / Event €79 one-time / Student .edu-free. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/timeline/signal /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Notes has no pricing surface yet (was never built).
+Four tiers by relationship to work, not product: Free / Pro €12mo / Event €89 one-time / Student €9.99/year. Existing Tasks subscribers grandfather forever. Single pricing surface live at signalstudio.ie/pricing as of 2026-05-12; tasks/timeline/signal /pricing routes 308-redirect to umbrella; all in-product Pricing links across the suite repoint to the umbrella URL. Public Pro maps to the internal `workspace` entitlement until the billing model is renamed.
