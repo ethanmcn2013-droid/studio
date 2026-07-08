@@ -14,15 +14,15 @@ import { DirectionLine } from "./DirectionLine";
 import { DirectionOneThing } from "./DirectionOneThing";
 
 const DIRECTIONS = [
+  { key: "line", label: "B · The Line", note: "locked · design pass 2" },
   { key: "doorway", label: "A · The Doorway", note: "editorial, launch-date forward" },
-  { key: "line", label: "B · The Line", note: "the dot becomes the queue" },
   { key: "onething", label: "C · One thing, first", note: "radical minimal" },
 ] as const;
 
 type Key = (typeof DIRECTIONS)[number]["key"];
 
 export function WaitlistLab() {
-  const [active, setActive] = useState<Key>("doorway");
+  const [active, setActive] = useState<Key>("line");
 
   return (
     <>
