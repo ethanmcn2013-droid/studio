@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../ds/tokens.css";
 @import "../ds/tailwind.css";
+@import "../features/atlas/atlas.css";
 
 /* ────────────────────────────────────────────────────────────
    Signal Design System 2.0 (Wave 2, 2026-07-02)
