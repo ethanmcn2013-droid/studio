@@ -27,8 +27,13 @@ export type HqMarkdownEntry = {
 };
 
 export function parseFrontmatter(
-  raw: string,
+  rawInput: string,
 ): { fm: Record<string, unknown>; body: string } {
+  // Normalize line endings first. Some content files are authored on Windows
+  // (CRLF); the frontmatter delimiter regex below anchors on \n, so a raw CRLF
+  // file would silently parse to empty frontmatter. Normalizing here keeps the
+  // whole HQ pipeline line-ending agnostic.
+  const raw = rawInput.replace(/\r\n?/g, "\n");
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) {
     return { fm: {}, body: raw.trim() };
@@ -79,7 +84,7 @@ export function parseFrontmatter(
  */
 export function splitH2Sections(body: string): Record<string, string> {
   const sections: Record<string, string> = {};
-  const lines = body.split("\n");
+  const lines = body.replace(/\r\n?/g, "\n").split("\n");
   let currentName: string | null = null;
   let currentBuffer: string[] = [];
 
