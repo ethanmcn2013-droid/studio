@@ -50,6 +50,8 @@ const PAIRS: [string, string][] = [
   ["legal-risk-corporate-affairs", "operations-admin-founder-support"],
 ];
 
+export const COORDINATION_EDGE_COUNT = PAIRS.length;
+
 const ADJACENCY: Record<string, string[]> = (() => {
   const map: Record<string, Set<string>> = {};
   for (const [a, b] of PAIRS) {
