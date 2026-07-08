@@ -5,8 +5,8 @@
  *
  * The CTA pair is the conversion point the front door deliberately
  * withholds (the hero reads as a headline, not a wall). It serves both
- * audiences the suite actually has: the person waiting for 1 September
- * (waiting list), and the venue/events buyer whose path is high-touch.
+ * audiences the suite actually has: the person joining staged access
+ * (waitlist), and the venue/events buyer whose path is high-touch.
  */
 
 import Link from "next/link";
@@ -20,16 +20,16 @@ export function RevealClosing() {
       </p>
 
       <div className="reveal-closing-cta reveal">
-        <a
+        <Link
           className="reveal-cta reveal-cta-primary"
-          href="mailto:hello@signalstudio.ie?subject=Waiting%20list"
+          href="/waitlist?source=home_closing&campaign=pre_access_waitlist&artifact=closing_cta&touch=site"
         >
-          Join the waiting list
+          Join the waitlist
           <span className="cta-arrow" aria-hidden>
             {" "}
             →
           </span>
-        </a>
+        </Link>
         <Link className="reveal-cta reveal-cta-ghost" href="/venues">
           For venues &amp; events
           <span className="cta-arrow" aria-hidden>

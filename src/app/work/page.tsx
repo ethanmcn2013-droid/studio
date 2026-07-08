@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Work · Signal Studio",
   description:
     "Four products for operational clarity: Notes, Tasks, Timeline, Signal.",
 };
+
+type ProductSlug = "notes" | "tasks" | "timeline" | "signal";
 
 interface WorkItem {
   name: string;
@@ -25,15 +26,15 @@ const items: WorkItem[] = [
     descriptor: "Capture clarity for fast notes that can become work when they earn it.",
     year: "2026",
     status: "Private build",
-    href: NOTES_URL,
+    href: waitlistHref("notes"),
   },
   {
     name: "Tasks",
     descriptor:
-      "Execution clarity for live work, daily attention, and plain-English follow-through.",
+      "Execution clarity for active work, daily attention, and plain-English follow-through.",
     year: "2026",
     status: "Private preview",
-    href: TASKS_URL,
+    href: waitlistHref("tasks"),
   },
   {
     name: "Timeline",
@@ -41,7 +42,7 @@ const items: WorkItem[] = [
       "Direction clarity for public plans, changes, and decisions people can read.",
     year: "2026",
     status: "Private preview",
-    href: TIMELINE_URL,
+    href: waitlistHref("timeline"),
   },
   {
     name: "Signal",
@@ -49,9 +50,13 @@ const items: WorkItem[] = [
       "Attention clarity through short briefings that surface what matters in the work.",
     year: "2026",
     status: "Private preview",
-    href: SIGNAL_URL,
+    href: waitlistHref("signal"),
   },
 ];
+
+function waitlistHref(product: ProductSlug): string {
+  return `/waitlist?source=work&campaign=pre_access_waitlist&product=${product}&artifact=work_row_${product}&touch=site`;
+}
 
 const statusColor: Record<WorkItem["status"], string> = {
   "Private preview": "var(--accent)",
@@ -79,8 +84,8 @@ export default function WorkPage() {
             className="mb-12 leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Four products, one system. Private preview means early, not
-            closed: follow a name to open it. Free to start, no card.
+            Four products, one system. Access is staged: join the waitlist
+            and we will open the right door when the next window is ready.
           </p>
 
           <ol className="flex flex-col">
@@ -133,10 +138,8 @@ export default function WorkPage() {
                   <li key={item.name} className="border-b border-border-soft last:border-b-0">
                     <a
                       href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="group block no-underline transition-opacity hover:opacity-80"
-                      aria-label={`${item.name} opens in a new tab`}
+                      aria-label={`Join the waitlist for ${item.name}`}
                     >
                       {Row}
                     </a>

@@ -2,19 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
-import {
-  TIMELINE_URL,
-  TASKS_URL,
-  NOTES_URL,
-  SIGNAL_URL,
-  tasksSignUpUrl,
-} from "@/lib/product-urls";
+import { TIMELINE_URL } from "@/lib/product-urls";
 import { withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Wedding Planning Workspace · Signal Studio",
   description:
-    "A self-serve wedding planning workspace for independent couples and planners who need notes, tasks, timelines, and updates in one calm place.",
+    "A staged-access wedding planning workspace for independent couples and planners who need notes, tasks, timelines, and updates in one calm place.",
   openGraph: {
     title: "Wedding Planning Workspace · Signal Studio",
     description:
@@ -43,22 +37,6 @@ const sharedUpdateHref = withTracking(`${TIMELINE_URL.replace(/\/$/, "")}/the-we
   ...weddingTracking,
   artifact: "roadmap_example",
 });
-const templateHref = withTracking(`${TASKS_URL.replace(/\/$/, "")}/templates/wedding-planning-workspace`, {
-  ...weddingTracking,
-  artifact: "wedding_template",
-});
-const signUpHref = withTracking(tasksSignUpUrl("wedding"), {
-  ...weddingTracking,
-  artifact: "wedding_signup",
-});
-const notesDemoHref = withTracking(`${NOTES_URL.replace(/\/$/, "")}/wedding-planning`, {
-  ...weddingTracking,
-  artifact: "notes_demo",
-});
-const analyticsDemoHref = withTracking(`${SIGNAL_URL.replace(/\/$/, "")}/wedding-planning`, {
-  ...weddingTracking,
-  artifact: "analytics_demo",
-});
 const venueHref = withTracking("/venues", {
   source: "studio_weddings",
   campaign: "venue_edition",
@@ -67,6 +45,13 @@ const venueHref = withTracking("/venues", {
   touch: "site",
   venue: "unknown",
 });
+
+function waitlistHref(artifact: string): string {
+  return withTracking("/waitlist?useCase=weddings", {
+    ...weddingTracking,
+    artifact,
+  });
+}
 
 const clarityItems = [
   {
@@ -92,29 +77,29 @@ const ecosystemSteps = [
     product: "Signal Notes",
     role: "Context",
     copy: "Capture the venue meeting, open questions, and decisions.",
-    href: notesDemoHref,
-    cta: "Open the venue meeting demo",
+    href: waitlistHref("wedding_notes"),
+    cta: "Join the waitlist for Notes",
   },
   {
     product: "Signal Tasks",
     role: "Execution",
     copy: "Turn follow-ups into owned work with dates and blockers.",
-    href: templateHref,
-    cta: "Open the workspace template",
+    href: waitlistHref("wedding_tasks"),
+    cta: "Join the waitlist for Tasks",
   },
   {
     product: "Signal Timeline",
     role: "Direction",
     copy: "Show the planning timeline and what changed.",
     href: sharedUpdateHref,
-    cta: "Open the shared update",
+    cta: "Preview the shared update",
   },
   {
     product: "Signal",
     role: "Attention",
     copy: "Surface the few things that need attention before they become problems.",
-    href: analyticsDemoHref,
-    cta: "Open the daily briefing",
+    href: waitlistHref("wedding_signal"),
+    cta: "Join the waitlist for Signal",
   },
 ];
 
@@ -131,7 +116,7 @@ export default function WeddingsPage() {
                 letterSpacing: "var(--tracking-eyebrow)",
               }}
             >
-              Self-serve weddings
+              Wedding waitlist
             </p>
             <h1 className="max-w-4xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
               Plan one wedding without building a system.
@@ -146,25 +131,21 @@ export default function WeddingsPage() {
               has already covered the workspace.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <a
-                href={templateHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={waitlistHref("wedding_workspace")}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Open the wedding workspace
-              </a>
-              <a
-                href={signUpHref}
-                target="_blank"
-                rel="noopener noreferrer"
+                Join the waitlist
+              </Link>
+              <Link
+                href={waitlistHref("wedding_signup")}
                 className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
               >
-                Create your account{" "}
+                Get access when it opens{" "}
                 <span className="cta-arrow" aria-hidden>
                   →
                 </span>
-              </a>
+              </Link>
               <a
                 href={sharedUpdateHref}
                 target="_blank"
@@ -287,8 +268,6 @@ export default function WeddingsPage() {
                 <a
                   key={step.product}
                   href={step.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group flex flex-col rounded-[8px] border border-border-soft bg-bg p-5 transition-colors hover:border-ink-quiet"
                 >
                   <p className="text-[11px] font-semibold uppercase text-ink-quiet">
@@ -307,14 +286,12 @@ export default function WeddingsPage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={templateHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={waitlistHref("wedding_workspace_bottom")}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Start from the wedding workspace
-              </a>
+                Join the waitlist
+              </Link>
               <p className="text-[13px] leading-[1.6] text-ink-quiet">
                 The first template covers venue, supplier, guest, decision,
                 and final-week work.

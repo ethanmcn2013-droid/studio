@@ -32,6 +32,26 @@ const DEPTH_NOUN: Record<TemplateAudience, { one: string; many: string }> = {
   },
 };
 
+const WAITLIST_USE_CASE: Record<TemplateAudience, string> = {
+  wedding: "weddings",
+  trades: "trades",
+  freelance: "freelance",
+  marketing: "small-business",
+};
+
+function templateWaitlistHref(templateId: string, audience: TemplateAudience) {
+  const params = new URLSearchParams({
+    source: "templates",
+    campaign: "pre_access_waitlist",
+    artifact: `template_${templateId}`,
+    audience,
+    useCase: WAITLIST_USE_CASE[audience],
+    touch: "site",
+  });
+
+  return `/waitlist?${params.toString()}`;
+}
+
 const SCOPED_CSS = `
 .tbrowse-shell{display:flex;flex-direction:column;gap:24px;padding:8px 0 32px}
 .tbrowse-grid{display:grid;grid-template-columns:1fr;gap:14px;
@@ -130,7 +150,7 @@ export function TemplatesBrowser({
                 {t.shape === "anchor" ? (
                   <span
                     className="tbrowse-card-badge tbrowse-card-badge--anchor"
-                    title="Seeds Tasks, Notes, Timeline, and Signal in one go"
+                    title="Prepared for Tasks, Notes, Timeline, and Signal"
                   >
                     All 4 products
                   </span>
@@ -146,11 +166,11 @@ export function TemplatesBrowser({
                   {t.taskCount} tasks
                 </span>
                 <a
-                  href={t.applyHref}
+                  href={templateWaitlistHref(t.id, current)}
                   className="tbrowse-card-cta"
-                  aria-label={`Apply ${t.name}, opens in Signal Tasks`}
+                  aria-label={`Join the waitlist for ${t.name}`}
                 >
-                  Apply in Tasks
+                  Join waitlist
                   <svg
                     className="tbrowse-card-cta-arrow"
                     width="11"

@@ -128,26 +128,24 @@ export default async function TemplatesPage({
                 title: "Final paper push",
                 meta: "8 tasks · thesis to submit",
                 body: "Pick a thesis, gather sources, outline, draft, edit, submit. The order that beats the 4am panic.",
-                href: "https://tasks.signalstudio.ie/templates/final-paper-push",
+                href: "/waitlist?source=templates&campaign=pre_access_waitlist&artifact=template_final_paper_push&useCase=students&touch=site",
               },
               {
                 title: "Midterm week",
                 meta: "7 tasks · review, sleep",
                 body: "Review sheets, practice problems, the study group, eight hours of sleep. The boring stuff that wins.",
-                href: "https://tasks.signalstudio.ie/templates/midterm-week",
+                href: "/waitlist?source=templates&campaign=pre_access_waitlist&artifact=template_midterm_week&useCase=students&touch=site",
               },
               {
                 title: "Job application push",
                 meta: "8 tasks · apply with intent",
                 body: "CV, cover letter, portfolio, the follow-up. Show up looking like you meant to.",
-                href: "https://tasks.signalstudio.ie/templates/job-application-push",
+                href: "/waitlist?source=templates&campaign=pre_access_waitlist&artifact=template_job_application_push&useCase=students&touch=site",
               },
             ].map((t) => (
               <a
                 key={t.title}
                 href={t.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group block rounded-2xl border p-5 no-underline transition-colors hover:border-ink-soft/40"
                 style={{ borderColor: "var(--hairline)", background: "var(--paper-soft)" }}
               >
@@ -157,7 +155,7 @@ export default async function TemplatesPage({
                 </div>
                 <p className="mt-3 text-[13.5px] leading-[1.55] text-ink-soft">{t.body}</p>
                 <div className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium text-ink">
-                  Open the template
+                  Join the waitlist
                   <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
                     &rarr;
                   </span>
