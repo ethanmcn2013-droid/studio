@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-08 · S·117 · tightens · the product rows speak as one spine
+
+**The homepage product rows stop acting like four mini feature explainers and read as one day of work: Notes catches the thought, Tasks runs it, Timeline shows where things stand, and Signal narrows the morning down.** The right rail now keeps each product to a direct job statement, cuts the overexplained Timeline login line, replaces Notes' "nothing leaves on its own" clause with a calmer hold-until-work frame, and trades Signal's slogan ending for a stronger attention promise. No layout changed.
+
 ## 2026-07-07 · S·116 · tightens · the loading section plays the real canon
 
 **/design §8 stops illustrating the loading system and starts playing it: the three invented cells are gone, replaced by the ten ratified moments from the loading review room, ported keyframe for keyframe.** The exhibit wears the same grammar as Meet Dot: an index rail on the left (click to jump, click the playing row to replay), a specimen stage on the right, and a reel that runs all ten on its own when left alone, pausing off screen. Every duration, easing, and stagger is the review room's, verbatim: the 10px ready dot breathing at 1.8s, the wordmark land rotating through all four destinations, the suite handoff whose press answers inside 120ms, the monotonic chrome reveal, the static-after-reveal skeleton, the honest wait whose sentence arrives after five real seconds, Notes' quiet capture with the caret morph, Tasks' route-aware trio, Timeline's thread with the system's only canonical shimmer, and the briefing assembling what is ready first. Reduced motion pins each specimen to its settled state and stops the reel. The spec line links to the full review room, which has been public at /brand/loading-review-2026.html all along.

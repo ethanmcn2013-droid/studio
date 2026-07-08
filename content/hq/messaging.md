@@ -7,7 +7,14 @@ date: 2026-05-16
 
 ## Positioning
 
-Signal Studio is project management for the 80% who don't work in tech. Four products, one system. Signal Notes is where it starts, catching context before it slips. Signal Tasks is where the work gets done. Signal Timeline is what people outside the work can see — a plain-English page anyone can open, no account needed. Signal is the daily briefing that tells you where to look.
+Signal Studio is project management for the 80% who don't work in tech. Four products, one system. Signal Notes catches the thought before it disappears and leaves it there until it becomes work. Signal Tasks runs the work in plain English, with one workspace and the views the job needs. Signal Timeline shows where things stand without making people log in. Signal starts the day with the work narrowed down to three things that need attention.
+
+## Homepage product essence
+
+- Notes: Catch the thought before it disappears. Leave it there until it becomes work.
+- Tasks: Run the work in plain English. One workspace, the views you need, no project-manager voice.
+- Timeline: Show where things stand without making people log in. One public page, written for everyone else.
+- Signal: Start the day with the work narrowed down. Three things that need attention. Nothing else.
 
 ## Ecosystem line
 

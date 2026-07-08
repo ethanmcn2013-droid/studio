@@ -110,7 +110,7 @@ export function RevealProducts() {
         dataKey="notes"
         position="Where work begins"
         word="notes"
-        essence="Write it down before it fades. Keep it as a note, or turn it into a task when you're ready. Nothing leaves on its own."
+        essence="Catch the thought before it disappears. Leave it there until it becomes work."
         pills={["Private preview", "Capture"]}
         cta="Open the notebook →"
         href={NOTES_URL}
@@ -121,7 +121,7 @@ export function RevealProducts() {
         dataKey="tasks"
         position="Where the work happens"
         word="tasks"
-        essence="Run the work without the project-manager voice. One workspace, every view you need."
+        essence="Run the work in plain English. One workspace, the views you need, no project-manager voice."
         pills={["Private preview", "Multi-view"]}
         cta="Open the workspace →"
         href={TASKS_URL}
@@ -132,7 +132,7 @@ export function RevealProducts() {
         dataKey="timeline"
         position="What people see"
         word="timeline"
-        essence="Show where the work is going. One plain-English page anyone can open. No account, no jargon. Built for the people who never log in."
+        essence="Show where things stand without making people log in. One public page, written for everyone else."
         pills={["Private preview", "Public timelines"]}
         cta="Open the timeline →"
         href={TIMELINE_URL}
@@ -150,7 +150,7 @@ export function RevealProducts() {
         dataKey="signal"
         position="What needs attention"
         word="signal"
-        essence="A morning briefing, not a dashboard. Three things, in plain English. Silence is the signal."
+        essence="Start the day with the work narrowed down. Three things that need attention. Nothing else."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
         href={SIGNAL_URL}
