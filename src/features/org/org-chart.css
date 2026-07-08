@@ -1,0 +1,353 @@
+/* ────────────────────────────────────────────────────────────────────────
+   Signal Studio AI Org Chart — scoped styles (.orgc-*).
+
+   The interactive chart at /hq/org. Namespaced to avoid the existing list
+   view's `.org-*` classes. Reuses DS tokens and the Atlas `.atlas-panel`
+   drawer. One indigo accent; clusters read through grouping, not a second
+   hue. Calm hairline connectors, reduced-motion safe.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.orgc {
+  --orgc-line: var(--hairline, rgba(17, 17, 17, 0.1));
+  --orgc-line-soft: var(--hairline-soft, rgba(17, 17, 17, 0.06));
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+/* ── Toolbar: view toggle ───────────────────────────────────────────────── */
+.orgc-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.orgc-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper-soft);
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-pill);
+}
+.orgc-toggle a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  transition: background var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out);
+}
+.orgc-toggle a:hover {
+  color: var(--ink);
+}
+.orgc-toggle a[aria-current="true"] {
+  background: var(--paper);
+  color: var(--accent);
+  box-shadow: var(--shadow-float);
+}
+
+/* ── Stats strip ────────────────────────────────────────────────────────── */
+.orgc-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.orgc-stat {
+  flex: 1 1 130px;
+  padding: 14px 16px;
+  border-right: 1px solid var(--hairline-soft);
+}
+.orgc-stat:last-child {
+  border-right: 0;
+}
+.orgc-stat-value {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.orgc-stat-label {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-quiet);
+}
+
+/* ── Legend ─────────────────────────────────────────────────────────────── */
+.orgc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 30px;
+  font-size: 12px;
+  color: var(--ink-quiet);
+}
+.orgc-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.orgc-legend-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--ink-soft);
+}
+
+/* ── Stage (canvas + panel) ─────────────────────────────────────────────── */
+.orgc-stage {
+  position: relative;
+}
+
+/* ── Founder apex ───────────────────────────────────────────────────────── */
+.orgc-apex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.orgc-apex-card {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 14px 22px;
+  min-width: 220px;
+}
+.orgc-apex-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.orgc-apex-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 3px;
+}
+.orgc-apex-role {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+.orgc-spine {
+  width: 1px;
+  height: 26px;
+  background: var(--orgc-line);
+}
+.orgc-rail {
+  width: 100%;
+  height: 1px;
+  background: var(--orgc-line);
+}
+
+/* ── Cluster columns ────────────────────────────────────────────────────── */
+.orgc-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.orgc-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.orgc-col-stub {
+  width: 1px;
+  height: 18px;
+  background: var(--orgc-line);
+}
+.orgc-col-head {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 12px;
+}
+.orgc-col-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.orgc-col-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-quiet);
+  margin-top: 3px;
+}
+.orgc-col-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 12px;
+  border-left: 1px solid var(--orgc-line-soft);
+  list-style: none;
+  margin: 0;
+}
+
+/* ── Advisor node ───────────────────────────────────────────────────────── */
+.orgc-node {
+  position: relative;
+  appearance: none;
+  text-align: left;
+  width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: 12px 13px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  color: inherit;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
+  transition: opacity var(--motion-base) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+/* Tick from the reporting bracket to each card */
+.orgc-node::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 24px;
+  width: 12px;
+  height: 1px;
+  background: var(--orgc-line-soft);
+}
+.orgc-node:hover {
+  border-color: var(--ink-ghost);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-float);
+}
+.orgc-node:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.orgc-node.is-active {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-float);
+}
+.orgc-node.is-dim {
+  opacity: 0.34;
+}
+.orgc-node.is-peer {
+  border-color: var(--ink-ghost);
+}
+
+.orgc-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline);
+  background: var(--paper-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  flex: 0 0 auto;
+}
+.orgc-node.is-active .orgc-avatar {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.orgc-body {
+  min-width: 0;
+}
+.orgc-role {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.orgc-persona {
+  font-size: 12px;
+  color: var(--ink-quiet);
+  margin-top: 3px;
+}
+.orgc-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+.orgc-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--ink-quiet);
+}
+.orgc-badge--l3 {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.orgc-badge--veto {
+  color: var(--ink-soft);
+}
+.orgc-badge--product {
+  text-transform: lowercase;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .orgc-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .orgc-rail {
+    display: none;
+  }
+  .orgc-col-stub {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .orgc-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .orgc * {
+    transition: none !important;
+  }
+}
+
+/* ── Print ──────────────────────────────────────────────────────────────── */
+@media print {
+  .orgc-toolbar,
+  .orgc-legend {
+    display: none !important;
+  }
+  .orgc-node {
+    break-inside: avoid;
+  }
+}
