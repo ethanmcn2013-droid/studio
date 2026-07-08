@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { formatCadence, type Director } from "@/lib/hq/elt";
 import { roleTitle, autonomyLabel } from "./org-utils";
+import { OrgAvatar } from "./org-avatars";
 
 export function OrgDetailPanel({
   director,
@@ -31,14 +32,14 @@ export function OrgDetailPanel({
         ×
       </button>
 
+      <span className="orgc-avatar orgc-avatar--panel" aria-hidden="true">
+        <OrgAvatar id={director.id} title={director.persona} />
+      </span>
       <div className="atlas-panel-type">{clusterLabel} · Director</div>
       <h2 className="atlas-panel-name" tabIndex={-1} ref={headingRef}>
         {roleTitle(director.name)}
       </h2>
-      <div className="atlas-health-chip">
-        <span aria-hidden="true">◈</span>
-        Persona · {director.persona}
-      </div>
+      <div className="atlas-health-chip">Persona · {director.persona}</div>
       <p className="atlas-panel-desc">{director.oneLine}</p>
 
       <Section title="State">

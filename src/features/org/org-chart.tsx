@@ -10,12 +10,8 @@ import {
   getDirector,
   type Director,
 } from "@/lib/hq/elt";
-import {
-  roleTitle,
-  personaInitials,
-  directorClusters,
-  orgStats,
-} from "./org-utils";
+import { roleTitle, directorClusters, orgStats } from "./org-utils";
+import { OrgAvatar } from "./org-avatars";
 import { OrgDetailPanel } from "./org-detail-panel";
 
 export function OrgChart() {
@@ -158,7 +154,7 @@ function OrgNode({
       onClick={onFocus}
     >
       <span className="orgc-avatar" aria-hidden="true">
-        {personaInitials(d.persona, d.shortName)}
+        <OrgAvatar id={d.id} title={d.persona} />
       </span>
       <span className="orgc-body">
         <span className="orgc-role">{roleTitle(d.name)}</span>
