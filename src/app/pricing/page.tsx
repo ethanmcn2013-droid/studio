@@ -302,13 +302,13 @@ export default async function PricingPage({
             className="h-display max-w-[22ch] text-balance text-ink"
             style={{ marginBottom: 24 }}
           >
-            One price. All the clarity you need.
+            One price. No seat tax.
           </h1>
           <p
             className="max-w-[56ch] text-ink-soft"
             style={{ fontSize: 19, lineHeight: 1.55 }}
           >
-            One subscription. Use what you need, no per-seat tax, no per-product tax.
+            Use what you need. Invite who you need. The price does not move.
           </p>
         </section>
 
