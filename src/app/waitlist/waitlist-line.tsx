@@ -186,13 +186,13 @@ export function WaitlistLine(props: Props) {
           border-radius: 50%;
           background: var(--ink-quiet);
           transform: translateX(18px) scale(0.4);
-          animation: wl-settle 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+          animation: wl-settle 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both; /* ds-allow - waitlist dot choreography */
         }
         .wl-dot--you {
           background: var(--accent) !important;
           width: 13px !important; height: 13px !important;
           transform: translateX(20px) scale(0.4);
-          animation: wl-arrive 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+          animation: wl-arrive 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both; /* ds-allow - waitlist dot choreography */
         }
         .wl-dot--you::before {
           content: "";
@@ -202,7 +202,7 @@ export function WaitlistLine(props: Props) {
           border-radius: 50%;
           opacity: 0;
           transform: scale(0.7);
-          animation: wl-emit 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s infinite;
+          animation: wl-emit 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s infinite; /* ds-allow - waitlist dot choreography */
         }
         .wl-queue-label {
           margin: 24px 0 0;
@@ -247,7 +247,7 @@ export function WaitlistLine(props: Props) {
         .wl-form button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
         .wl-pot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
         .wl-echo { margin: 32px auto 0; color: var(--ink-soft); font-size: 15px; }
-        .wl-error { margin: 16px auto 0; color: var(--danger, #b91c1c); font-size: 13px; }
+        .wl-error { margin: 16px auto 0; color: var(--danger, var(--status-blocked)); font-size: 13px; }
         .wl-foot {
           margin: 44px 0 0;
           color: var(--ink-faint, var(--ink-quiet));
