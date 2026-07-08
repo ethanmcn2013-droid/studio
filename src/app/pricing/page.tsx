@@ -312,60 +312,7 @@ export default async function PricingPage({
           </p>
         </section>
 
-        {/* ── 2 · Suite reveal ──────────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-deep)",
-            borderTop: "1px solid var(--border-soft)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-16 md:py-20">
-            <div className="mb-10" style={eyebrowStyle()}>
-              The four products
-            </div>
-            <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8">
-              {SUITE.map((p) => (
-                <div key={p.key}>
-                  <span
-                    className="pricing-mark"
-                    data-key={p.key}
-                    style={{
-                      fontSize: "clamp(1.875rem, 1.2rem + 2vw, 3rem)",
-                    }}
-                  >
-                    <span className="word">{p.word}</span>
-                    <span className="dot" aria-hidden />
-                  </span>
-                  <div
-                    className="mt-3"
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: 11,
-                      color: "var(--ink-quiet)",
-                      letterSpacing: "var(--tracking-eyebrow)",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {p.position}
-                  </div>
-                  <p
-                    className="mt-2 text-ink-soft"
-                    style={{ fontSize: 15, lineHeight: 1.5 }}
-                  >
-                    {p.position === "Execution" && "Run the work."}
-                    {p.position === "Direction" && "Show where it's going."}
-                    {p.position === "Context" && "Capture what was said."}
-                    {p.position === "Attention" && "Surface what matters."}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 3 · Tier grid ─────────────────────────────────────── */}
+        {/* ── 2 · Tier grid ─────────────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
           <div className="mb-4" style={eyebrowStyle()}>
             Plans
