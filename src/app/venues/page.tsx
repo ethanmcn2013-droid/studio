@@ -24,9 +24,9 @@ const demoHref = withTracking("/venues/demo", {
   ...VENUE_SITE_TRACKING,
   artifact: "venue_demo",
 });
-const contactHref = withTracking("/contact?subject=founding-venue", {
+const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
   ...VENUE_SITE_TRACKING,
-  artifact: "contact",
+  artifact: "venue_waitlist",
 });
 
 /**
@@ -116,7 +116,7 @@ const foundingPerks = [
 
 const mechanicLines = [
   "You pay once a year. Every couple you send gets twelve months of the full suite.",
-  "Each couple gets a code. They open a workspace in under a minute.",
+  "When access opens, each couple gets a code and a clear first step.",
   "Your venue's name appears at the top of everything they see.",
   "Nothing for your team to run.",
 ];
@@ -147,10 +147,10 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href={contactHref}
+                href={venueWaitlistHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Talk to us about your venue
+                Join the venue waitlist
               </Link>
               <Link
                 href={demoHref}
@@ -569,10 +569,10 @@ export default function VenuesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
-                href={contactHref}
+                href={venueWaitlistHref}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
               >
-                Talk to us about your venue
+                Join the venue waitlist
               </Link>
               <Link
                 href={demoHref}

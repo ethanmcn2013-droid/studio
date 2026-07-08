@@ -9,6 +9,7 @@ const routes: Array<{
 }> = [
   { path: "", priority: 1.0, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/waitlist", priority: 0.95, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
   { path: "/work", priority: 0.7, changeFrequency: "monthly" },

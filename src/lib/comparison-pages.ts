@@ -1,5 +1,3 @@
-import { SIGNAL_URL, NOTES_URL, TIMELINE_URL, TASKS_URL } from "@/lib/product-urls";
-
 export type ComparisonPage = {
   slug: string;
   title: string;
@@ -20,6 +18,10 @@ export type ComparisonPage = {
     href: string;
   };
 };
+
+function waitlistHref(artifact: string, useCase: string): string {
+  return `/waitlist?source=comparison&campaign=pre_access_waitlist&artifact=${artifact}&touch=site&useCase=${useCase}`;
+}
 
 export const COMPARISON_PAGES: ComparisonPage[] = [
   {
@@ -50,8 +52,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/venues",
     },
     secondaryCta: {
-      label: "Open the wedding workspace",
-      href: `${TASKS_URL}/templates/wedding-planning-workspace`,
+      label: "Join the wedding waitlist",
+      href: waitlistHref("aisle_planner_wedding_workspace", "venues"),
     },
   },
   {
@@ -114,8 +116,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/proof",
     },
     secondaryCta: {
-      label: "Open Signal Notes",
-      href: NOTES_URL,
+      label: "Join the planner waitlist",
+      href: waitlistHref("notion_wedding_planners", "weddings"),
     },
   },
   {
@@ -146,8 +148,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/proof",
     },
     secondaryCta: {
-      label: "Open Signal Tasks",
-      href: TASKS_URL,
+      label: "Join the trades waitlist",
+      href: waitlistHref("trello_builders", "trades"),
     },
   },
   {
@@ -178,8 +180,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/pricing",
     },
     secondaryCta: {
-      label: "Open the briefing",
-      href: SIGNAL_URL,
+      label: "Join the student waitlist",
+      href: waitlistHref("students_no_sprints", "students"),
     },
   },
 ];

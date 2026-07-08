@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  integer,
+  sqliteTable,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 export const ENTITLEMENT_SOURCES = [
   "workspace_subscription",
@@ -253,3 +259,65 @@ export const cronRuns = sqliteTable(
 
 export type CronRun = typeof cronRuns.$inferSelect;
 export type NewCronRun = typeof cronRuns.$inferInsert;
+
+// -- Public waitlist ---------------------------------------------------------
+
+export const WAITLIST_STATUSES = [
+  "waiting",
+  "invited",
+  "converted",
+  "closed",
+] as const;
+export type WaitlistStatus = (typeof WAITLIST_STATUSES)[number];
+
+export const WAITLIST_USE_CASES = [
+  "weddings",
+  "venues",
+  "students",
+  "freelance",
+  "trades",
+  "small-business",
+  "other",
+] as const;
+export type WaitlistUseCase = (typeof WAITLIST_USE_CASES)[number];
+
+export const waitlistEntries = sqliteTable(
+  "waitlist_entries",
+  {
+    id: text("id").primaryKey(),
+    email: text("email").notNull(),
+    name: text("name"),
+    useCase: text("use_case"),
+    note: text("note"),
+    source: text("source"),
+    campaign: text("campaign"),
+    audience: text("audience"),
+    artifact: text("artifact"),
+    touch: text("touch"),
+    referrer: text("referrer"),
+    path: text("path"),
+    userAgent: text("user_agent"),
+    status: text("status").notNull().default("waiting"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    lastSubmittedAt: integer("last_submitted_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    uniqueIndex("waitlist_entries_email_unique").on(table.email),
+    index("waitlist_entries_status_created_at_idx").on(
+      table.status,
+      table.createdAt,
+    ),
+    index("waitlist_entries_use_case_idx").on(table.useCase),
+    index("waitlist_entries_source_idx").on(table.source),
+  ],
+);
+
+export type WaitlistEntry = typeof waitlistEntries.$inferSelect;
+export type NewWaitlistEntry = typeof waitlistEntries.$inferInsert;

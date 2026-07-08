@@ -4,12 +4,6 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { HandoffTrace } from "@/components/proof/handoff-trace";
 import { CaptureReveal } from "@/components/proof/capture-reveal";
 import { ReadingProgress } from "@/components/reading-progress";
-import {
-  TASKS_URL,
-  TIMELINE_URL,
-  SIGNAL_URL,
-  NOTES_URL,
-} from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Proof · Signal Studio",
@@ -21,7 +15,7 @@ const LAYERS = [
   {
     n: "1",
     product: "Signal Notes",
-    productHref: NOTES_URL,
+    productHref: waitlistHref("notes", "proof_notes"),
     role: "Capture clarity",
     when: "The venue call.",
     title: "The planner sits in a venue meeting. Everything lands in Notes.",
@@ -46,10 +40,10 @@ const LAYERS = [
   {
     n: "2",
     product: "Signal Tasks",
-    productHref: TASKS_URL,
+    productHref: waitlistHref("tasks", "proof_tasks"),
     role: "Execution clarity",
     when: "After the meeting.",
-    title: "Three notes become three tasks. The wedding workspace is live.",
+    title: "Three notes become three tasks. The wedding workspace takes shape.",
     body: [
       "The planner long-presses three captures. Each one promotes into a task in a fresh wedding workspace. Tags do the job that projects would do in a heavier tool, \"florist\" becomes a project, \"venue\" becomes a project, \"save-the-dates\" sits inside print.",
       "The workspace was seeded from the canonical wedding template, so the structure is already there. The planner did not configure anything.",
@@ -69,7 +63,7 @@ const LAYERS = [
   {
     n: "3",
     product: "Signal Timeline",
-    productHref: TIMELINE_URL,
+    productHref: waitlistHref("timeline", "proof_timeline"),
     role: "Direction clarity",
     when: "Same evening.",
     title: "One link goes to the couple. The plan is now public to them.",
@@ -92,7 +86,7 @@ const LAYERS = [
   {
     n: "4",
     product: "Signal",
-    productHref: SIGNAL_URL,
+    productHref: waitlistHref("signal", "proof_signal"),
     role: "Attention clarity",
     when: "The next morning.",
     title: "At 6am, the briefing names what needs the planner's attention.",
@@ -117,6 +111,10 @@ const LAYERS = [
 ] as const;
 
 const PROSE_MAX = "mx-auto w-full max-w-[760px] px-6";
+
+function waitlistHref(product: string, artifact: string): string {
+  return `/waitlist?source=proof&campaign=pre_access_waitlist&product=${product}&artifact=${artifact}&touch=site&useCase=weddings`;
+}
 
 function Eyebrow({
   children,
@@ -254,7 +252,7 @@ export default function ProofPage() {
                   rel="noopener noreferrer"
                   className="text-[14px] text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
                 >
-                  Open {layer.product}{" "}
+                  Join the waitlist for {layer.product.replace("Signal ", "")}{" "}
                   <span className="cta-arrow" aria-hidden>
                     →
                   </span>

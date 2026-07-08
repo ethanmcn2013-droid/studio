@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { TASKS_URL, TIMELINE_URL, SIGNAL_URL, NOTES_URL } from "@/lib/product-urls";
 
 type FooterLink = {
   href: string;
   label: string;
   external?: boolean;
 };
+
+function waitlistHref(product: string): string {
+  return `/waitlist?source=footer&campaign=pre_access_waitlist&product=${product}&artifact=footer_suite_${product}&touch=site`;
+}
 
 const SOCIALS = [
   {
@@ -74,6 +77,7 @@ export function SiteFooter() {
         <FooterCol
           heading="Product"
           links={[
+            { href: "/waitlist", label: "Waitlist" },
             { href: "/pricing", label: "Pricing" },
             { href: "/work", label: "Work" },
             { href: "/proof", label: "Proof" },
@@ -103,10 +107,10 @@ export function SiteFooter() {
           heading="Suite"
           links={[
             { href: "/", label: "Signal Studio" },
-            { href: NOTES_URL, label: "Notes", external: true },
-            { href: TASKS_URL, label: "Tasks", external: true },
-            { href: TIMELINE_URL, label: "Timeline", external: true },
-            { href: SIGNAL_URL, label: "Signal", external: true },
+            { href: waitlistHref("notes"), label: "Notes" },
+            { href: waitlistHref("tasks"), label: "Tasks" },
+            { href: waitlistHref("timeline"), label: "Timeline" },
+            { href: waitlistHref("signal"), label: "Signal" },
           ]}
         />
       </div>

@@ -13,11 +13,11 @@ import type { TemplateAudience } from "@/components/marketing/template-pills";
 export const metadata: Metadata = {
   title: "Templates · Signal Studio",
   description:
-    "Wedding planning workspaces, a monthly rhythm for a small operation, the jobsite punchlist, tax season. The work, pre-written. Apply to any workspace in one click. Your existing tasks stay put.",
+    "Wedding planning workspaces, a monthly rhythm for a small operation, the jobsite punchlist, tax season. The work, pre-written for staged access.",
   openGraph: {
     title: "Templates · Signal Studio",
     description:
-      "The recurring stuff, already shaped. Wedding planning, monthly rhythms, the punchlist, tax season. Apply in one click.",
+      "The recurring stuff, already shaped. Wedding planning, monthly rhythms, the punchlist, tax season.",
     type: "website",
   },
 };
@@ -35,6 +35,10 @@ function parseAudience(raw: string | string[] | undefined): TemplateAudience {
     return v as TemplateAudience;
   }
   return "wedding";
+}
+
+function studentTemplateWaitlistHref(slug: string): string {
+  return `/waitlist?source=templates&campaign=pre_access_waitlist&audience=student&artifact=${slug}&touch=site&useCase=students`;
 }
 
 export default async function TemplatesPage({
@@ -76,8 +80,8 @@ export default async function TemplatesPage({
             }}
           >
             Wedding planning workspaces. The monthly rhythm of a small
-            operation. The jobsite punchlist. Tax season. Apply to any
-            workspace, and your existing tasks stay put.
+            operation. The jobsite punchlist. Tax season. Built so the
+            first access window starts with useful work already shaped.
           </p>
           <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-ink-faint">
             Two shapes.{" "}
@@ -128,26 +132,24 @@ export default async function TemplatesPage({
                 title: "Final paper push",
                 meta: "8 tasks · thesis to submit",
                 body: "Pick a thesis, gather sources, outline, draft, edit, submit. The order that beats the 4am panic.",
-                href: "https://tasks.signalstudio.ie/templates/final-paper-push",
+                href: studentTemplateWaitlistHref("student_final_paper_push"),
               },
               {
                 title: "Midterm week",
                 meta: "7 tasks · review, sleep",
                 body: "Review sheets, practice problems, the study group, eight hours of sleep. The boring stuff that wins.",
-                href: "https://tasks.signalstudio.ie/templates/midterm-week",
+                href: studentTemplateWaitlistHref("student_midterm_week"),
               },
               {
                 title: "Job application push",
                 meta: "8 tasks · apply with intent",
                 body: "CV, cover letter, portfolio, the follow-up. Show up looking like you meant to.",
-                href: "https://tasks.signalstudio.ie/templates/job-application-push",
+                href: studentTemplateWaitlistHref("student_job_application_push"),
               },
             ].map((t) => (
-              <a
+              <Link
                 key={t.title}
                 href={t.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group block rounded-2xl border p-5 no-underline transition-colors hover:border-ink-soft/40"
                 style={{ borderColor: "var(--hairline)", background: "var(--paper-soft)" }}
               >
@@ -157,12 +159,12 @@ export default async function TemplatesPage({
                 </div>
                 <p className="mt-3 text-[13.5px] leading-[1.55] text-ink-soft">{t.body}</p>
                 <div className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium text-ink">
-                  Open the template
+                  Join the waitlist
                   <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
                     &rarr;
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
           <div className="mt-8">
