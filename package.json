@@ -21,6 +21,7 @@
     "venue:paid": "tsx scripts/mark-venue-paid.ts",
     "partner:digest": "tsx scripts/partner-digest.ts",
     "check:dead": "tsx scripts/cross-repo-symbol-check.ts",
+    "check:advisors": "tsx scripts/check-advisors-sync.ts",
     "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs",
     "render:brand-assets": "node scripts/render-brand-assets.mjs",
     "check:brand-assets": "node scripts/check-brand-assets.mjs"
