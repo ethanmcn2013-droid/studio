@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-type State = "SHIPPED" | "REVIEW" | "PARKED" | "SYSTEM";
+type State = "SHIPPED" | "REVIEW" | "PARKED" | "SYSTEM" | "BUILDING";
 
 type Experiment = {
   href: string;
@@ -78,7 +78,7 @@ const LAB: Experiment[] = [
   },
 ];
 
-// Systems explorations that already have their own room.
+// Systems and productions that already have their own room.
 const SYSTEMS: Experiment[] = [
   {
     href: "/hq/loading-review",
@@ -86,6 +86,13 @@ const SYSTEMS: Experiment[] = [
     state: "SHIPPED",
     where: "all products · main",
     note: "Ten loading moments, one system: the 10px boundary dot, the sub-120ms handoff, the honest long-wait escalation. Live across every product.",
+  },
+  {
+    href: "/hq/demo-film",
+    name: "The demo film",
+    state: "BUILDING",
+    where: "demo-film · master",
+    note: "One Wedding, Four Views. The 30-second hero product film. The Remotion scaffold, storyboard, and motion grammar live in HQ; the film is not yet rendered.",
   },
 ];
 
