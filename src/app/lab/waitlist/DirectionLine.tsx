@@ -1,23 +1,28 @@
 "use client";
 
 /**
- * Direction B — "The Line" (locked, design pass 3 — on-system).
+ * Direction B — "The Line" (locked, design pass 4 — craft elevation).
  *
- * Rebuilt against the real design system: flat paper, no gradients, no glow
- * blooms, no drop-shadows. Hairlines carry the elevation. The accent shows
- * up in exactly three places (the tick rule, the eyebrow, your dot) the way
- * indigo is meant to be spent. The dot's "pulse" is the canonical crisp
- * hairline ring (the tasks-dot-emit gesture), not a soft glow.
+ * Still flat, still on-system: paper, hairlines, no gradients, no glow, no
+ * drop-shadows. The craft budget goes where BRAND.md says it should, to
+ * typography, hierarchy, and a couple of unforgettable moments:
  *
- * The suite's signature dot becomes quiet company: a line already forming.
- * On submit your dot joins the BACK of the line, honestly, and emits once
- * per breath. No fake counters, no scarcity. Calm on purpose. Review-only
- * mock; the winner is wired to joinWaitlistAction.
+ *   1. The headline ends with the accent dot as its period, the house
+ *      wordmark gesture, so it rhymes with the queue and the suite mark.
+ *   2. The queue is a real line: dots threaded on one 1px hairline (the
+ *      brand's material) that runs open-ended to the right, so the line
+ *      reads as still forming. Dots are opaque color-mix tints, so the
+ *      thread reads cleanly through the gaps.
+ *   3. Accent is spent in exactly three meaningful marks: the tick rule,
+ *      the headline period, your dot. Your dot arrives ALONG the line from
+ *      the right, honestly to the back, and emits one crisp ring per breath.
+ *
+ * Review-only mock; the winner is wired to joinWaitlistAction.
  */
 
 import { useState } from "react";
 
-const WAITING = 19;
+const WAITING = 16;
 
 export function DirectionLine() {
   const [email, setEmail] = useState("");
@@ -35,30 +40,34 @@ export function DirectionLine() {
         <div className="wlb-rule" aria-hidden />
         <p className="wlb-eyebrow">The line</p>
 
-        <h1 className="wlb-headline">Join the line.</h1>
+        <h1 className="wlb-headline" aria-label="Join the line.">
+          Join the line<span className="wlb-headline-dot" aria-hidden />
+        </h1>
         <p className="wlb-lede">
           Signal Studio opens in small batches from 1 September. Add your name and
           we write when your batch is ready, not before.
         </p>
 
         <div className="wlb-queue" aria-hidden>
-          {Array.from({ length: WAITING }).map((_, i) => {
-            const opacity = 0.32 + ((i * 7) % 5) * 0.06;
-            const size = i % 6 === 2 ? 11 : 9;
-            return (
-              <span
-                className="wlb-dot"
-                key={i}
-                style={{
-                  animationDelay: `${0.45 + i * 0.04}s`,
-                  opacity,
-                  width: size,
-                  height: size,
-                }}
-              />
-            );
-          })}
-          {done ? <span className="wlb-dot wlb-dot--you" /> : null}
+          <span className="wlb-line">
+            {Array.from({ length: WAITING }).map((_, i) => {
+              const tint = 38 + ((i * 7) % 5) * 9;
+              const size = i % 6 === 2 ? 11 : 9;
+              return (
+                <span
+                  className="wlb-dot"
+                  key={i}
+                  style={{
+                    animationDelay: `${0.5 + i * 0.045}s`,
+                    background: `color-mix(in srgb, var(--ink-quiet) ${tint}%, var(--bg))`,
+                    width: size,
+                    height: size,
+                  }}
+                />
+              );
+            })}
+            {done ? <span className="wlb-dot wlb-dot--you" /> : null}
+          </span>
         </div>
         <p className="wlb-queue-label">
           {done ? "You are in the line." : "A quiet line, already forming."}
@@ -94,11 +103,11 @@ export function DirectionLine() {
           background: var(--bg);
         }
         .wlb-shell {
-          width: min(620px, 100%);
+          width: min(600px, 100%);
           text-align: center;
         }
         .wlb-rule {
-          width: 132px;
+          width: 44px;
           height: 1px;
           margin: 0 auto 30px;
           background: var(--accent);
@@ -114,58 +123,83 @@ export function DirectionLine() {
           animation: wlb-in 0.7s var(--ease-out) both;
         }
         .wlb-eyebrow {
-          margin: 0 0 22px;
-          color: var(--accent);
+          margin: 0 0 24px;
+          color: var(--ink-quiet);
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
         }
         .wlb-headline {
           margin: 0;
           color: var(--ink);
-          font-size: clamp(2.8rem, 7vw, 5rem);
+          font-size: clamp(2.9rem, 7.4vw, 5.25rem);
           font-weight: 600;
           letter-spacing: -0.045em;
-          line-height: 0.98;
+          line-height: 0.96;
           animation-delay: 0.06s;
+        }
+        .wlb-headline-dot {
+          display: inline-block;
+          width: 0.4em;
+          height: 0.4em;
+          margin-left: 0.02em;
+          border-radius: 50%;
+          background: var(--accent);
+          vertical-align: baseline;
+          transform: translateY(0.02em) scale(0);
+          animation: wlb-dot-in 0.5s var(--ease-out) 0.5s both;
         }
         .wlb-lede {
           max-width: 44ch;
-          margin: 22px auto 0;
+          margin: 24px auto 0;
           color: var(--ink-soft);
           font-size: clamp(1rem, 0.96rem + 0.3vw, 1.16rem);
-          line-height: 1.6;
+          line-height: 1.62;
           animation-delay: 0.12s;
         }
         .wlb-queue {
           display: flex;
-          flex-wrap: wrap;
-          align-items: center;
           justify-content: center;
-          gap: 12px;
-          margin: 52px auto 0;
-          max-width: 420px;
-          min-height: 18px;
-          animation-delay: 0.18s;
+          margin: 54px auto 0;
+          min-height: 16px;
+          animation-delay: 0.2s;
+        }
+        .wlb-line {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 13px;
+          padding-right: 2px;
+        }
+        .wlb-line::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: -26px;
+          top: 50%;
+          height: 1px;
+          background: var(--border);
+          transform: translateY(-50%);
+          z-index: 0;
         }
         .wlb-dot {
+          position: relative;
+          z-index: 1;
           width: 9px;
           height: 9px;
           border-radius: 50%;
           background: var(--ink-quiet);
-          transform: translateX(16px) scale(0.5);
+          transform: translateX(18px) scale(0.4);
           animation: wlb-settle 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
         .wlb-dot--you {
-          position: relative;
-          background: var(--accent);
-          opacity: 1 !important;
+          background: var(--accent) !important;
           width: 13px !important;
           height: 13px !important;
-          transform: none;
-          animation: wlb-drop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+          transform: translateX(20px) scale(0.4);
+          animation: wlb-arrive 0.62s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
         .wlb-dot--you::before {
           content: "";
@@ -178,25 +212,25 @@ export function DirectionLine() {
           animation: wlb-emit 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s infinite;
         }
         .wlb-queue-label {
-          margin: 22px 0 0;
+          margin: 24px 0 0;
           color: var(--ink-quiet);
           font-family: var(--font-mono);
           font-size: 11px;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          animation-delay: 0.24s;
+          animation-delay: 0.26s;
         }
         .wlb-form {
           display: flex;
           gap: 8px;
-          width: min(468px, 100%);
-          margin: 30px auto 0;
+          width: min(460px, 100%);
+          margin: 32px auto 0;
           padding: 6px;
           border: 1px solid var(--border);
           border-radius: 999px;
           background: var(--bg-elev);
           transition: border-color var(--motion-base) var(--ease-out);
-          animation-delay: 0.3s;
+          animation-delay: 0.32s;
         }
         .wlb-form:focus-within { border-color: var(--accent); }
         .wlb-form input {
@@ -230,30 +264,34 @@ export function DirectionLine() {
         .wlb-form input:focus-visible,
         .wlb-form button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
         .wlb-echo {
-          margin: 30px auto 0;
+          margin: 32px auto 0;
           color: var(--ink-soft);
           font-size: 15px;
         }
         .wlb-echo strong { color: var(--ink); }
         .wlb-foot {
-          margin: 40px 0 0;
+          margin: 44px 0 0;
           color: var(--ink-faint, var(--ink-quiet));
           font-family: var(--font-mono);
           font-size: 11px;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          animation-delay: 0.36s;
+          animation-delay: 0.38s;
         }
         @keyframes wlb-in {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes wlb-dot-in {
+          from { transform: translateY(0.02em) scale(0); }
+          to { transform: translateY(0.02em) scale(1); }
+        }
         @keyframes wlb-settle {
           to { transform: translateX(0) scale(1); }
         }
-        @keyframes wlb-drop {
-          from { transform: translateY(-14px) scale(0.4); opacity: 0; }
-          to { transform: translateY(0) scale(1); opacity: 1; }
+        @keyframes wlb-arrive {
+          from { transform: translateX(20px) scale(0.4); opacity: 0; }
+          to { transform: translateX(0) scale(1); opacity: 1; }
         }
         @keyframes wlb-emit {
           0%, 55% { opacity: 0; transform: scale(0.7); }
@@ -261,14 +299,16 @@ export function DirectionLine() {
           100% { opacity: 0; transform: scale(2.4); }
         }
         @media (max-width: 520px) {
+          .wlb-line { gap: 10px; }
           .wlb-form { flex-wrap: wrap; border-radius: 16px; }
           .wlb-form button { width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
           .wlb-eyebrow, .wlb-headline, .wlb-lede, .wlb-queue, .wlb-queue-label,
           .wlb-form, .wlb-echo, .wlb-foot { animation: none; opacity: 1; transform: none; }
+          .wlb-headline-dot { animation: none; transform: translateY(0.02em) scale(1); }
           .wlb-dot { animation: none; transform: none; }
-          .wlb-dot--you { animation: none; }
+          .wlb-dot--you { animation: none; transform: none; }
           .wlb-dot--you::before { animation: none; }
         }
       `}</style>
