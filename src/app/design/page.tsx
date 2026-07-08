@@ -721,30 +721,34 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--paper);
 }
+/* Mirrors the front's two-line grammar exactly: sans title over a mono
+   spec line (front: "Founding Limerick Partner" / "№ — of 25 · 2026";
+   back: the promise / the address). Question on one face, answer on
+   the other, one typographic system. */
 .dsn-flip-fpback-block {
   position: absolute;
   left: 15.5%;
-  right: 12%;
-  bottom: 20%;
+  right: 10%;
+  bottom: 21%;
   display: grid;
-  gap: 2.4cqw;
+  gap: 2cqw;
 }
-.dsn-flip-fpback-email {
-  font-family: var(--font-mono, monospace);
-  font-size: 4.4cqw;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.dsn-flip-fpback-head {
+  font-size: 5.6cqw;
+  font-weight: 650;
+  letter-spacing: -0.02em;
   color: var(--paper);
-  line-height: 1;
+  line-height: 1.1;
 }
 .dsn-flip-fpback-line {
   font-family: var(--font-mono, monospace);
   font-size: 2.9cqw;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--paper) 72%, transparent);
-  line-height: 1.4;
+  line-height: 1;
+  white-space: nowrap;
 }
 @media (prefers-reduced-motion: reduce) {
   .dsn-flip-inner { transition: none; }
@@ -1287,11 +1291,11 @@ export default function DesignPage() {
                   <span className="dsn-flip-fpback">
                     <i className="dsn-flip-fpback-dot" aria-hidden />
                     <span className="dsn-flip-fpback-block">
-                      <span className="dsn-flip-fpback-email">
-                        ethan@signalstudio.ie
+                      <span className="dsn-flip-fpback-head">
+                        A direct line to the founder.
                       </span>
                       <span className="dsn-flip-fpback-line">
-                        Founding partners get a same-day reply.
+                        ethan@signalstudio.ie&ensp;·&ensp;same-day reply
                       </span>
                     </span>
                   </span>
