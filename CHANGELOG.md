@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-08 · S·119 · ships · the missing page joins the design system
+
+**The 404 page now behaves like part of Signal Studio instead of a dead end: it takes the /design page's dot, baseline, cap-height lines, paper field, and one-shot landing motion, then turns a missing address into three clear routes.** The copy stays plain: no panic, no mascot, no fake apology. The visual panel treats the missing route as a construction study, with the indigo dot settling back onto the line while the page points to Home, Design, and the Waitlist.
+
+It uses the existing page shell, respects reduced motion, and keeps the waitlist path attributed through the existing source labels.
+
 ## 2026-07-08 · S·118 · ships · Founder Copy Review enters HQ
 
 **Signal HQ now has a copy governance room: every meaningful line can be scanned, reviewed, approved, rejected, deferred, or promoted into guidance without pretending the approval survives a rewrite.** The room binds approval to the exact text hash, so a changed sentence returns to review on the next scan. It opens with 7,364 source-backed copy items, high-risk and legal/pricing filters, weekly review mode, search presets, diff context, founder comments, reusable guidance, and a Hall of Fame for lines worth teaching back to future writing passes.
