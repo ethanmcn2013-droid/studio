@@ -182,8 +182,8 @@ const PRODUCTS: Product[] = [
 ];
 
 const BADGE_STYLE: Record<Badge, { fg: string; bg: string; bd: string }> = {
-  PREFERRED: { fg: "#ffffff", bg: "var(--accent)", bd: "var(--accent)" },
-  REFERENCE: { fg: "#ffffff", bg: "var(--ink)", bd: "var(--ink)" },
+  PREFERRED: { fg: "var(--paper)", bg: "var(--accent)", bd: "var(--accent)" },
+  REFERENCE: { fg: "var(--paper)", bg: "var(--ink)", bd: "var(--ink)" },
   REBUILDING: { fg: "var(--accent)", bg: "var(--accent-soft)", bd: "var(--accent)" },
   CANDIDATE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
   ARCHIVE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },

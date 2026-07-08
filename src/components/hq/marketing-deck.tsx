@@ -155,7 +155,7 @@ export const DECK: Slide[] = [
     body: (
       <>
         <Lead>
-          At €12 a month and €79 one-time, a solo, zero-ad motion produces
+          At €12 a month and €89 one-time, a solo, zero-ad motion produces
           ≤€125k optimistically. The venue wedge, given away, produced
           nothing. A plan that flattered you would have hidden that.
         </Lead>
@@ -196,8 +196,8 @@ export const DECK: Slide[] = [
           items={[
             ["Venue Edition", "€1,500–€4,000 a year, prepaid"],
             ["Founding lock", "first ~15 venues hold €1,500 for life"],
-            ["Workspace", "€120 a year, annual prepay"],
-            ["Event", "€79 one-time, unchanged"],
+            ["Pro", "€120 a year, annual prepay"],
+            ["Event", "€89 one-time"],
           ]}
         />
       </>
@@ -228,8 +228,8 @@ export const DECK: Slide[] = [
       <Defs
         items={[
           ["One", "Paid Venue Edition, the engine, 75–85% of the number"],
-          ["Two", "Event €79 at volume, fed by sponsoring venues' couples"],
-          ["Three", "Workspace €12/mo, the compounding year-two annuity"],
+          ["Two", "Event €89 at volume, fed by sponsoring venues' couples"],
+          ["Three", "Pro €12/mo, the compounding year-two annuity"],
         ]}
       />
     ),
@@ -322,9 +322,9 @@ export const DECK: Slide[] = [
         rows={[
           ["M1", "Foundations + first signal", "1 qualified venue talk"],
           ["M2", "SEO flywheel + pilot live", "first posts' CTR"],
-          ["M3", "First public proof", "50 subs · first €79"],
+          ["M3", "First public proof", "50 subs · first €89"],
           ["M4", "Venue channel repeatable", "3 active venues"],
-          ["M5", "Workspace + shareable proof", "Workspace MRR"],
+          ["M5", "Pro + shareable proof", "Pro MRR"],
           ["M6", "Self-sustaining referral", "2 warm referrals"],
         ]}
       />

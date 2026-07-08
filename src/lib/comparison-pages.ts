@@ -162,7 +162,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
     sections: [
       {
         title: "The student rate",
-        copy: "The student tier carries the full Workspace plan for €9.99 a year, verified with any student email. The price does not become another thing to manage.",
+        copy: "The student tier carries the full Pro plan for €9.99 a year, verified with any student email. The price does not become another thing to manage.",
       },
       {
         title: "Four views, same work",

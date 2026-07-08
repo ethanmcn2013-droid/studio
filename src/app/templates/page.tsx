@@ -119,7 +119,7 @@ export default async function TemplatesPage({
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
             Three templates for the work a semester actually throws at you.
-            Students get the full Workspace tier for €9.99 a year, verified
+            Students get the full Pro tier for €9.99 a year, verified
             with any student email.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
