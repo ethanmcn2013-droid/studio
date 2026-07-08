@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  SIGNAL_URL,
-  NOTES_URL,
-  TIMELINE_URL,
-  TASKS_URL,
-} from "@/lib/product-urls";
 
 type ProductSlug = "tasks" | "timeline" | "notes" | "signal";
+
+function waitlistHref(product: ProductSlug): string {
+  return `/waitlist?source=product_switcher&campaign=pre_access_waitlist&product=${product}&artifact=product_switcher_${product}&touch=site`;
+}
 
 const PRODUCTS: {
   slug: ProductSlug;
@@ -17,10 +15,10 @@ const PRODUCTS: {
   url: string;
 }[] = [
   // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
-  { slug: "notes", word: "notes", tagline: "Capture clarity", url: NOTES_URL },
-  { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: TASKS_URL },
-  { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: TIMELINE_URL },
-  { slug: "signal", word: "signal", tagline: "Attention clarity", url: SIGNAL_URL },
+  { slug: "notes", word: "notes", tagline: "Capture clarity", url: waitlistHref("notes") },
+  { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: waitlistHref("tasks") },
+  { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: waitlistHref("timeline") },
+  { slug: "signal", word: "signal", tagline: "Attention clarity", url: waitlistHref("signal") },
 ];
 
 const INDIGO = "#4f46e5";
@@ -103,8 +101,6 @@ export function ProductSwitcher() {
               <li key={p.slug}>
                 <a
                   href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                   className="group flex items-center justify-between gap-3 rounded-md px-2.5 py-2 text-ink no-underline transition-colors hover:bg-bg-deep"
                 >

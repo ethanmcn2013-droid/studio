@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { CommitteeDisclosure } from "@/components/students/committee-disclosure";
-import { tasksSignUpUrl } from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Student Edition · Signal Studio",
@@ -15,7 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
-const signUpHref = tasksSignUpUrl("student");
+const waitlistHref =
+  "/waitlist?source=students&campaign=pre_access_waitlist&audience=student&artifact=student_page&touch=site&useCase=students";
 
 const FEATURES = [
   {
@@ -99,12 +99,10 @@ export default function StudentsPage() {
               Premium software made accessible, not free software made cheap.
             </p>
             <a
-              href={signUpHref}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={waitlistHref}
               className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white no-underline transition-opacity hover:opacity-90"
             >
-              Verify with college email{" "}
+              Join the student waitlist{" "}
               <span className="ml-1.5" aria-hidden>
                 →
               </span>
@@ -173,12 +171,10 @@ export default function StudentsPage() {
                   ))}
                 </ul>
                 <a
-                  href={signUpHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={waitlistHref}
                   className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[13px] font-medium text-white no-underline transition-opacity hover:opacity-90"
                 >
-                  Start with Student Edition{" "}
+                  Join the student waitlist{" "}
                   <span className="ml-1.5" aria-hidden>
                     →
                   </span>
@@ -199,7 +195,7 @@ export default function StudentsPage() {
               Verification
             </div>
             <p className="text-[13px] leading-[1.6] text-ink-soft">
-              Sign up with your college email, <code>.ie</code>,{" "}
+              Join the waitlist with your college email, <code>.ie</code>,{" "}
               <code>.ac.uk</code>, or your institution&rsquo;s domain. Re-verified
               once a year. Student Edition is for currently enrolled students,
               not a general free tier.

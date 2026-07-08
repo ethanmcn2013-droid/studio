@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { CopyableQuote } from "@/components/press/copyable-quote";
-import {
-  TASKS_URL,
-  TIMELINE_URL,
-  SIGNAL_URL,
-  NOTES_URL,
-} from "@/lib/product-urls";
 
 export const metadata: Metadata = {
   title: "Press · Signal Studio",
@@ -24,6 +18,10 @@ const lastCoverageDate: string | undefined =
   COVERAGE.length > 0
     ? COVERAGE.slice().sort((a, b) => b.date.localeCompare(a.date))[0].date
     : undefined;
+
+function waitlistHref(product: string): string {
+  return `/waitlist?source=press&campaign=pre_access_waitlist&product=${product}&artifact=press_${product}&touch=site`;
+}
 
 export default function PressPage() {
   return (
@@ -102,20 +100,20 @@ export default function PressPage() {
             <Section title="The four products">
               <ul className="space-y-2 text-[15px]">
                 <li>
-                  <ExternalLink href={TASKS_URL}>Signal Tasks</ExternalLink>.
+                  <ExternalLink href={waitlistHref("tasks")}>Signal Tasks</ExternalLink>.
                   Execution clarity. Board, list, timeline, calendar over the
                   same items.
                 </li>
                 <li>
-                  <ExternalLink href={TIMELINE_URL}>Signal Timeline</ExternalLink>.
+                  <ExternalLink href={waitlistHref("timeline")}>Signal Timeline</ExternalLink>.
                   Direction clarity. Public timelines customers can read.
                 </li>
                 <li>
-                  <ExternalLink href={SIGNAL_URL}>Signal</ExternalLink>.
+                  <ExternalLink href={waitlistHref("signal")}>Signal</ExternalLink>.
                   Attention clarity. A daily briefing. Nothing machine-written.
                 </li>
                 <li>
-                  <ExternalLink href={NOTES_URL}>Signal Notes</ExternalLink>.
+                  <ExternalLink href={waitlistHref("notes")}>Signal Notes</ExternalLink>.
                   Capture clarity. Private by design. Hands thoughts to Tasks
                   when they&rsquo;re ready.
                 </li>
@@ -130,8 +128,9 @@ export default function PressPage() {
                 <ExternalLink href="https://signalstudio.ie/brand/kit/README.md">
                   the kit
                 </ExternalLink>
-                . The products are live: open them in a browser and
-                screenshot freely. The design system itself is at{" "}
+                . Product access is staged through the waitlist; screenshots
+                are available on request until the access window opens. The
+                design system itself is at{" "}
                 <ExternalLink href="https://signalstudio.ie/design">
                   signalstudio.ie/design
                 </ExternalLink>

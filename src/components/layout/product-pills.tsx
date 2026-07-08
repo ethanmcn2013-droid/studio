@@ -19,11 +19,15 @@ import { useRef, useState, useCallback } from "react";
 
 type Product = { slug: string; label: string; href: string };
 
+function waitlistHref(product: string): string {
+  return `/waitlist?source=product_pills&campaign=pre_access_waitlist&product=${product}&artifact=product_pills_${product}&touch=site`;
+}
+
 const PRODUCTS: Product[] = [
-  { slug: "notes", label: "notes", href: "https://notes.signalstudio.ie" },
-  { slug: "tasks", label: "tasks", href: "https://tasks.signalstudio.ie" },
-  { slug: "timeline", label: "timeline", href: "https://timeline.signalstudio.ie" },
-  { slug: "signal", label: "signal", href: "https://signal.signalstudio.ie" },
+  { slug: "notes", label: "notes", href: waitlistHref("notes") },
+  { slug: "tasks", label: "tasks", href: waitlistHref("tasks") },
+  { slug: "timeline", label: "timeline", href: waitlistHref("timeline") },
+  { slug: "signal", label: "signal", href: waitlistHref("signal") },
 ];
 
 export function ProductPills({ current }: { current?: string }) {

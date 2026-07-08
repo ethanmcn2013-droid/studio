@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TASKS_URL, TIMELINE_URL } from "@/lib/product-urls";
 
 /**
- * 404, on-brand, calm. Two product links as the primary action.
+ * 404, on-brand, calm. Waitlist first while access is staged.
  * Voice: direct without drama. No "error", no "oops".
  */
 export default function NotFound() {
@@ -32,43 +31,29 @@ export default function NotFound() {
             className="mx-auto mt-4 max-w-[40ch] leading-[1.6] text-ink-quiet"
             style={{ fontSize: "clamp(0.9rem, 0.85rem + 0.25vw, 1rem)" }}
           >
-            You might be looking for one of the products.
+            You might be looking for the waitlist.
           </p>
 
-          {/* Product CTAs */}
+          {/* Waitlist CTA */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            <a
-              href={TASKS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/waitlist?source=not_found&campaign=pre_access_waitlist&artifact=404_primary&touch=site"
               className="inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium text-white transition-transform hover:-translate-y-px"
               style={{
                 background: "var(--ink)",
                 boxShadow: "0 8px 20px -8px rgba(20,21,26,0.4)",
               }}
             >
-              Signal Tasks &rarr;
-            </a>
-            <a
-              href={TIMELINE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              Join the waitlist &rarr;
+            </Link>
+            <Link
+              href="/"
               className="inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors"
               style={{
                 borderColor: "var(--border)",
                 background: "var(--bg-elev)",
                 color: "var(--ink-soft)",
               }}
-            >
-              Signal Timeline &rarr;
-            </a>
-          </div>
-
-          {/* Quiet home link */}
-          <div className="mt-6">
-            <Link
-              href="/"
-              className="text-[12.5px] text-ink-faint underline decoration-border underline-offset-[3px] transition-colors hover:text-ink hover:decoration-ink-quiet"
             >
               Back home
             </Link>
