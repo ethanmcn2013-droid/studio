@@ -142,13 +142,13 @@ export function DirectionLine() {
         }
         .wlb-headline-dot {
           display: inline-block;
-          width: 0.4em;
-          height: 0.4em;
-          margin-left: 0.02em;
+          width: 0.2em;
+          height: 0.2em;
+          margin-left: 0.04em;
           border-radius: 50%;
           background: var(--accent);
           vertical-align: baseline;
-          transform: translateY(0.02em) scale(0);
+          transform: translateY(-0.02em) scale(0);
           animation: wlb-dot-in 0.5s var(--ease-out) 0.5s both;
         }
         .wlb-lede {
@@ -283,8 +283,8 @@ export function DirectionLine() {
           to { opacity: 1; transform: translateY(0); }
         }
         @keyframes wlb-dot-in {
-          from { transform: translateY(0.02em) scale(0); }
-          to { transform: translateY(0.02em) scale(1); }
+          from { transform: translateY(-0.02em) scale(0); }
+          to { transform: translateY(-0.02em) scale(1); }
         }
         @keyframes wlb-settle {
           to { transform: translateX(0) scale(1); }
@@ -306,7 +306,7 @@ export function DirectionLine() {
         @media (prefers-reduced-motion: reduce) {
           .wlb-eyebrow, .wlb-headline, .wlb-lede, .wlb-queue, .wlb-queue-label,
           .wlb-form, .wlb-echo, .wlb-foot { animation: none; opacity: 1; transform: none; }
-          .wlb-headline-dot { animation: none; transform: translateY(0.02em) scale(1); }
+          .wlb-headline-dot { animation: none; transform: translateY(-0.02em) scale(1); }
           .wlb-dot { animation: none; transform: none; }
           .wlb-dot--you { animation: none; transform: none; }
           .wlb-dot--you::before { animation: none; }
