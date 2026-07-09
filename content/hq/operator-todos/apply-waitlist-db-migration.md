@@ -2,9 +2,11 @@
 id: apply-waitlist-db-migration
 title: Apply the waitlist table migration to the Studio database.
 owner: Ethan
-status: Open
+status: done
 date: 2026-07-08
 ---
+
+Done 2026-07-09: the `waitlist_entries` table was created in the prod Studio DB via a one-time HQ-gated migration route, and a live signup was verified into `/hq/waitlist`. Submissions now persist.
 
 ## Why
 
