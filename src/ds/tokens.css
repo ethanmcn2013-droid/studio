@@ -80,33 +80,6 @@
   --status-blocked-bg: #fee2e2;
   --status-next-bg:    var(--paper-deep);
 
-  /* ── Command deck ────────────────────────────────────────────────
-     A namespaced dark palette for the internal /hq/org "command deck"
-     (src/features/org). Not a theme switch: the suite stays white
-     (operator decision 2026-07-02). These tokens exist so the one dark
-     internal surface references the system rather than raw hex, and so
-     the deck's colour is governed here in one place. */
-  --deck-void:       #07080c;
-  --deck-base:       #0b0d14;
-  --deck-canvas-top: #0e111b;
-  --deck-surface:    #12151f;
-  --deck-surface-2:  #171b27;
-  --deck-elev:       #1b2030;
-  --deck-elev-a:     #171b2b;
-  --deck-elev-b:     #10131e;
-  --deck-drawer-b:   #0d1018;
-  --deck-ink:        #eef0f7;
-  --deck-ink-soft:   #b4bacb;
-  --deck-ink-quiet:  #9096af;
-  --deck-ink-ghost:  #39405a;
-  --deck-accent:     #8b93ff;
-  --deck-accent-2:   #a5adff;
-  --deck-accent-3:   #c9cdff;
-  --deck-accent-dim: #5b63d6;
-  --deck-good:       #34d399;
-  --deck-warn:       #fbbf24;
-  --deck-bad:        #f87171;
-
   /* ── SEMANTIC · typography ───────────────────────────────────── */
 
   /* next/font apps expose Geist via --font-geist-*; the var() fallback

@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-09 · S·120 · ships · the org becomes an operating deck
+
+**/hq/org stops being a static chart and becomes a live operating deck: one Founder, 17 Directors across eight divisions, the standing councils, the full toolchain, and the routines that will run the company once it is live.** Six modes carry it. Chart spreads the Directors across eight divisions with candidate roles flagged in discovery, and the inspector reads real scope, council seats, tool grants, and coordination paths. Councils shows the five standing panels. Tools carries the whole stack with brand logos, our in-house tools, and the ad video stack. Routines names the autonomous runs planned for launch. Evidence and Investor stay grounded in the record.
+
+It is the on-brand light register, white paper and hairlines, no dashboards for show. Internal and noindex, behind the HQ gate. Everything mirrors signal-directors; nothing is invented. A first pass shipped dark and was pulled back to the light suite before it went out.
+
 ## 2026-07-08 · S·119 · ships · the missing page joins the design system
 
 **The 404 page now behaves like part of Signal Studio instead of a dead end: it takes the /design page's dot, baseline, cap-height lines, paper field, and one-shot landing motion, then turns a missing address into three clear routes.** The copy stays plain: no panic, no mascot, no fake apology. The visual panel treats the missing route as a construction study, with the indigo dot settling back onto the line while the page points to Home, Design, and the Waitlist.
