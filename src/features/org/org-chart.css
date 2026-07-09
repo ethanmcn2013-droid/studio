@@ -524,17 +524,7 @@
 
 .orgc-stage {
   position: relative;
-  display: grid;
-  grid-template-columns: 184px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-.orgc-stage[data-mode="councils"],
-.orgc-stage[data-mode="tools"],
-.orgc-stage[data-mode="evidence"],
-.orgc-stage[data-mode="investor"] {
-  grid-template-columns: 1fr;
+  display: block;
 }
 
 .orgc-overlay {
@@ -751,13 +741,17 @@
 
 .orgc-columns {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 12px;
   align-items: start;
 }
 
-@media (max-width: 1400px) {
-  .orgc-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1560px) {
+  .orgc-columns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .orgc-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .orgc-col {
@@ -830,11 +824,11 @@
   appearance: none;
   text-align: left;
   width: 100%;
-  min-height: 126px;
+  min-height: 0;
   background: var(--paper);
   border: 1px solid var(--hairline);
   border-radius: 10px;
-  padding: 14px 13px;
+  padding: 13px 12px;
   cursor: pointer;
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr) auto;
@@ -2142,10 +2136,120 @@ a.orgc-link:hover {
 }
 
 .orgc-tool-note {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 12px;
   line-height: 1.5;
   color: var(--ink-quiet);
+}
+
+.orgc-tool-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.orgc-tool-head .orgc-tool-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.orgc-tool-logo {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  overflow: hidden;
+}
+
+.orgc-tool-logo img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+.orgc-tool-logo--mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.orgc-tool-tag[data-tag="internal"] {
+  color: var(--ink-soft);
+  border-color: var(--hairline);
+}
+
+.orgc-tool-tag[data-tag="planned"] {
+  color: var(--ink-quiet);
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+.orgc-tool-card[data-tag="planned"] {
+  background: color-mix(in srgb, var(--paper-soft) 45%, var(--paper));
+}
+
+/* ── Routines mode (planned) ────────────────────────────────────────────────── */
+
+.orgc-routines {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.orgc-routine {
+  border: 1px solid var(--hairline);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 30%, var(--hairline));
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 18px 18px 18px 20px;
+}
+
+.orgc-routine-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.orgc-routine-name {
+  font-size: 0.98rem;
+  font-weight: 640;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.orgc-routine-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+  border: 1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.orgc-routine-cadence {
+  margin-top: 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.orgc-routine-detail {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */

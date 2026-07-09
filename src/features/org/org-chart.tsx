@@ -30,6 +30,7 @@ import {
   ORG_COUNTS,
   PERMISSION_TIERS,
   PRINCIPLES,
+  ROUTINES,
   TOOLS,
   TOOLS_COUNT,
   WORKFLOWS,
@@ -48,12 +49,13 @@ import { OrgSearch } from "./org-search";
 
 type Edge = { id: string; x1: number; y1: number; x2: number; y2: number };
 type ColumnFilter = "all" | string;
-type Mode = "chart" | "councils" | "evidence" | "investor" | "tools";
+type Mode = "chart" | "councils" | "tools" | "routines" | "evidence" | "investor";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "chart", label: "Chart" },
   { id: "councils", label: "Councils" },
   { id: "tools", label: "Tools" },
+  { id: "routines", label: "Routines" },
   { id: "evidence", label: "Evidence" },
   { id: "investor", label: "Investor" },
 ];
@@ -345,27 +347,12 @@ export function OrgChart() {
         ) : null}
 
         {mode === "chart" ? (
-          <>
-            <aside className="orgc-sidecar" aria-label="Map controls">
-              <div className="orgc-minimap">
-                <div className="orgc-side-title">map overview</div>
-                <MiniMap selectedColumn={selectedColumn} />
-              </div>
-              <div className="orgc-layers">
-                <div className="orgc-side-title">layers</div>
-                <LayerRow label="L1" value="Founder" active />
-                <LayerRow label="L2" value="Divisions" active />
-                <LayerRow label="L3" value="Directors" active />
-                <LayerRow label="L4" value="Tools + evidence" active={investorLens} />
-              </div>
-            </aside>
-
-            <div
-              className="orgc-canvas"
-              onClick={(e) => {
-                if (e.target === e.currentTarget && focusedId) setFocusedId(null);
-              }}
-            >
+          <div
+            className="orgc-canvas"
+            onClick={(e) => {
+              if (e.target === e.currentTarget && focusedId) setFocusedId(null);
+            }}
+          >
               <div className="orgc-apex">
                 <div className="orgc-apex-card">
                   <div className="orgc-apex-eyebrow">founder and final call</div>
@@ -443,11 +430,11 @@ export function OrgChart() {
                 </div>
               </div>
             </div>
-          </>
         ) : null}
 
         {mode === "councils" ? <CouncilsMode onOpen={openDirector} /> : null}
         {mode === "tools" ? <ToolsMode /> : null}
+        {mode === "routines" ? <RoutinesMode /> : null}
         {mode === "evidence" ? <EvidenceMode /> : null}
         {mode === "investor" ? <InvestorMode /> : null}
       </div>
@@ -647,14 +634,47 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
 
 // ── Tools mode ────────────────────────────────────────────────────────────────
 
+function ToolMark({ name, slug }: { name: string; slug?: string }) {
+  const [err, setErr] = useState(false);
+  const mono =
+    name
+      .replace(/[^A-Za-z0-9 ]/g, "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join("")
+      .toUpperCase() || "?";
+  if (slug && !err) {
+    return (
+      <span className="orgc-tool-logo">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`https://cdn.simpleicons.org/${slug}`}
+          alt=""
+          width={20}
+          height={20}
+          loading="lazy"
+          onError={() => setErr(true)}
+        />
+      </span>
+    );
+  }
+  return (
+    <span className="orgc-tool-logo orgc-tool-logo--mono" aria-hidden="true">
+      {mono}
+    </span>
+  );
+}
+
 function ToolsMode() {
   return (
     <div className="orgc-panel-card">
       <div className="orgc-section-eyebrow">the toolchain</div>
       <p className="orgc-section-lede">
         Every platform, service, and grant the company runs on. {TOOLS_COUNT}{" "}
-        tools across {TOOLS.length} groups, with one live MCP grant on a trial.
-        Access is scoped per Director through the permission tiers.
+        tools across {TOOLS.length} groups, from the build stack to our own
+        in-house tools and the video stack for ads. One live MCP grant today.
       </p>
 
       <div className="orgc-tools-groups">
@@ -664,15 +684,52 @@ function ToolsMode() {
             <div className="orgc-tools-grid">
               {g.items.map((it) => (
                 <div key={it.name} className="orgc-tool-card" data-tag={it.tag ?? ""}>
-                  <div className="orgc-tool-name">
-                    {it.name}
-                    {it.tag ? <span className="orgc-tool-tag">{it.tag}</span> : null}
+                  <div className="orgc-tool-head">
+                    <ToolMark name={it.name} slug={it.slug} />
+                    <div className="orgc-tool-name">
+                      {it.name}
+                      {it.tag ? (
+                        <span className="orgc-tool-tag" data-tag={it.tag}>
+                          {it.tag}
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
                   <div className="orgc-tool-note">{it.note}</div>
                 </div>
               ))}
             </div>
           </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Routines mode (planned, not yet built) ────────────────────────────────────
+
+function RoutinesMode() {
+  return (
+    <div className="orgc-panel-card">
+      <div className="orgc-section-eyebrow">routines · planned</div>
+      <p className="orgc-section-lede">
+        The autonomous runs that will operate the company once it is fully live.
+        None of these are wired yet. They are the shape of the day when the
+        Directors run on their own cadence. {ROUTINES.length} planned.
+      </p>
+
+      <div className="orgc-routines">
+        {ROUTINES.map((r) => (
+          <div key={r.name} className="orgc-routine">
+            <div className="orgc-routine-top">
+              <div className="orgc-routine-name">{r.name}</div>
+              <span className="orgc-routine-status">planned</span>
+            </div>
+            <div className="orgc-routine-cadence">
+              {r.cadence} · {directorName(r.ownerId)}
+            </div>
+            <div className="orgc-routine-detail">{r.detail}</div>
+          </div>
         ))}
       </div>
     </div>
@@ -955,52 +1012,7 @@ function InvestorMode() {
   );
 }
 
-// ── Chart-mode sidecar bits ───────────────────────────────────────────────────
-
-function MiniMap({ selectedColumn }: { selectedColumn: ColumnFilter }) {
-  const allMembers = CHART_COLUMNS.flatMap((c) =>
-    c.members.map((m) => ({ id: m, col: c.id })),
-  );
-  return (
-    <div className="orgc-minimap-box" aria-hidden="true">
-      <div className="orgc-mini-apex" />
-      <div className="orgc-mini-councils">
-        {CHART_COLUMNS.map((c) => (
-          <span
-            key={c.id}
-            data-active={selectedColumn === "all" || selectedColumn === c.id}
-          />
-        ))}
-      </div>
-      <div className="orgc-mini-nodes">
-        {allMembers.map((m) => (
-          <span
-            key={m.id}
-            data-active={selectedColumn === "all" || selectedColumn === m.col}
-            data-discovery={isDiscovery(m.id) ? "true" : undefined}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function LayerRow({
-  label,
-  value,
-  active,
-}: {
-  label: string;
-  value: string;
-  active: boolean;
-}) {
-  return (
-    <div className="orgc-layer-row" data-active={active ? "true" : "false"}>
-      <span>{label}</span>
-      <strong>{value}</strong>
-    </div>
-  );
-}
+// ── Chart-mode metric ─────────────────────────────────────────────────────────
 
 function MiniMetric({ value, label }: { value: string; label: string }) {
   return (

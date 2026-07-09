@@ -393,14 +393,16 @@ export type ChartColumn = {
 
 export const CHART_COLUMNS: ChartColumn[] = [
   {
-    id: "strategy-voice",
-    label: "Strategy & Voice",
-    subtitle: "Holds the frame and the company's voice.",
-    members: [
-      "product-strategy",
-      "brand-narrative-positioning",
-      "customer-success-research-insight",
-    ],
+    id: "strategy",
+    label: "Strategy",
+    subtitle: "Chief of staff. Keeps the company on the right things.",
+    members: ["product-strategy"],
+  },
+  {
+    id: "brand-customer",
+    label: "Brand & Customer",
+    subtitle: "The company's voice and the customer's real problem.",
+    members: ["brand-narrative-positioning", "customer-success-research-insight"],
   },
   {
     id: "product-excellence",
@@ -416,7 +418,7 @@ export const CHART_COLUMNS: ChartColumn[] = [
   {
     id: "experience-craft",
     label: "Experience & Craft",
-    subtitle: "UX, taste, and perceived performance across the suite.",
+    subtitle: "UX, taste, and perceived performance.",
     members: [
       "product-experience-ux",
       "product-taste-design-integrity",
@@ -424,15 +426,16 @@ export const CHART_COLUMNS: ChartColumn[] = [
     ],
   },
   {
-    id: "build-ship",
-    label: "Build & Ship",
-    subtitle: "Engineering, creative, and operations landing the work.",
-    members: [
-      "engineering-systems-architecture",
-      "creative-motion-experience",
-      "operations-admin-founder-support",
-      "data-infrastructure",
-    ],
+    id: "engineering-data",
+    label: "Engineering & Data",
+    subtitle: "Architecture, systems, and the data platform beneath them.",
+    members: ["engineering-systems-architecture", "data-infrastructure"],
+  },
+  {
+    id: "creative-ops",
+    label: "Creative & Ops",
+    subtitle: "Motion, launches, and the founder's day running smoothly.",
+    members: ["creative-motion-experience", "operations-admin-founder-support"],
   },
   {
     id: "growth-market",
@@ -511,48 +514,81 @@ export function columnPeers(id: string): string[] {
 
 // ── Tools inventory (the stack + the grants + the MCP layer) ─────────────────
 
+export type ToolTag = "mcp" | "skill" | "core" | "internal" | "planned";
+
+export type ToolItem = { name: string; note: string; tag?: ToolTag; slug?: string };
+
 export type ToolGroup = {
   category: string;
-  items: { name: string; note: string; tag?: "mcp" | "skill" | "core" }[];
+  items: ToolItem[];
 };
 
+/**
+ * The toolchain. `slug` is a simple-icons brand slug for the logo; in-house and
+ * unbranded tools omit it and fall back to a monogram. `tag` marks MCP grants,
+ * Claude skills, our own internal tools, and things planned but not yet live.
+ */
 export const TOOLS: ToolGroup[] = [
   {
     category: "Build & ship",
     items: [
-      { name: "GitHub", note: "Source, pull requests, CI status" },
-      { name: "Vercel", note: "Hosting and preview deploys" },
-      { name: "Next.js", note: "App framework across every surface" },
-      { name: "TypeScript", note: "One typed language, front to back" },
-      { name: "pnpm", note: "Workspaces across the product repos" },
-      { name: "Drizzle", note: "Typed schema and migrations" },
+      { name: "GitHub", note: "Source, pull requests, CI status", slug: "github" },
+      { name: "Vercel", note: "Hosting and preview deploys", slug: "vercel" },
+      { name: "Next.js", note: "App framework across every surface", slug: "nextdotjs" },
+      { name: "TypeScript", note: "One typed language, front to back", slug: "typescript" },
+      { name: "pnpm", note: "Workspaces across the product repos", slug: "pnpm" },
+      { name: "Drizzle", note: "Typed schema and migrations", slug: "drizzle" },
     ],
   },
   {
     category: "Quality & monitoring",
     items: [
-      { name: "Sentry", note: "Runtime errors and traces" },
-      { name: "Playwright", note: "End-to-end and visual checks" },
+      { name: "Sentry", note: "Runtime errors and traces", slug: "sentry" },
+      { name: "Playwright", note: "End-to-end and visual checks", slug: "playwright" },
       { name: "ds-check", note: "Design-system drift gate" },
-      { name: "Vercel Analytics", note: "Real-user performance" },
+      { name: "Vercel Analytics", note: "Real-user performance", slug: "vercel" },
     ],
   },
   {
-    category: "Plan & coordinate",
+    category: "In-house tools",
     items: [
-      { name: "Linear", note: "Issues and cycles" },
-      { name: "Slack", note: "25 channels, one per director and panel" },
-      { name: "Atlas map", note: "Living map of every system" },
-      { name: "Decision log", note: "Append-only record of calls" },
+      { name: "Signal Review", note: "Structured UI review to agent-ready reports", tag: "internal" },
+      { name: "UX Assurance Bot", note: "Guards flows and IA on every change", tag: "internal" },
+      { name: "Whisper Flow", note: "Our voice-to-text dictation, in-house build", tag: "internal" },
+      { name: "Signal HQ", note: "The internal operating hub, this surface", tag: "internal" },
+      { name: "Taste rater", note: "Pairwise design rater behind the brand bar", tag: "internal" },
     ],
   },
   {
     category: "AI leadership",
     items: [
-      { name: "Claude Code", note: "One subagent per Director", tag: "core" },
-      { name: "Claude Design", note: "Brand and design-system sync" },
-      { name: "Google Calendar", note: "Founder calendar, live grant", tag: "mcp" },
+      { name: "Claude Code", note: "One subagent per Director", tag: "core", slug: "claude" },
+      { name: "Claude Design", note: "Brand and design-system sync", slug: "anthropic" },
+      { name: "Google Calendar", note: "Founder calendar, live MCP grant", tag: "mcp", slug: "googlecalendar" },
       { name: "Brand-voice", note: "Voice enforcement on all copy", tag: "skill" },
+    ],
+  },
+  {
+    category: "Creative & video",
+    items: [
+      { name: "Higgsfield", note: "Video generation over MCP, for ad creative", tag: "mcp" },
+      { name: "Runway", note: "Generative video for ads", tag: "planned" },
+      { name: "OpenAI Sora", note: "Text-to-video for concepts", tag: "planned", slug: "openai" },
+      { name: "Google Veo", note: "High-fidelity generative video", tag: "planned", slug: "google" },
+      { name: "Kling", note: "Generative video, motion-heavy cuts", tag: "planned" },
+      { name: "Midjourney", note: "Stills and key art for campaigns", tag: "planned" },
+      { name: "ElevenLabs", note: "Voiceover and audio for ads", tag: "planned", slug: "elevenlabs" },
+      { name: "HeyGen", note: "Avatar and spokesperson video", tag: "planned" },
+      { name: "Descript", note: "Edit, caption, and cut the final", tag: "planned" },
+    ],
+  },
+  {
+    category: "Plan & coordinate",
+    items: [
+      { name: "Linear", note: "Issues and cycles", slug: "linear" },
+      { name: "Slack", note: "25 channels, one per director and panel", slug: "slack" },
+      { name: "Atlas map", note: "Living map of every system", tag: "internal" },
+      { name: "Decision log", note: "Append-only record of calls", tag: "internal" },
     ],
   },
   {
@@ -577,6 +613,95 @@ export const TOOLS: ToolGroup[] = [
 
 export const TOOLS_COUNT = TOOLS.reduce((n, g) => n + g.items.length, 0);
 
+// ── Routines (autonomous runs, planned — not yet built) ──────────────────────
+
+/**
+ * The autonomous routines that will run once the company is fully live. None
+ * of these are wired yet; they render flagged "planned" so the operating shape
+ * is visible. Seed set — add, cut, or reassign freely.
+ */
+export type Routine = {
+  name: string;
+  cadence: string;
+  detail: string;
+  ownerId: string;
+};
+
+export const ROUTINES: Routine[] = [
+  {
+    name: "Daily founder briefing",
+    cadence: "Weekdays 06:30",
+    detail: "Calendar, active initiatives, and overnight decisions in five lines.",
+    ownerId: "operations-admin-founder-support",
+  },
+  {
+    name: "Morning market scan",
+    cadence: "Daily",
+    detail: "Competitor moves and audience signal from the last 24 hours.",
+    ownerId: "marketing-growth-audience-insight",
+  },
+  {
+    name: "Weekly metrics digest",
+    cadence: "Mondays",
+    detail: "The numbers that matter, one page, no dashboards to open.",
+    ownerId: "analytics-product-excellence",
+  },
+  {
+    name: "Waitlist nurture",
+    cadence: "On signup",
+    detail: "Welcome and warm every new waitlist entry in brand voice.",
+    ownerId: "marketing-growth-audience-insight",
+  },
+  {
+    name: "Churn-risk watch",
+    cadence: "Daily",
+    detail: "Flag accounts going quiet before they leave, with a next step.",
+    ownerId: "customer-success-research-insight",
+  },
+  {
+    name: "Ad creative generation",
+    cadence: "Per campaign",
+    detail: "Draft ad variants end to end with the video stack, ready to review.",
+    ownerId: "creative-motion-experience",
+  },
+  {
+    name: "Content calendar",
+    cadence: "Weekly",
+    detail: "Next week's posts drafted, on-voice, and queued.",
+    ownerId: "marketing-growth-audience-insight",
+  },
+  {
+    name: "Bug triage from Sentry",
+    cadence: "On alert",
+    detail: "Cluster new errors, open issues, and propose the fix.",
+    ownerId: "engineering-systems-architecture",
+  },
+  {
+    name: "UX assurance sweep",
+    cadence: "On pull request",
+    detail: "Run the UX Assurance Bot on changed screens and flag friction.",
+    ownerId: "product-experience-ux",
+  },
+  {
+    name: "Release notes",
+    cadence: "On deploy",
+    detail: "Draft the changelog entry in brand voice, ready to ship.",
+    ownerId: "brand-narrative-positioning",
+  },
+  {
+    name: "Weekly investor update",
+    cadence: "Fridays",
+    detail: "Draft the week's investor note from the real operating record.",
+    ownerId: "product-strategy",
+  },
+  {
+    name: "Support triage",
+    cadence: "Continuous",
+    detail: "Sort, tag, and route incoming support to the right place.",
+    ownerId: "customer-success-research-insight",
+  },
+];
+
 // ── Headline counts (all real, all derived) ─────────────────────────────────
 
 const layer3Count = DIRECTORS.filter((d) => d.autonomyLayer === 3).length;
@@ -589,6 +714,7 @@ export const ORG_COUNTS = {
   divisions: CHART_COLUMNS.length,
   discovery: DISCOVERY_DIRECTORS.length,
   tools: TOOLS_COUNT,
+  routines: ROUTINES.length,
   councils: COUNCILS.length,
   autonomyLayers: AUTONOMY_LADDER.length,
   permissionTiers: PERMISSION_TIERS.length,
@@ -615,7 +741,7 @@ export function deckStats(): DeckStat[] {
     { value: String(ORG_COUNTS.coordinationPaths), label: "coordination paths" },
     { value: String(ORG_COUNTS.tools), label: "tools + platforms" },
     { value: String(ORG_COUNTS.mcpLive), label: "mcp live" },
-    { value: String(ORG_COUNTS.channels), label: "slack channels" },
+    { value: String(ORG_COUNTS.routines), label: "routines" },
     { value: String(ORG_COUNTS.discovery), label: "in discovery" },
   ];
 }
