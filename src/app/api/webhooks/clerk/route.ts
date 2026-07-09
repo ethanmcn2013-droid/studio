@@ -1,11 +1,11 @@
 import "server-only";
-import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { eq, and } from "drizzle-orm";
 import { entitlementsDb } from "@/lib/entitlements-db/client";
 import { processedWebhooks } from "@/lib/entitlements-db/schema";
 import { shredPersonPII } from "@/lib/entitlements-db/gdpr";
 import { systemActor } from "@/lib/entitlements-db/guard";
+import { svixExpectedSignature, svixMatches } from "@/lib/entitlements-db/pure";
 
 /**
  * Clerk webhook receiver. Today it handles ONLY user.deleted, which triggers
@@ -21,21 +21,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 function verifySvix(secret: string, id: string, timestamp: string, body: string, header: string): boolean {
-  // Secret is "whsec_<base64>"; the signing key is the decoded base64 tail.
-  const key = Buffer.from(secret.replace(/^whsec_/, ""), "base64");
-  const expected = createHmac("sha256", key)
-    .update(`${id}.${timestamp}.${body}`)
-    .digest("base64");
-  const expectedBuf = Buffer.from(expected);
-  // Header is a space-separated list of "v1,<sig>" entries; any match passes.
-  for (const part of header.split(" ")) {
-    const sig = part.includes(",") ? part.split(",")[1] : part;
-    const sigBuf = Buffer.from(sig);
-    if (sigBuf.length === expectedBuf.length && timingSafeEqual(sigBuf, expectedBuf)) {
-      return true;
-    }
-  }
-  return false;
+  return svixMatches(header, svixExpectedSignature(secret, id, timestamp, body));
 }
 
 export async function POST(req: Request) {

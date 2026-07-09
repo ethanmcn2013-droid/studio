@@ -448,3 +448,113 @@ export async function upsertSubscriptionEntitlement(input: {
     return { id, created: true };
   });
 }
+
+/**
+ * Re-point access after an account merge: move a person's ACTIVE entitlement
+ * rows from a stranded (dead) Clerk id to their live id, and mark any rows
+ * left behind on the dead id as such. Every move is one `repoint` event. The
+ * historical (expired/revoked) rows stay under the dead id as the audit
+ * skeleton; only live access follows the person.
+ */
+export async function repointAccess(input: {
+  fromClerkId: string;
+  toClerkId: string;
+  reason: string;
+  actor: MutationActor;
+  origin?: string | null;
+}): Promise<{ moved: number }> {
+  const from = input.fromClerkId?.trim();
+  const to = input.toClerkId?.trim();
+  if (!from || !to) throw new Error("repointAccess: both from and to ids required");
+  if (from === to) throw new Error("repointAccess: from and to are the same id");
+  if (!input.reason?.trim()) throw new Error("repointAccess: reason required");
+  const actor = requireActor(input.actor);
+  await assertVelocity(actor);
+  const db = entitlementsDb();
+  const now = Date.now();
+
+  return db.transaction(async (tx) => {
+    const active = await tx
+      .select({ id: entitlements.id })
+      .from(entitlements)
+      .where(and(eq(entitlements.userClerkId, from), eq(entitlements.status, "active")));
+    if (active.length === 0) return { moved: 0 };
+
+    await tx
+      .update(entitlements)
+      .set({ userClerkId: to, clerkIdDead: null, updatedAt: now })
+      .where(and(eq(entitlements.userClerkId, from), eq(entitlements.status, "active")));
+
+    // Mark whatever remains under the dead id (history) as stranded.
+    await tx
+      .update(entitlements)
+      .set({ clerkIdDead: 1, updatedAt: now })
+      .where(eq(entitlements.userClerkId, from));
+
+    for (const r of active) {
+      await appendEvent(tx, {
+        action: "repoint",
+        entitlementId: r.id,
+        userClerkId: to,
+        actorId: actor.actorId,
+        actorName: actor.actorName,
+        reason: input.reason,
+        before: { userClerkId: from },
+        after: { userClerkId: to },
+        origin: input.origin ?? "hq",
+      });
+    }
+    return { moved: active.length };
+  });
+}
+
+/**
+ * Record a `view_as` audit event. The console's read-only "view as" surface
+ * is not a mutation, but looking at a person's access IS an accountable act,
+ * so it leaves a ledger line. No state changes.
+ */
+export async function recordViewAs(input: {
+  userClerkId: string;
+  actor: MutationActor;
+  origin?: string | null;
+}): Promise<void> {
+  const actor = requireActor(input.actor);
+  if (!input.userClerkId) return;
+  const db = entitlementsDb();
+  await db.transaction(async (tx) => {
+    await appendEvent(tx, {
+      action: "view_as",
+      userClerkId: input.userClerkId,
+      actorId: actor.actorId,
+      actorName: actor.actorName,
+      reason: "read-only view",
+      origin: input.origin ?? "hq",
+    });
+  });
+}
+
+/**
+ * Record an `export` audit event when an operator exports a filtered roster
+ * view. Exports move PII-adjacent data off-system, so they are logged. The
+ * ledger line records the row count and filter, never the exported PII.
+ */
+export async function recordExport(input: {
+  actor: MutationActor;
+  rowCount: number;
+  format: string;
+  filterSummary?: string | null;
+  origin?: string | null;
+}): Promise<void> {
+  const actor = requireActor(input.actor);
+  const db = entitlementsDb();
+  await db.transaction(async (tx) => {
+    await appendEvent(tx, {
+      action: "export",
+      actorId: actor.actorId,
+      actorName: actor.actorName,
+      reason: `roster export (${input.format}, ${input.rowCount} rows)`,
+      after: { rowCount: input.rowCount, format: input.format, filter: input.filterSummary ?? null },
+      origin: input.origin ?? "hq",
+    });
+  });
+}

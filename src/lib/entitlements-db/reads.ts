@@ -2,7 +2,7 @@ import "server-only";
 import { and, eq, gt, isNull, or } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import { entitlements, type EntitlementTier } from "./schema";
-import { TIER_RANK } from "./tiers";
+import { resolveTier } from "./pure";
 
 export type ResolvedEntitlement = {
   tier: EntitlementTier;
@@ -31,9 +31,6 @@ const FREE_DEFAULT: ResolvedEntitlement = {
   readOnly: false,
 };
 
-/** Billing states that void even read access on a lapsed Event. */
-const READ_VOIDING_BILLING_STATES = ["refunded", "disputed", "canceled"];
-
 /**
  * Resolve the highest active tier a Clerk user holds across the suite.
  * Reads from the shared signal-entitlements DB.
@@ -51,33 +48,6 @@ export async function resolveEntitlement(
   } catch {
     return FREE_DEFAULT;
   }
-}
-
-/**
- * Deterministic pick among active rows: highest tier rank wins; ties broken
- * by the longest-lasting row (null expiry = furthest), then by id ascending.
- * Without this, same-rank ties resolved on non-deterministic DB row order.
- */
-function pickBest<
-  T extends { tier: string; expiresAt: number | null; id: string },
->(rows: T[]): T {
-  let best = rows[0];
-  let bestRank = TIER_RANK[best.tier as EntitlementTier] ?? -1;
-  for (let i = 1; i < rows.length; i++) {
-    const r = rows[i];
-    const rank = TIER_RANK[r.tier as EntitlementTier] ?? -1;
-    if (rank > bestRank) {
-      best = r;
-      bestRank = rank;
-      continue;
-    }
-    if (rank === bestRank) {
-      const a = r.expiresAt ?? Number.POSITIVE_INFINITY;
-      const b = best.expiresAt ?? Number.POSITIVE_INFINITY;
-      if (a > b || (a === b && r.id < best.id)) best = r;
-    }
-  }
-  return best;
 }
 
 export async function resolveEntitlementOrThrow(
@@ -108,47 +78,9 @@ export async function resolveEntitlementOrThrow(
       ),
     );
 
-  const live = rows.filter((r) => r.expiresAt == null || r.expiresAt > now);
-  if (live.length > 0) {
-    const best = pickBest(live);
-    if ((TIER_RANK[best.tier as EntitlementTier] ?? -1) > 0) {
-      return {
-        tier: best.tier as EntitlementTier,
-        source: best.source,
-        sourceRef: best.sourceRef,
-        expiresAt: best.expiresAt,
-        stripeCustomerId: best.stripeCustomerId,
-        readOnly: false,
-      };
-    }
-  }
-
-  // Live resolution is free. Additive: a lapsed-but-not-refunded Event pass
-  // keeps READ access to its own content (readOnly). This never elevates a
-  // live tier — it only fires when nothing live outranks free.
-  const lapsed = rows
-    .filter(
-      (r) =>
-        r.source === "event_pass" &&
-        r.expiresAt != null &&
-        r.expiresAt <= now &&
-        (r.billingState == null ||
-          !READ_VOIDING_BILLING_STATES.includes(r.billingState)),
-    )
-    .sort((a, b) => (b.expiresAt ?? 0) - (a.expiresAt ?? 0))[0];
-
-  if (lapsed) {
-    return {
-      tier: "event",
-      source: lapsed.source,
-      sourceRef: lapsed.sourceRef,
-      expiresAt: lapsed.expiresAt,
-      stripeCustomerId: lapsed.stripeCustomerId,
-      readOnly: true,
-    };
-  }
-
-  return FREE_DEFAULT;
+  // Pure resolver: live MAX-by-rank (untouched fail-open contract) plus the
+  // additive read-only lapsed-Event branch. Tested directly in pure.test.ts.
+  return resolveTier(rows, now);
 }
 
 /**

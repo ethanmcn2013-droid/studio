@@ -37,8 +37,17 @@ export {
   revokeEntitlementsBulk,
   markSubscriptionPastDue,
   upsertSubscriptionEntitlement,
+  repointAccess,
+  recordViewAs,
+  recordExport,
   type BulkRevokeResult,
 } from "./writes";
+export {
+  onboardVenue,
+  ONBOARD_PLANS,
+  type OnboardPlan,
+  type OnboardVenueResult,
+} from "./venues";
 export {
   BULK_HARD_CAP,
   TWO_PERSON_THRESHOLD,

@@ -2,6 +2,7 @@ import "server-only";
 import { and, count, eq, gt } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import { entitlementEvents } from "./schema";
+import { checkBulk, parseRoster, resolveOperator } from "./pure";
 
 /**
  * Blast-radius + actor safety envelope for ALL entitlement mutations.
@@ -83,25 +84,8 @@ export function opsCurlActor(): MutationActor {
   };
 }
 
-type RosterEntry = { id: string; name: string };
-
-function parseRoster(raw: string | undefined): RosterEntry[] {
-  if (!raw) return [];
-  return raw
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((pair) => {
-      const i = pair.indexOf(":");
-      return i === -1
-        ? { id: pair, name: pair }
-        : { id: pair.slice(0, i).trim(), name: pair.slice(i + 1).trim() };
-    })
-    .filter((e) => e.id);
-}
-
 /** The configured HQ operator roster (env SIGNAL_HQ_OPERATORS="id:Name,id2:Name Two"). */
-export function operatorRoster(): RosterEntry[] {
+export function operatorRoster() {
   return parseRoster(process.env.SIGNAL_HQ_OPERATORS);
 }
 
@@ -113,22 +97,9 @@ export function operatorRoster(): RosterEntry[] {
  * SIGNAL_HQ_OPERATORS lands.
  */
 export function operatorActor(input: { id?: string | null; name?: string | null }): MutationActor {
-  const id = input.id?.trim() ?? "";
-  const name = input.name?.trim() ?? "";
-  if (!id || !name) {
-    throw new Error(
-      "operatorActor: a named operator (id + name) is required for every mutation",
-    );
-  }
-  const roster = operatorRoster();
-  if (roster.length > 0) {
-    const match = roster.find((e) => e.id === id);
-    if (!match) {
-      throw new Error(`operatorActor: '${id}' is not in the HQ operator roster`);
-    }
-    return { actorId: match.id, actorName: match.name, kind: "operator", velocityExempt: false };
-  }
-  return { actorId: id, actorName: name, kind: "operator", velocityExempt: false };
+  const resolved = resolveOperator(input, operatorRoster());
+  if (!resolved.ok) throw new Error(`operatorActor: ${resolved.reason}`);
+  return { actorId: resolved.id, actorName: resolved.name, kind: "operator", velocityExempt: false };
 }
 
 /** Fail-closed guard: refuse any mutation that arrives without a real actor. */
@@ -149,20 +120,12 @@ export function requireActor(actor: MutationActor | null | undefined): MutationA
  * (the acting operator). Callers above the threshold must pass approvals>=2.
  */
 export function assertBulkAllowed(count: number, opts?: { approvals?: number }): void {
-  if (!Number.isInteger(count) || count < 0) {
-    throw new Error(`assertBulkAllowed: invalid count ${count}`);
-  }
-  if (count > BULK_HARD_CAP) {
-    reportAnomaly({ kind: "bulk_cap", detail: `${count} rows exceeds hard cap ${BULK_HARD_CAP}` });
-    throw new Error(
-      `bulk mutation refused: ${count} rows exceeds the hard cap of ${BULK_HARD_CAP}`,
-    );
-  }
-  const approvals = opts?.approvals ?? 1;
-  if (count > TWO_PERSON_THRESHOLD && approvals < 2) {
-    throw new Error(
-      `bulk mutation of ${count} rows needs a second approver (threshold ${TWO_PERSON_THRESHOLD})`,
-    );
+  const verdict = checkBulk(count, BULK_HARD_CAP, TWO_PERSON_THRESHOLD, opts?.approvals ?? 1);
+  if (!verdict.allowed) {
+    if (count > BULK_HARD_CAP) {
+      reportAnomaly({ kind: "bulk_cap", detail: `${count} rows exceeds hard cap ${BULK_HARD_CAP}` });
+    }
+    throw new Error(`bulk mutation refused: ${verdict.reason}`);
   }
 }
 

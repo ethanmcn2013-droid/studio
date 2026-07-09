@@ -1,7 +1,8 @@
 import "server-only";
-import { createHash, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { desc } from "drizzle-orm";
 import { entitlementsDb } from "./client";
+import { GENESIS, rowHashOf, verifyChainRows } from "./pure";
 import {
   entitlementEvents,
   type EntitlementEventAction,
@@ -40,19 +41,6 @@ export type AuditEventInput = {
   stripeEventId?: string | null;
 };
 
-const GENESIS = "genesis";
-
-function chainHash(payload: Record<string, unknown>): string {
-  // Deterministic key order so the same content always hashes the same.
-  const ordered = Object.keys(payload)
-    .sort()
-    .reduce<Record<string, unknown>>((acc, k) => {
-      acc[k] = payload[k] ?? null;
-      return acc;
-    }, {});
-  return createHash("sha256").update(JSON.stringify(ordered)).digest("hex");
-}
-
 /**
  * Write one audit event inside the caller's transaction. Reads the
  * latest row_hash (within the same tx) to chain onto it, then inserts.
@@ -73,9 +61,9 @@ export async function appendEvent(
   const beforeJson = ev.before === undefined ? null : JSON.stringify(ev.before);
   const afterJson = ev.after === undefined ? null : JSON.stringify(ev.after);
 
-  // Hash-chain over stable NON-PII fields only.
-  const rowHash = chainHash({
-    prevHash,
+  // Hash-chain over stable NON-PII fields only (pure.rowHashOf keeps writer
+  // and verifier in lockstep).
+  const rowHash = rowHashOf(prevHash, {
     id,
     entitlementId: ev.entitlementId ?? null,
     userClerkId: ev.userClerkId ?? null,
@@ -126,27 +114,5 @@ export async function verifyLedgerChain(
     .from(entitlementEvents)
     .orderBy(entitlementEvents.createdAt, entitlementEvents.id)
     .limit(limit);
-  let prev = GENESIS;
-  for (const r of rows) {
-    if (r.prevHash !== prev) return { ok: false, brokenAt: r.id };
-    const expect = chainHash({
-      prevHash: r.prevHash,
-      id: r.id,
-      entitlementId: r.entitlementId,
-      userClerkId: r.userClerkId,
-      sponsorId: r.sponsorId,
-      batchId: r.batchId,
-      actorId: r.actorId,
-      action: r.action,
-      reason: r.reason,
-      beforeJson: r.beforeJson,
-      afterJson: r.afterJson,
-      origin: r.origin,
-      stripeEventId: r.stripeEventId,
-      createdAt: r.createdAt,
-    });
-    if (expect !== r.rowHash) return { ok: false, brokenAt: r.id };
-    prev = r.rowHash ?? GENESIS;
-  }
-  return { ok: true };
+  return verifyChainRows(rows);
 }
