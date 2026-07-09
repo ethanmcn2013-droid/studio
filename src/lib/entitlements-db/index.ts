@@ -68,3 +68,10 @@ export {
   type RedeemResult,
   type ReconcileReport,
 } from "./codes";
+export {
+  shredPersonPII,
+  retentionSweep,
+  PII_RETENTION_MS,
+  type ShredResult,
+  type RetentionResult,
+} from "./gdpr";
