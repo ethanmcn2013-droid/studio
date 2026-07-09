@@ -58,3 +58,13 @@ export {
   type AnomalySignal,
   type MutationActor,
 } from "./guard";
+export {
+  mintLicenseCodes,
+  redeemLicenseCode,
+  reconcileCodes,
+  REDEEM_IP_MAX,
+  REDEEM_IP_WINDOW_MS,
+  RECONCILE_MAX_PER_RUN,
+  type RedeemResult,
+  type ReconcileReport,
+} from "./codes";

@@ -1,11 +1,16 @@
 import { eq } from "drizzle-orm";
-import { db } from "@/lib/db";
+import { entitlementsDb } from "@/lib/entitlements-db/client";
 import {
   type EntitlementSource,
   type EntitlementTier,
   licenseCodes,
   sponsors,
-} from "@/lib/db/schema";
+} from "@/lib/entitlements-db/schema";
+
+// The shared signal-entitlements DB is canonical for license_codes /
+// redemptions after the codes cutover (migration step 4). This repoint is
+// branch-safe: both the merge to main and the prod migration/backfill are
+// founder-gated, so live reads only follow the data once that lands.
 
 export type RedemptionLookup =
   | {
@@ -41,7 +46,7 @@ export async function lookupRedemption(
   if (!trimmed) return { state: "invalid", code };
 
   try {
-    const rows = await db
+    const rows = await entitlementsDb()
       .select({
         codeStatus: licenseCodes.status,
         sourceType: licenseCodes.sourceType,
