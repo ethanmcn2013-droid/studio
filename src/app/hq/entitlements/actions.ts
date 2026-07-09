@@ -13,7 +13,10 @@ import {
   writeSharedEntitlement,
   revokeEntitlementById,
   revokeEntitlementsBulk,
+  repointAccess,
+  recordViewAs,
 } from "@/lib/entitlements-db/writes";
+import { onboardVenue, type OnboardPlan } from "@/lib/entitlements-db/venues";
 import { mintLicenseCodes, reconcileCodes } from "@/lib/entitlements-db/codes";
 import { systemActor } from "@/lib/entitlements-db/guard";
 import { GRANT_TIER_OPTIONS } from "@/lib/hq/access";
@@ -243,4 +246,76 @@ export async function mintCodesAction(
   } catch (err) {
     return { error: err instanceof Error ? err.message : "unknown error" };
   }
+}
+
+// ── Onboard a venue (create + record payment + allotment) ───────────────
+export type OnboardResult =
+  | { ok: true; slug: string; created: boolean; paid: boolean }
+  | { error: string };
+
+export async function onboardVenueAction(
+  _prev: OnboardResult | null,
+  fd: FormData,
+): Promise<OnboardResult> {
+  await requireHq();
+  const name = field(fd, "name");
+  const contactEmail = field(fd, "contactEmail");
+  const venuePlan = field(fd, "venuePlan") as OnboardPlan;
+  const allotment = Number.parseInt(field(fd, "allotment"), 10);
+  const amountEur = field(fd, "annualAmountEur");
+  const termMonthsRaw = field(fd, "termMonths");
+  if (!name || !contactEmail) return { error: "Name and contact email are required." };
+  if (!Number.isInteger(allotment) || allotment < 1) return { error: "Allotment must be at least 1." };
+
+  try {
+    const actor = await resolveHqOperatorActor();
+    const res = await onboardVenue({
+      name,
+      contactEmail,
+      venuePlan,
+      allotment,
+      actor,
+      annualAmountCents: amountEur ? Math.round(Number.parseFloat(amountEur) * 100) : null,
+      termMonths: termMonthsRaw ? Number.parseInt(termMonthsRaw, 10) : null,
+      reason: `onboard ${venuePlan} via console`,
+    });
+    revalidatePath(CONSOLE);
+    return { ok: true, slug: res.slug, created: res.created, paid: res.paid };
+  } catch (err) {
+    return { error: err instanceof Error ? err.message : "unknown error" };
+  }
+}
+
+// ── Re-point access (account merge) ─────────────────────────────────────
+export async function repointAction(fd: FormData): Promise<void> {
+  await requireHq();
+  const fromClerkId = field(fd, "fromClerkId");
+  const toClerkId = field(fd, "toClerkId");
+  const reason = field(fd, "reason");
+  const confirm = field(fd, "confirm");
+  if (!fromClerkId || !toClerkId || !reason) return;
+  if (confirm !== "REPOINT") return; // friction gate, server-enforced
+  try {
+    const actor = await resolveHqOperatorActor();
+    await repointAccess({ fromClerkId, toClerkId, reason, actor, origin: "hq" });
+  } catch (err) {
+    console.warn("[access repoint] failed:", err);
+  }
+  revalidatePath(`${CONSOLE}/${toClerkId}`);
+  revalidatePath(`${CONSOLE}/${fromClerkId}`);
+  revalidatePath(CONSOLE);
+}
+
+// ── View as (read-only, audited) ────────────────────────────────────────
+export async function viewAsAction(fd: FormData): Promise<void> {
+  await requireHq();
+  const clerkId = field(fd, "clerkId");
+  if (!clerkId) return;
+  try {
+    const actor = await resolveHqOperatorActor();
+    await recordViewAs({ userClerkId: clerkId, actor, origin: "hq" });
+  } catch (err) {
+    console.warn("[access viewAs] failed:", err);
+  }
+  redirect(`${CONSOLE}/${encodeURIComponent(clerkId)}?viewAs=1`);
 }

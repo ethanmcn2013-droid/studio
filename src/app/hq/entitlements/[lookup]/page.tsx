@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getPerson } from "@/lib/hq/access";
 import { RevokeRow, RevokeAll } from "../PersonActions";
+import { ViewAsButton, RepointForm } from "../PersonVerbs";
 
 export const dynamic = "force-dynamic";
 
@@ -20,8 +21,10 @@ function fmt(ms: number | null | undefined): string {
 
 export default async function PersonPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lookup: string }>;
+  searchParams: Promise<{ viewAs?: string }>;
 }) {
   const cookieStore = await cookies();
   const token = cookieStore.get(HQ_ACCESS_COOKIE)?.value ?? "";
@@ -29,6 +32,8 @@ export default async function PersonPage({
   if (!valid) redirect("/hq/access?from=/hq/entitlements");
 
   const { lookup } = await params;
+  const sp = await searchParams;
+  const readOnly = sp.viewAs === "1";
   const clerkId = decodeURIComponent(lookup);
   const person = await getPerson(clerkId);
 
@@ -54,7 +59,7 @@ export default async function PersonPage({
           </p>
         </div>
       ) : (
-        <PersonBody clerkId={clerkId} data={person.data} />
+        <PersonBody clerkId={clerkId} data={person.data} readOnly={readOnly} />
       )}
     </main>
   );
@@ -63,13 +68,20 @@ export default async function PersonPage({
 function PersonBody({
   clerkId,
   data,
+  readOnly,
 }: {
   clerkId: string;
   data: NonNullable<Awaited<ReturnType<typeof getPerson>> & { ok: true }>["data"];
+  readOnly: boolean;
 }) {
   const activeCount = data.rows.filter((r) => r.status === "active").length;
   return (
     <>
+      {readOnly ? (
+        <div className="mt-6 rounded-md border border-border-soft bg-bg-elev px-4 py-2.5 text-[12px] text-ink-soft">
+          Viewing as this person, read only. No changes can be made from here.
+        </div>
+      ) : null}
       <header className="mt-6 flex flex-wrap items-baseline justify-between gap-3">
         <div>
           <h1 className="font-mono text-[15px]">{clerkId}</h1>
@@ -78,7 +90,13 @@ function PersonBody({
             {data.readOnly ? " (read-only)" : ""}.
           </p>
         </div>
-        <RevokeAll clerkId={clerkId} activeCount={activeCount} />
+        {readOnly ? null : (
+          <div className="flex flex-wrap items-start gap-2">
+            <ViewAsButton clerkId={clerkId} />
+            <RepointForm fromClerkId={clerkId} />
+            <RevokeAll clerkId={clerkId} activeCount={activeCount} />
+          </div>
+        )}
       </header>
 
       <section className="mt-8">
@@ -107,7 +125,7 @@ function PersonBody({
                     <span className="ml-2 text-[11px] text-ink-quiet">{r.billingState}</span>
                   ) : null}
                 </div>
-                {r.status === "active" ? (
+                {!readOnly && r.status === "active" ? (
                   <RevokeRow
                     entitlementId={r.id}
                     lookup={clerkId}

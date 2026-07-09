@@ -10,10 +10,12 @@ import {
   getVenues,
   formatCents,
 } from "@/lib/hq/access";
+import type { RosterFilters } from "@/lib/hq/access";
 import { GiveAccessForm } from "./GiveAccessForm";
 import { FindSomeone } from "./FindSomeone";
 import { ReconcileButton } from "./ReconcileButton";
 import { MintCodesForm } from "./MintCodesForm";
+import { OnboardVenueForm } from "./OnboardVenueForm";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +39,7 @@ function fmt(ms: number | null | undefined): string {
 export default async function AccessConsolePage({
   searchParams,
 }: {
-  searchParams: Promise<{ tab?: string }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const cookieStore = await cookies();
   const token = cookieStore.get(HQ_ACCESS_COOKIE)?.value ?? "";
@@ -104,7 +106,7 @@ export default async function AccessConsolePage({
       </nav>
 
       {tab === "today" ? <TodayTab /> : null}
-      {tab === "roster" ? <RosterTab /> : null}
+      {tab === "roster" ? <RosterTab sp={sp} /> : null}
       {tab === "batches" ? <BatchesTab /> : null}
       {tab === "venues" ? <VenuesTab /> : null}
     </main>
@@ -168,13 +170,89 @@ async function TodayTab() {
   );
 }
 
-async function RosterTab() {
-  const roster = await getRoster({ limit: 200 });
+const ROSTER_FILTER_FIELDS = [
+  { key: "tier", label: "Tier", options: ["free", "event", "wedding", "workspace", "studio"] },
+  {
+    key: "source",
+    label: "Source",
+    options: [
+      "workspace_subscription",
+      "event_pass",
+      "student_edu",
+      "venue_edition",
+      "compliments",
+      "review_access",
+      "batch_grant",
+    ],
+  },
+  { key: "status", label: "Status", options: ["active", "expired", "revoked"] },
+  {
+    key: "billingState",
+    label: "Billing",
+    options: ["active", "trialing", "past_due", "canceled", "refunded", "disputed", "none"],
+  },
+] as const;
+
+async function RosterTab({ sp }: { sp: Record<string, string | undefined> }) {
+  const filters: RosterFilters = { limit: 200 };
+  for (const f of ROSTER_FILTER_FIELDS) {
+    const v = sp[f.key];
+    if (v) (filters as Record<string, string>)[f.key] = v;
+  }
+  const roster = await getRoster(filters);
   if (!roster.ok) return <Unreachable error={roster.error} />;
   const rows = roster.data;
 
+  const exportQs = new URLSearchParams();
+  for (const f of ROSTER_FILTER_FIELDS) {
+    if (sp[f.key]) exportQs.set(f.key, sp[f.key] as string);
+  }
+  const exportBase = `/hq/entitlements/export?${exportQs.toString()}`;
+
   return (
     <div>
+      {/* Filters (server-rendered GET form) */}
+      <form method="get" className="mb-4 flex flex-wrap items-end gap-2">
+        <input type="hidden" name="tab" value="roster" />
+        {ROSTER_FILTER_FIELDS.map((f) => (
+          <label key={f.key} className="grid gap-1 text-[10.5px] text-ink-quiet">
+            <span>{f.label}</span>
+            <select
+              name={f.key}
+              defaultValue={sp[f.key] ?? ""}
+              className="h-8 rounded border border-border-soft bg-bg px-2 text-[12px] outline-none focus:border-accent"
+            >
+              <option value="">any</option>
+              {f.options.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          </label>
+        ))}
+        <button
+          type="submit"
+          className="h-8 rounded border border-border-soft bg-bg px-3 text-[12px] font-medium text-ink transition hover:border-accent"
+        >
+          Apply
+        </button>
+        <Link
+          href="/hq/entitlements?tab=roster"
+          className="h-8 rounded px-2 text-[11.5px] leading-8 text-ink-quiet transition hover:text-ink"
+        >
+          Clear
+        </Link>
+        <span className="ml-auto flex gap-2 text-[11.5px]">
+          <a href={`${exportBase}&format=csv`} className="text-ink underline decoration-1 underline-offset-2 hover:opacity-70">
+            Export CSV
+          </a>
+          <a href={`${exportBase}&format=json`} className="text-ink underline decoration-1 underline-offset-2 hover:opacity-70">
+            JSON
+          </a>
+        </span>
+      </form>
+
       <h3 className="mb-3 text-[13px] font-semibold">Roster ({rows.length})</h3>
       {rows.length === 0 ? (
         <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-ink-quiet">
@@ -273,6 +351,10 @@ async function VenuesTab() {
 
   return (
     <div className="grid gap-4">
+      <div>
+        <h3 className="mb-2 text-[13px] font-semibold">Onboard a venue</h3>
+        <OnboardVenueForm />
+      </div>
       <h3 className="text-[13px] font-semibold">Venues ({rows.length})</h3>
       {rows.length === 0 ? (
         <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-ink-quiet">
