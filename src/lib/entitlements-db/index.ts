@@ -35,6 +35,8 @@ export {
   expireSharedEntitlement,
   revokeEntitlementById,
   revokeEntitlementsBulk,
+  markSubscriptionPastDue,
+  upsertSubscriptionEntitlement,
   type BulkRevokeResult,
 } from "./writes";
 export {

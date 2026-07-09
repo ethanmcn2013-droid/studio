@@ -1,6 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { and, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import { appendEvent } from "./audit";
 import {
@@ -286,5 +286,165 @@ export async function revokeEntitlementsBulk(input: {
       });
     }
     return { revoked: active.length, skipped: [] };
+  });
+}
+
+/**
+ * Move a subscription into dunning: mark past_due AND hold expires_at forward
+ * to grace_until, so the resolver keeps the user's access alive through the
+ * retry window (invoice.payment_failed). Never shortens an existing expiry.
+ * The resolver is unchanged — this only pushes the clock. Reinstated to
+ * `active` billing on the next invoice.paid via upsertSubscriptionEntitlement.
+ */
+export async function markSubscriptionPastDue(input: {
+  stripeSubscriptionId: string;
+  graceUntilMs: number;
+  actor: MutationActor;
+  origin?: string | null;
+}): Promise<void> {
+  if (!input.stripeSubscriptionId) {
+    throw new Error("markSubscriptionPastDue: stripeSubscriptionId required");
+  }
+  const actor = requireActor(input.actor);
+  const db = entitlementsDb();
+  const now = Date.now();
+  await db.transaction(async (tx) => {
+    const rows = await tx
+      .select({ id: entitlements.id, expiresAt: entitlements.expiresAt })
+      .from(entitlements)
+      .where(
+        and(
+          eq(entitlements.stripeSubscriptionId, input.stripeSubscriptionId),
+          eq(entitlements.status, "active"),
+        ),
+      );
+    for (const r of rows) {
+      const held = Math.max(input.graceUntilMs, r.expiresAt ?? 0);
+      await tx
+        .update(entitlements)
+        .set({
+          billingState: "past_due",
+          graceUntil: input.graceUntilMs,
+          expiresAt: held,
+          updatedAt: now,
+        })
+        .where(eq(entitlements.id, r.id));
+      await appendEvent(tx, {
+        action: "extend",
+        entitlementId: r.id,
+        actorId: actor.actorId,
+        actorName: actor.actorName,
+        reason: "past_due grace",
+        before: { expiresAt: r.expiresAt },
+        after: { billingState: "past_due", graceUntil: input.graceUntilMs, expiresAt: held },
+        origin: input.origin ?? "stripe",
+      });
+    }
+  });
+}
+
+/**
+ * UPSERT an entitlement keyed on stripe_subscription_id, so a plan change
+ * (customer.subscription.updated / invoice.paid) mutates the ONE existing row
+ * in place instead of racing a second active row past the dedup index. If no
+ * row exists for the subscription, it inserts a fresh active one. Tier is
+ * re-validated on every call. Idempotent and order-independent: the webhook
+ * can replay events safely.
+ */
+export async function upsertSubscriptionEntitlement(input: {
+  userClerkId: string;
+  stripeSubscriptionId: string;
+  tier: EntitlementTier;
+  source: EntitlementSource;
+  actor: MutationActor;
+  sourceRef?: string | null;
+  expiresAtMs?: number | null;
+  billingState?: string | null;
+  stripePriceId?: string | null;
+  stripeCustomerId?: string | null;
+  origin?: string | null;
+}): Promise<{ id: string; created: boolean }> {
+  assertKnownTier(input.tier);
+  if (!input.userClerkId) throw new Error("upsertSubscriptionEntitlement: userClerkId required");
+  if (!input.stripeSubscriptionId) {
+    throw new Error("upsertSubscriptionEntitlement: stripeSubscriptionId required");
+  }
+  const actor = requireActor(input.actor);
+  await assertVelocity(actor);
+  const db = entitlementsDb();
+  const now = Date.now();
+
+  return db.transaction(async (tx) => {
+    const existing = await tx
+      .select({
+        id: entitlements.id,
+        tier: entitlements.tier,
+        expiresAt: entitlements.expiresAt,
+        billingState: entitlements.billingState,
+        stripePriceId: entitlements.stripePriceId,
+        stripeCustomerId: entitlements.stripeCustomerId,
+      })
+      .from(entitlements)
+      .where(eq(entitlements.stripeSubscriptionId, input.stripeSubscriptionId))
+      .orderBy(desc(entitlements.createdAt))
+      .limit(1);
+
+    if (existing[0]) {
+      const prev = existing[0];
+      const nextExpiry = input.expiresAtMs ?? prev.expiresAt;
+      const nextBilling = input.billingState ?? prev.billingState ?? "active";
+      await tx
+        .update(entitlements)
+        .set({
+          tier: input.tier,
+          source: input.source,
+          status: "active",
+          expiresAt: nextExpiry,
+          billingState: nextBilling,
+          stripePriceId: input.stripePriceId ?? prev.stripePriceId,
+          stripeCustomerId: input.stripeCustomerId ?? prev.stripeCustomerId,
+          updatedAt: now,
+        })
+        .where(eq(entitlements.id, prev.id));
+      await appendEvent(tx, {
+        action: "extend",
+        entitlementId: prev.id,
+        userClerkId: input.userClerkId,
+        actorId: actor.actorId,
+        actorName: actor.actorName,
+        reason: "subscription update",
+        before: { tier: prev.tier, expiresAt: prev.expiresAt, billingState: prev.billingState },
+        after: { tier: input.tier, expiresAt: nextExpiry, billingState: nextBilling },
+        origin: input.origin ?? "stripe",
+      });
+      return { id: prev.id, created: false };
+    }
+
+    const id = genId();
+    await tx.insert(entitlements).values({
+      id,
+      userClerkId: input.userClerkId,
+      tier: input.tier,
+      source: input.source,
+      sourceRef: input.sourceRef ?? input.stripeSubscriptionId,
+      expiresAt: input.expiresAtMs ?? null,
+      status: "active",
+      billingState: input.billingState ?? "active",
+      stripeSubscriptionId: input.stripeSubscriptionId,
+      stripeCustomerId: input.stripeCustomerId ?? null,
+      stripePriceId: input.stripePriceId ?? null,
+      grantedBy: actor.actorId,
+    });
+    await appendEvent(tx, {
+      action: "grant",
+      entitlementId: id,
+      userClerkId: input.userClerkId,
+      actorId: actor.actorId,
+      actorName: actor.actorName,
+      reason: input.origin ?? "subscription",
+      after: { tier: input.tier, source: input.source },
+      origin: input.origin ?? "stripe",
+    });
+    return { id, created: true };
   });
 }
