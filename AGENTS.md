@@ -14,6 +14,7 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 9. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
 10. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
 11. **`CHANGELOG.md`** — narrative log; read for tonal reference.
+12. **`docs/LICENSING_ACCESS_DESIGN.md`** — buildable spec for the licensing/entitlements/subscription backend + HQ "Access" console (ratified 2026-07-09). Read before any entitlements, licensing, venue/allotment, code/redemption, subscription/Stripe, or grant/revoke work. Decisions in `content/hq/decisions/licensing-access-architecture.md` + `gdpr-data-lifecycle-policy.md`.
 
 If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
 
