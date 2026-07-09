@@ -46,7 +46,7 @@ const ROOMS: Room[] = [
   { label: "Atlas", hint: "how the systems connect", href: "/hq/atlas", keywords: "systems data flows crons architecture" },
   { label: "Atlas map", hint: "the living operating map, by lens", href: "/hq/atlas-map", keywords: "atlas map operating system lenses founder investor product design engineering ai launch overview mission control" },
   { label: "Access", hint: "grants, codes, venues, subscriptions", href: "/hq/entitlements", keywords: "access entitlements grants revoke codes redemptions venues subscriptions batches roster person licence license comp" },
-  { label: "Partners", hint: "outreach + founder letters", href: "/hq/partners", keywords: "outreach letters venues sponsors" },
+  { label: "Venues", hint: "per-venue codes and allotment", href: "/hq/entitlements?tab=venues", keywords: "partners venues sponsors editions allotment codes mint redeemed" },
   { label: "Plan", hint: "the lender business plan", href: "/hq/plan", keywords: "business plan lender funding" },
   { label: "Founders Circle", hint: "the board / shareholder view", href: "/hq/founders-circle", keywords: "board shareholders circle investors" },
   { label: "Exit", hint: "back to signalstudio.ie", href: "/", keywords: "leave exit public site" },
