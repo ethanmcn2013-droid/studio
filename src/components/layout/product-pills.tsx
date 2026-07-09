@@ -16,18 +16,20 @@
  */
 
 import { useRef, useState, useCallback } from "react";
+import {
+  SIGNAL_URL,
+  NOTES_URL,
+  TIMELINE_URL,
+  TASKS_URL,
+} from "@/lib/product-urls";
 
 type Product = { slug: string; label: string; href: string };
 
-function waitlistHref(product: string): string {
-  return `/waitlist?source=product_pills&campaign=pre_access_waitlist&product=${product}&artifact=product_pills_${product}&touch=site`;
-}
-
 const PRODUCTS: Product[] = [
-  { slug: "notes", label: "notes", href: waitlistHref("notes") },
-  { slug: "tasks", label: "tasks", href: waitlistHref("tasks") },
-  { slug: "timeline", label: "timeline", href: waitlistHref("timeline") },
-  { slug: "signal", label: "signal", href: waitlistHref("signal") },
+  { slug: "notes", label: "notes", href: NOTES_URL },
+  { slug: "tasks", label: "tasks", href: TASKS_URL },
+  { slug: "timeline", label: "timeline", href: TIMELINE_URL },
+  { slug: "signal", label: "signal", href: SIGNAL_URL },
 ];
 
 export function ProductPills({ current }: { current?: string }) {

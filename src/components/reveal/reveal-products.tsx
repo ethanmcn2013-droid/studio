@@ -1,13 +1,20 @@
 /**
  * Reveal products, four typographic-poster rows. Position-clarity label
  * as mono eyebrow → giant wordmark → essence + meta. Hrefs point at the
- * staged-access waitlist with product context.
+ * real product subdomains via product-urls.ts.
  *
  * Each row's layout enters from both sides on scroll (left from -x,
  * right from +x), directional, not generic fade-up. Per-character
  * hover lift on the wordmark is wired in RevealEngine, gated to
  * (hover: hover) devices.
  */
+
+import {
+  TASKS_URL,
+  TIMELINE_URL,
+  SIGNAL_URL,
+  NOTES_URL,
+} from "@/lib/product-urls";
 
 interface ProductRowProps {
   id: string;
@@ -22,6 +29,7 @@ interface ProductRowProps {
   pills: string[];
   cta: string;
   href: string;
+  external?: boolean;
   comingSoon?: boolean;
 }
 
@@ -34,14 +42,20 @@ function ProductRow({
   pills,
   cta,
   href,
+  external,
   comingSoon,
 }: ProductRowProps) {
+  const linkProps = external
+    ? { target: "_blank", rel: "noopener noreferrer" as const }
+    : {};
+
   return (
     <a
       className="reveal-product-row reveal"
       id={id}
       data-key={dataKey}
       href={href}
+      {...linkProps}
     >
       <div className="left">
         <div className="position">{position}</div>
@@ -76,9 +90,6 @@ function ProductRow({
 }
 
 export function RevealProducts() {
-  const waitlistHref = (product: ProductRowProps["dataKey"]) =>
-    `/waitlist?source=home_products&campaign=pre_access_waitlist&product=${product}&artifact=${product}_row&touch=site`;
-
   return (
     <section className="reveal-products">
       {/*
@@ -101,8 +112,9 @@ export function RevealProducts() {
         word="notes"
         essence="Keep the thought until it earns a task."
         pills={["Private preview", "Capture"]}
-        cta="Join the waitlist →"
-        href={waitlistHref("notes")}
+        cta="Open the notebook →"
+        href={NOTES_URL}
+        external
       />
       <ProductRow
         id="tasks"
@@ -111,8 +123,9 @@ export function RevealProducts() {
         word="tasks"
         essence="Keep ownership clear without learning a new language."
         pills={["Private preview", "Multi-view"]}
-        cta="Join the waitlist →"
-        href={waitlistHref("tasks")}
+        cta="Open the workspace →"
+        href={TASKS_URL}
+        external
       />
       <ProductRow
         id="timeline"
@@ -121,8 +134,9 @@ export function RevealProducts() {
         word="timeline"
         essence="Give everyone one page that says where things stand."
         pills={["Private preview", "Public timelines"]}
-        cta="Join the waitlist →"
-        href={waitlistHref("timeline")}
+        cta="Open the timeline →"
+        href={TIMELINE_URL}
+        external
       />
       {/*
         Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
@@ -138,8 +152,9 @@ export function RevealProducts() {
         word="signal"
         essence="What actually needs you today."
         pills={["Private preview", "Daily Signal"]}
-        cta="Join the waitlist →"
-        href={waitlistHref("signal")}
+        cta="Open the briefing →"
+        href={SIGNAL_URL}
+        external
       />
 
       {/*
