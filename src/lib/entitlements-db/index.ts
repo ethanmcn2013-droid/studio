@@ -30,3 +30,57 @@ export {
   type ResolvedEntitlement,
 } from "./reads";
 export { TIER_LABEL, TIER_RANK, tierAtLeast } from "./tiers";
+export {
+  writeSharedEntitlement,
+  expireSharedEntitlement,
+  revokeEntitlementById,
+  revokeEntitlementsBulk,
+  markSubscriptionPastDue,
+  upsertSubscriptionEntitlement,
+  repointAccess,
+  recordViewAs,
+  recordExport,
+  type BulkRevokeResult,
+} from "./writes";
+export {
+  onboardVenue,
+  ONBOARD_PLANS,
+  type OnboardPlan,
+  type OnboardVenueResult,
+} from "./venues";
+export {
+  BULK_HARD_CAP,
+  TWO_PERSON_THRESHOLD,
+  VELOCITY_MAX,
+  VELOCITY_WINDOW_MS,
+  assertBulkAllowed,
+  assertVelocity,
+  onAnomaly,
+  operatorActor,
+  operatorRoster,
+  opsCurlActor,
+  reportAnomaly,
+  requireActor,
+  systemActor,
+  type ActorKind,
+  type AnomalyKind,
+  type AnomalySignal,
+  type MutationActor,
+} from "./guard";
+export {
+  mintLicenseCodes,
+  redeemLicenseCode,
+  reconcileCodes,
+  REDEEM_IP_MAX,
+  REDEEM_IP_WINDOW_MS,
+  RECONCILE_MAX_PER_RUN,
+  type RedeemResult,
+  type ReconcileReport,
+} from "./codes";
+export {
+  shredPersonPII,
+  retentionSweep,
+  PII_RETENTION_MS,
+  type ShredResult,
+  type RetentionResult,
+} from "./gdpr";

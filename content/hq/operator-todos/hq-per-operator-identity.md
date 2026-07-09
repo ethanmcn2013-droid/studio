@@ -20,6 +20,10 @@ The access system's headline safety feature is a tamper-evident, append-only led
 2. Confirm **who the operators are**.
 3. Set the **two-person-approval threshold**: the row count above which a bulk revoke needs a second approver, and name that approver (or accept single-operator attribution for now).
 
+## Build progress (2026-07-09)
+
+The interim mechanism is CODED on `feat/access-system`: every mutation goes through `requireActor` (fail-closed on anonymous) and resolves a named operator via `resolveHqOperatorActor` (reads a `signal_hq_operator` cookie, falls back to the `SIGNAL_HQ_OPERATOR` env, else refuses). `operatorActor` enforces the `SIGNAL_HQ_OPERATORS` roster the moment it is set. Blast-radius controls (bulk hard cap, two-person threshold `ACCESS_TWO_PERSON_THRESHOLD`, per-operator velocity cap) run at the writer layer. **Still open for the founder:** approve per-operator auth (or bless the interim), name the operators (set `SIGNAL_HQ_OPERATORS`), and set the two-person-approval row count.
+
 ## Done when
 
 Every access mutation records a real, per-operator actor identity, and the bulk-action approval policy is set.

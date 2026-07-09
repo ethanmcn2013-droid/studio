@@ -2,7 +2,7 @@ import "server-only";
 import { and, eq, gt, isNull, or } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import { entitlements, type EntitlementTier } from "./schema";
-import { TIER_RANK } from "./tiers";
+import { resolveTier } from "./pure";
 
 export type ResolvedEntitlement = {
   tier: EntitlementTier;
@@ -10,6 +10,16 @@ export type ResolvedEntitlement = {
   sourceRef: string | null;
   expiresAt: number | null;
   stripeCustomerId: string | null;
+  /**
+   * True when the resolved access is read-only rather than full. Today the
+   * only read-only case is a LAPSED (not refunded/disputed) Event pass: the
+   * one-time Event keeps read access to its own content after the pass
+   * expires, so an expired-Event is distinguishable from never-paid-free. A
+   * refunded/disputed Event loses read too (status flips off active). Every
+   * live entitlement is readOnly:false. Callers that gate WRITE access MUST
+   * check `readOnly === false`, not just the tier.
+   */
+  readOnly: boolean;
 };
 
 const FREE_DEFAULT: ResolvedEntitlement = {
@@ -18,15 +28,16 @@ const FREE_DEFAULT: ResolvedEntitlement = {
   sourceRef: null,
   expiresAt: null,
   stripeCustomerId: null,
+  readOnly: false,
 };
 
 /**
- * Resolve the highest active tier a Clerk user holds across the
- * suite. Reads from the shared signal-entitlements DB.
+ * Resolve the highest active tier a Clerk user holds across the suite.
+ * Reads from the shared signal-entitlements DB.
  *
- * Failure mode: returns `free` on any DB error. Entitlements MUST
- * NOT take a product down. Callers that need to distinguish "user is
- * on free" from "DB unreachable" should call resolveEntitlementOrThrow.
+ * Failure mode: returns `free` on any DB error. Entitlements MUST NOT take a
+ * product down. Callers that need to distinguish "user is on free" from "DB
+ * unreachable" should call resolveEntitlementOrThrow.
  */
 export async function resolveEntitlement(
   clerkId: string,
@@ -45,12 +56,18 @@ export async function resolveEntitlementOrThrow(
   if (!clerkId) return FREE_DEFAULT;
   const now = Date.now();
   const db = entitlementsDb();
+  // ONE query for all active rows (revoked/expired-status still excluded).
+  // Live-ness (expiry) is partitioned in JS so the never-paid-free hot path
+  // stays a single round-trip. The live MAX-by-rank below is byte-identical
+  // to the prior contract; the lapsed branch is purely additive.
   const rows = await db
     .select({
+      id: entitlements.id,
       tier: entitlements.tier,
       source: entitlements.source,
       sourceRef: entitlements.sourceRef,
       expiresAt: entitlements.expiresAt,
+      billingState: entitlements.billingState,
       stripeCustomerId: entitlements.stripeCustomerId,
     })
     .from(entitlements)
@@ -58,33 +75,17 @@ export async function resolveEntitlementOrThrow(
       and(
         eq(entitlements.userClerkId, clerkId),
         eq(entitlements.status, "active"),
-        or(isNull(entitlements.expiresAt), gt(entitlements.expiresAt, now)),
       ),
     );
 
-  if (rows.length === 0) return FREE_DEFAULT;
-
-  let best = rows[0];
-  let bestRank = TIER_RANK[best.tier as EntitlementTier] ?? -1;
-  for (let i = 1; i < rows.length; i++) {
-    const rank = TIER_RANK[rows[i].tier as EntitlementTier] ?? -1;
-    if (rank > bestRank) {
-      best = rows[i];
-      bestRank = rank;
-    }
-  }
-  return {
-    tier: best.tier as EntitlementTier,
-    source: best.source,
-    sourceRef: best.sourceRef,
-    expiresAt: best.expiresAt,
-    stripeCustomerId: best.stripeCustomerId,
-  };
+  // Pure resolver: live MAX-by-rank (untouched fail-open contract) plus the
+  // additive read-only lapsed-Event branch. Tested directly in pure.test.ts.
+  return resolveTier(rows, now);
 }
 
 /**
- * Fetch the full active-entitlement list for a user. Used by HQ
- * dashboards, settings/plan pages, admin tooling. Read-only.
+ * Fetch the full active-entitlement list for a user. Used by HQ dashboards,
+ * settings/plan pages, admin tooling. Read-only.
  */
 export async function listEntitlements(clerkId: string) {
   if (!clerkId) return [];
