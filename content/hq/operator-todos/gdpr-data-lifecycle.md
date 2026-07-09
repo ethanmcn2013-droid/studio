@@ -1,27 +1,26 @@
 ---
 id: gdpr-data-lifecycle
-title: Approve the GDPR data-lifecycle approach for entitlements and the audit ledger.
+title: Finish the GDPR operator paperwork (DPAs + privacy policy); the mechanism is decided.
 status: open
-priority: P0
-blocking: true
+priority: P1
+blocking: false
 phase: Phase 6
-why: An EU consumer product with an immutable audit ledger has no right-to-erasure path, which is a launch-blocking legal gap.
+why: The erasure/retention mechanism is decided and being built; what remains is the founder-only paperwork before paid launch.
 href: /hq
 date: 2026-07-09
 ---
 
 ## Why
 
-The access system stores personal data (email hash, IP hash, user agent) and an append-only, tamper-evident event ledger that by design is never deleted. A GDPR erasure request collides head-on with "append-only, never delete". The recommended reconciliation is crypto-shredding: destroy the personal data (the email/IP hashes) on erasure while keeping the non-personal audit skeleton intact, so the trail stays defensible and the person is genuinely forgotten. This needs founder approval and a retention policy, and it interacts with the tamper-evidence hash-chain (the chain must cover only non-personal fields).
+The founder delegated the GDPR direction and it is now DECIDED and recorded in [gdpr-data-lifecycle-policy](../decisions/gdpr-data-lifecycle-policy.md): minimize PII to salted hashes, crypto-shred on erasure while keeping an anonymized audit skeleton, purge PII 24 months after an entitlement ends, retain the anonymized financial/audit record 6 years (Irish Revenue). The engineering (hashes-only, hash-chain excludes PII, crypto-shred action, Clerk `user.deleted` handler, retention in the reconcile cron) is being built in the phases, so GDPR is no longer an engineering launch-blocker. Only founder-only paperwork remains.
 
 ## Steps
 
-1. Approve **crypto-shredding of personal data while retaining the audit skeleton** as the erasure mechanism.
-2. Set **retention windows** for `ip_hash`, `email_hash`, and the event ledger.
-3. Confirm a **data-export / portability** response for data-subject requests.
-4. Decide whether to handle **Clerk account-deletion webhooks** as an automatic erasure trigger.
-5. Confirm the **hash-chain covers only non-personal fields** so erasure does not break tamper-evidence.
+1. Accept the **standard DPAs** for the four sub-processors: Clerk, Stripe, Turso, Vercel.
+2. **Publish the updated privacy policy** (`/privacy`) reflecting the decided lifecycle, the sub-processors, and the data-subject-rights contact.
+3. Decide whether a **solicitor reviews** the privacy policy before the paid launch.
+4. After the Ltd is registered, confirm the **registered Ltd as the data controller**.
 
 ## Done when
 
-There is an approved, written erasure + retention policy that an operator can execute, and the audit ledger design provably satisfies both tamper-evidence and the right to be forgotten.
+The four DPAs are accepted, the privacy policy is published and (optionally) reviewed, and the registered Ltd is named as controller.

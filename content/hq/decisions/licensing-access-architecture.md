@@ -50,4 +50,9 @@ Founder-gated decisions that gate the build are filed as operator-todos: `stripe
 
 Open engineering question (biggest correctness dependency, outside the studio repo): does the Tasks team move the couple-redemption write into a shared-DB writer this cycle, or do we ship the reconcile-and-repair contract first and consolidate later.
 
-Full design record (data model, table-level schema, the five HQ tabs, the Stripe event set, migration ordering, and the scorecard) was produced by the licensing-backend-design workflow on 2026-07-09 and this decision is its ratified summary.
+**Locked since ratification (2026-07-09):**
+- Consumer prices are always displayed **VAT-inclusive** (the shown price is the price paid).
+- **GDPR** direction is decided in [gdpr-data-lifecycle-policy](./gdpr-data-lifecycle-policy.md): minimize PII to hashes, crypto-shred on erasure, keep an anonymized audit skeleton, 6-year financial retention. No longer an engineering launch-blocker.
+- The whole **paid path** (business Stripe account, VAT/OSS, Phase 4) is gated on `register-ltd-ireland` (Ltd incorporating, ~mid-July 2026). The **free path** (comps, batches, venue codes, entitlements plumbing, the Access console) has **no such gate and execution has begun**.
+
+**START HERE, any session:** the full design record — data model, table-level schema, the five HQ tabs, the Stripe event set, migration ordering, safety model, and the scorecard — lives at `docs/LICENSING_ACCESS_DESIGN.md`. This decision is its ratified summary; that doc is the buildable spec. Produced by the `licensing-backend-design` workflow on 2026-07-09.
