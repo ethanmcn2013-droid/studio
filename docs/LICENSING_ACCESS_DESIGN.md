@@ -1,5 +1,7 @@
 # Signal Studio — Licensing & Access design (buildable spec)
 
+> **Build status (2026-07-09).** Phases 0-3, 5, 6 (everything except Stripe/VAT) are BUILT on branch `feat/access-system` (worktree `access-build`), each typecheck+build green. The Access console lives at **`/hq/entitlements`**, NOT `/hq/access` as originally written below — `/hq/access` is the HQ password login gate (founder decision 2026-07-09). Two founder gates remain before go-live: (1) apply the migration to the prod shared DB (`node scripts/migrate-access.mjs --dry-run` first), (2) merge to main. Phase 4 (Stripe/VAT) stays gated on `register-ltd-ireland`. See the build memory for the per-phase ledger.
+
 > **Any session start here.** This is the ratified, buildable spec for the licensing/entitlements/subscription backend and the HQ "Access" console. The one-paragraph decision lives in `content/hq/decisions/licensing-access-architecture.md`; the GDPR call in `content/hq/decisions/gdpr-data-lifecycle-policy.md`. Founder-gated items are operator-todos in `content/hq/operator-todos/` (`register-ltd-ireland`, `stripe-tax-eu-vat`, `gdpr-data-lifecycle`, `licensing-policy-ratification`). Produced by the `licensing-backend-design` workflow (28 agents, 4 architecture directions adversarially gated to a 9.9 bar) on 2026-07-09.
 
 ## Executive summary
