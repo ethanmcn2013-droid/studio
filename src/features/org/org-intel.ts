@@ -376,6 +376,207 @@ export function directorName(id: string): string {
   return DIRECTORS.find((d: Director) => d.id === id)?.shortName ?? id;
 }
 
+// ── Chart columns (presentation grouping of the 17 + discovery roles) ────────
+
+/**
+ * The chart splits the org into finer columns than the 4 elt clusters so the
+ * 17 Directors breathe horizontally. Peers/coordination still read from the
+ * real cluster + coordination graph; this is layout only.
+ */
+export type ChartColumn = {
+  id: string;
+  label: string;
+  subtitle: string;
+  /** Director ids (real from elt) or discovery ids, top to bottom. */
+  members: string[];
+};
+
+export const CHART_COLUMNS: ChartColumn[] = [
+  {
+    id: "strategy-voice",
+    label: "Strategy & Voice",
+    subtitle: "Holds the frame and the company's voice.",
+    members: [
+      "product-strategy",
+      "brand-narrative-positioning",
+      "customer-success-research-insight",
+    ],
+  },
+  {
+    id: "product-excellence",
+    label: "Product Excellence",
+    subtitle: "One obsessive guardian per shipped product.",
+    members: [
+      "roadmap-product-excellence",
+      "tasks-product-excellence",
+      "notes-product-excellence",
+      "analytics-product-excellence",
+    ],
+  },
+  {
+    id: "experience-craft",
+    label: "Experience & Craft",
+    subtitle: "UX, taste, and perceived performance across the suite.",
+    members: [
+      "product-experience-ux",
+      "product-taste-design-integrity",
+      "performance-excellence-innovation",
+    ],
+  },
+  {
+    id: "build-ship",
+    label: "Build & Ship",
+    subtitle: "Engineering, creative, and operations landing the work.",
+    members: [
+      "engineering-systems-architecture",
+      "creative-motion-experience",
+      "operations-admin-founder-support",
+      "data-infrastructure",
+    ],
+  },
+  {
+    id: "growth-market",
+    label: "Growth & Market",
+    subtitle: "Demand, revenue, and the audience.",
+    members: [
+      "marketing-growth-audience-insight",
+      "revenue-partnerships-business-development",
+      "community-advocacy",
+    ],
+  },
+  {
+    id: "risk-capital",
+    label: "Risk & Capital",
+    subtitle: "Runway, pricing, legal, and trust.",
+    members: [
+      "finance-capital-commercial-planning",
+      "legal-risk-corporate-affairs",
+      "security-trust",
+    ],
+  },
+];
+
+// ── Discovery roles (candidate Directors, not yet instantiated) ──────────────
+
+/**
+ * Roles under active consideration. Per signal-directors Initiative 6, a new
+ * Director is only instantiated once a written case is made. These render in
+ * the chart flagged "in discovery" so the shape of the next hires is visible.
+ * Placeholders — confirm or rename before treating as real.
+ */
+export type DiscoveryRole = {
+  id: string;
+  name: string;
+  shortName: string;
+  oneLine: string;
+};
+
+export const DISCOVERY_DIRECTORS: DiscoveryRole[] = [
+  {
+    id: "data-infrastructure",
+    name: "Director of Data & Infrastructure",
+    shortName: "In discovery",
+    oneLine: "Owns the data platform and the plumbing under the four products.",
+  },
+  {
+    id: "community-advocacy",
+    name: "Director of Community & Advocacy",
+    shortName: "In discovery",
+    oneLine: "Turns the audience into a community that carries the message.",
+  },
+  {
+    id: "security-trust",
+    name: "Director of Security & Trust",
+    shortName: "In discovery",
+    oneLine: "Owns security posture, privacy, and customer trust.",
+  },
+];
+
+const DISCOVERY_IDS = new Set(DISCOVERY_DIRECTORS.map((d) => d.id));
+
+export function isDiscovery(id: string): boolean {
+  return DISCOVERY_IDS.has(id);
+}
+
+export function getDiscovery(id: string): DiscoveryRole | undefined {
+  return DISCOVERY_DIRECTORS.find((d) => d.id === id);
+}
+
+/** Real (non-discovery) column peers for a Director, excluding self. */
+export function columnPeers(id: string): string[] {
+  const col = CHART_COLUMNS.find((c) => c.members.includes(id));
+  if (!col) return [];
+  return col.members.filter((m) => m !== id && !isDiscovery(m));
+}
+
+// ── Tools inventory (the stack + the grants + the MCP layer) ─────────────────
+
+export type ToolGroup = {
+  category: string;
+  items: { name: string; note: string; tag?: "mcp" | "skill" | "core" }[];
+};
+
+export const TOOLS: ToolGroup[] = [
+  {
+    category: "Build & ship",
+    items: [
+      { name: "GitHub", note: "Source, pull requests, CI status" },
+      { name: "Vercel", note: "Hosting and preview deploys" },
+      { name: "Next.js", note: "App framework across every surface" },
+      { name: "TypeScript", note: "One typed language, front to back" },
+      { name: "pnpm", note: "Workspaces across the product repos" },
+      { name: "Drizzle", note: "Typed schema and migrations" },
+    ],
+  },
+  {
+    category: "Quality & monitoring",
+    items: [
+      { name: "Sentry", note: "Runtime errors and traces" },
+      { name: "Playwright", note: "End-to-end and visual checks" },
+      { name: "ds-check", note: "Design-system drift gate" },
+      { name: "Vercel Analytics", note: "Real-user performance" },
+    ],
+  },
+  {
+    category: "Plan & coordinate",
+    items: [
+      { name: "Linear", note: "Issues and cycles" },
+      { name: "Slack", note: "25 channels, one per director and panel" },
+      { name: "Atlas map", note: "Living map of every system" },
+      { name: "Decision log", note: "Append-only record of calls" },
+    ],
+  },
+  {
+    category: "AI leadership",
+    items: [
+      { name: "Claude Code", note: "One subagent per Director", tag: "core" },
+      { name: "Claude Design", note: "Brand and design-system sync" },
+      { name: "Google Calendar", note: "Founder calendar, live grant", tag: "mcp" },
+      { name: "Brand-voice", note: "Voice enforcement on all copy", tag: "skill" },
+    ],
+  },
+  {
+    category: "Research & signal",
+    items: [
+      { name: "In-product analytics", note: "What users actually do" },
+      { name: "Competitor monitoring", note: "Market moves worth knowing" },
+      { name: "Web research", note: "Open research, every Director" },
+      { name: "Customer interviews", note: "The real problem underneath" },
+    ],
+  },
+  {
+    category: "Finance & legal",
+    items: [
+      { name: "Runway model", note: "Cash and burn" },
+      { name: "Pricing models", note: "Unit economics" },
+      { name: "Grant timelines", note: "Non-dilutive funding" },
+      { name: "Risk register", note: "What could go wrong, tracked" },
+    ],
+  },
+];
+
+export const TOOLS_COUNT = TOOLS.reduce((n, g) => n + g.items.length, 0);
+
 // ── Headline counts (all real, all derived) ─────────────────────────────────
 
 const layer3Count = DIRECTORS.filter((d) => d.autonomyLayer === 3).length;
@@ -385,7 +586,9 @@ const productLeadCount = DIRECTORS.filter((d) => d.cluster === "product_excellen
 export const ORG_COUNTS = {
   founder: 1,
   directors: DIRECTORS.length,
-  divisions: 4,
+  divisions: CHART_COLUMNS.length,
+  discovery: DISCOVERY_DIRECTORS.length,
+  tools: TOOLS_COUNT,
   councils: COUNCILS.length,
   autonomyLayers: AUTONOMY_LADDER.length,
   permissionTiers: PERMISSION_TIERS.length,
@@ -409,10 +612,10 @@ export function deckStats(): DeckStat[] {
     { value: `1 + ${ORG_COUNTS.directors}`, label: "founder + directors", accent: true },
     { value: String(ORG_COUNTS.divisions), label: "divisions" },
     { value: String(ORG_COUNTS.councils), label: "standing councils" },
-    { value: String(ORG_COUNTS.autonomyLayers), label: "autonomy layers" },
-    { value: String(ORG_COUNTS.founderGates), label: "founder gates" },
     { value: String(ORG_COUNTS.coordinationPaths), label: "coordination paths" },
+    { value: String(ORG_COUNTS.tools), label: "tools + platforms" },
     { value: String(ORG_COUNTS.mcpLive), label: "mcp live" },
     { value: String(ORG_COUNTS.channels), label: "slack channels" },
+    { value: String(ORG_COUNTS.discovery), label: "in discovery" },
   ];
 }

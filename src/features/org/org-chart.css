@@ -5,7 +5,7 @@
 
 .orgc-page {
   position: relative;
-  width: min(1480px, calc(100vw - 32px));
+  width: min(1760px, calc(100vw - 40px));
   margin: 0 auto;
   padding: 52px 0 116px;
   isolation: isolate;
@@ -531,6 +531,7 @@
 }
 
 .orgc-stage[data-mode="councils"],
+.orgc-stage[data-mode="tools"],
 .orgc-stage[data-mode="evidence"],
 .orgc-stage[data-mode="investor"] {
   grid-template-columns: 1fr;
@@ -750,9 +751,13 @@
 
 .orgc-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
   align-items: start;
+}
+
+@media (max-width: 1400px) {
+  .orgc-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .orgc-col {
@@ -2007,6 +2012,140 @@ a.orgc-link:hover {
 
 .orgc-footer a:hover {
   color: var(--accent);
+}
+
+/* ── Discovery nodes (candidate Directors) ──────────────────────────────────── */
+
+.orgc-node--discovery {
+  cursor: default;
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--ink) 16%, transparent);
+  background: color-mix(in srgb, var(--paper-soft) 45%, var(--paper));
+  box-shadow: none;
+}
+
+.orgc-node--discovery:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
+}
+
+.orgc-node--discovery .orgc-role {
+  color: var(--ink-soft);
+}
+
+.orgc-node--discovery .orgc-node-index {
+  color: var(--ink-ghost);
+}
+
+.orgc-avatar--ghost {
+  border-style: dashed;
+  background: transparent;
+  color: var(--ink-ghost);
+}
+
+.orgc-badge--discovery {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  color: var(--accent);
+  text-transform: lowercase;
+}
+
+.orgc-legend-dot--discovery {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, var(--hairline));
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.orgc-mini-nodes span[data-discovery="true"] {
+  border-style: dashed;
+  background: transparent;
+}
+
+/* The "all N tools" link on the chart-mode rail. */
+.orgc-tool-more {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 6px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.orgc-tool-more:hover {
+  text-decoration: underline;
+}
+
+/* ── Tools mode ─────────────────────────────────────────────────────────────── */
+
+.orgc-tools-groups {
+  margin-top: 26px;
+  display: grid;
+  gap: 30px;
+}
+
+.orgc-tools-cat {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.orgc-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+  gap: 12px;
+}
+
+.orgc-tool-card {
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: var(--paper);
+  padding: 15px 16px;
+  transition: border-color var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.orgc-tool-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--hairline));
+  box-shadow: var(--shadow-float);
+}
+
+.orgc-tool-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 640;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.orgc-tool-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--hairline));
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+.orgc-tool-note {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-quiet);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */

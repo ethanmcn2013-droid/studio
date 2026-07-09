@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -9,22 +8,20 @@ import {
   useState,
 } from "react";
 import {
-  CLUSTERS,
   DIRECTORS,
   ELT_SNAPSHOT,
-  directorsByCluster,
   formatCadence,
   getDirector,
-  type Cluster,
   type Director,
 } from "@/lib/hq/elt";
-import { roleTitle, directorClusters } from "./org-utils";
+import { roleTitle } from "./org-utils";
 import {
   COORDINATION_EDGE_COUNT,
   coordinationPartners,
 } from "./org-coordination";
 import {
   AUTONOMY_LADDER,
+  CHART_COLUMNS,
   COUNCILS,
   DECISIONS,
   FOUNDER_GATES,
@@ -33,10 +30,16 @@ import {
   ORG_COUNTS,
   PERMISSION_TIERS,
   PRINCIPLES,
+  TOOLS,
+  TOOLS_COUNT,
   WORKFLOWS,
+  columnPeers,
   deckStats,
   directorName,
+  getDiscovery,
+  isDiscovery,
   type Council,
+  type DiscoveryRole,
 } from "./org-intel";
 import { CADENCES, ROADMAP, OPERATING_TIMEZONE, roadmapDotClass } from "./org-cadence";
 import { OrgAvatar } from "./org-avatars";
@@ -44,29 +47,24 @@ import { OrgDetailPanel } from "./org-detail-panel";
 import { OrgSearch } from "./org-search";
 
 type Edge = { id: string; x1: number; y1: number; x2: number; y2: number };
-type CouncilFilter = "all" | Cluster;
-type Mode = "chart" | "councils" | "evidence" | "investor";
+type ColumnFilter = "all" | string;
+type Mode = "chart" | "councils" | "evidence" | "investor" | "tools";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "chart", label: "Chart" },
   { id: "councils", label: "Councils" },
+  { id: "tools", label: "Tools" },
   { id: "evidence", label: "Evidence" },
   { id: "investor", label: "Investor" },
 ];
 
-/** Platform + tool foundation, surfaced as a rail. Google Calendar is the one
- *  live MCP grant; everything else is standing platform access. */
-const PLATFORMS: { label: string; live?: boolean }[] = [
-  { label: "GitHub" },
-  { label: "Vercel" },
-  { label: "Slack" },
-  { label: "Linear" },
-  { label: "Sentry" },
-  { label: "Atlas map" },
-  { label: "Google Calendar · MCP", live: true },
-  { label: "Web research" },
-  { label: "Internal docs" },
-];
+function columnOf(id: string): string | undefined {
+  return CHART_COLUMNS.find((c) => c.members.includes(id))?.id;
+}
+
+function columnLabelOf(id: string): string {
+  return CHART_COLUMNS.find((c) => c.members.includes(id))?.label ?? "";
+}
 
 export function OrgChart() {
   const [mode, setMode] = useState<Mode>("chart");
@@ -74,48 +72,41 @@ export function OrgChart() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [edges, setEdges] = useState<Edge[]>([]);
   const [investorLens, setInvestorLens] = useState(true);
-  const [selectedCluster, setSelectedCluster] = useState<CouncilFilter>("all");
+  const [selectedColumn, setSelectedColumn] = useState<ColumnFilter>("all");
 
   const stageRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const returnFocusRef = useRef<HTMLElement | null>(null);
 
-  const clusters = useMemo(() => directorClusters(CLUSTERS), []);
-  const visibleClusters = useMemo(
+  const visibleColumns = useMemo(
     () =>
-      selectedCluster === "all"
-        ? clusters
-        : clusters.filter((cluster) => cluster.id === selectedCluster),
-    [clusters, selectedCluster],
+      selectedColumn === "all"
+        ? CHART_COLUMNS
+        : CHART_COLUMNS.filter((c) => c.id === selectedColumn),
+    [selectedColumn],
   );
   const stats = useMemo(() => deckStats(), []);
 
   const focused = focusedId ? getDirector(focusedId) ?? null : null;
-  const peerIds = useMemo(() => {
-    if (!focused) return new Set<string>();
-    return new Set(
-      DIRECTORS.filter((d) => d.cluster === focused.cluster && d.id !== focused.id).map((d) => d.id),
-    );
-  }, [focused]);
+  const peerIds = useMemo(
+    () => new Set(focused ? columnPeers(focused.id) : []),
+    [focused],
+  );
   const coordIds = useMemo(
     () => (focusedId ? coordinationPartners(focusedId) : []),
     [focusedId],
   );
   const coordSet = useMemo(() => new Set(coordIds), [coordIds]);
 
-  const selectedClusterLabel =
-    selectedCluster === "all"
+  const selectedColumnLabel =
+    selectedColumn === "all"
       ? "all divisions"
-      : CLUSTERS.find((c) => c.id === selectedCluster)?.label ?? "division";
+      : CHART_COLUMNS.find((c) => c.id === selectedColumn)?.label ?? "division";
 
-  const visibleDirectorCount = visibleClusters.reduce(
-    (sum, cluster) => sum + directorsByCluster(cluster.id).length,
+  const visibleDirectorCount = visibleColumns.reduce(
+    (sum, c) => sum + c.members.filter((m) => !isDiscovery(m)).length,
     0,
   );
-
-  const clusterLabel = useCallback((id: string) => {
-    return CLUSTERS.find((c) => c.id === id)?.label ?? "";
-  }, []);
 
   // Measure the coordination edges (focused node -> partners) in stage-local px.
   useLayoutEffect(() => {
@@ -153,7 +144,7 @@ export function OrgChart() {
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [focusedId, coordIds, selectedCluster, mode]);
+  }, [focusedId, coordIds, selectedColumn, mode]);
 
   // Global keyboard: `/` opens search, Esc clears focus.
   useEffect(() => {
@@ -181,7 +172,7 @@ export function OrgChart() {
 
   function nodeStateClass(d: Director): string {
     const classes: string[] = [];
-    if (selectedCluster !== "all" && d.cluster !== selectedCluster) classes.push("is-filtered");
+    if (selectedColumn !== "all" && columnOf(d.id) !== selectedColumn) classes.push("is-filtered");
     if (focused) {
       if (d.id === focused.id) classes.push("is-active");
       else if (peerIds.has(d.id) || coordSet.has(d.id)) classes.push("is-peer");
@@ -190,20 +181,20 @@ export function OrgChart() {
     return classes.join(" ");
   }
 
-  function chooseCluster(next: CouncilFilter) {
-    setSelectedCluster(next);
-    if (next !== "all" && focused && focused.cluster !== next) {
+  function chooseColumn(next: ColumnFilter) {
+    setSelectedColumn(next);
+    if (next !== "all" && focused && columnOf(focused.id) !== next) {
       setFocusedId(null);
     }
   }
 
-  function focusTuringPath() {
+  function tracePath() {
     if (focusedId) {
       setFocusedId(null);
       return;
     }
     setMode("chart");
-    setSelectedCluster("all");
+    setSelectedColumn("all");
     setFocusedId("engineering-systems-architecture");
   }
 
@@ -255,7 +246,7 @@ export function OrgChart() {
               Investor lens
             </button>
           ) : null}
-          <button type="button" className="orgc-command-btn" onClick={focusTuringPath}>
+          <button type="button" className="orgc-command-btn" onClick={tracePath}>
             {focusedId ? "Clear focus" : "Trace a path"}
           </button>
           <a className="orgc-command-btn" href="/hq/atlas-map">
@@ -276,30 +267,42 @@ export function OrgChart() {
       {mode === "chart" ? (
         <>
           <div className="orgc-toolrail" aria-label="Platform and tooling foundation">
-            <span className="orgc-toolrail-label">foundation</span>
-            {PLATFORMS.map((p) => (
-              <span key={p.label} className="orgc-tool-chip" data-live={p.live ? "true" : "false"}>
-                {p.label}
-              </span>
-            ))}
+            <span className="orgc-toolrail-label">runs on</span>
+            {["GitHub", "Vercel", "Next.js", "TypeScript", "Slack", "Linear", "Sentry", "Claude Code"].map(
+              (label) => (
+                <span key={label} className="orgc-tool-chip">
+                  {label}
+                </span>
+              ),
+            )}
+            <span className="orgc-tool-chip" data-live="true">
+              Google Calendar · MCP
+            </span>
+            <button
+              type="button"
+              className="orgc-tool-more"
+              onClick={() => setMode("tools")}
+            >
+              all {TOOLS_COUNT} tools →
+            </button>
           </div>
 
           <div className="orgc-filterbar" role="group" aria-label="Division filter">
             <button
               type="button"
-              onClick={() => chooseCluster("all")}
-              aria-pressed={selectedCluster === "all"}
+              onClick={() => chooseColumn("all")}
+              aria-pressed={selectedColumn === "all"}
             >
               All divisions
             </button>
-            {clusters.map((cluster) => (
+            {CHART_COLUMNS.map((c) => (
               <button
-                key={cluster.id}
+                key={c.id}
                 type="button"
-                onClick={() => chooseCluster(cluster.id)}
-                aria-pressed={selectedCluster === cluster.id}
+                onClick={() => chooseColumn(c.id)}
+                aria-pressed={selectedColumn === c.id}
               >
-                {cluster.label}
+                {c.label}
               </button>
             ))}
           </div>
@@ -316,11 +319,14 @@ export function OrgChart() {
                 <span className="orgc-legend-badge">veto</span> stop authority
               </span>
               <span className="orgc-legend-item">
+                <span className="orgc-legend-dot--discovery" aria-hidden="true" /> in discovery
+              </span>
+              <span className="orgc-legend-item">
                 <span className="orgc-legend-swatch" aria-hidden="true" /> coordination path
               </span>
             </div>
             <div className="orgc-live-note">
-              {visibleDirectorCount} of {DIRECTORS.length} directors · {selectedClusterLabel}
+              {visibleDirectorCount} of {DIRECTORS.length} directors · {selectedColumnLabel}
             </div>
           </div>
         </>
@@ -343,7 +349,7 @@ export function OrgChart() {
             <aside className="orgc-sidecar" aria-label="Map controls">
               <div className="orgc-minimap">
                 <div className="orgc-side-title">map overview</div>
-                <MiniMap clusters={clusters} selectedCluster={selectedCluster} />
+                <MiniMap selectedColumn={selectedColumn} />
               </div>
               <div className="orgc-layers">
                 <div className="orgc-side-title">layers</div>
@@ -368,41 +374,53 @@ export function OrgChart() {
                   <div className="orgc-apex-meta">vision · strategy · allocation</div>
                 </div>
                 <div className="orgc-spine" aria-hidden="true" />
-                <div className="orgc-band-label">4 divisions · {DIRECTORS.length} directors</div>
+                <div className="orgc-band-label">
+                  {ORG_COUNTS.divisions} divisions · {ORG_COUNTS.directors} directors
+                </div>
                 <div className="orgc-rail" aria-hidden="true" />
               </div>
 
               <div className="orgc-columns">
-                {visibleClusters.map((cluster) => {
-                  const members = directorsByCluster(cluster.id);
+                {visibleColumns.map((col) => {
+                  const realCount = col.members.filter((m) => !isDiscovery(m)).length;
                   return (
-                    <div key={cluster.id} className="orgc-col">
+                    <div key={col.id} className="orgc-col">
                       <div className="orgc-col-stub" aria-hidden="true" />
                       <div className="orgc-col-head">
                         <div>
-                          <div className="orgc-col-title">{cluster.label}</div>
-                          <div className="orgc-col-subtitle">{cluster.subtitle}</div>
+                          <div className="orgc-col-title">{col.label}</div>
+                          <div className="orgc-col-subtitle">{col.subtitle}</div>
                         </div>
-                        <div className="orgc-col-count">
-                          {members.length} director{members.length === 1 ? "" : "s"}
-                        </div>
+                        <div className="orgc-col-count">{realCount}</div>
                       </div>
                       <ul className="orgc-col-list" role="list">
-                        {members.map((d) => (
-                          <li key={d.id}>
-                            <OrgNode
-                              director={d}
-                              index={DIRECTORS.findIndex((item) => item.id === d.id) + 1}
-                              investorLens={investorLens}
-                              stateClass={nodeStateClass(d)}
-                              onFocus={() => openDirector(d.id)}
-                              registerRef={(el) => {
-                                if (el) nodeRefs.current[d.id] = el;
-                                else delete nodeRefs.current[d.id];
-                              }}
-                            />
-                          </li>
-                        ))}
+                        {col.members.map((mid) => {
+                          if (isDiscovery(mid)) {
+                            const role = getDiscovery(mid);
+                            return role ? (
+                              <li key={mid}>
+                                <DiscoveryNode role={role} />
+                              </li>
+                            ) : null;
+                          }
+                          const d = getDirector(mid);
+                          if (!d) return null;
+                          return (
+                            <li key={mid}>
+                              <OrgNode
+                                director={d}
+                                index={DIRECTORS.findIndex((item) => item.id === mid) + 1}
+                                investorLens={investorLens}
+                                stateClass={nodeStateClass(d)}
+                                onFocus={() => openDirector(d.id)}
+                                registerRef={(el) => {
+                                  if (el) nodeRefs.current[d.id] = el;
+                                  else delete nodeRefs.current[d.id];
+                                }}
+                              />
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   );
@@ -428,20 +446,19 @@ export function OrgChart() {
           </>
         ) : null}
 
-        {mode === "councils" ? (
-          <CouncilsMode onOpen={openDirector} />
-        ) : null}
-
+        {mode === "councils" ? <CouncilsMode onOpen={openDirector} /> : null}
+        {mode === "tools" ? <ToolsMode /> : null}
         {mode === "evidence" ? <EvidenceMode /> : null}
-
         {mode === "investor" ? <InvestorMode /> : null}
       </div>
 
       {focused ? (
         <OrgDetailPanel
           director={focused}
-          clusterLabel={clusterLabel(focused.cluster)}
-          peers={DIRECTORS.filter((d) => d.cluster === focused.cluster && d.id !== focused.id)}
+          clusterLabel={columnLabelOf(focused.id)}
+          peers={columnPeers(focused.id)
+            .map((id) => getDirector(id))
+            .filter((d): d is Director => Boolean(d))}
           founderName={ELT_SNAPSHOT.founderName}
           onNavigate={setFocusedId}
           onClose={closeDrawer}
@@ -462,7 +479,7 @@ export function OrgChart() {
   );
 }
 
-// ── Chart-mode node ───────────────────────────────────────────────────────────
+// ── Chart-mode nodes ──────────────────────────────────────────────────────────
 
 function OrgNode({
   director: d,
@@ -513,6 +530,27 @@ function OrgNode({
         <span data-tone={d.veto?.length ? "amber" : "quiet"} />
       </span>
     </button>
+  );
+}
+
+function DiscoveryNode({ role }: { role: DiscoveryRole }) {
+  return (
+    <div
+      className="orgc-node orgc-node--discovery"
+      aria-label={`${roleTitle(role.name)}, role in discovery`}
+    >
+      <span className="orgc-node-index" aria-hidden="true">
+        +
+      </span>
+      <span className="orgc-avatar orgc-avatar--ghost" aria-hidden="true" />
+      <span className="orgc-body">
+        <span className="orgc-role">{roleTitle(role.name)}</span>
+        <span className="orgc-persona">{role.oneLine}</span>
+        <span className="orgc-badges">
+          <span className="orgc-badge orgc-badge--discovery">in discovery</span>
+        </span>
+      </span>
+    </div>
   );
 }
 
@@ -607,6 +645,40 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
   );
 }
 
+// ── Tools mode ────────────────────────────────────────────────────────────────
+
+function ToolsMode() {
+  return (
+    <div className="orgc-panel-card">
+      <div className="orgc-section-eyebrow">the toolchain</div>
+      <p className="orgc-section-lede">
+        Every platform, service, and grant the company runs on. {TOOLS_COUNT}{" "}
+        tools across {TOOLS.length} groups, with one live MCP grant on a trial.
+        Access is scoped per Director through the permission tiers.
+      </p>
+
+      <div className="orgc-tools-groups">
+        {TOOLS.map((g) => (
+          <section key={g.category} className="orgc-tools-group">
+            <div className="orgc-tools-cat">{g.category}</div>
+            <div className="orgc-tools-grid">
+              {g.items.map((it) => (
+                <div key={it.name} className="orgc-tool-card" data-tag={it.tag ?? ""}>
+                  <div className="orgc-tool-name">
+                    {it.name}
+                    {it.tag ? <span className="orgc-tool-tag">{it.tag}</span> : null}
+                  </div>
+                  <div className="orgc-tool-note">{it.note}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Evidence mode ─────────────────────────────────────────────────────────────
 
 function EvidenceMode() {
@@ -617,8 +689,8 @@ function EvidenceMode() {
       <p className="orgc-section-lede">
         None of this is a diagram of intentions. It is the operating record:
         decisions with reasons, tools on trials, permission tiers, and the
-        cadences that keep the company moving. Everything here mirrors the
-        source repo, {" "}
+        cadences that keep the company moving. Everything here mirrors the source
+        repo,{" "}
         <a
           className="orgc-link-hint"
           style={{ color: "var(--accent)" }}
@@ -804,17 +876,16 @@ function InvestorMode() {
     { num: String(ORG_COUNTS.directors), lab: "directors, one final call" },
     { num: String(ORG_COUNTS.coordinationPaths), lab: "documented coordination paths" },
     { num: String(ORG_COUNTS.councils), lab: "standing councils" },
+    { num: String(ORG_COUNTS.tools), lab: "tools and platforms" },
     { num: String(ORG_COUNTS.founderGates), lab: "founder-gated actions" },
     { num: String(ORG_COUNTS.autonomyLayers), lab: "autonomy layers" },
-    { num: String(ORG_COUNTS.workflows), lab: "operating workflows" },
     { num: String(ORG_COUNTS.mcpLive), lab: "live MCP grant, on a trial" },
     { num: String(ORG_COUNTS.principles), lab: "principles held company-wide" },
   ];
 
-  const clusterList = directorClusters(CLUSTERS);
-  const counts = clusterList.map((c) => ({
+  const counts = CHART_COLUMNS.map((c) => ({
     label: c.label,
-    n: directorsByCluster(c.id).length,
+    n: c.members.filter((m) => !isDiscovery(m)).length,
   }));
   const maxN = Math.max(...counts.map((c) => c.n));
 
@@ -829,9 +900,9 @@ function InvestorMode() {
             one person operating with the <b>coordination of a company</b>.
           </p>
           <p className="orgc-invest-sub">
-            The structure is deliberately shallow: Founder, four divisions,
-            seventeen Directors. Depth comes from the operating system beneath it,
-            not from layers of management.
+            The structure is deliberately shallow: Founder, {ORG_COUNTS.divisions}{" "}
+            divisions, {ORG_COUNTS.directors} Directors. Depth comes from the
+            operating system beneath it, not from layers of management.
           </p>
         </div>
 
@@ -886,29 +957,27 @@ function InvestorMode() {
 
 // ── Chart-mode sidecar bits ───────────────────────────────────────────────────
 
-function MiniMap({
-  clusters,
-  selectedCluster,
-}: {
-  clusters: ReturnType<typeof directorClusters>;
-  selectedCluster: CouncilFilter;
-}) {
+function MiniMap({ selectedColumn }: { selectedColumn: ColumnFilter }) {
+  const allMembers = CHART_COLUMNS.flatMap((c) =>
+    c.members.map((m) => ({ id: m, col: c.id })),
+  );
   return (
     <div className="orgc-minimap-box" aria-hidden="true">
       <div className="orgc-mini-apex" />
       <div className="orgc-mini-councils">
-        {clusters.map((cluster) => (
+        {CHART_COLUMNS.map((c) => (
           <span
-            key={cluster.id}
-            data-active={selectedCluster === "all" || selectedCluster === cluster.id}
+            key={c.id}
+            data-active={selectedColumn === "all" || selectedColumn === c.id}
           />
         ))}
       </div>
       <div className="orgc-mini-nodes">
-        {DIRECTORS.map((d) => (
+        {allMembers.map((m) => (
           <span
-            key={d.id}
-            data-active={selectedCluster === "all" || selectedCluster === d.cluster}
+            key={m.id}
+            data-active={selectedColumn === "all" || selectedColumn === m.col}
+            data-discovery={isDiscovery(m.id) ? "true" : undefined}
           />
         ))}
       </div>
