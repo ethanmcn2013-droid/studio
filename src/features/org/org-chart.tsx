@@ -621,7 +621,7 @@ function EvidenceMode() {
         source repo, {" "}
         <a
           className="orgc-link-hint"
-          style={{ color: "var(--deck-accent-2)" }}
+          style={{ color: "var(--accent)" }}
           href="https://github.com/ethanmcn2013-droid/signal-directors"
           target="_blank"
           rel="noreferrer"

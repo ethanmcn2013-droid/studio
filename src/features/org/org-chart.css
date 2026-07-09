@@ -1,61 +1,29 @@
-/* Signal Studio HQ — the Org Command Deck.
-   A self-contained dark operating-system surface living inside the light HQ
-   shell. All tokens are remapped locally on .orgc-page so the rest of HQ stays
-   light and nothing here leaks out. Scoped to .orgc-* / legacy list view keeps
-   its own .org-* styles. */
+/* Signal Studio HQ — the Org operating map.
+   On-brand light register: white paper, hairlines over shadows, one earned
+   indigo accent, Geist. The founder card is the single deliberate ink moment.
+   Scoped to .orgc-* so the legacy list view keeps its own .org-* styles. */
 
 .orgc-page {
-  /* Dark command-deck theme. Remaps the system tokens to the --deck-*
-     palette (ds/tokens.css) so the whole subtree renders dark without
-     touching the light suite. Internal /hq/org surface only — the
-     ds-allow tags mark this as the one licensed dark exception. */
-  --paper: var(--deck-surface); /* ds-allow: command deck, /hq/org only */
-  --paper-soft: var(--deck-surface-2); /* ds-allow: command deck */
-  --ink: var(--deck-ink); /* ds-allow: command deck */
-  --ink-soft: var(--deck-ink-soft); /* ds-allow: command deck */
-  --ink-quiet: var(--deck-ink-quiet);
-  --ink-ghost: var(--deck-ink-ghost); /* ds-allow: command deck */
-  --hairline: rgba(158, 168, 208, 0.15); /* ds-allow: command deck */
-  --hairline-soft: rgba(158, 168, 208, 0.08); /* ds-allow: command deck */
-  --accent: var(--deck-accent); /* ds-allow: command deck */
-
-  /* rgba helpers derived from the palette (no raw hex). */
-  --deck-glow: rgba(124, 132, 255, 0.55);
-  --deck-glow-soft: rgba(124, 132, 255, 0.16);
-  --deck-line: rgba(160, 172, 216, 0.14);
-  --deck-line-soft: rgba(160, 172, 216, 0.07);
-
   position: relative;
-  z-index: 0;
-  width: min(1560px, calc(100vw - 32px));
+  width: min(1480px, calc(100vw - 32px));
   margin: 0 auto;
-  padding: 44px 0 128px;
-  color: var(--ink);
+  padding: 52px 0 116px;
   isolation: isolate;
 }
 
-/* Full-bleed dark backdrop: near-black base, fine grid, and two indigo glows.
-   width:100vw + left:50% breaks out of the width-limited page edge to edge;
-   z-index:-1 keeps it under page content but inside the isolated context, so
-   the light sticky HQ nav/strip stay on top untouched. */
+/* A whisper-fine construction grid, faded out toward the fold. */
 .orgc-page::before {
   content: "";
   position: absolute;
-  top: -160px;
-  bottom: -420px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-color: var(--deck-base);
   background-image:
-    radial-gradient(1100px 620px at 18% -6%, var(--deck-glow-soft), transparent 60%),
-    radial-gradient(920px 560px at 96% 4%, rgba(90, 120, 255, 0.10), transparent 55%),
-    linear-gradient(var(--deck-line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--deck-line-soft) 1px, transparent 1px),
-    linear-gradient(180deg, var(--deck-void), var(--deck-base) 42%, var(--deck-base));
-  background-size: auto, auto, 46px 46px, 46px 46px, auto;
+    linear-gradient(var(--hairline-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline-soft) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black 0%, black 58%, transparent 100%);
+  opacity: 0.5;
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
@@ -65,7 +33,7 @@
   grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
   gap: 52px;
   align-items: end;
-  padding: 30px 0 40px;
+  padding: 26px 0 40px;
 }
 
 .orgc-eyebrow,
@@ -74,12 +42,13 @@
 .orgc-foundation-label,
 .orgc-live-note,
 .orgc-op-eyebrow,
-.orgc-investor-kicker {
+.orgc-investor-kicker,
+.orgc-section-eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-eyebrow {
@@ -90,44 +59,33 @@
 
 .orgc-eyebrow::before {
   content: "";
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 999px;
-  background: var(--deck-accent);
-  box-shadow: 0 0 0 4px var(--deck-glow-soft), 0 0 14px var(--deck-glow);
-  animation: orgc-pulse 3.4s var(--ease-in-out) infinite;
-}
-
-@keyframes orgc-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
+  background: var(--accent);
 }
 
 .orgc-title {
   max-width: 16ch;
-  margin: 26px 0 0;
+  margin: 24px 0 0;
   color: var(--ink);
-  font-size: clamp(2.9rem, 1.9rem + 4.4vw, 5.6rem);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  font-weight: 620;
+  font-size: clamp(2.9rem, 1.9rem + 4.4vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
   text-wrap: balance;
 }
 
 .orgc-title b {
-  font-weight: 620;
-  color: transparent;
-  background: linear-gradient(94deg, var(--deck-accent-2), var(--deck-accent) 55%, var(--deck-accent-3));
-  -webkit-background-clip: text;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .orgc-strap {
-  margin: 26px 0 0;
-  max-width: 44ch;
+  margin: 24px 0 0;
+  max-width: 46ch;
   font-family: var(--font-mono);
   font-size: 0.95rem;
-  letter-spacing: 0.01em;
   line-height: 1.6;
   color: var(--ink-soft);
 }
@@ -137,18 +95,17 @@
   max-width: 58ch;
   font-size: 1.02rem;
   line-height: 1.75;
-  color: var(--ink-quiet);
+  color: var(--ink-soft);
 }
 
 .orgc-brief {
-  position: relative;
   border: 1px solid var(--hairline);
   background:
-    linear-gradient(180deg, rgba(139, 147, 255, 0.06), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4)),
     var(--paper);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 22px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow-modal);
 }
 
 .orgc-brief-top {
@@ -159,7 +116,7 @@
 }
 
 .orgc-brief-top span:first-child {
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-brief-line {
@@ -172,10 +129,10 @@
 .orgc-brief-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
   border-top: 1px solid var(--hairline-soft);
   margin-top: 22px;
   padding-top: 18px;
+  gap: 14px 0;
 }
 
 .orgc-mini-fact {
@@ -194,16 +151,16 @@
   font-family: var(--font-mono);
   font-size: 10px;
   line-height: 1.25;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-quiet);
 }
 
-/* ── The deck root + command bar ────────────────────────────────────────────── */
+/* ── Deck root + command bar ────────────────────────────────────────────────── */
 
 .orgc {
-  --orgc-line: var(--deck-line);
-  --orgc-line-soft: var(--deck-line-soft);
+  --orgc-line: color-mix(in srgb, var(--ink) 14%, transparent);
+  --orgc-line-soft: color-mix(in srgb, var(--ink) 7%, transparent);
   position: relative;
 }
 
@@ -215,13 +172,13 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   padding: 10px;
-  border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--deck-base) 72%, transparent);
-  backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--hairline-soft);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-float);
 }
 
 /* Segmented mode switch — the four operating views. */
@@ -229,28 +186,29 @@
   display: inline-flex;
   gap: 3px;
   padding: 3px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--paper-soft) 82%, white);
   border: 1px solid var(--hairline-soft);
-  border-radius: 11px;
-  background: rgba(0, 0, 0, 0.28);
 }
 
 .orgc-mode-btn {
   appearance: none;
   border: 0;
-  min-height: 34px;
+  min-height: 32px;
   padding: 0 15px;
-  border-radius: 8px;
+  border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--ink-quiet);
+  color: var(--ink-soft);
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
   transition:
     color var(--motion-fast) var(--ease-out),
-    background var(--motion-fast) var(--ease-out);
+    background var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
 }
 
 .orgc-mode-btn:hover {
@@ -258,9 +216,9 @@
 }
 
 .orgc-mode-btn[aria-pressed="true"] {
-  color: white;
-  background: linear-gradient(180deg, var(--deck-accent), var(--deck-accent-dim));
-  box-shadow: 0 6px 18px var(--deck-glow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: var(--accent);
+  background: var(--paper);
+  box-shadow: var(--shadow-float);
 }
 
 .orgc-command-actions {
@@ -277,15 +235,15 @@
 .orgc-filterbar button {
   min-height: 36px;
   border: 1px solid var(--hairline);
-  border-radius: 9px;
-  background: var(--paper-soft);
+  border-radius: 8px;
+  background: var(--paper);
   color: var(--ink);
   transition:
     border-color var(--motion-fast) var(--ease-out),
     background var(--motion-fast) var(--ease-out),
     color var(--motion-fast) var(--ease-out),
-    transform var(--motion-fast) var(--ease-out),
-    box-shadow var(--motion-fast) var(--ease-out);
+    box-shadow var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
 .orgc-search-command {
@@ -307,7 +265,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ink-soft);
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--paper-soft);
 }
 
 .orgc-command-btn,
@@ -326,9 +284,8 @@
 .orgc-command-btn:hover,
 .orgc-mode-toggle:hover,
 .orgc-filterbar button:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
-  background: color-mix(in srgb, var(--deck-accent) 12%, var(--paper-soft));
-  color: var(--ink);
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--hairline));
+  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
 }
 
 .orgc-search-command:focus-visible,
@@ -342,7 +299,7 @@
 .orgc-chip:focus-visible,
 .orgc-drawer-close:focus-visible,
 .orgc-panel-name:focus-visible {
-  outline: 2px solid var(--deck-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -353,9 +310,8 @@
 }
 
 .orgc-mode-toggle[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 55%, var(--hairline));
-  color: var(--deck-accent-2);
-  box-shadow: 0 0 0 1px var(--deck-glow-soft);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--hairline));
+  color: var(--accent);
 }
 
 .orgc-switch-dot {
@@ -387,17 +343,17 @@
 .orgc-stats {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--paper), var(--paper-soft));
+  border: 1px solid var(--hairline-soft);
+  border-radius: 12px;
+  background: var(--paper);
   margin-bottom: 14px;
   overflow: hidden;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
+  box-shadow: var(--shadow-float);
 }
 
 .orgc-stat {
   min-width: 0;
-  padding: 16px 16px;
+  padding: 15px 16px;
   border-right: 1px solid var(--hairline-soft);
   position: relative;
 }
@@ -407,7 +363,7 @@
 }
 
 .orgc-stat--accent {
-  background: color-mix(in srgb, var(--deck-accent) 10%, transparent);
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
 }
 
 .orgc-stat--accent::after {
@@ -417,13 +373,12 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--deck-accent);
-  box-shadow: 0 0 12px var(--deck-glow);
+  background: var(--accent);
 }
 
 .orgc-stat-value {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: 1.44rem;
   font-weight: 600;
   color: var(--ink);
   line-height: 1;
@@ -431,7 +386,7 @@
 }
 
 .orgc-stat--accent .orgc-stat-value {
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-stat-label {
@@ -463,10 +418,9 @@
 }
 
 .orgc-filterbar button[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 60%, var(--hairline));
-  color: white;
-  background: color-mix(in srgb, var(--deck-accent) 22%, var(--paper-soft));
-  box-shadow: 0 0 0 1px var(--deck-glow-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--paper));
 }
 
 .orgc-legend-row {
@@ -506,27 +460,26 @@
   display: inline-block;
   width: 18px;
   height: 0;
-  border-top: 1.5px dashed var(--deck-accent);
-  opacity: 0.9;
+  border-top: 1.5px dashed var(--accent);
+  opacity: 0.8;
   vertical-align: middle;
 }
 
 .orgc-live-note {
   color: var(--ink-quiet);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
-/* Tool + platform rail (the "foundation" surfaced up top). */
 .orgc-toolrail {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
   padding: 12px 14px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   border: 1px solid var(--hairline-soft);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper-soft) 60%, var(--paper));
 }
 
 .orgc-toolrail-label {
@@ -545,7 +498,7 @@
   padding: 6px 11px;
   border: 1px solid var(--hairline-soft);
   border-radius: 999px;
-  background: var(--paper-soft);
+  background: var(--paper);
   font-size: 12px;
   color: var(--ink-soft);
 }
@@ -555,18 +508,16 @@
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: var(--deck-accent);
-  opacity: 0.7;
+  background: var(--ink-ghost);
 }
 
 .orgc-tool-chip[data-live="true"] {
-  border-color: color-mix(in srgb, var(--deck-good) 45%, var(--hairline));
+  border-color: color-mix(in srgb, var(--status-done) 40%, var(--hairline));
   color: var(--ink);
 }
 
 .orgc-tool-chip[data-live="true"]::before {
-  background: var(--deck-good);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--deck-good) 70%, transparent);
+  background: var(--status-done);
 }
 
 /* ── Stage + coordination overlay ───────────────────────────────────────────── */
@@ -596,22 +547,16 @@
 }
 
 .orgc-edge {
-  stroke: var(--deck-accent);
-  stroke-width: 1.4;
-  stroke-dasharray: 3 5;
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
   fill: none;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 4px var(--deck-glow));
-  animation: orgc-dash 60s linear infinite;
-}
-
-@keyframes orgc-dash {
-  to { stroke-dashoffset: -240; }
+  opacity: 0.5;
 }
 
 .orgc-edge-dot {
-  fill: var(--deck-accent-2);
-  filter: drop-shadow(0 0 5px var(--deck-glow));
+  fill: var(--accent);
+  opacity: 0.85;
 }
 
 /* ── Sidecar (minimap + layers) ─────────────────────────────────────────────── */
@@ -628,9 +573,8 @@
 .orgc-minimap,
 .orgc-layers {
   border: 1px solid var(--hairline-soft);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--paper) 70%, transparent);
-  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
   padding: 14px;
 }
 
@@ -640,19 +584,18 @@
 }
 
 .orgc-minimap-box {
-  border: 1px solid var(--hairline-soft);
+  border: 1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
   border-radius: 8px;
   padding: 12px;
-  background: rgba(0, 0, 0, 0.24);
 }
 
 .orgc-mini-apex {
   width: 44px;
   height: 12px;
   margin: 0 auto 12px;
-  border: 1px solid color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
+  border: 1px solid var(--hairline);
   border-radius: 3px;
-  background: color-mix(in srgb, var(--deck-accent) 22%, transparent);
+  background: var(--ink);
 }
 
 .orgc-mini-councils,
@@ -676,14 +619,14 @@
   height: 10px;
   border-radius: 2px;
   border: 1px solid var(--hairline-soft);
-  background: rgba(255, 255, 255, 0.04);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
   transition: background var(--motion-base) var(--ease-out), border-color var(--motion-base) var(--ease-out);
 }
 
 .orgc-mini-councils span[data-active="true"],
 .orgc-mini-nodes span[data-active="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 60%, var(--hairline));
-  background: color-mix(in srgb, var(--deck-accent) 26%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--hairline));
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .orgc-layer-row {
@@ -700,9 +643,8 @@
 }
 
 .orgc-layer-row[data-active="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 40%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
   color: var(--ink);
-  background: color-mix(in srgb, var(--deck-accent) 8%, transparent);
 }
 
 .orgc-layer-row span {
@@ -720,17 +662,16 @@
 .orgc-canvas {
   position: relative;
   z-index: 2;
-  min-height: clamp(460px, 62vh, 700px);
+  min-height: clamp(460px, 60vh, 700px);
   border: 1px solid var(--hairline);
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 30px 26px;
   background:
-    radial-gradient(760px 380px at 50% -60px, var(--deck-glow-soft), transparent 70%),
-    linear-gradient(var(--deck-line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--deck-line-soft) 1px, transparent 1px),
-    linear-gradient(180deg, var(--deck-canvas-top), var(--deck-base));
-  background-size: auto, 44px 44px, 44px 44px, auto;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    linear-gradient(var(--hairline-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline-soft) 1px, transparent 1px),
+    color-mix(in srgb, var(--paper) 97%, white);
+  background-size: 44px 44px, 44px 44px, auto;
+  box-shadow: var(--shadow-modal);
   overflow: hidden;
 }
 
@@ -741,17 +682,16 @@
   text-align: center;
 }
 
+/* The founder card is the one earned ink moment on the light page. */
 .orgc-apex-card {
   position: relative;
-  border: 1px solid color-mix(in srgb, var(--deck-accent) 45%, var(--hairline));
-  background:
-    radial-gradient(120% 140% at 50% 0%, color-mix(in srgb, var(--deck-accent) 18%, transparent), transparent 60%),
-    linear-gradient(180deg, var(--deck-elev-a), var(--deck-elev-b));
-  color: var(--ink);
-  border-radius: 14px;
-  padding: 17px 30px 19px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 12px;
+  padding: 16px 28px 18px;
   min-width: 280px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--deck-glow-soft), 0 0 40px var(--deck-glow-soft);
+  box-shadow: 0 18px 44px rgba(17, 17, 17, 0.2);
 }
 
 .orgc-apex-eyebrow {
@@ -759,12 +699,12 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
+  color: rgba(255, 255, 255, 0.66);
 }
 
 .orgc-apex-name {
   font-size: 1.5rem;
-  font-weight: 640;
+  font-weight: 600;
   letter-spacing: -0.01em;
   margin-top: 6px;
 }
@@ -773,31 +713,30 @@
 .orgc-apex-meta {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.74);
   margin-top: 4px;
 }
 
 .orgc-apex-meta {
   margin-top: 10px;
-  color: var(--ink-quiet);
+  color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0.04em;
 }
 
 .orgc-spine {
   width: 1px;
   height: 30px;
-  background: linear-gradient(var(--deck-accent), transparent);
-  opacity: 0.5;
+  background: var(--orgc-line);
 }
 
 .orgc-band-label {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
-  background: color-mix(in srgb, var(--deck-accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--deck-accent) 34%, var(--hairline));
+  color: var(--accent);
+  background: var(--paper);
+  border: 1px solid var(--hairline-soft);
   border-radius: var(--radius-pill);
   padding: 5px 14px;
 }
@@ -806,7 +745,7 @@
   width: 100%;
   height: 1px;
   margin-top: 16px;
-  background: linear-gradient(90deg, transparent, var(--deck-line) 12%, var(--deck-line) 88%, transparent);
+  background: var(--orgc-line);
 }
 
 .orgc-columns {
@@ -826,7 +765,7 @@
 .orgc-col-stub {
   width: 1px;
   height: 24px;
-  background: linear-gradient(var(--deck-line), transparent);
+  background: var(--orgc-line);
 }
 
 .orgc-col-head {
@@ -838,8 +777,8 @@
   gap: 14px;
   padding: 16px;
   border: 1px solid var(--hairline);
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(139, 147, 255, 0.05), transparent), var(--paper-soft);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
 }
 
 .orgc-col-title {
@@ -864,7 +803,7 @@
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   padding-top: 2px;
 }
 
@@ -886,42 +825,41 @@
   appearance: none;
   text-align: left;
   width: 100%;
-  min-height: 128px;
-  background: linear-gradient(180deg, var(--paper-soft), var(--paper));
+  min-height: 126px;
+  background: var(--paper);
   border: 1px solid var(--hairline);
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 14px 13px;
   cursor: pointer;
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr) auto;
   gap: 11px;
   color: inherit;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
   transition:
     opacity var(--motion-base) var(--ease-out),
     border-color var(--motion-fast) var(--ease-out),
     transform var(--motion-fast) var(--ease-out),
-    box-shadow var(--motion-fast) var(--ease-out),
-    background var(--motion-fast) var(--ease-out);
+    box-shadow var(--motion-fast) var(--ease-out);
 }
 
 .orgc-node:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 45%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--hairline));
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5), 0 0 24px var(--deck-glow-soft);
+  box-shadow: var(--shadow-float);
 }
 
 .orgc-node.is-active {
-  border-color: var(--deck-accent);
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--deck-accent), 0 0 40px var(--deck-glow-soft);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 14px 30px var(--accent-soft);
 }
 
 .orgc-node.is-dim {
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .orgc-node.is-peer {
-  border-color: color-mix(in srgb, var(--deck-accent) 40%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--hairline));
 }
 
 .orgc-node.is-filtered {
@@ -931,16 +869,16 @@
 .orgc-node-index {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   line-height: 36px;
 }
 
 .orgc-avatar {
   width: 36px;
   height: 36px;
-  border-radius: 9px;
+  border-radius: 8px;
   border: 1px solid var(--hairline);
-  background: rgba(0, 0, 0, 0.28);
+  background: var(--paper-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -950,8 +888,8 @@
 
 .orgc-node:hover .orgc-avatar,
 .orgc-node.is-active .orgc-avatar {
-  border-color: color-mix(in srgb, var(--deck-accent) 55%, var(--hairline));
-  color: var(--deck-accent-2);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  color: var(--accent);
 }
 
 .orgc-glyph {
@@ -959,10 +897,10 @@
 }
 
 .orgc-avatar--panel {
-  width: 60px;
-  height: 60px;
-  border-radius: 13px;
-  color: var(--deck-accent-2);
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  color: var(--accent);
   flex: 0 0 auto;
 }
 
@@ -973,7 +911,7 @@
 .orgc-role {
   display: block;
   font-size: 13.5px;
-  font-weight: 620;
+  font-weight: 640;
   line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -1000,21 +938,20 @@
   font-weight: 600;
   letter-spacing: 0.03em;
   border: 1px solid var(--hairline);
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 1px 6px;
   color: var(--ink-quiet);
 }
 
 .orgc-badge--l3 {
-  border-color: color-mix(in srgb, var(--deck-accent) 55%, var(--hairline));
-  color: var(--deck-accent-2);
-  background: color-mix(in srgb, var(--deck-accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
 .orgc-badge--veto {
-  border-color: color-mix(in srgb, var(--deck-warn) 50%, var(--hairline));
-  color: var(--deck-warn);
-  background: color-mix(in srgb, var(--deck-warn) 10%, transparent);
+  border-color: color-mix(in srgb, var(--status-flight) 44%, var(--hairline));
+  color: rgb(161 98 7);
 }
 
 .orgc-badge--product {
@@ -1035,19 +972,19 @@
   background: var(--ink-ghost);
 }
 
-.orgc-node-signals span[data-tone="green"] { background: var(--deck-good); }
-.orgc-node-signals span[data-tone="blue"] { background: var(--deck-accent); box-shadow: 0 0 6px var(--deck-glow); }
-.orgc-node-signals span[data-tone="amber"] { background: var(--deck-warn); }
+.orgc-node-signals span[data-tone="green"] { background: rgb(22 163 74); }
+.orgc-node-signals span[data-tone="blue"] { background: var(--accent); }
+.orgc-node-signals span[data-tone="amber"] { background: rgb(217 119 6); }
 .orgc-node-signals span[data-tone="quiet"] { background: var(--ink-ghost); }
 
 /* ── Foundation strip + investor read (chart mode base) ─────────────────────── */
 
 .orgc-foundation {
   margin-top: 26px;
-  border: 1px dashed color-mix(in srgb, var(--deck-accent) 40%, var(--hairline));
-  border-radius: 12px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 32%, var(--hairline));
+  border-radius: 10px;
   padding: 16px;
-  background: color-mix(in srgb, var(--deck-accent) 5%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, transparent);
 }
 
 .orgc-foundation-label {
@@ -1065,7 +1002,7 @@
 .orgc-tool-strip span {
   border: 1px solid var(--hairline-soft);
   border-radius: 8px;
-  background: var(--paper-soft);
+  background: var(--paper);
   padding: 7px 11px;
   font-size: 12px;
   color: var(--ink-soft);
@@ -1078,8 +1015,8 @@
   align-items: center;
   margin-top: 16px;
   border: 1px solid var(--hairline);
-  border-radius: 12px;
-  background: var(--paper-soft);
+  border-radius: 10px;
+  background: var(--paper);
   padding: 20px;
 }
 
@@ -1111,9 +1048,9 @@
 .orgc-mini-metric span {
   display: block;
   font-family: var(--font-mono);
-  font-size: 1.4rem;
+  font-size: 1.38rem;
   font-weight: 600;
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-mini-metric em {
@@ -1127,22 +1064,14 @@
   color: var(--ink-quiet);
 }
 
-/* ── Panel section primitives (shared across modes) ─────────────────────────── */
+/* ── Panel card primitives (shared across modes) ────────────────────────────── */
 
 .orgc-panel-card {
   border: 1px solid var(--hairline);
-  border-radius: 16px;
-  background: linear-gradient(180deg, var(--paper), var(--paper-soft));
-  padding: 26px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
-}
-
-.orgc-section-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--deck-accent-2);
+  border-radius: 14px;
+  background: var(--paper);
+  padding: 28px;
+  box-shadow: var(--shadow-modal);
 }
 
 .orgc-section-lede {
@@ -1154,7 +1083,7 @@
 }
 
 .orgc-section-title {
-  margin: 34px 0 14px;
+  margin: 36px 0 14px;
   font-size: 1.05rem;
   font-weight: 640;
   color: var(--ink);
@@ -1173,10 +1102,11 @@
 .orgc-council-card {
   position: relative;
   border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(139, 147, 255, 0.05), transparent 40%), var(--paper-soft);
-  padding: 20px;
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 20px 20px 20px 22px;
   overflow: hidden;
+  transition: border-color var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out);
 }
 
 .orgc-council-card::before {
@@ -1184,8 +1114,13 @@
   position: absolute;
   inset: 0 auto 0 0;
   width: 3px;
-  background: linear-gradient(var(--deck-accent), var(--deck-accent-dim));
-  opacity: 0.8;
+  background: var(--accent);
+  opacity: 0.85;
+}
+
+.orgc-council-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--hairline));
+  box-shadow: var(--shadow-float);
 }
 
 .orgc-council-top {
@@ -1205,10 +1140,10 @@
 .orgc-council-cadence {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
-  border: 1px solid color-mix(in srgb, var(--deck-accent) 34%, var(--hairline));
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--hairline));
   border-radius: 999px;
   padding: 3px 10px;
   white-space: nowrap;
@@ -1238,10 +1173,16 @@
   flex-wrap: wrap;
 }
 
+.orgc-council-meta + .orgc-council-meta {
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .orgc-council-meta-label {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-quiet);
 }
@@ -1268,17 +1209,17 @@
 }
 
 .orgc-council-chip:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
   color: var(--ink);
 }
 
 .orgc-council-chip[data-chair="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 55%, var(--hairline));
-  color: var(--deck-accent-2);
-  background: color-mix(in srgb, var(--deck-accent) 10%, var(--paper));
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--paper));
 }
 
-.orgc-council-chip .orgc-chip-glyph {
+.orgc-chip-glyph {
   width: 16px;
   height: 16px;
   display: inline-flex;
@@ -1302,8 +1243,8 @@
 
 .orgc-ev-card {
   border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: var(--paper-soft);
+  border-radius: 12px;
+  background: var(--paper);
   padding: 20px;
 }
 
@@ -1324,12 +1265,11 @@
 .orgc-ev-tag {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ink-quiet);
+  color: var(--accent);
 }
 
-/* Decision log */
 .orgc-decision {
   padding: 13px 0;
   border-top: 1px solid var(--hairline-soft);
@@ -1342,8 +1282,8 @@
 .orgc-decision-id {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--deck-accent-2);
-  letter-spacing: 0.03em;
+  color: var(--accent);
+  letter-spacing: 0.02em;
 }
 
 .orgc-decision-title {
@@ -1358,19 +1298,18 @@
   margin-top: 6px;
   font-size: 12.5px;
   line-height: 1.55;
-  color: var(--ink-quiet);
+  color: var(--ink-soft);
 }
 
 .orgc-decision-foot {
   margin-top: 8px;
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--ink-quiet);
   text-transform: uppercase;
 }
 
-/* MCP card */
 .orgc-mcp-scope {
   font-size: 0.9rem;
   line-height: 1.6;
@@ -1393,7 +1332,7 @@
 .orgc-mcp-meta dt {
   font-family: var(--font-mono);
   font-size: 9.5px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-quiet);
 }
@@ -1416,16 +1355,16 @@
   border: 1px solid var(--hairline-soft);
   border-radius: 8px;
   padding: 9px 11px;
-  background: var(--paper);
+  background: var(--paper-soft);
 }
 
 .orgc-lifecycle-step b {
   display: block;
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -1437,7 +1376,6 @@
   color: var(--ink-quiet);
 }
 
-/* Permission tiers */
 .orgc-tier {
   display: grid;
   grid-template-columns: 40px 1fr;
@@ -1452,7 +1390,7 @@
   font-family: var(--font-mono);
   font-size: 1.3rem;
   font-weight: 600;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   line-height: 1;
 }
 
@@ -1478,7 +1416,6 @@
   color: var(--ink-soft);
 }
 
-/* Founder gates */
 .orgc-gates {
   list-style: none;
   margin: 0;
@@ -1497,15 +1434,13 @@
 
 .orgc-gates li::before {
   content: "";
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 2px;
-  background: var(--deck-warn);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--deck-warn) 60%, transparent);
+  background: var(--status-flight);
   flex: 0 0 auto;
 }
 
-/* Workflows + principles */
 .orgc-list-rows {
   list-style: none;
   margin: 0;
@@ -1557,7 +1492,7 @@
   content: counter(pr);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   padding-top: 1px;
 }
 
@@ -1572,8 +1507,8 @@
 
 .orgc-cadence {
   border: 1px solid var(--hairline-soft);
-  border-radius: 12px;
-  background: var(--paper-soft);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper-soft) 54%, var(--paper));
   padding: 16px;
 }
 
@@ -1582,7 +1517,7 @@
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-cad-label {
@@ -1613,7 +1548,7 @@
   margin: 22px 0 0;
   padding: 0;
   border: 1px solid var(--hairline-soft);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -1623,7 +1558,7 @@
   gap: 12px;
   padding: 14px 16px;
   border-bottom: 1px solid var(--hairline-soft);
-  background: var(--paper-soft);
+  background: var(--paper);
 }
 
 .orgc-phase:last-child { border-bottom: 0; }
@@ -1667,20 +1602,20 @@
 .orgc-invest-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 30px;
+  gap: 32px;
   align-items: center;
 }
 
 .orgc-invest-statement {
   font-size: clamp(1.4rem, 1rem + 1.6vw, 2.05rem);
-  line-height: 1.28;
+  line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--ink);
   font-weight: 560;
 }
 
 .orgc-invest-statement b {
-  color: var(--deck-accent-2);
+  color: var(--accent);
   font-weight: 560;
 }
 
@@ -1688,7 +1623,7 @@
   margin-top: 16px;
   font-size: 0.98rem;
   line-height: 1.7;
-  color: var(--ink-quiet);
+  color: var(--ink-soft);
   max-width: 54ch;
 }
 
@@ -1697,13 +1632,13 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   border: 1px solid var(--hairline);
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--hairline-soft);
 }
 
 .orgc-metric-cell {
-  background: var(--paper-soft);
+  background: var(--paper);
   padding: 20px;
 }
 
@@ -1711,7 +1646,7 @@
   font-family: var(--font-mono);
   font-size: 2rem;
   font-weight: 600;
-  color: var(--deck-accent-2);
+  color: var(--accent);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -1723,7 +1658,6 @@
   line-height: 1.4;
 }
 
-/* Autonomy ladder viz */
 .orgc-ladder {
   margin-top: 22px;
   display: grid;
@@ -1738,7 +1672,7 @@
   border: 1px solid var(--hairline-soft);
   border-radius: 10px;
   padding: 13px 16px;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--deck-accent) calc(var(--fill, 0) * 1%), transparent), transparent 60%), var(--paper-soft);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) calc(var(--fill, 0) * 0.14%), transparent), transparent 62%), var(--paper);
 }
 
 .orgc-rung-name {
@@ -1750,7 +1684,7 @@
 .orgc-rung-n {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-rung-name b {
@@ -1776,7 +1710,6 @@
   white-space: normal;
 }
 
-/* Division bar chart */
 .orgc-bars {
   margin-top: 22px;
   display: grid;
@@ -1801,15 +1734,14 @@
 .orgc-bar-track {
   height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
   overflow: hidden;
 }
 
 .orgc-bar-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--deck-accent-dim), var(--deck-accent));
-  box-shadow: 0 0 12px var(--deck-glow-soft);
+  background: var(--accent);
 }
 
 .orgc-bar-num {
@@ -1819,7 +1751,7 @@
   text-align: right;
 }
 
-/* ── Detail drawer (dark) ───────────────────────────────────────────────────── */
+/* ── Detail drawer (dialog) ─────────────────────────────────────────────────── */
 
 .orgc-drawer-scrim {
   position: fixed;
@@ -1828,7 +1760,7 @@
   border: 0;
   padding: 0;
   cursor: default;
-  background: rgba(4, 5, 8, 0.5);
+  background: rgba(17, 17, 17, 0.22);
   backdrop-filter: blur(2px);
   animation: orgc-fade var(--motion-base) var(--ease-out);
 }
@@ -1848,10 +1780,8 @@
   overflow-y: auto;
   padding: 28px 26px 60px;
   border-left: 1px solid var(--hairline);
-  background:
-    radial-gradient(600px 300px at 100% 0%, var(--deck-glow-soft), transparent 60%),
-    linear-gradient(180deg, var(--deck-surface), var(--deck-drawer-b));
-  box-shadow: -40px 0 90px rgba(0, 0, 0, 0.6);
+  background: var(--paper);
+  box-shadow: var(--shadow-modal);
   animation: orgc-slide var(--motion-slow) var(--ease-out);
 }
 
@@ -1868,7 +1798,7 @@
   height: 32px;
   border: 1px solid var(--hairline);
   border-radius: 8px;
-  background: var(--paper-soft);
+  background: var(--paper);
   color: var(--ink-soft);
   cursor: pointer;
   font-size: 15px;
@@ -1877,7 +1807,7 @@
 }
 
 .orgc-drawer-close:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
   color: var(--ink);
 }
 
@@ -1892,7 +1822,7 @@
 .orgc-panel-type {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-quiet);
 }
@@ -1911,7 +1841,7 @@
   margin-top: 7px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 .orgc-panel-desc {
@@ -1923,9 +1853,9 @@
 
 .orgc-investor-card {
   margin-top: 18px;
-  border: 1px solid color-mix(in srgb, var(--deck-accent) 26%, var(--hairline));
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--deck-accent) 8%, var(--paper-soft));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--hairline));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
   padding: 15px;
 }
 
@@ -1936,7 +1866,7 @@
 .orgc-panel-h {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-quiet);
   margin-bottom: 11px;
@@ -1989,11 +1919,11 @@
   width: 5px;
   height: 5px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--deck-accent) 70%, transparent);
+  background: color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
 .orgc-plist--risk li::before {
-  background: var(--deck-warn);
+  background: var(--status-flight);
   border-radius: 1px;
 }
 
@@ -2007,7 +1937,7 @@
   appearance: none;
   border: 1px solid var(--hairline);
   border-radius: 999px;
-  background: var(--paper-soft);
+  background: var(--paper);
   color: var(--ink-soft);
   padding: 5px 11px;
   font-size: 11.5px;
@@ -2016,14 +1946,14 @@
 }
 
 .orgc-chip:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
   color: var(--ink);
 }
 
 .orgc-chip[data-chair="true"] {
-  border-color: color-mix(in srgb, var(--deck-accent) 55%, var(--hairline));
-  color: var(--deck-accent-2);
-  background: color-mix(in srgb, var(--deck-accent) 10%, var(--paper-soft));
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--paper));
 }
 
 .orgc-links {
@@ -2037,8 +1967,8 @@
   justify-content: space-between;
   gap: 12px;
   border: 1px solid var(--hairline-soft);
-  border-radius: 9px;
-  background: var(--paper-soft);
+  border-radius: 8px;
+  background: var(--paper);
   padding: 11px 13px;
   font-size: 13px;
   color: var(--ink);
@@ -2047,8 +1977,8 @@
 }
 
 a.orgc-link:hover {
-  border-color: color-mix(in srgb, var(--deck-accent) 50%, var(--hairline));
-  background: color-mix(in srgb, var(--deck-accent) 8%, var(--paper-soft));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
 }
 
 .orgc-link-hint {
@@ -2059,62 +1989,10 @@ a.orgc-link:hover {
   color: var(--ink-quiet);
 }
 
-/* ── Search modal — dark overrides of the shared atlas-search chrome ────────── */
-
-.orgc-page .atlas-search-backdrop {
-  background: rgba(4, 5, 8, 0.72);
-  backdrop-filter: blur(6px);
-}
-
-.orgc-page .atlas-search {
-  border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--paper), var(--paper-soft));
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65);
-}
-
-.orgc-page .atlas-search-input {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 1px solid var(--hairline-soft);
-}
-
-.orgc-page .atlas-search-input::placeholder {
-  color: var(--ink-quiet);
-}
-
-.orgc-page .atlas-search-item {
-  color: var(--ink-soft);
-}
-
-.orgc-page .atlas-search-item[aria-selected="true"] {
-  background: color-mix(in srgb, var(--deck-accent) 16%, transparent);
-  color: var(--ink);
-}
-
-.orgc-page .atlas-search-item-kind {
-  color: var(--ink-quiet);
-}
-
-.orgc-page .atlas-search-empty {
-  color: var(--ink-quiet);
-}
-
-.orgc-page .atlas-search-foot {
-  border-top: 1px solid var(--hairline-soft);
-  color: var(--ink-quiet);
-}
-
-.orgc-page .atlas-kbd {
-  border: 1px solid var(--hairline);
-  background: rgba(0, 0, 0, 0.3);
-  color: var(--ink-soft);
-}
-
 /* ── Footer ─────────────────────────────────────────────────────────────────── */
 
 .orgc-footer {
-  margin-top: 40px;
+  margin-top: 44px;
   border-top: 1px solid var(--hairline-soft);
   padding-top: 18px;
   font-family: var(--font-mono);
@@ -2128,7 +2006,7 @@ a.orgc-link:hover {
 }
 
 .orgc-footer a:hover {
-  color: var(--deck-accent-2);
+  color: var(--accent);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
@@ -2278,14 +2156,13 @@ a.orgc-link:hover {
   .orgc-sidecar,
   .orgc-legend,
   .orgc-drawer,
-  .orgc-search-backdrop {
+  .orgc-drawer-scrim {
     display: none !important;
   }
 
   .orgc-page {
     width: 100%;
     padding: 0;
-    color: black;
   }
 
   .orgc-stage {
