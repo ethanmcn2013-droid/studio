@@ -5,6 +5,7 @@ import { formatCadence, getDirector, type Director } from "@/lib/hq/elt";
 import { roleTitle, autonomyLabel } from "./org-utils";
 import { OrgAvatar } from "./org-avatars";
 import { UNIVERSAL_TOOLS, coordinationPartners, mcpGrants } from "./org-coordination";
+import { councilsForDirector, functionalTools } from "./org-intel";
 
 export function OrgDetailPanel({
   director,
@@ -29,46 +30,61 @@ export function OrgDetailPanel({
         .filter((d): d is Director => Boolean(d)),
     [director.id],
   );
+  const councils = useMemo(() => councilsForDirector(director.id), [director.id]);
+  const functional = functionalTools(director.id);
 
   useEffect(() => {
     headingRef.current?.focus();
   }, [director.id]);
 
   return (
-    <aside className="atlas-panel orgc-panel" role="complementary" aria-label={`${director.name} detail`}>
-      <button type="button" className="atlas-panel-close" onClick={onClose} aria-label="Close detail">
-        x
-      </button>
+    <>
+      <button
+        type="button"
+        className="orgc-drawer-scrim"
+        aria-label="Close detail"
+        tabIndex={-1}
+        onClick={onClose}
+      />
+      <aside
+        className="orgc-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="orgc-drawer-title"
+      >
+        <button type="button" className="orgc-drawer-close" onClick={onClose} aria-label="Close detail">
+          ×
+        </button>
 
       <div className="orgc-panel-hero">
         <span className="orgc-avatar orgc-avatar--panel" aria-hidden="true">
           <OrgAvatar id={director.id} title={director.persona} />
         </span>
         <div>
-          <div className="atlas-panel-type">{clusterLabel} / Director</div>
-          <h2 className="atlas-panel-name" tabIndex={-1} ref={headingRef}>
+          <div className="orgc-panel-type">{clusterLabel} · Director</div>
+          <h2 id="orgc-drawer-title" className="orgc-panel-name" tabIndex={-1} ref={headingRef}>
             {roleTitle(director.name)}
           </h2>
           <div className="orgc-panel-subline">
-            {director.shortName} / {director.persona} /{" "}
+            {director.shortName} · {director.persona} ·{" "}
             {director.autonomyLayer === 3 ? "Layer 3" : "Layer 2"}
           </div>
         </div>
       </div>
 
       <div className="orgc-investor-card">
-        <div className="orgc-investor-kicker">investor read</div>
+        <div className="orgc-investor-kicker">the read</div>
         <p>
           {director.shortName} owns a defined surface, reports to {founderName},
-          and works through a repeatable cadence. This keeps complexity visible
-          without making the founder hand off final control.
+          and works through a repeatable cadence. Complexity stays visible without
+          the founder handing off final control.
         </p>
       </div>
 
-      <p className="atlas-panel-desc">{director.oneLine}</p>
+      <p className="orgc-panel-desc">{director.oneLine}</p>
 
       <Section title="Authority">
-        <div className="atlas-facts">
+        <div className="orgc-facts">
           <Fact label="Reports to" value={`${founderName} (Founder)`} />
           <Fact label="Autonomy" value={autonomyLabel(director.autonomyLayer)} />
           <Fact label="Cadence" value={formatCadence(director.cadence)} />
@@ -76,9 +92,26 @@ export function OrgDetailPanel({
         </div>
       </Section>
 
+      {councils.length ? (
+        <Section title={`Councils · ${councils.length}`}>
+          <div className="orgc-chips">
+            {councils.map(({ council, isChair }) => (
+              <span
+                key={council.id}
+                className="orgc-chip"
+                data-chair={isChair ? "true" : undefined}
+              >
+                {council.label}
+                {isChair ? " · chair" : ""}
+              </span>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
       {director.owns.length ? (
         <Section title="Owns">
-          <ul className="atlas-list">
+          <ul className="orgc-plist">
             {director.owns.map((o) => (
               <li key={o}>{o}</li>
             ))}
@@ -88,7 +121,7 @@ export function OrgDetailPanel({
 
       {director.veto?.length ? (
         <Section title="Veto authority">
-          <ul className="atlas-list atlas-list--risk">
+          <ul className="orgc-plist orgc-plist--risk">
             {director.veto.map((v) => (
               <li key={v}>{v}</li>
             ))}
@@ -97,13 +130,13 @@ export function OrgDetailPanel({
       ) : null}
 
       {related.length ? (
-        <Section title="Information paths">
-          <div className="atlas-chips">
-            {related.slice(0, 8).map((p) => (
+        <Section title="Coordination paths">
+          <div className="orgc-chips">
+            {related.map((p) => (
               <button
                 key={p.id}
                 type="button"
-                className="atlas-chip"
+                className="orgc-chip"
                 onClick={() => onNavigate(p.id)}
               >
                 {p.shortName}
@@ -114,13 +147,13 @@ export function OrgDetailPanel({
       ) : null}
 
       {peers.length ? (
-        <Section title="Council peers">
-          <div className="atlas-chips">
+        <Section title="Division peers">
+          <div className="orgc-chips">
             {peers.map((p) => (
               <button
                 key={p.id}
                 type="button"
-                className="atlas-chip"
+                className="orgc-chip"
                 onClick={() => onNavigate(p.id)}
               >
                 {p.shortName}
@@ -130,9 +163,12 @@ export function OrgDetailPanel({
         </Section>
       ) : null}
 
-      <Section title="Tools">
-        <ul className="atlas-list">
+      <Section title="Tools + grants">
+        <ul className="orgc-plist">
           {UNIVERSAL_TOOLS.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+          {functional.map((t) => (
             <li key={t}>{t}</li>
           ))}
           {mcpGrants(director.id).map((t) => (
@@ -142,29 +178,30 @@ export function OrgDetailPanel({
       </Section>
 
       <Section title="Evidence links">
-        <div className="atlas-links">
-          <a href={director.charterHref} className="atlas-link" target="_blank" rel="noreferrer">
+        <div className="orgc-links">
+          <a href={director.charterHref} className="orgc-link" target="_blank" rel="noreferrer">
             <span>Open charter</span>
-            <span className="atlas-link-hint">github</span>
+            <span className="orgc-link-hint">github</span>
           </a>
-          <a href={`/hq/org/${director.id}`} className="atlas-link">
+          <a href={`/hq/org/${director.id}`} className="orgc-link">
             <span>Full detail page</span>
-            <span className="atlas-link-hint">internal</span>
+            <span className="orgc-link-hint">internal</span>
           </a>
-          <div className="atlas-link" style={{ cursor: "default" }}>
+          <div className="orgc-link" style={{ cursor: "default" }}>
             <span>{director.slackChannel}</span>
-            <span className="atlas-link-hint">slack</span>
+            <span className="orgc-link-hint">slack</span>
           </div>
         </div>
       </Section>
-    </aside>
+      </aside>
+    </>
   );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="atlas-panel-section">
-      <div className="atlas-panel-h">{title}</div>
+    <div className="orgc-panel-section">
+      <div className="orgc-panel-h">{title}</div>
       {children}
     </div>
   );
@@ -173,8 +210,8 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="atlas-fact-label">{label}</div>
-      <div className="atlas-fact-value">{value}</div>
+      <div className="orgc-fact-label">{label}</div>
+      <div className="orgc-fact-value">{value}</div>
     </div>
   );
 }

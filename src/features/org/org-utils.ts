@@ -2,7 +2,7 @@
  * Client-safe helpers for the AI org chart. Pure, no fs, no server-only.
  */
 
-import type { Director, Cluster } from "@/lib/hq/elt";
+import type { Cluster } from "@/lib/hq/elt";
 
 /** The prominent, role-forward title: drop the "Director of " prefix. */
 export function roleTitle(name: string): string {
@@ -21,7 +21,7 @@ export function personaInitials(persona: string, shortName: string): string {
 }
 
 export function autonomyLabel(layer: 2 | 3): string {
-  return layer === 3 ? "Layer 3 — decide, then log" : "Layer 2 — recommend";
+  return layer === 3 ? "Layer 3 · decide, then log" : "Layer 2 · recommend";
 }
 
 /** The clusters that hold directors (excludes the apex/founder band). */
@@ -29,21 +29,4 @@ export function directorClusters(
   clusters: { id: Cluster; label: string; subtitle: string }[],
 ): { id: Cluster; label: string; subtitle: string }[] {
   return clusters.filter((c) => c.id !== "apex");
-}
-
-export type OrgStat = { value: string; label: string };
-
-/** The real org-breakdown figures, all derived from the director snapshot. */
-export function orgStats(directors: Director[], clusterCount: number): OrgStat[] {
-  const layer3 = directors.filter((d) => d.autonomyLayer === 3).length;
-  const productLeads = directors.filter((d) => d.cluster === "product_excellence").length;
-  const veto = directors.filter((d) => d.veto?.length).length;
-  return [
-    { value: "1", label: "Founder" },
-    { value: String(directors.length), label: "Directors" },
-    { value: String(clusterCount), label: "Clusters" },
-    { value: String(layer3), label: "At layer 3" },
-    { value: String(productLeads), label: "Product-excellence leads" },
-    { value: String(veto), label: "With veto authority" },
-  ];
 }

@@ -76,8 +76,8 @@ export const UNIVERSAL_TOOLS = ["Web research", "Internal doc research"];
  * purpose: only google-calendar is live today, on a 90-day trial to two roles.
  */
 export const MCP_GRANTS: Record<string, string[]> = {
-  "operations-admin-founder-support": ["Google Calendar — read/write (90-day trial)"],
-  "product-strategy": ["Google Calendar — read/write (90-day trial)"],
+  "operations-admin-founder-support": ["Google Calendar · read and write (90-day trial)"],
+  "product-strategy": ["Google Calendar · read and write (90-day trial)"],
 };
 
 export function mcpGrants(id: string): string[] {

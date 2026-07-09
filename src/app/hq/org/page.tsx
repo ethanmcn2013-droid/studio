@@ -3,18 +3,17 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
-import { CLUSTERS, DIRECTORS, ELT_SNAPSHOT } from "@/lib/hq/elt";
+import { DIRECTORS, ELT_SNAPSHOT } from "@/lib/hq/elt";
+import { ORG_COUNTS } from "@/features/org/org-intel";
 import { OrgChart } from "@/features/org/org-chart";
-import { OrgOperating } from "@/features/org/org-operating";
-import { COORDINATION_EDGE_COUNT } from "@/features/org/org-coordination";
 import { OrgListView } from "./org-list-view";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "org chart, signal hq",
+  title: "org command deck, signal hq",
   description:
-    "The Signal Studio operating org: one Founder, 17 Directors, and a real coordination layer.",
+    "The Signal Studio operating org: one Founder, 17 Directors, five standing councils, and a real coordination layer.",
   robots: {
     index: false,
     follow: false,
@@ -23,11 +22,13 @@ export const metadata: Metadata = {
 };
 
 /**
- * /hq/org - the standing AI leadership org.
+ * /hq/org - the standing AI leadership org, as a dark command deck.
  *
- * Default is the interactive chart (`src/features/org`), now shaped as an
- * investor-ready operating map. `?view=list` keeps the original cluster list.
- * Both read `src/lib/hq/elt.ts`, mirrored from signal-directors.
+ * Default is the interactive deck (`src/features/org`) with four modes:
+ * Chart, Councils, Evidence, and Investor. `?view=list` keeps the original
+ * cluster list as a print / low-JS fallback. Both read `src/lib/hq/elt.ts`
+ * (mirrored from signal-directors); the deck's operating depth reads
+ * `src/features/org/org-intel.ts` (same source).
  */
 export default async function HqOrgPage({
   searchParams,
@@ -42,88 +43,58 @@ export default async function HqOrgPage({
   const { view } = await searchParams;
   const isList = view === "list";
   const total = DIRECTORS.length;
-  const councilCount = CLUSTERS.filter((c) => c.id !== "apex").length;
-  const layer3Count = DIRECTORS.filter((d) => d.autonomyLayer === 3).length;
-  const cadenceCount = new Set(DIRECTORS.map((d) => d.cadence)).size;
-  const productLeadCount = DIRECTORS.filter((d) => d.product).length;
 
   return (
     <main id="main" className="flex flex-1 flex-col">
       <section className="orgc-page">
         <div className="orgc-hero">
           <div className="orgc-hero-copy">
-            <div className="orgc-eyebrow">hq / org</div>
+            <div className="orgc-eyebrow">hq · org command deck</div>
             <h1 className="orgc-title">
-              One founder. {total} Directors. One operating system.
+              One founder. {total} Directors. <b>One operating system.</b>
             </h1>
             <p className="orgc-strap">Simple by design. Serious underneath.</p>
             <p className="orgc-lede">
-              A living map of how Signal Studio makes decisions, protects
-              quality, shares context, and keeps one founder operating with
-              company-grade leverage.
+              A living map of how Signal Studio makes decisions, protects quality,
+              shares context, and lets one founder run the work of a company.
             </p>
           </div>
 
           <div className="orgc-brief" aria-label="Investor overview">
             <div className="orgc-brief-top">
               <span>investor read</span>
-              <span>live org</span>
+              <span>live org · {ELT_SNAPSHOT.generatedAt}</span>
             </div>
             <div className="orgc-brief-line">
               {ELT_SNAPSHOT.founderName} keeps final authority. Directors hold
               named scope, cadence, autonomy, and evidence links.
             </div>
             <div className="orgc-brief-grid">
-              <MiniFact value={String(councilCount)} label="councils" />
-              <MiniFact value={String(layer3Count)} label="layer 3" />
-              <MiniFact value={String(productLeadCount)} label="product leads" />
-              <MiniFact
-                value={String(COORDINATION_EDGE_COUNT)}
-                label="coordination paths"
-              />
-              <MiniFact value={String(cadenceCount)} label="cadence types" />
+              <MiniFact value={String(ORG_COUNTS.councils)} label="standing councils" />
+              <MiniFact value={String(ORG_COUNTS.autonomyLayers)} label="autonomy layers" />
+              <MiniFact value={String(ORG_COUNTS.founderGates)} label="founder gates" />
+              <MiniFact value={String(ORG_COUNTS.coordinationPaths)} label="coordination paths" />
+              <MiniFact value={String(ORG_COUNTS.mcpLive)} label="mcp live" />
+              <MiniFact value={String(ORG_COUNTS.channels)} label="slack channels" />
             </div>
           </div>
         </div>
 
-        <div className="orgc-toolbar">
-          <div className="orgc-toggle" role="group" aria-label="View">
-            <Link href="/hq/org" aria-current={!isList}>
-              Chart
-            </Link>
-            <Link href="/hq/org?view=list" aria-current={isList}>
-              List
-            </Link>
-          </div>
-          <div className="orgc-toolbar-links">
-            <Link href="/hq/atlas-map">Atlas map</Link>
-            <Link href="/hq/blueprint">Blueprint</Link>
-          </div>
-        </div>
-
-        {isList ? (
-          <OrgListView />
-        ) : (
-          <>
-            <OrgChart />
-            <OrgOperating />
-          </>
-        )}
+        {isList ? <OrgListView /> : <OrgChart />}
 
         <div className="orgc-footer">
-          <Link href="/hq" className="atlas-link hover:text-accent">
-            back to hq
+          <Link href="/hq">back to hq</Link>
+          <span className="mx-3 opacity-50">·</span>
+          <Link href="/hq/atlas-map">atlas map</Link>
+          <span className="mx-3 opacity-50">·</span>
+          <Link href={isList ? "/hq/org" : "/hq/org?view=list"}>
+            {isList ? "command deck" : "list view"}
           </Link>
-          <span className="mx-3 opacity-50">/</span>
-          <Link href="/hq/atlas-map" className="hover:text-accent">
-            atlas map
-          </Link>
-          <span className="mx-3 opacity-50">/</span>
+          <span className="mx-3 opacity-50">·</span>
           <span>
             source{" "}
             <a
               href="https://github.com/ethanmcn2013-droid/signal-directors"
-              className="hover:text-accent"
               target="_blank"
               rel="noreferrer"
             >
