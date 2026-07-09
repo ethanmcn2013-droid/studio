@@ -10,6 +10,7 @@ const operatorLinks = [
   { href: "/hq/design-rooms", label: "make" },
   { href: "/hq/experimentation-room", label: "lab" },
   { href: "/hq/reporting", label: "tell" },
+  { href: "/hq/entitlements", label: "access" },
   { href: "/hq/vault", label: "run" },
   { href: "/hq/founders-circle", label: "board" },
 ];

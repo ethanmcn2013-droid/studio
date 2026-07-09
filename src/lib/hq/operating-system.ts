@@ -134,6 +134,20 @@ export const HQ_HUBS: HqHub[] = [
     action: "clear the next follow-up",
   },
   {
+    key: "access",
+    loop: "run",
+    label: "Access",
+    title: "Access",
+    href: "/hq/entitlements",
+    audience: ["founder", "operator"],
+    mode: "live",
+    summary:
+      "Every grant, code, venue, and subscription in one place, with an audited record of who changed what.",
+    primaryMetric: "grants, codes, venues",
+    secondaryMetric: "one audited ledger",
+    action: "give access or find someone",
+  },
+  {
     key: "marketing",
     loop: "sell",
     label: "Marketing",
