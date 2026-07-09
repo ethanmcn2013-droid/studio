@@ -109,7 +109,7 @@ export async function POST(req: Request) {
       userClerkId: body.userClerkId,
       tier: body.tier as EntitlementTier,
       source: body.source as EntitlementSource,
-      sourceRef: body.sourceRef ?? null,
+      sourceRef: body.sourceRef ?? `manual:${body.source}:${body.userClerkId}`,
       expiresAtMs,
       metadata: {
         ...(body.metadata ?? {}),

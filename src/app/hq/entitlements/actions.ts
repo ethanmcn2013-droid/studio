@@ -64,7 +64,7 @@ export async function grantAction(
       userClerkId,
       tier: tier as EntitlementTier,
       source: source as EntitlementSource,
-      sourceRef: sourceRef || null,
+      sourceRef: sourceRef || `manual:${source}:${userClerkId}`,
       expiresAtMs,
       metadata: { origin: "studio-hq", grantedAt: new Date().toISOString() },
     });
