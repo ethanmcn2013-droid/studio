@@ -2,6 +2,7 @@ import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { writeSharedEntitlement } from "@/lib/entitlements-db/writes";
+import { opsCurlActor } from "@/lib/entitlements-db/guard";
 import {
   ENTITLEMENT_SOURCES,
   ENTITLEMENT_TIERS,
@@ -111,6 +112,8 @@ export async function POST(req: Request) {
       source: body.source as EntitlementSource,
       sourceRef: body.sourceRef ?? `manual:${body.source}:${body.userClerkId}`,
       expiresAtMs,
+      actor: opsCurlActor(),
+      origin: "studio-ops",
       metadata: {
         ...(body.metadata ?? {}),
         origin: "studio-ops",

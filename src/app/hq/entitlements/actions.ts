@@ -14,6 +14,7 @@ import {
   type EntitlementSource,
   type EntitlementTier,
 } from "@/lib/entitlements-db/schema";
+import { resolveHqOperatorActor } from "@/lib/hq/operator-identity";
 
 /**
  * HQ-side server actions for granting / expiring entitlements.
@@ -60,12 +61,15 @@ export async function grantAction(
       : null;
 
   try {
+    const actor = await resolveHqOperatorActor();
     const result = await writeSharedEntitlement({
       userClerkId,
       tier: tier as EntitlementTier,
       source: source as EntitlementSource,
       sourceRef: sourceRef || `manual:${source}:${userClerkId}`,
       expiresAtMs,
+      actor,
+      origin: "studio-hq",
       metadata: { origin: "studio-hq", grantedAt: new Date().toISOString() },
     });
     revalidatePath("/hq/entitlements");
@@ -80,7 +84,8 @@ export async function expireAction(formData: FormData): Promise<void> {
   const sourceRef = (formData.get("sourceRef") as string | null) ?? "";
   if (!sourceRef) return;
   try {
-    await expireSharedEntitlement({ sourceRef });
+    const actor = await resolveHqOperatorActor();
+    await expireSharedEntitlement({ sourceRef, actor, origin: "studio-hq" });
   } catch (err) {
     console.warn("[hq expire] failed:", err);
   }

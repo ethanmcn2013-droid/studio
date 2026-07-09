@@ -359,6 +359,8 @@ export const entitlementEvents = sqliteTable(
     index("entitlement_events_batch_idx").on(table.batchId),
     index("entitlement_events_sponsor_idx").on(table.sponsorId),
     index("entitlement_events_action_idx").on(table.action),
+    // Backs the per-operator velocity cap (guard.ts assertVelocity).
+    index("entitlement_events_actor_idx").on(table.actorId, table.createdAt),
   ],
 );
 

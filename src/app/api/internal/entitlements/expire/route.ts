@@ -2,6 +2,7 @@ import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { expireSharedEntitlement } from "@/lib/entitlements-db/writes";
+import { opsCurlActor } from "@/lib/entitlements-db/guard";
 
 /**
  * Operator expire endpoint (2026-05-14).
@@ -67,6 +68,8 @@ export async function POST(req: Request) {
     await expireSharedEntitlement({
       sourceRef: body.sourceRef ?? null,
       stripeSubscriptionId: body.stripeSubscriptionId ?? null,
+      actor: opsCurlActor(),
+      origin: "studio-ops",
     });
     return NextResponse.json({ ok: true });
   } catch (err) {

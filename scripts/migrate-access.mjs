@@ -132,6 +132,7 @@ async function migrateShared(c, label) {
   await run(c, "CREATE INDEX IF NOT EXISTS entitlement_events_batch_idx ON entitlement_events (batch_id)");
   await run(c, "CREATE INDEX IF NOT EXISTS entitlement_events_sponsor_idx ON entitlement_events (sponsor_id)");
   await run(c, "CREATE INDEX IF NOT EXISTS entitlement_events_action_idx ON entitlement_events (action)");
+  await run(c, "CREATE INDEX IF NOT EXISTS entitlement_events_actor_idx ON entitlement_events (actor_id, created_at)");
   // Physically append-only: block UPDATE and DELETE at the DB layer.
   await run(c, `CREATE TRIGGER IF NOT EXISTS entitlement_events_no_update
     BEFORE UPDATE ON entitlement_events
