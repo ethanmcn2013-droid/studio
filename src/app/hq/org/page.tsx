@@ -4,7 +4,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { ELT_SNAPSHOT } from "@/lib/hq/elt";
-import { ORG_COUNTS } from "@/features/org/org-intel";
 import { OrgChart, type Mode } from "@/features/org/org-chart";
 import { OrgListView } from "./org-list-view";
 
@@ -24,6 +23,23 @@ export const metadata: Metadata = {
 const MODES: Mode[] = ["chart", "councils", "tools", "routines", "evidence", "investor"];
 
 /** The snapshot's age, phrased as honest relative time. Never "live". */
+/** The console's headline block; the client deck composes it with the readout. */
+function HeroCopy() {
+  return (
+    <>
+      <div className="orgc-eyebrow">hq · org</div>
+      <h1 className="orgc-title">
+        One founder. Seventeen directors. <b>One operating system.</b>
+      </h1>
+      <p className="orgc-strap">Simple by design. Serious underneath.</p>
+      <p className="orgc-lede">
+        A working map of how Signal Studio decides, protects quality, and lets
+        one person run the work of a company.
+      </p>
+    </>
+  );
+}
+
 function syncedLabel(iso: string): string {
   const then = Date.parse(`${iso}T00:00:00Z`);
   const days = Math.max(0, Math.floor((Date.now() - then) / 86400000));
@@ -62,28 +78,16 @@ export default async function HqOrgPage({
   return (
     <main id="main" className="flex flex-1 flex-col">
       <section className="orgc-page">
-        <div className="orgc-hero">
-          <div className="orgc-eyebrow">hq · org</div>
-          <h1 className="orgc-title">
-            One founder. Seventeen directors. <b>One operating system.</b>
-          </h1>
-          <p className="orgc-lede">
-            A working map of how Signal Studio decides, protects quality, and
-            lets one person run the work of a company.
-          </p>
-          <p className="orgc-readout">
-            {ORG_COUNTS.divisions} divisions · {ORG_COUNTS.councils} councils ·{" "}
-            {ORG_COUNTS.coordinationPaths} coordination paths ·{" "}
-            <span title={`snapshot ${ELT_SNAPSHOT.generatedAt} · ${ELT_SNAPSHOT.source}`}>
-              {synced}
-            </span>
-          </p>
-        </div>
-
         {isList ? (
-          <OrgListView />
+          <>
+            <div className="orgc-hero">
+              <HeroCopy />
+            </div>
+            <OrgListView />
+          </>
         ) : (
           <OrgChart
+            hero={<HeroCopy />}
             initialMode={initialMode}
             initialDirectorId={d ?? null}
             syncedLabel={synced}

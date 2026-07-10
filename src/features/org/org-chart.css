@@ -39,11 +39,102 @@
   opacity: 0.45;
 }
 
-/* ── Hero: eyebrow, headline, one sentence, one readout. Nothing else. ────── */
+/* ── Console header: headline left, the operating readout right ───────────── */
 
 .orgc-hero {
   max-width: 880px;
   padding: 20px 0 48px;
+}
+
+.orgc-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+  gap: 48px;
+  align-items: end;
+  padding: 20px 0 36px;
+}
+
+@media (max-width: 1023px) {
+  .orgc-console {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+
+.orgc-console-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.orgc-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.orgc-metric {
+  padding: 13px 14px;
+  border-right: 1px solid var(--hairline-soft);
+  border-bottom: 1px solid var(--hairline-soft);
+  min-width: 0;
+}
+
+.orgc-metric:nth-child(3n) {
+  border-right: 0;
+}
+
+.orgc-metric:nth-child(n + 4) {
+  border-bottom: 0;
+}
+
+.orgc-metric--accent {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.orgc-metric-v {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.orgc-metric--accent .orgc-metric-v {
+  color: var(--accent);
+}
+
+.orgc-metric-l {
+  margin-top: 7px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.orgc-synced {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  text-align: right;
+}
+
+.orgc-synced a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.orgc-synced a:hover {
+  color: var(--accent);
 }
 
 .orgc-eyebrow,
@@ -94,12 +185,16 @@
   color: var(--ink-soft);
 }
 
-.orgc-readout {
-  margin: 26px 0 0;
+.orgc-strap {
+  margin: 18px 0 0;
   font-family: var(--font-mono);
-  font-size: var(--text-caption);
+  font-size: var(--text-body-sm);
   letter-spacing: 0.02em;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
+}
+
+.orgc-console-copy .orgc-lede {
+  margin-top: 12px;
 }
 
 /* ── Deck root + command bar ──────────────────────────────────────────────── */
@@ -238,9 +333,21 @@
 .orgc-panel-name:focus-visible,
 .orgc-name-link:focus-visible,
 .orgc-source-link:focus-visible,
-.orgc-link:focus-visible {
+.orgc-link:focus-visible,
+.orgc-layer-row:focus-visible,
+.orgc-mini-col:focus-visible,
+.orgc-tool-more:focus-visible,
+.orgc-ledger-more:focus-visible,
+.orgc-ledger-links a:focus-visible,
+.orgc-ledger-links button:focus-visible,
+.orgc-synced a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.orgc-ledger-links a:focus-visible,
+.orgc-ledger-links button:focus-visible {
+  outline-color: var(--paper);
 }
 
 .orgc-command-btn:active,
@@ -248,19 +355,205 @@
   transform: translateY(1px);
 }
 
-/* ── Workbench: the stage, with the focus dock beside it ──────────────────── */
+/* ── Workbench: layers rail · stage · inspector ────────────────────────────── */
 
 .orgc-workbench {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  gap: 24px;
+  gap: 20px;
 }
 
-@media (min-width: 1180px) {
+/* Two panes on laptops: the rail rides above, the dock docks on focus. */
+@media (min-width: 1180px) and (max-width: 1459px) {
   .orgc-workbench[data-focused="true"] {
     grid-template-columns: minmax(0, 1fr) 384px;
   }
+
+  .orgc-workbench[data-focused="true"] .orgc-rail {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The full console at width: rail, canvas, and a standing inspector. */
+@media (min-width: 1460px) {
+  .orgc-workbench[data-chart="true"] {
+    grid-template-columns: 224px minmax(0, 1fr) 320px;
+  }
+}
+
+/* ── The left rail: map, layers, councils ──────────────────────────────────── */
+
+.orgc-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+@media (min-width: 1460px) {
+  .orgc-rail {
+    position: sticky;
+    top: 136px;
+  }
+}
+
+/* Below the full console, the rail becomes a compact row of panels. */
+@media (max-width: 1459px) {
+  .orgc-rail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+}
+
+.orgc-rail-panel {
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  padding: 14px;
+}
+
+.orgc-rail-h {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow, 0.14em);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+/* The map: a schematic of the chart; each cell jumps to its division. */
+.orgc-mini-founder {
+  width: 46px;
+  height: 12px;
+  margin: 0 auto 10px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.orgc-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+/* The map mirrors the rendered chart: the rail only appears beside a ≤1560
+   canvas, so it takes the same staircase order the columns do. */
+.orgc-mini-col[data-col="strategy"] { order: 1; }
+.orgc-mini-col[data-col="brand-customer"] { order: 2; }
+.orgc-mini-col[data-col="experience-craft"] { order: 3; }
+.orgc-mini-col[data-col="product-excellence"] { order: 4; }
+.orgc-mini-col[data-col="engineering-data"] { order: 5; }
+.orgc-mini-col[data-col="creative-ops"] { order: 6; }
+.orgc-mini-col[data-col="growth-market"] { order: 7; }
+.orgc-mini-col[data-col="risk-capital"] { order: 8; }
+
+.orgc-mini-col {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color var(--motion-fast) var(--ease-out);
+}
+
+.orgc-mini-col:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+}
+
+.orgc-mini-col[data-active="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--paper));
+}
+
+.orgc-mini-col span {
+  display: block;
+  height: 4px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.orgc-mini-col[data-active="true"] span {
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.orgc-mini-col span[data-ghost="true"] {
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+/* Layer + council rows: every toggle changes real rendering. */
+.orgc-layer-row {
+  appearance: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out);
+}
+
+.orgc-layer-row:hover {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+.orgc-layer-tick {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  margin-top: 2px;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background: var(--paper);
+  transition:
+    background var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out);
+}
+
+.orgc-layer-tick--round {
+  border-radius: var(--radius-pill);
+}
+
+.orgc-layer-row[aria-pressed="true"] .orgc-layer-tick {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.orgc-layer-body {
+  min-width: 0;
+}
+
+.orgc-layer-body b {
+  display: block;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.orgc-layer-row[aria-pressed="true"] .orgc-layer-body b {
+  color: var(--ink);
+}
+
+.orgc-layer-body em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
 }
 
 .orgc-stage {
@@ -556,10 +849,10 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  min-height: 92px;
-  padding: 14px 16px;
+  min-height: 88px;
+  padding: 13px 14px;
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background: var(--paper);
 }
 
@@ -572,11 +865,13 @@
 }
 
 .orgc-col-title {
-  font-size: var(--text-body);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink);
-  line-height: 1.25;
-  letter-spacing: var(--tracking-heading);
+  line-height: 1.35;
 }
 
 .orgc-col-subtitle {
@@ -640,7 +935,7 @@
   min-height: 118px;
   background: var(--paper);
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: 13px 14px;
   cursor: pointer;
   display: grid;
@@ -701,6 +996,31 @@
 
 .orgc-node.is-peer {
   border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
+}
+
+/* Layer + council marks (resting state only; focus states override). */
+.orgc-node.is-faded {
+  opacity: 0.3;
+}
+
+.orgc-node.is-council-mark {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  background: color-mix(in srgb, var(--accent) 3%, var(--paper));
+}
+
+.orgc-node.is-chair-mark {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.orgc-node.is-veto-mark {
+  border-color: color-mix(in srgb, var(--status-flight) 55%, var(--hairline));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--status-flight) 55%, transparent);
+}
+
+.orgc-node.is-mcp-mark {
+  border-color: color-mix(in srgb, var(--status-done) 50%, var(--hairline));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--status-done) 50%, transparent);
 }
 
 .orgc-node-index {
@@ -855,6 +1175,46 @@
     overflow-y: auto;
     overscroll-behavior: contain;
   }
+}
+
+/* The standing inspector's resting state: only on the full console. */
+.orgc-dock--empty {
+  display: none;
+}
+
+@media (min-width: 1460px) {
+  .orgc-workbench[data-chart="true"] .orgc-dock--empty {
+    display: block;
+  }
+}
+
+.orgc-empty-lede {
+  margin: 4px 0 0;
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.orgc-empty-keys {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed var(--x-org-line);
+  border-radius: var(--radius-md);
+  font-size: var(--text-caption);
+  color: var(--ink-faint);
+}
+
+.orgc-empty-keys .atlas-kbd {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-soft);
+  background: var(--paper-soft);
+  margin-right: 6px;
 }
 
 .orgc-dock-close {
@@ -2031,12 +2391,23 @@ a.orgc-link:hover {
   text-align: right;
 }
 
-.orgc-runs-on {
-  margin-top: 14px;
+/* ── The tool rail: what the company runs on, under the chart ──────────────── */
+
+.orgc-toolrail {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+}
+
+.orgc-toolrail-label {
+  margin-bottom: 0;
+  margin-right: 6px;
 }
 
 .orgc-tool-chip {
@@ -2045,18 +2416,12 @@ a.orgc-link:hover {
   gap: 7px;
   padding: 6px 11px;
   border: 1px solid var(--hairline-soft);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   background: var(--paper);
-  font-size: var(--text-caption);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
   color: var(--ink-soft);
-}
-
-.orgc-tool-chip::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: var(--ink-ghost);
 }
 
 .orgc-tool-chip[data-live="true"] {
@@ -2064,8 +2429,170 @@ a.orgc-link:hover {
   color: var(--ink);
 }
 
-.orgc-tool-chip[data-live="true"]::before {
-  background: var(--status-done);
+.orgc-tool-logo--sm {
+  width: auto;
+  height: auto;
+  border: 0;
+  background: none;
+  color: inherit;
+  display: inline-flex;
+}
+
+/* ── The ledger row: gates, rhythm, decisions, and the record ──────────────── */
+
+.orgc-ledger {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1279px) {
+  .orgc-ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 679px) {
+  .orgc-ledger { grid-template-columns: minmax(0, 1fr); }
+}
+
+.orgc-ledger-panel {
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  padding: 16px;
+  min-width: 0;
+}
+
+.orgc-ledger-gates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 12px;
+}
+
+.orgc-ledger-gates li {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.orgc-ledger-gates li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--status-flight);
+  flex: 0 0 auto;
+  transform: translateY(-1px);
+}
+
+.orgc-ledger-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.orgc-ledger-rows li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.orgc-ledger-rows b {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.orgc-ledger-rows span {
+  font-size: var(--text-caption);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.orgc-ledger-note {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--hairline-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+.orgc-ledger-more {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin-top: 12px;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.orgc-ledger-more:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* The one ink panel: the console's counterweight to the founder card. */
+.orgc-ledger-panel--ink {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.orgc-ledger-panel--ink .orgc-rail-h {
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+}
+
+.orgc-ledger-panel--ink p {
+  margin: 0;
+  font-size: var(--text-caption);
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--paper) 78%, transparent);
+}
+
+.orgc-ledger-links {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.orgc-ledger-links a,
+.orgc-ledger-links button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity var(--motion-fast) var(--ease-out);
+}
+
+.orgc-ledger-links a:hover,
+.orgc-ledger-links button:hover {
+  opacity: 1;
 }
 
 /* ── Footer ────────────────────────────────────────────────────────────────── */
