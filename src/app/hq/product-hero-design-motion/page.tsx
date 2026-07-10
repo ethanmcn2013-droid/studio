@@ -170,7 +170,7 @@ const PRODUCTS: Product[] = [
       },
       {
         name: "One Line",
-        badge: "PREFERRED",
+        badge: "CANDIDATE",
         gesture: "sweep",
         concept:
           "Operator pick, rebuilt as the flagship. The sentence underline is the timeline axis, not a timed substitute; it extends through four real moments, turns vertical on mobile, and ends in one small canonical sweep.",
@@ -314,7 +314,7 @@ export default async function ProductHeroRoomPage() {
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
           Operator-preferred: Notes — Before It Leaves + Three Seconds. Timeline —
-          The Line + One Line. Tasks — no pick yet; Done + Owned are the active
+          The Line is selected; One Line remains the counterpoint. Tasks — no pick yet; Done + Owned are the active
           candidates. Signal — The Brief stays unchanged as the reference. The
           lab bar is product truth, motion, UX, accessibility, and engineering,
           not visual spectacle by itself.
