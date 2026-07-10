@@ -110,9 +110,9 @@ function PersonBody({
                 borderLeftWidth: 2,
                 borderLeftColor:
                   r.status === "revoked"
-                    ? "var(--rose, #9f1239)"
+                    ? "var(--status-blocked)"
                     : r.status === "active"
-                      ? "var(--ink, #111)"
+                      ? "var(--ink)"
                       : "var(--border)",
               }}
             >

@@ -105,7 +105,7 @@ export function OnboardVenueForm() {
           {state.paid ? ", marked paid" : ""}. Mint its codes below.
         </p>
       ) : state && "error" in state ? (
-        <p className="text-[12px]" style={{ color: "var(--rose, #9f1239)" }}>
+        <p className="text-[12px]" style={{ color: "var(--status-blocked)" }}>
           {state.error}
         </p>
       ) : null}

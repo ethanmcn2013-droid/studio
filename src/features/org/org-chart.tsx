@@ -39,7 +39,15 @@ import {
   type DiscoveryRole,
 } from "./org-intel";
 import { CADENCES, ROADMAP, OPERATING_TIMEZONE, roadmapDotClass } from "./org-cadence";
-import { buildTree, routeEdges, type Box, type EdgeRoute } from "./org-geometry";
+import { COORDINATION_PAIRS } from "./org-coordination";
+import {
+  buildTree,
+  routeEdges,
+  routeMesh,
+  type Box,
+  type EdgeRoute,
+  type MeshRoute,
+} from "./org-geometry";
 import { OrgAvatar } from "./org-avatars";
 import { OrgDetailPanel } from "./org-detail-panel";
 import { OrgSearch, type SearchEntry } from "./org-search";
@@ -98,7 +106,9 @@ export function OrgChart({
   const [searchOpen, setSearchOpen] = useState(false);
   const [hit, setHit] = useState<{ kind: "council" | "tool"; anchor: string } | null>(null);
   const [tree, setTree] = useState<string[]>([]);
+  const [mesh, setMesh] = useState<MeshRoute[]>([]);
   const [edges, setEdges] = useState<EdgeRoute[]>([]);
+  const [hoverId, setHoverId] = useState<string | null>(null);
   const [runnerIdx, setRunnerIdx] = useState(0);
   const reducedMotion = usePrefersReducedMotion();
 
@@ -162,13 +172,16 @@ export function OrgChart({
     }
     nodeBoxesRef.current = nodes;
 
+    const cols = CHART_COLUMNS.map((c) => ({
+      id: c.id,
+      el: colRefs.current[c.id],
+    }))
+      .filter((c): c is { id: string; el: HTMLDivElement } => Boolean(c.el))
+      .map((c) => ({ id: c.id, box: rel(c.el.getBoundingClientRect()) }));
+
+    setMesh(routeMesh(COORDINATION_PAIRS, { nodes, cols, colOf: columnOf }));
+
     if (focusedId && coordIds.length) {
-      const cols = CHART_COLUMNS.map((c) => ({
-        id: c.id,
-        el: colRefs.current[c.id],
-      }))
-        .filter((c): c is { id: string; el: HTMLDivElement } => Boolean(c.el))
-        .map((c) => ({ id: c.id, box: rel(c.el.getBoundingClientRect()) }));
       setEdges(
         routeEdges({
           focusedId,
@@ -390,7 +403,28 @@ export function OrgChart({
                 if (e.target === e.currentTarget && focusedId) closeFocus();
               }}
             >
+              <span className="orgc-mark orgc-mark--tl" aria-hidden="true" />
+              <span className="orgc-mark orgc-mark--tr" aria-hidden="true" />
+              <span className="orgc-mark orgc-mark--bl" aria-hidden="true" />
+              <span className="orgc-mark orgc-mark--br" aria-hidden="true" />
+              <div className="orgc-fig" aria-hidden="true">
+                fig. 01 · the operating org · every line is a documented path
+              </div>
               <svg className="orgc-overlay" aria-hidden="true">
+                <g className="orgc-mesh" data-quiet={focused ? "true" : "false"}>
+                  {mesh.map((m) => (
+                    <path
+                      key={`${m.a}-${m.b}`}
+                      d={m.d}
+                      pathLength={1}
+                      className={
+                        !focused && hoverId && (m.a === hoverId || m.b === hoverId)
+                          ? "is-hot"
+                          : undefined
+                      }
+                    />
+                  ))}
+                </g>
                 <g className="orgc-tree">
                   {tree.map((d, i) => (
                     <path key={i} d={d} pathLength={1} />
@@ -474,6 +508,7 @@ export function OrgChart({
                                 index={DIRECTORS.findIndex((item) => item.id === mid) + 1}
                                 stateClass={nodeStateClass(d)}
                                 onFocus={() => openDirector(d.id)}
+                                onHover={setHoverId}
                                 registerRef={(el) => {
                                   if (el) nodeRefs.current[d.id] = el;
                                   else delete nodeRefs.current[d.id];
@@ -562,12 +597,14 @@ function OrgNode({
   index,
   stateClass,
   onFocus,
+  onHover,
   registerRef,
 }: {
   director: Director;
   index: number;
   stateClass: string;
   onFocus: () => void;
+  onHover: (id: string | null) => void;
   registerRef: (el: HTMLButtonElement | null) => void;
 }) {
   const hasMcp = mcpGrants(d.id).length > 0;
@@ -577,9 +614,14 @@ function OrgNode({
       type="button"
       data-node-id={d.id}
       className={`orgc-node ${stateClass}`}
+      title={d.oneLine}
       aria-label={`${roleTitle(d.name)}, ${d.persona}, ${d.autonomyLayer === 3 ? "layer 3" : "layer 2"}${d.veto?.length ? ", holds veto" : ""}${hasMcp ? ", holds a live MCP grant" : ""}`}
       aria-pressed={stateClass.includes("is-active")}
       onClick={onFocus}
+      onMouseEnter={() => onHover(d.id)}
+      onMouseLeave={() => onHover(null)}
+      onFocus={() => onHover(d.id)}
+      onBlur={() => onHover(null)}
     >
       <span className="orgc-node-index">{String(index).padStart(2, "0")}</span>
       <span className="orgc-avatar" aria-hidden="true">
@@ -587,7 +629,6 @@ function OrgNode({
       </span>
       <span className="orgc-body">
         <span className="orgc-role">{roleTitle(d.name)}</span>
-        <span className="orgc-persona">{d.oneLine}</span>
         <span className="orgc-badges">
           <span className={`orgc-badge ${d.autonomyLayer === 3 ? "orgc-badge--l3" : ""}`}>
             {d.autonomyLayer === 3 ? "L3" : "L2"}
@@ -607,6 +648,7 @@ function DiscoveryNode({ role }: { role: DiscoveryRole }) {
   return (
     <div
       className="orgc-node orgc-node--discovery"
+      title={role.oneLine}
       aria-label={`${roleTitle(role.name)}, role in discovery`}
     >
       <span className="orgc-node-index" aria-hidden="true">
@@ -615,7 +657,6 @@ function DiscoveryNode({ role }: { role: DiscoveryRole }) {
       <span className="orgc-avatar orgc-avatar--ghost" aria-hidden="true" />
       <span className="orgc-body">
         <span className="orgc-role">{roleTitle(role.name)}</span>
-        <span className="orgc-persona">{role.oneLine}</span>
         <span className="orgc-badges">
           <span className="orgc-badge orgc-badge--discovery">in discovery</span>
         </span>

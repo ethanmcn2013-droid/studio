@@ -68,7 +68,7 @@ export function MintCodesForm({
       {state && "ok" in state ? (
         <span className="text-[11.5px] text-ink-soft">Minted {state.minted} for {sponsorName}.</span>
       ) : state && "error" in state ? (
-        <span className="text-[11.5px]" style={{ color: "var(--rose, #9f1239)" }}>
+        <span className="text-[11.5px]" style={{ color: "var(--status-blocked)" }}>
           {state.error}
         </span>
       ) : remaining != null ? (

@@ -52,6 +52,9 @@ const PAIRS: [string, string][] = [
 
 export const COORDINATION_EDGE_COUNT = PAIRS.length;
 
+/** The full documented mesh, for drawing the resting coordination layer. */
+export const COORDINATION_PAIRS: readonly [string, string][] = PAIRS;
+
 const ADJACENCY: Record<string, string[]> = (() => {
   const map: Record<string, Set<string>> = {};
   for (const [a, b] of PAIRS) {

@@ -162,11 +162,97 @@ export function buildTree(founder: Box, heads: Box[]): string[] {
   return paths;
 }
 
+/** Shared routing context built once per measure. */
+type RouteGeo = {
+  nodes: Record<string, Box>;
+  bands: Band<{ id: string; box: Box }>[];
+  bandGutters: number[][];
+  locate: (colId: string | undefined) => { bi: number; ci: number } | null;
+  colOf: (nodeId: string) => string | undefined;
+};
+
+export function buildRouteGeo(args: {
+  nodes: Record<string, Box>;
+  cols: { id: string; box: Box }[];
+  colOf: (nodeId: string) => string | undefined;
+}): RouteGeo {
+  const bands = bandsOf(args.cols, (c) => c.box);
+  return {
+    nodes: args.nodes,
+    bands,
+    bandGutters: bands.map((b) => gutterXs(b.items.map((c) => c.box))),
+    locate: (colId) => {
+      if (!colId) return null;
+      for (let bi = 0; bi < bands.length; bi++) {
+        const ci = bands[bi].items.findIndex((c) => c.id === colId);
+        if (ci >= 0) return { bi, ci };
+      }
+      return null;
+    },
+    colOf: args.colOf,
+  };
+}
+
 /**
- * Route coordination edges from the focused node to each partner, through
- * gutters and inter-band channels only. `cols` are the full column boxes
- * (header through list bottom); `colOf` maps node id → column id.
+ * One orthogonal route between two nodes, through gutters and the channels
+ * between bands only — no line ever crosses a card face. `lane` offsets the
+ * route inside the gutter so parallel paths read as separate traces.
  */
+function routePair(
+  geo: RouteGeo,
+  fromId: string,
+  toId: string,
+  lane: number,
+): { d: string; end: Pt } | null {
+  const from = geo.nodes[fromId];
+  const to = geo.nodes[toId];
+  const fromLoc = geo.locate(geo.colOf(fromId));
+  const toLoc = geo.locate(geo.colOf(toId));
+  if (!from || !to || !fromLoc || !toLoc) return null;
+
+  const fy = cy(from);
+  const py = cy(to);
+  const exit = (side: "l" | "r"): Pt =>
+    side === "l" ? [from.x, fy] : [from.x + from.w, fy];
+  const enter = (side: "l" | "r"): Pt =>
+    side === "l" ? [to.x, py] : [to.x + to.w, py];
+
+  let pts: Pt[];
+  let end: Pt;
+
+  if (fromLoc.bi === toLoc.bi && fromLoc.ci === toLoc.ci) {
+    // Same column: out the right edge, along the adjacent gutter.
+    const g = geo.bandGutters[fromLoc.bi][fromLoc.ci + 1] + lane;
+    end = enter("r");
+    pts = [exit("r"), [g, fy], [g, py], end];
+  } else if (fromLoc.bi === toLoc.bi && Math.abs(fromLoc.ci - toLoc.ci) === 1) {
+    // Adjacent columns: straight through the shared gutter.
+    const right = toLoc.ci > fromLoc.ci;
+    const g = geo.bandGutters[fromLoc.bi][Math.max(fromLoc.ci, toLoc.ci)] + lane;
+    end = enter(right ? "l" : "r");
+    pts = [exit(right ? "r" : "l"), [g, fy], [g, py], end];
+  } else {
+    // Far columns or different bands: gutter → channel → gutter.
+    const toRight = cx(to) >= cx(from);
+    const g1 =
+      geo.bandGutters[fromLoc.bi][toRight ? fromLoc.ci + 1 : fromLoc.ci] + lane;
+    const g2 =
+      geo.bandGutters[toLoc.bi][cx(from) >= cx(to) ? toLoc.ci + 1 : toLoc.ci] + lane;
+    const upper = geo.bands[Math.min(fromLoc.bi, toLoc.bi)];
+    // The channel has more room than a gutter: spread lanes wider there so
+    // many parallel traces read as a backplane, not a smear.
+    const channelY = upper.bottom + CHANNEL_GAP + lane * 2.2;
+    end = enter(cx(from) >= cx(to) ? "r" : "l");
+    pts =
+      Math.abs(g1 - g2) < 3
+        ? [exit(toRight ? "r" : "l"), [g1, fy], [g1, py], end]
+        : [exit(toRight ? "r" : "l"), [g1, fy], [g1, channelY], [g2, channelY], [g2, py], end];
+  }
+
+  return { d: elbowPath(pts), end: [r2(end[0]), r2(end[1])] };
+}
+
+/** Route the focused node's coordination edges, fanned into gutter lanes. */
 export function routeEdges(args: {
   focusedId: string;
   partnerIds: string[];
@@ -174,74 +260,37 @@ export function routeEdges(args: {
   cols: { id: string; box: Box }[];
   colOf: (nodeId: string) => string | undefined;
 }): EdgeRoute[] {
-  const { focusedId, partnerIds, nodes, cols, colOf } = args;
-  const from = nodes[focusedId];
-  if (!from) return [];
-
-  const bands = bandsOf(cols, (c) => c.box);
-  const locate = (colId: string | undefined) => {
-    if (!colId) return null;
-    for (let bi = 0; bi < bands.length; bi++) {
-      const ci = bands[bi].items.findIndex((c) => c.id === colId);
-      if (ci >= 0) return { bi, ci };
-    }
-    return null;
-  };
-  const bandGutters = bands.map((b) => gutterXs(b.items.map((c) => c.box)));
-
-  const fromLoc = locate(colOf(focusedId));
-  if (!fromLoc) return [];
-
-  const n = partnerIds.length;
+  const geo = buildRouteGeo(args);
+  const n = args.partnerIds.length;
   const routes: EdgeRoute[] = [];
-
-  partnerIds.forEach((pid, k) => {
-    const to = nodes[pid];
-    const toLoc = locate(colOf(pid));
-    if (!to || !toLoc) return;
-
-    // Fan partner routes into lanes, kept inside the ~20px gutter width.
+  args.partnerIds.forEach((pid, k) => {
     const lane = Math.max(-6, Math.min(6, (k - (n - 1) / 2) * 4));
-    const fy = cy(from);
-    const py = cy(to);
-
-    const exit = (side: "l" | "r"): Pt =>
-      side === "l" ? [from.x, fy] : [from.x + from.w, fy];
-    const enter = (side: "l" | "r"): Pt =>
-      side === "l" ? [to.x, py] : [to.x + to.w, py];
-
-    let pts: Pt[];
-    let end: Pt;
-
-    if (fromLoc.bi === toLoc.bi && fromLoc.ci === toLoc.ci) {
-      // Same column: out the right edge, along the adjacent gutter.
-      const g = bandGutters[fromLoc.bi][fromLoc.ci + 1] + lane;
-      end = enter("r");
-      pts = [exit("r"), [g, fy], [g, py], end];
-    } else if (fromLoc.bi === toLoc.bi && Math.abs(fromLoc.ci - toLoc.ci) === 1) {
-      // Adjacent columns: straight through the shared gutter.
-      const right = toLoc.ci > fromLoc.ci;
-      const g = bandGutters[fromLoc.bi][Math.max(fromLoc.ci, toLoc.ci)] + lane;
-      end = enter(right ? "l" : "r");
-      pts = [exit(right ? "r" : "l"), [g, fy], [g, py], end];
-    } else {
-      // Far columns or different bands: gutter → channel → gutter.
-      const toRight = cx(to) >= cx(from);
-      const g1 =
-        bandGutters[fromLoc.bi][toRight ? fromLoc.ci + 1 : fromLoc.ci] + lane;
-      const g2 =
-        bandGutters[toLoc.bi][cx(from) >= cx(to) ? toLoc.ci + 1 : toLoc.ci] + lane;
-      const upper = bands[Math.min(fromLoc.bi, toLoc.bi)];
-      const channelY = upper.bottom + CHANNEL_GAP + lane;
-      end = enter(cx(from) >= cx(to) ? "r" : "l");
-      pts =
-        Math.abs(g1 - g2) < 3
-          ? [exit(toRight ? "r" : "l"), [g1, fy], [g1, py], end]
-          : [exit(toRight ? "r" : "l"), [g1, fy], [g1, channelY], [g2, channelY], [g2, py], end];
-    }
-
-    routes.push({ id: pid, d: elbowPath(pts), end: [r2(end[0]), r2(end[1])] });
+    const r = routePair(geo, args.focusedId, pid, lane);
+    if (r) routes.push({ id: pid, d: r.d, end: r.end });
   });
+  return routes;
+}
 
+export type MeshRoute = { a: string; b: string; d: string };
+
+/**
+ * The resting coordination mesh: every documented pair, drawn once. Lanes
+ * are spread by pair index so parallel traces share gutters legibly.
+ */
+export function routeMesh(
+  pairs: readonly [string, string][],
+  args: {
+    nodes: Record<string, Box>;
+    cols: { id: string; box: Box }[];
+    colOf: (nodeId: string) => string | undefined;
+  },
+): MeshRoute[] {
+  const geo = buildRouteGeo(args);
+  const routes: MeshRoute[] = [];
+  pairs.forEach(([a, b], i) => {
+    const lane = ((i % 5) - 2) * 3.2;
+    const r = routePair(geo, a, b, lane);
+    if (r) routes.push({ a, b, d: r.d });
+  });
   return routes;
 }
