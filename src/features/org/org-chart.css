@@ -48,10 +48,10 @@
 
 .orgc-console {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 48px;
-  align-items: end;
-  padding: 20px 0 36px;
+  align-items: start;
+  padding: 20px 0 28px;
 }
 
 @media (max-width: 1023px) {
@@ -65,11 +65,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-top: 6px;
 }
 
+/* The readout: six cells in one row, the numbers doing the talking. */
 .orgc-metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   border: 1px solid var(--hairline);
   border-radius: var(--radius-md);
   background: var(--paper);
@@ -77,18 +79,53 @@
 }
 
 .orgc-metric {
-  padding: 13px 14px;
+  padding: 14px 14px 13px;
   border-right: 1px solid var(--hairline-soft);
-  border-bottom: 1px solid var(--hairline-soft);
   min-width: 0;
 }
 
-.orgc-metric:nth-child(3n) {
+.orgc-metric:last-child {
   border-right: 0;
 }
 
-.orgc-metric:nth-child(n + 4) {
-  border-bottom: 0;
+@media (max-width: 1279px) {
+  .orgc-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .orgc-metric {
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+
+  .orgc-metric:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .orgc-metric:nth-child(n + 4) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 559px) {
+  .orgc-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orgc-metric:nth-child(3n) {
+    border-right: 1px solid var(--hairline-soft);
+  }
+
+  .orgc-metric:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .orgc-metric:nth-child(n + 4) {
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+
+  .orgc-metric:nth-child(n + 5) {
+    border-bottom: 0;
+  }
 }
 
 .orgc-metric--accent {
@@ -97,20 +134,17 @@
 }
 
 .orgc-metric-v {
+  margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 1.3rem;
+  font-size: 27px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--accent);
   line-height: 1;
   font-variant-numeric: tabular-nums;
-}
-
-.orgc-metric--accent .orgc-metric-v {
-  color: var(--accent);
+  white-space: nowrap;
 }
 
 .orgc-metric-l {
-  margin-top: 7px;
   font-family: var(--font-mono);
   font-size: 9.5px;
   font-weight: 500;
@@ -120,21 +154,11 @@
   color: var(--ink-faint);
 }
 
-.orgc-synced {
-  font-family: var(--font-mono);
+.orgc-metric-s {
+  margin-top: 8px;
   font-size: 11px;
-  letter-spacing: 0.03em;
+  line-height: 1.35;
   color: var(--ink-faint);
-  text-align: right;
-}
-
-.orgc-synced a {
-  color: var(--ink-soft);
-  text-decoration: none;
-}
-
-.orgc-synced a:hover {
-  color: var(--accent);
 }
 
 .orgc-eyebrow,
@@ -172,7 +196,11 @@
   text-wrap: balance;
 }
 
-.orgc-title b {
+.orgc-title span {
+  display: block;
+}
+
+.orgc-title-period {
   font-weight: 600;
   color: var(--accent);
 }
@@ -204,40 +232,31 @@
   position: relative;
 }
 
-.orgc-commandbar {
-  position: sticky;
-  top: 68px;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid var(--hairline-soft);
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--paper) 84%, transparent);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow-float);
+/* ── The mode control: joined segments, the active one in full accent ─────── */
+
+.orgc-tabs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 14px;
+  border: 1px solid var(--x-org-line);
+  border-radius: var(--radius-md);
+  background: var(--x-org-line);
+  overflow: hidden;
 }
 
-.orgc-modes {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 3px;
-  padding: 3px;
-  border-radius: var(--radius-pill);
-  background: var(--paper-soft);
-  border: 1px solid var(--hairline-soft);
+@media (max-width: 899px) {
+  .orgc-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.orgc-mode-btn {
+.orgc-tab {
   appearance: none;
   border: 0;
-  min-height: 32px;
-  padding: 0 15px;
-  border-radius: var(--radius-pill);
-  background: transparent;
+  min-height: 46px;
+  padding: 0 12px;
+  background: var(--paper);
   color: var(--ink-soft);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -247,28 +266,128 @@
   cursor: pointer;
   transition:
     color var(--motion-fast) var(--ease-out),
-    background var(--motion-fast) var(--ease-out),
-    box-shadow var(--motion-fast) var(--ease-out);
+    background var(--motion-fast) var(--ease-out);
 }
 
-.orgc-mode-btn:hover {
+.orgc-tab:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
+}
+
+.orgc-tab[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--accent);
+}
+
+/* ── The legend row: what the marks mean, and where this mirrors from ──────── */
+
+.orgc-legendrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.orgc-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.orgc-legend-t {
+  color: var(--ink-faint);
+}
+
+.orgc-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.orgc-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.orgc-swatch--l3 {
+  background: var(--accent);
+}
+
+.orgc-swatch--l2 {
+  border: 1px solid var(--x-org-line);
+  background: var(--paper);
+}
+
+.orgc-swatch--ghost {
+  border: 1px dashed var(--x-org-line);
+  background: transparent;
+}
+
+.orgc-legend-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.orgc-layer-chip {
+  appearance: none;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 4px 9px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    background var(--motion-fast) var(--ease-out);
+}
+
+.orgc-layer-chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--hairline));
   color: var(--ink);
 }
 
-.orgc-mode-btn[aria-pressed="true"] {
+.orgc-layer-chip[aria-pressed="true"] {
+  border-color: var(--accent);
   color: var(--accent);
-  background: var(--paper);
-  box-shadow: var(--shadow-float);
+  background: color-mix(in srgb, var(--accent) 6%, var(--paper));
 }
 
-.orgc-command-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
+.orgc-updated {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-.orgc-search-command,
+.orgc-updated a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.orgc-updated a:hover {
+  color: var(--accent);
+}
+
 .orgc-command-btn {
   min-height: 36px;
   border: 1px solid var(--hairline);
@@ -280,29 +399,6 @@
     background var(--motion-fast) var(--ease-out),
     color var(--motion-fast) var(--ease-out),
     transform var(--motion-fast) var(--ease-out);
-}
-
-.orgc-search-command {
-  flex: 1 1 300px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 0 14px;
-  text-align: left;
-  font-size: var(--text-body-sm);
-  color: var(--ink-faint);
-  cursor: pointer;
-}
-
-.orgc-search-command .atlas-kbd {
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-sm);
-  padding: 1px 7px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-soft);
-  background: var(--paper-soft);
 }
 
 .orgc-command-btn {
@@ -317,15 +413,14 @@
   cursor: pointer;
 }
 
-.orgc-search-command:hover,
 .orgc-command-btn:hover {
   border-color: color-mix(in srgb, var(--accent) 36%, var(--hairline));
   background: color-mix(in srgb, var(--accent) 4%, var(--paper));
 }
 
-.orgc-search-command:focus-visible,
 .orgc-command-btn:focus-visible,
-.orgc-mode-btn:focus-visible,
+.orgc-tab:focus-visible,
+.orgc-layer-chip:focus-visible,
 .orgc-node:focus-visible,
 .orgc-council-chip:focus-visible,
 .orgc-chip:focus-visible,
@@ -334,20 +429,17 @@
 .orgc-name-link:focus-visible,
 .orgc-source-link:focus-visible,
 .orgc-link:focus-visible,
-.orgc-layer-row:focus-visible,
-.orgc-mini-col:focus-visible,
 .orgc-tool-more:focus-visible,
 .orgc-ledger-more:focus-visible,
 .orgc-ledger-links a:focus-visible,
 .orgc-ledger-links button:focus-visible,
-.orgc-synced a:focus-visible {
+.orgc-updated a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.orgc-ledger-links a:focus-visible,
-.orgc-ledger-links button:focus-visible {
-  outline-color: var(--paper);
+.orgc-tab:focus-visible {
+  outline-offset: -2px;
 }
 
 .orgc-command-btn:active,
@@ -355,7 +447,7 @@
   transform: translateY(1px);
 }
 
-/* ── Workbench: layers rail · stage · inspector ────────────────────────────── */
+/* ── Workbench: the flat canvas; the dock joins it only on focus ───────────── */
 
 .orgc-workbench {
   display: grid;
@@ -364,54 +456,10 @@
   gap: 20px;
 }
 
-/* Two panes on laptops: the rail rides above, the dock docks on focus. */
-@media (min-width: 1180px) and (max-width: 1459px) {
+@media (min-width: 1180px) {
   .orgc-workbench[data-focused="true"] {
     grid-template-columns: minmax(0, 1fr) 384px;
   }
-
-  .orgc-workbench[data-focused="true"] .orgc-rail {
-    grid-column: 1 / -1;
-  }
-}
-
-/* The full console at width: rail, canvas, and a standing inspector. */
-@media (min-width: 1460px) {
-  .orgc-workbench[data-chart="true"] {
-    grid-template-columns: 224px minmax(0, 1fr) 320px;
-  }
-}
-
-/* ── The left rail: map, layers, councils ──────────────────────────────────── */
-
-.orgc-rail {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-width: 0;
-}
-
-@media (min-width: 1460px) {
-  .orgc-rail {
-    position: sticky;
-    top: 136px;
-  }
-}
-
-/* Below the full console, the rail becomes a compact row of panels. */
-@media (max-width: 1459px) {
-  .orgc-rail {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-  }
-}
-
-.orgc-rail-panel {
-  border: 1px solid var(--hairline-soft);
-  border-radius: var(--radius-md);
-  background: var(--paper);
-  padding: 14px;
 }
 
 .orgc-rail-h {
@@ -422,138 +470,6 @@
   text-transform: uppercase;
   color: var(--ink-faint);
   margin-bottom: 10px;
-}
-
-/* The map: a schematic of the chart; each cell jumps to its division. */
-.orgc-mini-founder {
-  width: 46px;
-  height: 12px;
-  margin: 0 auto 10px;
-  border-radius: 2px;
-  background: var(--ink);
-}
-
-.orgc-mini-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
-
-/* The map mirrors the rendered chart: the rail only appears beside a ≤1560
-   canvas, so it takes the same staircase order the columns do. */
-.orgc-mini-col[data-col="strategy"] { order: 1; }
-.orgc-mini-col[data-col="brand-customer"] { order: 2; }
-.orgc-mini-col[data-col="experience-craft"] { order: 3; }
-.orgc-mini-col[data-col="product-excellence"] { order: 4; }
-.orgc-mini-col[data-col="engineering-data"] { order: 5; }
-.orgc-mini-col[data-col="creative-ops"] { order: 6; }
-.orgc-mini-col[data-col="growth-market"] { order: 7; }
-.orgc-mini-col[data-col="risk-capital"] { order: 8; }
-
-.orgc-mini-col {
-  appearance: none;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 5px;
-  border: 1px solid var(--hairline-soft);
-  border-radius: var(--radius-sm);
-  background: var(--paper);
-  cursor: pointer;
-  transition: border-color var(--motion-fast) var(--ease-out);
-}
-
-.orgc-mini-col:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
-}
-
-.orgc-mini-col[data-active="true"] {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 5%, var(--paper));
-}
-
-.orgc-mini-col span {
-  display: block;
-  height: 4px;
-  border-radius: 1px;
-  background: color-mix(in srgb, var(--ink) 18%, transparent);
-}
-
-.orgc-mini-col[data-active="true"] span {
-  background: color-mix(in srgb, var(--accent) 55%, transparent);
-}
-
-.orgc-mini-col span[data-ghost="true"] {
-  background: transparent;
-  border: 1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
-}
-
-/* Layer + council rows: every toggle changes real rendering. */
-.orgc-layer-row {
-  appearance: none;
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  width: 100%;
-  padding: 7px 6px;
-  border: 0;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-  transition: background var(--motion-fast) var(--ease-out);
-}
-
-.orgc-layer-row:hover {
-  background: color-mix(in srgb, var(--accent) 4%, transparent);
-}
-
-.orgc-layer-tick {
-  flex: 0 0 auto;
-  width: 12px;
-  height: 12px;
-  margin-top: 2px;
-  border: 1px solid var(--hairline);
-  border-radius: 3px;
-  background: var(--paper);
-  transition:
-    background var(--motion-fast) var(--ease-out),
-    border-color var(--motion-fast) var(--ease-out);
-}
-
-.orgc-layer-tick--round {
-  border-radius: var(--radius-pill);
-}
-
-.orgc-layer-row[aria-pressed="true"] .orgc-layer-tick {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.orgc-layer-body {
-  min-width: 0;
-}
-
-.orgc-layer-body b {
-  display: block;
-  font-size: var(--text-caption);
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.3;
-}
-
-.orgc-layer-row[aria-pressed="true"] .orgc-layer-body b {
-  color: var(--ink);
-}
-
-.orgc-layer-body em {
-  display: block;
-  margin-top: 2px;
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.02em;
-  color: var(--ink-faint);
 }
 
 .orgc-stage {
@@ -614,10 +530,10 @@
   z-index: 5;
 }
 
-/* The founder tree: drawn once, in ink hairline. */
+/* The founder tree: drawn once, in the accent. Every line is a real path. */
 .orgc-tree path {
   fill: none;
-  stroke: var(--x-org-line);
+  stroke: color-mix(in srgb, var(--accent) 62%, transparent);
   stroke-width: 1.25;
 }
 
@@ -799,19 +715,20 @@
   margin-top: 5px;
 }
 
-/* ── Columns: one band of eight, designed bands below that ────────────────── */
+/* ── Columns: one band of eight, the whole org on a single line ───────────── */
 
 .orgc-columns {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 56px 20px;
+  gap: 56px 12px;
   align-items: start;
 }
 
-/* Laptop (canvas ≤1560): two designed bands of four. Experience & Craft and
-   Product Excellence swap so band one steps 1·2·3·4, a deliberate staircase. */
-@container orgstage (max-width: 1560px) {
-  .orgc-columns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Narrow canvas: two designed bands of four. Experience & Craft and
+   Product Excellence swap so band one steps 1·2·3·4, a deliberate
+   staircase. */
+@container orgstage (max-width: 1099px) {
+  .orgc-columns { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 56px 20px; }
   .orgc-col[data-col="strategy"] { order: 1; }
   .orgc-col[data-col="brand-customer"] { order: 2; }
   .orgc-col[data-col="experience-craft"] { order: 3; }
@@ -910,7 +827,7 @@
   top: 0;
   bottom: 12px;
   width: 1px;
-  background: var(--x-org-line);
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .orgc-col-list::after {
@@ -922,7 +839,7 @@
   height: 5px;
   margin-left: -2px;
   border-radius: var(--radius-pill);
-  background: var(--x-org-line);
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 /* ── Node card: one comfortable size, no decorative telemetry ─────────────── */
@@ -932,7 +849,7 @@
   appearance: none;
   text-align: left;
   width: 100%;
-  min-height: 118px;
+  min-height: 104px;
   background: var(--paper);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-md);
@@ -949,35 +866,47 @@
     transform var(--motion-fast) var(--ease-out);
 }
 
-@container orgstage (max-width: 1560px) {
-  .orgc-node { min-height: 100px; }
+@container orgstage (max-width: 799px) {
+  .orgc-node { min-height: 88px; }
 }
 
 /* Eight abreast: the glyph and type step down so the longest role names
    keep all their lines. */
-@container orgstage (min-width: 1561px) {
+@container orgstage (min-width: 1100px) {
+  .orgc-node {
+    min-height: 112px;
+    padding: 11px 12px;
+    gap: 8px;
+  }
+
   .orgc-node .orgc-avatar {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .orgc-node .orgc-avatar .orgc-glyph {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 
-  .orgc-node {
-    gap: 10px;
+  .orgc-node .orgc-node-index {
+    line-height: 24px;
   }
 
   .orgc-node .orgc-role {
-    font-size: 12.5px;
+    font-size: 12px;
     -webkit-line-clamp: 5;
   }
-}
 
-@container orgstage (max-width: 799px) {
-  .orgc-node { min-height: 88px; }
+  /* Compact group heads: title + count; the subtitle yields to density. */
+  .orgc-col-head {
+    min-height: 62px;
+    padding: 11px 12px;
+  }
+
+  .orgc-col-subtitle {
+    display: none;
+  }
 }
 
 .orgc-node:hover {
@@ -998,21 +927,7 @@
   border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline));
 }
 
-/* Layer + council marks (resting state only; focus states override). */
-.orgc-node.is-faded {
-  opacity: 0.3;
-}
-
-.orgc-node.is-council-mark {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
-  background: color-mix(in srgb, var(--accent) 3%, var(--paper));
-}
-
-.orgc-node.is-chair-mark {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
-}
-
+/* Layer marks (resting state only; focus states override). */
 .orgc-node.is-veto-mark {
   border-color: color-mix(in srgb, var(--status-flight) 55%, var(--hairline));
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--status-flight) 55%, transparent);
@@ -1175,46 +1090,6 @@
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-}
-
-/* The standing inspector's resting state: only on the full console. */
-.orgc-dock--empty {
-  display: none;
-}
-
-@media (min-width: 1460px) {
-  .orgc-workbench[data-chart="true"] .orgc-dock--empty {
-    display: block;
-  }
-}
-
-.orgc-empty-lede {
-  margin: 4px 0 0;
-  font-size: var(--text-body-sm);
-  line-height: 1.6;
-  color: var(--ink-soft);
-}
-
-.orgc-empty-keys {
-  display: grid;
-  gap: 8px;
-  margin-top: 16px;
-  padding: 12px;
-  border: 1px dashed var(--x-org-line);
-  border-radius: var(--radius-md);
-  font-size: var(--text-caption);
-  color: var(--ink-faint);
-}
-
-.orgc-empty-keys .atlas-kbd {
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-sm);
-  padding: 1px 6px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--ink-soft);
-  background: var(--paper-soft);
-  margin-right: 6px;
 }
 
 .orgc-dock-close {
@@ -2463,32 +2338,84 @@ a.orgc-link:hover {
   min-width: 0;
 }
 
-.orgc-ledger-gates {
+/* Evidence at a glance: label left, the count in accent mono right. */
+.orgc-glance {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px 12px;
+  gap: 7px;
 }
 
-.orgc-ledger-gates li {
+.orgc-glance li {
   display: flex;
   align-items: baseline;
-  gap: 7px;
-  font-size: 11px;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.orgc-glance span {
+  font-size: var(--text-caption);
   line-height: 1.4;
   color: var(--ink-soft);
 }
 
-.orgc-ledger-gates li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 1px;
-  background: var(--status-flight);
-  flex: 0 0 auto;
-  transform: translateY(-1px);
+.orgc-glance b {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The build: the roadmap as a numbered focus list with honest statuses. */
+.orgc-focus {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.orgc-focus li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: baseline;
+}
+
+.orgc-focus-n {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.orgc-focus-label {
+  font-size: var(--text-caption);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orgc-focus-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-faint);
+}
+
+.orgc-focus-status[data-status="shipped"] {
+  color: var(--accent);
+}
+
+.orgc-focus-status[data-status="in-progress"] {
+  color: color-mix(in srgb, var(--status-flight) 70%, var(--ink));
 }
 
 .orgc-ledger-rows {
@@ -2549,22 +2476,49 @@ a.orgc-link:hover {
   text-underline-offset: 2px;
 }
 
-/* The one ink panel: the console's counterweight to the founder card. */
-.orgc-ledger-panel--ink {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+/* The verification panel: dashed accent, drawn like a callout on a plan. */
+.orgc-ledger-panel--cta {
+  position: relative;
+  border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--paper));
 }
 
-.orgc-ledger-panel--ink .orgc-rail-h {
-  color: color-mix(in srgb, var(--paper) 55%, transparent);
+.orgc-cta-mark {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--accent);
+  pointer-events: none;
 }
 
-.orgc-ledger-panel--ink p {
-  margin: 0;
+.orgc-cta-mark--tl {
+  top: 7px;
+  left: 9px;
+}
+
+.orgc-cta-mark--br {
+  bottom: 7px;
+  right: 9px;
+}
+
+.orgc-cta-head {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--accent);
+  max-width: 18ch;
+}
+
+.orgc-cta-sub {
+  margin: 10px 0 0;
   font-size: var(--text-caption);
   line-height: 1.55;
-  color: color-mix(in srgb, var(--paper) 78%, transparent);
+  color: var(--ink-soft);
 }
 
 .orgc-ledger-links {
@@ -2583,22 +2537,38 @@ a.orgc-link:hover {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.02em;
-  color: var(--paper);
+  color: var(--ink);
   text-decoration: none;
   cursor: pointer;
-  opacity: 0.85;
-  transition: opacity var(--motion-fast) var(--ease-out);
+  transition: color var(--motion-fast) var(--ease-out);
 }
 
 .orgc-ledger-links a:hover,
 .orgc-ledger-links button:hover {
-  opacity: 1;
+  color: var(--accent);
 }
 
 /* ── Footer ────────────────────────────────────────────────────────────────── */
 
+.orgc-mantras {
+  margin-top: 56px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 28px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--hairline-soft);
+  padding-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
 .orgc-footer {
-  margin-top: 48px;
+  margin-top: 22px;
   border-top: 1px solid var(--hairline-soft);
   padding-top: 18px;
   font-family: var(--font-mono);
@@ -2627,16 +2597,6 @@ a.orgc-link:hover {
   .orgc-page {
     width: min(100% - 24px, 720px);
     padding-top: 32px;
-  }
-
-  .orgc-commandbar {
-    position: relative;
-    top: auto;
-  }
-
-  .orgc-search-command {
-    order: 3;
-    flex: 1 1 100%;
   }
 
   .orgc-canvas {

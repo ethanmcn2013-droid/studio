@@ -76,11 +76,11 @@ type Layers = {
   mcp: boolean;
 };
 
-const LAYER_ROWS: { key: keyof Layers; label: string; note: string }[] = [
-  { key: "mesh", label: "Coordination mesh", note: "31 documented paths" },
-  { key: "discovery", label: "Discovery roles", note: "candidate directors" },
-  { key: "veto", label: "Veto authority", note: "stop power, marked" },
-  { key: "mcp", label: "MCP grants", note: "live tool access" },
+const LAYER_CHIPS: { key: keyof Layers; label: string }[] = [
+  { key: "mesh", label: "mesh" },
+  { key: "discovery", label: "discovery" },
+  { key: "veto", label: "veto" },
+  { key: "mcp", label: "mcp" },
 ];
 
 /** The chart-rail tool strip; the full inventory lives in Tools mode. */
@@ -108,10 +108,6 @@ function columnLabelOf(id: string): string {
 
 function toolAnchor(name: string): string {
   return `orgc-tool-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-}
-
-function councilHas(c: Council, id: string): boolean {
-  return c.chairId === id || c.members === "all" || c.members.includes(id);
 }
 
 function usePrefersReducedMotion(): boolean {
@@ -148,12 +144,11 @@ export function OrgChart({
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [runnerIdx, setRunnerIdx] = useState(0);
   const [layers, setLayers] = useState<Layers>({
-    mesh: true,
+    mesh: false,
     discovery: true,
     veto: false,
     mcp: false,
   });
-  const [council, setCouncil] = useState<string | null>(null);
   const reducedMotion = usePrefersReducedMotion();
 
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -178,7 +173,6 @@ export function OrgChart({
     [focused],
   );
   const coordSet = useMemo(() => new Set(coordIds), [coordIds]);
-  const activeCouncil = council ? COUNCILS.find((c) => c.id === council) : undefined;
 
   // ── URL state: /hq/org?mode=&d= stays shareable, without navigations ──────
   useEffect(() => {
@@ -383,11 +377,6 @@ export function OrgChart({
     setHit({ anchor });
   }
 
-  function jumpToDivision(colId: string) {
-    setMode("chart");
-    setHit({ anchor: `orgc-div-${colId}` });
-  }
-
   useEffect(() => {
     if (!hit) return;
     const raf = requestAnimationFrame(() => {
@@ -412,21 +401,8 @@ export function OrgChart({
     const marks: string[] = [];
     if (layers.veto && d.veto?.length) marks.push("is-veto-mark");
     if (layers.mcp && mcpGrants(d.id).length) marks.push("is-mcp-mark");
-    if (activeCouncil) {
-      if (councilHas(activeCouncil, d.id)) {
-        marks.push(activeCouncil.chairId === d.id ? "is-chair-mark" : "is-council-mark");
-      } else {
-        marks.push("is-faded");
-      }
-    }
     return marks.join(" ");
   }
-
-  const activeColId = focusedId
-    ? columnOf(focusedId)
-    : hoverId
-      ? columnOf(hoverId)
-      : undefined;
 
   return (
     <div className="orgc">
@@ -435,14 +411,95 @@ export function OrgChart({
         <div className="orgc-console-copy">{hero}</div>
         <div className="orgc-console-rail">
           <div className="orgc-metrics" aria-label="Operating readout">
-            <Metric value={`1+${ORG_COUNTS.directors}`} label="founder + directors" accent />
-            <Metric value={String(ORG_COUNTS.divisions)} label="divisions" />
-            <Metric value={String(ORG_COUNTS.councils)} label="standing councils" />
-            <Metric value={String(ORG_COUNTS.coordinationPaths)} label="coordination paths" />
-            <Metric value={String(ORG_COUNTS.tools)} label="tools + platforms" />
-            <Metric value={String(ORG_COUNTS.founderGates)} label="founder gates" />
+            <Metric
+              label="operating model"
+              value={`1 + ${ORG_COUNTS.directors}`}
+              sub="founder + directors"
+              accent
+            />
+            <Metric
+              label="divisions"
+              value={String(ORG_COUNTS.divisions)}
+              sub="every seat named"
+            />
+            <Metric
+              label="councils"
+              value={String(ORG_COUNTS.councils)}
+              sub="standing, chaired"
+            />
+            <Metric
+              label="coordination"
+              value={String(ORG_COUNTS.coordinationPaths)}
+              sub="documented paths"
+            />
+            <Metric
+              label="toolchain"
+              value={String(ORG_COUNTS.tools)}
+              sub="tools + platforms"
+            />
+            <Metric
+              label="founder gates"
+              value={String(ORG_COUNTS.founderGates)}
+              sub="nothing moves alone"
+            />
           </div>
-          <div className="orgc-synced">
+        </div>
+      </div>
+
+      <div className="orgc-tabs" role="group" aria-label="View mode">
+        {MODES.map((m) => (
+          <button
+            key={m.id}
+            type="button"
+            className="orgc-tab"
+            aria-pressed={mode === m.id}
+            onClick={() => setMode(m.id)}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="orgc-legendrow">
+        <div className="orgc-legend" aria-label="Card marks">
+          <span className="orgc-legend-t">marks</span>
+          <span className="orgc-legend-item">
+            <i className="orgc-swatch orgc-swatch--l3" aria-hidden="true" />
+            L3 executes
+          </span>
+          <span className="orgc-legend-item">
+            <i className="orgc-swatch orgc-swatch--l2" aria-hidden="true" />
+            L2 recommends
+          </span>
+          <span className="orgc-legend-item">
+            <i className="orgc-swatch orgc-swatch--ghost" aria-hidden="true" />
+            in discovery
+          </span>
+        </div>
+        <div className="orgc-legend-actions">
+          {isChart
+            ? LAYER_CHIPS.map((chip) => (
+                <button
+                  key={chip.key}
+                  type="button"
+                  className="orgc-layer-chip"
+                  aria-pressed={layers[chip.key]}
+                  onClick={() =>
+                    setLayers((l) => ({ ...l, [chip.key]: !l[chip.key] }))
+                  }
+                >
+                  {chip.label}
+                </button>
+              ))
+            : null}
+          <button
+            type="button"
+            className="orgc-layer-chip"
+            onClick={() => setSearchOpen(true)}
+          >
+            search /
+          </button>
+          <span className="orgc-updated">
             mirrors{" "}
             <a
               href="https://github.com/ethanmcn2013-droid/signal-directors"
@@ -452,126 +509,14 @@ export function OrgChart({
               signal-directors
             </a>{" "}
             · {syncedLabel}
-          </div>
-        </div>
-      </div>
-
-      <div className="orgc-commandbar" aria-label="Deck controls">
-        <div className="orgc-modes" role="group" aria-label="View mode">
-          {MODES.map((m) => (
-            <button
-              key={m.id}
-              type="button"
-              className="orgc-mode-btn"
-              aria-pressed={mode === m.id}
-              onClick={() => setMode(m.id)}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-
-        <button
-          type="button"
-          className="orgc-search-command"
-          onClick={() => setSearchOpen(true)}
-        >
-          Search directors, councils, tools <span className="atlas-kbd">/</span>
-        </button>
-
-        <div className="orgc-command-actions">
-          <a className="orgc-command-btn" href="/hq/atlas-map">
-            Atlas map
-          </a>
+          </span>
         </div>
       </div>
 
       <div
         className="orgc-workbench"
-        data-chart={isChart ? "true" : "false"}
         data-focused={focused && isChart ? "true" : "false"}
       >
-        {isChart ? (
-          <aside className="orgc-rail" aria-label="Chart controls">
-            <div className="orgc-rail-panel orgc-rail-panel--map">
-              <div className="orgc-rail-h">the map</div>
-              <div className="orgc-mini-founder" aria-hidden="true" />
-              <div className="orgc-mini-grid">
-                {CHART_COLUMNS.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    className="orgc-mini-col"
-                    data-col={c.id}
-                    data-active={c.id === activeColId ? "true" : undefined}
-                    title={c.label}
-                    aria-label={`Jump to ${c.label}`}
-                    onClick={() => jumpToDivision(c.id)}
-                  >
-                    {c.members.map((m) => (
-                      <span key={m} data-ghost={isDiscovery(m) ? "true" : undefined} />
-                    ))}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="orgc-rail-panel">
-              <div className="orgc-rail-h">layers</div>
-              {LAYER_ROWS.map((row) => (
-                <button
-                  key={row.key}
-                  type="button"
-                  className="orgc-layer-row"
-                  aria-pressed={layers[row.key]}
-                  onClick={() => setLayers((l) => ({ ...l, [row.key]: !l[row.key] }))}
-                >
-                  <span className="orgc-layer-tick" aria-hidden="true" />
-                  <span className="orgc-layer-body">
-                    <b>{row.label}</b>
-                    <em>{row.note}</em>
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            <div className="orgc-rail-panel">
-              <div className="orgc-rail-h">councils</div>
-              <button
-                type="button"
-                className="orgc-layer-row"
-                aria-pressed={council === null}
-                onClick={() => setCouncil(null)}
-              >
-                <span className="orgc-layer-tick orgc-layer-tick--round" aria-hidden="true" />
-                <span className="orgc-layer-body">
-                  <b>All hands</b>
-                  <em>no filter</em>
-                </span>
-              </button>
-              {COUNCILS.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  className="orgc-layer-row"
-                  aria-pressed={council === c.id}
-                  onClick={() => setCouncil((cur) => (cur === c.id ? null : c.id))}
-                >
-                  <span className="orgc-layer-tick orgc-layer-tick--round" aria-hidden="true" />
-                  <span className="orgc-layer-body">
-                    <b>{c.label}</b>
-                    <em>
-                      {c.members === "all"
-                        ? "every director"
-                        : `${c.members.length + (c.members.includes(c.chairId) ? 0 : 1)} seats`}
-                    </em>
-                  </span>
-                </button>
-              ))}
-            </div>
-          </aside>
-        ) : null}
-
         <div className="orgc-stage" data-mode={mode}>
           {isChart ? (
             <div
@@ -643,7 +588,9 @@ export function OrgChart({
                     {ELT_SNAPSHOT.founderName}
                     <span className="orgc-apex-period" aria-hidden="true" />
                   </div>
-                  <div className="orgc-apex-role">vision · strategy · allocation</div>
+                  <div className="orgc-apex-role">
+                    vision · strategy · allocation · final call
+                  </div>
                 </div>
               </div>
 
@@ -732,13 +679,15 @@ export function OrgChart({
             onClose={closeFocus}
           />
         ) : null}
-        {isChart && !focused ? <InspectorEmpty /> : null}
       </div>
 
       {isChart ? (
         <>
           <div className="orgc-toolrail" aria-label="Platform foundation">
-            <span className="orgc-rail-h orgc-toolrail-label">runs on</span>
+            <span className="orgc-rail-h orgc-toolrail-label">
+              common tools
+              <br />+ platforms
+            </span>
             {RUNS_ON.map((t) => (
               <span key={t.name} className="orgc-tool-chip">
                 <ToolMark name={t.name} slug={t.slug} small />
@@ -754,18 +703,66 @@ export function OrgChart({
               className="orgc-tool-more"
               onClick={() => setMode("tools")}
             >
-              the full toolchain →
+              + {TOOLS_COUNT - RUNS_ON.length - 1} more →
             </button>
           </div>
 
           <div className="orgc-ledger">
             <section className="orgc-ledger-panel">
-              <div className="orgc-rail-h">governed by {FOUNDER_GATES.length} gates</div>
-              <ul className="orgc-ledger-gates">
-                {FOUNDER_GATES.map((g) => (
-                  <li key={g}>{g}</li>
-                ))}
+              <div className="orgc-rail-h">evidence at a glance</div>
+              <ul className="orgc-glance">
+                <li>
+                  <span>directors seated</span>
+                  <b>{ORG_COUNTS.directors}</b>
+                </li>
+                <li>
+                  <span>coordination paths</span>
+                  <b>{ORG_COUNTS.coordinationPaths}</b>
+                </li>
+                <li>
+                  <span>decisions logged</span>
+                  <b>{DECISIONS.length}</b>
+                </li>
+                <li>
+                  <span>written workflows</span>
+                  <b>{ORG_COUNTS.workflows}</b>
+                </li>
+                <li>
+                  <span>principles held</span>
+                  <b>{ORG_COUNTS.principles}</b>
+                </li>
+                <li>
+                  <span>live MCP grants</span>
+                  <b>{ORG_COUNTS.mcpLive}</b>
+                </li>
               </ul>
+              <button
+                type="button"
+                className="orgc-ledger-more"
+                onClick={() => setMode("evidence")}
+              >
+                the evidence layer →
+              </button>
+            </section>
+
+            <section className="orgc-ledger-panel">
+              <div className="orgc-rail-h">
+                the build · {ROADMAP.filter((p) => p.status === "shipped").length} of{" "}
+                {ROADMAP.length} shipped
+              </div>
+              <ol className="orgc-focus">
+                {ROADMAP.map((p) => (
+                  <li key={p.n}>
+                    <span className="orgc-focus-n">
+                      {String(p.n).padStart(2, "0")}
+                    </span>
+                    <span className="orgc-focus-label">{p.label}</span>
+                    <span className="orgc-focus-status" data-status={p.status}>
+                      {p.status.replace("-", " ")}
+                    </span>
+                  </li>
+                ))}
+              </ol>
             </section>
 
             <section className="orgc-ledger-panel">
@@ -783,28 +780,17 @@ export function OrgChart({
               </div>
             </section>
 
-            <section className="orgc-ledger-panel">
-              <div className="orgc-rail-h">latest decisions</div>
-              <ul className="orgc-ledger-rows">
-                {DECISIONS.map((d) => (
-                  <li key={d.id}>
-                    <b>{d.date}</b>
-                    <span>{d.title}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                className="orgc-ledger-more"
-                onClick={() => setMode("evidence")}
-              >
-                the full record →
-              </button>
-            </section>
-
-            <section className="orgc-ledger-panel orgc-ledger-panel--ink">
-              <div className="orgc-rail-h">the record</div>
-              <p>
+            <section className="orgc-ledger-panel orgc-ledger-panel--cta">
+              <span className="orgc-cta-mark orgc-cta-mark--tl" aria-hidden="true">
+                +
+              </span>
+              <span className="orgc-cta-mark orgc-cta-mark--br" aria-hidden="true">
+                +
+              </span>
+              <p className="orgc-cta-head">
+                Zoom in. See ownership. Verify everything.
+              </p>
+              <p className="orgc-cta-sub">
                 Nothing on this page is invented. Every path, gate, and grant
                 mirrors the source repo.
               </p>
@@ -842,65 +828,20 @@ export function OrgChart({
 function Metric({
   value,
   label,
+  sub,
   accent = false,
 }: {
   value: string;
   label: string;
+  sub: string;
   accent?: boolean;
 }) {
   return (
     <div className={`orgc-metric${accent ? " orgc-metric--accent" : ""}`}>
-      <div className="orgc-metric-v">{value}</div>
       <div className="orgc-metric-l">{label}</div>
+      <div className="orgc-metric-v">{value}</div>
+      <div className="orgc-metric-s">{sub}</div>
     </div>
-  );
-}
-
-/** The persistent inspector's resting state, on wide screens. */
-function InspectorEmpty() {
-  return (
-    <aside className="orgc-dock orgc-dock--empty" aria-label="Inspector">
-      <div className="orgc-panel-h">inspector</div>
-      <p className="orgc-empty-lede">
-        Select a director to read scope, authority, council seats, tool
-        grants, and evidence.
-      </p>
-      <div className="orgc-empty-keys">
-        <span>
-          <span className="atlas-kbd">↑↓←→</span> walk the chart
-        </span>
-        <span>
-          <span className="atlas-kbd">⏎</span> inspect
-        </span>
-        <span>
-          <span className="atlas-kbd">/</span> search
-        </span>
-        <span>
-          <span className="atlas-kbd">esc</span> release
-        </span>
-      </div>
-      <div className="orgc-panel-section">
-        <div className="orgc-panel-h">the apex</div>
-        <div className="orgc-facts">
-          <div>
-            <div className="orgc-fact-label">Founder</div>
-            <div className="orgc-fact-value">{ELT_SNAPSHOT.founderName}</div>
-          </div>
-          <div>
-            <div className="orgc-fact-label">Holds</div>
-            <div className="orgc-fact-value">Every final call</div>
-          </div>
-          <div>
-            <div className="orgc-fact-label">Autonomy above</div>
-            <div className="orgc-fact-value">Nothing. Tier-3 is gated.</div>
-          </div>
-          <div>
-            <div className="orgc-fact-label">Source</div>
-            <div className="orgc-fact-value">signal-directors</div>
-          </div>
-        </div>
-      </div>
-    </aside>
   );
 }
 

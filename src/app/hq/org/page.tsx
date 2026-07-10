@@ -4,6 +4,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { ELT_SNAPSHOT } from "@/lib/hq/elt";
+import { ORG_COUNTS } from "@/features/org/org-intel";
 import { OrgChart, type Mode } from "@/features/org/org-chart";
 import { OrgListView } from "./org-list-view";
 
@@ -27,14 +28,18 @@ const MODES: Mode[] = ["chart", "councils", "tools", "routines", "evidence", "in
 function HeroCopy() {
   return (
     <>
-      <div className="orgc-eyebrow">hq · org</div>
+      <div className="orgc-eyebrow">signal studio hq</div>
       <h1 className="orgc-title">
-        One founder. Seventeen directors. <b>One operating system.</b>
+        <span>One founder.</span>
+        <span>Seventeen directors.</span>
+        <span>
+          One operating system<b className="orgc-title-period">.</b>
+        </span>
       </h1>
       <p className="orgc-strap">Simple by design. Serious underneath.</p>
       <p className="orgc-lede">
-        A working map of how Signal Studio decides, protects quality, and lets
-        one person run the work of a company.
+        A disciplined AI director network organised into eight divisions.
+        Clear ownership, shared information, measurable output.
       </p>
     </>
   );
@@ -93,6 +98,17 @@ export default async function HqOrgPage({
             syncedLabel={synced}
           />
         )}
+
+        <div className="orgc-mantras" aria-hidden="true">
+          <span>signal studio hq</span>
+          <span>simple by design. serious underneath.</span>
+          <span>
+            {ORG_COUNTS.coordinationPaths} documented paths ·{" "}
+            {ORG_COUNTS.founderGates} founder gates
+          </span>
+          <span>ownership is clear. accountability is real.</span>
+          <span>verified. measured. shipped.</span>
+        </div>
 
         <div className="orgc-footer">
           <Link href="/hq">back to hq</Link>

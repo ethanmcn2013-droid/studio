@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-10 · S·123 · tightens · the org console goes flat and reads as a poster
+
+**/hq/org now shows the whole machine in one plane: the founder card fans in the accent to a single band of eight divisions, all seventeen directors and the three in-discovery roles visible at once, with no rail and no standing inspector between the reader and the chart.** The console top carries the weight instead: a stacked three-line headline against six large accent metric cells, a joined segmented mode control with the active mode in full indigo, and an honest marks legend with the layer chips and the synced-from-source line where a lesser page would claim "live". Focusing a director still docks the full dossier beside the chart; the depth moved, it did not leave.
+
+The ledger row is rebuilt to carry evidence rather than repeat it: real counts at a glance, the build roadmap as a numbered list with honest statuses, the operating rhythm, and a dashed verification callout that closes the loop: nothing on the page is invented, and now the page says so in its own drawn language. A mono mantra strip signs the page off.
+
 ## 2026-07-10 · S·122 · tightens · the org deck becomes an operating console
 
 **/hq/org now opens as a working console rather than a page: the headline sits beside a six-cell operating readout, and the chart runs as a three-pane workbench with the map, the layers, and the councils on the left, the drawn canvas in the middle, and a standing inspector on the right.** The left rail is real controls, not decoration. The map is a live schematic of the chart that jumps to any division, the layer rows switch the coordination mesh, the discovery roles, veto authority, and MCP grants on and off in the rendering itself, and the council rows filter the canvas to a council's actual seats. The inspector never blanks: at rest it carries the keyboard and the apex facts, and focusing a director swaps it for the full dossier while the chart stays alive beside it.
