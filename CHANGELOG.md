@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-10 · S·121 · tightens · the org deck becomes a drawn artifact
+
+**/hq/org now opens calm and earns its depth: a hero of four lines, one honest readout, and a chart that is actually drawn, founder to divisions to directors, in measured SVG that re-routes itself at every width.** The stat strip, investor brief card, and tool rail leave the first screen and fold into Investor and Tools modes, so no number appears twice in a view. Focusing a director no longer throws a scrim over the chart; a non-modal dock sits beside it while the coordination paths draw in through the real gutters, corner by rounded corner, and a single dot travels each path in turn. Arrow keys walk the chart, Enter focuses, Esc returns, and `/` searches directors, councils, and tools, jumping to the right mode with the match ringed once.
+
+The truth pass holds the rest. "Live org" gives way to a synced-N-days-ago readout computed at render, Trace-a-path and the investor lens toggle go because they promised more than they did, the three decorative status dots die and a real mcp badge takes their place, and the tool logos move from a runtime CDN to local vendored marks. Mode and focused director live in the URL, printing from Investor mode yields a designed one-page brief, and the whole surface runs on tokens: three weights, one indigo, hairlines, The Arrival staggered inside 0.6 seconds, and one Settle as the founder's period lands.
+
 ## 2026-07-09 · S·120 · ships · the org becomes an operating deck
 
 **/hq/org stops being a static chart and becomes a live operating deck: one Founder, 17 Directors across eight divisions, the standing councils, the full toolchain, and the routines that will run the company once it is live.** Six modes carry it. Chart spreads the Directors across eight divisions with candidate roles flagged in discovery, and the inspector reads real scope, council seats, tool grants, and coordination paths. Councils shows the five standing panels. Tools carries the whole stack with brand logos, our in-house tools, and the ad video stack. Routines names the autonomous runs planned for launch. Evidence and Investor stay grounded in the record.

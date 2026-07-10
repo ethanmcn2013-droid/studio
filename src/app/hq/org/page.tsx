@@ -3,17 +3,17 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
-import { DIRECTORS, ELT_SNAPSHOT } from "@/lib/hq/elt";
+import { ELT_SNAPSHOT } from "@/lib/hq/elt";
 import { ORG_COUNTS } from "@/features/org/org-intel";
-import { OrgChart } from "@/features/org/org-chart";
+import { OrgChart, type Mode } from "@/features/org/org-chart";
 import { OrgListView } from "./org-list-view";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "org command deck, signal hq",
+  title: "Org · Signal Studio",
   description:
-    "The Signal Studio operating org: one Founder, 17 Directors, five standing councils, and a real coordination layer.",
+    "The Signal Studio operating org: one founder, seventeen directors, five standing councils, and a real coordination layer.",
   robots: {
     index: false,
     follow: false,
@@ -21,76 +21,84 @@ export const metadata: Metadata = {
   },
 };
 
+const MODES: Mode[] = ["chart", "councils", "tools", "routines", "evidence", "investor"];
+
+/** The snapshot's age, phrased as honest relative time. Never "live". */
+function syncedLabel(iso: string): string {
+  const then = Date.parse(`${iso}T00:00:00Z`);
+  const days = Math.max(0, Math.floor((Date.now() - then) / 86400000));
+  if (days === 0) return "synced today";
+  if (days === 1) return "synced yesterday";
+  if (days < 60) return `synced ${days} days ago`;
+  const months = Math.round(days / 30);
+  return `synced ${months} months ago`;
+}
+
 /**
- * /hq/org - the standing AI leadership org, as a dark command deck.
+ * /hq/org - the standing AI leadership org.
  *
- * Default is the interactive deck (`src/features/org`) with four modes:
- * Chart, Councils, Evidence, and Investor. `?view=list` keeps the original
- * cluster list as a print / low-JS fallback. Both read `src/lib/hq/elt.ts`
- * (mirrored from signal-directors); the deck's operating depth reads
- * `src/features/org/org-intel.ts` (same source).
+ * Simple on top, serious underneath: the first screen is the founder and the
+ * chart; the depth (councils, tools, routines, evidence, the investor read)
+ * lives behind the mode switch. `?mode=` and `?d=` restore any shared state;
+ * `?view=list` keeps the original cluster list as a print / low-JS fallback.
+ * Data mirrors `src/lib/hq/elt.ts`; operating depth reads
+ * `src/features/org/org-intel.ts` (both mirror signal-directors).
  */
 export default async function HqOrgPage({
   searchParams,
 }: {
-  searchParams: Promise<{ view?: string }>;
+  searchParams: Promise<{ view?: string; mode?: string; d?: string }>;
 }) {
   const cookieStore = await cookies();
   const token = cookieStore.get(HQ_ACCESS_COOKIE)?.value ?? "";
   const valid = token ? await verifyHqToken(token) : false;
   if (!valid) redirect("/hq/access");
 
-  const { view } = await searchParams;
+  const { view, mode, d } = await searchParams;
   const isList = view === "list";
-  const total = DIRECTORS.length;
+  const initialMode = MODES.includes(mode as Mode) ? (mode as Mode) : "chart";
+  const synced = syncedLabel(ELT_SNAPSHOT.generatedAt);
 
   return (
     <main id="main" className="flex flex-1 flex-col">
       <section className="orgc-page">
         <div className="orgc-hero">
-          <div className="orgc-hero-copy">
-            <div className="orgc-eyebrow">hq · org command deck</div>
-            <h1 className="orgc-title">
-              One founder. {total} Directors. <b>One operating system.</b>
-            </h1>
-            <p className="orgc-strap">Simple by design. Serious underneath.</p>
-            <p className="orgc-lede">
-              A living map of how Signal Studio makes decisions, protects quality,
-              shares context, and lets one founder run the work of a company.
-            </p>
-          </div>
-
-          <div className="orgc-brief" aria-label="Investor overview">
-            <div className="orgc-brief-top">
-              <span>investor read</span>
-              <span>live org · {ELT_SNAPSHOT.generatedAt}</span>
-            </div>
-            <div className="orgc-brief-line">
-              {ELT_SNAPSHOT.founderName} keeps final authority. Directors hold
-              named scope, cadence, autonomy, and evidence links.
-            </div>
-            <div className="orgc-brief-grid">
-              <MiniFact value={String(ORG_COUNTS.councils)} label="standing councils" />
-              <MiniFact value={String(ORG_COUNTS.autonomyLayers)} label="autonomy layers" />
-              <MiniFact value={String(ORG_COUNTS.founderGates)} label="founder gates" />
-              <MiniFact value={String(ORG_COUNTS.coordinationPaths)} label="coordination paths" />
-              <MiniFact value={String(ORG_COUNTS.mcpLive)} label="mcp live" />
-              <MiniFact value={String(ORG_COUNTS.channels)} label="slack channels" />
-            </div>
-          </div>
+          <div className="orgc-eyebrow">hq · org</div>
+          <h1 className="orgc-title">
+            One founder. Seventeen directors. <b>One operating system.</b>
+          </h1>
+          <p className="orgc-lede">
+            A working map of how Signal Studio decides, protects quality, and
+            lets one person run the work of a company.
+          </p>
+          <p className="orgc-readout">
+            {ORG_COUNTS.divisions} divisions · {ORG_COUNTS.councils} councils ·{" "}
+            {ORG_COUNTS.coordinationPaths} coordination paths ·{" "}
+            <span title={`snapshot ${ELT_SNAPSHOT.generatedAt} · ${ELT_SNAPSHOT.source}`}>
+              {synced}
+            </span>
+          </p>
         </div>
 
-        {isList ? <OrgListView /> : <OrgChart />}
+        {isList ? (
+          <OrgListView />
+        ) : (
+          <OrgChart
+            initialMode={initialMode}
+            initialDirectorId={d ?? null}
+            syncedLabel={synced}
+          />
+        )}
 
         <div className="orgc-footer">
           <Link href="/hq">back to hq</Link>
-          <span className="mx-3 opacity-50">·</span>
+          <span className="orgc-footer-sep">·</span>
           <Link href="/hq/atlas-map">atlas map</Link>
-          <span className="mx-3 opacity-50">·</span>
+          <span className="orgc-footer-sep">·</span>
           <Link href={isList ? "/hq/org" : "/hq/org?view=list"}>
             {isList ? "command deck" : "list view"}
           </Link>
-          <span className="mx-3 opacity-50">·</span>
+          <span className="orgc-footer-sep">·</span>
           <span>
             source{" "}
             <a
@@ -104,14 +112,5 @@ export default async function HqOrgPage({
         </div>
       </section>
     </main>
-  );
-}
-
-function MiniFact({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="orgc-mini-fact">
-      <div className="orgc-mini-value">{value}</div>
-      <div className="orgc-mini-label">{label}</div>
-    </div>
   );
 }

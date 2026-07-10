@@ -729,19 +729,3 @@ export const ORG_COUNTS = {
   veto: vetoCount,
   productLeads: productLeadCount,
 } as const;
-
-export type DeckStat = { value: string; label: string; accent?: boolean };
-
-/** The command-deck readout strip. Legible left to right, all sourced. */
-export function deckStats(): DeckStat[] {
-  return [
-    { value: `1 + ${ORG_COUNTS.directors}`, label: "founder + directors", accent: true },
-    { value: String(ORG_COUNTS.divisions), label: "divisions" },
-    { value: String(ORG_COUNTS.councils), label: "standing councils" },
-    { value: String(ORG_COUNTS.coordinationPaths), label: "coordination paths" },
-    { value: String(ORG_COUNTS.tools), label: "tools + platforms" },
-    { value: String(ORG_COUNTS.mcpLive), label: "mcp live" },
-    { value: String(ORG_COUNTS.routines), label: "routines" },
-    { value: String(ORG_COUNTS.discovery), label: "in discovery" },
-  ];
-}

@@ -1,27 +1,31 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { forwardRef, useEffect, useMemo, useRef } from "react";
 import { formatCadence, getDirector, type Director } from "@/lib/hq/elt";
 import { roleTitle, autonomyLabel } from "./org-utils";
 import { OrgAvatar } from "./org-avatars";
 import { UNIVERSAL_TOOLS, coordinationPartners, mcpGrants } from "./org-coordination";
 import { councilsForDirector, functionalTools } from "./org-intel";
 
-export function OrgDetailPanel({
-  director,
-  clusterLabel,
-  peers,
-  founderName,
-  onNavigate,
-  onClose,
-}: {
-  director: Director;
-  clusterLabel: string;
-  peers: Director[];
-  founderName: string;
-  onNavigate: (id: string) => void;
-  onClose: () => void;
-}) {
+/**
+ * The focus dock. Non-modal on purpose: it sits beside the chart so the
+ * coordination edges and peer highlights stay visible and alive while you
+ * read. Esc or the close control returns focus to the node that opened it.
+ */
+export const OrgDetailPanel = forwardRef<
+  HTMLElement,
+  {
+    director: Director;
+    clusterLabel: string;
+    peers: Director[];
+    founderName: string;
+    onNavigate: (id: string) => void;
+    onClose: () => void;
+  }
+>(function OrgDetailPanel(
+  { director, clusterLabel, peers, founderName, onNavigate, onClose },
+  ref,
+) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const related = useMemo(
     () =>
@@ -34,27 +38,23 @@ export function OrgDetailPanel({
   const functional = functionalTools(director.id);
 
   useEffect(() => {
-    headingRef.current?.focus();
+    headingRef.current?.focus({ preventScroll: true });
   }, [director.id]);
 
   return (
-    <>
+    <aside
+      ref={ref}
+      className="orgc-dock"
+      aria-label={`Detail: ${roleTitle(director.name)}`}
+    >
       <button
         type="button"
-        className="orgc-drawer-scrim"
-        aria-label="Close detail"
-        tabIndex={-1}
+        className="orgc-dock-close"
         onClick={onClose}
-      />
-      <aside
-        className="orgc-drawer"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="orgc-drawer-title"
+        aria-label="Close detail"
       >
-        <button type="button" className="orgc-drawer-close" onClick={onClose} aria-label="Close detail">
-          ×
-        </button>
+        ×
+      </button>
 
       <div className="orgc-panel-hero">
         <span className="orgc-avatar orgc-avatar--panel" aria-hidden="true">
@@ -62,23 +62,13 @@ export function OrgDetailPanel({
         </span>
         <div>
           <div className="orgc-panel-type">{clusterLabel} · Director</div>
-          <h2 id="orgc-drawer-title" className="orgc-panel-name" tabIndex={-1} ref={headingRef}>
+          <h2 className="orgc-panel-name" tabIndex={-1} ref={headingRef}>
             {roleTitle(director.name)}
           </h2>
           <div className="orgc-panel-subline">
-            {director.shortName} · {director.persona} ·{" "}
-            {director.autonomyLayer === 3 ? "Layer 3" : "Layer 2"}
+            {director.shortName} · {director.persona}
           </div>
         </div>
-      </div>
-
-      <div className="orgc-investor-card">
-        <div className="orgc-investor-kicker">the read</div>
-        <p>
-          {director.shortName} owns a defined surface, reports to {founderName},
-          and works through a repeatable cadence. Complexity stays visible without
-          the founder handing off final control.
-        </p>
       </div>
 
       <p className="orgc-panel-desc">{director.oneLine}</p>
@@ -91,23 +81,6 @@ export function OrgDetailPanel({
           {director.product ? <Fact label="Product" value={director.product} /> : null}
         </div>
       </Section>
-
-      {councils.length ? (
-        <Section title={`Councils · ${councils.length}`}>
-          <div className="orgc-chips">
-            {councils.map(({ council, isChair }) => (
-              <span
-                key={council.id}
-                className="orgc-chip"
-                data-chair={isChair ? "true" : undefined}
-              >
-                {council.label}
-                {isChair ? " · chair" : ""}
-              </span>
-            ))}
-          </div>
-        </Section>
-      ) : null}
 
       {director.owns.length ? (
         <Section title="Owns">
@@ -163,6 +136,23 @@ export function OrgDetailPanel({
         </Section>
       ) : null}
 
+      {councils.length ? (
+        <Section title={`Councils · ${councils.length}`}>
+          <div className="orgc-chips">
+            {councils.map(({ council, isChair }) => (
+              <span
+                key={council.id}
+                className="orgc-chip orgc-chip--static"
+                data-chair={isChair ? "true" : undefined}
+              >
+                {council.label}
+                {isChair ? " · chair" : ""}
+              </span>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
       <Section title="Tools + grants">
         <ul className="orgc-plist">
           {UNIVERSAL_TOOLS.map((t) => (
@@ -187,16 +177,15 @@ export function OrgDetailPanel({
             <span>Full detail page</span>
             <span className="orgc-link-hint">internal</span>
           </a>
-          <div className="orgc-link" style={{ cursor: "default" }}>
+          <div className="orgc-link orgc-link--static">
             <span>{director.slackChannel}</span>
             <span className="orgc-link-hint">slack</span>
           </div>
         </div>
       </Section>
-      </aside>
-    </>
+    </aside>
   );
-}
+});
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

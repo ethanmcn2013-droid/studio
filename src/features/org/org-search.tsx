@@ -1,27 +1,38 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Director } from "@/lib/hq/elt";
-import { roleTitle } from "./org-utils";
 
-function score(hayLabel: string, hayAll: string, q: string): number {
+export type SearchEntry = {
+  kind: "director" | "council" | "tool";
+  id: string;
+  label: string;
+  sub: string;
+  /** Everything matchable, beyond the label. */
+  hay: string;
+};
+
+function score(entry: SearchEntry, q: string): number {
   if (!q) return 1;
-  const label = hayLabel.toLowerCase();
+  const label = entry.label.toLowerCase();
   if (label.startsWith(q)) return 3;
-  if (hayAll.toLowerCase().includes(q)) return 2;
+  if (entry.hay.toLowerCase().includes(q)) return 2;
   let i = 0;
   for (const ch of label) if (ch === q[i]) i++;
   return i === q.length ? 1 : 0;
 }
 
-/** `/`-key search over the Directors. Enter focuses the match. */
+/**
+ * `/`-key search over directors, councils, and tools. Picking a result jumps
+ * to the right mode: directors focus in the chart, councils and tools open
+ * their mode and highlight the card.
+ */
 export function OrgSearch({
-  directors,
+  entries,
   onPick,
   onClose,
 }: {
-  directors: Director[];
-  onPick: (id: string) => void;
+  entries: SearchEntry[];
+  onPick: (entry: SearchEntry) => void;
   onClose: () => void;
 }) {
   const [query, setQuery] = useState("");
@@ -30,15 +41,13 @@ export function OrgSearch({
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return directors
-      .map((d) => ({
-        d,
-        s: score(roleTitle(d.name), `${d.name} ${d.persona} ${d.shortName} ${d.owns.join(" ")}`, q),
-      }))
+    return entries
+      .map((e) => ({ e, s: score(e, q) }))
       .filter((r) => r.s > 0)
       .sort((a, b) => b.s - a.s)
-      .map((r) => r.d);
-  }, [directors, query]);
+      .map((r) => r.e)
+      .slice(0, 12);
+  }, [entries, query]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -47,8 +56,8 @@ export function OrgSearch({
     setActive(0);
   }, [query]);
 
-  function pick(d: Director | undefined) {
-    if (d) onPick(d.id);
+  function pick(e: SearchEntry | undefined) {
+    if (e) onPick(e);
   }
 
   function onKeyDown(e: React.KeyboardEvent) {
@@ -79,7 +88,7 @@ export function OrgSearch({
           ref={inputRef}
           className="atlas-search-input"
           type="text"
-          placeholder="Search directors, personas, portfolios"
+          placeholder="Search directors, councils, tools"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={onKeyDown}
@@ -88,17 +97,17 @@ export function OrgSearch({
         />
         {results.length ? (
           <ul className="atlas-search-list" role="listbox">
-            {results.map((d, i) => (
+            {results.map((entry, i) => (
               <li
-                key={d.id}
+                key={`${entry.kind}-${entry.id}`}
                 role="option"
                 aria-selected={i === active}
                 className="atlas-search-item"
                 onMouseEnter={() => setActive(i)}
-                onClick={() => pick(d)}
+                onClick={() => pick(entry)}
               >
-                <span>{roleTitle(d.name)}</span>
-                <span className="atlas-search-item-kind">{d.shortName}</span>
+                <span>{entry.label}</span>
+                <span className="atlas-search-item-kind">{entry.sub}</span>
               </li>
             ))}
           </ul>
@@ -111,7 +120,7 @@ export function OrgSearch({
             <span className="atlas-kbd">↓</span> move
           </span>
           <span>
-            <span className="atlas-kbd">⏎</span> focus
+            <span className="atlas-kbd">⏎</span> open
           </span>
           <span>
             <span className="atlas-kbd">esc</span> close

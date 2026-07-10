@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -10,15 +11,11 @@ import {
 import {
   DIRECTORS,
   ELT_SNAPSHOT,
-  formatCadence,
   getDirector,
   type Director,
 } from "@/lib/hq/elt";
 import { roleTitle } from "./org-utils";
-import {
-  COORDINATION_EDGE_COUNT,
-  coordinationPartners,
-} from "./org-coordination";
+import { coordinationPartners, mcpGrants } from "./org-coordination";
 import {
   AUTONOMY_LADDER,
   CHART_COLUMNS,
@@ -35,7 +32,6 @@ import {
   TOOLS_COUNT,
   WORKFLOWS,
   columnPeers,
-  deckStats,
   directorName,
   getDiscovery,
   isDiscovery,
@@ -43,13 +39,14 @@ import {
   type DiscoveryRole,
 } from "./org-intel";
 import { CADENCES, ROADMAP, OPERATING_TIMEZONE, roadmapDotClass } from "./org-cadence";
+import { buildTree, routeEdges, type Box, type EdgeRoute } from "./org-geometry";
 import { OrgAvatar } from "./org-avatars";
 import { OrgDetailPanel } from "./org-detail-panel";
-import { OrgSearch } from "./org-search";
+import { OrgSearch, type SearchEntry } from "./org-search";
+import { OrgPrintBrief } from "./org-print";
+import { TOOL_MARK_PATHS } from "./org-tool-marks";
 
-type Edge = { id: string; x1: number; y1: number; x2: number; y2: number };
-type ColumnFilter = "all" | string;
-type Mode = "chart" | "councils" | "tools" | "routines" | "evidence" | "investor";
+export type Mode = "chart" | "councils" | "tools" | "routines" | "evidence" | "investor";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "chart", label: "Chart" },
@@ -60,6 +57,9 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "investor", label: "Investor" },
 ];
 
+const RUNNER_MS = 2400;
+const RUNNER_REST_MS = 700;
+
 function columnOf(id: string): string | undefined {
   return CHART_COLUMNS.find((c) => c.members.includes(id))?.id;
 }
@@ -68,87 +68,154 @@ function columnLabelOf(id: string): string {
   return CHART_COLUMNS.find((c) => c.members.includes(id))?.label ?? "";
 }
 
-export function OrgChart() {
-  const [mode, setMode] = useState<Mode>("chart");
-  const [focusedId, setFocusedId] = useState<string | null>(null);
+function toolAnchor(name: string): string {
+  return `orgc-tool-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+}
+
+function usePrefersReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return reduced;
+}
+
+export function OrgChart({
+  initialMode = "chart",
+  initialDirectorId = null,
+  syncedLabel,
+}: {
+  initialMode?: Mode;
+  initialDirectorId?: string | null;
+  syncedLabel: string;
+}) {
+  const [mode, setMode] = useState<Mode>(initialMode);
+  const [focusedId, setFocusedId] = useState<string | null>(initialDirectorId);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [edges, setEdges] = useState<Edge[]>([]);
-  const [investorLens, setInvestorLens] = useState(true);
-  const [selectedColumn, setSelectedColumn] = useState<ColumnFilter>("all");
+  const [hit, setHit] = useState<{ kind: "council" | "tool"; anchor: string } | null>(null);
+  const [tree, setTree] = useState<string[]>([]);
+  const [edges, setEdges] = useState<EdgeRoute[]>([]);
+  const [runnerIdx, setRunnerIdx] = useState(0);
+  const reducedMotion = usePrefersReducedMotion();
 
-  const stageRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const founderRef = useRef<HTMLDivElement>(null);
+  const headRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const colRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const nodeRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const nodeBoxesRef = useRef<Record<string, Box>>({});
+  const panelRef = useRef<HTMLElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const arrivedRef = useRef(false);
+  const arriveState = arrivedRef.current ? "done" : "run";
 
-  const visibleColumns = useMemo(
-    () =>
-      selectedColumn === "all"
-        ? CHART_COLUMNS
-        : CHART_COLUMNS.filter((c) => c.id === selectedColumn),
-    [selectedColumn],
-  );
-  const stats = useMemo(() => deckStats(), []);
-
-  const focused = focusedId ? getDirector(focusedId) ?? null : null;
-  const peerIds = useMemo(
-    () => new Set(focused ? columnPeers(focused.id) : []),
-    [focused],
-  );
+  const focused = focusedId ? (getDirector(focusedId) ?? null) : null;
   const coordIds = useMemo(
     () => (focusedId ? coordinationPartners(focusedId) : []),
     [focusedId],
   );
+  const peerIds = useMemo(
+    () => new Set(focused ? columnPeers(focused.id) : []),
+    [focused],
+  );
   const coordSet = useMemo(() => new Set(coordIds), [coordIds]);
 
-  const selectedColumnLabel =
-    selectedColumn === "all"
-      ? "all divisions"
-      : CHART_COLUMNS.find((c) => c.id === selectedColumn)?.label ?? "division";
+  // ── URL state: /hq/org?mode=&d= stays shareable, without navigations ──────
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (mode !== "chart") params.set("mode", mode);
+    if (focusedId) params.set("d", focusedId);
+    const qs = params.toString();
+    window.history.replaceState(null, "", qs ? `/hq/org?${qs}` : "/hq/org");
+  }, [mode, focusedId]);
 
-  const visibleDirectorCount = visibleColumns.reduce(
-    (sum, c) => sum + c.members.filter((m) => !isDiscovery(m)).length,
-    0,
-  );
+  // ── Measure the canvas; rebuild the tree and the focused routes ───────────
+  const measure = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const cRect = canvas.getBoundingClientRect();
+    if (!cRect.width) return;
+    const rel = (r: DOMRect): Box => ({
+      x: r.left - cRect.left,
+      y: r.top - cRect.top,
+      w: r.width,
+      h: r.height,
+    });
 
-  // Measure the coordination edges (focused node -> partners) in stage-local px.
-  useLayoutEffect(() => {
-    if (!focusedId || mode !== "chart") {
+    const founderEl = founderRef.current;
+    const heads = CHART_COLUMNS.map((c) => headRefs.current[c.id])
+      .filter((el): el is HTMLDivElement => Boolean(el))
+      .map((el) => rel(el.getBoundingClientRect()));
+    if (founderEl && heads.length === CHART_COLUMNS.length) {
+      setTree(buildTree(rel(founderEl.getBoundingClientRect()), heads));
+    } else {
+      setTree([]);
+    }
+
+    const nodes: Record<string, Box> = {};
+    for (const [id, el] of Object.entries(nodeRefs.current)) {
+      if (el) nodes[id] = rel(el.getBoundingClientRect());
+    }
+    nodeBoxesRef.current = nodes;
+
+    if (focusedId && coordIds.length) {
+      const cols = CHART_COLUMNS.map((c) => ({
+        id: c.id,
+        el: colRefs.current[c.id],
+      }))
+        .filter((c): c is { id: string; el: HTMLDivElement } => Boolean(c.el))
+        .map((c) => ({ id: c.id, box: rel(c.el.getBoundingClientRect()) }));
+      setEdges(
+        routeEdges({
+          focusedId,
+          partnerIds: coordIds,
+          nodes,
+          cols,
+          colOf: columnOf,
+        }),
+      );
+    } else {
       setEdges([]);
-      return;
     }
-    function measure() {
-      const stage = stageRef.current;
-      const from = focusedId ? nodeRefs.current[focusedId] : null;
-      if (!stage || !from) {
-        setEdges([]);
-        return;
-      }
-      const s = stage.getBoundingClientRect();
-      const f = from.getBoundingClientRect();
-      const fx = f.left - s.left + f.width / 2;
-      const fy = f.top - s.top + f.height / 2;
-      const next: Edge[] = coordIds
-        .map((pid): Edge | null => {
-          const el = nodeRefs.current[pid];
-          if (!el || el.offsetParent === null) return null;
-          const r = el.getBoundingClientRect();
-          return {
-            id: pid,
-            x1: fx,
-            y1: fy,
-            x2: r.left - s.left + r.width / 2,
-            y2: r.top - s.top + r.height / 2,
-          };
-        })
-        .filter((e): e is Edge => e !== null);
-      setEdges(next);
-    }
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [focusedId, coordIds, selectedColumn, mode]);
+  }, [focusedId, coordIds]);
 
-  // Global keyboard: `/` opens search, Esc clears focus.
+  useLayoutEffect(() => {
+    if (mode !== "chart") return;
+    measure();
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(canvas);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [mode, measure]);
+
+  useEffect(() => {
+    if (mode === "chart") arrivedRef.current = true;
+  }, [mode]);
+
+  // ── The runner: one dot travels the focused paths, one leg at a time ──────
+  useEffect(() => {
+    setRunnerIdx(0);
+  }, [focusedId]);
+
+  useEffect(() => {
+    if (reducedMotion || edges.length < 2) return;
+    const t = window.setTimeout(
+      () => setRunnerIdx((i) => (i + 1) % edges.length),
+      RUNNER_MS + RUNNER_REST_MS,
+    );
+    return () => window.clearTimeout(t);
+  }, [edges, runnerIdx, reducedMotion]);
+
+  // ── Keyboard: `/` search, Esc closes focus, arrows walk the chart ─────────
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (searchOpen) return;
@@ -157,9 +224,7 @@ export function OrgChart() {
         !!t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
       if (e.key === "Escape" && focusedId) {
         e.preventDefault();
-        setFocusedId(null);
-        const back = returnFocusRef.current;
-        if (back) requestAnimationFrame(() => back.focus());
+        closeFocus();
         return;
       }
       if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -170,49 +235,119 @@ export function OrgChart() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchOpen, focusedId]);
 
-  function nodeStateClass(d: Director): string {
-    const classes: string[] = [];
-    if (selectedColumn !== "all" && columnOf(d.id) !== selectedColumn) classes.push("is-filtered");
-    if (focused) {
-      if (d.id === focused.id) classes.push("is-active");
-      else if (peerIds.has(d.id) || coordSet.has(d.id)) classes.push("is-peer");
-      else classes.push("is-dim");
-    }
-    return classes.join(" ");
-  }
-
-  function chooseColumn(next: ColumnFilter) {
-    setSelectedColumn(next);
-    if (next !== "all" && focused && columnOf(focused.id) !== next) {
-      setFocusedId(null);
-    }
-  }
-
-  function tracePath() {
-    if (focusedId) {
-      setFocusedId(null);
-      return;
-    }
-    setMode("chart");
-    setSelectedColumn("all");
-    setFocusedId("engineering-systems-architecture");
+  function onCanvasKeyDown(e: React.KeyboardEvent) {
+    const dirs: Record<string, [number, number]> = {
+      ArrowUp: [0, -1],
+      ArrowDown: [0, 1],
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+    };
+    const dir = dirs[e.key];
+    if (!dir) return;
+    const target = e.target as HTMLElement;
+    const id = target.getAttribute("data-node-id");
+    if (!id) return;
+    e.preventDefault();
+    const next = nearestNode(id, dir, nodeBoxesRef.current);
+    if (next) nodeRefs.current[next]?.focus();
   }
 
   function openDirector(id: string) {
     returnFocusRef.current = (document.activeElement as HTMLElement) ?? null;
+    setMode("chart");
     setFocusedId(id);
   }
 
-  function closeDrawer() {
+  function closeFocus() {
     setFocusedId(null);
-    const back = returnFocusRef.current;
-    if (back) requestAnimationFrame(() => back.focus());
+    // Synchronous, so a `/` pressed right after Esc still lands in search.
+    returnFocusRef.current?.focus();
+  }
+
+  // Dock the panel into view on narrow screens, where it sits below the chart.
+  useEffect(() => {
+    if (!focusedId || mode !== "chart") return;
+    if (window.innerWidth >= 1180) return;
+    const t = window.setTimeout(() => {
+      panelRef.current?.scrollIntoView({
+        block: "nearest",
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+    }, 60);
+    return () => window.clearTimeout(t);
+  }, [focusedId, mode, reducedMotion]);
+
+  // ── Search: directors, councils, and tools, jumping to the right mode ─────
+  const searchEntries = useMemo<SearchEntry[]>(() => {
+    const entries: SearchEntry[] = DIRECTORS.map((d) => ({
+      kind: "director",
+      id: d.id,
+      label: roleTitle(d.name),
+      sub: d.shortName,
+      hay: `${d.name} ${d.persona} ${d.shortName} ${d.owns.join(" ")}`,
+    }));
+    for (const c of COUNCILS) {
+      entries.push({
+        kind: "council",
+        id: c.id,
+        label: c.label,
+        sub: `council · ${c.cadence.toLowerCase()}`,
+        hay: `${c.label} ${c.channel} ${c.purpose}`,
+      });
+    }
+    for (const g of TOOLS) {
+      for (const it of g.items) {
+        entries.push({
+          kind: "tool",
+          id: it.name,
+          label: it.name,
+          sub: `tool · ${g.category.toLowerCase()}`,
+          hay: `${it.name} ${it.note} ${g.category}`,
+        });
+      }
+    }
+    return entries;
+  }, []);
+
+  function onSearchPick(entry: SearchEntry) {
+    setSearchOpen(false);
+    if (entry.kind === "director") {
+      openDirector(entry.id);
+      return;
+    }
+    const anchor =
+      entry.kind === "council" ? `orgc-council-${entry.id}` : toolAnchor(entry.id);
+    setMode(entry.kind === "council" ? "councils" : "tools");
+    setHit({ kind: entry.kind, anchor });
+  }
+
+  useEffect(() => {
+    if (!hit) return;
+    const raf = requestAnimationFrame(() => {
+      document.getElementById(hit.anchor)?.scrollIntoView({
+        block: "center",
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+    });
+    const t = window.setTimeout(() => setHit(null), 2000);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(t);
+    };
+  }, [hit, reducedMotion]);
+
+  function nodeStateClass(d: Director): string {
+    if (!focused) return "";
+    if (d.id === focused.id) return "is-active";
+    if (peerIds.has(d.id) || coordSet.has(d.id)) return "is-peer";
+    return "is-dim";
   }
 
   return (
-    <div className="orgc" data-investor={investorLens ? "true" : "false"}>
+    <div className="orgc">
       <div className="orgc-commandbar" aria-label="Deck controls">
         <div className="orgc-modes" role="group" aria-label="View mode">
           {MODES.map((m) => (
@@ -237,144 +372,84 @@ export function OrgChart() {
         </button>
 
         <div className="orgc-command-actions">
-          {mode === "chart" ? (
-            <button
-              type="button"
-              className="orgc-mode-toggle"
-              aria-pressed={investorLens}
-              onClick={() => setInvestorLens((v) => !v)}
-            >
-              <span className="orgc-switch-dot" aria-hidden="true" />
-              Investor lens
-            </button>
-          ) : null}
-          <button type="button" className="orgc-command-btn" onClick={tracePath}>
-            {focusedId ? "Clear focus" : "Trace a path"}
-          </button>
           <a className="orgc-command-btn" href="/hq/atlas-map">
             Atlas map
           </a>
         </div>
       </div>
 
-      <div className="orgc-stats" aria-label="Operating readout">
-        {stats.map((s) => (
-          <div key={s.label} className={`orgc-stat${s.accent ? " orgc-stat--accent" : ""}`}>
-            <div className="orgc-stat-value">{s.value}</div>
-            <div className="orgc-stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {mode === "chart" ? (
-        <>
-          <div className="orgc-toolrail" aria-label="Platform and tooling foundation">
-            <span className="orgc-toolrail-label">runs on</span>
-            {["GitHub", "Vercel", "Next.js", "TypeScript", "Slack", "Linear", "Sentry", "Claude Code"].map(
-              (label) => (
-                <span key={label} className="orgc-tool-chip">
-                  {label}
-                </span>
-              ),
-            )}
-            <span className="orgc-tool-chip" data-live="true">
-              Google Calendar · MCP
-            </span>
-            <button
-              type="button"
-              className="orgc-tool-more"
-              onClick={() => setMode("tools")}
+      <div className="orgc-workbench" data-focused={focused && mode === "chart" ? "true" : "false"}>
+        <div className="orgc-stage" data-mode={mode}>
+          {mode === "chart" ? (
+            <div
+              className="orgc-canvas"
+              data-arrive={arriveState}
+              ref={canvasRef}
+              onKeyDown={onCanvasKeyDown}
+              onClick={(e) => {
+                if (e.target === e.currentTarget && focusedId) closeFocus();
+              }}
             >
-              all {TOOLS_COUNT} tools →
-            </button>
-          </div>
+              <svg className="orgc-overlay" aria-hidden="true">
+                <g className="orgc-tree">
+                  {tree.map((d, i) => (
+                    <path key={i} d={d} pathLength={1} />
+                  ))}
+                </g>
+                {edges.map((e) => (
+                  <g key={e.id} className="orgc-route">
+                    <path className="orgc-edge" d={e.d} pathLength={1} />
+                    <circle className="orgc-edge-dot" cx={e.end[0]} cy={e.end[1]} r="2.6" />
+                  </g>
+                ))}
+                {!reducedMotion && edges[runnerIdx] ? (
+                  <circle
+                    key={`${focusedId}-${runnerIdx}-${edges.length}`}
+                    className="orgc-runner"
+                    r="3.5"
+                  >
+                    <animateMotion
+                      dur={`${RUNNER_MS}ms`}
+                      fill="freeze"
+                      path={edges[runnerIdx].d}
+                      calcMode="spline"
+                      keyTimes="0;1"
+                      keySplines="0.23 1 0.32 1"
+                    />
+                  </circle>
+                ) : null}
+              </svg>
 
-          <div className="orgc-filterbar" role="group" aria-label="Division filter">
-            <button
-              type="button"
-              onClick={() => chooseColumn("all")}
-              aria-pressed={selectedColumn === "all"}
-            >
-              All divisions
-            </button>
-            {CHART_COLUMNS.map((c) => (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => chooseColumn(c.id)}
-                aria-pressed={selectedColumn === c.id}
-              >
-                {c.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="orgc-legend-row">
-            <div className="orgc-legend" aria-label="Legend">
-              <span className="orgc-legend-item">
-                <span className="orgc-legend-badge">L2</span> recommend
-              </span>
-              <span className="orgc-legend-item">
-                <span className="orgc-legend-badge">L3</span> decide, then log
-              </span>
-              <span className="orgc-legend-item">
-                <span className="orgc-legend-badge">veto</span> stop authority
-              </span>
-              <span className="orgc-legend-item">
-                <span className="orgc-legend-dot--discovery" aria-hidden="true" /> in discovery
-              </span>
-              <span className="orgc-legend-item">
-                <span className="orgc-legend-swatch" aria-hidden="true" /> coordination path
-              </span>
-            </div>
-            <div className="orgc-live-note">
-              {visibleDirectorCount} of {DIRECTORS.length} directors · {selectedColumnLabel}
-            </div>
-          </div>
-        </>
-      ) : null}
-
-      <div className="orgc-stage" data-mode={mode} ref={stageRef}>
-        {mode === "chart" && edges.length ? (
-          <svg className="orgc-overlay" aria-hidden="true">
-            {edges.map((e) => (
-              <g key={e.id}>
-                <line className="orgc-edge" x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} />
-                <circle className="orgc-edge-dot" cx={e.x2} cy={e.y2} r="2.6" />
-              </g>
-            ))}
-          </svg>
-        ) : null}
-
-        {mode === "chart" ? (
-          <div
-            className="orgc-canvas"
-            onClick={(e) => {
-              if (e.target === e.currentTarget && focusedId) setFocusedId(null);
-            }}
-          >
               <div className="orgc-apex">
-                <div className="orgc-apex-card">
-                  <div className="orgc-apex-eyebrow">founder and final call</div>
-                  <div className="orgc-apex-name">{ELT_SNAPSHOT.founderName}</div>
-                  <div className="orgc-apex-role">{ELT_SNAPSHOT.founderRole}</div>
-                  <div className="orgc-apex-meta">vision · strategy · allocation</div>
+                <div className="orgc-apex-card" ref={founderRef}>
+                  <div className="orgc-apex-eyebrow">the final call</div>
+                  <div className="orgc-apex-name">
+                    {ELT_SNAPSHOT.founderName}
+                    <span className="orgc-apex-period" aria-hidden="true" />
+                  </div>
+                  <div className="orgc-apex-role">vision · strategy · allocation</div>
                 </div>
-                <div className="orgc-spine" aria-hidden="true" />
-                <div className="orgc-band-label">
-                  {ORG_COUNTS.divisions} divisions · {ORG_COUNTS.directors} directors
-                </div>
-                <div className="orgc-rail" aria-hidden="true" />
               </div>
 
               <div className="orgc-columns">
-                {visibleColumns.map((col) => {
+                {CHART_COLUMNS.map((col) => {
                   const realCount = col.members.filter((m) => !isDiscovery(m)).length;
                   return (
-                    <div key={col.id} className="orgc-col">
-                      <div className="orgc-col-stub" aria-hidden="true" />
-                      <div className="orgc-col-head">
-                        <div>
+                    <div
+                      key={col.id}
+                      className="orgc-col"
+                      data-col={col.id}
+                      ref={(el) => {
+                        colRefs.current[col.id] = el;
+                      }}
+                    >
+                      <div
+                        className="orgc-col-head"
+                        ref={(el) => {
+                          headRefs.current[col.id] = el;
+                        }}
+                      >
+                        <div className="orgc-col-titles">
                           <div className="orgc-col-title">{col.label}</div>
                           <div className="orgc-col-subtitle">{col.subtitle}</div>
                         </div>
@@ -397,7 +472,6 @@ export function OrgChart() {
                               <OrgNode
                                 director={d}
                                 index={DIRECTORS.findIndex((item) => item.id === mid) + 1}
-                                investorLens={investorLens}
                                 stateClass={nodeStateClass(d)}
                                 onFocus={() => openDirector(d.id)}
                                 registerRef={(el) => {
@@ -413,57 +487,72 @@ export function OrgChart() {
                   );
                 })}
               </div>
-
-              <div className="orgc-investor-read">
-                <div>
-                  <div className="orgc-investor-kicker">the read</div>
-                  <p>
-                    Ownership is explicit, authority is bounded, and the company
-                    runs a standing system for quality, cadence, and escalation.
-                    One founder keeps every final call.
-                  </p>
-                </div>
-                <div className="orgc-investor-metrics" aria-label="Operating proof">
-                  <MiniMetric value="1" label="final call" />
-                  <MiniMetric value={String(DIRECTORS.length)} label="directors" />
-                  <MiniMetric value={String(COORDINATION_EDGE_COUNT)} label="paths" />
-                </div>
-              </div>
             </div>
+          ) : null}
+
+          {mode === "councils" ? <CouncilsMode onOpen={openDirector} hit={hit} /> : null}
+          {mode === "tools" ? <ToolsMode hit={hit} /> : null}
+          {mode === "routines" ? <RoutinesMode onOpen={openDirector} /> : null}
+          {mode === "evidence" ? (
+            <EvidenceMode onOpen={openDirector} syncedLabel={syncedLabel} />
+          ) : null}
+          {mode === "investor" ? <InvestorMode syncedLabel={syncedLabel} /> : null}
+        </div>
+
+        {focused && mode === "chart" ? (
+          <OrgDetailPanel
+            ref={panelRef}
+            director={focused}
+            clusterLabel={columnLabelOf(focused.id)}
+            peers={columnPeers(focused.id)
+              .map((id) => getDirector(id))
+              .filter((d): d is Director => Boolean(d))}
+            founderName={ELT_SNAPSHOT.founderName}
+            onNavigate={openDirector}
+            onClose={closeFocus}
+          />
         ) : null}
-
-        {mode === "councils" ? <CouncilsMode onOpen={openDirector} /> : null}
-        {mode === "tools" ? <ToolsMode /> : null}
-        {mode === "routines" ? <RoutinesMode /> : null}
-        {mode === "evidence" ? <EvidenceMode /> : null}
-        {mode === "investor" ? <InvestorMode /> : null}
       </div>
-
-      {focused ? (
-        <OrgDetailPanel
-          director={focused}
-          clusterLabel={columnLabelOf(focused.id)}
-          peers={columnPeers(focused.id)
-            .map((id) => getDirector(id))
-            .filter((d): d is Director => Boolean(d))}
-          founderName={ELT_SNAPSHOT.founderName}
-          onNavigate={setFocusedId}
-          onClose={closeDrawer}
-        />
-      ) : null}
 
       {searchOpen ? (
         <OrgSearch
-          directors={DIRECTORS}
-          onPick={(id) => {
-            setFocusedId(id);
-            setSearchOpen(false);
-          }}
+          entries={searchEntries}
+          onPick={onSearchPick}
           onClose={() => setSearchOpen(false)}
         />
       ) : null}
+
+      <OrgPrintBrief syncedLabel={syncedLabel} />
     </div>
   );
+}
+
+/** Spatial keyboard step: the nearest node in the pressed direction. */
+function nearestNode(
+  fromId: string,
+  [dx, dy]: [number, number],
+  boxes: Record<string, Box>,
+): string | null {
+  const from = boxes[fromId];
+  if (!from) return null;
+  const fx = from.x + from.w / 2;
+  const fy = from.y + from.h / 2;
+  let best: string | null = null;
+  let bestScore = Infinity;
+  for (const [id, b] of Object.entries(boxes)) {
+    if (id === fromId) continue;
+    const ex = b.x + b.w / 2 - fx;
+    const ey = b.y + b.h / 2 - fy;
+    const along = ex * dx + ey * dy;
+    if (along < 4) continue;
+    const across = Math.abs(ex * dy) + Math.abs(ey * dx);
+    const score = along + across * 2.5;
+    if (score < bestScore) {
+      bestScore = score;
+      best = id;
+    }
+  }
+  return best;
 }
 
 // ── Chart-mode nodes ──────────────────────────────────────────────────────────
@@ -471,24 +560,24 @@ export function OrgChart() {
 function OrgNode({
   director: d,
   index,
-  investorLens,
   stateClass,
   onFocus,
   registerRef,
 }: {
   director: Director;
   index: number;
-  investorLens: boolean;
   stateClass: string;
   onFocus: () => void;
   registerRef: (el: HTMLButtonElement | null) => void;
 }) {
+  const hasMcp = mcpGrants(d.id).length > 0;
   return (
     <button
       ref={registerRef}
       type="button"
+      data-node-id={d.id}
       className={`orgc-node ${stateClass}`}
-      aria-label={`${roleTitle(d.name)}, ${d.persona}, ${d.autonomyLayer === 3 ? "layer 3" : "layer 2"}${d.veto?.length ? ", holds veto" : ""}`}
+      aria-label={`${roleTitle(d.name)}, ${d.persona}, ${d.autonomyLayer === 3 ? "layer 3" : "layer 2"}${d.veto?.length ? ", holds veto" : ""}${hasMcp ? ", holds a live MCP grant" : ""}`}
       aria-pressed={stateClass.includes("is-active")}
       onClick={onFocus}
     >
@@ -498,23 +587,17 @@ function OrgNode({
       </span>
       <span className="orgc-body">
         <span className="orgc-role">{roleTitle(d.name)}</span>
-        <span className="orgc-persona">
-          {investorLens ? d.oneLine : `${d.shortName} · ${formatCadence(d.cadence)}`}
-        </span>
+        <span className="orgc-persona">{d.oneLine}</span>
         <span className="orgc-badges">
           <span className={`orgc-badge ${d.autonomyLayer === 3 ? "orgc-badge--l3" : ""}`}>
             {d.autonomyLayer === 3 ? "L3" : "L2"}
           </span>
           {d.veto?.length ? <span className="orgc-badge orgc-badge--veto">veto</span> : null}
+          {hasMcp ? <span className="orgc-badge orgc-badge--mcp">mcp</span> : null}
           {d.product ? (
             <span className="orgc-badge orgc-badge--product">{d.product}</span>
           ) : null}
         </span>
-      </span>
-      <span className="orgc-node-signals" aria-hidden="true">
-        <span data-tone="green" />
-        <span data-tone={d.autonomyLayer === 3 ? "blue" : "green"} />
-        <span data-tone={d.veto?.length ? "amber" : "quiet"} />
       </span>
     </button>
   );
@@ -543,27 +626,46 @@ function DiscoveryNode({ role }: { role: DiscoveryRole }) {
 
 // ── Councils mode ─────────────────────────────────────────────────────────────
 
-function CouncilsMode({ onOpen }: { onOpen: (id: string) => void }) {
+function CouncilsMode({
+  onOpen,
+  hit,
+}: {
+  onOpen: (id: string) => void;
+  hit: { kind: "council" | "tool"; anchor: string } | null;
+}) {
+  const [lead, ...rest] = COUNCILS;
   return (
     <div className="orgc-panel-card">
       <div className="orgc-section-eyebrow">standing councils</div>
       <p className="orgc-section-lede">
         The chart shows who owns what. The councils show how the company decides
-        together. Five standing panels, each with a chair, a membership, and a
-        rhythm. Every panel maps to a real Slack channel.
+        together. Each panel has a chair, a membership, a rhythm, and a real
+        Slack channel behind it.
       </p>
 
       <div className="orgc-councils-grid">
-        {COUNCILS.map((c) => (
-          <CouncilCard key={c.id} council={c} onOpen={onOpen} />
+        <CouncilCard council={lead} onOpen={onOpen} lead hit={hit} />
+        {rest.map((c) => (
+          <CouncilCard key={c.id} council={c} onOpen={onOpen} hit={hit} />
         ))}
       </div>
     </div>
   );
 }
 
-function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: string) => void }) {
+function CouncilCard({
+  council,
+  onOpen,
+  lead = false,
+  hit,
+}: {
+  council: Council;
+  onOpen: (id: string) => void;
+  lead?: boolean;
+  hit: { kind: "council" | "tool"; anchor: string } | null;
+}) {
   const chair = getDirector(council.chairId);
+  const anchor = `orgc-council-${council.id}`;
   const memberDirectors =
     council.members === "all"
       ? []
@@ -573,7 +675,11 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
           .filter((d): d is Director => Boolean(d));
 
   return (
-    <div className="orgc-council-card">
+    <div
+      id={anchor}
+      className={`orgc-council-card${lead ? " orgc-council-card--lead" : ""}`}
+      data-hit={hit?.anchor === anchor ? "true" : undefined}
+    >
       <div className="orgc-council-top">
         <div>
           <div className="orgc-council-name">{council.label}</div>
@@ -584,9 +690,7 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
 
       <p className="orgc-council-purpose">{council.purpose}</p>
       {council.writeNote ? (
-        <p className="orgc-council-purpose" style={{ color: "var(--ink-quiet)", fontSize: "12px" }}>
-          {council.writeNote}
-        </p>
+        <p className="orgc-council-note">{council.writeNote}</p>
       ) : null}
 
       <div className="orgc-council-meta">
@@ -609,7 +713,7 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
       <div className="orgc-council-meta">
         <span className="orgc-council-meta-label">members</span>
         {council.members === "all" ? (
-          <span className="orgc-council-all">All {DIRECTORS.length} directors</span>
+          <span className="orgc-council-all">Every director</span>
         ) : (
           <div className="orgc-council-members">
             {memberDirectors.map((d) => (
@@ -635,7 +739,16 @@ function CouncilCard({ council, onOpen }: { council: Council; onOpen: (id: strin
 // ── Tools mode ────────────────────────────────────────────────────────────────
 
 function ToolMark({ name, slug }: { name: string; slug?: string }) {
-  const [err, setErr] = useState(false);
+  const path = slug ? TOOL_MARK_PATHS[slug] : undefined;
+  if (path) {
+    return (
+      <span className="orgc-tool-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d={path} fill="currentColor" />
+        </svg>
+      </span>
+    );
+  }
   const mono =
     name
       .replace(/[^A-Za-z0-9 ]/g, "")
@@ -645,21 +758,6 @@ function ToolMark({ name, slug }: { name: string; slug?: string }) {
       .map((w) => w[0])
       .join("")
       .toUpperCase() || "?";
-  if (slug && !err) {
-    return (
-      <span className="orgc-tool-logo">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://cdn.simpleicons.org/${slug}`}
-          alt=""
-          width={20}
-          height={20}
-          loading="lazy"
-          onError={() => setErr(true)}
-        />
-      </span>
-    );
-  }
   return (
     <span className="orgc-tool-logo orgc-tool-logo--mono" aria-hidden="true">
       {mono}
@@ -667,14 +765,14 @@ function ToolMark({ name, slug }: { name: string; slug?: string }) {
   );
 }
 
-function ToolsMode() {
+function ToolsMode({ hit }: { hit: { kind: "council" | "tool"; anchor: string } | null }) {
   return (
     <div className="orgc-panel-card">
       <div className="orgc-section-eyebrow">the toolchain</div>
       <p className="orgc-section-lede">
         Every platform, service, and grant the company runs on. {TOOLS_COUNT}{" "}
-        tools across {TOOLS.length} groups, from the build stack to our own
-        in-house tools and the video stack for ads. One live MCP grant today.
+        tools, from the build stack to our own in-house tools and the video
+        stack for ads. One live MCP grant today.
       </p>
 
       <div className="orgc-tools-groups">
@@ -683,7 +781,13 @@ function ToolsMode() {
             <div className="orgc-tools-cat">{g.category}</div>
             <div className="orgc-tools-grid">
               {g.items.map((it) => (
-                <div key={it.name} className="orgc-tool-card" data-tag={it.tag ?? ""}>
+                <div
+                  key={it.name}
+                  id={toolAnchor(it.name)}
+                  className="orgc-tool-card"
+                  data-tag={it.tag ?? ""}
+                  data-hit={hit?.anchor === toolAnchor(it.name) ? "true" : undefined}
+                >
                   <div className="orgc-tool-head">
                     <ToolMark name={it.name} slug={it.slug} />
                     <div className="orgc-tool-name">
@@ -708,7 +812,7 @@ function ToolsMode() {
 
 // ── Routines mode (planned, not yet built) ────────────────────────────────────
 
-function RoutinesMode() {
+function RoutinesMode({ onOpen }: { onOpen: (id: string) => void }) {
   return (
     <div className="orgc-panel-card">
       <div className="orgc-section-eyebrow">routines · planned</div>
@@ -725,10 +829,15 @@ function RoutinesMode() {
               <div className="orgc-routine-name">{r.name}</div>
               <span className="orgc-routine-status">planned</span>
             </div>
-            <div className="orgc-routine-cadence">
-              {r.cadence} · {directorName(r.ownerId)}
-            </div>
+            <div className="orgc-routine-cadence">{r.cadence}</div>
             <div className="orgc-routine-detail">{r.detail}</div>
+            <button
+              type="button"
+              className="orgc-name-link"
+              onClick={() => onOpen(r.ownerId)}
+            >
+              {directorName(r.ownerId)}
+            </button>
           </div>
         ))}
       </div>
@@ -738,7 +847,13 @@ function RoutinesMode() {
 
 // ── Evidence mode ─────────────────────────────────────────────────────────────
 
-function EvidenceMode() {
+function EvidenceMode({
+  onOpen,
+  syncedLabel,
+}: {
+  onOpen: (id: string) => void;
+  syncedLabel: string;
+}) {
   const live = MCP_SERVERS.find((s) => s.status === "live");
   return (
     <div className="orgc-panel-card">
@@ -746,22 +861,20 @@ function EvidenceMode() {
       <p className="orgc-section-lede">
         None of this is a diagram of intentions. It is the operating record:
         decisions with reasons, tools on trials, permission tiers, and the
-        cadences that keep the company moving. Everything here mirrors the source
-        repo,{" "}
+        cadences that keep the company moving. Everything here mirrors the
+        source repo,{" "}
         <a
-          className="orgc-link-hint"
-          style={{ color: "var(--accent)" }}
+          className="orgc-source-link"
           href="https://github.com/ethanmcn2013-droid/signal-directors"
           target="_blank"
           rel="noreferrer"
         >
           signal-directors
         </a>
-        .
+        , {syncedLabel}.
       </p>
 
       <div className="orgc-evidence-grid">
-        {/* Decision log */}
         <div className="orgc-ev-card">
           <div className="orgc-ev-head">
             <div className="orgc-ev-title">Decision log</div>
@@ -773,13 +886,16 @@ function EvidenceMode() {
               <div className="orgc-decision-title">{d.title}</div>
               <div className="orgc-decision-why">{d.why}</div>
               <div className="orgc-decision-foot">
-                {d.klass} · surfaced by {directorName(d.surfacedBy)} · {d.date}
+                {d.klass} · surfaced by{" "}
+                <button type="button" className="orgc-name-link" onClick={() => onOpen(d.surfacedBy)}>
+                  {directorName(d.surfacedBy)}
+                </button>{" "}
+                · {d.date}
               </div>
             </div>
           ))}
         </div>
 
-        {/* MCP + tool layer */}
         {live ? (
           <div className="orgc-ev-card">
             <div className="orgc-ev-head">
@@ -787,7 +903,7 @@ function EvidenceMode() {
               <div className="orgc-ev-tag">{ORG_COUNTS.mcpLive} live</div>
             </div>
             <p className="orgc-mcp-scope">
-              <strong style={{ color: "var(--ink)" }}>{live.label}.</strong> {live.scope}
+              <strong>{live.label}.</strong> {live.scope}
             </p>
             <dl className="orgc-mcp-meta">
               <div>
@@ -796,7 +912,16 @@ function EvidenceMode() {
               </div>
               <div>
                 <dt>granted to</dt>
-                <dd>{live.grantedTo.map(directorName).join(", ")}</dd>
+                <dd>
+                  {live.grantedTo.map((id, i) => (
+                    <span key={id}>
+                      {i > 0 ? ", " : ""}
+                      <button type="button" className="orgc-name-link" onClick={() => onOpen(id)}>
+                        {directorName(id)}
+                      </button>
+                    </span>
+                  ))}
+                </dd>
               </div>
               <div>
                 <dt>provisioned</dt>
@@ -818,7 +943,6 @@ function EvidenceMode() {
           </div>
         ) : null}
 
-        {/* Permission tiers */}
         <div className="orgc-ev-card">
           <div className="orgc-ev-head">
             <div className="orgc-ev-title">Permission tiers</div>
@@ -836,14 +960,13 @@ function EvidenceMode() {
           ))}
         </div>
 
-        {/* Founder gates */}
         <div className="orgc-ev-card">
           <div className="orgc-ev-head">
             <div className="orgc-ev-title">Founder gates</div>
             <div className="orgc-ev-tag">{ORG_COUNTS.founderGates} actions</div>
           </div>
-          <p className="orgc-mcp-scope" style={{ marginBottom: "12px" }}>
-            Eight actions no Director takes alone, at any autonomy layer.
+          <p className="orgc-mcp-scope orgc-mcp-scope--spaced">
+            The actions no Director takes alone, at any autonomy layer.
           </p>
           <ul className="orgc-gates">
             {FOUNDER_GATES.map((g) => (
@@ -852,7 +975,6 @@ function EvidenceMode() {
           </ul>
         </div>
 
-        {/* Workflows */}
         <div className="orgc-ev-card">
           <div className="orgc-ev-head">
             <div className="orgc-ev-title">Workflows</div>
@@ -863,14 +985,16 @@ function EvidenceMode() {
               <li key={w.label}>
                 <b>{w.label}</b>
                 <span>
-                  {w.detail} · {directorName(w.ownerId)}
+                  {w.detail} ·{" "}
+                  <button type="button" className="orgc-name-link" onClick={() => onOpen(w.ownerId)}>
+                    {directorName(w.ownerId)}
+                  </button>
                 </span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Principles */}
         <div className="orgc-ev-card">
           <div className="orgc-ev-head">
             <div className="orgc-ev-title">Operating principles</div>
@@ -884,9 +1008,8 @@ function EvidenceMode() {
         </div>
       </div>
 
-      {/* Cadences */}
       <div className="orgc-section-title">Operating rhythm</div>
-      <p className="orgc-section-lede" style={{ marginTop: 0 }}>
+      <p className="orgc-section-lede orgc-section-lede--tight">
         Cadences run in {OPERATING_TIMEZONE.replace("/", ", ")} time. Silence is a
         signal; two skipped cycles trigger a review.
       </p>
@@ -899,7 +1022,10 @@ function EvidenceMode() {
               <div className="orgc-cad-label">{c.label}</div>
               <div className="orgc-cad-artefact">{c.artefact}</div>
               <div className="orgc-cad-owner">
-                Owner · {owner?.shortName ?? c.ownerId}
+                Owner ·{" "}
+                <button type="button" className="orgc-name-link" onClick={() => onOpen(c.ownerId)}>
+                  {owner?.shortName ?? c.ownerId}
+                </button>
                 {c.nextDue ? <> · next {c.nextDue}</> : null}
               </div>
             </div>
@@ -907,7 +1033,6 @@ function EvidenceMode() {
         })}
       </div>
 
-      {/* Build roadmap */}
       <div className="orgc-section-title">Build roadmap</div>
       <ol className="orgc-roadmap">
         {ROADMAP.map((p) => (
@@ -928,15 +1053,15 @@ function EvidenceMode() {
 
 // ── Investor mode ─────────────────────────────────────────────────────────────
 
-function InvestorMode() {
+function InvestorMode({ syncedLabel }: { syncedLabel: string }) {
   const wall: { num: string; lab: string }[] = [
-    { num: String(ORG_COUNTS.directors), lab: "directors, one final call" },
-    { num: String(ORG_COUNTS.coordinationPaths), lab: "documented coordination paths" },
-    { num: String(ORG_COUNTS.councils), lab: "standing councils" },
-    { num: String(ORG_COUNTS.tools), lab: "tools and platforms" },
+    { num: "1", lab: "final call, held by the founder" },
     { num: String(ORG_COUNTS.founderGates), lab: "founder-gated actions" },
     { num: String(ORG_COUNTS.autonomyLayers), lab: "autonomy layers" },
+    { num: String(ORG_COUNTS.permissionTiers), lab: "permission tiers" },
+    { num: String(ORG_COUNTS.tools), lab: "tools and platforms" },
     { num: String(ORG_COUNTS.mcpLive), lab: "live MCP grant, on a trial" },
+    { num: String(ORG_COUNTS.workflows), lab: "written workflows" },
     { num: String(ORG_COUNTS.principles), lab: "principles held company-wide" },
   ];
 
@@ -944,7 +1069,6 @@ function InvestorMode() {
     label: c.label,
     n: c.members.filter((m) => !isDiscovery(m)).length,
   }));
-  const maxN = Math.max(...counts.map((c) => c.n));
 
   return (
     <div className="orgc-panel-card">
@@ -952,40 +1076,44 @@ function InvestorMode() {
         <div>
           <div className="orgc-section-eyebrow">the investor read</div>
           <p className="orgc-invest-statement">
-            One founder keeps every final call. <b>Seventeen Directors</b> hold
+            One founder keeps every final call. <b>Seventeen directors</b> hold
             named scope, bounded authority, and a standing cadence. The result is
             one person operating with the <b>coordination of a company</b>.
           </p>
           <p className="orgc-invest-sub">
-            The structure is deliberately shallow: Founder, {ORG_COUNTS.divisions}{" "}
-            divisions, {ORG_COUNTS.directors} Directors. Depth comes from the
-            operating system beneath it, not from layers of management.
+            The structure is deliberately shallow: a founder, the divisions, the
+            directors. Depth comes from the operating system beneath it, not
+            from layers of management. Everything on this page mirrors the
+            source repo, {syncedLabel}.
           </p>
+          <button
+            type="button"
+            className="orgc-command-btn orgc-print-btn"
+            onClick={() => window.print()}
+          >
+            Print the one-page brief
+          </button>
         </div>
 
         <div className="orgc-metric-wall" aria-label="Operating metrics">
           {wall.map((m) => (
             <div key={m.lab} className="orgc-metric-cell">
-              <div className="num">{m.num}</div>
-              <div className="lab">{m.lab}</div>
+              <div className="orgc-metric-num">{m.num}</div>
+              <div className="orgc-metric-lab">{m.lab}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div className="orgc-section-title">Authority ladder</div>
-      <p className="orgc-section-lede" style={{ marginTop: 0 }}>
+      <p className="orgc-section-lede orgc-section-lede--tight">
         Every Director sits on a five-rung ladder. Most operate at Recommend;
         Engineering and Operations run at Execute. Nothing above the line moves
         without the founder.
       </p>
       <div className="orgc-ladder">
         {AUTONOMY_LADDER.map((r) => (
-          <div
-            key={r.n}
-            className="orgc-rung"
-            style={{ "--fill": String(r.n * 16) } as React.CSSProperties}
-          >
+          <div key={r.n} className="orgc-rung" data-rung={r.n}>
             <div className="orgc-rung-name">
               <span className="orgc-rung-n">L{r.n}</span>
               <b>{r.name}</b>
@@ -1001,24 +1129,29 @@ function InvestorMode() {
         {counts.map((c) => (
           <div key={c.label} className="orgc-bar-row">
             <div className="orgc-bar-label">{c.label}</div>
-            <div className="orgc-bar-track">
-              <div className="orgc-bar-fill" style={{ width: `${(c.n / maxN) * 100}%` }} />
+            <div className="orgc-bar-dots" aria-hidden="true">
+              {Array.from({ length: c.n }, (_, i) => (
+                <span key={i} />
+              ))}
             </div>
             <div className="orgc-bar-num">{c.n}</div>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
 
-// ── Chart-mode metric ─────────────────────────────────────────────────────────
-
-function MiniMetric({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="orgc-mini-metric">
-      <span>{value}</span>
-      <em>{label}</em>
+      <div className="orgc-section-title">Runs on</div>
+      <div className="orgc-runs-on">
+        {["GitHub", "Vercel", "Next.js", "TypeScript", "Slack", "Linear", "Sentry", "Claude Code"].map(
+          (label) => (
+            <span key={label} className="orgc-tool-chip">
+              {label}
+            </span>
+          ),
+        )}
+        <span className="orgc-tool-chip" data-live="true">
+          Google Calendar · MCP
+        </span>
+      </div>
     </div>
   );
 }
