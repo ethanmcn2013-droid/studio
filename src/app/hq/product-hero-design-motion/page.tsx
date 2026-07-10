@@ -265,6 +265,18 @@ function DirectionRow({ d, base }: { d: Direction; base: string }) {
         >
           gesture: {d.gesture} · {d.file}
         </p>
+        <span
+          className="hero-room-open"
+          style={{
+            display: "inline-block",
+            marginTop: "10px",
+            color: "var(--accent)",
+            fontSize: "11px",
+            fontWeight: 600,
+          }}
+        >
+          Open rendered preview ↗
+        </span>
       </div>
     </a>
   );
