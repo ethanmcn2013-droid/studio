@@ -1,30 +1,33 @@
 ---
-id: notes-hero-deploy
-title: Approve the Notes hero for deploy (The Notebook, after Round C)
+id: product-hero-lab-selection
+title: Choose the Notes, Tasks, and Timeline hero directions
 status: open
 priority: P1
 blocking: false
-phase: P1 punch-list
-why: the Notes hero lab is review-only by standing rule; nothing reaches notes.signalstudio.ie without your gate.
-href: https://notes.signalstudio.ie
-date: 2026-07-06
+phase: Product hero review
+why: the three product labs are review-only; no candidate reaches a product homepage without the operator's choice.
+href: /hq/product-hero-design-motion
+date: 2026-07-10
 ---
 
 ## Context
 
-Notes hero parity (punch-list #8) lives on `feat/notes-hero-lab` and is being
-iterated actively (Round A/B councils done; a Round C on "The Notebook" — chip/
-header overlap, type dwell, outro wordmark handoff — is in flight). The bar is
-the Signal "The Brief" hero's council scores. Per the standing rule this branch
-is review-only: it does not deploy without your explicit sign-off.
+Signal's "The Brief" remains the reference. The other product labs now carry a
+smaller, product-specific candidate set built against the same proof-first rule:
 
-Note: the marketing header on notes `main` already shipped today (it gained the
-Pricing · Design nav contract). This to-do is only about the **hero lab** branch.
+- Notes: **Before It Leaves** and **Three Seconds**.
+- Tasks: **Done.** and **Owned.**
+- Timeline: **One Line** and **The Line**.
+
+All remain on their feature branches. This gate is the choice to promote one
+direction per product into the real marketing homepage. It is not approval to
+merge every lab experiment.
 
 ## Steps
 
-1. Review the latest Notebook build on the lab `/lab` route (ask for a fresh
-   screen recording or panel scorecard).
-2. If it clears the Signal-hero bar, say ship — eng merges the lab branch to
-   notes `main` and verifies on notes.signalstudio.ie.
-3. If not, say what's short and it goes another round.
+1. Open the Product Hero Room and review each active candidate at desktop and
+   mobile width. Use the reduced-motion state as the settled-artifact check.
+2. Pick one Notes direction, one Tasks direction, and one Timeline direction,
+   or name the exact combination that should be carried into a final round.
+3. After the picks, engineering promotes only those candidates, runs each
+   product's full checks, and reviews the deployment previews before merge.

@@ -22,3 +22,11 @@ The suite now relies on motion being maintained across five repositories. Future
 
 ## Notes
 Shipped 2026-07-02 across Foundation, Studio, Notes, Signal, Timeline, and Tasks. Foundation now supports canonical wordmark `kind` values while preserving legacy `variant` aliases. Studio regenerated public Timeline and Signal assets, added deterministic brand asset render/check scripts, and rebuilt the reveal hero as a four-product conductor. Product hero exports stayed stable. Verification covered package-native checks, 80 local screenshots, 80 production screenshots, desktop and mobile, normal and reduced motion, no console errors, and no horizontal overflow. Tasks required an explicit production deploy because its alias was still pinned to an older deployment after merge-triggered deploys completed for the other four sites.
+
+2026-07-10 lab refinement: Signal's "The Brief" is the quality reference, not a
+template to copy literally. Notes may move faster because capture speed is the
+proof. Tasks must show ownership and completion rather than repeat Signal's
+noise-distillation job. Timeline may take longer when the sweep is the product
+mechanism, but the line must remain correct on mobile. Shared rules stay fixed:
+one useful artifact, one earned transformation, one indigo, one complete
+reduced-motion state, then rest.
