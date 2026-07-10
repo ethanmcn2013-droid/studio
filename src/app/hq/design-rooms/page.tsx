@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 type Room = { href: string; name: string; state: string; note: string };
 
 const ROOMS: Room[] = [
+  { href: "/hq/product-hero-design-motion", name: "The Product Hero Room", state: "REVIEW · 6", note: "Signal is the reference. Six active Notes, Tasks and Timeline candidates are built, linked and waiting for the product picks." },
   { href: "/hq/cards", name: "The Founder Card", state: "DECIDED · TRIO", note: "Ink, Indigo and Duo chosen from six. One reverse, QR on the front. Proof order packaged." },
   { href: "/hq/partner-card", name: "The Founding Partner Card", state: "SHORTLIST · 2", note: "Indigo and Numeral shortlisted from four. Founder-contact reverse carries the direct line." },
   { href: "/hq/cafe-card", name: "The Café Card", state: "DECIDED", note: "Campaign chosen from four. The poster's line at counter scale." },

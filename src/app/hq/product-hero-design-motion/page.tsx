@@ -24,7 +24,7 @@ export const metadata: Metadata = {
  *   audit/HERO_ITERATION_LOG.md   — the world-class iteration log
  */
 
-type Badge = "PREFERRED" | "REFERENCE" | "REBUILDING" | "CANDIDATE" | "ARCHIVE";
+type Badge = "PREFERRED" | "REFERENCE" | "CANDIDATE" | "ARCHIVE";
 
 type Direction = {
   name: string;
@@ -79,7 +79,7 @@ const PRODUCTS: Product[] = [
         badge: "PREFERRED",
         gesture: "caret",
         concept:
-          "Operator pick. A caret catches the fading word gone; loss reversed by capture. Now carries the one-way promote-to-Tasks crossing: the note stays private, the extract crosses as an open task.",
+          "Operator pick, rebuilt. The notebook is present from the start. A caret catches one thought, files it, then a deliberate approval sends only the extract to Tasks while the private note stays put.",
         path: "/lab/before-it-leaves",
         file: "src/components/lab/option-before-it-leaves.tsx",
       },
@@ -88,16 +88,16 @@ const PRODUCTS: Product[] = [
         badge: "PREFERRED",
         gesture: "caret",
         concept:
-          "Operator pick. The locked design budget as the whole story. Calm, typographic, no spectacle; the claim is the restraint.",
+          "Operator pick, rebuilt. Three seconds becomes the literal clock: thought, capture, filed. The product promise is demonstrated in one quiet editorial sequence.",
         path: "/lab/three-seconds",
         file: "src/components/lab/option-three-seconds.tsx",
       },
       {
         name: "The Blank Line",
-        badge: "CANDIDATE",
+        badge: "ARCHIVE",
         gesture: "caret",
         concept:
-          "The whole hero is one caret; it drops on the word write and the capture field materialises around it. Swiss, minimal counterpoint.",
+          "Earlier minimal study: one caret drops on write and the capture field materialises around it. Kept for research outside the active pair.",
         path: "/lab/the-blank-line",
         file: "src/components/lab/option-the-blank-line.tsx",
       },
@@ -123,19 +123,28 @@ const PRODUCTS: Product[] = [
     directions: [
       {
         name: "Done.",
-        badge: "REBUILDING",
+        badge: "CANDIDATE",
         gesture: "pulse",
         concept:
-          "Flagship, iterating toward world-class. A clean indigo check strikes through the seed word done, and a believable Today board resolves: two open items complete one satisfying tick at a time, the live item ignites with the pulse. px display type; one-accent discipline.",
+          "Rebuilt flagship. A real commitment ledger is visible from frame one; ownership lands, two completion ticks clear, and one live commitment carries the pulse. Five visible rows earn the final receipt.",
         path: "/lab/done",
         file: "src/components/lab/option-done.tsx",
       },
       {
-        name: "What's Next",
+        name: "Owned.",
         badge: "CANDIDATE",
         gesture: "pulse",
         concept:
-          "Execution-clarity counterpoint: a pile of open work distils to the three that matter today. Rework pending once Done clears the gate.",
+          "Ownership-native counterpoint. An unowned commitment becomes explicit, due, and actionable. It proves accountable movement without borrowing Signal's noise-distillation job.",
+        path: "/lab/owned",
+        file: "src/components/lab/option-owned.tsx",
+      },
+      {
+        name: "What's Next",
+        badge: "ARCHIVE",
+        gesture: "pulse",
+        concept:
+          "Earlier distillation study. Kept for research, but it overlaps Signal's attention-clarity job and is no longer an active Tasks direction.",
         path: "/lab/whats-next",
         file: "src/components/lab/option-whats-next.tsx",
       },
@@ -155,7 +164,7 @@ const PRODUCTS: Product[] = [
         badge: "PREFERRED",
         gesture: "sweep",
         concept:
-          "Operator pick. The product's own gesture at hero scale: a hairline draws across and the plan sets onto it — Now, Soon, Later, Done — each a plain sentence at its marker, dated, with what was set aside kept honestly below.",
+          "Operator pick, rebuilt as the quieter counterpoint. A fixed folio holds the frame while one pass reveals a semantic public plan: Now, Soon, Later, Done, then rest.",
         path: "/lab/the-line",
         file: "src/components/lab/option-the-line.tsx",
       },
@@ -164,16 +173,16 @@ const PRODUCTS: Product[] = [
         badge: "PREFERRED",
         gesture: "sweep",
         concept:
-          "Operator pick. The sentence's own underline beneath one line extends into the actual timeline axis and the dated markers drop onto it.",
+          "Operator pick, rebuilt as the flagship. The sentence underline is the timeline axis, not a timed substitute; it extends through four real moments, turns vertical on mobile, and ends in one small canonical sweep.",
         path: "/lab/one-line",
         file: "src/components/lab/option-one-line.tsx",
       },
       {
         name: "The Link · Open Line · Open Plan",
-        badge: "CANDIDATE",
+        badge: "ARCHIVE",
         gesture: "sweep",
         concept:
-          "The sharing story: a shared URL opens the whole plan with no wall. Kept as candidates against the preferred pair.",
+          "Earlier sharing studies: a public URL opens the whole plan without a wall. Kept for research outside the active pair.",
         path: "/lab",
         file: "src/components/lab/option-*.tsx",
       },
@@ -184,10 +193,17 @@ const PRODUCTS: Product[] = [
 const BADGE_STYLE: Record<Badge, { fg: string; bg: string; bd: string }> = {
   PREFERRED: { fg: "var(--paper)", bg: "var(--accent)", bd: "var(--accent)" },
   REFERENCE: { fg: "var(--paper)", bg: "var(--ink)", bd: "var(--ink)" },
-  REBUILDING: { fg: "var(--accent)", bg: "var(--accent-soft)", bd: "var(--accent)" },
   CANDIDATE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
   ARCHIVE: { fg: "var(--ink-faint)", bg: "transparent", bd: "var(--hairline)" },
 };
+
+const REVIEW_GATES = [
+  "The first frame has a crisp product anchor.",
+  "One transformation explains the product's real job.",
+  "The settled artifact is useful, semantic, and honest.",
+  "Mobile keeps the signature motion and every key state.",
+  "Reduced motion receives the same complete result immediately.",
+];
 
 function BadgeTag({ badge }: { badge: Badge }) {
   const s = BADGE_STYLE[badge];
@@ -215,12 +231,12 @@ function BadgeTag({ badge }: { badge: Badge }) {
 function DirectionRow({ d, base }: { d: Direction; base: string }) {
   return (
     <a
+      className="hero-room-direction"
       href={`${base}${d.path}`}
       target="_blank"
       rel="noopener noreferrer"
       style={{
         display: "grid",
-        gridTemplateColumns: "minmax(150px, 210px) 110px 1fr",
         gap: "16px",
         alignItems: "baseline",
         padding: "14px 18px",
@@ -232,7 +248,7 @@ function DirectionRow({ d, base }: { d: Direction; base: string }) {
       <span style={{ fontWeight: 600 }}>
         {d.name}{" "}
         <span aria-hidden style={{ color: "var(--accent)", fontWeight: 500 }}>
-          &nearr;
+          ↗
         </span>
       </span>
       <BadgeTag badge={d.badge} />
@@ -249,6 +265,18 @@ function DirectionRow({ d, base }: { d: Direction; base: string }) {
         >
           gesture: {d.gesture} · {d.file}
         </p>
+        <span
+          className="hero-room-open"
+          style={{
+            display: "inline-block",
+            marginTop: "10px",
+            color: "var(--accent)",
+            fontSize: "11px",
+            fontWeight: 600,
+          }}
+        >
+          Open rendered preview ↗
+        </span>
       </div>
     </a>
   );
@@ -269,8 +297,8 @@ export default async function ProductHeroRoomPage() {
           The design and motion room for the product landing-page heroes. Each is
           a full motion graphic redesigned against the Signal Hero Playbook, the
           transferable DNA reverse-engineered from The Brief. Every row links
-          straight to that direction's live preview. Nothing here is on a product
-          homepage yet; the labs are review surfaces.
+          straight to that direction's live preview. These candidates stay in
+          the labs until the operator selects what reaches each product homepage.
         </p>
       </header>
 
@@ -286,11 +314,28 @@ export default async function ProductHeroRoomPage() {
       >
         <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.6, color: "var(--accent)", fontWeight: 500 }}>
           Operator-preferred: Notes — Before It Leaves + Three Seconds. Timeline —
-          The Line + One Line. Tasks — no pick yet; Done is rebuilding to
-          world-class. All four must clear 9.5 from every council lens (creative,
-          motion, product, UX, engineering) before they ship. Signal — The Brief
-          is the untouched reference.
+          The Line + One Line. Tasks — no pick yet; Done + Owned are the active
+          candidates. Signal — The Brief stays unchanged as the reference. The
+          lab bar is product truth, motion, UX, accessibility, and engineering,
+          not visual spectacle by itself.
         </p>
+      </section>
+
+      <section
+        aria-label="hero review contract"
+        style={{
+          marginBottom: "28px",
+          borderTop: "1px solid var(--hairline)",
+          borderBottom: "1px solid var(--hairline)",
+          padding: "18px 0",
+        }}
+      >
+        <span className="hq-page-eyebrow">The review contract</span>
+        <ol className="hero-room-gates">
+          {REVIEW_GATES.map((gate) => (
+            <li key={gate}>{gate}</li>
+          ))}
+        </ol>
       </section>
 
       {PRODUCTS.map((p) => (
@@ -334,6 +379,55 @@ export default async function ProductHeroRoomPage() {
           reason.
         </p>
       </section>
+
+      <style>{`
+        .hero-room-direction {
+          grid-template-columns: minmax(150px, 210px) 110px 1fr;
+          transition: background var(--motion-instant) var(--ease-out);
+        }
+
+        .hero-room-direction:hover {
+          background: var(--paper-soft);
+        }
+
+        .hero-room-direction:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: -2px;
+        }
+
+        .hero-room-gates {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 1px;
+          list-style: none;
+          margin: 14px 0 0;
+          padding: 0;
+          background: var(--hairline);
+          border: 1px solid var(--hairline);
+        }
+
+        .hero-room-gates li {
+          min-width: 0;
+          padding: 14px;
+          background: var(--paper);
+          color: var(--ink-faint);
+          font-size: 12px;
+          line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+          .hero-room-gates {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 720px) {
+          .hero-room-direction {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+        }
+      `}</style>
     </main>
   );
 }
