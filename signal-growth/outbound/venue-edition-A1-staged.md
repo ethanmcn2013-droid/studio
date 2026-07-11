@@ -2,7 +2,7 @@
 
 **Status:** Ready to send. NOTHING here has been sent. Agent is forbidden to send; operator sends, one at a time, signed by a person, from hello@signalstudio.ie.
 **Source set:** `venue-edition-outreach.md` (canonical). This file instantiates the A1 template for the five Track A first-send venues with the load-bearing sentence written and verified true (venue public sites / press, fetched 2026-05-17).
-**Model:** €1,500/yr founding, locked. Patronage, not software. No social proof (no venue has signed). No urgency theatre.
+**Model:** Venue Edition is €1,500 per venue/year, prepaid. Founding venues lock it. Patronage, not software. No social proof (no venue has signed). No urgency theatre.
 
 ## Per-send checklist (operator)
 1. Test-send A1 to yourself first — DKIM still pending per `project_email.md`; confirm it does not land in spam.
@@ -27,7 +27,7 @@
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits Clontarf Castle than send a deck. Would a 20-minute call suit you in the next week or two.
 >
@@ -52,7 +52,7 @@
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits Harvey's Point than send a deck. Would a 20-minute call suit you in the next week or two.
 >
@@ -77,7 +77,7 @@
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits The Montenotte than send a deck. Would a 20-minute call suit you in the next week or two.
 >
@@ -102,7 +102,7 @@
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits the Imperial than send a deck. Would a 20-minute call suit you in the next week or two.
 >
@@ -127,7 +127,7 @@
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits Waterford Castle than send a deck. Would a 20-minute call suit you in the next week or two.
 >

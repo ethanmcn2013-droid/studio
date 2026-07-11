@@ -120,10 +120,61 @@ local + shared signal-entitlements + Tasks comp_codes.
 
 ```bash
 cd ~/Projects/personal/studio
-pnpm issue:codes lambs-hill 10 venue_edition wedding 365
+pnpm issue:codes lambs-hill 10 venue_edition wedding 548
 ```
 
 `pnpm issue:codes <sponsor-slug> <count> [source-type] [tier] [duration-days]`.
+
+## Migrate existing Venue Edition access to 18 months
+
+Use the guarded migration once for Venue Edition codes minted at the old
+365-day term. It requires write-capable credentials for all three stores:
+
+```text
+TASKS_DATABASE_URL + TASKS_AUTH_TOKEN
+TURSO_ENTITLEMENTS_DATABASE_URL + TURSO_ENTITLEMENTS_AUTH_TOKEN
+TURSO_STUDIO_DATABASE_URL + TURSO_STUDIO_AUTH_TOKEN
+```
+
+Audit first. The default mode only runs `SELECT` queries:
+
+```bash
+pnpm venue:migrate-access-18mo
+```
+
+Review the code count, unredeemed/exhausted split, exact entitlement join
+count, and SHA-256 code-set digest. Then apply with the explicit flag:
+
+```bash
+pnpm venue:migrate-access-18mo --apply
+```
+
+Apply is pinned to the independently audited live set: **23 exact codes** and
+SHA-256 digest
+`8ca762af65e0281b6a8688406e7b95b6f0ff66a05ef3dd9788e15e8c0d4abf46`.
+The command refuses a different count or digest even when all three databases
+agree with each other. For a later, separately audited code set, override both
+values together; a one-sided override is rejected:
+
+```bash
+pnpm venue:migrate-access-18mo --apply \
+  --expected-count=<audited-count> \
+  --expected-digest=<audited-sha256>
+```
+
+The command treats Tasks as authoritative. Before any write it requires exact
+code-set and duration parity in both `license_codes` mirrors, then repeats the
+audit inside write transactions. It only accepts Venue Edition JSON notes,
+`wedding` tier, `quantity=1`, and a clean `redeemed=0` or
+`redeemed=quantity` split. Redeemed entitlements must join on
+`notes='comp:'||code`, use `source='comp'`, and span exactly 365 days.
+
+Apply sets each entitlement to `started_at + 548 days`; it never adds 183 days
+to the old expiry. Mirror `status` is deliberately ignored. A successful run
+re-queries all three databases. If a commit result is ambiguous, the command
+requires two matching, backed-off state classifications before any recovery;
+it never rolls mirrors back when Tasks may already have committed. A later
+rerun reports a verified no-op.
 
 ## Troubleshooting
 

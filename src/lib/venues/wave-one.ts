@@ -385,14 +385,14 @@ export const VENUE_FULFILMENT_REHEARSAL: VenueFulfilmentRehearsalStep[] = [
     step: 4,
     name: "Mark venue paid",
     state: "ready",
-    command: "pnpm venue:paid <sponsor-slug> founding 1500 --founding",
+    command: "pnpm venue:paid <sponsor-slug> founding",
     proof: "Writes annual amount, paid_at, term window, and founding lock.",
   },
   {
     step: 5,
     name: "Issue first code batch",
     state: "ready",
-    command: "pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 365",
+    command: "pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 548",
     proof: "Dual-writes Studio audit and Tasks runtime comp codes.",
   },
   {
@@ -445,7 +445,7 @@ export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
   {
     objection: "Who else uses it?",
     answer:
-      "This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the founding price.",
+      "This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the fixed €1,500 price for as long as they stay.",
     useWhen: "The buyer asks for social proof before it exists.",
   },
   {

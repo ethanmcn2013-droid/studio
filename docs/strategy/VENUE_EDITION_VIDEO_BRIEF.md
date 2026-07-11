@@ -90,7 +90,7 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 00:52–01:02 | Timeline — the shared view. Clear, readable. VO: "Timeline is what everyone else sees. Suppliers. Family. The planner. One page anyone can open without an account." |
 | 01:02–01:10 | Signal briefing. Three lines. Clean. VO: "Signal is the morning briefing. Three things that need attention. On quiet days, nothing is sent. Silence is the signal." |
 | 01:10–01:20 | The venue angle. Eyebrow in focus — the venue name, small, at the top of the workspace. VO: "The Venue Edition puts your name on it. An eyebrow — not a logo wall. The couple's plan stays what matters." |
-| 01:20–01:28 | Operational simplicity. No product on screen — just space. VO: "You pay once a year. Every couple you book gets twelve months of the full suite. You hand out codes. That's the whole operation on your side." |
+| 01:20–01:28 | Operational simplicity. No product on screen — just space. VO: "You pay €1,500 once a year. Every couple you book gets eighteen months of the full suite. You hand out codes. That's the whole operation on your side." |
 | 01:28–01:35 | Founding terms, text card only. No VO. "The first fifteen venues lock €1,500 a year for as long as they stay. A price that holds." |
 | 01:35–01:42 | Wide on the venue space again — the same shot from the opening, different light. Suggestion of a planning year moving. VO: "Fewer confused couples. Fewer repetitive emails." |
 | 01:42–01:30 | Closing card. Full venue promise: "A better planning experience under your venue's name." Below it: Signal Studio wordmark. Long hold. Silence. |
@@ -125,7 +125,7 @@ The register is calm, premium, founder-led. If the editor's instinct is to add s
 | 01:02–01:10 | Signal morning briefing. Three plain-English lines on screen. Spare. | "Signal, what needs attention." (lower-third) | "Signal is the morning briefing. Three things that need attention. On quiet days, nothing is sent." | Signal — briefing surface, three items |
 | 01:10–01:13 | Pause on Signal. No motion. | "Silence is the signal." | — | — |
 | 01:13–01:20 | Close: the venue eyebrow on the workspace. Legible. The couple's name below it. The venue name above, small, in the eyebrow position. | — | "The Venue Edition puts your name on it. An eyebrow — not a logo wall. The couple's plan stays what matters." | Notes or Tasks — eyebrow detail, tight crop |
-| 01:20–01:28 | Clean space. No product on screen. Empty table, natural light. Or a doorway to the venue — the physical space, not a screen. | — | "You pay once a year. Every couple you book gets twelve months of the full suite. You hand out codes. That's the whole operation on your side." | — |
+| 01:20–01:28 | Clean space. No product on screen. Empty table, natural light. Or a doorway to the venue — the physical space, not a screen. | — | "You pay €1,500 once a year. Every couple you book gets eighteen months of the full suite. You hand out codes. That's the whole operation on your side." | — |
 | 01:28–01:35 | Card — text only | "The first fifteen venues lock €1,500 a year for as long as they stay. A price that holds." | — | — |
 | 01:35–01:42 | Return to the opening venue wide — same space, different light (afternoon, or dusk). Suggestion of time passing. | — | "Fewer confused couples. Fewer repetitive emails." | — |
 | 01:42–01:30 (hold) | Paper-white card. Full venue promise. Wordmark below. | "A better planning experience under your venue's name." + Signal Studio wordmark | — | — |
@@ -163,7 +163,7 @@ Signal is the morning briefing. Three things that need attention. On quiet days,
 
 The Venue Edition puts your name on it. An eyebrow — not a logo wall. The couple's plan stays what matters.
 
-You pay once a year. Every couple you book gets twelve months of the full suite. You hand out codes. That's the whole operation on your side.
+You pay €1,500 once a year. Every couple you book gets eighteen months of the full suite. You hand out codes. That's the whole operation on your side.
 
 [SILENCE — text card: founding terms]
 

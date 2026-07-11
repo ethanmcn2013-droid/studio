@@ -118,8 +118,8 @@ export default async function FinancialModelPage() {
         <div className="hq-fm-unit-head">
           <span className="hq-os-eyebrow">monthly projection · cash basis</span>
           <p>
-            Founding cohort front-loaded; paid ramps from launch
-            ({FIN_PRICING.foundingVenueEur === 1500 ? "€1,500 founding · " : ""}€{FIN_PRICING.paidVenueAcvEur.toLocaleString("en-IE")} paid ACV).
+            Founding cohort front-loaded; paid ramps from launch at a fixed
+            €{FIN_PRICING.paidVenueAcvEur.toLocaleString("en-IE")} venue ACV.
           </p>
         </div>
         <div className="hq-fm-scroll">

@@ -12,7 +12,7 @@ relatedProspects: [Lamb's Hill]
 
 ## Offer
 
-Sponsored wedding planning workspaces, 12 months free per couple, co-branded eyebrow only. Per-couple redemption codes minted via `pnpm issue:codes`; redeemed at signalstudio.ie/redeem/[code]; auto-drop to Free at month 12.
+Sponsored wedding planning workspaces, 18 months per couple, co-branded eyebrow only. Per-couple redemption codes minted via `pnpm issue:codes`; redeemed at signalstudio.ie/redeem/[code]; auto-drop to Free at month 18.
 
 ## Value
 

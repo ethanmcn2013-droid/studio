@@ -23,7 +23,7 @@ Suite tagline (locked): **Clarity, not configuration.**
 
 The 80% not in tech: wedding/venue coordinators, freelancers, tradespeople, students, small-business operators. Never "engineering teams", never "for developers". Every example must be one of these real people, concrete, not abstract.
 
-**Go-to-market wedge: wedding venues.** Founding Venue Programme (`/venues`) — a venue sponsors a 12-month workspace per couple, co-branded as a quiet eyebrow. The couple keeps the workspace past the wedding. Primary near-term marketing surface is the wedding/venue path, not a generic SaaS launch.
+**Go-to-market wedge: wedding venues.** Founding Venue Programme (`/venues`) — a venue sponsors an 18-month workspace per couple, co-branded as a quiet eyebrow. The couple keeps the workspace past the wedding. Primary near-term marketing surface is the wedding/venue path, not a generic SaaS launch.
 
 ## Pricing (canonical — use these exactly)
 

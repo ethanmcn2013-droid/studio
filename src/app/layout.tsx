@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
 import { SITE_URL } from "@/lib/site-url";
+import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -104,12 +105,8 @@ const structuredData = [
       {
         "@type": "Offer",
         name: "Venue Edition",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          priceCurrency: "EUR",
-          minPrice: "1500",
-          maxPrice: "4000",
-        },
+        price: String(VENUE_EDITION_ANNUAL_PRICE_EUR),
+        priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
         url: `${SITE_URL}/venues`,
       },

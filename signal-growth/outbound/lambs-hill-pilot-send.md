@@ -1,6 +1,6 @@
 # Lamb's Hill — pilot send (Cycle 8.5)
 
-**Status:** Draft, ready for Ethan to review and send. Codes minted 2026-05-13 (this turn).
+**Status:** BLOCKED / SUPERSEDED 2026-07-11. Do not send this packet. Its ten codes were minted for 365 days under the retired free-pilot terms. The active Venue Edition is €1,500 per venue/year with 18-month couple access. Verify or migrate every unredeemed code to 548 days, then generate a new send packet from the active template before contacting Lamb's Hill.
 **Recipient:** Sinéad at Lamb's Hill (the venue contact).
 **Format:** Plain text email — paste body and code block straight into Sinéad's chosen mail client, attach CSV separately or inline.
 

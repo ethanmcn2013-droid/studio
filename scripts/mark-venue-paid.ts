@@ -1,28 +1,24 @@
 import { config } from "dotenv";
+import {
+  VENUE_EDITION_ANNUAL_PRICE_CENTS,
+  VENUE_EDITION_ANNUAL_PRICE_EUR,
+} from "../src/lib/venue-edition";
+
 config({ path: ".env.local" });
 config({ path: ".env" });
 
 /**
- * mark-venue-paid — record that a venue has PAID for its annual Venue
- * Edition. The deliberate alternative to a self-serve €1,500–€4,000
- * checkout: per docs/MARKETING_PLAN_6MO.md the venue is a founder-closed
- * B2B conversation with annual-prepay-on-signature. A public "buy €4,000"
- * button would be the exact SaaS register BRAND.md §3 forbids. So the
- * operator runs this once, on the call, when the money lands.
- *
- * Writes the sponsor ledger on Studio's local DB (what HQ Traction
- * reads) and mirrors to the shared signal-entitlements DB, matching the
- * dual-write discipline in issue-codes.ts. `paid_at` is set to NOW —
- * "cash in the door" is the honest metric; do not run this on signature,
- * run it on payment.
+ * Record cash received for one annual Venue Edition. The price is fixed in
+ * code so a venue cannot be put onto a negotiated size or multi-site tier.
+ * Run this on payment, never on signature.
  *
  * Usage:
- *   pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan> <eur/yr> [--founding]
- *     plan:    founding | paid
- *     eur/yr:  e.g. 1500  (founding cohort) or 2500 / 4000
- *     --founding  also sets the for-life price lock flag
+ *   pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>
+ *     plan: founding | paid
+ *     The founding plan always records the lifetime price lock.
  *
- *   pnpm tsx scripts/mark-venue-paid.ts lambs-hill founding 1500 --founding
+ * Example:
+ *   pnpm tsx scripts/mark-venue-paid.ts lambs-hill founding
  */
 
 function fail(msg: string): never {
@@ -33,16 +29,16 @@ function fail(msg: string): never {
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
 async function main() {
-  const [, , slug, plan, eurArg, ...flags] = process.argv;
-  const founding = flags.includes("--founding");
+  const [, , slug, plan, ...flags] = process.argv;
+  const unknownFlags = flags.filter((flag) => flag !== "--founding");
 
-  if (!slug || !plan || !eurArg) {
+  if (!slug || !plan) {
     fail(
       [
-        "Usage: pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan> <eur/yr> [--founding]",
-        "  plan:   founding | paid",
-        "  eur/yr: annual patronage in euros (e.g. 1500)",
-        "  --founding: set the €1,500-for-life price lock",
+        "Usage: pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>",
+        "  plan: founding | paid",
+        `  price: fixed at EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year`,
+        "  founding automatically records the lifetime price lock",
         "",
         "Sets venue_plan, annual_amount_cents, founding_locked, the prepaid",
         "annual term window, and paid_at = now. Run on payment, not signature.",
@@ -51,17 +47,17 @@ async function main() {
   }
 
   if (plan !== "founding" && plan !== "paid") {
-    fail(`plan must be 'founding' or 'paid' — got '${plan}'.`);
+    fail(`plan must be 'founding' or 'paid'; got '${plan}'.`);
   }
-  const eur = Number(eurArg);
-  if (!Number.isFinite(eur) || eur <= 0) {
-    fail(`eur/yr must be a positive number — got '${eurArg}'.`);
+  if (flags.includes("--founding") && plan !== "founding") {
+    fail("--founding is only valid with the founding plan");
   }
-  if (eur < 1500 || eur > 4000) {
-    console.warn(
-      `[mark-venue-paid] ⚠ €${eur}/yr is outside the ratified €1,500–€4,000 band. Continuing — verify this is intentional.`,
+  if (unknownFlags.length > 0) {
+    fail(
+      `Venue Edition is fixed at EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year. Remove unexpected argument(s): ${unknownFlags.join(" ")}.`,
     );
   }
+  const founding = plan === "founding";
 
   const { db } = await import("../src/lib/db");
   const { sponsors } = await import("../src/lib/db/schema");
@@ -79,7 +75,7 @@ async function main() {
   const now = Date.now();
   const ledger = {
     venuePlan: plan,
-    annualAmountCents: Math.round(eur * 100),
+    annualAmountCents: VENUE_EDITION_ANNUAL_PRICE_CENTS,
     foundingLocked: founding ? 1 : null,
     termStartsAt: now,
     termEndsAt: now + ONE_YEAR_MS,
@@ -89,7 +85,7 @@ async function main() {
 
   await db.update(sponsors).set(ledger).where(eq(sponsors.slug, slug));
   console.log(
-    `[mark-venue-paid] ${slug} → ${plan} · €${eur}/yr${founding ? " · founding-locked" : ""} · paid_at set. Studio local written.`,
+    `[mark-venue-paid] ${slug} -> ${plan} | EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/yr${founding ? " | founding-locked" : ""} | paid_at set. Studio local written.`,
   );
 
   // Mirror to shared signal-entitlements (same discipline as issue-codes).

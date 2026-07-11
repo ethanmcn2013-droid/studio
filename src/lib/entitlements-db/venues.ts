@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { entitlementsDb } from "./client";
 import { allotmentLedger, sponsors } from "./schema";
 import { requireActor, type MutationActor } from "./guard";
+import { venueEditionAnnualAmountCents } from "@/lib/venue-edition";
 
 /**
  * Venue lifecycle writers — the no-terminal replacement for the CLI scripts
@@ -50,7 +51,6 @@ export async function onboardVenue(input: {
   allotment: number;
   actor: MutationActor;
   slug?: string | null;
-  annualAmountCents?: number | null;
   termMonths?: number | null;
   reason?: string | null;
 }): Promise<OnboardVenueResult> {
@@ -69,6 +69,7 @@ export async function onboardVenue(input: {
   if (!slug) throw new Error("onboardVenue: could not derive a slug");
 
   const isPaidPlan = input.venuePlan === "founding" || input.venuePlan === "paid";
+  const annualAmountCents = venueEditionAnnualAmountCents(input.venuePlan);
   const db = entitlementsDb();
   const now = Date.now();
   const termStartsAt = now;
@@ -96,7 +97,7 @@ export async function onboardVenue(input: {
         contactEmail,
         venuePlan: input.venuePlan,
         kind: "venue",
-        annualAmountCents: input.annualAmountCents ?? null,
+        annualAmountCents,
         foundingLocked: input.venuePlan === "founding" ? 1 : null,
         termStartsAt,
         termEndsAt,
@@ -110,7 +111,7 @@ export async function onboardVenue(input: {
           name,
           contactEmail,
           venuePlan: input.venuePlan,
-          annualAmountCents: input.annualAmountCents ?? null,
+          annualAmountCents,
           foundingLocked: input.venuePlan === "founding" ? 1 : null,
           termStartsAt,
           termEndsAt,

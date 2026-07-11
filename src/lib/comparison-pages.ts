@@ -38,7 +38,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
     sections: [
       {
         title: "Built for the venue handoff",
-        copy: "The Venue Edition is paid once a year by the venue. Every couple gets twelve months of Signal Studio. The couple never sees a price, and the coordinator does not manage seats.",
+        copy: "The Venue Edition is paid once a year by the venue. Every couple gets eighteen months of Signal Studio. The couple never sees a price, and the coordinator does not manage seats.",
       },
       {
         title: "One link for the people outside the work",
@@ -78,7 +78,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "What the venue pays",
-        copy: "The founding cohort locks EUR1,500 a year for as long as it stays. Larger or multi-site venues move into the EUR1,500-EUR4,000 annual band.",
+        copy: "Every venue pays EUR1,500 a year, prepaid. The founding cohort locks that price for as long as it stays.",
       },
     ],
     primaryCta: {

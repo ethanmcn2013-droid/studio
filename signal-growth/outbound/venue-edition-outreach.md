@@ -2,7 +2,7 @@
 
 **Status:** Drafted. Operator send owed. Nothing here has been sent.
 **Owner:** Ethan (send, one at a time, signed by a person)
-**Model:** Paid founding position — €1,500/yr prepaid, founding fifteen lock €1,500 for as long as they stay. Source of truth: `docs/strategy/VENUE_EDITION_STRATEGY.md` + spine `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md`.
+**Model:** Venue Edition is €1,500 per venue/year, prepaid. The founding fifteen lock that price for as long as they stay. Source of truth: `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md` + `docs/strategy/VENUE_EDITION_STRATEGY.md`.
 **Voice:** Passed the `signal-brand-voice` gate. No exclamation marks, no AI/SaaS/PM register, no three-adjective trios, plain English. Founder-to-owner, not brand-to-lead.
 
 This set **supersedes `wedding-venue-outreach-kit.md`**, which pitches the reversed model (free for 12 months, then €49/month) and targets the coordinator as the buyer. That model no longer exists. Do not send from the old kit.
@@ -79,7 +79,7 @@ Mapped to `signal-growth/outbound/ireland-top-50-hotels.csv` / HQ `prospects` ro
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line at the top. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets twelve months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
 > We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits your venue than send a deck. Would a 20-minute call suit you in the next week or two.
 >
@@ -140,7 +140,7 @@ One email per group, to the commercial/events lead — never the same pitch cold
 >
 > Signal Studio gives every couple one calm place to plan their wedding — notes, tasks, a plan they can forward, a short morning briefing. The Venue Edition carries the venue's name quietly at the top of that workspace. The venue pays once a year; the couple never sees a price; there is nothing for a property team to run beyond handing out a code.
 >
-> For a group, the question is whether one of your wedding properties would take a founding place first — a single venue, a real planning year, a short retro — before there is any conversation about the rest. I am not asking [Group] to commit at the group level. I am asking which property would be the right first room.
+> For a group, the question is whether one of your wedding properties would take a founding place first — a single venue, a real planning year, a short review — before there is any conversation about the rest. I am not asking [Group] to commit at the group level. I am asking which property would be the right first room.
 >
 > If that is worth twenty minutes, I will keep it short and specific.
 >
@@ -164,5 +164,5 @@ One email per group, to the commercial/events lead — never the same pitch cold
 - No social proof — no venue has signed.
 - No urgency framing — "founding fifteen" is a fact, not a scarcity trick.
 - No automated sequence — the follow-ups are a person choosing to write again.
-- No pricing softening — €1,500 founding is the offer, stated once, not negotiated down in the cold email.
+- No pricing softening — €1,500 is the Venue Edition price, stated once, not negotiated in the cold email.
 - No Track B follow-up cadence — one founder note to a group, then wait. Chasing a procurement chain by email is the failure mode the pilot is designed to avoid.

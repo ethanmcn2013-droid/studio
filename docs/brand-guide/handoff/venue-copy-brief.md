@@ -20,7 +20,7 @@ These never appear in venue-facing copy. Each entry: the phrase, why it is banne
 | with our compliments | Reframes the venue's patronage as a gift from Signal Studio. It is not. The venue is the buyer. This phrase now refers only to founder-issued family/friends comp accounts. | "Included in the founding venue programme." |
 | on us | Implies Signal Studio is footing the bill. Signal Studio is not. The venue is. | "Backed by the venue." |
 | the gift | Same problem as "with our compliments" — softens the commercial relationship and miscredits who is paying. | "The planning layer the venue backs." |
-| 12 months free | Reads as a discount or promotional period. It is neither. The couple gets twelve months because the venue paid for twelve months. | "Twelve months of planning, backed by the venue." |
+| 18 months free | Reads as a discount or promotional period. It is neither. The couple gets eighteen months because the venue backed the planning. | "Eighteen months of planning, backed by the venue." |
 | no card | Implies Signal Studio is bearing the cost. The couple does not need a card because the venue already paid. Say so. | "No card needed — the venue has already backed the year." |
 
 ### Phrases that turn the venue into a software customer

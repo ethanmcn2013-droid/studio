@@ -3,7 +3,7 @@ title: Pricing and entitlements — one DB, every product
 slug: pricing-and-entitlements
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-07-11
 links: [signal-studio-umbrella, five-products-as-a-system, turso-databases-and-reads, log-cycle-cross-repo-writer]
 tags: [pricing, entitlements, Stripe, free, event, wedding, workspace, studio, Venue Edition, sponsors-ledger, entitlementsDb, signal-entitlements DB, entitlements-shared, resolveEntitlement, /api/checkout, STRIPE_SETUP, STUDIO_OPS_SECRET, ENTITLEMENTS_OPS]
 references: [signalstudio.ie/pricing, src/app/pricing/, src/app/hq/entitlements/, src/app/api/internal/entitlements/grant/, src/app/api/internal/entitlements/expire/, src/lib/entitlements-db/, src/lib/entitlements-db/client.ts, src/lib/entitlements-db/schema.ts, src/lib/entitlements-db/reads.ts, src/lib/entitlements-db/writes.ts, drizzle-entitlements/, drizzle-entitlements.config.ts, ~/Projects/personal/tasks/src/app/api/checkout/, ~/Projects/personal/tasks/src/app/api/webhooks/stripe/, ~/Projects/personal/tasks/src/lib/entitlements-shared/, ~/Projects/personal/timeline/src/lib/entitlements-shared/, ~/Projects/personal/signal/src/lib/entitlements-shared/, ~/Projects/personal/notes/src/lib/entitlements-shared/, docs/ENTITLEMENTS_OPS.md, ~/Projects/personal/tasks/docs/STRIPE_SETUP.md]
@@ -81,7 +81,7 @@ Two surfaces for support, pilot ops, and comp issuance:
 
 ### The sponsors paid-ledger (Venue Edition)
 
-The `sponsors` table carries the paid Venue Edition ledger, ratified 2026-05-16 (`venue-editions-paid-tier` — the venue pays, not the couple). Additive, nullable columns: `venuePlan` (`none`/`pilot`/`founding`/`paid`), `annualAmountCents`, `foundingLocked`, `termStartsAt`, `termEndsAt`, `paidAt`, `codeAllotment`. `isPaidVenue()` returns true only when `venuePlan` is `founding` or `paid` **and** `paidAt` is set — cash landing is the gate, not the plan label. Shape is kept identical to Studio's local `src/lib/db/schema.ts` so the stack can dual-write sponsor rows the same way it dual-writes entitlements. The public surface is `/pricing` §6.5 "For venues": €1,500–€4,000 a year by venue size, with the first fifteen venues locking €1,500 for as long as they stay (`foundingLocked`). The Workspace tier also gained an annual prepay link — `€120 a year` → `tasks.signalstudio.ie/api/checkout?tier=workspace&interval=annual`.
+The `sponsors` table carries the paid Venue Edition ledger. The active decision is `venue-edition-fixed-price-2026-07-11`: every new paid or founding venue is written at **€1,500 per venue/year, prepaid**. Additive, nullable columns remain: `venuePlan` (`none`/`pilot`/`founding`/`paid`), `annualAmountCents`, `foundingLocked`, `termStartsAt`, `termEndsAt`, `paidAt`, `codeAllotment`. `annualAmountCents` stays an exact cash ledger rather than a derived count so historical payments are never normalized. `foundingLocked` records the cohort's lifetime guarantee, not a lower current price. `isPaidVenue()` returns true only when `venuePlan` is `founding` or `paid` **and** `paidAt` is set — cash landing is the gate, not the plan label.
 
 ### Reconcile sweep (the safety net)
 
