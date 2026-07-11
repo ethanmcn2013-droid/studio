@@ -23,3 +23,21 @@ Signal 38.6s; rerun with one standardized harness before using them as a trend.
 Still required: browser Web Vitals, route-level gzip, font transfer, auth
 redirect timing, database query timing/counts, cross-product latency, and
 cold-start measurements.
+
+## Repeatable gzip chunk measurement
+
+`corepack pnpm performance:measure` now measures every emitted first-party
+JavaScript chunk using gzip level 9. This is a chunk inventory, not a claim
+about route initial payload; route-level budgets still require browser traces.
+
+| App | JS chunks | Raw bytes | Gzip bytes |
+| --- | ---: | ---: | ---: |
+| Studio | 103 | 4,498,173 | 1,274,833 |
+| Notes | 26 | 1,403,062 | 412,989 |
+| Tasks | 58 | 2,416,131 | 720,016 |
+| Timeline | 32 | 1,321,591 | 388,862 |
+| Signal | 27 | 1,417,374 | 432,291 |
+
+The totals intentionally expose all-chunk cost and are not substituted for
+route-level p75 Web Vitals. They establish a repeatable baseline for the next
+optimization pass.
