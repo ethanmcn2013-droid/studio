@@ -54,3 +54,21 @@ authenticated journey or production provider configuration.
 Provider-console screenshots or exported configuration summaries with values
 redacted, plus a signed operator receipt in this directory. Until then, the
 corresponding P0 ledger items remain open.
+
+## Read-only live provider observations
+
+Vercel CLI read-only inventory confirmed separate projects for the five
+surfaces in the current team context:
+
+| Project | Project ID | Production URL |
+|---|---|---|
+| studio | `prj_DtQGpGQpnXNoKY7tDv6xIu2MG9cA` | `https://signalstudio.ie` |
+| notes | `prj_49XKztlrFYFB0dECUVzxiQ8dW2Zu` | `https://notes.signalstudio.ie` |
+| tasks | `prj_C4rdqkS6wh9z4V0lku3tuphcNlkN` | `https://tasks.signalstudio.ie` |
+| roadmap | `prj_3OGGFuYvx3lhPxxxertThduT6Yll` | `https://roadmap.signalstudio.ie` |
+| analytics | `prj_0K6a38gOqiToiuVflHzvPWDnpoS9` | `https://signal.signalstudio.ie` |
+
+This confirms deployment separation, not identity, environment, database, or
+backup correctness. `vercel env ls` could not produce a safe environment-name
+inventory from the current CLI context (`Custom Environment not found`), so no
+secret-bearing provider operation was attempted.
