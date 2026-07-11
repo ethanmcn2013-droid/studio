@@ -21,3 +21,22 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(`suite-contract-consumers: ok (${consumers.length} products)`);
+
+const readContract = JSON.parse(fs.readFileSync(path.join(process.cwd(), "contracts", "tasks-read-contract.v1.json"), "utf8"));
+const readConsumers = [
+  ["analytics", "src/lib/briefing/tasks-read-contract.v1.json", "briefing"],
+  ["roadmap", "src/server/sync/tasks-read-contract.v1.json", "milestones"],
+];
+for (const [repo, relative, operation] of readConsumers) {
+  const file = path.join(root, repo, relative);
+  if (!fs.existsSync(file)) {
+    console.error(`${repo}: missing Tasks read contract fixture`);
+    process.exit(1);
+  }
+  const fixture = JSON.parse(fs.readFileSync(file, "utf8"));
+  if (fixture.version !== readContract.version || fixture.owner !== readContract.owner || fixture.operation !== operation || fixture.timeoutMs !== 2000 || fixture.scope !== "subject+workspace") {
+    console.error(`${repo}: invalid Tasks read contract fixture`);
+    process.exit(1);
+  }
+}
+console.log("tasks-read-contract-consumers: ok (2 consumers)");
