@@ -81,10 +81,11 @@ async function readTasks(
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
-    // Resolve internal user id via Clerk id first, then email fallback.
+    // Resolve by immutable Clerk subject only. Email is display context, never
+    // an authorization or tenant-join key.
     const userRow = await client.execute({
-      sql: "SELECT id FROM users WHERE clerk_id = ? OR email = ? LIMIT 1",
-      args: [req.clerkId, req.email],
+      sql: "SELECT id FROM users WHERE clerk_id = ? LIMIT 1",
+      args: [req.clerkId],
     });
     const userId = userRow.rows[0]?.id;
     if (!userId) return { data: [], read: "ok" };
@@ -298,10 +299,10 @@ async function readAnalytics(
     // gives us the canonical answer with the token we already have.
     let cadence: AnalyticsCadence = "off";
     if (tasksClient) {
-      // Resolve internal user id first.
+      // Resolve by immutable Clerk subject only.
       const userRow = await tasksClient.execute({
-        sql: "SELECT id FROM users WHERE clerk_id = ? OR email = ? LIMIT 1",
-        args: [req.clerkId, req.email],
+        sql: "SELECT id FROM users WHERE clerk_id = ? LIMIT 1",
+        args: [req.clerkId],
       });
       const userId = userRow.rows[0]?.id;
       if (userId) {

@@ -1,9 +1,9 @@
 import "server-only";
-import { createHash, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { aggregateToday } from "@/server/today/aggregate";
 import { shapeNativePayload } from "@/server/today/shape-native";
 import type { TodayNativeRequest } from "@/server/today/types";
+import { verifySuiteTodayAssertion } from "@/server/auth/suite-assertion";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,8 +16,8 @@ export const dynamic = "force-dynamic";
  * client does not own greeting strings, anchor-card selection, or
  * "should This Evening render right now", server-decides everything.
  *
- * Auth: shared `SUITE_API_KEY` Bearer token, same pattern + timing-safe
- * compare as `/api/today`. The iOS app's backend proxy holds the key;
+ * Auth: a short-lived HMAC assertion in the Bearer slot, signed with
+ * `SUITE_API_KEY`. The iOS app's backend proxy holds the key;
  * the native client never sees it. Migration target (named in
  * aggregate.ts) is Clerk session check once studio gains @clerk/nextjs.
  *
@@ -51,28 +51,31 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const expectedDigest = createHash("sha256").update(expected).digest();
-  const presentedDigest = createHash("sha256").update(presented).digest();
-  if (!timingSafeEqual(expectedDigest, presentedDigest)) {
+  let assertion: ReturnType<typeof verifySuiteTodayAssertion>;
+  try {
+    assertion = verifySuiteTodayAssertion(presented, expected);
+  } catch {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  let body: TodayNativeRequest;
+  let body: Partial<TodayNativeRequest>;
   try {
     body = (await req.json()) as TodayNativeRequest;
   } catch {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
-  if (!body?.clerkId || !body?.email) {
-    return NextResponse.json(
-      { error: "missing_fields", hint: "clerkId and email required" },
-      { status: 400 },
-    );
-  }
+  if (!assertion.email) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  const request: TodayNativeRequest = {
+    clerkId: assertion.sub,
+    email: assertion.email,
+    name: body.name,
+    timezone: body.timezone,
+    locale: body.locale,
+  };
 
   try {
-    const raw = await aggregateToday({ clerkId: body.clerkId, email: body.email });
-    const payload = shapeNativePayload(raw, body);
+    const raw = await aggregateToday({ clerkId: assertion.sub, email: assertion.email });
+    const payload = shapeNativePayload(raw, request);
     return NextResponse.json(payload, {
       headers: {
         "Cache-Control": "no-store, private",
