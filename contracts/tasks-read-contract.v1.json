@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "owner": "tasks",
+  "operations": {
+    "milestones": { "path": "/api/internal/milestones", "timeoutMs": 2000, "retry": "idempotent-only", "scope": "subject+workspace" },
+    "briefing": { "path": "/api/internal/briefing-signals", "timeoutMs": 2000, "retry": "idempotent-only", "scope": "subject+workspace" }
+  },
+  "response": { "workspaceId": "required", "objectRefs": "versioned", "sensitiveFields": "omitted" }
+}
