@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { LaunchReadiness } from "@/lib/hq/launch";
+import { getRemediationProgram, summarizeRemediation } from "@/lib/hq/remediation-program";
 
 /**
  * HqLaunchReadiness, the countdown to the hard launch + the gates between
@@ -10,8 +11,11 @@ import type { LaunchReadiness } from "@/lib/hq/launch";
  * getLaunchReadiness(paidVenues) and hands it in.
  */
 export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness }) {
-  const { daysRemaining, weeksRemaining, launchLabel, gates, cleared, total, launched } =
+  const { daysRemaining, weeksRemaining, launchLabel, gates, launched } =
     readiness;
+  const program = getRemediationProgram();
+  const remediation = summarizeRemediation(program);
+  const commercialGate = gates.find((gate) => gate.key === "first-paid-venue");
 
   return (
     <section className="hq-launch" aria-labelledby="hq-launch-title">
@@ -34,13 +38,30 @@ export function HqLaunchReadiness({ readiness }: { readiness: LaunchReadiness })
             </>
           )}
         </span>
-        <span className="hq-launch-gatecount" data-all-clear={cleared === total ? "true" : undefined}>
-          {cleared} of {total} gates clear
+        <span className="hq-launch-gatecount" data-all-clear={remediation.openP0.length === 0 ? "true" : undefined}>
+          {remediation.calculatedCompletion}% program complete
         </span>
       </div>
 
       <ul className="hq-launch-gates" role="list">
-        {gates.map((g) => {
+        {[
+          ...(commercialGate ? [{
+            key: commercialGate.key,
+            label: commercialGate.label,
+            detail: commercialGate.detail,
+            state: commercialGate.state,
+            live: commercialGate.live,
+            href: commercialGate.href,
+          }] : []),
+          ...remediation.openP0.slice(0, 6).map((item) => ({
+            key: item.id,
+            label: `${item.id} · ${item.title}`,
+            detail: `phase ${item.phase} · ${item.status}`,
+            state: item.status === "complete" ? "clear" as const : "pending" as const,
+            live: false,
+            href: "/hq/platform-readiness",
+          })),
+        ].map((g) => {
           const body = (
             <>
               <span className="hq-launch-gate-dot" data-state={g.state} aria-hidden="true" />
