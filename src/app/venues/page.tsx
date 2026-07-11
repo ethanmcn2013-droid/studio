@@ -7,11 +7,11 @@ import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 export const metadata: Metadata = {
   title: "Founding Venue Programme · Signal Studio",
   description:
-    "Stand behind every couple's planning. The Venue Edition is patronage, paid once a year from €1,500, the venue's name in a quiet line, nothing for the team to run. Founding venues lock €1,500 for as long as they stay.",
+    "Stand behind every couple's planning. The Venue Edition is €1,500 a year, prepaid, the venue's name in a quiet line, nothing for the team to run. Founding venues lock that price for as long as they stay.",
   openGraph: {
     title: "Founding Venue Programme · Signal Studio",
     description:
-      "A venue stands behind its couples' planning, twelve months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
+      "A venue stands behind its couples' planning, eighteen months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
     type: "website",
   },
 };
@@ -82,8 +82,8 @@ const coupleExperience = [
     copy: "Notes, decisions, tasks, and a plan anyone can forward, instead of a spreadsheet and a thread.",
   },
   {
-    title: "Twelve months",
-    copy: "The venue prepays the year. Each couple gets twelve months, then it drops to the free plan with a quiet prompt beforehand.",
+    title: "Eighteen months",
+    copy: "The venue prepays the year. Each couple gets eighteen months, then it drops to the free plan with a quiet prompt beforehand.",
   },
   {
     title: "Your name on it, quietly",
@@ -115,7 +115,7 @@ const foundingPerks = [
 ];
 
 const mechanicLines = [
-  "You pay once a year. Every couple you send gets twelve months of the full suite.",
+  "You pay once a year. Every couple you send gets eighteen months of the full suite.",
   "When access opens, each couple gets a code and a clear first step.",
   "Your venue's name appears at the top of everything they see.",
   "Nothing for your team to run.",
@@ -457,8 +457,8 @@ export default function VenuesPage() {
             <div className="mt-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
               <div>
                 <p className="text-[16px] leading-[1.65] text-ink-soft">
-                  €1,500 to €4,000 a year, prepaid, set by venue size and
-                  number of sites. Every couple gets twelve months of the
+                  €1,500 per venue, per year, prepaid. Every couple gets
+                  eighteen months of the
                   full suite. No seats. No per-couple maths. The venue pays
                   so the couple never has to think about it.
                 </p>
@@ -476,10 +476,10 @@ export default function VenuesPage() {
                   Annual · prepaid
                 </span>
                 <span className="text-[clamp(2rem,1.6rem+1.6vw,3rem)] font-semibold leading-none tracking-[-0.045em] text-ink">
-                  €1,500–€4,000
+                  €1,500
                 </span>
                 <span className="text-[13px] leading-[1.5] text-ink-quiet">
-                  a year, by venue size · founding venues lock €1,500
+                  per venue, per year · prepaid
                 </span>
               </div>
             </div>
@@ -539,7 +539,7 @@ export default function VenuesPage() {
                   copy: "Couples redeem and start planning. We watch quietly and stay out of the way unless you need us.",
                 },
                 {
-                  label: "One short retro.",
+                  label: "One short review.",
                   copy: "A brief conversation about what worked and what did not. No recurring meetings, no reporting.",
                 },
               ].map((item, i) => (

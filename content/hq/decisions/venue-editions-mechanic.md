@@ -1,6 +1,6 @@
 ---
 id: venue-editions-mechanic
-title: Ship the Founding Venue Programme as Venue Editions — sponsored per-couple redemption codes, 12-month duration…
+title: Ship the Founding Venue Programme as Venue Editions — sponsored per-couple redemption codes, 18-month duration…
 category: Product
 date: 2026-05-13
 status: Active
@@ -10,11 +10,11 @@ relatedObjects: [Founding Venue Programme, Lamb's Hill, docs/VENUE_EDITIONS_PLAN
 
 ## Decision
 
-Ship the Founding Venue Programme as Venue Editions — sponsored per-couple redemption codes, 12-month duration, co-branded eyebrow only, auto-drop to Free at month 12.
+Ship the Founding Venue Programme as Venue Editions — sponsored per-couple redemption codes, 18-month duration, co-branded eyebrow only, auto-drop to Free at month 18.
 
 ## Reason
 
-A sponsor-pays mechanic puts the venue in front of the couple as the gift-giver rather than positioning Signal Studio as the marketer — venue keeps the relationship, couple keeps the workspace, and the brand stays out of the way during the moment of delight. Per-couple codes (not bulk seats) preserve sponsor-aware welcome and per-redemption attribution. Eyebrow-only co-brand (not logos) holds BRAND.md's anti-theatre register. 12-month duration with day-330 prompt + auto-drop avoids the indefinite-grace-period failure mode of comp programs.
+A sponsor-pays mechanic puts the venue in front of the couple as the gift-giver rather than positioning Signal Studio as the marketer — venue keeps the relationship, couple keeps the workspace, and the brand stays out of the way during the moment of delight. Per-couple codes (not bulk seats) preserve sponsor-aware welcome and per-redemption attribution. Eyebrow-only co-brand (not logos) holds BRAND.md's anti-theatre register. The founder extended couple access to 18 months on 2026-07-01; a quiet prompt before auto-drop avoids the indefinite-grace-period failure mode of comp programs.
 
 ## Alternatives considered
 
@@ -26,4 +26,4 @@ Day-330 prompt copy hasn't been written yet — risk that the auto-drop feels ab
 
 ## Notes
 
-Cycle 8.0 decisions lock (naming, eyebrow-only co-brand, unlimited allocation, 12-month auto-drop, per-couple CLI codes, 5 canonical redemption error strings) captured here for HQ; full spec at docs/VENUE_EDITIONS_PLAN.md. Soft launch (Cycle 8.5) gated on Clerk webhook secret rotation + in-browser walk before Sinéad gets the 10-code CSV.
+Cycle 8.0 decisions lock (naming, eyebrow-only co-brand, unlimited allocation, per-couple CLI codes, 5 canonical redemption error strings) captured here for HQ; duration was amended to an 18-month auto-drop on 2026-07-01. Full spec at docs/VENUE_EDITIONS_PLAN.md. Soft launch (Cycle 8.5) gated on Clerk webhook secret rotation + in-browser walk before Sinéad gets the 10-code CSV.

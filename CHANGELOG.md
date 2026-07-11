@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-11 · S·124 · holds · Venue Edition is one price
+
+**Venue Edition now holds at €1,500 per venue, per year, prepaid: no size band, no multi-site ladder, and no operator field that can quietly negotiate another number.** The public venue page and structured offer, HQ onboarding and cash writer, current strategy and outbound copy, venue collateral, lender pack, growth deck, pitch deck, and forecast all carry the same fixed amount. Historical cash rows and dated decisions stay exact rather than being rewritten to look tidy.
+
+The couple-access term is also pinned to eighteen months for new Venue Edition codes. The old Lamb's Hill 365-day packet is blocked from sending until its existing codes are migrated by exact code identity; a new contract check keeps the price range and send-ready twelve-month copy from returning.
+
 ## 2026-07-10 · S·123 · tightens · the org console goes flat and reads as a poster
 
 **/hq/org now shows the whole machine in one plane: the founder card fans in the accent to a single band of eight divisions, all seventeen directors and the three in-discovery roles visible at once, with no rail and no standing inspector between the reader and the chart.** The console top carries the weight instead: a stacked three-line headline against six large accent metric cells, a joined segmented mode control with the active mode in full indigo, and an honest marks legend with the layer chips and the synced-from-source line where a lesser page would claim "live". Focusing a director still docks the full dossier beside the chart; the depth moved, it did not leave.

@@ -12,7 +12,7 @@ This document defines that formula. It is struck once per quarter, reported to e
 
 **Design principle:** the valuation is anchored to things that have already happened — revenue earned, profit banked, cash in the account — not to growth that has been promised. Potential is real, but it is not counted here. Only the trailing record is.
 
-**Grounded in the actual model.** Signal Studio's revenue comes from three real streams set out in the 12-month business plan: the Venue Edition (€1,500–€4,000 per venue per year, prepaid), Workspace subscriptions (€12/month), and one-time Event purchases (€79). The plan's Year-1 target is €150,000 of revenue by May 2027 against a deliberately lean cost base (≈€15,000), at a gross margin above 90%. The SSV reads from whatever of that has actually been booked at each quarter close — never from the target itself.
+**Grounded in the actual model.** Signal Studio's revenue comes from three real streams set out in the 12-month business plan: the Venue Edition (€1,500 per venue per year, prepaid), Workspace subscriptions (€12/month), and one-time Event purchases (€79). The plan's Year-1 target is €150,000 of revenue by May 2027 against a deliberately lean cost base (≈€15,000), at a gross margin above 90%. The SSV reads from whatever of that has actually been booked at each quarter close — never from the target itself.
 
 ---
 

@@ -23,11 +23,11 @@ The venue pays once a year, receives codes, gives each couple a code, and has no
 | 1. Qualified yes | Founder | Confirm signer, annual price, start date, venue name as it should appear. |
 | 2. Payment | Founder | Invoice settled before any live couple codes are issued. |
 | 3. Sponsor setup | Signal Studio | Venue sponsor record exists; slug confirmed. |
-| 4. Code issue | Signal Studio | Wedding-tier, venue-edition codes issued for 365 days. |
+| 4. Code issue | Signal Studio | Wedding-tier, Venue Edition codes issued for 548 days (18 months). |
 | 5. Operator handoff | Founder | Venue receives plain-text couple email template and CSV/list of codes. |
 | 6. Coordinator walkthrough | Founder | 25-minute setup ritual or 30-minute couple-view walkthrough. |
 | 7. Soft redemption window | Venue + Signal Studio | Venue sends first small batch to couples; Signal watches redemption. |
-| 8. Retro | Founder + venue | One short retro: what couples asked, what broke, what to improve. |
+| 8. Review | Founder + venue | One short review: what couples asked, what broke, what to improve. |
 | 9. Renewal | Founder | Renewal conversation before annual expiry. |
 
 ---
@@ -51,12 +51,12 @@ Complete before a venue is allowed to buy.
 
 | Step | Detail |
 | --- | --- |
-| Confirm plan | Boutique EUR1,500 / Mid-size EUR2,500 / Large or multi-site EUR4,000. Founding cohort locks EUR1,500/year. |
+| Confirm plan | EUR1,500 per venue/year, prepaid. Founding cohort locks that price for life. |
 | Invoice | Send invoice for annual prepaid amount. |
 | Wait | Do not issue live codes until paid. |
 | Create sponsor | Use existing sponsor setup path. Slug should be short and stable, e.g. `tankardstown`, `rathsallagh`. |
 | Confirm code quantity | Start with a small first batch unless the venue has a specific reason for more. |
-| Issue codes | Use `pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 365`. |
+| Issue codes | Use `pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 548`. |
 | Save audit | Store issued code list in the agreed private operator location. Do not paste codes into public docs. |
 
 ---
@@ -67,13 +67,13 @@ Reference from `ENTITLEMENTS_OPS.md`:
 
 ```bash
 cd ~/Projects/personal/studio
-pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 365
+pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 548
 ```
 
 Example:
 
 ```bash
-pnpm issue:codes lambs-hill 10 venue_edition wedding 365
+pnpm issue:codes lambs-hill 10 venue_edition wedding 548
 ```
 
 This dual-writes to Studio sponsor audit and Tasks runtime comp codes.
@@ -165,9 +165,9 @@ If the venue is not ready to bring a real wedding, run the shorter couple-view w
 
 ---
 
-## Retro
+## Review
 
-Run one retro after the first redemption window.
+Run one review after the first redemption window.
 
 | Question | Why |
 | --- | --- |

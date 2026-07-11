@@ -156,8 +156,9 @@ export const DECK: Slide[] = [
       <>
         <Lead>
           At €12 a month and €89 one-time, a solo, zero-ad motion produces
-          ≤€125k optimistically. The venue wedge, given away, produced
-          nothing. A plan that flattered you would have hidden that.
+          ≤€125k optimistically. The Venue Edition now adds exactly €1,500
+          for each venue closed; the old complimentary model adds nothing.
+          A plan that flattered you would have hidden that.
         </Lead>
         <Note>So the goal was reframed. It is still ambitious.</Note>
       </>
@@ -194,8 +195,8 @@ export const DECK: Slide[] = [
         </Lead>
         <Defs
           items={[
-            ["Venue Edition", "€1,500–€4,000 a year, prepaid"],
-            ["Founding lock", "first ~15 venues hold €1,500 for life"],
+            ["Venue Edition", "€1,500 per venue, per year, prepaid"],
+            ["Founding lock", "first ~15 venues hold that price for life"],
             ["Pro", "€120 a year, annual prepay"],
             ["Event", "€89 one-time"],
           ]}
@@ -227,7 +228,7 @@ export const DECK: Slide[] = [
     body: (
       <Defs
         items={[
-          ["One", "Paid Venue Edition, the engine, 75–85% of the number"],
+          ["One", "Paid Venue Edition, the wedge and distribution engine"],
           ["Two", "Event €89 at volume, fed by sponsoring venues' couples"],
           ["Three", "Pro €12/mo, the compounding year-two annuity"],
         ]}
@@ -244,16 +245,16 @@ export const DECK: Slide[] = [
         <Ledger
           head={["Scenario", "Venues", "6-mo cash"]}
           rows={[
-            ["Floor", "25", "~€77k"],
-            ["Stretch-credible", "60", "~€295k"],
-            ["€500k path", "120", "~€500k"],
+            ["Floor", "25", "~€78k"],
+            ["Stretch-credible", "60", "~€235k"],
+            ["€500k path", "240", "~€500k"],
           ]}
           onIndex={1}
         />
         <Note>
-          The €500k path needs ~120 closed contracts in 26 weeks, a
-          sales-team output. Plan to ~€250–300k; €500k is the month-twelve
-          destination of the same motion.
+          The €500k path needs ~240 closed contracts in 26 weeks, well beyond
+          a solo sales motion. Plan to ~€235k; €500k is a mathematical
+          boundary, not a forecast.
         </Note>
       </>
     ),

@@ -162,7 +162,12 @@ export async function assertVelocity(actor: MutationActor, cost = 1): Promise<vo
 
 // ── Anomaly hook ────────────────────────────────────────────────────────
 
-export type AnomalyKind = "velocity" | "bulk_cap" | "drift" | "unknown_tier";
+export type AnomalyKind =
+  | "velocity"
+  | "bulk_cap"
+  | "drift"
+  | "unknown_tier"
+  | "invalid_terms";
 export type AnomalySignal = { kind: AnomalyKind; actorId?: string; detail: string };
 type AnomalyListener = (s: AnomalySignal) => void;
 

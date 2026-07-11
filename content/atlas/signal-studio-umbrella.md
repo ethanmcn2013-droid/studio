@@ -3,7 +3,7 @@ title: Signal Studio — the umbrella
 slug: signal-studio-umbrella
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-07-11
 links: [five-products-as-a-system, pricing-and-entitlements, brand-enforcement, plan-cycle]
 tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella, refusal list, four products]
 references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/brand/wordmark.tsx, src/components/landing/]
@@ -71,7 +71,7 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 ## WHEN — current state
 
 - Suite design system v1 shipped 2026-05-13 across all four products.
-- Unified pricing surface live with four tiers — Free (€0 forever), Student (€0, verified .edu), Workspace (€12/mo or €120/yr, recommended), Event (€79 one-time, 12 months) — plus the Venue Edition patronage band (€1,500–€4,000/year by venue size, first fifteen venues lock €1,500), ratified 2026-05-16.
+- Unified pricing surface live with four tiers — Free (€0 forever), Student (€0, verified .edu), Workspace (€12/mo or €120/yr, recommended), Event (€79 one-time, 12 months) — plus Venue Edition at one fixed €1,500 per venue/year, prepaid. The first fifteen venues lock that price for life.
 - `/brand` asset hub public.
 - BRAND.md stable at the location `studio/BRAND.md` since 2026-05-12.
 - The wordmark "signal studio." (with the period) is locked. The collision risk with Signal Messenger means "Signal" alone is never used in body copy.
@@ -92,5 +92,6 @@ The public `/brand` hub is a quieter strategic move. It makes the brand *availab
 
 - 2026-05-16 (re-check vs S·43 /brand) — a parallel commit (`f3e784d`) tightened the `/brand` MOTIONS catalogue to canon and bumped a date in `src/app/brand/`. It did not change the umbrella structure, the 19-SVG asset set, the tier model, or the locked H1 — the four corrected facts below all still hold. No body change; entry is current.
 - 2026-05-16 (atlas re-verify) — corrected four drifts against current code. (1) `references[]` pointed at a non-existent `src/components/wordmark/`; the component is `src/components/brand/wordmark.tsx`. (2) Wordmark gestures were listed as "broadcast, heartbeat, advance, tick, settle"; the component + globals.css + /brand encode broadcast/pulse/sweep/tick/caret. (3) Pricing was described as "five tiers (free / event / wedding / workspace / studio)"; the live surface is four tiers (Free / Student / Workspace €12-or-€120yr / Event €79) plus the Venue Edition €1,500–€4,000 patronage band. (4) The locked H1 was still "Cut through the noise."; BRAND.md and the rendered hero carry "Project management for the 80% not in tech." since the 2026-05-15 operator ratification. /brand SVG count corrected 18→19. Umbrella structure unchanged — still four products, one wordmark, one indigo, one BRAND.md, one refusal list.
+- 2026-07-11 (price amendment) — Venue Edition moved from the then-current size band to one fixed €1,500 per venue/year. Public copy, structured data, Access writers, current collateral, and financial models now follow `venue-edition-fixed-price-2026-07-11`; dated May records remain historical.
 - 2026-05-14 (S·32) — BRAND.md §6.5 update; the umbrella's `/dispatch` surface now reads from `content/dispatch/*.md` (operator-voice) instead of rendering the umbrella engineering log directly. Umbrella structure unchanged — still four products, one indigo, one shared wordmark grammar, one refusal list. The dispatch convention itself is now a structurally-separated artifact, which strengthens (rather than changes) the umbrella's brand-coherence story.
 - 2026-05-14 (c044f50) — BRAND.md §6.5 cycle-code preflight rule landed for parallel-session collision catching. Umbrella structure unaffected.

@@ -19,7 +19,7 @@ solicitor before its first real signature.
 1. Open `/hq/venue-kit` and review the five objects. Deck and pricing use
    only deck-locked claims; the outreach email and the five objection
    answers are new copy drafted in the brand voice — approve or amend.
-2. Confirm the €2,500 framing ("a few euro per wedding") and the pilot ask
+2. Confirm the €1,500 fixed-price framing ("a few euro per wedding") and the pilot ask
    ("one wedding, one coordinator, two weeks").
 3. **Permission form past a solicitor once** before its first signature —
    it is the legal floor of the whole proof system.

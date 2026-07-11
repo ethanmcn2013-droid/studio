@@ -17,7 +17,7 @@
 
 ## Subject
 
-> A year of Signal Studio, on us
+> Eighteen months of Signal Studio, on us
 
 (Alternative if subject feels too crafted: *Your Lamb's Hill wedding workspace*. Lock with operator before first batch.)
 
@@ -28,7 +28,7 @@
 ```
 Hi [first name],
 
-A small gift from Lamb's Hill: a year of Signal Studio for your wedding
+A small gift from Lamb's Hill: eighteen months of Signal Studio for your wedding
 planning. Quiet, plain-English software for the work of getting married —
 tasks, notes, a shared timeline, a daily briefing of what needs attention
 next.
@@ -60,7 +60,7 @@ Lamb's Hill
 
 - No feature list ("✓ unlimited tasks ✓ shared timeline ✓ daily briefing"). The landing page handles that.
 - No "Welcome to Signal Studio!" greeting. The relationship is sponsor → couple, not Signal → couple.
-- No urgency framing ("redeem before [date]"). The window is generous (12 months from activation); urgency would read like marketing.
+- No urgency framing ("redeem before [date]"). The window is generous (18 months from activation); urgency would read like marketing.
 - No HTML/logo header. See operator rules.
 
 ---

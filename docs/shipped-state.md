@@ -77,7 +77,7 @@ The factory may state these and only these prices:
 | Student | €0 with verified .edu | Workspace tier, two-year window. |
 | Workspace | €12 / month, **or €120 / year prepaid** | Unlimited workspaces. Annual prepay stated plainly — **no "SAVE 17%" theatre.** |
 | Event | €79 one-time, 12 months | One event-shaped workspace. Unchanged. Not a lever. |
-| **Venue Edition** | **€1,500–€4,000 / year, prepaid annually** | The venue stands behind every couple's planning. Patronage, not enterprise SaaS. Founding cohort (first ~15) locks €1,500 for life — **permanence, not a discount.** |
+| **Venue Edition** | **€1,500 per venue / year, prepaid annually** | One price for every venue. The venue stands behind every couple's planning. Founding cohort (first ~15) locks that price for life — **permanence, not a discount.** |
 
 **Banned in venue copy** (BRAND.md §3 + the 2026-05-16 decision): "free for
 your couples", "with our compliments", "the gift", "12 months free", "no card",
@@ -90,8 +90,8 @@ The venue *pays Signal Studio*. Say that with a straight back.
 
 - **Founding Venue Programme** — paid annual patronage (see pricing). Lamb's
   Hill is the in-flight pilot; if it converts it is honoured at the founding
-  €1,500 lock. Per-couple redemption codes, co-branded eyebrow only, 12-month
-  couple duration, auto-drop to Free at month 12. The *mechanic* is unchanged
+  €1,500 lock. Per-couple redemption codes, co-branded eyebrow only, 18-month
+  couple duration, auto-drop to Free at month 18. The *mechanic* is unchanged
   by the 2026-05-16 decision; only the money reversed (venue now pays).
 - **Review access** — press, 90 days, named as such. Unchanged.
 - **With our compliments** — this phrase now refers ONLY to founder-issued

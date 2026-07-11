@@ -4,6 +4,7 @@ config({ path: ".env" });
 
 import { randomBytes, randomUUID } from "node:crypto";
 import { createClient } from "@libsql/client";
+import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "../src/lib/venue-edition";
 
 function fail(msg: string): never {
   console.error(msg);
@@ -75,7 +76,7 @@ async function main() {
         "  count:         integer 1-500.",
         `  source-type:   default 'venue_edition'. one of ${ENTITLEMENT_SOURCES.join(" | ")}.`,
         `  tier:          default 'wedding'. one of ${ENTITLEMENT_TIERS.join(" | ")}.`,
-        "  duration-days: default 365. pass 'null' for no expiry (compliments use null; Tasks normalizes to 10y).",
+        "  duration-days: venue_edition is locked to 548 (18 months); other sources default to 365. pass 'null' for no expiry.",
         "",
         "Writes to BOTH studio's license_codes (sponsor audit) AND Tasks's comp_codes",
         "(runtime redemption). Tasks's comp_codes.notes carries the sponsor JSON so",
@@ -100,7 +101,10 @@ async function main() {
     fail(`tier must be one of ${ENTITLEMENT_TIERS.join(" | ")}`);
   }
 
-  let durationDays: number | null = 365;
+  let durationDays: number | null =
+    resolvedSource === "venue_edition"
+      ? VENUE_EDITION_COUPLE_ACCESS_DAYS
+      : 365;
   if (durationDaysArg !== undefined) {
     if (durationDaysArg === "null") {
       durationDays = null;
@@ -111,6 +115,17 @@ async function main() {
           `duration-days must be an integer or 'null', got '${durationDaysArg}'`,
         );
       }
+    }
+  }
+
+  if (resolvedSource === "venue_edition") {
+    if (resolvedTier !== "wedding") {
+      fail("venue_edition codes must use the wedding tier");
+    }
+    if (durationDays !== VENUE_EDITION_COUPLE_ACCESS_DAYS) {
+      fail(
+        `venue_edition codes must last ${VENUE_EDITION_COUPLE_ACCESS_DAYS} days (18 months)`,
+      );
     }
   }
 

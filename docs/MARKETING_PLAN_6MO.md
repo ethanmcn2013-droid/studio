@@ -1,7 +1,7 @@
 # Signal Studio · 6-Month Marketing Plan
 
 **Date**: 2026-05-16
-**Status**: RATIFIED 2026-05-16 — §1 paid Venue Edition approved (€1.5–4k/yr band); goal reframe accepted (€250k/6mo · €500k/12mo · brand-integrity gating); video = restrained craft. Execution gated only on the pre-launch readiness items in §5.
+**Status**: AMENDED 2026-07-11 — §1 Venue Edition fixed at €1,500 per venue/year; the prior €1.5–4k band is retired. Goal reframe remains recorded, but the fixed price makes the volume requirement materially higher. Execution is gated only on the pre-launch readiness items in §5.
 **Built from**: parallel strategy + research + pm workstreams, brand-gated through `signal-brand-voice` / BRAND.md §3 / DESIGN.md §10.
 **Constraints honoured**: zero paid ads, free channels only, solo founder + AI agent factory, only fixed costs are Claude Code Max + Codex Pro + hosting.
 
@@ -11,9 +11,9 @@
 
 You asked for €/$500k in 6 months. Here is the truth, because a flattering plan is worthless:
 
-**At the current pricing, €500k in 6 months is not a marketing problem — it is an arithmetic one.** €12/mo and €79 one-time cannot produce €500k of cash in 26 weeks from a solo, zero-ad motion. The consumer SKUs contribute **≤€125k optimistically, ~€40–60k realistically**. The venue wedge as designed today ("with our compliments") produces **€0** — it is distribution, not revenue.
+**At the current pricing, €500k in 6 months is not a marketing problem — it is an arithmetic one.** €12/mo and €79 one-time cannot produce €500k of cash in 26 weeks from a solo, zero-ad motion. The consumer SKUs contribute **≤€125k optimistically, ~€40–60k realistically**. The Venue Edition now contributes exactly **€1,500 for each venue closed**; the old complimentary model and variable price band are retired.
 
-**€500k in 6 months is a 12–18 month target. The credible 6-month number is €150k–€300k, centred ~€250k — and only if one decision is made.** Chasing the literal €500k in 6 months would force the exact salesy, high-volume, AI-slop tactics this brand exists to refuse. The fastest way to destroy Signal Studio is to hit a revenue number by abandoning the thing that makes it Signal Studio.
+**€500k in 6 months remains outside the credible solo-founder case. The fixed-price stretch scenario is ~€235k; the standing €250k target needs additional venue volume or stronger consumer revenue.** Chasing the literal €500k in 6 months would force the exact salesy, high-volume, AI-slop tactics this brand exists to refuse. The fastest way to destroy Signal Studio is to hit a revenue number by abandoning the thing that makes it Signal Studio.
 
 **So the plan reframes the goal, and the reframed goal is still ambitious:**
 
@@ -41,18 +41,18 @@ This is not pessimism. The engine below is the right engine. But a plan that lea
 
 ## 1 · The decision that gates everything — RATIFIED 2026-05-16
 
-Pricing is a locked decision area. This was ratified by the founder on 2026-05-16: **paid Venue Edition approved at the €1,500–€4,000/yr band; Workspace €120/yr annual prepay approved; Event €79 untouched.** Recorded in `content/hq/decisions/venue-editions-paid-tier.md`.
+Pricing is a locked decision area. The founder amended the Venue Edition on 2026-07-11: **€1,500 per venue/year, prepaid, with no size or multi-site band.** Recorded in `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md`.
 
 **Reverse "with our compliments." The Venue Edition becomes a paid annual tier.**
 
-- **Venue Edition — €1,500–€4,000 / year**, tiered by venue size / multi-site, **prepaid annually**. The venue pays Signal Studio to give every one of its couples a 12-month co-branded planning workspace.
+- **Venue Edition — €1,500 per venue / year, prepaid annually.** One price for every venue. The venue pays Signal Studio to give every one of its couples an 18-month co-branded planning workspace.
 - Framed as **patronage, not enterprise SaaS**: "the venue stands behind the couple's planning." No seats, no per-user, no MSA jargon, no discount banners. A standard of hospitality, not a license. This wording passes BRAND.md §3.
 - **Founding-cohort price-lock** (not discount): the first ~15 venues lock €1,500 for life. The asset is permanence, not a markdown.
 - Secondary asks (also ratification-flagged): **Workspace annual prepay €120/yr** (stated plainly, no "SAVE 17%" theatre); **Event €79 one-time held as-is** (do not touch — it isn't the lever).
 
-**Why this is the whole plan:** a paid venue is negative-CAC distribution that *pays you* to seed 50–150 high-intent couples into the suite, recurring annually, and the restraint *is* the pitch to a taste-driven venue buyer. Without this ratification, the honest 6-month number is **under €75k** and the rest of this document is decoration.
+**Why this is the whole plan:** a paid venue is negative-CAC distribution that *pays you* to seed 50–150 high-intent couples into the suite, recurring annually, and the restraint *is* the pitch to a taste-driven venue buyer. The price is ratified; Gate 0 is now whether one venue will settle a real invoice without a discount.
 
-> **Decision needed from you: ratify the paid Venue Edition tier (Y/N), and the price band. Nothing else starts until this is answered.**
+> **Decision closed 2026-07-11:** Venue Edition is paid, annual, prepaid, and fixed at €1,500 per venue. Execution now depends on proof of demand, not another pricing decision.
 
 ---
 
@@ -60,7 +60,7 @@ Pricing is a locked decision area. This was ratified by the founder on 2026-05-1
 
 Three motions, in priority order. Everything else is ruled out (paid ads = constraint violation; volume outbound spam / AI-listicle SEO / discount theatre = brand violation).
 
-1. **Paid Venue Edition (annual, prepaid)** — the engine. ~75–85% of the number.
+1. **Paid Venue Edition (annual, prepaid)** — the wedge and distribution engine. At the fixed €1,500 price, it is not assumed to carry 75–85% of six-month cash by itself.
 2. **Event €79 one-time at volume**, fed by sponsoring venues' couples beyond the sponsored allotment — the secondary layer.
 3. **Workspace €12/mo (+ €120/yr prepay)** — the compounding tail; small in-window, the year-2 annuity.
 
@@ -70,13 +70,13 @@ Three motions, in priority order. Everything else is ruled out (paid ads = const
 
 | Scenario | Venues closed | Blended /yr | Venue cash | + Event | + Workspace | **6-mo total** |
 |---|---|---|---|---|---|---|
-| **Floor** | 25 | €1,500 | €37.5k | ~€20k | ~€20k | **~€77k** |
-| **Stretch-credible** | 60 | €2,500 | €150k | ~€95k | ~€50k | **~€295k** |
-| **€500k path** | 120 | €3,000 | €360k | ~€100k | ~€40k | **~€500k** |
+| **Floor** | 25 | €1,500 | €37.5k | ~€20k | ~€20k | **~€78k** |
+| **Stretch-credible** | 60 | €1,500 | €90k | ~€95k | ~€50k | **~€235k** |
+| **Mathematical €500k path** | 240 | €1,500 | €360k | ~€100k | ~€40k | **~€500k** |
 
-The €500k path needs a non-salesperson solo founder to close ~120 paid B2B contracts in 26 weeks from zero pipeline — roughly a 4–6 person sales-team output. The AI factory compounds *prep*, not *closing*. **Plan to the Stretch-credible line (~€250–300k). Treat €500k as the month-12 destination the same motion reaches.**
+The €500k path needs a non-salesperson solo founder to close ~240 paid B2B contracts in 26 weeks from zero pipeline — well beyond a solo sales motion. The AI factory compounds *prep*, not *closing*. **Plan to the Stretch-credible line (~€235k). Treat €500k as a mathematical boundary, not a forecast.**
 
-The one variable worth testing hard in weeks 1–8: *how much does a genuinely bespoke, brand-faithful per-venue asset compress the B2B close?* If a taste-driven venue owner converts on a single call because the asset pre-sold, Stretch-credible moves toward €350k. That compression is the real experiment.
+The one variable worth testing hard in weeks 1–8: *how much does a genuinely bespoke, brand-faithful per-venue asset compress the B2B close?* If a taste-driven venue owner converts on a single call because the asset pre-sold, the fixed-price volume case becomes more credible. That compression is the real experiment.
 
 ---
 
@@ -119,7 +119,7 @@ A standing multi-agent pipeline running overnight. Your job is not to produce �
 | **M3** | First public proof | Publish Lamb's Hill case study (honest, specific); quiet footer email capture; video 1 (founder-voiced product walkthrough); pitch 2 venues *with* the case study; `/pricing` conversion audit | Email subs (50) + pricing visits | First Event €79; first paid venue |
 | **M4** | Venue channel repeatable | 3rd venue (Wicklow/Dublin belt — proximity credibility); 8 posts pivot to construction/freelance (→ Workspace); video 2 = the **refusal-list explainer** (founder-voiced, brand-defining); first list email | Active venue codes (target 3) | 3 Event + 2 Workspace |
 | **M5** | Workspace growth + shareable proof | Template library (5 anchors, per TEMPLATES_STRATEGY); "Made with Signal" opt-in showcase; venue-sponsor explainer video; honest Indie Hackers builder post | Workspace MRR (target €60+) | €200+ cumulative; venue tier live |
-| **M6** | Self-sustaining referral | Ask active venues for **one warm referral each** (highest-ROI move in the plan); "Year Zero" retro post; content-accuracy audit vs shipped-state; manual venue referral incentive | Warm venue referrals (target 2) | Trajectory check vs the 5 indicators |
+| **M6** | Self-sustaining referral | Ask active venues for **one warm referral each** (highest-ROI move in the plan); "Year Zero" review post; content-accuracy audit vs shipped-state; manual venue referral incentive | Warm venue referrals (target 2) | Trajectory check vs the 5 indicators |
 
 **Video resolution (your explicit input — you make the videos):** yes to founder-made video, but as **high-craft restrained content** — product walkthroughs, the refusal-list explainer, the venue-sponsor explainer, the case study — distributed on YouTube + embedded on-site + into wedding-pro communities. **Not** a daily TikTok/IG slop treadmill (the register is incompatible and the ROI runway is 12+ months). Founder voice beats a mediocre ElevenLabs voice every time; use ElevenLabs only where it clears the same bar. 2 strong videos/month, never volume-for-volume.
 
@@ -129,7 +129,7 @@ A standing multi-agent pipeline running overnight. Your job is not to produce �
 
 - **Mon (60m):** clear approval queue (approve/edit/kill) + write the week's brief + 1 venue email sent + 1-line KPI log.
 - **Tue–Thu (30m/day):** same-day reply to any venue coordinator (highest-value time when the channel is live); publish one already-approved asset. *You do not write content mid-week — that's the factory's job.*
-- **Fri (30m):** what shipped this week + one retro sentence (feeds the M6 Year-Zero post) + fix one thing the factory got wrong (tighten brief/prompt).
+- **Fri (30m):** what shipped this week + one review sentence (feeds the M6 Year-Zero post) + fix one thing the factory got wrong (tighten brief/prompt).
 
 If it takes more than this, the briefs are weak — shrink the queue, never expand your review time.
 
@@ -180,7 +180,7 @@ Hit those five and €500k arrives months 9–15 with the voice intact. That is 
 
 ## 11 · Ratification queue
 
-1. ~~Paid Venue Edition tier + price band~~ — **RATIFIED 2026-05-16** (€1.5–4k/yr).
+1. ~~Paid Venue Edition tier~~ — **AMENDED 2026-07-11** to one fixed €1,500/yr price. The prior band is retired.
 2. ~~Workspace €120/yr annual prepay~~ — **RATIFIED 2026-05-16**.
 3. ~~Goal reframe €250k/6mo · €500k/12mo · brand-integrity gating~~ — **ACCEPTED 2026-05-16**.
 4. ~~Video direction: restrained craft~~ — **CONFIRMED 2026-05-16**.

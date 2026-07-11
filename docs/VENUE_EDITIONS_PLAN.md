@@ -7,13 +7,14 @@
 
 ---
 
-> ## ⚠ AMENDED 2026-05-16 — the money reversed
+> ## ⚠ AMENDED 2026-07-11 — one price
 >
 > This plan was written for a **free** model ("with our compliments"). On
-> 2026-05-16 the founder ratified the **paid Venue Edition**:
-> **€1,500–€4,000 / year, prepaid**, founding cohort locks €1,500 for
-> life. The venue now **pays Signal Studio** for the sponsorship. The
-> canonical decision is `content/hq/decisions/venue-editions-paid-tier.md`
+> 2026-07-11 the founder fixed the **paid Venue Edition** at
+> **€1,500 per venue / year, prepaid**. One price applies to every venue;
+> the founding cohort locks it for life. The venue **pays Signal Studio**
+> for the sponsorship. The canonical decision is
+> `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md`
 > — read it first; where it and this doc disagree, the decision wins.
 >
 > **What changed:** the money only. The venue pays instead of receiving
@@ -23,8 +24,8 @@
 > `signalstudio.ie/pricing` and `signalstudio.ie/venues`.
 >
 > **What did NOT change (still load-bearing below):** the mechanic —
-> per-couple codes, co-branded eyebrow only (no venue logo), 12-month
-> couple duration, auto-drop to Free at month 12, sponsor-aware welcome.
+> per-couple codes, co-branded eyebrow only (no venue logo), 18-month
+> couple duration, auto-drop to Free at month 18, sponsor-aware welcome.
 > "With our compliments" survives ONLY as the founder-issued
 > family/friends comp track, never as the venue model. Lamb's Hill, in
 > flight as a free pilot, is honoured at the founding €1,500 lock if it
@@ -36,7 +37,7 @@
 
 Signal Studio extends free, full-suite access to its 80% audience through **two named programs**:
 
-- **Venue Editions** — a venue (or other channel partner) sponsors free Signal Studio access for their customers. License bound to the *user*, not the venue. First partner: Lamb's Hill. Wedding venues use the existing Wedding package (Tasks + Notes + Timeline + Signal, wedding-coded onboarding, 12-month duration).
+- **Venue Editions** — a venue (or other channel partner) sponsors Signal Studio access for their customers. License bound to the *user*, not the venue. First partner: Lamb's Hill. Wedding venues use the existing Wedding package (Tasks + Notes + Timeline + Signal, wedding-coded onboarding, 18-month duration).
 - **With our compliments / Review access** — direct gifts dispensed by Ethan. "Compliments" for friends and family (no fixed duration — just an open account). "Review access" for press, 90 days, named as such on the gift surface.
 
 These programs ride a shared **entitlements layer** (built in Cycle 8.1).
@@ -69,7 +70,7 @@ Operational benefit to the venue is the lead. Marketing co-branding is a side be
 | Handoff artifact (venue #2+) | Printed card in welcome pack — commission after venue #1 pilot validates |
 | Code shape | **Per-couple** codes, not generic. Bulk-issued via CLI script in batches of 10 |
 | Public surfacing on /pricing | One quiet line below the Event tier: *"Planning a wedding? Ask your venue."* — 15px, `var(--ink-quiet)`, no CTA |
-| License duration (Venue Editions, weddings) | 12 months from redemption, auto-drop to Free at month 12 with a single in-app prompt at day 330 |
+| License duration (Venue Editions, weddings) | 18 months from redemption, auto-drop to Free at month 18 with one quiet prompt beforehand |
 | Expiry behaviour | No grandfathering. One honest message: *"Your venue's gift ends in 30 days. Stay free or upgrade."* |
 
 ## 5 · Voice and copy register

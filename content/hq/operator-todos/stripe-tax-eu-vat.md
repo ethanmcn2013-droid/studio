@@ -12,7 +12,7 @@ date: 2026-07-09
 
 ## Why
 
-Signal Studio sells EUR 12/mo, EUR 100/yr, EUR 9.99/yr and the EUR 89 Event to consumers across the EU, plus a B2B venue prepay (EUR 1,500-4,000/yr). EU digital-service VAT (place of supply is the customer's country, VAT-inclusive display, invoice retention, OSS registration over the EUR 10k cross-border threshold) is a hard obligation at the first sale, not a later cleanup. Venues will expect a proper VAT invoice with their VAT number.
+Signal Studio sells EUR 12/mo, EUR 100/yr, EUR 9.99/yr and the EUR 89 Event to consumers across the EU, plus a B2B venue prepay fixed at EUR 1,500 per venue/year. EU digital-service VAT (place of supply is the customer's country, VAT-inclusive display, invoice retention, OSS registration over the EUR 10k cross-border threshold) is a hard obligation at the first sale, not a later cleanup. Venues will expect a proper VAT invoice with their VAT number.
 
 **Gated by `register-ltd-ireland`.** VAT and OSS registration require a registered VAT entity, so none of this can be filed until the Ltd is incorporated (docs submitting 2026-07-10, ~1-2 weeks out). Start the VAT/OSS registration the day the Certificate of Incorporation lands — it is the long pole to a 1 September paid launch, since Revenue sets the pace.
 
