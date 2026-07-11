@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-11 · S·125 · tightens · the lender decks hold one line
+
+**The Business Plan and Market Entry decks now make the case without noise: current prices and terms, named evidence, exact uses of funds, and direct gates from launch to repayment.** The Business Plan is rebuilt as 20 core slides and four evidence appendices, with a new cover, a larger founder portrait, and designed 16:9 slots for the Venue Edition and Student Edition films. The review-council appendix, speculative international roadmap, unsupported acquisition threshold, duplicate claims, and every em dash leave the current decks.
+
+The growth deck receives the same copy discipline and keeps the commercial model intact. Both source decks and their PDFs now pass full-slide visual review, extracted-text checks, and a zero-Unicode-dash gate before production deployment.
+
 ## 2026-07-11 · S·124 · holds · Venue Edition is one price
 
 **Venue Edition now holds at €1,500 per venue, per year, prepaid: no size band, no multi-site ladder, and no operator field that can quietly negotiate another number.** The public venue page and structured offer, HQ onboarding and cash writer, current strategy and outbound copy, venue collateral, lender pack, growth deck, pitch deck, and forecast all carry the same fixed amount. Historical cash rows and dated decisions stay exact rather than being rewritten to look tidy.
