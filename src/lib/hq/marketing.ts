@@ -235,7 +235,7 @@ const VENUE_ENGINE: Approach[] = [
     id: "VE-18",
     rank: 18,
     title: "Venue-readable pricing logic",
-    what: "A page explaining why €1,500–4,000, in plain arithmetic.",
+    what: "A page explaining the fixed €1,500 annual price in plain arithmetic.",
     edge: "We show the venue our maths, not a 'contact sales'.",
     impact: "High",
     effort: "Low",
@@ -1082,7 +1082,7 @@ export const MARKETING_BUCKETS: Bucket[] = [
   {
     key: "venue-engine",
     label: "venue engine",
-    role: "The negative-CAC core, 75–85% of the six-month number.",
+    role: "The negative-CAC wedge and distribution engine at one fixed annual price.",
     rationale:
       "A paid venue is negative-CAC: it pays Signal Studio to seed fifty to a hundred and fifty high-intent couples into the suite every year, recurring. Without it the honest six-month number is under €75k. Every approach here moves the ≥10-paid-venues-by-M3 and ≥25%-close-rate metrics directly.",
     approaches: VENUE_ENGINE,

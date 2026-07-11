@@ -21,7 +21,7 @@ If a public page, sales note, demo, template, or product example does not suppor
 The paid Venue Edition is the business spine.
 
 - A venue pays once a year.
-- Every couple the venue sends gets twelve months of Signal Studio.
+- Every couple the venue sends gets eighteen months of Signal Studio.
 - The venue name appears quietly on the workspace.
 - The couple never sees a price.
 - The venue does not run software. It hands over a code.
@@ -52,7 +52,7 @@ The venue buyer page.
 - Job: earn a venue conversation.
 - Allowed CTA: talk to us about your venue.
 - Allowed proof links: `/venues/demo`, `roadmap.signalstudio.ie/the-wedding`.
-- Pricing: `EUR1,500-EUR4,000/year`, founding venues lock `EUR1,500`.
+- Pricing: `EUR1,500 per venue/year, prepaid`; founding venues lock that price for life.
 - Must not route a venue buyer into self-serve wedding pricing as the primary path.
 
 ### `signalstudio.ie/venues/demo`

@@ -13,6 +13,7 @@ import {
   type EntitlementSource,
   type EntitlementTier,
 } from "./schema";
+import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 
 /**
  * Shared-DB code lifecycle: mint (race-safe allotment invariant), redeem
@@ -73,6 +74,19 @@ export async function mintLicenseCodes(input: {
   const n = input.codes.length;
   if (n === 0) return { minted: 0 };
   assertKnownTier(input.tier);
+  if (
+    input.sourceType === "venue_edition" &&
+    (input.tier !== "wedding" ||
+      input.durationDays !== VENUE_EDITION_COUPLE_ACCESS_DAYS)
+  ) {
+    reportAnomaly({
+      kind: "invalid_terms",
+      detail: `venue_edition code terms '${input.tier}/${input.durationDays ?? "null"}'`,
+    });
+    throw new Error(
+      `Venue Edition codes must use wedding access for ${VENUE_EDITION_COUPLE_ACCESS_DAYS} days`,
+    );
+  }
   const actor = requireActor(input.actor);
   assertBulkAllowed(n);
   const db = entitlementsDb();

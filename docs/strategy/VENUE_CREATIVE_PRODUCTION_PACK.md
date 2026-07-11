@@ -117,8 +117,8 @@ Fewer confused couples. Fewer repetitive emails. A better planning experience un
 | Lead | A couple books your venue. Everyone is warm. Then the planning year starts. Questions already answered. Supplier details scattered. Spreadsheet versions that stopped being current. That confusion reaches your team as admin. | Keep as one compact paragraph. |
 | Product visual | Screenshot with venue eyebrow visible. | The visual must prove "under your venue's name" without a logo wall. |
 | Four layers | Notes where it starts. Tasks where it gets done. Timeline what everyone sees. Signal what needs attention. | Four short rows, not cards. |
-| Mechanic | The venue pays once a year. Each couple gets a code. The couple gets twelve months of Signal Studio. Your team has nothing to run. | Make this the cleanest part of the page. |
-| Pricing | Founding venues lock EUR1,500/year while the first cohort is open. Standard venue tiers are EUR1,500-EUR4,000/year. | Plain. Do not hide price. |
+| Mechanic | The venue pays once a year. Each couple gets a code. The couple gets eighteen months of Signal Studio. Your team has nothing to run. | Make this the cleanest part of the page. |
+| Pricing | EUR1,500 per venue/year, prepaid. Founding venues lock that price for life. | Plain. Do not hide price. |
 | Close | Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name. | Same as video close. |
 
 ---

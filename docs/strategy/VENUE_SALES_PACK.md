@@ -49,7 +49,7 @@ Signal Studio gives each couple one calm place to plan, with your venue's name i
 2. Hand a code to each couple after booking.
 3. Nothing else to run.
 
-The couple never sees a price. They get twelve months of Signal Studio because your venue backed their planning year.
+The couple never sees a price. They get eighteen months of Signal Studio because your venue backed their planning.
 
 ### Why It Matters
 
@@ -67,9 +67,7 @@ Venue Edition is prepaid annually.
 
 | Venue shape | Annual fee |
 | --- | --- |
-| Boutique, single site, up to 60 weddings/year | EUR1,500 |
-| Mid-size, single site, 61-120 weddings/year | EUR2,500 |
-| Large or multi-site | EUR4,000 |
+| Every venue | EUR1,500 |
 
 Founding venues: the first fifteen venues lock EUR1,500/year for as long as they stay.
 
@@ -133,7 +131,7 @@ Signal Studio does not make the venue more technical. It makes the planning year
 This block can sit in a sales pack, an internal venue memo, or a post-call follow-up.
 
 ```
-Each couple receives a private wedding planning workspace for twelve months.
+Each couple receives a private wedding planning workspace for eighteen months.
 
 It includes:
 
@@ -175,7 +173,7 @@ Before this becomes a designed PDF, check:
 | --- | --- |
 | Audience | It speaks to venue owner/operator, not couples. |
 | Buyer/user split | The venue pays; the couple uses. This is never blurred. |
-| Price | EUR1,500-EUR4,000/year is visible and plain. |
+| Price | EUR1,500/year, prepaid, is visible and plain. |
 | Mechanic | Venue pays, hands code, nothing to run. |
 | Proof | The four product layers are explained as one planning year, not four apps. |
 | Brand | Calm, specific, no hype, no "book a demo today" tone. |

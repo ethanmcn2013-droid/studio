@@ -69,8 +69,8 @@ export type NewEntitlement = typeof entitlements.$inferInsert;
  *  none    , legacy / not a venue / unclassified.
  *  pilot   , in-flight free pilot, not yet converted (e.g. Lamb's Hill
  *             pre-conversion). Counts as distribution, never as revenue.
- *  founding, paid, founding-cohort price-locked at €1,500/yr for life.
- *  paid    , paid at the standard €1,500–€4,000/yr band.
+ *  founding, paid at €1,500/yr with the founding-cohort lifetime lock.
+ *  paid    , paid at the fixed €1,500/yr Venue Edition price.
  *
  * Only `founding` and `paid` rows WITH a non-null `paidAt` are revenue.
  * "Cash in the door" is the honest metric, a signed-but-unpaid venue is
@@ -91,7 +91,7 @@ export const sponsors = sqliteTable(
        legacy sponsor rows stay valid. The venue PAYS, these fields are
        the only source HQ Traction may treat as revenue. */
     venuePlan: text("venue_plan").notNull().default("none"),
-    /** Annual patronage, in cents. The real number, not the band. */
+    /** Annual patronage, in cents. The exact cash amount received. */
     annualAmountCents: integer("annual_amount_cents"),
     /** Founding cohort: €1,500/yr locked for life. Permanence, not a discount. */
     foundingLocked: integer("founding_locked"),

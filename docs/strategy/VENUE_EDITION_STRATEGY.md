@@ -20,7 +20,7 @@ Signal Studio gives each couple a single calm place to plan. Notes to capture wh
 
 The Venue Edition puts your venue's name on it. Not as a logo wall — as a quiet line at the top of the workspace. An eyebrow. The couple's plan stays the thing in focus. Your name is just there, part of the experience, carrying the signal that this venue looks after you.
 
-You pay once a year. Every couple you are booking gets twelve months of the full suite, then it drops to the free plan with a quiet prompt. No seats, no per-couple arithmetic, no software to run. Your team's only involvement is handing a code to a couple when they book. That is the whole operation on your side.
+You pay €1,500 once a year. Every couple you are booking gets eighteen months of the full suite, then it drops to the free plan with a quiet prompt. No seats, no per-couple arithmetic, no software to run. Your team's only involvement is handing a code to a couple when they book. That is the whole operation on your side.
 
 This is patronage, not software. You are not licensing a tool. You are standing behind your couples' planning. The value to you is not a feature list — it is fewer confused couples, fewer repetitive emails, and a planning experience that carries your venue's name and reflects its standard of care.
 
@@ -36,11 +36,9 @@ The venue pays Signal Studio once a year, prepaid. The couple never sees a price
 
 | Venue size | Annual venues (approx.) | Annual fee |
 |---|---|---|
-| Boutique (single site, ≤ 60 weddings/yr) | ≤ 60 | €1,500 |
-| Mid-size (single site, 61–120 weddings/yr) | 61–120 | €2,500 |
-| Large / multi-site | 120+ or 2+ venues | €4,000 |
+| Every venue | Any size | €1,500 |
 
-The logic: Signal Studio gives every couple the venue sends twelve months of the full suite. A larger venue sends more couples. The fee scales with the number of relationships it is backing, not with a feature tier — there is no premium feature set unlocked at €4,000 that is withheld at €1,500. The price scales because the commitment scales.
+The logic: Signal Studio gives every couple the venue sends eighteen months of the full suite. One fixed annual price removes negotiation by venue size, keeps the offer legible, and leaves the value to compound as more couples use it. There is one Venue Edition, not a hidden set of enterprise tiers.
 
 There is no per-couple maths and no seat counting. The venue pays the flat annual fee. Every couple booked in that year gets a code.
 
@@ -48,7 +46,7 @@ There is no per-couple maths and no seat counting. The venue pays the flat annua
 
 The first fifteen venues lock €1,500 a year for as long as they stay. This is not an introductory rate. There is no clause that expires it into a higher number. The asset is permanence, not a temporary markdown. A founding venue that stays at €1,500 in year five has not missed a price increase — that is the deal, and it holds.
 
-Why €1,500 for the founding group regardless of size: the first fifteen venues are taking a position before there is a case study or a referral. That deserves something real, not a brochure gesture. €1,500 for a venue that would otherwise pay €2,500 or €4,000 is the concrete thing. The asymmetry is intentional.
+Why the founding lock still matters: the first fifteen venues are taking a position before there is a case study or a referral. Every venue pays €1,500 today; founding venues receive the contractual certainty that the number will not move for as long as they stay.
 
 ### What the venue gets
 
@@ -56,7 +54,7 @@ Why €1,500 for the founding group regardless of size: the first fifteen venues
 - A co-branded workspace eyebrow — the venue name, quiet, at the top.
 - One coordinator walkthrough (30 minutes, once — not a standing arrangement).
 - A soft two-week redemption window for the first cohort, watched quietly.
-- One short retro at the end of the window. That is the whole commitment.
+- One short review at the end of the window. That is the whole commitment.
 - Founding venues: first look at new work and a standing to shape what changes.
 
 ---
@@ -67,15 +65,15 @@ The founding-venue pilot is not a free trial. It is a paid founding position wit
 
 ### The arc
 
-1. **Settle the year.** The venue pays the annual fee. For founding venues, that is €1,500 regardless of size.
+1. **Settle the year.** The venue pays €1,500, prepaid. One price applies to every venue.
 2. **Codes and a short note.** Signal Studio sends the redemption codes and a brief note the venue can pass to couples at booking. The note does not require editing — it is written for the venue's voice to carry it.
-3. **One walkthrough.** A coordinator gets a 30-minute walkthrough — what the workspace looks like for a couple, how the eyebrow appears, what happens at month 12. Once. Not a recurring training.
+3. **One walkthrough.** A coordinator gets a 30-minute walkthrough — what the workspace looks like for a couple, how the eyebrow appears, what happens at month 18. Once. Not a recurring training.
 4. **Soft redemption window.** About two weeks. Couples redeem and start planning. Signal Studio watches quietly and stays out of the way. There is no live dashboard for the venue to monitor — the product runs itself.
-5. **One retro.** A short conversation. What worked. What did not. What couples asked. What the venue would change. That is the whole commitment — no recurring meetings, no reporting deck.
+5. **One review.** A short conversation. What worked. What did not. What couples asked. What the venue would change. That is the whole commitment — no recurring meetings, no reporting deck.
 
 ### What the pilot is not
 
-It is not a free trial with an upgrade prompt. It is not a pilot that converts to a more expensive tier. The founding price is the price. The retro is the mechanism for shaping what comes next — not the mechanism for reselling.
+It is not a free trial with an upgrade prompt. It is not a pilot that converts to a more expensive tier. €1,500 is the Venue Edition price. The review is the mechanism for shaping what comes next — not the mechanism for reselling.
 
 ---
 
@@ -107,9 +105,9 @@ Because the product is not subscription-first — it is relationship-first. Prep
 
 Not in the product — the suite is built for coordination across event types. But the Venue Edition as offered is for wedding venues specifically because that is the context where the pain is most legible and the couple-coordinator relationship is most defined. If a venue also runs corporate events, christenings, or other private bookings, the product works for those couples too. The codes are not restricted to wedding couples. The venue decides who gets one.
 
-**"What happens after 12 months?"**
+**"What happens after 18 months?"**
 
-The couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 12 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and timeline stay intact on the free tier. Nothing is held hostage.
+The couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 18 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and timeline stay intact on the free tier. Nothing is held hostage.
 
 **"What about our couples' data and privacy?"**
 
@@ -152,7 +150,7 @@ These map directly to the five in the spine (§6). For a single pilot venue spec
 | 2. Booked call | A scheduled conversation — not a "send me more info" handoff | One call, owner present |
 | 3. Paid pilot | Prepaid invoice settled before codes are issued | One invoice paid. This is the proof gate. |
 | 4. Couples activated | Couples who opened a workspace and used it beyond day one (i.e., added a note or a task) | ≥ 30% of codes redeemed; ≥ 50% of redeemed workspaces used past day one |
-| 5. Shared artifacts | A Timeline forwarded outside the workspace — to a supplier, family member, or planner | ≥ 1 per active workspace over the 12-month window |
+| 5. Shared artifacts | A Timeline forwarded outside the workspace — to a supplier, family member, or planner | ≥ 1 per active workspace over the 18-month window |
 
 A pilot venue that settles the invoice, sees 30% of codes redeemed, and produces at least three shared Timelines is a strong result. That is enough to write a specific case study and to justify the outreach of a second wave.
 
@@ -182,9 +180,9 @@ The spine (§8) pre-committed the kills. Here they are operationalised for the v
 
 ### Stop — do not pivot
 
-**Trigger:** venues sign paid pilots but couples do not activate (metric 4 flat — below 10% of codes redeemed, or redeemed workspaces idle after day one). This pattern confirmed in the retro of the first paid pilot.
+**Trigger:** venues sign paid pilots but couples do not activate (metric 4 flat — below 10% of codes redeemed, or redeemed workspaces idle after day one). This pattern confirmed in the review of the first paid pilot.
 
-**Move:** do not send the second outreach wave. Do not refine the venue pitch. Fix the product — the onboarding, the first-run experience, the code redemption flow, whatever the retro identifies. The wedge is not the problem. The product is. Spending more outreach into a broken activation loop is a way to burn the founding list.
+**Move:** do not send the second outreach wave. Do not refine the venue pitch. Fix the product — the onboarding, the first-run experience, the code redemption flow, whatever the review identifies. The wedge is not the problem. The product is. Spending more outreach into a broken activation loop is a way to burn the founding list.
 
 **Why this is "stop" and not "pivot":** pivoting implies the direction is wrong. If couples are not activating, the direction is right — the couple is the end user, the venue is the buyer, that is the model. But the product is not yet delivering the calm it promises at first touch. That is a product fix, not a strategic pivot. Come back to outreach once the fix is confirmed in a second cohort.
 

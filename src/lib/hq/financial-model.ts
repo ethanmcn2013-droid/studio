@@ -1,3 +1,5 @@
+import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
+
 /**
  * Financial model, the projection behind the ask.
  *
@@ -26,13 +28,13 @@ export const FIN_META = {
   startingCashEur: 5_000,
   facilityEur: 40_000, // MFI facility (matches the loan pack)
   facilityDrawIndex: 3, // drawn at incorporation, modeled at launch
-  revisedOn: "2026-06-19",
+  revisedOn: "2026-07-11",
 };
 
 /** Pricing, from the ratified Venue Edition model + workspace tier. */
 export const FIN_PRICING = {
-  foundingVenueEur: 1_500, // founding cohort, locked for life
-  paidVenueAcvEur: 1_800, // blended paid ACV (band €1.5k–4k, conservative)
+  foundingVenueEur: VENUE_EDITION_ANNUAL_PRICE_EUR, // founding cohort, locked for life
+  paidVenueAcvEur: VENUE_EDITION_ANNUAL_PRICE_EUR, // fixed price, no size or volume band
   workspaceMonthlyEur: 12,
   // Student edition is distribution, not revenue (per traction.ts) → €0.
 };

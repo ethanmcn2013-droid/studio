@@ -21,6 +21,7 @@ import { mintLicenseCodes, reconcileCodes } from "@/lib/entitlements-db/codes";
 import { systemActor } from "@/lib/entitlements-db/guard";
 import { GRANT_TIER_OPTIONS } from "@/lib/hq/access";
 import { getPerson } from "@/lib/hq/access";
+import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 
 /**
  * Server actions for the Access console (/hq/entitlements). Auth: HQ cookie.
@@ -219,15 +220,10 @@ export async function mintCodesAction(
 ): Promise<MintResult> {
   await requireHq();
   const sponsorId = field(fd, "sponsorId");
-  const marketing = field(fd, "marketingTier");
   const countRaw = field(fd, "count");
-  const durationRaw = field(fd, "durationDays");
   if (!sponsorId) return { error: "Missing venue." };
-  const option = GRANT_TIER_OPTIONS.find((o) => o.marketing === marketing);
-  if (!option) return { error: "Pick a plan." };
   const count = Number.parseInt(countRaw, 10);
   if (!Number.isInteger(count) || count < 1) return { error: "Count must be at least 1." };
-  const durationDays = durationRaw ? Number.parseInt(durationRaw, 10) : null;
 
   try {
     const actor = await resolveHqOperatorActor();
@@ -235,9 +231,9 @@ export async function mintCodesAction(
     const res = await mintLicenseCodes({
       sponsorId,
       codes,
-      tier: option.tier,
+      tier: "wedding",
       sourceType: "venue_edition",
-      durationDays,
+      durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
       actor,
       origin: "hq",
     });
@@ -262,7 +258,6 @@ export async function onboardVenueAction(
   const contactEmail = field(fd, "contactEmail");
   const venuePlan = field(fd, "venuePlan") as OnboardPlan;
   const allotment = Number.parseInt(field(fd, "allotment"), 10);
-  const amountEur = field(fd, "annualAmountEur");
   const termMonthsRaw = field(fd, "termMonths");
   if (!name || !contactEmail) return { error: "Name and contact email are required." };
   if (!Number.isInteger(allotment) || allotment < 1) return { error: "Allotment must be at least 1." };
@@ -275,7 +270,6 @@ export async function onboardVenueAction(
       venuePlan,
       allotment,
       actor,
-      annualAmountCents: amountEur ? Math.round(Number.parseFloat(amountEur) * 100) : null,
       termMonths: termMonthsRaw ? Number.parseInt(termMonthsRaw, 10) : null,
       reason: `onboard ${venuePlan} via console`,
     });

@@ -108,7 +108,7 @@ The audience is the venue. This section makes the operating loop concrete using 
 
 **Say** (≈110 words, ≈50 seconds):
 
-> The first pilots are Irish wedding venues. The venue books a couple. From the booking, a workspace is created. The couple plans inside it. The venue sees what the couple chooses to share — direction, updates, the artefacts that belong in the planning relationship. The couple gets the daily briefing. The venue gets a calmer year. Nothing leaks the other way. The couple workspace is private by default. The venue is not buying seats. It is backing the planning year for every couple it books. Annual prepay, fifteen hundred to four thousand euro, founding cohort locks fifteen hundred for life. Permanence, not a discount.
+> The first pilots are Irish wedding venues. The venue books a couple. From the booking, a workspace is created. The couple plans inside it. The venue sees what the couple chooses to share — direction, updates, the artefacts that belong in the planning relationship. The couple gets the daily briefing. The venue gets a calmer year. Nothing leaks the other way. The couple workspace is private by default. The venue is not buying seats. It is backing the planning year for every couple it books. Fifteen hundred euro per venue, prepaid annually. One price. The founding cohort locks it for life. Permanence, not a discount.
 
 **Show.**
 
@@ -130,7 +130,7 @@ The close. Show the two doors the audience can walk through after the pitch.
 
 **Say** (≈100 words, ≈50 seconds):
 
-> Two paths from here. A couple with a venue code redeems at signalstudio.ie/redeem — one code, one workspace, twelve months. A venue ready to talk goes to signalstudio.ie/venues and uses the contact route at the foot of the page. The venue conversation is short. One demo, one call, one annual prepay. We are in the founding cohort window. The first fifteen venues lock fifteen hundred euro for life. That is the offer. Clarity, not configuration. Everything important. Nothing distracting. That is the suite.
+> Two paths from here. A couple with a venue code redeems at signalstudio.ie/redeem — one code, one workspace, eighteen months. A venue ready to talk goes to signalstudio.ie/venues and uses the contact route at the foot of the page. The venue conversation is short. One demo, one call, one annual prepay. We are in the founding cohort window. The first fifteen venues lock fifteen hundred euro for life. That is the offer. Clarity, not configuration. Everything important. Nothing distracting. That is the suite.
 
 **Show.**
 

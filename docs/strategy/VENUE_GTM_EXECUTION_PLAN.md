@@ -47,7 +47,7 @@ Signal Studio is not being sold as "planning software for weddings." It is the p
 | Exclusive-use or one-wedding-per-day model | The venue is selling calm, privacy, and service. Signal can extend that promise into planning. |
 | Visible wedding team/coordinator | The buyer already knows planning friction exists and has staff who feel the pain. |
 | Destination or multi-day weddings | Long planning windows, remote couples, guests, travel, suppliers, and repeated questions create a real coordination problem. |
-| Premium brand and high average spend | EUR1,500-EUR4,000/year is easiest to justify when one incremental premium booking or smoother client experience covers it. |
+| Premium brand and high average spend | EUR1,500/year is easiest to justify when one incremental premium booking or smoother client experience covers it. |
 | Independent or family-run decision path | Faster early adoption than large corporate procurement. |
 | Existing content quality | Venues already investing in brand experience are more likely to value a polished post-booking layer. |
 

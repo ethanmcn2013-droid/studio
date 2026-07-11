@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { onboardVenueAction, type OnboardResult } from "./actions";
+import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
 
 const PLANS: Array<{ value: string; label: string }> = [
   { value: "founding", label: "Founding (paid)" },
@@ -67,17 +68,12 @@ export function OnboardVenueForm() {
             className="h-9 rounded border border-border-soft bg-bg px-2 text-[12.5px] outline-none focus:border-accent"
           />
         </label>
-        <label className="grid gap-1 text-[12px]">
-          <span className="font-medium text-ink">Annual (EUR)</span>
-          <input
-            name="annualAmountEur"
-            type="number"
-            min={0}
-            step="0.01"
-            placeholder="0.00"
-            className="h-9 rounded border border-border-soft bg-bg px-2 text-[12.5px] outline-none focus:border-accent"
-          />
-        </label>
+        <div className="grid gap-1 text-[12px]">
+          <span className="font-medium text-ink">Commercial terms</span>
+          <div className="flex h-9 items-center rounded border border-border-soft bg-bg px-2 text-[12.5px] text-ink-soft">
+            Paid: €{VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")} / year · pilot: no cash
+          </div>
+        </div>
         <label className="grid gap-1 text-[12px]">
           <span className="font-medium text-ink">Term (months)</span>
           <input

@@ -31,7 +31,7 @@ Use `venue=unknown` until the venue is named. Do not invent attribution after th
 
 **Short version:** Signal Studio gives every couple one calm place to plan their wedding: private notes, owned follow-ups, a public plan anyone can read, and a short briefing on what needs attention.
 
-**What the venue pays:** EUR1,500-EUR4,000 a year, prepaid, by venue size. The first fifteen venues lock EUR1,500 for as long as they stay.
+**What the venue pays:** EUR1,500 per venue/year, prepaid. The first fifteen venues lock that price for as long as they stay.
 
 **What the couple sees:** The venue's name in a quiet line at the top. No price. No account for people who only need to read the public plan.
 

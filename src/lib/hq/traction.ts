@@ -13,7 +13,7 @@ import {
  *
  * Rebuilt 2026-05-16 for the paid Venue Edition model
  * (venue-editions-paid-tier). The earlier version multiplied COUPLE-side
- * `venue_edition` entitlements by the €1.5–4k band, that counted
+ * `venue_edition` entitlements by the active €1.5k price, that counted
  * couples as if each were a paying venue, which over the paid model is
  * simply wrong. Revenue now comes from the sponsor ledger: a venue is
  * money only when its plan is founding|paid AND the prepay cash landed

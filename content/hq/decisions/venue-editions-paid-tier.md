@@ -3,12 +3,14 @@ id: venue-editions-paid-tier
 title: Venue Editions becomes a paid annual tier (€1.5–4k/yr) — reverses "with our compliments"
 category: Pricing
 date: 2026-05-16
-status: Active
+status: Reversed
 reviewDate: 2026-08-16
 relatedObjects: [Founding Venue Programme, Venue Editions, docs/MARKETING_PLAN_6MO.md, venue-editions-mechanic, unified-pricing, Lamb's Hill]
 ---
 
 ## Decision
+
+> **Reversed on 2026-07-11 by [[venue-edition-fixed-price-2026-07-11]].** This record preserves the May decision and launch history. The active Venue Edition price is now €1,500 per venue, per year, prepaid, with no size or multi-site band.
 
 The Venue Edition is a **paid annual tier: €1,500–€4,000/year, prepaid**, tiered by venue size / multi-site, with a founding-cohort price-lock (first ~15 venues lock €1,500 for life). Pro gains a **€120/yr annual prepay** option. Event is now €89 one-time. Framed as patronage — "the venue stands behind the couple's planning" — not enterprise SaaS: no seats, no per-user, no MSA jargon, no discount banners. Ratified by the founder 2026-05-16; consumer-tier labels updated 2026-07-08.
 

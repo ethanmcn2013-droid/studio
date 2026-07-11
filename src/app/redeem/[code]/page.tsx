@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { lookupRedemption, type RedemptionLookup } from "@/lib/redeem/lookup";
 import { TASKS_URL } from "@/lib/product-urls";
+import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +42,7 @@ function previewLookup(
         sponsor: { slug: "lambs-hill", name: "Lamb's Hill", brandMeta: null },
         sourceType: "venue_edition",
         tier: "wedding",
-        durationDays: 365,
+        durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
       };
     case "claimable_compliments":
       return {
