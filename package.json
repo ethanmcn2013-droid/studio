@@ -8,7 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "ds:check": "node scripts/ds/ds-check.mjs",
-    "test": "node scripts/check-suite-switcher-contract.mjs && node scripts/check-chrome-contract.mjs && node scripts/check-loading-contract.mjs && bash scripts/check-suiteloader-identity.sh && tsx --test src/lib/hq/markdown.test.ts src/lib/hq/inbox.test.ts src/server/today/shape-native.test.ts src/lib/entitlements-db/pure.test.ts src/lib/suite/contracts.test.ts src/lib/suite/identity-adapter.test.ts src/server/auth/suite-assertion.test.ts",
+    "test": "node scripts/check-suite-switcher-contract.mjs && node scripts/check-chrome-contract.mjs && node scripts/check-loading-contract.mjs && bash scripts/check-suiteloader-identity.sh && tsx --test src/lib/hq/markdown.test.ts src/lib/hq/inbox.test.ts src/server/today/shape-native.test.ts src/lib/entitlements-db/pure.test.ts src/lib/suite/contracts.test.ts src/lib/suite/identity-adapter.test.ts src/lib/suite/lifecycle-coordinator.test.ts src/server/auth/suite-assertion.test.ts",
     "check:suite-switcher": "node scripts/check-suite-switcher-contract.mjs",
     "check:loading": "node scripts/check-loading-contract.mjs",
     "lint": "next lint",
