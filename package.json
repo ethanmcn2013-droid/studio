@@ -27,7 +27,8 @@
     "check:brand-assets": "node scripts/check-brand-assets.mjs",
     "remediation:check": "node scripts/check-remediation-program.mjs",
     "identity:check": "node scripts/check-identity-joins.mjs",
-    "contracts:check": "node scripts/check-suite-contract-consumers.mjs"
+    "contracts:check": "node scripts/check-suite-contract-consumers.mjs",
+    "recovery:drill": "node scripts/run-recovery-drill.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
