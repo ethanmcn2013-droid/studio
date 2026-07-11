@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "public": { "lcpP75Ms": 2500, "inpP75Ms": 200, "clsP75": 0.1, "firstPartyJsGzipKb": 170 },
+  "authenticated": { "serverP75Ms": 800, "serverP95Ms": 1500, "firstPartyJsGzipKb": 250 },
+  "data": { "queriesPerPage": 8, "sameRegionQueryP95Ms": 100, "crossProductTimeoutMs": 2000 },
+  "delivery": { "buildP95Ms": 300000, "rollbackMs": 600000, "availability": 0.999, "jobDelivery": 0.999, "rpoMs": 86400000, "rtoMs": 14400000 }
+}

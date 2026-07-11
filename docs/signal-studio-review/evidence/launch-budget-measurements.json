@@ -1,0 +1,8 @@
+{
+  "source": "pending browser/provider measurement",
+  "webVitals": null,
+  "authenticated": null,
+  "data": null,
+  "delivery": { "recoveryDrill": "pass", "providerRollback": null },
+  "accessibility": null
+}
