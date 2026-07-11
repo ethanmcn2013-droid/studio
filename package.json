@@ -25,7 +25,8 @@
     "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs",
     "render:brand-assets": "node scripts/render-brand-assets.mjs",
     "check:brand-assets": "node scripts/check-brand-assets.mjs",
-    "remediation:check": "node scripts/check-remediation-program.mjs"
+    "remediation:check": "node scripts/check-remediation-program.mjs",
+    "identity:check": "node scripts/check-identity-joins.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
