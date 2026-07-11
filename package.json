@@ -29,7 +29,8 @@
     "identity:check": "node scripts/check-identity-joins.mjs",
     "contracts:check": "node scripts/check-suite-contract-consumers.mjs",
     "recovery:drill": "node scripts/run-recovery-drill.mjs",
-    "performance:measure": "node scripts/measure-performance-baseline.mjs"
+    "performance:measure": "node scripts/measure-performance-baseline.mjs",
+    "csp:check": "node scripts/check-csp-contract.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
