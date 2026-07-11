@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "packages": ["product-registry", "design-tokens", "suite-shell", "identity-tenancy", "entitlements", "object-context", "telemetry"],
+  "telemetry": { "correlation": ["traceId", "subject", "workspaceId"], "scrub": ["email", "authorization", "cookie", "token", "body"] },
+  "entitlements": { "writer": "studio", "projection": "shared", "capabilityScoped": true },
+  "shell": { "loadingStates": ["loading", "error", "access-denied"], "forcedVisualTemplate": false }
+}

@@ -6,6 +6,7 @@ import { HqCommandPalette } from "@/components/hq/hq-command-palette";
 import { HqStatusDot } from "@/components/hq/hq-status-dot";
 
 const operatorLinks = [
+  { href: "/hq/platform-readiness", label: "readiness" },
   { href: "/hq/crm", label: "sell" },
   { href: "/hq/design-rooms", label: "make" },
   { href: "/hq/experimentation-room", label: "lab" },
