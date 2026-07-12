@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CountUp } from "@/components/hq/count-up";
 import { HqForcingFunction } from "@/components/hq/hq-forcing-function";
 import { HqLaunchReadiness } from "@/components/hq/hq-launch-readiness";
+import { HqNeedsMe } from "@/components/hq/hq-needs-me";
 import { HqOperatorTodos } from "@/components/hq/hq-operator-todos";
 import { HqInbox } from "@/components/hq/hq-inbox";
 import { HqMasthead } from "@/components/hq/hq-masthead";
@@ -10,15 +11,12 @@ import { HqProofGate } from "@/components/hq/hq-proof-gate";
 import { HqPulse } from "@/components/hq/hq-pulse";
 import { HqTraction } from "@/components/hq/hq-traction";
 import { requireHqAccess } from "@/lib/hq/access-guard";
+import { buildAttentionQueue } from "@/lib/hq/attention";
 import { getProspects } from "@/lib/hq/crm-db";
 import { getInboxData } from "@/lib/hq/inbox";
 import { getNextOutreachAction } from "@/lib/hq/next-action";
-import {
-  getHqSnapshot,
-  HQ_AUDIENCE_PATHS,
-  HQ_HUBS,
-  HQ_REVIEW_PRINCIPLES,
-} from "@/lib/hq/operating-system";
+import { getHqSnapshot } from "@/lib/hq/operating-system";
+import { activeRooms, HQ_GROUPS } from "@/lib/hq/rooms";
 import { getLaunchReadiness } from "@/lib/hq/launch";
 import { getOperatorTodos } from "@/lib/hq/operator-todos";
 import { getProofGate } from "@/lib/hq/proofgate";
@@ -40,33 +38,25 @@ export const metadata: Metadata = {
 };
 
 /**
- * Signal HQ, the founder operating system. v5: HUBS + PROOF SPINE.
+ * Today — the HQ front page. v6: NEEDS-ME + GROUPS + THE FULL READ.
  *
  * ── THE SEAM CONTRACT, read before editing this file ───────────────
- * The founder view now has two jobs:
- *   1. orient any operator in the backend system in under 60 seconds;
- *   2. keep the proof gate close enough that polish cannot hide the
- *      commercial truth.
+ * Today answers four questions in order, and nothing else lives here
+ * (docs/HQ_ARCHITECTURE.md §5.7):
+ *   1. What is today about?          → masthead verdict
+ *   2. How is the only thing that
+ *      matters actually moving?      → the truth strip (one row, links out)
+ *   3. What needs me, now?           → HqNeedsMe (≤7, admission-tested)
+ *   4. Where is everything?          → five group cards from the registry
+ * The deep spine (proof gate, inbox tiers, pulse, traction, launch
+ * readiness, the full operator ledger) survives INTACT one disclosure
+ * down in "the full read" — demoted, never deleted. The inert-state
+ * forcing function keeps its screen-grade prominence: polish must not
+ * hide the commercial truth.
  *
- * The top half is hub IA, sourced from operating-system.ts. The bottom
- * half remains the proof spine over `proofGate.clock.state`. New backend
- * rooms belong in operating-system.ts + /hq/<route>; new proof mechanics
- * belong in proofgate.ts / pulse.ts / traction.ts. Keep the two layers
- * distinct.
- *
- *   inert    → forcing function: the gate IS the screen, the next send
- *              one tap away, the whole stack behind one disclosure.
- *   running  → the answer-first scroll: masthead verdict → proof gate
- *              (section 0, "has it moved") → inbox → pulse → traction.
- *   expired  → same scroll; the proof gate itself renders the expired
- *              clock line + "§8 kill/pivot due" (proofgate.ts owns that
- *              copy, so no separate component, honest, not duplicated).
- *
- * Everything derived from real sources every render, committed seed
- * baseline for derived truth, localStorage only for the four operator
- * surfaces CLAUDE.md names. Reference surfaces (atlas/health/
- * entitlements/partners/marketing/plan/one-pagers) live at their own
- * routes off the masthead, never in this spine.
+ * New rooms belong in src/lib/hq/rooms.ts (the registry renders here
+ * automatically); new proof mechanics belong in proofgate.ts/pulse.ts/
+ * traction.ts. Keep the layers distinct.
  * ────────────────────────────────────────────────────────────────────
  */
 export default async function HqPage() {
@@ -86,171 +76,123 @@ export default async function HqPage() {
     traction.available ? traction.paidVenues : null,
   );
   const operatorTodos = await getOperatorTodos();
+  const attention = buildAttentionQueue(operatorTodos, inbox);
 
-  const masthead = (
-    <HqMasthead
-      phaseHeadline={today.phase.headline}
-      generatedAt={today.generatedAt}
-      verdict={verdict}
-    />
-  );
-
-  // The scroll body, shared by running + expired. The proof gate is
-  // section 0, "has the only thing that matters moved", above inbox,
-  // because the review's finding is that product work was functioning as
-  // avoidance of exactly this scoreboard.
-  const scroll = (
-    <>
-      <HqProofGate gate={proofGate} />
-      <HqInbox data={inbox} />
-      <HqPulse state={pulse} />
-      <HqTraction state={traction} />
-    </>
-  );
-
-  // ── The state machine ──────────────────────────────────────────────
-  const commandCenter = (
-    <>
-      <section className="hq-os-brief" aria-labelledby="hq-os-title">
-        <div className="hq-os-brief-top">
-          <span className="hq-os-eyebrow">operating system</span>
-          <span className="hq-os-stamp">
-            generated {new Date(snapshot.generatedAt).toLocaleTimeString("en-IE", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </span>
-        </div>
-        <div className="hq-os-brief-grid">
-          <div>
-            <h1 id="hq-os-title" className="hq-os-title">
-              Open the right room<span aria-hidden="true">.</span>
-            </h1>
-            <p className="hq-os-copy">
-              The Vault holds every document the business runs on. CRM,
-              Marketing, Assets, Reporting, and Founders Circle keep the
-              operating work, company read, and board view in separate rooms.
-            </p>
-          </div>
-          <div className="hq-os-next">
-            <span className="hq-os-next-label">next action</span>
-            <Link href={snapshot.leadHref} className="hq-os-next-link">
-              {snapshot.leadAction}
-            </Link>
-            <p className="hq-os-next-note">{snapshot.leadContext}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="hq-os-metrics" aria-label="company metrics">
+  const truthStrip = (
+    <section className="hq-truth" aria-label="commercial truth">
+      <p className="hq-truth-line">{proofGate.clock.line}</p>
+      <div className="hq-truth-row">
         {snapshot.metrics.map((metric) => (
           <Link
             key={metric.label}
             href={metric.href}
-            className="hq-os-metric"
+            className="hq-truth-cell"
             data-tone={metric.tone ?? "quiet"}
           >
-            <span className="hq-os-metric-label">{metric.label}</span>
-            <CountUp className="hq-os-metric-value" value={metric.value} />
-            <span className="hq-os-metric-note">{metric.note}</span>
+            <span className="hq-truth-label">{metric.label}</span>
+            <CountUp className="hq-truth-value" value={metric.value} />
+            <span className="hq-truth-note">{metric.note}</span>
           </Link>
         ))}
-      </section>
-
-      <HqLaunchReadiness readiness={readiness} />
-
-      <HqOperatorTodos board={operatorTodos} />
-
-      <section className="hq-hub-board" aria-labelledby="hq-hubs-title">
-        <div className="hq-hub-head">
-          <span className="hq-os-eyebrow">hubs</span>
-          <h2 id="hq-hubs-title" className="hq-hub-title">
-            The rooms
-          </h2>
-        </div>
-        {([
-          ["sell", "Sell, the venue engine"],
-          ["make", "Make, design and assets"],
-          ["tell", "Tell, numbers and story"],
-          ["run", "Run, the company itself"],
-        ] as const).map(([loop, label]) => (
-          <div key={loop} style={{ marginTop: "18px" }}>
-            <span className="hq-os-eyebrow">{label}</span>
-            <div className="hq-hub-grid" style={{ marginTop: "10px" }}>
-              {HQ_HUBS.filter((hub) => hub.loop === loop).map((hub) => (
-                <Link key={hub.key} href={hub.href} className="hq-hub-card">
-                  <span className="hq-hub-label">{hub.label}</span>
-                  <span className="hq-hub-name">{hub.title}</span>
-                  <span className="hq-hub-summary">{hub.summary}</span>
-                  <span className="hq-hub-meta">
-                    {hub.primaryMetric} · {hub.secondaryMetric}
-                  </span>
-                  <span className="hq-hub-action">{hub.action} →</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </section>
-
-      <section className="hq-audience-paths" aria-labelledby="audience-paths-title">
-        <div className="hq-ledger-headline">
-          <span className="hq-os-eyebrow">start here</span>
-          <h2 id="audience-paths-title">No one has to learn the whole system first</h2>
-        </div>
-        <div className="hq-ledger">
-          {HQ_AUDIENCE_PATHS.map((path) => (
-            <Link key={path.audience} href={path.href} className="hq-ledger-row">
-              <span className="hq-ledger-label">{path.audience}</span>
-              <span className="hq-ledger-detail">
-                <strong>{path.start}</strong>. {path.promise}
-              </span>
-              <span className="hq-ledger-arrow">open →</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="hq-director-gate" aria-label="review principles">
-        <div className="hq-director-intro">
-          <span className="hq-os-eyebrow">review principles</span>
-          <p>
-            The bar is quiet: obvious on first read, commercially honest, and
-            still Signal Studio.
-          </p>
-        </div>
-        <div className="hq-director-list">
-          {HQ_REVIEW_PRINCIPLES.map((director) => (
-            <div key={director.role} className="hq-director-row">
-              <span className="hq-director-role">{director.role}</span>
-              <span className="hq-director-finding">{director.finding}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-    </>
+        <Link href={snapshot.leadHref} className="hq-truth-cell" data-tone="accent">
+          <span className="hq-truth-label">next action</span>
+          <span className="hq-truth-value hq-truth-value--action">
+            {snapshot.leadAction}
+          </span>
+          <span className="hq-truth-note">{snapshot.leadContext}</span>
+        </Link>
+      </div>
+    </section>
   );
 
+  const groups = (
+    <section className="hq-groups" aria-labelledby="hq-groups-title">
+      <div className="hq-needsme-head">
+        <span className="hq-os-eyebrow">the rooms</span>
+        <h2 id="hq-groups-title" className="hq-needsme-title">
+          Five doors, every room behind one of them
+        </h2>
+      </div>
+      <div className="hq-groups-grid">
+        {HQ_GROUPS.map((group) => {
+          const rooms = group.key === "board" ? [] : activeRooms(group.key);
+          const lead = rooms[0];
+          return (
+            <Link key={group.key} href={group.route} className="hq-groups-card">
+              <span className="hq-groups-card-label">{group.label}</span>
+              <span className="hq-groups-card-gloss">{group.gloss}</span>
+              <span className="hq-groups-card-meta">
+                {group.key === "board"
+                  ? "the shareholder-safe register"
+                  : `${rooms.length} rooms${lead ? ` · ${lead.name.toLowerCase()} first` : ""}`}
+              </span>
+              <span className="hq-groups-card-action">open →</span>
+            </Link>
+          );
+        })}
+      </div>
+      <p className="hq-groups-foot">
+        Anything, anywhere: <kbd>⌘K</kbd> jumps to rooms, decisions, and
+        documents by name.
+      </p>
+    </section>
+  );
+
+  // The deep spine — demoted behind one disclosure, never deleted.
+  const fullRead = (
+    <details className="hq-fullread">
+      <summary className="hq-fullread-summary">
+        <span className="hq-os-eyebrow">the full read</span>
+        <span className="hq-fullread-hint">
+          proof gate · inbox · pulse · traction · launch readiness · the
+          operator ledger
+        </span>
+      </summary>
+      <div className="hq-fullread-body">
+        <HqProofGate gate={proofGate} />
+        <HqInbox data={inbox} />
+        <HqPulse state={pulse} />
+        <HqTraction state={traction} />
+        <HqLaunchReadiness readiness={readiness} />
+        <HqOperatorTodos board={operatorTodos} />
+      </div>
+    </details>
+  );
+
+  // Inert clock = the gate IS the screen. The forcing function keeps its
+  // prominence; the rest of Today waits behind it exactly as before.
   if (proofGate.clock.state === "inert") {
     return (
       <div className="hq-spine hq-spine--os">
-        {commandCenter}
-        {masthead}
+        <HqMasthead
+          phaseHeadline={today.phase.headline}
+          generatedAt={today.generatedAt}
+          verdict={verdict}
+        />
+        {truthStrip}
+        <HqNeedsMe queue={attention} />
         <HqForcingFunction gate={proofGate} next={getNextOutreachAction(prospects)}>
-          {scroll}
+          <HqInbox data={inbox} />
+          <HqPulse state={pulse} />
+          <HqTraction state={traction} />
         </HqForcingFunction>
+        {groups}
+        {fullRead}
       </div>
     );
   }
 
-  // running | expired, the earned scroll. proofgate.ts encodes the
-  // expired distinction in clock.line + the stamp; no separate arm
-  // needed until expired warrants its own §8 surface.
   return (
     <div className="hq-spine hq-spine--os">
-      {commandCenter}
-      {masthead}
-      {scroll}
+      <HqMasthead
+        phaseHeadline={today.phase.headline}
+        generatedAt={today.generatedAt}
+        verdict={verdict}
+      />
+      {truthStrip}
+      <HqNeedsMe queue={attention} />
+      {groups}
+      {fullRead}
     </div>
   );
 }

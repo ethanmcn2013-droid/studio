@@ -4,21 +4,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HqCommandPalette } from "@/components/hq/hq-command-palette";
 import { HqStatusDot } from "@/components/hq/hq-status-dot";
+import { HQ_GROUPS, HQ_ROOMS } from "@/lib/hq/rooms";
+
+/**
+ * The HQ shell: environment strip + one nav. Six destinations, all
+ * registry-driven (docs/HQ_ARCHITECTURE.md §5.2): today plus the five
+ * groups. A nav label lands on a group landing page, never on a single
+ * room — the old shell's sin (`sell` → /hq/crm) is structurally gone.
+ *
+ * Board mode is a register, not an architecture: on /hq/founders-circle
+ * the chrome flips to the shareholder-safe face and the nav narrows to
+ * the boardVisible rooms.
+ */
 
 const operatorLinks = [
-  { href: "/hq/platform-readiness", label: "readiness" },
-  { href: "/hq/crm", label: "sell" },
-  { href: "/hq/design-rooms", label: "make" },
-  { href: "/hq/experimentation-room", label: "lab" },
-  { href: "/hq/reporting", label: "tell" },
-  { href: "/hq/entitlements", label: "access" },
-  { href: "/hq/vault", label: "run" },
-  { href: "/hq/founders-circle", label: "board" },
+  { href: "/hq", label: "today" },
+  ...HQ_GROUPS.map((group) => ({ href: group.route, label: group.label })),
 ];
 
 const boardLinks = [
   { href: "/hq/founders-circle", label: "circle" },
-  { href: "/hq/reporting", label: "reporting" },
+  ...HQ_ROOMS.filter((room) => room.boardVisible && room.group !== "board").map(
+    (room) => ({ href: room.route, label: room.name.toLowerCase() }),
+  ),
   { href: "/hq/assets", label: "assets" },
 ];
 
@@ -49,7 +57,15 @@ export function HqShell({ children }: { children: React.ReactNode }) {
           {authed ? <HqStatusDot /> : null}
           <div className="hq-env-nav-links" role="list">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} className="hq-env-nav-link" role="listitem">
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hq-env-nav-link"
+                role="listitem"
+                aria-current={
+                  !boardMode && pathname === link.href ? "page" : undefined
+                }
+              >
                 {link.label}
               </Link>
             ))}
