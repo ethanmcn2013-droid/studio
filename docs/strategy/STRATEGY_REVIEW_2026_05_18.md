@@ -1,9 +1,11 @@
 # Strategy Review — 18 May 2026
 
-Status: review · 2026-05-18
+Status: superseded · 2026-07-12
 Owner: founder
+Superseded by: `content/hq/decisions/three-wedge-market-entry-pivot-2026-07-12.md`
+Current commercial state: venues, paid students, and teacher-only School Edition are the three active wedges. The historical sequencing below is not active.
 Reviews against the spine: `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md` (ratified 2026-05-16)
-This is not a re-strategy. The frame holds. This is an honest read of the gap between the frame and the last two weeks of work.
+Historical scope: this is the May 2026 review of the then-current frame. It is preserved for decision traceability, not current routing.
 
 ---
 

@@ -138,7 +138,7 @@ export const INCORPORATION_PHASES: IncorpPhase[] = [
       { label: "Upload the constitution", status: "todo" },
       { label: "Subscribers, Ethan subscribes for all 1,000,000 (Model B)", status: "todo" },
       { label: "Pay the fee (~€50, verify) and submit", status: "todo" },
-      { label: "Receive Certificate of Incorporation + CRO number", status: "todo", note: "unblocks the €40k facility" },
+      { label: "Receive Certificate of Incorporation + CRO number", status: "todo", note: "unblocks the €50k facility" },
     ],
   },
   {

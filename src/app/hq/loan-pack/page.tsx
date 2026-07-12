@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Business plan · Signal HQ",
-  description: "€40,000 facility · lender-grade business plan · June 2026.",
+  description: "€50,000 facility · lender-grade business plan · July 2026.",
   robots: { index: false, follow: false },
 };
 

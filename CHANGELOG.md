@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-12 · S·126 · pushes · the market entry case stops mistaking proof for potential
+
+**Signal Studio's Year 1 operating target is now 100 paid venues, 7,500 paid students, and 30 paid schools across Ireland and the UK's four nations, equal to €269,925 in gross contract value and billings.** The previous 18-venue figure remains exactly where it is useful: the Q1 proof gate and the €27,000 lender underwriting floor. It is no longer presented as the company's commercial ceiling.
+
+The Business Plan and Market Entry decks now separate addressable market, currently mapped accounts, planned contacts, operating target, underwriting floor, and conditional stretch. The venue system plans 3,000 contacts across England, Ireland, Scotland, Wales, and Northern Ireland; 500+ Irish venues are currently mapped. Student Edition targets 7,500 paid users, 0.33% of the initial UK and Ireland undergraduate market. The third wedge is a planned teacher-only School Edition for 30 secondary and post-primary schools, with zero pupil accounts and zero pupil personal data. The active strategy record supersedes the earlier decision that kept students and teachers outside paid sequencing, and a new capacity risk makes the execution condition explicit: scaled growth requires productized onboarding and revenue-funded commercial support after proof.
+
 ## 2026-07-11 · S·125 · tightens · the lender decks hold one line
 
 **The Business Plan and Market Entry decks now make the case without noise: current prices and terms, named evidence, exact uses of funds, and direct gates from launch to repayment.** The 30-page Business Plan gains a new cover, a larger founder portrait, leaner scenario pages, authored market and product diagrams, and designed 16:9 slots for the Venue Edition and Student Edition films. The 70-page Market Entry masterbook now carries a 40-page presentation route from the same source, with its own navigation, counters, and PDF output.

@@ -1,9 +1,11 @@
 # Business Partner Review — May 2026
 
-Status: ratified frame · 2026-05-16
+Status: superseded · 2026-07-12
 Owner: founder
-Supersedes positioning fragments scattered across homepage, /pricing, /venues, content/hq/messaging.md
-This document is the spine. Every outward surface adapts from it. Nothing here gets pasted verbatim into product copy — it gets translated with taste.
+Superseded by: `content/hq/decisions/three-wedge-market-entry-pivot-2026-07-12.md`
+Current commercial state: fixed €1,500 Venue Edition, paid Student Edition, and teacher-only School Edition. The historical price band and two-wedge sequencing below are not active.
+Historical scope: this record superseded positioning fragments scattered across homepage, /pricing, /venues, and content/hq/messaging.md in May 2026.
+The text below is preserved for decision traceability. Do not adapt outward-facing copy from its superseded commercial sections.
 
 ---
 

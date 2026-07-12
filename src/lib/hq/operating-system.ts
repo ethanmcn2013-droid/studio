@@ -549,7 +549,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/hq/incorporation",
     source: "content/vault/legal-cro-incorporation.md",
     action: "Open the runbook",
-    note: "CRO runbook + timeline · decisions confirmed, filing targeted July 2026. The gate the €40k facility waits on.",
+    note: "CRO runbook + timeline · decisions confirmed, filing targeted July 2026. The gate the €50k facility waits on.",
   },
   {
     id: "business-loan-pack",
@@ -561,7 +561,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/hq/loan-pack",
     source: "public/brand/business-loan-pack-2026.html",
     action: "Open lender deck",
-    note: "€40k facility · password-gated · Student Edition adjacent wedge included.",
+    note: "€50k facility · password-gated · 100 venues, 7,500 students, and 30 schools as the Year 1 operating target.",
   },
   {
     id: "asset-command-system",

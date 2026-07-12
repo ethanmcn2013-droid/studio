@@ -5,7 +5,7 @@ category: Brand
 date: 2026-07-11
 status: Active
 reviewDate: 2026-08-11
-relatedObjects: [Business Plan 2026, Market Entry Strategy 2026, Venue Edition, Student Edition]
+relatedObjects: [Business Plan 2026, Market Entry Strategy 2026, Venue Edition, Student Edition, School Edition, three-wedge-market-entry-pivot-2026-07-12]
 ---
 
 ## Decision
@@ -24,7 +24,7 @@ Authored proof objects replace generic cards where evidence matters: the four-pr
 
 ## Film slots
 
-Two designed 16:9 placeholders are part of the Business Plan sequence: the Venue Edition film and the Student Edition film. Each slot accepts the final MP4 without changing the deck structure. Until then, each page names the format and status directly.
+Two designed 16:9 placeholders are part of both deck sequences: the Venue Edition film and the Student Edition film. Each slot accepts the final MP4 without changing either deck structure. Until then, each page names the format and status directly.
 
 ## Vetoes
 
@@ -32,7 +32,9 @@ The review-council appendix, speculative international roadmap, unsupported acqu
 
 ## Commercial truth
 
-Venue Edition is €1,500 per venue, per year, prepaid. Every sponsored couple receives 18 months. Pro is €12 monthly or €100 yearly, Event is €89 once, and Student is €9.99 yearly. The four product names are Notes, Tasks, Timeline, and Signal.
+Venue Edition is €1,500 per venue, per year, prepaid. Every sponsored couple receives 18 months. Pro is €12 monthly or €120 yearly, Event is €89 once, and Student is €9.99 yearly. The four product names are Notes, Tasks, Timeline, and Signal.
+
+The 2026-07-12 commercial amendment separates ambition from underwriting. The Year 1 operating target is 100 paid venues, 7,500 paid students, and 30 paid schools, equal to €269,925 in gross contract value and billings. The 18-venue, €27,000 case remains the lender floor and Q1 proof gate. School Edition is planned at €1,500 per school per year, prepaid, for up to 60 verified staff, with zero pupil accounts and zero pupil personal data.
 
 ## Proof standard
 

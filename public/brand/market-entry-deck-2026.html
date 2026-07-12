@@ -745,7 +745,7 @@
   .pen-label { font-family: var(--mono); font-size: 8.5px; color: var(--ink-30); letter-spacing: 0.05em; margin-top: 5px; }
 
   /* expansion market cards */
-  .uk-feature { border: 1px solid rgba(79,70,229,0.35); border-radius: var(--radius); background: var(--indigo-light); padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .market-feature { border: 1px solid rgba(79,70,229,0.35); border-radius: var(--radius); background: var(--indigo-light); padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; }
   .mk-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .mk-stat { background: rgba(255,255,255,0.75); border: 1px solid rgba(79,70,229,0.18); border-radius: var(--radius-sm); padding: 10px 12px; }
   .mk-stat .mk-v { font-family: var(--sans); font-size: 19px; font-weight: 800; letter-spacing: -0.03em; color: var(--indigo-dark); line-height: 1; font-variant-numeric: tabular-nums; }
@@ -767,7 +767,7 @@
   .eco-chip { font-size: 9.5px; color: var(--ink); padding: 3px 8px; border: 1px solid var(--rule); border-radius: 99px; background: var(--paper); line-height: 1.3; }
   .eco-cell .ec-d { font-size: 9.5px; color: var(--ink-30); margin-top: 7px; line-height: 1.4; }
 
-  /* 100 relationships */
+  /* account allocation */
   .rel-bar { display: flex; height: 44px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--rule); }
   .rel-seg { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: #fff; }
   .rel-seg .rs-n { font-family: var(--sans); font-size: 15px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
@@ -848,6 +848,30 @@
   .film-card.flag { border-color: rgba(79,70,229,0.4); }
   .film-card.flag .fl-frame { background: var(--indigo); }
   .film-card.flag .fl-num { color: rgba(255,255,255,0.7); }
+
+  /* final-film insert slides */
+  .ad-insert .slide-inner { padding: 44px 56px 50px; }
+  .ad-insert-top { display: flex; align-items: center; justify-content: space-between; }
+  .ad-insert .ad-insert-wordmark { font-size: 25px !important; line-height: 1 !important; font-weight: 600 !important; letter-spacing: -0.035em; }
+  .ad-insert-wordmark span { color: var(--indigo-mid); }
+  .ad-insert .ad-insert-kicker { font-family: var(--mono); font-size: 9px !important; line-height: 1 !important; font-weight: 500 !important; letter-spacing: 0.14em; text-transform: uppercase; }
+  .ad-insert-grid { display: grid; grid-template-columns: 0.62fr 1.38fr; gap: 40px; align-items: stretch; height: 482px; margin-top: 25px; }
+  .ad-insert-copy { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .ad-insert .ad-insert-title { font-size: 56px !important; line-height: 0.92 !important; font-weight: 600 !important; letter-spacing: -0.055em; }
+  .ad-insert-title span { color: var(--indigo-mid); }
+  .ad-insert .ad-insert-duration { margin-top: 22px; font-size: 24px !important; line-height: 1 !important; color: var(--ink-60); }
+  .ad-insert .ad-insert-line { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 18px !important; line-height: 1.35 !important; font-weight: 500 !important; }
+  .ad-insert-frame { position: relative; align-self: center; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--rule); background: var(--paper); }
+  .ad-insert-frame img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .ad-insert .ad-insert-status { position: absolute; right: 18px; bottom: 18px; padding: 11px 15px; background: var(--indigo); color: #fff; font-family: var(--mono); font-size: 10px !important; line-height: 1 !important; font-weight: 500 !important; letter-spacing: 0.11em; text-transform: uppercase; }
+  .ad-insert .ad-insert-spec { position: absolute; left: 18px; bottom: 18px; padding: 8px 10px; background: rgba(17,17,17,0.82); color: rgba(255,255,255,0.72); font-family: var(--mono); font-size: 9px !important; line-height: 1 !important; letter-spacing: 0.09em; text-transform: uppercase; }
+  .slide.ad-insert-dark { background: var(--ink); color: #fff; }
+  .ad-insert-dark .ad-insert-kicker { color: rgba(255,255,255,0.48); }
+  .ad-insert-dark .ad-insert-duration { color: rgba(255,255,255,0.55); }
+  .ad-insert-dark .ad-insert-line { border-color: rgba(255,255,255,0.16); color: rgba(255,255,255,0.84); }
+  .ad-insert-dark .ad-insert-frame { border-color: rgba(255,255,255,0.16); background: #0b0b0c; }
+  .ad-insert-dark .slide-label,
+  .ad-insert-dark .slide-num { color: rgba(255,255,255,0.38); }
 
   /* direction principles strip */
   .principle-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
@@ -1011,7 +1035,7 @@
   .pg-quote small { display: block; font-family: var(--mono); font-size: 7.5px; font-weight: 400; color: var(--ink-30); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 5px; }
   .pg-foot { font-family: var(--mono); font-size: 7.5px; color: var(--ink-30); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 9px; line-height: 1.7; }
 
-  /* ambassador letter specimen */
+  /* campus cell letter specimen */
   .letter-spec { background: var(--white); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px 22px 16px; box-shadow: var(--shadow-md); }
   .letter-spec .lt-tag { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--indigo); margin-bottom: 12px; }
   .letter-spec .lt-body { font-size: 11.5px; color: var(--ink); line-height: 1.65; }
@@ -1052,7 +1076,7 @@
   .closing-headline em { font-style: normal; color: var(--indigo-mid); }
   .closing-facts { display: flex; gap: 28px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); }
   .closing-fact .cf-v { font-family: var(--sans); font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--indigo-mid); line-height: 1; font-variant-numeric: tabular-nums; }
-  .closing-fact .cf-k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 6px; line-height: 1.5; }
+  .closing-fact .cf-k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 6px; line-height: 1.45; }
 
   /* ════ Presenter UX · parity with plan.signalstudio.ie ════ */
   #deck-progress {
@@ -1654,13 +1678,10 @@
     object-fit: cover;
   }
 
-  [data-page='G27'] > .slide-inner,
   [data-page='G29'] > .slide-inner,
   [data-page='G37'] > .slide-inner,
-  [data-page='G27'] > .slide-label,
   [data-page='G29'] > .slide-label,
   [data-page='G37'] > .slide-label,
-  [data-page='G27'] > .slide-num,
   [data-page='G29'] > .slide-num,
   [data-page='G37'] > .slide-num {
     display: none !important;
@@ -1753,8 +1774,8 @@
   html.route-presentation [data-page='G62'] .budget-row { grid-template-columns: 1fr 110px; min-height: 58px; }
   html.route-presentation [data-page='G62'] .budget-row.head div:nth-child(2) { display: none; }
 
-  html.route-presentation [data-page='G63'] .cr-note,
-  html.route-presentation [data-page='G63'] .crm-row:nth-child(n+7) { display: none; }
+  html.route-presentation [data-page='G63'] .cr-note { display: none; }
+  html.route-presentation [data-page='G63'] .crm-row.h > div:nth-child(4) { display: none; }
   html.route-presentation [data-page='G63'] .crm-row { grid-template-columns: 1.4fr .8fr 1fr; }
 
   html.route-presentation [data-page='G65'] .mo-b { display: block; }
@@ -1849,7 +1870,7 @@
     text-align: right;
   }
   .slide-divider[data-section='04'] .divider-title::before {
-    content: '19,898';
+    content: '278,956';
     display: block;
     margin-bottom: 18px;
     color: var(--indigo);
@@ -2065,6 +2086,8 @@
 
   [data-page='G22'] .specimen-card { padding: 18px 24px; background: var(--ink); }
   [data-page='G22'] .type-ladder { border-top: 1px solid var(--rule); }
+  [data-page='G22'] .type-ladder { margin-top: 8px !important; }
+  [data-page='G22'] .type-step { padding: 7px 14px; }
   [data-page='G23'] .gesture-rows { gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G23'] .gesture-row { min-height: 70px; border-bottom: 1px solid var(--rule); }
 
@@ -2187,6 +2210,7 @@
   [data-page='G48'] .film-card .fl-body { padding: 7px 12px 8px; gap: 3px; }
   [data-page='G48'] .film-card .fl-log { font-size: 12px !important; line-height: 17px !important; }
   [data-page='G48'] .film-card .fl-meta { font-size: 12px !important; line-height: 17px !important; }
+  [data-page='G48'] .slide-title { margin-bottom: 18px; }
 
   [data-page='G50'] .bank-grid { grid-template-columns: repeat(6,1fr); gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G50'] .fam-col { padding: 12px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; }
@@ -2202,6 +2226,8 @@
     font-size: 11px !important;
     line-height: 14px !important;
   }
+  [data-page='G50'] .rm-row { min-height: 48px; }
+  [data-page='G50'] .rm-head { min-height: 28px; }
   .readiness-matrix {
     border-top: 1px solid var(--ink);
   }
@@ -2263,6 +2289,8 @@
   [data-page='G51'] .biz-card { border-radius: 0; box-shadow: none; }
   [data-page='G52'] .post-grid { gap: 14px; }
   [data-page='G52'] .post-card { border-top: 0 !important; background: transparent; }
+  [data-page='G52'] .principle-strip { margin-top: 8px !important; }
+  [data-page='G52'] .principle-cell { padding: 10px 12px; }
   [data-page='G53'] .reel-grid { gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G53'] .reel-card { padding: 14px 18px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; }
   [data-page='G55'] .page-spec,
@@ -2271,7 +2299,8 @@
   [data-page='G58'] .asset-fam { grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G58'] .fam-col { padding: 16px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; }
   [data-page='G59'] .stack-grid { grid-template-columns: repeat(3,1fr); gap: 0; border-top: 1px solid var(--rule); }
-  [data-page='G59'] .stack-cell { padding: 15px 18px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; border-bottom: 1px solid var(--rule) !important; }
+  [data-page='G59'] .stack-cell { padding: 12px 18px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; border-bottom: 1px solid var(--rule) !important; }
+  [data-page='G59'] .density-band { margin-top: 10px !important; }
   [data-page='G60'] .step-line { gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G60'] .step-cell { padding: 14px 12px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; }
 
@@ -2305,8 +2334,11 @@
     line-height: 14px !important;
   }
   [data-page='G63'] .crm-frame { border-radius: 0; border: 1px solid var(--rule); background: #fff; }
+  [data-page='G63'] .slide-title { margin-bottom: 18px; }
+  [data-page='G63'] .crm-top { padding: 5px 10px; }
   [data-page='G63'] .crm-statbar { gap: 0; border-bottom: 1px solid var(--rule); }
-  [data-page='G63'] .crm-stat { border-right: 1px solid var(--rule); }
+  [data-page='G63'] .crm-stat { padding: 6px 12px; border-right: 1px solid var(--rule); }
+  [data-page='G63'] .crm-row > div { padding: 5px 10px; line-height: 1.25; }
 
   [data-page='G65'] .month-rows { border-top: 1px solid var(--ink); }
   [data-page='G65'] .month-row { min-height: 54px; border-bottom: 1px solid var(--rule); }
@@ -2321,6 +2353,15 @@
   [data-page='G69'] .close-grid { grid-template-columns: repeat(3,1fr); gap: 0; border-top: 1px solid var(--rule); }
   [data-page='G69'] .close-cell { min-height: 106px; padding: 14px 16px; border-top: 0 !important; border-right: 1px solid var(--rule) !important; border-bottom: 1px solid var(--rule) !important; }
   [data-page='G69'] .close-cell:nth-child(3n) { border-right: 0 !important; }
+
+  [data-page='G31'] .slide-title { margin-bottom: 16px; font-size: 40px !important; line-height: 44px !important; }
+  [data-page='G31'] .mono-label { margin: 12px 0 6px !important; }
+  [data-page='G31'] .footnote { padding-top: 8px; }
+  [data-page='G54'] .slide-title { margin-bottom: 18px; }
+  [data-page='G54'] .mock-stack { margin-bottom: 8px !important; }
+  [data-page='G54'] .footnote { padding-top: 8px; }
+  [data-page='G55'] .slide-title { margin-bottom: 18px; }
+  [data-page='G55'] .callout { margin-top: 8px !important; padding: 12px 16px; }
 
   [data-page='G70'] {
     padding: 58px 72px 48px;
@@ -2438,6 +2479,36 @@
     line-height: 18px !important;
   }
 
+  /* Film inserts are display frames, not narrative-copy slides. */
+  .slide.ad-insert .slide-inner .ad-insert-wordmark {
+    font-size: 25px !important;
+    line-height: 25px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-kicker {
+    font-size: 11px !important;
+    line-height: 14px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-title {
+    font-size: 56px !important;
+    line-height: 52px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-duration {
+    font-size: 24px !important;
+    line-height: 24px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-line {
+    font-size: 18px !important;
+    line-height: 24px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-status {
+    font-size: 10px !important;
+    line-height: 10px !important;
+  }
+  .slide.ad-insert .slide-inner .ad-insert-spec {
+    font-size: 9px !important;
+    line-height: 9px !important;
+  }
+
   /* Final composition lock for conclusion + subhead titles and rebuilt styleframes. */
   .slide .slide-inner .slide-title span {
     display: block;
@@ -2519,17 +2590,17 @@
     </div>
     <div class="cover-eyebrow">Market Entry · Brand &amp; Growth Strategy · 2026-2028</div>
     <div class="cover-accent-rule"></div>
-    <h1 class="cover-headline" style="margin-top:24px;">A premium product enters one city at a time.<br><em>Limerick first. Venues first.</em></h1>
-    <p class="cover-sub">The business plan makes the €50,000 case. This deck shows the execution: market evidence, brand system, Limerick entry plan, and named spend.</p>
+    <h1 class="cover-headline" style="margin-top:24px;">Proof starts in Limerick.<br><em>Scale runs across five markets.</em></h1>
+    <p class="cover-sub">Three commercial wedges: wedding venues, university students, and secondary-school teachers. Each has a priced offer, a measured route, and a Year 1 operating target.</p>
     <div class="cover-ask-row">
-      <div class="cover-ask-amount">1 Sept '26</div>
-      <div class="cover-ask-desc">Ireland launch. Limerick concentration.<br>500+ mapped venues · 100 relationships · 18 Year 1 licences<br>Confidential strategy document</div>
+      <div class="cover-ask-amount">€269,925</div>
+      <div class="cover-ask-desc">Commercial Year 1: 1 Sep 2026 to 31 Aug 2027.<br>100 venues · 7,500 students · 30 schools<br>Target value, not recognized revenue</div>
     </div>
   </div>
   <div class="cover-bottom">
     <div class="cover-meta">
       ETHAN MCNAMARA · FOUNDER · PMP · LSS BB<br>
-      LIMERICK → IRELAND → UK → ENGLISH-SPEAKING MARKETS<br>
+      LIMERICK PROOF → IRELAND · ENGLAND · SCOTLAND · WALES · NORTHERN IRELAND<br>
       SIGNALSTUDIO.IE · JUL 2026 - DEC 2028
     </div>
     <div class="cover-badge">
@@ -2573,12 +2644,12 @@
       <a class="toc-card" href="#section-04">
         <div class="tc-head"><div class="tc-k">Section 04</div><div class="tc-r">21-26</div></div>
         <div class="tc-t">Market validation</div>
-        <div class="tc-d">Wedding market · student adjacency · Limerick density · entry math</div>
+        <div class="tc-d">Venue universe · student SAM · School Edition · entry math</div>
       </a>
       <a class="toc-card" href="#section-05">
         <div class="tc-head"><div class="tc-k">Section 05</div><div class="tc-r">27-34</div></div>
-        <div class="tc-t">Market entry: Limerick first</div>
-        <div class="tc-d">Ecosystem · 100 relationships · founding partners · sales · ambassadors</div>
+        <div class="tc-t">Market entry: proof to scale</div>
+        <div class="tc-d">Limerick proof · 3,000 planned venue contacts · founding partners · campus cells</div>
       </a>
       <a class="toc-card" href="#section-06">
         <div class="tc-head"><div class="tc-k">Section 06</div><div class="tc-r">35-40</div></div>
@@ -2616,7 +2687,7 @@
       <div class="contract-card live">
         <div class="contract-tag">Document 01 · The Business Plan · plan.signalstudio.ie</div>
         <div class="contract-q">"Should this be funded, and how is it repaid?"</div>
-        <p class="body-sm">Products, market, forecast, founder, and a conservative Ireland-only repayment path.</p>
+        <p class="body-sm">Products, market, operating targets, founder, underwriting floor, and repayment controls.</p>
         <div class="contract-items">
           <span class="contract-chip">Vision</span><span class="contract-chip">Product ecosystem</span><span class="contract-chip">Market opportunity</span><span class="contract-chip">Financial model</span><span class="contract-chip">Founder story</span><span class="contract-chip">Repayment &amp; risk</span>
         </div>
@@ -2624,25 +2695,14 @@
       <div class="contract-card this">
         <div class="contract-tag">Document 02 · This Deck · Market Entry, Brand &amp; Growth</div>
         <div class="contract-q">"How exactly will the market be entered?"</div>
-        <p class="body-sm">Brand, market evidence, Limerick entry, assets, operating rhythm, and spend.</p>
+        <p class="body-sm">Brand, three-wedge market evidence, Limerick proof, scaled distribution, operating rhythm, and spend.</p>
         <div class="contract-items">
-          <span class="contract-chip">Why we exist</span><span class="contract-chip">Brand system</span><span class="contract-chip">Market evidence</span><span class="contract-chip">Limerick entry</span><span class="contract-chip">Story distribution</span><span class="contract-chip">Budget · CRM · roadmap</span>
+          <span class="contract-chip">Why we exist</span><span class="contract-chip">Brand system</span><span class="contract-chip">Market evidence</span><span class="contract-chip">Proof to scale</span><span class="contract-chip">Story distribution</span><span class="contract-chip">Budget · CRM · roadmap</span>
         </div>
       </div>
     </div>
     <div class="callout" style="margin-top:16px;">
-      <p>The lending case remains 18 prepaid venue licences at €1,500. It is a Year 1 target, not a validated result. The following slides show the funnel, sequence, cost, and proof gates behind it.</p>
-    </div>
-    <div class="section-map">
-      <div class="section-cell"><div class="sc-num">S·01</div><div class="sc-name">Why we exist</div></div>
-      <div class="section-cell"><div class="sc-num">S·02</div><div class="sc-name">Marketing philosophy</div></div>
-      <div class="section-cell"><div class="sc-num">S·03</div><div class="sc-name">Brand strategy</div></div>
-      <div class="section-cell"><div class="sc-num">S·04</div><div class="sc-name">Market validation</div></div>
-      <div class="section-cell"><div class="sc-num">S·05</div><div class="sc-name">Limerick entry</div></div>
-      <div class="section-cell"><div class="sc-num">S·06</div><div class="sc-name">Story distribution</div></div>
-      <div class="section-cell"><div class="sc-num">S·07</div><div class="sc-name">The asset bank</div></div>
-      <div class="section-cell"><div class="sc-num">S·08</div><div class="sc-name">The lean machine</div></div>
-      <div class="section-cell"><div class="sc-num">S·09</div><div class="sc-name">Roadmap &amp; risk</div></div>
+      <p>Eighteen paid venues by 30 November form the Q1 management gate. The lender model separately assumes 18 venues and €27,000 across July 2026 to June 2027. Commercial Year 1 targets 100 venues, 7,500 students, and 30 schools.</p>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -2657,23 +2717,23 @@
     <div class="quad-grid">
       <div class="quad">
         <div class="quad-q">Why this approach</div>
-        <div class="quad-a">Because the product is the campaign.</div>
-        <p class="quad-body">Each venue-sponsored workspace demonstrates the product to couples, suppliers, and families. A €1,500 prepaid decision requires trust, earned through product quality and direct relationships.</p>
+        <div class="quad-a">Because each wedge creates visible use.</div>
+        <p class="quad-body">Venue workspaces travel through weddings. Student adoption travels through campus cells. School Edition equips verified teachers without pupil accounts or pupil data.</p>
       </div>
       <div class="quad">
         <div class="quad-q">Why now</div>
-        <div class="quad-a">Four web products are live. Finish work is bounded.</div>
-        <p class="quad-body">iOS, the venue portal, and onboarding remain before launch. 1 September aligns with back-to-college and autumn wedding planning.</p>
+        <div class="quad-a">The product is live. The routes are measurable.</div>
+        <p class="quad-body">The plan starts with 3,000 planned venue contacts, 30 campus cells, and a defined teacher-only school offer.</p>
       </div>
       <div class="quad">
         <div class="quad-q">Why Signal Studio</div>
-        <div class="quad-a">Founder-led sales. Local access. Disciplined execution.</div>
-        <p class="quad-body">PMP and Lean Six Sigma operating discipline. The first 100 relationships are built in person, keeping feedback close and claims testable.</p>
+        <div class="quad-a">Local proof. Cross-market ambition. Operating control.</div>
+        <p class="quad-body">PMP and Lean Six Sigma discipline governs funnels, proof gates, capacity triggers, and weekly decisions.</p>
       </div>
       <div class="quad">
         <div class="quad-q">Why this sequence</div>
-        <div class="quad-a">Density before breadth. Proof before scale.</div>
-        <p class="quad-body">Limerick first. Any next market waits for case studies, retention data, and a repeatable playbook.</p>
+        <div class="quad-a">Proof and pipeline run together.</div>
+        <p class="quad-body">Limerick is the proof beachhead, not the ceiling. Year 1 venue outreach runs across Ireland, England, Scotland, Wales, and Northern Ireland.</p>
       </div>
     </div>
   </div>
@@ -2685,12 +2745,12 @@
 <section class="slide">
   <div class="slide-inner" style="justify-content:center;">
     <div class="slide-eyebrow">The Strategy in One Sentence</div>
-    <p class="one-sentence">Win one city through venues. Earn paid proof. <em>Expand only when the evidence clears the gate.</em></p>
+    <p class="one-sentence">Prove locally. Sell across five markets. <em>Build three wedges to an auditable Year 1 target.</em></p>
     <div class="commit-row">
       <div class="commit-cell">
         <div class="cm-num">C·1</div>
-        <div class="cm-title">Density beats breadth</div>
-        <p class="cm-body">Deep Limerick adoption makes the brand visible and the proof local.</p>
+        <div class="cm-title">Beachhead, not boundary</div>
+        <p class="cm-body">Limerick produces close proof while the wider pipeline builds.</p>
       </div>
       <div class="commit-cell">
         <div class="cm-num">C·2</div>
@@ -2699,18 +2759,18 @@
       </div>
       <div class="commit-cell">
         <div class="cm-num">C·3</div>
-        <div class="cm-title">Proof before scale</div>
-        <p class="cm-body">Gate 0: one venue pays €1,500, prepaid. No proof, no scale.</p>
+        <div class="cm-title">A floor and a target</div>
+        <p class="cm-body">Q1 gate: 18 venues by 30 November. Lender floor: 18 venues across its separate cash period.</p>
       </div>
       <div class="commit-cell">
         <div class="cm-num">C·4</div>
-        <div class="cm-title">Relationships over reach</div>
-        <p class="cm-body">One founder-written email per venue. One hundred useful local relationships.</p>
+        <div class="cm-title">Measured distribution</div>
+        <p class="cm-body">3,000 planned venue contacts, 30 campus cells, and direct school outreach.</p>
       </div>
       <div class="commit-cell">
         <div class="cm-num">C·5</div>
-        <div class="cm-title">Every euro named</div>
-        <p class="cm-body">Every marketing euro maps to a named budget line and asset.</p>
+        <div class="cm-title">Capacity earns support</div>
+        <p class="cm-body">Eighteen paid venues unlock support. Stretch requires a dedicated commercial operator.</p>
       </div>
     </div>
   </div>
@@ -3033,7 +3093,7 @@
       <div class="refusal-head"><div>Refused</div><div>Why</div><div>In its place</div></div>
       <div class="refusal-row">
         <div class="rf-what">Paid-acquisition treadmill</div>
-        <div class="rf-why">Open-ended ad spend rents attention and teaches nothing a 500-venue pipeline needs.</div>
+        <div class="rf-why">Open-ended ad spend rents attention and teaches nothing a 3,000-contact venue plan needs.</div>
         <div class="rf-instead">One capped test. Continue only when measured conversion justifies the next release.</div>
       </div>
       <div class="refusal-row">
@@ -3107,7 +3167,7 @@
       <div class="gate-cell dst">
         <div class="gt-k">Output</div>
         <div class="gt-t">Founder sign-off</div>
-        <div class="gt-d">Nothing reaches a venue, a student, or a journalist without it.</div>
+        <div class="gt-d">Nothing reaches a venue, student, teacher, or journalist without it.</div>
       </div>
     </div>
     <div class="sinead-quote">
@@ -3131,7 +3191,7 @@
       <div class="loop-step">
         <div class="lp-num">1</div>
         <div class="lp-t">Craft earns hero customers</div>
-        <p class="lp-d">A small number of venues and committees adopt deeply.</p>
+        <p class="lp-d">Venues, campus cells, and teacher teams adopt around real work.</p>
       </div>
       <div class="loop-step">
         <div class="lp-num">2</div>
@@ -3141,31 +3201,31 @@
       <div class="loop-step">
         <div class="lp-num">3</div>
         <div class="lp-t">Artifacts travel</div>
-        <p class="lp-d">Couples, suppliers, parents, and committees see the work.</p>
+        <p class="lp-d">Couples, suppliers, students, and verified teachers see the work.</p>
       </div>
       <div class="loop-step">
         <div class="lp-num">4</div>
-        <div class="lp-t">Density makes it visible</div>
-        <p class="lp-d">Concentrated in one city, the same brand appears at the venue, the café, and the campus.</p>
+        <div class="lp-t">Local proof makes it credible</div>
+        <p class="lp-d">Limerick case studies give the wider venue, campus, and school pipeline evidence.</p>
       </div>
       <div class="loop-step">
         <div class="lp-num">5</div>
         <div class="lp-t">Proof lowers the next sale</div>
-        <p class="lp-d">Named local case studies replace persuasion.</p>
+        <p class="lp-d">Named outcomes improve conversion across every market.</p>
       </div>
       <div class="loop-step">
         <div class="lp-num">6</div>
-        <div class="lp-t">Referral replaces outreach</div>
-        <p class="lp-d">One warm referral per happy venue is the highest-yield motion in this entire plan.</p>
+        <div class="lp-t">Referral compounds outreach</div>
+        <p class="lp-d">Warm introductions and structured outbound reinforce each other.</p>
       </div>
     </div>
     <div class="density-band">
-      <div class="density-cell"><div class="dc-v">18</div><div class="dc-k">Year 1 venue licence target</div></div>
-      <div class="density-cell"><div class="dc-v">≤80</div><div class="dc-k">Maximum sponsored workspaces per licence year</div></div>
-      <div class="density-cell"><div class="dc-v indigo settle">0</div><div class="dc-k">Activation volume assumed in the forecast</div></div>
-      <div class="density-cell"><div class="dc-v indigo">Proof</div><div class="dc-k">Real activation is recorded after launch</div></div>
+      <div class="density-cell"><div class="dc-v">100</div><div class="dc-k">Year 1 venue operating target</div></div>
+      <div class="density-cell"><div class="dc-v">7,500</div><div class="dc-k">Student Edition target</div></div>
+      <div class="density-cell"><div class="dc-v">30</div><div class="dc-k">School Edition target</div></div>
+      <div class="density-cell"><div class="dc-v indigo settle">€269,925</div><div class="dc-k">Combined operating target</div></div>
     </div>
-    <p class="footnote">The loop requires repeated exposure in one geography. Thin national reach does not close it.</p>
+    <p class="footnote">Limerick supplies proof. Five venue markets, 30 campus cells, and a teacher-only school offer supply reach.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">14</div>
@@ -3379,7 +3439,7 @@
         <div class="ms-body">
           <div class="ms-wordmark">signal studio<b>.</b></div>
           <div class="ms-h">Project management for people outside tech.</div>
-          <p class="ms-sub">Four products, one calm system: for weddings, venues, committees, and every project that never gets called one.</p>
+          <p class="ms-sub">Four products, one calm system: for venues, students, teachers, and every project that never gets called one.</p>
           <p class="ms-mono" style="margin-top:10px;">OPEN THE WORKSPACE →</p>
         </div>
       </div>
@@ -3424,30 +3484,29 @@
   <div class="slide-num">S4</div>
 </section>
 
-<!-- ════════════════════ 21 · IRELAND WEDDING MARKET ════════════════════ -->
+<!-- ════════════════════ 21 · FIVE-MARKET VENUE UNIVERSE ════════════════════ -->
 <section class="slide">
-  <img class="full-canvas-artifact" src="assets/deck-v2/ireland-market-narrowing.svg" alt="Ireland wedding market narrowing from 19,898 registered marriages to more than 500 mapped venue buyers, 150 to 200 priority accounts and 18 prepaid Venue Edition licences.">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Market Validation · The Wedge</div>
-    <h2 class="slide-title">Ireland's wedding market is concentrated and reachable.</h2>
+    <div class="slide-eyebrow">Market Validation · Venue Edition</div>
+    <h2 class="slide-title">Five markets. <span>A finite, reachable venue universe.</span></h2>
     <div class="stat-band">
-      <div class="stat-card"><div class="st-v">19,898</div><div class="st-k">Marriages registered in Ireland, 2025</div><div class="st-s">CSO · marriage registrations</div></div>
-      <div class="stat-card"><div class="st-v">€36,641</div><div class="st-k">Average Irish wedding spend, up 6.5% year on year</div><div class="st-s">weddingsonline survey 2025</div></div>
-      <div class="stat-card"><div class="st-v indigo settle">500+</div><div class="st-k">Mapped Irish venue buyers</div><div class="st-s">Founder CRM · named accounts</div></div>
-      <div class="stat-card"><div class="st-v">~1,000</div><div class="st-k">Hotels &amp; guesthouses nationwide: the venue decision pool</div><div class="st-s">Irish Hotels Federation</div></div>
+      <div class="stat-card"><div class="st-v">278,956</div><div class="st-k">Latest final marriages across Ireland, England, Scotland, Wales, and Northern Ireland</div><div class="st-s">Official statistics · mixed 2023 and 2024 reference years</div></div>
+      <div class="stat-card"><div class="st-v indigo settle">10,361</div><div class="st-k">Official-source venue records and accommodation proxies</div><div class="st-s">Finite account universe · deduplication required</div></div>
+      <div class="stat-card"><div class="st-v">€1,500</div><div class="st-k">Venue Edition per venue per year</div><div class="st-s">Fixed · annual · prepaid</div></div>
+      <div class="stat-card"><div class="st-v">100</div><div class="st-k">Year 1 venue operating target</div><div class="st-s">€150,000 gross contract value</div></div>
     </div>
     <div class="two-col" style="margin-top:18px; grid-template-columns: 1.05fr 0.95fr;">
       <div>
         <ul class="deck-list">
-          <li><strong>The buyer pool is concentrated.</strong> Hotels and dedicated venues form a finite, mappable set of decision-makers.</li>
-          <li><strong>The venue is the decision point.</strong> One licence can sponsor up to 80 couple workspaces a year. Capacity is not forecast.</li>
-          <li><strong>The spend supports the price.</strong> One €1,500 licence can sponsor up to 80 couple workspaces per licence year.</li>
+          <li><strong>The market is large enough to matter.</strong> The marriage proxy shows recurring demand across five adjacent English-language markets.</li>
+          <li><strong>The account universe is finite.</strong> Official records and proxies create a defensible base for qualification, not an inflated top-down TAM.</li>
+          <li><strong>The route is explicit.</strong> Contact 3,000 accounts, qualify 600, run 400 demos, issue 250 proposals, close 100 paid venues.</li>
         </ul>
       </div>
       <div class="case-card base" style="height:auto;">
-        <div class="cs-k">Already mapped · founder CRM</div>
-        <div class="cs-v">500+</div>
-        <p class="cs-d">Irish venues with named events and sales contacts. At full 80-workspace utilisation, the illustrative cost is about €19 per couple. This is not forecast.</p>
+        <div class="cs-k">Capacity-backed stretch</div>
+        <div class="cs-v">150 venues</div>
+        <p class="cs-d">€225,000 gross contract value at the same fixed price. Reaching this level requires added, revenue-funded commercial support.</p>
       </div>
     </div>
   </div>
@@ -3455,27 +3514,28 @@
   <div class="slide-num">21</div>
 </section>
 
-<!-- ════════════════════ 22 · STUDENT ADJACENCY ════════════════════ -->
+<!-- ════════════════════ 22 · STUDENT MARKET ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Market Validation · The Adjacent Wedge</div>
-    <h2 class="slide-title">Students are the adjacent wedge. <span>Venues stay first.</span></h2>
+    <div class="slide-eyebrow">Market Validation · Student Edition</div>
+    <h2 class="slide-title">Student Edition has a national growth route.</h2>
     <div class="stat-band">
-      <div class="stat-card"><div class="st-v">~279k</div><div class="st-k">Third-level students in Ireland</div><div class="st-s">HEA enrolment data</div></div>
-      <div class="stat-card"><div class="st-v indigo settle">~30,000</div><div class="st-k">Students in Limerick alone: UL, TUS and MIC</div><div class="st-s">Limerick City &amp; County Council</div></div>
-      <div class="stat-card"><div class="st-v">70+</div><div class="st-k">Clubs &amp; societies at UL by itself: each one a committee</div><div class="st-s">UL Wolves · clubs &amp; societies</div></div>
-      <div class="stat-card"><div class="st-v">€9.99</div><div class="st-k">Student Edition, per year: verified college email, committee workspace nested</div><div class="st-s">€3-8k Y1 upside · excluded from the lending case</div></div>
+      <div class="stat-card"><div class="st-v">2,278,975</div><div class="st-k">Undergraduate serviceable market</div><div class="st-s">Official higher-education datasets</div></div>
+      <div class="stat-card"><div class="st-v">€9.99</div><div class="st-k">Student Edition per student per year</div><div class="st-s">Canonical annual price</div></div>
+      <div class="stat-card"><div class="st-v indigo settle">7,500</div><div class="st-k">Year 1 operating target</div><div class="st-s">€74,925 gross billings</div></div>
+      <div class="stat-card"><div class="st-v">20,000</div><div class="st-k">Capacity-backed upside</div><div class="st-s">€199,800 gross billings</div></div>
     </div>
     <div class="two-col" style="margin-top:18px; grid-template-columns: 1.05fr 0.95fr;">
       <div>
         <ul class="deck-list">
-          <li><strong>Students run real projects.</strong> Balls, trips, campaigns, handovers, and group assignments.</li>
-          <li><strong>Adoption is natural, not engineered.</strong> The pain is weekly and the group chat is already failing them. A €9.99 commitment beats free-tier abandonment.</li>
-          <li><strong>Today's committee is tomorrow's coordinator.</strong> Hospitality, events and business students graduate into exactly the venues this plan sells to.</li>
+          <li><strong>Base case.</strong> 2,000 paid students establish price acceptance and retention.</li>
+          <li><strong>Campus cells.</strong> 30 cells averaging 150 paid students produce 4,500 subscriptions.</li>
+          <li><strong>Qualified acquisition.</strong> 100,000 qualified visits converting at 2% produce 2,000 subscriptions.</li>
+          <li><strong>Cohorts.</strong> Ten partner cohorts averaging 100 paid students produce 1,000 subscriptions.</li>
         </ul>
       </div>
       <div class="callout callout-neutral" style="align-self:start;">
-        <p><strong>The guardrail:</strong> students build habit, not the lending case. Venues receive 80% of founder time. Student spend is capped and its €3-8k upside is excluded from the forecast.</p>
+        <p><strong>The target route:</strong> 4,500 campus-cell subscriptions plus 2,000 qualified-visit conversions plus 1,000 cohort subscriptions equals 7,500 deduplicated paid accounts. The €74,925 figure is gross billings, not recognized revenue.</p>
       </div>
     </div>
   </div>
@@ -3488,35 +3548,35 @@
   <img class="full-canvas-artifact" src="assets/deck-v2/limerick-45-minute-decision-map.svg" alt="Schematic decision map centred on Limerick City with 15, 30 and 45-minute commercial travel rings and named venue clusters.">
   <div class="slide-inner">
     <div class="slide-eyebrow">Market Validation · Local Density</div>
-    <h2 class="slide-title">Year 1 fits inside one city and a 45-minute radius.</h2>
+    <h2 class="slide-title">Limerick is the proof beachhead. <span>It is not the ceiling.</span></h2>
     <div class="two-col" style="grid-template-columns: 1fr 1fr;">
       <div>
-        <p class="body">Concentration improves unit economics. The founder can demo in person the day a venue replies. Businesses, campuses, and press reinforce one local brand.</p>
+        <p class="body">Limerick keeps first proof close to the founder. The wider commercial engine runs across five venue markets, 30 campus cells, and a direct school route.</p>
         <ul class="deck-list" style="margin-top:14px;">
-          <li><strong>Sales cost falls.</strong> Minimal travel and same-day in-person demos.</li>
-          <li><strong>Proof concentrates.</strong> Case studies, creators, and press all reference the same place; each one makes the others more credible.</li>
-          <li><strong>Trust diffuses through one community.</strong> Venue coordinators, society heads, and café owners operate in overlapping local networks. Word of mouth has a short path.</li>
+          <li><strong>Proof arrives faster.</strong> Same-day demos and founder-led onboarding shorten the learning loop.</li>
+          <li><strong>Case studies become portable.</strong> Local evidence improves wider outbound, campus recruitment, and school discovery.</li>
+          <li><strong>Reach is not deferred.</strong> Pipeline building outside Limerick starts in Year 1 while local proof compounds.</li>
         </ul>
         <div class="signal-box" style="margin-top:16px;">
-          <div class="sb-k">The density thesis</div>
-          <p class="sb-v">Repeated local exposure compounds. Thin national reach does not.</p>
+          <div class="sb-k">The operating thesis</div>
+          <p class="sb-v">Concentrate proof. Distribute sales.</p>
         </div>
       </div>
       <div>
         <div class="eco-grid" style="grid-template-columns: 1fr;gap:8px;">
           <div class="eco-cell">
-            <div class="ec-k">The city</div>
-            <div class="ec-chips"><span class="eco-chip">Ireland's third-largest city</span><span class="eco-chip">~30,000 students</span><span class="eco-chip">3 third-level institutions</span><span class="eco-chip">Founder's home city</span></div>
+            <div class="ec-k">Local proof surface</div>
+            <div class="ec-chips"><span class="eco-chip">Founder proximity</span><span class="eco-chip">Venue demos</span><span class="eco-chip">Campus pilots</span><span class="eco-chip">Teacher discovery</span></div>
           </div>
           <div class="eco-cell">
-            <div class="ec-k">The premium venue belt · within ~45 minutes</div>
-            <div class="ec-chips"><span class="eco-chip">Adare Manor</span><span class="eco-chip">Dromoland Castle</span><span class="eco-chip">Glin Castle</span><span class="eco-chip">City hotels</span><span class="eco-chip">Country houses</span><span class="eco-chip">Function venues</span></div>
-            <div class="ec-d">Illustrative of the belt: the disclosed pipeline stays confidential in the founder CRM.</div>
+            <div class="ec-k">Venue commercial surface</div>
+            <div class="ec-chips"><span class="eco-chip">Ireland</span><span class="eco-chip">England</span><span class="eco-chip">Scotland</span><span class="eco-chip">Wales</span><span class="eco-chip">Northern Ireland</span></div>
+            <div class="ec-d">3,000 planned contacts are allocated by market and managed in one CRM.</div>
           </div>
           <div class="eco-cell">
-            <div class="ec-k">The hinterland</div>
-            <div class="ec-chips"><span class="eco-chip">Mid-West wedding ecosystem</span><span class="eco-chip">Clare &amp; Tipperary venues</span><span class="eco-chip">Shannon corridor hospitality</span><span class="eco-chip">Suppliers · planners · photographers</span></div>
-            <div class="ec-d">A founder day trip can cover several commercial clusters efficiently.</div>
+            <div class="ec-k">Capacity boundary</div>
+            <div class="ec-chips"><span class="eco-chip">100 venues</span><span class="eco-chip">7,500 students</span><span class="eco-chip">30 schools</span><span class="eco-chip">Measured support trigger</span></div>
+            <div class="ec-d">Support is authorised after 18 paid venues. The 150-venue or 75-school stretch requires a dedicated operator.</div>
           </div>
         </div>
       </div>
@@ -3526,36 +3586,38 @@
   <div class="slide-num">23</div>
 </section>
 
-<!-- ════════════════════ 24 · TOTAL / REACHABLE / OBTAINABLE ════════════════════ -->
+<!-- ════════════════════ 24 · THREE-WEDGE OPERATING TARGET ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Market Validation · Opportunity, Honestly Sized</div>
-    <h2 class="slide-title">Total, reachable, and obtainable. <span>No top-down forecast.</span></h2>
-    <div class="funnel" style="margin-top:6px;">
-      <div class="funnel-row">
-        <div class="fn-k">The total opportunity<small>Context only: claimed nowhere in the model</small></div>
-        <div class="fn-bar"><i style="width:100%; opacity:0.18;"></i></div>
-        <div class="fn-v">Broad market<small>Context only</small></div>
+    <div class="slide-eyebrow">Market Validation · Three-Wedge Operating Target</div>
+    <h2 class="slide-title">The Year 1 target is ambitious, priced, and auditable.</h2>
+    <div class="case-grid">
+      <div class="case-card base">
+        <div class="cs-k">Venue Edition · fixed offer</div>
+        <div class="cs-v settle">100 venues</div>
+        <p class="cs-d">€150,000 gross contract value. Capacity-backed stretch: 150 venues and €225,000.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:67%;"></i></div><div class="pen-label">3,000-contact plan</div></div>
       </div>
-      <div class="funnel-row">
-        <div class="fn-k">The served market, this plan<small>Irish hospitality &amp; event venues</small></div>
-        <div class="fn-bar"><i style="width:56%; opacity:0.45;"></i></div>
-        <div class="fn-v">1,000+<small>IHF properties + venues</small></div>
+      <div class="case-card">
+        <div class="cs-k">Student Edition · €9.99 per year</div>
+        <div class="cs-v">7,500 students</div>
+        <p class="cs-d">€74,925 gross billings. Base: 2,000. Capacity-backed upside: 20,000 and €199,800.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:38%;"></i></div><div class="pen-label">30 campus cells + visits + cohorts</div></div>
       </div>
-      <div class="funnel-row">
-        <div class="fn-k">Mapped &amp; reachable today<small>Named contacts in the founder CRM</small></div>
-        <div class="fn-bar"><i style="width:30%; opacity:0.75;"></i></div>
-        <div class="fn-v">500+<small>venues · 1:1 outreach</small></div>
-      </div>
-      <div class="funnel-row">
-        <div class="fn-k">Year 1 obtainable · the target<small>3.6% of the mapped pipeline</small></div>
-        <div class="fn-bar"><i style="width:8%;"></i></div>
-        <div class="fn-v settle">18<small>licences · €27,000</small></div>
+      <div class="case-card">
+        <div class="cs-k">School Edition · planned working offer</div>
+        <div class="cs-v">30 schools</div>
+        <p class="cs-d">€45,000 gross contract value. Capacity-backed stretch: 75 schools and €112,500.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:40%;"></i></div><div class="pen-label">Teacher-only · prepaid</div></div>
       </div>
     </div>
-    <div class="callout" style="margin-top:20px;">
-      <p>The model needs 18 yes-decisions from 500 named buyers the founder can visit. No percentage-of-market assumption is used.</p>
+    <div class="density-band">
+      <div class="density-cell"><div class="dc-v indigo settle">€269,925</div><div class="dc-k">Combined operating target</div></div>
+      <div class="density-cell"><div class="dc-v">€537,300</div><div class="dc-k">Combined capacity stretch</div></div>
+      <div class="density-cell"><div class="dc-v">€27,000</div><div class="dc-k">Separate lender underwriting floor</div></div>
+      <div class="density-cell"><div class="dc-v">Support</div><div class="dc-k">Authorised after 18 paid venues</div></div>
     </div>
+    <p class="footnote">These are operating targets and gross billing or contract values. No recognized-revenue timing is asserted.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">24</div>
@@ -3564,67 +3626,66 @@
 <!-- ════════════════════ 25 · MARKET ENTRY MATH ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Market Validation · Entry Math</div>
-    <h2 class="slide-title">Three cases. <span>One auditable conversion ladder.</span></h2>
+    <div class="slide-eyebrow">Market Validation · Venue Entry Math</div>
+    <h2 class="slide-title">A 3,000-contact plan supports the 100-venue target.</h2>
     <div class="case-grid">
       <div class="case-card">
-        <div class="cs-k">Downside · stress case</div>
-        <div class="cs-v">6 licences</div>
-        <p class="cs-d">€9k. Covers €6k baseline operating costs and leaves €3k before debt service, with the working-capital reserve intact.</p>
-        <div class="cs-pen"><div class="pen-bar"><i style="width:12%;"></i></div><div class="pen-label">1.2% of mapped pipeline</div></div>
+        <div class="cs-k">Q1 management gate · lender floor case</div>
+        <div class="cs-v">18 venues</div>
+        <p class="cs-d">The Q1 proof path and separate lender floor case both use 18 prepaid venues.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:18%;"></i></div><div class="pen-label">Early proof floor</div></div>
       </div>
       <div class="case-card base">
-        <div class="cs-k">Base · Year 1 target</div>
-        <div class="cs-v settle">18 licences</div>
-        <p class="cs-d">€27k prepaid. The business plan target used for approval and repayment. Not a validated result.</p>
-        <div class="cs-pen"><div class="pen-bar"><i style="width:36%;"></i></div><div class="pen-label">3.6% of mapped pipeline</div></div>
+        <div class="cs-k">Year 1 operating target</div>
+        <div class="cs-v settle">100 venues</div>
+        <p class="cs-d">€150,000 prepaid gross contract value at the fixed €1,500 annual price.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:67%;"></i></div><div class="pen-label">One paid venue per 30 contacts</div></div>
       </div>
       <div class="case-card">
-        <div class="cs-k">High · outperform</div>
-        <div class="cs-v">~30 licences</div>
-        <p class="cs-d">€45k venue revenue. This upside is not used in the lending case.</p>
-        <div class="cs-pen"><div class="pen-bar"><i style="width:60%;"></i></div><div class="pen-label">6% of mapped pipeline</div></div>
+        <div class="cs-k">Capacity-backed stretch</div>
+        <div class="cs-v">150 venues</div>
+        <p class="cs-d">€225,000 prepaid gross contract value. Added, revenue-funded commercial support is required.</p>
+        <div class="cs-pen"><div class="pen-bar"><i style="width:100%;"></i></div><div class="pen-label">Capacity trigger, not solo-founder promise</div></div>
       </div>
     </div>
-    <p class="mono-label" style="margin:18px 0 8px;">The illustrative ladder behind the target · Jul - Jun</p>
-    <div class="step-line" style="grid-template-columns: repeat(6, 1fr);">
-      <div class="step-cell"><div class="sp-n">500+</div><div class="sp-t">Mapped venues</div><div class="sp-d">Named CRM accounts</div></div>
-      <div class="step-cell"><div class="sp-n">150-200</div><div class="sp-t">Priority accounts</div><div class="sp-d">Founder-selected</div></div>
-      <div class="step-cell"><div class="sp-n">70-100</div><div class="sp-t">Qualified conversations</div><div class="sp-d">Real buyer interest</div></div>
-      <div class="step-cell"><div class="sp-n">35-50</div><div class="sp-t">Demos</div><div class="sp-d">In person where possible</div></div>
-      <div class="step-cell"><div class="sp-n">24-30</div><div class="sp-t">Proposals or paid proof</div><div class="sp-d">Fixed offer</div></div>
-      <div class="step-cell"><div class="sp-n">18</div><div class="sp-t">Prepaid licences</div><div class="sp-d">Year 1 target</div></div>
+    <p class="mono-label" style="margin:18px 0 8px;">The Year 1 venue conversion ladder</p>
+    <div class="step-line" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="step-cell"><div class="sp-n">3,000</div><div class="sp-t">Contacted</div><div class="sp-d">Allocated across five markets</div></div>
+      <div class="step-cell"><div class="sp-n">600</div><div class="sp-t">Qualified</div><div class="sp-d">Real buyer fit and interest</div></div>
+      <div class="step-cell"><div class="sp-n">400</div><div class="sp-t">Demos</div><div class="sp-d">Remote or in person</div></div>
+      <div class="step-cell"><div class="sp-n">250</div><div class="sp-t">Proposals</div><div class="sp-d">One fixed prepaid offer</div></div>
+      <div class="step-cell"><div class="sp-n">100</div><div class="sp-t">Paid venues</div><div class="sp-d">Year 1 operating target</div></div>
     </div>
-    <p class="footnote">If replies are strong but activation is weak, fix product and onboarding. Each stage has a stop-and-revise trigger.</p>
+    <p class="footnote">The funnel is a planning model, not measured performance. Conversion is reviewed weekly and resourced at the stated capacity trigger.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">25</div>
 </section>
 
-<!-- ════════════════════ 26 · EXPANSION MARKET DATA ════════════════════ -->
+<!-- ════════════════════ 26 · SCHOOL EDITION ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Market Validation · Expansion Headroom</div>
-    <h2 class="slide-title">Expansion is gated by proof, not dates.</h2>
-    <div class="uk-feature">
+    <div class="slide-eyebrow">Market Validation · School Edition</div>
+    <h2 class="slide-title">A teacher-only offer opens the third wedge.</h2>
+    <div class="market-feature">
       <div style="display:flex; align-items:baseline; gap:14px;">
-        <div style="font-family:var(--sans); font-size:18px; font-weight:800; letter-spacing:-0.025em; color:var(--indigo-dark);">United Kingdom · Phase 2 · Jan-Aug 2027</div>
-        <div style="font-family:var(--mono); font-size:9px; color:var(--indigo); letter-spacing:0.08em; text-transform:uppercase;">13× Ireland's wedding volume · same language · same venue dynamics</div>
+        <div style="font-family:var(--sans); font-size:18px; font-weight:800; letter-spacing:-0.025em; color:var(--indigo-dark);">School Edition · planned working offer</div>
+        <div style="font-family:var(--mono); font-size:9px; color:var(--indigo); letter-spacing:0.08em; text-transform:uppercase;">Secondary-school teachers only</div>
       </div>
       <div class="mk-stats">
-        <div class="mk-stat"><div class="mk-v settle">~265,000</div><div class="mk-k">Marriages per year · ONS &amp; NRS</div></div>
-        <div class="mk-stat"><div class="mk-v">7,655</div><div class="mk-k">Licensed wedding venues · industry data</div></div>
-        <div class="mk-stat"><div class="mk-v">£21,990</div><div class="mk-k">Average wedding spend · Hitched 2025</div></div>
-        <div class="mk-stat"><div class="mk-v">2.86m</div><div class="mk-k">HE students · HESA 2024/25: the ambassador model repeats</div></div>
+        <div class="mk-stat"><div class="mk-v settle">€1,500</div><div class="mk-k">Per school per year · prepaid</div></div>
+        <div class="mk-stat"><div class="mk-v">60</div><div class="mk-k">Verified staff included per school</div></div>
+        <div class="mk-stat"><div class="mk-v">4,903</div><div class="mk-k">Core secondary-school buyer universe</div></div>
+        <div class="mk-stat"><div class="mk-v">~298k</div><div class="mk-k">Directional teacher opportunity</div></div>
       </div>
-      <p class="body-sm" style="color:var(--ink-60);">UK gate: three to five Irish venue case studies, repeatable onboarding, and CRM-tracked conversion. UK revenue is excluded from repayment.</p>
+      <p class="body-sm" style="color:var(--ink-60);">The product boundary is explicit: verified staff accounts only, zero pupil accounts, and zero pupil data. The teacher figure mixes official measures and is directional.</p>
     </div>
     <div class="market-trio" style="margin-top:12px;">
-      <div class="market-card"><div class="mc-name">United States</div><div class="mc-stat">2.04m</div><div class="mc-d">Marriages per year (CDC, 2023). Phase 3: entered with UK proof, case studies, and refined onboarding.</div></div>
-      <div class="market-card"><div class="mc-name">Australia</div><div class="mc-stat">120,844</div><div class="mc-d">Marriages registered 2024 (ABS). English-speaking, venue-centric: the Irish playbook ports directly.</div></div>
-      <div class="market-card"><div class="mc-name">Canada</div><div class="mc-stat">~146k</div><div class="mc-d">Marriages per year, pre-pandemic baseline (StatCan). Phase 3 alongside the US and Australia.</div></div>
+      <div class="market-card"><div class="mc-name">Offer boundary</div><div class="mc-stat">Staff only</div><div class="mc-d">Planning, coordination, departmental work, events, and school operations without pupil identity or access.</div></div>
+      <div class="market-card"><div class="mc-name">Year 1 operating target</div><div class="mc-stat">30 schools</div><div class="mc-d">€45,000 gross contract value at the working price.</div></div>
+      <div class="market-card"><div class="mc-name">Capacity-backed stretch</div><div class="mc-stat">75 schools</div><div class="mc-d">€112,500 gross contract value. Added, revenue-funded commercial support is required.</div></div>
     </div>
-    <p class="footnote">Export the playbook: case studies, onboarding, outreach, and conversion data. Enter localised Europe only after language and workflow research.</p>
+    <p class="footnote">This is a planned working offer. No school contracts or recognized revenue are claimed.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">26</div>
@@ -3633,9 +3694,9 @@
 <!-- ════════════════════ DIVIDER · SECTION 05 ════════════════════ -->
 <section class="slide slide-divider" data-section="05" id="section-05">
   <div class="divider-inner">
-    <div class="divider-eyebrow">Section 05 · Market Entry: Limerick First</div>
-    <h2 class="divider-title">Built in Limerick. Proven in Limerick. Expanded from Limerick.</h2>
-    <p class="divider-sub">Ireland launches on 1 September. Execution concentrates on Limerick: 100 relationships, a Founding Partner cohort capped at 25, and direct founder access.</p>
+    <div class="divider-eyebrow">Section 05 · Market Entry: Proof to Scale</div>
+    <h2 class="divider-title">Built in Limerick. Sold across five markets.</h2>
+    <p class="divider-sub">Local proof supports a 3,000-contact venue plan, 30 campus cells, and a teacher-only School Edition route.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">S5</div>
@@ -3644,8 +3705,8 @@
 <!-- ════════════════════ 27 · WHY LIMERICK ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · The Case</div>
-    <h2 class="slide-title">Four commercial reasons to start in Limerick.</h2>
+    <div class="slide-eyebrow">Limerick Proof Beachhead · The Case</div>
+    <h2 class="slide-title">Four commercial reasons to prove in Limerick.</h2>
     <div class="quad-grid">
       <div class="quad">
         <div class="quad-q">Founder authenticity</div>
@@ -3665,7 +3726,7 @@
       <div class="quad">
         <div class="quad-q">The proving ground</div>
         <div class="quad-a">Limerick becomes the first case study.</div>
-        <p class="quad-body">Local venues, societies, and creators produce the proof required for national expansion.</p>
+        <p class="quad-body">Local venues, students, teachers, and creators produce evidence that improves cross-market conversion.</p>
       </div>
     </div>
   </div>
@@ -3676,42 +3737,42 @@
 <!-- ════════════════════ 28 · THE LOCAL ECOSYSTEM ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · The Map</div>
-    <h2 class="slide-title">The first-year decision graph, <span>drawn before launch.</span></h2>
+    <div class="slide-eyebrow">Proof to Scale · The Map</div>
+    <h2 class="slide-title">The proof network and scale engine work together.</h2>
     <div class="eco-hub">
-      <div class="eh-mark">signal studio · limerick</div>
-      <p class="eh-d">Six local clusters. Each node is a named buyer, distribution surface, or both.</p>
+      <div class="eh-mark">signal studio · proof to scale</div>
+      <p class="eh-d">Limerick shortens the learning loop. The wider pipeline supplies Year 1 volume.</p>
     </div>
     <div class="eco-grid">
       <div class="eco-cell">
-        <div class="ec-k">Venues &amp; hotels</div>
-        <div class="ec-chips"><span class="eco-chip">Premium belt · Adare → Dromoland</span><span class="eco-chip">City hotels</span><span class="eco-chip">Country houses</span><span class="eco-chip">Function rooms</span></div>
-        <div class="ec-d">Revenue: founder outreach, in-person demos, founding partner invitations.</div>
+        <div class="ec-k">Venue proof</div>
+        <div class="ec-chips"><span class="eco-chip">Limerick</span><span class="eco-chip">In-person demos</span><span class="eco-chip">25-partner proof cohort</span><span class="eco-chip">Named cases</span></div>
+        <div class="ec-d">Fast feedback on offer, onboarding, activation, and buyer language.</div>
       </div>
       <div class="eco-cell">
-        <div class="ec-k">Universities</div>
-        <div class="ec-chips"><span class="eco-chip">UL · ~18,000 students</span><span class="eco-chip">TUS Limerick</span><span class="eco-chip">MIC · 5,000+</span><span class="eco-chip">70+ societies at UL</span></div>
-        <div class="ec-d">Adjacency: nine ambassadors and ten society pilots.</div>
+        <div class="ec-k">Venue scale</div>
+        <div class="ec-chips"><span class="eco-chip">3,000 contacts</span><span class="eco-chip">600 qualified</span><span class="eco-chip">400 demos</span><span class="eco-chip">250 proposals</span><span class="eco-chip">100 paid</span></div>
+        <div class="ec-d">Five-market account plan at one fixed €1,500 annual prepaid price.</div>
       </div>
       <div class="eco-cell">
-        <div class="ec-k">Business community</div>
-        <div class="ec-chips"><span class="eco-chip">Limerick Chamber</span><span class="eco-chip">Innovate Limerick</span><span class="eco-chip">Startup &amp; business events</span></div>
-        <div class="ec-d">Credibility: rooms where venue owners already meet.</div>
+        <div class="ec-k">Student proof</div>
+        <div class="ec-chips"><span class="eco-chip">UL</span><span class="eco-chip">TUS</span><span class="eco-chip">MIC</span><span class="eco-chip">Committee workflows</span></div>
+        <div class="ec-d">Three local cells validate onboarding before the 30-cell route expands.</div>
       </div>
       <div class="eco-cell">
-        <div class="ec-k">Local media</div>
-        <div class="ec-chips"><span class="eco-chip">Limerick Leader</span><span class="eco-chip">Limerick Post</span><span class="eco-chip">Live 95</span><span class="eco-chip">I Love Limerick</span></div>
-        <div class="ec-d">Amplification: a local founder story with a complete media kit.</div>
+        <div class="ec-k">Student scale</div>
+        <div class="ec-chips"><span class="eco-chip">30 campus cells</span><span class="eco-chip">100k qualified visits</span><span class="eco-chip">10 cohorts</span></div>
+        <div class="ec-d">Three measured routes produce the 7,500-student operating target.</div>
       </div>
       <div class="eco-cell">
-        <div class="ec-k">Creators &amp; podcasts</div>
-        <div class="ec-chips"><span class="eco-chip">Three Bridges Podcast</span><span class="eco-chip">Limerick micro-creators</span><span class="eco-chip">Student creators</span></div>
-        <div class="ec-d">Narrative: trusted local voices and direct relationships.</div>
+        <div class="ec-k">School proof</div>
+        <div class="ec-chips"><span class="eco-chip">Secondary teachers</span><span class="eco-chip">Verified staff</span><span class="eco-chip">Zero pupil data</span></div>
+        <div class="ec-d">Discovery validates the working offer before sales execution.</div>
       </div>
       <div class="eco-cell">
-        <div class="ec-k">Hospitality ground floor</div>
-        <div class="ec-chips"><span class="eco-chip">Cafés</span><span class="eco-chip">Premium restaurants</span><span class="eco-chip">Private dining</span><span class="eco-chip">Suppliers &amp; planners</span></div>
-        <div class="ec-d">Visibility: physical presence where buyers already gather.</div>
+        <div class="ec-k">Commercial control</div>
+        <div class="ec-chips"><span class="eco-chip">One CRM</span><span class="eco-chip">Weekly conversion review</span><span class="eco-chip">Capacity triggers</span><span class="eco-chip">Named owners</span></div>
+        <div class="ec-d">Ambition is matched by stage math, proof gates, and support thresholds.</div>
       </div>
     </div>
   </div>
@@ -3719,29 +3780,29 @@
   <div class="slide-num">28</div>
 </section>
 
-<!-- ════════════════════ 29 · 100 RELATIONSHIP STRATEGY ════════════════════ -->
+<!-- ════════════════════ 29 · VENUE ACCOUNT ALLOCATION ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · The 100 Relationship Strategy</div>
-    <h2 class="slide-title">One hundred named relationships before paid reach.</h2>
-    <p class="body" style="max-width:900px; margin-bottom:20px;">By 31 December 2026, the founder holds 100 working Limerick relationships. Each is met in person and tracked with a next action.</p>
+    <div class="slide-eyebrow">Venue Edition · Geographic Account Allocation</div>
+    <h2 class="slide-title">Three thousand planned contacts. <span>Five named markets.</span></h2>
+    <p class="body" style="max-width:900px; margin-bottom:20px;">The allocation converts a 10,361-record official-source universe into a finite Year 1 contact plan.</p>
     <div class="rel-bar">
-      <div class="rel-seg" style="flex:50; background:var(--indigo);"><div class="rs-n">50</div><div class="rs-k">Venues &amp; hospitality</div></div>
-      <div class="rel-seg" style="flex:20; background:#6366f1;"><div class="rs-n">20</div><div class="rs-k">University</div></div>
-      <div class="rel-seg" style="flex:10; background:#818cf8;"><div class="rs-n">10</div><div class="rs-k">Media</div></div>
-      <div class="rel-seg" style="flex:10; background:#3730a3;"><div class="rs-n">10</div><div class="rs-k">Business</div></div>
-      <div class="rel-seg" style="flex:10; background:#a5b4fc;"><div class="rs-n" style="color:var(--ink);">10</div><div class="rs-k" style="color:var(--ink); opacity:0.7;">Suppliers</div></div>
+      <div class="rel-seg" style="flex:1650; background:var(--indigo);"><div class="rs-n">1,650</div><div class="rs-k">England</div></div>
+      <div class="rel-seg" style="flex:500; background:#6366f1;"><div class="rs-n">500</div><div class="rs-k">Ireland</div></div>
+      <div class="rel-seg" style="flex:450; background:#818cf8;"><div class="rs-n">450</div><div class="rs-k">Scotland</div></div>
+      <div class="rel-seg" style="flex:250; background:#3730a3;"><div class="rs-n">250</div><div class="rs-k">Wales</div></div>
+      <div class="rel-seg" style="flex:150; background:#a5b4fc;"><div class="rs-n" style="color:var(--ink);">150</div><div class="rs-k" style="color:var(--ink); opacity:0.7;">Northern Ireland</div></div>
     </div>
     <div class="rel-legend">
-      <div class="rel-leg" style="--c:var(--indigo);">Venue coordinators, GMs and owners: the buyers and the pilots</div>
-      <div class="rel-leg" style="--c:#6366f1;">Society heads, SU officers, ambassadors and staff across UL, TUS, MIC</div>
-      <div class="rel-leg" style="--c:#818cf8;">Journalists, radio producers, podcast hosts and local creators</div>
-      <div class="rel-leg" style="--c:#3730a3;">Chamber, startup community, business owners: the credibility network</div>
-      <div class="rel-leg" style="--c:#a5b4fc;">Planners, photographers, florists, caterers: the people inside every wedding</div>
+      <div class="rel-leg" style="--c:var(--indigo);">England · largest account pool · remote-first demos and clustered travel</div>
+      <div class="rel-leg" style="--c:#6366f1;">Ireland · local proof plus national outbound</div>
+      <div class="rel-leg" style="--c:#818cf8;">Scotland · dedicated hotel and licensed-venue sequence</div>
+      <div class="rel-leg" style="--c:#3730a3;">Wales · focused regional venue clusters</div>
+      <div class="rel-leg" style="--c:#a5b4fc;">Northern Ireland · compact market with direct founder access</div>
     </div>
     <div class="two-col" style="margin-top:20px; grid-template-columns: 1fr 1fr; flex:initial;">
-      <div class="callout callout-neutral"><p><strong>Definition:</strong> met in person, understands the product, has the founder's number, and has a logged next action.</p></div>
-      <div class="callout"><p><strong>Owner:</strong> the founder holds all 100 relationships in Year 1.</p></div>
+      <div class="callout callout-neutral"><p><strong>Qualification:</strong> deduplicate, verify wedding activity, identify the budget owner, and log a next action.</p></div>
+      <div class="callout"><p><strong>Control:</strong> allocation is reviewed against reply, qualification, demo, proposal, and paid conversion by market.</p></div>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -3750,28 +3811,28 @@
 
 <!-- ════════════════════ 30 · FOUNDING LIMERICK PARTNERS ════════════════════ -->
 <section class="slide">
-  <img class="full-canvas-artifact" src="assets/deck-v2/founding-partner-certificate.svg" alt="Numbered Signal Venue Edition Founding Partner certificate for one of the first 25 Limerick venues, showing the fixed €1,500 annual prepaid price.">
+  <img class="full-canvas-artifact" src="assets/deck-v2/founding-partner-certificate.svg" alt="Numbered Signal Venue Edition Founding Partner certificate for the first-fifteen Limerick feedback cohort at the fixed €1,500 annual prepaid price.">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · The Launch Programme</div>
-    <h2 class="slide-title">The Founding Partner cohort is capped at twenty-five.</h2>
+    <div class="slide-eyebrow">Limerick Proof · Founding Partners</div>
+    <h2 class="slide-title">Fifteen founding venues create the first proof layer.</h2>
     <div class="two-col" style="grid-template-columns: 1.05fr 0.95fr;">
       <div>
-        <p class="body">The first 25 invited Limerick businesses receive the fixed €1,500 annual price, gain a direct product-feedback line, and may join the launch story with permission.</p>
+        <p class="body">The first fifteen paid Limerick venues keep the fixed €1,500 price for life, gain a direct feedback line, and may join the launch story with permission.</p>
         <div class="signal-box" style="margin-top:14px;">
           <div class="sb-k">The invitation, in one line</div>
           <p class="sb-v">"Help shape a product built in Limerick."</p>
         </div>
         <div class="not-list" style="margin-top:14px;">
           <div class="not-row"><div class="nt-k">Invite-only</div><div class="nt-v">Founder-issued in person. No public application.</div></div>
-          <div class="not-row"><div class="nt-k">Capped at 25</div><div class="nt-v">The cohort closes at 25.</div></div>
+          <div class="not-row"><div class="nt-k">Feedback cohort only</div><div class="nt-v">The cohort closes at fifteen. The Year 1 venue target remains 100.</div></div>
           <div class="not-row"><div class="nt-k">Same fixed price</div><div class="nt-v">€1,500 annually, prepaid, the same Venue Edition offer.</div></div>
         </div>
       </div>
       <div>
         <div class="archetype-rows">
-          <div class="archetype-row"><div class="ar-who">Cohort</div><div class="ar-what">A cohort of up to 25 keeps feedback manageable. The cap protects service quality; it is not an urgency device.</div></div>
+          <div class="archetype-row"><div class="ar-who">Cohort</div><div class="ar-what">Twenty-five local partners keep the first feedback loop close. This is a proof design, not a commercial ceiling.</div></div>
           <div class="archetype-row"><div class="ar-who">Ownership</div><div class="ar-what">Participating partners can shape workflow and language. Their input is logged; adoption and advocacy must be earned.</div></div>
-          <div class="archetype-row"><div class="ar-who">Case studies</div><div class="ar-what">With permission, documented outcomes can become named local case studies for later expansion.</div></div>
+          <div class="archetype-row"><div class="ar-who">Case studies</div><div class="ar-what">With permission, documented outcomes become named evidence for the five-market pipeline.</div></div>
           <div class="archetype-row"><div class="ar-who">Refinement</div><div class="ar-what">Participating operators test onboarding, vocabulary, and workflows against real venue conditions.</div></div>
           <div class="archetype-row"><div class="ar-who">Advocacy</div><div class="ar-what">If a partner is satisfied, ask once for a warm introduction. Referrals are an outcome to earn, not assume.</div></div>
         </div>
@@ -3782,112 +3843,114 @@
   <div class="slide-num">30</div>
 </section>
 
-<!-- ════════════════════ 31 · PHYSICAL PRESENCE ════════════════════ -->
+<!-- ════════════════════ 31 · THREE-WEDGE SALES OBJECTS ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · Physical Presence</div>
-    <h2 class="slide-title">Three physical objects. One premium standard.</h2>
+    <div class="slide-eyebrow">Proof to Scale · Sales Objects</div>
+    <h2 class="slide-title">One clear object for each commercial wedge.</h2>
     <div class="mock-stack">
       <div class="mock-surface dark">
-        <div class="ms-tag" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1); color:var(--indigo-mid);">The café card · A6 · heavy stock</div>
+        <div class="ms-tag" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1); color:var(--indigo-mid);">Venue Edition · A5 · after every demo</div>
         <div class="ms-body">
           <div>
             <div class="ms-wordmark">signal studio<b>.</b></div>
-            <p class="ms-sub" style="margin-top:8px;">Calm coordination,<br>built in Limerick.</p>
+            <p class="ms-sub" style="margin-top:8px;">Your venue,<br>behind every couple's planning.</p>
           </div>
           <div class="qr-ph"><i></i></div>
         </div>
       </div>
       <div class="mock-surface">
-        <div class="ms-tag">The venue leave-behind · A5 · after every demo</div>
+        <div class="ms-tag">Student Edition · campus-cell card</div>
         <div class="ms-body">
           <div class="ms-wordmark">signal studio<b>.</b></div>
-          <div class="ms-h">For the coordination team at your venue.</div>
-          <p class="ms-sub">Every couple gets a private planning workspace with your venue's name on it. Your team manages invitations, branding, licence status, and activation support.</p>
-          <p class="ms-mono" style="margin-top:10px;">ETHAN McNAMARA · FOUNDER · DIRECT LINE ON REVERSE</p>
+          <div class="ms-h">The group chat is not the plan.</div>
+          <p class="ms-sub">€9.99 a year. One calm place for the ball, the trip, the campaign, and the handover.</p>
+          <p class="ms-mono" style="margin-top:10px;">CELL CODE · VERIFIED STUDENT ROUTE · ANNUAL PRICE</p>
         </div>
       </div>
       <div class="mock-surface">
-        <div class="ms-tag">The founding partner pack · boxed</div>
+        <div class="ms-tag">School Edition · teacher-only one-pager</div>
         <div class="ms-body">
-          <div class="ms-row" style="padding-top:0;"><div class="ms-check done"></div>Welcome letter, signed: why you, why now</div>
-          <div class="ms-row"><div class="ms-check done"></div>Printed onboarding guide, ten minutes cover to cover</div>
-          <div class="ms-row"><div class="ms-check done"></div>Workspace cards with QR for the team</div>
-          <div class="ms-row"><div class="ms-check done"></div>Founding Partner mark for the venue's own materials</div>
+          <div class="ms-row" style="padding-top:0;"><div class="ms-check done"></div>€1,500 per school per year, prepaid</div>
+          <div class="ms-row"><div class="ms-check done"></div>Up to 60 verified staff</div>
+          <div class="ms-row"><div class="ms-check done"></div>Zero pupil accounts</div>
+          <div class="ms-row"><div class="ms-check done"></div>Zero pupil data</div>
         </div>
       </div>
     </div>
     <div class="two-col" style="margin-top:16px; grid-template-columns: 1fr 1fr; flex:initial;">
-      <div class="callout callout-neutral"><p><strong>Placement:</strong> permission only at cafés, venues, campuses, and events. No flyer drops.</p></div>
-      <div class="callout"><p><strong>Standard:</strong> if it does not belong on a premium venue's desk, it is not printed.</p></div>
+      <div class="callout callout-neutral"><p><strong>Job:</strong> each object states buyer, price, boundary, and next action without explanation debt.</p></div>
+      <div class="callout"><p><strong>Standard:</strong> venue, student, and school materials share one premium visual grammar.</p></div>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">31</div>
 </section>
 
-<!-- ════════════════════ 32 · FOUNDER SALES MOTION ════════════════════ -->
+<!-- ════════════════════ 32 · VENUE SALES MOTION ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · The Sales Motion</div>
-    <h2 class="slide-title">Founder-led sales run on a fixed weekly rhythm.</h2>
+    <div class="slide-eyebrow">Venue Edition · Sales Motion</div>
+    <h2 class="slide-title">The funnel has stage owners, weekly math, and a support trigger.</h2>
     <div class="step-line">
-      <div class="step-cell"><div class="sp-n">01</div><div class="sp-t">Mapped</div><div class="sp-d">500+ venues, named contacts</div></div>
-      <div class="step-cell"><div class="sp-n">02</div><div class="sp-t">Written to</div><div class="sp-d">One founder email, tailored to the property</div></div>
-      <div class="step-cell"><div class="sp-n">03</div><div class="sp-t">In conversation</div><div class="sp-d">Coordinator or GM, same-day replies</div></div>
-      <div class="step-cell"><div class="sp-n">04</div><div class="sp-t">Demo</div><div class="sp-d">In person, at the venue, on their real workflow</div></div>
-      <div class="step-cell"><div class="sp-n">05</div><div class="sp-t">Pilot proposal</div><div class="sp-d">Founding terms, prepaid, no discount</div></div>
-      <div class="step-cell"><div class="sp-n">06</div><div class="sp-t">Licence signed</div><div class="sp-d">Cash at signing · onboarding within the week</div></div>
-      <div class="step-cell"><div class="sp-n">07</div><div class="sp-t">Case study</div><div class="sp-d">Named proof + one warm referral ask</div></div>
+      <div class="step-cell"><div class="sp-n">10,361</div><div class="sp-t">Universe</div><div class="sp-d">Official-source records and proxies</div></div>
+      <div class="step-cell"><div class="sp-n">3,000</div><div class="sp-t">Contact</div><div class="sp-d">Five-market allocation</div></div>
+      <div class="step-cell"><div class="sp-n">600</div><div class="sp-t">Qualify</div><div class="sp-d">Fit, buyer, timing</div></div>
+      <div class="step-cell"><div class="sp-n">400</div><div class="sp-t">Demo</div><div class="sp-d">Remote or in person</div></div>
+      <div class="step-cell"><div class="sp-n">250</div><div class="sp-t">Propose</div><div class="sp-d">Fixed prepaid offer</div></div>
+      <div class="step-cell"><div class="sp-n">100</div><div class="sp-t">Paid</div><div class="sp-d">Year 1 target</div></div>
+      <div class="step-cell"><div class="sp-n">Proof</div><div class="sp-t">Expand</div><div class="sp-d">Cases and referrals</div></div>
     </div>
     <div class="two-col" style="margin-top:18px; grid-template-columns: 1fr 1fr;">
       <div>
-        <p class="mono-label" style="margin-bottom:8px;">The founder week · ~4.5 deliberate hours + same-day replies</p>
+        <p class="mono-label" style="margin-bottom:8px;">The weekly control loop</p>
         <div class="rhythm-rows">
-          <div class="rhythm-row"><div class="rh-d">Mon · 60 min</div><div class="rh-v">Clear approvals · write the weekly brief · select ten venue accounts · log the KPIs</div></div>
-          <div class="rhythm-row"><div class="rh-d">Tue-Thu · 60 min</div><div class="rh-v">Send three to four personalised approaches a day · reply to coordinators the same day</div></div>
-          <div class="rhythm-row"><div class="rh-d">Fri · 30 min</div><div class="rh-v">What shipped · one retro sentence · fix one thing the content pipeline got wrong</div></div>
+          <div class="rhythm-row"><div class="rh-d">Monday</div><div class="rh-v">Allocate accounts by market · verify stage ownership · clear stalled next actions</div></div>
+          <div class="rhythm-row"><div class="rh-d">Tue to Thu</div><div class="rh-v">Run buyer conversations, demos, proposals, and same-day decision follow-up</div></div>
+          <div class="rhythm-row"><div class="rh-d">Friday</div><div class="rh-v">Review conversion by market · update forecast · release the next account cohort</div></div>
         </div>
       </div>
       <div>
-        <p class="mono-label" style="margin-bottom:8px;">The discipline metrics</p>
+        <p class="mono-label" style="margin-bottom:8px;">The planning conversion model</p>
         <ul class="deck-list">
-          <li><strong>18% to 26% close-rate planning band.</strong> This is an unvalidated assumption across 70 to 100 qualified conversations, not measured performance.</li>
-          <li><strong>≥1 inbound referral by month four.</strong></li>
-          <li><strong>≥40% sponsored-couple activation.</strong></li>
-          <li><strong>Zero brand-integrity exceptions.</strong></li>
+          <li><strong>20% contact to qualified.</strong> 3,000 to 600.</li>
+          <li><strong>66.7% qualified to demo.</strong> 600 to 400.</li>
+          <li><strong>62.5% demo to proposal.</strong> 400 to 250.</li>
+          <li><strong>40% proposal to paid.</strong> 250 to 100.</li>
+          <li><strong>Capacity trigger.</strong> Support is authorised after 18 paid venues. The 150-venue stretch requires a dedicated operator.</li>
         </ul>
       </div>
     </div>
+    <p class="footnote">These are planning assumptions, not measured performance. Founder control remains at qualification, demo, proposal, and close.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">32</div>
 </section>
 
-<!-- ════════════════════ 33 · AMBASSADOR MODEL ════════════════════ -->
+<!-- ════════════════════ 33 · CAMPUS-CELL MODEL ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · University Ambassadors</div>
-    <h2 class="slide-title">Nine organisers across three campuses.</h2>
+    <div class="slide-eyebrow">Student Edition · Campus-Cell Model</div>
+    <h2 class="slide-title">Thirty campus cells can produce 4,500 paid students.</h2>
     <div class="two-col" style="grid-template-columns: 0.95fr 1.05fr;">
       <div>
-        <p class="body">Ambassadors are existing committee organisers. They onboard their own committee first. A better-run event is the proof.</p>
+        <p class="body">Each cell is an accountable unit led by existing student organisers.</p>
         <ul class="deck-list" style="margin-top:14px;">
-          <li><strong>Why universities:</strong> about 30,000 local students running balls, trips, campaigns, and group projects.</li>
-          <li><strong>Why now:</strong> hospitality and events students become venue coordinators.</li>
-          <li><strong>Why nine:</strong> embedded organisers outperform broad flyer distribution.</li>
+          <li><strong>Thirty cells.</strong> Start at UL, TUS, and MIC. Expand to 30 campuses.</li>
+          <li><strong>150 paid per cell.</strong> The route produces 4,500 subscriptions.</li>
+          <li><strong>One scorecard.</strong> Track attribution, activation, and retention.</li>
         </ul>
         <div class="callout" style="margin-top:14px;">
-          <p>No freebie tables or flyer blitzes. Ambassadors run their society well and show neighbouring committees how.</p>
+          <p>Only paid annual subscriptions with retained use count.</p>
         </div>
       </div>
       <div>
         <div class="archetype-rows">
-          <div class="archetype-row"><div class="ar-who">The structure</div><div class="ar-what">Nine ambassadors: three each at UL, TUS and MIC. Selected from society committees and student organisers, by invitation.</div></div>
-          <div class="archetype-row"><div class="ar-who">The work</div><div class="ar-what">Onboard their own committee first, then two to three societies per semester, plus one workshop per term on running a committee calmly.</div></div>
-          <div class="archetype-row"><div class="ar-who">The exchange</div><div class="ar-what">Student Edition and committee workspace included, the premium kit, a modest per-semester stipend from the student GTM budget line, and a direct line to the founder.</div></div>
-          <div class="archetype-row"><div class="ar-who">The referral shape</div><div class="ar-what">Societies adopt the nested committee workspace (€49/yr inside Student Edition). Ambassadors are credited, never paid per signup.</div></div>
-          <div class="archetype-row"><div class="ar-who">The target</div><div class="ar-what">Ten society pilots live by October, measured on weekly active committees: a habit metric, not a download count.</div></div>
+          <div class="archetype-row"><div class="ar-who">Cells</div><div class="ar-what">30 × 150 = 4,500 paid subscriptions.</div></div>
+          <div class="archetype-row"><div class="ar-who">Visits</div><div class="ar-what">100,000 × 2% = 2,000 paid subscriptions.</div></div>
+          <div class="archetype-row"><div class="ar-who">Cohorts</div><div class="ar-what">10 × 100 = 1,000 paid subscriptions.</div></div>
+          <div class="archetype-row"><div class="ar-who">Target</div><div class="ar-what">7,500 = €74,925 gross billings.</div></div>
+          <div class="archetype-row"><div class="ar-who">Upside</div><div class="ar-what">20,000 = €199,800 gross billings.</div></div>
         </div>
       </div>
     </div>
@@ -3896,27 +3959,27 @@
   <div class="slide-num">33</div>
 </section>
 
-<!-- ════════════════════ 34 · AMBASSADOR KIT & PROGRAMME ════════════════════ -->
+<!-- ════════════════════ 34 · CAMPUS-CELL PROGRAMME ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick First · Ambassador Kit &amp; Calendar</div>
-    <h2 class="slide-title">A useful kit aligned to the academic year.</h2>
+    <div class="slide-eyebrow">Student Edition · Cell Kit &amp; Calendar</div>
+    <h2 class="slide-title">From three proof campuses to 30 operating cells.</h2>
     <div class="kit-grid">
-      <div class="kit-cell"><div class="kt-n">K·1</div><div class="kt-t">Printed onboarding guide</div><div class="kt-d">Ten minutes cover to cover: how to move a committee off the group chat without a fight.</div></div>
-      <div class="kit-cell"><div class="kt-n">K·2</div><div class="kt-t">Society templates</div><div class="kt-d">The ball, the trip, the campaign, the AGM handover: pre-built, in plain student English.</div></div>
-      <div class="kit-cell"><div class="kt-n">K·3</div><div class="kt-t">QR cards for committees</div><div class="kt-d">Same stock and standard as the venue cards. Handed person to person, never stacked on a table.</div></div>
-      <div class="kit-cell"><div class="kt-n">K·4</div><div class="kt-t">One quality piece, not merch</div><div class="kt-d">A single well-made item an organiser would actually keep: restraint applies to swag too.</div></div>
+      <div class="kit-cell"><div class="kt-n">K·1</div><div class="kt-t">Cell playbook</div><div class="kt-d">Audience, message, conversion, activation, retention.</div></div>
+      <div class="kit-cell"><div class="kt-n">K·2</div><div class="kt-t">Project templates</div><div class="kt-d">Ball, trip, campaign, and committee handover.</div></div>
+      <div class="kit-cell"><div class="kt-n">K·3</div><div class="kt-t">Tracked cell code</div><div class="kt-d">One source for every paid subscription.</div></div>
+      <div class="kit-cell"><div class="kt-n">K·4</div><div class="kt-t">Weekly dashboard</div><div class="kt-d">Paid use, retention, and next action.</div></div>
     </div>
-    <p class="mono-label" style="margin:18px 0 8px;">The programme year · September to April</p>
+    <p class="mono-label" style="margin:18px 0 8px;">The operating year · September to June</p>
     <div class="cal-row">
-      <div class="cal-cell hot"><div class="cal-m">Sept</div><div class="cal-t">Societies week</div><div class="cal-d">Recruit, onboard own committees, launch with Student Edition</div></div>
-      <div class="cal-cell hot"><div class="cal-m">Oct</div><div class="cal-t">Ten pilots live</div><div class="cal-d">First workshops · weekly-active tracking begins</div></div>
-      <div class="cal-cell"><div class="cal-m">Nov</div><div class="cal-t">Event season</div><div class="cal-d">Balls and trips run on Signal: the proof events</div></div>
-      <div class="cal-cell"><div class="cal-m">Dec-Jan</div><div class="cal-t">Exams · quiet</div><div class="cal-d">No pushes. Retention check, nothing louder.</div></div>
-      <div class="cal-cell hot"><div class="cal-m">Feb</div><div class="cal-t">Handover season</div><div class="cal-d">Committee transitions: the retention moment the product is built for</div></div>
-      <div class="cal-cell"><div class="cal-m">Mar-Apr</div><div class="cal-t">Proof &amp; succession</div><div class="cal-d">Society case studies · next year's ambassador class invited</div></div>
+      <div class="cal-cell hot"><div class="cal-m">Sept</div><div class="cal-t">3 proof cells</div><div class="cal-d">Validate onboarding and attribution</div></div>
+      <div class="cal-cell hot"><div class="cal-m">Oct</div><div class="cal-t">10 cells</div><div class="cal-d">Release the proven playbook</div></div>
+      <div class="cal-cell"><div class="cal-m">Nov</div><div class="cal-t">20 cells</div><div class="cal-d">Measure paid conversion</div></div>
+      <div class="cal-cell"><div class="cal-m">Dec-Jan</div><div class="cal-t">Retention</div><div class="cal-d">Audit use and channel economics</div></div>
+      <div class="cal-cell hot"><div class="cal-m">Feb</div><div class="cal-t">30 cells</div><div class="cal-d">Complete the campus network</div></div>
+      <div class="cal-cell"><div class="cal-m">Mar-Jun</div><div class="cal-t">7,500 target</div><div class="cal-d">Compound all three routes</div></div>
     </div>
-    <p class="footnote">February handover is the retention test. The workspace must preserve committee memory across leadership changes.</p>
+    <p class="footnote">The target is 7,500 paid annual subscriptions. Cell count alone is not success.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">34</div>
@@ -3991,7 +4054,7 @@
       <div class="media-row"><div class="md-k">Live 95<small>Radio · drivetime</small></div><div class="md-v">The plain-English interview: "software for people who don't work in tech, built by a lad from Limerick." Radio rewards exactly this register.</div></div>
       <div class="media-row"><div class="md-k">I Love Limerick<small>Community · digital</small></div><div class="md-v">Community feature with photography: the local-pride frame, the people behind the founding partners.</div></div>
       <div class="media-row"><div class="md-k">Irish business podcasts<small>National · post-proof</small></div><div class="md-v">After first case studies exist: the earned-first story, one capped measured test, and a city won through direct relationships.</div></div>
-      <div class="media-row"><div class="md-k">National business &amp; tech press<small>SiliconRepublic · The Currency · Business Plus · Irish Times business</small></div><div class="md-v">November onward, carried by evidence: named venues, retention numbers, the Limerick-first playbook. National media buys proof, not promise.</div></div>
+      <div class="media-row"><div class="md-k">National business &amp; tech press<small>SiliconRepublic · The Currency · Business Plus · Irish Times business</small></div><div class="md-v">November onward, carried by evidence: named venues, paid student adoption, and the proof-to-scale playbook. National media buys proof, not promise.</div></div>
     </div>
     <p class="footnote">Every appearance must answer: what changes for a person organising something that matters?</p>
   </div>
@@ -4041,7 +4104,7 @@
       <div class="kit-cell"><div class="kt-n">M·3</div><div class="kt-t">Brand assets</div><div class="kt-d">Wordmarks, the dot, colour values, usage notes: everything a designer on deadline needs.</div></div>
       <div class="kit-cell"><div class="kt-n">M·4</div><div class="kt-t">One-page press release</div><div class="kt-d">Story-led and quotable. The headline is the human-interest frame, not the product name.</div></div>
       <div class="kit-cell"><div class="kt-n">M·5</div><div class="kt-t">The founder story</div><div class="kt-d">Why this was built: including the moment that started it: a venue 47 days from an event with no single source of truth.</div></div>
-      <div class="kit-cell"><div class="kt-n">M·6</div><div class="kt-t">Launch facts</div><div class="kt-d">Date, domains, pricing, the Limerick-first plan: the checkable details, pre-checked.</div></div>
+      <div class="kit-cell"><div class="kt-n">M·6</div><div class="kt-t">Launch facts</div><div class="kt-d">Date, domains, three prices, Limerick proof, and the five-market venue plan: pre-checked.</div></div>
       <div class="kit-cell"><div class="kt-n">M·7</div><div class="kt-t">Media FAQs</div><div class="kt-d">The questions every journalist asks, answered in advance: including the awkward ones about automation and competition.</div></div>
       <div class="kit-cell"><div class="kt-n">M·8</div><div class="kt-t">Contact &amp; availability</div><div class="kt-d">Direct founder line, same-day reply promised through the launch window. Access is part of the story.</div></div>
     </div>
@@ -4054,32 +4117,22 @@
 </section>
 
 <!-- ════════════════════ 39 · BRAND FILM STRATEGY ════════════════════ -->
-<section class="slide">
+<section class="slide slide-dark ad-insert ad-insert-dark">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Story Distribution · Brand Film</div>
-    <h2 class="slide-title">Film demonstrates calm faster than a feature tour.</h2>
-    <div class="two-col" style="grid-template-columns: 1fr 1fr;">
-      <div>
-        <ul class="deck-list">
-          <li><strong>Role:</strong> ninety seconds can make calm tangible.</li>
-          <li><strong>Quality:</strong> the film must signal the same craft as the product.</li>
-          <li><strong>System:</strong> eight priority concepts pass creative, brand, and marketing review before production.</li>
-        </ul>
-        <div class="callout callout-neutral" style="margin-top:14px;">
-          <p><strong>Production discipline:</strong> product and interface motion is built by hand. Generated footage is limited to cinematic atmosphere, never interfaces or type. The founder provides the voice.</p>
-        </div>
+    <div class="ad-insert-top">
+      <div class="ad-insert-wordmark">signal studio<span>.</span></div>
+      <div class="ad-insert-kicker">Film Insert 01 · Venue Edition</div>
+    </div>
+    <div class="ad-insert-grid">
+      <div class="ad-insert-copy">
+        <div class="ad-insert-title">Venue<br>Edition<span>.</span></div>
+        <div class="ad-insert-duration">60 seconds</div>
+        <div class="ad-insert-line">One shared operating plan. One calmer event day.</div>
       </div>
-      <div>
-        <p class="mono-label" style="margin-bottom:8px;">The direction block · prepended to every film</p>
-        <div class="principle-strip" style="grid-template-columns: 1fr 1fr; gap:8px;">
-          <div class="principle-cell"><b>Frame</b>Single subject per shot: one idea, fully seen</div>
-          <div class="principle-cell"><b>Space</b>Negative space is the design, not the leftover</div>
-          <div class="principle-cell"><b>Pace</b>Slow, held beats: the cut earns itself</div>
-          <div class="principle-cell"><b>Physics</b>Physical easing only: nothing floats, nothing glows</div>
-          <div class="principle-cell"><b>Accent</b>One earned indigo event per film</div>
-          <div class="principle-cell"><b>Ending</b>End on stillness</div>
-        </div>
-        <p class="body-sm" style="margin-top:12px;">Funded from the launch and sales-asset line (G · €8,500): the venue pipeline requires finished, credible assets before outreach.</p>
+      <div class="ad-insert-frame" data-video-slot="venue-film-ad">
+        <img src="assets/deck-v2/venue-film-poster.svg" alt="Venue Edition film poster showing a venue floor plan and operating timeline.">
+        <div class="ad-insert-spec">16:9 · H.264 · 1920 × 1080</div>
+        <div class="ad-insert-status">MP4 placeholder · awaiting final asset</div>
       </div>
     </div>
   </div>
@@ -4088,42 +4141,22 @@
 </section>
 
 <!-- ════════════════════ 40 · THE FIRST EIGHT FILMS ════════════════════ -->
-<section class="slide">
+<section class="slide ad-insert">
   <div class="slide-inner">
-    <div class="slide-eyebrow">Story Distribution · The Slate</div>
-    <h2 class="slide-title">Eight films. Two ship before outreach.</h2>
-    <div class="film-grid">
-      <div class="film-card flag">
-        <div class="fl-frame"><div class="fl-num">F·01 · Flagship</div><div class="fl-t">People Outside Tech</div></div>
-        <div class="fl-body"><p class="fl-log">Eight people organising meaningful things. None of them call it a project. The manifesto film.</p><div class="fl-meta">90s · manifesto · launch week</div></div>
+    <div class="ad-insert-top">
+      <div class="ad-insert-wordmark">signal studio<span>.</span></div>
+      <div class="ad-insert-kicker">Film Insert 02 · Student Edition</div>
+    </div>
+    <div class="ad-insert-grid">
+      <div class="ad-insert-copy">
+        <div class="ad-insert-title">Student<br>Edition<span>.</span></div>
+        <div class="ad-insert-duration">45 seconds</div>
+        <div class="ad-insert-line">Every deadline. One clear week.</div>
       </div>
-      <div class="film-card flag">
-        <div class="fl-frame"><div class="fl-num">F·02</div><div class="fl-t">Venue Edition</div></div>
-        <div class="fl-body"><p class="fl-log">The venue stands behind the couple's planning: patronage, not software. Made for the outreach email.</p><div class="fl-meta">45s · venue buyers · pre-launch</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·03</div><div class="fl-t">The Morning</div></div>
-        <div class="fl-body"><p class="fl-log">A coordinator's 7AM: the same morning, before and after. The calm is the plot.</p><div class="fl-meta">40s · hospitality · september</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·04</div><div class="fl-t">One Plan, Four Views</div></div>
-        <div class="fl-body"><p class="fl-log">One plan shown as list, board, calendar, and timeline. No setup sequence.</p><div class="fl-meta">30s · product · september</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·05</div><div class="fl-t">The 7AM Briefing</div></div>
-        <div class="fl-body"><p class="fl-log">Signal: three things, once a day, in plain English. A briefing, not a dashboard.</p><div class="fl-meta">30s · operators · october</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·06</div><div class="fl-t">A Page, Not a Login</div></div>
-        <div class="fl-body"><p class="fl-log">Timeline: the plan, shared with people outside it: suppliers and couples see a page, never a password.</p><div class="fl-meta">30s · suppliers &amp; couples · october</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·07</div><div class="fl-t">Not Ready for the Room</div></div>
-        <div class="fl-body"><p class="fl-log">Notes: private capture for the thought that isn't ready to be shared yet. The quietest film on the slate.</p><div class="fl-meta">30s · everyone · november</div></div>
-      </div>
-      <div class="film-card">
-        <div class="fl-frame"><div class="fl-num">F·08</div><div class="fl-t">The Dot</div></div>
-        <div class="fl-body"><p class="fl-log">The identity film: one mark, five gestures, five relationships to time. Brand as cinema.</p><div class="fl-meta">20s · brand · november</div></div>
+      <div class="ad-insert-frame" data-video-slot="student-film-ad">
+        <img src="assets/deck-v2/student-film-poster.svg" alt="Student Edition film poster showing a five-day study calendar ending in a Friday submission.">
+        <div class="ad-insert-spec">16:9 · H.264 · 1920 × 1080</div>
+        <div class="ad-insert-status">MP4 placeholder · awaiting final asset</div>
       </div>
     </div>
   </div>
@@ -4146,7 +4179,7 @@
 <section class="slide">
   <div class="slide-inner">
     <div class="slide-eyebrow">The Asset Bank · Inventory &amp; Status</div>
-    <h2 class="slide-title">Fifty-four launch artefacts across six families.</h2>
+    <h2 class="slide-title">Fifty-four planned launch artefacts across six families.</h2>
     <div class="readiness-matrix" role="table" aria-label="Launch asset readiness and purpose">
       <div class="rm-row rm-head" role="row"><div>Count</div><div>Family · job</div><div>Included</div><div>Status</div></div>
       <div class="rm-row" role="row"><div class="rm-count">05</div><div><strong>Identity &amp; stationery</strong><small>Seed</small></div><div>Founder card · café card · venue leave-behind · document set</div><div class="rm-status">Designed</div></div>
@@ -4154,9 +4187,8 @@
       <div class="rm-row" role="row"><div class="rm-count">07</div><div><strong>Social system</strong><small>Tell</small></div><div>Six reusable formats · 90-day launch calendar</div><div class="rm-status">Designed</div></div>
       <div class="rm-row" role="row"><div class="rm-count">12</div><div><strong>Short-form film</strong><small>Tell</small></div><div>Twelve reel scripts · four narratives</div><div class="rm-status">Scripted</div></div>
       <div class="rm-row" role="row"><div class="rm-count">08</div><div><strong>Brand film</strong><small>Prove</small></div><div>Eight treatments · two required before outreach</div><div class="rm-status">Scripted</div></div>
-      <div class="rm-row" role="row"><div class="rm-count">16</div><div><strong>Press · ambassador · partner kits</strong><small>Sell · Seed</small></div><div>Press kit 8 · ambassador kit 4 (issued ×9) · partner pack 4</div><div class="rm-status">Mixed</div></div>
+      <div class="rm-row" role="row"><div class="rm-count">16</div><div><strong>Press · campus-cell · partner kits</strong><small>Sell · Seed</small></div><div>Press kit 8 · campus-cell kit 4 (staged ×30) · partner pack 4</div><div class="rm-status">Mixed</div></div>
     </div>
-    <p class="footnote">Status describes the working file only. Nothing here is claimed as printed or published.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">41</div>
@@ -4184,7 +4216,7 @@
           <div class="spec-row"><div class="sr-k">Format</div><div class="sr-v">85 × 55 mm · duplex</div></div>
           <div class="spec-row"><div class="sr-k">Stock</div><div class="sr-v">Heavy uncoated, ink-dark front over white reverse: the palette is the finish</div></div>
           <div class="spec-row"><div class="sr-k">Accent</div><div class="sr-v">One indigo event per side, matching the motion rule: one earned accent, everywhere</div></div>
-          <div class="spec-row"><div class="sr-k">Funded</div><div class="sr-v">Line J press, print &amp; stationery (€1,500): first run sized to the 100 Relationship Strategy</div></div>
+          <div class="spec-row"><div class="sr-k">Funded</div><div class="sr-v">Line J press, print &amp; stationery (€1,500): first run sized to the Limerick proof cohort</div></div>
         </div>
       </div>
       <div>
@@ -4213,7 +4245,7 @@
       <div class="post-card">
         <div class="pc-tag"><span>Format <b>S·1</b> · the number</span><span>IG · LinkedIn</span></div>
         <div class="pc-face dark">
-          <div><div class="pc-stat">19,898</div><div class="pc-line">marriages registered in Ireland in 2025.</div></div>
+          <div><div class="pc-stat">278,956</div><div class="pc-line">latest final marriages across the five-market venue plan.</div></div>
           <div class="pc-foot"><div class="pc-wm">signal studio<b>.</b></div></div>
         </div>
         <div class="pc-cap">A statistic this deck can defend, one per post: sourced, never rounded up.</div>
@@ -4332,7 +4364,7 @@
           <div class="ms-body">
             <p class="ms-mono">SPONSORED</p>
             <div class="ms-h">The group chat is not a plan.</div>
-            <p class="ms-sub">Calm coordination for weddings, venues and committees. Built in Limerick.</p>
+            <p class="ms-sub">Calm coordination for venues, students, and secondary-school teachers. Built in Limerick.</p>
             <p class="ms-mono" style="margin-top:10px; color:var(--indigo);">SEE THE CALM VERSION →</p>
             <div class="ms-row" style="margin-top:10px; border-top:1px solid var(--rule); border-bottom:none; padding-top:8px;"><span class="ms-mono">4 VARIANTS · LINE G (~€800) · CONTINUE ONLY ON MEASURED CONVERSION</span></div>
           </div>
@@ -4349,14 +4381,14 @@
 <section class="slide">
   <div class="slide-inner">
     <div class="slide-eyebrow">The Asset Bank · The Press Kit</div>
-    <h2 class="slide-title">The press kit matches the business plan.</h2>
+    <h2 class="slide-title">The press kit states the ambition without overstating proof.</h2>
     <div class="two-col" style="grid-template-columns: 1.05fr 0.95fr;">
       <div>
         <p class="mono-label" style="margin-bottom:8px;">The press release · page one</p>
         <div class="page-spec">
           <div class="pg-mast"><div class="pm-k">Press Release</div><div class="pm-r">Embargo · 1 September 2026</div></div>
           <div class="pg-h">Limerick founder builds project management for people who don't work in tech</div>
-          <p class="pg-sub">New four-product platform launches city-first for people running weddings, venues, and committees.</p>
+          <p class="pg-sub">New four-product platform launches with commercial routes for venues, students, and secondary-school teachers.</p>
           <div class="sk-lines"><i></i><i></i><i></i><i></i></div>
           <div class="pg-quote">"Most of the projects in this country never get called one. We built the software those projects deserve."<small>Ethan McNamara · Founder</small></div>
           <div class="pg-foot">Boilerplate · founder photography enclosed · direct line, same-day reply through launch</div>
@@ -4366,14 +4398,14 @@
         <p class="mono-label" style="margin-bottom:8px;">The fact sheet · checkable by design</p>
         <div class="spec-rows">
           <div class="spec-row"><div class="sr-k">Founded</div><div class="sr-v">Limerick, 2026: built and headquartered in the launch city</div></div>
-          <div class="spec-row"><div class="sr-k">Launch</div><div class="sr-v">1 September 2026 · Limerick first, Ireland next</div></div>
+          <div class="spec-row"><div class="sr-k">Launch</div><div class="sr-v">1 September 2026 · Limerick proof · five-market venue contact plan</div></div>
           <div class="spec-row"><div class="sr-k">Products</div><div class="sr-v">Four: Notes, Tasks, Timeline, Signal · one calm system</div></div>
-          <div class="spec-row"><div class="sr-k">Venue licence</div><div class="sr-v">€1,500 a year, prepaid: couples' workspaces carried by the venue</div></div>
-          <div class="spec-row"><div class="sr-k">First market</div><div class="sr-v">500+ Irish wedding venues mapped · Founding Partner cohort capped at 25</div></div>
-          <div class="spec-row"><div class="sr-k">Founder</div><div class="sr-v">Ethan McNamara · available same-day through the launch window</div></div>
+          <div class="spec-row"><div class="sr-k">Venue Edition</div><div class="sr-v">€1,500 a year prepaid · 100-venue Year 1 operating target</div></div>
+          <div class="spec-row"><div class="sr-k">Student Edition</div><div class="sr-v">€9.99 a year · 7,500-student operating target · gross billings stated</div></div>
+          <div class="spec-row"><div class="sr-k">School Edition</div><div class="sr-v">Planned teacher-only offer · €1,500 prepaid · zero pupil data</div></div>
         </div>
         <div class="callout" style="margin-top:14px;">
-          <p>Core prices and targets reconcile with the business plan. All eight kit components are complete before outreach.</p>
+          <p>Operating targets are labelled as targets. Gross billings and contract values are not presented as recognized revenue.</p>
         </div>
       </div>
     </div>
@@ -4382,37 +4414,37 @@
   <div class="slide-num">46</div>
 </section>
 
-<!-- ════════════════════ 47 · THE AMBASSADOR KIT, UNBOXED ════════════════════ -->
+<!-- ════════════════════ 47 · THE CAMPUS-CELL KIT, UNBOXED ════════════════════ -->
 <section class="slide">
   <div class="slide-inner">
-    <div class="slide-eyebrow">The Asset Bank · The Ambassador Kit</div>
-    <h2 class="slide-title">Nine ambassador kits ready before societies week.</h2>
+    <div class="slide-eyebrow">The Asset Bank · The Campus-Cell Kit</div>
+    <h2 class="slide-title">One operating kit, replicated across 30 campus cells.</h2>
     <div class="two-col" style="grid-template-columns: 1fr 1fr;">
       <div>
         <p class="mono-label" style="margin-bottom:8px;">The welcome letter · printed and signed</p>
         <div class="letter-spec">
           <div class="lt-tag">Component K·0 · sets the register for everything in the box</div>
           <div class="lt-body">
-            <p>Nine students in Limerick are getting this letter. You're one of them.</p>
-            <p>You already run things: a society, a ball, a committee that would quietly fall apart without you. We build software for exactly that kind of work, and we'd like you to have it first.</p>
+            <p>You're leading one of the first campus cells.</p>
+            <p>Your job is simple: prove the product with your own project, show it to the right students, and track paid annual adoption with complete honesty.</p>
           </div>
           <div class="lt-sign">Ethan<small>Founder · Signal Studio</small></div>
         </div>
         <div class="spec-rows" style="margin-top:14px;">
-          <div class="spec-row"><div class="sr-k">Run</div><div class="sr-v">Nine kits · UL, TUS and MIC · three per campus</div></div>
-          <div class="spec-row"><div class="sr-k">Funded</div><div class="sr-v">Line K ambassador allocation (€2,000): kits and stipends together</div></div>
+          <div class="spec-row"><div class="sr-k">Run</div><div class="sr-v">30 staged cell kits · first proof at UL, TUS, and MIC</div></div>
+          <div class="spec-row"><div class="sr-k">Funded</div><div class="sr-v">Line K student and school activation allocation · €2,000</div></div>
         </div>
       </div>
       <div>
         <p class="mono-label" style="margin-bottom:8px;">Inside the box · the four components</p>
         <div class="kit-grid" style="grid-template-columns: 1fr 1fr;">
-          <div class="kit-cell"><div class="kt-n">K·1</div><div class="kt-t">The onboarding guide</div><div class="kt-d">Ten minutes cover to cover: moving a committee off the group chat without a fight.</div></div>
+          <div class="kit-cell"><div class="kt-n">K·1</div><div class="kt-t">The cell playbook</div><div class="kt-d">Target student, paid conversion, activation, retention, and weekly next action.</div></div>
           <div class="kit-cell"><div class="kt-n">K·2</div><div class="kt-t">The four templates</div><div class="kt-d">The Ball · The Trip · The Campaign · The AGM Handover: pre-built, in plain student English.</div></div>
-          <div class="kit-cell"><div class="kt-n">K·3</div><div class="kt-t">Committee QR cards</div><div class="kt-d">Same stock and standard as the venue set: handed person to person, never stacked on a table.</div></div>
-          <div class="kit-cell"><div class="kt-n">K·4</div><div class="kt-t">One quality object</div><div class="kt-d">An A5 cloth-bound planning notebook, debossed dot, no logo shouting: the item an organiser keeps.</div></div>
+          <div class="kit-cell"><div class="kt-n">K·3</div><div class="kt-t">Tracked cell code</div><div class="kt-d">Attributes each paid annual subscription to one operating cell.</div></div>
+          <div class="kit-cell"><div class="kt-n">K·4</div><div class="kt-t">Weekly scorecard</div><div class="kt-d">Paid students, activation, retained use, and the next conversion action.</div></div>
         </div>
         <div class="callout callout-neutral" style="margin-top:14px;">
-          <p>Every object has a practical use. The kit makes the first committee week easier.</p>
+          <p>The kit is operational, not promotional. Every component supports paid acquisition or retained use.</p>
         </div>
       </div>
     </div>
@@ -4425,8 +4457,8 @@
 <section class="slide slide-divider" data-section="08" id="section-08">
   <div class="divider-inner">
     <div class="divider-eyebrow">Section 08 · The Lean Machine</div>
-    <h2 class="divider-title">One founder. Specialist contractors. No payroll.</h2>
-    <p class="divider-sub">Assets, technology, production, contractors, budget, and CRM.</p>
+    <h2 class="divider-title">Founder-led core. Specialist execution. Support at capacity.</h2>
+    <p class="divider-sub">Assets, technology, production, budget, CRM, and explicit commercial support triggers.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">S8</div>
@@ -4439,10 +4471,10 @@
     <h2 class="slide-title">Every asset has one named job.</h2>
     <div class="asset-fam">
       <div class="fam-col">
-        <div class="fc-head"><div class="fc-t">Sell</div><div class="fc-s">Converts a venue conversation</div></div>
-        <div class="fam-item"><div class="fi-n">Venue pitch deck</div><div class="fi-j">Carries the patronage story to a GM in ten slides</div></div>
-        <div class="fam-item"><div class="fi-n">Leave-behind · A5</div><div class="fi-j">Survives on the desk after the founder leaves</div></div>
-        <div class="fam-item"><div class="fi-n">One-page summaries</div><div class="fi-j">Forwardable internally when the founder is absent</div></div>
+        <div class="fc-head"><div class="fc-t">Sell</div><div class="fc-s">Converts three buyer types</div></div>
+        <div class="fam-item"><div class="fi-n">Venue pitch deck</div><div class="fi-j">Carries the patronage story to venue decision-makers</div></div>
+        <div class="fam-item"><div class="fi-n">School one-pager</div><div class="fi-j">States teacher-only scope, price, staff cap, and data boundary</div></div>
+        <div class="fam-item"><div class="fi-n">Student cell page</div><div class="fi-j">Converts qualified campus interest at €9.99 per year</div></div>
         <div class="fam-item"><div class="fi-n">Product demo reel</div><div class="fi-j">Prepares the buyer to ask specific implementation questions</div></div>
       </div>
       <div class="fam-col">
@@ -4453,22 +4485,19 @@
         <div class="fam-item"><div class="fi-n">Social content</div><div class="fi-j">Low-frequency presence</div></div>
       </div>
       <div class="fam-col">
-        <div class="fc-head"><div class="fc-t">Seed</div><div class="fc-s">Makes the brand locally visible</div></div>
-        <div class="fam-item"><div class="fi-n">Café card · QR system</div><div class="fi-j">Tasteful discovery where coordinators already gather</div></div>
+        <div class="fc-head"><div class="fc-t">Seed</div><div class="fc-s">Starts proof in the right networks</div></div>
+        <div class="fam-item"><div class="fi-n">Campus-cell system</div><div class="fi-j">Replicates one measured route across 30 campuses</div></div>
         <div class="fam-item"><div class="fi-n">Founding partner pack</div><div class="fi-j">Makes joining feel like membership, not purchase</div></div>
-        <div class="fam-item"><div class="fi-n">Ambassador kit</div><div class="fi-j">Equips nine organisers to onboard thirty committees</div></div>
+        <div class="fam-item"><div class="fi-n">Teacher discovery kit</div><div class="fi-j">Tests the School Edition working offer with secondary teachers</div></div>
         <div class="fam-item"><div class="fi-n">Business cards</div><div class="fi-j">The founder's standard, in hand, at every event</div></div>
       </div>
       <div class="fam-col">
         <div class="fc-head"><div class="fc-t">Prove</div><div class="fc-s">Converts the next buyer with the last one</div></div>
-        <div class="fam-item"><div class="fi-n">Case studies</div><div class="fi-j">Named local proof for national expansion</div></div>
+        <div class="fam-item"><div class="fi-n">Case studies</div><div class="fi-j">Named local proof for cross-market conversion</div></div>
         <div class="fam-item"><div class="fi-n">Brand films F·01-08</div><div class="fi-j">Demonstrates the feeling the copy can only claim</div></div>
         <div class="fam-item"><div class="fi-n">Testimonials</div><div class="fi-j">Other people's words, verifiable, in their own register</div></div>
         <div class="fam-item"><div class="fi-n">Product screenshots</div><div class="fi-j">Current, print-ready product evidence</div></div>
       </div>
-    </div>
-    <div class="callout" style="margin-top:14px;">
-      <p>Sell and Tell assets finish before August outreach. Prove assets require a real venue, society, or couple.</p>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -4485,12 +4514,12 @@
       <div class="stack-cell"><div class="sk-k">Writing &amp; production</div><div class="sk-t">Tool-assisted drafting</div><div class="sk-d">Copy, scripts, and outreach drafts. Human-reviewed and never auto-published.</div><div class="sk-r">Replaces · copywriting department</div></div>
       <div class="stack-cell"><div class="sk-k">Motion &amp; film</div><div class="sk-t">Design-tool motion · generated atmosphere · edit suite</div><div class="sk-d">Interface motion built by hand; generated footage only for cinematic metaphor; founder or human voice throughout.</div><div class="sk-r">Replaces · motion studio per film</div></div>
       <div class="stack-cell"><div class="sk-k">Web &amp; distribution</div><div class="sk-t">The product stack</div><div class="sk-d">Site, email, and sharing use the suite's production infrastructure and review.</div><div class="sk-r">Replaces · web agency + email vendor</div></div>
-      <div class="stack-cell"><div class="sk-k">Sales &amp; pipeline</div><div class="sk-t">Signal HQ CRM</div><div class="sk-d">Pipeline, forecast, and spend share one internal record.</div><div class="sk-r">Replaces · sales-ops tooling</div></div>
+      <div class="stack-cell"><div class="sk-k">Sales &amp; pipeline</div><div class="sk-t">Signal HQ CRM</div><div class="sk-d">Five venue markets, 30 campus cells, school discovery, stage conversion, and spend share one record.</div><div class="sk-r">Replaces · sales-ops tooling</div></div>
       <div class="stack-cell"><div class="sk-k">Measurement</div><div class="sk-t">Privacy-respecting analytics + Search Console</div><div class="sk-d">Channel and stage performance without invasive tracking.</div><div class="sk-r">Replaces · analytics consultancy</div></div>
     </div>
     <div class="density-band" style="margin-top:14px;">
       <div class="density-cell"><div class="dc-v">€350-700</div><div class="dc-k">Monthly tools and hosting</div></div>
-      <div class="density-cell"><div class="dc-v">0</div><div class="dc-k">Payroll. Specialist work is contracted by milestone, never hired</div></div>
+      <div class="density-cell"><div class="dc-v">Trigger</div><div class="dc-k">Commercial support authorised after 18 paid venues</div></div>
       <div class="density-cell"><div class="dc-v indigo">~3.5h</div><div class="dc-k">Founder review hours per week</div></div>
       <div class="density-cell"><div class="dc-v indigo">5</div><div class="dc-k">Named approval gates from brief to publish</div></div>
     </div>
@@ -4549,9 +4578,9 @@
         <div class="rf-instead">Line J · within €900 press + photo</div>
       </div>
       <div class="refusal-row">
-        <div class="rf-what">Brand &amp; UI support</div>
-        <div class="rf-why">Independent review of venue-facing materials before outreach.</div>
-        <div class="rf-instead">Included in G/H asset quotes</div>
+        <div class="rf-what">Commercial operations support</div>
+        <div class="rf-why">Account research, scheduling, CRM hygiene, and stage follow-up activate after 18 paid venues validate the motion.</div>
+        <div class="rf-instead">Revenue-funded after proof</div>
       </div>
       <div class="refusal-row">
         <div class="rf-what">Copy editor</div>
@@ -4560,7 +4589,7 @@
       </div>
     </div>
     <div class="two-col" style="margin-top:14px; grid-template-columns: 1fr 1fr; flex:initial;">
-      <div class="callout callout-neutral"><p><strong>Model:</strong> founder direction, specialist execution, milestone payment. No retainers or open-ended scopes.</p></div>
+      <div class="callout callout-neutral"><p><strong>Model:</strong> launch specialists are milestone-based. Commercial support activates from revenue after the 18-venue proof gate.</p></div>
       <div class="callout"><p><strong>Control:</strong> the founder owns brand, design, code, and copy direction. Contractors work inside that standard.</p></div>
     </div>
   </div>
@@ -4581,8 +4610,8 @@
         <div class="bg-amt">8,500</div>
       </div>
       <div class="budget-row">
-        <div class="bg-line"><div class="bg-t">H · Venue sales materials</div><div class="bg-s">Field enablement</div></div>
-        <div class="bg-items"><span class="bg-chip">Pitch set &amp; printed venue kits <b>€1,300</b></span><span class="bg-chip">Demo days &amp; travel <b>€1,200</b></span></div>
+        <div class="bg-line"><div class="bg-t">H · Venue pipeline enablement</div><div class="bg-s">Five-market selling</div></div>
+        <div class="bg-items"><span class="bg-chip">Pitch set &amp; printed proof kits <b>€1,300</b></span><span class="bg-chip">Remote demos &amp; qualified-cluster travel <b>€1,200</b></span></div>
         <div class="bg-amt">2,500</div>
       </div>
       <div class="budget-row">
@@ -4591,8 +4620,8 @@
         <div class="bg-amt">1,500</div>
       </div>
       <div class="budget-row">
-        <div class="bg-line"><div class="bg-t">K · Student pilot · capped</div><div class="bg-s">Staged release</div></div>
-        <div class="bg-items"><span class="bg-chip">Ambassador kits &amp; stipends <b>€1,400</b></span><span class="bg-chip">Campus materials &amp; onboarding <b>€600</b></span></div>
+        <div class="bg-line"><div class="bg-t">K · Student &amp; school activation</div><div class="bg-s">Staged proof</div></div>
+        <div class="bg-items"><span class="bg-chip">Campus-cell launch system <b>€1,400</b></span><span class="bg-chip">Teacher discovery &amp; school materials <b>€600</b></span></div>
         <div class="bg-amt">2,000</div>
       </div>
       <div class="budget-row">
@@ -4606,7 +4635,7 @@
         <div class="bg-amt settle">16,000</div>
       </div>
     </div>
-    <p class="footnote">All spend is allocated before drawdown and milestone-gated. Paid media is capped. Working capital does not fund marketing.</p>
+    <p class="footnote">The €16,000 funds launch assets and initial execution. Commercial support at the 150-venue or 75-school stretch is revenue-funded.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">52</div>
@@ -4616,21 +4645,21 @@
 <section class="slide">
   <div class="slide-inner">
     <div class="slide-eyebrow">The Lean Machine · CRM &amp; Lead System</div>
-    <h2 class="slide-title">Monday view: pipeline, owner, next action.</h2>
+    <h2 class="slide-title">One control plane for three commercial wedges.</h2>
     <div class="crm-frame">
-      <div class="crm-top"><span class="browser-dot" style="background:#fca5a5;"></span><span class="browser-dot" style="background:#fde68a;"></span><span class="browser-dot" style="background:#86efac;"></span><span class="crm-url">signal hq · founder crm · venues: illustrative view, mid-september</span></div>
+      <div class="crm-top"><span class="browser-dot" style="background:#fca5a5;"></span><span class="browser-dot" style="background:#fde68a;"></span><span class="browser-dot" style="background:#86efac;"></span><span class="crm-url">signal hq · year 1 operating plan · illustrative target view</span></div>
       <div class="crm-statbar">
-        <div class="crm-stat"><div class="cv">500+</div><div class="ck">Mapped · named contacts</div></div>
-        <div class="crm-stat"><div class="cv">12</div><div class="ck">In conversation</div></div>
-        <div class="crm-stat"><div class="cv">3</div><div class="ck">Demos this week</div></div>
-        <div class="crm-stat"><div class="cv">1</div><div class="ck">Signed · onboarding</div></div>
+        <div class="crm-stat"><div class="cv">3,000</div><div class="ck">Venue contact plan</div></div>
+        <div class="crm-stat"><div class="cv">7,500</div><div class="ck">Student target</div></div>
+        <div class="crm-stat"><div class="cv">30</div><div class="ck">School target</div></div>
+        <div class="crm-stat"><div class="cv">€269,925</div><div class="ck">Combined operating target</div></div>
       </div>
-      <div class="crm-row h"><div>Venue</div><div>Stage</div><div>Next action</div><div>Note</div></div>
-      <div class="crm-row"><div class="cr-v">Country house venue<small>Co. Limerick · weddings ~70/yr</small></div><div><span class="stage-chip s3">Demo booked</span></div><div>Thu · on-site visit</div><div class="cr-note">Coordinator wants the couple-view demo first</div></div>
-      <div class="crm-row"><div class="cr-v">Castle estate<small>Co. Clare · weddings + corporate</small></div><div><span class="stage-chip s2">In conversation</span></div><div>Reply due today</div><div class="cr-note">GM asked about multi-property terms</div></div>
-      <div class="crm-row"><div class="cr-v">City hotel<small>Limerick · functions &amp; events</small></div><div><span class="stage-chip s3">Pilot proposed</span></div><div>Follow-up Wed</div><div class="cr-note">Founding terms sent Monday · decision with FD</div></div>
-      <div class="crm-row"><div class="cr-v">Boutique hotel<small>Co. Tipperary · weddings ~40/yr</small></div><div><span class="stage-chip s1">Written to</span></div><div>Second touch Fri · final</div><div class="cr-note">No reply to first note: two touches, then rest</div></div>
-      <div class="crm-row"><div class="cr-v">Manor venue<small>Co. Limerick · founding partner</small></div><div><span class="stage-chip s4">Signed · onboarding</span></div><div>Kickoff Wed</div><div class="cr-note">Case study candidate · referral ask at day 30</div></div>
+      <div class="crm-row h"><div>Pipeline</div><div>Stage</div><div>Next action</div><div>Control note</div></div>
+      <div class="crm-row"><div class="cr-v">Venue · England<small>1,650 planned contacts</small></div><div><span class="stage-chip s1">Allocate</span></div><div>Deduplicate · rank clusters</div><div class="cr-note">Largest pool · remote-first demo route</div></div>
+      <div class="crm-row"><div class="cr-v">Venue · Ireland<small>500 planned contacts</small></div><div><span class="stage-chip s2">Proof + outbound</span></div><div>Open Limerick cohort · run national sequence</div><div class="cr-note">Local cases support wider conversion</div></div>
+      <div class="crm-row"><div class="cr-v">Venue · Scotland, Wales, NI<small>850 planned contacts</small></div><div><span class="stage-chip s1">Allocate</span></div><div>Verify regional buyer lists</div><div class="cr-note">450 + 250 + 150 contacts</div></div>
+      <div class="crm-row"><div class="cr-v">Student Edition<small>30 cells · 100k visits · 10 cohorts</small></div><div><span class="stage-chip s3">Build route</span></div><div>Launch three Limerick proof cells</div><div class="cr-note">Target: 7,500 paid annual subscriptions</div></div>
+      <div class="crm-row"><div class="cr-v">School Edition<small>4,903-school core universe</small></div><div><span class="stage-chip s2">Discovery</span></div><div>Validate teacher-only offer</div><div class="cr-note">Target: 30 schools after validation</div></div>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -4641,8 +4670,8 @@
 <section class="slide slide-divider" data-section="09" id="section-09">
   <div class="divider-inner">
     <div class="divider-eyebrow">Section 09 · Roadmap, Risk &amp; Why This Works</div>
-    <h2 class="divider-title">Roadmap, proof gates, and named risks.</h2>
-    <p class="divider-sub">A month-by-month path to launch, with explicit controls on scale.</p>
+    <h2 class="divider-title">Ambitious targets. Named controls. Clear capacity triggers.</h2>
+    <p class="divider-sub">A month-by-month path from Limerick proof to three-wedge Year 1 execution.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">S9</div>
@@ -4655,15 +4684,15 @@
     <h2 class="slide-title">Seven months. One job and one metric each.</h2>
     <div class="month-rows">
       <div class="month-row h"><div>Month</div><div>Theme</div><div>Main action</div><div>Proof</div></div>
-      <div class="month-row"><div class="mo-m">June</div><div class="mo-t">Lock</div><div class="mo-b">Align both plans · write briefs · clean the 500-account CRM</div><div class="mo-k">Zero plan contradictions</div></div>
-      <div class="month-row"><div class="mo-m">July</div><div class="mo-t">Finish</div><div class="mo-b">Complete kit · photography · F·01-02 · onboarding</div><div class="mo-k">Sell + Tell passes</div></div>
-      <div class="month-row"><div class="mo-m">August</div><div class="mo-t">Seed</div><div class="mo-b">Brief press · sign creators · book venue demos</div><div class="mo-k">10+ demos booked</div></div>
-      <div class="month-row hot"><div class="mo-m">Sept</div><div class="mo-t">Launch</div><div class="mo-b">Launch · activate campus · run venue wave one</div><div class="mo-k">First prepaid invoice</div></div>
-      <div class="month-row"><div class="mo-m">Oct</div><div class="mo-t">Prove</div><div class="mo-b">Run 10 society pilots · collect named evidence</div><div class="mo-k">First publishable case</div></div>
-      <div class="month-row"><div class="mo-m">Nov</div><div class="mo-t">Travel</div><div class="mo-b">Publish cases · ask referrals · pitch national desks</div><div class="mo-k">≥1 inbound venue</div></div>
-      <div class="month-row"><div class="mo-m">Dec</div><div class="mo-t">Consolidate</div><div class="mo-b">Reach 6-8 licences · audit relationships · publish retro</div><div class="mo-k">18-licence trajectory intact</div></div>
+      <div class="month-row"><div class="mo-m">June</div><div class="mo-t">Lock</div><div class="mo-b">Reconcile targets · build account data</div><div class="mo-k">One operating model</div></div>
+      <div class="month-row"><div class="mo-m">July</div><div class="mo-t">Finish</div><div class="mo-b">Complete three sell systems · finish onboarding</div><div class="mo-k">Buyer QA passes</div></div>
+      <div class="month-row"><div class="mo-m">August</div><div class="mo-t">Prepare</div><div class="mo-b">Qualify venues · recruit cell leads · validate school offer</div><div class="mo-k">Queues owned</div></div>
+      <div class="month-row hot"><div class="mo-m">Sept</div><div class="mo-t">Launch</div><div class="mo-b">Open venue pipeline · launch three cells</div><div class="mo-k">First paid users</div></div>
+      <div class="month-row"><div class="mo-m">Oct</div><div class="mo-t">Prove</div><div class="mo-b">Run demos · reach 10 cells · finish teacher validation</div><div class="mo-k">First named evidence</div></div>
+      <div class="month-row"><div class="mo-m">Nov</div><div class="mo-t">Clear Q1</div><div class="mo-b">Clear venue floor · publish cases · widen pipeline</div><div class="mo-k">18 venues · €27,000</div></div>
+      <div class="month-row"><div class="mo-m">Dec</div><div class="mo-t">Accelerate</div><div class="mo-b">Expand venues · reach 20 cells · open school proposals</div><div class="mo-k">Run rate reviewed</div></div>
     </div>
-    <p class="footnote">January to June 2027 continues demos, proof, and referrals toward 18 licences.</p>
+    <p class="footnote">Commercial Year 1 closes 31 August 2027 at 100 venues, 7,500 students, and 30 schools. Support is authorised after the November proof gate.</p>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
   <div class="slide-num">54</div>
@@ -4675,15 +4704,15 @@
     <div class="slide-eyebrow">Roadmap · The First Week of September</div>
     <h2 class="slide-title">Launch week is sequenced day by day.</h2>
     <div class="rhythm-rows">
-      <div class="rhythm-row"><div class="rh-d">Mon 31 Aug</div><div class="rh-v"><strong>The quiet final pass.</strong> Assets staged, Founding Partner candidates briefed, embargoes confirmed, App Store release approved and held. Nothing ships today on purpose.</div></div>
-      <div class="rhythm-row"><div class="rh-d">Tue 1 Sept</div><div class="rh-v"><strong>Launch.</strong> Press release at 07:00 · founder's LinkedIn post at 08:00 · web + iOS + Student Edition live · creator content and radio run on the planned schedule.</div></div>
-      <div class="rhythm-row"><div class="rh-d">Wed 2 Sept</div><div class="rh-v"><strong>Venues.</strong> Outreach wave one: the first ~25 founder-written emails, each referencing the launch coverage · demo bookings opened · local print coverage runs.</div></div>
-      <div class="rhythm-row"><div class="rh-d">Thu 3 Sept</div><div class="rh-v"><strong>Campus.</strong> Societies-week presence at UL, TUS and MIC · ambassador onboardings · first committee workshops · Student Edition's natural week one.</div></div>
-      <div class="rhythm-row"><div class="rh-d">Fri 4 Sept</div><div class="rh-v"><strong>Community.</strong> Founding partner visits · café card placements by permission · business community event · thank-you notes to everyone who carried the story.</div></div>
-      <div class="rhythm-row"><div class="rh-d">Weekend</div><div class="rh-v"><strong>Listen.</strong> Same-day replies to every signup and coordinator · first-user feedback logged · week two planned from data, not adrenaline.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Mon 31 Aug</div><div class="rh-v"><strong>Control.</strong> Venue account cohorts staged, three campus cells ready, teacher discovery list verified, embargoes confirmed, release held.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Tue 1 Sept</div><div class="rh-v"><strong>Launch.</strong> Press release, founder story, web, iOS, Venue Edition, and Student Edition go live on one approved sequence.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Wed 2 Sept</div><div class="rh-v"><strong>Venues.</strong> Release the first verified account cohort across all five markets. Open remote and in-person demos.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Thu 3 Sept</div><div class="rh-v"><strong>Students.</strong> Launch proof cells at UL, TUS, and MIC. Track paid annual subscriptions, activation, and retained use.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Fri 4 Sept</div><div class="rh-v"><strong>Teachers.</strong> Run secondary-teacher discovery. Test the €1,500 working offer, 60-staff cap, and zero-pupil-data boundary.</div></div>
+      <div class="rhythm-row"><div class="rh-d">Weekend</div><div class="rh-v"><strong>Review.</strong> Log every response by wedge and market. Release week two from stage data and buyer evidence.</div></div>
     </div>
     <div class="callout" style="margin-top:14px;">
-      <p>Measure awareness and first adoption nightly. Sequence: story → venues → campus → community → listening.</p>
+      <p>Sequence: one story, three buyer routes, one CRM, one weekly decision loop.</p>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -4694,35 +4723,35 @@
 <section class="slide">
   <div class="slide-inner">
     <div class="slide-eyebrow">Roadmap · The Gates</div>
-    <h2 class="slide-title">Dates plan the work. Proof gates control scale.</h2>
+    <h2 class="slide-title">Pipeline runs ahead. Evidence protects capital and capacity.</h2>
     <div class="gate-ladder">
       <div class="gl-card zero">
-        <div class="gl-k">Gate 0 · the only one that matters first</div>
-        <div class="gl-t">Proof of payment</div>
-        <p class="gl-d">One venue settles a €1,500 prepaid invoice.</p>
-        <div class="gl-u"><b>Unlocks</b>Scaled outreach · first case study</div>
+        <div class="gl-k">Gate 0 · Q1 management proof</div>
+        <div class="gl-t">Proof of paid venue demand</div>
+        <p class="gl-d">18 venues settle €27,000 at the fixed prepaid price.</p>
+        <div class="gl-u"><b>Protects</b>Capital allocation · validates early conversion · lender floor remains separate</div>
       </div>
       <div class="gl-card">
         <div class="gl-k">Gate 1</div>
-        <div class="gl-t">Proof of repeatability</div>
-        <p class="gl-d">Three venue case studies and one onboarding playbook.</p>
-        <div class="gl-u"><b>Unlocks</b>National press · pipeline acceleration</div>
+        <div class="gl-t">Proof of venue repeatability</div>
+        <p class="gl-d">Conversion by market, onboarding time, activation, and named cases are measured.</p>
+        <div class="gl-u"><b>Controls</b>Account allocation · demo capacity · follow-up</div>
       </div>
       <div class="gl-card">
         <div class="gl-k">Gate 2</div>
-        <div class="gl-t">Proof of retention</div>
-        <p class="gl-d">Renewal intent · ≥40% couple activation · February handover.</p>
-        <div class="gl-u"><b>Unlocks</b>Year 2 pricing confidence</div>
+        <div class="gl-t">Proof of student scale</div>
+        <p class="gl-d">Three cells validate paid conversion and retained use before replication to 30.</p>
+        <div class="gl-u"><b>Controls</b>Cell rollout · qualified traffic · cohort mix</div>
       </div>
       <div class="gl-card">
         <div class="gl-k">Gate 3</div>
-        <div class="gl-t">Proof of portability</div>
-        <p class="gl-d">Tracked conversion and a portable playbook.</p>
-        <div class="gl-u"><b>Unlocks</b>Next-market preparation funded from revenue</div>
+        <div class="gl-t">Proof of school fit and capacity</div>
+        <p class="gl-d">Teacher workflow and data boundaries validate. Stretch requires a dedicated commercial operator.</p>
+        <div class="gl-u"><b>Controls</b>School selling · privacy boundary · stretch capacity</div>
       </div>
     </div>
     <div class="callout" style="margin-top:16px;">
-      <p>No gate, no scale. Spend beyond launch follows proof, not the calendar.</p>
+      <p>Evidence does not shrink the market or defer pipeline creation. It decides where the next unit of time and capital goes.</p>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -4737,29 +4766,29 @@
     <div class="refusal-table">
       <div class="refusal-head"><div>Risk</div><div>Early signal</div><div>Planned response</div></div>
       <div class="refusal-row">
-        <div class="rf-what">Slow venue adoption</div>
-        <div class="rf-why">Replies are warm but activations lag through October.</div>
-        <div class="rf-instead">Fix onboarding and the pilot offer, not the volume. The stress case survives at 6 licences; the reserve line exists for exactly this.</div>
+        <div class="rf-what">Venue funnel underperforms</div>
+        <div class="rf-why">Qualification falls below 20% or proposal-to-paid falls below 40%.</div>
+        <div class="rf-instead">Reallocate by market, tighten qualification, inspect demo loss, and preserve the fixed €1,500 prepaid offer.</div>
       </div>
       <div class="refusal-row">
-        <div class="rf-what">Messaging misses</div>
-        <div class="rf-why">Low reply quality on the first ~50 founder emails.</div>
-        <div class="rf-instead">Pause the wave. Rewrite from partner feedback. Resume with untouched venues.</div>
+        <div class="rf-what">Student route underperforms</div>
+        <div class="rf-why">Cells average below 150 paid students or qualified visits convert below 2%.</div>
+        <div class="rf-instead">Concentrate on the highest-converting route, improve activation, and protect the €9.99 annual price.</div>
       </div>
       <div class="refusal-row">
-        <div class="rf-what">Product-market fit iteration</div>
-        <div class="rf-why">Pilots use the product differently than the pitch assumed.</div>
-        <div class="rf-instead">That is what pilots are for. Founding partners feed refinement directly; the narrative is corrected before the national push, not after.</div>
+        <div class="rf-what">School offer fails discovery</div>
+        <div class="rf-why">Teachers reject the workflow or the staff-only boundary is unclear.</div>
+        <div class="rf-instead">Pause selling, preserve zero pupil accounts and data, and revise the working offer from evidence.</div>
       </div>
       <div class="refusal-row">
-        <div class="rf-what">Early sales friction</div>
-        <div class="rf-why">Close rate falls below the unvalidated 18% planning floor on qualified conversations.</div>
-        <div class="rf-instead">Use pre-selling assets, in-person demos, and one fixed €1,500 invoice. Simplify further if needed.</div>
+        <div class="rf-what">Capacity overload</div>
+        <div class="rf-why">Onboarding or reply times slip before the 100-venue or 30-school operating target.</div>
+        <div class="rf-instead">Activate added, revenue-funded commercial support before service quality falls.</div>
       </div>
       <div class="refusal-row">
-        <div class="rf-what">Limited awareness</div>
-        <div class="rf-why">Launch coverage under-delivers in week one.</div>
-        <div class="rf-instead">Press, creators, campus, physical assets, and relationships share the load. August demos reduce launch-day dependence.</div>
+        <div class="rf-what">Cash and revenue timing blur</div>
+        <div class="rf-why">Gross billings, cash receipts, and recognized revenue are treated as one number.</div>
+        <div class="rf-instead">Report each measure separately. Never use target contract value as recognized revenue.</div>
       </div>
       <div class="refusal-row">
         <div class="rf-what">Brand integrity under pressure</div>
@@ -4780,16 +4809,13 @@
     <div class="close-grid">
       <div class="close-cell"><div class="cc-k">Product</div><div class="cc-t">Four products, live now</div><div class="cc-d">Five live domains. Funding supports entry, not concept development.</div></div>
       <div class="close-cell"><div class="cc-k">Founder</div><div class="cc-t">Operating discipline</div><div class="cc-d">PMP, Lean Six Sigma Black Belt, Apple and Verizon operations, and a solo-built suite.</div></div>
-      <div class="close-cell"><div class="cc-k">Timing</div><div class="cc-t">Clarity is appreciating</div><div class="cc-d">As output grows across every market, calm software for non-technical people becomes more valuable.</div></div>
-      <div class="close-cell"><div class="cc-k">Position</div><div class="cc-t">A defined wedge</div><div class="cc-d">Venue-sponsored planning solves a specific problem with a fixed offer and a reachable buyer list.</div></div>
-      <div class="close-cell"><div class="cc-k">Entry</div><div class="cc-t">Density, not breadth</div><div class="cc-d">One city, 100 relationships, a Founding Partner cohort capped at 25, direct sales.</div></div>
-      <div class="close-cell"><div class="cc-k">Execution</div><div class="cc-t">Gates, refusals, rhythm</div><div class="cc-d">Proof gates govern scale, refusals protect the brand, and a fixed weekly rhythm makes the motion auditable.</div></div>
-      <div class="close-cell"><div class="cc-k">Economics</div><div class="cc-t">Lean to the point of audit</div><div class="cc-d">€0 founder salary, €350-700 monthly baseline, zero payroll, every marketing euro itemised against a named asset.</div></div>
-      <div class="close-cell"><div class="cc-k">Output</div><div class="cc-t">Lean production</div><div class="cc-d">Tool-assisted drafting, specialist execution, and founder approval.</div></div>
-      <div class="close-cell"><div class="cc-k">Expansion</div><div class="cc-t">Earned market by market</div><div class="cc-d">Ireland proves the wedge. Any next market waits for repeatable conversion, retention, and a documented playbook.</div></div>
-    </div>
-    <div class="thesis-band" style="margin-top:14px;">
-      <p class="tb-text"><em>Every claim is checkable. Every euro is assigned. Every stage must earn the next.</em></p>
+      <div class="close-cell"><div class="cc-k">Market</div><div class="cc-t">Finite, material venue universe</div><div class="cc-d">278,956 latest final marriages and 10,361 official-source venue records or proxies across five markets.</div></div>
+      <div class="close-cell"><div class="cc-k">Position</div><div class="cc-t">Three priced wedges</div><div class="cc-d">Venues, students, and a teacher-only school offer share one calm product system.</div></div>
+      <div class="close-cell"><div class="cc-k">Entry</div><div class="cc-t">Proof beachhead, wider pipeline</div><div class="cc-d">Limerick produces close evidence while five-market venue sales and 30 campus cells build reach.</div></div>
+      <div class="close-cell"><div class="cc-k">Venue route</div><div class="cc-t">Stage math is explicit</div><div class="cc-d">3,000 contacts to 600 qualified, 400 demos, 250 proposals, and 100 paid venues.</div></div>
+      <div class="close-cell"><div class="cc-k">Student route</div><div class="cc-t">Three channels sum to target</div><div class="cc-d">Campus cells, qualified visits, and partner cohorts produce 7,500 deduplicated paid annual subscriptions.</div></div>
+      <div class="close-cell"><div class="cc-k">Economics</div><div class="cc-t">Upside without accounting theatre</div><div class="cc-d">€269,925 operating target and €537,300 capacity stretch, with no recognized-revenue claim.</div></div>
+      <div class="close-cell"><div class="cc-k">Capacity</div><div class="cc-t">Support is triggered, not hidden</div><div class="cc-d">Eighteen paid venues unlock support. Stretch requires a dedicated commercial operator.</div></div>
     </div>
   </div>
   <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
@@ -4806,21 +4832,22 @@
   </div>
   <div class="cover-top" style="justify-content:center; flex:1; display:flex; flex-direction:column;">
     <div class="cover-wordmark">signal studio<span>.</span></div>
-    <div class="cover-eyebrow" style="margin-top:34px;">Market Entry · Brand &amp; Growth Strategy · 2026-2028</div>
-    <h1 class="closing-headline">The market entry is planned. The brand is built. <em>Now execute against the gates.</em></h1>
+    <div class="cover-eyebrow" style="margin-top:34px;">Three-Wedge Market Entry · 2026-2028</div>
+    <h1 class="closing-headline">The evidence floor is protected. <em>The upside is no longer capped.</em></h1>
     <div class="closing-facts">
-      <div class="closing-fact"><div class="cf-v">1 Sept '26</div><div class="cf-k">National launch<br>Limerick concentrated</div></div>
-      <div class="closing-fact"><div class="cf-v">100</div><div class="cf-k">Named relationships<br>before any ad euro</div></div>
-      <div class="closing-fact"><div class="cf-v">18</div><div class="cf-k">Venue licences · Year 1<br>unchanged from the plan</div></div>
-      <div class="closing-fact"><div class="cf-v">€16,000</div><div class="cf-k">Market-entry budget<br>itemised to the euro</div></div>
-      <div class="closing-fact"><div class="cf-v">Gates</div><div class="cf-k">Govern every expansion<br>dates are markers only</div></div>
+      <div class="closing-fact"><div class="cf-v">€269,925</div><div class="cf-k">Year 1 operating target<br>not recognized revenue</div></div>
+      <div class="closing-fact"><div class="cf-v">100</div><div class="cf-k">Venue target<br>150 capacity stretch</div></div>
+      <div class="closing-fact"><div class="cf-v">7,500</div><div class="cf-k">Student target<br>20,000 upside</div></div>
+      <div class="closing-fact"><div class="cf-v">30</div><div class="cf-k">School target<br>75 capacity stretch</div></div>
+      <div class="closing-fact"><div class="cf-v">18</div><div class="cf-k">Q1 management gate<br>separate lender floor</div></div>
     </div>
   </div>
   <div class="cover-bottom">
     <div class="cover-meta">
       Ethan McNamara · Founder · PMP · LSS BB<br>
       ethanmcn2013@gmail.com · signalstudio.ie<br>
-      Limerick, Ireland · 2026 · Confidential
+      Launch 1 September 2026 · Limerick proof beachhead<br>
+      Ireland · England · Scotland · Wales · Northern Ireland · Confidential
     </div>
     <div class="cover-meta right">
       Companion to: Business Plan 2026 · plan.signalstudio.ie<br>
@@ -4839,8 +4866,8 @@
 
   var presentationPages = [
     1, 3, 4, 5, 7, 8, 9, 10, 12, 13,
-    15, 16, 17, 18, 20, 21, 22, 23, 25, 27,
-    28, 29, 31, 33, 35, 36, 37, 38, 39, 42,
+    15, 16, 17, 18, 20, 27, 28, 29, 30, 31,
+    32, 33, 35, 36, 37, 38, 39, 40, 41, 42,
     45, 47, 48, 50, 62, 63, 65, 67, 68, 70
   ];
 
@@ -4855,10 +4882,10 @@
     'evidence-reset', 'market-funnel', 'founder-time', 'limerick-map', 'conversion-stair',
     'pipeline-cases', 'expansion-lock', 'limerick-reset', 'local-proof', 'relationship-map',
     'relationship-band', 'partner-certificate', 'physical-objects', 'sales-rhythm', 'campus-map',
-    'ambassador-programme', 'distribution-reset', 'creator-covers', 'media-ladder', 'founder-story',
+    'campus-cell-programme', 'distribution-reset', 'creator-covers', 'media-ladder', 'founder-story',
     'press-folder', 'brand-film', 'film-slate', 'asset-reset', 'readiness-matrix',
     'card-specimen', 'social-specimens', 'reel-storyboards', 'campaign-artboards', 'press-kit-proof',
-    'ambassador-proof', 'lean-reset', 'asset-purpose', 'operating-architecture', 'production-swimlane',
+    'campus-cell-proof', 'lean-reset', 'asset-purpose', 'operating-architecture', 'production-swimlane',
     'specialist-ledger', 'allocation-bar', 'crm-proof', 'gate-reset', 'monthly-track',
     'launch-week', 'proof-gates', 'risk-bands', 'execution-case', 'closing-proof'
   ];
@@ -5028,6 +5055,7 @@
   }
 
   function slideLabel(slide, index) {
+    if (document.documentElement.classList.contains('route-presentation')) return pad(index + 1);
     var num = slide.querySelector('.slide-num');
     if (num && num.textContent.trim()) return num.textContent.trim();
     return pad(index + 1);

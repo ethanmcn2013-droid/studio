@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Incorporation pack · Signal HQ",
   description:
-    "The CRO incorporation runbook for Signal Studio Limited, phased checklist, timeline, and what gates the €40k facility. Pre-incorporation.",
+    "The CRO incorporation runbook for Signal Studio Limited, phased checklist, timeline, and what gates the €50k facility. Pre-incorporation.",
   robots: { index: false, follow: false },
 };
 
@@ -37,7 +37,7 @@ export default async function IncorporationPage() {
         <p className="hq-page-intro">
           The CRO runbook as a live checklist. The structural decisions are
           confirmed; filing is targeted <strong>{COMPANY_META.incorporationTarget}</strong>.
-          Incorporation is the gate the €40k facility waits on. Statutory
+          Incorporation is the gate the €50k facility waits on. Statutory
           references carry a Jan-2026 cutoff, verify on cro.ie at filing.
         </p>
         <span className="hq-co-status" data-status={COMPANY_META.status}>

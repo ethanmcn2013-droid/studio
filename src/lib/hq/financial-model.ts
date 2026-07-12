@@ -26,9 +26,9 @@ export const FIN_META = {
   basis: "cash" as const,
   // LIVE DATA: set to the real opening bank balance. Conservative placeholder.
   startingCashEur: 5_000,
-  facilityEur: 40_000, // MFI facility (matches the loan pack)
+  facilityEur: 50_000, // requested facility (matches the loan pack)
   facilityDrawIndex: 3, // drawn at incorporation, modeled at launch
-  revisedOn: "2026-07-11",
+  revisedOn: "2026-07-12",
 };
 
 /** Pricing, from the ratified Venue Edition model + workspace tier. */
@@ -36,17 +36,36 @@ export const FIN_PRICING = {
   foundingVenueEur: VENUE_EDITION_ANNUAL_PRICE_EUR, // founding cohort, locked for life
   paidVenueAcvEur: VENUE_EDITION_ANNUAL_PRICE_EUR, // fixed price, no size or volume band
   workspaceMonthlyEur: 12,
-  // Student edition is distribution, not revenue (per traction.ts) → €0.
+  studentAnnualEur: 9.99,
+  plannedSchoolAnnualEur: 1_500,
 };
 
 /**
- * Monthly new-venue schedule (editable). Founding is a limited, front-loaded
- * cohort that closes after launch; paid ramps from launch onward. Length must
- * equal horizonMonths.
+ * Commercial ambition stays outside the lender cash floor below. These are
+ * paid-customer targets and gross contract value or billings, not recognized
+ * revenue. School Edition is planned and teacher-only in Year 1.
+ */
+export const FIN_OPERATING_TARGET = {
+  venues: 100,
+  students: 7_500,
+  schools: 30,
+  grossCommercialValueEur: 269_925,
+  stretch: {
+    venues: 150,
+    students: 20_000,
+    schools: 75,
+    grossCommercialValueEur: 537_300,
+  },
+} as const;
+
+/**
+ * Lender underwriting floor only: 18 paid venues by June 2027. The operating
+ * target is recorded separately above so the conservative cash model cannot
+ * become the commercial ceiling. Length must equal horizonMonths.
  */
 export const FIN_RAMP = {
-  newFounding: [0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  newPaid:     [0, 0, 0, 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9],
+  newFounding: [0, 0, 0, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  newPaid:     [0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0],
   /** Workspace subs that accrue per venue in the funnel (negative-CAC tail). */
   workspaceSubsPerVenue: 0.5,
 };

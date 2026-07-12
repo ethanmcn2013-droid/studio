@@ -1,7 +1,7 @@
 # Signal Studio · 6-Month Marketing Plan
 
 **Date**: 2026-05-16
-**Status**: AMENDED 2026-07-11 — §1 Venue Edition fixed at €1,500 per venue/year; the prior €1.5–4k band is retired. Goal reframe remains recorded, but the fixed price makes the volume requirement materially higher. Execution is gated only on the pre-launch readiness items in §5.
+**Status**: SUPERSEDED 2026-07-12. The active Year 1 commercial strategy is `content/hq/decisions/three-wedge-market-entry-pivot-2026-07-12.md`. This file remains the historical six-month, venue-led plan.
 **Built from**: parallel strategy + research + pm workstreams, brand-gated through `signal-brand-voice` / BRAND.md §3 / DESIGN.md §10.
 **Constraints honoured**: zero paid ads, free channels only, solo founder + AI agent factory, only fixed costs are Claude Code Max + Codex Pro + hosting.
 

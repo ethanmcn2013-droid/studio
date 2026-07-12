@@ -42,11 +42,11 @@ export const BLUEPRINT_META = {
   title: "Founder Operating System",
   subtitle: "How Signal Studio works, grows, ships, thinks, and stays focused.",
   // LIVE DATA: set to the real freeze date when this map is reviewed.
-  revisedOn: "2026-06-15",
+  revisedOn: "2026-07-12",
   hardLaunch: "2026-09-01",
-  initialWedge: "Wedding venues, Ireland, starting in Limerick",
-  secondaryWedge: "Students, academic-year planning",
-  expansion: "Ireland → UK → English-speaking → localized markets",
+  initialWedge: "Wedding venues across Ireland and the UK, with Limerick as the proof beachhead",
+  secondaryWedge: "Paid students and teacher-only secondary-school workspaces",
+  expansion: "Limerick proof, five-market venue contact plan, then wider markets",
 } as const;
 
 /* ════════════════════════════════════════════════════════════════════
@@ -84,7 +84,7 @@ export const NORTH_STAR = {
     },
     {
       title: "Stay absurdly focused",
-      body: "One wedge, one system, one quality bar. We win narrow before we go wide.",
+      body: "Three wedges, one system, one quality bar. Proof stays narrow while distribution goes wide.",
     },
     {
       title: "Visibility kills meetings",
@@ -239,6 +239,24 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
     retentionDriver: "Walking into exam season already organised.",
   },
   {
+    key: "teachers",
+    name: "Secondary-school teachers",
+    painPoints: [
+      "Planning and departmental actions split across email and mandated systems",
+      "Important staff work has no calm shared view",
+      "Personal follow-up becomes the coordination layer",
+    ],
+    workflow: [
+      "Capture staff work in Notes",
+      "Assign teacher-owned actions",
+      "Share a department timeline",
+      "Signal flags what needs attention",
+    ],
+    templates: ["Department plan", "Curriculum cycle", "Staff action board"],
+    activationMoment: "A teacher-only team completes its first shared planning cycle.",
+    retentionDriver: "Staff coordination improves without pupil accounts or pupil personal data.",
+  },
+  {
     key: "smb",
     name: "Small businesses",
     painPoints: [
@@ -292,10 +310,10 @@ export type GrowthStage = {
 export const GROWTH_MACHINE: GrowthStage[] = [
   {
     phase: "Wedge",
-    title: "Limerick local launch",
-    detail: "Win one city before the country. Founder-signed, hand-delivered, local.",
+    title: "Limerick proof beachhead",
+    detail: "Win the first proof locally while the five-market venue contact plan is built in parallel.",
     status: "building",
-    metric: "1 paid premium venue (Gate 0)",
+    metric: "1 paid venue (Gate 0), then 18 by Q1",
   },
   {
     phase: "Wedge",
@@ -306,10 +324,17 @@ export const GROWTH_MACHINE: GrowthStage[] = [
   },
   {
     phase: "Adjacent",
-    title: "College / student launch",
-    detail: "Academic-year planning as the second wedge, timed to term start.",
+    title: "Paid student launch",
+    detail: "Academic-year planning through campus cells, qualified traffic, and partner cohorts.",
     status: "queued",
-    metric: "student signups", // LIVE DATA: notes/tasks signups by source
+    metric: "7,500 paid students in Year 1",
+  },
+  {
+    phase: "Adjacent",
+    title: "Teacher-only School Edition",
+    detail: "Adult staff coordination for secondary schools, with zero pupil accounts and zero pupil personal data.",
+    status: "queued",
+    metric: "30 paid schools in Year 1",
   },
   {
     phase: "Demand",
@@ -373,7 +398,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     tools: ["Signal HQ", "Atlas", "Reporting"],
     cadence: "Daily review",
     outputs: ["The one decision of the day", "Direction held"],
-    metrics: ["Focus: one wedge live"],
+    metrics: ["Focus: three wedges, one operating model"],
     risk: "Founder-time is the bottleneck for every other function.",
   },
   {
@@ -440,7 +465,7 @@ export const OPERATING_FUNCTIONS: OperatingFunction[] = [
     cadence: "Monthly finance review",
     outputs: ["Runway read", "Cash collected", "Use-of-funds"],
     metrics: ["Runway (months)", "Cash collected"],
-    risk: "€40k facility pending CRO number; €0 founder salary.",
+    risk: "€50k facility pending CRO number; €0 founder salary.",
   },
   {
     key: "legal",
@@ -515,7 +540,7 @@ export const DIRECTOR_REVIEW_CYCLES: DirectorReviewCycle[] = [
   },
   {
     cycle: "Monthly, Strategy review",
-    question: "Are we still absurdly focused on the one wedge?",
+    question: "Are all three wedges earning their share of founder capacity?",
     seats: ["Jobs", "Sagan", "Turing"],
   },
 ];
@@ -577,8 +602,8 @@ export const BLUEPRINT_METRICS: BlueprintMetric[] = [
   // Wired live from the Studio Turso ledger (see resolveBlueprintMetrics):
   { key: "mrr", label: "MRR", value: "—", target: "first paid licence", source: "traction.ts", tone: "critical" },
   { key: "active-users", label: "Active users", value: "—", target: "growing WoW", source: "entitlements", tone: "quiet" },
-  { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "10 by M3", source: "/hq/crm", tone: "accent" },
-  { key: "student-signups", label: "Student signups", value: "—", target: "term-start cohort", source: "student_edu grants", tone: "quiet" },
+  { key: "venue-pipeline", label: "Venue pipeline", value: "—", target: "100 paid by Year 1", source: "/hq/crm", tone: "accent" },
+  { key: "student-signups", label: "Student activations", value: "—", target: "7,500 paid by Year 1", source: "student_edu grants", tone: "quiet" },
   // Awaiting wiring, these live in the four product apps' analytics or the
   // finance model, not the Studio DB. Honest placeholders until connected.
   { key: "activation", label: "Activation rate", value: "—", target: ">40%", source: "onboarding funnel", tone: "quiet" },
@@ -731,7 +756,8 @@ export const RISK_LOG = {
     { label: "Founder-time concentration", detail: "Every function moves only when the founder moves." },
     { label: "iOS / MacBook dependency", detail: "Motion + native build pipeline needs Apple hardware." },
     { label: "Provisioning blockers", detail: "Upstash, DKIM, and secrets gate production behaviour." },
-    { label: "Single wedge risk", detail: "Venue wedge must convert before the student wedge opens." },
+    { label: "Commercial capacity", detail: "The three-wedge target needs productized onboarding and added support after Q1 proof." },
+    { label: "School data boundary", detail: "Teacher-only in Year 1 with zero pupil accounts and zero pupil personal data." },
   ] satisfies LogItem[],
   openDecisions: [
     { label: "Paid-ads trigger", detail: "What organic proof switches paid on?" },
@@ -740,17 +766,17 @@ export const RISK_LOG = {
   ] satisfies LogItem[],
   decisionsMade: [
     { label: "Indigo dot, retire gold", detail: "Suite-locked accent #4f46e5 since 2026-05-11." },
-    { label: "Venue-first wedge", detail: "Limerick venues before any other segment." },
+    { label: "Three paid wedges", detail: "100 venues, 7,500 students, and 30 schools form the Year 1 operating target." },
     { label: "Founder stays at Verizon, €0 salary", detail: "Criteria-based transition, not date-based." },
     { label: "Roadmap → Timeline, Analytics → Signal", detail: "Renamed across the suite 2026-06-13." },
   ] satisfies LogItem[],
   launchBlockers: [
-    { label: "First paid venue (Gate 0)", detail: "The single headline metric the plan depends on." },
+    { label: "First paid venue (Gate 0)", detail: "The first commercial proof point in the three-wedge plan." },
     { label: "CSP enforce-mode", detail: "Promote from report-only across all four products." },
     { label: "Inbound capture DNS", detail: "capture@notes needs secret + DNS to go live." },
   ] satisfies LogItem[],
   dependencies: [
-    { label: "Funding", detail: "€40k MFI facility pending incorporation." },
+    { label: "Funding", detail: "€50k facility pending incorporation." },
     { label: "iOS / MacBook", detail: "Native + motion work blocked without Apple hardware." },
     { label: "Motion graphics", detail: "Brand films gate the demand engine." },
   ] satisfies LogItem[],
@@ -790,7 +816,7 @@ export type BlueprintSection = {
 export const BLUEPRINT_SECTIONS: BlueprintSection[] = [
   { id: "north-star", index: 1, label: "North Star", title: "Why we exist", blurb: "Mission, positioning, principles, flywheel." },
   { id: "product-system", index: 2, label: "Product System", title: "How the product works", blurb: "Notes → Tasks → Timeline → Signal." },
-  { id: "customers", index: 3, label: "Customers", title: "Who it's for", blurb: "Venues, students, small business, personal." },
+  { id: "customers", index: 3, label: "Customers", title: "Who it's for", blurb: "Venues, students, secondary-school teachers, small business, personal." },
   { id: "growth", index: 4, label: "Growth Machine", title: "How it grows", blurb: "Wedge → demand → compounding → expansion." },
   { id: "functions", index: 5, label: "Signal HQ", title: "How it operates", blurb: "Ten functions, owners, cadence, risk." },
   { id: "directors", index: 6, label: "AI Directors", title: "How it decides", blurb: "The standing org and review cycles." },

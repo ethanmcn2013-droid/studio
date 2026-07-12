@@ -1,6 +1,6 @@
 # Segment Expansion Research — May 2026
 
-Status: RATIFIED 2026-05-16 — founder accepted the panel consensus in full. This is now a standing directional constraint, not a research note. Sequencing below is binding until a kill/pivot trigger or new evidence revises it.
+Status: SUPERSEDED 2026-07-12. The founder replaced this reserved sequencing with the active three-wedge decision in `content/hq/decisions/three-wedge-market-entry-pivot-2026-07-12.md`. This file remains historical research and is no longer binding.
 Owner: founder
 Question: should Signal Studio expand to teachers / students / small-business owners / contractors after the venue wedge, and does the "more teachers than hotels" scale argument hold?
 Method: 6-lens agent panel (market-math · day-to-day utility · wedge & moat · brand fit · adoption reality · cost to serve), each scoring the same five segments, weddings as benchmark.

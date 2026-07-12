@@ -43,9 +43,9 @@ export const DATA_ROOM: DataRoomSection[] = [
   {
     id: "the-ask",
     title: "The ask",
-    blurb: "The €40k facility and exactly where it goes.",
+    blurb: "The €50k facility and exactly where it goes.",
     items: [
-      { label: "Loan pack", note: "€40k facility · lender deck (password-gated).", href: "/hq/loan-pack", state: "ready" },
+      { label: "Loan pack", note: "€50k facility · lender deck (password-gated).", href: "/hq/loan-pack", state: "ready" },
       { label: "Use of funds", note: "Where every euro goes, in the loan pack + market deck.", href: "/hq/market-entry", state: "ready" },
     ],
   },

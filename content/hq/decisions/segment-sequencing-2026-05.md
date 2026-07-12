@@ -3,10 +3,12 @@ id: segment-sequencing-2026-05
 title: Audience-segment sequencing — venues → contractors; teachers/students are not paid wedges
 category: Strategy
 date: 2026-05-16
-status: Active
+status: Superseded
 reviewDate: 2026-08-16
 relatedObjects: [docs/strategy/SEGMENT_EXPANSION_RESEARCH_2026_05.md, docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md, business-strategy-frame-2026-05, weddings-wedge, BRAND.md §2.1]
 ---
+
+> Superseded on 2026-07-12 by `three-wedge-market-entry-pivot-2026-07-12`. This file remains as the historical record of the earlier reserved strategy.
 
 ## Decision
 

@@ -29,8 +29,8 @@
   <g transform="translate(64 278)">
     <text class="mono label ink" x="0" y="0" opacity=".52">FIELD RULE</text>
     <circle cx="5" cy="41" r="5" fill="#4f46e5"/>
-    <text class="sans ink" x="22" y="48" font-size="19" font-weight="500">Win the first 18 licences</text>
-    <text class="sans ink" x="22" y="76" font-size="19" font-weight="500">before expanding the field.</text>
+    <text class="sans ink" x="22" y="48" font-size="19" font-weight="500">Reach the 18-venue Q1 proof gate</text>
+    <text class="sans ink" x="22" y="76" font-size="19" font-weight="500">before scaling the field.</text>
 
     <g transform="translate(0 134)">
       <circle cx="5" cy="0" r="5" fill="#4f46e5" opacity=".18"/>
