@@ -1,5 +1,9 @@
 import { sql } from "drizzle-orm";
 import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  SPONSOR_CONSENT_POLICY_VERSION,
+  type SponsorConsentField,
+} from "./sponsorship-policy";
 
 /**
  * Canonical schema for the cross-product Signal entitlements DB.
@@ -165,6 +169,144 @@ export const sponsors = sqliteTable("sponsors", {
 
 export type Sponsor = typeof sponsors.$inferSelect;
 export type NewSponsor = typeof sponsors.$inferInsert;
+
+/**
+ * Sponsorship is orthogonal to workspace membership. These records live only
+ * in the canonical shared entitlements store: the Studio-local sponsor ledger
+ * remains a transitional commercial ledger and does not get activation or
+ * consent tables. A canonical workspace id below is association metadata only.
+ */
+export const SPONSOR_ACTIVATION_STATES = [
+  "pending",
+  "active",
+  "ended",
+  "revoked",
+] as const;
+export type SponsorActivationState =
+  (typeof SPONSOR_ACTIVATION_STATES)[number];
+
+export const SPONSOR_INVITATION_STATES = [
+  "not_sent",
+  "sent",
+  "accepted",
+  "declined",
+  "expired",
+  "revoked",
+] as const;
+export type SponsorInvitationState =
+  (typeof SPONSOR_INVITATION_STATES)[number];
+
+export const sponsorActivations = sqliteTable(
+  "sponsor_activations",
+  {
+    id: text("id").primaryKey(),
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    /** Optional entitlement projection behind this activation. */
+    entitlementId: text("entitlement_id").references(() => entitlements.id),
+    entitlementSource: text("entitlement_source")
+      .$type<EntitlementSource>()
+      .notNull(),
+    /** SHA-256 of a source reference. Never store a raw license code here. */
+    entitlementSourceRefHash: text("entitlement_source_ref_hash"),
+    /** Opaque suite subject id for the owner. Never an email address. */
+    ownerSubjectId: text("owner_subject_id").notNull(),
+    /** Association only. It never creates or proves a Tasks membership. */
+    canonicalWorkspaceId: text("canonical_workspace_id"),
+    sponsorSeasonReference: text("sponsor_season_reference"),
+    sponsorLocalReference: text("sponsor_local_reference"),
+    state: text("state")
+      .$type<SponsorActivationState>()
+      .notNull()
+      .default("pending"),
+    invitationState: text("invitation_state")
+      .$type<SponsorInvitationState>()
+      .notNull()
+      .default("not_sent"),
+    invitationSentAt: integer("invitation_sent_at"),
+    invitationAcceptedAt: integer("invitation_accepted_at"),
+    invitationDeclinedAt: integer("invitation_declined_at"),
+    activatedAt: integer("activated_at"),
+    endedAt: integer("ended_at"),
+    revokedAt: integer("revoked_at"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("sponsor_activations_sponsor_state_idx").on(
+      table.sponsorId,
+      table.state,
+    ),
+    index("sponsor_activations_owner_state_idx").on(
+      table.ownerSubjectId,
+      table.state,
+    ),
+    index("sponsor_activations_workspace_idx").on(
+      table.canonicalWorkspaceId,
+    ),
+    index("sponsor_activations_entitlement_idx").on(table.entitlementId),
+    index("sponsor_activations_sponsor_reference_idx").on(
+      table.sponsorId,
+      table.sponsorSeasonReference,
+      table.sponsorLocalReference,
+    ),
+  ],
+);
+
+export type SponsorActivation = typeof sponsorActivations.$inferSelect;
+export type NewSponsorActivation = typeof sponsorActivations.$inferInsert;
+
+/**
+ * One active row grants one named metadata field. The allowlist comes from the
+ * pure sponsorship policy. Notes, Tasks, private Timeline data, comments,
+ * attachments, collaborators, and membership never have representable fields.
+ */
+export const sponsorConsentGrants = sqliteTable(
+  "sponsor_consent_grants",
+  {
+    id: text("id").primaryKey(),
+    activationId: text("activation_id")
+      .notNull()
+      .references(() => sponsorActivations.id),
+    fieldKey: text("field_key").$type<SponsorConsentField>().notNull(),
+    policyVersion: text("policy_version")
+      .notNull()
+      .default(SPONSOR_CONSENT_POLICY_VERSION),
+    receiptVersion: text("receipt_version").notNull(),
+    /** SHA-256 of the immutable consent receipt. No private payload. */
+    receiptHash: text("receipt_hash").notNull(),
+    receiptAt: integer("receipt_at").notNull(),
+    grantedByOwnerSubjectId: text("granted_by_owner_subject_id").notNull(),
+    grantedAt: integer("granted_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    revokedByOwnerSubjectId: text("revoked_by_owner_subject_id"),
+    revokedAt: integer("revoked_at"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("sponsor_consent_grants_activation_idx").on(table.activationId),
+    index("sponsor_consent_grants_owner_idx").on(
+      table.grantedByOwnerSubjectId,
+    ),
+    index("sponsor_consent_grants_revoked_idx").on(table.revokedAt),
+    // One-active-grant-per-field is enforced by a partial UNIQUE index in
+    // scripts/migrate-access.mjs, where SQLite's predicate is explicit.
+  ],
+);
+
+export type SponsorConsentGrant = typeof sponsorConsentGrants.$inferSelect;
+export type NewSponsorConsentGrant = typeof sponsorConsentGrants.$inferInsert;
 
 /** A venue is revenue only when paid (founding or paid) AND cash landed. */
 export function isPaidVenue(s: Pick<Sponsor, "venuePlan" | "paidAt">): boolean {

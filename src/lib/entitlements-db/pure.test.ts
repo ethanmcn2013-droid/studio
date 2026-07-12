@@ -20,6 +20,8 @@ import {
   resolveOperator,
   svixExpectedSignature,
   svixMatches,
+  isFreshSvixTimestamp,
+  codeAuditProjection,
   type ResolveRow,
   type ChainRow,
 } from "./pure";
@@ -245,4 +247,20 @@ test("svix: a signature the scheme produces is accepted, others rejected", () =>
   // A different body must not verify against the same signature.
   const other = svixExpectedSignature(secret, id, ts, body + "x");
   assert.notEqual(other, sig);
+});
+
+test("svix timestamps reject replay and implausible future delivery", () => {
+  const now = Date.UTC(2026, 6, 12, 12, 0, 0);
+  assert.equal(isFreshSvixTimestamp(String(now / 1000), now), true);
+  assert.equal(isFreshSvixTimestamp(String(now - 299_000), now), true);
+  assert.equal(isFreshSvixTimestamp(String(now - 301_000), now), false);
+  assert.equal(isFreshSvixTimestamp(String(now + 301_000), now), false);
+  assert.equal(isFreshSvixTimestamp("not-a-time", now), false);
+});
+
+test("license-code audit projection never contains the bearer code", () => {
+  const projection = codeAuditProjection("code-row-1", "wedding");
+  assert.deepEqual(projection, { codeId: "code-row-1", tier: "wedding" });
+  assert.equal(JSON.stringify(projection).includes("LAMBSHIL-SECRET"), false);
+  assert.equal("code" in projection, false);
 });

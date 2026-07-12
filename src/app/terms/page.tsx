@@ -41,6 +41,8 @@ const SECTIONS = [
     body: [
       "You keep ownership of everything you put into a Signal Studio product. We do not claim a licence to your content beyond what is necessary to operate the service for you (storing it, displaying it back to you, transmitting it to people you share it with).",
       "Public timelines, shared updates, and other public surfaces are visible to anyone with the link. You choose what to make public. We don't index public surfaces for our own benefit beyond making them work.",
+      "If a school, venue, or another organisation sponsors your access, it pays for or administers the entitlement. It does not own your Workspace and does not gain access to private Notes, Tasks or unpublished Timeline material. Any optional metadata you share with a sponsor is covered by a separate, revocable consent.",
+      "Promoting an item to a public Timeline creates a separate public version from the fields you select. Later private edits do not become public automatically.",
     ],
   },
   {
@@ -118,7 +120,7 @@ export default function TermsPage() {
           to.
         </>
       }
-      updated="2026-05-12"
+      updated="2026-07-12"
       sections={SECTIONS}
     />
   );

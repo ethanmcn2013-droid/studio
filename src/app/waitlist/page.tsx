@@ -5,7 +5,7 @@ import { WaitlistLine } from "./waitlist-line";
 export const metadata: Metadata = {
   title: "Waitlist | Signal Studio",
   description:
-    "Join the Signal Studio waitlist. Access opens in small batches from 1 September.",
+    "Join the Signal Studio waitlist. Access opens in small batches when each product and privacy gate is ready.",
   openGraph: {
     title: "Waitlist | Signal Studio",
     description: "Join the Signal Studio waitlist. Access opens in small batches.",

@@ -14,6 +14,7 @@
  *   grant_batches, entitlement_events (append-only triggers + hash-chain),
  *   allotment_ledger, license_codes.batch_id/recipient_email_hash
  *   two PARTIAL UNIQUE dedup indexes (dedup existing rows FIRST)
+ *   sponsor_activations + sponsor_consent_grants (shared store only)
  *
  * Run: node scripts/migrate-access.mjs           (apply)
  *      node scripts/migrate-access.mjs --dry-run  (report only, no writes)
@@ -36,6 +37,13 @@ async function cols(c, table) {
 async function tableExists(c, name) {
   const r = await c.execute(
     "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+    [name],
+  );
+  return r.rows.length > 0;
+}
+async function indexExists(c, name) {
+  const r = await c.execute(
+    "SELECT name FROM sqlite_master WHERE type='index' AND name=?",
     [name],
   );
   return r.rows.length > 0;
@@ -64,6 +72,78 @@ async function migrateSponsors(c, label) {
   await addColumn(c, "sponsors", "codes_issued", "codes_issued integer NOT NULL DEFAULT 0");
   await addColumn(c, "sponsors", "kind", "kind text NOT NULL DEFAULT 'venue'");
   await run(c, "CREATE INDEX IF NOT EXISTS sponsors_venue_plan_idx ON sponsors (venue_plan)");
+}
+
+/**
+ * Sponsorship policy records belong only in signal-entitlements. The
+ * Studio-local sponsor ledger remains a transitional cash/venue mirror and
+ * must not become a second activation, consent, or permission authority.
+ */
+async function migrateSponsorshipPolicy(c, label) {
+  log(`\n[${label}] sponsor activations (association, never membership)`);
+  await run(c, `CREATE TABLE IF NOT EXISTS sponsor_activations (
+    id text PRIMARY KEY,
+    sponsor_id text NOT NULL REFERENCES sponsors(id),
+    entitlement_id text REFERENCES entitlements(id),
+    entitlement_source text NOT NULL CHECK (entitlement_source IN (
+      'workspace_subscription', 'event_pass', 'student_edu', 'venue_edition',
+      'compliments', 'review_access', 'batch_grant'
+    )),
+    entitlement_source_ref_hash text,
+    owner_subject_id text NOT NULL,
+    canonical_workspace_id text,
+    sponsor_season_reference text,
+    sponsor_local_reference text,
+    state text NOT NULL DEFAULT 'pending'
+      CHECK (state IN ('pending', 'active', 'ended', 'revoked')),
+    invitation_state text NOT NULL DEFAULT 'not_sent'
+      CHECK (invitation_state IN (
+        'not_sent', 'sent', 'accepted', 'declined', 'expired', 'revoked'
+      )),
+    invitation_sent_at integer,
+    invitation_accepted_at integer,
+    invitation_declined_at integer,
+    activated_at integer,
+    ended_at integer,
+    revoked_at integer,
+    created_at integer NOT NULL DEFAULT (unixepoch() * 1000),
+    updated_at integer NOT NULL DEFAULT (unixepoch() * 1000)
+  )`);
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_activations_sponsor_state_idx ON sponsor_activations (sponsor_id, state)");
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_activations_owner_state_idx ON sponsor_activations (owner_subject_id, state)");
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_activations_workspace_idx ON sponsor_activations (canonical_workspace_id)");
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_activations_entitlement_idx ON sponsor_activations (entitlement_id)");
+  await run(c, `CREATE INDEX IF NOT EXISTS sponsor_activations_sponsor_reference_idx
+    ON sponsor_activations (sponsor_id, sponsor_season_reference, sponsor_local_reference)`);
+
+  log(`\n[${label}] sponsor consent grants (field-level owner receipts)`);
+  await run(c, `CREATE TABLE IF NOT EXISTS sponsor_consent_grants (
+    id text PRIMARY KEY,
+    activation_id text NOT NULL REFERENCES sponsor_activations(id),
+    field_key text NOT NULL CHECK (field_key IN (
+      'workspace.id', 'workspace.label', 'workspace.primary_date',
+      'wedding.ceremony'
+    )),
+    policy_version text NOT NULL DEFAULT 'sponsor-metadata.v1',
+    receipt_version text NOT NULL,
+    receipt_hash text NOT NULL,
+    receipt_at integer NOT NULL,
+    granted_by_owner_subject_id text NOT NULL,
+    granted_at integer NOT NULL DEFAULT (unixepoch() * 1000),
+    revoked_by_owner_subject_id text,
+    revoked_at integer,
+    created_at integer NOT NULL DEFAULT (unixepoch() * 1000),
+    updated_at integer NOT NULL DEFAULT (unixepoch() * 1000),
+    CHECK (
+      (revoked_at IS NULL AND revoked_by_owner_subject_id IS NULL) OR
+      (revoked_at IS NOT NULL AND revoked_by_owner_subject_id IS NOT NULL)
+    )
+  )`);
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_consent_grants_activation_idx ON sponsor_consent_grants (activation_id)");
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_consent_grants_owner_idx ON sponsor_consent_grants (granted_by_owner_subject_id)");
+  await run(c, "CREATE INDEX IF NOT EXISTS sponsor_consent_grants_revoked_idx ON sponsor_consent_grants (revoked_at)");
+  await run(c, `CREATE UNIQUE INDEX IF NOT EXISTS sponsor_consent_grants_active_field_idx
+    ON sponsor_consent_grants (activation_id, field_key) WHERE revoked_at IS NULL`);
 }
 
 async function migrateShared(c, label) {
@@ -154,8 +234,12 @@ async function migrateShared(c, label) {
   )`);
   await run(c, "CREATE INDEX IF NOT EXISTS allotment_ledger_sponsor_idx ON allotment_ledger (sponsor_id)");
 
-  // --- Dedup BEFORE the partial unique indexes, or CREATE UNIQUE INDEX fails ---
-  log(`\n[${label}] dedup check before unique indexes`);
+  await migrateSponsorshipPolicy(c, label);
+
+  // --- Prove uniqueness before adding the partial indexes. Never choose a
+  // winner automatically: duplicate entitlements can represent distinct paid
+  // access history, and deleting one is an irreversible commercial decision.
+  log(`\n[${label}] uniqueness check before unique indexes`);
   await dedupBeforeUnique(
     c,
     label,
@@ -172,24 +256,20 @@ async function migrateShared(c, label) {
   );
 }
 
-/** Report (and, unless --dry-run, collapse) duplicate groups, keeping the
- *  newest rowid per group, then create the partial UNIQUE index. */
+/** Report duplicate groups and fail closed before creating the index.
+ * Reconciliation must be reviewed and applied as a separate, backed-up
+ * operator operation; this migration never deletes entitlement rows. */
 async function dedupBeforeUnique(c, label, idxName, groupCols, whereClause) {
   const dupSql = `SELECT ${groupCols}, COUNT(*) n, MAX(rowid) keep
     FROM entitlements WHERE ${whereClause}
     GROUP BY ${groupCols} HAVING n > 1`;
   const dups = await c.execute(dupSql);
   if (dups.rows.length > 0) {
-    log(`  [${label}] ${idxName}: found ${dups.rows.length} duplicate group(s) — collapsing to newest`);
+    log(`  [${label}] ${idxName}: found ${dups.rows.length} duplicate group(s) - manual reconciliation required`);
     for (const row of dups.rows) log(`    dup:`, JSON.stringify(row));
-    if (!DRY) {
-      // Delete non-newest rows in each violating group.
-      await c.execute(
-        `DELETE FROM entitlements WHERE ${whereClause} AND rowid NOT IN (
-           SELECT MAX(rowid) FROM entitlements WHERE ${whereClause} GROUP BY ${groupCols}
-         )`,
-      );
-    }
+    throw new Error(
+      `${label}/${idxName}: duplicate entitlements require explicit reconciliation before migration`,
+    );
   } else {
     log(`  [${label}] ${idxName}: no duplicates`);
   }
@@ -199,17 +279,79 @@ async function dedupBeforeUnique(c, label, idxName, groupCols, whereClause) {
   );
 }
 
-async function verify(c, label) {
-  const ent = await cols(c, "entitlements");
+async function verify(c, label, opts) {
   const spo = await cols(c, "sponsors");
-  const wantEnt = ["batch_id", "billing_state", "grace_until", "email_hash", "clerk_id_dead"];
   const wantSpo = ["codes_issued", "kind"];
-  const missing = [
+  const missing = wantSpo
+    .filter((x) => !spo.has(x))
+    .map((x) => `sponsors.${x}`);
+  if (!opts.shared) {
+    log(
+      missing.length === 0
+        ? `[${label}] VERIFIED â€” sponsor ledger parity columns present.`
+        : `[${label}] STILL MISSING: ${missing.join(", ")}`,
+    );
+    return missing.length === 0;
+  }
+
+  const ent = await cols(c, "entitlements");
+  const wantEnt = ["batch_id", "billing_state", "grace_until", "email_hash", "clerk_id_dead"];
+  missing.push(
     ...wantEnt.filter((x) => !ent.has(x)).map((x) => `entitlements.${x}`),
-    ...wantSpo.filter((x) => !spo.has(x)).map((x) => `sponsors.${x}`),
+  );
+  const tables = [
+    "grant_batches",
+    "entitlement_events",
+    "allotment_ledger",
+    "sponsor_activations",
+    "sponsor_consent_grants",
   ];
-  const tables = ["grant_batches", "entitlement_events", "allotment_ledger"];
   for (const t of tables) if (!(await tableExists(c, t))) missing.push(`table:${t}`);
+  const indexes = [
+    "sponsor_activations_sponsor_state_idx",
+    "sponsor_activations_owner_state_idx",
+    "sponsor_activations_workspace_idx",
+    "sponsor_activations_entitlement_idx",
+    "sponsor_activations_sponsor_reference_idx",
+    "sponsor_consent_grants_activation_idx",
+    "sponsor_consent_grants_owner_idx",
+    "sponsor_consent_grants_revoked_idx",
+    "sponsor_consent_grants_active_field_idx",
+  ];
+  for (const idx of indexes) {
+    if (!(await indexExists(c, idx))) missing.push(`index:${idx}`);
+  }
+  if (await tableExists(c, "sponsor_activations")) {
+    const activationCols = await cols(c, "sponsor_activations");
+    for (const col of [
+      "sponsor_id",
+      "entitlement_id",
+      "entitlement_source",
+      "owner_subject_id",
+      "canonical_workspace_id",
+      "state",
+      "invitation_state",
+      "revoked_at",
+    ]) {
+      if (!activationCols.has(col)) missing.push(`sponsor_activations.${col}`);
+    }
+  }
+  if (await tableExists(c, "sponsor_consent_grants")) {
+    const consentCols = await cols(c, "sponsor_consent_grants");
+    for (const col of [
+      "activation_id",
+      "field_key",
+      "policy_version",
+      "receipt_version",
+      "receipt_hash",
+      "receipt_at",
+      "granted_by_owner_subject_id",
+      "revoked_by_owner_subject_id",
+      "revoked_at",
+    ]) {
+      if (!consentCols.has(col)) missing.push(`sponsor_consent_grants.${col}`);
+    }
+  }
   log(
     missing.length === 0
       ? `[${label}] VERIFIED — access-system schema present.`
@@ -226,7 +368,7 @@ async function applyTo(label, url, authToken, opts) {
   const c = createClient({ url, authToken });
   await migrateSponsors(c, label);
   if (opts.shared) await migrateShared(c, label);
-  return DRY ? true : verify(c, label);
+  return DRY ? true : verify(c, label, opts);
 }
 
 log(DRY ? "=== migrate-access DRY RUN (no writes) ===" : "=== migrate-access APPLY ===");
