@@ -157,21 +157,9 @@ export function HqCommandPalette() {
     [close, router],
   );
 
-  // Global ⌘K / Ctrl-K toggle.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
-        e.preventDefault();
-        setOpen((v) => !v);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    requestAnimationFrame(() => inputRef.current?.focus());
+  // Opening reads recents and lazily fetches the record index — state
+  // writes happen in the event handlers, not effects.
+  const openPalette = useCallback(() => {
     setRecents(readRecents());
     if (!fetchedRef.current) {
       fetchedRef.current = true;
@@ -182,11 +170,25 @@ export function HqCommandPalette() {
           /* rooms still work without the record index */
         });
     }
-  }, [open]);
+    setOpen(true);
+  }, []);
+
+  // Global ⌘K / Ctrl-K toggle.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        if (open) close();
+        else openPalette();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, close, openPalette]);
 
   useEffect(() => {
-    setActive(0);
-  }, [query]);
+    if (open) requestAnimationFrame(() => inputRef.current?.focus());
+  }, [open]);
 
   // Keep the active row in view.
   useEffect(() => {
@@ -197,10 +199,9 @@ export function HqCommandPalette() {
 
   // Expose an opener for the visible ⌘K trigger in the nav.
   useEffect(() => {
-    const opener = () => setOpen(true);
-    window.addEventListener("hq:open-palette", opener);
-    return () => window.removeEventListener("hq:open-palette", opener);
-  }, []);
+    window.addEventListener("hq:open-palette", openPalette);
+    return () => window.removeEventListener("hq:open-palette", openPalette);
+  }, [openPalette]);
 
   if (!open) return null;
 
@@ -240,7 +241,10 @@ export function HqCommandPalette() {
             className="hq-cmdk-input"
             placeholder="a room, a decision, a document…"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActive(0);
+            }}
             autoComplete="off"
             spellCheck={false}
           />
