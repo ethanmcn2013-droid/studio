@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { TIMELINE_URL } from "@/lib/product-urls";
 import { withTracking } from "@/lib/tracking";
+import { VENUE_EDITION_COUPLE_ACCESS_MONTHS } from "@/lib/venue-edition";
 
 export const metadata: Metadata = {
   title: "Wedding Planning Workspace · Signal Studio",
@@ -128,7 +129,8 @@ export default function WeddingsPage() {
             </p>
             <p className="mt-4 max-w-2xl text-[13.5px] leading-[1.6] text-ink-quiet">
               If your venue sent you a code, use that link instead. Your venue
-              has already covered the workspace.
+              has already covered the workspace. The couple still owns the
+              private Notes, Tasks and unpublished plan.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
@@ -310,9 +312,10 @@ export default function WeddingsPage() {
                 The venue path is separate.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-ink-soft">
-                Venues pay once a year so every couple they send gets twelve
-                months of Signal Studio. No per-couple maths, no seats, nothing
-                for the coordinator to run.
+                Venues pay once a year so every couple they send gets{" "}
+                {VENUE_EDITION_COUPLE_ACCESS_MONTHS} months of Signal Studio.
+                Sponsorship covers access; it does not give the venue silent
+                access to private Notes, Tasks or an unpublished plan.
               </p>
             </div>
             <Link

@@ -132,6 +132,10 @@ const SCOPED_CSS = `
  background:color-mix(in srgb,var(--ink,#111111) 5%,transparent)}
 .suitesw-pill--current{font-weight:600;color:var(--ink,#111111);
  background:color-mix(in srgb,${INDIGO} 9%,transparent);cursor:default}
+@media(max-width:520px){
+ .suitesw-anchor,.suitesw-sep{display:none}
+ .suitesw-pill{padding:4px 7px;font-size:12px}
+}
 `;
 
 export function SuiteSwitcher({

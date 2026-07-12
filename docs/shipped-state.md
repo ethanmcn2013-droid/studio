@@ -1,112 +1,106 @@
 # Shipped state — the reality anchor
 
-**Purpose.** This file is the single source of truth for *what is actually
-live*. The marketing factory's **Reality Anchor** agent cross-checks every
-product claim in every asset against this file before it reaches the founder
-queue. If a claim is not supported here, the asset is rejected. Marketing copy
-may describe what is in this file. It may not describe anything that is not.
+This file is the source for current public product, access and commercial claims. A reachable deployment is not the same as general availability. A merged implementation is not the same as a provider-verified production journey.
 
-**Rule for this file:** a line only moves to "live" when the URL responds and
-the path through it works for a real user. "Built" is not "live". When in
-doubt, it is not shipped — say less, truthfully.
+## State vocabulary
 
-**Last verified:** 2026-05-16 (subdomains curled → 200; cross-checked against
-the 2026-05-14 suite audits).
+- Deployed: the production URL responds.
+- Private preview: authenticated or code-based access exists, but the complete user journey is not certified for broad use.
+- Staged access: selected people receive access in controlled batches.
+- Generally available: broad conversion, billing, support and recovery gates have passed.
 
----
+Never shorten deployed or private preview to Live when the claim could imply general availability.
 
-## The suite
+**Last verified:** 2026-07-12.
 
-| Product | URL | State | Safe to claim |
-|---|---|---|---|
-| Signal Tasks | tasks.signalstudio.ie | **Live** | "Live now." Plain-English task workspace. Multi-view. Real persistence (Turso). |
-| Signal Timeline | timeline.signalstudio.ie | **Live, with one caveat** | "Live now." Public timeline, shared updates. **Caveat below — do not claim write reliability in prod until Upstash is provisioned.** |
-| Signal Notes | notes.signalstudio.ie | **Live** | "Live now." Capture, then promote a note into a task in one tap. Never auto-detected. |
-| Signal | signal.signalstudio.ie | **Live** | "Live now." The daily briefing — three things in plain English. Real Tasks-DB read, daily + Monday cron. |
-| Signal Studio (umbrella) | signalstudio.ie | **Live** | Marketing surface, pricing, /weddings, /venues, /redeem, /dispatch, /brand. |
+Evidence used in this verification:
 
-**The `/pricing` "in build" labels for Notes and Signal are stale as of
-2026-05-16.** Both shipped (Notes 2026-05-14, Signal end-to-end
-2026-05-13). The pricing rebuild corrects this. Until the page is redeployed,
-treat Notes/Signal as **live** for copy purposes — saying "in build" about a
-shipped product is itself a reality violation.
+- remote-main source and clean isolated installs for all five deployables;
+- type checks, existing core tests, design-system checks and production builds;
+- current public pages at signalstudio.ie plus reachable product surfaces;
+- July suite architecture review and operator-gate records;
+- docs/content-truth-audit.md.
 
----
+Authenticated provider journeys, production checkout amounts, restore recency and all operator gates were not re-certified. Broad external launch remains no-go.
 
-## Per-product detail
+## Current suite state
 
-### Signal Tasks — live
-- Standalone Next.js 16 workspace. Turso/libSQL persistence (migrated 2026-05-08).
-- Auth via Clerk; `/app/*` redirect fixed.
-- Cinematic homepage demo, multi-view app, marketing site.
-- Tier enforcement is real here (the only product that gates tiers today).
-- **Do not claim:** features behind Turnstile+Clerk that are env-blocked from
-  live-cert. The `/app` live walkthrough is not operator-verified end-to-end.
+| Product | Production URL | Deployment | Access claim that is safe now |
+| --- | --- | --- | --- |
+| Signal Studio | signalstudio.ie | Deployed | Public marketing and waitlist. Private preview with staged access. |
+| Signal Tasks | tasks.signalstudio.ie | Deployed | Task product exists and is used in preview. Do not claim broad availability or certified checkout. |
+| Signal Timeline | timeline.signalstudio.ie | Deployed | Legacy public examples exist. Do not describe legacy slug pages as private Class or Couple Timelines. |
+| Signal Notes | notes.signalstudio.ie | Deployed | Private capture and the Notes-to-Tasks extract path exist in code. Authenticated production journey remains an operator gate. |
+| Signal | signal.signalstudio.ie | Deployed | Briefing product exists in preview. Do not claim Planning Period Signal until its rollout evidence is complete. |
 
-### Signal Timeline — live, one hard caveat
-- timeline.signalstudio.ie responds 200. Public viewer + 3-view switcher shipped.
-- **Caveat (load-bearing):** production has no Upstash env. The rate limiter
-  denies 100% of writes until the operator provisions Upstash and redeploys.
-  **Copy may say Timeline is live and show the public/read experience. Copy may
-  not invite a reader to create or edit a timeline in prod** until this clears.
-  The marketing plan gates M1 on this exact fix.
+Public conversion is waitlist-first. There is no authorized broad launch date. Dates used as internal targets do not become launch state automatically.
 
-### Signal Notes — live
-- Full Next 16 + Clerk + Turso build at notes.signalstudio.ie.
-- Cross-repo Notes→Tasks extract edge shipped (Cycle 9.4b).
-- Deferred (do not claim): email-to-capture, FTS5 search UI, mobile share sheet.
+## Capability boundaries
 
-### Signal — live
-- signal.signalstudio.ie shipped end-to-end 2026-05-13.
-- Real Tasks-DB read → briefing engine (triggers + phrasings) → web render at
-  `/app` + Resend email with RFC 8058 unsubscribe → Vercel cron 06:00 UTC
-  daily + Mondays weekly.
-- **Claim "daily briefing" only** — per the 2026-05-10 reality-alignment pass,
-  do not reintroduce "team activity", "decelerating sharply", or slow-burn
-  cadence language. Three things, hard cap of three.
+### Tasks
 
----
+- Tasks is the current runtime authority for Workspace and Membership.
+- Existing multi-workspace and active-workspace behavior exists.
+- Planning Periods, contextual onboarding and lifecycle work are under a feature-gated implementation branch until migration and production proof complete.
+- Tier and checkout source exists, but production Price amounts and complete purchase journeys require operator verification.
 
-## Pricing — the live truth (post 2026-05-16 ratification)
+### Timeline
 
-The factory may state these and only these prices:
+- Legacy public-by-slug pages are a separate historical publication model.
+- New Class, Module and Couple Timeline claims require the frozen safe projection, hashed share lifecycle, strict DTO and immediate revocation evidence.
+- Do not claim that a private Task or Note is shared merely because a Timeline page hides fields in the UI.
 
-| Tier | Price | Shape |
-|---|---|---|
-| Free | €0 forever | One workspace, all products, three editing guests. |
-| Student | €0 with verified .edu | Workspace tier, two-year window. |
-| Workspace | €12 / month, **or €120 / year prepaid** | Unlimited workspaces. Annual prepay stated plainly — **no "SAVE 17%" theatre.** |
-| Event | €79 one-time, 12 months | One event-shaped workspace. Unchanged. Not a lever. |
-| **Venue Edition** | **€1,500 per venue / year, prepaid annually** | One price for every venue. The venue stands behind every couple's planning. Founding cohort (first ~15) locks that price for life — **permanence, not a discount.** |
+### Notes
 
-**Banned in venue copy** (BRAND.md §3 + the 2026-05-16 decision): "free for
-your couples", "with our compliments", "the gift", "12 months free", "no card",
-"on us", seats, per-user, MSA, license, "SAVE", discount banners, enterprise.
-The venue *pays Signal Studio*. Say that with a straight back.
+- Notes are private working material.
+- Notes-to-Tasks sends a user-selected extract, not the raw private Note automatically.
+- Workspace association must degrade to unfiled capture if the Tasks catalog resolver is unavailable.
 
----
+### Signal
+
+- Signal must say why each surfaced item appears.
+- Planning Period scope is capped at three total, not three per category.
+- Removed Workspace Members must not retain derived access.
+
+## Verified commercial facts
+
+The machine-readable current contract is contracts/commercial-terms.v1.json. Only verified values below may be used as current numbers.
+
+| Offer | Verified fact | Important unresolved point |
+| --- | --- | --- |
+| Free | €0; does not expire; one Workspace; three editing guests beyond the owner. | Editing guests and link-only audience viewers must remain separate concepts. |
+| Student | €9.99 per year is the ratified public price. | Verification, payment implementation and Workspace limit are not ratified. Joining the waitlist does not activate or charge an account. |
+| Pro | €12 per month; internal entitlement key remains workspace. | Annual price is unresolved between €100 and €120. Workspace and editor limits are unresolved. Do not open annual checkout. |
+| Event | €89 one-time; 12-month active window. | The legal/retention meaning of read afterward must be confirmed before purchase. |
+| Venue Edition | €1,500 per venue per year, prepaid; first fifteen founding venues retain that price; each sponsored couple receives 18 months, operationally represented as 548 days. | Activation allowance and calendar-month versus fixed-day semantics remain unresolved. |
+
+Committee Workspace at €49 is not an authorized offer. No school price or seat limit exists. Do not invent either for the design-partner pilot.
+
+## Sponsorship and privacy
+
+A school or venue entitlement does not create Workspace Membership or private-content access.
+
+A sponsor may administer invitation, entitlement and activation state plus a sponsor-local reference. Workspace label, primary date or ceremony information needs a separate versioned field-level consent receipt. Notes, Tasks, private Timeline material, comments, attachments and collaborators are never sponsor-visible through the sponsor relation.
+
+A venue activation register may group sponsor-owned activation references. It must not claim to show every couple’s plan, infer On track, or expose names/dates by default.
 
 ## Programmes
 
-- **Founding Venue Programme** — paid annual patronage (see pricing). Lamb's
-  Hill is the in-flight pilot; if it converts it is honoured at the founding
-  €1,500 lock. Per-couple redemption codes, co-branded eyebrow only, 18-month
-  couple duration, auto-drop to Free at month 18. The *mechanic* is unchanged
-  by the 2026-05-16 decision; only the money reversed (venue now pays).
-- **Review access** — press, 90 days, named as such. Unchanged.
-- **With our compliments** — this phrase now refers ONLY to founder-issued
-  family/friends comp accounts. It is **no longer the venue model** and must
-  never appear in venue-facing copy.
+- Venue Edition: paid annual patronage. The venue sponsors access; the couple owns the private Workspace.
+- Review access: a named, time-bounded operator grant.
+- Compliments: founder-issued access only; not the venue model.
+- School design-partner pilot: entitlement-backed, time-bounded and feature-gated. No public price, permanent free account or school content access is implied.
 
----
+## Planning Period release state
 
-## How the Reality Anchor uses this file
+The Planning Period contract and implementation work do not become shipped by appearing in a branch. Public claims require:
 
-1. Extract every factual product/price/availability claim from the asset.
-2. For each claim, find the supporting line here. No support → reject with the
-   unsupported claim quoted.
-3. "Live" claims require a row marked **Live** above. A caveated product may be
-   described as live only within its caveat.
-4. Price claims must match the pricing table exactly, including the banned-copy
-   list for venue assets.
-5. Output: `status: pass | reject`, and for rejects, the exact line and why.
+1. additive migration and realistic backfill proof;
+2. current Membership authorization tests;
+3. production provider identity verification;
+4. public DTO leak tests and immediate share revocation;
+5. keyboard, accessibility, mobile and reduced-motion proof;
+6. legal/privacy review for the school pilot;
+7. deployment and post-deploy smoke receipts.
+
+Until those receipts exist, describe Planning Periods and Audience Timeline as staged pilot work, not generally available functionality.

@@ -17,6 +17,8 @@ const routes: Array<{
   { path: "/ios", priority: 0.6, changeFrequency: "monthly" },
   { path: "/weddings", priority: 0.8, changeFrequency: "monthly" },
   { path: "/venues", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/teachers", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/students", priority: 0.8, changeFrequency: "monthly" },
   { path: "/venues/demo", priority: 0.7, changeFrequency: "monthly" },
   { path: "/brand", priority: 0.6, changeFrequency: "monthly" },
   { path: "/principles", priority: 0.7, changeFrequency: "monthly" },

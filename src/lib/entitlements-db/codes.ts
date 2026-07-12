@@ -13,6 +13,7 @@ import {
   type EntitlementSource,
   type EntitlementTier,
 } from "./schema";
+import { codeAuditProjection } from "./pure";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 
 /**
@@ -145,7 +146,7 @@ export async function mintLicenseCodes(input: {
         actorId: actor.actorId,
         actorName: actor.actorName,
         reason: "mint",
-        after: { code: c.code.trim().toUpperCase(), tier: input.tier },
+        after: codeAuditProjection(id, input.tier),
         origin: input.origin ?? "hq",
       });
     }
@@ -289,7 +290,7 @@ export async function redeemLicenseCode(input: {
       actorId: actor.actorId,
       actorName: actor.actorName,
       reason: "code redeemed",
-      after: { code, tier: lc.tier },
+      after: codeAuditProjection(lc.id, lc.tier),
       origin: input.origin ?? "redeem",
     });
     return { state: "redeemed", entitlementId: entId, created: true };

@@ -19,8 +19,8 @@ export function RevealHero() {
     >
       <div className="reveal-gold-rule" aria-hidden />
 
-      {/* Launch note. Names the public-launch date without a ticking counter
-          ("nothing distracting"). A quiet band of light crosses the pill's
+      {/* Access note. Names the current staged state without inventing a
+          date-driven launch. A quiet band of light crosses the pill's
           face every few seconds (globals.css .reveal-launch-note), clipped by
           the pill; reduced motion sees the plain pill. */}
       <p
@@ -50,7 +50,7 @@ export function RevealHero() {
             background: "var(--accent)",
           }}
         />
-        Arriving 1 September 2026
+        Private preview · staged access
       </p>
 
       <h1

@@ -1361,7 +1361,7 @@ export default function DesignPage() {
           <div className="max-w-[760px]">
             <RestDot />
             <p className="text-[clamp(20px,2.6vw,27px)] font-semibold leading-snug tracking-[-0.015em] text-ink">
-              The products arrive 1 September.
+              The products open in careful stages.
               <br />
               The dot got here first.
             </p>

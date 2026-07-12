@@ -13,6 +13,9 @@ const SECTIONS = [
     body: [
       "Signing in to a Signal Studio product creates an account through Clerk, our authentication provider. Clerk stores your email, name (if you provide one), and an opaque user identifier. We never see your password.",
       "Inside each product, we store the work you create: tasks, notes, timeline items, briefing preferences. We store who made what, who shared what with whom, and when. We do not store anything you didn't enter yourself.",
+      "Planning Period and Workspace context stores the label, context type, calendar dates, timezone and archive/order state you choose. Context changes the language and grouping; it is not a permanent account role.",
+      "Where a school or venue sponsors access, we keep entitlement, invitation and activation records. Sponsorship does not give the sponsor access to private Notes, Tasks or unpublished Timeline material. Optional Workspace metadata is shared with a sponsor only through a separate, field-level consent you can revoke.",
+      "The school design-partner experience does not require or store pupil accounts, pupil names, pupil emails, grades, attendance or pupil identifiers.",
       "If you reach out to hello@signalstudio.ie, we keep the message in a standard email inbox.",
     ],
   },
@@ -21,6 +24,7 @@ const SECTIONS = [
     body: [
       "No third-party advertising trackers. No fingerprinting. No session replay. No marketing pixels. No behavioural profiling.",
       "We use Vercel Analytics for anonymous traffic counts (which pages got visited, from which country, on which device class). It does not set cookies and it does not see your account.",
+      "Product-learning events use counts, enums and booleans. We do not send Note or Task text, class/module/couple names, pasted values, pupil data or public-link tokens. Audience Timelines do not carry third-party behavioural tracking.",
     ],
   },
   {
@@ -46,7 +50,7 @@ const SECTIONS = [
   {
     heading: "Cookies",
     body: [
-      "We set cookies only for sign-in sessions. No marketing cookies. No third-party trackers that need consent banners.",
+      "We set cookies for sign-in sessions and first-party product preferences such as the active Workspace. No marketing cookies. No third-party trackers that need consent banners.",
     ],
   },
   {
@@ -91,7 +95,7 @@ export default function PrivacyPage() {
           what we hold, who else touches it, and how to take it back.
         </>
       }
-      updated="2026-05-12"
+      updated="2026-07-12"
       sections={SECTIONS}
       footnote={
         <>
