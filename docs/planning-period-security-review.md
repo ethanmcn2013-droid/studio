@@ -103,11 +103,11 @@ Historical full-repository lint debt remains at unchanged lines in Studio, Timel
 
 1. Run production migration preflight against backed-up databases; reconcile duplicate entitlements explicitly before creating unique indexes.
 2. Configure and verify live Tasks membership adapters and cross-product assertion secrets in preview before enabling flags.
-3. Complete the missing external v2 Planning Period catalog DTO so Notes can resolve live period/workspace destinations instead of safely degrading to legacy Workspace/Unfiled behavior.
-4. Add the live Notes-to-Timeline publication receiver; the current adapter returns an explicit unavailable receipt rather than pretending publication succeeded.
+3. Configure and verify the new signed Tasks v2 Planning Period catalog endpoint in preview so Notes can resolve live period/workspace destinations.
+4. Configure and verify the new signed Notes-to-Timeline receiver in preview, including one-time URL and duplicate-promotion behavior.
 5. Exercise owner, collaborator, sponsor, removed-member, and anonymous journeys against preview identities and provider-backed data.
 6. Preserve deploy logs, provider backups, migration receipts, and revoked-token smoke evidence before production rollout.
 
 ## Release conclusion
 
-The reviewed code paths are safe to merge behind disabled/default-off flags. They are not yet approved for production migration or flag enablement until the residual operator and live-integration gates above have receipts.
+The reviewed code paths, including the signed Tasks catalog and Notes-to-Timeline receiver, are safe to merge behind disabled/default-off flags. They are not yet approved for production migration or flag enablement until the residual operator and live-integration configuration gates above have receipts.
