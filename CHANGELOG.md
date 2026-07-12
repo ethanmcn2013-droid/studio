@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-12 · S·125 · ships · HQ becomes one operating system
+
+**Signal HQ now has one canonical answer to "what exists": a room registry that renders the nav, the group landing pages, the home page, and the command palette — enforced by a contract test that fails the build when a route and the registry disagree in either direction.** Forty-three rooms accreted over eight weeks behind three hand-maintained lists that all drifted (the palette linked a room that never existed); the registry replaces all three. The nav is six doors — today · sell · make · money · company · board — and a door always opens onto a landing page of rooms, never onto one room wearing a group's name. Decided design rooms shelve on their landing instead of standing beside live consoles forever; nothing is deleted, and no URL moved.
+
+Today is rebuilt around four questions in order: the verdict, the commercial truth in one strip, a needs-me queue capped at seven items that only admits work the founder alone can move, and the five doors. The full proof spine — gate, inbox, pulse, traction, launch readiness, the operator ledger — survives intact one disclosure down; the inert-state forcing function keeps the screen. The palette gains recents and record search: forty-one decisions, the vault, the atlas, and open operator gates are now reachable by name from ⌘K, served behind the password gate. The decision ledger itself becomes a first-class room at /hq/decisions — the company's most valuable record set was feeding derivations invisibly and is now readable, and append-only by rule. The architecture, the panel review that chose it, and the anti-entropy governance live in docs/HQ_ARCHITECTURE.md.
+
 ## 2026-07-11 · S·124 · holds · Venue Edition is one price
 
 **Venue Edition now holds at €1,500 per venue, per year, prepaid: no size band, no multi-site ladder, and no operator field that can quietly negotiate another number.** The public venue page and structured offer, HQ onboarding and cash writer, current strategy and outbound copy, venue collateral, lender pack, growth deck, pitch deck, and forecast all carry the same fixed amount. Historical cash rows and dated decisions stay exact rather than being rewritten to look tidy.
