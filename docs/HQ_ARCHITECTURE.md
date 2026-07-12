@@ -265,9 +265,19 @@ Each phase ships independently; HQ stays usable throughout.
 9. **Design system:** HQ pages use tokens; new pages use `HqPageHeader`/`HqStatusPill` unless registry-typed `artifact`; no new hex palettes, no dark mode (light-locked).
 10. **The palette is generated.** Hand-editing a room list anywhere is a bug.
 
-## 12. Verification results
+## 12. Verification results (2026-07-12, pre-ship)
 
-See §13 log and dispatch entry. (Filled during Phase 15.)
+- **Contract tests:** 5/5 pass (`rooms.test.ts`, wired into `pnpm test`) — route⇔registry equality across all 36 rooms + 5 system routes, kebab-case, status ratchet over 19 collections, proxy-gate integrity.
+- **Full suite:** 89/89 tests pass. `pnpm typecheck` clean. `pnpm build` clean; new routes present (`/hq/[group]`, `/hq/decisions`, `/hq/decisions/[id]`, `/hq/api/search-index`).
+- **Runtime walk (prod server, authed):** `/hq` 200 with truth strip + needs-me + five doors + full-read disclosure; `/hq/sell·make·money·company` 200 with correct room cards (7/7/6/9 active) and the Make shelf holding the five decided rooms; `/hq/decisions` lists real records, detail pages render with mapped status pills; `/hq/founders-circle` board register intact; unknown group → 404; unauthenticated hit on any HQ path (incl. the search index) → 307 to the access gate.
+- **Lint:** all files touched by this programme are clean. 34 pre-existing errors on `main` in untouched files (org-chart, SuiteLoader, atlas components, …) remain — logged as a deferred item, not introduced here.
+- **Deferred, with rationale:** (a) migrating the remaining bespoke page headers (venues, health, data-room, …) to `HqPageHeader` — the component and contract exist; migrate opportunistically as pages are touched rather than churn 20 files in one pass while branches are in flight; (b) salting the access token derivation — it would invalidate the founder's current session for marginal gain; revisit with the next auth change; (c) archived-room banner machinery — nothing is `archived` yet; build it with the first real archive.
+
+## Remaining risks
+
+- In-flight branches (`feat/access-system`, motion HQ, hero labs) predate the registry; on merge, any new route they add will fail the contract test until registered — that is the system working, but expect one small conflict-fix per merge.
+- The needs-me queue depends on inbox derivation rules staying honest; if a new "pending" surface appears on some page instead of the ledger, governance rule 7 was broken — the quarterly sweep should check for this.
+- The old `HQ_HUBS`/`HQ_AUDIENCE_PATHS` arrays in `operating-system.ts` are no longer rendered on Today (founders-circle still reads parts) — candidates for pruning once the board room is next touched.
 
 ## 13. Change log
 
