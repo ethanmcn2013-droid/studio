@@ -9,9 +9,9 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 ## 2026-07-11 · S·125 · tightens · the lender decks hold one line
 
-**The Business Plan and Market Entry decks now make the case without noise: current prices and terms, named evidence, exact uses of funds, and direct gates from launch to repayment.** The Business Plan is rebuilt as 20 core slides and four evidence appendices, with a new cover, a larger founder portrait, and designed 16:9 slots for the Venue Edition and Student Edition films. The review-council appendix, speculative international roadmap, unsupported acquisition threshold, duplicate claims, and every em dash leave the current decks.
+**The Business Plan and Market Entry decks now make the case without noise: current prices and terms, named evidence, exact uses of funds, and direct gates from launch to repayment.** The 30-page Business Plan gains a new cover, a larger founder portrait, leaner scenario pages, authored market and product diagrams, and designed 16:9 slots for the Venue Edition and Student Edition films. The 70-page Market Entry masterbook now carries a 40-page presentation route from the same source, with its own navigation, counters, and PDF output.
 
-The growth deck receives the same copy discipline and keeps the commercial model intact. Both source decks and their PDFs now pass full-slide visual review, extracted-text checks, and a zero-Unicode-dash gate before production deployment.
+Both decks now run on local Geist files, three weights, paper, ink, one indigo, hairlines, and no decorative gradients or shadows. The four-product trace, Irish-market narrowing, Limerick decision map, and Founding Partner certificate turn proof into designed objects. The release gate now covers every source page and PDF page, range-level collision checks, responsive scaling, keyboard navigation, console output, and zero Unicode dash characters before production deployment.
 
 ## 2026-07-11 · S·124 · holds · Venue Edition is one price
 
