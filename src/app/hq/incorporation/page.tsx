@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   COMPANY_META,
@@ -31,19 +32,16 @@ export default async function IncorporationPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Incorporation Pack</span>
-        <h1 className="hq-page-title">Incorporating {COMPANY_META.legalName}<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">
-          The CRO runbook as a live checklist. The structural decisions are
-          confirmed; filing is targeted <strong>{COMPANY_META.incorporationTarget}</strong>.
-          Incorporation is the gate the €40k facility waits on. Statutory
-          references carry a Jan-2026 cutoff, verify on cro.ie at filing.
-        </p>
-        <span className="hq-co-status" data-status={COMPANY_META.status}>
-          {COMPANY_META.statusLabel} · {progress.done}/{progress.total} decisions confirmed
-        </span>
-      </header>
+      <HqPageHeader
+        slug="incorporation"
+        title={`Incorporating ${COMPANY_META.legalName}.`}
+        standfirst={`The CRO runbook as a live checklist; filing is targeted ${COMPANY_META.incorporationTarget} and gates the €40k facility.`}
+        meta={
+          <span className="hq-co-status" data-status={COMPANY_META.status}>
+            {COMPANY_META.statusLabel} · {progress.done}/{progress.total} decisions confirmed
+          </span>
+        }
+      />
 
       {/* Company facts */}
       <section className="hq-co-facts" aria-label="company facts">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HqCrmList } from "@/components/hq/hq-crm-list";
 import { HqCrmPipeline } from "@/components/hq/hq-crm-pipeline";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
@@ -59,21 +60,22 @@ export default async function HqCrmPage({
 
   return (
     <div className="hq-crm-page">
-      <header className="hq-crm-header">
-        <div className="hq-crm-header-top">
-          <span className="hq-crm-eyebrow">signal hq · outreach crm</span>
-          <span className="hq-crm-stamp">
+      <HqPageHeader
+        slug="crm"
+        title="Venue pipeline"
+        meta={
+          <span className="hq-page-head-note">
             {prospects.length} total · {dueToday.length} due or stale
           </span>
-        </div>
-        <h1 className="hq-crm-title">venue pipeline</h1>
-        {dueToday.length > 0 && (
-          <p className="hq-crm-due-banner">
-            <span className="hq-crm-due-pip" aria-hidden="true" />
-            {dueToday.length} follow-up{dueToday.length === 1 ? "" : "s"} due or stale
-          </p>
-        )}
-      </header>
+        }
+      />
+
+      {dueToday.length > 0 && (
+        <p className="hq-crm-due-banner">
+          <span className="hq-crm-due-pip" aria-hidden="true" />
+          {dueToday.length} follow-up{dueToday.length === 1 ? "" : "s"} due or stale
+        </p>
+      )}
 
       <HqCrmPipeline
         stageCounts={stageCounts}

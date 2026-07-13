@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getCronHealth, type CronHealth } from "@/lib/cron/runs";
 
@@ -27,30 +28,14 @@ export default async function HealthPage() {
   }
 
   return (
-    <main id="main" className="mx-auto w-full max-w-[900px] px-6 pb-24 pt-16 md:pt-20">
-      <div
-        className="mb-3"
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--ink-quiet)",
-          letterSpacing: "var(--tracking-eyebrow)",
-          textTransform: "uppercase",
-          fontWeight: 600,
-        }}
-      >
-        Signal HQ · Health
-      </div>
-      <h1 className="h-title mb-4 text-ink">Scheduled jobs</h1>
-      <p
-        className="mb-12 max-w-[60ch] text-ink-soft"
-        style={{ fontSize: 17, lineHeight: 1.6 }}
-      >
-        Each cron in the suite reports its last run here. Green if it fired in
-        the last 12 hours, amber 12&ndash;26 hours, red after 26 hours or on
-        failure. &ldquo;Never run&rdquo; means the cron has not pinged this
-        surface yet &mdash; expected the first time, alarming after that.
-      </p>
+    <main id="main" className="mx-auto w-full max-w-[900px] px-6 pb-24">
+      <HqPageHeader
+        slug="health"
+        title="Scheduled jobs"
+        standfirst="Each cron in the suite reports its last run here: ok inside 12 hours, watch to 26, act after that or on failure."
+      />
+
+      <div className="mt-10" />
 
       {loadError ? (
         <ErrorPanel message={loadError} />

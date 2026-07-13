@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import {
   BATCH_A_EMAIL_DRAFTS,
@@ -52,31 +53,14 @@ export default async function VenuesPage() {
   const heldDrafts = [...BATCH_A_EMAIL_DRAFTS, ...BATCH_BC_EMAIL_DRAFTS];
 
   return (
-    <main id="main" className="mx-auto w-full max-w-[1180px] px-6 pb-24 pt-16 md:pt-20">
-      <div
-        className="mb-3"
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--ink-quiet)",
-          letterSpacing: "var(--tracking-eyebrow)",
-          textTransform: "uppercase",
-          fontWeight: 600,
-        }}
-      >
-        Signal HQ - Venues
-      </div>
-      <h1 className="h-title mb-4 text-ink">Wave 1 venue command</h1>
-      <p
-        className="mb-10 max-w-[72ch] text-ink-soft"
-        style={{ fontSize: 17, lineHeight: 1.6 }}
-      >
-        The founding venue list as an operating surface: no emails sent, no
-        personal contact data stored, and every first line tied to a current
-        public venue page before the founder touches Batch A.
-      </p>
+    <main id="main" className="mx-auto w-full max-w-[1180px] px-6 pb-24">
+      <HqPageHeader
+        slug="venues"
+        title="Wave 1 venue command"
+        standfirst="The founding venue list as an operating surface: no emails sent, no contact data stored, every first line verified."
+      />
 
-      <div style={statsGridStyle}>
+      <div className="mt-10" style={statsGridStyle}>
         <Stat value={String(WAVE_ONE_VENUES.length)} label="Wave 1 targets" />
         <Stat value={String(batches.length)} label="review batches" />
         <Stat value={String(heldDrafts.length)} label="held drafts" />

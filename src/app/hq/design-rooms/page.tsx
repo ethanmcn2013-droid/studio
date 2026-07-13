@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 
 export const dynamic = "force-dynamic";
@@ -73,18 +74,16 @@ export default async function DesignRoomsPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Design Rooms</span>
-        <h1 className="hq-page-title">
-          Nothing here took the easy route
-          <span aria-hidden="true" style={{ color: "var(--accent)" }}>.</span>
-        </h1>
-        <p className="hq-page-intro">
-          Every object was explored in directions, chosen, and recorded.
-          This page is the record. Some version of it may go public at
-          launch: proof of how seriously the design is taken.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="design-rooms"
+        title="Nothing here took the easy route."
+        standfirst="Every object was explored in directions, chosen, and recorded; this page is the record."
+        meta={
+          <span className="hq-page-head-note">
+            {ROOMS.length} decision rooms · {GALLERIES.length} galleries
+          </span>
+        }
+      />
 
       <section aria-label="decision rooms" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
         <div style={{ padding: "10px 18px", background: "var(--paper-soft)", borderBottom: "1px solid var(--hairline)", fontFamily: "var(--font-mono-stack)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>

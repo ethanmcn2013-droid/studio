@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   FILM_META,
@@ -30,19 +31,25 @@ export default async function DemoFilmPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Demo Film</span>
-        <h1 className="hq-page-title">{FILM_META.title}<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">{FILM_META.logline}</p>
+      <HqPageHeader
+        slug="demo-film"
+        title={`${FILM_META.title}.`}
+        standfirst="A coordinator runs a whole wedding through Signal Studio in 30 seconds, and it resolves to the dot."
+        meta={
+          <span className="hq-page-head-note">
+            {FILM_META.statusLabel} · {progress.done}/{progress.total} steps
+            done
+          </span>
+        }
+      />
+
+      <section className="hq-page-header" aria-label="why and build state">
         <p className="hq-page-intro" style={{ fontSize: 15 }}>{FILM_META.why}</p>
-        <span className="hq-co-status" data-status="pre-incorporation">
-          {FILM_META.statusLabel} · {progress.done}/{progress.total} steps done
-        </span>
         <p className="hq-film-build">
           <span className="hq-film-build-label">build</span> {FILM_META.build.project} ·{" "}
           <span className="hq-fm-mono">{FILM_META.build.run}</span>, {FILM_META.build.state}
         </p>
-      </header>
+      </section>
 
       {/* Spec */}
       <section className="hq-co-facts" aria-label="film spec">

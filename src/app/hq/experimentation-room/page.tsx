@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 
 export const dynamic = "force-dynamic";
@@ -163,19 +164,17 @@ export default async function ExperimentationRoomPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Experimentation Room</span>
-        <h1 className="hq-page-title">
-          Where every direction is kept
-          <span aria-hidden="true" style={{ color: "var(--accent)" }}>.</span>
-        </h1>
-        <p className="hq-page-intro">
-          Every hero and umbrella exploration lives here: the ones that
-          graduated to the front page and the ones still on their branch.
-          Nothing is thrown away. Each row carries the repo and branch it
-          lives on, so any direction can be checked out and revisited.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="experimentation-room"
+        title="Where every direction is kept."
+        standfirst="Every hero and umbrella exploration, graduated to the front page or still on its branch; nothing is thrown away."
+        meta={
+          <span className="hq-page-head-note">
+            {SHIPPED.length} shipped · {LAB.length} in the lab ·{" "}
+            {SYSTEMS.length} systems · each row names its repo and branch
+          </span>
+        }
+      />
 
       <section aria-label="graduated to the front page" style={{ border: "1px solid var(--hairline)", borderRadius: "10px", overflow: "hidden", marginBottom: "32px" }}>
         <SectionHeader>Graduated to the front page</SectionHeader>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getProspects } from "@/lib/hq/crm-db";
 import { getHqReport } from "@/lib/hq/operating-system";
@@ -21,11 +22,11 @@ export default async function ReportingPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Reporting</span>
-        <h1 className="hq-page-title">Five numbers and the source<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">{report.headline}</p>
-      </header>
+      <HqPageHeader
+        slug="reporting"
+        title="Five numbers and the source."
+        standfirst={report.headline}
+      />
 
       <section className="hq-report-board" aria-label="key metrics">
         {report.metrics.map((metric) => (

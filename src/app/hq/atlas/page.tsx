@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import {
   LENS_ORDER,
@@ -41,42 +42,25 @@ export default async function AtlasIndexPage() {
 
   return (
     <main id="main" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-[920px] px-6 pb-28 pt-14 md:pt-20">
-        {freshest && (
-          <div
-            className="mb-10 font-mono text-[11px] uppercase tracking-wider text-ink-quiet"
-            style={{ letterSpacing: "0.06em" }}
-          >
-            last verified · {freshest.slug} · {freshest.lastVerified}
-          </div>
-        )}
+      <section className="mx-auto w-full max-w-[920px] px-6 pb-28">
+        <HqPageHeader
+          slug="atlas"
+          title="The system, written down."
+          standfirst="One entry per system, each with a last-verified date; entries flag themselves stale when the system moves on."
+          meta={
+            <span className="hq-page-head-note">
+              {totalEntries} entries
+              {partialCount > 0 ? ` · ${partialCount} partial` : ""}
+              {stubCount > 0 ? ` · ${stubCount} stub` : ""}
+              {staleCount > 0 ? ` · ${staleCount} stale` : ""}
+              {freshest
+                ? ` · last verified ${freshest.slug} ${freshest.lastVerified}`
+                : ""}
+            </span>
+          }
+        />
 
-        <div
-          className="mb-6 text-[11px] font-semibold uppercase"
-          style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
-        >
-          hq / atlas
-        </div>
-
-        <h1 className="h-section mb-6 max-w-[640px] text-balance text-ink">
-          The system, written down.
-        </h1>
-
-        <p
-          className="mb-4 max-w-[58ch] leading-[1.7] text-ink-soft"
-          style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
-        >
-          One entry per system. Each carries a last-verified date. If a
-          system changes and the entry stays still, the entry flags itself
-          stale. Fix the entry, then the code.
-        </p>
-
-        <p className="mb-16 max-w-[58ch] font-mono text-[12px] leading-[1.6] text-ink-quiet">
-          {totalEntries} entries
-          {partialCount > 0 ? ` · ${partialCount} partial` : ""}
-          {stubCount > 0 ? ` · ${stubCount} stub` : ""}
-          {staleCount > 0 ? ` · ${staleCount} stale` : ""}
-        </p>
+        <div className="mt-12" />
 
         {pinned && (
           <div className="atlas-start-here mb-16">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 
 export const dynamic = "force-dynamic";
@@ -86,27 +87,23 @@ export default async function SocialsPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · The posting queue · Six weeks, pre-approved</span>
-        <h1 className="hq-page-title">
-          Nothing is written the day it posts
-          <span aria-hidden="true" style={{ color: "var(--accent)" }}>.</span>
-        </h1>
-        <p className="hq-page-intro">
-          Twelve posts, two a week, sequenced from the specimen bank, every
-          image deck-locked, every caption drafted for your approval, alt text
-          on every one. Approve the queue (or strike lines) and the calendar
-          fills itself. The partner format stays specimen-gated until a real
-          venue signs.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="socials"
+        title="Nothing is written the day it posts"
+        standfirst="Twelve posts, two a week, deck-locked images with alt text; nothing posts without the founder's yes."
+        meta={
+          <span className="hq-page-head-note">
+            six weeks · twelve posts · pre-approved
+          </span>
+        }
+      />
 
       <section aria-label="posting rules"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "12px",
-          margin: "8px 0 32px",
+          margin: "32px 0 32px",
         }}
       >
         {[

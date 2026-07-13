@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   ACS_META,
@@ -38,25 +39,27 @@ export default async function AssetCommandPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Asset Command System</span>
-        <h1 className="hq-page-title">
-          {ACS_META.title}
-          <span aria-hidden="true">.</span>
-        </h1>
-        <p className="hq-page-intro">{ACS_META.logline}</p>
+      <HqPageHeader
+        slug="asset-command"
+        title={`${ACS_META.title}.`}
+        standfirst="The standing record of which launch assets exist, in what order, why, and to what bar."
+        meta={
+          <span className="hq-page-head-note">
+            horizon · {ACS_META.launchHorizon} · {progress.required} required
+            of {progress.total} assets
+          </span>
+        }
+      />
+
+      <section className="hq-page-header" aria-label="thesis">
         <p className="hq-page-intro" style={{ fontSize: 15 }}>
           {ACS_META.thesis}
         </p>
-        <span className="hq-co-status" data-status="pre-incorporation">
-          horizon · {ACS_META.launchHorizon} · {progress.required} required of{" "}
-          {progress.total} assets
-        </span>
         <p className="hq-film-build">
           <span className="hq-film-build-label">wedge</span> {ACS_META.wedge} ·{" "}
           {ACS_META.horizonNote}
         </p>
-      </header>
+      </section>
 
       {/* 1 · Executive judgement */}
       <section className="hq-co-block" aria-label="executive judgement">

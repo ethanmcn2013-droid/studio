@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import {
   getAccessToday,
@@ -50,23 +51,14 @@ export default async function AccessConsolePage({
   const tab = TABS.some((t) => t.key === sp.tab) ? (sp.tab as string) : "today";
 
   return (
-    <main id="main" className="mx-auto w-full max-w-[1080px] px-5 py-12 text-ink">
-      <header className="mb-8">
-        <div
-          className="mb-2 text-[11px] font-semibold uppercase text-ink-quiet"
-          style={{ fontFamily: "var(--font-mono)", letterSpacing: "var(--tracking-eyebrow)" }}
-        >
-          Signal HQ · Access
-        </div>
-        <h1 className="text-[28px] font-semibold tracking-[-0.04em]">Access</h1>
-        <p className="mt-2 max-w-[64ch] text-[13.5px] leading-[1.55] text-ink-soft">
-          Every grant, code, venue, and subscription in one place. Each change is written to the
-          shared entitlements DB and recorded in an append-only ledger of who did what.
-        </p>
-      </header>
+    <main id="main" className="mx-auto w-full max-w-[1080px] px-5 pb-12 text-ink">
+      <HqPageHeader
+        slug="entitlements"
+        standfirst="Every grant, code, venue, and subscription in one place, each change recorded in an append-only ledger."
+      />
 
       {/* Entry points */}
-      <section className="mb-10 grid gap-4 md:grid-cols-2">
+      <section className="mb-10 mt-8 grid gap-4 md:grid-cols-2">
         <div>
           <h2 className="mb-2 text-[13px] font-semibold">Give access</h2>
           <GiveAccessForm />

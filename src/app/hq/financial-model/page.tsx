@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   buildFinancialModel,
@@ -52,17 +53,16 @@ export default async function FinancialModelPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Financial Model</span>
-        <h1 className="hq-page-title">The projection behind the ask<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">
-          A cash-basis model, venue editions are annual prepay, so cash lands
-          at signature. Every figure is a <strong>modeled assumption</strong>{" "}
-          owned in <span className="hq-fm-mono">src/lib/hq/financial-model.ts</span>;
-          the live ledger is overlaid below as plan-vs-actual. This is a
-          projection, not actuals, read it as one.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="financial-model"
+        title="The projection behind the ask."
+        standfirst="A cash-basis model of assumptions with the live ledger overlaid as plan-vs-actual; a projection, not actuals."
+        meta={
+          <span className="hq-page-head-note">
+            modeled · revised {FIN_META.revisedOn}
+          </span>
+        }
+      />
 
       {/* Headline reads */}
       <section className="hq-fm-heads" aria-label="model headlines">
