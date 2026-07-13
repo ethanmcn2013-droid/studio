@@ -12,7 +12,7 @@ date: 2026-07-13
 
 ## Context
 
-Planning Period work is merged across Studio, Tasks, Timeline, Signal, and Notes. The signed Tasks catalog and Notes-to-Timeline receiver are implemented and fail closed. No production migration or flag enablement has been performed.
+Planning Period work is merged across Studio, Tasks, Timeline, Signal, and Notes. The signed Tasks catalog and Notes-to-Timeline receiver are implemented and fail closed. Local isolated-fixture checks are evidenced in the implementation report, but no production migration, provider-backed identity receipt, or flag enablement has been performed.
 
 ## Steps
 
@@ -26,4 +26,4 @@ Planning Period work is merged across Studio, Tasks, Timeline, Signal, and Notes
 
 ## Done when
 
-Production migration, secret configuration, authenticated smoke journeys, pilot enablement, and rollback evidence are attached to this HQ item. No unresolved data-owner or entitlement conflict remains.
+Production migration, secret configuration, authenticated smoke journeys, pilot enablement, and rollback evidence are attached to this HQ item; every migration receipt names the snapshot, operator, timestamp, and result; and no unresolved data-owner or entitlement conflict remains.
