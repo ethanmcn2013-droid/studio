@@ -703,53 +703,6 @@ const DSN_CSS = `
   border-radius: 50%;
   background: var(--paper);
 }
-/* The Founding Partner reverse: typeset live, same geometry as the
-   card family (mark top-left, block bottom-left, mono contact line). */
-.dsn-flip-fpback {
-  container-type: inline-size;
-  position: absolute;
-  inset: 0;
-  display: block;
-  background: var(--accent);
-}
-.dsn-flip-fpback-dot {
-  position: absolute;
-  left: 15.5%;
-  top: 21%;
-  width: 3.2cqw;
-  height: 3.2cqw;
-  border-radius: 50%;
-  background: var(--paper);
-}
-/* Mirrors the front's two-line grammar exactly: sans title over a mono
-   spec line (front: "Founding Limerick Partner" / "№ — of 25 · 2026";
-   back: the promise / the address). Question on one face, answer on
-   the other, one typographic system. */
-.dsn-flip-fpback-block {
-  position: absolute;
-  left: 15.5%;
-  right: 10%;
-  bottom: 21%;
-  display: grid;
-  gap: 2cqw;
-}
-.dsn-flip-fpback-head {
-  font-size: 5.6cqw;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  color: var(--paper);
-  line-height: 1.1;
-}
-.dsn-flip-fpback-line {
-  font-family: var(--font-mono, monospace);
-  font-size: 2.9cqw;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--paper) 72%, transparent);
-  line-height: 1;
-  white-space: nowrap;
-}
 @media (prefers-reduced-motion: reduce) {
   .dsn-flip-inner { transition: none; }
 }
@@ -1282,24 +1235,12 @@ export default function DesignPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <FlipCard
-                front={`${C}/identity/fp-card-preview.png`}
+                front={`${C}/explorations/fpx-indigo-front-preview.png`}
+                back={`${C}/explorations/fpx-indigo-back-preview.png`}
                 frontAlt="Founding Partner card, indigo, numbered one of twenty-five."
-                backAlt="indigo reverse with the founder's address and the same-day promise."
+                backAlt="Paper reverse with Ethan McNamara's founder contact details and same-day reply promise."
                 width={748}
                 height={522}
-                backFace={
-                  <span className="dsn-flip-fpback">
-                    <i className="dsn-flip-fpback-dot" aria-hidden />
-                    <span className="dsn-flip-fpback-block">
-                      <span className="dsn-flip-fpback-head">
-                        A direct line to the founder.
-                      </span>
-                      <span className="dsn-flip-fpback-line">
-                        ethan@signalstudio.ie&ensp;·&ensp;same-day reply
-                      </span>
-                    </span>
-                  </span>
-                }
               />
               <SpecLine>the founding partner card · one of 25 · indigo</SpecLine>
             </div>

@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-15 · S·127 · tightens · the partner card carries the final reverse
+
+**The Founding Partner card on `/design` now matches the object approved in Signal HQ: the solid-indigo, hand-numbered front turns to the paper founder-contact reverse with Ethan's name, the Limerick line, and the same-day reply promise.** The interim indigo reverse and its live-typeset copy are gone. The old `SIGNED` field stays gone, as decided in the final print artwork; the public specimen now uses the same front and back files as the internal review room.
+
 ## 2026-07-12 · S·126 · pushes · the market entry case stops mistaking proof for potential
 
 **Signal Studio's Year 1 operating target is now 100 paid venues, 7,500 paid students, and 30 paid schools across Ireland and the UK's four nations, equal to €269,925 in gross contract value and billings.** The previous 18-venue figure remains exactly where it is useful: the Q1 proof gate and the €27,000 lender underwriting floor. It is no longer presented as the company's commercial ceiling.
