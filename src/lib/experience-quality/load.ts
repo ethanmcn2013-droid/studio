@@ -69,6 +69,14 @@ function readOptional<T>(file: string): T | null {
   return existsSync(file) ? readJson<T>(file) : null;
 }
 
+function availableEvidencePath(base: string, file: string | null) {
+  if (!file || file.includes("..") || path.isAbsolute(file)) return null;
+  const resolvedBase = path.resolve(base);
+  const target = path.resolve(resolvedBase, file.replaceAll("/", path.sep));
+  if (!target.startsWith(`${resolvedBase}${path.sep}`) || !existsSync(target)) return null;
+  return file;
+}
+
 export function loadExperienceQualityData() {
   const root = process.cwd();
   const experience = path.join(root, "experience");
@@ -77,12 +85,23 @@ export function loadExperienceQualityData() {
   const findings = readJson<{ findings: ExperienceFinding[] }>(path.join(experience, "findings.json"));
   const audits = readJson<{ audits: ExperienceAudit[] }>(path.join(experience, "audits.json"));
   const reviews = readJson<{ reviews: ReviewRecord[] }>(path.join(experience, "reviews.json"));
+  const capture = readOptional<CaptureManifest>(path.join(output, "capture-manifest.json"));
   return {
     registry,
     findings: findings.findings,
     audits: audits.audits,
     reviews: reviews.reviews,
-    capture: readOptional<CaptureManifest>(path.join(output, "capture-manifest.json")),
+    capture: capture
+      ? {
+          ...capture,
+          results: capture.results.map((result) => ({
+            ...result,
+            candidateScreenshot: availableEvidencePath(output, result.candidateScreenshot),
+            baselineScreenshot: availableEvidencePath(experience, result.baselineScreenshot),
+            diffScreenshot: availableEvidencePath(output, result.diffScreenshot),
+          })),
+        }
+      : null,
     report: readOptional<QualityReport>(path.join(output, "quality-report.json")),
   };
 }

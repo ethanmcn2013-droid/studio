@@ -99,6 +99,7 @@ try {
     if (advancedFilters !== 5) failures.push(`${name}: expected five advanced evidence filters, found ${advancedFilters}`);
     if (overflow) failures.push(`${name}: ${overflow}px horizontal overflow`);
     if (blocking.length) failures.push(`${name}: blocking axe rules ${blocking.map((item) => item.id).join(", ")}`);
+    if (consoleErrors.length) failures.push(`${name}: console errors ${consoleErrors.join("; ")}`);
     if (pageErrors.length) failures.push(`${name}: page errors ${pageErrors.join("; ")}`);
     console.log(JSON.stringify(result));
     await context.close();
