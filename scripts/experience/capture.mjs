@@ -15,10 +15,12 @@ import {
   approvalProvenanceForBaseline,
   approveExistingCandidates,
   capturePlanErrors,
+  captureRunFailures,
   manifestApprovedBy,
 } from "./capture-approval.mjs";
 import {
   captureAuthentication,
+  prepareClerkTestingSession,
   signInForCapture,
 } from "./capture-auth.mjs";
 
@@ -202,6 +204,21 @@ const results = previousResults.filter((result) => {
   const breakpointWillRun = !selectedBreakpoint || result.breakpoint === selectedBreakpoint;
   return !(experienceWillRun && breakpointWillRun);
 });
+const executedResults = [];
+const clerkCaptureWillRun = plan.pilotSet.some((item) => {
+  if (selectedExperience && item.experienceId !== selectedExperience) return false;
+  if (publicOnly) return false;
+  if (protectedOnly && !item.authentication) return false;
+  return item.authentication?.kind === "clerk-testing-session";
+});
+let clerkSetupError = null;
+if (clerkCaptureWillRun) {
+  try {
+    await prepareClerkTestingSession();
+  } catch (error) {
+    clerkSetupError = error instanceof Error ? error : new Error(String(error));
+  }
+}
 
 try {
   for (const item of plan.pilotSet) {
@@ -232,6 +249,9 @@ try {
       try {
         authentication = captureAuthentication(item);
         if (authentication) {
+          if (authentication.kind === "clerk-testing-session" && clerkSetupError) {
+            throw new Error(`Clerk testing setup failed: ${clerkSetupError.message}`);
+          }
           await signInForCapture({
             page,
             authentication,
@@ -302,7 +322,7 @@ try {
       const blockingAxe = axe.violations.filter((violation) =>
         ["serious", "critical"].includes(violation.impact ?? ""),
       );
-      results.push({
+      const result = {
         experienceId: item.experienceId,
         product: registryById.get(item.experienceId).product,
         state: item.state,
@@ -341,7 +361,9 @@ try {
           blockingAxe.length === 0 &&
           pageErrors.length === 0,
         ...approvalProvenanceForBaseline({ previousResult, baselineFile }),
-      });
+      };
+      results.push(result);
+      executedResults.push(result);
       await context.close();
       process.stdout.write(`${item.experienceId} ${breakpoint}: ${results.at(-1).pass ? "pass" : "review"}\n`);
     }
@@ -366,3 +388,8 @@ const manifest = {
 };
 writeFileSync(path.join(OUTPUT, "capture-manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(JSON.stringify(manifest.summary, null, 2));
+const executionFailures = captureRunFailures(executedResults);
+if (executionFailures.length) {
+  console.error(`experience:capture: ${executionFailures.length} capture failure(s)\n${executionFailures.map((failure) => `  x ${failure}`).join("\n")}`);
+  process.exitCode = 1;
+}

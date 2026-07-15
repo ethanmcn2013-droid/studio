@@ -1,9 +1,22 @@
-import { clerk } from "@clerk/testing/playwright";
+import { clerk, clerkSetup } from "@clerk/testing/playwright";
 
 const EMAIL_ENV = "EXPERIENCE_CAPTURE_EMAIL";
 const CLERK_SECRET_ENV = "CLERK_SECRET_KEY";
 const CLERK_PUBLISHABLE_ENV = "CLERK_PUBLISHABLE_KEY";
 const HQ_PASSWORD_ENV = "SIGNAL_HQ_PASSWORD";
+
+export async function prepareClerkTestingSession(env = process.env, setup = clerkSetup) {
+  const secretKey = env[CLERK_SECRET_ENV];
+  const publishableKey = env[CLERK_PUBLISHABLE_ENV];
+  if (!secretKey || !publishableKey) {
+    throw new Error(`Clerk capture setup requires ${CLERK_SECRET_ENV} and ${CLERK_PUBLISHABLE_ENV}`);
+  }
+  await setup({
+    secretKey,
+    publishableKey,
+    dotenv: false,
+  });
+}
 
 export function captureAuthentication(item, env = process.env) {
   if (!item.authentication) return null;
