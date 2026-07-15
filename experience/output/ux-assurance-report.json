@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "signal-ux-assurance-report/1",
+  "generatedAt": "2026-07-15T14:51:06.696Z",
+  "modes": [
+    {
+      "id": "product-clarity",
+      "dimensions": [
+        "purpose-and-task-clarity"
+      ],
+      "evidenceClass": "subjective-review"
+    },
+    {
+      "id": "information-architecture",
+      "dimensions": [
+        "information-architecture"
+      ],
+      "evidenceClass": "subjective-review"
+    },
+    {
+      "id": "visual-design",
+      "dimensions": [
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft"
+      ],
+      "evidenceClass": "subjective-review"
+    },
+    {
+      "id": "interaction",
+      "dimensions": [
+        "interaction-quality",
+        "state-completeness"
+      ],
+      "evidenceClass": "mixed"
+    },
+    {
+      "id": "accessibility",
+      "dimensions": [
+        "accessibility"
+      ],
+      "evidenceClass": "deterministic-plus-human"
+    },
+    {
+      "id": "responsive-behavior",
+      "dimensions": [
+        "responsive-behavior"
+      ],
+      "evidenceClass": "deterministic-plus-human"
+    },
+    {
+      "id": "performance",
+      "dimensions": [
+        "performance-and-perceived-speed"
+      ],
+      "evidenceClass": "deterministic"
+    },
+    {
+      "id": "design-system",
+      "dimensions": [
+        "design-system-coherence"
+      ],
+      "evidenceClass": "deterministic-plus-human"
+    },
+    {
+      "id": "implementation-fidelity",
+      "dimensions": [
+        "implementation-fidelity"
+      ],
+      "evidenceClass": "deterministic-plus-human"
+    }
+  ],
+  "policy": "Specialists emit evidence and findings. They never manufacture a score from lint counts or claim subjective quality without rendered review evidence.",
+  "captureAvailable": true,
+  "coverage": {
+    "experiences": 239,
+    "automatedComplete": 0,
+    "screenshotsComplete": 0,
+    "accessibilityComplete": 0,
+    "fixturesComplete": 0
+  },
+  "observations": [
+    {
+      "id": "ux-auto-studio-page-privacy-mobile-slow-navigation",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "specialist": "performance",
+      "rule": "slow-navigation",
+      "severity": "medium",
+      "dimension": "performance-and-perceived-speed",
+      "evidence": [
+        "Navigation duration 4273ms"
+      ],
+      "recommendation": "Profile the navigation and preserve a meaningful loading state while reducing the measured duration.",
+      "deterministic": true
+    }
+  ],
+  "subjectiveReviewQueue": [
+    {
+      "experienceId": "tasks.page.roadmap",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.root",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.design",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.security",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    }
+  ],
+  "gate": {
+    "releaseBlocking": 0,
+    "high": 0,
+    "pass": true
+  }
+}

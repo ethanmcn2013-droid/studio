@@ -1,0 +1,1426 @@
+{
+  "schemaVersion": "signal-experience-capture/1",
+  "capturedAt": "2026-07-15T14:45:06.703Z",
+  "approvedBy": null,
+  "determinism": {
+    "locale": "en-GB",
+    "timezoneId": "Europe/London",
+    "colorScheme": "light",
+    "reducedMotion": "reduce",
+    "animationPolicy": "disabled",
+    "settleMilliseconds": 1200
+  },
+  "summary": {
+    "captures": 36,
+    "passing": 36,
+    "requiringReview": 0,
+    "visualChanges": 0,
+    "missingBaselines": 36
+  },
+  "results": [
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "3c48e6b671d578ba7272aae74dad6496506ac482a5ab6636062e4db82b5a43e4",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 1643,
+          "domContentLoaded": 1594
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "populated",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "475f81eba40fb499dc04758538ba9a30099b1ae7cc9840718cd56a8fe3bd162b",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 446,
+          "domContentLoaded": 278
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "97357fa68a807a4458e4c9c04c4e58e92f129154cd8153edd630d3b303a52368",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 634,
+          "domContentLoaded": 512
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "populated",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "7b47f4fae749e5c8620662f35846b2ecd39d9bf808c1028c6b6e0b10b78b593c",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 518,
+          "domContentLoaded": 369
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://timeline.signalstudio.ie/the-wedding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "dd5294744db20f3afd8b7e0026b874f349e96d64c787ab2fa48ad04ecf63beb9",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Timeline\"]",
+        "navigation": {
+          "duration": 1161,
+          "domContentLoaded": 1023
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://timeline.signalstudio.ie/the-wedding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "dc6cef71161376f64e8edb4dba6b426c2bc9123d36a5977d3b4eb24e1066c63b",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Timeline\"]",
+        "navigation": {
+          "duration": 573,
+          "domContentLoaded": 253
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://timeline.signalstudio.ie/the-wedding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "6d3b922fc2f41745ab515ee23d2b38f32e05ddeb704e969d8729eb288d4aac9a",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Timeline\"]",
+        "navigation": {
+          "duration": 501,
+          "domContentLoaded": 173
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://timeline.signalstudio.ie/the-wedding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "54b2cae63aa65b29a4c4f3b3c48800f92f288bcd541dc18a25a4b130c32ca64b",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Timeline\"]",
+        "navigation": {
+          "duration": 634,
+          "domContentLoaded": 170
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signal.signalstudio.ie/demo",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-demo/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "44805c49c9386118063d8bd375fb8604456640446225258dcd8491e127ff2988",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 3087,
+          "domContentLoaded": 2229
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signal.signalstudio.ie/demo",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-demo/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "7e52a03317f1976ca0c10165b6c2cfd3674d868fa37e99a02e5f0c2e0f831c5b",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 477,
+          "domContentLoaded": 351
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signal.signalstudio.ie/demo",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-demo/default/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "6639195c6655103d749229a7835ad9724bfb90b9666cdda7b1b755954f295bf6",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 687,
+          "domContentLoaded": 326
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signal.signalstudio.ie/demo",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-demo/default/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "8d9d702aee8e2e36ae1d1a9c483f4b4bb509c8cce17518f780db8d912b763115",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 670,
+          "domContentLoaded": 274
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:4320/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "b37dd2ae7de4c7000478e427a0e73951af094b5563abea6a0ad4326efebd92a3",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 2200,
+          "domContentLoaded": 1773
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:4320/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "4eed29cd32dff9afae8b957d263ef3d4f385c5bd5f468fa63ea9b1698a47cabb",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 515,
+          "domContentLoaded": 305
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://localhost:4320/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "b57d54be04ad8cf2cb4e536ac1b809db5c2b380f6d02204039fe4e105556b115",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 767,
+          "domContentLoaded": 518
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://localhost:4320/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "8c91696514bc318aa5fdbcdfca41c19105b378c43c81dd20fb2c39419ecd6c10",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 659,
+          "domContentLoaded": 429
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:4320/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "9880f3e0c83d4def38f57cefb6b109875d1ce62c5242b4e15365c8e59ac6068c",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 1289,
+          "domContentLoaded": 1083
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:4320/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "4e1a7d374dabea5a00476d247a5291ba21a8dcec9ebd2b150b5c20fcc958a136",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 636,
+          "domContentLoaded": 471
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://localhost:4320/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "a10307e541436825f070f1a34696a7b6472b676233bca0afb77a6617c26fc3ab",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 851,
+          "domContentLoaded": 620
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://localhost:4320/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "758db7297683836d6ed5c18ae5785addaf0e1544e95a59f25e6dcc3cdd223782",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 781,
+          "domContentLoaded": 552
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:4320/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "207287490884575650b33573f909545b4d8a07b016160b5c2c765767f4546f70",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 4273,
+          "domContentLoaded": 3917
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:4320/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "d0075e3090fe580b44e4eb15ed3b2acaf14d4c3893f3eba9d521459d8e7a5954",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 904,
+          "domContentLoaded": 840
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://localhost:4320/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "d86a9fd8282845dc20f53132554f4743b057f6cbc0123752e13003ef4ac29c8a",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 1178,
+          "domContentLoaded": 429
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://localhost:4320/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "f4b3a1943a120ab0d32527b460928fba05562b7ab57c31e5a10073db63cf0bc6",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 606,
+          "domContentLoaded": 433
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:4320/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "893e9ee7d035abaea582bb2870496f9bfe3b03fb94583fc8fd99d51e9782b9de",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 2113,
+          "domContentLoaded": 1867
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:4320/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "275afb10ceed99fddad584dc2118c3e9914abe0bd645556c95eeee36122f0970",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 541,
+          "domContentLoaded": 325
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://localhost:4320/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "c304e95789cc77ed92b44211a6ac3490daa9110264b99f2d5a884c6a187397cc",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 468,
+          "domContentLoaded": 313
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://localhost:4320/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "03cf79019e7e357180a3c2dfe30376ce3dc1ceea3719f45c4eb0883d638fa5a9",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 649,
+          "domContentLoaded": 299
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:4320/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "591fa01e7eef66dee7ba9ec18e3f8f0b6546d2e859eeaf96b93f9d680ad8c36d",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 1553,
+          "domContentLoaded": 1347
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:4320/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "241959eb0898845070c7ccffa64044adae8e62646ff1e21945566f031886c37c",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 717,
+          "domContentLoaded": 378
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://localhost:4320/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "0b4f1190a7a7578a418e6f066f6708c6f415de55b57acabf754e0d6eb7e99b32",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 541,
+          "domContentLoaded": 348
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://localhost:4320/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "b14df640612a51ad7198550978ebfcf4dac91d1a67d52b6f810df782efb2678b",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 447,
+          "domContentLoaded": 287
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3999/wedding-planning",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "610b654e5452a33a9e7a5d98fba1be83dd8233a7d1ea697c79e0b3f1a455aab1",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 374,
+          "domContentLoaded": 104
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "state": "populated",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3999/wedding-planning",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "c987532639a2beadd6c7440b20fae95897e9f1b6980a343dab6b3b65a127789e",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 151,
+          "domContentLoaded": 24
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3999/wedding-planning",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "fb4fc656baa184a59d3f82eb72109f76a59b638fc85cdd5c55da8ba8e86aab95",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 229,
+          "domContentLoaded": 27
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "state": "populated",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:3999/wedding-planning",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "ea09ee8742822080b947d777980c893aed1dc8f4fdbaeee36094d70d9cf7fede",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 211,
+          "domContentLoaded": 30
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "pass": true
+    }
+  ]
+}

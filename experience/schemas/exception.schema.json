@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/experience-exception.json",
+  "title": "Signal Experience Exception",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "rationale", "owner", "scope", "approvalSource", "expiresAt", "remediationPlan"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^exception-[a-z0-9-]+$" },
+    "rationale": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "scope": { "type": "string", "minLength": 1 },
+    "approvalSource": { "type": "string", "minLength": 1 },
+    "expiresAt": { "type": "string", "format": "date" },
+    "remediationPlan": { "type": "string", "minLength": 1 }
+  }
+}

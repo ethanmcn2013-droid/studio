@@ -77,10 +77,6 @@ export function AtlasSearch({
     inputRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
-
   function pick(item: Item | undefined) {
     if (!item) return;
     if (item.kind === "lens") onPickLens(item.id as AtlasLens);
@@ -117,7 +113,10 @@ export function AtlasSearch({
           type="text"
           placeholder="Search systems and lenses"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setActive(0);
+          }}
           onKeyDown={onKeyDown}
           aria-label="Search the Atlas"
           aria-autocomplete="list"

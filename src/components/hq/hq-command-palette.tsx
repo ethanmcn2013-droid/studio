@@ -35,6 +35,7 @@ const ROOMS: Room[] = [
   { label: "Incorporation pack", hint: "CRO runbook + timeline", href: "/hq/incorporation", keywords: "incorporation cro company formation ltd limited registration constitution" },
   { label: "Demo film", hint: "hero product film scaffold", href: "/hq/demo-film", keywords: "demo film video motion storyboard remotion advert reel one wedding four views" },
   { label: "Loading review room", hint: "ten loading moments, one system", href: "/hq/loading-review", keywords: "loading loader skeleton dot wordmark suiteloader boundary motion spec review gallery specimens" },
+  { label: "Experience Quality", hint: "founder-operator quality control plane", href: "/hq/experience-quality", keywords: "four customer products studio company surface signal review instrument design quality ux assurance screenshots visual regression accessibility audits review board" },
   { label: "Copy Review", hint: "founder approval for every copy version", href: "/hq/copy-review", keywords: "copy founder approval content governance review queue guidance hall of fame" },
   { label: "CRM", hint: "the venue pipeline", href: "/hq/crm", keywords: "prospects pipeline outreach venues sales" },
   { label: "Marketing", hint: "the six-month plan", href: "/hq/marketing", keywords: "growth campaigns demand plan" },
@@ -109,10 +110,6 @@ export function HqCommandPalette() {
     if (open) requestAnimationFrame(() => inputRef.current?.focus());
   }, [open]);
 
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
-
   // Keep the active row in view.
   useEffect(() => {
     if (!open) return;
@@ -165,7 +162,10 @@ export function HqCommandPalette() {
             className="hq-cmdk-input"
             placeholder="a room, a number, a document…"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setActive(0);
+            }}
             autoComplete="off"
             spellCheck={false}
           />

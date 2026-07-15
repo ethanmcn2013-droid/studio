@@ -4812,7 +4812,7 @@ body::after { content: none; }
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* ── 2. Persistent HQ nav ─────────────────────────────────────────── */
@@ -4860,7 +4860,7 @@ body::after { content: none; }
   font-family: var(--font-mono-stack);
   font-size: 11px;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   padding: 0.25rem 0.6rem;
   border-radius: 3px;
@@ -4876,7 +4876,7 @@ body::after { content: none; }
   font-family: var(--font-mono-stack);
   font-size: 11px;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;

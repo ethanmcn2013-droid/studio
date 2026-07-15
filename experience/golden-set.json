@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "signal-experience-golden-set/1",
+  "status": "provisional",
+  "approvalTask": "approve-experience-golden-set",
+  "experienceIds": [
+    "studio.page.design",
+    "tasks.page.app",
+    "timeline.page.the-wedding",
+    "signal.page.demo",
+    "notes.page.wedding-planning"
+  ]
+}

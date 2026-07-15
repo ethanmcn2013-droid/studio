@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/experience-registry.json",
+  "title": "Signal Experience Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "generatedAt", "breakpoints", "experiences"],
+  "properties": {
+    "schemaVersion": { "const": "signal-experience/1" },
+    "generatedAt": { "type": "string", "format": "date" },
+    "breakpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mobile", "tablet", "desktop", "wide"],
+      "properties": {
+        "mobile": { "$ref": "#/$defs/viewport" },
+        "tablet": { "$ref": "#/$defs/viewport" },
+        "desktop": { "$ref": "#/$defs/viewport" },
+        "wide": { "$ref": "#/$defs/viewport" }
+      }
+    },
+    "experiences": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/experience" }
+    }
+  },
+  "$defs": {
+    "viewport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "coverage": { "enum": ["none", "partial", "complete", "blocked"] },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "product", "experienceClass", "surfaceType", "source", "parentJourney", "archetype", "primaryJob", "primaryAction", "roles", "requiredStates", "requiredBreakpoints", "reviewTier", "designOwner", "engineeringOwner", "implementationStatus", "auditStatus", "auditScore", "openFindingIds", "automatedTestCoverage", "screenshotCoverage", "accessibilityCoverage", "fixtureCoverage", "lastReviewedAt", "approvedBaselineReference", "intentionalExceptions", "materialityHash"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$" },
+        "product": { "enum": ["studio", "tasks", "timeline", "signal", "notes", "signal-review"] },
+        "experienceClass": { "enum": ["customer-product", "company-public", "founder-operator"] },
+        "surfaceType": { "type": "string", "minLength": 1 },
+        "route": { "type": "string" },
+        "trigger": { "type": "string" },
+        "source": { "type": "string", "minLength": 1 },
+        "parentJourney": { "type": "string", "minLength": 1 },
+        "archetype": { "type": "string", "minLength": 1 },
+        "primaryJob": { "type": "string", "minLength": 1 },
+        "primaryAction": { "type": "string", "minLength": 1 },
+        "roles": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "requiredStates": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "requiredBreakpoints": { "type": "array", "minItems": 4, "items": { "enum": ["mobile", "tablet", "desktop", "wide"] } },
+        "componentDependencies": { "type": "array", "items": { "type": "string" } },
+        "patternDependencies": { "type": "array", "items": { "type": "string" } },
+        "reviewTier": { "enum": ["critical", "core", "supporting"] },
+        "designOwner": { "type": "string" },
+        "engineeringOwner": { "type": "string" },
+        "implementationStatus": { "enum": ["live", "preview", "legacy", "planned"] },
+        "auditStatus": { "enum": ["registered", "baseline-captured", "under-remediation", "passing", "blocked", "exception"] },
+        "auditScore": { "type": ["number", "null"], "minimum": 0, "maximum": 4 },
+        "openFindingIds": { "type": "array", "items": { "type": "string" } },
+        "automatedTestCoverage": { "$ref": "#/$defs/coverage" },
+        "screenshotCoverage": { "$ref": "#/$defs/coverage" },
+        "accessibilityCoverage": { "$ref": "#/$defs/coverage" },
+        "fixtureCoverage": { "$ref": "#/$defs/coverage" },
+        "lastReviewedAt": { "type": ["string", "null"] },
+        "approvedBaselineReference": { "type": ["string", "null"] },
+        "intentionalExceptions": { "type": "array" },
+        "materialityHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" }
+      },
+      "anyOf": [{ "required": ["route"] }, { "required": ["trigger"] }]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "signal-design-system-conformance/1",
+  "generatedAt": "2026-07-15",
+  "repositories": [
+    {
+      "id": "studio",
+      "applicable": true,
+      "status": "pass",
+      "command": "corepack pnpm run ds:check",
+      "evidence": ["ds-check: clean - no drift"]
+    },
+    {
+      "id": "tasks",
+      "applicable": true,
+      "status": "pass",
+      "command": "node scripts/ds/ds-check.mjs",
+      "evidence": ["ds-check: clean - no drift"]
+    },
+    {
+      "id": "timeline",
+      "applicable": true,
+      "status": "pass",
+      "command": "corepack pnpm run ds:check",
+      "evidence": ["ds-check: clean after recording the existing per-file debt baseline"]
+    },
+    {
+      "id": "signal",
+      "applicable": true,
+      "status": "pass",
+      "command": "npm run ds:check",
+      "evidence": ["ds-check: clean - no drift"]
+    },
+    {
+      "id": "notes",
+      "applicable": true,
+      "status": "pass",
+      "command": "corepack pnpm run ds:check",
+      "evidence": ["ds-check: clean after recording the existing per-file debt baseline"]
+    },
+    {
+      "id": "ds-foundation",
+      "applicable": true,
+      "status": "pass",
+      "command": "npm run check",
+      "evidence": ["type-check, design-system drift, build, ESM import, and seven component behavior tests pass"]
+    },
+    {
+      "id": "signal-review",
+      "applicable": false,
+      "status": "not-applicable",
+      "command": "npm run check",
+      "evidence": ["The zero-build browser extension uses its own CSP-safe shadow-DOM contract and behavioral smoke checks rather than the React design-system package."]
+    }
+  ]
+}

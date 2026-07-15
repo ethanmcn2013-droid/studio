@@ -28,6 +28,7 @@ export async function HqToday() {
       return ha - hb;
     });
   const freshestRepo = repos[0];
+  const generatedAt = new Date(data.generatedAt).getTime();
 
   return (
     <section className="hq-today" aria-label="today">
@@ -162,7 +163,7 @@ export async function HqToday() {
             {data.sessionPulse.totalLoggedResponses} total ·{" "}
             {data.sessionPulse.lastResponseAt
               ? `last ${formatHoursAgo(
-                  (Date.now() -
+                  (generatedAt -
                     new Date(data.sessionPulse.lastResponseAt).getTime()) /
                     (1000 * 60 * 60),
                 )}`

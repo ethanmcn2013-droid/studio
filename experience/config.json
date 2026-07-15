@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "signal-experience-config/1",
+  "products": [
+    {
+      "id": "studio",
+      "directory": "studio",
+      "name": "Signal Studio",
+      "baseUrl": "https://signalstudio.ie"
+    },
+    {
+      "id": "tasks",
+      "directory": "tasks",
+      "name": "Signal Tasks",
+      "baseUrl": "https://tasks.signalstudio.ie"
+    },
+    {
+      "id": "timeline",
+      "directory": "roadmap",
+      "name": "Signal Timeline",
+      "baseUrl": "https://timeline.signalstudio.ie"
+    },
+    {
+      "id": "signal",
+      "directory": "analytics",
+      "name": "Signal",
+      "baseUrl": "https://signal.signalstudio.ie"
+    },
+    {
+      "id": "notes",
+      "directory": "notes",
+      "name": "Signal Notes",
+      "baseUrl": "https://notes.signalstudio.ie"
+    }
+  ],
+  "breakpoints": {
+    "mobile": { "width": 390, "height": 844 },
+    "tablet": { "width": 768, "height": 1024 },
+    "desktop": { "width": 1280, "height": 900 },
+    "wide": { "width": 1440, "height": 960 }
+  }
+}

@@ -18,7 +18,7 @@
  * is skipped and only the spec emphasis (a colour change) remains.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Wordmark } from "@/components/brand/wordmark";
 
 type Kind = "studio" | "tasks" | "timeline" | "signal" | "notes";
@@ -44,10 +44,12 @@ export function MotionSpecimen({
   const ref = useRef<HTMLDivElement | null>(null);
   const [paused, setPaused] = useState(false);
 
-  const mark = () =>
-    ref.current?.querySelector<HTMLElement>(".brand-mark") ?? null;
+  const mark = useCallback(
+    () => ref.current?.querySelector<HTMLElement>(".brand-mark") ?? null,
+    [],
+  );
 
-  const restart = () => {
+  const restart = useCallback(() => {
     const el = mark();
     if (!el) return;
     el.classList.remove("is-paused");
@@ -55,7 +57,7 @@ export function MotionSpecimen({
     // Force reflow so the animation starts from 0 again.
     void el.offsetWidth;
     el.classList.add("is-live");
-  };
+  }, [mark]);
 
   // Auto-play on initial scroll-in: restart once when the cell enters.
   useEffect(() => {
@@ -78,7 +80,7 @@ export function MotionSpecimen({
     );
     io.observe(node);
     return () => io.disconnect();
-  }, []);
+  }, [restart]);
 
   const reduced = () =>
     typeof window !== "undefined" &&

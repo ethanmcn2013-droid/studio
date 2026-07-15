@@ -538,8 +538,8 @@ export default async function PricingPage({
               marginBottom: 36,
             }}
           >
-            The tiers don't differ on which products you get. All four, every
-            plan. They differ on shape, who it's for, how long it lasts, what
+            The tiers don’t differ on which products you get. All four, every
+            plan. They differ on shape, who it’s for, how long it lasts, what
             stays when it ends.
           </p>
 
@@ -786,7 +786,7 @@ export default async function PricingPage({
         {/* ── 4 · What's inside ─────────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
           <div className="mb-4" style={eyebrowStyle()}>
-            What's in Signal Studio
+            What’s in Signal Studio
           </div>
           <h2
             className="h-title text-balance text-ink"
@@ -1011,7 +1011,7 @@ export default async function PricingPage({
         {/* ── 7 · What this isn't ───────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
           <div className="mb-4" style={eyebrowStyle()}>
-            What this isn't
+            What this isn’t
           </div>
           <h2
             className="h-title text-balance text-ink"

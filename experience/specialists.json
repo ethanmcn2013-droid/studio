@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "signal-ux-assurance-specialists/1",
+  "specialists": [
+    { "id": "product-clarity", "dimensions": ["purpose-and-task-clarity"], "evidenceClass": "subjective-review" },
+    { "id": "information-architecture", "dimensions": ["information-architecture"], "evidenceClass": "subjective-review" },
+    { "id": "visual-design", "dimensions": ["visual-hierarchy", "typography-and-content", "layout-and-composition", "brand-distinction-and-craft"], "evidenceClass": "subjective-review" },
+    { "id": "interaction", "dimensions": ["interaction-quality", "state-completeness"], "evidenceClass": "mixed" },
+    { "id": "accessibility", "dimensions": ["accessibility"], "evidenceClass": "deterministic-plus-human" },
+    { "id": "responsive-behavior", "dimensions": ["responsive-behavior"], "evidenceClass": "deterministic-plus-human" },
+    { "id": "performance", "dimensions": ["performance-and-perceived-speed"], "evidenceClass": "deterministic" },
+    { "id": "design-system", "dimensions": ["design-system-coherence"], "evidenceClass": "deterministic-plus-human" },
+    { "id": "implementation-fidelity", "dimensions": ["implementation-fidelity"], "evidenceClass": "deterministic-plus-human" }
+  ],
+  "rule": "Specialists emit evidence and findings. They never manufacture a score from lint counts or claim subjective quality without rendered review evidence."
+}

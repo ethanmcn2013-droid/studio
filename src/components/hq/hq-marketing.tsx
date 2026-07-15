@@ -98,13 +98,18 @@ export function HqMarketing({
   // Load once on mount, server render and first client paint both use the
   // empty default, so there is no hydration mismatch.
   useEffect(() => {
+    let stored: HubState | null = null;
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setState(JSON.parse(raw) as HubState);
+      if (raw) stored = JSON.parse(raw) as HubState;
     } catch {
       /* corrupt or unavailable, start clean */
     }
-    setMounted(true);
+    const frame = window.requestAnimationFrame(() => {
+      if (stored) setState(stored);
+      setMounted(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {

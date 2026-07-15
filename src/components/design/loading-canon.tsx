@@ -57,10 +57,13 @@ export function LoadingCanon() {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
+    const frame = window.requestAnimationFrame(() => setReduced(mq.matches));
     const h = () => setReduced(mq.matches);
     mq.addEventListener("change", h);
-    return () => mq.removeEventListener("change", h);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      mq.removeEventListener("change", h);
+    };
   }, []);
 
   useEffect(() => {

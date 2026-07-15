@@ -256,10 +256,6 @@ export function OrgChart({
 
   // ── The runner: one dot travels the focused paths, one leg at a time ──────
   useEffect(() => {
-    setRunnerIdx(0);
-  }, [focusedId]);
-
-  useEffect(() => {
     if (reducedMotion || edges.length < 2) return;
     const t = window.setTimeout(
       () => setRunnerIdx((i) => (i + 1) % edges.length),
@@ -288,7 +284,6 @@ export function OrgChart({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchOpen, focusedId]);
 
   function onCanvasKeyDown(e: React.KeyboardEvent) {
@@ -310,11 +305,13 @@ export function OrgChart({
 
   function openDirector(id: string) {
     returnFocusRef.current = (document.activeElement as HTMLElement) ?? null;
+    setRunnerIdx(0);
     setMode("chart");
     setFocusedId(id);
   }
 
   function closeFocus() {
+    setRunnerIdx(0);
     setFocusedId(null);
     // Synchronous, so a `/` pressed right after Esc still lands in search.
     returnFocusRef.current?.focus();

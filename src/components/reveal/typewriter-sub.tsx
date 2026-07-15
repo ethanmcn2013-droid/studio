@@ -39,7 +39,8 @@ export function TypewriterSub({
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduceMotion(mql.matches);
+    const frame = window.requestAnimationFrame(() => setReduceMotion(mql.matches));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   // Kick off typing after the configured start delay (or immediately
@@ -47,8 +48,6 @@ export function TypewriterSub({
   // the per-character animation).
   useEffect(() => {
     if (reduceMotion) {
-      setDisplayed(text);
-      setStarted(true);
       return;
     }
     const id = window.setTimeout(() => setStarted(true), startDelayMs);
@@ -66,9 +65,10 @@ export function TypewriterSub({
   }, [started, displayed, text, speed, reduceMotion]);
 
   return (
-    <p className="reveal-subhead" aria-label={text}>
-      <span aria-hidden>{displayed}</span>
-      {started && <span className="reveal-cursor" aria-hidden />}
+    <p className="reveal-subhead">
+      <span className="sr-only">{text}</span>
+      <span aria-hidden>{reduceMotion ? text : displayed}</span>
+      {(started || reduceMotion) && <span className="reveal-cursor" aria-hidden />}
     </p>
   );
 }

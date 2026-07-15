@@ -188,6 +188,20 @@ export const HQ_HUBS: HqHub[] = [
     action: "open the rooms",
   },
   {
+    key: "experience-quality",
+    loop: "make",
+    label: "Experience Quality",
+    title: "Experience Quality",
+    href: "/hq/experience-quality",
+    audience: ["founder", "operator"],
+    mode: "live",
+    summary:
+      "The private founder-operator quality control plane: four customer products, the Studio company surface, rendered evidence, findings, audits, and review decisions.",
+    primaryMetric: "registry plus evidence wall",
+    secondaryMetric: "13-dimension gate",
+    action: "inspect the quality baseline",
+  },
+  {
     key: "asset-command",
     loop: "make",
     label: "Asset Command",

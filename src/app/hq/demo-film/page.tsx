@@ -102,7 +102,7 @@ export default async function DemoFilmPage() {
       {/* Production checklist */}
       <section className="hq-co-block" aria-label="production checklist">
         <div className="hq-fm-unit-head">
-          <span className="hq-os-eyebrow">production · what's left</span>
+          <span className="hq-os-eyebrow">production · what’s left</span>
           <p>The script and storyboard are this scaffold; the render needs the motion pipeline.</p>
         </div>
         <ul className="hq-incorp-steps" role="list">

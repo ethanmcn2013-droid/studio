@@ -531,7 +531,7 @@ const DSN_CSS = `
   transition: color 900ms var(--ease-out);
 }
 .dsn-dissolve.is-done .dsn-jargon {
-  color: color-mix(in srgb, var(--ink) 22%, transparent);
+  color: var(--ink-soft);
 }
 .dsn-strike {
   text-decoration: line-through;
@@ -746,7 +746,7 @@ const DSN_CSS = `
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--paper) 72%, transparent);
+  color: var(--paper);
   line-height: 1;
   white-space: nowrap;
 }
@@ -830,6 +830,9 @@ const DSN_CSS = `
   .dsn-dot-label,
   .dsn-rest.is-poked .dsn-rest-dot, .dsn-rest.is-poked .dsn-rest-shadow { animation: none !important; }
   .dsn-jargon, .dsn-strike::after, .dsn-plain, .dsn-plain-caption { transition: none !important; }
+  .dsn-jargon { color: var(--ink-soft); }
+  .dsn-strike { text-decoration-color: var(--accent); }
+  .dsn-plain, .dsn-plain-caption { opacity: 1; transform: none; }
 }
 `;
 
@@ -1229,7 +1232,7 @@ export default function DesignPage() {
               style={{ background: "var(--accent)" }}
             >
               <div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.06em] opacity-70">
+                <div className="font-mono text-[11px] uppercase tracking-[0.06em]">
                   Indigo &middot; brand primary
                 </div>
                 <div className="my-3 text-[clamp(34px,4.4vw,44px)] font-medium tracking-[-0.025em]" style={{ fontFeatureSettings: "'tnum'" }}>
@@ -1240,7 +1243,7 @@ export default function DesignPage() {
                   no second brand colour.
                 </div>
               </div>
-              <div className="mt-6 flex flex-wrap gap-5 font-mono text-[11px] opacity-75">
+              <div className="mt-6 flex flex-wrap gap-5 font-mono text-[11px]">
                 <span>oklch(0.51 0.24 273)</span>
                 <span>RGB 79 70 229</span>
                 <span>AA on white &middot; 6.3</span>

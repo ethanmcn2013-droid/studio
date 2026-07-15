@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "signal-experience-taxonomy/1",
+  "experienceClasses": [
+    {
+      "id": "customer-product",
+      "scope": "Tasks, Timeline, Signal, and Notes",
+      "audience": "customers, members, guests, and viewers"
+    },
+    {
+      "id": "company-public",
+      "scope": "Studio routes outside /hq*",
+      "audience": "public company and brand audiences"
+    },
+    {
+      "id": "founder-operator",
+      "scope": "Studio /hq*, explicit HQ surfaces, and Signal Review",
+      "audience": "founder, operator, and internal reviewer roles"
+    }
+  ],
+  "archetypes": [
+    { "id": "application-shell-and-navigation", "representatives": ["tasks.page.app", "studio.surface.site-navigation"] },
+    { "id": "dashboard-or-command-centre", "representatives": ["studio.page.hq", "signal.page.app"] },
+    { "id": "list-and-data-table", "representatives": ["tasks.page.app-list", "studio.page.hq-crm", "signal-review.surface.issue-panel"] },
+    { "id": "detail-or-record-view", "representatives": ["timeline.page.by-workspace-slug-by-project-slug", "notes.page.app"] },
+    { "id": "create-and-edit-form", "representatives": ["timeline.page.app-plan-by-project-slug", "studio.page.contact"] },
+    { "id": "editor-or-canvas", "representatives": ["timeline.page.app-plan-by-project-slug", "studio.page.hq-blueprint"] },
+    { "id": "review-and-approval-workspace", "representatives": ["studio.page.hq-experience-quality"] },
+    { "id": "search-and-command-interface", "representatives": ["studio.surface.hq-command-palette", "notes.page.app"] },
+    { "id": "settings-and-administration", "representatives": ["tasks.page.app-settings", "studio.page.hq-entitlements"] },
+    { "id": "onboarding-and-authentication", "representatives": ["signal.page.app-onboarding", "tasks.page.sign-in-by-sign-in"] },
+    { "id": "feedback-interruption-and-exception", "representatives": ["studio.state.root-error", "studio.state.root-not-found"] },
+    { "id": "public-information-and-proof", "representatives": ["studio.page.root", "timeline.page.the-wedding"] }
+  ]
+}

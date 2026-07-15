@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/experience-audit.json",
+  "title": "Signal Experience Audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "experienceId", "state", "breakpoint", "scores", "overallScore", "evidence", "reviewer", "reviewedAt", "pass"],
+  "properties": {
+    "id": { "type": "string" },
+    "experienceId": { "type": "string" },
+    "state": { "type": "string" },
+    "breakpoint": { "enum": ["mobile", "tablet", "desktop", "wide"] },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "interaction-quality",
+        "state-completeness",
+        "accessibility",
+        "responsive-behavior",
+        "performance-and-perceived-speed",
+        "design-system-coherence",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "properties": {
+        "purpose-and-task-clarity": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "information-architecture": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "visual-hierarchy": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "typography-and-content": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "layout-and-composition": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "interaction-quality": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "state-completeness": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "accessibility": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "responsive-behavior": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "performance-and-perceived-speed": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "design-system-coherence": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "brand-distinction-and-craft": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "implementation-fidelity": { "type": "integer", "minimum": 0, "maximum": 4 }
+      }
+    },
+    "overallScore": { "type": "number", "minimum": 0, "maximum": 4 },
+    "evidence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "reviewer": { "type": "string" },
+    "reviewedAt": { "type": "string", "format": "date" },
+    "pass": { "type": "boolean" }
+  }
+}

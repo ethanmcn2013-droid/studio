@@ -95,14 +95,14 @@ export function SuiteLauncher() {
           </Link>
 
           {/* Right: escape hatch text link */}
-          <a
+          <Link
             href="/?preview=public"
             className="text-[12px] text-ink-quiet hover:text-ink transition-colors"
             style={{ letterSpacing: "0.01em" }}
             aria-label="View the public marketing site"
           >
             View public site
-          </a>
+          </Link>
         </div>
       </header>
 

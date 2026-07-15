@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/design-system-conformance.json",
+  "title": "Signal design-system conformance ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "generatedAt", "repositories"],
+  "properties": {
+    "schemaVersion": { "const": "signal-design-system-conformance/1" },
+    "generatedAt": { "type": "string", "format": "date" },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "applicable", "status", "command", "evidence"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "applicable": { "type": "boolean" },
+          "status": { "enum": ["pass", "fail", "not-applicable"] },
+          "command": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "applicable": { "const": false } } },
+            "then": { "properties": { "status": { "const": "not-applicable" } } },
+            "else": { "properties": { "status": { "enum": ["pass", "fail"] } } }
+          }
+        ]
+      }
+    }
+  }
+}
