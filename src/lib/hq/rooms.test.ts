@@ -172,3 +172,19 @@ test("the /hq password gate stays in place and narrow", () => {
     "PUBLIC_HQ_PATHS grew beyond the access/logout pair — new public HQ paths need a decision record",
   );
 });
+
+test("the retired public review hub redirects into private HQ", () => {
+  const reviewPage = path.join(REPO_ROOT, "src", "app", "review", "page.tsx");
+  assert.equal(
+    existsSync(reviewPage),
+    false,
+    "src/app/review/page.tsx must not recreate a public Signal Review surface",
+  );
+
+  const nextConfig = readFileSync(path.join(REPO_ROOT, "next.config.ts"), "utf8");
+  assert.match(
+    nextConfig,
+    /source:\s*["']\/review["'][\s\S]*?destination:\s*["']\/hq\/experience-quality["'][\s\S]*?permanent:\s*false/,
+    "/review must remain a reversible redirect into the password-gated HQ quality room",
+  );
+});

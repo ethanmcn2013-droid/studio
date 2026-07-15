@@ -40,6 +40,22 @@ const browser = await chromium.launch({ headless: true });
 const failures = [];
 
 try {
+  const anonymousContext = await browser.newContext({
+    viewport: targets.mobile,
+    locale: "en-GB",
+    timezoneId: "Europe/London",
+    reducedMotion: "reduce",
+  });
+  const anonymousPage = await anonymousContext.newPage();
+  await anonymousPage.goto(`${baseUrl}/review`, { waitUntil: "domcontentloaded" });
+  const anonymousPath = new URL(anonymousPage.url()).pathname;
+  if (anonymousPath !== "/hq/access") {
+    failures.push(
+      `anonymous: /review resolved to ${anonymousPath}, expected the password-gated /hq/access`,
+    );
+  }
+  await anonymousContext.close();
+
   for (const [name, viewport] of Object.entries(targets)) {
     if (selectedTarget && name !== selectedTarget) continue;
     const context = await browser.newContext({ viewport, locale: "en-GB", timezoneId: "Europe/London", reducedMotion: "reduce" });

@@ -77,6 +77,14 @@ const nextConfig: NextConfig = {
         destination: "/design",
         permanent: true,
       },
+      {
+        // Signal Review is a private founder-operator instrument. Retire the
+        // legacy public review hub into the password-gated HQ quality room.
+        // Keep this temporary so the decision remains easy to reverse.
+        source: "/review",
+        destination: "/hq/experience-quality",
+        permanent: false,
+      },
     ];
   },
   experimental: {

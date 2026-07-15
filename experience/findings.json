@@ -47,7 +47,7 @@
       "owner": "tasks-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "Tasks registry validation, design-system conformance, type-check, and 32 tests pass after token replacement and chrome contract resealing."
+        "The merged-main Tasks release passes registry validation, design-system conformance, lint, type-check, 78 automated tests, four contract checks, and 46/46 rendered mobile/desktop checks; its local evidence contract covers 59 experiences, 315 state variants, and 236 breakpoint variants."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
@@ -73,7 +73,7 @@
       "owner": "timeline-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "Rendered mobile and desktop browser assertions pass for dialog semantics, focus containment, Escape dismissal, scroll lock, and focus return; Timeline build and 75 tests pass."
+        "Rendered mobile and desktop browser assertions pass for dialog semantics, focus containment, Escape dismissal, scroll lock, and focus return; the merged-main Timeline production build, 123 automated tests, four contract checks, and 9 experience tests pass."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
@@ -307,7 +307,7 @@
       "owner": "notes-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "Notes waitlist, SuiteHeader, and Blank Line target files now contain zero raw hex values and zero rogue easing values; the Notes design-system gate and 104/104 deterministic captures pass."
+        "Notes waitlist, SuiteHeader, and Blank Line target files now contain zero raw hex values and zero rogue easing values; the merged-main Notes design-system gate and 96/96 deterministic captures pass."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",

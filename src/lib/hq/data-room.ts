@@ -76,7 +76,7 @@ export const DATA_ROOM: DataRoomSection[] = [
     items: [
       { label: "Brand kit", note: "The live brand system + downloadable kit.", href: "/brand", state: "ready" },
       { label: "Product one-pagers", note: "Notes · Tasks · Timeline · Signal, one page each.", href: "/hq/one-pagers", state: "ready" },
-      { label: "Review hub", note: "Open all four products in demo mode.", href: "/review", state: "external" },
+      { label: "Experience quality", note: "Review the suite, findings, and evidence in the private operator room.", href: "/hq/experience-quality", state: "ready" },
     ],
   },
   {

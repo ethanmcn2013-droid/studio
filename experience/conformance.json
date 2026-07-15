@@ -13,8 +13,8 @@
       "id": "tasks",
       "applicable": true,
       "status": "pass",
-      "command": "node scripts/ds/ds-check.mjs",
-      "evidence": ["ds-check: clean - no drift"]
+      "command": "corepack pnpm ds:check",
+      "evidence": ["Merged-main Tasks passes design-system drift enforcement, 78 automated tests, four contract checks, and 46/46 rendered mobile/desktop checks; the local experience contract covers 59 experiences, 315 state variants, and 236 breakpoint variants."]
     },
     {
       "id": "timeline",
