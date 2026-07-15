@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { captureAuthentication } from "./capture-auth.mjs";
+import { captureAuthentication, prepareClerkTestingSession } from "./capture-auth.mjs";
 
 const item = {
   experienceId: "tasks.page.app",
@@ -38,6 +38,28 @@ test("authenticated captures resolve the isolated fixture without exposing it to
     fixture: "signal-experience-capture",
     email: "fixture@example.com",
   });
+});
+
+test("Clerk capture setup creates the testing token before any sign-in", async () => {
+  let received;
+  await prepareClerkTestingSession({
+    CLERK_SECRET_KEY: "sk_live_secret",
+    CLERK_PUBLISHABLE_KEY: "pk_live_public",
+  }, async (options) => {
+    received = options;
+  });
+  assert.deepEqual(received, {
+    secretKey: "sk_live_secret",
+    publishableKey: "pk_live_public",
+    dotenv: false,
+  });
+});
+
+test("Clerk capture setup fails closed before sign-in when either key is absent", async () => {
+  await assert.rejects(
+    prepareClerkTestingSession({ CLERK_SECRET_KEY: "sk_live_secret" }, async () => {}),
+    /CLERK_SECRET_KEY and CLERK_PUBLISHABLE_KEY/,
+  );
 });
 
 test("unknown authentication kinds fail closed", () => {

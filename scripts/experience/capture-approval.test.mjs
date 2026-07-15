@@ -6,7 +6,7 @@ import path from "node:path";
 import test from "node:test";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { approveExistingCandidates, capturePlanErrors } from "./capture-approval.mjs";
+import { approveExistingCandidates, capturePlanErrors, captureRunFailures } from "./capture-approval.mjs";
 
 const APPROVER = "Ethan McNamara (delegated to Codex)";
 const APPROVED_AT = "2026-07-15T21:30:00.000Z";
@@ -87,6 +87,28 @@ test("capture plan state must be declared by the registry", () => {
     }),
     ["studio.page.root: capture state populated is not declared in requiredStates (default)"],
   );
+});
+
+test("capture execution reports every failed cell so CI cannot stay green", () => {
+  assert.deepEqual(captureRunFailures([
+    {
+      experienceId: "tasks.page.app-board",
+      state: "default",
+      breakpoint: "mobile",
+      pass: false,
+      navigationError: "fixture sign-in failed",
+    },
+    {
+      experienceId: "studio.page.root",
+      state: "default",
+      breakpoint: "mobile",
+      pass: true,
+      navigationError: null,
+      status: 200,
+      accessibility: { blocking: 0 },
+      runtime: { overflowPixels: 0, consoleErrors: [], pageErrors: [] },
+    },
+  ]), ["tasks.page.app-board:default:mobile: navigation failed: fixture sign-in failed"]);
 });
 
 test("approval promotes the exact reviewed candidate and records per-result provenance", () =>

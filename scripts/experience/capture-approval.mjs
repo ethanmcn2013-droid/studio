@@ -40,8 +40,8 @@ function resultKey(result) {
 }
 
 function captureResultFailure(result) {
-  if (result.pass !== true) return "capture is not passing";
   if (result.navigationError) return `navigation failed: ${result.navigationError}`;
+  if (result.pass !== true) return "capture is not passing";
   if (!Number.isInteger(result.status) || result.status < 200 || result.status >= 300) {
     return `HTTP status is ${result.status ?? "missing"}`;
   }
@@ -54,6 +54,13 @@ function captureResultFailure(result) {
   if ((result.runtime?.consoleErrors?.length ?? 0) > 0) return "console errors are present";
   if ((result.runtime?.pageErrors?.length ?? 0) > 0) return "page errors are present";
   return null;
+}
+
+export function captureRunFailures(results) {
+  return results.flatMap((result) => {
+    const failure = captureResultFailure(result);
+    return failure ? [`${resultKey(result)}: ${failure}`] : [];
+  });
 }
 
 function matchingApprovedReview({ reviews, result, baselineRelative, approvedBy }) {
