@@ -7,6 +7,10 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-15 · S·127 · tightens · the partner card carries the final reverse
+
+**The Founding Partner card on `/design` now matches the object approved in Signal HQ: the solid-indigo, hand-numbered front turns to the paper founder-contact reverse with Ethan's name, the Limerick line, and the same-day reply promise.** The interim indigo reverse and its live-typeset copy are gone. The old `SIGNED` field stays gone, as decided in the final print artwork; the public specimen now uses the same front and back files as the internal review room.
+
 ## 2026-07-13 · S·126 · tightens · every room opens the same way
 
 **The twenty console, room, and library pages in HQ now share one header: back-link to their group, the indigo-dot eyebrow naming group and kind from the registry, one title, one standfirst, and a meta row — replacing four bespoke header families and their inline styles.** A rename in the registry now renames the page; the eyebrow and back-link cannot drift from the nav because they are the same data. Editorial titles survived the pass ("The Vault", "The one link.", "Nothing here took the easy route."), stat lines moved into the header's meta slot, and the functional furniture — the access console's tabs, the CRM due banner, the cap-table view toggle — stayed exactly where it was. Decks, galleries, and the org console remain exempt on purpose: artifacts own their composition.
