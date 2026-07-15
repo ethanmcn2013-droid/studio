@@ -200,6 +200,17 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["materials", "files"],
   },
   {
+    slug: "slide-30-review",
+    route: "/hq/slide-30-review",
+    name: "Slide 30 directions",
+    group: "make",
+    kind: "artifact",
+    lifecycle: "active",
+    summary: "Four retained market-entry directions, with the working deck selection marked.",
+    aliases: ["market entry slide", "proof mark", "founding partners"],
+    parent: "assets",
+  },
+  {
     slug: "asset-command",
     route: "/hq/asset-command",
     name: "Asset pipeline",

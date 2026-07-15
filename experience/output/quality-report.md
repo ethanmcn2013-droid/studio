@@ -1,4 +1,4 @@
-# Signal design quality report
+﻿# Signal design quality report
 
 Generated: 2026-07-16T00:36:09.444Z
 Status: **baseline-held**
@@ -27,7 +27,7 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 |---|---:|---:|---:|---:|---:|
 | customer-product | 138 | 56 | 0 | 0 | 0 |
 | company-public | 42 | 9 | 0 | 0 | 0 |
-| founder-operator | 61 | 9 | 0 | 0 | 0 |
+| founder-operator | 62 | 9 | 0 | 0 | 0 |
 
 ## Source systems
 
@@ -36,7 +36,7 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 | notes | 18 | 11 | 0 | 0 | 0 |
 | signal | 31 | 14 | 0 | 0 | 0 |
 | signal-review | 4 | 4 | 0 | 0 | 0 |
-| studio | 99 | 14 | 0 | 0 | 0 |
+| studio | 100 | 14 | 0 | 0 | 0 |
 | tasks | 59 | 20 | 0 | 0 | 0 |
 | timeline | 30 | 11 | 0 | 0 | 0 |
 

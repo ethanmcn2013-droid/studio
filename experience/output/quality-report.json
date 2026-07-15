@@ -1,4 +1,4 @@
-{
+﻿{
   "schemaVersion": "signal-design-quality-report/1",
   "generatedAt": "2026-07-16T00:36:09.444Z",
   "status": "baseline-held",
@@ -29,21 +29,21 @@
     "overallMinimum": 3.5
   },
   "inventory": {
-    "experiences": 241,
-    "stateVariants": 1183,
-    "breakpointVariants": 964,
+    "experiences": 242,
+    "stateVariants": 1187,
+    "breakpointVariants": 968,
     "products": {
       "notes": 18,
       "signal": 31,
       "signal-review": 4,
-      "studio": 99,
+      "studio": 100,
       "tasks": 59,
       "timeline": 30
     },
     "experienceClasses": {
       "customer-product": 138,
       "company-public": 42,
-      "founder-operator": 61
+      "founder-operator": 62
     },
     "archetypes": {
       "application-shell-and-navigation": 4,
@@ -55,7 +55,7 @@
       "list-and-data-table": 12,
       "onboarding-and-authentication": 14,
       "public-information-and-proof": 81,
-      "review-and-approval-workspace": 6,
+      "review-and-approval-workspace": 7,
       "search-and-command-interface": 4,
       "settings-and-administration": 13
     },
@@ -82,7 +82,7 @@
       "releaseBlocking": 0
     },
     "founder-operator": {
-      "experiences": 61,
+      "experiences": 62,
       "critical": 9,
       "passing": 0,
       "openFindings": 0,
@@ -112,7 +112,7 @@
       "releaseBlocking": 0
     },
     "studio": {
-      "experiences": 99,
+      "experiences": 100,
       "critical": 14,
       "passing": 0,
       "openFindings": 0,
@@ -244,7 +244,7 @@
   },
   "coverage": {
     "registry": {
-      "registered": 241,
+      "registered": 242,
       "validationErrors": 0
     },
     "states": {
@@ -285,7 +285,7 @@
   },
   "governance": {
     "underRemediation": 0,
-    "legacyExperiences": 241,
+    "legacyExperiences": 242,
     "acceptedExceptions": 0,
     "validAcceptedExceptions": 0,
     "activeExceptions": 0,
