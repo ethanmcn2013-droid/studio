@@ -1856,6 +1856,7 @@ body::after { content: none; }
    Period = umbrella + nouns. Middot = verbs.
    ════════════════════════════════════════════════════════════ */
 .brand-mark {
+  position: relative;
   display: inline-flex;
   align-items: baseline;
   font-family: var(--font-sans);

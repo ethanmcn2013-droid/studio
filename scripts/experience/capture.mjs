@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
 import {
-  copyFileSync,
   existsSync,
   mkdirSync,
   readFileSync,
@@ -12,12 +11,24 @@ import AxeBuilder from "@axe-core/playwright";
 import { chromium } from "@playwright/test";
 import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
+import {
+  approvalProvenanceForBaseline,
+  approveExistingCandidates,
+  capturePlanErrors,
+  manifestApprovedBy,
+} from "./capture-approval.mjs";
+import {
+  captureAuthentication,
+  signInForCapture,
+} from "./capture-auth.mjs";
 
 const ROOT = process.cwd();
 const EXPERIENCE = path.join(ROOT, "experience");
 const OUTPUT = path.join(EXPERIENCE, "output");
 const args = new Set(process.argv.slice(2));
 const approve = args.has("--approve");
+const publicOnly = args.has("--public-only");
+const protectedOnly = args.has("--protected-only");
 const selectedBreakpoint = process.argv.find((arg) => arg.startsWith("--breakpoint="))?.split("=")[1];
 const selectedExperience = process.argv.find((arg) => arg.startsWith("--experience="))?.split("=")[1];
 
@@ -27,28 +38,100 @@ const config = readJson(path.join(EXPERIENCE, "config.json"));
 const registry = readJson(path.join(EXPERIENCE, "registry.json"));
 const registryById = new Map(registry.experiences.map((entry) => [entry.id, entry]));
 
-if (approve && !process.env.SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY) {
-  console.error("experience:capture: --approve requires SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY");
+if (publicOnly && protectedOnly) {
+  console.error("experience:capture: --public-only and --protected-only are mutually exclusive");
   process.exit(1);
 }
 
-for (const item of plan.pilotSet) {
-  if (!registryById.has(item.experienceId)) {
-    console.error(`experience:capture: unknown experience ${item.experienceId}`);
-    process.exit(1);
-  }
+const planErrors = capturePlanErrors({ plan, registry });
+if (planErrors.length) {
+  console.error(`experience:capture: invalid capture plan\n${planErrors.map((error) => `  x ${error}`).join("\n")}`);
+  process.exit(1);
 }
 
 function hashFile(file) {
   return createHash("sha256").update(readFileSync(file)).digest("hex");
 }
 
-function resolveUrl(item) {
+function resolveProductUrl(item, sourceUrl) {
   const product = registryById.get(item.experienceId).product;
   const override = process.env[`EXPERIENCE_BASE_URL_${product.replaceAll("-", "_").toUpperCase()}`];
-  if (!override) return item.url;
-  const route = new URL(item.url).pathname + new URL(item.url).search;
+  if (!override) return sourceUrl;
+  const parsed = new URL(sourceUrl);
+  const route = parsed.pathname + parsed.search;
   return `${override.replace(/\/$/, "")}${route}`;
+}
+
+function resolveUrl(item) {
+  if (item.authentication?.kind === "hq-password" && process.env.EXPERIENCE_HQ_URL?.trim()) {
+    return process.env.EXPERIENCE_HQ_URL.trim();
+  }
+  return resolveProductUrl(item, item.url);
+}
+
+async function waitForRenderedAssets(page) {
+  await page.evaluate(async () => {
+    if (document.fonts?.ready) await document.fonts.ready;
+
+    const inViewport = (element) => {
+      const rect = element.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.right > 0 && rect.top < innerHeight && rect.left < innerWidth;
+    };
+    const decodeImage = async (image) => {
+      await Promise.race([
+        (async () => {
+          if (!image.complete) {
+            await new Promise((resolve, reject) => {
+              image.addEventListener("load", resolve, { once: true });
+              image.addEventListener("error", () => reject(new Error(`image failed to load: ${image.currentSrc || image.src}`)), { once: true });
+            });
+          }
+          if (!image.naturalWidth) throw new Error(`image has no rendered pixels: ${image.currentSrc || image.src}`);
+          if (typeof image.decode === "function") await image.decode();
+        })(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error(`image timed out: ${image.currentSrc || image.src}`)), 10_000)),
+      ]);
+    };
+
+    const posterImages = [...document.querySelectorAll("video[poster]")].filter(inViewport).map((video) => {
+      const image = new Image();
+      image.src = new URL(video.getAttribute("poster"), document.baseURI).href;
+      return image;
+    });
+    await Promise.all([...document.images].filter(inViewport).concat(posterImages).map(decodeImage));
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
+}
+
+async function prepareDeterministicMedia(page) {
+  await page.evaluate(async () => {
+    const videos = [...document.querySelectorAll("video")].filter((video) => {
+      const rect = video.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.right > 0 && rect.top < innerHeight && rect.left < innerWidth;
+    });
+    for (const video of videos) {
+      if (video.readyState === 0) {
+        await new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => reject(new Error("video metadata did not load")), 10_000);
+          video.addEventListener("loadedmetadata", () => {
+            clearTimeout(timeout);
+            resolve();
+          }, { once: true });
+          video.addEventListener("error", () => {
+            clearTimeout(timeout);
+            reject(new Error("video metadata failed to load"));
+          }, { once: true });
+        });
+      }
+      video.pause();
+      if (video.currentTime !== 0) video.currentTime = 0;
+    }
+  });
+  const controlledVideos = page.locator("video[controls]");
+  if ((await controlledVideos.count()) > 0) {
+    await controlledVideos.first().hover({ position: { x: 8, y: 8 } });
+    await page.waitForTimeout(150);
+  }
 }
 
 function comparePng(candidateFile, baselineFile, diffFile) {
@@ -75,13 +158,45 @@ function comparePng(candidateFile, baselineFile, diffFile) {
   return { state: changedPixels === 0 ? "unchanged" : "changed", changedPixels, ratio };
 }
 
-mkdirSync(path.join(OUTPUT, "screenshots"), { recursive: true });
-mkdirSync(path.join(OUTPUT, "diffs"), { recursive: true });
-const browser = await chromium.launch({ headless: true });
 const existingManifestFile = path.join(OUTPUT, "capture-manifest.json");
 const previousResults = existsSync(existingManifestFile)
   ? JSON.parse(readFileSync(existingManifestFile, "utf8")).results ?? []
   : [];
+
+if (approve) {
+  if (!process.env.SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY) {
+    console.error("experience:capture: --approve requires SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY");
+    process.exit(1);
+  }
+  if (!existsSync(existingManifestFile)) {
+    console.error("experience:capture: --approve requires an existing capture manifest");
+    process.exit(1);
+  }
+  try {
+    const manifest = readJson(existingManifestFile);
+    const reviews = readJson(path.join(EXPERIENCE, "reviews.json"));
+    const approvedManifest = approveExistingCandidates({
+      experienceRoot: EXPERIENCE,
+      outputRoot: OUTPUT,
+      manifest,
+      reviews,
+      registry,
+      approvedBy: process.env.SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY,
+      selectedExperience,
+      selectedBreakpoint,
+    });
+    writeFileSync(existingManifestFile, `${JSON.stringify(approvedManifest, null, 2)}\n`);
+    console.log(JSON.stringify(approvedManifest.summary, null, 2));
+    process.exit(0);
+  } catch (error) {
+    console.error(`experience:capture: approval refused: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
+}
+
+mkdirSync(path.join(OUTPUT, "screenshots"), { recursive: true });
+mkdirSync(path.join(OUTPUT, "diffs"), { recursive: true });
+const browser = await chromium.launch({ headless: true });
 const results = previousResults.filter((result) => {
   const experienceWillRun = !selectedExperience || result.experienceId === selectedExperience;
   const breakpointWillRun = !selectedBreakpoint || result.breakpoint === selectedBreakpoint;
@@ -91,6 +206,8 @@ const results = previousResults.filter((result) => {
 try {
   for (const item of plan.pilotSet) {
     if (selectedExperience && item.experienceId !== selectedExperience) continue;
+    if (publicOnly && item.authentication) continue;
+    if (protectedOnly && !item.authentication) continue;
     for (const [breakpoint, viewport] of Object.entries(config.breakpoints)) {
       if (selectedBreakpoint && breakpoint !== selectedBreakpoint) continue;
       const context = await browser.newContext({
@@ -111,12 +228,30 @@ try {
       const url = resolveUrl(item);
       let response = null;
       let navigationError = null;
+      let authentication = null;
       try {
+        authentication = captureAuthentication(item);
+        if (authentication) {
+          await signInForCapture({
+            page,
+            authentication,
+            signInUrl: resolveProductUrl(item, authentication.signInUrl),
+          });
+          consoleErrors.length = 0;
+          pageErrors.length = 0;
+        }
         response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
+        const expectedPath = new URL(url).pathname.replace(/\/$/, "") || "/";
+        const actualPath = new URL(page.url()).pathname.replace(/\/$/, "") || "/";
+        if (actualPath !== expectedPath) {
+          throw new Error(`unexpected final route ${actualPath}; expected ${expectedPath}`);
+        }
         await page.addStyleTag({
-          content: "*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;caret-color:transparent!important}html{scroll-behavior:auto!important}",
+          content: "*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;caret-color:transparent!important}html{scroll-behavior:auto!important}video::-webkit-media-controls-timeline{visibility:hidden!important}",
         });
+        await waitForRenderedAssets(page);
         await page.waitForTimeout(plan.determinism.settleMilliseconds);
+        await prepareDeterministicMedia(page);
       } catch (error) {
         navigationError = error instanceof Error ? error.message : String(error);
       }
@@ -128,6 +263,12 @@ try {
       const candidateFile = path.join(OUTPUT, candidateRelative);
       const baselineFile = path.join(EXPERIENCE, baselineRelative);
       const diffFile = path.join(OUTPUT, diffRelative);
+      const previousResult = previousResults.find(
+        (result) =>
+          result.experienceId === item.experienceId &&
+          result.state === item.state &&
+          result.breakpoint === breakpoint,
+      );
       mkdirSync(path.dirname(candidateFile), { recursive: true });
       if (!navigationError) {
         await page.screenshot({ path: candidateFile, animations: "disabled", fullPage: false });
@@ -157,11 +298,6 @@ try {
       const visual = navigationError
         ? { state: "not-captured", changedPixels: null, ratio: null }
         : comparePng(candidateFile, baselineFile, diffFile);
-      if (approve && !navigationError) {
-        mkdirSync(path.dirname(baselineFile), { recursive: true });
-        copyFileSync(candidateFile, baselineFile);
-        visual.state = "approved";
-      }
 
       const blockingAxe = axe.violations.filter((violation) =>
         ["serious", "critical"].includes(violation.impact ?? ""),
@@ -195,12 +331,16 @@ try {
           })),
         },
         runtime: { ...runtime, consoleErrors, pageErrors },
+        authentication: authentication
+          ? { kind: authentication.kind, fixture: authentication.fixture, authenticated: !navigationError }
+          : null,
         pass:
           !navigationError &&
           Boolean(response?.ok()) &&
           runtime.overflowPixels === 0 &&
           blockingAxe.length === 0 &&
           pageErrors.length === 0,
+        ...approvalProvenanceForBaseline({ previousResult, baselineFile }),
       });
       await context.close();
       process.stdout.write(`${item.experienceId} ${breakpoint}: ${results.at(-1).pass ? "pass" : "review"}\n`);
@@ -213,14 +353,14 @@ try {
 const manifest = {
   schemaVersion: "signal-experience-capture/1",
   capturedAt: new Date().toISOString(),
-  approvedBy: approve ? process.env.SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY : null,
+  approvedBy: manifestApprovedBy(results),
   determinism: plan.determinism,
   summary: {
     captures: results.length,
     passing: results.filter((result) => result.pass).length,
     requiringReview: results.filter((result) => !result.pass).length,
     visualChanges: results.filter((result) => result.visual.state === "changed").length,
-    missingBaselines: results.filter((result) => result.visual.state === "missing").length,
+    missingBaselines: results.filter((result) => !result.baselineScreenshot).length,
   },
   results,
 };

@@ -1,6 +1,6 @@
 # ADR: Central quality, federated enforcement
 
-- Status: Proposed pending founder approval of the [Signal Experience Standard](./SIGNAL_EXPERIENCE_STANDARD.md)
+- Status: Accepted by the founder on 2026-07-15 under the [Signal Experience Standard](./SIGNAL_EXPERIENCE_STANDARD.md)
 - Date: 2026-07-15
 - Decision owner: Signal Studio HQ
 - Scope: four customer products (Tasks, Timeline, Signal, Notes), the Studio company surface, and private founder-operator tooling (Signal HQ and Signal Review)

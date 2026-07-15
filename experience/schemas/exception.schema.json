@@ -4,12 +4,20 @@
   "title": "Signal Experience Exception",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "rationale", "owner", "scope", "approvalSource", "expiresAt", "remediationPlan"],
+  "required": ["id", "findingIds", "rationale", "owner", "scope", "approvedBy", "approvedAt", "approvalSource", "expiresAt", "remediationPlan"],
   "properties": {
     "id": { "type": "string", "pattern": "^exception-[a-z0-9-]+$" },
+    "findingIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^dq-[a-z0-9-]+$" }
+    },
     "rationale": { "type": "string", "minLength": 1 },
     "owner": { "type": "string", "minLength": 1 },
     "scope": { "type": "string", "minLength": 1 },
+    "approvedBy": { "const": "founder" },
+    "approvedAt": { "type": "string", "format": "date" },
     "approvalSource": { "type": "string", "minLength": 1 },
     "expiresAt": { "type": "string", "format": "date" },
     "remediationPlan": { "type": "string", "minLength": 1 }

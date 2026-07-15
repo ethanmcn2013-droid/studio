@@ -52,8 +52,34 @@
         "primaryJob": { "type": "string", "minLength": 1 },
         "primaryAction": { "type": "string", "minLength": 1 },
         "roles": { "type": "array", "minItems": 1, "items": { "type": "string" } },
-        "requiredStates": { "type": "array", "minItems": 1, "items": { "type": "string" } },
-        "requiredBreakpoints": { "type": "array", "minItems": 4, "items": { "enum": ["mobile", "tablet", "desktop", "wide"] } },
+        "requiredStates": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "default",
+              "first-use",
+              "empty",
+              "populated",
+              "loading",
+              "slow-loading",
+              "partial-failure",
+              "error",
+              "success",
+              "restricted",
+              "disabled",
+              "read-only",
+              "dense",
+              "long-content",
+              "saved",
+              "unsaved",
+              "reduced-motion",
+              "keyboard-only"
+            ]
+          }
+        },
+        "requiredBreakpoints": { "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["mobile", "tablet", "desktop", "wide"] } },
         "componentDependencies": { "type": "array", "items": { "type": "string" } },
         "patternDependencies": { "type": "array", "items": { "type": "string" } },
         "reviewTier": { "enum": ["critical", "core", "supporting"] },
@@ -69,7 +95,7 @@
         "fixtureCoverage": { "$ref": "#/$defs/coverage" },
         "lastReviewedAt": { "type": ["string", "null"] },
         "approvedBaselineReference": { "type": ["string", "null"] },
-        "intentionalExceptions": { "type": "array" },
+        "intentionalExceptions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^exception-[a-z0-9-]+$" } },
         "materialityHash": { "type": "string", "pattern": "^[a-f0-9]{16}$" }
       },
       "anyOf": [{ "required": ["route"] }, { "required": ["trigger"] }]

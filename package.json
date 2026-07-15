@@ -37,8 +37,9 @@
     "budgets:check": "node scripts/check-launch-budgets.mjs",
     "experience:discover": "node scripts/experience/discover.mjs",
     "experience:validate": "node scripts/experience/validate.mjs",
-    "experience:self-test": "node scripts/experience/schema-validate.mjs && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs",
+    "experience:self-test": "node scripts/experience/schema-validate.mjs && node --test scripts/experience/schema-contract.test.mjs scripts/experience/gate.test.mjs scripts/experience/capture-approval.test.mjs scripts/experience/capture-auth.test.mjs scripts/experience/founder-evidence.test.mjs && tsx --test src/lib/experience-quality/types.test.ts && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs",
     "experience:capture": "node scripts/experience/capture.mjs",
+    "experience:founder-evidence": "node scripts/experience/founder-evidence.mjs",
     "experience:audit": "node scripts/experience/audit.mjs",
     "experience:report": "node scripts/experience/audit.mjs",
     "experience:ingest-review": "node scripts/experience/adapters/signal-review.mjs",
@@ -60,6 +61,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
+    "@clerk/testing": "^2.2.9",
     "@eslint/eslintrc": "^3.3.5",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
