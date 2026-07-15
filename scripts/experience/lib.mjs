@@ -310,12 +310,42 @@ function baseEntry({ product, surfaceType, route, trigger, source, sourceFile, o
   };
 }
 
-function sourceRelative(workspaceRoot, sourceFile) {
-  return path.relative(workspaceRoot, sourceFile).split(path.sep).join("/");
+function productRepoRoot({ workspaceRoot, studioRoot, product }) {
+  if (product.id === "studio") {
+    if (!studioRoot) throw new Error("studioRoot is required when discovering the Studio product");
+    return path.resolve(studioRoot);
+  }
+  return path.join(workspaceRoot, product.directory);
 }
 
-export function discoverProduct({ workspaceRoot, product }) {
-  const repoRoot = path.join(workspaceRoot, product.directory);
+function canonicalProductSource({ repoRoot, product, sourceFile }) {
+  const relative = path.relative(repoRoot, sourceFile).split(path.sep).join("/");
+  return `${product.directory}/${relative}`;
+}
+
+function explicitSourceFile({ workspaceRoot, studioRoot, productsById, surface }) {
+  const product = productsById.get(surface.product);
+  if (!product) return path.join(workspaceRoot, surface.source.replaceAll("/", path.sep));
+
+  const repoRoot = productRepoRoot({ workspaceRoot, studioRoot, product });
+  const canonicalPrefix = `${product.directory}/`;
+  const relative = surface.source.startsWith(canonicalPrefix)
+    ? surface.source.slice(canonicalPrefix.length)
+    : surface.source;
+  return path.join(repoRoot, relative.replaceAll("/", path.sep));
+}
+
+function registeredSourceFile({ studioRoot, entry }) {
+  const normalized = entry.source.replaceAll("\\", "/");
+  if (entry.product === "studio") {
+    const relative = normalized.startsWith("studio/") ? normalized.slice("studio/".length) : normalized;
+    return path.join(path.resolve(studioRoot), relative.replaceAll("/", path.sep));
+  }
+  return path.join(path.resolve(studioRoot, ".."), normalized.replaceAll("/", path.sep));
+}
+
+export function discoverProduct({ workspaceRoot, studioRoot, product }) {
+  const repoRoot = productRepoRoot({ workspaceRoot, studioRoot, product });
   const appRoot = path.join(repoRoot, "src", "app");
   if (!existsSync(appRoot)) return [];
   const entries = [];
@@ -342,7 +372,7 @@ export function discoverProduct({ workspaceRoot, product }) {
         product: product.id,
         surfaceType,
         route,
-        source: sourceRelative(workspaceRoot, file),
+        source: canonicalProductSource({ repoRoot, product, sourceFile: file }),
         sourceFile: file,
         overrides: {
           id: `${product.id}.${kind}.${suffix}`,
@@ -362,7 +392,7 @@ export function discoverProduct({ workspaceRoot, product }) {
           product: product.id,
           surfaceType: "page",
           route,
-          source: sourceRelative(workspaceRoot, file),
+          source: canonicalProductSource({ repoRoot, product, sourceFile: file }),
           sourceFile: file,
           overrides: {
             id: `${product.id}.artifact.${routeSlug(route)}`,
@@ -382,9 +412,10 @@ export function discoverProduct({ workspaceRoot, product }) {
   return entries.sort((a, b) => a.id.localeCompare(b.id));
 }
 
-function explicitEntries({ workspaceRoot, explicit }) {
+function explicitEntries({ workspaceRoot, studioRoot, config, explicit }) {
+  const productsById = new Map(config.products.map((product) => [product.id, product]));
   return explicit.surfaces.map((surface) => {
-    const sourceFile = path.join(workspaceRoot, surface.source.replaceAll("/", path.sep));
+    const sourceFile = explicitSourceFile({ workspaceRoot, studioRoot, productsById, surface });
     return baseEntry({
       product: surface.product,
       surfaceType: surface.surfaceType,
@@ -426,8 +457,8 @@ const OVERRIDABLE_FIELDS = new Set([
 export function discoverRegistry({ studioRoot, config, explicit, overrides = { experiences: {} } }) {
   const workspaceRoot = path.resolve(studioRoot, "..");
   const discovered = [
-    ...config.products.flatMap((product) => discoverProduct({ workspaceRoot, product })),
-    ...explicitEntries({ workspaceRoot, explicit }),
+    ...config.products.flatMap((product) => discoverProduct({ workspaceRoot, studioRoot, product })),
+    ...explicitEntries({ workspaceRoot, studioRoot, config, explicit }),
   ].sort((a, b) => a.id.localeCompare(b.id));
   const experiences = discovered.map((entry) => {
     const candidate = overrides.experiences?.[entry.id] ?? {};
@@ -542,7 +573,7 @@ export function validateRegistry({ registry, discovered, findings, exceptions, s
   }
   for (const [id, entry] of registeredById) {
     if (!discoveredById.has(id)) errors.push(`${id}: registered experience is obsolete (${entry.source})`);
-    const absolute = path.join(path.resolve(studioRoot, ".."), entry.source.replaceAll("/", path.sep));
+    const absolute = registeredSourceFile({ studioRoot, entry });
     if (!existsSync(absolute)) errors.push(`${id}: broken source reference ${entry.source}`);
   }
   return errors;

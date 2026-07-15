@@ -37,7 +37,7 @@
     "budgets:check": "node scripts/check-launch-budgets.mjs",
     "experience:discover": "node scripts/experience/discover.mjs",
     "experience:validate": "node scripts/experience/validate.mjs",
-    "experience:self-test": "node scripts/experience/schema-validate.mjs && node --test scripts/experience/schema-contract.test.mjs scripts/experience/gate.test.mjs scripts/experience/capture-approval.test.mjs scripts/experience/capture-auth.test.mjs scripts/experience/founder-evidence.test.mjs && tsx --test src/lib/experience-quality/types.test.ts && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs",
+    "experience:self-test": "node scripts/experience/schema-validate.mjs && node --test scripts/experience/schema-contract.test.mjs scripts/experience/gate.test.mjs scripts/experience/capture-approval.test.mjs scripts/experience/capture-auth.test.mjs scripts/experience/discovery-paths.test.mjs scripts/experience/founder-evidence.test.mjs && tsx --test src/lib/experience-quality/types.test.ts && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs",
     "experience:capture": "node scripts/experience/capture.mjs",
     "experience:founder-evidence": "node scripts/experience/founder-evidence.mjs",
     "experience:audit": "node scripts/experience/audit.mjs",
