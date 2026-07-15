@@ -2532,6 +2532,184 @@
     line-height: 16px !important;
   }
 
+  /* Slide 30 · The Proof Mark */
+  .fp-proof-slide {
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+    background: #faf9f5;
+    color: var(--ink);
+  }
+  .fp-proof-slide::before,
+  .fp-proof-slide::after {
+    display: none !important;
+  }
+  .fp-proof-grid {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 675px;
+    opacity: 0.34;
+    background-image:
+      linear-gradient(rgba(79, 70, 229, 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79, 70, 229, 0.14) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: linear-gradient(to left, #000 52%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 52%, transparent 100%);
+  }
+  .fp-proof-brand {
+    position: absolute;
+    z-index: 2;
+    top: 47px;
+    left: 62px;
+    font-size: 23px;
+    line-height: 1;
+    font-weight: 650;
+    letter-spacing: -0.045em;
+  }
+  .fp-proof-brand span { color: var(--indigo); }
+  .fp-proof-index {
+    position: absolute;
+    z-index: 2;
+    top: 51px;
+    right: 61px;
+    color: var(--ink-45);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+  }
+  .fp-proof-rule {
+    position: absolute;
+    z-index: 2;
+    top: 83px;
+    right: 61px;
+    left: 62px;
+    height: 1px;
+    background: rgba(17, 17, 17, 0.16);
+  }
+  .fp-proof-copy {
+    position: absolute;
+    z-index: 2;
+    top: 139px;
+    left: 62px;
+    width: 610px;
+  }
+  .fp-proof-eyebrow {
+    margin-bottom: 20px;
+    color: var(--indigo);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .fp-proof-title {
+    margin: 0;
+    color: var(--ink);
+    font-size: 66px;
+    font-weight: 650;
+    letter-spacing: -0.065em;
+    line-height: 0.96;
+  }
+  .fp-proof-title em {
+    color: var(--indigo);
+    font-style: normal;
+  }
+  .fp-proof-copy p {
+    width: 515px;
+    margin: 28px 0 0;
+    color: var(--ink-60);
+    font-size: 18px;
+    line-height: 1.48;
+    letter-spacing: -0.012em;
+  }
+  .fp-proof-number {
+    position: absolute;
+    z-index: 1;
+    top: 117px;
+    right: 59px;
+    width: 402px;
+    height: 402px;
+    display: grid;
+    place-items: center;
+  }
+  .fp-proof-number::before,
+  .fp-proof-number::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .fp-proof-number::before {
+    inset: 10px;
+    border: 1px solid rgba(79, 70, 229, 0.22);
+  }
+  .fp-proof-number::after {
+    inset: 34px;
+    border: 1px dashed rgba(79, 70, 229, 0.34);
+  }
+  .fp-proof-number > span {
+    position: relative;
+    z-index: 1;
+    color: var(--indigo);
+    font-size: 224px;
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.095em;
+    transform: translateX(-9px);
+  }
+  .fp-proof-ring {
+    position: absolute;
+    z-index: 2;
+    right: 19px;
+    bottom: 52px;
+    width: 74px;
+    height: 74px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    font-family: var(--mono);
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+    letter-spacing: 0.12em;
+  }
+  .fp-proof-footer {
+    position: absolute;
+    z-index: 2;
+    right: 61px;
+    bottom: 41px;
+    left: 62px;
+    display: grid;
+    grid-template-columns: 0.82fr 1.05fr 1.18fr;
+    gap: 34px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(17, 17, 17, 0.2);
+  }
+  .fp-proof-footer dt {
+    margin: 0 0 7px;
+    color: var(--ink-45);
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .fp-proof-footer dd {
+    margin: 0;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 580;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .fp-proof-footer dd span { color: var(--indigo); }
+
   @media print {
     .deck-route-switch, .route-stamp { display: none !important; }
   }
@@ -3810,37 +3988,37 @@
 </section>
 
 <!-- ════════════════════ 30 · FOUNDING LIMERICK PARTNERS ════════════════════ -->
-<section class="slide">
-  <img class="full-canvas-artifact" src="assets/deck-v2/founding-partner-certificate.svg" alt="Numbered Signal Venue Edition Founding Partner certificate for the first-fifteen Limerick feedback cohort at the fixed €1,500 annual prepaid price.">
-  <div class="slide-inner">
-    <div class="slide-eyebrow">Limerick Proof · Founding Partners</div>
-    <h2 class="slide-title">Fifteen founding venues create the first proof layer.</h2>
-    <div class="two-col" style="grid-template-columns: 1.05fr 0.95fr;">
-      <div>
-        <p class="body">The first fifteen paid Limerick venues keep the fixed €1,500 price for life, gain a direct feedback line, and may join the launch story with permission.</p>
-        <div class="signal-box" style="margin-top:14px;">
-          <div class="sb-k">The invitation, in one line</div>
-          <p class="sb-v">"Help shape a product built in Limerick."</p>
-        </div>
-        <div class="not-list" style="margin-top:14px;">
-          <div class="not-row"><div class="nt-k">Invite-only</div><div class="nt-v">Founder-issued in person. No public application.</div></div>
-          <div class="not-row"><div class="nt-k">Feedback cohort only</div><div class="nt-v">The cohort closes at fifteen. The Year 1 venue target remains 100.</div></div>
-          <div class="not-row"><div class="nt-k">Same fixed price</div><div class="nt-v">€1,500 annually, prepaid, the same Venue Edition offer.</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="archetype-rows">
-          <div class="archetype-row"><div class="ar-who">Cohort</div><div class="ar-what">Twenty-five local partners keep the first feedback loop close. This is a proof design, not a commercial ceiling.</div></div>
-          <div class="archetype-row"><div class="ar-who">Ownership</div><div class="ar-what">Participating partners can shape workflow and language. Their input is logged; adoption and advocacy must be earned.</div></div>
-          <div class="archetype-row"><div class="ar-who">Case studies</div><div class="ar-what">With permission, documented outcomes become named evidence for the five-market pipeline.</div></div>
-          <div class="archetype-row"><div class="ar-who">Refinement</div><div class="ar-what">Participating operators test onboarding, vocabulary, and workflows against real venue conditions.</div></div>
-          <div class="archetype-row"><div class="ar-who">Advocacy</div><div class="ar-what">If a partner is satisfied, ask once for a warm introduction. Referrals are an outcome to earn, not assume.</div></div>
-        </div>
-      </div>
-    </div>
+<section class="slide fp-proof-slide">
+  <div class="fp-proof-grid" aria-hidden="true"></div>
+  <div class="fp-proof-brand">signal studio<span>.</span></div>
+  <div class="fp-proof-index">30 / MARKET ENTRY</div>
+  <div class="fp-proof-rule" aria-hidden="true"></div>
+
+  <div class="fp-proof-copy">
+    <div class="fp-proof-eyebrow">Limerick proof · Venue Edition</div>
+    <h2 class="fp-proof-title">The first <em>25</em><br>shape the standard.</h2>
+    <p>Twenty-five founding venues. One close feedback loop. Real operating evidence before five-market scale.</p>
   </div>
-  <div class="slide-label">signal studio · market entry, brand &amp; growth 2026-2028</div>
-  <div class="slide-num">30</div>
+
+  <div class="fp-proof-number" aria-label="25 founding venues">
+    <span aria-hidden="true">25</span>
+    <div class="fp-proof-ring">FOUNDING<br>PARTNERS</div>
+  </div>
+
+  <dl class="fp-proof-footer">
+    <div>
+      <dt>The offer</dt>
+      <dd><span>€1,500</span> annually · prepaid</dd>
+    </div>
+    <div>
+      <dt>The promise</dt>
+      <dd>Direct founder access · fixed founding price</dd>
+    </div>
+    <div>
+      <dt>The invitation</dt>
+      <dd>Help shape a product built in Limerick.</dd>
+    </div>
+  </dl>
 </section>
 
 <!-- ════════════════════ 31 · THREE-WEDGE SALES OBJECTS ════════════════════ -->

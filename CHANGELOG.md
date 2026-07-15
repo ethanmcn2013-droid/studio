@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-15 · S·125 · tightens · Slide 30 becomes the proof mark
+
+**The market-entry deck's founding-partner slide now leads with the actual proof object: twenty-five Limerick venues, one close feedback loop, and the fixed €1,500 annual prepaid offer.** The old certificate overlay and mixed fifteen/twenty-five language are gone. The slide is native deck HTML and CSS, so it stays sharp in presentation and print.
+
+Signal HQ now holds the four retained directions under Assets. Option 01 is the working deck slide; Indigo Edition, the Founding Ledger, and Founder's Circle remain visible as considered alternatives rather than disappearing into a scratch folder.
+
 ## 2026-07-11 · S·124 · holds · Venue Edition is one price
 
 **Venue Edition now holds at €1,500 per venue, per year, prepaid: no size band, no multi-site ladder, and no operator field that can quietly negotiate another number.** The public venue page and structured offer, HQ onboarding and cash writer, current strategy and outbound copy, venue collateral, lender pack, growth deck, pitch deck, and forecast all carry the same fixed amount. Historical cash rows and dated decisions stay exact rather than being rewritten to look tidy.

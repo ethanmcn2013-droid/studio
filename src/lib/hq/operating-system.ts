@@ -386,6 +386,18 @@ export const HQ_ASSETS: HqAsset[] = [
     note: "Ink, Indigo, Paper, Duo (black/indigo), The Dot, Broadcast, each duplex, print-ready, fronts and backs mix freely. Founder picks; the printer gets one file.",
   },
   {
+    id: "market-entry-slide-30-directions",
+    title: "Market-entry Slide 30, four retained directions",
+    group: "brand",
+    audience: ["founder", "marketing", "shareholder"],
+    state: "needs-review",
+    owner: "Founder / Brand",
+    href: "/hq/slide-30-review",
+    source: "public/brand/collateral/explorations/slide-30",
+    action: "Review directions",
+    note: "Options 01, 02, 03, and 05 retained. Option 01 is now the working Slide 30; the other three remain as considered alternatives.",
+  },
+  {
     id: "collateral-venue",
     title: "Venue set, one-pager + leave-behind",
     group: "sales",
