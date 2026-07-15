@@ -126,6 +126,7 @@ export default async function ExperienceQualityPage({
   const passing = registry.experiences.filter((entry) => entry.auditStatus === "passing").length;
   const capturePassing = capture?.summary.passing ?? 0;
   const baselineStatus = report?.status ?? "not-generated";
+  const goldenStatus = report?.goldenSet.status ?? "not-generated";
   const classCounts = Object.fromEntries(
     Object.keys(EXPERIENCE_CLASS_LABELS).map((id) => [
       id,
@@ -148,7 +149,7 @@ export default async function ExperienceQualityPage({
           <div className={styles.verdict} data-state={baselineStatus}>
             <span>Current verdict</span>
             <strong>{passing ? `${passing} Studio-grade surfaces` : "Baseline registered. Quality not yet proven."}</strong>
-            <small>{openFindings.length} open findings · golden set provisional · not launch approval</small>
+            <small>{openFindings.length} open findings · golden set {goldenStatus} · not launch approval</small>
           </div>
         </div>
       </header>
@@ -173,7 +174,9 @@ export default async function ExperienceQualityPage({
         {evidence.length ? (
           <div className={styles.evidenceGrid}>
             {evidence.map((item) => {
-              const image = evidenceUrl(item.candidateScreenshot, "candidate");
+              const candidateImage = evidenceUrl(item.candidateScreenshot, "candidate");
+              const baselineImage = evidenceUrl(item.baselineScreenshot, "baseline");
+              const image = candidateImage ?? baselineImage;
               return (
                 <article className={styles.evidenceCard} key={`${item.experienceId}-${item.breakpoint}`}>
                   <div className={styles.captureFrame}>
@@ -189,7 +192,9 @@ export default async function ExperienceQualityPage({
                   </div>
                   <div className={styles.captureMeta}>
                     <span>{PRODUCT_LABELS[item.product] ?? item.product} / {item.breakpoint}</span>
-                    <strong data-pass={item.pass}>{item.pass ? "pass" : "review"}</strong>
+                    <strong data-pass={item.pass}>
+                      {candidateImage ? (item.pass ? "pass" : "review") : baselineImage ? "baseline" : "review"}
+                    </strong>
                   </div>
                   <h3>{item.experienceId}</h3>
                   <p>

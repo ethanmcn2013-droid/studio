@@ -22,11 +22,50 @@
     "annotations": { "type": "array", "items": { "type": "string" } },
     "severity": { "type": ["string", "null"] },
     "owner": { "type": "string" },
-    "approvalHistory": { "type": "array" },
+    "approvalHistory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/approvalHistoryEntry" }
+    },
     "resolutionEvidence": { "type": "array", "items": { "type": "string" } },
     "status": { "enum": ["draft", "captured", "acknowledged", "approved", "changes-requested", "resolved"] },
     "designSystemReferences": { "type": "array", "items": { "type": "string" } },
     "codeReferences": { "type": "array", "items": { "type": "string" } },
     "changeReferences": { "type": "array", "items": { "type": "string" } }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "approved" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "baselineScreenshot": { "type": "string", "minLength": 1 },
+          "candidateScreenshot": { "type": "string", "minLength": 1 },
+          "approvalHistory": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": { "status": { "const": "approved" } },
+              "required": ["status"]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "approvalHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "actor", "at", "note"],
+      "properties": {
+        "status": { "enum": ["draft", "captured", "acknowledged", "approved", "changes-requested", "resolved"] },
+        "actor": { "type": "string", "minLength": 1 },
+        "at": { "type": "string", "format": "date-time" },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    }
   }
 }

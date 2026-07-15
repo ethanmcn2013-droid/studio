@@ -76,9 +76,7 @@ try {
     throw new Error(`self-test failed: unregistered route was not caught\n${errors.join("\n")}`);
   }
   const withExpiredException = structuredClone(registered);
-  withExpiredException.experiences[0].intentionalExceptions = [
-    { id: "expired-self-test", expiresAt: "2020-01-01" },
-  ];
+  withExpiredException.experiences[0].intentionalExceptions = ["expired-self-test"];
   const exceptionErrors = validateRegistry({
     registry: withExpiredException,
     discovered: changed,

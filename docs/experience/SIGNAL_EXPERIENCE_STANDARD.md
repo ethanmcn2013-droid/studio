@@ -1,7 +1,10 @@
 # Signal Experience Standard
 
-- Status: **proposed — founder approval required**
+- Status: **approved**
 - Owner: Signal Studio HQ
+- Approved by: Ethan McNamara, founder
+- Approved on: 2026-07-15
+- Approval source: [Founder authorization receipt](../../content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md)
 - Approval task: [Approve the Signal Experience Standard](../../content/hq/operator-todos/approve-signal-experience-standard.md)
 
 The Signal Experience Standard is the suite-wide quality contract for four customer products (Tasks, Timeline, Signal, and Notes), the Studio company and brand surface, and the private founder-operator tools in Signal HQ and Signal Review. Signal HQ is the internal control plane. Signal Review is its manual-review instrument. Neither is a customer-facing product. The standard governs complete experiences: a route or triggered surface, for a defined role, in a defined state, at a defined breakpoint. A component, screenshot, test, or aggregate score cannot be called Studio grade on its own.

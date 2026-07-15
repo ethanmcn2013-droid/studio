@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { approvedGoldenSetEvidenceErrors } from "./founder-evidence.mjs";
 
 const root = process.cwd();
 const experience = path.join(root, "experience");
@@ -30,6 +31,8 @@ const findings = readJson(path.join(experience, "findings.json"));
 const audits = readJson(path.join(experience, "audits.json"));
 const reviews = readJson(path.join(experience, "reviews.json"));
 const exceptions = readJson(path.join(experience, "exceptions.json"));
+const goldenSet = readJson(path.join(experience, "golden-set.json"));
+const captureManifest = readJson(path.join(experience, "output", "capture-manifest.json"));
 const errors = [
   ...validate("registry", "registry.schema.json", [readJson(path.join(experience, "registry.json"))]),
   ...validate("finding", "finding.schema.json", findings.findings),
@@ -37,6 +40,18 @@ const errors = [
   ...validate("review", "review.schema.json", reviews.reviews),
   ...validate("exception", "exception.schema.json", exceptions.exceptions),
   ...validate("conformance", "conformance.schema.json", [readJson(path.join(experience, "conformance.json"))]),
+  ...validate("goldenSet", "golden-set.schema.json", [goldenSet]),
+  ...approvedGoldenSetEvidenceErrors({
+    repoRoot: root,
+    experienceRoot: experience,
+    outputRoot: path.join(experience, "output"),
+    goldenSet,
+    manifest: captureManifest,
+    registry: readJson(path.join(experience, "registry.json")),
+    reviewsCollection: reviews,
+    auditsCollection: audits,
+    findingsCollection: findings,
+  }),
 ];
 
 if (errors.length) {

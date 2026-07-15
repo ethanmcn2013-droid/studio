@@ -12,6 +12,26 @@ import path from "node:path";
 export const EXPERIENCE_SCHEMA_VERSION = "signal-experience/1";
 export const REQUIRED_BREAKPOINTS = ["mobile", "tablet", "desktop", "wide"];
 export const EXPERIENCE_CLASSES = ["customer-product", "company-public", "founder-operator"];
+export const EXPERIENCE_STATES = [
+  "default",
+  "first-use",
+  "empty",
+  "populated",
+  "loading",
+  "slow-loading",
+  "partial-failure",
+  "error",
+  "success",
+  "restricted",
+  "disabled",
+  "read-only",
+  "dense",
+  "long-content",
+  "saved",
+  "unsaved",
+  "reduced-motion",
+  "keyboard-only",
+];
 export const AUDIT_DIMENSIONS = [
   "purpose-and-task-clarity",
   "information-architecture",
@@ -475,17 +495,30 @@ export function validateRegistry({ registry, discovered, findings, exceptions, s
     if (entry.experienceClass !== expectedClass) {
       errors.push(`${entry.id}: experience class must be ${expectedClass}`);
     }
-    if (!Array.isArray(entry.requiredStates) || !entry.requiredStates.length) errors.push(`${entry.id}: required states are missing`);
+    if (!Array.isArray(entry.requiredStates) || !entry.requiredStates.length) {
+      errors.push(`${entry.id}: required states are missing`);
+    } else {
+      if (new Set(entry.requiredStates).size !== entry.requiredStates.length) {
+        errors.push(`${entry.id}: required states must be unique`);
+      }
+      for (const state of entry.requiredStates) {
+        if (!EXPERIENCE_STATES.includes(state)) errors.push(`${entry.id}: unknown required state ${state}`);
+      }
+    }
     if (!Array.isArray(entry.requiredBreakpoints) || !entry.requiredBreakpoints.length) errors.push(`${entry.id}: required breakpoints are missing`);
+    if (new Set(entry.requiredBreakpoints ?? []).size !== (entry.requiredBreakpoints ?? []).length) {
+      errors.push(`${entry.id}: required breakpoints must be unique`);
+    }
     for (const breakpoint of REQUIRED_BREAKPOINTS) {
       if (!entry.requiredBreakpoints.includes(breakpoint)) errors.push(`${entry.id}: missing breakpoint ${breakpoint}`);
     }
     for (const findingId of entry.openFindingIds ?? []) {
       if (!findingIds.has(findingId)) errors.push(`${entry.id}: unknown finding ${findingId}`);
     }
-    for (const exception of entry.intentionalExceptions ?? []) {
-      if (!exceptionIds.has(exception.id)) errors.push(`${entry.id}: unknown exception ${exception.id}`);
-      if (!exception.expiresAt || exception.expiresAt < today) errors.push(`${entry.id}: expired exception ${exception.id}`);
+    for (const exceptionId of entry.intentionalExceptions ?? []) {
+      const exception = exceptions.exceptions.find((candidate) => candidate.id === exceptionId);
+      if (!exceptionIds.has(exceptionId)) errors.push(`${entry.id}: unknown exception ${exceptionId}`);
+      else if (!exception.expiresAt || exception.expiresAt < today) errors.push(`${entry.id}: expired exception ${exceptionId}`);
     }
   }
 

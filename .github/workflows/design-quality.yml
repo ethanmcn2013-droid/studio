@@ -1,6 +1,7 @@
 name: design-quality
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
   push:
@@ -46,3 +47,40 @@ jobs:
             experience/output/playwright-results
           if-no-files-found: ignore
           retention-days: 14
+
+  protected-authenticated-pilot:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+      env:
+        EXPERIENCE_CAPTURE_EMAIL: ${{ vars.EXPERIENCE_CAPTURE_EMAIL }}
+        CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+        CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+        SIGNAL_HQ_PASSWORD: ${{ secrets.SIGNAL_HQ_PASSWORD }}
+        EXPERIENCE_BASE_URL_TASKS: ${{ vars.EXPERIENCE_BASE_URL_TASKS }}
+        EXPERIENCE_BASE_URL_TIMELINE: ${{ vars.EXPERIENCE_BASE_URL_TIMELINE }}
+        EXPERIENCE_BASE_URL_SIGNAL: ${{ vars.EXPERIENCE_BASE_URL_SIGNAL }}
+        EXPERIENCE_BASE_URL_NOTES: ${{ vars.EXPERIENCE_BASE_URL_NOTES }}
+        EXPERIENCE_BASE_URL_STUDIO: ${{ vars.EXPERIENCE_BASE_URL_STUDIO }}
+        EXPERIENCE_HQ_URL: ${{ vars.EXPERIENCE_HQ_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Capture the isolated protected fixtures
+        run: pnpm run experience:capture -- --protected-only
+      - name: Publish protected evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: authenticated-experience-pilot
+            path: |
+              experience/output/capture-manifest.json
+              experience/output/screenshots
+          if-no-files-found: error
+          retention-days: 7
