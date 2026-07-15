@@ -1,0 +1,28 @@
+Subject: Payment failed for Signal Studio Pro
+Preheader: We could not charge Visa ending 4921. Nothing has changed yet.
+
+signal studio.Billing · 14 Jul 2026
+
+
+
+
+
+A PAYMENT DID NOT GO THROUGH.
+
+We tried to charge €12.00 for Signal Studio Pro and the bank declined it. Your workspaces and your work are untouched.
+
+PlanSignal Studio ProAmount€12.00CardVisa ending 4921Attempted14 July 2026Next attempt18 July 2026
+
+We will try the card once more on 18 July 2026. If that attempt also fails, your plan moves to Free: you keep every workspace, everything stays readable, and paid features pause until a payment goes through.
+
+Update your card https://signalstudio.ie/account/billing
+
+If the button does not work, use this link: signalstudio.ie/account/billing https://signalstudio.ie/account/billing
+
+Signal Studio never asks for card details by email. Update your card inside your account only.
+
+signal studio.Clarity, not configuration.
+
+
+
+You received this because billing for your Signal Studio account needs attention.

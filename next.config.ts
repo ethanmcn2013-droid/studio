@@ -128,6 +128,15 @@ const nextConfig: NextConfig = {
           h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
         ),
       },
+      {
+        // The Email Lab (/hq/email-lab) previews rendered emails in
+        // same-origin iframes. The route sits behind the HQ cookie and
+        // serves static email HTML with no scripts.
+        source: "/hq/email-lab/render",
+        headers: securityHeaders.map((h) =>
+          h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
+        ),
+      },
     ];
   },
 };

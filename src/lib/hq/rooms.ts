@@ -296,6 +296,17 @@ export const HQ_ROOMS: HqRoom[] = [
     lifecycle: "decided",
     summary: "Founding partner card; Indigo and Numeral shortlisted.",
   },
+  {
+    slug: "email-lab",
+    route: "/hq/email-lab",
+    name: "Email Lab",
+    group: "make",
+    kind: "room",
+    lifecycle: "active",
+    summary:
+      "Which email system should Signal Studio send from: three directions, eight emails, side by side.",
+    aliases: ["emails", "email design", "templates", "lifecycle mail"],
+  },
 
   // ── Money ───────────────────────────────────────────────────────────
   {
