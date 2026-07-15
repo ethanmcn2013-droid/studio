@@ -297,7 +297,7 @@ export default async function ProductHeroRoomPage() {
           The design and motion room for the product landing-page heroes. Each is
           a full motion graphic redesigned against the Signal Hero Playbook, the
           transferable DNA reverse-engineered from The Brief. Every row links
-          straight to that direction's live preview. These candidates stay in
+          straight to that direction’s live preview. These candidates stay in
           the labs until the operator selects what reaches each product homepage.
         </p>
       </header>
@@ -370,7 +370,7 @@ export default async function ProductHeroRoomPage() {
         style={{ marginTop: "8px", border: "1px solid var(--hairline)", borderRadius: "10px", padding: "16px 20px" }}
       >
         <p style={{ margin: 0, fontSize: "13.5px", lineHeight: 1.6, color: "var(--ink-faint)" }}>
-          Click any row to open that direction's live preview (press 1–N to switch
+          Click any row to open that direction’s live preview (press 1–N to switch
           directions, R to replay). Full concepts and build specs live at{" "}
           <code>audit/HERO_COUNCIL_SPECS.md</code>; the iteration log at{" "}
           <code>audit/HERO_ITERATION_LOG.md</code>. Nothing here reaches a product

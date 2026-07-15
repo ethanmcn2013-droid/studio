@@ -34,7 +34,19 @@
     "recovery:drill": "node scripts/run-recovery-drill.mjs",
     "performance:measure": "node scripts/measure-performance-baseline.mjs",
     "csp:check": "node scripts/check-csp-contract.mjs",
-    "budgets:check": "node scripts/check-launch-budgets.mjs"
+    "budgets:check": "node scripts/check-launch-budgets.mjs",
+    "experience:discover": "node scripts/experience/discover.mjs",
+    "experience:validate": "node scripts/experience/validate.mjs",
+    "experience:self-test": "node scripts/experience/schema-validate.mjs && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs",
+    "experience:capture": "node scripts/experience/capture.mjs",
+    "experience:audit": "node scripts/experience/audit.mjs",
+    "experience:report": "node scripts/experience/audit.mjs",
+    "experience:ingest-review": "node scripts/experience/adapters/signal-review.mjs",
+    "experience:verify-hq": "node scripts/experience/verify-hq.mjs",
+    "ux:assure": "node scripts/experience/ux-assurance.mjs",
+    "test:accessibility": "playwright test --grep accessibility",
+    "test:visual": "playwright test --grep visual",
+    "design:quality": "node scripts/experience/validate.mjs && node scripts/experience/schema-validate.mjs && node scripts/experience/self-test.mjs && node scripts/experience/conformance-self-test.mjs && node --test scripts/experience/adapters/signal-review.test.mjs && node scripts/experience/audit.mjs --enforce && node scripts/experience/ux-assurance.mjs --enforce && playwright test"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
@@ -47,15 +59,21 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/eslintrc": "^3.3.5",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.6",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"

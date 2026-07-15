@@ -4,7 +4,7 @@
  * The Dissolve, §5's signature moment.
  *
  * A paragraph of real PM-software jargon sits on the page. When it
- * crosses into view, the jargon dims to near-silence, the terms that
+ * crosses into view, the jargon recedes to the quietest readable ink, the terms that
  * caused the trouble take an indigo strike, and the plain-language
  * version arrives beneath it on the page's one entrance curve.
  *
@@ -41,10 +41,7 @@ export function Dissolve() {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setDone(true);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

@@ -89,11 +89,13 @@ in a production build) and redeploy. Nothing else to undo.
 All seed content is realistic, premium, no-lorem-ipsum, and supports the brand
 story — calm coordination for normal people. No real person's data is used.
 
-## The review hub
+## Founder review entry point
 
-`https://signalstudio.ie/review` (`studio/src/app/review/page.tsx`) is a single
-index linking directly to all four product `/app` surfaces and the marketing
-pages. It is `noindex`. Use it as the entry point for any design-review cycle.
+The former public `/review` hub is retired. Signal Review is a private
+founder-operator instrument, and its suite-level findings and evidence are
+handled in the password-gated `/hq/experience-quality` room. Controlled product
+preview deployments may still use `SIGNAL_ACCESS_MODE=review`; that access mode
+does not make Signal Review or Signal HQ a customer-facing product.
 
 ## The development banner
 

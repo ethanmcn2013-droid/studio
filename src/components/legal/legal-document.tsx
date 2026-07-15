@@ -86,7 +86,7 @@ export function LegalDocument({
                       aria-label={`Link to ${s.heading}`}
                     >
                       <span
-                        className="font-mono text-[12px] tabular-nums text-[color:var(--ink-ghost)] transition-colors group-hover:text-[color:var(--accent)]"
+                        className="font-mono text-[12px] tabular-nums text-[color:var(--ink-soft)] transition-colors group-hover:text-[color:var(--accent)]"
                         style={{ letterSpacing: "0.02em" }}
                         aria-hidden
                       >

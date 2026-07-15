@@ -62,7 +62,7 @@ export default async function CafeCardPage() {
     <ReviewRoom
       wide
       eyebrow="Signal HQ · The café card · Permission placement only"
-      title={<>Earn a stranger's glance, then reward it</>}
+      title={<>Earn a stranger’s glance, then reward it</>}
       intro="A6, heavy uncoated, placed by permission in cafés, venues, and on campus boards, never dropped, never stacked. One job: a stranger picks it up, scans, and lands somewhere calm. All four are print-ready."
       directions={DIRECTIONS}
       advice="Decision recorded: Campaign is the café card. One line across the poster, the posts, and the counter, repetition is the system working. The other three stay archived below if a placement ever wants a different ground."

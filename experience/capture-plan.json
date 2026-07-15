@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "signal-experience-capture-plan/1",
+  "determinism": {
+    "locale": "en-GB",
+    "timezoneId": "Europe/London",
+    "colorScheme": "light",
+    "reducedMotion": "reduce",
+    "animationPolicy": "disabled",
+    "settleMilliseconds": 1200
+  },
+  "pilotSet": [
+    {
+      "experienceId": "studio.page.root",
+      "state": "default",
+      "url": "https://signalstudio.ie/"
+    },
+    {
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "url": "https://signalstudio.ie/design"
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "state": "long-content",
+      "url": "https://signalstudio.ie/privacy"
+    },
+    {
+      "experienceId": "studio.page.security",
+      "state": "long-content",
+      "url": "https://signalstudio.ie/security"
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "state": "long-content",
+      "url": "https://signalstudio.ie/terms"
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "state": "populated",
+      "url": "https://tasks.signalstudio.ie/roadmap"
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "url": "https://timeline.signalstudio.ie/the-wedding"
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "url": "https://signal.signalstudio.ie/demo"
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "state": "populated",
+      "url": "https://notes.signalstudio.ie/wedding-planning"
+    }
+  ]
+}

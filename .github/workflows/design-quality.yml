@@ -1,0 +1,48 @@
+name: design-quality
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: design-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-and-rendered-fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Reject unregistered Studio surfaces and stale evidence
+        run: pnpm run experience:validate -- --product=studio
+      - name: Prove registry and token gates fail closed
+        run: pnpm run experience:self-test
+      - name: Enforce finding and audit ratchets
+        run: pnpm run experience:audit -- --enforce
+      - name: Run UX Assurance specialist modes
+        run: pnpm run ux:assure -- --enforce
+      - name: Install deterministic browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Accessibility and visual harness
+        run: pnpm exec playwright test
+      - name: Publish review evidence on failure
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-quality-evidence
+          path: |
+            experience/output/quality-report.json
+            experience/output/quality-report.md
+            experience/output/playwright-report
+            experience/output/playwright-results
+          if-no-files-found: ignore
+          retention-days: 14

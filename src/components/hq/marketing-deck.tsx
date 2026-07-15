@@ -31,6 +31,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import Link from "next/link";
 
 type SectionId = "verdict" | "engine" | "machine" | "sixmonths" | "field";
 
@@ -829,13 +830,13 @@ export default function MarketingDeck() {
           </button>
         </div>
         <div className="mdk-bar-r">
-          <a
+          <Link
             href="/hq/plan/print"
             className="mdk-tab"
             title="Open the print-ready version, then Export PDF"
           >
             export pdf
-          </a>
+          </Link>
           <button
             type="button"
             className={`mdk-tab${pane === "contents" ? " on" : ""}`}

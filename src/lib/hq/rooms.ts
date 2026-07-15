@@ -199,6 +199,16 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["asset command", "taxonomy", "quality gate"],
   },
   {
+    slug: "experience-quality",
+    route: "/hq/experience-quality",
+    name: "Experience quality",
+    group: "make",
+    kind: "console",
+    lifecycle: "active",
+    summary: "The private founder-operator control plane for suite experience quality.",
+    aliases: ["quality", "ux assurance", "accessibility", "visual baselines"],
+  },
+  {
     slug: "one-pagers",
     route: "/hq/one-pagers",
     name: "One-pagers",

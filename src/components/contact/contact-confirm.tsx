@@ -24,9 +24,10 @@ export function ContactConfirm() {
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    setReduced(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    );
+    const frame = window.requestAnimationFrame(() => {
+      setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   return (

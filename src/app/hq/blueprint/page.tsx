@@ -312,7 +312,7 @@ export default async function BlueprintPage() {
         {/* ── 7 · AUTOMATION ────────────────────────────────────────── */}
         <Section id="automation" index={7} label="Automation" title="Absorbed by the system">
           <p className="bp-section-note">
-            What the system carries so the founder doesn't. Each item is automated,
+            What the system carries so the founder doesn’t. Each item is automated,
             AI-assisted, or held behind a human gate by design.
           </p>
           <div className="bp-grid bp-grid--2">

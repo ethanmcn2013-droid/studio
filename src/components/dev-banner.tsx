@@ -37,7 +37,8 @@ export function DevBanner() {
     } catch {
       /* sessionStorage unavailable, show anyway */
     }
-    setHidden(false);
+    const frame = window.requestAnimationFrame(() => setHidden(false));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   if (hidden) return null;

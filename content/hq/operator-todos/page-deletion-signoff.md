@@ -18,12 +18,16 @@ ships only on your sign-off, with a 301 where inbound links may exist. Full memo
 
 ## Recommended (high-confidence)
 
+Executed under founder direction on 2026-07-15:
+
+- studio `/review` — public hub retired; a temporary redirect now points to
+  the password-gated `/hq/experience-quality` operator room.
+
 - tasks `/for/weddings` — already a redirect, delete the stub.
 - tasks `/for/{community,freelancers,small-business,students,trades}` — 5 orphaned, unlinked.
 - tasks `/roadmap` — meta page; 301 to the Timeline domain.
 - analytics `/wedding-planning` — orphaned demo.
 - analytics `/app/preview-email` — internal test util; move under /hq or delete.
-- studio `/review` — internal tool; move under /hq or retire.
 
 ## Medium (needs a usage check first)
 

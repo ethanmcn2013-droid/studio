@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/signal-review-v2.json",
+  "title": "Signal Review Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "experienceId", "product", "routeOrTrigger", "state", "breakpoint", "baselineScreenshot", "candidateScreenshot", "diffScreenshot", "scoreBefore", "scoreAfter", "findingIds", "annotations", "severity", "owner", "approvalHistory", "resolutionEvidence", "status", "designSystemReferences", "codeReferences", "changeReferences"],
+  "properties": {
+    "schemaVersion": { "const": "signal-review/2" },
+    "id": { "type": "string" },
+    "experienceId": { "type": "string" },
+    "product": { "enum": ["studio", "tasks", "timeline", "signal", "notes", "signal-review"] },
+    "routeOrTrigger": { "type": "string" },
+    "state": { "type": "string" },
+    "breakpoint": { "enum": ["mobile", "tablet", "desktop", "wide"] },
+    "baselineScreenshot": { "type": ["string", "null"] },
+    "candidateScreenshot": { "type": ["string", "null"] },
+    "diffScreenshot": { "type": ["string", "null"] },
+    "scoreBefore": { "type": ["number", "null"], "minimum": 0, "maximum": 4 },
+    "scoreAfter": { "type": ["number", "null"], "minimum": 0, "maximum": 4 },
+    "findingIds": { "type": "array", "items": { "type": "string" } },
+    "annotations": { "type": "array", "items": { "type": "string" } },
+    "severity": { "type": ["string", "null"] },
+    "owner": { "type": "string" },
+    "approvalHistory": { "type": "array" },
+    "resolutionEvidence": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["draft", "captured", "acknowledged", "approved", "changes-requested", "resolved"] },
+    "designSystemReferences": { "type": "array", "items": { "type": "string" } },
+    "codeReferences": { "type": "array", "items": { "type": "string" } },
+    "changeReferences": { "type": "array", "items": { "type": "string" } }
+  }
+}

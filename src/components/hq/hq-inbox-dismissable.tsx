@@ -63,8 +63,11 @@ export function HqInboxDismissable({
     if (Object.keys(fresh).length !== Object.keys(all).length) {
       writeDismissed(fresh);
     }
-    setDismissedAt(fresh[id] ?? null);
-    setHydrated(true);
+    const frame = window.requestAnimationFrame(() => {
+      setDismissedAt(fresh[id] ?? null);
+      setHydrated(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [id]);
 
   const dismiss = useMemo(

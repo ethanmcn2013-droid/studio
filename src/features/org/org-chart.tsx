@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 import {
   DIRECTORS,
   ELT_SNAPSHOT,
@@ -256,10 +257,6 @@ export function OrgChart({
 
   // ── The runner: one dot travels the focused paths, one leg at a time ──────
   useEffect(() => {
-    setRunnerIdx(0);
-  }, [focusedId]);
-
-  useEffect(() => {
     if (reducedMotion || edges.length < 2) return;
     const t = window.setTimeout(
       () => setRunnerIdx((i) => (i + 1) % edges.length),
@@ -288,7 +285,6 @@ export function OrgChart({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchOpen, focusedId]);
 
   function onCanvasKeyDown(e: React.KeyboardEvent) {
@@ -310,11 +306,13 @@ export function OrgChart({
 
   function openDirector(id: string) {
     returnFocusRef.current = (document.activeElement as HTMLElement) ?? null;
+    setRunnerIdx(0);
     setMode("chart");
     setFocusedId(id);
   }
 
   function closeFocus() {
+    setRunnerIdx(0);
     setFocusedId(null);
     // Synchronous, so a `/` pressed right after Esc still lands in search.
     returnFocusRef.current?.focus();
@@ -798,7 +796,7 @@ export function OrgChart({
                 <button type="button" onClick={() => setMode("evidence")}>
                   evidence layer →
                 </button>
-                <a href="/hq/atlas-map">atlas map →</a>
+                <Link href="/hq/atlas-map">atlas map →</Link>
                 <a
                   href="https://github.com/ethanmcn2013-droid/signal-directors"
                   target="_blank"

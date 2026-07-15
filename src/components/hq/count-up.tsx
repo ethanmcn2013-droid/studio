@@ -36,17 +36,20 @@ export function CountUp({
     if (target == null) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || target === 0) {
-      setShown(target);
-      return;
+      raf.current = requestAnimationFrame(() => setShown(target));
+      return () => {
+        if (raf.current) cancelAnimationFrame(raf.current);
+      };
     }
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / DURATION);
-      setShown(Math.round(easeOut(p) * target));
-      if (p < 1) raf.current = requestAnimationFrame(tick);
-    };
-    setShown(0);
-    raf.current = requestAnimationFrame(tick);
+    raf.current = requestAnimationFrame((start) => {
+      setShown(0);
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / DURATION);
+        setShown(Math.round(easeOut(p) * target));
+        if (p < 1) raf.current = requestAnimationFrame(tick);
+      };
+      raf.current = requestAnimationFrame(tick);
+    });
     return () => {
       if (raf.current) cancelAnimationFrame(raf.current);
     };
