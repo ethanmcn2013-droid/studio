@@ -55,8 +55,11 @@ export function SiteNav() {
 
   // Close mobile nav + products panel on route change.
   useEffect(() => {
-    setMobileOpen(false);
-    setProductsOpen(false);
+    const frame = window.requestAnimationFrame(() => {
+      setMobileOpen(false);
+      setProductsOpen(false);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   // Outside-click dismissal for products panel.

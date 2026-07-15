@@ -29,7 +29,7 @@ function formatDate(ms: number): string {
   return formatter.format(new Date(ms));
 }
 
-function useCaseLabel(value: string | null): string {
+function formatUseCaseLabel(value: string | null): string {
   if (!value) return "unclassified";
   return value.replaceAll("-", " ");
 }
@@ -39,7 +39,7 @@ function summarize(entries: WaitlistEntry[]) {
   const bySource = new Map<string, number>();
 
   for (const entry of entries) {
-    const useCase = useCaseLabel(entry.useCase);
+    const useCase = formatUseCaseLabel(entry.useCase);
     byUseCase.set(useCase, (byUseCase.get(useCase) ?? 0) + 1);
     const source = entry.source ?? "unknown";
     bySource.set(source, (bySource.get(source) ?? 0) + 1);
@@ -146,7 +146,7 @@ export default async function HqWaitlistPage() {
                           {entry.note || "No note."}
                         </p>
                         <div className="mt-3 flex flex-wrap gap-2 font-mono text-[10.5px] uppercase tracking-[0.08em] text-ink-quiet">
-                          <span>{useCaseLabel(entry.useCase)}</span>
+                          <span>{formatUseCaseLabel(entry.useCase)}</span>
                           <span>{entry.source ?? "unknown source"}</span>
                           {entry.artifact ? <span>{entry.artifact}</span> : null}
                         </div>

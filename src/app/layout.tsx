@@ -142,7 +142,6 @@ export default async function RootLayout({
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}
-        {/* eslint-disable-next-line react/no-danger */}
         <style dangerouslySetInnerHTML={{ __html: "html{background:#fff}" }} />
         <link
           rel="alternate"

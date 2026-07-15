@@ -552,7 +552,7 @@ export const TOOLS: ToolGroup[] = [
   {
     category: "In-house tools",
     items: [
-      { name: "Signal Review", note: "Structured UI review to agent-ready reports", tag: "internal" },
+      { name: "Signal Review", note: "Founder UI capture feeding HQ and agent-ready reports", tag: "internal" },
       { name: "UX Assurance Bot", note: "Guards flows and IA on every change", tag: "internal" },
       { name: "Whisper Flow", note: "Our voice-to-text dictation, in-house build", tag: "internal" },
       { name: "Signal HQ", note: "The internal operating hub, this surface", tag: "internal" },

@@ -26,8 +26,8 @@ export function HandoffTrace() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (reduce) {
-      setDrawn(true);
-      return;
+      const frame = window.requestAnimationFrame(() => setDrawn(true));
+      return () => window.cancelAnimationFrame(frame);
     }
 
     const el = ref.current;

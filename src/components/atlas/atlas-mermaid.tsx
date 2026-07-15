@@ -86,7 +86,6 @@ export function AtlasMermaidHydrator() {
           // Leave the fallback <pre> in place, operator can still read
           // the source, which is its own kind of value.
           el.setAttribute("data-render-error", "true");
-          // eslint-disable-next-line no-console
           console.warn("atlas-mermaid render failed", err);
         }
       }

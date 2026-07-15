@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "signal-design-quality-report/1",
+  "generatedAt": "2026-07-15T15:06:01.509Z",
+  "status": "baseline-held",
+  "readiness": {
+    "status": "not-certified",
+    "reasons": [
+      "golden set is provisional",
+      "36 visual baselines await approval",
+      "0/243 experiences are Studio-grade"
+    ]
+  },
+  "standard": {
+    "dimensions": [
+      "purpose-and-task-clarity",
+      "information-architecture",
+      "visual-hierarchy",
+      "typography-and-content",
+      "layout-and-composition",
+      "interaction-quality",
+      "state-completeness",
+      "accessibility",
+      "responsive-behavior",
+      "performance-and-perceived-speed",
+      "design-system-coherence",
+      "brand-distinction-and-craft",
+      "implementation-fidelity"
+    ],
+    "categoryMinimum": 3,
+    "overallMinimum": 3.5
+  },
+  "inventory": {
+    "experiences": 243,
+    "stateVariants": 1191,
+    "breakpointVariants": 972,
+    "products": {
+      "notes": 20,
+      "signal": 31,
+      "signal-review": 4,
+      "studio": 100,
+      "tasks": 59,
+      "timeline": 29
+    },
+    "experienceClasses": {
+      "customer-product": 139,
+      "company-public": 43,
+      "founder-operator": 61
+    },
+    "archetypes": {
+      "application-shell-and-navigation": 4,
+      "create-and-edit-form": 4,
+      "dashboard-or-command-centre": 9,
+      "detail-or-record-view": 53,
+      "editor-or-canvas": 9,
+      "feedback-interruption-and-exception": 29,
+      "list-and-data-table": 12,
+      "onboarding-and-authentication": 14,
+      "public-information-and-proof": 81,
+      "review-and-approval-workspace": 11,
+      "search-and-command-interface": 4,
+      "settings-and-administration": 13
+    },
+    "fixtureCoverage": 0,
+    "screenshotCoverage": 0,
+    "accessibilityCoverage": 0,
+    "passing": 0,
+    "underRemediation": 0
+  },
+  "experienceClasses": {
+    "customer-product": {
+      "experiences": 139,
+      "critical": 56,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "company-public": {
+      "experiences": 43,
+      "critical": 9,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "founder-operator": {
+      "experiences": 61,
+      "critical": 9,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    }
+  },
+  "products": {
+    "notes": {
+      "experiences": 20,
+      "critical": 11,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "signal": {
+      "experiences": 31,
+      "critical": 14,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "signal-review": {
+      "experiences": 4,
+      "critical": 4,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "studio": {
+      "experiences": 100,
+      "critical": 14,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "tasks": {
+      "experiences": 59,
+      "critical": 20,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    },
+    "timeline": {
+      "experiences": 29,
+      "critical": 11,
+      "passing": 0,
+      "openFindings": 0,
+      "releaseBlocking": 0
+    }
+  },
+  "findings": {
+    "total": 25,
+    "open": 0,
+    "releaseBlocking": 0,
+    "high": 0,
+    "resolved": 25,
+    "unbaselinedHighRisk": [],
+    "oldestOpenDays": 0,
+    "averageOpenDays": 0
+  },
+  "audits": {
+    "total": 0,
+    "passing": 0,
+    "failing": 0,
+    "byProduct": {
+      "notes": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "signal": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "signal-review": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "studio": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "tasks": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "timeline": {
+        "audits": 0,
+        "averageScore": null
+      }
+    },
+    "byExperienceClass": {
+      "company-public": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "customer-product": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "founder-operator": {
+        "audits": 0,
+        "averageScore": null
+      }
+    },
+    "byArchetype": {
+      "application-shell-and-navigation": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "create-and-edit-form": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "dashboard-or-command-centre": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "detail-or-record-view": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "editor-or-canvas": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "feedback-interruption-and-exception": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "list-and-data-table": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "onboarding-and-authentication": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "public-information-and-proof": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "review-and-approval-workspace": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "search-and-command-interface": {
+        "audits": 0,
+        "averageScore": null
+      },
+      "settings-and-administration": {
+        "audits": 0,
+        "averageScore": null
+      }
+    }
+  },
+  "coverage": {
+    "registry": {
+      "registered": 243,
+      "validationErrors": 0
+    },
+    "states": {
+      "capturedVariants": 9,
+      "requiredVariants": 1191,
+      "completeFixtureExperiences": 0
+    },
+    "breakpoints": {
+      "capturedVariants": 36,
+      "requiredVariants": 972,
+      "completeScreenshotExperiences": 0
+    },
+    "accessibility": {
+      "passingCaptures": 36,
+      "totalCaptures": 36,
+      "completeExperiences": 0
+    },
+    "designSystemConformance": {
+      "passingRepositories": 6,
+      "applicableRepositories": 6,
+      "rate": 100,
+      "generatedAt": "2026-07-15",
+      "status": "pass"
+    }
+  },
+  "capture": {
+    "captures": 36,
+    "passing": 36,
+    "requiringReview": 0,
+    "visualChanges": 0,
+    "missingBaselines": 36
+  },
+  "captureRegressions": [],
+  "visualRegression": {
+    "status": "pilot-clean",
+    "missingBaselines": 36,
+    "approvedBaselines": 0
+  },
+  "governance": {
+    "underRemediation": 0,
+    "legacyExperiences": 243,
+    "acceptedExceptions": 0,
+    "activeExceptions": 0,
+    "expiredExceptions": 0,
+    "notReviewedSinceMaterialChange": 222
+  },
+  "goldenSet": {
+    "status": "provisional",
+    "count": 5,
+    "approvalTask": "approve-experience-golden-set"
+  },
+  "structuralErrors": []
+}

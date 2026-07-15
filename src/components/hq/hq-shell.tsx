@@ -44,7 +44,9 @@ export function HqShell({ children }: { children: React.ReactNode }) {
         <div className="hq-env-strip-inner">
           <span className="hq-env-pip" />
           <span className="hq-env-label">
-            {boardMode ? "Signal HQ · Board Room" : "Signal HQ · Internal"}
+            {boardMode
+              ? "Signal HQ · Board Room"
+              : "Signal HQ · Founder-operator control plane"}
           </span>
         </div>
       </div>

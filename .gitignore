@@ -45,3 +45,11 @@ next-env.d.ts
 
 # ux-test session artifacts (screenshots + env-readiness reports, 200MB+)
 /ux-tests/
+
+# Experience Quality OS runtime evidence. Approved baselines and generated
+# machine/human reports remain tracked; raw candidate/diff/test runs do not.
+/experience/output/screenshots/
+/experience/output/diffs/
+/experience/output/playwright-report/
+/experience/output/playwright-results/
+/experience/output/hq-gallery/

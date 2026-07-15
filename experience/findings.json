@@ -1,0 +1,656 @@
+{
+  "schemaVersion": "signal-experience-findings/1",
+  "findings": [
+    {
+      "id": "dq-studio-design-contrast",
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "surface": "/design",
+      "state": "default",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "release-blocking",
+      "evidence": [
+        "Initial rendered capture reported serious color-contrast failures on the small proof labels and final dissolve copy."
+      ],
+      "violatedStandard": "Typography and interaction copy must meet deterministic WCAG contrast checks at every supported breakpoint.",
+      "impact": "Low-vision users could not reliably read proof labels or the final design statement.",
+      "recommendation": "Use semantic high-contrast ink/paper tokens and keep the reduced-motion end state legible without animation.",
+      "scope": "local",
+      "confidence": 1,
+      "owner": "studio-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "experience/output/capture-manifest.json records studio.page.design passing at mobile, tablet, desktop, and wide with zero blocking accessibility violations and zero runtime errors."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-tasks-shared-chrome-token-bypass",
+      "experienceId": "tasks.page.waitlist",
+      "product": "tasks",
+      "surface": "/waitlist and shared suite header",
+      "state": "default",
+      "breakpoint": "desktop",
+      "dimension": "design-system-coherence",
+      "severity": "high",
+      "evidence": [
+        "The Tasks design-system conformance check identified raw color values in the waitlist and shared suite header."
+      ],
+      "violatedStandard": "Product UI must use approved semantic tokens rather than arbitrary visual values.",
+      "impact": "Shared chrome and acquisition surfaces could drift from the suite contract without a reviewable token decision.",
+      "recommendation": "Replace raw values with the existing semantic token contract and reseal the chrome contract hash.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "tasks-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Tasks registry validation, design-system conformance, type-check, and 32 tests pass after token replacement and chrome contract resealing."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-shortcuts-modal-interaction",
+      "experienceId": "timeline.surface.shortcuts-dialog",
+      "product": "timeline",
+      "surface": "Keyboard shortcuts dialog",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "dimension": "interaction-quality",
+      "severity": "high",
+      "evidence": [
+        "The shortcuts overlay lacked complete modal semantics, focus containment, focus return, Escape handling, and mobile scroll containment."
+      ],
+      "violatedStandard": "Dialogs must communicate modality and provide complete keyboard, focus, dismissal, and responsive behavior.",
+      "impact": "Keyboard and assistive-technology users could lose context or interact with content behind the overlay.",
+      "recommendation": "Implement a labelled modal dialog with focus trap, Escape dismissal, scroll lock, focus return, and a mobile-safe layout.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered mobile and desktop browser assertions pass for dialog semantics, focus containment, Escape dismissal, scroll lock, and focus return; Timeline build and 75 tests pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-audience-radio-keyboard",
+      "experienceId": "signal.surface.audience-scenario-switcher",
+      "product": "signal",
+      "surface": "Audience scenario radio group",
+      "state": "keyboard-only",
+      "breakpoint": "desktop",
+      "dimension": "accessibility",
+      "severity": "high",
+      "evidence": [
+        "The scenario selector did not provide a complete roving-focus radio-group interaction and allowed nested control events to change the scenario unexpectedly."
+      ],
+      "violatedStandard": "Composite controls must implement their native keyboard model and keep nested actions predictable.",
+      "impact": "Keyboard users could not compare scenarios reliably and nested actions could produce unintended selection changes.",
+      "recommendation": "Implement roving focus and radio semantics, with event boundaries for nested controls.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered keyboard verification confirms arrow-key selection and focus behavior; Signal type-check, build, design-system check, and tests pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-law-svg-runtime",
+      "experienceId": "signal.page.law",
+      "product": "signal",
+      "surface": "/law",
+      "state": "default",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "high",
+      "evidence": [
+        "Rendered /law emitted an invalid SVG height/runtime warning."
+      ],
+      "violatedStandard": "Rendered experiences must be free from critical console and runtime errors.",
+      "impact": "Invalid media geometry creates noisy production telemetry and risks unstable rendering.",
+      "recommendation": "Provide valid SVG dimensions and verify the rendered route with console capture enabled.",
+      "scope": "local",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered /law is console-clean after the SVG correction; Signal build and type-check pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-demo-auth-control",
+      "experienceId": "signal.page.app",
+      "product": "signal",
+      "surface": "/app",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "dimension": "state-completeness",
+      "severity": "release-blocking",
+      "evidence": [
+        "The deterministic demo app rendered a Clerk account control without an authenticated Clerk user."
+      ],
+      "violatedStandard": "Review/demo fixtures must render the complete experience without external identity state or runtime failures.",
+      "impact": "The primary app could not be inspected reliably in deterministic review mode.",
+      "recommendation": "Render a demo-safe account affordance in demo mode while preserving production authentication.",
+      "scope": "journey",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered /app at 390 and 1280 is console-clean and the four-breakpoint Signal demo pilot passes deterministic capture."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-notes-demo-auth-boundary",
+      "experienceId": "notes.page.app",
+      "product": "notes",
+      "surface": "/app",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "dimension": "state-completeness",
+      "severity": "release-blocking",
+      "evidence": [
+        "The Notes demo/review app path crossed the production Clerk boundary and could not render a deterministic signed-in fixture safely."
+      ],
+      "violatedStandard": "Synthetic review states must be deterministic while production authentication remains fail-closed.",
+      "impact": "The core notebook and its empty/error/long-content states could not be audited without external credentials.",
+      "recommendation": "Centralize access-mode policy, supply synthetic fixtures, and reject demo/review activation in production.",
+      "scope": "journey",
+      "confidence": 1,
+      "owner": "notes-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Local production review build rendered /app fixtures at 390 and 1440 with HTTP 200, zero overflow, zero console errors, zero Axe violations, and a fail-closed production mode; unit tests, type-check, and build pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-notes-footer-contrast",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "surface": "/wedding-planning footer",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "release-blocking",
+      "evidence": [
+        "Initial four-breakpoint capture measured the legal links at 3.19:1 contrast and reported serious color-contrast violations."
+      ],
+      "violatedStandard": "Secondary legal and footer content must remain readable and meet deterministic contrast requirements.",
+      "impact": "Low-vision users could not reliably read important legal navigation.",
+      "recommendation": "Remove the opacity blend and use the semantic ink-soft token directly.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "notes-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Local computed text is rgb(63, 63, 70), measured at 10.44:1 on white; experience/output/capture-manifest.json records all four Notes captures passing with zero blocking accessibility violations."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-review-contract-drift",
+      "experienceId": "signal-review.surface.issue-panel",
+      "product": "signal-review",
+      "surface": "Review export and issue panel",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "high",
+      "evidence": [
+        "The v2 validator accepted non-canonical products, states, priorities, issue types, pin kinds, non-finite viewport values, duplicate issue identities, and a round-trip that duplicated reviewed pages."
+      ],
+      "violatedStandard": "Review evidence must preserve canonical meaning from capture through HQ ingestion and reject malformed records.",
+      "impact": "A locally valid export could change meaning during ingestion or collide screenshot identities, corrupting the quality backlog.",
+      "recommendation": "Share the canonical enums and breakpoint thresholds, validate finite viewports and unique identities, and regression-test v1/v2 round trips.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "signal-review-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "npm run check passes canonical enum/threshold validation, finite viewport checks, unique issue identity checks, and a v2-v1-v2 page-count round trip; Studio adapter tests pass v1, v2, and unknown-experience rejection."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-review-host-permission-scope",
+      "experienceId": "signal-review.surface.session-pill",
+      "product": "signal-review",
+      "surface": "Chrome extension injection and capture boundary",
+      "state": "restricted",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "high",
+      "evidence": [
+        "The extension requested <all_urls> and used prefix Vercel globs that could match unrelated deployments."
+      ],
+      "violatedStandard": "A review tool must use the smallest origin and browser permission scope needed for the owned Signal surfaces.",
+      "impact": "The extension could inject or expose modules outside the intended Signal property inventory.",
+      "recommendation": "Use activeTab for user-granted capture and exact Signal/Vercel host allowlists with a runtime origin guard.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "signal-review-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Manifest tests prove <all_urls>, tabs, scripting, and wildcard Vercel matches are absent; activeTab, seven exact preview hosts, and the loader runtime guard pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-review-mobile-keyboard-overlay",
+      "experienceId": "signal-review.surface.issue-composer",
+      "product": "signal-review",
+      "surface": "Mobile review panel and issue composer",
+      "state": "keyboard-only",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "high",
+      "evidence": [
+        "The mobile overlay could obscure content, apply inert while focus remained inside, expose every radio/listbox item as a Tab stop, and use low-contrast focus/priority colors."
+      ],
+      "violatedStandard": "Review overlays must preserve the reviewed page, implement complete composite-control keyboard behavior, and provide visible accessible focus and contrast.",
+      "impact": "Keyboard and low-vision reviewers could lose focus, traverse excessive stops, or have the composer hidden under the control pill.",
+      "recommendation": "Use a collapsed inert mobile sheet, stable focus restoration, roving composite controls, non-overlapping composer geometry, opaque focus rings, and AA-safe colors.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "signal-review-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Real-Chrome smoke runs pass at 390x844 and 1440x900 under enforced CSP, including focus-before-inert, radio/listbox keys, save/delete focus restoration, reduced motion, composer/pill nonintersection, screenshot persistence, and zero uncaught overlay errors."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-notes-legacy-token-debt",
+      "experienceId": "notes.page.waitlist",
+      "product": "notes",
+      "surface": "/waitlist and inherited suite patterns",
+      "state": "default",
+      "breakpoint": "desktop",
+      "dimension": "design-system-coherence",
+      "severity": "medium",
+      "evidence": [
+        "The Notes ratchet records existing raw-value debt in waitlist (5 hex values), suite header (4), and the blank-line lab option (5 hex values and 4 non-contract easings)."
+      ],
+      "violatedStandard": "Legacy arbitrary values must be visible, must not grow, and should be replaced by semantic tokens as their surfaces are touched.",
+      "impact": "The affected secondary surfaces can drift from shared typography, color, and motion decisions even though new drift is blocked.",
+      "recommendation": "Migrate each grandfathered value to semantic tokens in small surface-owned changes, shrinking the manifest on every correction.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "notes-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Notes waitlist, SuiteHeader, and Blank Line target files now contain zero raw hex values and zero rogue easing values; the Notes design-system gate and 104/104 deterministic captures pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-legacy-token-debt",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "surface": "Timeline inherited waitlist, suite header, and wedding countdown patterns",
+      "state": "default",
+      "breakpoint": "desktop",
+      "dimension": "design-system-coherence",
+      "severity": "medium",
+      "evidence": [
+        "The Timeline ratchet records existing raw-value debt in waitlist (5 hex values), suite header (4), and anchor countdown (1)."
+      ],
+      "violatedStandard": "Legacy arbitrary values must be visible, must not grow, and should be replaced by semantic tokens as their surfaces are touched.",
+      "impact": "Shared chrome and the wedding countdown retain local visual values that can diverge from the suite foundation.",
+      "recommendation": "Replace the recorded raw values with semantic tokens while preserving the in-flight wedding work, then shrink the grandfather manifest.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Timeline waitlist, SuiteHeader, and wedding anchor countdown use the shared semantic token contract; the local design-system gate, lint, type-check, tests, and build pass."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-wedding-mobile-schedule",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "surface": "/the-wedding schedule",
+      "state": "default",
+      "breakpoint": "mobile",
+      "dimension": "responsive-behavior",
+      "severity": "high",
+      "evidence": [
+        "At 390x844, schedule labels overlap across lanes, edge text clips, and the timing legend becomes unreadable; the 1440px control renders correctly.",
+        "experience/output/screenshots/timeline-page-the-wedding/default/mobile.png"
+      ],
+      "violatedStandard": "Supported mobile layouts must preserve readable information hierarchy and content relationships.",
+      "impact": "Couples cannot reliably read the schedule sequence or timing legend on a phone.",
+      "recommendation": "Replace the fixed horizontal collision-prone composition with a mobile-specific stacked or scroll-contained schedule pattern and re-review long labels.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "The mobile wedding schedule passes all 8 focused assertions at 390x844 with readable stacked timing, no clipping or overlap, and the wide control remains stable."
+      ],
+      "source": "human-review",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-demo-workspace-db-dependency",
+      "experienceId": "timeline.page.by-workspace-slug",
+      "product": "timeline",
+      "surface": "/[workspaceSlug]",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "release-blocking",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /tasks returned HTTP 500 because getWorkspace queried SQLite and failed with no such table: workspaces."
+      ],
+      "violatedStandard": "Deterministic review mode must render public fixture journeys without a local production database.",
+      "impact": "The primary public workspace journey cannot be reviewed or captured in a clean environment.",
+      "recommendation": "Route demo/review reads through the existing fixture repository before any database access.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-demo-project-db-dependency",
+      "experienceId": "timeline.page.by-workspace-slug-by-project-slug",
+      "product": "timeline",
+      "surface": "/[workspaceSlug]/[projectSlug]",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "release-blocking",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /tasks/product returned HTTP 500 instead of rendering the documented fixture project."
+      ],
+      "violatedStandard": "Deterministic review mode must render public fixture journeys without a local production database.",
+      "impact": "Project-level Timeline review and screenshot coverage are blocked.",
+      "recommendation": "Provide a complete demo fixture path for public project reads and cover it with a browser test.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/product renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-demo-detail-db-dependency",
+      "experienceId": "timeline.page.by-workspace-slug-by-project-slug-by-id",
+      "product": "timeline",
+      "surface": "/[workspaceSlug]/[projectSlug]/[id]",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "release-blocking",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /tasks/product/tasks-product-001 returned HTTP 500 with no such table: tasks."
+      ],
+      "violatedStandard": "Deterministic review mode must render the complete fixture journey without a local production database.",
+      "impact": "The task-detail experience cannot be audited end to end.",
+      "recommendation": "Complete task-detail fixture lookup and add a deterministic route test.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/product/tasks-product-001 renders HTTP 200 at mobile and wide breakpoints and the complete fixture detail journey passes browser verification."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-demo-refusals-db-dependency",
+      "experienceId": "timeline.page.by-workspace-slug-refusals",
+      "product": "timeline",
+      "surface": "/[workspaceSlug]/refusals",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "implementation-fidelity",
+      "severity": "release-blocking",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /tasks/refusals returned HTTP 500 because the route queried the absent workspaces table."
+      ],
+      "violatedStandard": "Deterministic review mode must render all registered public fixture routes without database setup.",
+      "impact": "The refusal-state journey is invisible to reliable browser review.",
+      "recommendation": "Add refusal-state fixture routing to the shared demo data boundary and cover it in browser tests.",
+      "scope": "systemic",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/refusals renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-editor-autosync-db-dependency",
+      "experienceId": "timeline.page.app-plan-by-project-slug",
+      "product": "timeline",
+      "surface": "/app/plan/[projectSlug]",
+      "state": "populated",
+      "breakpoint": "desktop",
+      "dimension": "state-completeness",
+      "severity": "release-blocking",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /app/plan/product returned 200 but mount-time syncMilestonesAction issued POST 500 after querying the absent workspaces table."
+      ],
+      "violatedStandard": "Saving and autosaving behavior must be explicit, deterministic, and free from runtime failures.",
+      "impact": "The editor appears usable while its automatic synchronization fails, undermining trust in whether work is saved.",
+      "recommendation": "Disable or fixture the demo-mode autosync boundary and expose an explicit, tested save status.",
+      "scope": "journey",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /app/plan/product renders HTTP 200 and mount-time autosync returns HTTP 200; the editor journey is console-clean at mobile and wide breakpoints."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-timeline-missing-route-db-dependency",
+      "experienceId": "timeline.state.by-workspace-slug-not-found",
+      "product": "timeline",
+      "surface": "/[workspaceSlug] not-found",
+      "state": "error",
+      "breakpoint": "desktop",
+      "dimension": "state-completeness",
+      "severity": "high",
+      "evidence": [
+        "With SIGNAL_ACCESS_MODE=demo, GET /definitely-missing returned HTTP 500 because database access occurred before the registered not-found experience could render."
+      ],
+      "violatedStandard": "Unknown resources must resolve to a deliberate, recoverable not-found state rather than a runtime failure.",
+      "impact": "Users receive an internal failure instead of a clear recovery path.",
+      "recommendation": "Resolve demo fixture lookup before database access and render the registered 404 for unknown workspaces.",
+      "scope": "journey",
+      "confidence": 1,
+      "owner": "timeline-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /definitely-missing returns the registered HTTP 404 recovery state instead of querying the production database."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-studio-home-typewriter-aria",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "surface": "/ homepage subhead",
+      "state": "default",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "release-blocking",
+      "evidence": [
+        "Four-breakpoint capture reported aria-prohibited-attr because the animated subhead placed aria-label on a paragraph with no permitted ARIA role."
+      ],
+      "violatedStandard": "Animated content must expose equivalent semantic text without invalid ARIA and must pass serious/critical Axe checks.",
+      "impact": "The homepage used an invalid accessibility relationship for its primary supporting message.",
+      "recommendation": "Expose the complete sentence as visually hidden text and keep only the animated glyph sequence hidden from assistive technology.",
+      "scope": "local",
+      "confidence": 1,
+      "owner": "studio-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "TypewriterSub now renders a screen-reader-only complete sentence and removes the prohibited aria-label; local capture passes mobile, tablet, desktop, and wide with zero blocking Axe violations, overflow, or page errors."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-studio-legal-index-contrast",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "surface": "Shared legal document contents and section indices",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "release-blocking",
+      "evidence": [
+        "Privacy, Security, and Terms captures measured shared inactive index text at 1.47:1 contrast and reported serious color-contrast violations at every breakpoint."
+      ],
+      "violatedStandard": "Visible navigation and section markers must meet WCAG AA contrast at every supported breakpoint.",
+      "impact": "Low-vision readers could not reliably use the document contents or section link markers on three critical public policy surfaces.",
+      "recommendation": "Use the canonical ink-soft token for inactive legal navigation and section indices while retaining accent color for the active state.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "studio-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "The shared DocContents and LegalDocument components now use ink-soft; local captures of Privacy, Security, and Terms pass mobile, tablet, desktop, and wide with zero blocking Axe violations, overflow, or page errors."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-homepage-hydration-mismatch",
+      "experienceId": "signal.page.root",
+      "product": "signal",
+      "surface": "TheBriefHero homepage render",
+      "state": "default",
+      "breakpoint": "mobile",
+      "dimension": "implementation-fidelity",
+      "severity": "high",
+      "evidence": [
+        "TheBriefHero produced a pre-hydration server/client mismatch on the Signal homepage."
+      ],
+      "violatedStandard": "Server and client output must agree before hydration so the rendered experience is stable and free from runtime repair.",
+      "impact": "The hero could re-render unexpectedly on arrival and emit hydration errors, weakening confidence in the primary public surface.",
+      "recommendation": "Make the initial hero output deterministic across server and client and defer client-only enhancement until after hydration.",
+      "scope": "local",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered Signal homepage evidence at 390x844 and 1440x960 returns HTTP 200 with zero console/page errors, zero overflow, and zero Axe violations. This proves the reviewed default state at those two viewports only."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-homepage-heading-structure",
+      "experienceId": "signal.page.root",
+      "product": "signal",
+      "surface": "Signal homepage heading structure",
+      "state": "default",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "high",
+      "evidence": [
+        "The Signal homepage rendered duplicate h1 elements in the reviewed default state."
+      ],
+      "violatedStandard": "A public entry surface must expose one clear main landmark and one unambiguous primary heading.",
+      "impact": "Assistive-technology navigation and document hierarchy could present two competing page titles.",
+      "recommendation": "Keep exactly one homepage h1 and demote or remove the duplicate visual heading semantics.",
+      "scope": "local",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered Signal homepage evidence at 390x844 and 1440x960 has exactly one h1 and one main landmark, with zero Axe violations. This proves the reviewed default state at those two viewports only."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    },
+    {
+      "id": "dq-signal-briefing-row-dimming-contrast",
+      "experienceId": "signal.page.app",
+      "product": "signal",
+      "surface": "BriefingView secondary rows",
+      "state": "populated",
+      "breakpoint": "mobile",
+      "dimension": "accessibility",
+      "severity": "high",
+      "evidence": [
+        "BriefingView dimmed secondary rows below an accessible readable treatment."
+      ],
+      "violatedStandard": "Visual de-emphasis must preserve readable content and accessible contrast in the primary briefing job.",
+      "impact": "Low-vision users could lose briefing context that remained visible and operational for other users.",
+      "recommendation": "Use a readable semantic text treatment for lower-priority rows instead of opacity that reduces contrast below the intended bar.",
+      "scope": "pattern",
+      "confidence": 1,
+      "owner": "signal-engineering",
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Rendered Signal app evidence at 390x844 and 1440x960 returns HTTP 200 with one main landmark, zero overflow, zero console/page errors, and zero Axe violations. This proves the reviewed populated state at those two viewports only."
+      ],
+      "source": "deterministic",
+      "createdAt": "2026-07-15",
+      "resolvedAt": "2026-07-15"
+    }
+  ]
+}

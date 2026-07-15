@@ -52,10 +52,6 @@ export function OrgSearch({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
-
   function pick(e: SearchEntry | undefined) {
     if (e) onPick(e);
   }
@@ -90,7 +86,10 @@ export function OrgSearch({
           type="text"
           placeholder="Search directors, councils, tools"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setActive(0);
+          }}
           onKeyDown={onKeyDown}
           aria-label="Search the org"
           aria-autocomplete="list"

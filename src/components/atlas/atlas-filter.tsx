@@ -61,8 +61,12 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
 
   const totalShown = filtered.reduce((n, g) => n + g.entries.length, 0);
 
-  // Sequential index across all visible entries, runs across groups.
-  let runningIndex = 0;
+  // Sequential index across all visible entries, stable across groups.
+  const visibleIndexBySlug = new Map(
+    filtered
+      .flatMap((group) => group.entries)
+      .map((entry, index) => [entry.slug, index + 1]),
+  );
 
   return (
     <div>
@@ -113,8 +117,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
               </h2>
               <ul className="divide-y divide-border-soft">
                 {g.entries.map((e) => {
-                  runningIndex += 1;
-                  const idx = String(runningIndex).padStart(2, "0");
+                  const idx = String(visibleIndexBySlug.get(e.slug) ?? 0).padStart(2, "0");
                   const note = stateNote(e);
                   const age = ageNote(e.ageDays);
                   return (

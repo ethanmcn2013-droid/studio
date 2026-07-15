@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/experience-finding.json",
+  "title": "Signal Experience Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "experienceId", "product", "surface", "state", "breakpoint", "dimension", "severity", "evidence", "violatedStandard", "impact", "recommendation", "scope", "confidence", "owner", "status", "resolutionEvidence", "source", "createdAt", "resolvedAt"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^dq-[a-z0-9-]+$" },
+    "experienceId": { "type": "string" },
+    "product": { "enum": ["studio", "tasks", "timeline", "signal", "notes", "signal-review"] },
+    "surface": { "type": "string" },
+    "state": { "type": "string" },
+    "breakpoint": { "enum": ["mobile", "tablet", "desktop", "wide"] },
+    "dimension": {
+      "enum": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "interaction-quality",
+        "state-completeness",
+        "accessibility",
+        "responsive-behavior",
+        "performance-and-perceived-speed",
+        "design-system-coherence",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ]
+    },
+    "severity": { "enum": ["release-blocking", "high", "medium", "low", "opportunity"] },
+    "evidence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "violatedStandard": { "type": "string" },
+    "impact": { "type": "string" },
+    "recommendation": { "type": "string" },
+    "scope": { "enum": ["local", "systemic", "pattern", "journey"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "owner": { "type": "string" },
+    "status": { "enum": ["open", "acknowledged", "in-progress", "resolved", "accepted-exception"] },
+    "resolutionEvidence": { "type": "array", "items": { "type": "string" } },
+    "source": { "enum": ["deterministic", "specialist-review", "human-review"] },
+    "createdAt": { "type": "string", "format": "date" },
+    "resolvedAt": { "type": ["string", "null"], "format": "date" }
+  }
+}

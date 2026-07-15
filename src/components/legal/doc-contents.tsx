@@ -75,7 +75,7 @@ export function DocContents({ sections }: { sections: readonly DocSectionRef[] }
               >
                 <span
                   className="font-mono text-[10px] tabular-nums"
-                  style={{ color: isActive ? "var(--accent)" : "var(--ink-ghost)" }}
+                  style={{ color: isActive ? "var(--accent)" : "var(--ink-soft)" }}
                   aria-hidden
                 >
                   {String(i + 1).padStart(2, "0")}
