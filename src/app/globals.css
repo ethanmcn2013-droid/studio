@@ -5973,6 +5973,8 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
  * ═══════════════════════════════════════════════════════════════════ */
 
 .hq-crm-page {
+  --hq-crit: #b91c1c;
+  --hq-warn: #b45309;
   max-width: 1100px;
   margin: 0 auto;
   padding: 3rem 1.5rem 5rem;
@@ -6014,14 +6016,14 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   align-items: center;
   gap: 0.5rem;
   font-size: 13px;
-  color: var(--hq-crit, #b91c1c);
+  color: var(--hq-crit);
 }
 .hq-crm-due-pip {
   display: inline-block;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--hq-crit, #b91c1c);
+  background: var(--hq-crit);
   flex-shrink: 0;
 }
 
@@ -6215,14 +6217,14 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   gap: 0.35rem;
 }
 .hq-crm-date--none { color: var(--ink-faint); }
-.hq-crm-date[data-overdue="true"] { color: var(--hq-crit, #b91c1c); }
-.hq-crm-date[data-today="true"] { color: var(--hq-warn, #b45309); }
+.hq-crm-date[data-overdue="true"] { color: var(--hq-crit); }
+.hq-crm-date[data-today="true"] { color: var(--hq-warn); }
 .hq-crm-overdue-pip {
   display: inline-block;
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--hq-crit, #b91c1c);
+  background: var(--hq-crit);
   flex-shrink: 0;
 }
 
@@ -6341,7 +6343,7 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--hq-crit, #b91c1c);
+  background: var(--hq-crit);
   flex-shrink: 0;
 }
 .hq-crm-book-counts {
