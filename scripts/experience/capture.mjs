@@ -266,11 +266,18 @@ try {
         if (actualPath !== expectedPath) {
           throw new Error(`unexpected final route ${actualPath}; expected ${expectedPath}`);
         }
+        // Mutating <head> at DOMContentLoaded can race React hydration on a
+        // slower authenticated response. Let the document, rendered assets,
+        // and initial client work settle before adding deterministic CSS.
+        await page.waitForLoadState("load");
+        await waitForRenderedAssets(page);
+        await page.waitForTimeout(plan.determinism.settleMilliseconds);
         await page.addStyleTag({
           content: "*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;caret-color:transparent!important}html{scroll-behavior:auto!important}video::-webkit-media-controls-timeline{visibility:hidden!important}",
         });
-        await waitForRenderedAssets(page);
-        await page.waitForTimeout(plan.determinism.settleMilliseconds);
+        await page.evaluate(() => new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ));
         await prepareDeterministicMedia(page);
       } catch (error) {
         navigationError = error instanceof Error ? error.message : String(error);
