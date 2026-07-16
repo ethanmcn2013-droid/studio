@@ -1,0 +1,27 @@
+Subject: Your student rate is active
+Preheader: €9.99 a year, everything included, valid until 1 October 2027.
+
+Signal Studio · Student Edition · 16 Jul 2026
+------------------------------------------------------------------------
+
+Your student rate is active.
+
+Jamie, your student email checked out. Signal Studio now costs you €9.99
+a year, everything included.
+
+PLAN:            Student · €9.99 a year
+VERIFIED WITH:   j.murphy.2027@student.example-university.ie
+COVERS:          Signal Tasks, Signal Timeline, Signal Notes and Signal
+VALID UNTIL:     1 October 2027
+
+Around 1 October 2027 we will ask you to confirm you are still studying.
+One check a year, nothing in between.
+
+Open your workspace:
+https://tasks.signalstudio.ie
+
+------------------------------------------------------------------------
+You received this because a student verification finished for this
+address.
+
+Signal Studio · Limerick · hello@signalstudio.ie

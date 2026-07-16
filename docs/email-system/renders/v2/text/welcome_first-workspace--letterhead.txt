@@ -1,0 +1,26 @@
+Subject: Your first workspace is ready
+Preheader: Put the first real thing in it. There is no welcome sequence.
+
+Signal Studio
+16 July 2026
+
+Your first workspace is ready.
+
+Aoife, your workspace exists and it is empty, which is the correct state
+for the next ten minutes.
+
+Put one real thing in it: the next task on your mind, the date that is
+fixed, the thought that is not ready for anyone else. The suite works
+from whatever you give it. Tasks holds the work, Timeline shows the
+plan, Notes stays yours, and Signal starts reading your week once there
+is a week to read.
+
+Open your workspace:
+https://tasks.signalstudio.ie
+
+Stuck on anything, reply to this email and a person answers.
+
+You received this once, because you created a Signal Studio account.
+There is no welcome sequence.
+
+Signal Studio · Limerick, Ireland
