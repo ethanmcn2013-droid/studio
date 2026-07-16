@@ -14,11 +14,10 @@ else in the suite.
   type, never an image, so it survives image blocking, dark stock and
   forced high contrast. In dark mode the dot does not lighten: indigo
   `#4F46E5` reads on both papers.
-- Hairline: nowhere else. The wordmark's dot is the only indigo on the
-  page. Links are ink, the engraved button is ink on paper, the facts
-  are ink. One page, one dot. This is the strongest statement of the
-  rule and the reason Hairline can never look like anyone else's
-  security email.
+- Hairline (the chosen system, amended by the founder 2026-07-16): the
+  dot plus the links. Indigo means "you can act here" and nothing else.
+  The engraved button stays ink on paper, the facts stay ink, rules stay
+  ink. One page, one dot, and every clickable thing honestly indigo.
 - Broadsheet: the dot, plus text links. Indigo marks "you can go here"
   and nothing else. The masthead rules are ink, the button is ink, the
   folio is ink. On the late-edition dark stock, links lighten to

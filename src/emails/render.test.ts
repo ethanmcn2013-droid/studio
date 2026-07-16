@@ -29,8 +29,8 @@ const BANNED_FRAGMENTS = [
   "best-in-class",
 ];
 
-test("registry holds exactly the eight prototype templates with unique ids", () => {
-  assert.equal(TEMPLATES.length, 8);
+test("registry holds exactly the seventeen prototype templates with unique ids", () => {
+  assert.equal(TEMPLATES.length, 17);
   const ids = TEMPLATES.map((t) => t.id);
   assert.equal(new Set(ids).size, ids.length);
   for (const t of TEMPLATES) {
@@ -85,8 +85,8 @@ test("all templates render in all directions with all fixtures", async () => {
       }
     }
   }
-  // 8 templates × 3 directions with every fixture: at least the 24 canonical renders.
-  assert.ok(renders >= 24, `expected at least 24 renders, got ${renders}`);
+  // 17 templates × 3 directions with every fixture: at least the 51 canonical renders.
+  assert.ok(renders >= 51, `expected at least 51 renders, got ${renders}`);
 });
 
 test("utility templates carry exact facts outside prose", async () => {

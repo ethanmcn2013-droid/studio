@@ -1,0 +1,28 @@
+Subject: Your plan renews on 14 August 2026
+Preheader: €12.00 to Visa ending 4921. No action needed.
+
+Signal Studio · Billing · 7 Aug 2026
+------------------------------------------------------------------------
+
+Your renewal is coming up.
+
+No action needed. This is the advance notice we always send before
+taking a payment.
+
+PLAN:        Signal Studio Pro
+AMOUNT:      €12.00
+CARD:        Visa ending 4921
+RENEWS ON:   14 August 2026
+
+If you would rather not renew, cancel any time before 14 August 2026.
+You keep full access until that date, and your plan moves to Free
+afterwards with everything still readable.
+
+Manage your plan:
+https://signalstudio.ie/account/billing
+
+------------------------------------------------------------------------
+You received this because your Signal Studio plan renews soon. We always
+say so before charging.
+
+Signal Studio · Limerick · hello@signalstudio.ie

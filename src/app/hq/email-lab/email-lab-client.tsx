@@ -84,7 +84,7 @@ export function EmailLabClient({
   templates: LabTemplate[];
 }) {
   const [templateId, setTemplateId] = useState(templates[0]?.id ?? "");
-  const [directionId, setDirectionId] = useState<string>("compare");
+  const [directionId, setDirectionId] = useState<string>("hairline");
   const [fixtureId, setFixtureId] = useState("default");
   const [width, setWidth] = useState<"desktop" | "mobile">("desktop");
   const [scheme, setScheme] = useState<"light" | "dark">("light");

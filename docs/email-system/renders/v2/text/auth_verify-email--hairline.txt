@@ -1,0 +1,22 @@
+Subject: Confirm this address for Signal Studio
+Preheader: One click and aoife.brennan@example.ie is yours. The link works for 24 hours.
+
+Signal Studio · Security · 16 Jul 2026
+------------------------------------------------------------------------
+
+Confirm this address
+
+One click and aoife.brennan@example.ie belongs to your Signal Studio
+account. The link works for 24 hours and once.
+
+Confirm email address:
+https://signalstudio.ie/verify/db-4f2a-example
+
+If you did not create this account, ignore this email and nothing
+happens. No account exists until the address is confirmed.
+
+------------------------------------------------------------------------
+You received this because this address was used to create a Signal
+Studio account.
+
+Signal Studio · Limerick · hello@signalstudio.ie

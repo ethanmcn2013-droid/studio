@@ -117,7 +117,7 @@ export function EmailFooter({
       </Text>
       {/* One tracked-caps register (CL-03); the address keeps its case (CL-22). */}
       <Text className="em-faint" style={{ ...d.label, margin: 0 }}>
-        Signal Studio · Dublin ·{" "}
+        Signal Studio · Limerick ·{" "}
         <Link
           href="mailto:hello@signalstudio.ie"
           style={{

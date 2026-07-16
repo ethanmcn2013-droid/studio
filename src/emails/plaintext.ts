@@ -186,8 +186,8 @@ export function composeText(d: EmailDirection, doc: TextDoc): string {
   out.push("");
   out.push(
     d.id === "letterhead"
-      ? "Signal Studio · Dublin, Ireland"
-      : "Signal Studio · Dublin · hello@signalstudio.ie",
+      ? "Signal Studio · Limerick, Ireland"
+      : "Signal Studio · Limerick · hello@signalstudio.ie",
   );
 
   // Collapse any accidental double blanks, end with one newline.

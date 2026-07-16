@@ -54,6 +54,9 @@ const SCREENSHOT_TEMPLATES = [
   "account.deletion-scheduled",
   "outreach.venue-first",
   "outreach.school-first",
+  "billing.receipt",
+  "workspace.invitation",
+  "access.waitlist-joined",
 ];
 
 async function main() {

@@ -1,5 +1,5 @@
 Subject: Your Signal Studio sign-in code is 482 916
-Preheader: It expires in 10 minutes. Requested 09:12, 16 July 2026 · Dublin time.
+Preheader: It expires in 10 minutes. Requested 09:12, 16 July 2026 · Irish time.
 
 Signal Studio
 16 July 2026
@@ -12,7 +12,7 @@ once.
     482 916
 
 FOR:         aoife.brennan@example.ie
-REQUESTED:   09:12, 16 July 2026 · Dublin time
+REQUESTED:   09:12, 16 July 2026 · Irish time
 
 If you did not ask for this code, ignore this email. No one can sign in
 without it, and nothing about your account has changed.
@@ -20,4 +20,4 @@ without it, and nothing about your account has changed.
 You received this because someone asked to sign in to Signal Studio with
 this address.
 
-Signal Studio · Dublin, Ireland
+Signal Studio · Limerick, Ireland

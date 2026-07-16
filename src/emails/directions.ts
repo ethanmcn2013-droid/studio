@@ -215,7 +215,7 @@ const hairline: EmailDirection = {
     padH: 22,
     font: { fontSize: 14, fontWeight: 600, letterSpacing: "0.01em" },
   },
-  link: { color: INK }, // monochrome plus one dot: links are ink, underlined
+  link: { color: INDIGO }, // founder amendment 2026-07-16: the dot plus links carry the indigo budget
   imagery: { radius: 4, border: `1px solid ${HAIRLINE}`, captionRule: false },
   signature: "plain",
   dark: "adapt",

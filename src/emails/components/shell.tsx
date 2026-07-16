@@ -139,7 +139,7 @@ export function EmailShell({
             >
               {postalContact ? (
                 <>
-                  Signal Studio · Dublin, Ireland ·{" "}
+                  Signal Studio · Limerick, Ireland ·{" "}
                   <a
                     href="mailto:hello@signalstudio.ie"
                     style={{ color: INK_SOFT, textDecoration: "underline" }}
@@ -148,7 +148,7 @@ export function EmailShell({
                   </a>
                 </>
               ) : (
-                <>Signal Studio · Dublin, Ireland</>
+                <>Signal Studio · Limerick, Ireland</>
               )}
             </Section>
           </Container>

@@ -2,11 +2,13 @@
 id: choose-email-direction
 title: Choose the email design direction in the Email Lab.
 owner: Ethan
-status: open
+status: done
 date: 2026-07-16
 ---
 
-Three email-system directions are implemented and waiting at
+Done 2026-07-16: Hairline chosen, with one amendment (links render indigo). Recorded in content/hq/decisions/email-direction-hairline-2026-07-16.md.
+
+Three email-system directions were implemented and reviewed at
 `/hq/email-lab`: Hairline, Broadsheet, Letterhead. Eight representative
 emails each, same content, same fixtures. The scorecard
 (`docs/email-system/comparison.md`) recommends Hairline (89 to 87 to 84)

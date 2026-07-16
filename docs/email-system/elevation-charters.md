@@ -67,6 +67,10 @@ mono `"Geist Mono", "SF Mono", SFMono-Regular, Menlo, Consolas,
 monospace`; `tabular-nums` on every fact. The thesis survives the
 fallback fully; this is the direction least dependent on Geist.
 
+**Founder amendment, 2026-07-16 (post-selection).** Links render indigo,
+not ink: the indigo budget becomes the dot plus links. Recorded in the
+decision file; the charter's button and rule clauses stand unchanged.
+
 **Sign-offs.** Compositor: signed, this is my charter. Client Engineer:
 signed, with the note that a ruled button underperforms a filled one for
 click-through; accepted because utility mail is not conversion mail.

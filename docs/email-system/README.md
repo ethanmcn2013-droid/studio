@@ -1,5 +1,11 @@
 # Signal Studio email design system · review guide
 
+**Decided 2026-07-16: the system is Hairline, with indigo links** (decision
+record in `content/hq/decisions/email-direction-hairline-2026-07-16.md`).
+Wave 2 added nine more templates (`expansion-wave-2.md`); the Lab now
+holds seventeen emails, with a v1/v2 revision compare and the competitor
+research in `competitor-review.md`. The address line is Limerick.
+
 Built 2026-07-16 on branch `feat/email-design-system`. Three materially
 different email-system directions (Hairline, Broadsheet, Letterhead),
 eight representative emails each, one shared component set and fixture

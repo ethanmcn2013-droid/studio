@@ -1,5 +1,9 @@
 # Email direction comparison and recommendation
 
+**Decided 2026-07-16: Hairline, with indigo links (founder amendment).**
+Decision record: `content/hq/decisions/email-direction-hairline-2026-07-16.md`.
+The comparison below is preserved as the record of how the choice was made.
+
 Date: 2026-07-16. Three directions, one rubric, 100 points. All three
 remain implemented and reviewable at `/hq/email-lab`; nothing is deleted
 by this recommendation, and no conversion to the recommended direction has
