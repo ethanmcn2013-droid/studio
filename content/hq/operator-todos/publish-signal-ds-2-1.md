@@ -27,6 +27,7 @@ links: ["../../../docs/experience/DESIGN_QUALITY_CI.md", "npm-publish-signal-ds.
 
 ## Current release evidence — 2026-07-15
 
+- Direct npm package access page: <https://www.npmjs.com/package/signal-ds/access>
 - Release workflow: `https://github.com/ethanmcn2013-droid/signal-design-system/actions/workflows/publish.yml`
 - Workflow source merged in PR 4 at `52b2eb9adb39eae7b82a6d7a78abe0288100920a`.
 - Full check passed: typecheck, drift gate, build, and 7/7 tests.

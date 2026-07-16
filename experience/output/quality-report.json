@@ -1,13 +1,12 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-07-15T20:45:50.315Z",
+  "generatedAt": "2026-07-16T00:36:09.444Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "golden set is provisional",
-      "36 visual baselines await approval",
-      "0/241 experiences are Studio-grade"
+      "20/4732 required state/breakpoint audit cells pass",
+      "16 visual baselines await approval"
     ]
   },
   "standard": {
@@ -64,7 +63,8 @@
     "screenshotCoverage": 0,
     "accessibilityCoverage": 0,
     "passing": 0,
-    "underRemediation": 0
+    "underRemediation": 0,
+    "assertedPassing": 0
   },
   "experienceClasses": {
     "customer-product": {
@@ -144,43 +144,47 @@
     "averageOpenDays": 0
   },
   "audits": {
-    "total": 0,
-    "passing": 0,
-    "failing": 0,
+    "total": 20,
+    "requiredCells": 4732,
+    "passing": 20,
+    "failing": 4712,
+    "missing": 4712,
+    "duplicate": 0,
+    "falsePassingExperienceIds": [],
     "byProduct": {
       "notes": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       },
       "signal": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       },
       "signal-review": {
         "audits": 0,
         "averageScore": null
       },
       "studio": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.54
       },
       "tasks": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.6
       },
       "timeline": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       }
     },
     "byExperienceClass": {
       "company-public": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.54
       },
       "customer-product": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 16,
+        "averageScore": 3.61
       },
       "founder-operator": {
         "audits": 0,
@@ -205,8 +209,8 @@
         "averageScore": null
       },
       "editor-or-canvas": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.6
       },
       "feedback-interruption-and-exception": {
         "audits": 0,
@@ -221,8 +225,8 @@
         "averageScore": null
       },
       "public-information-and-proof": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 16,
+        "averageScore": 3.6
       },
       "review-and-approval-workspace": {
         "audits": 0,
@@ -244,18 +248,18 @@
       "validationErrors": 0
     },
     "states": {
-      "capturedVariants": 9,
+      "capturedVariants": 14,
       "requiredVariants": 1183,
       "completeFixtureExperiences": 0
     },
     "breakpoints": {
-      "capturedVariants": 36,
+      "capturedVariants": 56,
       "requiredVariants": 964,
       "completeScreenshotExperiences": 0
     },
     "accessibility": {
-      "passingCaptures": 36,
-      "totalCaptures": 36,
+      "passingCaptures": 56,
+      "totalCaptures": 56,
       "completeExperiences": 0
     },
     "designSystemConformance": {
@@ -267,28 +271,29 @@
     }
   },
   "capture": {
-    "captures": 36,
-    "passing": 36,
+    "captures": 56,
+    "passing": 56,
     "requiringReview": 0,
     "visualChanges": 0,
-    "missingBaselines": 36
+    "missingBaselines": 16
   },
   "captureRegressions": [],
   "visualRegression": {
     "status": "pilot-clean",
-    "missingBaselines": 36,
-    "approvedBaselines": 0
+    "missingBaselines": 16,
+    "approvedBaselines": 40
   },
   "governance": {
     "underRemediation": 0,
     "legacyExperiences": 241,
     "acceptedExceptions": 0,
+    "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 220
+    "notReviewedSinceMaterialChange": 216
   },
   "goldenSet": {
-    "status": "provisional",
+    "status": "approved",
     "count": 5,
     "approvalTask": "approve-experience-golden-set"
   },

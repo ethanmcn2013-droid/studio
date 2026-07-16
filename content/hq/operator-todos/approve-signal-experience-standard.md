@@ -3,7 +3,7 @@ id: approve-signal-experience-standard
 title: Approve the Signal Experience Standard and Studio-grade gate
 status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Experience Quality OS · Governance
 why: The suite needs one founder-ratified definition of quality before automated evidence or reviewers can make a Studio-grade release claim.
 href: /hq/experience-quality
