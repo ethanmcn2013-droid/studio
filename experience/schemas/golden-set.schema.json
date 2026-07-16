@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/experience-golden-set.json",
+  "title": "Signal Experience Golden Set",
+  "oneOf": [
+    { "$ref": "#/$defs/v1" },
+    { "$ref": "#/$defs/v2" }
+  ],
+  "$defs": {
+    "breakpointReferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mobile", "tablet", "desktop", "wide"],
+      "properties": {
+        "mobile": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "tablet": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "desktop": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "wide": { "type": "string", "minLength": 1, "pattern": "\\S" }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["experienceId", "state", "baselineScreenshots", "reviewIds", "auditIds"],
+      "properties": {
+        "experienceId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "state": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "baselineScreenshots": { "$ref": "#/$defs/breakpointReferences" },
+        "reviewIds": { "$ref": "#/$defs/breakpointReferences" },
+        "auditIds": { "$ref": "#/$defs/breakpointReferences" }
+      }
+    },
+    "v1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "status", "approvalTask", "experienceIds"],
+      "properties": {
+        "schemaVersion": { "const": "signal-experience-golden-set/1" },
+        "status": { "const": "provisional" },
+        "approvalTask": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "experienceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+        }
+      }
+    },
+    "v2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "status",
+        "approvalTask",
+        "approvalRole",
+        "approvedBy",
+        "approvedAt",
+        "approvalSource",
+        "scoredBy",
+        "scoredAt",
+        "scoringSource",
+        "experienceIds",
+        "references"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "signal-experience-golden-set/2" },
+        "status": { "const": "approved" },
+        "approvalTask": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "approvalRole": { "const": "founder" },
+        "approvedBy": { "const": "Ethan McNamara" },
+        "approvedAt": { "type": "string", "format": "date-time" },
+        "approvalSource": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "scoredBy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "not": { "const": "Ethan McNamara" }
+        },
+        "scoredAt": { "type": "string", "format": "date" },
+        "scoringSource": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "experienceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/reference" }
+        }
+      }
+    }
+  }
+}

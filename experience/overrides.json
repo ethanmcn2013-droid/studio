@@ -15,7 +15,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.54,
+      "approvedBaselineReference": "experience/golden-set.json#/references/0"
     },
     "studio.page.privacy": {
       "auditStatus": "baseline-captured",
@@ -80,7 +82,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/2"
     },
     "timeline.page.by-workspace-slug": {
       "auditStatus": "baseline-captured",
@@ -142,7 +146,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/3"
     },
     "signal.page.root": {
       "auditStatus": "baseline-captured",
@@ -166,7 +172,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/4"
     },
     "notes.page.waitlist": {
       "auditStatus": "baseline-captured",
@@ -176,6 +184,14 @@
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
+    },
+    "tasks.page.app-board": {
+      "auditStatus": "baseline-captured",
+      "auditScore": 3.6,
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "lastReviewedAt": "2026-07-16",
+      "approvedBaselineReference": "experience/golden-set.json#/references/1"
     }
   }
 }

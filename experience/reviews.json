@@ -1,4 +1,1725 @@
 {
   "schemaVersion": "signal-review-collection/1",
-  "reviews": []
+  "reviews": [
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-root-default-mobile-1d4f0bcc7b5c",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "routeOrTrigger": "/",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/studio-page-root/default/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-root/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-root-default-tablet-ebd960daa64b",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "routeOrTrigger": "/",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/studio-page-root/default/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-root/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-root-default-desktop-69b2d4818e9e",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "routeOrTrigger": "/",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/studio-page-root/default/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-root/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-root-default-wide-d92f72ddd12e",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "routeOrTrigger": "/",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/studio-page-root/default/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-root/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-design-default-mobile-47802b9bd811",
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "routeOrTrigger": "/design",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/studio-page-design/default/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-design/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-design/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/design/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-design-default-tablet-616d934d037b",
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "routeOrTrigger": "/design",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/studio-page-design/default/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-design/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-design/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/design/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-design-default-desktop-6f6e54e5c480",
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "routeOrTrigger": "/design",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/studio-page-design/default/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-design/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-design/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/design/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-design-default-wide-9a609166c871",
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "routeOrTrigger": "/design",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/studio-page-design/default/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-design/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-design/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/design/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-privacy-long-content-mobile-2a8722cb0dcc",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "routeOrTrigger": "/privacy",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 2a8722cb0dccf035f2ef232628b013950bd6406d6a2bb23dd6f3870a976e3cfe",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-privacy/long-content/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/privacy/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-privacy-long-content-tablet-b007067b334e",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "routeOrTrigger": "/privacy",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: b007067b334e767f8a982f8e028d074468e22ba55c3b130fbba43af24926f7d6",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-privacy/long-content/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/privacy/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-privacy-long-content-desktop-1d429b0c64f0",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "routeOrTrigger": "/privacy",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 1d429b0c64f0d35e2fcb063fab36de3a4f3b8b8616367a3e962ed5ca7cbbafa8",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-privacy/long-content/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/privacy/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-privacy-long-content-wide-ea55681e892f",
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "routeOrTrigger": "/privacy",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: ea55681e892f6fbe509ca7c3a12681d78a35c771f4a764925db9240810b61150",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-privacy/long-content/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/privacy/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-security-long-content-mobile-7b3fa5353d47",
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "routeOrTrigger": "/security",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 7b3fa5353d47e9777b89d97fdbcfc9703736ce227f05f53c752e1418ae58261b",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-security/long-content/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/security/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-security-long-content-tablet-68d54a86cf2a",
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "routeOrTrigger": "/security",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 68d54a86cf2ac2ab6e242aa280d0b624551083bc1d53da3bb140cace1763c7f1",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-security/long-content/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/security/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-security-long-content-desktop-c52e74362289",
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "routeOrTrigger": "/security",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: c52e743622890489b85df36d6af56fdbd10ac43072ad2ae6cd95749dcb35d13a",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-security/long-content/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/security/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-security-long-content-wide-5c7ace1a65ff",
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "routeOrTrigger": "/security",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 5c7ace1a65ff4e9473b711afc1b92052296371b5c9d2ccb7930f6c0fb4fca731",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-security/long-content/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/security/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-terms-long-content-mobile-2cb18cbe94c2",
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "routeOrTrigger": "/terms",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/mobile.png",
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 2cb18cbe94c223a35a2348b793e43e61295456f2412c11917e94c2a57146ed2b",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-terms/long-content/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/terms/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-terms-long-content-tablet-0b218c053833",
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "routeOrTrigger": "/terms",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/tablet.png",
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 0b218c053833bab494f52ad78f507b2adff8f27c591589de405a34358b26fe67",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-terms/long-content/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/terms/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-terms-long-content-desktop-def6dedfa469",
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "routeOrTrigger": "/terms",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: def6dedfa469dc281ed5da665923b826226373e34e7db4bf67a555ce8513bc10",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-terms/long-content/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/terms/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-studio-page-terms-long-content-wide-a2d4e97b5495",
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "routeOrTrigger": "/terms",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: a2d4e97b54951b28280fa4a95ad31d783fa029fc483002fe0a895e478b475742",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/studio-page-terms/long-content/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "studio/src/app/terms/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-roadmap-default-mobile-35a915bd4dec",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "routeOrTrigger": "/roadmap",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/mobile.png",
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 35a915bd4dec99a7726d7aba733db722d58d59a3d60de4dd58277d735ff19b7b",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-roadmap/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/roadmap/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-roadmap-default-tablet-9a934240d324",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "routeOrTrigger": "/roadmap",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/tablet.png",
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 9a934240d324abbf628778f6e744a6ce32fbd7d8fe494e826c85ad54f7704c49",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-roadmap/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/roadmap/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-roadmap-default-desktop-e25d4b90fb98",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "routeOrTrigger": "/roadmap",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/desktop.png",
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: e25d4b90fb98810f0eccaf485bcfccdfd57fb263845f8b268a5ab47e7002c0df",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-roadmap/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/roadmap/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-roadmap-default-wide-e9e019ef6d02",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "routeOrTrigger": "/roadmap",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/wide.png",
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: e9e019ef6d0278348424adbc9c6ebd857eabcf16c0e112a2be2064c73e4958a7",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-roadmap/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/roadmap/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-timeline-page-the-wedding-default-mobile-9ab1d80780b2",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "routeOrTrigger": "/the-wedding",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/mobile.png",
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 9ab1d80780b2a1c90c349005c0455b3f92b54eda9a64730586c0400a5a659b3f",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/timeline-page-the-wedding/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "roadmap/src/app/the-wedding/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-timeline-page-the-wedding-default-tablet-0700c691b3bd",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "routeOrTrigger": "/the-wedding",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/tablet.png",
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 0700c691b3bd33fabc77a0d54523dd31bb1050ef11efcb2508ca31f5763bab3c",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/timeline-page-the-wedding/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "roadmap/src/app/the-wedding/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-timeline-page-the-wedding-default-desktop-f6668ea61716",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "routeOrTrigger": "/the-wedding",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/desktop.png",
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: f6668ea617169613a7e46e4c55f3811cab0a62c3fbc51ad0bc015a17862bbb11",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/timeline-page-the-wedding/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "roadmap/src/app/the-wedding/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-timeline-page-the-wedding-default-wide-8e8da0e7c57c",
+      "experienceId": "timeline.page.the-wedding",
+      "product": "timeline",
+      "routeOrTrigger": "/the-wedding",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/wide.png",
+      "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 8e8da0e7c57c845a37ad162c5ed0a419a6c2eaa2a05c03ea5c6175bcc4d49c4d",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/timeline-page-the-wedding/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "roadmap/src/app/the-wedding/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-signal-page-demo-default-mobile-fb02f5f97250",
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "routeOrTrigger": "/demo",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/signal-page-demo/default/mobile.png",
+      "candidateScreenshot": "screenshots/signal-page-demo/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: fb02f5f97250ffb13e658d32018f9895bf07038e0a95d69d06035b746d77941d",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/signal-page-demo/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "analytics/src/app/(marketing)/demo/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-signal-page-demo-default-tablet-e3fd4128e644",
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "routeOrTrigger": "/demo",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/signal-page-demo/default/tablet.png",
+      "candidateScreenshot": "screenshots/signal-page-demo/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: e3fd4128e644f82a221cf6bba7a5dd6c59236066a8bb53aaba3db991e7258f8f",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/signal-page-demo/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "analytics/src/app/(marketing)/demo/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-signal-page-demo-default-desktop-854853d975c9",
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "routeOrTrigger": "/demo",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/signal-page-demo/default/desktop.png",
+      "candidateScreenshot": "screenshots/signal-page-demo/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 854853d975c956eeb5f376273db7ed5a6a804374c7426aa215f910a8e657af94",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/signal-page-demo/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "analytics/src/app/(marketing)/demo/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-signal-page-demo-default-wide-1801f49a8d13",
+      "experienceId": "signal.page.demo",
+      "product": "signal",
+      "routeOrTrigger": "/demo",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/signal-page-demo/default/wide.png",
+      "candidateScreenshot": "screenshots/signal-page-demo/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 1801f49a8d13f262425d9dfbe4d7f08bf1c33dee23996ad741c68f038015198b",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/signal-page-demo/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "analytics/src/app/(marketing)/demo/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-notes-page-wedding-planning-default-mobile-346da3a120e3",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "routeOrTrigger": "/wedding-planning",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/mobile.png",
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 346da3a120e3dd9364d777067fcfd7a56253a91bcad122ac02896eb1b43027a2",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/notes-page-wedding-planning/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "notes/src/app/wedding-planning/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-notes-page-wedding-planning-default-tablet-a5f3698f8ce4",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "routeOrTrigger": "/wedding-planning",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/tablet.png",
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: a5f3698f8ce40f3ee3ee0edda8cf79cdc26af513395afccea1f11835387b8d09",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/notes-page-wedding-planning/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "notes/src/app/wedding-planning/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-notes-page-wedding-planning-default-desktop-f932e69a15cf",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "routeOrTrigger": "/wedding-planning",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/desktop.png",
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: f932e69a15cfec883ce64eecf6e04008390b19a08c9c16497ca9300160bbf1f5",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/notes-page-wedding-planning/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "notes/src/app/wedding-planning/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-notes-page-wedding-planning-default-wide-861baa4793af",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
+      "routeOrTrigger": "/wedding-planning",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/wide.png",
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 861baa4793af4585fa698fc2b89ba08cd1ef2d1003aa498f9c34be048b9d6905",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/notes-page-wedding-planning/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "notes/src/app/wedding-planning/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-app-board-default-mobile-390ba5d3c411",
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "routeOrTrigger": "/app/board",
+      "state": "default",
+      "breakpoint": "mobile",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/mobile.png",
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/mobile.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 390ba5d3c411d4d9557911915f52447b699ea6334a516835200e7cd76fef6ba8",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-app-board/default/mobile.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/app/board/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-app-board-default-tablet-eb3b530bf2fa",
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "routeOrTrigger": "/app/board",
+      "state": "default",
+      "breakpoint": "tablet",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/tablet.png",
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/tablet.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: eb3b530bf2fa420e5ee6a2bfdd0b37413a671988ffe625a60e4ea5a2952ca1fe",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-app-board/default/tablet.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/app/board/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-app-board-default-desktop-776a9515cedd",
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "routeOrTrigger": "/app/board",
+      "state": "default",
+      "breakpoint": "desktop",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/desktop.png",
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/desktop.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 776a9515cedd5382749813a0f972e537fd3114839277b908bd0e31f5e04106d0",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-app-board/default/desktop.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/app/board/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    },
+    {
+      "schemaVersion": "signal-review/2",
+      "id": "review-founder-baseline-tasks-page-app-board-default-wide-2f7deb946e8b",
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "routeOrTrigger": "/app/board",
+      "state": "default",
+      "breakpoint": "wide",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/wide.png",
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/wide.png",
+      "diffScreenshot": null,
+      "scoreBefore": null,
+      "scoreAfter": null,
+      "findingIds": [],
+      "annotations": [
+        "Founder-authorized review of the exact captured candidate.",
+        "Candidate SHA-256: 2f7deb946e8b775ab95a5e5b7ccf8726e3400d3b3763ad39e411bfa7a6759cf0",
+        "Approval source: content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ],
+      "severity": null,
+      "owner": "product-taste-design-integrity",
+      "approvalHistory": [
+        {
+          "status": "approved",
+          "actor": "Ethan McNamara",
+          "at": "2026-07-16T00:34:00.000Z",
+          "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+        }
+      ],
+      "resolutionEvidence": [
+        "experience/output/screenshots/tasks-page-app-board/default/wide.png"
+      ],
+      "status": "approved",
+      "designSystemReferences": [
+        "docs/experience/SIGNAL_EXPERIENCE_STANDARD.md"
+      ],
+      "codeReferences": [
+        "tasks/src/app/app/board/page.tsx"
+      ],
+      "changeReferences": [
+        "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md"
+      ]
+    }
+  ]
 }

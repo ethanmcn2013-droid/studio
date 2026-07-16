@@ -2,6 +2,8 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { AUDIT_DIMENSIONS, EXPERIENCE_CLASSES, registryMetrics } from "./lib.mjs";
+import { evaluateAuditProof } from "./gate.mjs";
+import { approvedGoldenSetEvidenceErrors } from "./founder-evidence.mjs";
 
 const ROOT = process.cwd();
 const EXPERIENCE = path.join(ROOT, "experience");
@@ -24,9 +26,19 @@ const captureFile = path.join(OUTPUT, "capture-manifest.json");
 const capture = existsSync(captureFile) ? JSON.parse(readFileSync(captureFile, "utf8")) : null;
 
 const errors = [];
+errors.push(...approvedGoldenSetEvidenceErrors({
+  repoRoot: ROOT,
+  experienceRoot: EXPERIENCE,
+  outputRoot: OUTPUT,
+  goldenSet: golden,
+  manifest: capture,
+  registry,
+  reviewsCollection: reviews,
+  auditsCollection: audits,
+  findingsCollection: findings,
+}));
 const ids = new Set(registry.experiences.map((entry) => entry.id));
 const findingIds = new Set();
-const exceptionIds = new Set();
 const today = new Date().toISOString().slice(0, 10);
 
 const conformanceIds = new Set();
@@ -55,15 +67,6 @@ for (const item of taxonomy.experienceClasses ?? []) {
 }
 for (const id of golden.experienceIds) if (!ids.has(id)) errors.push(`golden set references unknown ${id}`);
 
-for (const exception of exceptions.exceptions) {
-  if (exceptionIds.has(exception.id)) errors.push(`duplicate exception ${exception.id}`);
-  exceptionIds.add(exception.id);
-  if (!exception.expiresAt || exception.expiresAt < today) errors.push(`expired exception ${exception.id}`);
-  for (const field of ["rationale", "owner", "scope", "approvalSource", "remediationPlan"]) {
-    if (!exception[field]) errors.push(`${exception.id}: missing ${field}`);
-  }
-}
-
 for (const finding of findings.findings) {
   if (findingIds.has(finding.id)) errors.push(`duplicate finding ${finding.id}`);
   findingIds.add(finding.id);
@@ -75,6 +78,16 @@ for (const finding of findings.findings) {
   if (finding.status !== "resolved" && finding.resolvedAt) errors.push(`${finding.id}: unresolved finding has resolvedAt`);
 }
 
+const auditProof = evaluateAuditProof({
+  registry,
+  audits: audits.audits,
+  findings: findings.findings,
+  exceptions: exceptions.exceptions,
+  asOf: today,
+  root: ROOT,
+});
+errors.push(...auditProof.errors);
+
 for (const entry of registry.experiences) {
   for (const findingId of entry.openFindingIds ?? []) {
     const finding = findings.findings.find((candidate) => candidate.id === findingId);
@@ -83,35 +96,9 @@ for (const entry of registry.experiences) {
     else if (finding.status === "resolved") errors.push(`${entry.id}: resolved finding ${findingId} remains open`);
   }
 }
-for (const finding of findings.findings.filter((item) => item.status !== "resolved" && item.status !== "accepted-exception")) {
+for (const finding of findings.findings.filter((item) => item.status !== "resolved")) {
   const entry = registry.experiences.find((candidate) => candidate.id === finding.experienceId);
   if (entry && !entry.openFindingIds.includes(finding.id)) errors.push(`${finding.id}: open finding missing from registry entry`);
-}
-
-const auditIds = new Set();
-for (const audit of audits.audits) {
-  if (auditIds.has(audit.id)) errors.push(`duplicate audit ${audit.id}`);
-  auditIds.add(audit.id);
-  if (!ids.has(audit.experienceId)) errors.push(`${audit.id}: unknown experience ${audit.experienceId}`);
-  const scoreKeys = Object.keys(audit.scores ?? {});
-  if (scoreKeys.length !== AUDIT_DIMENSIONS.length || AUDIT_DIMENSIONS.some((dimension) => !scoreKeys.includes(dimension))) {
-    errors.push(`${audit.id}: all 13 audit dimensions are required`);
-    continue;
-  }
-  const values = AUDIT_DIMENSIONS.map((dimension) => audit.scores[dimension]);
-  if (values.some((value) => !Number.isInteger(value) || value < 0 || value > 4)) errors.push(`${audit.id}: scores must be integers 0..4`);
-  const calculated = Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 100) / 100;
-  if (calculated !== audit.overallScore) errors.push(`${audit.id}: overallScore must be ${calculated}`);
-  const blockers = findings.findings.some(
-    (finding) =>
-      finding.experienceId === audit.experienceId &&
-      finding.status !== "resolved" &&
-      finding.status !== "accepted-exception" &&
-      finding.severity === "release-blocking",
-  );
-  const expectedPass = Math.min(...values) >= 3 && calculated >= 3.5 && !blockers;
-  if (audit.pass !== expectedPass) errors.push(`${audit.id}: pass must be ${expectedPass}`);
-  if (!audit.evidence?.length) errors.push(`${audit.id}: rendered evidence is required`);
 }
 
 for (const review of reviews.reviews) {
@@ -123,7 +110,7 @@ for (const review of reviews.reviews) {
 const specialistDimensions = new Set(specialists.specialists.flatMap((specialist) => specialist.dimensions));
 for (const dimension of AUDIT_DIMENSIONS) if (!specialistDimensions.has(dimension)) errors.push(`no specialist owns ${dimension}`);
 
-const open = findings.findings.filter((finding) => !["resolved", "accepted-exception"].includes(finding.status));
+const open = auditProof.openFindings;
 const baselineIds = new Set(baseline.allowedOpenFindingIds);
 const unbaselinedHighRisk = open.filter(
   (finding) => ["release-blocking", "high"].includes(finding.severity) && !baselineIds.has(finding.id),
@@ -183,19 +170,24 @@ const reviewedExperienceIds = new Set([
 const applicableConformance = conformance.repositories.filter((repository) => repository.applicable);
 const passingConformance = applicableConformance.filter((repository) => repository.status === "pass");
 
-const metrics = registryMetrics(registry);
+const assertedMetrics = registryMetrics(registry);
+const metrics = {
+  ...assertedMetrics,
+  passing: auditProof.provenPassingExperienceIds.size,
+  assertedPassing: assertedMetrics.passing,
+};
 const productReports = Object.fromEntries(
   Object.keys(metrics.products).map((product) => {
     const productExperiences = registry.experiences.filter((entry) => entry.product === product);
-    const productFindings = findings.findings.filter((finding) => finding.product === product);
+    const productOpenFindings = open.filter((finding) => finding.product === product);
     return [
       product,
       {
         experiences: productExperiences.length,
         critical: productExperiences.filter((entry) => entry.reviewTier === "critical").length,
-        passing: productExperiences.filter((entry) => entry.auditStatus === "passing").length,
-        openFindings: productFindings.filter((finding) => !["resolved", "accepted-exception"].includes(finding.status)).length,
-        releaseBlocking: productFindings.filter((finding) => finding.severity === "release-blocking" && finding.status !== "resolved").length,
+        passing: productExperiences.filter((entry) => auditProof.provenPassingExperienceIds.has(entry.id)).length,
+        openFindings: productOpenFindings.length,
+        releaseBlocking: productOpenFindings.filter((finding) => finding.severity === "release-blocking").length,
       },
     ];
   }),
@@ -206,45 +198,58 @@ const experienceClassReports = Object.fromEntries(
       (entry) => entry.experienceClass === experienceClass,
     );
     const classIds = new Set(classExperiences.map((entry) => entry.id));
-    const classFindings = findings.findings.filter((finding) => classIds.has(finding.experienceId));
+    const classOpenFindings = open.filter((finding) => classIds.has(finding.experienceId));
     return [
       experienceClass,
       {
         experiences: classExperiences.length,
         critical: classExperiences.filter((entry) => entry.reviewTier === "critical").length,
-        passing: classExperiences.filter((entry) => entry.auditStatus === "passing").length,
-        openFindings: classFindings.filter(
-          (finding) => !["resolved", "accepted-exception"].includes(finding.status),
-        ).length,
-        releaseBlocking: classFindings.filter(
-          (finding) => finding.severity === "release-blocking" && finding.status !== "resolved",
-        ).length,
+        passing: classExperiences.filter((entry) => auditProof.provenPassingExperienceIds.has(entry.id)).length,
+        openFindings: classOpenFindings.length,
+        releaseBlocking: classOpenFindings.filter((finding) => finding.severity === "release-blocking").length,
       },
     ];
   }),
 );
+
+const unresolvedReleaseBlockers = open.filter(
+  (finding) => finding.severity === "release-blocking",
+);
+const certificationReasons = [
+  ...(errors.length ? [`${errors.length} structural validation errors`] : []),
+  ...(unresolvedReleaseBlockers.length
+    ? [`${unresolvedReleaseBlockers.length} unresolved release-blocking findings`]
+    : []),
+  ...(unbaselinedHighRisk.length
+    ? [`${unbaselinedHighRisk.length} unbaselined high-risk findings`]
+    : []),
+  ...(golden.status !== "approved" ? [`golden set is ${golden.status}`] : []),
+  ...(auditProof.nonPassingAuditCells.length
+    ? [
+        `${auditProof.passingAuditCells}/${auditProof.requiredAuditCells.length} required state/breakpoint audit cells pass`,
+      ]
+    : []),
+  ...(!capture ? ["rendered capture manifest is missing"] : []),
+  ...(capture?.summary?.missingBaselines
+    ? [`${capture.summary.missingBaselines} visual baselines await approval`]
+    : []),
+  ...(captureRegressions.length
+    ? [`${captureRegressions.length} capture regressions require review`]
+    : []),
+  ...(passingConformance.length !== applicableConformance.length
+    ? [
+        `${passingConformance.length}/${applicableConformance.length} applicable repositories pass design-system conformance`,
+      ]
+    : []),
+];
 
 const report = {
   schemaVersion: "signal-design-quality-report/1",
   generatedAt: new Date().toISOString(),
   status: errors.length ? "invalid" : unbaselinedHighRisk.length || captureRegressions.length ? "regression" : "baseline-held",
   readiness: {
-    status:
-      open.some((finding) => finding.severity === "release-blocking") ||
-      golden.status !== "approved" ||
-      metrics.passing !== registry.experiences.length
-        ? "not-certified"
-        : "certified",
-    reasons: [
-      ...(open.some((finding) => finding.severity === "release-blocking")
-        ? [`${open.filter((finding) => finding.severity === "release-blocking").length} unresolved release-blocking findings`]
-        : []),
-      ...(golden.status !== "approved" ? [`golden set is ${golden.status}`] : []),
-      ...(capture?.summary?.missingBaselines ? [`${capture.summary.missingBaselines} visual baselines await approval`] : []),
-      ...(metrics.passing !== registry.experiences.length
-        ? [`${metrics.passing}/${registry.experiences.length} experiences are Studio-grade`]
-        : []),
-    ],
+    status: certificationReasons.length ? "not-certified" : "certified",
+    reasons: certificationReasons,
   },
   standard: { dimensions: AUDIT_DIMENSIONS, categoryMinimum: 3, overallMinimum: 3.5 },
   inventory: metrics,
@@ -262,8 +267,12 @@ const report = {
   },
   audits: {
     total: audits.audits.length,
-    passing: audits.audits.filter((audit) => audit.pass).length,
-    failing: audits.audits.filter((audit) => !audit.pass).length,
+    requiredCells: auditProof.requiredAuditCells.length,
+    passing: auditProof.passingAuditCells,
+    failing: auditProof.nonPassingAuditCells.length,
+    missing: auditProof.missingAuditCells.length,
+    duplicate: auditProof.duplicateAuditCells.length,
+    falsePassingExperienceIds: auditProof.falsePassingExperienceIds,
     byProduct: scoreGroups("product"),
     byExperienceClass: scoreGroups("experienceClass"),
     byArchetype: scoreGroups("archetype"),
@@ -309,6 +318,7 @@ const report = {
     underRemediation: metrics.underRemediation,
     legacyExperiences: registry.experiences.filter((entry) => entry.implementationStatus === "legacy").length,
     acceptedExceptions: findings.findings.filter((finding) => finding.status === "accepted-exception").length,
+    validAcceptedExceptions: auditProof.validAcceptedFindingIds.size,
     activeExceptions: exceptions.exceptions.length,
     expiredExceptions: exceptions.exceptions.filter((item) => !item.expiresAt || item.expiresAt < today).length,
     notReviewedSinceMaterialChange: registry.experiences.filter((entry) => !reviewedExperienceIds.has(entry.id)).length,
@@ -331,7 +341,8 @@ const markdown = [
   `- ${metrics.experiences} registered experiences`,
   `- ${metrics.stateVariants} required state variants`,
   `- ${metrics.breakpointVariants} required breakpoint variants`,
-  `- ${metrics.passing} Studio-grade experiences`,
+  `- ${auditProof.requiredAuditCells.length} required state/breakpoint audit cells`,
+  `- ${metrics.passing} evidence-proven Studio-grade experiences (${metrics.assertedPassing} registry assertions)`,
   `- ${metrics.experienceClasses["customer-product"]} customer-product experiences across Tasks, Timeline, Signal, and Notes`,
   `- ${metrics.experienceClasses["company-public"]} company-public Studio experiences`,
   `- ${metrics.experienceClasses["founder-operator"]} founder-operator experiences across Signal HQ and Signal Review`,
@@ -357,6 +368,10 @@ const markdown = [
   "## Gate",
   "",
   `- Structural errors: ${errors.length}`,
+  `- Passing audit cells: ${auditProof.passingAuditCells}/${auditProof.requiredAuditCells.length}`,
+  `- Missing audit cells: ${auditProof.missingAuditCells.length}`,
+  `- Duplicate audit cells: ${auditProof.duplicateAuditCells.length}`,
+  `- False passing assertions: ${auditProof.falsePassingExperienceIds.length}`,
   `- Unbaselined high-risk findings: ${unbaselinedHighRisk.length}`,
   `- Capture regressions requiring review: ${captureRegressions.length}`,
   `- Missing founder-approved visual baselines: ${capture?.summary?.missingBaselines ?? 0}`,
@@ -365,6 +380,7 @@ const markdown = [
   `- Experiences not yet reviewed since registration/material change: ${registry.experiences.length - reviewedExperienceIds.size}`,
   `- Expired exceptions: ${exceptions.exceptions.filter((item) => !item.expiresAt || item.expiresAt < today).length}`,
   `- Golden set: ${golden.status}`,
+  ...report.readiness.reasons.map((reason) => `- Certification blocker: ${reason}`),
   "",
   "A passing inventory count is not a launch claim. A surface is Studio grade only after all 13 scores, rendered evidence, deterministic checks, and hard blockers pass.",
   "",

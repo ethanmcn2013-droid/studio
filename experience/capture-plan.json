@@ -36,8 +36,58 @@
     },
     {
       "experienceId": "tasks.page.roadmap",
-      "state": "populated",
+      "state": "default",
       "url": "https://tasks.signalstudio.ie/roadmap"
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "url": "https://tasks.signalstudio.ie/app/board",
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "signInUrl": "https://tasks.signalstudio.ie/sign-in",
+        "fixture": "signal-experience-capture"
+      }
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "state": "first-use",
+      "url": "https://timeline.signalstudio.ie/app",
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "signInUrl": "https://timeline.signalstudio.ie/sign-in",
+        "fixture": "signal-experience-capture"
+      }
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "state": "default",
+      "url": "https://signal.signalstudio.ie/app/onboarding",
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "signInUrl": "https://signal.signalstudio.ie/sign-in",
+        "fixture": "signal-experience-capture"
+      }
+    },
+    {
+      "experienceId": "notes.page.app",
+      "state": "empty",
+      "url": "https://notes.signalstudio.ie/app",
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "signInUrl": "https://notes.signalstudio.ie/sign-in",
+        "fixture": "signal-experience-capture"
+      }
+    },
+    {
+      "experienceId": "studio.page.hq-experience-quality",
+      "state": "default",
+      "url": "https://signalstudio.ie/hq/experience-quality",
+      "authentication": {
+        "kind": "hq-password",
+        "signInUrl": "https://signalstudio.ie/hq/access?from=/hq/experience-quality",
+        "fixture": "signal-hq-founder-operator"
+      }
     },
     {
       "experienceId": "timeline.page.the-wedding",
@@ -51,7 +101,7 @@
     },
     {
       "experienceId": "notes.page.wedding-planning",
-      "state": "populated",
+      "state": "default",
       "url": "https://notes.signalstudio.ie/wedding-planning"
     }
   ]
