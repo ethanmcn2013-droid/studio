@@ -23,4 +23,4 @@ Preferences stay inside the existing account export and erasure paths. The prosp
 
 ## Notes
 
-Open while the built feature remains release-gated. Close only after an authorized user, an unauthorized project user, a stale provider, a failed provider, and an insufficient-history workspace have all been verified in a production-like environment. A green branch or feature flag is not sufficient evidence.
+Open while the built feature remains release-gated. Synthetic current-head proof now covers unauthorized scope, stale provider, failed provider, insufficient history, Evidence pagination, keyboard focus, and responsive/accessibility behavior. It does not close the risk: both Signal Preview database pairs currently return HTTP 401, all available product-provider Preview tokens are read/write, and no Clerk staging credentials exist. Close only after repaired least-privilege credentials support the additive migration, two live test identities prove allowed and denied projects, real source actions open permitted records, and manual plus scheduled snapshot receipts succeed. A green branch, synthetic fixture, or feature flag is not sufficient evidence.
