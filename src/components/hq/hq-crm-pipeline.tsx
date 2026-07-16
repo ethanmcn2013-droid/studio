@@ -1,42 +1,41 @@
 import Link from "next/link";
 import {
+  getStageLabel,
   PIPELINE_STAGES,
-  STAGE_LABELS,
+  type ProspectSegment,
   type StageCounts,
 } from "@/lib/hq/crm-utils";
 import type { ProspectStage } from "@/lib/db/schema";
 
 /**
- * HQ CRM Pipeline Rail, the funnel at a glance.
+ * HQ CRM Pipeline Rail, the funnel at a glance — per book.
  *
  * Five stage buckets (to_contact → pilot_active) shown as a horizontal
- * rail of tappable pills. Each pill shows the stage label + count.
- * Active stage is highlighted in accent. "all" shows no highlight.
+ * rail of tappable pills. Stage labels speak the book's language
+ * ("cell active" in the student book, "school signed" in the school book).
  *
- * The due-today count surfaces as a separate badge above the rail, it
- * cuts across stages (any non-parked, non-pilot prospect with a
- * past-due or today follow-up date).
- *
- * Filter is stateless URL-param: ?stage=<stage>. Clicking the active
- * pill navigates to ?stage=all (clear the filter).
+ * Filter is stateless URL-param: ?book=<segment>&stage=<stage>. Clicking
+ * the active pill clears the stage filter but keeps the book.
  */
 export function HqCrmPipeline({
+  segment,
   stageCounts,
-  dueCount,
   activeStage,
 }: {
+  segment: ProspectSegment;
   stageCounts: StageCounts;
-  dueCount: number;
   activeStage: ProspectStage | "all";
 }) {
   const total = PIPELINE_STAGES.reduce((n, s) => n + stageCounts[s], 0);
+  const bookHref = `/hq/crm?book=${segment}`;
+  const stageHref = (stage: ProspectStage) => `${bookHref}&stage=${stage}`;
 
   return (
     <nav className="hq-crm-pipeline" aria-label="CRM pipeline filter">
       <div className="hq-crm-pipeline-rail" role="list">
         {/* All pill */}
         <Link
-          href="/hq/crm"
+          href={bookHref}
           className="hq-crm-stage-pill"
           data-active={activeStage === "all" ? "true" : undefined}
           role="listitem"
@@ -49,7 +48,7 @@ export function HqCrmPipeline({
         {/* Stage pills, active funnel only */}
         {PIPELINE_STAGES.map((stage) => {
           const isActive = activeStage === stage;
-          const href = isActive ? "/hq/crm" : `/hq/crm?stage=${stage}`;
+          const href = isActive ? bookHref : stageHref(stage);
           return (
             <Link
               key={stage}
@@ -60,7 +59,9 @@ export function HqCrmPipeline({
               role="listitem"
               aria-current={isActive ? "page" : undefined}
             >
-              <span className="hq-crm-stage-label">{STAGE_LABELS[stage]}</span>
+              <span className="hq-crm-stage-label">
+                {getStageLabel(segment, stage)}
+              </span>
               <span className="hq-crm-stage-count">{stageCounts[stage]}</span>
             </Link>
           );
@@ -70,14 +71,14 @@ export function HqCrmPipeline({
       {/* Parked section */}
       <div className="hq-crm-pipeline-parked">
         <Link
-          href={activeStage === "not_interested" ? "/hq/crm" : "/hq/crm?stage=not_interested"}
+          href={activeStage === "not_interested" ? bookHref : stageHref("not_interested")}
           className="hq-crm-parked-pill"
           data-active={activeStage === "not_interested" ? "true" : undefined}
         >
           not interested · {stageCounts.not_interested}
         </Link>
         <Link
-          href={activeStage === "later" ? "/hq/crm" : "/hq/crm?stage=later"}
+          href={activeStage === "later" ? bookHref : stageHref("later")}
           className="hq-crm-parked-pill"
           data-active={activeStage === "later" ? "true" : undefined}
         >
