@@ -1,5 +1,5 @@
 import { seedHqData } from "@/lib/hq/data";
-import { computeOutreachSummary } from "@/lib/hq/crm-utils";
+import { computeOutreachSummary, normalizeSegment } from "@/lib/hq/crm-utils";
 import type { DbProspect } from "@/lib/db/schema";
 import type { TractionState } from "@/lib/hq/traction";
 
@@ -89,10 +89,14 @@ export function getProofGate(
   const asOfDay = new Date(now).toISOString().slice(0, 10);
 
   // Prefer live DB prospects; fall back to seed data if not yet migrated.
+  // Venue book only: the proof gate is the paid-venue funnel, and student,
+  // school, or smb outreach must never inflate it.
   const { sent, firstSendDay, qualifiedReplies, bookedCalls } = dbProspects
-    ? computeOutreachSummary(dbProspects)
+    ? computeOutreachSummary(dbProspects, "venue")
     : (() => {
-        const prospects = seedHqData.prospects ?? [];
+        const prospects = (seedHqData.prospects ?? []).filter(
+          (p) => normalizeSegment(p.segment) === "venue",
+        );
         const sendDays: number[] = [];
         let s = 0, qr = 0, bc = 0;
         for (const p of prospects) {

@@ -103,8 +103,19 @@ export const HQ_ROOMS: HqRoom[] = [
     group: "sell",
     kind: "console",
     lifecycle: "active",
-    summary: "The venue pipeline: who to contact next and what is due.",
-    aliases: ["customers", "pipeline", "prospects", "outreach", "follow up"],
+    summary:
+      "Four lead books — venues, students, schools, small business — who to contact next and what is locked down.",
+    aliases: [
+      "customers",
+      "pipeline",
+      "prospects",
+      "outreach",
+      "follow up",
+      "lead books",
+      "leads",
+      "students",
+      "schools",
+    ],
   },
   {
     slug: "venues",

@@ -1,22 +1,29 @@
 import { HqCrmRow } from "@/components/hq/hq-crm-row";
 import type { DbProspect } from "@/lib/db/schema";
-import { STAGE_LABELS } from "@/lib/hq/crm-utils";
+import {
+  getStageLabel,
+  SEGMENT_CONFIG,
+  type ProspectSegment,
+} from "@/lib/hq/crm-utils";
 import type { ProspectStage } from "@/lib/db/schema";
 
 /**
- * HQ CRM Prospect List, the body below the pipeline rail.
+ * HQ CRM Prospect List, the body below the pipeline rail — per book.
  *
  * Server component: renders a list of `HqCrmRow` items. Each row is
  * a server-rendered table row with a client island (HqCrmRow) for
- * the stage-select interaction and compose button.
+ * the stage-select, dossier, and lock-down interactions.
  *
- * Empty state is honest, "nothing here" with a suggestion.
+ * Empty state is honest per book — the smb book is empty by design,
+ * the student and school books point at the lock-down plan.
  */
 export function HqCrmList({
   prospects,
+  segment,
   activeStage,
 }: {
   prospects: DbProspect[];
+  segment: ProspectSegment;
   activeStage: ProspectStage | "all";
 }) {
   if (prospects.length === 0) {
@@ -24,8 +31,8 @@ export function HqCrmList({
       <div className="hq-crm-empty">
         <p className="hq-crm-empty-line">
           {activeStage === "all"
-            ? "no prospects yet, run the seed or add one"
-            : `nothing in "${STAGE_LABELS[activeStage as ProspectStage]}" right now`}
+            ? SEGMENT_CONFIG[segment].emptyBookLine
+            : `nothing in "${getStageLabel(segment, activeStage as ProspectStage)}" right now`}
         </p>
       </div>
     );
@@ -45,7 +52,7 @@ export function HqCrmList({
 
       <div className="hq-crm-list-body" role="list">
         {prospects.map((p) => (
-          <HqCrmRow key={p.id} prospect={p} />
+          <HqCrmRow key={p.id} prospect={p} segment={segment} />
         ))}
       </div>
     </div>

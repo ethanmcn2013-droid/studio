@@ -6298,6 +6298,306 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   }
 }
 
+/* ── Lead books — the four-book switcher ──────────────────────────── */
+.hq-crm-books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.hq-crm-book-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 132px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--hairline-2);
+  border-radius: 3px;
+  background: var(--paper);
+  text-decoration: none;
+  transition: border-color 0.12s, background 0.12s;
+}
+.hq-crm-book-tab:hover {
+  border-color: var(--ink-quiet);
+  background: var(--paper-deep);
+}
+.hq-crm-book-tab[data-active="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.hq-crm-book-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono-stack);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.hq-crm-book-tab[data-active="true"] .hq-crm-book-label {
+  color: var(--accent-deep);
+}
+.hq-crm-book-due-pip {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hq-crit, #b91c1c);
+  flex-shrink: 0;
+}
+.hq-crm-book-counts {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-quiet);
+}
+.hq-crm-book-locked {
+  color: var(--ink-faint);
+}
+
+/* ── Intelligence strip — playbook + lock-down meter ──────────────── */
+.hq-crm-intel {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1rem 2rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  background: var(--paper-deep);
+}
+.hq-crm-intel-playbook {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.hq-crm-intel-offer {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.hq-crm-intel-line {
+  margin: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--accent-deep);
+}
+.hq-crm-intel-buyer {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-quiet);
+}
+.hq-crm-intel-lockdown {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.hq-crm-intel-locked {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+.hq-crm-intel-locked-count {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.hq-crm-intel-locked-total {
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+}
+.hq-crm-intel-locked-label {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-quiet);
+}
+.hq-crm-intel-meters {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 0;
+}
+.hq-crm-intel-meter {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+.hq-crm-intel-meter dt {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--ink-quiet);
+}
+.hq-crm-intel-meter dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hq-crm-intel-meter-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--hairline);
+  overflow: hidden;
+}
+.hq-crm-intel-meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.hq-crm-intel-meter-count {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  color: var(--ink-faint);
+  min-width: 4.5ch;
+  text-align: right;
+}
+.hq-crm-intel-next {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
+.hq-crm-intel-next-org { color: var(--ink); }
+
+/* ── Lock-down marks on rows ──────────────────────────────────────── */
+.hq-crm-locks {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+.hq-crm-lock {
+  font-family: var(--font-mono-stack);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  border: 1px solid var(--hairline);
+  color: var(--ink-ghost);
+}
+.hq-crm-lock[data-ok="true"] {
+  border-color: var(--accent-soft);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+}
+
+/* ── Dossier — the expandable full record ─────────────────────────── */
+.hq-crm-dossier-toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-quiet);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.12s;
+}
+.hq-crm-dossier-toggle:hover { color: var(--ink); }
+.hq-crm-dossier {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background: var(--paper-deep);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.hq-crm-dossier-facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 2rem;
+  width: 100%;
+}
+.hq-crm-dossier-fact {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 0.6rem;
+}
+.hq-crm-dossier-fact dt {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  padding-top: 0.1rem;
+}
+.hq-crm-dossier-fact dd {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+.hq-crm-dossier-notes {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-quiet);
+}
+.hq-crm-dossier-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 1.5rem;
+  width: 100%;
+}
+.hq-crm-dossier-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.hq-crm-dossier-field--wide { grid-column: 1 / -1; }
+.hq-crm-dossier-field > span {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+}
+.hq-crm-dossier-field input,
+.hq-crm-dossier-field textarea {
+  border: 1px solid var(--hairline-2);
+  border-radius: 3px;
+  background: var(--paper);
+  padding: 0.35rem 0.5rem;
+  font-size: 12.5px;
+  color: var(--ink);
+  font-family: inherit;
+}
+.hq-crm-dossier-field input:focus-visible,
+.hq-crm-dossier-field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.hq-crm-dossier-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hq-crm-intel { grid-template-columns: 1fr; }
+  .hq-crm-intel-meter { grid-template-columns: 96px 1fr; }
+  .hq-crm-dossier-facts,
+  .hq-crm-dossier-form { grid-template-columns: 1fr; }
+  .hq-crm-book-tab { min-width: calc(50% - 0.2rem); }
+}
+
 /* ── /hq/org — Executive Leadership Team chart ────────────────────── */
 
 .org-apex {
