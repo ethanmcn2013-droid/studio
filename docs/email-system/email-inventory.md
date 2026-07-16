@@ -9,6 +9,8 @@ Delivery context today: the provider is Resend, the single canonical address is 
 
 Eight emails have working prototypes built in `src/emails/`. They are marked with `Prototype: yes` in their entry: `auth.sign-in-code`, `access.ready`, `billing.payment-failed`, `account.deletion-scheduled`, `outreach.venue-first`, `outreach.school-first`, `student.verification-approved`, `editorial.dispatch-issue`.
 
+Wave 2 (2026-07-16, after the Hairline decision) added nine more working prototypes: `auth.verify-email`, `access.waitlist-joined`, `welcome.first-workspace`, `workspace.invitation`, `billing.receipt`, `billing.renewal-upcoming`, `security.new-sign-in`, `data.export-ready`, `venue.codes-ready`. Seventeen inventory entries now have prototypes; selection rationale in `expansion-wave-2.md`.
+
 Tracking policy, applied consistently:
 
 - **Transactional and operational** (security, billing, data rights, deletion, product notifications): no open tracking, no click tracking, no marketing content. Unsubscribe not applicable, except notification digests, which carry preference links. Every product notification is individually disableable in settings.
