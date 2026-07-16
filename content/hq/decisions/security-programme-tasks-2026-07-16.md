@@ -12,4 +12,6 @@ The first remediation tranche now has code and verification evidence: destructiv
 
 The second tranche at Tasks commit `def8144` root-contains attachment storage paths while preserving custom task IDs, removes internal storage and tenant identifiers from attachment responses, escapes iCalendar identifiers, and neutralizes spreadsheet formulas in CSV exports. The full Tasks test suite, lint, typecheck and production build passed; the baseline scan remains unchanged and the separate fix report records the closure evidence.
 
+The third tranche at Tasks commit `f4bd02d` requires the workspace owner for onboarding and segment-wide mutations and binds daily/weekly digest user and workspace selectors to a current membership before compilation or delivery. The full verification gates passed again. Provider configuration and production scheduler execution remain open evidence gates.
+
 Open gates remain provider MFA/passkeys and environment separation, complete shared authorization adoption, public-link migration, security-event alerts, backup/restore measurements, legal DPA and school review, incident tabletop, security mailbox/security.txt, and independent authenticated penetration testing. Public trust claims must map to the control register and current evidence receipts.
