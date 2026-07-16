@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-16 · S·130 · tightens · the venue book is locked down
+
+**All fifty venue leads now carry a verified phone number and full postal address with Eircode, thirty-six open a right-door inbox, and fifteen have a named human — up from one — every fact checked against the venue's own site today.** The research pass also caught what a flat list would have hidden: the Fitzwilliam and Killarney Park addresses on file no longer exist on their sites and were replaced with the published ones, eight venues gained weddings-specific inboxes their records lacked (Powerscourt, Mount Juliet, Doonbeg, Conrad, Glenlo Abbey, Lyrath, Slieve Russell, the Hardiman), and five venues that publish no email at all are marked exactly that, form-only, phone-first. Named wedding managers landed where venues publish them: Carton House, Sheen Falls, Druids Glen, Clontarf Castle, Culloden, Castlecourt, Limerick Strand and more, with unverified name leads parked in notes as verify-on-first-call, never counted as locked.
+
+Five records wear a PARTIAL flag because their sites block automated reading (the Marker, Radisson Blu Royal, Montenotte, Lough Eske Castle among them) — those need one manual look before a send, and the records say so.
+
 ## 2026-07-16 · S·129 · ships · the CRM becomes four lead books
 
 **/hq/crm no longer holds one flat list: venues, students, schools, and small business are now four separate lead books, each carrying its own offer, buyer, playbook line, and stage vocabulary from the market-entry deck — and the paid-venue proof gate reads the venue book only.** Every row shows four lock-down marks (named contact, right-door email, phone, address), the book header carries a lock-down meter and the next three sends, and a dossier opens on any lead to show the full record and write down what a call surfaced. The prospect schema gains phone, address, county, group, inbox type, and tier as real columns; the fifty-venue seed's prose intelligence (star rating, chain, inbox door) is parsed into those columns at seed time rather than rewritten by hand.
