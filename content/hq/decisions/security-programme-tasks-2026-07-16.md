@@ -14,4 +14,6 @@ The second tranche at Tasks commit `def8144` root-contains attachment storage pa
 
 The third tranche at Tasks commit `f4bd02d` requires the workspace owner for onboarding and segment-wide mutations and binds daily/weekly digest user and workspace selectors to a current membership before compilation or delivery. The full verification gates passed again. Provider configuration and production scheduler execution remain open evidence gates.
 
+The fourth tranche at Tasks commit `0dc6da7` prevents co-tenant notification/entitlement export, strips invite/share bearers from portability output, bounds and redacts CSP telemetry, removes comp codes from Sentry tags, and replaces raw internal error messages with stable public codes. Two-tenant and telemetry tests plus the complete test/lint/type/build gates passed. A structured security-event stream and production alert evidence remain open.
+
 Open gates remain provider MFA/passkeys and environment separation, complete shared authorization adoption, public-link migration, security-event alerts, backup/restore measurements, legal DPA and school review, incident tabletop, security mailbox/security.txt, and independent authenticated penetration testing. Public trust claims must map to the control register and current evidence receipts.
