@@ -1,9 +1,9 @@
 ---
 id: approve-experience-visual-baselines
 title: Approve the first Signal visual baselines
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Experience Quality OS · Baseline approval
 why: The current pilot has candidate screenshots but no founder-approved comparison artifacts, so visual no-regression and Studio-grade claims remain blocked.
 href: /hq/experience-quality
@@ -31,3 +31,11 @@ links: ["../../../experience/output/capture-manifest.json", "../../../docs/exper
 ## Done when
 
 Every approved baseline has an exact candidate/source reference, deterministic environment, founder approval record, corresponding review disposition, and current registry reference; every unapproved candidate remains visibly pending or linked to remediation.
+
+## Completion evidence
+
+- All 36 requested public candidates were approved after rendered review at mobile, tablet, desktop, and wide.
+- Four authenticated Tasks board candidates were also approved to support the golden set, producing 40 approved baselines and 40 matching founder-authorized review records in total.
+- The combined pilot manifest contains 56/56 passing captures, zero visual changes, zero runtime/accessibility blockers, and 16 intentionally unbaselined protected candidates outside the approved reference scope.
+- Two consecutive protected production runs captured the same 20 authenticated views with zero screenshot-hash changes: [run 29461487495](https://github.com/ethanmcn2013-droid/studio/actions/runs/29461487495) and [run 29461638860](https://github.com/ethanmcn2013-droid/studio/actions/runs/29461638860).
+- Candidate bytes, baseline bytes, review IDs, approvals, and golden audits are content-addressed and fail closed if they drift.

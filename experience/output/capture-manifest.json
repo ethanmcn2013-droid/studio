@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience-capture/1",
-  "capturedAt": "2026-07-15T14:45:06.703Z",
+  "capturedAt": "2026-07-16T00:33:00.868Z",
   "approvedBy": null,
   "determinism": {
     "locale": "en-GB",
@@ -11,31 +11,31 @@
     "settleMilliseconds": 1200
   },
   "summary": {
-    "captures": 36,
-    "passing": 36,
+    "captures": 56,
+    "passing": 56,
     "requiringReview": 0,
     "visualChanges": 0,
-    "missingBaselines": 36
+    "missingBaselines": 16
   },
   "results": [
     {
-      "experienceId": "tasks.page.roadmap",
-      "product": "tasks",
-      "state": "populated",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
       "breakpoint": "mobile",
       "viewport": {
         "width": 390,
         "height": 844
       },
-      "url": "https://tasks.signalstudio.ie/roadmap",
+      "url": "https://signalstudio.ie/",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/mobile.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/mobile.png",
       "diffScreenshot": null,
-      "candidateHash": "3c48e6b671d578ba7272aae74dad6496506ac482a5ab6636062e4db82b5a43e4",
+      "candidateHash": "1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -47,34 +47,38 @@
       },
       "runtime": {
         "overflowPixels": 0,
-        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "focusTarget": "a",
         "navigation": {
-          "duration": 1643,
-          "domContentLoaded": 1594
+          "duration": 494,
+          "domContentLoaded": 418
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377"
     },
     {
-      "experienceId": "tasks.page.roadmap",
-      "product": "tasks",
-      "state": "populated",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
       "breakpoint": "tablet",
       "viewport": {
         "width": 768,
         "height": 1024
       },
-      "url": "https://tasks.signalstudio.ie/roadmap",
+      "url": "https://signalstudio.ie/",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/tablet.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/tablet.png",
       "diffScreenshot": null,
-      "candidateHash": "475f81eba40fb499dc04758538ba9a30099b1ae7cc9840718cd56a8fe3bd162b",
+      "candidateHash": "ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -86,34 +90,38 @@
       },
       "runtime": {
         "overflowPixels": 0,
-        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "focusTarget": "a",
         "navigation": {
-          "duration": 446,
-          "domContentLoaded": 278
+          "duration": 419,
+          "domContentLoaded": 288
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10"
     },
     {
-      "experienceId": "tasks.page.roadmap",
-      "product": "tasks",
-      "state": "populated",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
       "breakpoint": "desktop",
       "viewport": {
         "width": 1280,
         "height": 900
       },
-      "url": "https://tasks.signalstudio.ie/roadmap",
+      "url": "https://signalstudio.ie/",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/desktop.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/desktop.png",
       "diffScreenshot": null,
-      "candidateHash": "97357fa68a807a4458e4c9c04c4e58e92f129154cd8153edd630d3b303a52368",
+      "candidateHash": "69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -125,34 +133,38 @@
       },
       "runtime": {
         "overflowPixels": 0,
-        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "focusTarget": "a",
         "navigation": {
-          "duration": 634,
-          "domContentLoaded": 512
+          "duration": 403,
+          "domContentLoaded": 338
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc"
     },
     {
-      "experienceId": "tasks.page.roadmap",
-      "product": "tasks",
-      "state": "populated",
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
       "breakpoint": "wide",
       "viewport": {
         "width": 1440,
         "height": 960
       },
-      "url": "https://tasks.signalstudio.ie/roadmap",
+      "url": "https://signalstudio.ie/",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/tasks-page-roadmap/populated/wide.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/wide.png",
       "diffScreenshot": null,
-      "candidateHash": "7b47f4fae749e5c8620662f35846b2ecd39d9bf808c1028c6b6e0b10b78b593c",
+      "candidateHash": "d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -164,15 +176,707 @@
       },
       "runtime": {
         "overflowPixels": 0,
-        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "focusTarget": "a",
         "navigation": {
-          "duration": 518,
-          "domContentLoaded": 369
+          "duration": 367,
+          "domContentLoaded": 366
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe"
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signalstudio.ie/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-design/default/mobile.png",
+      "diffScreenshot": null,
+      "candidateHash": "47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 561,
+          "domContentLoaded": 561
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:31.797Z",
+      "approvedCandidateHash": "47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825"
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signalstudio.ie/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-design/default/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 433,
+          "domContentLoaded": 433
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:31.797Z",
+      "approvedCandidateHash": "616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549"
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signalstudio.ie/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-design/default/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 418,
+          "domContentLoaded": 354
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:31.797Z",
+      "approvedCandidateHash": "6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77"
+    },
+    {
+      "experienceId": "studio.page.design",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signalstudio.ie/design",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-design/default/wide.png",
+      "baselineScreenshot": "baselines/studio-page-design/default/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 485,
+          "domContentLoaded": 485
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:31.797Z",
+      "approvedCandidateHash": "9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5"
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signalstudio.ie/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/mobile.png",
+      "diffScreenshot": null,
+      "candidateHash": "2a8722cb0dccf035f2ef232628b013950bd6406d6a2bb23dd6f3870a976e3cfe",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 371,
+          "domContentLoaded": 370
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:32.781Z",
+      "approvedCandidateHash": "2a8722cb0dccf035f2ef232628b013950bd6406d6a2bb23dd6f3870a976e3cfe"
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signalstudio.ie/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "b007067b334e767f8a982f8e028d074468e22ba55c3b130fbba43af24926f7d6",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 373,
+          "domContentLoaded": 308
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:32.781Z",
+      "approvedCandidateHash": "b007067b334e767f8a982f8e028d074468e22ba55c3b130fbba43af24926f7d6"
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signalstudio.ie/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "1d429b0c64f0d35e2fcb063fab36de3a4f3b8b8616367a3e962ed5ca7cbbafa8",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 364,
+          "domContentLoaded": 364
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:32.781Z",
+      "approvedCandidateHash": "1d429b0c64f0d35e2fcb063fab36de3a4f3b8b8616367a3e962ed5ca7cbbafa8"
+    },
+    {
+      "experienceId": "studio.page.privacy",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signalstudio.ie/privacy",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/wide.png",
+      "baselineScreenshot": "baselines/studio-page-privacy/long-content/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "ea55681e892f6fbe509ca7c3a12681d78a35c771f4a764925db9240810b61150",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 333,
+          "domContentLoaded": 333
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:32.781Z",
+      "approvedCandidateHash": "ea55681e892f6fbe509ca7c3a12681d78a35c771f4a764925db9240810b61150"
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signalstudio.ie/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/mobile.png",
+      "diffScreenshot": null,
+      "candidateHash": "7b3fa5353d47e9777b89d97fdbcfc9703736ce227f05f53c752e1418ae58261b",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 349,
+          "domContentLoaded": 349
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:33.753Z",
+      "approvedCandidateHash": "7b3fa5353d47e9777b89d97fdbcfc9703736ce227f05f53c752e1418ae58261b"
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signalstudio.ie/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "68d54a86cf2ac2ab6e242aa280d0b624551083bc1d53da3bb140cace1763c7f1",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 359,
+          "domContentLoaded": 359
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:33.753Z",
+      "approvedCandidateHash": "68d54a86cf2ac2ab6e242aa280d0b624551083bc1d53da3bb140cace1763c7f1"
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signalstudio.ie/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "c52e743622890489b85df36d6af56fdbd10ac43072ad2ae6cd95749dcb35d13a",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 410,
+          "domContentLoaded": 410
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:33.753Z",
+      "approvedCandidateHash": "c52e743622890489b85df36d6af56fdbd10ac43072ad2ae6cd95749dcb35d13a"
+    },
+    {
+      "experienceId": "studio.page.security",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signalstudio.ie/security",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-security/long-content/wide.png",
+      "baselineScreenshot": "baselines/studio-page-security/long-content/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "5c7ace1a65ff4e9473b711afc1b92052296371b5c9d2ccb7930f6c0fb4fca731",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 353,
+          "domContentLoaded": 285
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:33.753Z",
+      "approvedCandidateHash": "5c7ace1a65ff4e9473b711afc1b92052296371b5c9d2ccb7930f6c0fb4fca731"
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signalstudio.ie/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/mobile.png",
+      "diffScreenshot": null,
+      "candidateHash": "2cb18cbe94c223a35a2348b793e43e61295456f2412c11917e94c2a57146ed2b",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 354,
+          "domContentLoaded": 354
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:34.583Z",
+      "approvedCandidateHash": "2cb18cbe94c223a35a2348b793e43e61295456f2412c11917e94c2a57146ed2b"
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signalstudio.ie/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "0b218c053833bab494f52ad78f507b2adff8f27c591589de405a34358b26fe67",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 341,
+          "domContentLoaded": 251
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:34.583Z",
+      "approvedCandidateHash": "0b218c053833bab494f52ad78f507b2adff8f27c591589de405a34358b26fe67"
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signalstudio.ie/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "def6dedfa469dc281ed5da665923b826226373e34e7db4bf67a555ce8513bc10",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 423,
+          "domContentLoaded": 423
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:34.583Z",
+      "approvedCandidateHash": "def6dedfa469dc281ed5da665923b826226373e34e7db4bf67a555ce8513bc10"
+    },
+    {
+      "experienceId": "studio.page.terms",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signalstudio.ie/terms",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-terms/long-content/wide.png",
+      "baselineScreenshot": "baselines/studio-page-terms/long-content/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "a2d4e97b54951b28280fa4a95ad31d783fa029fc483002fe0a895e478b475742",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 426,
+          "domContentLoaded": 426
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:34.583Z",
+      "approvedCandidateHash": "a2d4e97b54951b28280fa4a95ad31d783fa029fc483002fe0a895e478b475742"
     },
     {
       "experienceId": "timeline.page.the-wedding",
@@ -187,11 +891,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/mobile.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/mobile.png",
       "diffScreenshot": null,
-      "candidateHash": "dd5294744db20f3afd8b7e0026b874f349e96d64c787ab2fa48ad04ecf63beb9",
+      "candidateHash": "9ab1d80780b2a1c90c349005c0455b3f92b54eda9a64730586c0400a5a659b3f",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -205,13 +909,17 @@
         "overflowPixels": 0,
         "focusTarget": "a[aria-label=\"Signal Timeline\"]",
         "navigation": {
-          "duration": 1161,
-          "domContentLoaded": 1023
+          "duration": 382,
+          "domContentLoaded": 151
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:36.327Z",
+      "approvedCandidateHash": "9ab1d80780b2a1c90c349005c0455b3f92b54eda9a64730586c0400a5a659b3f"
     },
     {
       "experienceId": "timeline.page.the-wedding",
@@ -226,11 +934,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/tablet.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/tablet.png",
       "diffScreenshot": null,
-      "candidateHash": "dc6cef71161376f64e8edb4dba6b426c2bc9123d36a5977d3b4eb24e1066c63b",
+      "candidateHash": "0700c691b3bd33fabc77a0d54523dd31bb1050ef11efcb2508ca31f5763bab3c",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -244,13 +952,17 @@
         "overflowPixels": 0,
         "focusTarget": "a[aria-label=\"Signal Timeline\"]",
         "navigation": {
-          "duration": 573,
-          "domContentLoaded": 253
+          "duration": 340,
+          "domContentLoaded": 118
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:36.327Z",
+      "approvedCandidateHash": "0700c691b3bd33fabc77a0d54523dd31bb1050ef11efcb2508ca31f5763bab3c"
     },
     {
       "experienceId": "timeline.page.the-wedding",
@@ -265,11 +977,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/desktop.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/desktop.png",
       "diffScreenshot": null,
-      "candidateHash": "6d3b922fc2f41745ab515ee23d2b38f32e05ddeb704e969d8729eb288d4aac9a",
+      "candidateHash": "f6668ea617169613a7e46e4c55f3811cab0a62c3fbc51ad0bc015a17862bbb11",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -283,13 +995,17 @@
         "overflowPixels": 0,
         "focusTarget": "a[aria-label=\"Signal Timeline\"]",
         "navigation": {
-          "duration": 501,
-          "domContentLoaded": 173
+          "duration": 426,
+          "domContentLoaded": 156
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:36.327Z",
+      "approvedCandidateHash": "f6668ea617169613a7e46e4c55f3811cab0a62c3fbc51ad0bc015a17862bbb11"
     },
     {
       "experienceId": "timeline.page.the-wedding",
@@ -304,11 +1020,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/timeline-page-the-wedding/default/wide.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/timeline-page-the-wedding/default/wide.png",
       "diffScreenshot": null,
-      "candidateHash": "54b2cae63aa65b29a4c4f3b3c48800f92f288bcd541dc18a25a4b130c32ca64b",
+      "candidateHash": "8e8da0e7c57c845a37ad162c5ed0a419a6c2eaa2a05c03ea5c6175bcc4d49c4d",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -322,13 +1038,17 @@
         "overflowPixels": 0,
         "focusTarget": "a[aria-label=\"Signal Timeline\"]",
         "navigation": {
-          "duration": 634,
-          "domContentLoaded": 170
+          "duration": 338,
+          "domContentLoaded": 110
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:36.327Z",
+      "approvedCandidateHash": "8e8da0e7c57c845a37ad162c5ed0a419a6c2eaa2a05c03ea5c6175bcc4d49c4d"
     },
     {
       "experienceId": "signal.page.demo",
@@ -343,11 +1063,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/signal-page-demo/default/mobile.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/signal-page-demo/default/mobile.png",
       "diffScreenshot": null,
-      "candidateHash": "44805c49c9386118063d8bd375fb8604456640446225258dcd8491e127ff2988",
+      "candidateHash": "fb02f5f97250ffb13e658d32018f9895bf07038e0a95d69d06035b746d77941d",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -361,13 +1081,17 @@
         "overflowPixels": 0,
         "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
         "navigation": {
-          "duration": 3087,
-          "domContentLoaded": 2229
+          "duration": 526,
+          "domContentLoaded": 265
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:37.289Z",
+      "approvedCandidateHash": "fb02f5f97250ffb13e658d32018f9895bf07038e0a95d69d06035b746d77941d"
     },
     {
       "experienceId": "signal.page.demo",
@@ -382,11 +1106,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/signal-page-demo/default/tablet.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/signal-page-demo/default/tablet.png",
       "diffScreenshot": null,
-      "candidateHash": "7e52a03317f1976ca0c10165b6c2cfd3674d868fa37e99a02e5f0c2e0f831c5b",
+      "candidateHash": "e3fd4128e644f82a221cf6bba7a5dd6c59236066a8bb53aaba3db991e7258f8f",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -400,13 +1124,17 @@
         "overflowPixels": 0,
         "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
         "navigation": {
-          "duration": 477,
-          "domContentLoaded": 351
+          "duration": 535,
+          "domContentLoaded": 355
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:37.289Z",
+      "approvedCandidateHash": "e3fd4128e644f82a221cf6bba7a5dd6c59236066a8bb53aaba3db991e7258f8f"
     },
     {
       "experienceId": "signal.page.demo",
@@ -421,11 +1149,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/signal-page-demo/default/desktop.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/signal-page-demo/default/desktop.png",
       "diffScreenshot": null,
-      "candidateHash": "6639195c6655103d749229a7835ad9724bfb90b9666cdda7b1b755954f295bf6",
+      "candidateHash": "854853d975c956eeb5f376273db7ed5a6a804374c7426aa215f910a8e657af94",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -439,13 +1167,17 @@
         "overflowPixels": 0,
         "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
         "navigation": {
-          "duration": 687,
-          "domContentLoaded": 326
+          "duration": 494,
+          "domContentLoaded": 460
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:37.289Z",
+      "approvedCandidateHash": "854853d975c956eeb5f376273db7ed5a6a804374c7426aa215f910a8e657af94"
     },
     {
       "experienceId": "signal.page.demo",
@@ -460,11 +1192,11 @@
       "status": 200,
       "navigationError": null,
       "candidateScreenshot": "screenshots/signal-page-demo/default/wide.png",
-      "baselineScreenshot": null,
+      "baselineScreenshot": "baselines/signal-page-demo/default/wide.png",
       "diffScreenshot": null,
-      "candidateHash": "8d9d702aee8e2e36ae1d1a9c483f4b4bb509c8cce17518f780db8d912b763115",
+      "candidateHash": "1801f49a8d13f262425d9dfbe4d7f08bf1c33dee23996ad741c68f038015198b",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -478,32 +1210,36 @@
         "overflowPixels": 0,
         "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
         "navigation": {
-          "duration": 670,
-          "domContentLoaded": 274
+          "duration": 559,
+          "domContentLoaded": 408
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:37.289Z",
+      "approvedCandidateHash": "1801f49a8d13f262425d9dfbe4d7f08bf1c33dee23996ad741c68f038015198b"
     },
     {
-      "experienceId": "studio.page.root",
-      "product": "studio",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
       "state": "default",
       "breakpoint": "mobile",
       "viewport": {
         "width": 390,
         "height": 844
       },
-      "url": "http://localhost:4320/",
+      "url": "https://notes.signalstudio.ie/wedding-planning",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/mobile.png",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/mobile.png",
       "diffScreenshot": null,
-      "candidateHash": "b37dd2ae7de4c7000478e427a0e73951af094b5563abea6a0ad4326efebd92a3",
+      "candidateHash": "346da3a120e3dd9364d777067fcfd7a56253a91bcad122ac02896eb1b43027a2",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -517,32 +1253,36 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 2200,
-          "domContentLoaded": 1773
+          "duration": 432,
+          "domContentLoaded": 146
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:38.163Z",
+      "approvedCandidateHash": "346da3a120e3dd9364d777067fcfd7a56253a91bcad122ac02896eb1b43027a2"
     },
     {
-      "experienceId": "studio.page.root",
-      "product": "studio",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
       "state": "default",
       "breakpoint": "tablet",
       "viewport": {
         "width": 768,
         "height": 1024
       },
-      "url": "http://localhost:4320/",
+      "url": "https://notes.signalstudio.ie/wedding-planning",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/tablet.png",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/tablet.png",
       "diffScreenshot": null,
-      "candidateHash": "4eed29cd32dff9afae8b957d263ef3d4f385c5bd5f468fa63ea9b1698a47cabb",
+      "candidateHash": "a5f3698f8ce40f3ee3ee0edda8cf79cdc26af513395afccea1f11835387b8d09",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -556,32 +1296,36 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 515,
-          "domContentLoaded": 305
+          "duration": 326,
+          "domContentLoaded": 100
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:38.163Z",
+      "approvedCandidateHash": "a5f3698f8ce40f3ee3ee0edda8cf79cdc26af513395afccea1f11835387b8d09"
     },
     {
-      "experienceId": "studio.page.root",
-      "product": "studio",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
       "state": "default",
       "breakpoint": "desktop",
       "viewport": {
         "width": 1280,
         "height": 900
       },
-      "url": "http://localhost:4320/",
+      "url": "https://notes.signalstudio.ie/wedding-planning",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/desktop.png",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/desktop.png",
       "diffScreenshot": null,
-      "candidateHash": "b57d54be04ad8cf2cb4e536ac1b809db5c2b380f6d02204039fe4e105556b115",
+      "candidateHash": "f932e69a15cfec883ce64eecf6e04008390b19a08c9c16497ca9300160bbf1f5",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -595,32 +1339,36 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 767,
-          "domContentLoaded": 518
+          "duration": 432,
+          "domContentLoaded": 170
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:38.163Z",
+      "approvedCandidateHash": "f932e69a15cfec883ce64eecf6e04008390b19a08c9c16497ca9300160bbf1f5"
     },
     {
-      "experienceId": "studio.page.root",
-      "product": "studio",
+      "experienceId": "notes.page.wedding-planning",
+      "product": "notes",
       "state": "default",
       "breakpoint": "wide",
       "viewport": {
         "width": 1440,
         "height": 960
       },
-      "url": "http://localhost:4320/",
+      "url": "https://notes.signalstudio.ie/wedding-planning",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/notes-page-wedding-planning/default/wide.png",
+      "baselineScreenshot": "baselines/notes-page-wedding-planning/default/wide.png",
       "diffScreenshot": null,
-      "candidateHash": "8c91696514bc318aa5fdbcdfca41c19105b378c43c81dd20fb2c39419ecd6c10",
+      "candidateHash": "861baa4793af4585fa698fc2b89ba08cd1ef2d1003aa498f9c34be048b9d6905",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -634,32 +1382,36 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 659,
-          "domContentLoaded": 429
+          "duration": 387,
+          "domContentLoaded": 124
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:38.163Z",
+      "approvedCandidateHash": "861baa4793af4585fa698fc2b89ba08cd1ef2d1003aa498f9c34be048b9d6905"
     },
     {
-      "experienceId": "studio.page.design",
-      "product": "studio",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
       "state": "default",
       "breakpoint": "mobile",
       "viewport": {
         "width": 390,
         "height": 844
       },
-      "url": "http://localhost:4320/design",
+      "url": "https://tasks.signalstudio.ie/roadmap",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/mobile.png",
-      "baselineScreenshot": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/mobile.png",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/mobile.png",
       "diffScreenshot": null,
-      "candidateHash": "9880f3e0c83d4def38f57cefb6b109875d1ce62c5242b4e15365c8e59ac6068c",
+      "candidateHash": "35a915bd4dec99a7726d7aba733db722d58d59a3d60de4dd58277d735ff19b7b",
       "visual": {
-        "state": "missing",
+        "state": "approved",
         "changedPixels": null,
         "ratio": null
       },
@@ -671,32 +1423,529 @@
       },
       "runtime": {
         "overflowPixels": 0,
-        "focusTarget": "a",
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
         "navigation": {
-          "duration": 1289,
-          "domContentLoaded": 1083
+          "duration": 483,
+          "domContentLoaded": 431
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:35.408Z",
+      "approvedCandidateHash": "35a915bd4dec99a7726d7aba733db722d58d59a3d60de4dd58277d735ff19b7b"
     },
     {
-      "experienceId": "studio.page.design",
-      "product": "studio",
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
       "state": "default",
       "breakpoint": "tablet",
       "viewport": {
         "width": 768,
         "height": 1024
       },
-      "url": "http://localhost:4320/design",
+      "url": "https://tasks.signalstudio.ie/roadmap",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/tablet.png",
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/tablet.png",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "9a934240d324abbf628778f6e744a6ce32fbd7d8fe494e826c85ad54f7704c49",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 446,
+          "domContentLoaded": 189
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:35.408Z",
+      "approvedCandidateHash": "9a934240d324abbf628778f6e744a6ce32fbd7d8fe494e826c85ad54f7704c49"
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/desktop.png",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "e25d4b90fb98810f0eccaf485bcfccdfd57fb263845f8b268a5ab47e7002c0df",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 450,
+          "domContentLoaded": 238
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:35.408Z",
+      "approvedCandidateHash": "e25d4b90fb98810f0eccaf485bcfccdfd57fb263845f8b268a5ab47e7002c0df"
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://tasks.signalstudio.ie/roadmap",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-roadmap/default/wide.png",
+      "baselineScreenshot": "baselines/tasks-page-roadmap/default/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "e9e019ef6d0278348424adbc9c6ebd857eabcf16c0e112a2be2064c73e4958a7",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Open Signal Studio launcher\"]",
+        "navigation": {
+          "duration": 658,
+          "domContentLoaded": 512
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:35.408Z",
+      "approvedCandidateHash": "e9e019ef6d0278348424adbc9c6ebd857eabcf16c0e112a2be2064c73e4958a7"
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://tasks.signalstudio.ie/app/board",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/mobile.png",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/mobile.png",
+      "diffScreenshot": null,
+      "candidateHash": "390ba5d3c411d4d9557911915f52447b699ea6334a516835200e7cd76fef6ba8",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 2694,
+          "domContentLoaded": 2660
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:39.080Z",
+      "approvedCandidateHash": "390ba5d3c411d4d9557911915f52447b699ea6334a516835200e7cd76fef6ba8"
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://tasks.signalstudio.ie/app/board",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/tablet.png",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/tablet.png",
+      "diffScreenshot": null,
+      "candidateHash": "eb3b530bf2fa420e5ee6a2bfdd0b37413a671988ffe625a60e4ea5a2952ca1fe",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 3074,
+          "domContentLoaded": 3072
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:39.080Z",
+      "approvedCandidateHash": "eb3b530bf2fa420e5ee6a2bfdd0b37413a671988ffe625a60e4ea5a2952ca1fe"
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://tasks.signalstudio.ie/app/board",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/desktop.png",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/desktop.png",
+      "diffScreenshot": null,
+      "candidateHash": "776a9515cedd5382749813a0f972e537fd3114839277b908bd0e31f5e04106d0",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 2715,
+          "domContentLoaded": 2690
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:39.080Z",
+      "approvedCandidateHash": "776a9515cedd5382749813a0f972e537fd3114839277b908bd0e31f5e04106d0"
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "product": "tasks",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://tasks.signalstudio.ie/app/board",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/tasks-page-app-board/default/wide.png",
+      "baselineScreenshot": "baselines/tasks-page-app-board/default/wide.png",
+      "diffScreenshot": null,
+      "candidateHash": "2f7deb946e8b775ab95a5e5b7ccf8726e3400d3b3763ad39e411bfa7a6759cf0",
+      "visual": {
+        "state": "approved",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 2264,
+          "domContentLoaded": 2238
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:39.080Z",
+      "approvedCandidateHash": "2f7deb946e8b775ab95a5e5b7ccf8726e3400d3b3763ad39e411bfa7a6759cf0"
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "product": "timeline",
+      "state": "first-use",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://timeline.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-app/first-use/mobile.png",
       "baselineScreenshot": null,
       "diffScreenshot": null,
-      "candidateHash": "4e1a7d374dabea5a00476d247a5291ba21a8dcec9ebd2b150b5c20fcc958a136",
+      "candidateHash": "ab7bfcd74cde034e1be31356c60b231e9cd27c0911e0673894b41d37e25c4026",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "input#ws-slug",
+        "navigation": {
+          "duration": 380,
+          "domContentLoaded": 379
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "product": "timeline",
+      "state": "first-use",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://timeline.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-app/first-use/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "db217a5b325bcac33b1dcdd5201c53ea925ed0d6e3744f3a8386fc2fa8577a08",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "input#ws-slug",
+        "navigation": {
+          "duration": 226,
+          "domContentLoaded": 176
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "product": "timeline",
+      "state": "first-use",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://timeline.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-app/first-use/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "6f1f8e5ca5332a4eeeaafcc2b96fb1b4b5e07541bcd6810f9bed92bd3ed1342c",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "input#ws-slug",
+        "navigation": {
+          "duration": 432,
+          "domContentLoaded": 226
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "product": "timeline",
+      "state": "first-use",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://timeline.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/timeline-page-app/first-use/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "9c5f1fa4ccd2f2d4340a033edd00aa1cdfb36c0ffff4e8b40174fc6a7511cc84",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "input#ws-slug",
+        "navigation": {
+          "duration": 296,
+          "domContentLoaded": 252
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signal.signalstudio.ie/app/onboarding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-app-onboarding/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "ef6b9efc10098066e2c2e042b23ad91020b9efb779e86f3ac38ffcd28f2e7e27",
       "visual": {
         "state": "missing",
         "changedPixels": null,
@@ -712,16 +1961,417 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 636,
+          "duration": 941,
+          "domContentLoaded": 940
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signal.signalstudio.ie/app/onboarding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-app-onboarding/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "d4b73f53a363c4173849519ae4df447a5facb1e37e03b847d820abbd6f37ea71",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 462,
+          "domContentLoaded": 462
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://signal.signalstudio.ie/app/onboarding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-app-onboarding/default/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "994c1513d0542fce10d6d2bc6a2963211049003502e3dacd532543a5c3ff8d58",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 950,
+          "domContentLoaded": 950
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "product": "signal",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://signal.signalstudio.ie/app/onboarding",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/signal-page-app-onboarding/default/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "83a6833c9c01f85120b86c12602251f1a4214f8fcbe9d68eaf934dcc67e01f39",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a[aria-label=\"Signal Studio\"]",
+        "navigation": {
+          "duration": 471,
           "domContentLoaded": 471
         },
         "consoleErrors": [],
         "pageErrors": []
       },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
       "pass": true
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "notes.page.app",
+      "product": "notes",
+      "state": "empty",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://notes.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-app/empty/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "107dd3192f0c93b9bc8815fe2e57060c0ac8c9d8cc04d48cd10e7639f39859ae",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Speak a note\"]",
+        "navigation": {
+          "duration": 859,
+          "domContentLoaded": 741
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.app",
+      "product": "notes",
+      "state": "empty",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://notes.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-app/empty/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "9c552cd7a9e4540119aaed1ef8000f44a4ff9043d1dc39dd1fadabbaaeaaecfe",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Speak a note\"]",
+        "navigation": {
+          "duration": 760,
+          "domContentLoaded": 728
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.app",
+      "product": "notes",
+      "state": "empty",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://notes.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-app/empty/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "de215e57b7219a8e8a788583db267db0372deedfe4055c3eba37630519ea6a90",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Speak a note\"]",
+        "navigation": {
+          "duration": 700,
+          "domContentLoaded": 659
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "notes.page.app",
+      "product": "notes",
+      "state": "empty",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "https://notes.signalstudio.ie/app",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/notes-page-app/empty/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "212e0c3a5e30a089694b4d8e7b95521e7638bddbad5bdf6bf8c7d4cd87819666",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "button[aria-label=\"Speak a note\"]",
+        "navigation": {
+          "duration": 258,
+          "domContentLoaded": 257
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "clerk-testing-session",
+        "fixture": "signal-experience-capture",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.hq-experience-quality",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "https://signalstudio.ie",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-hq-experience-quality/default/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "85324103dacafdf1a7873b66ed9226ff3447e86878db090534ec2a099c90e125",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 380,
+          "domContentLoaded": 134
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "hq-password",
+        "fixture": "signal-hq-founder-operator",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.hq-experience-quality",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "https://signalstudio.ie",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-hq-experience-quality/default/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "4e097695ce3d6344a63eacc75adf1d927852a7ff56cf20d5484f6fe10cc5f59f",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 164,
+          "domContentLoaded": 149
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": {
+        "kind": "hq-password",
+        "fixture": "signal-hq-founder-operator",
+        "authenticated": true
+      },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.hq-experience-quality",
       "product": "studio",
       "state": "default",
       "breakpoint": "desktop",
@@ -729,13 +2379,13 @@
         "width": 1280,
         "height": 900
       },
-      "url": "http://localhost:4320/design",
+      "url": "https://signalstudio.ie",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/desktop.png",
+      "candidateScreenshot": "screenshots/studio-page-hq-experience-quality/default/desktop.png",
       "baselineScreenshot": null,
       "diffScreenshot": null,
-      "candidateHash": "a10307e541436825f070f1a34696a7b6472b676233bca0afb77a6617c26fc3ab",
+      "candidateHash": "cd2b560c3a8bd6f15642dccacd3bfc6764952f1fa44428ca5fe348564872377a",
       "visual": {
         "state": "missing",
         "changedPixels": null,
@@ -751,16 +2401,21 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 851,
-          "domContentLoaded": 620
+          "duration": 149,
+          "domContentLoaded": 137
         },
         "consoleErrors": [],
         "pageErrors": []
       },
+      "authentication": {
+        "kind": "hq-password",
+        "fixture": "signal-hq-founder-operator",
+        "authenticated": true
+      },
       "pass": true
     },
     {
-      "experienceId": "studio.page.design",
+      "experienceId": "studio.page.hq-experience-quality",
       "product": "studio",
       "state": "default",
       "breakpoint": "wide",
@@ -768,13 +2423,13 @@
         "width": 1440,
         "height": 960
       },
-      "url": "http://localhost:4320/design",
+      "url": "https://signalstudio.ie",
       "status": 200,
       "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-design/default/wide.png",
+      "candidateScreenshot": "screenshots/studio-page-hq-experience-quality/default/wide.png",
       "baselineScreenshot": null,
       "diffScreenshot": null,
-      "candidateHash": "758db7297683836d6ed5c18ae5785addaf0e1544e95a59f25e6dcc3cdd223782",
+      "candidateHash": "4bb6110caa860ad226f8c1240ab325ca79bcb6d04a45e6746754e73623e64c67",
       "visual": {
         "state": "missing",
         "changedPixels": null,
@@ -790,635 +2445,16 @@
         "overflowPixels": 0,
         "focusTarget": "a",
         "navigation": {
-          "duration": 781,
-          "domContentLoaded": 552
+          "duration": 137,
+          "domContentLoaded": 125
         },
         "consoleErrors": [],
         "pageErrors": []
       },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.privacy",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "mobile",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "url": "http://localhost:4320/privacy",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/mobile.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "207287490884575650b33573f909545b4d8a07b016160b5c2c765767f4546f70",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 4273,
-          "domContentLoaded": 3917
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.privacy",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "tablet",
-      "viewport": {
-        "width": 768,
-        "height": 1024
-      },
-      "url": "http://localhost:4320/privacy",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/tablet.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "d0075e3090fe580b44e4eb15ed3b2acaf14d4c3893f3eba9d521459d8e7a5954",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 904,
-          "domContentLoaded": 840
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.privacy",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "desktop",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "url": "http://localhost:4320/privacy",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/desktop.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "d86a9fd8282845dc20f53132554f4743b057f6cbc0123752e13003ef4ac29c8a",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 1178,
-          "domContentLoaded": 429
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.privacy",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "wide",
-      "viewport": {
-        "width": 1440,
-        "height": 960
-      },
-      "url": "http://localhost:4320/privacy",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-privacy/long-content/wide.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "f4b3a1943a120ab0d32527b460928fba05562b7ab57c31e5a10073db63cf0bc6",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 606,
-          "domContentLoaded": 433
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.security",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "mobile",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "url": "http://localhost:4320/security",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-security/long-content/mobile.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "893e9ee7d035abaea582bb2870496f9bfe3b03fb94583fc8fd99d51e9782b9de",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 2113,
-          "domContentLoaded": 1867
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.security",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "tablet",
-      "viewport": {
-        "width": 768,
-        "height": 1024
-      },
-      "url": "http://localhost:4320/security",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-security/long-content/tablet.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "275afb10ceed99fddad584dc2118c3e9914abe0bd645556c95eeee36122f0970",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 541,
-          "domContentLoaded": 325
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.security",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "desktop",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "url": "http://localhost:4320/security",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-security/long-content/desktop.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "c304e95789cc77ed92b44211a6ac3490daa9110264b99f2d5a884c6a187397cc",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 468,
-          "domContentLoaded": 313
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.security",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "wide",
-      "viewport": {
-        "width": 1440,
-        "height": 960
-      },
-      "url": "http://localhost:4320/security",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-security/long-content/wide.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "03cf79019e7e357180a3c2dfe30376ce3dc1ceea3719f45c4eb0883d638fa5a9",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 649,
-          "domContentLoaded": 299
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.terms",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "mobile",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "url": "http://localhost:4320/terms",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-terms/long-content/mobile.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "591fa01e7eef66dee7ba9ec18e3f8f0b6546d2e859eeaf96b93f9d680ad8c36d",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 1553,
-          "domContentLoaded": 1347
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.terms",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "tablet",
-      "viewport": {
-        "width": 768,
-        "height": 1024
-      },
-      "url": "http://localhost:4320/terms",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-terms/long-content/tablet.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "241959eb0898845070c7ccffa64044adae8e62646ff1e21945566f031886c37c",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 717,
-          "domContentLoaded": 378
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.terms",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "desktop",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "url": "http://localhost:4320/terms",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-terms/long-content/desktop.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "0b4f1190a7a7578a418e6f066f6708c6f415de55b57acabf754e0d6eb7e99b32",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 541,
-          "domContentLoaded": 348
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "studio.page.terms",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "wide",
-      "viewport": {
-        "width": 1440,
-        "height": 960
-      },
-      "url": "http://localhost:4320/terms",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-terms/long-content/wide.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "b14df640612a51ad7198550978ebfcf4dac91d1a67d52b6f810df782efb2678b",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 447,
-          "domContentLoaded": 287
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "notes.page.wedding-planning",
-      "product": "notes",
-      "state": "populated",
-      "breakpoint": "mobile",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "url": "http://127.0.0.1:3999/wedding-planning",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/mobile.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "610b654e5452a33a9e7a5d98fba1be83dd8233a7d1ea697c79e0b3f1a455aab1",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 374,
-          "domContentLoaded": 104
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "notes.page.wedding-planning",
-      "product": "notes",
-      "state": "populated",
-      "breakpoint": "tablet",
-      "viewport": {
-        "width": 768,
-        "height": 1024
-      },
-      "url": "http://127.0.0.1:3999/wedding-planning",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/tablet.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "c987532639a2beadd6c7440b20fae95897e9f1b6980a343dab6b3b65a127789e",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 151,
-          "domContentLoaded": 24
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "notes.page.wedding-planning",
-      "product": "notes",
-      "state": "populated",
-      "breakpoint": "desktop",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "url": "http://127.0.0.1:3999/wedding-planning",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/desktop.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "fb4fc656baa184a59d3f82eb72109f76a59b638fc85cdd5c55da8ba8e86aab95",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 229,
-          "domContentLoaded": 27
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "pass": true
-    },
-    {
-      "experienceId": "notes.page.wedding-planning",
-      "product": "notes",
-      "state": "populated",
-      "breakpoint": "wide",
-      "viewport": {
-        "width": 1440,
-        "height": 960
-      },
-      "url": "http://127.0.0.1:3999/wedding-planning",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/notes-page-wedding-planning/populated/wide.png",
-      "baselineScreenshot": null,
-      "diffScreenshot": null,
-      "candidateHash": "ea09ee8742822080b947d777980c893aed1dc8f4fdbaeee36094d70d9cf7fede",
-      "visual": {
-        "state": "missing",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 211,
-          "domContentLoaded": 30
-        },
-        "consoleErrors": [],
-        "pageErrors": []
+      "authentication": {
+        "kind": "hq-password",
+        "fixture": "signal-hq-founder-operator",
+        "authenticated": true
       },
       "pass": true
     }
