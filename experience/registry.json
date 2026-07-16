@@ -2474,7 +2474,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "3afd808eb659f494"
+      "materialityHash": "674744fed9fd6c3f"
     },
     {
       "id": "studio.artifact.brand-collateral-ambassador",
@@ -3002,7 +3002,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "8f842ae084ebdc0e"
+      "materialityHash": "b795c0df1d975359"
     },
     {
       "id": "studio.page.about",
@@ -4179,6 +4179,50 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "fadff00e42046a7c"
+    },
+    {
+      "id": "studio.page.hq-email-lab",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/email-lab",
+      "source": "studio/src/app/hq/email-lab/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Understand and use hq · email lab.",
+      "primaryAction": "Complete the primary action on hq · email lab.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "744fdf9066274883"
     },
     {
       "id": "studio.page.hq-entitlements",

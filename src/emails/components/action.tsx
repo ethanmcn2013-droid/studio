@@ -35,10 +35,12 @@ export function PrimaryAction({
     : `stroked="false"`;
   const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 
+  // Outlook's Word engine normally falls through to Arial; keeping Geist
+  // first preserves the brand face in clients that can resolve it.
   const vml = `<!--[if mso]>
 <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${esc(href)}" style="height:${height}px;v-text-anchor:middle;width:${width}px;" arcsize="${arc}" ${stroke} fillcolor="${c.bg}">
 <w:anchorlock/>
-<center style="color:${c.color};font-family:Arial,sans-serif;font-size:${fontSize}px;font-weight:600;">${esc(label)}</center>
+<center style="color:${c.color};font-family:Geist,Arial,sans-serif;font-size:${fontSize}px;font-weight:600;">${esc(label)}</center>
 </v:roundrect>
 <![endif]--><!--[if !mso]><!-->
 <a href="${esc(href)}" class="${c.variant === "ink" ? "em-btn-ink" : c.variant === "engraved" ? "em-btn-engraved" : ""}" style="display:inline-block;background-color:${c.bg};color:${c.color};${c.border ? `border:${c.border};` : ""}border-radius:${c.radius}px;padding:${c.padV}px ${c.padH}px;text-decoration:none;font-size:${fontSize}px;font-weight:600;letter-spacing:${String(c.font.letterSpacing ?? "0")};font-family:${d.fontStack.replace(/"/g, "'")}">${esc(label)}</a>
