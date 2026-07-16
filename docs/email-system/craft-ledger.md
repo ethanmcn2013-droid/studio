@@ -214,7 +214,7 @@ address line per direction, chosen. Third: link what should link.
 
 **The Taste Arbiter.** v1 earns its "very good": the restraint is real,
 the honesty apparatus is genuinely distinctive, and nothing here needs
-rebuilding. The gap to world-class is exactly the brief's 15%: one date
+rebuilding. The gap to the bar we were convened for is exactly the brief's 15%: one date
 grammar, numerals that behave like money, a fallback that was chosen, a
 plain-text voice, and each direction pushed further from the other two.
 I am also striking one v1 boast from the record (CL-24): we fixed a bug

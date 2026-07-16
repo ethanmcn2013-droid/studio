@@ -11,14 +11,15 @@ import {
   venueOutreachFixtures,
   type FixtureSet,
 } from "./fixtures";
-import { SignInCodeEmail } from "./templates/sign-in-code";
-import { AccessReadyEmail } from "./templates/access-ready";
-import { PaymentFailedEmail } from "./templates/payment-failed";
-import { DeletionScheduledEmail } from "./templates/deletion-scheduled";
-import { VenueOutreachEmail } from "./templates/venue-outreach";
-import { SchoolOutreachEmail } from "./templates/school-outreach";
-import { StudentVerifiedEmail } from "./templates/student-verified";
-import { DispatchIssueEmail } from "./templates/dispatch-issue";
+import type { TextDoc } from "./plaintext";
+import { SignInCodeEmail, signInCodeText } from "./templates/sign-in-code";
+import { AccessReadyEmail, accessReadyText } from "./templates/access-ready";
+import { PaymentFailedEmail, paymentFailedText } from "./templates/payment-failed";
+import { DeletionScheduledEmail, deletionScheduledText } from "./templates/deletion-scheduled";
+import { VenueOutreachEmail, venueOutreachText } from "./templates/venue-outreach";
+import { SchoolOutreachEmail, schoolOutreachText } from "./templates/school-outreach";
+import { StudentVerifiedEmail, studentVerifiedText } from "./templates/student-verified";
+import { DispatchIssueEmail, dispatchIssueText } from "./templates/dispatch-issue";
 
 /**
  * The template registry · message metadata lives here, never inside
@@ -52,6 +53,8 @@ export type TemplateDef<TData = unknown> = {
   sourceFile: string;
   fixtures: FixtureSet<TData>;
   render: (direction: EmailDirection, data: TData) => ReactElement;
+  /** The designed plain-text twin (CL-14), composed per direction. */
+  text: (data: TData) => TextDoc;
 };
 
 export type AnyTemplateDef = TemplateDef<any>;
@@ -79,6 +82,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/sign-in-code.tsx",
     fixtures: signInCodeFixtures,
+    text: signInCodeText,
     render: (dir, data) => <SignInCodeEmail direction={dir} data={data} />,
   }),
   def({
@@ -101,6 +105,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/access-ready.tsx",
     fixtures: accessReadyFixtures,
+    text: accessReadyText,
     render: (dir, data) => <AccessReadyEmail direction={dir} data={data} />,
   }),
   def({
@@ -122,6 +127,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/payment-failed.tsx",
     fixtures: paymentFailedFixtures,
+    text: paymentFailedText,
     render: (dir, data) => <PaymentFailedEmail direction={dir} data={data} />,
   }),
   def({
@@ -142,6 +148,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/deletion-scheduled.tsx",
     fixtures: deletionScheduledFixtures,
+    text: deletionScheduledText,
     render: (dir, data) => <DeletionScheduledEmail direction={dir} data={data} />,
   }),
   def({
@@ -164,6 +171,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/venue-outreach.tsx",
     fixtures: venueOutreachFixtures,
+    text: venueOutreachText,
     render: (dir, data) => <VenueOutreachEmail direction={dir} data={data} />,
   }),
   def({
@@ -185,6 +193,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/school-outreach.tsx",
     fixtures: schoolOutreachFixtures,
+    text: schoolOutreachText,
     render: (dir, data) => <SchoolOutreachEmail direction={dir} data={data} />,
   }),
   def({
@@ -206,6 +215,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/student-verified.tsx",
     fixtures: studentVerifiedFixtures,
+    text: studentVerifiedText,
     render: (dir, data) => <StudentVerifiedEmail direction={dir} data={data} />,
   }),
   def({
@@ -228,6 +238,7 @@ export const TEMPLATES: AnyTemplateDef[] = [
     ],
     sourceFile: "src/emails/templates/dispatch-issue.tsx",
     fixtures: dispatchIssueFixtures,
+    text: dispatchIssueText,
     render: (dir, data) => <DispatchIssueEmail direction={dir} data={data} />,
   }),
 ];

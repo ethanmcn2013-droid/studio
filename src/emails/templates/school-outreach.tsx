@@ -24,7 +24,8 @@ export function SchoolOutreachEmail({
     <EmailShell
       direction={direction}
       preheader={`Planning the school year at ${data.schoolName}, without a pupil database.`}
-      metaLine={data.metaDate}
+      dateISO={data.metaDateISO}
+      postalContact={false}
       footerNote={`Ethan wrote this to ${data.schoolName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`}
     >
       <BodyText direction={direction}>Hello {data.contactName},</BodyText>
@@ -54,7 +55,8 @@ export function SchoolOutreachEmail({
         height={302}
         caption="Plan the classes, not the pupils · the Signal Studio school film"
         linkLabel="Watch the film"
-        duration="60 seconds"
+        duration="60 seconds"
+        enclosureId="Film-Sch"
       />
       <BodyText direction={direction}>
         If a quiet trial with two or three of your teachers would be worth
@@ -64,4 +66,23 @@ export function SchoolOutreachEmail({
       <FounderSignature direction={direction} closing="Thanks for your time," />
     </EmailShell>
   );
+}
+
+import type { TextDoc } from "../plaintext";
+
+export function schoolOutreachText(data: SchoolOutreachData): TextDoc {
+  return {
+    dateISO: data.metaDateISO,
+    salutation: `Hello ${data.contactName},`,
+    blocks: [
+      { kind: "p", text: "Teachers plan several classes across one school year, and most planning tools want a database of pupils before they help with any of it. That trade never sits right, and in a school it should not have to." },
+      { kind: "p", text: "Signal Studio works the other way around. A teacher plans subjects, classes and the shape of the year in a private workspace. What gets shared is chosen, one thing at a time. Everything else stays the teacher\u2019s own." },
+      { kind: "quiet", text: "No pupil database. Signal Studio holds nothing about the children in a class: no names, no accounts, no grades. It is useful to the person teaching, not curious about the people taught." },
+      { kind: "link", label: "Watch the film (60 seconds)", href: "https://signalstudio.ie/films/schools" },
+      { kind: "p", text: "If a quiet trial with two or three of your teachers would be worth twenty minutes of your time, reply and I will set it up around your calendar, not mine." },
+    ],
+    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: "hello@signalstudio.ie" },
+    enclosure: "Encl \u00b7 Film-Sch \u00b7 60 seconds",
+    footerNote: `Ethan wrote this to ${data.schoolName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`,
+  };
 }

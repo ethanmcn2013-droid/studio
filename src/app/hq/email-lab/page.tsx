@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { DIRECTIONS, DIRECTION_IDS } from "@/emails/directions";
 import { TEMPLATES } from "@/emails/registry";
+import { ELEVATION } from "@/emails/elevation";
 import { EmailLabClient, type LabDirection, type LabTemplate } from "./email-lab-client";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default async function EmailLabPage() {
     tracking: t.tracking,
     sourceFile: t.sourceFile,
     assumptions: t.assumptions,
+    elevation: ELEVATION[t.id] ?? {},
     fixtures: Object.entries(t.fixtures).map(([fixtureId, f]) => ({
       id: fixtureId,
       label: f.label,

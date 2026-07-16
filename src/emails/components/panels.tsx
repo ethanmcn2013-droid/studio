@@ -1,20 +1,19 @@
 import { Section, Text } from "@react-email/components";
 import type { EmailDirection } from "../directions";
 import {
-  FONT_MONO,
   HAIRLINE,
   INK,
-  INK_FAINT,
   INK_SOFT,
   PAPER_SOFT,
   RED_DEEP,
+  TABULAR,
 } from "../directions";
 
 /**
  * CodePanel · a one-time code set large enough to read across the room.
  * Plain text on a quiet panel: it survives image blocking, copies cleanly,
- * and screen readers announce it as text. Never an image, never split
- * into styled boxes per digit.
+ * and screen readers announce it as text. Tabular figures and a no-break
+ * gap (CL-20): the code never reflows and its halves never separate.
  */
 export function CodePanel({
   direction,
@@ -39,16 +38,17 @@ export function CodePanel({
       <Text
         className="em-ink"
         style={{
-          fontFamily: FONT_MONO,
+          fontFamily: d.monoStack,
           fontSize: 30,
           lineHeight: "38px",
           fontWeight: 600,
           letterSpacing: "0.24em",
           color: INK,
           margin: 0,
+          ...TABULAR,
         }}
       >
-        {code}
+        {code.replace(/ /g, " ")}
       </Text>
     </Section>
   );
@@ -56,7 +56,8 @@ export function CodePanel({
 
 /**
  * KeyValueRows · exact facts in two columns. Utility mail leads with this:
- * dates, amounts and consequences stated once, precisely, outside prose.
+ * dates, amounts and consequences stated once, precisely, outside prose,
+ * in tabular figures.
  */
 export function KeyValueRows({
   direction,
@@ -68,7 +69,13 @@ export function KeyValueRows({
   const d = direction;
   return (
     <Section style={{ margin: `${d.space.block}px 0` }}>
-      <table width="100%" cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+      <table
+        width="100%"
+        cellPadding={0}
+        cellSpacing={0}
+        role="presentation"
+        style={{ borderCollapse: "collapse" }}
+      >
         <tbody>
           {rows.map((r, i) => (
             <tr key={r.key}>
@@ -94,6 +101,7 @@ export function KeyValueRows({
                   fontWeight: r.strong ? 600 : 400,
                   padding: "8px 0",
                   borderTop: i === 0 ? undefined : `1px solid ${HAIRLINE}`,
+                  ...TABULAR,
                 }}
               >
                 {r.value}
@@ -153,7 +161,7 @@ export function PrivacyBoundary({
         paddingLeft: 14,
         borderLeft: `2px solid ${INK}`,
       }}
-      className="em-hair"
+      className="em-rule-ink"
     >
       <Text className="em-soft" style={{ ...d.small, color: INK_SOFT, margin: 0 }}>
         {children}
@@ -165,7 +173,9 @@ export function PrivacyBoundary({
 /**
  * DestructiveActionPanel · deletion and its consequences, with the exact
  * date carried in ink, not colour. Red is reserved for the single line
- * naming what is permanently removed.
+ * naming what is permanently removed; in Letterhead's held-paper dark the
+ * red stays print-red (the em-danger override only exists for adapt
+ * directions, CL-10).
  */
 export function DestructiveActionPanel({
   direction,
@@ -195,11 +205,21 @@ export function DestructiveActionPanel({
       </Text>
       <Text
         className="em-ink"
-        style={{ fontSize: 19, lineHeight: "26px", fontWeight: 600, color: INK, margin: "0 0 14px" }}
+        style={{
+          fontSize: 19,
+          lineHeight: "26px",
+          fontWeight: 600,
+          color: INK,
+          margin: "0 0 14px",
+          ...TABULAR,
+        }}
       >
         {date}
       </Text>
-      <Text className="em-danger" style={{ ...d.small, color: RED_DEEP, margin: "0 0 8px" }}>
+      <Text
+        className="em-danger"
+        style={{ ...d.small, color: RED_DEEP, margin: "0 0 8px" }}
+      >
         Deleted permanently: {willBeDeleted}
       </Text>
       <Text className="em-soft" style={{ ...d.small, color: INK_SOFT, margin: 0 }}>

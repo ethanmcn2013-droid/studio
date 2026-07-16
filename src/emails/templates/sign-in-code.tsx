@@ -21,12 +21,12 @@ export function SignInCodeEmail({
       direction={direction}
       preheader={`Your code is ${data.code}. It expires in 10 minutes.`}
       category="Security"
-      metaLine={data.metaDate}
+      dateISO={data.metaDateISO}
       footerNote="You received this because someone asked to sign in to Signal Studio with this address."
     >
       <EmailHeading direction={direction}>Your sign-in code</EmailHeading>
       <LeadText direction={direction}>
-        Enter this code to finish signing in. It expires in 10 minutes and
+        Enter this code to finish signing in. It expires in 10 minutes and
         works once.
       </LeadText>
       <CodePanel direction={direction} code={data.code} />
@@ -43,4 +43,22 @@ export function SignInCodeEmail({
       </SecurityNotice>
     </EmailShell>
   );
+}
+
+import type { TextDoc } from "../plaintext";
+
+/** The plain-text twin's content, adjacent to the JSX so copy cannot drift far. */
+export function signInCodeText(data: SignInCodeData): TextDoc {
+  return {
+    category: "Security",
+    dateISO: data.metaDateISO,
+    heading: "Your sign-in code",
+    blocks: [
+      { kind: "p", text: "Enter this code to finish signing in. It expires in 10 minutes and works once." },
+      { kind: "code", code: data.code },
+      { kind: "facts", rows: [["For", data.email], ["Requested", data.requestedAt]] },
+      { kind: "quiet", text: "If you did not ask for this code, ignore this email. No one can sign in without it, and nothing about your account has changed." },
+    ],
+    footerNote: "You received this because someone asked to sign in to Signal Studio with this address.",
+  };
 }

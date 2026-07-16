@@ -9,9 +9,10 @@ export type FooterLink = { label: string; href: string };
  * EmailFooter · SupportFooter and LegalFooter folded into one component
  * so no template can ship without the reason-you-received-this line.
  *
- *   line     (Hairline)   hairline rule, the reason line, one mono address line.
- *   masthead (Broadsheet) the closing double rule mirroring the header,
- *                         wordmark + suite tagline, links, reason line.
+ *   line     (Hairline)   hairline rule, the reason line, one mono address
+ *                         line whose email address keeps its true case.
+ *   masthead (Broadsheet) the closing rule pair mirroring the folio,
+ *                         wordmark + the suite tagline, links, reason line.
  *   postal   (Letterhead) almost nothing inside the sheet; the postal line
  *                         lives outside on the canvas (rendered by EmailShell).
  */
@@ -48,17 +49,28 @@ export function EmailFooter({
     return (
       <Section className="em-edge" style={{ padding: `0 ${d.edgePad}px 28px` }}>
         <div style={{ height: d.space.section }} />
+        <div className="em-hair" style={{ borderTop: `1px solid ${HAIRLINE}` }} />
         <div
-          className="em-hair"
-          style={{ borderTop: `1px solid ${HAIRLINE}`, borderBottom: `2px solid ${INK}`, height: 3 }}
+          className="em-rule-ink"
+          style={{ borderTop: `2px solid ${INK}`, marginTop: 2 }}
         />
-        <table width="100%" cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse", marginTop: 14 }}>
+        <table
+          width="100%"
+          cellPadding={0}
+          cellSpacing={0}
+          role="presentation"
+          style={{ borderCollapse: "collapse", marginTop: 14 }}
+        >
           <tbody>
             <tr>
               <td>
-                <Wordmark size={13} />
+                <Wordmark direction={d} size={13} />
               </td>
-              <td align="right" className="em-faint" style={{ ...d.label, letterSpacing: "0.08em" }}>
+              <td
+                align="right"
+                className="em-faint"
+                style={{ ...d.label, letterSpacing: "0.14em" }}
+              >
                 Clarity, not configuration.
               </td>
             </tr>
@@ -66,7 +78,10 @@ export function EmailFooter({
         </table>
         <div style={{ height: 14 }} />
         {linkRow}
-        <Text className="em-faint" style={{ margin: 0, fontSize: 12, lineHeight: "19px", color: INK_FAINT }}>
+        <Text
+          className="em-faint"
+          style={{ margin: 0, fontSize: 12, lineHeight: "19px", color: INK_FAINT }}
+        >
           {note}
         </Text>
       </Section>
@@ -78,7 +93,10 @@ export function EmailFooter({
       <Section className="em-edge" style={{ padding: `0 ${d.edgePad}px 36px` }}>
         <div style={{ height: d.space.section }} />
         {linkRow}
-        <Text className="em-faint" style={{ margin: 0, fontSize: 12, lineHeight: "19px", color: INK_FAINT }}>
+        <Text
+          className="em-faint"
+          style={{ margin: 0, fontSize: 12, lineHeight: "19px", color: INK_FAINT }}
+        >
           {note}
         </Text>
       </Section>
@@ -91,15 +109,24 @@ export function EmailFooter({
       <div style={{ height: d.space.section }} />
       <div className="em-hair" style={{ borderTop: `1px solid ${HAIRLINE}`, marginBottom: 14 }} />
       {linkRow}
-      <Text className="em-faint" style={{ margin: "0 0 6px", fontSize: 12, lineHeight: "19px", color: INK_FAINT }}>
-        {note}
-      </Text>
       <Text
         className="em-faint"
-        style={{ ...d.label, margin: 0, letterSpacing: "0.06em" }}
+        style={{ margin: "0 0 6px", fontSize: 12, lineHeight: "19px", color: INK_FAINT }}
       >
+        {note}
+      </Text>
+      {/* One tracked-caps register (CL-03); the address keeps its case (CL-22). */}
+      <Text className="em-faint" style={{ ...d.label, margin: 0 }}>
         Signal Studio · Dublin ·{" "}
-        <Link href="mailto:hello@signalstudio.ie" style={{ color: INK_FAINT, textDecoration: "underline" }}>
+        <Link
+          href="mailto:hello@signalstudio.ie"
+          style={{
+            color: INK_FAINT,
+            textDecoration: "underline",
+            textTransform: "none" as const,
+            letterSpacing: "0.02em",
+          }}
+        >
           hello@signalstudio.ie
         </Link>
       </Text>

@@ -22,7 +22,7 @@ import { TEMPLATES } from "../src/emails/registry";
 import { blockImages, forceDark, renderEmail } from "../src/emails/render";
 
 const root = process.cwd();
-const out = path.join(root, "docs", "email-system", "renders");
+const out = path.join(root, "docs", "email-system", "renders", "v2");
 for (const dir of ["html", "text", "png"]) {
   mkdirSync(path.join(out, dir), { recursive: true });
 }
@@ -110,6 +110,34 @@ async function main() {
     await page.setContent(blockImages(r.html), { waitUntil: "domcontentloaded" });
     await page.screenshot({
       path: path.join(out, "png", "outreach_venue-first--letterhead--images-blocked.png"),
+      fullPage: true,
+    });
+    await page.close();
+    shots += 1;
+  }
+
+  // Geist-ideal samples: the default screenshots on this machine ARE the
+  // system-font fallback (Geist is not installed); these three show the
+  // ideal by injecting the variable font, for fallback-vs-ideal evidence.
+  const geistCss = (() => {
+    const font = (f: string) =>
+      readFileSync(path.join(root, "..", "collateral", "fonts", f)).toString("base64");
+    return `<style>@font-face{font-family:Geist;src:url("data:font/woff2;base64,${font("Geist-Variable.woff2")}") format("woff2");font-weight:100 900;}@font-face{font-family:"Geist Mono";src:url("data:font/woff2;base64,${font("GeistMono-Variable.woff2")}") format("woff2");font-weight:100 900;}</style>`;
+  })();
+  for (const [tpl, directionId] of [
+    ["auth.sign-in-code", "hairline"],
+    ["editorial.dispatch-issue", "broadsheet"],
+    ["outreach.venue-first", "letterhead"],
+  ] as const) {
+    const r = await renderEmail(tpl, directionId, "default");
+    const page = await browser.newPage({ viewport: { width: 700, height: 900 } });
+    await page.setContent(
+      inlineImages(r.html).replace("</head>", `${geistCss}</head>`),
+      { waitUntil: "networkidle" },
+    );
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({
+      path: path.join(out, "png", `${tpl.replace(/\./g, "_")}--${directionId}--geist.png`),
       fullPage: true,
     });
     await page.close();

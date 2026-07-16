@@ -76,12 +76,12 @@ function productWindow({ rows, railRow, width, title }) {
         <div style="width:9px;height:9px;border-radius:99px;
                     background:${r.state === "done" || r.state === "complete" ? "#111111" : r.state === "live" ? "#4f46e5" : "#ffffff"};
                     border:1.5px solid ${r.state === "todo" ? "#d4d4d8" : r.state === "live" ? "#4f46e5" : "#111111"};"></div>
-        <div style="flex:1;font-size:14.5px;letter-spacing:-0.01em;
+        <div style="flex:1;font-size:17px;letter-spacing:-0.01em;
                     color:${r.state === "done" ? "#a1a1aa" : "#111111"};
                     ${r.state === "done" ? "text-decoration:line-through;text-decoration-color:#d4d4d8;" : ""}">
           ${r.text}
         </div>
-        ${r.meta ? `<div class="mono" style="font-size:9.5px;letter-spacing:0.08em;color:#71717a;">${r.meta}</div>` : ""}
+        ${r.meta ? `<div class="mono" style="font-size:12px;letter-spacing:0.08em;color:#71717a;">${r.meta}</div>` : ""}
       </div>`,
     )
     .join("");
@@ -89,8 +89,8 @@ function productWindow({ rows, railRow, width, title }) {
     <div style="width:${width}px;background:#ffffff;border:1px solid #e7e7e9;border-radius:10px;overflow:hidden;
                 box-shadow:0 18px 44px rgba(17,17,17,0.07);">
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f1f1f3;">
-        <div style="font-size:12.5px;font-weight:600;letter-spacing:-0.02em;">${title}</div>
-        <div class="mono" style="font-size:9.5px;letter-spacing:0.1em;color:#71717a;">THIS WEEK</div>
+        <div style="font-size:15px;font-weight:600;letter-spacing:-0.02em;">${title}</div>
+        <div class="mono" style="font-size:12px;letter-spacing:0.1em;color:#71717a;">THIS WEEK</div>
       </div>
       ${rowsHtml}
     </div>`;
@@ -117,27 +117,27 @@ function posterHtml({ eyebrow, line, film, windowHtml }) {
       <div style="width:0;height:0;border-left:15px solid #4f46e5;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:5px;"></div>
     </div>
     <!-- lower left: eyebrow + primary line -->
-    <div style="position:absolute;left:64px;bottom:56px;width:560px;">
-      <div class="mono" style="font-size:11px;letter-spacing:0.16em;color:#71717a;">${eyebrow}</div>
-      <div style="margin-top:12px;font-size:34px;line-height:1.16;font-weight:600;letter-spacing:-0.025em;">
+    <div style="position:absolute;left:64px;bottom:56px;width:700px;">
+      <div class="mono" style="font-size:22px;letter-spacing:0.14em;color:#52525b;">${eyebrow}</div>
+      <div style="margin-top:14px;font-size:44px;line-height:1.14;font-weight:600;letter-spacing:-0.025em;">
         ${line}
       </div>
     </div>
     <!-- lower right: wordmark + film id -->
     <div style="position:absolute;right:64px;bottom:56px;text-align:right;">
-      <div style="font-size:16px;font-weight:600;letter-spacing:-0.025em;">
+      <div style="font-size:26px;font-weight:600;letter-spacing:-0.025em;">
         signal studio<span style="color:#4f46e5;">.</span>
       </div>
-      <div class="mono" style="margin-top:8px;font-size:10px;letter-spacing:0.12em;color:#71717a;">${film}</div>
+      <div class="mono" style="margin-top:8px;font-size:20px;letter-spacing:0.12em;color:#71717a;">${film}</div>
     </div>
   </div>
   </body></html>`;
 }
 
 const venuePoster = posterHtml({
-  eyebrow: "SIGNAL STUDIO · THE VENUE FILM · 60 SECONDS",
+  eyebrow: "SIGNAL STUDIO · THE VENUE FILM",
   line: "Make the planning feel as considered as the day.",
-  film: "FILM-VEN · 16:9",
+  film: "FILM-VEN · 60 SECONDS",
   windowHtml: productWindow({
     title: "Brennan · Walsh wedding",
     width: 760,
@@ -153,9 +153,9 @@ const venuePoster = posterHtml({
 });
 
 const schoolPoster = posterHtml({
-  eyebrow: "SIGNAL STUDIO · THE SCHOOL FILM · 60 SECONDS",
+  eyebrow: "SIGNAL STUDIO · THE SCHOOL FILM",
   line: "Plan the classes, not the pupils.",
-  film: "FILM-SCH · 16:9",
+  film: "FILM-SCH · 60 SECONDS",
   windowHtml: productWindow({
     title: "The school year · 2026 to 2027",
     width: 760,
@@ -172,11 +172,11 @@ const schoolPoster = posterHtml({
 
 const productStill = `<!doctype html><html><head><style>${baseCss}</style></head>
 <body>
-<div style="position:relative;width:1072px;height:670px;background:#fafafa;overflow:hidden;">
-  <div style="position:absolute;left:56px;top:96px;">
+<div style="position:relative;width:1072px;height:480px;background:#fafafa;overflow:hidden;">
+  <div style="position:absolute;left:56px;top:44px;">
     ${productWindow({
       title: "This week",
-      width: 520,
+      width: 600,
       railRow: 1,
       rows: [
         { text: "Send the draft to Claire for a read", state: "done", meta: "DONE" },
@@ -184,34 +184,29 @@ const productStill = `<!doctype html><html><head><style>${baseCss}</style></head
         { text: "Book the van for Saturday morning", state: "todo", meta: "FRI" },
         { text: "Invoice · O’Brien kitchen fit-out", state: "todo", meta: "MON" },
         { text: "Quiet thinking · stays in Notes", state: "todo", meta: "PRIVATE" },
-        { text: "Confirm Saturday start time with Dara", state: "todo", meta: "SAT" },
       ],
     })}
   </div>
-  <div style="position:absolute;right:56px;top:210px;width:400px;background:#ffffff;border:1px solid #e7e7e9;border-radius:10px;overflow:hidden;box-shadow:0 18px 44px rgba(17,17,17,0.07);">
-    <div style="padding:12px 18px;border-bottom:1px solid #f1f1f3;display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:12.5px;font-weight:600;letter-spacing:-0.02em;">The plan, as others see it</div>
-      <div class="mono" style="font-size:9.5px;letter-spacing:0.1em;color:#71717a;">SHARED</div>
+  <div style="position:absolute;right:-64px;top:96px;width:420px;background:#ffffff;border:1px solid #e7e7e9;border-radius:10px;overflow:hidden;box-shadow:0 18px 44px rgba(17,17,17,0.07);">
+    <div style="padding:14px 20px;border-bottom:1px solid #f1f1f3;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:15px;font-weight:600;letter-spacing:-0.02em;">The plan, as others see it</div>
+      <div class="mono" style="font-size:12px;letter-spacing:0.1em;color:#71717a;">SHARED</div>
     </div>
-    <div style="padding:18px;">
+    <div style="padding:22px 20px;">
       ${["September", "October", "November"]
         .map(
           (m, i) => `
-        <div style="display:flex;align-items:center;gap:12px;margin-top:${i === 0 ? 0 : 14}px;">
-          <div class="mono" style="width:74px;font-size:9.5px;letter-spacing:0.1em;color:#71717a;">${m.toUpperCase()}</div>
-          <div style="flex:1;height:10px;border-radius:99px;background:#f4f4f5;position:relative;">
+        <div style="display:flex;align-items:center;gap:14px;margin-top:${i === 0 ? 0 : 18}px;">
+          <div class="mono" style="width:96px;font-size:12px;letter-spacing:0.1em;color:#71717a;">${m.toUpperCase()}</div>
+          <div style="flex:1;height:12px;border-radius:99px;background:#f4f4f5;position:relative;">
             <div style="position:absolute;left:${8 + i * 14}%;width:${44 - i * 8}%;top:0;bottom:0;border-radius:99px;background:${i === 1 ? "#4f46e5" : "#d4d4d8"};"></div>
           </div>
         </div>`,
         )
         .join("")}
-      <div class="mono" style="margin-top:18px;font-size:9.5px;letter-spacing:0.1em;color:#71717a;">READABLE BY ANYONE YOU CHOOSE</div>
     </div>
   </div>
-  <div style="position:absolute;left:56px;bottom:48px;font-size:15px;font-weight:600;letter-spacing:-0.025em;">
-    signal studio<span style="color:#4f46e5;">.</span>
-  </div>
-  <div class="mono" style="position:absolute;right:56px;bottom:50px;font-size:10px;letter-spacing:0.12em;color:#71717a;">
+  <div class="mono" style="position:absolute;left:56px;bottom:40px;font-size:22px;letter-spacing:0.12em;color:#a1a1aa;">
     A DESIGNED VIEW, NOT A RECORDING
   </div>
 </div>
@@ -220,7 +215,7 @@ const productStill = `<!doctype html><html><head><style>${baseCss}</style></head
 const jobs = [
   { name: "poster-venues.png", html: venuePoster, width: 1072, height: 604 },
   { name: "poster-schools.png", html: schoolPoster, width: 1072, height: 604 },
-  { name: "product-still.png", html: productStill, width: 1072, height: 670 },
+  { name: "product-still.png", html: productStill, width: 1072, height: 480 },
 ];
 
 const chromium = await loadChromium();

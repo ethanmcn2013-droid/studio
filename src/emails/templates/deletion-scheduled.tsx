@@ -26,7 +26,7 @@ export function DeletionScheduledEmail({
       direction={direction}
       preheader={`Deletion is scheduled for ${data.scheduledFor}. You can cancel until then.`}
       category="Account"
-      metaLine={data.metaDate}
+      dateISO={data.metaDateISO}
       footerNote="You received this because deletion was requested for the Signal Studio account under this address. If that was not you, cancel the deletion and change your password now."
     >
       <EmailHeading direction={direction}>
@@ -41,9 +41,7 @@ export function DeletionScheduledEmail({
       <DestructiveActionPanel
         direction={direction}
         date={data.scheduledFor}
-        willBeDeleted={`your account and ${workspaceCount} (${data.workspaces.join(
-          " · ",
-        )}), including every note, task, timeline and briefing`}
+        willBeDeleted={`your account and ${workspaceCount} (${data.workspaces.join(", ")}), including every note, task, timeline and briefing`}
         unaffected="billing records we must keep under Irish law, and any export you download before the date"
       />
       <BodyText direction={direction}>
@@ -63,4 +61,30 @@ export function DeletionScheduledEmail({
       />
     </EmailShell>
   );
+}
+
+import type { TextDoc } from "../plaintext";
+
+export function deletionScheduledText(data: DeletionScheduledData): TextDoc {
+  const workspaceCount =
+    data.workspaces.length === 1
+      ? "your workspace"
+      : `all ${data.workspaces.length} of your workspaces`;
+  return {
+    category: "Account",
+    dateISO: data.metaDateISO,
+    heading: "Your account is scheduled for deletion.",
+    blocks: [
+      { kind: "p", text: `${data.firstName ? `${data.firstName}, you` : "You"} asked us to delete your Signal Studio account on ${data.requestedOn}. Nothing is deleted yet. You can cancel any time before ${data.scheduledFor} and everything stays exactly as it is.` },
+      { kind: "facts", rows: [
+        ["Scheduled for", data.scheduledFor],
+        ["Deleted permanently", `your account and ${workspaceCount} (${data.workspaces.join(", ")}), including every note, task, timeline and briefing`],
+        ["Not affected", "billing records we must keep under Irish law, and any export you download before the date"],
+      ] },
+      { kind: "p", text: `After ${data.scheduledFor} the deletion is permanent. We cannot restore your work afterwards, and remaining copies age out of our backups within 90 days.` },
+      { kind: "action", label: "Cancel the deletion", href: "https://signalstudio.ie/account/deletion" },
+      { kind: "link", label: "Export a copy of your work first", href: "https://signalstudio.ie/account/export" },
+    ],
+    footerNote: "You received this because deletion was requested for the Signal Studio account under this address. If that was not you, cancel the deletion and change your password now.",
+  };
 }

@@ -5,23 +5,25 @@
  * Real prospects (for example the Lamb's Hill pilot) are deliberately not
  * used: prototype renders must never look like real correspondence.
  *
- * Dates are fixed strings in the en-IE register (Dublin time) so renders
- * are deterministic. Where a commercial fact is unresolved, the copy
- * avoids the claim and the template's `assumptions` list names it.
+ * Dates that drive the header slot are ISO (`metaDateISO`); each direction
+ * formats them in its own single grammar (CL-01). Dates inside prose stay
+ * written out in the en-IE register, sentence case, in every direction.
+ * Where a commercial fact is unresolved, the copy avoids the claim and the
+ * template's `assumptions` list names it.
  */
 
 export type SignInCodeData = {
   email: string;
   code: string;
   requestedAt: string;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type AccessReadyData = {
   firstName?: string;
   joinedOn: string;
   workspaceProduct: string;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type PaymentFailedData = {
@@ -32,7 +34,7 @@ export type PaymentFailedData = {
   attemptedOn: string;
   nextAttemptOn: string;
   finalAttempt: boolean;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type DeletionScheduledData = {
@@ -40,34 +42,34 @@ export type DeletionScheduledData = {
   requestedOn: string;
   scheduledFor: string;
   workspaces: string[];
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type VenueOutreachData = {
   contactFirstName: string;
   venueName: string;
   venueRegion: string;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type SchoolOutreachData = {
   contactName: string;
   schoolName: string;
   town: string;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type StudentVerifiedData = {
   firstName: string;
   studentEmail: string;
   validUntil: string;
-  metaDate: string;
+  metaDateISO: string;
 };
 
 export type DispatchIssueData = {
-  issueLabel: string;
+  issueNo: number;
+  monthISO: string;
   headline: string;
-  metaDate: string;
 };
 
 export type Fixture<T> = { label: string; data: T };
@@ -80,7 +82,7 @@ export const signInCodeFixtures: FixtureSet<SignInCodeData> = {
       email: "aoife.brennan@example.ie",
       code: "482 916",
       requestedAt: "09:12, 16 July 2026 · Dublin time",
-      metaDate: "16 Jul 2026",
+      metaDateISO: "2026-07-16",
     },
   },
   "long-address": {
@@ -89,7 +91,7 @@ export const signInCodeFixtures: FixtureSet<SignInCodeData> = {
       email: "aoife.brennan-fitzgerald.weddings@stationhousehotel-events.example.ie",
       code: "073 245",
       requestedAt: "23:58, 31 December 2026 · Dublin time",
-      metaDate: "31 Dec 2026",
+      metaDateISO: "2026-12-31",
     },
   },
 };
@@ -101,7 +103,7 @@ export const accessReadyFixtures: FixtureSet<AccessReadyData> = {
       firstName: "Aoife",
       joinedOn: "12 June",
       workspaceProduct: "https://tasks.signalstudio.ie",
-      metaDate: "1 Sep 2026",
+      metaDateISO: "2026-09-01",
     },
   },
   "no-first-name": {
@@ -110,7 +112,7 @@ export const accessReadyFixtures: FixtureSet<AccessReadyData> = {
       firstName: undefined,
       joinedOn: "3 August",
       workspaceProduct: "https://tasks.signalstudio.ie",
-      metaDate: "1 Sep 2026",
+      metaDateISO: "2026-09-01",
     },
   },
 };
@@ -126,7 +128,7 @@ export const paymentFailedFixtures: FixtureSet<PaymentFailedData> = {
       attemptedOn: "14 July 2026",
       nextAttemptOn: "18 July 2026",
       finalAttempt: false,
-      metaDate: "14 Jul 2026",
+      metaDateISO: "2026-07-14",
     },
   },
   "final-attempt": {
@@ -139,7 +141,7 @@ export const paymentFailedFixtures: FixtureSet<PaymentFailedData> = {
       attemptedOn: "22 July 2026",
       nextAttemptOn: "26 July 2026",
       finalAttempt: true,
-      metaDate: "22 Jul 2026",
+      metaDateISO: "2026-07-22",
     },
   },
 };
@@ -151,8 +153,11 @@ export const deletionScheduledFixtures: FixtureSet<DeletionScheduledData> = {
       firstName: "Aoife",
       requestedOn: "16 July 2026",
       scheduledFor: "Saturday 15 August 2026",
-      workspaces: ["Brennan · Walsh wedding", "Freelance work"],
-      metaDate: "16 Jul 2026",
+      // Workspace names may contain anything; list punctuation must not
+      // collide with them (CL-05), so names avoid list separators here
+      // and the template joins with commas.
+      workspaces: ["Brennan & Walsh wedding", "Freelance work"],
+      metaDateISO: "2026-07-16",
     },
   },
   "many-workspaces": {
@@ -162,12 +167,12 @@ export const deletionScheduledFixtures: FixtureSet<DeletionScheduledData> = {
       requestedOn: "2 January 2027",
       scheduledFor: "Monday 1 February 2027",
       workspaces: [
-        "Brennan · Walsh wedding",
+        "Brennan & Walsh wedding",
         "Freelance work",
         "House move, Galway to Dublin",
         "Choir committee, autumn concert",
       ],
-      metaDate: "2 Jan 2027",
+      metaDateISO: "2027-01-02",
     },
   },
 };
@@ -179,7 +184,7 @@ export const venueOutreachFixtures: FixtureSet<VenueOutreachData> = {
       contactFirstName: "Niamh",
       venueName: "The Mill House",
       venueRegion: "Mayo",
-      metaDate: "16 July 2026",
+      metaDateISO: "2026-07-16",
     },
   },
   "long-venue-name": {
@@ -188,7 +193,7 @@ export const venueOutreachFixtures: FixtureSet<VenueOutreachData> = {
       contactFirstName: "Caoimhe",
       venueName: "Ballyfarnon House and Walled Garden Estate",
       venueRegion: "Roscommon",
-      metaDate: "16 July 2026",
+      metaDateISO: "2026-07-16",
     },
   },
 };
@@ -200,7 +205,7 @@ export const schoolOutreachFixtures: FixtureSet<SchoolOutreachData> = {
       contactName: "Máire",
       schoolName: "St Senan's Secondary School",
       town: "Ennis",
-      metaDate: "16 July 2026",
+      metaDateISO: "2026-07-16",
     },
   },
   "long-school-name": {
@@ -209,7 +214,7 @@ export const schoolOutreachFixtures: FixtureSet<SchoolOutreachData> = {
       contactName: "Pádraig",
       schoolName: "Coláiste Mhuire agus Naomh Bríd Community College",
       town: "Ballaghaderreen",
-      metaDate: "16 July 2026",
+      metaDateISO: "2026-07-16",
     },
   },
 };
@@ -221,7 +226,7 @@ export const studentVerifiedFixtures: FixtureSet<StudentVerifiedData> = {
       firstName: "Jamie",
       studentEmail: "j.murphy.2027@student.example-university.ie",
       validUntil: "1 October 2027",
-      metaDate: "16 Jul 2026",
+      metaDateISO: "2026-07-16",
     },
   },
 };
@@ -230,18 +235,18 @@ export const dispatchIssueFixtures: FixtureSet<DispatchIssueData> = {
   default: {
     label: "Default",
     data: {
-      issueLabel: "No. 1 · July 2026",
+      issueNo: 1,
+      monthISO: "2026-07-01",
       headline: "The waitlist is open.",
-      metaDate: "Jul 2026",
     },
   },
   "long-subject": {
     label: "Very long headline",
     data: {
-      issueLabel: "No. 2 · August 2026",
+      issueNo: 2,
+      monthISO: "2026-08-01",
       headline:
         "Timeline learns to hold a plan steady while everything around it moves, and the whole suite gets quieter about it.",
-      metaDate: "Aug 2026",
     },
   },
 };

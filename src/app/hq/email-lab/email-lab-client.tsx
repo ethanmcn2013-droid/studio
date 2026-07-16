@@ -22,6 +22,7 @@ export type LabTemplate = {
   tracking: string;
   sourceFile: string;
   assumptions: string[];
+  elevation: Record<string, { rounds: number; score: number }>;
   fixtures: { id: string; label: string; subject: string; preheader: string }[];
 };
 
@@ -89,6 +90,7 @@ export function EmailLabClient({
   const [scheme, setScheme] = useState<"light" | "dark">("light");
   const [images, setImages] = useState<"on" | "off">("on");
   const [view, setView] = useState<"html" | "text">("html");
+  const [rev, setRev] = useState<"v2" | "v1">("v2");
 
   const template = useMemo(
     () => templates.find((t) => t.id === templateId) ?? templates[0],
@@ -104,8 +106,9 @@ export function EmailLabClient({
     const params = new URLSearchParams({
       template: template.id,
       direction: dir,
-      fixture: fixture.id,
+      fixture: rev === "v1" ? "default" : fixture.id,
     });
+    if (rev === "v1") params.set("rev", "v1");
     if (scheme === "dark") params.set("dark", "1");
     if (images === "off") params.set("images", "0");
     if (view === "text") params.set("view", "text");
@@ -180,6 +183,15 @@ export function EmailLabClient({
               {d.name}
             </Chip>
           ))}
+        </div>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <span style={label}>Revision</span>
+          <Chip active={rev === "v2"} onClick={() => setRev("v2")} title="Live templates, elevated in the v2 craft pass">
+            v2
+          </Chip>
+          <Chip active={rev === "v1"} onClick={() => setRev("v1")} title="Frozen v1 archive from docs/email-system/renders (default fixture)">
+            v1 archive
+          </Chip>
         </div>
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
           <span style={label}>Width</span>
@@ -306,6 +318,15 @@ export function EmailLabClient({
               <div>
                 <span style={{ fontSize: 14, fontWeight: 600 }}>{d.name}</span>
                 <span style={{ fontSize: 12, color: INK_FAINT }}> · {d.pole}</span>
+                {rev === "v2" && template.elevation[d.id] ? (
+                  <span style={{ fontSize: 12, color: INK_FAINT }}>
+                    {" "}· scored {template.elevation[d.id].score}/10 in{" "}
+                    {template.elevation[d.id].rounds} rounds
+                  </span>
+                ) : null}
+                {rev === "v1" ? (
+                  <span style={{ fontSize: 12, color: INK_FAINT }}> · v1 archive</span>
+                ) : null}
               </div>
               <a
                 href={renderUrl(d.id)}

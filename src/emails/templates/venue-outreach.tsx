@@ -23,7 +23,8 @@ export function VenueOutreachEmail({
     <EmailShell
       direction={direction}
       preheader={`For ${data.venueName}: the months of planning before the day.`}
-      metaLine={data.metaDate}
+      dateISO={data.metaDateISO}
+      postalContact={false}
       footerNote={`Ethan wrote this to ${data.venueName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`}
     >
       <BodyText direction={direction}>Hello {data.contactFirstName},</BodyText>
@@ -57,7 +58,8 @@ export function VenueOutreachEmail({
         height={302}
         caption="As considered as the day · the Signal Studio venue film"
         linkLabel="Watch the film"
-        duration="60 seconds"
+        duration="60 seconds"
+        enclosureId="Film-Ven"
       />
       <BodyText direction={direction}>
         If it looks right for {data.venueName}, I will set your next couple
@@ -70,4 +72,25 @@ export function VenueOutreachEmail({
       <FounderSignature direction={direction} closing="Thanks for your time," />
     </EmailShell>
   );
+}
+
+import type { TextDoc } from "../plaintext";
+
+export function venueOutreachText(data: VenueOutreachData): TextDoc {
+  return {
+    dateISO: data.metaDateISO,
+    salutation: `Hello ${data.contactFirstName},`,
+    blocks: [
+      { kind: "p", text: `Couples choose ${data.venueName} for how considered the day itself feels. The months before it rarely feel that way. Their planning lives in group chats, spreadsheets and late-night lists, and none of it reflects the venue they chose.` },
+      { kind: "p", text: "Signal Studio gives each of your couples one clear place to plan: their tasks, their timeline, their private notes, and a short morning briefing that points at the few things needing attention. Your name sits quietly at the top of their workspace. There is nothing for your team to set up or run." },
+      { kind: "quiet", text: `The couple\u2019s planning stays theirs. ${data.venueName} never sees their notes or their lists. We would not build it any other way.` },
+      { kind: "p", text: `Sixty seconds on what the planning year looks like when ${data.venueName} stands behind it.` },
+      { kind: "link", label: "Watch the film (60 seconds)", href: "https://signalstudio.ie/films/venues" },
+      { kind: "p", text: `If it looks right for ${data.venueName}, I will set your next couple up with a code, with my compliments. And if it is not for you, a one-line reply saying so is genuinely welcome.` },
+      { kind: "p", text: "Worth twenty minutes? Reply and pick a morning." },
+    ],
+    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: "hello@signalstudio.ie" },
+    enclosure: "Encl \u00b7 Film-Ven \u00b7 60 seconds",
+    footerNote: `Ethan wrote this to ${data.venueName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`,
+  };
 }

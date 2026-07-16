@@ -1,17 +1,17 @@
 import { Section } from "@react-email/components";
 import type { EmailDirection } from "../directions";
-import { HAIRLINE, INK } from "../directions";
+import { HAIRLINE, INK, INK_SOFT } from "../directions";
 import { Wordmark } from "./shell";
 
 /**
- * BrandHeader · three treatments, one grammar.
+ * BrandHeader · three treatments, one grammar each.
  *
- *   rule     (Hairline)   one quiet line: wordmark left, mono category right,
- *                         a single hairline underneath.
- *   masthead (Broadsheet) mono dateline over a 2px ink rule with a thin
- *                         companion rule, the front-page pair.
- *   sheet    (Letterhead) the wordmark alone at the top of the letter with
- *                         a right-aligned date, no rule, air instead.
+ *   rule     (Hairline)   one quiet line: wordmark left, mono category and
+ *                         ledger date right, a single hairline underneath.
+ *   masthead (Broadsheet) the folio: wordmark left, SECTION · FULL DATE
+ *                         right, over the heavy-and-hairline rule pair.
+ *   sheet    (Letterhead) the wordmark alone; the letter dates itself in
+ *                         words, sentence case, in the text face. No rule.
  */
 export function BrandHeader({
   direction,
@@ -23,25 +23,42 @@ export function BrandHeader({
   metaLine?: string;
 }) {
   const d = direction;
+  const folio = [category, metaLine]
+    .filter(Boolean)
+    .join(" · ");
 
   if (d.header === "masthead") {
     return (
       <Section className="em-edge" style={{ padding: `28px ${d.edgePad}px 0` }}>
-        <table width="100%" cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+        <table
+          width="100%"
+          cellPadding={0}
+          cellSpacing={0}
+          role="presentation"
+          style={{ borderCollapse: "collapse" }}
+        >
           <tbody>
             <tr>
               <td style={{ paddingBottom: 10 }}>
-                <Wordmark size={15} />
+                <Wordmark direction={d} size={15} />
               </td>
-              <td align="right" className="em-faint" style={{ ...d.label, paddingBottom: 10 }}>
-                {[category, metaLine].filter(Boolean).join(" · ")}
+              <td
+                align="right"
+                className="em-faint"
+                style={{ ...d.label, paddingBottom: 10 }}
+              >
+                {folio.toUpperCase()}
               </td>
             </tr>
           </tbody>
         </table>
         <div
+          className="em-rule-ink"
+          style={{ borderTop: `2px solid ${INK}` }}
+        />
+        <div
           className="em-hair"
-          style={{ borderTop: `2px solid ${INK}`, borderBottom: `1px solid ${HAIRLINE}`, height: 3 }}
+          style={{ borderTop: `1px solid ${HAIRLINE}`, marginTop: 2 }}
         />
         <div style={{ height: d.space.section }} />
       </Section>
@@ -51,13 +68,29 @@ export function BrandHeader({
   if (d.header === "sheet") {
     return (
       <Section className="em-edge" style={{ padding: `36px ${d.edgePad}px 0` }}>
-        <table width="100%" cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+        <table
+          width="100%"
+          cellPadding={0}
+          cellSpacing={0}
+          role="presentation"
+          style={{ borderCollapse: "collapse" }}
+        >
           <tbody>
             <tr>
               <td>
-                <Wordmark size={13} />
+                <Wordmark direction={d} size={13} />
               </td>
-              <td align="right" className="em-faint" style={d.label}>
+              <td
+                align="right"
+                className="em-soft"
+                style={{
+                  // Part of the letter, not furniture: text face, sentence case.
+                  fontFamily: d.fontStack,
+                  fontSize: 13,
+                  lineHeight: "20px",
+                  color: INK_SOFT,
+                }}
+              >
                 {metaLine ?? ""}
               </td>
             </tr>
@@ -71,14 +104,24 @@ export function BrandHeader({
   // rule (Hairline)
   return (
     <Section className="em-edge" style={{ padding: `24px ${d.edgePad}px 0` }}>
-      <table width="100%" cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+      <table
+        width="100%"
+        cellPadding={0}
+        cellSpacing={0}
+        role="presentation"
+        style={{ borderCollapse: "collapse" }}
+      >
         <tbody>
           <tr>
             <td style={{ paddingBottom: 14 }}>
-              <Wordmark size={13} />
+              <Wordmark direction={d} size={13} />
             </td>
-            <td align="right" className="em-faint" style={{ ...d.label, paddingBottom: 14 }}>
-              {[category, metaLine].filter(Boolean).join(" · ")}
+            <td
+              align="right"
+              className="em-faint"
+              style={{ ...d.label, paddingBottom: 14 }}
+            >
+              {folio}
             </td>
           </tr>
         </tbody>

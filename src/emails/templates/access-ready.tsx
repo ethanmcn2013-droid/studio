@@ -23,7 +23,7 @@ export function AccessReadyEmail({
       direction={direction}
       preheader="Your place on the waitlist came up. Set up your first workspace."
       category="Access"
-      metaLine={data.metaDate}
+      dateISO={data.metaDateISO}
       footerNote={`You received this because you joined the Signal Studio waitlist on ${data.joinedOn}.`}
     >
       <EmailHeading direction={direction}>
@@ -44,7 +44,7 @@ export function AccessReadyEmail({
         src="/email-assets/product-still.png"
         alt="A Signal Studio workspace: a task list on the left, the week's timeline on the right, one item marked as needing attention."
         width={536}
-        height={335}
+        height={240}
         caption="One workspace, seen from the morning."
       />
       <PrimaryAction
@@ -58,4 +58,22 @@ export function AccessReadyEmail({
       </SmallText>
     </EmailShell>
   );
+}
+
+import type { TextDoc } from "../plaintext";
+
+export function accessReadyText(data: AccessReadyData): TextDoc {
+  const greeting = data.firstName ? `${data.firstName}, your` : "Your";
+  return {
+    category: "Access",
+    dateISO: data.metaDateISO,
+    heading: "Signal Studio is open for you.",
+    blocks: [
+      { kind: "p", text: `${greeting} place on the waitlist came up today. Your account is ready, starting with one workspace on the Free plan. No card needed.` },
+      { kind: "p", text: "Four products share that workspace. Tasks holds the live work. Timeline is the plan other people can read. Notes keeps your thinking private until you decide otherwise. Signal reads your week and tells you the few things that need attention." },
+      { kind: "action", label: "Open your workspace", href: data.workspaceProduct },
+      { kind: "quiet", text: "Start with the thing you are planning right now. The rest of the suite is there when you reach for it." },
+    ],
+    footerNote: `You received this because you joined the Signal Studio waitlist on ${data.joinedOn}.`,
+  };
 }

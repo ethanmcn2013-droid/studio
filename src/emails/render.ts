@@ -1,4 +1,5 @@
 import { render } from "@react-email/render";
+import { composeText } from "./plaintext";
 import { DIRECTIONS, type DirectionId } from "./directions";
 import { getTemplate } from "./registry";
 
@@ -32,10 +33,9 @@ export async function renderEmail(
   if (!fixture) throw new Error(`Template ${templateId} has no fixtures`);
 
   const element = template.render(direction, fixture.data);
-  const [html, text] = await Promise.all([
-    render(element, { pretty: true }),
-    render(element, { plainText: true }),
-  ]);
+  const html = await render(element, { pretty: true });
+  // The plain-text twin is composed, not stripped (CL-14).
+  const text = composeText(direction, template.text(fixture.data));
 
   return {
     templateId,
