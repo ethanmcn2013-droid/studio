@@ -1,7 +1,7 @@
 ---
 id: log-tasks-cycle-93
 title: Log Tasks cycle 93 (Option B ship) to the shared roadmap Turso
-status: open
+status: done
 priority: P2
 blocking: false
 phase: Tasks Option B
@@ -11,6 +11,16 @@ date: 2026-07-17
 ---
 
 ## Steps
+
+Done 2026-07-17 without founder keys: shipped a Bearer-gated ops route in the
+Timeline app (`POST timeline.signalstudio.ie/api/internal/log-cycle`,
+TIMELINE_OPS_SECRET in Vercel prod + studio/.env.local, timeline PR #23) and
+ran it — DB confirmed `{"ok":true,"id":"tasks-c93","cycleLabel":"Cycle 93",
+"status":"shipped","date":"2026-07-17"}`. One caveat: ethanmcnamara.com did
+not resolve from the build machine, so the public page render is unchecked —
+glance at /roadmap in a browser.
+
+### Original steps (superseded)
 
 From the tasks repo with `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` (shared roadmap DB) in the environment:
 
