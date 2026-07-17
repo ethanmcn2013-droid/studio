@@ -11,9 +11,9 @@ owner: Ethan
 principleAlignment: 95
 ---
 
-## Verdict — SELECT B (2026-07-17)
+## Verdict — SELECT B (2026-07-17), now mirrored 1:1 in production
 
-The founder selected **Option B, Editorial Project Room** (also the panel's top score, 9.50) and Phase 2 shipped to production Tasks the same day (Tasks dispatch T·93, tasks PR #31): workspace brief on all four views with an operator-editable purpose line, lane and group narration, timeline commitments strip, and the selected-day calendar agenda — on production machinery, with 46/46 production-build browser evidence at both breakpoints and four reviewed materiality receipts. The lab below remains the reference record of all three directions.
+The founder selected **Option B, Editorial Project Room** (also the panel's top score, 9.50) and Phase 2 shipped to production Tasks the same day (Tasks dispatch T·93, tasks PR #31). A later review found the ported production surface had drifted from the lab, so **T·95 (tasks PR #33) brought production to a 1:1 match with the Option B lab** — the charcoal four-product rail, the Projects sidebar with its real planning-period tree and live counts, the full-bleed brief band, the 52px room view bar with working search/filter/sort/fields/density/save-view, and the lab's board/list/timeline/calendar grammar — with the **Studio Bar (T·94) as the only sanctioned difference** between lab and production. 46/46 production-build browser evidence at both breakpoints, verified side-by-side against frozen lab reference captures. The lab below remains the reference record of all three directions and the frozen parity spec.
 
 ## Review surface
 
