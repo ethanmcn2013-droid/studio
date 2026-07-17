@@ -3,13 +3,17 @@ id: tasks-four-view-review-lab
 title: Signal Tasks four-view review lab
 product: Signal Tasks
 category: Core
-status: Review
+status: Shipped
 priority: High
 effort: Medium
 impact: High
 owner: Ethan
 principleAlignment: 95
 ---
+
+## Verdict — SELECT B (2026-07-17)
+
+The founder selected **Option B, Editorial Project Room** (also the panel's top score, 9.50) and Phase 2 shipped to production Tasks the same day (Tasks dispatch T·93, tasks PR #31): workspace brief on all four views with an operator-editable purpose line, lane and group narration, timeline commitments strip, and the selected-day calendar agenda — on production machinery, with 46/46 production-build browser evidence at both breakpoints and four reviewed materiality receipts. The lab below remains the reference record of all three directions.
 
 ## Review surface
 
