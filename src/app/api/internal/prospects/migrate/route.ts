@@ -1,28 +1,34 @@
 import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
-import { sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { prospectsTable } from "@/lib/db/schema";
-import { getProspects } from "@/lib/hq/crm-db";
+import { prospectsTable, type NewDbProspect } from "@/lib/db/schema";
+import { SEED_RESEARCH_FIELDS, seedToDb } from "@/lib/hq/crm-utils";
+import { seedHqData } from "@/lib/hq/data";
 
 /**
- * Operator migration endpoint for the CRM lead books (2026-07-16).
+ * Operator migration + seed-sync endpoint for the CRM lead books
+ * (2026-07-16, sync added 2026-07-17).
  *
  * Turso credentials are sensitive-only in Vercel, so `pnpm db:push`
  * cannot run from a laptop without the founder's keys. This route runs
  * the same DDL inside the deployed app, which already holds the
- * credentials at runtime.
+ * credentials at runtime — then reconciles the table with the committed
+ * seed so research waves land in production without clobbering worked
+ * pipeline.
  *
  *   curl -X POST https://signalstudio.ie/api/internal/prospects/migrate \
  *        -H "Authorization: Bearer $STUDIO_MIGRATE_SECRET"
  *
- * Idempotent by construction: CREATE TABLE IF NOT EXISTS, CREATE INDEX
- * IF NOT EXISTS, and per-column ADD COLUMN guards that swallow
- * duplicate-column errors for a table created before the lead-book
- * columns existed. After the DDL it calls getProspects(), whose seed
- * guard inserts the committed 59-lead baseline only when the table is
- * empty. Re-running is a no-op that reports current counts.
+ * Idempotent by construction:
+ *   1. DDL — CREATE TABLE/INDEX IF NOT EXISTS + guarded ADD COLUMNs.
+ *   2. Insert — seed records whose id is not in the table.
+ *   3. Refresh — rows never touched by the operator (updatedAt equals
+ *      createdAt) take the seed's research fields wholesale.
+ *   4. Fill — operator-touched rows only gain values where the DB field
+ *      is empty and the seed has one. Stage, contact dates, and outcome
+ *      are never written by sync in any mode (SEED_RESEARCH_FIELDS).
  *
  * The DDL below is the drizzle-kit push output for prospectsTable in
  * src/lib/db/schema.ts — change the schema there first, then mirror it
@@ -87,18 +93,19 @@ const CREATE_INDEXES = [
   "CREATE INDEX IF NOT EXISTS `prospects_next_follow_up_idx` ON `prospects` (`next_follow_up_at`)",
 ];
 
+type ResearchPatch = Partial<Pick<NewDbProspect, (typeof SEED_RESEARCH_FIELDS)[number]>>;
+
 export async function POST(req: Request) {
   if (!authOk(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const addedColumns: string[] = [];
   try {
+    // 1. DDL
     await db.run(CREATE_TABLE);
     for (const ddl of ADD_COLUMNS) {
       try {
         await db.run(sql.raw(ddl));
-        addedColumns.push(ddl.match(/`prospects` ADD COLUMN `(\w+)`/)?.[1] ?? ddl);
       } catch {
         // duplicate column, table already carries it
       }
@@ -107,8 +114,50 @@ export async function POST(req: Request) {
       await db.run(sql.raw(ddl));
     }
 
-    // Triggers the seed guard: inserts the committed baseline iff empty.
-    const prospects = await getProspects();
+    // 2–4. Seed sync
+    const seeds = (seedHqData.prospects ?? []).map(seedToDb);
+    const existing = await db.select().from(prospectsTable);
+    const byId = new Map(existing.map((row) => [row.id, row]));
+
+    let inserted = 0;
+    let refreshed = 0;
+    let filled = 0;
+
+    const toInsert = seeds.filter((s) => !byId.has(s.id));
+    for (let i = 0; i < toInsert.length; i += 25) {
+      const batch = toInsert.slice(i, i + 25);
+      await db.insert(prospectsTable).values(batch);
+      inserted += batch.length;
+    }
+
+    for (const seed of seeds) {
+      const row = byId.get(seed.id);
+      if (!row) continue;
+      const untouched = row.updatedAt === row.createdAt;
+      const patch: ResearchPatch = {};
+      for (const field of SEED_RESEARCH_FIELDS) {
+        // every research field is a text column; the segment union narrows
+        // back at the drizzle layer
+        const seedValue = (seed[field] ?? "") as string;
+        const rowValue = (row[field] ?? "") as string;
+        if (untouched) {
+          if (seedValue !== rowValue) {
+            (patch as Record<string, string>)[field] = seedValue;
+          }
+        } else if (!rowValue && seedValue) {
+          (patch as Record<string, string>)[field] = seedValue;
+        }
+      }
+      if (Object.keys(patch).length > 0) {
+        await db
+          .update(prospectsTable)
+          .set(patch)
+          .where(eq(prospectsTable.id, seed.id));
+        if (untouched) refreshed++;
+        else filled++;
+      }
+    }
+
     const rows = await db
       .select({ n: sql<number>`count(*)` })
       .from(prospectsTable);
@@ -116,8 +165,10 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       tableRows: rows[0]?.n ?? 0,
-      served: prospects.length,
-      addedColumns,
+      seedRecords: seeds.length,
+      inserted,
+      refreshed,
+      filled,
     });
   } catch (error) {
     return NextResponse.json(

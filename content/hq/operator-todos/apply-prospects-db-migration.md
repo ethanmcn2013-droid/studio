@@ -1,20 +1,23 @@
 ---
 id: apply-prospects-db-migration
 title: Push the prospects table (with lead-book columns) to production Turso
-status: open
+status: done
 priority: P1
 blocking: false
 phase: Venue outreach
-why: Until the table exists, /hq/crm reads the committed seed and every edit made in the browser (stage moves, dossier saves, logged sends) fails to persist.
+why: Until the table carries the lead-book columns and seed, /hq/crm edits don't persist the new intelligence.
 href: /hq/crm
 date: 2026-07-16
 ---
 
 ## Steps
 
-1. From the studio repo with production `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` in the environment, run `pnpm db:push`.
-2. Confirm the `prospects` table exists with the new columns (`segment`, `phone`, `address`, `county`, `org_group`, `inbox_type`, `tier`).
-3. Load `/hq/crm` once — `getProspects()` auto-seeds the 59 committed leads (50 venues, 3 student anchors, 6 school anchors) on first read.
-4. Change one stage and reload to confirm persistence.
+Done 2026-07-17, without founder keys: Turso credentials are sensitive-only in
+Vercel so `pnpm db:push` could not run locally. Instead the deployed app runs
+the DDL itself — `POST /api/internal/prospects/migrate` (Bearer
+`STUDIO_MIGRATE_SECRET`, set in Vercel prod). The table already existed with
+the original 50 rows; the route added the six lead-book columns and its
+seed-sync reconciled the books (venues enriched, student + school books
+inserted). System documented in atlas: `prospects-db-and-lead-books`.
 
-If the table already exists from an earlier push (pre-book schema), `pnpm db:push` adds the new columns; existing rows keep working — legacy segment strings normalise to the venue book at read time.
+Re-run the same curl after any future seed wave to land it in production.

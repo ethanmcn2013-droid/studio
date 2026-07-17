@@ -13,10 +13,12 @@
 
 import type {
   DbProspect,
+  NewDbProspect,
   ProspectSegment,
   ProspectStage,
 } from "@/lib/db/schema";
 import { PROSPECT_SEGMENTS, PROSPECT_STAGES } from "@/lib/db/schema";
+import type { Prospect } from "@/lib/hq/data";
 
 export type { ProspectSegment, ProspectStage };
 export { PROSPECT_SEGMENTS };
@@ -391,6 +393,108 @@ export function computeOutreachSummary(
   const firstSendDay = sendDays.length ? sendDays.sort()[0] : null;
   return { sent, firstSendDay, qualifiedReplies, bookedCalls };
 }
+
+// ── Seed conversion ───────────────────────────────────────────────────────────
+//
+// The Top-50 venue seed carried its intelligence as prose:
+//   notes:               "5★ · Red Carnation · Reservations inbox · …"
+//   personalisationNote: "Red Carnation group; Reservations inbox."
+// These parsers lift those facts into queryable fields at seed time, so
+// legacy records join the lock-down model without rewriting fifty rows.
+// Newer seed records set the structured fields directly and skip the parse.
+
+function parseTier(notes: string): string {
+  const m = notes.match(/([45]★)/);
+  return m ? m[1] : "";
+}
+
+function parseOrgGroup(personalisationNote: string): string {
+  const m = personalisationNote.match(/^(.+?) group;/i);
+  return m ? m[1].trim() : "";
+}
+
+function parseInboxType(personalisationNote: string): string {
+  const m = personalisationNote.match(/;\s*([^;.]+?)\s+inbox\.?/i);
+  if (!m) return "";
+  const raw = m[1].toLowerCase();
+  if (raw.includes("wedding")) return "weddings";
+  if (raw.includes("event")) return "events";
+  if (raw.includes("reservation")) return "reservations";
+  if (raw.includes("group")) return "groups";
+  if (raw.includes("sales")) return "sales";
+  if (raw.includes("general")) return "general";
+  return "";
+}
+
+function parseCounty(location: string): string {
+  const last = location.split(",").pop()?.trim() ?? "";
+  return last.replace(/^Co\.\s*/i, "").replace(/\s*\d+$/, "").trim();
+}
+
+export function seedStatusToStage(status: Prospect["status"]): ProspectStage {
+  const map: Record<Prospect["status"], ProspectStage> = {
+    "To Contact":     "to_contact",
+    "Contacted":      "contacted",
+    "Replied":        "replied",
+    "Demo Booked":    "demo_booked",
+    "Pilot Active":   "pilot_active",
+    "Not Interested": "not_interested",
+    "Later":          "later",
+  };
+  return map[status] ?? "to_contact";
+}
+
+export function seedToDb(p: Prospect): NewDbProspect {
+  return {
+    id: p.id,
+    organisation: p.organisation,
+    segment: normalizeSegment(p.segment),
+    contactName: p.contactName,
+    role: p.role,
+    email: p.email,
+    phone: p.phone ?? "",
+    website: p.website,
+    location: p.location,
+    address: p.address ?? "",
+    county: p.county ?? parseCounty(p.location),
+    orgGroup: p.orgGroup ?? parseOrgGroup(p.personalisationNote),
+    inboxType: p.inboxType ?? parseInboxType(p.personalisationNote),
+    tier: p.tier ?? parseTier(p.notes),
+    source: p.source,
+    stage: seedStatusToStage(p.status),
+    lastContactedAt: p.lastContacted || null,
+    nextFollowUpAt: p.nextFollowUp || null,
+    personalisationNote: p.personalisationNote,
+    offerSent: p.offerSent,
+    outcome: p.outcome,
+    notes: p.notes,
+  };
+}
+
+/**
+ * The research fields a sync may refresh from the committed seed.
+ * Operator-owned state (stage, lastContactedAt, nextFollowUpAt, outcome)
+ * is never in this list — the seed must not overwrite worked pipeline.
+ */
+export const SEED_RESEARCH_FIELDS = [
+  "organisation",
+  "segment",
+  "contactName",
+  "role",
+  "email",
+  "phone",
+  "website",
+  "location",
+  "address",
+  "county",
+  "orgGroup",
+  "inboxType",
+  "tier",
+  "source",
+  "personalisationNote",
+  "offerSent",
+  "notes",
+] as const satisfies readonly (keyof NewDbProspect)[];
 
 // ── Mailto builder ────────────────────────────────────────────────────────────
 
