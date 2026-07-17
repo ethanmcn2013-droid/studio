@@ -15,6 +15,8 @@ principleAlignment: 95
 
 The founder selected **Option B, Editorial Project Room** (also the panel's top score, 9.50) and Phase 2 shipped to production Tasks the same day (Tasks dispatch T·93, tasks PR #31). A later review found the ported production surface had drifted from the lab, so **T·95 (tasks PR #33) brought production to a 1:1 match with the Option B lab** — the charcoal four-product rail, the Projects sidebar with its real planning-period tree and live counts, the full-bleed brief band, the 52px room view bar with working search/filter/sort/fields/density/save-view, and the lab's board/list/timeline/calendar grammar — with the **Studio Bar (T·94) as the only sanctioned difference** between lab and production. 46/46 production-build browser evidence at both breakpoints, verified side-by-side against frozen lab reference captures. The lab below remains the reference record of all three directions and the frozen parity spec.
 
+**T·96 refinements (tasks PR #34):** the Studio Bar slimmed to 40px with a single top-left mark (the duplicate home dot retired), and the kanban gained editable column names (Rename overflow item, hover pencil, double-click) plus a per-column soft colour picker — neutral/indigo/rose/amber/emerald/sky/violet, each on an existing system token, applied as a whisper-soft lane tint and coloured dot (never a block, cards stay neutral). Colours persist per column per workspace in the board meta record. 46/46 browser evidence, Axe clean.
+
 ## Review surface
 
 The Phase 1 Tasks redesign is preserved as an isolated, fixture-backed review lab. It is not production Tasks data and it does not write to the Tasks database. The preview is deployment-protected by the existing Vercel project controls.
