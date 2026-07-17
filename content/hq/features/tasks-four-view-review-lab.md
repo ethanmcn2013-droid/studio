@@ -41,3 +41,5 @@ The lab uses deterministic normal-density fixtures and session-only interactions
 Saved: 2026-07-16 · deployed as a Vercel preview from the isolated Tasks design-lab branch.
 
 Refreshed: 2026-07-17 · the preview now builds from `feat/option-b-signal-shell`: Option B carries the Signal two-level navigation shell (product rail plus projects sidebar) and the brief drops its milestones panel.
+
+**T·97 refinements (tasks PR #35):** the workspace title in the brief is now editable inline (renameBoardAction, per workspace); the Projects sidebar gained an Add project control (createProjectAction — creates a workspace with owner membership and switches to it); the room view bar dropped the redundant second search, the result count, and the Live dot, and unified its Share/overflow buttons to the lab tool-button style; the scope pill was retired from the Studio Bar. 46/46 browser evidence, Axe clean.
