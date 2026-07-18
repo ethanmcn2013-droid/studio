@@ -3,7 +3,7 @@ id: notes-three-direction-review-lab
 title: Signal Notes three-direction review lab
 product: Signal Notes
 category: Core
-status: Built
+status: Shipping
 priority: High
 effort: Medium
 impact: High
@@ -13,10 +13,11 @@ principleAlignment: 98
 
 ## Review status
 
-Phase 1 is complete and the founder selection is open. Production Signal Notes
-routes and data remain unchanged. The lab is isolated, fixture-backed, and
-deployed only as a protected Vercel preview. Phase 2 must not begin until Ethan
-explicitly selects A, B, C, or names the exact components of a hybrid.
+Phase 1 is complete. On 2026-07-18 Ethan selected the recommended hybrid and
+authorized Phase 2 implementation plus production release. The isolated,
+fixture-backed lab and its evidence remain the design record. Production rollout
+is now in progress; this feature remains `Shipping`, not `Shipped`, until a live
+deployment receipt and production verification are recorded.
 
 ## Review surface
 
@@ -48,14 +49,18 @@ interaction, and recovery can be compared without content drift.
 - The protected deployment challenges anonymous requests with Vercel SSO without leaking lab content; authenticated verification returned 200 for all 12 saved review URLs.
 - The ordinary Notes preview [`dpl_6541G26eVBYc9jFKbbovi36j1ao3`](https://notes-2gyfkyu96-ethanmcn2013-1730s-projects.vercel.app), built from the same immutable source, returns literal `404 Not Found` before authentication with `private, no-store`, `noindex, nofollow, noarchive`, and zero lab content.
 
-## Recommendation
+## Selected hybrid
 
-The evidence supports a deliberate hybrid rather than one direction unchanged:
+Founder selection recorded on 2026-07-18: `SELECT HYBRID`.
 
-- Carry forward A's compact server-rendered capture, flat recency, integrated search, keyboard model, and recovery behavior.
-- Carry forward B's 64–72-character reading measure, context snippets, and editorial rhythm, but not its masthead or date grouping.
-- Carry forward C's desktop selected-row split, mobile full-screen detail, focused caret, and private-to-approved transition, but not its search rail.
-- Keep the shared exact-selection boundary, idempotent extraction receipt, and conflict model.
+- From A: compact server-rendered capture, flat recency, integrated search,
+  keyboard flow, and recovery behavior.
+- From B: 64–72-character reading measure, context snippets, and editorial
+  rhythm. Exclude B's masthead and date grouping.
+- From C: desktop selected-row split, mobile full-screen detail, focused caret,
+  and private-to-approved extraction. Exclude C's search rail.
+- Shared contract: exact-selection extraction, editable approval, idempotent
+  receipts, and conflict handling.
 
 Option scores are A 8.93, B 9.06, and C 8.99. B is the strongest complete
 single direction, but the hybrid preserves Notes' capture speed while taking the
@@ -66,12 +71,22 @@ save-under-100-millisecond, or search-under-200-millisecond thresholds. External
 screen-reader validation and physical-device validation also remain outstanding.
 These are explicit acceptance edges, not hidden passes.
 
-## Review contract
+## Phase 2 release contract
 
 The lab uses deterministic fixtures and session-only interactions. It does not
 read or write production Notes data, and approved extraction is simulated behind
-the exact selection and confirmation boundary. The operator gate remains open
-until Ethan replies with `SELECT A`, `SELECT B`, `SELECT C`, or `SELECT HYBRID`
-followed by the exact components to combine.
+the exact selection and confirmation boundary. Phase 2 must port the selected
+composition onto the real Notes data, auth, persistence, search, and extraction
+machinery without importing lab fixtures or lab-only runtime code.
 
-Saved: 2026-07-18 · protected preview from the isolated Signal Notes design-lab branch.
+- Reversible release flag: `NOTES_HYBRID_NOTEBOOK_ENABLED=1`.
+- Retain the legacy notebook implementation through production verification.
+- Known-good production rollback deployment: `dpl_4AHTSVtR65ozDzwfVn8xNnzLSQQa`.
+- Current live alias: `notes.signalstudio.ie`.
+- Production deployment and verification receipt: pending.
+
+The original Phase 1 founder gate is preserved in
+[`choose-notes-design-lab-direction.md`](../operator-todos/choose-notes-design-lab-direction.md)
+and is now satisfied by the exact hybrid selection above.
+
+Saved: 2026-07-18 · hybrid selected; production receipt pending.
