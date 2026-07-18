@@ -25,6 +25,7 @@ explicitly selects A, B, C, or names the exact components of a hybrid.
 - Deployment: `dpl_D7PLHydCpJV1TtzfZ3EcGWJ9S4jd` · preview · READY
 - Notes source branch: `feat/notes-world-class-lab-20260716`
 - Immutable candidate: [`b844108f34c6a8281f873ee5739df5d6ac35fbd9`](https://github.com/ethanmcn2013-droid/notes/commit/b844108f34c6a8281f873ee5739df5d6ac35fbd9)
+- Delivery record: [`a6c28677568b44f88ccef626b9423003e9ac078b`](https://github.com/ethanmcn2013-droid/notes/commit/a6c28677568b44f88ccef626b9423003e9ac078b)
 - Notes review: [PR #24](https://github.com/ethanmcn2013-droid/notes/pull/24)
 
 ## Saved design set
@@ -38,9 +39,10 @@ interaction, and recovery can be compared without content drift.
 
 ## Evidence
 
-- Review archive: [Notes redesign evidence](https://github.com/ethanmcn2013-droid/notes/tree/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign)
-- Comparison: [scorecard](https://github.com/ethanmcn2013-droid/notes/blob/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/07-comparison-scorecard.md) · [council reviews](https://github.com/ethanmcn2013-droid/notes/blob/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/08-council-reviews.md) · [selection log](https://github.com/ethanmcn2013-droid/notes/blob/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/09-decision-log.md)
-- Captures: [24 screenshots and manifest](https://github.com/ethanmcn2013-droid/notes/tree/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/evidence/screenshots) · [3 interaction videos](https://github.com/ethanmcn2013-droid/notes/tree/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/evidence/videos) · [3 browser traces](https://github.com/ethanmcn2013-droid/notes/tree/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/evidence/traces)
+- Review archive: [Notes redesign evidence](https://github.com/ethanmcn2013-droid/notes/tree/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign)
+- Comparison: [scorecard](https://github.com/ethanmcn2013-droid/notes/blob/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/07-comparison-scorecard.md) · [council reviews](https://github.com/ethanmcn2013-droid/notes/blob/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/08-council-reviews.md) · [selection log](https://github.com/ethanmcn2013-droid/notes/blob/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/09-decision-log.md)
+- Deployment proof: [protected preview receipt](https://github.com/ethanmcn2013-droid/notes/blob/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/evidence/deployment-receipt.md)
+- Captures: [24 screenshots and manifest](https://github.com/ethanmcn2013-droid/notes/tree/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/evidence/screenshots) · [3 interaction videos](https://github.com/ethanmcn2013-droid/notes/tree/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/evidence/videos) · [3 browser traces](https://github.com/ethanmcn2013-droid/notes/tree/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/evidence/traces)
 - The optimized build, TypeScript check, full `pnpm test`, and design-system check passed.
 - Browser evidence passed 37 of 37 Playwright checks and 27 automated Axe scans. Interaction monitoring observed no fetch, XHR, beacon, or WebSocket traffic.
 - An anonymous request received the expected 302 Vercel sign-in challenge without lab-content leakage. Authenticated verification returned 200 for all 12 saved review URLs. A production-shaped build hard-404s the lab route.

@@ -13,7 +13,7 @@ date: 2026-07-18
 ## Steps
 
 1. Open the protected lab from this task and review A, B, and C across Capture, Stream, Search, and Detail plus extraction.
-2. Read the evidence-backed comparison at https://github.com/ethanmcn2013-droid/notes/blob/b844108f34c6a8281f873ee5739df5d6ac35fbd9/docs/notes-redesign/07-comparison-scorecard.md.
+2. Read the evidence-backed comparison at https://github.com/ethanmcn2013-droid/notes/blob/a6c28677568b44f88ccef626b9423003e9ac078b/docs/notes-redesign/07-comparison-scorecard.md.
 3. Use the recommendation as a starting point: A for compact capture, recency, integrated search, keyboard and recovery; B for reading measure, snippets and rhythm; C for the responsive detail split and private-to-approved transition; keep the shared extraction and conflict safeguards.
 4. Reply with exactly one of the following:
 
