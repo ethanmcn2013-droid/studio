@@ -1,14 +1,36 @@
 ---
 id: choose-notes-design-lab-direction
 title: Sign in to Turso to release the Signal Notes hybrid
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Signal Notes redesign · Phase 2 production gate
 why: The code is complete, but the receipt-backed Tasks 0015 and Notes 0007 production migrations cannot run until Ethan signs in to Turso.
 href: https://app.turso.tech
 date: 2026-07-18
 ---
+
+## Released 2026-07-18
+
+Done. Ethan supplied short-lived read-write Turso tokens for the Tasks and Notes
+production databases; both receipt-backed migrations ran in order, each after a
+verified backup and an isolated-copy dry run with matching schema fingerprint,
+`integrity_check = ok`, and zero foreign-key violations.
+
+- Tasks `0015_notes_extract_exact_identity`: applied, database reports
+  `current`. Execution receipt `tasks-exec-0015-bc65600bc116`, backup sha256
+  `bc65600bc11626a7c576e9ff10a6fdb2ec3cb36feb4c23d264e93379df126739`.
+- Notes `0007_note_task_send_outbox`: applied, ledger row recorded, 11 notes
+  preserved. Execution receipt `notes-exec-0007-cd41eff3ea63`, backup sha256
+  `cd41eff3ea6301253fd61413372603054158e1a21f444fa259f858900e52027a`.
+
+PRs merged in order: Tasks [#36](https://github.com/ethanmcn2013-droid/tasks/pull/36),
+Notes [#24](https://github.com/ethanmcn2013-droid/notes/pull/24), Studio HQ
+[#77](https://github.com/ethanmcn2013-droid/studio/pull/77). Production verified:
+notes.signalstudio.ie, tasks.signalstudio.ie, and the strict v2 receiver all
+respond. The v1 receiver stays live as the rollback seam. Receipts and the Tasks
+backup are held at `audit/notes-hybrid-release-2026-07-18/`. The supplied tokens
+were single-use and expire within 24 hours; revoke them in Turso if still active.
 
 ## One action required
 

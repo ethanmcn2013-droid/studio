@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md §6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-18 · S·132 · ships · Signal Notes goes durable, and the note-to-task line becomes exact
+
+**The Hybrid notebook is live in production: instant private capture, a flat newest-first stream, contextual search, a responsive detail split, and a durable Notes-to-Tasks handoff that sends an exact approved selection without deleting the source note.** The release ran behind two receipt-backed production migrations applied in order against the live databases, each only after a verified backup and an isolated-copy dry run that matched the ledger schema fingerprint, passed `integrity_check`, and showed zero foreign-key violations. Tasks `0015` adds the exact-identity provenance columns the strict v2 receiver checks; Notes `0007` adds the send outbox with immutable request bodies, expiring sender leases, and safe replay.
+
+Signal Tasks ships the strict `/api/notes-extract/v2` receiver and keeps `/api/notes-extract` v1 as the zero-downtime rollback seam; Signal Notes points only at v2. Both databases report their new state as current, and notes.signalstudio.ie, tasks.signalstudio.ie, and the v2 receiver were verified live after deploy. Full evidence, receipts, and the Tasks backup are held at `audit/notes-hybrid-release-2026-07-18/`.
+
 ## 2026-07-17 · S·131 · ships · the student and school books fill, and the database follows
 
 **The student book grows from three anchors to forty-eight leads — every active society worth a committee workspace at UL, TUS Midwest, and Mary I, with chairs and treasurers named where the official directories publish them — and the school book grows from six to fifty: the biggest secondary schools in Munster, each carrying its DES roll number, enrolment, Eircode, phone, office inbox, and in forty-three cases the principal's name from the school's own site.** MISU's Clubs & Societies Coordinator is now a named, direct-inbox contact (the post was anonymous a day ago), and the one school whose principal retired in June says exactly that instead of carrying a stale name. Committee names are recorded with their academic year because they expire every May — the September refresh is part of the system, not a hope.
