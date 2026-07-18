@@ -1,6 +1,6 @@
 import { Img, Link, Section, Text } from "@react-email/components";
 import type { EmailDirection } from "../directions";
-import { HAIRLINE, PAPER_SOFT } from "../directions";
+import { HAIRLINE, INK_SOFT, PAPER_SOFT } from "../directions";
 
 /**
  * Shared frame treatment: explicit dimensions, a quiet panel behind the
@@ -16,7 +16,7 @@ function frameStyle(d: EmailDirection): React.CSSProperties {
     borderRadius: d.imagery.radius,
     backgroundColor: PAPER_SOFT,
     // Dresses the alt text when images are blocked.
-    color: "#3f3f46",
+    color: INK_SOFT,
     fontFamily: d.fontStack,
     fontSize: 13,
     lineHeight: "20px",

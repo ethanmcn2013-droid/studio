@@ -7,7 +7,14 @@ import {
   Section,
 } from "@react-email/components";
 import type { ReactNode } from "react";
-import { type EmailDirection, INDIGO, INK, INK_SOFT } from "../directions";
+import {
+  type EmailDirection,
+  INDIGO,
+  INDIGO_LIGHT,
+  INK,
+  INK_SOFT,
+  RED_LIGHT,
+} from "../directions";
 import { BrandHeader } from "./header";
 import { EmailFooter, type FooterLink } from "./footer";
 
@@ -64,7 +71,7 @@ export function EmailShell({
         holdSheet
           ? `
       /* The room goes dark; the letter does not. */
-      .em-outside, .em-outside a { color: #9b9ba3 !important; }
+      .em-outside, .em-outside a { color: ${dk.faint} !important; }
       `
           : `
       .em-surface { background-color: ${dk.surface} !important; border-color: ${dk.hairline} !important; }
@@ -76,8 +83,8 @@ export function EmailShell({
       .em-panel { background-color: ${dk.panel} !important; border-color: ${dk.hairline} !important; }
       .em-btn-ink { background-color: ${dk.text} !important; color: ${dk.canvas} !important; }
       .em-btn-engraved { background-color: ${dk.canvas} !important; color: ${dk.text} !important; border-color: ${dk.text} !important; }
-      .em-danger { color: #f87171 !important; }
-      .em-link { color: ${d.link.color === INDIGO ? "#a5b4fc" : dk.soft} !important; }
+      .em-danger { color: ${RED_LIGHT} !important; }
+      .em-link { color: ${d.link.color === INDIGO ? INDIGO_LIGHT : dk.soft} !important; }
       .em-img { border-color: ${dk.hairline} !important; background-color: ${dk.panel} !important; }
       `
       }

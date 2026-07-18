@@ -26,11 +26,19 @@ export type LabTemplate = {
   fixtures: { id: string; label: string; subject: string; preheader: string }[];
 };
 
-const INK = "#111111";
-const INK_SOFT = "#3f3f46";
-const INK_FAINT = "#71717a";
-const HAIR = "#e7e7e9";
-const INDIGO = "#4f46e5";
+// The Lab is browser UI, so it consumes the canonical CSS tokens. Literal
+// colour values are reserved for the rendered email boundary, where clients
+// cannot reliably resolve custom properties.
+const INK = "var(--ink)";
+const INK_SOFT = "var(--ink-soft)";
+const INK_FAINT = "var(--ink-faint)";
+const HAIR = "var(--hairline)";
+const INDIGO = "var(--accent)";
+const PAPER = "var(--paper)";
+const BLOCKED_BORDER = "var(--status-blocked)";
+const BLOCKED_TEXT =
+  "color-mix(in srgb, var(--status-blocked) 55%, var(--ink))";
+const DARK_CANVAS = "var(--zinc-900)";
 const MONO =
   "var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo, monospace";
 
@@ -61,8 +69,8 @@ function Chip({
       style={{
         appearance: "none",
         border: `1px solid ${active ? INK : HAIR}`,
-        background: active ? INK : "#ffffff",
-        color: active ? "#ffffff" : INK_SOFT,
+        background: active ? INK : PAPER,
+        color: active ? PAPER : INK_SOFT,
         borderRadius: 999,
         padding: "6px 14px",
         fontSize: 13,
@@ -278,12 +286,12 @@ export function EmailLabClient({
       {template.assumptions.length > 0 ? (
         <div
           style={{
-            borderLeft: `2px solid ${blocked ? "#b91c1c" : INDIGO}`,
+            borderLeft: `2px solid ${blocked ? BLOCKED_BORDER : INDIGO}`,
             padding: "2px 0 2px 14px",
             marginBottom: 24,
           }}
         >
-          <p style={{ ...label, margin: "0 0 6px", color: blocked ? "#b91c1c" : INK_FAINT }}>
+          <p style={{ ...label, margin: "0 0 6px", color: blocked ? BLOCKED_TEXT : INK_FAINT }}>
             {blocked ? "Blocked · provisional claims" : "Provisional claims and assumptions"}
           </p>
           {template.assumptions.map((a) => (
@@ -346,7 +354,7 @@ export function EmailLabClient({
               style={{
                 border: `1px solid ${HAIR}`,
                 borderRadius: 8,
-                background: scheme === "dark" ? "#1c1c1e" : "#ffffff",
+                background: scheme === "dark" ? DARK_CANVAS : PAPER,
                 display: "block",
               }}
             />

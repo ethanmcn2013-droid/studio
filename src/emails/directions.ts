@@ -17,9 +17,11 @@ import type { CSSProperties } from "react";
  * three action constructions (engraved rule / filled ink / indigo pill),
  * three fallback stacks. The craft ledger (craft-ledger.md) records why.
  *
- * Shared colour truth comes from ds-foundation tokens.css (v2, 2026-07-02):
- * paper #ffffff, ink #111111, one indigo #4f46e5. Email clients cannot read
- * CSS variables, so the values are inlined here, once.
+ * Shared colour truth comes from ds-foundation tokens.css (v2, 2026-07-02).
+ * Email clients cannot reliably resolve CSS custom properties, so canonical
+ * literal solids are inlined in this module once. The exact count is licensed
+ * in .ds-grandfather.json as a shrinking ratchet; components and browser UI
+ * must consume these exports or the browser token layer, never add literals.
  */
 
 // ── Suite colour truth (email-safe solids) ─────────────────────────────
@@ -32,10 +34,12 @@ export const PAPER_DEEP = "#f4f4f5";
 export const INDIGO = "#4f46e5";
 export const INDIGO_DEEP = "#4338ca";
 export const INDIGO_TINT = "#eef2ff";
+export const INDIGO_LIGHT = "#a5b4fc";
 // --hairline is rgba(17,17,17,.10); email borders want solids.
 export const HAIRLINE = "#e7e7e9";
 export const HAIRLINE_SOFT = "#f1f1f3";
 export const RED_DEEP = "#b91c1c"; // destructive text, AA on paper
+export const RED_LIGHT = "#f87171"; // destructive text on dark email stock
 
 export type DirectionId = "hairline" | "broadsheet" | "letterhead";
 
