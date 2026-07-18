@@ -3272,7 +3272,7 @@
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "6d2d714ce59b8406"
+      "materialityHash": "ac6a2709f3c992e9"
     },
     {
       "id": "studio.page.dispatch",
