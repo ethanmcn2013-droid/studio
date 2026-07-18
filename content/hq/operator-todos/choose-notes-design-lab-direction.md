@@ -1,14 +1,27 @@
 ---
 id: choose-notes-design-lab-direction
-title: Choose the Signal Notes design lab direction
-status: done
-priority: P1
-blocking: false
-phase: Signal Notes redesign · Phase 1 selection complete
-why: This gate kept production Notes unchanged until the founder defined an exact direction. Ethan selected the exact hybrid on 2026-07-18.
-href: https://signal-notes-design-ho4ai9mm4-ethanmcn2013-1730s-projects.vercel.app/__design-lab/notes?option=a&scenario=capture&dataset=normal&mode=default&viewport=auto
+title: Sign in to Turso to release the Signal Notes hybrid
+status: open
+priority: P0
+blocking: true
+phase: Signal Notes redesign · Phase 2 production gate
+why: The code is complete, but the receipt-backed Tasks 0015 and Notes 0007 production migrations cannot run until Ethan signs in to Turso.
+href: https://app.turso.tech
 date: 2026-07-18
 ---
+
+## One action required
+
+1. Open <https://app.turso.tech> in the Codex browser.
+2. Choose **Sign in with GitHub** and finish the sign-in. Do not send a password,
+   code, or token in chat.
+3. Leave the signed-in Turso tab open and tell Codex: `Turso is signed in.`
+
+Do not create, delete, or change a database. Codex will use the authenticated
+session to make and verify the backups and dry runs, apply Tasks migration
+`0015`, release and verify Signal Tasks, apply Notes migration `0007`, then
+release and verify Signal Notes. This task stays open until those production
+receipts exist.
 
 ## Completed selection
 
@@ -26,8 +39,11 @@ and production release.
 
 The canonical rationale and reversible release contract are recorded in
 [`notes-hybrid-selected-2026-07-18.md`](../decisions/notes-hybrid-selected-2026-07-18.md).
-The production receipt remains pending; that is a shipping proof requirement,
-not a founder-selection blocker.
+Phase 2 is code-complete at Notes commit
+[`76399854f6461f33f29e5f05af1c86dd0921703f`](https://github.com/ethanmcn2013-droid/notes/commit/76399854f6461f33f29e5f05af1c86dd0921703f).
+The exact Signal Tasks receiver is green at
+[`398ddca52b9ad1c8d9cfc23fb9f928d3ac027fa1`](https://github.com/ethanmcn2013-droid/tasks/commit/398ddca52b9ad1c8d9cfc23fb9f928d3ac027fa1).
+The only current founder action is the Turso sign-in above.
 
 ## Original gate
 
@@ -45,4 +61,5 @@ SELECT HYBRID — followed by the exact components to combine
 
 Satisfied on 2026-07-18 by the exact hybrid selection above. The protected lab,
 comparison, and original selection language remain here as the durable gate
-receipt.
+receipt. The same HQ task now carries the authenticated production gate so it
+cannot be lost after the design choice was completed.

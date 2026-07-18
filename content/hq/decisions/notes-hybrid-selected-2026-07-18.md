@@ -22,9 +22,14 @@ production release. Signal Notes production will combine:
 - The shared exact-selection extraction boundary, editable approval,
   idempotent receipt, and conflict model.
 
-Phase 2 ports this composition onto production Notes machinery. The fixture
-corpus and lab-only runtime remain isolated evidence and must not become a
-second data path.
+Phase 2 now ports this composition onto the real Notes data, auth, persistence,
+search, recovery, exact extraction, and durable outbox machinery. The
+implementation is code-complete and pushed at Notes commit
+[`76399854f6461f33f29e5f05af1c86dd0921703f`](https://github.com/ethanmcn2013-droid/notes/commit/76399854f6461f33f29e5f05af1c86dd0921703f).
+Its exact Signal Tasks receiver is pushed at
+[`398ddca52b9ad1c8d9cfc23fb9f928d3ac027fa1`](https://github.com/ethanmcn2013-droid/tasks/commit/398ddca52b9ad1c8d9cfc23fb9f928d3ac027fa1).
+The fixture corpus and lab-only runtime remain isolated evidence and do not form
+a second data path.
 
 ## Reason
 
@@ -46,14 +51,23 @@ rollback implementation, not the selected destination.
 ## Reversible release contract
 
 - Release flag: `NOTES_HYBRID_NOTEBOOK_ENABLED=1`.
-- Retain the legacy notebook until the production release is verified.
-- Known-good production rollback deployment: `dpl_4AHTSVtR65ozDzwfVn8xNnzLSQQa`.
+- Retain compatibility code until the production release is verified.
+- Apply the release in dependency order: receipt-backed Tasks backup and dry
+  run, Tasks `0015`, Tasks release and verification, receipt-backed Notes backup
+  and dry run, Notes `0007`, then Notes flag-on release and authenticated
+  verification.
+- The pre-Hybrid deployment `dpl_4AHTSVtR65ozDzwfVn8xNnzLSQQa` is a valid
+  rollback only while the total Hybrid outbox row count is proven to be zero.
+- Once any outbox row exists, rollback is forward-only: turn the flag off and
+  redeploy compatibility code that understands the migrated schema and outbox.
+  Never restore the pre-Hybrid deployment over Hybrid data.
 - Current live alias: `notes.signalstudio.ie`.
-- Production deployment and verification receipt: pending.
+- Production migration, deployment, and verification receipts: pending an
+  authenticated Turso session.
 
 If the new notebook causes a material capture, persistence, search, extraction,
-accessibility, or authenticated-journey regression, disable the flag or restore
-the known-good deployment, then preserve the failed deployment evidence for
+accessibility, or authenticated-journey regression, use the rollback path that
+matches the outbox row count, then preserve the failed deployment evidence for
 diagnosis.
 
 ## Risks
@@ -71,10 +85,19 @@ offline/conflict recovery, and exact-selection approval against real machinery.
 - Comparison scorecard: <https://github.com/ethanmcn2013-droid/notes/blob/5b9f2c088c8e36633c3981756f7bf744a258accd/docs/notes-redesign/07-comparison-scorecard.md>
 - Council reviews: <https://github.com/ethanmcn2013-droid/notes/blob/5b9f2c088c8e36633c3981756f7bf744a258accd/docs/notes-redesign/08-council-reviews.md>
 - Phase 1 review: <https://github.com/ethanmcn2013-droid/notes/pull/24>
+- Phase 2 Notes source: <https://github.com/ethanmcn2013-droid/notes/commit/76399854f6461f33f29e5f05af1c86dd0921703f>
+- Exact Tasks receiver: <https://github.com/ethanmcn2013-droid/tasks/commit/398ddca52b9ad1c8d9cfc23fb9f928d3ac027fa1>
+- Latest Notes verification: 130 of 130 experience captures, 10 of 10 Hybrid
+  end-to-end journeys, full tests, optimized build, experience audit,
+  TypeScript, and design-system checks passed.
+- Signal Tasks PR #36: all verification, typecheck and test, registry and drift,
+  and Vercel checks passed.
 
 ## Notes
 
 The founder selection closes the Phase 1 operator gate and authorizes Phase 2.
-It does not itself prove the production release shipped. Keep the feature at
-`Shipping` until the live alias, release flag, authenticated journeys, rollback
-path, and production telemetry are verified and linked from the HQ feature.
+The code is complete, but production cannot move until Ethan signs in to Turso
+in the open Codex browser. Keep the decision `Active` and the feature `Shipping`
+until the migration receipts, live alias, release flag, authenticated journeys,
+rollback path, and production telemetry are verified and linked from the HQ
+feature.
