@@ -26,7 +26,7 @@ The review lab uses synthetic, in-memory fixtures and session-only interactions.
 - Timeline pull request: [timeline PR #24](https://github.com/ethanmcn2013-droid/timeline/pull/24)
 - Source branch: `feat/timeline-world-class-design-lab`
 - Deployed source: `76998f1`
-- Final evidence receipt: `df4fb3a`
+- Final evidence receipt: `5a31690`
 
 ## Saved design set
 
@@ -55,6 +55,7 @@ Recommendation, not selection: **A owner ledger + B public timeline + B shared u
 - 94 fresh screenshot receipts cover the primary matrix, explicit states, dense edge cases, and untouched production-root regressions.
 - 7 account review-boundary checks passed after making the review account state truthful and Clerk-free.
 - The complete Timeline test command, lint, typecheck, design-system validation, experience validation, diff check, optimized local build, and final Vercel build passed.
+- The production-root regression contract covers all four required breakpoints plus long-page, keyboard, reduced-motion, overflow, and Axe checks; base-relative experience validation passes.
 - Axe, keyboard, focus restoration, reduced motion, print, 320 px dense data, and responsive overflow checks passed.
 - The public fixture projection uses an exact allowlist; the owner-only sentinel never appears in public output.
 
