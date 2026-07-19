@@ -35,6 +35,8 @@ while ((m = re.exec(src))) {
   const bool = (k) => new RegExp(`${k}:\\s*true`).test(block);
   const hasThumb = bool("hasThumb");
   if (!hasThumb) continue;
+  // External thumbs (other repos / production) are captured by lab-thumbs-external.mjs.
+  if (/thumbSource:\s*"external"/.test(block)) continue;
   labs.push({
     id: m[1],
     href: get("href"),

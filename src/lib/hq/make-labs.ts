@@ -36,6 +36,10 @@ export type Lab = {
   note: string;
   /** Set true once a real screenshot exists; false → branded poster tile. */
   hasThumb: boolean;
+  /** "external" thumbs are captured off-repo (other product dev servers or
+   *  production) by scripts/hq-redesign/lab-thumbs-external.mjs, so the main
+   *  same-origin capture script skips them. */
+  thumbSource?: "external";
 };
 
 export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb: string }> = [
@@ -290,29 +294,51 @@ export const MAKE_LABS: Lab[] = [
     note: "One Wedding, Four Views. The 30-second hero product film. Scaffold and motion grammar live in HQ.",
     hasThumb: true,
   },
+  {
+    id: "lab-email",
+    name: "The email design lab",
+    category: "system",
+    state: "SHIPPED",
+    href: "/hq/email-lab",
+    where: "studio · main",
+    note: "Seventeen templates on the Hairline system, indigo links, Limerick sign-off. Compare v1 and v2 side by side.",
+    hasThumb: false,
+  },
 
   // ── Parked in the lab (external branch links, poster tiles) ────────
   {
     id: "parked-notes-hero",
-    name: "Notes hero lab · four directions",
+    name: "Notes hero lab · showroom",
     category: "parked",
     state: "REVIEW",
     href: "https://github.com/ethanmcn2013-droid/notes/tree/feat/notes-hero-lab",
     external: true,
     where: "notes · feat/notes-hero-lab",
-    note: "Notebook First, Before It Fades, Three Seconds, The Crossing. Review only, not cleared for deploy.",
+    note: "Ways into the notebook: Notebook First, Before It Fades, Three Seconds, The Crossing. Review only.",
     hasThumb: false,
   },
   {
     id: "parked-timeline-line",
-    name: "Timeline · The Link & Open Line",
+    name: "Timeline hero lab · showroom",
     category: "parked",
-    state: "PARKED",
+    state: "REVIEW",
     href: "https://github.com/ethanmcn2013-droid/roadmap/tree/feat/timeline-hero-lab",
     external: true,
     where: "roadmap · feat/timeline-hero-lab",
-    note: "The runners-up behind The Line. Kept on the branch as alternate directions for the Timeline hero.",
+    note: "Five directions, two front-runners: One Line, The Line, and three sharing-story candidates.",
     hasThumb: false,
+  },
+  {
+    id: "parked-tasks-hero",
+    name: "Tasks hero lab · showroom",
+    category: "parked",
+    state: "REVIEW",
+    href: "https://github.com/ethanmcn2013-droid/tasks/tree/feat/tasks-hero-lab",
+    external: true,
+    where: "tasks · feat/tasks-hero-lab",
+    note: "Two active hero directions for the Signal Tasks homepage, plus the research archive.",
+    hasThumb: true,
+    thumbSource: "external",
   },
   {
     id: "parked-signal-five",
