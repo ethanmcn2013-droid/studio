@@ -17,89 +17,127 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const METRIC_TONE: Record<string, string> = {
+  moving: "done",
+  flat: "quiet",
+  blocked: "critical",
+  unread: "quiet",
+};
+
 export default async function FoundersCirclePage() {
   await requireHqAccess();
 
   const [prospects, traction] = await Promise.all([getProspects(), getTraction()]);
   const report = getHqReport(prospects, traction);
-  const boardMetrics = report.metrics;
 
   return (
-    <main id="main" className="hq-page hq-circle">
-      <section className="hq-circle-hero" aria-labelledby="circle-title">
-        <div className="hq-circle-mark" aria-hidden="true" />
-        <span className="hq-circle-kicker">Signal Studio</span>
-        <h1 id="circle-title" className="hq-circle-title">
-          Founders Circle<span aria-hidden="true">.</span>
-        </h1>
-        <p className="hq-circle-copy">
-          A calm shareholder room: the current story, the five company
-          numbers, the material assets, and the decision gate.
+    <div className="hqx-page">
+      <header className="hqx-page-header">
+        <span className="hqx-eyebrow">Board room · Signal Studio</span>
+        <div className="hqx-page-header-row">
+          <h1 className="hqx-title">Founders Circle</h1>
+          <span className="hqx-pill" data-tone="accent">Shareholder-safe</span>
+        </div>
+        <p className="hqx-lede">
+          A calm shareholder room: the current story, the five company numbers, the material
+          progress and risk, and the next ask. Operator detail stays outside this room.
         </p>
-      </section>
+      </header>
 
-      <section className="hq-circle-summary" aria-label="founder summary">
-        <div className="hq-circle-summary-main">
-          <span className="hq-page-eyebrow">current read</span>
-          <p>{report.headline}</p>
-          <Link href="/hq/reporting" className="hq-circle-primary">
-            Open the source numbers →
-          </Link>
+      <div className="hqx-banner" data-tone="accent">
+        <span className="hqx-banner-mark" />
+        <div className="hqx-banner-body">
+          <span className="hqx-banner-kicker">Current read</span>
+          <span className="hqx-banner-title">{report.headline}</span>
         </div>
-        <div className="hq-circle-proof">
-          <span className="hq-page-eyebrow">shareholder view</span>
-          <p>
-            Operator detail stays outside this room. This view carries material
-            progress, risk, and the board pack.
-          </p>
-        </div>
-      </section>
+        <Link href="/hq/reporting" className="hqx-btn hqx-btn--ghost">Source numbers →</Link>
+      </div>
 
-      <section className="hq-report-board hq-report-board--circle" aria-label="board metrics">
-        {boardMetrics.map((metric) => (
-          <div key={metric.label} className="hq-report-metric" data-status={metric.status}>
-            <span className="hq-report-label">{metric.label}</span>
-            <span className="hq-report-value">{metric.value}</span>
-            <span className="hq-report-target">{metric.target}</span>
-          </div>
-        ))}
-      </section>
-
-      <section className="hq-ledger-section" aria-labelledby="pack-title">
-        <div className="hq-ledger-headline">
-          <span className="hq-page-eyebrow">board pack</span>
-          <h2 id="pack-title">Material to share</h2>
+      <section className="hqx-section">
+        <div className="hqx-section-head">
+          <h2 className="hqx-section-title">The five numbers</h2>
+          <Link href="/hq/financial-model" className="hqx-section-action">Model →</Link>
         </div>
-        <div className="hq-ledger">
-          {FOUNDER_CIRCLE_PACKS.map((pack) => (
-            <Link key={pack.title} href={pack.href} className="hq-ledger-row">
-              <span className="hq-ledger-label">{pack.title}</span>
-              <span className="hq-ledger-detail">{pack.note}</span>
-              <span className="hq-ledger-meta">
-                {pack.status} · {pack.cadence}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="hq-director-gate hq-director-gate--circle" aria-label="circle review principles">
-        <div className="hq-director-intro">
-          <span className="hq-page-eyebrow">review principles</span>
-          <p>
-            The shareholder room must be polished enough to send and plain enough
-            to trust.
-          </p>
-        </div>
-        <div className="hq-director-list">
-          {HQ_REVIEW_PRINCIPLES.map((director) => (
-            <div key={director.role} className="hq-director-row">
-              <span className="hq-director-role">{director.role}</span>
-              <span className="hq-director-finding">{director.finding}</span>
+        <div className="hqx-metric-row hqx-metric-row--5">
+          {report.metrics.map((metric) => (
+            <div key={metric.label} className="hqx-metric" data-tone={METRIC_TONE[metric.status] ?? "quiet"}>
+              <span className="hqx-metric-label">{metric.label}</span>
+              <span className="hqx-metric-value">{metric.value}</span>
+              <span className="hqx-metric-note">target {metric.target}</span>
             </div>
           ))}
         </div>
       </section>
-    </main>
+
+      <div className="hqx-layout">
+        <div className="hqx-section" style={{ gap: "var(--space-8)" }}>
+          <section className="hqx-section">
+            <div className="hqx-section-head">
+              <h2 className="hqx-section-title">Material progress &amp; risk</h2>
+            </div>
+            <div className="hqx-rows">
+              {report.watchlist.map((item) => (
+                <Link key={item.label} href={item.href} className="hqx-row" data-priority="stale">
+                  <span className="hqx-row-lead"><span className="hqx-row-marker" /></span>
+                  <span className="hqx-row-body">
+                    <span className="hqx-row-title">{item.label}</span>
+                    <span className="hqx-row-why">{item.detail}</span>
+                  </span>
+                  <span className="hqx-row-meta"><span className="hqx-row-arrow" aria-hidden="true">→</span></span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <section className="hqx-section">
+            <div className="hqx-section-head">
+              <h2 className="hqx-section-title">Board pack</h2>
+              <span className="hqx-status"><span className="hqx-dot" />Material to share</span>
+            </div>
+            <div className="hqx-rows">
+              {FOUNDER_CIRCLE_PACKS.map((pack) => (
+                <Link key={pack.title} href={pack.href} className="hqx-row">
+                  <span className="hqx-row-lead"><span className="hqx-row-marker" /></span>
+                  <span className="hqx-row-body">
+                    <span className="hqx-row-title">{pack.title}</span>
+                    <span className="hqx-row-why">{pack.note}</span>
+                  </span>
+                  <span className="hqx-row-meta">
+                    <span className="hqx-pill" data-tone={pack.status === "ready" ? "done" : "flight"}>{pack.status}</span>
+                    <span className="hqx-ac-metatext">{pack.cadence}</span>
+                    <span className="hqx-row-arrow" aria-hidden="true">→</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <aside className="hqx-aside">
+          <div className="hqx-summary-card">
+            <span className="hqx-summary-label">Reporting freshness</span>
+            {report.sources.map((source) => (
+              <div key={source.label} className="hqx-summary-row">
+                <span className="hqx-summary-row-label">{source.label}</span>
+                <Link href={source.href} className="hqx-summary-row-value" style={{ textDecoration: "none" }}>open →</Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="hqx-summary-card">
+            <span className="hqx-summary-label">Review principles</span>
+            <p className="hqx-row-why" style={{ whiteSpace: "normal" }}>
+              Polished enough to send, plain enough to trust.
+            </p>
+            {HQ_REVIEW_PRINCIPLES.map((p) => (
+              <div key={p.role} className="hqx-summary-row">
+                <span className="hqx-summary-row-label">{p.role}</span>
+                <span className="hqx-summary-row-value" style={{ fontWeight: "var(--weight-regular)", color: "var(--ink-faint)", textAlign: "right", maxWidth: "60%" }}>{p.finding}</span>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </div>
   );
 }
