@@ -1,3 +1,4 @@
+import "./hq-os.css";
 import { HqShell } from "@/components/hq/hq-shell";
 
 /**
