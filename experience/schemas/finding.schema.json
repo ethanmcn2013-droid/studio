@@ -10,7 +10,28 @@
     "experienceId": { "type": "string" },
     "product": { "enum": ["studio", "tasks", "timeline", "signal", "notes", "signal-review"] },
     "surface": { "type": "string" },
-    "state": { "type": "string" },
+    "state": {
+      "enum": [
+        "default",
+        "first-use",
+        "empty",
+        "populated",
+        "loading",
+        "slow-loading",
+        "partial-failure",
+        "error",
+        "success",
+        "restricted",
+        "disabled",
+        "read-only",
+        "dense",
+        "long-content",
+        "saved",
+        "unsaved",
+        "reduced-motion",
+        "keyboard-only"
+      ]
+    },
     "breakpoint": { "enum": ["mobile", "tablet", "desktop", "wide"] },
     "dimension": {
       "enum": [
@@ -38,9 +59,25 @@
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
     "owner": { "type": "string" },
     "status": { "enum": ["open", "acknowledged", "in-progress", "resolved", "accepted-exception"] },
+    "exceptionId": { "type": ["string", "null"], "pattern": "^exception-[a-z0-9-]+$" },
     "resolutionEvidence": { "type": "array", "items": { "type": "string" } },
     "source": { "enum": ["deterministic", "specialist-review", "human-review"] },
     "createdAt": { "type": "string", "format": "date" },
     "resolvedAt": { "type": ["string", "null"], "format": "date" }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "accepted-exception" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["exceptionId"],
+        "properties": { "exceptionId": { "type": "string", "pattern": "^exception-[a-z0-9-]+$" } }
+      },
+      "else": {
+        "properties": { "exceptionId": { "type": "null" } }
+      }
+    }
+  ]
 }

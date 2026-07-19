@@ -77,6 +77,14 @@ const nextConfig: NextConfig = {
         destination: "/design",
         permanent: true,
       },
+      {
+        // Signal Review is a private founder-operator instrument. Retire the
+        // legacy public review hub into the password-gated HQ quality room.
+        // Keep this temporary so the decision remains easy to reverse.
+        source: "/review",
+        destination: "/hq/experience-quality",
+        permanent: false,
+      },
     ];
   },
   experimental: {
@@ -116,6 +124,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/brand/pitch-deck-2026.html",
+        headers: securityHeaders.map((h) =>
+          h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
+        ),
+      },
+      {
+        // The Email Lab (/hq/email-lab) previews rendered emails in
+        // same-origin iframes. The route sits behind the HQ cookie and
+        // serves static email HTML with no scripts.
+        source: "/hq/email-lab/render",
         headers: securityHeaders.map((h) =>
           h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
         ),

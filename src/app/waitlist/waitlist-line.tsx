@@ -40,8 +40,9 @@ export function WaitlistLine(props: Props) {
           Join the line<span className="wl-headline-dot" aria-hidden />
         </h1>
         <p className="wl-lede">
-          Signal Studio opens in small batches from 1 September. Add your name and
-          we write when your batch is ready, not before.
+          Signal Studio opens in small batches when each product and privacy
+          gate is ready. Add your name and we write when your batch is ready,
+          not before.
         </p>
 
         <div className="wl-queue" aria-hidden>

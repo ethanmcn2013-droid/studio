@@ -1,14 +1,12 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-07-15T14:51:06.492Z",
+  "generatedAt": "2026-07-16T00:36:09.444Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "5 unresolved release-blocking findings",
-      "golden set is provisional",
-      "36 visual baselines await approval",
-      "0/239 experiences are Studio-grade"
+      "20/4732 required state/breakpoint audit cells pass",
+      "16 visual baselines await approval"
     ]
   },
   "standard": {
@@ -31,33 +29,33 @@
     "overallMinimum": 3.5
   },
   "inventory": {
-    "experiences": 239,
-    "stateVariants": 1175,
-    "breakpointVariants": 956,
+    "experiences": 241,
+    "stateVariants": 1183,
+    "breakpointVariants": 964,
     "products": {
-      "notes": 20,
+      "notes": 18,
       "signal": 31,
       "signal-review": 4,
-      "studio": 96,
+      "studio": 99,
       "tasks": 59,
-      "timeline": 29
+      "timeline": 30
     },
     "experienceClasses": {
-      "customer-product": 139,
+      "customer-product": 138,
       "company-public": 42,
-      "founder-operator": 58
+      "founder-operator": 61
     },
     "archetypes": {
       "application-shell-and-navigation": 4,
       "create-and-edit-form": 4,
       "dashboard-or-command-centre": 9,
-      "detail-or-record-view": 50,
+      "detail-or-record-view": 56,
       "editor-or-canvas": 9,
       "feedback-interruption-and-exception": 29,
       "list-and-data-table": 12,
       "onboarding-and-authentication": 14,
-      "public-information-and-proof": 80,
-      "review-and-approval-workspace": 11,
+      "public-information-and-proof": 81,
+      "review-and-approval-workspace": 6,
       "search-and-command-interface": 4,
       "settings-and-administration": 13
     },
@@ -65,15 +63,16 @@
     "screenshotCoverage": 0,
     "accessibilityCoverage": 0,
     "passing": 0,
-    "underRemediation": 2
+    "underRemediation": 0,
+    "assertedPassing": 0
   },
   "experienceClasses": {
     "customer-product": {
-      "experiences": 139,
+      "experiences": 138,
       "critical": 56,
       "passing": 0,
-      "openFindings": 9,
-      "releaseBlocking": 5
+      "openFindings": 0,
+      "releaseBlocking": 0
     },
     "company-public": {
       "experiences": 42,
@@ -83,7 +82,7 @@
       "releaseBlocking": 0
     },
     "founder-operator": {
-      "experiences": 58,
+      "experiences": 61,
       "critical": 9,
       "passing": 0,
       "openFindings": 0,
@@ -92,10 +91,10 @@
   },
   "products": {
     "notes": {
-      "experiences": 20,
+      "experiences": 18,
       "critical": 11,
       "passing": 0,
-      "openFindings": 1,
+      "openFindings": 0,
       "releaseBlocking": 0
     },
     "signal": {
@@ -113,7 +112,7 @@
       "releaseBlocking": 0
     },
     "studio": {
-      "experiences": 96,
+      "experiences": 99,
       "critical": 14,
       "passing": 0,
       "openFindings": 0,
@@ -127,61 +126,65 @@
       "releaseBlocking": 0
     },
     "timeline": {
-      "experiences": 29,
+      "experiences": 30,
       "critical": 11,
       "passing": 0,
-      "openFindings": 8,
-      "releaseBlocking": 5
+      "openFindings": 0,
+      "releaseBlocking": 0
     }
   },
   "findings": {
     "total": 25,
-    "open": 9,
-    "releaseBlocking": 5,
-    "high": 2,
-    "resolved": 16,
+    "open": 0,
+    "releaseBlocking": 0,
+    "high": 0,
+    "resolved": 25,
     "unbaselinedHighRisk": [],
     "oldestOpenDays": 0,
     "averageOpenDays": 0
   },
   "audits": {
-    "total": 0,
-    "passing": 0,
-    "failing": 0,
+    "total": 20,
+    "requiredCells": 4732,
+    "passing": 20,
+    "failing": 4712,
+    "missing": 4712,
+    "duplicate": 0,
+    "falsePassingExperienceIds": [],
     "byProduct": {
       "notes": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       },
       "signal": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       },
       "signal-review": {
         "audits": 0,
         "averageScore": null
       },
       "studio": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.54
       },
       "tasks": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.6
       },
       "timeline": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.62
       }
     },
     "byExperienceClass": {
       "company-public": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.54
       },
       "customer-product": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 16,
+        "averageScore": 3.61
       },
       "founder-operator": {
         "audits": 0,
@@ -206,8 +209,8 @@
         "averageScore": null
       },
       "editor-or-canvas": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 4,
+        "averageScore": 3.6
       },
       "feedback-interruption-and-exception": {
         "audits": 0,
@@ -222,8 +225,8 @@
         "averageScore": null
       },
       "public-information-and-proof": {
-        "audits": 0,
-        "averageScore": null
+        "audits": 16,
+        "averageScore": 3.6
       },
       "review-and-approval-workspace": {
         "audits": 0,
@@ -241,22 +244,22 @@
   },
   "coverage": {
     "registry": {
-      "registered": 239,
+      "registered": 241,
       "validationErrors": 0
     },
     "states": {
-      "capturedVariants": 9,
-      "requiredVariants": 1175,
+      "capturedVariants": 14,
+      "requiredVariants": 1183,
       "completeFixtureExperiences": 0
     },
     "breakpoints": {
-      "capturedVariants": 36,
-      "requiredVariants": 956,
+      "capturedVariants": 56,
+      "requiredVariants": 964,
       "completeScreenshotExperiences": 0
     },
     "accessibility": {
-      "passingCaptures": 36,
-      "totalCaptures": 36,
+      "passingCaptures": 56,
+      "totalCaptures": 56,
       "completeExperiences": 0
     },
     "designSystemConformance": {
@@ -268,28 +271,29 @@
     }
   },
   "capture": {
-    "captures": 36,
-    "passing": 36,
+    "captures": 56,
+    "passing": 56,
     "requiringReview": 0,
     "visualChanges": 0,
-    "missingBaselines": 36
+    "missingBaselines": 16
   },
   "captureRegressions": [],
   "visualRegression": {
     "status": "pilot-clean",
-    "missingBaselines": 36,
-    "approvedBaselines": 0
+    "missingBaselines": 16,
+    "approvedBaselines": 40
   },
   "governance": {
-    "underRemediation": 2,
-    "legacyExperiences": 239,
+    "underRemediation": 0,
+    "legacyExperiences": 241,
     "acceptedExceptions": 0,
+    "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 218
+    "notReviewedSinceMaterialChange": 216
   },
   "goldenSet": {
-    "status": "provisional",
+    "status": "approved",
     "count": 5,
     "approvalTask": "approve-experience-golden-set"
   },

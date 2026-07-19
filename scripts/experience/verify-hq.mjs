@@ -40,6 +40,22 @@ const browser = await chromium.launch({ headless: true });
 const failures = [];
 
 try {
+  const anonymousContext = await browser.newContext({
+    viewport: targets.mobile,
+    locale: "en-GB",
+    timezoneId: "Europe/London",
+    reducedMotion: "reduce",
+  });
+  const anonymousPage = await anonymousContext.newPage();
+  await anonymousPage.goto(`${baseUrl}/review`, { waitUntil: "domcontentloaded" });
+  const anonymousPath = new URL(anonymousPage.url()).pathname;
+  if (anonymousPath !== "/hq/access") {
+    failures.push(
+      `anonymous: /review resolved to ${anonymousPath}, expected the password-gated /hq/access`,
+    );
+  }
+  await anonymousContext.close();
+
   for (const [name, viewport] of Object.entries(targets)) {
     if (selectedTarget && name !== selectedTarget) continue;
     const context = await browser.newContext({ viewport, locale: "en-GB", timezoneId: "Europe/London", reducedMotion: "reduce" });
@@ -99,6 +115,7 @@ try {
     if (advancedFilters !== 5) failures.push(`${name}: expected five advanced evidence filters, found ${advancedFilters}`);
     if (overflow) failures.push(`${name}: ${overflow}px horizontal overflow`);
     if (blocking.length) failures.push(`${name}: blocking axe rules ${blocking.map((item) => item.id).join(", ")}`);
+    if (consoleErrors.length) failures.push(`${name}: console errors ${consoleErrors.join("; ")}`);
     if (pageErrors.length) failures.push(`${name}: page errors ${pageErrors.join("; ")}`);
     console.log(JSON.stringify(result));
     await context.close();

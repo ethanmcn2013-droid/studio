@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getWaitlistEntries } from "@/lib/waitlist";
 import type { WaitlistEntry } from "@/lib/db/schema";
@@ -66,27 +67,16 @@ export default async function HqWaitlistPage() {
   const summary = summarize(entries);
 
   return (
-    <main className="mx-auto grid w-full max-w-[1180px] gap-8 px-6 py-10">
-      <section className="grid gap-4 border-b border-border-soft pb-8">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="hq-os-eyebrow">sell</p>
-            <h1 className="mt-2 text-[clamp(2rem,1.4rem+2.5vw,4rem)] font-semibold leading-[1] tracking-[-0.04em] text-ink">
-              Waitlist.
-            </h1>
-          </div>
-          <Link
-            href="/waitlist"
-            className="inline-flex min-h-10 items-center rounded-full border border-border-soft px-4 text-[13px] font-medium text-ink transition-colors hover:border-ink-quiet"
-          >
-            Open public page
+    <main className="mx-auto grid w-full max-w-[1180px] gap-8 px-6 pb-10">
+      <HqPageHeader
+        slug="waitlist"
+        standfirst="Public access is staged through /waitlist; this ledger reads the Studio database directly, newest first."
+        meta={
+          <Link href="/waitlist" className="hq-page-head-note">
+            open public page →
           </Link>
-        </div>
-        <p className="max-w-[62ch] text-[15px] leading-[1.65] text-ink-soft">
-          Public access is staged through `/waitlist`. This ledger reads the
-          Studio database directly, newest first.
-        </p>
-      </section>
+        }
+      />
 
       {error ? (
         <section className="rounded-[8px] border border-border-soft bg-bg-elev p-5">

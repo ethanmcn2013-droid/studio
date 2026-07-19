@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { HQ_ASSETS, type HqAsset } from "@/lib/hq/operating-system";
 
@@ -44,15 +45,17 @@ export default async function AssetsPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Asset Hub</span>
-        <h1 className="hq-page-title">The material library<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">
-          Brand kit, one-pagers, investor material, venue proof, and founder
-          outreach sit in one inventory. Ready assets link to the rendered
-          surface; working assets show the canonical source.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="assets"
+        title="The material library."
+        standfirst="Brand, sales, proof, export, and shareholder assets in one inventory; ready items link to their rendered surface."
+        meta={
+          <span className="hq-page-head-note">
+            {HQ_ASSETS.length} assets across {GROUPS.length} groups · working
+            assets show the canonical source
+          </span>
+        }
+      />
 
       <section className="hq-asset-index" aria-label="asset groups">
         {GROUPS.map((group) => {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { VAULT, vaultStats, type VaultItem } from "@/lib/hq/vault";
 
@@ -78,29 +79,25 @@ export default async function VaultPage() {
 
   return (
     <main id="main" className="vault-shell">
-      <section className="vault-hero" aria-labelledby="vault-title">
-        <div className="vault-hero-mark" aria-hidden="true" />
-        <span className="vault-kicker">Signal HQ</span>
-        <h1 id="vault-title" className="vault-title">
-          The Vault<span aria-hidden="true">.</span>
-        </h1>
-        <p className="vault-lede">
-          Everything the business runs on, in one place, ownership and legal,
-          the Founder Circle, brand and motion, the plan, the pipeline, and the
-          numbers. One index, kept honest.
-        </p>
-        <p className="vault-stat">
-          {stats.domains} domains · {stats.docs} documents · {stats.routes} live
-          surfaces · {stats.sources} in-repo sources
-        </p>
-        <nav className="vault-jump" aria-label="vault domains">
-          {VAULT.map((domain) => (
-            <a key={domain.id} href={`#${domain.id}`} className="vault-jump-link">
-              {domain.label}
-            </a>
-          ))}
-        </nav>
-      </section>
+      <HqPageHeader
+        slug="vault"
+        title="The Vault"
+        standfirst="Everything the business runs on: ownership and legal, the Founder Circle, brand, the plan, the pipeline, the numbers."
+        meta={
+          <span className="hq-page-head-note">
+            {stats.domains} domains · {stats.docs} documents · {stats.routes}{" "}
+            live surfaces · {stats.sources} in-repo sources
+          </span>
+        }
+      />
+
+      <nav className="vault-jump" aria-label="vault domains">
+        {VAULT.map((domain) => (
+          <a key={domain.id} href={`#${domain.id}`} className="vault-jump-link">
+            {domain.label}
+          </a>
+        ))}
+      </nav>
 
       <div className="vault-domains">
         {VAULT.map((domain) => (

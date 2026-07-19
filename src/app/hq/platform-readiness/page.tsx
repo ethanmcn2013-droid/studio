@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getRemediationProgram, summarizeRemediation } from "@/lib/hq/remediation-program";
 
@@ -21,20 +22,16 @@ export default async function PlatformReadinessPage() {
   const summary = summarizeRemediation(program);
 
   return (
-    <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24 pt-16 md:pt-20">
-      <div className="mb-3 hq-eyebrow">Signal HQ · Platform readiness</div>
-      <div className="flex flex-wrap items-end justify-between gap-5">
-        <div>
-          <h1 className="h-title mb-4 text-ink">Remediation program</h1>
-          <p className="max-w-[65ch] text-ink-soft" style={{ fontSize: 17, lineHeight: 1.6 }}>
-            One ledger. Observable evidence. No launch claim without proof.
-          </p>
-        </div>
-        <div className="border border-border-soft px-5 py-4 text-right" style={{ background: "var(--surface)" }}>
-          <div className="hq-eyebrow">Completion</div>
-          <div className="text-ink" style={{ fontSize: 34, fontWeight: 600 }}>{summary.calculatedCompletion}%</div>
-          <div className="text-ink-quiet" style={{ fontSize: 12 }}>{summary.completed} of {summary.total} items</div>
-        </div>
+    <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24">
+      <HqPageHeader
+        slug="platform-readiness"
+        standfirst="One ledger of observable evidence; no launch claim without proof."
+      />
+
+      <div className="mt-8 inline-block border border-border-soft px-5 py-4" style={{ background: "var(--surface)" }}>
+        <div className="hq-eyebrow">Completion</div>
+        <div className="text-ink" style={{ fontSize: 34, fontWeight: 600 }}>{summary.calculatedCompletion}%</div>
+        <div className="text-ink-quiet" style={{ fontSize: 12 }}>{summary.completed} of {summary.total} items</div>
       </div>
 
       <section className="mt-10 border border-border-soft" style={{ background: "var(--surface)" }} aria-labelledby="blockers-heading">

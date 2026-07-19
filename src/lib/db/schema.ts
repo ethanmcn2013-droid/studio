@@ -192,17 +192,39 @@ export const PROSPECT_STAGES = [
 ] as const;
 export type ProspectStage = (typeof PROSPECT_STAGES)[number];
 
+/**
+ * The four lead books. Each is a distinct outbound motion with its own
+ * offer, buyer, and playbook (market-entry deck 2026–2028):
+ *   venue   — Venue Edition, €1,500/yr prepaid, phone-first founder outreach
+ *   student — Student Edition €9.99/yr + €49 committee workspace, campus cells
+ *   school  — School Edition, €1,500/school/yr, 60 staff, zero pupil data
+ *   smb     — Workspace/Event tiers, inbound-only until the Phase 5 wedge call
+ */
+export const PROSPECT_SEGMENTS = ["venue", "student", "school", "smb"] as const;
+export type ProspectSegment = (typeof PROSPECT_SEGMENTS)[number];
+
 export const prospectsTable = sqliteTable(
   "prospects",
   {
     id: text("id").primaryKey(),
     organisation: text("organisation").notNull(),
-    segment: text("segment").notNull().default("venue"),
+    /** lead book, see PROSPECT_SEGMENTS */
+    segment: text("segment").$type<ProspectSegment>().notNull().default("venue"),
     contactName: text("contact_name").notNull().default(""),
     role: text("role").notNull().default(""),
     email: text("email").notNull().default(""),
+    phone: text("phone").notNull().default(""),
     website: text("website").notNull().default(""),
     location: text("location").notNull().default(""),
+    /** full postal address incl. Eircode where published */
+    address: text("address").notNull().default(""),
+    county: text("county").notNull().default(""),
+    /** owning group / chain / institution (e.g. "Marriott Autograph", "UL") */
+    orgGroup: text("org_group").notNull().default(""),
+    /** which door the email opens: general, reservations, sales, events, weddings, groups, direct */
+    inboxType: text("inbox_type").notNull().default(""),
+    /** segment-native tier: venue star rating, school enrolment band, cell size */
+    tier: text("tier").notNull().default(""),
     source: text("source").notNull().default(""),
     /** snake_case stage, see PROSPECT_STAGES */
     stage: text("stage").$type<ProspectStage>().notNull().default("to_contact"),
@@ -223,6 +245,7 @@ export const prospectsTable = sqliteTable(
   },
   (table) => [
     index("prospects_stage_idx").on(table.stage),
+    index("prospects_segment_idx").on(table.segment),
     index("prospects_next_follow_up_idx").on(table.nextFollowUpAt),
   ],
 );

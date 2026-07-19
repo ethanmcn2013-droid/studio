@@ -47,7 +47,7 @@
       "owner": "tasks-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "Tasks registry validation, design-system conformance, type-check, and 32 tests pass after token replacement and chrome contract resealing."
+        "The merged-main Tasks release passes registry validation, design-system conformance, lint, type-check, 78 automated tests, four contract checks, and 46/46 rendered mobile/desktop checks; its local evidence contract covers 59 experiences, 315 state variants, and 236 breakpoint variants."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
@@ -73,7 +73,7 @@
       "owner": "timeline-engineering",
       "status": "resolved",
       "resolutionEvidence": [
-        "Rendered mobile and desktop browser assertions pass for dialog semantics, focus containment, Escape dismissal, scroll lock, and focus return; Timeline build and 75 tests pass."
+        "Rendered mobile and desktop browser assertions pass for dialog semantics, focus containment, Escape dismissal, scroll lock, and focus return; the merged-main Timeline production build, 123 automated tests, four contract checks, and 9 experience tests pass."
       ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
@@ -305,11 +305,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "notes-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Notes waitlist, SuiteHeader, and Blank Line target files now contain zero raw hex values and zero rogue easing values; the merged-main Notes design-system gate and 96/96 deterministic captures pass."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-legacy-token-debt",
@@ -329,11 +331,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "Timeline waitlist, SuiteHeader, and wedding anchor countdown use the shared semantic token contract; the local design-system gate, lint, type-check, tests, and build pass."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-wedding-mobile-schedule",
@@ -354,11 +358,13 @@
       "scope": "pattern",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "The mobile wedding schedule passes all 8 focused assertions at 390x844 with readable stacked timing, no clipping or overlap, and the wide control remains stable."
+      ],
       "source": "human-review",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-demo-workspace-db-dependency",
@@ -378,11 +384,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-demo-project-db-dependency",
@@ -402,11 +410,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/product renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-demo-detail-db-dependency",
@@ -426,11 +436,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/product/tasks-product-001 renders HTTP 200 at mobile and wide breakpoints and the complete fixture detail journey passes browser verification."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-demo-refusals-db-dependency",
@@ -450,11 +462,13 @@
       "scope": "systemic",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /tasks/refusals renders HTTP 200 at mobile and wide breakpoints without database setup, unexpected console errors, overflow, or unlabeled controls."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-editor-autosync-db-dependency",
@@ -474,11 +488,13 @@
       "scope": "journey",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /app/plan/product renders HTTP 200 and mount-time autosync returns HTTP 200; the editor journey is console-clean at mobile and wide breakpoints."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-timeline-missing-route-db-dependency",
@@ -498,11 +514,13 @@
       "scope": "journey",
       "confidence": 1,
       "owner": "timeline-engineering",
-      "status": "open",
-      "resolutionEvidence": [],
+      "status": "resolved",
+      "resolutionEvidence": [
+        "In deterministic demo mode, /definitely-missing returns the registered HTTP 404 recovery state instead of querying the production database."
+      ],
       "source": "deterministic",
       "createdAt": "2026-07-15",
-      "resolvedAt": null
+      "resolvedAt": "2026-07-15"
     },
     {
       "id": "dq-studio-home-typewriter-aria",

@@ -101,6 +101,8 @@ export function SiteFooter() {
             { href: "/ios", label: "iOS app" },
             { href: "/venues", label: "Venues" },
             { href: "/weddings", label: "Weddings" },
+            { href: "/teachers", label: "Teachers" },
+            { href: "/students", label: "Students" },
           ]}
         />
         <FooterCol

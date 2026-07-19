@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import {
   BENEFICIAL_OWNERS,
@@ -42,22 +43,20 @@ export default async function CapTablePage({
 
   return (
     <main id="main" className="hq-page" data-view={external ? "external" : "internal"}>
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">
-          Signal HQ · Cap Table{external ? " · external" : ""}
-        </span>
-        <h1 className="hq-page-title">{COMPANY_META.legalName}<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">
-          {COMPANY_META.type}. The structure is defined in the constitution and
-          the decisions are confirmed, but the company is{" "}
-          <strong>pre-incorporation</strong>: no shares are issued and there is
-          no CRO number yet. This is the defined cap table, not a live register.
-        </p>
-        <span className="hq-co-status" data-status={COMPANY_META.status}>
-          {COMPANY_META.statusLabel}
-        </span>
+      <HqPageHeader
+        slug="cap-table"
+        title={COMPANY_META.legalName}
+        standfirst="The defined cap table from the constitution, not a live register; the company is pre-incorporation."
+        meta={
+          <span className="hq-co-status" data-status={COMPANY_META.status}>
+            {COMPANY_META.statusLabel}
+            {external ? " · external view" : ""}
+          </span>
+        }
+      />
 
-        {/* View toggle */}
+      {/* View toggle */}
+      <div>
         <div className="hq-co-viewtoggle" role="group" aria-label="cap table view">
           <Link href="/hq/cap-table" className="hq-co-viewtab" data-active={!external ? "true" : undefined}>
             Internal
@@ -73,7 +72,7 @@ export default async function CapTablePage({
             investor.
           </p>
         ) : null}
-      </header>
+      </div>
 
       {/* Ownership bar */}
       <section className="hq-co-ownerbar" aria-label="ownership split">

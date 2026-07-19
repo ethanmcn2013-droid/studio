@@ -8,9 +8,9 @@ phase: Experience Quality OS release
 why: Publishing a public npm package requires the founder's npm credentials and 2FA approval, which are intentionally unavailable to the repository and this operator session.
 href: /hq
 date: 2026-07-15
-action: "Run npm login for the signalstudio npm account, then publish the verified signal-ds 2.1.0 package."
+action: "Sign in to npm once and authorize the signal-design-system release workflow, or complete npm login so Codex can publish 2.1.0."
 product: "Signal Design System"
-recommended: "Authenticate only in a trusted local terminal, confirm npm whoami returns signalstudio, rerun npm run check and npm pack --dry-run, then publish signal-ds@2.1.0 with public access."
+recommended: "On the signal-ds package settings page, add GitHub Actions trusted publishing for ethanmcn2013-droid/signal-design-system, workflow publish.yml, with npm publish allowed; then rerun the verified workflow. This avoids a long-lived npm token."
 alternatives: ["Create a short-lived granular npm automation token scoped only to signal-ds and revoke it immediately after publishing.", "Keep 2.1.0 Git-only and continue using the vendored design-system copies until the next controlled release window."]
 default: "The 2.1.0 source is versioned and pushed, but npm publication is withheld; customer applications continue using their verified vendored copies."
 consequence: "The strengthened package contract is available in Git but consumers cannot install 2.1.0 from npm, so the remaining vendored-copy migration stays deferred."
@@ -24,3 +24,13 @@ links: ["../../../docs/experience/DESIGN_QUALITY_CI.md", "npm-publish-signal-ds.
 - `npm run check` and `npm pack --dry-run --json` pass from the exact committed release tree.
 - `npm view signal-ds@2.1.0 version` returns `2.1.0` after publication.
 - The package URL and immutable version are recorded here; no token or 2FA material is committed.
+
+## Current release evidence — 2026-07-15
+
+- Direct npm package access page: <https://www.npmjs.com/package/signal-ds/access>
+- Release workflow: `https://github.com/ethanmcn2013-droid/signal-design-system/actions/workflows/publish.yml`
+- Workflow source merged in PR 4 at `52b2eb9adb39eae7b82a6d7a78abe0288100920a`.
+- Full check passed: typecheck, drift gate, build, and 7/7 tests.
+- Dry pack passed: 50 files, 33,389 packed bytes, 111,966 unpacked bytes.
+- OIDC publish attempt `29456582021` reached the registry and failed closed because npm has not authorized this workflow as the package's trusted publisher.
+- No npm credential, token, or 2FA value was exposed or stored.

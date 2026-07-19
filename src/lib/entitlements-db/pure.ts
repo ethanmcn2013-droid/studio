@@ -254,3 +254,25 @@ export function svixMatches(header: string, expected: string): boolean {
   }
   return false;
 }
+
+/** Reject replayed or implausibly future Svix deliveries before body work. */
+export function isFreshSvixTimestamp(
+  seconds: string,
+  nowMs: number,
+  toleranceSeconds = 300,
+): boolean {
+  if (!/^\d{10,13}$/.test(seconds)) return false;
+  const parsed = Number(seconds);
+  if (!Number.isSafeInteger(parsed) || toleranceSeconds < 0) return false;
+  const timestampMs = seconds.length === 13 ? parsed : parsed * 1000;
+  return Math.abs(nowMs - timestampMs) <= toleranceSeconds * 1000;
+}
+
+/** Audit records identify the database row, never the bearer license code. */
+export function codeAuditProjection(
+  codeId: string,
+  tier: string,
+): Readonly<{ codeId: string; tier: string }> {
+  if (!codeId || !tier) throw new TypeError("code audit fields are required");
+  return { codeId, tier };
+}

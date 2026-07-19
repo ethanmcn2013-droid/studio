@@ -1,4 +1,605 @@
 {
   "schemaVersion": "signal-experience-audits/1",
-  "audits": []
+  "audits": [
+    {
+      "id": "audit-golden-studio-page-design-default-mobile",
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "breakpoint": "mobile",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 3,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/studio-page-design/default/mobile.png#sha256=47802b9bd81147b02c20e42cc40c3ea2a59ba6eb84f4e814ff9dabf2b117d825",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-default-mobile-47802b9bd811",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-studio-page-design-default-tablet",
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "breakpoint": "tablet",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 3,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/studio-page-design/default/tablet.png#sha256=616d934d037bfccfbdd13fefe3f7607a7e08fde4b5242fd415942267d1bb7549",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-default-tablet-616d934d037b",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-studio-page-design-default-desktop",
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "breakpoint": "desktop",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 3,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/studio-page-design/default/desktop.png#sha256=6f6e54e5c4801a05bd9f09392b4a5b0f2847907dfcdc9e5a1bec12c0e54b0a77",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-default-desktop-6f6e54e5c480",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-studio-page-design-default-wide",
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "breakpoint": "wide",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 3,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/studio-page-design/default/wide.png#sha256=9a609166c87150238af0ddb901c5d5e33081ad68a286ee597dcaeb29151676a5",
+        "experience/reviews.json#review-founder-baseline-studio-page-design-default-wide-9a609166c871",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-tasks-page-app-board-default-mobile",
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "breakpoint": "mobile",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 3,
+        "interaction-quality": 3,
+        "state-completeness": 4,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 3,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 3,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/tasks-page-app-board/default/mobile.png#sha256=390ba5d3c411d4d9557911915f52447b699ea6334a516835200e7cd76fef6ba8",
+        "experience/reviews.json#review-founder-baseline-tasks-page-app-board-default-mobile-390ba5d3c411",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-tasks-page-app-board-default-tablet",
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "breakpoint": "tablet",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 3,
+        "interaction-quality": 3,
+        "state-completeness": 4,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 3,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 3,
+        "implementation-fidelity": 4
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/tasks-page-app-board/default/tablet.png#sha256=eb3b530bf2fa420e5ee6a2bfdd0b37413a671988ffe625a60e4ea5a2952ca1fe",
+        "experience/reviews.json#review-founder-baseline-tasks-page-app-board-default-tablet-eb3b530bf2fa",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-tasks-page-app-board-default-desktop",
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "breakpoint": "desktop",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 3,
+        "interaction-quality": 3,
+        "state-completeness": 4,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 3,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 3,
+        "implementation-fidelity": 4
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/tasks-page-app-board/default/desktop.png#sha256=776a9515cedd5382749813a0f972e537fd3114839277b908bd0e31f5e04106d0",
+        "experience/reviews.json#review-founder-baseline-tasks-page-app-board-default-desktop-776a9515cedd",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-tasks-page-app-board-default-wide",
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "breakpoint": "wide",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 3,
+        "interaction-quality": 3,
+        "state-completeness": 4,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 3,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 3,
+        "implementation-fidelity": 4
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/tasks-page-app-board/default/wide.png#sha256=2f7deb946e8b775ab95a5e5b7ccf8726e3400d3b3763ad39e411bfa7a6759cf0",
+        "experience/reviews.json#review-founder-baseline-tasks-page-app-board-default-wide-2f7deb946e8b",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-timeline-page-the-wedding-default-mobile",
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "breakpoint": "mobile",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 3,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/timeline-page-the-wedding/default/mobile.png#sha256=9ab1d80780b2a1c90c349005c0455b3f92b54eda9a64730586c0400a5a659b3f",
+        "experience/reviews.json#review-founder-baseline-timeline-page-the-wedding-default-mobile-9ab1d80780b2",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-timeline-page-the-wedding-default-tablet",
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "breakpoint": "tablet",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 3,
+        "layout-and-composition": 3,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.54,
+      "evidence": [
+        "experience/baselines/timeline-page-the-wedding/default/tablet.png#sha256=0700c691b3bd33fabc77a0d54523dd31bb1050ef11efcb2508ca31f5763bab3c",
+        "experience/reviews.json#review-founder-baseline-timeline-page-the-wedding-default-tablet-0700c691b3bd",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-timeline-page-the-wedding-default-desktop",
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "breakpoint": "desktop",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.69,
+      "evidence": [
+        "experience/baselines/timeline-page-the-wedding/default/desktop.png#sha256=f6668ea617169613a7e46e4c55f3811cab0a62c3fbc51ad0bc015a17862bbb11",
+        "experience/reviews.json#review-founder-baseline-timeline-page-the-wedding-default-desktop-f6668ea61716",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-timeline-page-the-wedding-default-wide",
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "breakpoint": "wide",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 4,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.69,
+      "evidence": [
+        "experience/baselines/timeline-page-the-wedding/default/wide.png#sha256=8e8da0e7c57c845a37ad162c5ed0a419a6c2eaa2a05c03ea5c6175bcc4d49c4d",
+        "experience/reviews.json#review-founder-baseline-timeline-page-the-wedding-default-wide-8e8da0e7c57c",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-signal-page-demo-default-mobile",
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "breakpoint": "mobile",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/signal-page-demo/default/mobile.png#sha256=fb02f5f97250ffb13e658d32018f9895bf07038e0a95d69d06035b746d77941d",
+        "experience/reviews.json#review-founder-baseline-signal-page-demo-default-mobile-fb02f5f97250",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-signal-page-demo-default-tablet",
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "breakpoint": "tablet",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/signal-page-demo/default/tablet.png#sha256=e3fd4128e644f82a221cf6bba7a5dd6c59236066a8bb53aaba3db991e7258f8f",
+        "experience/reviews.json#review-founder-baseline-signal-page-demo-default-tablet-e3fd4128e644",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-signal-page-demo-default-desktop",
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "breakpoint": "desktop",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/signal-page-demo/default/desktop.png#sha256=854853d975c956eeb5f376273db7ed5a6a804374c7426aa215f910a8e657af94",
+        "experience/reviews.json#review-founder-baseline-signal-page-demo-default-desktop-854853d975c9",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-signal-page-demo-default-wide",
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "breakpoint": "wide",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/signal-page-demo/default/wide.png#sha256=1801f49a8d13f262425d9dfbe4d7f08bf1c33dee23996ad741c68f038015198b",
+        "experience/reviews.json#review-founder-baseline-signal-page-demo-default-wide-1801f49a8d13",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-notes-page-wedding-planning-default-mobile",
+      "experienceId": "notes.page.wedding-planning",
+      "state": "default",
+      "breakpoint": "mobile",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/notes-page-wedding-planning/default/mobile.png#sha256=346da3a120e3dd9364d777067fcfd7a56253a91bcad122ac02896eb1b43027a2",
+        "experience/reviews.json#review-founder-baseline-notes-page-wedding-planning-default-mobile-346da3a120e3",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-notes-page-wedding-planning-default-tablet",
+      "experienceId": "notes.page.wedding-planning",
+      "state": "default",
+      "breakpoint": "tablet",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/notes-page-wedding-planning/default/tablet.png#sha256=a5f3698f8ce40f3ee3ee0edda8cf79cdc26af513395afccea1f11835387b8d09",
+        "experience/reviews.json#review-founder-baseline-notes-page-wedding-planning-default-tablet-a5f3698f8ce4",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-notes-page-wedding-planning-default-desktop",
+      "experienceId": "notes.page.wedding-planning",
+      "state": "default",
+      "breakpoint": "desktop",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/notes-page-wedding-planning/default/desktop.png#sha256=f932e69a15cfec883ce64eecf6e04008390b19a08c9c16497ca9300160bbf1f5",
+        "experience/reviews.json#review-founder-baseline-notes-page-wedding-planning-default-desktop-f932e69a15cf",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    },
+    {
+      "id": "audit-golden-notes-page-wedding-planning-default-wide",
+      "experienceId": "notes.page.wedding-planning",
+      "state": "default",
+      "breakpoint": "wide",
+      "scores": {
+        "purpose-and-task-clarity": 4,
+        "information-architecture": 4,
+        "visual-hierarchy": 4,
+        "typography-and-content": 4,
+        "layout-and-composition": 4,
+        "interaction-quality": 3,
+        "state-completeness": 3,
+        "accessibility": 3,
+        "responsive-behavior": 4,
+        "performance-and-perceived-speed": 4,
+        "design-system-coherence": 3,
+        "brand-distinction-and-craft": 4,
+        "implementation-fidelity": 3
+      },
+      "overallScore": 3.62,
+      "evidence": [
+        "experience/baselines/notes-page-wedding-planning/default/wide.png#sha256=861baa4793af4585fa698fc2b89ba08cd1ef2d1003aa498f9c34be048b9d6905",
+        "experience/reviews.json#review-founder-baseline-notes-page-wedding-planning-default-wide-861baa4793af",
+        "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md"
+      ],
+      "reviewer": "Codex Experience Quality Review",
+      "reviewedAt": "2026-07-16",
+      "pass": true
+    }
+  ]
 }

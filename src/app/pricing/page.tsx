@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import {
+  formatEuroCents,
+  requireVerifiedAmount,
+} from "@/lib/commercial-terms";
+
+const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
+const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
+const PRO_MONTHLY_PRICE = formatEuroCents(requireVerifiedAmount("pro"));
+const EVENT_PRICE = formatEuroCents(requireVerifiedAmount("event"));
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description:
-    "One subscription. Four kinds of clarity. Free forever for solo. €12 a month, or €100 a year, for the Pro tier. €89 one-time for an event. €9.99 a year for students.",
+  description: `One subscription. Four kinds of clarity. Free forever for solo. ${PRO_MONTHLY_PRICE} a month for Pro. ${EVENT_PRICE} one-time for an event. ${STUDENT_PRICE} a year for students. Annual Pro terms are not open while they are being confirmed.`,
   openGraph: {
     title: "Pricing · Signal Studio",
     description:
@@ -43,8 +51,9 @@ type InsideProduct = {
 
 /* ── Static content ───────────────────────────────────────────────── */
 
-/* Access is staged until 1 September. Every tier CTA routes through the
- * public waitlist, not a live checkout, until the product opens. The
+/* Access is staged. Every tier CTA routes through the public waitlist,
+ * not a live checkout, until operator-controlled product and privacy gates
+ * pass. The
  * checkout wiring (Tasks-owned /api/checkout, entitlements mirror) is
  * reconnected when access opens. */
 function waitlistHref(artifact: string, plan: string): string {
@@ -54,7 +63,7 @@ function waitlistHref(artifact: string, plan: string): string {
 const TIERS: Tier[] = [
   {
     name: "Free",
-    price: "€0",
+    price: FREE_PRICE,
     cadence: "forever",
     body: "One workspace. All four products. Three editing guests. No card needed.",
     pills: [
@@ -67,12 +76,12 @@ const TIERS: Tier[] = [
   },
   {
     name: "Student",
-    price: "€9.99",
-    cadence: "/ year · verified student email",
-    body: "The full Pro tier at a student price. Verify once with a student email, renew each year while you study.",
+    price: STUDENT_PRICE,
+    cadence: "/ year · verification confirmed before access",
+    body: "The full suite at a student price. Verification and payment details will be confirmed before paid access opens.",
     pills: [
-      { label: "Workspaces", value: "One paid" },
-      { label: "Guests", value: "Unlimited" },
+      { label: "Workspaces", value: "Confirmed at access" },
+      { label: "Editors", value: "Confirmed at access" },
       { label: "Window", value: "Yearly" },
     ],
     cta: "Join the waitlist",
@@ -81,14 +90,13 @@ const TIERS: Tier[] = [
   {
     name: "Pro",
     recommended: true,
-    price: "€12",
-    cadence: "/ month · per workspace",
-    annual: "or €100 a year, paid once",
-    annualHref: waitlistHref("pricing_pro_annual", "pro-annual"),
-    body: "One paid workspace. All four products. Invite anyone, the price doesn't move.",
+    price: PRO_MONTHLY_PRICE,
+    cadence: "/ month",
+    annual: "Annual prepay is not open while its terms are being confirmed.",
+    body: "All four products. Workspace and editing-member limits will be confirmed before purchase.",
     pills: [
-      { label: "Workspaces", value: "One paid" },
-      { label: "Guests", value: "Unlimited" },
+      { label: "Workspaces", value: "Confirmed at access" },
+      { label: "Editors", value: "Confirmed at access" },
       { label: "Window", value: "Monthly" },
     ],
     cta: "Join the waitlist",
@@ -96,12 +104,12 @@ const TIERS: Tier[] = [
   },
   {
     name: "Event",
-    price: "€89",
+    price: EVENT_PRICE,
     cadence: "one-time · 12 months",
-    body: "One workspace for one event. Wedding, launch, move, conference. The workspace keeps reading forever.",
+    body: "One workspace for one event. Wedding, launch, move, conference. Post-window access and retention terms are confirmed before purchase.",
     pills: [
       { label: "Workspaces", value: "One" },
-      { label: "Guests", value: "Unlimited" },
+      { label: "Editors", value: "Confirmed at access" },
       { label: "Window", value: "12 months" },
     ],
     cta: "Join the waitlist",
@@ -149,14 +157,14 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
     label: "Who it's for",
     values: [
       "Solo, just starting",
-      "Verified student, renews yearly",
+      "Student, verification terms confirmed before access",
       "Crews running ongoing work",
       "One wedding, launch, move, conference",
     ],
   },
   {
     label: "Workspaces",
-    values: ["One", "One paid", "One paid", "One, event-shaped"],
+    values: ["One", "Confirmed at access", "Confirmed at access", "One, event-shaped"],
   },
   {
     label: "All four products",
@@ -164,11 +172,21 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
   },
   {
     label: "Editing guests",
-    values: ["Three", "Unlimited", "Unlimited", "Unlimited"],
+    values: [
+      "Three",
+      "Confirmed at access",
+      "Confirmed at access",
+      "Confirmed at access",
+    ],
   },
   {
     label: "Price",
-    values: ["€0", "€9.99 / year", "€12 / month", "€89 one-time"],
+    values: [
+      FREE_PRICE,
+      `${STUDENT_PRICE} / year`,
+      `${PRO_MONTHLY_PRICE} / month`,
+      `${EVENT_PRICE} one-time`,
+    ],
   },
   {
     label: "Window",
@@ -176,14 +194,19 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
   },
   {
     label: "After the window",
-    values: ["—", "Drops to Free", "Drops to Free", "The workspace keeps reading forever"],
+    values: [
+      "—",
+      "Renewal terms confirmed before access",
+      "Drops to Free",
+      "Post-window terms confirmed before purchase",
+    ],
   },
 ];
 
 const REFUSALS: { neg: string; pos: string }[] = [
   {
-    neg: "Not per seat.",
-    pos: "One workspace, one price, however many people are in it.",
+    neg: "No hidden seat assumptions.",
+    pos: "Editing-member limits and link-only viewers are stated separately before purchase.",
   },
   {
     neg: "Not per product.",
@@ -198,11 +221,11 @@ const REFUSALS: { neg: string; pos: string }[] = [
 const FAQ: { q: string; a: string }[] = [
   {
     q: "Why a one-time price for events?",
-    a: "Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. €89 captures the value while you need it. The workspace stays readable forever after.",
+    a: `Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. ${EVENT_PRICE} captures the value while you need it. The active window is 12 months; post-window retention wording is being confirmed before purchase.`,
   },
   {
     q: "Do I have to pay per person?",
-    a: "No. One workspace is one price. You can invite ten people, or one, or none, the bill does not change.",
+    a: "Current paid-plan editor limits are being reconciled with enforcement before checkout opens. Link-only Audience Timeline viewers are separate from editing members and do not gain Workspace access.",
   },
   {
     q: "Can I cancel?",
@@ -344,7 +367,7 @@ export default async function PricingPage({
               maxWidth: "44ch",
             }}
           >
-            Planning one event? The €89 Event tier is the last card below.
+            Planning one event? The {EVENT_PRICE} Event tier is the last card below.
           </p>
 
           <div
@@ -538,8 +561,9 @@ export default async function PricingPage({
               marginBottom: 36,
             }}
           >
-            The tiers don’t differ on which products you get. All four, every
-            plan. They differ on shape, who it’s for, how long it lasts, what
+            The tiers don&apos;t differ on which products you get. All four,
+            every plan. They differ on shape, who it&apos;s for, how long it
+            lasts, what
             stays when it ends.
           </p>
 
@@ -786,7 +810,7 @@ export default async function PricingPage({
         {/* ── 4 · What's inside ─────────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
           <div className="mb-4" style={eyebrowStyle()}>
-            What’s in Signal Studio
+            What&apos;s in Signal Studio
           </div>
           <h2
             className="h-title text-balance text-ink"
@@ -927,10 +951,9 @@ export default async function PricingPage({
                     maxWidth: "52ch",
                   }}
                 >
-                  €89 one-time. 12 months of full access. All four products in a
-                  single event-shaped workspace. When the event is over, the
-                  workspace keeps reading forever, a record of how the work
-                  actually ran.
+                  {EVENT_PRICE} one-time. 12 months of full access. All four
+                  products in a single event-shaped workspace. Post-window
+                  access and retention terms are confirmed before purchase.
                 </p>
               </div>
               <div className="flex flex-col md:items-end" style={{ gap: 18 }}>
@@ -955,7 +978,7 @@ export default async function PricingPage({
                     lineHeight: 1,
                   }}
                 >
-                  €89
+                  {EVENT_PRICE}
                 </span>
                 <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
                   <Link
@@ -1011,7 +1034,7 @@ export default async function PricingPage({
         {/* ── 7 · What this isn't ───────────────────────────────── */}
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
           <div className="mb-4" style={eyebrowStyle()}>
-            What this isn’t
+            What this isn&apos;t
           </div>
           <h2
             className="h-title text-balance text-ink"

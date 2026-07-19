@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "signal-founder-evidence-config/1",
+  "approval": {
+    "actor": "Ethan McNamara",
+    "approvedAt": "2026-07-16T00:34:00.000Z",
+    "approvalSource": "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md",
+    "note": "Founder-authorized approval after delegated visual and deterministic evidence review; unaudited suite scope remains incomplete."
+  },
+  "reviewSelections": [
+    { "experienceId": "studio.page.root", "state": "default" },
+    { "experienceId": "studio.page.design", "state": "default" },
+    { "experienceId": "studio.page.privacy", "state": "long-content" },
+    { "experienceId": "studio.page.security", "state": "long-content" },
+    { "experienceId": "studio.page.terms", "state": "long-content" },
+    { "experienceId": "tasks.page.roadmap", "state": "default" },
+    { "experienceId": "timeline.page.the-wedding", "state": "default" },
+    { "experienceId": "signal.page.demo", "state": "default" },
+    { "experienceId": "notes.page.wedding-planning", "state": "default" },
+    { "experienceId": "tasks.page.app-board", "state": "default" }
+  ],
+  "goldenSet": {
+    "approvalTask": "approve-experience-golden-set",
+    "scoredBy": "Codex Experience Quality Review",
+    "scoredAt": "2026-07-16",
+    "scoringSource": "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md",
+    "references": [
+      {
+        "experienceId": "studio.page.design",
+        "state": "default",
+        "scoresByBreakpoint": {
+          "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 3, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "tablet": { "purpose-and-task-clarity": 4, "information-architecture": 3, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "desktop": { "purpose-and-task-clarity": 4, "information-architecture": 3, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "wide": { "purpose-and-task-clarity": 4, "information-architecture": 3, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 }
+        }
+      },
+      {
+        "experienceId": "tasks.page.app-board",
+        "state": "default",
+        "scoresByBreakpoint": {
+          "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 3, "interaction-quality": 3, "state-completeness": 4, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 3, "design-system-coherence": 4, "brand-distinction-and-craft": 3, "implementation-fidelity": 3 },
+          "tablet": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 3, "interaction-quality": 3, "state-completeness": 4, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 3, "design-system-coherence": 4, "brand-distinction-and-craft": 3, "implementation-fidelity": 4 },
+          "desktop": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 3, "interaction-quality": 3, "state-completeness": 4, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 3, "design-system-coherence": 4, "brand-distinction-and-craft": 3, "implementation-fidelity": 4 },
+          "wide": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 3, "interaction-quality": 3, "state-completeness": 4, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 3, "design-system-coherence": 4, "brand-distinction-and-craft": 3, "implementation-fidelity": 4 }
+        }
+      },
+      {
+        "experienceId": "timeline.page.the-wedding",
+        "state": "default",
+        "scoresByBreakpoint": {
+          "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 3, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "tablet": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 3, "layout-and-composition": 3, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 4, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "desktop": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 4, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "wide": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 4, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 }
+        }
+      },
+      {
+        "experienceId": "signal.page.demo",
+        "state": "default",
+        "scoresByBreakpoint": {
+          "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "tablet": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "desktop": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "wide": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 }
+        }
+      },
+      {
+        "experienceId": "notes.page.wedding-planning",
+        "state": "default",
+        "scoresByBreakpoint": {
+          "mobile": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "tablet": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "desktop": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 },
+          "wide": { "purpose-and-task-clarity": 4, "information-architecture": 4, "visual-hierarchy": 4, "typography-and-content": 4, "layout-and-composition": 4, "interaction-quality": 3, "state-completeness": 3, "accessibility": 3, "responsive-behavior": 4, "performance-and-perceived-speed": 4, "design-system-coherence": 3, "brand-distinction-and-craft": 4, "implementation-fidelity": 3 }
+        }
+      }
+    ]
+  }
+}

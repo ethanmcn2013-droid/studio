@@ -44,6 +44,12 @@ Never leave an operator blocker in a chat message or a buried doc — the ledger
 
 Collaboration is the organic outreach loop: workspace created → collaborators invited → work becomes clearer → shareable output created → new creator discovered. Preserve that loop when making product or GTM choices.
 
+## Mandatory HQ Room Registry Rule (codified 2026-07-12)
+
+**A room exists iff it is in `src/lib/hq/rooms.ts`.** The registry renders the HQ nav, the group landing pages (`/hq/sell·make·money·company`), the Today group cards, and the command palette — and `src/lib/hq/rooms.test.ts` fails `pnpm test` when a route directory and the registry disagree in either direction. Never hand-edit a room list anywhere else; there isn't one.
+
+Before adding room #NN+1, answer in the commit body: which group, which kind, what founder question it answers, why no existing room covers it, and its retirement condition. The default answer to a new room is "it's a section of an existing room." When a review room reaches its verdict, the same change sets its registry `lifecycle: "decided"` so it shelves on its landing page. Display renames are free (`name` in the registry); URL renames are forbidden. New content-collection status values are added by extending `DECLARED_STATUSES` in the contract test — deliberately, never implicitly. The full architecture and governance rules live in `docs/HQ_ARCHITECTURE.md`.
+
 ## Dashboard Persistence Note
 
 The `/hq` dashboard reads strategic content from `content/hq/<section>/*.md` (server-rendered, no localStorage). It still uses `localStorage` for the four operator-owned surfaces (`prospects`, `feedback`, `weeklyRhythm`, `nextActions`) — those have no other source of truth. The legacy `src/lib/hq/data.ts` seed survives as type-shape fallback for un-migrated arrays; it's marked dead substrate at the top of the file.

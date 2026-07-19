@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { HqLaunchReadiness } from "@/components/hq/hq-launch-readiness";
 import { DATA_ROOM, dataRoomCounts, type DataRoomItem } from "@/lib/hq/data-room";
@@ -32,16 +33,16 @@ export default async function DataRoomPage() {
 
   return (
     <main id="main" className="hq-page">
-      <header className="hq-page-header">
-        <span className="hq-page-eyebrow">Signal HQ · Data Room</span>
-        <h1 className="hq-page-title">The one link<span aria-hidden="true">.</span></h1>
-        <p className="hq-page-intro">
-          Everything a lender, investor, or collaborator needs to understand
-          Signal Studio, in the order they&rsquo;d want it. Ready items open the
-          surface; pending items name what isn&rsquo;t built yet rather than
-          hiding the gap. {counts.ready} ready · {counts.pending} pending.
-        </p>
-      </header>
+      <HqPageHeader
+        slug="data-room"
+        title="The one link."
+        standfirst="Everything a lender, investor, or collaborator needs to understand Signal Studio, in the order they’d want it."
+        meta={
+          <span className="hq-page-head-note">
+            {counts.ready} ready · {counts.pending} pending
+          </span>
+        }
+      />
 
       <HqLaunchReadiness readiness={readiness} />
 

@@ -4,8 +4,9 @@
  * Signal HQ Outreach CRM, DB layer (server-only).
  *
  * Only async server functions live here: DB reads, writes, seed guard.
- * All sync utilities (stage counts, due-today, overdue, mailto builder,
- * stage labels/colours) live in crm-utils.ts and are safe for client import.
+ * All sync utilities (lead books, lock-down scoring, stage counts, due-today,
+ * mailto builder, stage labels/colours) live in crm-utils.ts and are safe
+ * for client import.
  *
  * MIGRATION: run `pnpm db:push` to create the `prospects` table, then let
  * `getProspects()` auto-seed from seedHqData on first page load.
@@ -16,54 +17,18 @@ import { asc, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   type DbProspect,
-  type NewDbProspect,
   type ProspectStage,
   prospectsTable,
 } from "@/lib/db/schema";
+import { seedToDb } from "@/lib/hq/crm-utils";
 import { seedHqData } from "@/lib/hq/data";
-import type { Prospect } from "@/lib/hq/data";
 
-// NOTE: Pure utilities (STAGE_LABELS, PIPELINE_STAGES, computeStageCounts,
-// computeOutreachSummary, buildMailtoHref, isOverdue, isDueToday, etc.)
-// live in crm-utils.ts. Import from there, not here, for any sync function.
-// Types (DbProspect, ProspectStage) are exported from @/lib/db/schema.
-// This file exports ONLY async server actions and async DB reads.
-
-// ── Seed conversion ─────────────────────────────────────────────────────────
-
-function seedStatusToStage(status: Prospect["status"]): ProspectStage {
-  const map: Record<Prospect["status"], ProspectStage> = {
-    "To Contact":     "to_contact",
-    "Contacted":      "contacted",
-    "Replied":        "replied",
-    "Demo Booked":    "demo_booked",
-    "Pilot Active":   "pilot_active",
-    "Not Interested": "not_interested",
-    "Later":          "later",
-  };
-  return map[status] ?? "to_contact";
-}
-
-function seedToDb(p: Prospect): NewDbProspect {
-  return {
-    id: p.id,
-    organisation: p.organisation,
-    segment: p.segment,
-    contactName: p.contactName,
-    role: p.role,
-    email: p.email,
-    website: p.website,
-    location: p.location,
-    source: p.source,
-    stage: seedStatusToStage(p.status),
-    lastContactedAt: p.lastContacted || null,
-    nextFollowUpAt: p.nextFollowUp || null,
-    personalisationNote: p.personalisationNote,
-    offerSent: p.offerSent,
-    outcome: p.outcome,
-    notes: p.notes,
-  };
-}
+// NOTE: Pure utilities (SEGMENT_CONFIG, STAGE_LABELS, PIPELINE_STAGES,
+// computeStageCounts, computeLockdown, computeOutreachSummary,
+// buildMailtoHref, isOverdue, isDueToday, seedToDb, etc.) live in
+// crm-utils.ts. Import from there, not here, for any sync function.
+// Types (DbProspect, ProspectStage, ProspectSegment) are exported from
+// @/lib/db/schema. This file exports ONLY async server actions and reads.
 
 // ── In-process seed guard ───────────────────────────────────────────────────
 
@@ -148,6 +113,38 @@ export async function updateProspectContact(
       stage: "contacted",
       updatedAt: Date.now(),
     })
+    .where(eq(prospectsTable.id, id));
+  _seeded = false;
+  revalidatePath("/hq/crm");
+  revalidatePath("/hq");
+}
+
+/**
+ * Lock-down writer: record the facts a call or research pass surfaced —
+ * the named human, the direct door, the phone, the address. Empty strings
+ * are written as-is (they clear a field); undefined fields are untouched.
+ */
+export async function updateProspectContactInfo(
+  id: string,
+  patch: {
+    contactName?: string;
+    role?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    inboxType?: string;
+  },
+): Promise<void> {
+  const set: Record<string, string | number> = { updatedAt: Date.now() };
+  if (patch.contactName !== undefined) set.contactName = patch.contactName.trim();
+  if (patch.role !== undefined) set.role = patch.role.trim();
+  if (patch.email !== undefined) set.email = patch.email.trim();
+  if (patch.phone !== undefined) set.phone = patch.phone.trim();
+  if (patch.address !== undefined) set.address = patch.address.trim();
+  if (patch.inboxType !== undefined) set.inboxType = patch.inboxType.trim();
+  await db
+    .update(prospectsTable)
+    .set(set)
     .where(eq(prospectsTable.id, id));
   _seeded = false;
   revalidatePath("/hq/crm");

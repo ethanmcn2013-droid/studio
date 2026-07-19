@@ -6,13 +6,13 @@ Every audit scores exactly 13 dimensions from 0 through 4. Scores are integers. 
 
 | Score | Meaning |
 |---:|---|
-| 0 | Absent, broken, unsafe, or impossible to evaluate |
-| 1 | Materially deficient; the intended job is unreliable |
-| 2 | Functional but clearly below the Signal standard; remediation required |
-| 3 | Studio-grade baseline; coherent, complete, and ready in this dimension |
-| 4 | Exemplary; unusually clear, refined, durable, and worth using as a reference |
+| 0 | Broken or absent |
+| 1 | Functional but materially deficient |
+| 2 | Competent |
+| 3 | Polished |
+| 4 | Studio-grade |
 
-A 4 is not “no automated failures.” It requires positive rendered evidence of exceptional quality. A 3 is not “mostly done.” It means the dimension can ship without a quality caveat.
+These are dimension-level anchors. A 2 works credibly but still needs refinement. A 3 is polished, not merely complete. A 4 demonstrates Studio-grade execution in that dimension and requires positive rendered evidence rather than the absence of automated failures. The overall experience claim still requires every dimension to reach 3, a mean of at least 3.5, complete state/breakpoint proof, and every hard blocker to clear.
 
 ## Exact 13-dimension matrix
 

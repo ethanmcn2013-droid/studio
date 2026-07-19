@@ -722,7 +722,9 @@ export function getHqSnapshot(
   traction: TractionState,
 ): HqSnapshot {
   const dueToday = getDueToday(prospects);
-  const outreach = computeOutreachSummary(prospects);
+  // Proof-gate outreach counts read the venue book only; due follow-ups
+  // count across every book — due work is due work.
+  const outreach = computeOutreachSummary(prospects, "venue");
   const paidVenues = traction.available ? traction.paidVenues : null;
   const cashCollected = traction.available
     ? formatEur(traction.cashCollectedEur)
@@ -811,7 +813,7 @@ export function getHqReport(
   prospects: DbProspect[],
   traction: TractionState,
 ): HqReport {
-  const outreach = computeOutreachSummary(prospects);
+  const outreach = computeOutreachSummary(prospects, "venue");
   const dueToday = getDueToday(prospects);
   const replyRate = pct(outreach.qualifiedReplies, outreach.sent);
   const bookingRate = pct(outreach.bookedCalls, outreach.sent);

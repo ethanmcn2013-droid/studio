@@ -9,6 +9,27 @@ export const EXPERIENCE_CLASSES = [
   "founder-operator",
 ] as const;
 
+export const EXPERIENCE_STATES = [
+  "default",
+  "first-use",
+  "empty",
+  "populated",
+  "loading",
+  "slow-loading",
+  "partial-failure",
+  "error",
+  "success",
+  "restricted",
+  "disabled",
+  "read-only",
+  "dense",
+  "long-content",
+  "saved",
+  "unsaved",
+  "reduced-motion",
+  "keyboard-only",
+] as const;
+
 export const AUDIT_DIMENSIONS = [
   "purpose-and-task-clarity",
   "information-architecture",
@@ -66,25 +87,7 @@ export type ScreenArchetype =
   | "feedback-interruption-and-exception"
   | "public-information-and-proof";
 
-export type ExperienceState =
-  | "default"
-  | "first-use"
-  | "empty"
-  | "populated"
-  | "loading"
-  | "slow-loading"
-  | "partial-failure"
-  | "error"
-  | "success"
-  | "restricted"
-  | "disabled"
-  | "read-only"
-  | "dense"
-  | "long-content"
-  | "saved"
-  | "unsaved"
-  | "reduced-motion"
-  | "keyboard-only";
+export type ExperienceState = (typeof EXPERIENCE_STATES)[number];
 
 export type BreakpointId = "mobile" | "tablet" | "desktop" | "wide";
 export type ReviewTier = "critical" | "core" | "supporting";
@@ -97,11 +100,14 @@ export type AuditStatus =
   | "exception";
 export type CoverageStatus = "none" | "partial" | "complete" | "blocked";
 
-export type IntentionalException = Readonly<{
+export type ExperienceException = Readonly<{
   id: string;
+  findingIds: readonly string[];
   rationale: string;
   owner: string;
   scope: string;
+  approvedBy: "founder";
+  approvedAt: string;
   approvalSource: string;
   expiresAt: string;
   remediationPlan: string;
@@ -137,7 +143,7 @@ export type ExperienceEntry = Readonly<{
   fixtureCoverage: CoverageStatus;
   lastReviewedAt: string | null;
   approvedBaselineReference: string | null;
-  intentionalExceptions: readonly IntentionalException[];
+  intentionalExceptions: readonly string[];
   materialityHash: string;
 }>;
 
@@ -195,6 +201,7 @@ export type ExperienceFinding = Readonly<{
   confidence: number;
   owner: string;
   status: FindingStatus;
+  exceptionId?: string | null;
   resolutionEvidence: readonly string[];
   source: "deterministic" | "specialist-review" | "human-review";
   createdAt: string;
@@ -247,18 +254,53 @@ export function scoreAudit(scores: AuditScores): number {
   return Math.round((values.reduce<number>((sum, value) => sum + value, 0) / values.length) * 100) / 100;
 }
 
+function isIsoDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
+export function hasActiveFounderApprovedException(
+  finding: ExperienceFinding,
+  exceptions: readonly ExperienceException[],
+  asOf: string,
+): boolean {
+  if (finding.status !== "accepted-exception" || !finding.exceptionId) return false;
+  const exception = exceptions.find((candidate) => candidate.id === finding.exceptionId);
+  return Boolean(
+    exception &&
+      exception.approvedBy === "founder" &&
+      isIsoDate(exception.approvedAt) &&
+      isIsoDate(exception.expiresAt) &&
+      exception.approvedAt <= asOf &&
+      exception.approvedAt <= exception.expiresAt &&
+      exception.expiresAt >= asOf &&
+      exception.findingIds.includes(finding.id) &&
+      exception.approvalSource.trim() &&
+      exception.remediationPlan.trim(),
+  );
+}
+
 export function meetsStudioGradeGate(
-  scores: AuditScores,
+  audit: Pick<ExperienceAudit, "scores" | "evidence">,
   findings: readonly ExperienceFinding[],
+  exceptions: readonly ExperienceException[] = [],
+  asOf = new Date().toISOString().slice(0, 10),
 ): boolean {
   return (
-    Math.min(...AUDIT_DIMENSIONS.map((dimension) => scores[dimension])) >=
+    audit.evidence.some((reference) =>
+      /^[^#]+\.(?:avif|gif|html|jpe?g|pdf|png|svg|webp)#sha256=[a-f0-9]{64}$/i.test(
+        reference.trim(),
+      ),
+    ) &&
+    Math.min(...AUDIT_DIMENSIONS.map((dimension) => audit.scores[dimension])) >=
       STUDIO_GRADE_MINIMUM &&
-    scoreAudit(scores) >= STUDIO_GRADE_OVERALL &&
+    scoreAudit(audit.scores) >= STUDIO_GRADE_OVERALL &&
     !findings.some(
       (finding) =>
-        !["resolved", "accepted-exception"].includes(finding.status) &&
-        finding.severity === "release-blocking",
+        finding.severity === "release-blocking" &&
+        finding.status !== "resolved" &&
+        !hasActiveFounderApprovedException(finding, exceptions, asOf),
     )
   );
 }

@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 import {
   DIRECTORS,
   ELT_SNAPSHOT,
@@ -795,7 +796,7 @@ export function OrgChart({
                 <button type="button" onClick={() => setMode("evidence")}>
                   evidence layer →
                 </button>
-                <a href="/hq/atlas-map">atlas map →</a>
+                <Link href="/hq/atlas-map">atlas map →</Link>
                 <a
                   href="https://github.com/ethanmcn2013-droid/signal-directors"
                   target="_blank"

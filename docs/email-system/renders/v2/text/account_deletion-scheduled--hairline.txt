@@ -1,0 +1,32 @@
+Subject: Your account will be deleted on Saturday 15 August 2026
+Preheader: Nothing is deleted yet. You can cancel until Saturday 15 August 2026.
+
+Signal Studio · Account · 16 Jul 2026
+------------------------------------------------------------------------
+
+Your account is scheduled for deletion.
+
+Aoife, you asked us to delete your Signal Studio account on 16 July
+2026. Nothing is deleted yet. You can cancel any time before Saturday 15
+August 2026 and everything stays exactly as it is.
+
+SCHEDULED FOR:         Saturday 15 August 2026
+DELETED PERMANENTLY:   your account and all 2 of your workspaces (Brennan & Walsh wedding, Freelance work), including every note, task, timeline and briefing
+NOT AFFECTED:          billing records we must keep under Irish law, and any export you download before the date
+
+After Saturday 15 August 2026 the deletion is permanent. We cannot
+restore your work afterwards, and remaining copies age out of our
+backups within 90 days.
+
+Cancel the deletion:
+https://signalstudio.ie/account/deletion
+
+Export a copy of your work first:
+https://signalstudio.ie/account/export
+
+------------------------------------------------------------------------
+You received this because deletion was requested for the Signal Studio
+account under this address. If that was not you, cancel the deletion and
+change your password now.
+
+Signal Studio · Limerick · hello@signalstudio.ie

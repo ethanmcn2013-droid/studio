@@ -1,0 +1,25 @@
+Subject: A new sign-in to your Signal Studio account
+Preheader: iPhone · Safari, near Galway, Ireland, 21:40, 15 July 2026 · Irish time. If this was you, do nothing.
+
+SIGNAL STUDIO · SECURITY · 15 JULY 2026
+========================================================================
+
+A new sign-in to your account
+
+If this was you, there is nothing to do and nothing has changed.
+
+DEVICE:   iPhone · Safari
+NEAR:     Galway, Ireland (approximate, from the connection)
+WHEN:     21:40, 15 July 2026 · Irish time
+
+Review your signed-in devices:
+https://signalstudio.ie/account/sessions
+
+Not you? Change your password now and the unfamiliar device is signed
+out everywhere in under a minute.
+
+========================================================================
+You received this because your Signal Studio account was opened from a
+device we had not seen before.
+
+Signal Studio · Limerick · hello@signalstudio.ie

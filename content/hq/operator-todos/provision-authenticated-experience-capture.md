@@ -1,9 +1,9 @@
 ---
 id: provision-authenticated-experience-capture
 title: Provision authenticated experience capture access
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Experience Quality OS · Authenticated evidence
 why: Critical and core signed-in routes cannot receive complete deterministic evidence without controlled target environments, fixture identities, and secrets that agents must not invent or commit.
 href: /hq/experience-quality
@@ -31,3 +31,12 @@ links: ["../../../experience/capture-plan.json", "../../../docs/experience/VISUA
 ## Done when
 
 Every in-scope authenticated experience has a controlled target, dedicated fixture identity, protected secret, deterministic seed/reset path, successful evidence run, and no personal or customer data exposure.
+
+## Completion evidence
+
+- The founder-authorized narrow pilot defines five in-scope protected experiences: Tasks board, Timeline first use, Signal onboarding, Notes empty state, and Studio HQ experience quality.
+- Dedicated non-personal Clerk fixture access and product targets are stored only in protected GitHub Actions secrets; no credential or personal/customer data is committed or emitted in evidence.
+- Two consecutive production proof runs each passed 20/20 authenticated captures across mobile, tablet, desktop, and wide, with zero navigation, console, page, accessibility, or overflow blockers.
+- Screenshot hashes were identical across both 20-capture runs, proving deterministic protected capture after the hydration-order repair.
+- Evidence: [run 29461487495](https://github.com/ethanmcn2013-droid/studio/actions/runs/29461487495) and [run 29461638860](https://github.com/ethanmcn2013-droid/studio/actions/runs/29461638860).
+- Expansion beyond the five-route pilot remains normal engineering coverage work, not a founder-authentication blocker and not a claim of full-suite certification.

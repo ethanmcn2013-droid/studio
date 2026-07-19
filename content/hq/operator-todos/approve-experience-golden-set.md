@@ -1,9 +1,9 @@
 ---
 id: approve-experience-golden-set
 title: Approve the first Signal experience golden set
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Experience Quality OS · Golden approval
 why: Baselines need founder-approved reference experiences or the system can preserve mediocrity with perfect pixel consistency.
 href: /hq/experience-quality
@@ -31,3 +31,12 @@ links: ["../../../experience/golden-set.json", "../../../experience/capture-plan
 ## Done when
 
 Every approved reference is reproducible, fully reviewed, baseline-linked, free of hard blockers, and explicitly approved as a coherent suite set by the founder.
+
+## Completion evidence
+
+- Founder approval is recorded in [`golden-set.json`](../../../experience/golden-set.json) under the `founder` role and cites the [founder authorization receipt](../decisions/experience-quality-founder-authorization-2026-07-15.md).
+- The approved set contains five references: Studio Design, Tasks board, Timeline wedding, Signal demo, and Notes wedding planning.
+- All 20 required golden audit cells pass: five references across mobile, tablet, desktop, and wide.
+- Every dimension score is at least `3`; every breakpoint mean is at least `3.5`.
+- The delegated score receipt is [experience-golden-set-scoring-2026-07-16.md](../decisions/experience-golden-set-scoring-2026-07-16.md).
+- The approval is explicitly limited to the evidence-complete golden set; the wider suite inventory remains ongoing coverage work.

@@ -26,14 +26,14 @@ Run commands from the `studio` repository root.
 | `pnpm run test:visual` | Runs Playwright tests tagged `visual` | Test artifacts |
 | `pnpm run design:quality` | Runs validation, schema/fail-closed self-tests, enforced audit, enforced UX assurance, and the Playwright harness | Report/test artifacts |
 
-Baseline approval is intentionally separate:
+Baseline approval is intentionally separate. Capture and review the candidates first; `--approve` promotes existing reviewed bytes and never launches a browser:
 
 ```powershell
 $env:SIGNAL_EXPERIENCE_BASELINE_APPROVED_BY = "<founder identity>"
 pnpm run experience:capture -- --approve
 ```
 
-`--approve` exits unless the approver environment variable is present.
+`--approve` exits unless the approver environment variable is present and every selected candidate has a passing manifest result, an exact hash match, a registry-declared state, and a matching approved review by that identity. Approval provenance is stored per result so a partial approval cannot imply the whole manifest was approved.
 
 ## Current GitHub workflow
 
@@ -92,4 +92,4 @@ Those product checks do not yet provide complete state-by-breakpoint rendered ca
 
 Once stable, the `design-quality` job should be required on protected branches. Do not make a flaky remote capture required; first pin target environments, fixture identities, fonts/assets, credentials, and retry ownership. Exceptions to CI must use the same expiring exception ledger as experience findings.
 
-The founder/operator work needed to cross that boundary is canonical in [Provision authenticated experience capture access](../../content/hq/operator-todos/provision-authenticated-experience-capture.md) and [Approve the first Signal visual baselines](../../content/hq/operator-todos/approve-experience-visual-baselines.md). Until those tasks close, CI must report incomplete authenticated/visual coverage rather than implying it.
+The controlled identity, secret names, targets, reset rule, and protected pilot are documented in [Authenticated Capture Fixture](./AUTHENTICATED_CAPTURE_FIXTURE.md). Founder/operator work is canonical in [Provision authenticated experience capture access](../../content/hq/operator-todos/provision-authenticated-experience-capture.md) and [Approve the first Signal visual baselines](../../content/hq/operator-todos/approve-experience-visual-baselines.md). Until those tasks close, CI must report incomplete authenticated/visual coverage rather than implying it.

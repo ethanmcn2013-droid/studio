@@ -15,7 +15,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.54,
+      "approvedBaselineReference": "experience/golden-set.json#/references/0"
     },
     "studio.page.privacy": {
       "auditStatus": "baseline-captured",
@@ -74,63 +76,68 @@
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.page.the-wedding": {
-      "auditStatus": "under-remediation",
-      "openFindingIds": [
-        "dq-timeline-wedding-mobile-schedule",
-        "dq-timeline-legacy-token-debt"
-      ],
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/2"
     },
     "timeline.page.by-workspace-slug": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-demo-workspace-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.page.by-workspace-slug-by-project-slug": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-demo-project-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.page.by-workspace-slug-by-project-slug-by-id": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-demo-detail-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.page.by-workspace-slug-refusals": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-demo-refusals-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.page.app-plan-by-project-slug": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-editor-autosync-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "timeline.state.by-workspace-slug-not-found": {
-      "auditStatus": "blocked",
-      "openFindingIds": ["dq-timeline-missing-route-db-dependency"],
-      "fixtureCoverage": "blocked",
-      "screenshotCoverage": "blocked",
-      "accessibilityCoverage": "blocked",
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "fixtureCoverage": "partial",
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
     },
     "signal.page.demo": {
@@ -139,7 +146,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/3"
     },
     "signal.page.root": {
       "auditStatus": "baseline-captured",
@@ -163,12 +172,26 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "lastReviewedAt": "2026-07-16",
+      "auditScore": 3.62,
+      "approvedBaselineReference": "experience/golden-set.json#/references/4"
     },
     "notes.page.waitlist": {
-      "auditStatus": "under-remediation",
-      "openFindingIds": ["dq-notes-legacy-token-debt"],
+      "auditStatus": "baseline-captured",
+      "openFindingIds": [],
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "partial",
+      "automatedTestCoverage": "partial",
       "lastReviewedAt": "2026-07-15"
+    },
+    "tasks.page.app-board": {
+      "auditStatus": "baseline-captured",
+      "auditScore": 3.6,
+      "screenshotCoverage": "partial",
+      "accessibilityCoverage": "partial",
+      "lastReviewedAt": "2026-07-16",
+      "approvedBaselineReference": "experience/golden-set.json#/references/1"
     }
   }
 }

@@ -5,7 +5,15 @@ import { entitlementsDb } from "@/lib/entitlements-db/client";
 import { processedWebhooks } from "@/lib/entitlements-db/schema";
 import { shredPersonPII } from "@/lib/entitlements-db/gdpr";
 import { systemActor } from "@/lib/entitlements-db/guard";
-import { svixExpectedSignature, svixMatches } from "@/lib/entitlements-db/pure";
+import {
+  isFreshSvixTimestamp,
+  svixExpectedSignature,
+  svixMatches,
+} from "@/lib/entitlements-db/pure";
+import {
+  RetryableWebhookError,
+  runRetryableWebhook,
+} from "@/lib/entitlements-db/webhook-lifecycle";
 
 /**
  * Clerk webhook receiver. Today it handles ONLY user.deleted, which triggers
@@ -19,6 +27,7 @@ import { svixExpectedSignature, svixMatches } from "@/lib/entitlements-db/pure";
  */
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+const MAX_WEBHOOK_BYTES = 1_000_000;
 
 function verifySvix(secret: string, id: string, timestamp: string, body: string, header: string): boolean {
   return svixMatches(header, svixExpectedSignature(secret, id, timestamp, body));
@@ -39,8 +48,18 @@ export async function POST(req: Request) {
   if (!svixId || !svixTimestamp || !svixSignature) {
     return NextResponse.json({ ok: false, error: "missing-svix-headers" }, { status: 400 });
   }
+  if (!isFreshSvixTimestamp(svixTimestamp, Date.now())) {
+    return NextResponse.json({ ok: false, error: "stale-svix-timestamp" }, { status: 401 });
+  }
+  const declaredLength = Number(req.headers.get("content-length") ?? "0");
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_WEBHOOK_BYTES) {
+    return NextResponse.json({ ok: false, error: "payload-too-large" }, { status: 413 });
+  }
 
   const raw = await req.text();
+  if (Buffer.byteLength(raw, "utf8") > MAX_WEBHOOK_BYTES) {
+    return NextResponse.json({ ok: false, error: "payload-too-large" }, { status: 413 });
+  }
   if (!verifySvix(secret, svixId, svixTimestamp, raw, svixSignature)) {
     return NextResponse.json({ ok: false, error: "bad-signature" }, { status: 401 });
   }
@@ -52,41 +71,58 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "invalid-json" }, { status: 400 });
   }
 
-  // Dedup on the svix message id (shared cross-product webhook table).
   try {
-    const db = entitlementsDb();
-    const seen = await db
-      .select({ id: processedWebhooks.id })
-      .from(processedWebhooks)
-      .where(and(eq(processedWebhooks.source, "clerk"), eq(processedWebhooks.eventId, svixId)))
-      .limit(1);
-    if (seen.length > 0) return NextResponse.json({ ok: true, deduped: true });
-    await db
-      .insert(processedWebhooks)
-      .values({ id: `pw-${svixId}`, source: "clerk", eventId: svixId })
-      .onConflictDoNothing();
-  } catch (err) {
-    // A dedup-table failure must not drop the event; fall through and process.
-    console.warn("[clerk webhook] dedup check failed:", err);
-  }
-
-  if (event.type === "user.deleted" && event.data?.id) {
-    try {
-      const result = await shredPersonPII({
-        userClerkId: event.data.id,
-        actor: systemActor("clerk-webhook"),
-        reason: "clerk user.deleted",
-        origin: "clerk",
-      });
-      return NextResponse.json({ ok: true, shredded: result });
-    } catch (err) {
-      return NextResponse.json(
-        { ok: false, error: err instanceof Error ? err.message : "shred-failed" },
-        { status: 500 },
-      );
+    const outcome = await runRetryableWebhook({
+      alreadyCompleted: () => wasProcessed(svixId),
+      perform: async () => {
+        if (event.type === "user.deleted" && event.data?.id) {
+          return {
+            shredded: await shredPersonPII({
+              userClerkId: event.data.id,
+              actor: systemActor("clerk-webhook"),
+              reason: "clerk user.deleted",
+              origin: "clerk",
+            }),
+          };
+        }
+        return { ignored: event.type ?? "unknown" };
+      },
+      markCompleted: () => markProcessed(svixId),
+    });
+    if (outcome.deduped) {
+      return NextResponse.json({ ok: true, deduped: true });
     }
+    return NextResponse.json({ ok: true, ...outcome.value });
+  } catch (error) {
+    const stage =
+      error instanceof RetryableWebhookError ? error.stage : "perform";
+    return NextResponse.json(
+      {
+        ok: false,
+        error: stage === "complete" ? "dedup-write-failed" : "shred-failed",
+      },
+      { status: 500 },
+    );
   }
+}
 
-  // Everything else: acknowledged, not acted on.
-  return NextResponse.json({ ok: true, ignored: event.type ?? "unknown" });
+async function wasProcessed(svixId: string): Promise<boolean> {
+  const seen = await entitlementsDb()
+    .select({ id: processedWebhooks.id })
+    .from(processedWebhooks)
+    .where(
+      and(
+        eq(processedWebhooks.source, "clerk"),
+        eq(processedWebhooks.eventId, svixId),
+      ),
+    )
+    .limit(1);
+  return seen.length > 0;
+}
+
+async function markProcessed(svixId: string): Promise<void> {
+  await entitlementsDb()
+    .insert(processedWebhooks)
+    .values({ id: `pw-${svixId}`, source: "clerk", eventId: svixId })
+    .onConflictDoNothing();
 }

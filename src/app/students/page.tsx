@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { CommitteeDisclosure } from "@/components/students/committee-disclosure";
+import { formatEuroCents, requireVerifiedAmount } from "@/lib/commercial-terms";
+
+const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
 
 export const metadata: Metadata = {
   title: "Student Edition · Signal Studio",
-  description:
-    "Premium coordination, accessible for students. €9.99 a year, verified college email. Notes, Tasks, Timeline, and Signal, the same calm system venues use, without the enterprise price tag.",
+  description: `Keep each module clear and see the whole semester at once. Private Notes, Tasks and deadlines, a semester Timeline, and Signal across the complete workload. ${STUDENT_PRICE} a year; payment and verification are confirmed before access opens.`,
   openGraph: {
     title: "Student Edition · Signal Studio",
     description:
-      "Run your committee without the WhatsApp chaos. €9.99 a year, verified college email. The same calm system venues use.",
+      "One module per Workspace, grouped into a semester. Private academic Notes, Tasks and deadlines, a semester Timeline, and Signal across the complete workload.",
     type: "website",
   },
 };
@@ -19,28 +21,28 @@ const waitlistHref =
 
 const FEATURES = [
   {
-    name: "Notes",
-    copy: "Meeting notes and decisions in one place, not scattered across group chats.",
+    name: "One module, one Workspace",
+    copy: "Psychology, Law, Marketing and Statistics stay distinct, while the semester keeps them in one calm structure.",
   },
   {
-    name: "Tasks",
-    copy: "Who owns what, and when. Plain language, no sprint boards or story points.",
+    name: "Private academic Notes",
+    copy: "Capture lectures, reading and questions privately. Only an extract you choose can become a Task or Timeline milestone.",
   },
   {
-    name: "Timeline",
-    copy: "Semester planning and event timelines your whole committee can see.",
+    name: "Tasks and deadlines",
+    copy: "See the next piece of work inside each module without flattening the whole semester into one crowded board.",
   },
   {
-    name: "Signal",
-    copy: "A short briefing on what is on track and what is slipping, without building a spreadsheet.",
+    name: "Signal across the semester",
+    copy: "Switch from one module to the complete workload. Signal returns at most three explainable matters that need attention.",
   },
 ] as const;
 
-const COMMITTEE_PERKS = [
-  "Unlimited society members on one workspace.",
-  "Committee handover kit, institutional memory survives officer turnover.",
-  "Event planning without WhatsApp, Google Forms, and three spreadsheets.",
-  "Refer another society and you both get three months free.",
+const COMMITTEE_NOTES = [
+  "A society or event remains separate from academic Module Workspaces.",
+  "Officer handover and long-term ownership need an explicit policy.",
+  "Editing-member limits and viewer access will be stated separately.",
+  "No committee price or referral incentive is currently promised.",
 ] as const;
 
 export default function StudentsPage() {
@@ -53,20 +55,20 @@ export default function StudentsPage() {
             className="mb-6 text-[11px] font-semibold uppercase"
             style={{ color: "var(--accent)", letterSpacing: "var(--tracking-eyebrow)" }}
           >
-            Student Edition · Launching 1 September 2026
+            Student Edition · Staged access
           </div>
 
           <h1 className="h-section mb-5 max-w-[600px] text-balance text-ink">
-            Premium coordination, accessible for students.
+            Every module clear. The whole semester in view.
           </h1>
 
           <p
             className="max-w-[56ch] leading-[1.7] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Run your committee without the WhatsApp chaos. Notes, Tasks,
-            Timeline, and Signal, the same calm system venues use, without the
-            enterprise price tag.
+            Create a semester, add your modules in one go, and work inside the
+            one that needs attention now. Notes stay private. Tasks and fixed
+            dates stay connected. Signal can look across the complete workload.
           </p>
 
           {/* Price card */}
@@ -85,18 +87,19 @@ export default function StudentsPage() {
                 className="text-[44px] font-semibold leading-none tracking-[-0.04em]"
                 style={{ color: "var(--accent)" }}
               >
-                €9.99
+                {STUDENT_PRICE}
               </span>
               <span className="text-[13px] font-medium text-ink-soft">
                 per year
               </span>
             </div>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-faint">
-              Verified college email
+              Verification terms confirmed before paid access
             </p>
             <p className="mt-4 max-w-[48ch] text-[14px] leading-[1.6] text-ink">
-              One annual membership. All four products. No ads. No data selling.
-              Premium software made accessible, not free software made cheap.
+              One annual membership. All four products. One Workspace per
+              module, with modules grouped into a semester. No ads. No data
+              selling.
             </p>
             <a
               href={waitlistHref}
@@ -125,7 +128,7 @@ export default function StudentsPage() {
             ))}
           </div>
 
-          {/* Committee disclosure */}
+          {/* Committee disclosure, deliberately secondary to academic work. */}
           <div className="mt-6">
             <CommitteeDisclosure summary="Running a committee or society?">
               <div
@@ -143,20 +146,19 @@ export default function StudentsPage() {
                     className="text-[30px] font-semibold leading-none tracking-[-0.04em]"
                     style={{ color: "var(--accent)" }}
                   >
-                    €49
+                    Not yet priced
                   </span>
                   <span className="text-[12px] font-medium text-ink-soft">
-                    per year · whole society
+                    separate society offer
                   </span>
                 </div>
                 <p className="mt-4 max-w-[52ch] text-[13.5px] leading-[1.6] text-ink-soft">
-                  For treasurers and committee leads who need one shared
-                  workspace for the entire society, event planning, handovers,
-                  member onboarding. Not a separate product. Available when you
-                  upgrade from Student Edition.
+                  A society Workspace is not part of the current four-tier
+                  offer. Ownership, renewal, member scope and price need a
+                  separate decision before it can open.
                 </p>
                 <ul className="mt-4 flex flex-col gap-2.5">
-                  {COMMITTEE_PERKS.map((perk) => (
+                  {COMMITTEE_NOTES.map((perk) => (
                     <li
                       key={perk}
                       className="relative pl-5 text-[12.5px] leading-[1.5] text-ink-soft"
@@ -174,7 +176,7 @@ export default function StudentsPage() {
                   href={waitlistHref}
                   className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[13px] font-medium text-white no-underline transition-opacity hover:opacity-90"
                 >
-                  Join the student waitlist{" "}
+                  Join the general waitlist{" "}
                   <span className="ml-1.5" aria-hidden>
                     →
                   </span>
@@ -195,25 +197,23 @@ export default function StudentsPage() {
               Verification
             </div>
             <p className="text-[13px] leading-[1.6] text-ink-soft">
-              Join the waitlist with your college email, <code>.ie</code>,{" "}
-              <code>.ac.uk</code>, or your institution&rsquo;s domain. Re-verified
-              once a year. Student Edition is for currently enrolled students,
-              not a general free tier.
+              Joining the waitlist does not activate or charge an account.
+              Before paid access opens, Signal Studio will state the student
+              verification standard, payment step and renewal terms plainly.
             </p>
           </div>
 
           {/* Campus note */}
           <p className="mt-8 font-mono text-[11px] leading-[1.8] tracking-[0.04em] text-ink-faint">
-            Phase 1 campuses · Sep 2026
-            <br />
-            University of Limerick · TUS · Mary Immaculate College
+            Design-partner access · dates and participating institutions are
+            confirmed before invitations are sent
           </p>
 
-          {/* Disclaimer */}
+          {/* Product boundary */}
           <p className="mt-12 max-w-[58ch] border-t border-border-soft pt-8 text-[12.5px] leading-[1.7] text-ink-faint">
-            Student Edition is an acquisition programme, not Signal Studio&rsquo;s
-            commercial model. Venue prepaid licensing funds the business. This
-            page exists because committees deserve calm coordination too.
+            Modules are the principal Student Edition path. Societies, balls,
+            trips and campaigns can use a separate general or event Workspace;
+            they do not replace the academic semester.
           </p>
         </section>
       </main>

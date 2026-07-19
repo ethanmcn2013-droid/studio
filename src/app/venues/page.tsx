@@ -33,45 +33,45 @@ const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
  * Founding Venue Programme, rebuilt 2026-05-26 (S·68).
  * Audience: warm leads who have already had an outreach conversation.
  * Job: prove the product is real, show the co-branded moment inline,
- * tease the coordinator view (coming for founding venues), state the
+ * explain the activation register (coming for founding venues), state the
  * price plainly, and make the ask feel low-stakes.
  *
  * No fabricated product screenshot (DESIGN.md §8), the mocks use
- * fictional venue and couple names throughout.
+ * fictional venue and activation references throughout.
  */
 
 // ── Coordinator wireframe mock data ─────────────────────────────
-type CoordinatorStatus = "on-track" | "needs-attention" | "not-started";
+type ActivationState = "activated" | "invited" | "redeemed";
 
-const coordinatorRows: Array<{
-  couple: string;
-  date: string;
-  status: CoordinatorStatus;
-  lastActive: string;
+const activationRows: Array<{
+  reference: string;
+  entitlement: string;
+  state: ActivationState;
+  privacy: string;
 }> = [
   {
-    couple: "Aoife & Ciarán",
-    date: "23 Jun 2026",
-    status: "on-track",
-    lastActive: "2 days ago",
+    reference: "GM-0241",
+    entitlement: "18 months",
+    state: "activated",
+    privacy: "Private",
   },
   {
-    couple: "Emma & James",
-    date: "4 Jul 2026",
-    status: "needs-attention",
-    lastActive: "1 week ago",
+    reference: "GM-0242",
+    entitlement: "18 months",
+    state: "redeemed",
+    privacy: "Private",
   },
   {
-    couple: "Sarah & David",
-    date: "12 Sep 2026",
-    status: "not-started",
-    lastActive: "—",
+    reference: "GM-0243",
+    entitlement: "18 months",
+    state: "invited",
+    privacy: "Private",
   },
   {
-    couple: "Kate & Michael",
-    date: "18 Oct 2026",
-    status: "on-track",
-    lastActive: "Yesterday",
+    reference: "GM-0244",
+    entitlement: "18 months",
+    state: "activated",
+    privacy: "Private",
   },
 ];
 
@@ -109,15 +109,15 @@ const foundingPerks = [
     copy: "Founding venues see new work before anyone else, and can say what should change while it still can.",
   },
   {
-    title: "The coordinator view, first",
-    copy: "The view that shows every couple's workspace at a glance, status, next step, days to event. Founding venues shape what it shows and get it before anyone else.",
+    title: "The activation register, first",
+    copy: "A calm record of invitations, activation state and entitlement validity. Private couple work never appears unless the couple separately consents to a specific field.",
   },
 ];
 
 const mechanicLines = [
   "You pay once a year. Every couple you send gets eighteen months of the full suite.",
   "When access opens, each couple gets a code and a clear first step.",
-  "Your venue's name appears at the top of everything they see.",
+  "After a couple accepts sponsored access, the interface can acknowledge your venue while their plan remains private.",
   "Nothing for your team to run.",
 ];
 
@@ -198,7 +198,7 @@ export default function VenuesPage() {
                     className="rounded-full px-2.5 py-1 text-[11px] font-semibold"
                     style={{ background: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" }}
                   >
-                    On track
+                    8 of 12 complete
                   </span>
                   <span
                     className="text-[12px] font-medium"
@@ -216,11 +216,11 @@ export default function VenuesPage() {
                     Current state
                   </p>
                   <p className="text-[26px] font-semibold tracking-[-0.03em] text-ink">
-                    On track
+                    Eight of twelve planned milestones are complete.
                   </p>
                   <p className="mt-3 max-w-sm text-[13px] leading-[1.6] text-ink-soft">
-                    Supplier timing confirmed. Guest numbers finalised.
-                    Final week walkthrough booked with the venue.
+                    The planning window and completed milestones are shown
+                    separately. Signal Studio does not invent an on-track score.
                   </p>
                 </div>
                 <div className="p-5">
@@ -337,7 +337,7 @@ export default function VenuesPage() {
           </div>
         </section>
 
-        {/* ── Venue coordinator view, wireframe ── */}
+        {/* ── Venue activation register, wireframe ── */}
         <section className="border-b border-border-soft bg-bg-deep px-6 py-16 md:py-20">
           <div className="mx-auto w-full max-w-[1040px]">
             <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
@@ -346,15 +346,16 @@ export default function VenuesPage() {
                   className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
                   style={{ letterSpacing: "var(--tracking-eyebrow)" }}
                 >
-                  Coming for founding venues
+                  Activation administration
                 </p>
                 <h2 className="text-[clamp(1.35rem,1.1rem+1.2vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                  See every couple&rsquo;s plan from one place.
+                  See every activation. Never the private plan.
                 </h2>
               </div>
               <p className="self-end text-[15px] leading-[1.65] text-ink-soft">
-                A coordinator view is in development. Founding venues shape
-                what it shows, and get it before anyone else.
+                An activation register is in development. It is limited to
+                invitation, entitlement and activation state. A couple&rsquo;s
+                Notes, Tasks and unpublished Timeline remain inaccessible.
               </p>
             </div>
 
@@ -380,11 +381,11 @@ export default function VenuesPage() {
                     style={{ background: "var(--accent)" }}
                   />
                   <span className="text-[13px] font-semibold text-ink">
-                    All workspaces · Glenmara Estate
+                    Sponsored activations · Glenmara Estate
                   </span>
                 </div>
                 <span className="hidden text-[12px] text-ink-quiet sm:block">
-                  4 couples · 3 active
+                  4 issued · 3 activated
                 </span>
               </div>
 
@@ -395,7 +396,7 @@ export default function VenuesPage() {
                   gridTemplateColumns: "2fr 1.2fr 1.4fr 1fr",
                 }}
               >
-                {["Couple", "Event date", "Status", "Last active"].map((h) => (
+                {["Reference", "Entitlement", "Activation", "Content"].map((h) => (
                   <span
                     key={h}
                     className="text-[10px] font-semibold uppercase text-ink-quiet"
@@ -408,18 +409,18 @@ export default function VenuesPage() {
 
               {/* Rows */}
               <div className="divide-y divide-dashed divide-border-soft opacity-65">
-                {coordinatorRows.map((row) => {
-                  const s = statusMap[row.status];
+                {activationRows.map((row) => {
+                  const s = activationStateMap[row.state];
                   return (
                     <div
-                      key={row.couple}
+                      key={row.reference}
                       className="grid grid-cols-[1fr_auto] items-center gap-x-4 px-5 py-4 md:grid-cols-[2fr_1.2fr_1.4fr_1fr] md:gap-0"
                     >
                       <span className="text-[14px] font-medium text-ink">
-                        {row.couple}
+                        {row.reference}
                       </span>
                       <span className="hidden text-[13px] text-ink-soft md:block">
-                        {row.date}
+                        {row.entitlement}
                       </span>
                       <span
                         className="inline-flex h-fit items-center rounded-full border border-border-soft px-2.5 py-1 text-[11px] font-semibold"
@@ -428,7 +429,7 @@ export default function VenuesPage() {
                         {s.label}
                       </span>
                       <span className="hidden text-[12px] text-ink-quiet md:block">
-                        {row.lastActive}
+                        {row.privacy}
                       </span>
                     </div>
                   );
@@ -437,7 +438,9 @@ export default function VenuesPage() {
             </div>
 
             <p className="mt-4 text-[13px] text-ink-quiet">
-              Founding venues shape this view before anyone else sees it.
+              Couple names, dates and work are absent by default. A separate,
+              field-level consent receipt is required before any optional
+              metadata can appear.
             </p>
           </div>
         </section>
@@ -626,18 +629,18 @@ function MockLine({
   );
 }
 
-const statusMap: Record<
-  CoordinatorStatus,
+const activationStateMap: Record<
+  ActivationState,
   { label: string; bg: string; color: string }
 > = {
-  "on-track": { label: "On track", bg: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" },
-  "needs-attention": {
-    label: "Needs attention",
+  activated: { label: "Activated", bg: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" },
+  redeemed: {
+    label: "Redeemed",
     bg: "var(--pill-attention-bg)",
     color: "var(--pill-attention-ink)",
   },
-  "not-started": {
-    label: "Not started",
+  invited: {
+    label: "Invited",
     bg: "transparent",
     color: "var(--ink-quiet)",
   },

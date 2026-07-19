@@ -2,15 +2,5 @@
   "schemaVersion": "signal-design-quality-baseline/1",
   "capturedAt": "2026-07-15",
   "policy": "Known debt is visible and may only shrink. A new release-blocking or high finding fails enforcement unless it has a time-boxed approved exception.",
-  "allowedOpenFindingIds": [
-    "dq-notes-legacy-token-debt",
-    "dq-timeline-legacy-token-debt",
-    "dq-timeline-wedding-mobile-schedule",
-    "dq-timeline-demo-workspace-db-dependency",
-    "dq-timeline-demo-project-db-dependency",
-    "dq-timeline-demo-detail-db-dependency",
-    "dq-timeline-demo-refusals-db-dependency",
-    "dq-timeline-editor-autosync-db-dependency",
-    "dq-timeline-missing-route-db-dependency"
-  ]
+  "allowedOpenFindingIds": []
 }

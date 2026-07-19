@@ -2,7 +2,22 @@
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { classifyExperienceClass, discoverRegistry, validateRegistry } from "./lib.mjs";
+import {
+  classifyExperienceClass,
+  discoverRegistry,
+  hashText,
+  validateRegistry,
+} from "./lib.mjs";
+
+const lfHash = hashText("first line\nsecond line\n");
+const crlfHash = hashText("first line\r\nsecond line\r\n");
+const crHash = hashText("first line\rsecond line\r");
+if (lfHash !== crlfHash || lfHash !== crHash) {
+  throw new Error("self-test failed: materiality hashes differ by line-ending style");
+}
+if (lfHash === hashText("first line\nchanged line\n")) {
+  throw new Error("self-test failed: materiality hashing ignored a content change");
+}
 
 const classCases = [
   [{ product: "studio", route: "/" }, "company-public"],
@@ -61,9 +76,7 @@ try {
     throw new Error(`self-test failed: unregistered route was not caught\n${errors.join("\n")}`);
   }
   const withExpiredException = structuredClone(registered);
-  withExpiredException.experiences[0].intentionalExceptions = [
-    { id: "expired-self-test", expiresAt: "2020-01-01" },
-  ];
+  withExpiredException.experiences[0].intentionalExceptions = ["expired-self-test"];
   const exceptionErrors = validateRegistry({
     registry: withExpiredException,
     discovered: changed,

@@ -1,12 +1,131 @@
 {
-  "schemaVersion": "signal-experience-golden-set/1",
-  "status": "provisional",
+  "schemaVersion": "signal-experience-golden-set/2",
+  "status": "approved",
   "approvalTask": "approve-experience-golden-set",
+  "approvalRole": "founder",
+  "approvedBy": "Ethan McNamara",
+  "approvedAt": "2026-07-16T00:34:00.000Z",
+  "approvalSource": "content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md",
+  "scoredBy": "Codex Experience Quality Review",
+  "scoredAt": "2026-07-16",
+  "scoringSource": "content/hq/decisions/experience-golden-set-scoring-2026-07-16.md",
   "experienceIds": [
     "studio.page.design",
-    "tasks.page.app",
+    "tasks.page.app-board",
     "timeline.page.the-wedding",
     "signal.page.demo",
     "notes.page.wedding-planning"
+  ],
+  "references": [
+    {
+      "experienceId": "studio.page.design",
+      "state": "default",
+      "baselineScreenshots": {
+        "mobile": "experience/baselines/studio-page-design/default/mobile.png",
+        "tablet": "experience/baselines/studio-page-design/default/tablet.png",
+        "desktop": "experience/baselines/studio-page-design/default/desktop.png",
+        "wide": "experience/baselines/studio-page-design/default/wide.png"
+      },
+      "reviewIds": {
+        "mobile": "review-founder-baseline-studio-page-design-default-mobile-47802b9bd811",
+        "tablet": "review-founder-baseline-studio-page-design-default-tablet-616d934d037b",
+        "desktop": "review-founder-baseline-studio-page-design-default-desktop-6f6e54e5c480",
+        "wide": "review-founder-baseline-studio-page-design-default-wide-9a609166c871"
+      },
+      "auditIds": {
+        "mobile": "audit-golden-studio-page-design-default-mobile",
+        "tablet": "audit-golden-studio-page-design-default-tablet",
+        "desktop": "audit-golden-studio-page-design-default-desktop",
+        "wide": "audit-golden-studio-page-design-default-wide"
+      }
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "state": "default",
+      "baselineScreenshots": {
+        "mobile": "experience/baselines/tasks-page-app-board/default/mobile.png",
+        "tablet": "experience/baselines/tasks-page-app-board/default/tablet.png",
+        "desktop": "experience/baselines/tasks-page-app-board/default/desktop.png",
+        "wide": "experience/baselines/tasks-page-app-board/default/wide.png"
+      },
+      "reviewIds": {
+        "mobile": "review-founder-baseline-tasks-page-app-board-default-mobile-390ba5d3c411",
+        "tablet": "review-founder-baseline-tasks-page-app-board-default-tablet-eb3b530bf2fa",
+        "desktop": "review-founder-baseline-tasks-page-app-board-default-desktop-776a9515cedd",
+        "wide": "review-founder-baseline-tasks-page-app-board-default-wide-2f7deb946e8b"
+      },
+      "auditIds": {
+        "mobile": "audit-golden-tasks-page-app-board-default-mobile",
+        "tablet": "audit-golden-tasks-page-app-board-default-tablet",
+        "desktop": "audit-golden-tasks-page-app-board-default-desktop",
+        "wide": "audit-golden-tasks-page-app-board-default-wide"
+      }
+    },
+    {
+      "experienceId": "timeline.page.the-wedding",
+      "state": "default",
+      "baselineScreenshots": {
+        "mobile": "experience/baselines/timeline-page-the-wedding/default/mobile.png",
+        "tablet": "experience/baselines/timeline-page-the-wedding/default/tablet.png",
+        "desktop": "experience/baselines/timeline-page-the-wedding/default/desktop.png",
+        "wide": "experience/baselines/timeline-page-the-wedding/default/wide.png"
+      },
+      "reviewIds": {
+        "mobile": "review-founder-baseline-timeline-page-the-wedding-default-mobile-9ab1d80780b2",
+        "tablet": "review-founder-baseline-timeline-page-the-wedding-default-tablet-0700c691b3bd",
+        "desktop": "review-founder-baseline-timeline-page-the-wedding-default-desktop-f6668ea61716",
+        "wide": "review-founder-baseline-timeline-page-the-wedding-default-wide-8e8da0e7c57c"
+      },
+      "auditIds": {
+        "mobile": "audit-golden-timeline-page-the-wedding-default-mobile",
+        "tablet": "audit-golden-timeline-page-the-wedding-default-tablet",
+        "desktop": "audit-golden-timeline-page-the-wedding-default-desktop",
+        "wide": "audit-golden-timeline-page-the-wedding-default-wide"
+      }
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "state": "default",
+      "baselineScreenshots": {
+        "mobile": "experience/baselines/signal-page-demo/default/mobile.png",
+        "tablet": "experience/baselines/signal-page-demo/default/tablet.png",
+        "desktop": "experience/baselines/signal-page-demo/default/desktop.png",
+        "wide": "experience/baselines/signal-page-demo/default/wide.png"
+      },
+      "reviewIds": {
+        "mobile": "review-founder-baseline-signal-page-demo-default-mobile-fb02f5f97250",
+        "tablet": "review-founder-baseline-signal-page-demo-default-tablet-e3fd4128e644",
+        "desktop": "review-founder-baseline-signal-page-demo-default-desktop-854853d975c9",
+        "wide": "review-founder-baseline-signal-page-demo-default-wide-1801f49a8d13"
+      },
+      "auditIds": {
+        "mobile": "audit-golden-signal-page-demo-default-mobile",
+        "tablet": "audit-golden-signal-page-demo-default-tablet",
+        "desktop": "audit-golden-signal-page-demo-default-desktop",
+        "wide": "audit-golden-signal-page-demo-default-wide"
+      }
+    },
+    {
+      "experienceId": "notes.page.wedding-planning",
+      "state": "default",
+      "baselineScreenshots": {
+        "mobile": "experience/baselines/notes-page-wedding-planning/default/mobile.png",
+        "tablet": "experience/baselines/notes-page-wedding-planning/default/tablet.png",
+        "desktop": "experience/baselines/notes-page-wedding-planning/default/desktop.png",
+        "wide": "experience/baselines/notes-page-wedding-planning/default/wide.png"
+      },
+      "reviewIds": {
+        "mobile": "review-founder-baseline-notes-page-wedding-planning-default-mobile-346da3a120e3",
+        "tablet": "review-founder-baseline-notes-page-wedding-planning-default-tablet-a5f3698f8ce4",
+        "desktop": "review-founder-baseline-notes-page-wedding-planning-default-desktop-f932e69a15cf",
+        "wide": "review-founder-baseline-notes-page-wedding-planning-default-wide-861baa4793af"
+      },
+      "auditIds": {
+        "mobile": "audit-golden-notes-page-wedding-planning-default-mobile",
+        "tablet": "audit-golden-notes-page-wedding-planning-default-tablet",
+        "desktop": "audit-golden-notes-page-wedding-planning-default-desktop",
+        "wide": "audit-golden-notes-page-wedding-planning-default-wide"
+      }
+    }
   ]
 }

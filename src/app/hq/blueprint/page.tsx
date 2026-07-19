@@ -21,7 +21,7 @@ import { CLUSTERS, directorsByCluster, formatCadence } from "@/lib/hq/elt";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getTraction } from "@/lib/hq/traction";
 import { getProspects } from "@/lib/hq/crm-db";
-import { PIPELINE_STAGES } from "@/lib/hq/crm-utils";
+import { normalizeSegment, PIPELINE_STAGES } from "@/lib/hq/crm-utils";
 import { getProductAnalytics } from "@/lib/hq/product-analytics";
 import { getModeledRunway } from "@/lib/hq/financial-model";
 
@@ -68,8 +68,10 @@ export default async function BlueprintPage() {
     getProspects(),
     getProductAnalytics(),
   ]);
-  const venuePipeline = prospects.filter((p) =>
-    PIPELINE_STAGES.includes(p.stage),
+  const venuePipeline = prospects.filter(
+    (p) =>
+      normalizeSegment(p.segment) === "venue" &&
+      PIPELINE_STAGES.includes(p.stage),
   ).length;
   const metrics = resolveBlueprintMetrics({
     mrrEur: traction.available ? traction.workspaceSubs * 12 : null,

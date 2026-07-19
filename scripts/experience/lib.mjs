@@ -12,6 +12,26 @@ import path from "node:path";
 export const EXPERIENCE_SCHEMA_VERSION = "signal-experience/1";
 export const REQUIRED_BREAKPOINTS = ["mobile", "tablet", "desktop", "wide"];
 export const EXPERIENCE_CLASSES = ["customer-product", "company-public", "founder-operator"];
+export const EXPERIENCE_STATES = [
+  "default",
+  "first-use",
+  "empty",
+  "populated",
+  "loading",
+  "slow-loading",
+  "partial-failure",
+  "error",
+  "success",
+  "restricted",
+  "disabled",
+  "read-only",
+  "dense",
+  "long-content",
+  "saved",
+  "unsaved",
+  "reduced-motion",
+  "keyboard-only",
+];
 export const AUDIT_DIMENSIONS = [
   "purpose-and-task-clarity",
   "information-architecture",
@@ -45,7 +65,8 @@ export function writeStableJson(value) {
 }
 
 export function hashText(text) {
-  return createHash("sha256").update(text).digest("hex").slice(0, 16);
+  const normalized = text.replace(/\r\n?/g, "\n");
+  return createHash("sha256").update(normalized).digest("hex").slice(0, 16);
 }
 
 export function hashFile(file) {
@@ -289,12 +310,42 @@ function baseEntry({ product, surfaceType, route, trigger, source, sourceFile, o
   };
 }
 
-function sourceRelative(workspaceRoot, sourceFile) {
-  return path.relative(workspaceRoot, sourceFile).split(path.sep).join("/");
+function productRepoRoot({ workspaceRoot, studioRoot, product }) {
+  if (product.id === "studio") {
+    if (!studioRoot) throw new Error("studioRoot is required when discovering the Studio product");
+    return path.resolve(studioRoot);
+  }
+  return path.join(workspaceRoot, product.directory);
 }
 
-export function discoverProduct({ workspaceRoot, product }) {
-  const repoRoot = path.join(workspaceRoot, product.directory);
+function canonicalProductSource({ repoRoot, product, sourceFile }) {
+  const relative = path.relative(repoRoot, sourceFile).split(path.sep).join("/");
+  return `${product.directory}/${relative}`;
+}
+
+function explicitSourceFile({ workspaceRoot, studioRoot, productsById, surface }) {
+  const product = productsById.get(surface.product);
+  if (!product) return path.join(workspaceRoot, surface.source.replaceAll("/", path.sep));
+
+  const repoRoot = productRepoRoot({ workspaceRoot, studioRoot, product });
+  const canonicalPrefix = `${product.directory}/`;
+  const relative = surface.source.startsWith(canonicalPrefix)
+    ? surface.source.slice(canonicalPrefix.length)
+    : surface.source;
+  return path.join(repoRoot, relative.replaceAll("/", path.sep));
+}
+
+function registeredSourceFile({ studioRoot, entry }) {
+  const normalized = entry.source.replaceAll("\\", "/");
+  if (entry.product === "studio") {
+    const relative = normalized.startsWith("studio/") ? normalized.slice("studio/".length) : normalized;
+    return path.join(path.resolve(studioRoot), relative.replaceAll("/", path.sep));
+  }
+  return path.join(path.resolve(studioRoot, ".."), normalized.replaceAll("/", path.sep));
+}
+
+export function discoverProduct({ workspaceRoot, studioRoot, product }) {
+  const repoRoot = productRepoRoot({ workspaceRoot, studioRoot, product });
   const appRoot = path.join(repoRoot, "src", "app");
   if (!existsSync(appRoot)) return [];
   const entries = [];
@@ -321,7 +372,7 @@ export function discoverProduct({ workspaceRoot, product }) {
         product: product.id,
         surfaceType,
         route,
-        source: sourceRelative(workspaceRoot, file),
+        source: canonicalProductSource({ repoRoot, product, sourceFile: file }),
         sourceFile: file,
         overrides: {
           id: `${product.id}.${kind}.${suffix}`,
@@ -341,7 +392,7 @@ export function discoverProduct({ workspaceRoot, product }) {
           product: product.id,
           surfaceType: "page",
           route,
-          source: sourceRelative(workspaceRoot, file),
+          source: canonicalProductSource({ repoRoot, product, sourceFile: file }),
           sourceFile: file,
           overrides: {
             id: `${product.id}.artifact.${routeSlug(route)}`,
@@ -361,9 +412,10 @@ export function discoverProduct({ workspaceRoot, product }) {
   return entries.sort((a, b) => a.id.localeCompare(b.id));
 }
 
-function explicitEntries({ workspaceRoot, explicit }) {
+function explicitEntries({ workspaceRoot, studioRoot, config, explicit }) {
+  const productsById = new Map(config.products.map((product) => [product.id, product]));
   return explicit.surfaces.map((surface) => {
-    const sourceFile = path.join(workspaceRoot, surface.source.replaceAll("/", path.sep));
+    const sourceFile = explicitSourceFile({ workspaceRoot, studioRoot, productsById, surface });
     return baseEntry({
       product: surface.product,
       surfaceType: surface.surfaceType,
@@ -405,8 +457,8 @@ const OVERRIDABLE_FIELDS = new Set([
 export function discoverRegistry({ studioRoot, config, explicit, overrides = { experiences: {} } }) {
   const workspaceRoot = path.resolve(studioRoot, "..");
   const discovered = [
-    ...config.products.flatMap((product) => discoverProduct({ workspaceRoot, product })),
-    ...explicitEntries({ workspaceRoot, explicit }),
+    ...config.products.flatMap((product) => discoverProduct({ workspaceRoot, studioRoot, product })),
+    ...explicitEntries({ workspaceRoot, studioRoot, config, explicit }),
   ].sort((a, b) => a.id.localeCompare(b.id));
   const experiences = discovered.map((entry) => {
     const candidate = overrides.experiences?.[entry.id] ?? {};
@@ -474,17 +526,30 @@ export function validateRegistry({ registry, discovered, findings, exceptions, s
     if (entry.experienceClass !== expectedClass) {
       errors.push(`${entry.id}: experience class must be ${expectedClass}`);
     }
-    if (!Array.isArray(entry.requiredStates) || !entry.requiredStates.length) errors.push(`${entry.id}: required states are missing`);
+    if (!Array.isArray(entry.requiredStates) || !entry.requiredStates.length) {
+      errors.push(`${entry.id}: required states are missing`);
+    } else {
+      if (new Set(entry.requiredStates).size !== entry.requiredStates.length) {
+        errors.push(`${entry.id}: required states must be unique`);
+      }
+      for (const state of entry.requiredStates) {
+        if (!EXPERIENCE_STATES.includes(state)) errors.push(`${entry.id}: unknown required state ${state}`);
+      }
+    }
     if (!Array.isArray(entry.requiredBreakpoints) || !entry.requiredBreakpoints.length) errors.push(`${entry.id}: required breakpoints are missing`);
+    if (new Set(entry.requiredBreakpoints ?? []).size !== (entry.requiredBreakpoints ?? []).length) {
+      errors.push(`${entry.id}: required breakpoints must be unique`);
+    }
     for (const breakpoint of REQUIRED_BREAKPOINTS) {
       if (!entry.requiredBreakpoints.includes(breakpoint)) errors.push(`${entry.id}: missing breakpoint ${breakpoint}`);
     }
     for (const findingId of entry.openFindingIds ?? []) {
       if (!findingIds.has(findingId)) errors.push(`${entry.id}: unknown finding ${findingId}`);
     }
-    for (const exception of entry.intentionalExceptions ?? []) {
-      if (!exceptionIds.has(exception.id)) errors.push(`${entry.id}: unknown exception ${exception.id}`);
-      if (!exception.expiresAt || exception.expiresAt < today) errors.push(`${entry.id}: expired exception ${exception.id}`);
+    for (const exceptionId of entry.intentionalExceptions ?? []) {
+      const exception = exceptions.exceptions.find((candidate) => candidate.id === exceptionId);
+      if (!exceptionIds.has(exceptionId)) errors.push(`${entry.id}: unknown exception ${exceptionId}`);
+      else if (!exception.expiresAt || exception.expiresAt < today) errors.push(`${entry.id}: expired exception ${exceptionId}`);
     }
   }
 
@@ -508,7 +573,7 @@ export function validateRegistry({ registry, discovered, findings, exceptions, s
   }
   for (const [id, entry] of registeredById) {
     if (!discoveredById.has(id)) errors.push(`${id}: registered experience is obsolete (${entry.source})`);
-    const absolute = path.join(path.resolve(studioRoot, ".."), entry.source.replaceAll("/", path.sep));
+    const absolute = registeredSourceFile({ studioRoot, entry });
     if (!existsSync(absolute)) errors.push(`${id}: broken source reference ${entry.source}`);
   }
   return errors;

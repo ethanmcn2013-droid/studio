@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { HqMarketing } from "@/components/hq/hq-marketing";
 import { MARKETING_BUCKETS, MARKETING_TOTAL } from "@/lib/hq/marketing";
@@ -56,35 +57,13 @@ export default async function MarketingPage() {
   }
 
   return (
-    <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24 pt-16 md:pt-20">
-      <div
-        className="mb-3"
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--ink-quiet)",
-          letterSpacing: "var(--tracking-eyebrow)",
-          textTransform: "uppercase",
-          fontWeight: 600,
-        }}
-      >
-        Signal HQ · Marketing
-      </div>
-      <h1 className="h-title mb-4 text-ink">Marketing</h1>
+    <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24">
+      <HqPageHeader
+        slug="marketing"
+        standfirst="One hundred panel-cleared approaches, bucketed by strategic role and ranked by leverage on the venue engine."
+      />
       <p
-        className="mb-6 max-w-[68ch] text-ink-soft"
-        style={{ fontSize: 17, lineHeight: 1.6 }}
-      >
-        The six-month plan, as a working hub, not a deck. One hundred
-        approaches, each one cleared by the three-director panel with no
-        reservation: Brand (logo-swap test, zero non-goals), Marketing
-        (measurably moves the venue engine against the M1–M6 sequence), and
-        Feasibility (solo founder, the agent factory, ~3.5 deliberate hours a
-        week, €0, six months). Bucketed by strategic role and ranked within
-        each by leverage on the negative-CAC engine.
-      </p>
-      <p
-        className="mb-12 max-w-[68ch] text-ink-soft"
+        className="mb-12 mt-8 max-w-[68ch] text-ink-soft"
         style={{ fontSize: 15, lineHeight: 1.6 }}
       >
         Standing dissent worth keeping in view: the portfolio is deliberately

@@ -10,8 +10,8 @@
  *   demo        , public, no login wall; a synthetic demo user bound to
  *                  in-memory seed data. The real database is NEVER queried.
  *   review      , same access posture as demo, but signals an internal
- *                  design/Claude-Code/Fable review context (used for the
- *                  /review hub + slightly louder dev messaging).
+ *                  founder/design/agent review context for controlled
+ *                  preview deployments and louder dev messaging.
  *
  * Resolution (server can read both vars; the browser only sees NEXT_PUBLIC_*):
  *   1. SIGNAL_ACCESS_MODE / NEXT_PUBLIC_SIGNAL_ACCESS_MODE, explicit, wins.

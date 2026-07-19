@@ -36,6 +36,8 @@ const SECTIONS = [
       "Authentication is provided by Clerk. Multi-factor authentication is available on every account. We never see or store your password.",
       "Inside the operator stack, access to production data is limited to the operator account. Any third-party support access is logged.",
       "Public surfaces, shared timelines, shared updates, public templates, are visible to anyone with the link. You decide what to make public.",
+      "A school or venue sponsor is not a Workspace member. Sponsorship never grants a private-content capability. Each Workspace read is checked against current Membership; optional sponsor metadata requires a separate owner consent receipt.",
+      "New Audience Timeline publication uses an independent safe projection rather than serialising a private Note or Task. New share links are high-entropy, stored as hashes, revocable, no-store and noindex. Legacy public-by-slug examples remain a separate model until owners deliberately migrate them.",
     ],
   },
   {
@@ -78,7 +80,7 @@ export default function SecurityPage() {
           either fix the page or fix the system.
         </>
       }
-      updated="2026-05-12"
+      updated="2026-07-12"
       sections={SECTIONS}
     />
   );
