@@ -308,6 +308,16 @@ export const HQ_ROOMS: HqRoom[] = [
     summary: "Founding partner card; Indigo and Numeral shortlisted.",
   },
   {
+    slug: "slide-30-review",
+    route: "/hq/slide-30-review",
+    name: "Market-entry Slide 30",
+    group: "make",
+    kind: "room",
+    lifecycle: "decided",
+    summary: "Four retained directions for the market-entry proof slide.",
+    aliases: ["slide 30", "market entry slide", "proof mark"],
+  },
+  {
     slug: "email-lab",
     route: "/hq/email-lab",
     name: "Email Lab",
@@ -370,6 +380,16 @@ export const HQ_ROOMS: HqRoom[] = [
     lifecycle: "active",
     summary: "The lender-grade business plan for the €40k facility.",
     aliases: ["lender", "facility", "business plan"],
+  },
+  {
+    slug: "decks",
+    route: "/hq/decks",
+    name: "Deck library",
+    group: "money",
+    kind: "library",
+    lifecycle: "active",
+    summary: "Every board, sales, and diligence deck in one place, each with a live thumbnail.",
+    aliases: ["decks", "presentations", "slides", "pitch", "one-pagers", "market entry"],
   },
   {
     slug: "data-room",
@@ -520,6 +540,7 @@ export const HQ_SYSTEM_ROUTES = [
   "status", // JSON verdict endpoint for the nav dot
   "partners", // legacy redirect → /hq/entitlements?tab=venues
   "api", // guarded HQ endpoints (search index)
+  "action-center", // cross-cutting "needs me" queue (redesign)
 ] as const;
 
 /** Group landing route segments (all served by src/app/hq/[group]). */

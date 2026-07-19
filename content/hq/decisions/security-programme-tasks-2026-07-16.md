@@ -1,7 +1,7 @@
 ---
 id: security-programme-tasks-2026-07-16
 title: Signal Tasks security programme enters evidence-backed remediation
-status: active
+status: Active
 date: 2026-07-16
 owner: ethan
 ---
