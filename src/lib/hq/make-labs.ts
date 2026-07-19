@@ -274,7 +274,7 @@ export const MAKE_LABS: Lab[] = [
   // ── Systems & productions (internal) ───────────────────────────────
   {
     id: "system-loading",
-    name: "The loading canon",
+    name: "Loading screens · the canon",
     category: "system",
     state: "SHIPPED",
     href: "/hq/loading-review",
@@ -282,6 +282,19 @@ export const MAKE_LABS: Lab[] = [
     where: "all products · main",
     note: "Ten loading moments, one system: the 10px boundary dot, sub-120ms handoff, honest long-wait escalation.",
     hasThumb: true,
+  },
+  {
+    id: "system-meet-dot",
+    name: "Meet Dot · the mascot",
+    category: "system",
+    state: "LIVE",
+    href: "/design",
+    external: true,
+    captureUrl: "/design",
+    where: "studio · main",
+    note: "The animated dot character: the WAAPI engine, the calibrated frames, and the five gestures. Live on the design page.",
+    hasThumb: true,
+    thumbSource: "external",
   },
   {
     id: "system-demo-film",

@@ -7,7 +7,7 @@ import { MAKE_LABS } from "@/lib/hq/make-labs";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Make · Signal HQ",
+  title: "Lab · Signal HQ",
   description: "Every lab, room, gallery, and shipped hero — with a live thumbnail.",
   robots: { index: false, follow: false },
 };
@@ -20,7 +20,7 @@ export default async function MakePage() {
   return (
     <div className="hqx-page">
       <header className="hqx-page-header">
-        <span className="hqx-eyebrow">Make · Design &amp; product</span>
+        <span className="hqx-eyebrow">Lab · Design &amp; product</span>
         <div className="hqx-page-header-row">
           <h1 className="hqx-title">Every lab, at a glance</h1>
           <span className="hqx-status" data-tone="done">

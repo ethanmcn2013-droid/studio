@@ -68,10 +68,10 @@ export default async function HqPage() {
       tone: snapshot.dueToday > 0 ? "flight" : snapshot.founderSends > 0 ? "done" : "blocked",
     },
     {
-      name: "Make",
+      name: "Lab",
       href: "/hq/design-rooms",
-      value: "Design + assets",
-      note: "Decision rooms and the launch asset bank",
+      value: "Every lab",
+      note: "Product heroes, decision rooms, systems",
       tone: "accent",
     },
     {

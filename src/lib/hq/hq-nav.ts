@@ -33,7 +33,7 @@ export const HQ_NAV: HqNavGroup[] = [
     label: "Workspaces",
     items: [
       { href: "/hq/crm", icon: "sell", label: "Sell", hint: "Venue pipeline, marketing, outreach", owns: ["/hq/marketing", "/hq/market-entry", "/hq/plan", "/hq/venue-kit", "/hq/waitlist"] },
-      { href: "/hq/design-rooms", icon: "make", label: "Make", hint: "Design rooms, assets, product work", owns: ["/hq/cards", "/hq/cafe-card", "/hq/partner-card", "/hq/poster", "/hq/slide-30-review", "/hq/product-hero-design-motion", "/hq/socials", "/hq/asset-command", "/hq/demo-film", "/hq/loading-review", "/hq/experimentation-room"] },
+      { href: "/hq/design-rooms", icon: "make", label: "Lab", hint: "Every lab: product heroes, decision rooms, systems, parked work", owns: ["/hq/cards", "/hq/cafe-card", "/hq/partner-card", "/hq/poster", "/hq/slide-30-review", "/hq/product-hero-design-motion", "/hq/socials", "/hq/asset-command", "/hq/demo-film", "/hq/loading-review", "/hq/experimentation-room"] },
       { href: "/hq/reporting", icon: "money", label: "Money", hint: "The five numbers, model, cap table", owns: ["/hq/financial-model", "/hq/cap-table", "/hq/loan-pack"] },
       { href: "/hq/org", icon: "company", label: "Company", hint: "Org, operating map, incorporation", owns: ["/hq/blueprint", "/hq/incorporation", "/hq/one-pagers"] },
     ],
@@ -87,7 +87,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/hq/plan": "Six-month plan",
   "/hq/venue-kit": "Venue kit",
   "/hq/waitlist": "Waitlist",
-  "/hq/design-rooms": "Make",
+  "/hq/design-rooms": "Lab",
   "/hq/cards": "Card room",
   "/hq/cafe-card": "Café card",
   "/hq/partner-card": "Partner card",
