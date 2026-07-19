@@ -387,6 +387,36 @@ a.hqx-row:hover .hqx-row-arrow { color: var(--accent); }
   outline: 2px solid var(--accent); outline-offset: 2px;
 }
 
+/* ── Make lab gallery — active thumbnails ──────────────────────── */
+.hqx-lab-blurb { font-size: var(--text-body-sm); color: var(--ink-faint); margin: calc(var(--space-2) * -1) 0 0; }
+.hqx-lab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-5); }
+.hqx-lab-card {
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  background: var(--paper); border: 1px solid var(--hairline-soft); border-radius: var(--radius-lg); overflow: hidden;
+  transition: border-color var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+}
+.hqx-lab-card:hover { border-color: var(--hairline); box-shadow: var(--shadow-float); transform: translateY(-2px); }
+.hqx-lab-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.hqx-lab-thumb {
+  position: relative; aspect-ratio: 16 / 10; background-color: var(--paper-deep);
+  background-size: cover; background-position: top center; background-repeat: no-repeat;
+  border-bottom: 1px solid var(--hairline-soft);
+  display: grid; place-items: center;
+}
+/* Poster fallback for labs without a screenshot (parked branch links). */
+.hqx-lab-thumb:not([style]) { background-image: linear-gradient(135deg, var(--paper-deep), var(--accent-tint)); }
+.hqx-lab-monogram {
+  font-family: var(--font-mono); font-weight: var(--weight-semibold); font-size: 2.4rem; letter-spacing: -0.02em;
+  color: var(--accent); opacity: 0.5;
+}
+.hqx-lab-state { position: absolute; top: var(--space-3); left: var(--space-3); backdrop-filter: blur(6px); }
+.hqx-lab-ext { position: absolute; top: var(--space-3); right: var(--space-3); width: 22px; height: 22px; display: grid; place-items: center; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--paper) 78%, transparent); color: var(--ink-soft); font-size: 12px; backdrop-filter: blur(6px); }
+.hqx-lab-body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-5) var(--space-5); }
+.hqx-lab-name { font-size: var(--text-body); font-weight: var(--weight-semibold); color: var(--ink); }
+.hqx-lab-note { font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--ink-faint); }
+.hqx-lab-where { font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: 0.04em; color: var(--ink-faint); opacity: 0.85; margin-top: var(--space-1); }
+
 .hqx-gate { min-height: 100vh; background: var(--paper-deep); }
 
 /* ── Access gate stand-alone ───────────────────────────────────── */
