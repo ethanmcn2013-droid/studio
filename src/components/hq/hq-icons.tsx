@@ -109,6 +109,12 @@ export const HqIcons = {
       <path d="M3 10.5h3l2-4 3 7 2-4.5 1.5 1.5H17" />
     </svg>
   ),
+  decks: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <rect x="3" y="4" width="14" height="9" rx="1" />
+      <path d="M7 16.5h6M10 13v3.5" />
+    </svg>
+  ),
   search: (p: IconProps) => (
     <svg {...base} {...p}>
       <circle cx="9" cy="9" r="5" />

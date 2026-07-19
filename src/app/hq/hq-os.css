@@ -412,6 +412,7 @@ a.hqx-row:hover .hqx-row-arrow { color: var(--accent); }
 }
 .hqx-lab-state { position: absolute; top: var(--space-3); left: var(--space-3); backdrop-filter: blur(6px); }
 .hqx-lab-ext { position: absolute; top: var(--space-3); right: var(--space-3); width: 22px; height: 22px; display: grid; place-items: center; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--paper) 78%, transparent); color: var(--ink-soft); font-size: 12px; backdrop-filter: blur(6px); }
+.hqx-deck-meta { position: absolute; bottom: var(--space-3); right: var(--space-3); font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: 0.04em; color: var(--ink-soft); background: color-mix(in srgb, var(--paper) 82%, transparent); border-radius: var(--radius-sm); padding: 3px 8px; backdrop-filter: blur(6px); }
 .hqx-lab-body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-5) var(--space-5); }
 .hqx-lab-name { font-size: var(--text-body); font-weight: var(--weight-semibold); color: var(--ink); }
 .hqx-lab-note { font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--ink-faint); }

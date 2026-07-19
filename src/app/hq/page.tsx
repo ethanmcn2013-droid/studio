@@ -178,6 +178,47 @@ export default async function HqPage() {
             </div>
           </section>
 
+          {/* Founder to-dos — only the founder can move these */}
+          <section className="hqx-section">
+            <div className="hqx-section-head">
+              <h2 className="hqx-section-title">Only you can move these</h2>
+              <Link href="/hq/action-center" className="hqx-section-action">
+                {operatorTodos.openCount} founder to-dos · {operatorTodos.blockingCount} blocking →
+              </Link>
+            </div>
+            {operatorTodos.openCount === 0 ? (
+              <div className="hqx-empty">
+                <span className="hqx-empty-title">Nothing gated on you</span>
+                <span>No open founder to-dos. Every blocker is cleared.</span>
+              </div>
+            ) : (
+              <div className="hqx-rows">
+                {operatorTodos.todos
+                  .filter((t) => t.status === "open")
+                  .slice(0, 6)
+                  .map((todo) => (
+                    <Link
+                      key={todo.id}
+                      href={todo.href ?? "/hq/action-center"}
+                      className="hqx-row"
+                      data-priority={todo.priority === "P0" ? "critical" : todo.priority === "P1" ? "due" : "queued"}
+                    >
+                      <span className="hqx-row-lead"><span className="hqx-row-marker" /></span>
+                      <span className="hqx-row-body">
+                        <span className="hqx-row-title">{todo.title}</span>
+                        <span className="hqx-row-why">{todo.why}</span>
+                      </span>
+                      <span className="hqx-row-meta">
+                        {todo.blocking ? <span className="hqx-pill" data-tone="blocked">blocking</span> : null}
+                        <span className="hqx-ac-metatext">{todo.priority}</span>
+                        <span className="hqx-row-arrow" aria-hidden="true">→</span>
+                      </span>
+                    </Link>
+                  ))}
+              </div>
+            )}
+          </section>
+
           {/* Commercial truth — the preserved proof spine */}
           <section className="hqx-section" aria-label="Commercial truth">
             <div className="hqx-section-head">
