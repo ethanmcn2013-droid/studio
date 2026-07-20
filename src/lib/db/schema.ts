@@ -203,6 +203,14 @@ export type ProspectStage = (typeof PROSPECT_STAGES)[number];
 export const PROSPECT_SEGMENTS = ["venue", "student", "school", "smb"] as const;
 export type ProspectSegment = (typeof PROSPECT_SEGMENTS)[number];
 
+/**
+ * Outreach nations. Books are segment-scoped; country is a within-book axis so
+ * one schools book can hold Ireland, England, Scotland and Wales without
+ * merging into other motions. Ireland is the default and the proof market.
+ */
+export const PROSPECT_COUNTRIES = ["IE", "GB-ENG", "GB-SCT", "GB-WLS"] as const;
+export type ProspectCountry = (typeof PROSPECT_COUNTRIES)[number];
+
 export const prospectsTable = sqliteTable(
   "prospects",
   {
@@ -210,6 +218,14 @@ export const prospectsTable = sqliteTable(
     organisation: text("organisation").notNull(),
     /** lead book, see PROSPECT_SEGMENTS */
     segment: text("segment").$type<ProspectSegment>().notNull().default("venue"),
+    /** ISO country of the outreach target (IE, GB-ENG, GB-SCT, GB-WLS). Books stay
+     *  segment-scoped; country is a within-book axis — the schools book spans nations. */
+    country: text("country").$type<ProspectCountry>().notNull().default("IE"),
+    /** segment-native category: school sector (Voluntary Secondary, ETB, Community…),
+     *  venue class, society type. Powers the type filter without prose-parsing notes. */
+    category: text("category").notNull().default(""),
+    /** semicolon-joined outreach tags (DEIS; Gaelcholáiste; Fee-Paying; Gaeltacht; ETB…) */
+    flags: text("flags").notNull().default(""),
     contactName: text("contact_name").notNull().default(""),
     role: text("role").notNull().default(""),
     email: text("email").notNull().default(""),
@@ -246,6 +262,7 @@ export const prospectsTable = sqliteTable(
   (table) => [
     index("prospects_stage_idx").on(table.stage),
     index("prospects_segment_idx").on(table.segment),
+    index("prospects_country_idx").on(table.segment, table.country),
     index("prospects_next_follow_up_idx").on(table.nextFollowUpAt),
   ],
 );

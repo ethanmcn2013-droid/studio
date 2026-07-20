@@ -14,14 +14,44 @@
 import type {
   DbProspect,
   NewDbProspect,
+  ProspectCountry,
   ProspectSegment,
   ProspectStage,
 } from "@/lib/db/schema";
-import { PROSPECT_SEGMENTS, PROSPECT_STAGES } from "@/lib/db/schema";
+import {
+  PROSPECT_COUNTRIES,
+  PROSPECT_SEGMENTS,
+  PROSPECT_STAGES,
+} from "@/lib/db/schema";
 import type { Prospect } from "@/lib/hq/data";
 
-export type { ProspectSegment, ProspectStage };
-export { PROSPECT_SEGMENTS };
+export type { ProspectCountry, ProspectSegment, ProspectStage };
+export { PROSPECT_COUNTRIES, PROSPECT_SEGMENTS };
+
+// ── Countries (the within-book nation axis) ──────────────────────────────────
+
+export type CountryConfig = {
+  /** short filter-tab label */
+  label: string;
+  /** full name for aria / headers */
+  name: string;
+  /** flag emoji for a light visual anchor */
+  flag: string;
+};
+
+export const COUNTRY_CONFIG: Record<ProspectCountry, CountryConfig> = {
+  IE: { label: "Ireland", name: "Republic of Ireland", flag: "🇮🇪" },
+  "GB-ENG": { label: "England", name: "England", flag: "🏴\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}" },
+  "GB-SCT": { label: "Scotland", name: "Scotland", flag: "🏴\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}" },
+  "GB-WLS": { label: "Wales", name: "Wales", flag: "🏴\u{E0067}\u{E0062}\u{E0077}\u{E006C}\u{E0073}\u{E007F}" },
+};
+
+/** Legacy/blank rows resolve to Ireland, the default outreach nation. */
+export function normalizeCountry(raw: string | undefined | null): ProspectCountry {
+  return raw && (PROSPECT_COUNTRIES as readonly string[]).includes(raw)
+    ? (raw as ProspectCountry)
+    : "IE";
+}
 
 // ── Lead books ───────────────────────────────────────────────────────────────
 
@@ -449,6 +479,9 @@ export function seedToDb(p: Prospect): NewDbProspect {
     id: p.id,
     organisation: p.organisation,
     segment: normalizeSegment(p.segment),
+    country: normalizeCountry(p.country),
+    category: p.category ?? "",
+    flags: p.flags ?? "",
     contactName: p.contactName,
     role: p.role,
     email: p.email,
@@ -479,6 +512,9 @@ export function seedToDb(p: Prospect): NewDbProspect {
 export const SEED_RESEARCH_FIELDS = [
   "organisation",
   "segment",
+  "country",
+  "category",
+  "flags",
   "contactName",
   "role",
   "email",
