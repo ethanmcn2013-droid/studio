@@ -139,8 +139,8 @@ export async function POST(req: Request) {
     let filled = 0;
 
     const toInsert = seeds.filter((s) => !byId.has(s.id));
-    for (let i = 0; i < toInsert.length; i += 50) {
-      const batch = toInsert.slice(i, i + 50);
+    for (let i = 0; i < toInsert.length; i += 25) {
+      const batch = toInsert.slice(i, i + 25);
       await db.insert(prospectsTable).values(batch);
       inserted += batch.length;
     }

@@ -541,3 +541,169 @@ export function buildMailtoHref(
   const subject = encodeURIComponent(SEGMENT_CONFIG[segment].offer);
   return `mailto:${email}?subject=${subject}`;
 }
+
+// ── Scale-aware book filtering (schools book, national volume) ────────────────
+//
+// The schools book runs to hundreds of rows per nation and thousands across
+// all four. These pure helpers power the country tabs, search, county/type/tag
+// filters, pagination and bulk export — the server component reads URL params,
+// calls these, and renders. No client state, fully shareable URLs.
+
+export type BookFilters = {
+  country: ProspectCountry | "all";
+  county: string | "all";
+  category: string | "all";
+  flag: string | "all";
+  stage: ProspectStage | "all";
+  search: string;
+};
+
+export const EMPTY_FILTERS: BookFilters = {
+  country: "all",
+  county: "all",
+  category: "all",
+  flag: "all",
+  stage: "all",
+  search: "",
+};
+
+/** Split the semicolon-joined flags string into trimmed, non-empty tags. */
+export function parseFlags(flags: string): string[] {
+  return flags
+    .split(";")
+    .map((f) => f.trim())
+    .filter(Boolean);
+}
+
+export type Facet = { value: string; count: number };
+
+export type BookFacets = {
+  countries: Facet[];
+  counties: Facet[];
+  categories: Facet[];
+  flags: Facet[];
+};
+
+function tally(map: Map<string, number>, key: string) {
+  if (!key) return;
+  map.set(key, (map.get(key) ?? 0) + 1);
+}
+
+function facetList(map: Map<string, number>, sortByCount = true): Facet[] {
+  const list = [...map.entries()].map(([value, count]) => ({ value, count }));
+  list.sort((a, b) =>
+    sortByCount
+      ? b.count - a.count || a.value.localeCompare(b.value)
+      : a.value.localeCompare(b.value),
+  );
+  return list;
+}
+
+/** Build the filter facets (with counts) over a book's full row set. */
+export function computeBookFacets(rows: DbProspect[]): BookFacets {
+  const countries = new Map<string, number>();
+  const counties = new Map<string, number>();
+  const categories = new Map<string, number>();
+  const flags = new Map<string, number>();
+  for (const r of rows) {
+    tally(countries, r.country ?? "IE");
+    tally(counties, r.county);
+    tally(categories, r.category);
+    for (const f of parseFlags(r.flags ?? "")) tally(flags, f);
+  }
+  return {
+    countries: facetList(countries),
+    counties: facetList(counties, false),
+    categories: facetList(categories),
+    flags: facetList(flags),
+  };
+}
+
+/** Apply the active filters to a book's rows (country handled at query time). */
+export function filterBook(
+  rows: DbProspect[],
+  filters: BookFilters,
+): DbProspect[] {
+  const q = filters.search.trim().toLowerCase();
+  return rows.filter((r) => {
+    if (filters.county !== "all" && r.county !== filters.county) return false;
+    if (filters.category !== "all" && r.category !== filters.category)
+      return false;
+    if (filters.flag !== "all" && !parseFlags(r.flags ?? "").includes(filters.flag))
+      return false;
+    if (filters.stage !== "all" && r.stage !== filters.stage) return false;
+    if (q) {
+      const hay = `${r.organisation} ${r.county} ${r.location} ${r.email} ${r.contactName} ${r.orgGroup}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+export type Paged<T> = {
+  rows: T[];
+  page: number;
+  pageCount: number;
+  total: number;
+  pageSize: number;
+  from: number;
+  to: number;
+};
+
+export function paginate<T>(rows: T[], page: number, pageSize: number): Paged<T> {
+  const total = rows.length;
+  const pageCount = Math.max(1, Math.ceil(total / pageSize));
+  const clamped = Math.min(Math.max(1, page), pageCount);
+  const start = (clamped - 1) * pageSize;
+  const slice = rows.slice(start, start + pageSize);
+  return {
+    rows: slice,
+    page: clamped,
+    pageCount,
+    total,
+    pageSize,
+    from: total === 0 ? 0 : start + 1,
+    to: Math.min(start + pageSize, total),
+  };
+}
+
+/** De-duplicated, lower-cased email list for a bulk copy. */
+export function emailsOf(rows: DbProspect[]): string[] {
+  const seen = new Set<string>();
+  for (const r of rows) {
+    const e = r.email.trim().toLowerCase();
+    if (e && e.includes("@")) seen.add(e);
+  }
+  return [...seen];
+}
+
+const CSV_COLUMNS: { header: string; get: (r: DbProspect) => string }[] = [
+  { header: "Email", get: (r) => r.email },
+  { header: "School", get: (r) => r.organisation },
+  { header: "Contact", get: (r) => r.contactName },
+  { header: "Role", get: (r) => r.role },
+  { header: "Country", get: (r) => r.country ?? "IE" },
+  { header: "County", get: (r) => r.county },
+  { header: "Location", get: (r) => r.location },
+  { header: "Type", get: (r) => r.category },
+  { header: "Tags", get: (r) => r.flags },
+  { header: "Enrolment", get: (r) => r.tier },
+  { header: "Patron", get: (r) => r.orgGroup },
+  { header: "Phone", get: (r) => r.phone },
+  { header: "Website", get: (r) => r.website },
+  { header: "Stage", get: (r) => r.stage },
+];
+
+function csvCell(value: string): string {
+  const v = value ?? "";
+  return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+}
+
+/** Build a mail-merge-ready CSV for the current filtered set. */
+export function toCsv(rows: DbProspect[]): string {
+  const head = CSV_COLUMNS.map((c) => c.header).join(",");
+  const body = rows
+    .map((r) => CSV_COLUMNS.map((c) => csvCell(c.get(r))).join(","))
+    .join("\n");
+  return `${head}\n${body}`;
+}

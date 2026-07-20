@@ -13,15 +13,18 @@
  */
 
 import { revalidatePath } from "next/cache";
-import { asc, eq, sql } from "drizzle-orm";
+import { and, asc, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   type DbProspect,
+  type ProspectCountry,
+  type ProspectSegment,
   type ProspectStage,
   prospectsTable,
 } from "@/lib/db/schema";
 import { seedToDb } from "@/lib/hq/crm-utils";
 import { seedHqData } from "@/lib/hq/data";
+import { schoolLeads } from "@/lib/hq/schools";
 
 // NOTE: Pure utilities (SEGMENT_CONFIG, STAGE_LABELS, PIPELINE_STAGES,
 // computeStageCounts, computeLockdown, computeOutreachSummary,
@@ -56,7 +59,9 @@ async function ensureSeeded(): Promise<void> {
 
 /**
  * All prospects, alphabetical by organisation.
- * Falls back to seedHqData if the DB table doesn't exist yet.
+ * Falls back to the committed datasets (curated seed + national school JSON)
+ * if the DB is unavailable, so the schools book renders in local dev and
+ * survives a DB blip.
  */
 export async function getProspects(): Promise<DbProspect[]> {
   try {
@@ -66,9 +71,73 @@ export async function getProspects(): Promise<DbProspect[]> {
       .from(prospectsTable)
       .orderBy(asc(prospectsTable.organisation));
   } catch {
-    return (seedHqData.prospects ?? [])
+    return [...(seedHqData.prospects ?? []), ...schoolLeads]
       .map(seedToDb)
       .sort((a, b) => a.organisation.localeCompare(b.organisation)) as DbProspect[];
+  }
+}
+
+/**
+ * Prospects in one book, optionally scoped to one nation. Keeps the schools
+ * book (which can run to thousands of rows across four nations) from ever
+ * loading the venue and student books into memory, and lets the country tabs
+ * push their filter down to the query. Falls back to the committed datasets
+ * (curated seed + national school JSON) when the DB is unavailable.
+ */
+export async function getProspectsBySegment(
+  segment: ProspectSegment,
+  country?: ProspectCountry,
+): Promise<DbProspect[]> {
+  try {
+    await ensureSeeded();
+    const where = country
+      ? and(eq(prospectsTable.segment, segment), eq(prospectsTable.country, country))
+      : eq(prospectsTable.segment, segment);
+    return await db
+      .select()
+      .from(prospectsTable)
+      .where(where)
+      .orderBy(asc(prospectsTable.organisation));
+  } catch {
+    const fromSeed = (seedHqData.prospects ?? []).map(seedToDb);
+    const fromSchools = segment === "school" ? schoolLeads.map(seedToDb) : [];
+    return [...fromSeed, ...fromSchools]
+      .filter(
+        (p) =>
+          p.segment === segment && (!country || (p.country ?? "IE") === country),
+      )
+      .sort((a, b) =>
+        a.organisation.localeCompare(b.organisation),
+      ) as DbProspect[];
+  }
+}
+
+/**
+ * Per-nation school counts for the country tabs — a single grouped count so
+ * the tabs stay accurate without loading every nation's rows. Falls back to
+ * the committed dataset counts when the DB is unavailable.
+ */
+export async function getSchoolCountryCounts(): Promise<
+  { value: string; count: number }[]
+> {
+  try {
+    await ensureSeeded();
+    const rows = await db
+      .select({
+        country: prospectsTable.country,
+        n: sql<number>`count(*)`,
+      })
+      .from(prospectsTable)
+      .where(eq(prospectsTable.segment, "school"))
+      .groupBy(prospectsTable.country);
+    return rows.map((r) => ({ value: r.country, count: Number(r.n) }));
+  } catch {
+    const counts = new Map<string, number>();
+    for (const p of schoolLeads) {
+      const c = p.country ?? "IE";
+      counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+    return [...counts.entries()].map(([value, count]) => ({ value, count }));
   }
 }
 
