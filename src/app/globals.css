@@ -6816,7 +6816,9 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   color: var(--ink);
   border-color: var(--ink-quiet);
 }
-.hq-crm-bulk-btn:disabled { opacity: 0.4; cursor: default; }
+.hq-crm-bulk-btn:disabled,
+.hq-crm-bulk-btn[data-disabled="true"] { opacity: 0.4; cursor: default; pointer-events: none; }
+a.hq-crm-bulk-btn { text-decoration: none; display: inline-flex; align-items: center; }
 .hq-crm-bulk-btn[data-done="true"] {
   color: #065f46;
   border-color: #6ee7b7;
@@ -6859,9 +6861,18 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
 }
 .hq-crm-badge[data-flag="DEIS"] { color: #92400e; background: #fef3c7; border-color: #fde68a; }
 .hq-crm-badge[data-flag="Gaelcholáiste"],
-.hq-crm-badge[data-flag="Gaeltacht"] { color: #065f46; background: #d1fae5; border-color: #6ee7b7; }
+.hq-crm-badge[data-flag="Gaeltacht"],
+.hq-crm-badge[data-flag="Welsh-medium"] { color: #065f46; background: #d1fae5; border-color: #6ee7b7; }
 .hq-crm-badge[data-flag="Fee-Paying"] { color: var(--accent-deep); background: var(--accent-soft); border-color: var(--accent-tint, var(--accent-soft)); }
-.hq-crm-badge[data-flag="ETB"] { color: #3730a3; background: #e0e7ff; border-color: #c7d2fe; }
+.hq-crm-badge[data-flag="ETB"],
+.hq-crm-badge[data-flag="Grammar"] { color: #3730a3; background: #e0e7ff; border-color: #c7d2fe; }
+.hq-crm-badge[data-flag="Faith"],
+.hq-crm-badge[data-flag="Academy"],
+.hq-crm-badge[data-flag="Boys"],
+.hq-crm-badge[data-flag="Girls"],
+.hq-crm-badge[data-flag="All-through"] { color: var(--ink-soft); background: var(--paper-deep); border-color: var(--hairline-2); }
+.hq-crm-badge[data-flag="email-inferred"] { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+.hq-crm-badge[data-flag="email-missing"] { color: #9f1239; background: #fff1f2; border-color: #fecdd3; }
 
 /* ── Pager ────────────────────────────────────────────────────────── */
 .hq-crm-pager {

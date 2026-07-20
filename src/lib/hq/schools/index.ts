@@ -22,6 +22,9 @@
 import type { Prospect } from "@/lib/hq/data";
 import type { ProspectCountry } from "@/lib/db/schema";
 import irelandRaw from "./ireland.json";
+import scotlandRaw from "./scotland.json";
+import englandRaw from "./england.json";
+import walesRaw from "./wales.json";
 
 export type SchoolsManifestEntry = {
   country: ProspectCountry;
@@ -31,10 +34,20 @@ export type SchoolsManifestEntry = {
 };
 
 const ireland = irelandRaw as unknown as Prospect[];
+const scotland = scotlandRaw as unknown as Prospect[];
+const england = englandRaw as unknown as Prospect[];
+const wales = walesRaw as unknown as Prospect[];
 
 /**
  * Per-nation manifest. Add a nation by dropping its JSON in this folder and
  * appending an entry here — the import route iterates the manifest.
+ *
+ * Email coverage differs by register and is honestly reflected in each row's
+ * verification/flags: Ireland and Scotland publish official school emails
+ * (100%); England's GIAS has no email field, so the office address is inferred
+ * from the official website domain and tagged `email-inferred` (verify before
+ * send); Wales's register carries neither email nor website, so those rows are
+ * tagged `email-missing` for local-authority enrichment.
  */
 export const SCHOOLS_MANIFEST: SchoolsManifestEntry[] = [
   {
@@ -42,6 +55,21 @@ export const SCHOOLS_MANIFEST: SchoolsManifestEntry[] = [
     source:
       "Dept. of Education — Data on Individual Schools, post-primary 2025/26 (gov.ie)",
     leads: ireland,
+  },
+  {
+    country: "GB-SCT",
+    source: "gov.scot — School contact list (31 January 2026)",
+    leads: scotland,
+  },
+  {
+    country: "GB-ENG",
+    source: "DfE — Get Information About Schools (GIAS) register",
+    leads: england,
+  },
+  {
+    country: "GB-WLS",
+    source: "Welsh Government — Address list of schools (2026)",
+    leads: wales,
   },
 ];
 

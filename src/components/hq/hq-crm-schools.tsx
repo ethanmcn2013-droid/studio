@@ -14,7 +14,6 @@ import {
   filterBook,
   getNextActions,
   paginate,
-  toCsv,
   type BookFilters,
 } from "@/lib/hq/crm-utils";
 import type { DbProspect, ProspectCountry, ProspectStage } from "@/lib/db/schema";
@@ -61,9 +60,7 @@ export function HqCrmSchools({
   const nextActions = getNextActions(filtered);
 
   const page = paginate(filtered, pageNumber, PAGE_SIZE);
-  const emails = emailsOf(filtered);
-  const csv = toCsv(filtered);
-  const csvName = `signal-schools-${activeCountry.toLowerCase()}-${filtered.length}.csv`;
+  const emailCount = emailsOf(filtered).length;
 
   // Base querystring for pipeline + pager links (carries the active filter).
   function paramsFor(overrides: Partial<BookFilters & { page: number }>): string {
@@ -109,9 +106,8 @@ export function HqCrmSchools({
       <HqCrmBulkBar
         total={rows.length}
         filteredCount={filtered.length}
-        emails={emails}
-        csv={csv}
-        csvName={csvName}
+        emailCount={emailCount}
+        exportBase={paramsFor({ page: 1 })}
       />
 
       {page.rows.length === 0 ? (
