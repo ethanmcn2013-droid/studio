@@ -2246,7 +2246,7 @@
           <div class="cred-item"><div class="cred-title">Product proof</div><div class="cred-sub">Slides 06 + reel · five live domains · 60-second verification path</div></div>
           <div class="cred-item"><div class="cred-title">Founder &amp; execution</div><div class="cred-sub">Slide 07 · PMP · LSS BB · Apple · Verizon · suite built solo</div></div>
           <div class="cred-item"><div class="cred-title">Risks &amp; downside</div><div class="cred-sub">Slide 15 · eight named risks · 6-license stress case on slide 14</div></div>
-          <div class="cred-item"><div class="cred-title">Appendix · due diligence</div><div class="cred-sub">A1–A4 · Signal HQ org · forecast integrity · governance &amp; review council</div></div>
+          <div class="cred-item"><div class="cred-title">Appendix · due diligence</div><div class="cred-sub">A1–A6 · Signal HQ org · forecast integrity · governance &amp; review council · operating costs · revenue at scale</div></div>
         </div>
         <div class="mono-label" style="margin-bottom:6px;">Supporting documents · enclosed separately</div>
         <ul class="deck-list" style="gap:4px;font-size:12px;">
@@ -3179,6 +3179,759 @@
   <div class="slide-label">signal studio · business plan 2026</div>
   <div class="slide-num">A4</div>
 </div>
+
+<style>
+/* ===== Appendix A5/A6 · finance registers (scoped: .fin-slide) ===== */
+.fin-slide { --direct-1: #3f3f46; --direct-2: #8a8a93; }
+.fin-slide .slide-inner { padding: 38px 72px 56px; }
+.fin-slide .slide-title { font-size: 29px; margin-bottom: 6px; }
+.fin-slide .slide-kicker { margin-top: 0; margin-bottom: 10px; }
+
+/* Milestone rail */
+.fin-slide .mrail { position: relative; margin: 2px 0 10px; width: 640px; }
+.fin-slide .mrail-cap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-30); display: block; margin-bottom: 7px; }
+.fin-slide .mrail-stations { display: flex; position: relative; }
+.fin-slide .mrail-track { position: absolute; top: 4px; left: calc(100% / 12); right: calc(100% / 12); height: 1px; background: var(--rule); }
+.fin-slide .mrail-progress { position: absolute; left: 0; top: -0.5px; height: 2px; width: 60%; background: linear-gradient(90deg, var(--indigo-dark), var(--indigo)); border-radius: 2px; transition: width 0.3s var(--ease-out); }
+.fin-slide .mrail-stations button { flex: 1; background: none; border: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0; position: relative; z-index: 1; }
+.fin-slide .mrail-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--white); border: 1.5px solid var(--rule); transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), transform 0.2s var(--ease-out); }
+.fin-slide .mrail-stations button:hover .mrail-dot { border-color: var(--ink-30); }
+.fin-slide .mrail-stations button.passed .mrail-dot { background: var(--indigo-mid); border-color: var(--indigo-mid); }
+.fin-slide .mrail-stations button.active .mrail-dot { background: var(--indigo); border-color: var(--indigo); box-shadow: 0 0 0 3.5px var(--indigo-light); transform: scale(1.2); animation: finRailPulse 2.4s ease-in-out infinite; }
+@keyframes finRailPulse { 0%, 100% { box-shadow: 0 0 0 3.5px var(--indigo-light); } 50% { box-shadow: 0 0 0 6.5px rgba(79,70,229,0.16); } }
+.fin-slide .mrail-lab { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-60); padding: 3px 10px; border: 1px solid var(--rule); border-radius: 99px; background: var(--white); transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fin-slide .mrail-stations button:hover .mrail-lab { color: var(--ink); border-color: var(--ink-30); box-shadow: var(--shadow-sm); }
+.fin-slide .mrail-stations button.active .mrail-lab { background: var(--ink); border-color: var(--ink); color: var(--white); font-weight: 600; }
+
+/* Shared hero + stats */
+.fin-slide .fin-hero-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 6px; }
+.fin-slide .fin-hero-amount { font-family: var(--sans); font-weight: 800; letter-spacing: -0.045em; line-height: 0.96; color: var(--indigo); font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; white-space: nowrap; }
+.fin-slide .fin-hero-amount small { font-weight: 700; color: var(--ink-30); letter-spacing: -0.02em; }
+.fin-slide .fin-hero-sub { font-size: 11px; color: var(--ink-60); line-height: 1.45; margin-top: 8px; max-width: 360px; }
+.fin-slide .fin-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.fin-slide .fin-stat { padding: 9px 12px; border: 1px solid var(--rule); border-radius: var(--radius-sm); background: var(--paper); }
+.fin-slide .fin-stat .fs-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 4px; }
+.fin-slide .fin-stat .fs-val { font-family: var(--sans); font-size: 16px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fin-slide .fin-stat .fs-val em { font-style: normal; font-size: 10.5px; font-weight: 600; color: var(--ink-30); }
+.fin-slide .fin-stat .fs-note { font-size: 8.5px; color: var(--ink-30); margin-top: 3px; line-height: 1.35; }
+
+/* Shared range band */
+.fin-slide .fin-range { margin-top: 10px; }
+.fin-slide .fin-range-head { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 6px; }
+.fin-slide .fin-range-track { position: relative; height: 8px; border-radius: 99px; background: var(--indigo-light); overflow: hidden; }
+.fin-slide .fin-range-fill { position: absolute; top: 0; bottom: 0; background: linear-gradient(90deg, var(--indigo-mid), var(--indigo)); border-radius: 99px; transition: left 0.26s var(--ease-out), right 0.26s var(--ease-out); }
+.fin-slide .fin-range-marker { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--ink); transition: left 0.26s var(--ease-out); }
+.fin-slide .fin-range-labels { display: flex; justify-content: space-between; margin-top: 6px; font-family: var(--mono); font-size: 9px; color: var(--ink-30); letter-spacing: 0.03em; font-variant-numeric: tabular-nums; }
+.fin-slide .fin-range-labels .mid { color: var(--ink); font-weight: 600; }
+
+/* Shared side boxes */
+.fin-slide .fin-grid { display: grid; gap: 20px; flex: 1; min-height: 0; }
+.fin-slide .fin-grid > * { min-width: 0; }
+.fin-slide .fin-col { display: flex; flex-direction: column; min-height: 0; }
+.fin-slide .fin-side { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.fin-slide .fin-box { padding: 11px 13px; border: 1px solid var(--rule); border-radius: var(--radius-sm); background: var(--paper); }
+.fin-slide .fin-box-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 7px; }
+.fin-slide .fin-callout { padding: 12px 13px; border: 1px solid rgba(79,70,229,0.28); border-radius: var(--radius-sm); background: var(--white); box-shadow: var(--shadow-sm); }
+.fin-slide .fin-callout .fin-box-label { color: var(--indigo); margin-bottom: 6px; }
+.fin-slide .fin-callout p { font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.35; color: var(--ink); }
+.fin-slide .fin-dashed { padding: 10px 13px; border: 1px dashed var(--rule); border-radius: var(--radius-sm); background: var(--white); }
+.fin-slide .fin-dashed p { font-size: 10.5px; color: var(--ink-60); line-height: 1.45; }
+.fin-slide .fin-dashed b, .fin-slide .fin-takeaway b { color: var(--ink); font-weight: 600; }
+.fin-slide .fin-foot { display: flex; justify-content: space-between; gap: 40px; padding-top: 10px; margin-top: 10px; }
+.fin-slide .fin-foot p { font-size: 9px; color: var(--ink-30); line-height: 1.45; max-width: 640px; }
+.fin-slide .fin-static-note { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 8px; }
+
+/* Shared mini-table (print frames) */
+.fin-slide .fin-mini { border: 1px solid var(--rule); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 10px; background: var(--white); }
+.fin-slide .fin-mini-row { display: grid; grid-template-columns: 138px repeat(6, 1fr); align-items: stretch; }
+.fin-slide .fin-mini-row > div { padding: 5px 8px; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: -0.02em; text-align: right; font-variant-numeric: tabular-nums; border-left: 1px solid var(--rule); white-space: nowrap; }
+.fin-slide .fin-mini-row > div:first-child { font-family: var(--mono); font-size: 8px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-30); text-align: left; border-left: none; display: flex; align-items: center; }
+.fin-slide .fin-mini-row.head > div { background: var(--paper); font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-60); text-transform: uppercase; }
+.fin-slide .fin-mini-row.head > div.hl { color: var(--indigo); }
+.fin-slide .fin-mini-row:not(.head) { border-top: 1px solid var(--rule); }
+.fin-slide .fin-mini-row .hl { background: var(--indigo-light); color: var(--indigo-dark); }
+.fin-slide .fin-mini-row .dim { color: var(--ink-30); font-weight: 600; }
+.fin-slide .fin-mini-row .rng { font-family: var(--mono); font-size: 7.5px; font-weight: 500; letter-spacing: 0; }
+
+/* A5 cost specifics */
+.fin-cost .fin-grid, .fin-cost-print .fin-grid { grid-template-columns: 400px 1fr 292px; }
+.fin-slide .cost-hero-amount { font-size: 67px; }
+.fin-slide .cost-hero-amount small { font-size: 26px; }
+.fin-slide .cost-baseline { margin-top: auto; padding: 10px 13px; border: 1px solid rgba(79,70,229,0.22); border-radius: var(--radius-sm); background: linear-gradient(135deg, #f7f6ff 0%, var(--indigo-light) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.65); }
+.fin-slide .cost-baseline .cb-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+.fin-slide .cost-baseline .cb-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo-dark); }
+.fin-slide .cost-baseline .cb-verdict { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fin-slide .cost-baseline-track { position: relative; height: 7px; border-radius: 99px; background: rgba(79,70,229,0.14); overflow: hidden; }
+.fin-slide .cost-baseline-fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 99px; background: var(--indigo); transition: width 0.45s var(--ease-out), background 0.3s; }
+.fin-slide .cost-baseline-fill.over { background: var(--indigo-dark); }
+.fin-slide .cost-baseline-note { font-size: 10.5px; color: var(--ink-60); line-height: 1.4; margin-top: 7px; }
+.fin-slide .cost-reg-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; border-bottom: 1px solid var(--ink); margin-bottom: 2px; }
+.fin-slide .cost-reg-title { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); }
+.fin-slide .cost-reg-rows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fin-slide .cost-reg-row { display: grid; grid-template-columns: 118px 1fr 64px; gap: 10px; align-items: center; padding: 4.5px 0; border-bottom: 1px solid var(--rule); }
+.fin-slide .cost-reg-row:last-of-type { border-bottom: none; }
+.fin-slide .cost-reg-rows.dense .cost-reg-row { padding: 2.5px 0; }
+.fin-slide .cost-reg-name { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: -0.015em; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fin-slide .cost-reg-rows.dense .cost-reg-name { font-size: 10.5px; }
+.fin-slide .cost-reg-name small { display: block; font-family: var(--mono); font-size: 7.5px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-30); margin-top: 1px; }
+.fin-slide .cost-reg-rows.dense .cost-reg-name small { font-size: 7px; margin-top: 0; }
+.fin-slide .cost-reg-bar-track { height: 5px; border-radius: 99px; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; }
+.fin-slide .cost-reg-bar { height: 100%; border-radius: 99px; background: var(--indigo); transition: width 0.5s var(--ease-out); min-width: 2px; }
+.fin-slide .cost-reg-bar.tooling { background: var(--ink); }
+.fin-slide .cost-reg-val { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: -0.02em; text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fin-slide .cost-reg-rows.dense .cost-reg-val { font-size: 11px; }
+.fin-slide .cost-reg-free { margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-30); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fin-slide .cost-reg-free b { color: var(--indigo); font-weight: 600; }
+.fin-slide .cost-plan-list { list-style: none; margin: 0; padding: 0; }
+.fin-slide .cost-plan-list li { font-size: 10.5px; line-height: 1.4; color: var(--ink-60); padding: 3.5px 0 3.5px 14px; position: relative; border-bottom: 1px solid var(--rule); }
+.fin-slide .cost-plan-list li:last-child { border-bottom: none; }
+.fin-slide .cost-plan-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo-light); border: 1.5px solid var(--indigo); }
+.fin-slide .cost-plan-list li.none { color: var(--ink-30); }
+.fin-slide .cost-plan-list li.none::before { border-color: var(--ink-30); background: transparent; }
+
+/* A6 revenue specifics */
+.fin-rev .fin-grid, .fin-rev-print .fin-grid { grid-template-columns: 378px 1fr 268px; }
+.fin-slide .rev-floor { margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 10px 13px; border: 1px solid var(--rule); border-left: 3px solid var(--ink); border-radius: var(--radius-sm); background: var(--white); }
+.fin-slide .rev-floor-flag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--white); background: var(--ink); border-radius: 3px; padding: 3px 7px; flex-shrink: 0; }
+.fin-slide .rev-floor p { font-size: 10.5px; color: var(--ink-60); line-height: 1.4; }
+.fin-slide .rev-floor b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.fin-slide .rev-mix-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; border-bottom: 1px solid var(--ink); margin-bottom: 10px; }
+.fin-slide .rev-mix-title { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); }
+.fin-slide .rev-stack { position: relative; height: 20px; border-radius: 4px; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; display: flex; }
+.fin-slide .rev-seg { height: 100%; transition: width 0.26s var(--ease-out); min-width: 0; }
+.fin-slide .rev-seg.s-venue { background: var(--indigo); }
+.fin-slide .rev-seg.s-school { background: repeating-linear-gradient(135deg, var(--indigo-mid) 0 5px, #a5b0f5 5px 10px); }
+.fin-slide .rev-seg.s-student { background: var(--direct-1); }
+.fin-slide .rev-seg.s-pro { background: var(--direct-2); }
+.fin-slide .rev-stack-empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-30); opacity: 0; transition: opacity 0.26s; pointer-events: none; }
+.fin-slide .rev-stack-empty.show { opacity: 1; }
+.fin-slide .rev-key { display: flex; gap: 14px; margin-top: 7px; font-family: var(--mono); font-size: 8px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-30); }
+.fin-slide .rev-key .k { display: flex; align-items: center; gap: 5px; }
+.fin-slide .rev-key .sw { width: 8px; height: 8px; border-radius: 2px; }
+.fin-slide .rev-streams { margin-top: 10px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fin-slide .rev-stream { display: grid; grid-template-columns: 14px minmax(0, 1fr) 104px 46px; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.fin-slide .rev-streams.compact .rev-stream { padding: 3px 0; }
+.fin-slide .rev-stream:last-of-type { border-bottom: none; }
+.fin-slide .rev-stream-dot { width: 9px; height: 9px; border-radius: 2.5px; }
+.fin-slide .rev-stream-main { min-width: 0; }
+.fin-slide .rev-stream-name { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: -0.015em; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 6px; }
+.fin-slide .rev-stream-tag { font-family: var(--mono); font-size: 7px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--indigo-dark); border: 1px dashed rgba(79,70,229,0.4); border-radius: 3px; padding: 1.5px 5px; background: var(--indigo-light); }
+.fin-slide .rev-stream-units { display: block; font-family: var(--mono); font-size: 8.5px; color: var(--ink-30); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.fin-slide .rev-stream-arr { font-family: var(--sans); font-size: 12.5px; font-weight: 700; letter-spacing: -0.02em; text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fin-slide .rev-stream-share { font-family: var(--mono); font-size: 9px; color: var(--ink-30); text-align: right; font-variant-numeric: tabular-nums; }
+.fin-slide .rev-stream.zero .rev-stream-name, .fin-slide .rev-stream.zero .rev-stream-arr { color: var(--ink-30); }
+.fin-slide .rev-stream.zero .rev-stream-dot { opacity: 0.3; }
+.fin-slide .rev-takeaway { margin-top: auto; padding: 9px 12px; border: 1px dashed var(--rule); border-radius: var(--radius-sm); background: var(--white); font-size: 10.5px; color: var(--ink-60); line-height: 1.45; }
+.fin-slide .rev-pay-total { font-family: var(--sans); font-size: 24px; font-weight: 800; letter-spacing: -0.035em; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1; }
+.fin-slide .rev-pay-total em { font-style: normal; font-size: 10.5px; font-weight: 600; color: var(--ink-30); letter-spacing: 0; }
+.fin-slide .rev-pay-split { margin-top: 9px; display: flex; flex-direction: column; gap: 6px; }
+.fin-slide .rev-pay-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline; }
+.fin-slide .rev-pay-row .pr-name { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-60); }
+.fin-slide .rev-pay-row .pr-val { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fin-slide .rev-pay-bar { height: 5px; border-radius: 99px; background: var(--white); border: 1px solid var(--rule); overflow: hidden; }
+.fin-slide .rev-pay-bar i { display: block; height: 100%; border-radius: 99px; transition: width 0.26s var(--ease-out); }
+.fin-slide .rev-pay-bar.org i { background: var(--indigo); }
+.fin-slide .rev-pay-bar.ind i { background: var(--direct-1); }
+@media (prefers-reduced-motion: reduce) {
+  .fin-slide .mrail-progress, .fin-slide .fin-range-fill, .fin-slide .fin-range-marker, .fin-slide .cost-baseline-fill,
+  .fin-slide .cost-reg-bar, .fin-slide .rev-seg, .fin-slide .rev-pay-bar i { transition: none; }
+  .fin-slide .mrail-stations button.active .mrail-dot { animation: none; }
+}
+</style>
+
+<!-- A5 · OPERATING COST REGISTER · INTERACTIVE -->
+<div class="slide slide-appendix fin-slide fin-cost">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Appendix A5 · Operating cost register</div>
+    <div class="slide-title">The €500 monthly cost line <span>carries the plan past 10,000 users.</span></div>
+    <div class="slide-kicker">Operating costs · measured, not estimated</div>
+    <div class="mrail" role="tablist" aria-label="Scale milestone">
+      <span class="mrail-cap">Active users · select a milestone to change the state</span>
+      <div class="mrail-stations f-stations">
+        <div class="mrail-track"><i class="mrail-progress f-prog"></i></div>
+        <button role="tab" data-i="0"><span class="mrail-dot"></span><span class="mrail-lab">0 · Today</span></button>
+        <button role="tab" data-i="1"><span class="mrail-dot"></span><span class="mrail-lab">100</span></button>
+        <button role="tab" data-i="2"><span class="mrail-dot"></span><span class="mrail-lab">1K</span></button>
+        <button role="tab" data-i="3" class="active"><span class="mrail-dot"></span><span class="mrail-lab">10K</span></button>
+        <button role="tab" data-i="4"><span class="mrail-dot"></span><span class="mrail-lab">100K</span></button>
+        <button role="tab" data-i="5"><span class="mrail-dot"></span><span class="mrail-lab">1M</span></button>
+      </div>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-col">
+        <div class="fin-hero-label f-heroLabel">Monthly run rate · 10,000 active users · ex VAT</div>
+        <div class="fin-hero-amount cost-hero-amount">€<span class="f-heroNum">294</span><small>/mo</small></div>
+        <p class="fin-hero-sub">Measured launch-ready run rate is €250 a month. The €500 baseline in the cash model holds through the 18-venue floor and the 100-venue target.</p>
+        <div class="fin-stats">
+          <div class="fin-stat"><div class="fs-label">Fixed tooling</div><div class="fs-val f-statFixed">€268 <em>/mo</em></div></div>
+          <div class="fin-stat"><div class="fs-label">Runtime usage</div><div class="fs-val f-statVar">€26 <em>/mo</em></div></div>
+          <div class="fin-stat"><div class="fs-label">Per active user</div><div class="fs-val f-statPer">€0.029</div></div>
+          <div class="fin-stat"><div class="fs-label">Annualised</div><div class="fs-val f-statAnn">€3,531 <em>/yr</em></div></div>
+        </div>
+        <div class="fin-range">
+          <div class="fin-range-track"><div class="fin-range-fill f-rangeFill"></div><div class="fin-range-marker f-rangeMarker"></div></div>
+          <div class="fin-range-labels"><span>Low <b class="f-rangeLow">€216</b></span><span class="mid f-rangeBase">Base €294</span><span>High <b class="f-rangeHigh">€610</b></span></div>
+        </div>
+        <div class="cost-baseline">
+          <div class="cb-row"><span class="cb-label">Deck baseline · €500/mo</span><span class="cb-verdict f-blVerdict">€206 headroom</span></div>
+          <div class="cost-baseline-track"><div class="cost-baseline-fill f-blFill" style="width:59%"></div></div>
+          <p class="cost-baseline-note f-blNote">Base cost sits inside the €500 baseline until roughly 15,000 to 20,000 active users.</p>
+        </div>
+      </div>
+      <div class="fin-col">
+        <div class="cost-reg-head"><span class="cost-reg-title">Service register · monthly EUR</span><span class="cost-reg-title f-regCount">10 paid lines</span></div>
+        <div class="cost-reg-rows f-regRows"></div>
+        <div class="cost-reg-free f-regFree"><b>5</b> services on free tiers at this scale</div>
+      </div>
+      <div class="fin-side">
+        <div class="fin-box">
+          <div class="fin-box-label">Plan changes at this milestone</div>
+          <ul class="cost-plan-list f-planList"></ul>
+        </div>
+        <div class="fin-callout"><div class="fin-box-label">Next cost cliff</div><p class="f-cliffText"></p></div>
+        <div class="fin-dashed">
+          <div class="fin-box-label">Measured today</div>
+          <p><b>€177/mo ex VAT</b> on actual invoices (Anthropic €90.00, OpenAI €83.74, domain €3.08). Launch-compliant configuration adds Vercel Pro, Turso Developer, Clerk Pro and Sentry Team: <b>€250/mo</b>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="fin-foot">
+      <p>Recurring infrastructure and engineering tooling only, ex VAT. Excludes salaries, advertising, payment fees, debt service, and one-time launch lines A to D. One founder seat at every milestone.</p>
+      <p style="text-align:right;">Vendor invoices and official price lists, accessed 20 July 2026. USD converted at the ECB reference rate of 1.1435. Full register in Appendix A4.</p>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">A5</div>
+</div>
+
+<!-- A5 · OPERATING COST REGISTER · PRINT REFERENCE -->
+<div class="slide slide-appendix fin-slide fin-cost-print">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Appendix A5 · Operating cost register · print reference</div>
+    <div class="slide-title">The €500 monthly cost line <span>carries the plan past 10,000 users.</span></div>
+    <div class="slide-kicker">Operating costs · measured, not estimated</div>
+    <div class="fin-static-note">Monthly run rate by scale milestone · EUR ex VAT · base case shown at 10,000 active users</div>
+    <div class="fin-mini">
+      <div class="fin-mini-row head"><div>Active users</div><div>0 · Today</div><div>100</div><div>1K</div><div class="hl">10K</div><div>100K</div><div>1M</div></div>
+      <div class="fin-mini-row"><div>Total €/mo</div><div>250</div><div>251</div><div>271</div><div class="hl">294</div><div>2,783</div><div>32,022</div></div>
+      <div class="fin-mini-row"><div>Low – high €/mo</div><div class="dim">194–261</div><div class="dim">194–263</div><div class="dim">195–302</div><div class="hl dim">216–610</div><div class="dim">1,290–4,730</div><div class="dim">17,700–57,400</div></div>
+      <div class="fin-mini-row"><div>Per active user</div><div class="dim">—</div><div class="dim">2.51</div><div class="dim">0.27</div><div class="hl dim">0.029</div><div class="dim">0.028</div><div class="dim">0.032</div></div>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-col">
+        <div class="fin-hero-label">Monthly run rate · 10,000 active users · ex VAT</div>
+        <div class="fin-hero-amount" style="font-size:46px;">€294<small style="font-size:20px;">/mo</small></div>
+        <p class="fin-hero-sub">Measured launch-ready run rate is €250 a month. The €500 baseline in the cash model holds through the 18-venue floor and the 100-venue target.</p>
+        <div class="cost-baseline" style="margin-top:12px;">
+          <div class="cb-row"><span class="cb-label">Deck baseline · €500/mo</span><span class="cb-verdict">€206 headroom</span></div>
+          <div class="cost-baseline-track"><div class="cost-baseline-fill" style="width:59%"></div></div>
+          <p class="cost-baseline-note">Base cost sits inside the €500 baseline until roughly 15,000 to 20,000 active users.</p>
+        </div>
+      </div>
+      <div class="fin-col">
+        <div class="cost-reg-head"><span class="cost-reg-title">Service register at 10K · monthly EUR</span><span class="cost-reg-title">Paid lines</span></div>
+        <div class="cost-reg-rows dense">
+          <div class="cost-reg-row"><div class="cost-reg-name">Claude Max 5x<small>Engineering tooling</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar tooling" style="width:100%"></div></div><div class="cost-reg-val">90</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">ChatGPT Pro<small>Engineering tooling</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar tooling" style="width:93%"></div></div><div class="cost-reg-val">84</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Anthropic API<small>Product AI · Tasks assist</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:29%"></div></div><div class="cost-reg-val">26</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Sentry Team<small>Monitoring</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:25%"></div></div><div class="cost-reg-val">23</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Clerk Pro<small>Authentication</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:24%"></div></div><div class="cost-reg-val">22</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Vercel Pro<small>Hosting</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:19%"></div></div><div class="cost-reg-val">17</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Resend Pro<small>Email</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:19%"></div></div><div class="cost-reg-val">17</div></div>
+          <div class="cost-reg-row"><div class="cost-reg-name">Apple · Turso · domain<small>Licence · database · domain</small></div><div class="cost-reg-bar-track"><div class="cost-reg-bar" style="width:17%"></div></div><div class="cost-reg-val">15</div></div>
+        </div>
+        <div class="cost-reg-free"><b>5</b> services on free tiers at this scale · GitHub, Remotion, PostHog, Upstash, Stripe</div>
+      </div>
+      <div class="fin-side">
+        <div class="fin-callout"><div class="fin-box-label">Next cost cliff</div><p>Clerk's 50,000 free retained users exhaust near 50,000 actives: about €900 a month.</p></div>
+        <div class="fin-dashed">
+          <div class="fin-box-label">Measured today</div>
+          <p><b>€177/mo ex VAT</b> on actual invoices (Anthropic €90.00, OpenAI €83.74, domain €3.08). Launch-compliant configuration adds Vercel Pro, Turso Developer, Clerk Pro and Sentry Team: <b>€250/mo</b>.</p>
+        </div>
+        <div class="fin-box">
+          <div class="fin-box-label">Key takeaway</div>
+          <ul class="cost-plan-list">
+            <li>Baseline provisioned at twice the measured launch run rate.</li>
+            <li>First material cost step arrives near 50,000 active users.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="fin-foot">
+      <p>Recurring infrastructure and engineering tooling only, ex VAT. Excludes salaries, advertising, payment fees, debt service, and one-time launch lines A to D. One founder seat at every milestone.</p>
+      <p style="text-align:right;">Vendor invoices and official price lists, accessed 20 July 2026. USD converted at the ECB reference rate of 1.1435. Full register in Appendix A4.</p>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">A5·P</div>
+</div>
+
+<!-- A6 · REVENUE AT SIX SCALE STATES · INTERACTIVE -->
+<div class="slide slide-appendix fin-slide fin-rev">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Appendix A6 · Revenue at six scale states</div>
+    <div class="slide-title">Different buyers. <span>One compounding revenue system.</span></div>
+    <div class="slide-kicker">EUR ex VAT · base scenario · as of 2026-07-20</div>
+    <div class="mrail" role="tablist" aria-label="Scale milestone">
+      <span class="mrail-cap">Active users · select a milestone to change the state</span>
+      <div class="mrail-stations f-stations">
+        <div class="mrail-track"><i class="mrail-progress f-prog"></i></div>
+        <button role="tab" data-i="0"><span class="mrail-dot"></span><span class="mrail-lab">0 · Today</span></button>
+        <button role="tab" data-i="1"><span class="mrail-dot"></span><span class="mrail-lab">100</span></button>
+        <button role="tab" data-i="2"><span class="mrail-dot"></span><span class="mrail-lab">1K</span></button>
+        <button role="tab" data-i="3" class="active"><span class="mrail-dot"></span><span class="mrail-lab">10K</span></button>
+        <button role="tab" data-i="4"><span class="mrail-dot"></span><span class="mrail-lab">100K</span></button>
+        <button role="tab" data-i="5"><span class="mrail-dot"></span><span class="mrail-lab">1M</span></button>
+      </div>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-col">
+        <div class="fin-hero-label f-heroLabel">Gross ARR · 10,000 active users · ex VAT</div>
+        <div class="fin-hero-amount f-heroAmt" style="font-size:60px;">€<span class="f-heroNum">323,378</span> <small style="font-size:22px;">ARR</small></div>
+        <p class="fin-hero-sub">Approved prices only. Licences fund most active users; direct subscriptions grow the rest. Modelled from 100 to 1,000,000 active users.</p>
+        <div class="fin-stats">
+          <div class="fin-stat"><div class="fs-label">MRR equivalent (ARR ÷ 12)</div><div class="fs-val f-statMrr">€26,948 <em>/mo</em></div></div>
+          <div class="fin-stat"><div class="fs-label">Net revenue</div><div class="fs-val f-statNet">€312,178 <em>/yr</em></div><div class="fs-note">net of payment fees and refunds only</div></div>
+          <div class="fin-stat"><div class="fs-label">Gross € / active user</div><div class="fs-val f-statGpu">€32.34</div></div>
+          <div class="fin-stat"><div class="fs-label">Net € / active user</div><div class="fs-val f-statNpu">€31.22</div></div>
+        </div>
+        <div class="fin-range">
+          <div class="fin-range-head">Low–high scenario · gross ARR</div>
+          <div class="fin-range-track"><div class="fin-range-fill f-rangeFill"></div><div class="fin-range-marker f-rangeMarker"></div></div>
+          <div class="fin-range-labels"><span class="f-rangeLow">€172,866</span><span class="mid f-rangeBase">Base €323,378</span><span class="f-rangeHigh">€483,805</span></div>
+        </div>
+        <div class="rev-floor">
+          <span class="rev-floor-flag">Fixed reference</span>
+          <p><b>Lender underwriting floor: 18 prepaid venues, €27,000.</b> Separate from operating ambition. It is not one of the six states.</p>
+        </div>
+      </div>
+      <div class="fin-col">
+        <div class="rev-mix-head"><span class="rev-mix-title">Revenue mix by offer · gross ARR</span><span class="rev-mix-title f-mixTotal">€323,378</span></div>
+        <div class="rev-stack">
+          <div class="rev-seg s-venue f-segVenue"></div>
+          <div class="rev-seg s-school f-segSchool"></div>
+          <div class="rev-seg s-student f-segStudent"></div>
+          <div class="rev-seg s-pro f-segPro"></div>
+          <div class="rev-stack-empty f-stackEmpty">Zero revenue collected to date</div>
+        </div>
+        <div class="rev-key">
+          <span class="k"><span class="sw" style="background:var(--indigo)"></span>Organisational licences</span>
+          <span class="k"><span class="sw" style="background:repeating-linear-gradient(135deg,var(--indigo-mid) 0 3px,#a5b0f5 3px 6px)"></span>Working offer</span>
+          <span class="k"><span class="sw" style="background:var(--direct-1)"></span>Direct · personal card</span>
+          <span class="k"><span class="sw" style="background:var(--direct-2)"></span>Direct · Pro</span>
+        </div>
+        <div class="rev-streams f-streamRows"></div>
+        <div class="rev-takeaway">At every milestone, <b>most active users are funded by an organisational licence, not a personal card</b>.</div>
+      </div>
+      <div class="fin-side">
+        <div class="fin-box">
+          <div class="fin-box-label">Paying customers</div>
+          <div class="rev-pay-total f-payTotal">5,060 <em>paying</em></div>
+          <div class="rev-pay-split">
+            <div class="rev-pay-row"><span class="pr-name">Organisations · venue + school</span><span class="pr-val f-payOrg">160</span></div>
+            <div class="rev-pay-bar org"><i class="f-payOrgBar" style="width:3.2%"></i></div>
+            <div class="rev-pay-row"><span class="pr-name">Individuals · students + subs</span><span class="pr-val f-payInd">4,900</span></div>
+            <div class="rev-pay-bar ind"><i class="f-payIndBar" style="width:96.8%"></i></div>
+          </div>
+        </div>
+        <div class="fin-callout"><div class="fin-box-label">Next commercial inflection</div><p class="f-cliffText">100 venues and consumer checkout fully open.</p></div>
+        <div class="fin-dashed">
+          <div class="fin-box-label">Read this honestly</div>
+          <p><b>Revenue to date is €0.</b> Every figure is a forward assumption at founder-approved prices. School Edition is a working offer, not a ratified contract.</p>
+        </div>
+      </div>
+    </div>
+    <div class="fin-foot">
+      <p>ARR in EUR ex VAT at founder-approved prices. Base scenario. Event one-time revenue, Committee tier and all unratified offers excluded. Zero revenue collected to date; every figure is a forward assumption.</p>
+      <p style="text-align:right;">As of 2026-07-20 · verified data pack revenue-model-datapack-2026-07-20 · source register in Appendix A4.</p>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">A6</div>
+</div>
+
+<!-- A6 · REVENUE · PRINT REFERENCE -->
+<div class="slide slide-appendix fin-slide fin-rev-print">
+  <div class="slide-inner">
+    <div class="slide-eyebrow">Appendix A6 · Revenue at six scale states · print reference</div>
+    <div class="slide-title">Different buyers. <span>One compounding revenue system.</span></div>
+    <div class="slide-kicker">EUR ex VAT · base scenario · as of 2026-07-20</div>
+    <div class="fin-static-note">Gross ARR by scale milestone · EUR ex VAT · base case shown at 10,000 active users</div>
+    <div class="fin-mini">
+      <div class="fin-mini-row head"><div>Active users</div><div>0 / Today</div><div>100</div><div>1K</div><div class="hl">10K</div><div>100K</div><div>1M</div></div>
+      <div class="fin-mini-row"><div>Gross ARR €/yr</div><div>0</div><div>3,244</div><div>36,582</div><div class="hl">323,378</div><div>2,254,025</div><div>20,973,658</div></div>
+      <div class="fin-mini-row"><div>MRR equivalent €/mo</div><div class="dim">0</div><div class="dim">270</div><div class="dim">3,049</div><div class="hl dim">26,948</div><div class="dim">187,835</div><div class="dim">1,747,805</div></div>
+      <div class="fin-mini-row"><div>Net revenue €/yr</div><div class="dim">0</div><div class="dim">3,156</div><div class="dim">35,433</div><div class="hl dim">312,178</div><div class="dim">2,165,986</div><div class="dim">20,105,145</div></div>
+      <div class="fin-mini-row"><div>Paying · orgs / indiv</div><div class="dim">0</div><div class="dim">32 · 2/30</div><div class="dim">495 · 20/475</div><div class="hl dim">5,060 · 160/4,900</div><div class="dim">35,950 · 950/35,000</div><div class="dim">308,000 · 8,000/300,000</div></div>
+      <div class="fin-mini-row"><div>Low–high ARR €/yr</div><div class="rng dim">0</div><div class="rng dim">1,622–4,906</div><div class="rng dim">17,030–57,709</div><div class="hl rng dim">172,866–483,805</div><div class="rng dim">1,293,878–3,859,757</div><div class="rng dim">11,986,829–31,379,268</div></div>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-col">
+        <div class="fin-hero-label">Gross ARR · 10,000 active users · ex VAT</div>
+        <div class="fin-hero-amount" style="font-size:46px;">€323,378 <small style="font-size:20px;">ARR</small></div>
+        <div class="fin-stats" style="margin-top:8px;">
+          <div class="fin-stat"><div class="fs-label">MRR equivalent (ARR ÷ 12)</div><div class="fs-val">€26,948 <em>/mo</em></div></div>
+          <div class="fin-stat"><div class="fs-label">Net revenue</div><div class="fs-val">€312,178 <em>/yr</em></div><div class="fs-note">net of payment fees and refunds only</div></div>
+          <div class="fin-stat"><div class="fs-label">Gross € / active user</div><div class="fs-val">€32.34</div></div>
+          <div class="fin-stat"><div class="fs-label">Net € / active user</div><div class="fs-val">€31.22</div></div>
+        </div>
+        <div class="rev-floor" style="margin-top:12px;">
+          <span class="rev-floor-flag">Fixed reference</span>
+          <p><b>Lender underwriting floor: 18 prepaid venues, €27,000.</b> Separate from operating ambition. It is not one of the six states.</p>
+        </div>
+      </div>
+      <div class="fin-col">
+        <div class="rev-mix-head"><span class="rev-mix-title">Revenue mix at 10K · gross ARR</span><span class="rev-mix-title">€323,378</span></div>
+        <div class="rev-stack">
+          <div class="rev-seg s-venue" style="width:55.6%"></div>
+          <div class="rev-seg s-school" style="width:18.6%"></div>
+          <div class="rev-seg s-student" style="width:11.3%"></div>
+          <div class="rev-seg s-pro" style="width:14.5%"></div>
+        </div>
+        <div class="rev-key">
+          <span class="k"><span class="sw" style="background:var(--indigo)"></span>Organisational licences</span>
+          <span class="k"><span class="sw" style="background:repeating-linear-gradient(135deg,var(--indigo-mid) 0 3px,#a5b0f5 3px 6px)"></span>Working offer</span>
+          <span class="k"><span class="sw" style="background:var(--direct-1)"></span>Direct · personal card</span>
+          <span class="k"><span class="sw" style="background:var(--direct-2)"></span>Direct · Pro</span>
+        </div>
+        <div class="rev-streams compact">
+          <div class="rev-stream"><span class="rev-stream-dot" style="background:var(--indigo)"></span><span class="rev-stream-main"><span class="rev-stream-name">Venue Edition</span><span class="rev-stream-units">120 licences × €1,500</span></span><span class="rev-stream-arr">€180,000</span><span class="rev-stream-share">55.6%</span></div>
+          <div class="rev-stream"><span class="rev-stream-dot" style="background:repeating-linear-gradient(135deg,var(--indigo-mid) 0 3px,#a5b0f5 3px 6px)"></span><span class="rev-stream-main"><span class="rev-stream-name">School Edition <span class="rev-stream-tag">Working offer</span></span><span class="rev-stream-units">40 licences × €1,500</span></span><span class="rev-stream-arr">€60,000</span><span class="rev-stream-share">18.6%</span></div>
+          <div class="rev-stream"><span class="rev-stream-dot" style="background:var(--direct-1)"></span><span class="rev-stream-main"><span class="rev-stream-name">Student Edition</span><span class="rev-stream-units">4,500 students × €8.12</span></span><span class="rev-stream-arr">€36,549</span><span class="rev-stream-share">11.3%</span></div>
+          <div class="rev-stream"><span class="rev-stream-dot" style="background:var(--direct-2)"></span><span class="rev-stream-main"><span class="rev-stream-name">Pro (consumer)</span><span class="rev-stream-units">400 subs × €117.07</span></span><span class="rev-stream-arr">€46,829</span><span class="rev-stream-share">14.5%</span></div>
+        </div>
+        <div class="rev-takeaway">At every milestone, <b>most active users are funded by an organisational licence, not a personal card</b>.</div>
+      </div>
+      <div class="fin-side">
+        <div class="fin-box">
+          <div class="fin-box-label">Paying customers at 10K</div>
+          <div class="rev-pay-total">5,060 <em>paying</em></div>
+          <div class="rev-pay-split">
+            <div class="rev-pay-row"><span class="pr-name">Organisations · venue + school</span><span class="pr-val">160</span></div>
+            <div class="rev-pay-bar org"><i style="width:3.2%"></i></div>
+            <div class="rev-pay-row"><span class="pr-name">Individuals · students + subs</span><span class="pr-val">4,900</span></div>
+            <div class="rev-pay-bar ind"><i style="width:96.8%"></i></div>
+          </div>
+        </div>
+        <div class="fin-callout"><div class="fin-box-label">Next commercial inflection</div><p>100 venues and consumer checkout fully open.</p></div>
+      </div>
+    </div>
+    <div class="fin-foot">
+      <p>ARR in EUR ex VAT at founder-approved prices. Base scenario. Event one-time revenue, Committee tier and all unratified offers excluded. Zero revenue collected to date; every figure is a forward assumption.</p>
+      <p style="text-align:right;">As of 2026-07-20 · verified data pack revenue-model-datapack-2026-07-20 · source register in Appendix A4.</p>
+    </div>
+  </div>
+  <div class="slide-label">signal studio · business plan 2026</div>
+  <div class="slide-num">A6·P</div>
+</div>
+
+<script>
+/* Appendix A5/A6 finance registers · data packs content/hq/finance/*-2026-07-20.json, values verbatim */
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n) { return n.toLocaleString('en-IE'); }
+  function q(root, cls) { return root.querySelector('.' + cls); }
+
+  /* ---------- A5 · COST ---------- */
+  var COST = [
+    { total: 250.49, fixed: 250.49, variable: 0, per: null, ann: 3005.88, low: 194.31, high: 260.79,
+      heroLabel: 'Monthly run rate · launch-compliant · ex VAT',
+      cliff: 'Vercel Pro at first commercial deployment: €17 a month. Hobby bars commercial use.',
+      plans: ['Vercel Hobby to Pro', 'Turso Free to Developer', 'Clerk Free to Pro', 'Sentry Developer to Team'],
+      services: [
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Sentry Team', c: 'Monitoring', v: 22.74 },
+        { n: 'Clerk Pro', c: 'Authentication', v: 21.86 },
+        { n: 'Vercel Pro', c: 'Hosting', v: 17.49 },
+        { n: 'Apple Developer', c: 'Platform licence · Y1 in Line A', v: 7.22 },
+        { n: 'Turso Developer', c: 'Database', v: 4.36 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 }],
+      free: ['GitHub', 'Remotion', 'Resend', 'PostHog', 'Upstash', 'Stripe', 'Anthropic API'] },
+    { total: 250.75, fixed: 250.49, variable: 0.26, per: 2.51, ann: 3009.00, low: 194.35, high: 263.15,
+      heroLabel: 'Monthly run rate · 100 active users · ex VAT',
+      cliff: 'Resend paid tier near 600 active users: €17 a month.',
+      plans: [],
+      services: [
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Sentry Team', c: 'Monitoring', v: 22.74 },
+        { n: 'Clerk Pro', c: 'Authentication', v: 21.86 },
+        { n: 'Vercel Pro', c: 'Hosting', v: 17.49 },
+        { n: 'Apple Developer', c: 'Platform licence', v: 7.22 },
+        { n: 'Turso Developer', c: 'Database', v: 4.36 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 },
+        { n: 'Anthropic API', c: 'Product AI · Tasks assist', v: 0.26 }],
+      free: ['GitHub', 'Remotion', 'Resend', 'PostHog', 'Upstash', 'Stripe'] },
+    { total: 270.60, fixed: 267.98, variable: 2.62, per: 0.27, ann: 3247.20, low: 194.83, high: 301.88,
+      heroLabel: 'Monthly run rate · 1,000 active users · ex VAT',
+      cliff: 'Email and analytics allowances top out near 10,000 active users.',
+      plans: ['Resend Free to Pro'],
+      services: [
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Sentry Team', c: 'Monitoring', v: 22.74 },
+        { n: 'Clerk Pro', c: 'Authentication', v: 21.86 },
+        { n: 'Vercel Pro', c: 'Hosting', v: 17.49 },
+        { n: 'Resend Pro', c: 'Email', v: 17.49 },
+        { n: 'Apple Developer', c: 'Platform licence', v: 7.22 },
+        { n: 'Turso Developer', c: 'Database', v: 4.36 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 },
+        { n: 'Anthropic API', c: 'Product AI · Tasks assist', v: 2.62 }],
+      free: ['GitHub', 'Remotion', 'PostHog', 'Upstash', 'Stripe'] },
+    { total: 294.22, fixed: 267.98, variable: 26.24, per: 0.029, ann: 3530.64, low: 216, high: 610,
+      heroLabel: 'Monthly run rate · 10,000 active users · ex VAT',
+      cliff: "Clerk's 50,000 free retained users exhaust near 50,000 actives: about €900 a month.",
+      plans: [],
+      services: [
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Anthropic API', c: 'Product AI · Tasks assist', v: 26.24 },
+        { n: 'Sentry Team', c: 'Monitoring', v: 22.74 },
+        { n: 'Clerk Pro', c: 'Authentication', v: 21.86 },
+        { n: 'Vercel Pro', c: 'Hosting', v: 17.49 },
+        { n: 'Resend Pro', c: 'Email', v: 17.49 },
+        { n: 'Apple Developer', c: 'Platform licence', v: 7.22 },
+        { n: 'Turso Developer', c: 'Database', v: 4.36 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 }],
+      free: ['GitHub', 'Remotion', 'PostHog', 'Upstash', 'Stripe'] },
+    { total: 2783.34, fixed: 346.63, variable: 2436.71, per: 0.028, ann: 33400.08, low: 1290, high: 4730,
+      heroLabel: 'Monthly run rate · 100,000 active users · ex VAT',
+      cliff: 'Database writes and email volume step up toward one million users.',
+      plans: ['Turso Developer to Scaler', 'Resend Pro to Scale', 'Clerk MRU overage begins', 'PostHog usage billing begins', 'Vercel usage billing begins', 'Upstash pay-as-you-go'],
+      services: [
+        { n: 'Clerk Pro + usage', c: 'Authentication', v: 896.36 },
+        { n: 'Vercel Pro + usage', c: 'Hosting', v: 797.54 },
+        { n: 'Resend Scale', c: 'Email', v: 306.08 },
+        { n: 'PostHog', c: 'Product analytics', v: 283.69 },
+        { n: 'Anthropic API', c: 'Product AI · Tasks assist', v: 262.35 },
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Sentry Team', c: 'Monitoring', v: 22.74 },
+        { n: 'Turso Scaler', c: 'Database', v: 21.79 },
+        { n: 'Upstash Redis', c: 'Rate limiting', v: 8.75 },
+        { n: 'Apple Developer', c: 'Platform licence', v: 7.22 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 }],
+      free: ['GitHub', 'Remotion', 'Stripe'] },
+    { total: 32021.70, fixed: 346.63, variable: 31675.07, per: 0.032, ann: 384260.40, low: 17700, high: 57400,
+      heroLabel: 'Monthly run rate · 1,000,000 active users · ex VAT',
+      cliff: 'Enterprise procurement for auth and hosting becomes cheaper than list price.',
+      plans: [],
+      services: [
+        { n: 'Clerk Pro + usage', c: 'Authentication', v: 15063.26 },
+        { n: 'Vercel Pro + usage', c: 'Hosting', v: 9313.43 },
+        { n: 'Anthropic API', c: 'Product AI · Tasks assist', v: 2623.50 },
+        { n: 'PostHog', c: 'Product analytics', v: 2289.79 },
+        { n: 'Resend Scale + usage', c: 'Email', v: 2011.35 },
+        { n: 'Turso Scaler + usage', c: 'Database', v: 378.59 },
+        { n: 'Claude Max 5x', c: 'Engineering tooling', v: 90.00, t: 1 },
+        { n: 'Upstash Redis', c: 'Rate limiting', v: 87.45 },
+        { n: 'ChatGPT Pro', c: 'Engineering tooling', v: 83.74, t: 1 },
+        { n: 'Sentry Team + usage', c: 'Monitoring', v: 70.29 },
+        { n: 'Apple Developer', c: 'Platform licence', v: 7.22 },
+        { n: 'signalstudio.ie', c: 'Domain', v: 3.08 }],
+      free: ['GitHub', 'Remotion', 'Stripe'] }
+  ];
+
+  var costRoot = document.querySelector('.fin-cost');
+  if (costRoot) (function () {
+    var BASELINE = 500, current = 3, raf = null;
+    function tween(from, to) {
+      if (raf) cancelAnimationFrame(raf);
+      var el = q(costRoot, 'f-heroNum');
+      if (reduceMotion || from === to) { el.textContent = fmt(Math.round(to)); return; }
+      var t0 = performance.now(), dur = 260;
+      function step(t) {
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(from + (to - from) * e));
+        if (p < 1) raf = requestAnimationFrame(step);
+      }
+      raf = requestAnimationFrame(step);
+    }
+    function render(i) {
+      var prev = COST[current], d = COST[i];
+      current = i;
+      costRoot.querySelectorAll('.f-stations button').forEach(function (b) {
+        var bi = +b.dataset.i;
+        b.classList.toggle('active', bi === i);
+        b.classList.toggle('passed', bi < i);
+      });
+      q(costRoot, 'f-prog').style.width = (i / 5 * 100) + '%';
+      q(costRoot, 'f-heroLabel').textContent = d.heroLabel;
+      tween(prev.total, d.total);
+      q(costRoot, 'f-statFixed').innerHTML = '€' + fmt(Math.round(d.fixed)) + ' <em>/mo</em>';
+      q(costRoot, 'f-statVar').innerHTML = (d.variable === 0 ? '€0' : d.variable < 1 ? '&lt;€1' : '€' + fmt(Math.round(d.variable))) + ' <em>/mo</em>';
+      q(costRoot, 'f-statPer').textContent = d.per === null ? '—' : (d.per >= 0.1 ? '€' + d.per.toFixed(2) : '€' + d.per.toFixed(3));
+      q(costRoot, 'f-statAnn').innerHTML = '€' + fmt(Math.round(d.ann)) + ' <em>/yr</em>';
+      var span = d.high - d.low, pad = span * 0.06, lo = d.low - pad, hi = d.high + pad, w = hi - lo;
+      q(costRoot, 'f-rangeFill').style.left = ((d.low - lo) / w * 100) + '%';
+      q(costRoot, 'f-rangeFill').style.right = (100 - (d.high - lo) / w * 100) + '%';
+      q(costRoot, 'f-rangeMarker').style.left = 'calc(' + ((d.total - lo) / w * 100) + '% - 1px)';
+      q(costRoot, 'f-rangeLow').textContent = '€' + fmt(Math.round(d.low));
+      q(costRoot, 'f-rangeHigh').textContent = '€' + fmt(Math.round(d.high));
+      q(costRoot, 'f-rangeBase').textContent = 'Base €' + fmt(Math.round(d.total));
+      var ratio = d.total / BASELINE, fill = q(costRoot, 'f-blFill');
+      fill.style.width = Math.min(100, ratio * 100) + '%';
+      fill.classList.toggle('over', ratio > 1);
+      if (ratio <= 1) {
+        q(costRoot, 'f-blVerdict').textContent = '€' + fmt(Math.round(BASELINE - d.total)) + ' headroom';
+        q(costRoot, 'f-blNote').textContent = 'Base cost sits inside the €500 baseline until roughly 15,000 to 20,000 active users.';
+      } else {
+        q(costRoot, 'f-blVerdict').textContent = (ratio >= 10 ? Math.round(ratio) : ratio.toFixed(1)) + '× baseline';
+        q(costRoot, 'f-blNote').textContent = 'Beyond the baseline the cost is volume-driven: authentication and hosting scale with paying usage, at about €0.03 per active user.';
+      }
+      var max = Math.max.apply(null, d.services.map(function (s) { return s.v; }));
+      var rows = q(costRoot, 'f-regRows');
+      rows.classList.toggle('dense', d.services.length > 10);
+      rows.innerHTML = d.services.map(function (s) {
+        return '<div class="cost-reg-row">' +
+          '<div class="cost-reg-name">' + s.n + '<small>' + s.c + '</small></div>' +
+          '<div class="cost-reg-bar-track"><div class="cost-reg-bar' + (s.t ? ' tooling' : '') + '" style="width:' + Math.max(2, s.v / max * 100) + '%"></div></div>' +
+          '<div class="cost-reg-val">' + (s.v < 1 ? '&lt;1' : fmt(Math.round(s.v))) + '</div></div>';
+      }).join('');
+      q(costRoot, 'f-regCount').textContent = d.services.length + ' paid lines';
+      q(costRoot, 'f-regFree').innerHTML = '<b>' + d.free.length + '</b> services on free tiers at this scale · ' + d.free.join(', ');
+      q(costRoot, 'f-planList').innerHTML = d.plans.length
+        ? d.plans.map(function (p) { return '<li>' + p + '</li>'; }).join('')
+        : '<li class="none">No plan changes at this milestone</li>';
+      q(costRoot, 'f-cliffText').textContent = d.cliff;
+    }
+    q(costRoot, 'f-stations').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-i]');
+      if (b) render(+b.dataset.i);
+    });
+    render(3);
+  })();
+
+  /* ---------- A6 · REVENUE ---------- */
+  var SW = { venue: 'var(--indigo)', school: 'repeating-linear-gradient(135deg,var(--indigo-mid) 0 3px,#a5b0f5 3px 6px)', student: 'var(--direct-1)', pro: 'var(--direct-2)' };
+  var REV = [
+    { arr: 0, mrr: 0, net: 0, gpu: null, npu: null, low: 0, high: 0, paying: 0, orgs: 0, ind: 0,
+      heroLabel: 'Gross ARR · launch state · ex VAT',
+      inflection: 'First paid venue proves the model.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 0, unitLabel: 'licences', price: '€1,500', arr: 0, share: 0 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 0, unitLabel: 'licences', price: '€1,500', arr: 0, share: 0 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 0, unitLabel: 'students', price: '€8.12', arr: 0, share: 0 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 0, unitLabel: 'subs', price: '€117.07', arr: 0, share: 0 }] },
+    { arr: 3244, mrr: 270, net: 3156, gpu: 32.44, npu: 31.56, low: 1622, high: 4906, paying: 32, orgs: 2, ind: 30,
+      heroLabel: 'Gross ARR · 100 active users · ex VAT',
+      inflection: 'Lender floor: 18 prepaid venues.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 2, unitLabel: 'licences', price: '€1,500', arr: 3000, share: 0.925 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 0, unitLabel: 'licences', price: '€1,500', arr: 0, share: 0 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 30, unitLabel: 'students', price: '€8.12', arr: 244, share: 0.075 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 0, unitLabel: 'subs', price: '€117.07', arr: 0, share: 0 }] },
+    { arr: 36582, mrr: 3049, net: 35433, gpu: 36.58, npu: 35.43, low: 17030, high: 57709, paying: 495, orgs: 20, ind: 475,
+      heroLabel: 'Gross ARR · 1,000 active users · ex VAT',
+      inflection: 'First school contracts and student payment proof.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 15, unitLabel: 'licences', price: '€1,500', arr: 22500, share: 0.615 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 5, unitLabel: 'licences', price: '€1,500', arr: 7500, share: 0.205 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 450, unitLabel: 'students', price: '€8.12', arr: 3655, share: 0.1 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 25, unitLabel: 'subs', price: '€117.07', arr: 2927, share: 0.08 }] },
+    { arr: 323378, mrr: 26948, net: 312178, gpu: 32.34, npu: 31.22, low: 172866, high: 483805, paying: 5060, orgs: 160, ind: 4900,
+      heroLabel: 'Gross ARR · 10,000 active users · ex VAT',
+      inflection: '100 venues and consumer checkout fully open.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 120, unitLabel: 'licences', price: '€1,500', arr: 180000, share: 0.556 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 40, unitLabel: 'licences', price: '€1,500', arr: 60000, share: 0.186 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 4500, unitLabel: 'students', price: '€8.12', arr: 36549, share: 0.113 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 400, unitLabel: 'subs', price: '€117.07', arr: 46829, share: 0.145 }] },
+    { arr: 2254025, mrr: 187835, net: 2165986, gpu: 22.54, npu: 21.66, low: 1293878, high: 3859757, paying: 35950, orgs: 950, ind: 35000,
+      heroLabel: 'Gross ARR · 100,000 active users · ex VAT',
+      inflection: 'Renewal cohorts compound; national schools expansion.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 700, unitLabel: 'licences', price: '€1,500', arr: 1050000, share: 0.466 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 250, unitLabel: 'licences', price: '€1,500', arr: 375000, share: 0.166 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 30000, unitLabel: 'students', price: '€8.12', arr: 243659, share: 0.108 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 5000, unitLabel: 'subs', price: '€117.07', arr: 585366, share: 0.26 }] },
+    { arr: 20973658, mrr: 1747805, net: 20105145, gpu: 20.97, npu: 20.11, low: 11986829, high: 31379268, paying: 308000, orgs: 8000, ind: 300000,
+      heroLabel: 'Gross ARR · 1,000,000 active users · ex VAT',
+      inflection: 'International venues and mainstream consumer mix.',
+      streams: [
+        { key: 'venue', name: 'Venue Edition', tag: null, units: 6000, unitLabel: 'licences', price: '€1,500', arr: 9000000, share: 0.429 },
+        { key: 'school', name: 'School Edition', tag: 'Working offer', units: 2000, unitLabel: 'licences', price: '€1,500', arr: 3000000, share: 0.143 },
+        { key: 'student', name: 'Student Edition', tag: null, units: 240000, unitLabel: 'students', price: '€8.12', arr: 1949268, share: 0.093 },
+        { key: 'pro', name: 'Pro (consumer)', tag: null, units: 60000, unitLabel: 'subs', price: '€117.07', arr: 7024390, share: 0.335 }] }
+  ];
+
+  var revRoot = document.querySelector('.fin-rev');
+  if (revRoot) (function () {
+    var current = 3, raf = null;
+    function heroSize(str) { return str.length <= 8 ? 60 : str.length <= 10 ? 52 : 44; }
+    function tween(from, to) {
+      if (raf) cancelAnimationFrame(raf);
+      var el = q(revRoot, 'f-heroNum');
+      q(revRoot, 'f-heroAmt').style.fontSize = heroSize('€' + fmt(to)) + 'px';
+      if (reduceMotion || from === to) { el.textContent = fmt(to); return; }
+      var t0 = performance.now(), dur = 260;
+      function step(t) {
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(from + (to - from) * e));
+        if (p < 1) raf = requestAnimationFrame(step);
+      }
+      raf = requestAnimationFrame(step);
+    }
+    function render(i) {
+      var prev = REV[current], d = REV[i];
+      current = i;
+      revRoot.querySelectorAll('.f-stations button').forEach(function (b) {
+        var bi = +b.dataset.i;
+        b.classList.toggle('active', bi === i);
+        b.classList.toggle('passed', bi < i);
+      });
+      q(revRoot, 'f-prog').style.width = (i / 5 * 100) + '%';
+      q(revRoot, 'f-heroLabel').textContent = d.heroLabel;
+      tween(prev.arr, d.arr);
+      q(revRoot, 'f-statMrr').innerHTML = '€' + fmt(d.mrr) + ' <em>/mo</em>';
+      q(revRoot, 'f-statNet').innerHTML = '€' + fmt(d.net) + ' <em>/yr</em>';
+      q(revRoot, 'f-statGpu').textContent = d.gpu === null ? '–' : '€' + d.gpu.toFixed(2);
+      q(revRoot, 'f-statNpu').textContent = d.npu === null ? '–' : '€' + d.npu.toFixed(2);
+      if (d.high > d.low) {
+        var span = d.high - d.low, pad = span * 0.06, lo = d.low - pad, hi = d.high + pad, w = hi - lo;
+        q(revRoot, 'f-rangeFill').style.left = ((d.low - lo) / w * 100) + '%';
+        q(revRoot, 'f-rangeFill').style.right = (100 - (d.high - lo) / w * 100) + '%';
+        q(revRoot, 'f-rangeMarker').style.left = 'calc(' + ((d.arr - lo) / w * 100) + '% - 1px)';
+      } else {
+        q(revRoot, 'f-rangeFill').style.left = '0%';
+        q(revRoot, 'f-rangeFill').style.right = '100%';
+        q(revRoot, 'f-rangeMarker').style.left = '0%';
+      }
+      q(revRoot, 'f-rangeLow').textContent = '€' + fmt(d.low);
+      q(revRoot, 'f-rangeHigh').textContent = '€' + fmt(d.high);
+      q(revRoot, 'f-rangeBase').textContent = 'Base €' + fmt(d.arr);
+      var segCls = { venue: 'f-segVenue', school: 'f-segSchool', student: 'f-segStudent', pro: 'f-segPro' };
+      d.streams.forEach(function (s) { q(revRoot, segCls[s.key]).style.width = (s.share * 100) + '%'; });
+      q(revRoot, 'f-stackEmpty').classList.toggle('show', d.arr === 0);
+      q(revRoot, 'f-mixTotal').textContent = '€' + fmt(d.arr);
+      q(revRoot, 'f-streamRows').innerHTML = d.streams.map(function (s) {
+        return '<div class="rev-stream' + (s.units === 0 ? ' zero' : '') + '">' +
+          '<span class="rev-stream-dot" style="background:' + SW[s.key] + '"></span>' +
+          '<span class="rev-stream-main">' +
+            '<span class="rev-stream-name">' + s.name + (s.tag ? ' <span class="rev-stream-tag">' + s.tag + '</span>' : '') + '</span>' +
+            '<span class="rev-stream-units">' + fmt(s.units) + ' ' + s.unitLabel + ' × ' + s.price + '</span>' +
+          '</span>' +
+          '<span class="rev-stream-arr">€' + fmt(s.arr) + '</span>' +
+          '<span class="rev-stream-share">' + (s.share * 100).toFixed(1).replace(/\.0$/, '') + '%</span></div>';
+      }).join('');
+      q(revRoot, 'f-payTotal').innerHTML = fmt(d.paying) + ' <em>paying</em>';
+      q(revRoot, 'f-payOrg').textContent = fmt(d.orgs);
+      q(revRoot, 'f-payInd').textContent = fmt(d.ind);
+      var tot = Math.max(1, d.paying);
+      q(revRoot, 'f-payOrgBar').style.width = Math.max(d.orgs > 0 ? 2 : 0, d.orgs / tot * 100) + '%';
+      q(revRoot, 'f-payIndBar').style.width = Math.max(d.ind > 0 ? 2 : 0, d.ind / tot * 100) + '%';
+      q(revRoot, 'f-cliffText').textContent = d.inflection;
+    }
+    q(revRoot, 'f-stations').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-i]');
+      if (b) render(+b.dataset.i);
+    });
+    render(3);
+  })();
+})();
+</script>
+
 
 </div>
 
