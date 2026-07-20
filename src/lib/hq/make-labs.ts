@@ -8,7 +8,7 @@
  * captured by scripts/hq-redesign/lab-thumbs.mjs into public/hq/lab-thumbs/.
  */
 
-export type LabCategory = "product" | "decision" | "brand" | "system" | "parked";
+export type LabCategory = "showroom" | "product" | "decision" | "brand" | "system" | "parked";
 
 export type LabState =
   | "LIVE"
@@ -43,6 +43,7 @@ export type Lab = {
 };
 
 export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb: string }> = [
+  { category: "showroom", label: "Hero labs · the showrooms", blurb: "The interactive lab behind each product hero. Every direction, side by side. Open one and press the numbers to cycle the options." },
   { category: "product", label: "Product heroes, live", blurb: "The front pages that shipped. Each one graduated from a lab." },
   { category: "decision", label: "Decision rooms", blurb: "Every object explored in directions, chosen, and recorded." },
   { category: "brand", label: "Brand galleries", blurb: "Every final asset, at every size, with print notes." },
@@ -51,6 +52,44 @@ export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb:
 ];
 
 export const MAKE_LABS: Lab[] = [
+  // ── Hero labs · the interactive showrooms (live preview branches) ───
+  {
+    id: "showroom-notes",
+    name: "Notes · hero showroom",
+    category: "showroom",
+    state: "REVIEW",
+    href: "https://notes-git-feat-notes-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab",
+    external: true,
+    where: "notes · feat/notes-hero-lab · 7 directions",
+    note: "Seven ways into the notebook. The Notebook won and shipped; the rest stay open here to compare.",
+    hasThumb: true,
+    thumbSource: "external",
+  },
+  {
+    id: "showroom-timeline",
+    name: "Timeline · hero showroom",
+    category: "showroom",
+    state: "REVIEW",
+    href: "https://roadmap-git-feat-timeline-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab",
+    external: true,
+    where: "roadmap · feat/timeline-hero-lab · 5 directions",
+    note: "Five directions for the plan-on-one-line opener. The Line graduated to the front page as R·33.",
+    hasThumb: true,
+    thumbSource: "external",
+  },
+  {
+    id: "showroom-signal",
+    name: "Signal · hero showroom",
+    category: "showroom",
+    state: "REVIEW",
+    href: "https://analytics-git-feat-signal-he-e7c2cb-ethanmcn2013-1730s-projects.vercel.app/lab",
+    external: true,
+    where: "analytics · feat/signal-hero-the-brief · 5 directions",
+    note: "The five-direction exploration that produced The Brief. The record of how the opener was found.",
+    hasThumb: true,
+    thumbSource: "external",
+  },
+
   // ── Product heroes (live, external homepages) ──────────────────────
   {
     id: "hero-signal",
@@ -319,28 +358,8 @@ export const MAKE_LABS: Lab[] = [
   },
 
   // ── Parked in the lab (external branch links, poster tiles) ────────
-  {
-    id: "parked-notes-hero",
-    name: "Notes hero lab · showroom",
-    category: "parked",
-    state: "REVIEW",
-    href: "https://github.com/ethanmcn2013-droid/notes/tree/feat/notes-hero-lab",
-    external: true,
-    where: "notes · feat/notes-hero-lab",
-    note: "Ways into the notebook: Notebook First, Before It Fades, Three Seconds, The Crossing. Review only.",
-    hasThumb: false,
-  },
-  {
-    id: "parked-timeline-line",
-    name: "Timeline hero lab · showroom",
-    category: "parked",
-    state: "REVIEW",
-    href: "https://github.com/ethanmcn2013-droid/roadmap/tree/feat/timeline-hero-lab",
-    external: true,
-    where: "roadmap · feat/timeline-hero-lab",
-    note: "Five directions, two front-runners: One Line, The Line, and three sharing-story candidates.",
-    hasThumb: false,
-  },
+  // Notes and Timeline hero showrooms are now live at the top of this page
+  // ("Hero labs · the showrooms"), so their parked GitHub tiles were removed.
   {
     id: "parked-tasks-hero",
     name: "Tasks hero lab · showroom",
@@ -352,17 +371,6 @@ export const MAKE_LABS: Lab[] = [
     note: "Two active hero directions for the Signal Tasks homepage, plus the research archive.",
     hasThumb: true,
     thumbSource: "external",
-  },
-  {
-    id: "parked-signal-five",
-    name: "Signal · the five directions",
-    category: "parked",
-    state: "PARKED",
-    href: "https://github.com/ethanmcn2013-droid/analytics/tree/feat/signal-hero-the-brief",
-    external: true,
-    where: "analytics · feat/signal-hero-the-brief",
-    note: "The full five-direction exploration that produced The Brief. The record of how the opener was found.",
-    hasThumb: false,
   },
   {
     id: "parked-umbrella-daily",

@@ -14,8 +14,13 @@ const outDir = join(here, "..", "..", "public", "hq", "lab-thumbs");
 mkdirSync(outDir, { recursive: true });
 const password = process.env.SIGNAL_HQ_PASSWORD || "Limerick2030";
 
-// Each target: id + url + optional prod-HQ login.
+// Each target: id + url + optional prod-HQ login + optional settle wait.
+// The hero showrooms capture each lab's flagship direction at its settled frame
+// (the intro plays once), so they use a longer wait than the default 1500ms.
 const TARGETS = [
+  { id: "showroom-notes", url: "https://notes-git-feat-notes-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab/the-notebook", wait: 6000 },
+  { id: "showroom-timeline", url: "https://roadmap-git-feat-timeline-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab/the-line", wait: 6000 },
+  { id: "showroom-signal", url: "https://analytics-git-feat-signal-he-e7c2cb-ethanmcn2013-1730s-projects.vercel.app/lab/the-brief", wait: 6000 },
   { id: "parked-tasks-hero", url: "http://localhost:3012/lab" },
   { id: "lab-email", url: "https://signalstudio.ie/hq/email-lab", hqLogin: "https://signalstudio.ie/hq/access" },
 ];
@@ -36,8 +41,8 @@ const run = async () => {
           page.click('button[type="submit"]'),
         ]);
       }
-      await page.goto(t.url, { waitUntil: "networkidle", timeout: 30000 });
-      await page.waitForTimeout(1500);
+      await page.goto(t.url, { waitUntil: "networkidle", timeout: 45000 });
+      await page.waitForTimeout(t.wait ?? 1500);
       await page.screenshot({
         path: join(outDir, `${t.id}.jpg`),
         type: "jpeg",
