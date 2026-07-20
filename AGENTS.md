@@ -92,6 +92,8 @@ src/app/page.tsx
 
 `RevealEngine` is the *only* client component. Everything else is RSC. Honor `prefers-reduced-motion` — the engine already does, do not undo that.
 
+**Analytics:** every page carries the Google tag (gtag.js, `G-YHBS152PJK`) via `<GoogleTag />` in the root layout — production only. New pages inherit it; never paste the snippet per-page. Standalone HTML (decks) paste it after `<head>` once. Full convention: `docs/ANALYTICS.md`.
+
 ---
 
 ## Workflow
