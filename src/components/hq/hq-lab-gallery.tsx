@@ -4,6 +4,7 @@ import {
   MAKE_SECTIONS,
   labMonogram,
   labThumb,
+  resolveLabHref,
   type Lab,
 } from "@/lib/hq/make-labs";
 
@@ -40,10 +41,11 @@ function LabCard({ lab }: { lab: Lab }) {
     </>
   );
 
+  const href = resolveLabHref(lab);
   return lab.external ? (
-    <a href={lab.href} target="_blank" rel="noreferrer" className="hqx-lab-card">{inner}</a>
+    <a href={href} target="_blank" rel="noreferrer" className="hqx-lab-card">{inner}</a>
   ) : (
-    <Link href={lab.href} className="hqx-lab-card">{inner}</Link>
+    <Link href={href} className="hqx-lab-card">{inner}</Link>
   );
 }
 
