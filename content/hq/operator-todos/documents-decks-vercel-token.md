@@ -1,7 +1,7 @@
 ---
 id: documents-decks-vercel-token
 title: Add VERCEL_TOKEN GitHub secret to auto-publish the documents.signalstudio.ie deck mirrors
-status: open
+status: done
 priority: P1
 blocking: false
 phase: Phase 1
