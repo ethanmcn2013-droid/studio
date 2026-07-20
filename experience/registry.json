@@ -125,8 +125,8 @@
       "source": "notes/src/app/app/account/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use app \u00b7 account.",
-      "primaryAction": "Complete the primary action on app \u00b7 account.",
+      "primaryJob": "Understand and use app · account.",
+      "primaryAction": "Complete the primary action on app · account.",
       "roles": [
         "owner",
         "member"
@@ -302,8 +302,8 @@
       "source": "notes/src/app/sign-in/[[...sign-in]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign in \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign in \u00b7 selected record.",
+      "primaryJob": "Understand and use sign in · selected record.",
+      "primaryAction": "Complete the primary action on sign in · selected record.",
       "roles": [
         "public"
       ],
@@ -348,8 +348,8 @@
       "source": "notes/src/app/sign-up/[[...sign-up]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign up \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign up \u00b7 selected record.",
+      "primaryJob": "Understand and use sign up · selected record.",
+      "primaryAction": "Complete the primary action on sign up · selected record.",
       "roles": [
         "public"
       ],
@@ -1134,8 +1134,8 @@
       "source": "analytics/src/app/app/brief/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "dashboard-or-command-centre",
-      "primaryJob": "Understand and use app \u00b7 brief.",
-      "primaryAction": "Complete the primary action on app \u00b7 brief.",
+      "primaryJob": "Understand and use app · brief.",
+      "primaryAction": "Complete the primary action on app · brief.",
       "roles": [
         "owner",
         "member"
@@ -1186,8 +1186,8 @@
       "source": "analytics/src/app/app/onboarding/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use app \u00b7 onboarding.",
-      "primaryAction": "Complete the primary action on app \u00b7 onboarding.",
+      "primaryJob": "Understand and use app · onboarding.",
+      "primaryAction": "Complete the primary action on app · onboarding.",
       "roles": [
         "owner",
         "member"
@@ -1233,8 +1233,8 @@
       "source": "analytics/src/app/app/preview-email/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Understand and use app \u00b7 preview email.",
-      "primaryAction": "Complete the primary action on app \u00b7 preview email.",
+      "primaryJob": "Understand and use app · preview email.",
+      "primaryAction": "Complete the primary action on app · preview email.",
       "roles": [
         "owner",
         "member"
@@ -1278,8 +1278,8 @@
       "source": "analytics/src/app/app/settings/account/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use app \u00b7 settings \u00b7 account.",
-      "primaryAction": "Complete the primary action on app \u00b7 settings \u00b7 account.",
+      "primaryJob": "Understand and use app · settings · account.",
+      "primaryAction": "Complete the primary action on app · settings · account.",
       "roles": [
         "owner",
         "member"
@@ -1323,8 +1323,8 @@
       "source": "analytics/src/app/app/settings/notifications/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use app \u00b7 settings \u00b7 notifications.",
-      "primaryAction": "Complete the primary action on app \u00b7 settings \u00b7 notifications.",
+      "primaryJob": "Understand and use app · settings · notifications.",
+      "primaryAction": "Complete the primary action on app · settings · notifications.",
       "roles": [
         "owner",
         "member"
@@ -1764,8 +1764,8 @@
       "source": "analytics/src/app/(marketing)/sign-in/[[...sign-in]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign in \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign in \u00b7 selected record.",
+      "primaryJob": "Understand and use sign in · selected record.",
+      "primaryAction": "Complete the primary action on sign in · selected record.",
       "roles": [
         "public"
       ],
@@ -1810,8 +1810,8 @@
       "source": "analytics/src/app/(marketing)/sign-up/[[...sign-up]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign up \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign up \u00b7 selected record.",
+      "primaryJob": "Understand and use sign up · selected record.",
+      "primaryAction": "Complete the primary action on sign up · selected record.",
       "roles": [
         "public"
       ],
@@ -1944,8 +1944,8 @@
       "source": "analytics/src/app/u/[token]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use u \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on u \u00b7 selected record.",
+      "primaryJob": "Understand and use u · selected record.",
+      "primaryAction": "Complete the primary action on u · selected record.",
       "roles": [
         "owner",
         "guest",
@@ -2087,8 +2087,8 @@
       "source": "analytics/src/app/app/brief/loading.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "feedback-interruption-and-exception",
-      "primaryJob": "Understand and use app \u00b7 brief.",
-      "primaryAction": "Complete the primary action on app \u00b7 brief.",
+      "primaryJob": "Understand and use app · brief.",
+      "primaryAction": "Complete the primary action on app · brief.",
       "roles": [
         "owner",
         "member"
@@ -2441,8 +2441,8 @@
       "source": "studio/public/brand/business-loan-pack-2026.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 business loan pack 2026.",
-      "primaryAction": "Complete the primary action on brand \u00b7 business loan pack 2026.",
+      "primaryJob": "Understand and use brand · business loan pack 2026.",
+      "primaryAction": "Complete the primary action on brand · business loan pack 2026.",
       "roles": [
         "public"
       ],
@@ -2474,7 +2474,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "6fcad7501604926e"
+      "materialityHash": "4da9b6d79c74a6ab"
     },
     {
       "id": "studio.artifact.brand-collateral-ambassador",
@@ -2485,8 +2485,8 @@
       "source": "studio/public/brand/collateral/ambassador/index.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 collateral \u00b7 ambassador.",
-      "primaryAction": "Complete the primary action on brand \u00b7 collateral \u00b7 ambassador.",
+      "primaryJob": "Understand and use brand · collateral · ambassador.",
+      "primaryAction": "Complete the primary action on brand · collateral · ambassador.",
       "roles": [
         "public"
       ],
@@ -2529,8 +2529,8 @@
       "source": "studio/public/brand/collateral/identity/index.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 collateral \u00b7 identity.",
-      "primaryAction": "Complete the primary action on brand \u00b7 collateral \u00b7 identity.",
+      "primaryJob": "Understand and use brand · collateral · identity.",
+      "primaryAction": "Complete the primary action on brand · collateral · identity.",
       "roles": [
         "public"
       ],
@@ -2573,8 +2573,8 @@
       "source": "studio/public/brand/collateral/identity/signature.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 collateral \u00b7 identity \u00b7 signature.",
-      "primaryAction": "Complete the primary action on brand \u00b7 collateral \u00b7 identity \u00b7 signature.",
+      "primaryJob": "Understand and use brand · collateral · identity · signature.",
+      "primaryAction": "Complete the primary action on brand · collateral · identity · signature.",
       "roles": [
         "public"
       ],
@@ -2617,8 +2617,8 @@
       "source": "studio/public/brand/collateral/social/index.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 collateral \u00b7 social.",
-      "primaryAction": "Complete the primary action on brand \u00b7 collateral \u00b7 social.",
+      "primaryJob": "Understand and use brand · collateral · social.",
+      "primaryAction": "Complete the primary action on brand · collateral · social.",
       "roles": [
         "public"
       ],
@@ -2661,8 +2661,8 @@
       "source": "studio/public/brand/collateral/venue/index.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 collateral \u00b7 venue.",
-      "primaryAction": "Complete the primary action on brand \u00b7 collateral \u00b7 venue.",
+      "primaryJob": "Understand and use brand · collateral · venue.",
+      "primaryAction": "Complete the primary action on brand · collateral · venue.",
       "roles": [
         "public"
       ],
@@ -2705,8 +2705,8 @@
       "source": "studio/public/brand/loader.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 loader.",
-      "primaryAction": "Complete the primary action on brand \u00b7 loader.",
+      "primaryJob": "Understand and use brand · loader.",
+      "primaryAction": "Complete the primary action on brand · loader.",
       "roles": [
         "public"
       ],
@@ -2749,8 +2749,8 @@
       "source": "studio/public/brand/loading-review-2026.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 loading review 2026.",
-      "primaryAction": "Complete the primary action on brand \u00b7 loading review 2026.",
+      "primaryJob": "Understand and use brand · loading review 2026.",
+      "primaryAction": "Complete the primary action on brand · loading review 2026.",
       "roles": [
         "public"
       ],
@@ -2793,8 +2793,8 @@
       "source": "studio/public/brand/market-entry-deck-2026.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 market entry deck 2026.",
-      "primaryAction": "Complete the primary action on brand \u00b7 market entry deck 2026.",
+      "primaryJob": "Understand and use brand · market entry deck 2026.",
+      "primaryAction": "Complete the primary action on brand · market entry deck 2026.",
       "roles": [
         "public"
       ],
@@ -2837,8 +2837,8 @@
       "source": "studio/public/brand/motion-brief.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 motion brief.",
-      "primaryAction": "Complete the primary action on brand \u00b7 motion brief.",
+      "primaryJob": "Understand and use brand · motion brief.",
+      "primaryAction": "Complete the primary action on brand · motion brief.",
       "roles": [
         "public"
       ],
@@ -2881,8 +2881,8 @@
       "source": "studio/public/brand/pitch-deck-2026.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 pitch deck 2026.",
-      "primaryAction": "Complete the primary action on brand \u00b7 pitch deck 2026.",
+      "primaryJob": "Understand and use brand · pitch deck 2026.",
+      "primaryAction": "Complete the primary action on brand · pitch deck 2026.",
       "roles": [
         "public"
       ],
@@ -2925,8 +2925,8 @@
       "source": "studio/public/brand/press/index.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 press.",
-      "primaryAction": "Complete the primary action on brand \u00b7 press.",
+      "primaryJob": "Understand and use brand · press.",
+      "primaryAction": "Complete the primary action on brand · press.",
       "roles": [
         "public"
       ],
@@ -2969,8 +2969,8 @@
       "source": "studio/public/brand/students.html",
       "parentJourney": "brand-assets-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use brand \u00b7 students.",
-      "primaryAction": "Complete the primary action on brand \u00b7 students.",
+      "primaryJob": "Understand and use brand · students.",
+      "primaryAction": "Complete the primary action on brand · students.",
       "roles": [
         "public"
       ],
@@ -3145,8 +3145,8 @@
       "source": "studio/src/app/compare/[slug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use compare \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on compare \u00b7 selected record.",
+      "primaryJob": "Understand and use compare · selected record.",
+      "primaryAction": "Complete the primary action on compare · selected record.",
       "roles": [
         "public"
       ],
@@ -3378,8 +3378,8 @@
       "source": "studio/src/app/hq/access/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use hq \u00b7 access.",
-      "primaryAction": "Complete the primary action on hq \u00b7 access.",
+      "primaryJob": "Understand and use hq · access.",
+      "primaryAction": "Complete the primary action on hq · access.",
       "roles": [
         "founder"
       ],
@@ -3422,8 +3422,8 @@
       "source": "studio/src/app/hq/asset-command/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "search-and-command-interface",
-      "primaryJob": "Understand and use hq \u00b7 asset command.",
-      "primaryAction": "Complete the primary action on hq \u00b7 asset command.",
+      "primaryJob": "Understand and use hq · asset command.",
+      "primaryAction": "Complete the primary action on hq · asset command.",
       "roles": [
         "founder"
       ],
@@ -3466,8 +3466,8 @@
       "source": "studio/src/app/hq/assets/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 assets.",
-      "primaryAction": "Complete the primary action on hq \u00b7 assets.",
+      "primaryJob": "Understand and use hq · assets.",
+      "primaryAction": "Complete the primary action on hq · assets.",
       "roles": [
         "founder"
       ],
@@ -3510,8 +3510,8 @@
       "source": "studio/src/app/hq/atlas/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 atlas.",
-      "primaryAction": "Complete the primary action on hq \u00b7 atlas.",
+      "primaryJob": "Understand and use hq · atlas.",
+      "primaryAction": "Complete the primary action on hq · atlas.",
       "roles": [
         "founder"
       ],
@@ -3554,8 +3554,8 @@
       "source": "studio/src/app/hq/atlas/[slug]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 atlas \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 atlas \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · atlas · selected record.",
+      "primaryAction": "Complete the primary action on hq · atlas · selected record.",
       "roles": [
         "founder"
       ],
@@ -3598,8 +3598,8 @@
       "source": "studio/src/app/hq/atlas-map/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq \u00b7 atlas map.",
-      "primaryAction": "Complete the primary action on hq \u00b7 atlas map.",
+      "primaryJob": "Understand and use hq · atlas map.",
+      "primaryAction": "Complete the primary action on hq · atlas map.",
       "roles": [
         "founder"
       ],
@@ -3648,8 +3648,8 @@
       "source": "studio/src/app/hq/blueprint/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq \u00b7 blueprint.",
-      "primaryAction": "Complete the primary action on hq \u00b7 blueprint.",
+      "primaryJob": "Understand and use hq · blueprint.",
+      "primaryAction": "Complete the primary action on hq · blueprint.",
       "roles": [
         "founder"
       ],
@@ -3698,8 +3698,8 @@
       "source": "studio/src/app/hq/[group]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · selected record.",
+      "primaryAction": "Complete the primary action on hq · selected record.",
       "roles": [
         "founder"
       ],
@@ -3742,8 +3742,8 @@
       "source": "studio/src/app/hq/cafe-card/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 cafe card.",
-      "primaryAction": "Complete the primary action on hq \u00b7 cafe card.",
+      "primaryJob": "Understand and use hq · cafe card.",
+      "primaryAction": "Complete the primary action on hq · cafe card.",
       "roles": [
         "founder"
       ],
@@ -3786,8 +3786,8 @@
       "source": "studio/src/app/hq/cap-table/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 cap table.",
-      "primaryAction": "Complete the primary action on hq \u00b7 cap table.",
+      "primaryJob": "Understand and use hq · cap table.",
+      "primaryAction": "Complete the primary action on hq · cap table.",
       "roles": [
         "founder"
       ],
@@ -3830,8 +3830,8 @@
       "source": "studio/src/app/hq/cards/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 cards.",
-      "primaryAction": "Complete the primary action on hq \u00b7 cards.",
+      "primaryJob": "Understand and use hq · cards.",
+      "primaryAction": "Complete the primary action on hq · cards.",
       "roles": [
         "founder"
       ],
@@ -3874,8 +3874,8 @@
       "source": "studio/src/app/hq/crm/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use hq \u00b7 crm.",
-      "primaryAction": "Complete the primary action on hq \u00b7 crm.",
+      "primaryJob": "Understand and use hq · crm.",
+      "primaryAction": "Complete the primary action on hq · crm.",
       "roles": [
         "founder"
       ],
@@ -3925,8 +3925,8 @@
       "source": "studio/src/app/hq/data-room/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 data room.",
-      "primaryAction": "Complete the primary action on hq \u00b7 data room.",
+      "primaryJob": "Understand and use hq · data room.",
+      "primaryAction": "Complete the primary action on hq · data room.",
       "roles": [
         "founder"
       ],
@@ -3969,8 +3969,8 @@
       "source": "studio/src/app/hq/decisions/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 decisions.",
-      "primaryAction": "Complete the primary action on hq \u00b7 decisions.",
+      "primaryJob": "Understand and use hq · decisions.",
+      "primaryAction": "Complete the primary action on hq · decisions.",
       "roles": [
         "founder"
       ],
@@ -4013,8 +4013,8 @@
       "source": "studio/src/app/hq/decisions/[id]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 decisions \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 decisions \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · decisions · selected record.",
+      "primaryAction": "Complete the primary action on hq · decisions · selected record.",
       "roles": [
         "founder"
       ],
@@ -4057,8 +4057,8 @@
       "source": "studio/src/app/hq/deck/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 deck.",
-      "primaryAction": "Complete the primary action on hq \u00b7 deck.",
+      "primaryJob": "Understand and use hq · deck.",
+      "primaryAction": "Complete the primary action on hq · deck.",
       "roles": [
         "founder"
       ],
@@ -4101,8 +4101,8 @@
       "source": "studio/src/app/hq/demo-film/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 demo film.",
-      "primaryAction": "Complete the primary action on hq \u00b7 demo film.",
+      "primaryJob": "Understand and use hq · demo film.",
+      "primaryAction": "Complete the primary action on hq · demo film.",
       "roles": [
         "founder"
       ],
@@ -4145,8 +4145,8 @@
       "source": "studio/src/app/hq/design-rooms/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Understand and use hq \u00b7 design rooms.",
-      "primaryAction": "Complete the primary action on hq \u00b7 design rooms.",
+      "primaryJob": "Understand and use hq · design rooms.",
+      "primaryAction": "Complete the primary action on hq · design rooms.",
       "roles": [
         "founder"
       ],
@@ -4233,8 +4233,8 @@
       "source": "studio/src/app/hq/entitlements/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use hq \u00b7 entitlements.",
-      "primaryAction": "Complete the primary action on hq \u00b7 entitlements.",
+      "primaryJob": "Understand and use hq · entitlements.",
+      "primaryAction": "Complete the primary action on hq · entitlements.",
       "roles": [
         "founder"
       ],
@@ -4277,8 +4277,8 @@
       "source": "studio/src/app/hq/entitlements/[lookup]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use hq \u00b7 entitlements \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 entitlements \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · entitlements · selected record.",
+      "primaryAction": "Complete the primary action on hq · entitlements · selected record.",
       "roles": [
         "founder"
       ],
@@ -4321,8 +4321,8 @@
       "source": "studio/src/app/hq/experience-quality/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 experience quality.",
-      "primaryAction": "Complete the primary action on hq \u00b7 experience quality.",
+      "primaryJob": "Understand and use hq · experience quality.",
+      "primaryAction": "Complete the primary action on hq · experience quality.",
       "roles": [
         "founder"
       ],
@@ -4365,8 +4365,8 @@
       "source": "studio/src/app/hq/experimentation-room/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 experimentation room.",
-      "primaryAction": "Complete the primary action on hq \u00b7 experimentation room.",
+      "primaryJob": "Understand and use hq · experimentation room.",
+      "primaryAction": "Complete the primary action on hq · experimentation room.",
       "roles": [
         "founder"
       ],
@@ -4409,8 +4409,8 @@
       "source": "studio/src/app/hq/financial-model/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 financial model.",
-      "primaryAction": "Complete the primary action on hq \u00b7 financial model.",
+      "primaryJob": "Understand and use hq · financial model.",
+      "primaryAction": "Complete the primary action on hq · financial model.",
       "roles": [
         "founder"
       ],
@@ -4453,8 +4453,8 @@
       "source": "studio/src/app/hq/founders-circle/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 founders circle.",
-      "primaryAction": "Complete the primary action on hq \u00b7 founders circle.",
+      "primaryJob": "Understand and use hq · founders circle.",
+      "primaryAction": "Complete the primary action on hq · founders circle.",
       "roles": [
         "founder"
       ],
@@ -4497,8 +4497,8 @@
       "source": "studio/src/app/hq/health/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 health.",
-      "primaryAction": "Complete the primary action on hq \u00b7 health.",
+      "primaryJob": "Understand and use hq · health.",
+      "primaryAction": "Complete the primary action on hq · health.",
       "roles": [
         "founder"
       ],
@@ -4541,8 +4541,8 @@
       "source": "studio/src/app/hq/incorporation/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 incorporation.",
-      "primaryAction": "Complete the primary action on hq \u00b7 incorporation.",
+      "primaryJob": "Understand and use hq · incorporation.",
+      "primaryAction": "Complete the primary action on hq · incorporation.",
       "roles": [
         "founder"
       ],
@@ -4585,8 +4585,8 @@
       "source": "studio/src/app/hq/loading-review/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Understand and use hq \u00b7 loading review.",
-      "primaryAction": "Complete the primary action on hq \u00b7 loading review.",
+      "primaryJob": "Understand and use hq · loading review.",
+      "primaryAction": "Complete the primary action on hq · loading review.",
       "roles": [
         "founder"
       ],
@@ -4629,8 +4629,8 @@
       "source": "studio/src/app/hq/loan-pack/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 loan pack.",
-      "primaryAction": "Complete the primary action on hq \u00b7 loan pack.",
+      "primaryJob": "Understand and use hq · loan pack.",
+      "primaryAction": "Complete the primary action on hq · loan pack.",
       "roles": [
         "founder"
       ],
@@ -4673,8 +4673,8 @@
       "source": "studio/src/app/hq/market-entry/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 market entry.",
-      "primaryAction": "Complete the primary action on hq \u00b7 market entry.",
+      "primaryJob": "Understand and use hq · market entry.",
+      "primaryAction": "Complete the primary action on hq · market entry.",
       "roles": [
         "founder"
       ],
@@ -4717,8 +4717,8 @@
       "source": "studio/src/app/hq/marketing/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 marketing.",
-      "primaryAction": "Complete the primary action on hq \u00b7 marketing.",
+      "primaryJob": "Understand and use hq · marketing.",
+      "primaryAction": "Complete the primary action on hq · marketing.",
       "roles": [
         "founder"
       ],
@@ -4761,8 +4761,8 @@
       "source": "studio/src/app/hq/one-pagers/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers.",
+      "primaryJob": "Understand and use hq · one pagers.",
+      "primaryAction": "Complete the primary action on hq · one pagers.",
       "roles": [
         "founder"
       ],
@@ -4805,8 +4805,8 @@
       "source": "studio/src/app/hq/one-pagers/analytics/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers \u00b7 analytics.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers \u00b7 analytics.",
+      "primaryJob": "Understand and use hq · one pagers · analytics.",
+      "primaryAction": "Complete the primary action on hq · one pagers · analytics.",
       "roles": [
         "founder"
       ],
@@ -4849,8 +4849,8 @@
       "source": "studio/src/app/hq/one-pagers/brand/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers \u00b7 brand.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers \u00b7 brand.",
+      "primaryJob": "Understand and use hq · one pagers · brand.",
+      "primaryAction": "Complete the primary action on hq · one pagers · brand.",
       "roles": [
         "founder"
       ],
@@ -4893,8 +4893,8 @@
       "source": "studio/src/app/hq/one-pagers/notes/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers \u00b7 notes.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers \u00b7 notes.",
+      "primaryJob": "Understand and use hq · one pagers · notes.",
+      "primaryAction": "Complete the primary action on hq · one pagers · notes.",
       "roles": [
         "founder"
       ],
@@ -4937,8 +4937,8 @@
       "source": "studio/src/app/hq/one-pagers/roadmap/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers \u00b7 roadmap.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers \u00b7 roadmap.",
+      "primaryJob": "Understand and use hq · one pagers · roadmap.",
+      "primaryAction": "Complete the primary action on hq · one pagers · roadmap.",
       "roles": [
         "founder"
       ],
@@ -4981,8 +4981,8 @@
       "source": "studio/src/app/hq/one-pagers/tasks/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 one pagers \u00b7 tasks.",
-      "primaryAction": "Complete the primary action on hq \u00b7 one pagers \u00b7 tasks.",
+      "primaryJob": "Understand and use hq · one pagers · tasks.",
+      "primaryAction": "Complete the primary action on hq · one pagers · tasks.",
       "roles": [
         "founder"
       ],
@@ -5025,8 +5025,8 @@
       "source": "studio/src/app/hq/org/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq \u00b7 org.",
-      "primaryAction": "Complete the primary action on hq \u00b7 org.",
+      "primaryJob": "Understand and use hq · org.",
+      "primaryAction": "Complete the primary action on hq · org.",
       "roles": [
         "founder"
       ],
@@ -5075,8 +5075,8 @@
       "source": "studio/src/app/hq/org/[slug]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq \u00b7 org \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 org \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · org · selected record.",
+      "primaryAction": "Complete the primary action on hq · org · selected record.",
       "roles": [
         "founder"
       ],
@@ -5125,8 +5125,8 @@
       "source": "studio/src/app/hq/partner-card/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 partner card.",
-      "primaryAction": "Complete the primary action on hq \u00b7 partner card.",
+      "primaryJob": "Understand and use hq · partner card.",
+      "primaryAction": "Complete the primary action on hq · partner card.",
       "roles": [
         "founder"
       ],
@@ -5169,8 +5169,8 @@
       "source": "studio/src/app/hq/partners/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 partners.",
-      "primaryAction": "Complete the primary action on hq \u00b7 partners.",
+      "primaryJob": "Understand and use hq · partners.",
+      "primaryAction": "Complete the primary action on hq · partners.",
       "roles": [
         "founder"
       ],
@@ -5213,8 +5213,8 @@
       "source": "studio/src/app/hq/plan/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 plan.",
-      "primaryAction": "Complete the primary action on hq \u00b7 plan.",
+      "primaryJob": "Understand and use hq · plan.",
+      "primaryAction": "Complete the primary action on hq · plan.",
       "roles": [
         "founder"
       ],
@@ -5257,8 +5257,8 @@
       "source": "studio/src/app/hq/plan/print/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use hq \u00b7 plan \u00b7 print.",
-      "primaryAction": "Complete the primary action on hq \u00b7 plan \u00b7 print.",
+      "primaryJob": "Understand and use hq · plan · print.",
+      "primaryAction": "Complete the primary action on hq · plan · print.",
       "roles": [
         "founder"
       ],
@@ -5307,8 +5307,8 @@
       "source": "studio/src/app/hq/platform-readiness/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 platform readiness.",
-      "primaryAction": "Complete the primary action on hq \u00b7 platform readiness.",
+      "primaryJob": "Understand and use hq · platform readiness.",
+      "primaryAction": "Complete the primary action on hq · platform readiness.",
       "roles": [
         "founder"
       ],
@@ -5351,8 +5351,8 @@
       "source": "studio/src/app/hq/poster/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 poster.",
-      "primaryAction": "Complete the primary action on hq \u00b7 poster.",
+      "primaryJob": "Understand and use hq · poster.",
+      "primaryAction": "Complete the primary action on hq · poster.",
       "roles": [
         "founder"
       ],
@@ -5395,8 +5395,8 @@
       "source": "studio/src/app/hq/product-hero-design-motion/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 product hero design motion.",
-      "primaryAction": "Complete the primary action on hq \u00b7 product hero design motion.",
+      "primaryJob": "Understand and use hq · product hero design motion.",
+      "primaryAction": "Complete the primary action on hq · product hero design motion.",
       "roles": [
         "founder"
       ],
@@ -5439,8 +5439,8 @@
       "source": "studio/src/app/hq/reporting/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use hq \u00b7 reporting.",
-      "primaryAction": "Complete the primary action on hq \u00b7 reporting.",
+      "primaryJob": "Understand and use hq · reporting.",
+      "primaryAction": "Complete the primary action on hq · reporting.",
       "roles": [
         "founder"
       ],
@@ -5490,8 +5490,8 @@
       "source": "studio/src/app/hq/socials/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 socials.",
-      "primaryAction": "Complete the primary action on hq \u00b7 socials.",
+      "primaryJob": "Understand and use hq · socials.",
+      "primaryAction": "Complete the primary action on hq · socials.",
       "roles": [
         "founder"
       ],
@@ -5534,8 +5534,8 @@
       "source": "studio/src/app/hq/vault/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 vault.",
-      "primaryAction": "Complete the primary action on hq \u00b7 vault.",
+      "primaryJob": "Understand and use hq · vault.",
+      "primaryAction": "Complete the primary action on hq · vault.",
       "roles": [
         "founder"
       ],
@@ -5578,8 +5578,8 @@
       "source": "studio/src/app/hq/vault/[slug]/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 vault \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on hq \u00b7 vault \u00b7 selected record.",
+      "primaryJob": "Understand and use hq · vault · selected record.",
+      "primaryAction": "Complete the primary action on hq · vault · selected record.",
       "roles": [
         "founder"
       ],
@@ -5622,8 +5622,8 @@
       "source": "studio/src/app/hq/venue-kit/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 venue kit.",
-      "primaryAction": "Complete the primary action on hq \u00b7 venue kit.",
+      "primaryJob": "Understand and use hq · venue kit.",
+      "primaryAction": "Complete the primary action on hq · venue kit.",
       "roles": [
         "founder"
       ],
@@ -5666,8 +5666,8 @@
       "source": "studio/src/app/hq/venues/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use hq \u00b7 venues.",
-      "primaryAction": "Complete the primary action on hq \u00b7 venues.",
+      "primaryJob": "Understand and use hq · venues.",
+      "primaryAction": "Complete the primary action on hq · venues.",
       "roles": [
         "founder"
       ],
@@ -5710,8 +5710,8 @@
       "source": "studio/src/app/hq/waitlist/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use hq \u00b7 waitlist.",
-      "primaryAction": "Complete the primary action on hq \u00b7 waitlist.",
+      "primaryJob": "Understand and use hq · waitlist.",
+      "primaryAction": "Complete the primary action on hq · waitlist.",
       "roles": [
         "founder"
       ],
@@ -6025,8 +6025,8 @@
       "source": "studio/src/app/redeem/[code]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use redeem \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on redeem \u00b7 selected record.",
+      "primaryJob": "Understand and use redeem · selected record.",
+      "primaryAction": "Complete the primary action on redeem · selected record.",
       "roles": [
         "public"
       ],
@@ -6379,8 +6379,8 @@
       "source": "studio/src/app/venues/demo/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use venues \u00b7 demo.",
-      "primaryAction": "Complete the primary action on venues \u00b7 demo.",
+      "primaryJob": "Understand and use venues · demo.",
+      "primaryAction": "Complete the primary action on venues · demo.",
       "roles": [
         "public"
       ],
@@ -7014,8 +7014,8 @@
       "source": "tasks/src/app/app/board/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use app \u00b7 board.",
-      "primaryAction": "Complete the primary action on app \u00b7 board.",
+      "primaryJob": "Understand and use app · board.",
+      "primaryAction": "Complete the primary action on app · board.",
       "roles": [
         "owner",
         "member"
@@ -7065,8 +7065,8 @@
       "source": "tasks/src/app/app/calendar/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use app \u00b7 calendar.",
-      "primaryAction": "Complete the primary action on app \u00b7 calendar.",
+      "primaryJob": "Understand and use app · calendar.",
+      "primaryAction": "Complete the primary action on app · calendar.",
       "roles": [
         "owner",
         "member"
@@ -7110,8 +7110,8 @@
       "source": "tasks/src/app/app/import/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "create-and-edit-form",
-      "primaryJob": "Understand and use app \u00b7 import.",
-      "primaryAction": "Complete the primary action on app \u00b7 import.",
+      "primaryJob": "Understand and use app · import.",
+      "primaryAction": "Complete the primary action on app · import.",
       "roles": [
         "owner",
         "member"
@@ -7161,8 +7161,8 @@
       "source": "tasks/src/app/app/inbox/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "dashboard-or-command-centre",
-      "primaryJob": "Understand and use app \u00b7 inbox.",
-      "primaryAction": "Complete the primary action on app \u00b7 inbox.",
+      "primaryJob": "Understand and use app · inbox.",
+      "primaryAction": "Complete the primary action on app · inbox.",
       "roles": [
         "owner",
         "member"
@@ -7213,8 +7213,8 @@
       "source": "tasks/src/app/app/list/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use app \u00b7 list.",
-      "primaryAction": "Complete the primary action on app \u00b7 list.",
+      "primaryJob": "Understand and use app · list.",
+      "primaryAction": "Complete the primary action on app · list.",
       "roles": [
         "owner",
         "member"
@@ -7265,8 +7265,8 @@
       "source": "tasks/src/app/app/my-tasks/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "dashboard-or-command-centre",
-      "primaryJob": "Understand and use app \u00b7 my tasks.",
-      "primaryAction": "Complete the primary action on app \u00b7 my tasks.",
+      "primaryJob": "Understand and use app · my tasks.",
+      "primaryAction": "Complete the primary action on app · my tasks.",
       "roles": [
         "owner",
         "member"
@@ -7317,8 +7317,8 @@
       "source": "tasks/src/app/app/settings/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use app \u00b7 settings.",
-      "primaryAction": "Complete the primary action on app \u00b7 settings.",
+      "primaryJob": "Understand and use app · settings.",
+      "primaryAction": "Complete the primary action on app · settings.",
       "roles": [
         "owner",
         "member"
@@ -7362,8 +7362,8 @@
       "source": "tasks/src/app/app/timeline/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use app \u00b7 timeline.",
-      "primaryAction": "Complete the primary action on app \u00b7 timeline.",
+      "primaryJob": "Understand and use app · timeline.",
+      "primaryAction": "Complete the primary action on app · timeline.",
       "roles": [
         "owner",
         "member"
@@ -7451,8 +7451,8 @@
       "source": "tasks/src/app/embed/[slug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use embed \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on embed \u00b7 selected record.",
+      "primaryJob": "Understand and use embed · selected record.",
+      "primaryAction": "Complete the primary action on embed · selected record.",
       "roles": [
         "owner",
         "guest",
@@ -7497,8 +7497,8 @@
       "source": "tasks/src/app/embed/guide/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use embed \u00b7 guide.",
-      "primaryAction": "Complete the primary action on embed \u00b7 guide.",
+      "primaryJob": "Understand and use embed · guide.",
+      "primaryAction": "Complete the primary action on embed · guide.",
       "roles": [
         "owner",
         "guest",
@@ -7543,8 +7543,8 @@
       "source": "tasks/src/app/for/community/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 community.",
-      "primaryAction": "Complete the primary action on for \u00b7 community.",
+      "primaryJob": "Understand and use for · community.",
+      "primaryAction": "Complete the primary action on for · community.",
       "roles": [
         "public"
       ],
@@ -7587,8 +7587,8 @@
       "source": "tasks/src/app/for/freelancers/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 freelancers.",
-      "primaryAction": "Complete the primary action on for \u00b7 freelancers.",
+      "primaryJob": "Understand and use for · freelancers.",
+      "primaryAction": "Complete the primary action on for · freelancers.",
       "roles": [
         "public"
       ],
@@ -7631,8 +7631,8 @@
       "source": "tasks/src/app/for/small-business/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 small business.",
-      "primaryAction": "Complete the primary action on for \u00b7 small business.",
+      "primaryJob": "Understand and use for · small business.",
+      "primaryAction": "Complete the primary action on for · small business.",
       "roles": [
         "public"
       ],
@@ -7675,8 +7675,8 @@
       "source": "tasks/src/app/for/students/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 students.",
-      "primaryAction": "Complete the primary action on for \u00b7 students.",
+      "primaryJob": "Understand and use for · students.",
+      "primaryAction": "Complete the primary action on for · students.",
       "roles": [
         "public"
       ],
@@ -7719,8 +7719,8 @@
       "source": "tasks/src/app/for/trades/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 trades.",
-      "primaryAction": "Complete the primary action on for \u00b7 trades.",
+      "primaryJob": "Understand and use for · trades.",
+      "primaryAction": "Complete the primary action on for · trades.",
       "roles": [
         "public"
       ],
@@ -7763,8 +7763,8 @@
       "source": "tasks/src/app/for/weddings/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use for \u00b7 weddings.",
-      "primaryAction": "Complete the primary action on for \u00b7 weddings.",
+      "primaryJob": "Understand and use for · weddings.",
+      "primaryAction": "Complete the primary action on for · weddings.",
       "roles": [
         "public"
       ],
@@ -7807,8 +7807,8 @@
       "source": "tasks/src/app/invite/[token]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use invite \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on invite \u00b7 selected record.",
+      "primaryJob": "Understand and use invite · selected record.",
+      "primaryAction": "Complete the primary action on invite · selected record.",
       "roles": [
         "public"
       ],
@@ -7897,8 +7897,8 @@
       "source": "tasks/src/app/lab/[slug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Understand and use lab \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on lab \u00b7 selected record.",
+      "primaryJob": "Understand and use lab · selected record.",
+      "primaryAction": "Complete the primary action on lab · selected record.",
       "roles": [
         "public"
       ],
@@ -7941,8 +7941,8 @@
       "source": "tasks/src/app/p/[slug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use p \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on p \u00b7 selected record.",
+      "primaryJob": "Understand and use p · selected record.",
+      "primaryAction": "Complete the primary action on p · selected record.",
       "roles": [
         "owner",
         "guest",
@@ -8119,8 +8119,8 @@
       "source": "tasks/src/app/print/board/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use print \u00b7 board.",
-      "primaryAction": "Complete the primary action on print \u00b7 board.",
+      "primaryJob": "Understand and use print · board.",
+      "primaryAction": "Complete the primary action on print · board.",
       "roles": [
         "public"
       ],
@@ -8169,8 +8169,8 @@
       "source": "tasks/src/app/print/calendar/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use print \u00b7 calendar.",
-      "primaryAction": "Complete the primary action on print \u00b7 calendar.",
+      "primaryJob": "Understand and use print · calendar.",
+      "primaryAction": "Complete the primary action on print · calendar.",
       "roles": [
         "public"
       ],
@@ -8213,8 +8213,8 @@
       "source": "tasks/src/app/print/list/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "list-and-data-table",
-      "primaryJob": "Understand and use print \u00b7 list.",
-      "primaryAction": "Complete the primary action on print \u00b7 list.",
+      "primaryJob": "Understand and use print · list.",
+      "primaryAction": "Complete the primary action on print · list.",
       "roles": [
         "public"
       ],
@@ -8264,8 +8264,8 @@
       "source": "tasks/src/app/print/timeline/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use print \u00b7 timeline.",
-      "primaryAction": "Complete the primary action on print \u00b7 timeline.",
+      "primaryJob": "Understand and use print · timeline.",
+      "primaryAction": "Complete the primary action on print · timeline.",
       "roles": [
         "public"
       ],
@@ -8352,8 +8352,8 @@
       "source": "tasks/src/app/redeem/[code]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use redeem \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on redeem \u00b7 selected record.",
+      "primaryJob": "Understand and use redeem · selected record.",
+      "primaryAction": "Complete the primary action on redeem · selected record.",
       "roles": [
         "public"
       ],
@@ -8575,8 +8575,8 @@
       "source": "tasks/src/app/settings/notifications/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use settings \u00b7 notifications.",
-      "primaryAction": "Complete the primary action on settings \u00b7 notifications.",
+      "primaryJob": "Understand and use settings · notifications.",
+      "primaryAction": "Complete the primary action on settings · notifications.",
       "roles": [
         "owner",
         "member"
@@ -8620,8 +8620,8 @@
       "source": "tasks/src/app/settings/plan/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use settings \u00b7 plan.",
-      "primaryAction": "Complete the primary action on settings \u00b7 plan.",
+      "primaryJob": "Understand and use settings · plan.",
+      "primaryAction": "Complete the primary action on settings · plan.",
       "roles": [
         "owner",
         "member"
@@ -8665,8 +8665,8 @@
       "source": "tasks/src/app/settings/profile/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use settings \u00b7 profile.",
-      "primaryAction": "Complete the primary action on settings \u00b7 profile.",
+      "primaryJob": "Understand and use settings · profile.",
+      "primaryAction": "Complete the primary action on settings · profile.",
       "roles": [
         "owner",
         "member"
@@ -8710,8 +8710,8 @@
       "source": "tasks/src/app/share/[token]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use share \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on share \u00b7 selected record.",
+      "primaryJob": "Understand and use share · selected record.",
+      "primaryAction": "Complete the primary action on share · selected record.",
       "roles": [
         "owner",
         "guest",
@@ -8802,8 +8802,8 @@
       "source": "tasks/src/app/sign-in/[[...sign-in]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign in \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign in \u00b7 selected record.",
+      "primaryJob": "Understand and use sign in · selected record.",
+      "primaryAction": "Complete the primary action on sign in · selected record.",
       "roles": [
         "public"
       ],
@@ -8848,8 +8848,8 @@
       "source": "tasks/src/app/sign-up/[[...sign-up]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign up \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign up \u00b7 selected record.",
+      "primaryJob": "Understand and use sign up · selected record.",
+      "primaryAction": "Complete the primary action on sign up · selected record.",
       "roles": [
         "public"
       ],
@@ -9026,8 +9026,8 @@
       "source": "tasks/src/app/templates/[slug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use templates \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on templates \u00b7 selected record.",
+      "primaryJob": "Understand and use templates · selected record.",
+      "primaryAction": "Complete the primary action on templates · selected record.",
       "roles": [
         "public"
       ],
@@ -9340,8 +9340,8 @@
       "source": "tasks/src/app/share/[token]/not-found.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "feedback-interruption-and-exception",
-      "primaryJob": "Understand and use share \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on share \u00b7 selected record.",
+      "primaryJob": "Understand and use share · selected record.",
+      "primaryAction": "Complete the primary action on share · selected record.",
       "roles": [
         "owner",
         "guest",
@@ -9712,8 +9712,8 @@
       "source": "roadmap/src/app/app/(app)/account/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "settings-and-administration",
-      "primaryJob": "Understand and use app \u00b7 account.",
-      "primaryAction": "Complete the primary action on app \u00b7 account.",
+      "primaryJob": "Understand and use app · account.",
+      "primaryAction": "Complete the primary action on app · account.",
       "roles": [
         "owner",
         "member"
@@ -9757,8 +9757,8 @@
       "source": "roadmap/src/app/app/(app)/audience/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use app \u00b7 audience.",
-      "primaryAction": "Complete the primary action on app \u00b7 audience.",
+      "primaryJob": "Understand and use app · audience.",
+      "primaryAction": "Complete the primary action on app · audience.",
       "roles": [
         "owner",
         "member"
@@ -9802,8 +9802,8 @@
       "source": "roadmap/src/app/app/(app)/plan/[projectSlug]/page.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "editor-or-canvas",
-      "primaryJob": "Understand and use app \u00b7 plan \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on app \u00b7 plan \u00b7 selected record.",
+      "primaryJob": "Understand and use app · plan · selected record.",
+      "primaryAction": "Complete the primary action on app · plan · selected record.",
       "roles": [
         "owner",
         "member"
@@ -9897,8 +9897,8 @@
       "source": "roadmap/src/app/[workspaceSlug]/[projectSlug]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use selected record \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on selected record \u00b7 selected record.",
+      "primaryJob": "Understand and use selected record · selected record.",
+      "primaryAction": "Complete the primary action on selected record · selected record.",
       "roles": [
         "public"
       ],
@@ -9941,8 +9941,8 @@
       "source": "roadmap/src/app/[workspaceSlug]/[projectSlug]/[id]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use selected record \u00b7 selected record \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on selected record \u00b7 selected record \u00b7 selected record.",
+      "primaryJob": "Understand and use selected record · selected record · selected record.",
+      "primaryAction": "Complete the primary action on selected record · selected record · selected record.",
       "roles": [
         "public"
       ],
@@ -9985,8 +9985,8 @@
       "source": "roadmap/src/app/[workspaceSlug]/refusals/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use selected record \u00b7 refusals.",
-      "primaryAction": "Complete the primary action on selected record \u00b7 refusals.",
+      "primaryJob": "Understand and use selected record · refusals.",
+      "primaryAction": "Complete the primary action on selected record · refusals.",
       "roles": [
         "public"
       ],
@@ -10029,8 +10029,8 @@
       "source": "roadmap/src/app/[workspaceSlug]/update/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use selected record \u00b7 update.",
-      "primaryAction": "Complete the primary action on selected record \u00b7 update.",
+      "primaryJob": "Understand and use selected record · update.",
+      "primaryAction": "Complete the primary action on selected record · update.",
       "roles": [
         "owner",
         "guest",
@@ -10163,8 +10163,8 @@
       "source": "roadmap/src/app/onboarding/from-template/[id]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use onboarding \u00b7 from template \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on onboarding \u00b7 from template \u00b7 selected record.",
+      "primaryJob": "Understand and use onboarding · from template · selected record.",
+      "primaryAction": "Complete the primary action on onboarding · from template · selected record.",
       "roles": [
         "public"
       ],
@@ -10297,8 +10297,8 @@
       "source": "roadmap/src/app/s/[token]/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use s \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on s \u00b7 selected record.",
+      "primaryJob": "Understand and use s · selected record.",
+      "primaryAction": "Complete the primary action on s · selected record.",
       "roles": [
         "public"
       ],
@@ -10341,8 +10341,8 @@
       "source": "roadmap/src/app/s/[token]/present/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use s \u00b7 selected record \u00b7 present.",
-      "primaryAction": "Complete the primary action on s \u00b7 selected record \u00b7 present.",
+      "primaryJob": "Understand and use s · selected record · present.",
+      "primaryAction": "Complete the primary action on s · selected record · present.",
       "roles": [
         "public"
       ],
@@ -10385,8 +10385,8 @@
       "source": "roadmap/src/app/sign-in/[[...sign-in]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign in \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign in \u00b7 selected record.",
+      "primaryJob": "Understand and use sign in · selected record.",
+      "primaryAction": "Complete the primary action on sign in · selected record.",
       "roles": [
         "public"
       ],
@@ -10431,8 +10431,8 @@
       "source": "roadmap/src/app/sign-up/[[...sign-up]]/page.tsx",
       "parentJourney": "access-and-onboarding",
       "archetype": "onboarding-and-authentication",
-      "primaryJob": "Understand and use sign up \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on sign up \u00b7 selected record.",
+      "primaryJob": "Understand and use sign up · selected record.",
+      "primaryAction": "Complete the primary action on sign up · selected record.",
       "roles": [
         "public"
       ],
@@ -10703,8 +10703,8 @@
       "source": "roadmap/src/app/app/(app)/plan/[projectSlug]/loading.tsx",
       "parentJourney": "signed-in-work",
       "archetype": "feedback-interruption-and-exception",
-      "primaryJob": "Understand and use app \u00b7 plan \u00b7 selected record.",
-      "primaryAction": "Complete the primary action on app \u00b7 plan \u00b7 selected record.",
+      "primaryJob": "Understand and use app · plan · selected record.",
+      "primaryAction": "Complete the primary action on app · plan · selected record.",
       "roles": [
         "owner",
         "member"
