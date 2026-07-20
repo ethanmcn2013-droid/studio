@@ -364,9 +364,10 @@ export const MAKE_LABS: Lab[] = [
     category: "system",
     state: "SHIPPED",
     href: "/hq/email-lab",
+    authed: true,
     where: "studio · main",
     note: "Seventeen templates on the Hairline system, indigo links, Limerick sign-off. Compare v1 and v2 side by side.",
-    hasThumb: false,
+    hasThumb: true,
   },
 
   // ── Parked in the lab (external branch links, poster tiles) ────────
