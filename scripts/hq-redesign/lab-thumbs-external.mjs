@@ -21,7 +21,7 @@ const TARGETS = [
   { id: "showroom-notes", url: "https://notes-git-feat-notes-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab/the-notebook", wait: 6000 },
   { id: "showroom-timeline", url: "https://roadmap-git-feat-timeline-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab/the-line", wait: 6000 },
   { id: "showroom-signal", url: "https://analytics-git-feat-signal-he-e7c2cb-ethanmcn2013-1730s-projects.vercel.app/lab/the-brief", wait: 6000 },
-  { id: "parked-tasks-hero", url: "http://localhost:3012/lab" },
+  { id: "showroom-tasks", url: "https://tasks-git-feat-tasks-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab/done", wait: 6000 },
   { id: "lab-email", url: "https://signalstudio.ie/hq/email-lab", hqLogin: "https://signalstudio.ie/hq/access" },
 ];
 

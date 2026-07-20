@@ -89,6 +89,18 @@ export const MAKE_LABS: Lab[] = [
     hasThumb: true,
     thumbSource: "external",
   },
+  {
+    id: "showroom-tasks",
+    name: "Tasks · hero showroom",
+    category: "showroom",
+    state: "REVIEW",
+    href: "https://tasks-git-feat-tasks-hero-lab-ethanmcn2013-1730s-projects.vercel.app/lab",
+    external: true,
+    where: "tasks · feat/tasks-hero-lab · 2 directions",
+    note: "Two ways into the working set: Done, the commitment that clears, and Owned, the counterpoint. Awaiting the pick.",
+    hasThumb: true,
+    thumbSource: "external",
+  },
 
   // ── Product heroes (live, external homepages) ──────────────────────
   {
@@ -358,20 +370,9 @@ export const MAKE_LABS: Lab[] = [
   },
 
   // ── Parked in the lab (external branch links, poster tiles) ────────
-  // Notes and Timeline hero showrooms are now live at the top of this page
-  // ("Hero labs · the showrooms"), so their parked GitHub tiles were removed.
-  {
-    id: "parked-tasks-hero",
-    name: "Tasks hero lab · showroom",
-    category: "parked",
-    state: "REVIEW",
-    href: "https://github.com/ethanmcn2013-droid/tasks/tree/feat/tasks-hero-lab",
-    external: true,
-    where: "tasks · feat/tasks-hero-lab",
-    note: "Two active hero directions for the Signal Tasks homepage, plus the research archive.",
-    hasThumb: true,
-    thumbSource: "external",
-  },
+  // The Notes, Timeline, Signal, and Tasks hero showrooms are now live at the
+  // top of this page ("Hero labs · the showrooms"), so their parked tiles were
+  // folded into that section.
   {
     id: "parked-umbrella-daily",
     name: "Umbrella · the Daily Signal",
