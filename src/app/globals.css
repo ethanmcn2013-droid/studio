@@ -6664,6 +6664,45 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   background: var(--accent-soft);
 }
 
+/* ── Per-nation context strip ─────────────────────────────────────── */
+.hq-crm-nation-ctx {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--hairline-2);
+  border-left-width: 3px;
+  border-radius: 4px;
+  background: var(--paper);
+}
+.hq-crm-nation-ctx[data-ready="send"] { border-left-color: #10b981; }
+.hq-crm-nation-ctx[data-ready="verify"] { border-left-color: #f59e0b; }
+.hq-crm-nation-ctx[data-ready="enrich"] { border-left-color: #f43f5e; }
+.hq-crm-nation-ctx-tag {
+  flex-shrink: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.hq-crm-nation-ctx[data-ready="send"] .hq-crm-nation-ctx-tag { color: #065f46; background: #d1fae5; }
+.hq-crm-nation-ctx[data-ready="verify"] .hq-crm-nation-ctx-tag { color: #b45309; background: #fffbeb; }
+.hq-crm-nation-ctx[data-ready="enrich"] .hq-crm-nation-ctx-tag { color: #9f1239; background: #fff1f2; }
+.hq-crm-nation-ctx-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.hq-crm-nation-ctx-src {
+  color: var(--ink-faint);
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+}
+
 /* ── Filter toolbar ───────────────────────────────────────────────── */
 .hq-crm-filters {
   display: flex;

@@ -1,5 +1,6 @@
 import { HqCrmBulkBar } from "@/components/hq/hq-crm-bulk-bar";
 import { HqCrmCountryTabs } from "@/components/hq/hq-crm-country-tabs";
+import { HqCrmNationContext } from "@/components/hq/hq-crm-nation-context";
 import { HqCrmFilters } from "@/components/hq/hq-crm-filters";
 import { HqCrmIntel } from "@/components/hq/hq-crm-intel";
 import { HqCrmPager } from "@/components/hq/hq-crm-pager";
@@ -90,6 +91,11 @@ export function HqCrmSchools({
         countries={countryCounts}
         totalAll={allTotal}
         search={filters.search}
+      />
+
+      <HqCrmNationContext
+        activeCountry={activeCountry}
+        countryCounts={countryCounts}
       />
 
       <HqCrmIntel segment="school" lockdown={lockdown} nextActions={nextActions} />

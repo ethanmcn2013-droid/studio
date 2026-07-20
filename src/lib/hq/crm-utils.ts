@@ -53,6 +53,56 @@ export function normalizeCountry(raw: string | undefined | null): ProspectCountr
     : "IE";
 }
 
+/**
+ * Per-nation context for the schools book. Each nation's list comes from a
+ * different official register with a different email reality, so each bucket
+ * says plainly where it came from and what has to happen before a send.
+ * `readiness`: send = official email, verify = email inferred, enrich = no email.
+ */
+export type Readiness = "send" | "verify" | "enrich";
+
+export type CountryContext = {
+  readiness: Readiness;
+  readinessLabel: string;
+  /** the register the list was built from */
+  source: string;
+  /** one plain line: what this bucket is and what to do before sending */
+  line: string;
+};
+
+export const READINESS_LABEL: Record<Readiness, string> = {
+  send: "send-ready",
+  verify: "verify first",
+  enrich: "enrich first",
+};
+
+export const COUNTRY_CONTEXT: Record<ProspectCountry, CountryContext> = {
+  IE: {
+    readiness: "send",
+    readinessLabel: READINESS_LABEL.send,
+    source: "Dept. of Education, Data on Individual Schools 2025/26",
+    line: "Every school carries an official email. Send-ready.",
+  },
+  "GB-SCT": {
+    readiness: "send",
+    readinessLabel: READINESS_LABEL.send,
+    source: "gov.scot School contact list, 31 January 2026",
+    line: "Every school carries an official email. Send-ready.",
+  },
+  "GB-ENG": {
+    readiness: "verify",
+    readinessLabel: READINESS_LABEL.verify,
+    source: "DfE Get Information About Schools (GIAS)",
+    line: "GIAS carries no email, so each office address is inferred from the school's official website. Verify the email-inferred tag before a bulk send.",
+  },
+  "GB-WLS": {
+    readiness: "enrich",
+    readinessLabel: READINESS_LABEL.enrich,
+    source: "Welsh Government address list of schools",
+    line: "The register carries no email or website. Enrich the email-missing tag from local-authority sites before sending.",
+  },
+};
+
 // ── Lead books ───────────────────────────────────────────────────────────────
 
 export type SegmentConfig = {
