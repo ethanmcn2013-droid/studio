@@ -1,0 +1,48 @@
+name: documents-decks-sync
+
+# Keeps documents.signalstudio.ie (growth. + plan.) an EXACT mirror of the
+# canonical studio decks in public/brand. Verify guards every PR; publish
+# republishes the mirrors whenever a canonical deck or its assets change.
+
+on:
+  pull_request:
+    paths:
+      - 'public/brand/**'
+      - 'scripts/decks/**'
+  push:
+    branches: [main]
+    paths:
+      - 'public/brand/market-entry-deck-2026.html'
+      - 'public/brand/business-loan-pack-2026.html'
+      - 'public/brand/assets/**'
+      - 'scripts/decks/**'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      # offline drift guard: a canonical deck may never reference a missing asset
+      - run: node scripts/decks/verify-documents-sync.mjs
+
+  publish:
+    if: github.event_name == 'push'
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: publish + live-verify mirrors
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::warning::VERCEL_TOKEN secret not set — mirrors NOT auto-published."
+            echo "See content/hq/operator-todos/documents-decks-vercel-token.md"
+            exit 0
+          fi
+          npm i -g vercel@latest
+          node scripts/decks/publish-documents-decks.mjs
