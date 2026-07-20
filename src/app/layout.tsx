@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
+import { GoogleTag } from "@/components/analytics/google-tag";
 import { SITE_URL } from "@/lib/site-url";
 import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
 
@@ -139,6 +140,8 @@ export default async function RootLayout({
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
+        {/* Google tag (gtag.js) — production only, on every page. */}
+        <GoogleTag />
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}

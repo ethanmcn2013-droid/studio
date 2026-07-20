@@ -26,14 +26,18 @@ const isDev = process.env.NODE_ENV === "development";
 const clerkHosts =
   "https://*.signalstudio.ie https://*.clerk.accounts.dev https://*.clerk.com https://clerk-telemetry.com";
 const turnstile = "https://challenges.cloudflare.com";
+// Google Analytics 4 (gtag.js) — see src/components/analytics/google-tag.tsx.
+const googleTag = "https://www.googletagmanager.com";
+const googleAnalytics =
+  "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com";
 
 const csp = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile} ${googleTag}`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https:`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts}`,
+  `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts} ${googleTag} ${googleAnalytics}`,
   `frame-src 'self' ${turnstile}`,
   `worker-src 'self' blob:`,
   `frame-ancestors 'none'`,
