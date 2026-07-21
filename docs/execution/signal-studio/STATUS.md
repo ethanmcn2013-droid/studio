@@ -17,7 +17,8 @@ Updated: 2026-07-21 (session 1, Fable lead — Phase 1 in progress)
 **Phase 2 — IN PROGRESS** (same branch, commits ..14d35dc):
 - Nudge LANDED (44e3504): rate-limited person-to-person reminders, mute pref (migration 0018), inbox rendering, panel control.
 - Invite hardening pack LANDED (14d35dc): migration 0019 (role + last_sent_at + workspace_events), D-018 grant-on-accept via requireAppAccessTasks() wrapper (shared four-repo files untouched), Clerk-verified email at accept, resend cooldown, existing-member no-op, preview email hidden pre-auth, share mode clamped to view (D-020), 8-test runtime invite-lifecycle suite. Fable fixes during verify: comment-only first statement in 0019 (breakpoint splitter), .mjs→.ts test conversion for freshMemoryDb interop + typing, role type threading.
-- Security & Login settings section: builder IN FLIGHT (last Phase 2 item). Clerk provider enablement = operator todo premium-auth-providers.
+- Security & Login settings section LANDED (75af14b): sign-in methods, active sessions with ownership-checked revocation, security activity from workspace_events; degrades gracefully on Clerk failure/dev-fallback. **Phase 2 CODE-COMPLETE** — same branch/PR #44; Clerk provider enablement = operator todo premium-auth-providers; live-Clerk session QA deferred to provider enablement (QA_MATRIX row 2).
+- **Phase 3 NEXT**: task-detail hybrid (D-003) — build the lab exploration of panel+focus shells with demo fixtures FIRST and compare side-by-side against the shipped board (lab-parity standard) before porting; verify RESEARCH.md [kb] items (ClickUp/Notion) before IA freeze; fresh screenshot baseline via visual-qa at entry.
 - LESSON (repeat of Step 2): comment-only statement segments break the migration runner; keep header comments attached to the first real statement.
 
 Phase 0 — COMPLETE (committed 0a7c9ce): all exit criteria met.
