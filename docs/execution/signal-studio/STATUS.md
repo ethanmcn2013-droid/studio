@@ -3,6 +3,8 @@
 Updated: 2026-07-21 (session 2, Fable lead — Phase 3 production port landed)
 
 ## Current phase
+**Phase 4 — Projects, Settings, Billing, Themes (IN PROGRESS as of session 2).** Phase 3 COMPLETE at tasks a6fa9d9: production port landed (7317624) and the four context-action deferrals closed (Assign submenu over runtime people, due-date presets, Make subtask of via new setParent dispatcher, Archive exposed through HybridStoreProvider) — in-browser verified, evidence phase3-port/10-13. Operator-todo premium-inapp-themes FILED (D-013 gate) at Phase 4 entry.
+
 **Phase 1 — Platform foundations, IN PROGRESS.**
 - Worktree `_wt-premium-p1` (branch `feat/premium-foundations` off tasks main 831ecb0).
 - Operator gate G-03 FILED: `content/hq/operator-todos/premium-blob-storage.md` (Vercel Blob provisioning; upload work ships dark until done).
