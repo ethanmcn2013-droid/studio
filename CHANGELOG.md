@@ -53,6 +53,8 @@ The release state is equally explicit. One server-side flag keeps production off
 
 The release state is equally explicit. One server-side flag keeps production off by default while the implementation is proved against live membership, inaccessible projects, partial providers, keyboard focus, and real source links. HQ now carries the feature, decision, risk, and Atlas flow. The old restart trigger is marked superseded, and Today Signal is finally recorded as the built artifact it already is. None of the new records call progressive depth live.
 
+## 2026-07-11 · S·124 · holds · Venue Edition is one price
+
 **Venue Edition now holds at â‚¬1,500 per venue, per year, prepaid: no size band, no multi-site ladder, and no operator field that can quietly negotiate another number.** The public venue page and structured offer, HQ onboarding and cash writer, current strategy and outbound copy, venue collateral, lender pack, growth deck, pitch deck, and forecast all carry the same fixed amount. Historical cash rows and dated decisions stay exact rather than being rewritten to look tidy.
 
 The couple-access term is also pinned to eighteen months for new Venue Edition codes. The old Lamb's Hill 365-day packet is blocked from sending until its existing codes are migrated by exact code identity; a new contract check keeps the price range and send-ready twelve-month copy from returning.

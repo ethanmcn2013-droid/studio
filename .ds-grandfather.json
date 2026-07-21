@@ -8,7 +8,7 @@
     "ease": 0
   },
   "src/app/globals.css": {
-    "hex": 90,
+    "hex": 114,
     "ease": 19
   },
   "src/app/hq/asset-command/page.tsx": {
@@ -33,6 +33,10 @@
   },
   "src/app/hq/health/page.tsx": {
     "hex": 11,
+    "ease": 0
+  },
+  "src/app/hq/hq-os.css": {
+    "hex": 4,
     "ease": 0
   },
   "src/app/hq/layout.tsx": {
