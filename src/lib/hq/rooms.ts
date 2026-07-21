@@ -202,12 +202,12 @@ export const HQ_ROOMS: HqRoom[] = [
   {
     slug: "slide-30-review",
     route: "/hq/slide-30-review",
-    name: "Slide 30 directions",
+    name: "Market-entry Slide 30",
     group: "make",
     kind: "artifact",
-    lifecycle: "active",
+    lifecycle: "decided",
     summary: "Four retained market-entry directions, with the working deck selection marked.",
-    aliases: ["market entry slide", "proof mark", "founding partners"],
+    aliases: ["slide 30", "market entry slide", "proof mark", "founding partners"],
     parent: "assets",
   },
   {
@@ -317,16 +317,6 @@ export const HQ_ROOMS: HqRoom[] = [
     kind: "artifact",
     lifecycle: "decided",
     summary: "Founding partner card; Indigo and Numeral shortlisted.",
-  },
-  {
-    slug: "slide-30-review",
-    route: "/hq/slide-30-review",
-    name: "Market-entry Slide 30",
-    group: "make",
-    kind: "room",
-    lifecycle: "decided",
-    summary: "Four retained directions for the market-entry proof slide.",
-    aliases: ["slide 30", "market entry slide", "proof mark"],
   },
   {
     slug: "email-lab",

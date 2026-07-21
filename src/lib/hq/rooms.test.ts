@@ -40,6 +40,7 @@ const DECLARED_STATUSES: Record<string, string[]> = {
   demos: [],
   "ecosystem-flows": ["Not started", "Partly working", "Planned"],
   features: ["Built", "Idea", "In Progress", "Shipping", "Shipped"],
+  finance: [],
   "growth-workflow": ["Drafting", "Selected"],
   "launch-readiness": ["At risk", "Clear", "Needs attention"],
   "operator-todos": ["done", "open"],

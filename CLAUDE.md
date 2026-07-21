@@ -15,6 +15,7 @@ The sources, by section:
 | a decision, its review date, or its status                         | `content/hq/decisions/<id>.md`                       |
 | a risk, mitigation, likelihood, or impact                          | `content/hq/risks/<id>.md`                           |
 | a feature scope or status                                          | `content/hq/features/<id>.md`                        |
+| a finance data pack (cost/revenue model JSON)                      | `content/hq/finance/<pack>.json`                     |
 | a campaign goal, blocker, or progress                              | `content/hq/campaigns/<id>.md`                       |
 | messaging, positioning, hooks, pitches                             | `content/hq/messaging.md`                            |
 | a product's role, maturity, status                                 | `content/hq/products/<id>.md`                        |

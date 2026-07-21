@@ -57,7 +57,8 @@ const SPECIAL_FILES = new Map([
 ]);
 
 export function readJson(file) {
-  return JSON.parse(readFileSync(file, "utf8"));
+  const text = readFileSync(file, "utf8").replace(/^\uFEFF/, "");
+  return JSON.parse(text);
 }
 
 export function writeStableJson(value) {
