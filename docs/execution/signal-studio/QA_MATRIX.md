@@ -17,7 +17,7 @@ Evidence-first: a cell is only ✅ with a recorded command/screenshot/receipt. U
 ## Per-phase matrix (rows filled as phases close)
 | Phase | Functional | Visual (side-by-side parity) | Responsive (lg/laptop/tablet/mobile) | A11y (auto 0 serious + manual keyboard) | Security (Opus review) | Performance | Data/migration | Browsers (Chrome/Safari/FF) |
 |---|---|---|---|---|---|---|---|---|
-| 1 | — | — | — | — | — | — | — | — |
+| 1 | ✅ 24 new tests (integrity+storage), suite green; claim-rollback + union-metering covered | n/a (panel section mirrors existing grammar; full visual pass at Phase 3) | ◐ section reuses responsive panel | ◐ no new automated run; resources section keyboard-reachable (inline input + buttons); full audit at Phase 3 | ✅ Opus design review pre-implementation; actions in security-regression contract; erasure wired | ◐ no profile run; no new heavy paths (async metadata never blocks task load) | ✅ additive 0017 w/ receipt proofs, db:contract 19/19, rollback = DROP TABLE | ⏸ CI on PR #44 |
 | 2 | — | — | — | — | — | — | — | — |
 | 3 | — | — | — | — | — | — | — | — |
 | 4 | — | — | — | — | — | — | — | — |
