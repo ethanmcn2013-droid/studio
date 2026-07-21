@@ -59,6 +59,15 @@ The hero must demonstrate the real hybrid board: real tokens, representative `hy
 ## D-007a · 2026-07-21 · decided · Server-path upload cap until client-direct multipart ships
 Server-action uploads buffer the whole file in memory (Opus §1.4: OOM risk at 250MB). Effective per-file cap = min(quota maxFileBytes, 50MB server-path limit), encoded in storage-config with a labelled comment. The Vercel Blob client-direct multipart flow is a recorded follow-up that must ship before any Pro 250MB per-file claim is advertised. Reversal: raise/remove SERVER_UPLOAD_LIMIT_BYTES when the client flow lands.
 
+## D-018 · 2026-07-21 · decided · Accepting a workspace invite implies app access (closed beta)
+Opus found the current state is a trap: a non-allowlisted invitee gets a membership row and a burned token but bounces to /waitlist forever. The allowlist is the wall against public self-signup, not against explicitly-invited collaborators — the collaboration loop is the product strategy. Implementation: requireAppAccess (Tasks-local wrapper — the shared four-repo file stays byte-identical) passes when `isEmailAllowed(email) || hasAnyWorkspaceMembership(userId)`. Revocable: removing the last membership removes access. Alternative rejected: fail-closed at accept (preserves the wall, kills the wedge). Founder can reverse by removing the membership clause (operator note filed).
+
+## D-019 · 2026-07-21 · decided · Workspace-scoped audit lives in a new workspace_events table
+activities.taskId is NOT NULL (hot table; SQLite NOT-NULL relaxation = full rebuild). Workspace-level events (inviteSent/inviteAccepted, member role changes, access grants) get an additive `workspace_events` table instead. Task-scoped invite kinds stay in the activity union for future task-guest work. Rendering surface arrives with Phase 4 project overview.
+
+## D-020 · 2026-07-21 · decided · share_links clamp to view-only; task guests deferred with exact remaining work
+mode comment|edit is stored but has no enforced write path (UI-hiding trap). Phase 2 clamps semantics to view. Task-level guest access is DEFERRED behind a flag per Opus verdict: future work = task_grants table + requireTaskAccess(taskId, capability) choke-point called by every task-scoped entry + a contract test enumerating those entries. Nudge rate key tightened to (sender, task) 1/24h overall (kills multi-assignee fan-out spam).
+
 ## Assumption corrections (brief §3)
 - A3: "Programs are collections of Projects" → mapped to planning_periods/workspaces (D-011).
 - A4: Timeline is its own product (roadmap repo); domain already migrated in code; only the legacy-hostname redirect remains (D-014).
