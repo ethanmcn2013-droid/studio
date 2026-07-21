@@ -1,10 +1,16 @@
 # STATUS — Signal Studio Premium Programme
 
-Updated: 2026-07-21 (session 1, Fable lead)
+Updated: 2026-07-21 (session 1, Fable lead — Phase 1 in progress)
 
 ## Current phase
-**Phase 0 — COMPLETE at this commit** (exit criteria met: plan files exist, baseline recorded, architecture + asset inventory exist, 3 task-detail explorations evaluated, decision records D-000…D-017 written, phase order + dependencies explicit, gates documented, artefacts committed).
-**Next: Phase 1 — Platform foundations** (see MASTER_PLAN.md §Phase 1, SESSION_HANDOFF.md for exact first steps).
+**Phase 1 — Platform foundations, IN PROGRESS.**
+- Worktree `_wt-premium-p1` (branch `feat/premium-foundations` off tasks main 831ecb0).
+- Operator gate G-03 FILED: `content/hq/operator-todos/premium-blob-storage.md` (Vercel Blob provisioning; upload work ships dark until done).
+- Opus architecture review COMPLETE — all items approve-with-amendments; binding amendments in `agent-reports/phase1-opus-architecture-review.md`. Found two pre-existing integrity bugs (parent-delete orphans children; roll-up counts archived children) and the no-runtime-FK-cascade fact — all folded into the plan.
+- Step 1 (activity taxonomy + hierarchy integrity fixes + setParentAction) delegated to a bounded builder on the worktree.
+- Remaining steps: 1.3 resources table (0017, read-through union, erasure wiring) → 1.4 Blob seam + claim-then-verify quotas → parent-complete choice dialog UI (scheduled with the resources panel work).
+
+Phase 0 — COMPLETE (committed 0a7c9ce): all exit criteria met.
 
 ## Completed
 - Repo/system audits (tasks architecture, studio assets, domains/infra, migration-programme intelligence) — full reports in `agent-reports/`.
