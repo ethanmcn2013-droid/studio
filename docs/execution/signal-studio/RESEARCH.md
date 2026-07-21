@@ -54,8 +54,10 @@ Researched 2026-07-21. Sources marked **[verified]** were fetched from official 
 4. Fake-cursor collaboration theatre in marketing motion.
 5. A second activity system or duplicated task management inside Marketing (brief §13.3).
 
+## Verified 2026-07-21 (second pass — closes the Phase 3 gates)
+- Notion peeks [verified]: three modes (side / center / full page), set per database ("Open pages in"); table/board/list/timeline default to SIDE peek and the board stays interactive beside it; gallery/calendar default center. Sources: notion.com/help/views-filters-and-sorts + secondary guides, accessed 2026-07-21. → supports Hybrid C.
+- ClickUp task view [verified]: switchable default / full-screen / sidebar task layouts; subtask sidebar (left) with parent↔subtask arrows; right sidebar for comments/activity/relations; vertical dividers DRAG-RESIZE and sections can be closed to focus the description. Sources: help.clickup.com Task layouts (29665520762647), Tasks right sidebar (35041742373015), Intro to subtasks, accessed 2026-07-21. → supports resizable panel + focus mode.
+
 ## Open verification follow-ups
-- [ ] ClickUp task view 3.0 current layout (fetch blocked 403) — before Phase 3 IA freeze.
-- [ ] Notion peek modes current behaviour (404s) — before Phase 3.
 - [ ] Linear project health/updates current mechanics — before Phase 4 Projects build.
-- [ ] Raycast action-panel grouping/search details — before Phase 3 menu build.
+- [ ] Raycast action-panel grouping/search details — before Phase 3 menu build (context-menu step).
