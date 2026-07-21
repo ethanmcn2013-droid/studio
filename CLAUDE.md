@@ -55,6 +55,10 @@ Before adding room #NN+1, answer in the commit body: which group, which kind, wh
 
 The `/hq` dashboard reads strategic content from `content/hq/<section>/*.md` (server-rendered, no localStorage). It still uses `localStorage` for the four operator-owned surfaces (`prospects`, `feedback`, `weeklyRhythm`, `nextActions`) — those have no other source of truth. The legacy `src/lib/hq/data.ts` seed survives as type-shape fallback for un-migrated arrays; it's marked dead substrate at the top of the file.
 
+## Signal Studio Premium Programme (2026-07-21)
+
+A cross-repo programme (tasks product depth, collaboration, task detail, Projects/Settings, marketing engine, website hero, launch assets) is governed from `docs/execution/signal-studio/`. Before making changes in that programme's territory — in this repo or in tasks/roadmap — read, in order: `docs/execution/signal-studio/STATUS.md`, `SESSION_HANDOFF.md`, `DECISIONS.md`, and the relevant phase of `MASTER_PLAN.md`. Standalone video production (signal-motion) is out of that programme's scope.
+
 ## Before Finishing
 
 Run the available checks. At minimum:
