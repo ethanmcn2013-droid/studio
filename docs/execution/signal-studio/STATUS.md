@@ -3,7 +3,16 @@
 Updated: 2026-07-21 (session 2, Fable lead — Phase 3 production port landed)
 
 ## Current phase
-**Phase 4 — Projects, Settings, Billing, Themes (IN PROGRESS as of session 2).** Phase 3 COMPLETE at tasks a6fa9d9: production port landed (7317624) and the four context-action deferrals closed (Assign submenu over runtime people, due-date presets, Make subtask of via new setParent dispatcher, Archive exposed through HybridStoreProvider) — in-browser verified, evidence phase3-port/10-13. Operator-todo premium-inapp-themes FILED (D-013 gate) at Phase 4 entry.
+**Phase 5 — Personality, education, celebrations (IN PROGRESS, session 2).**
+
+**Phase 4 CODE-COMPLETE at tasks 1f2d3f9** (Opus pre-review, all approve-with-amendments, amendments binding and applied):
+- 4.1 Project overview SHIPPED to branch (3f13f04): /app/project for the active workspace — declared status + target date in meta KV (no migration), computed progress kept visually separate, team, milestones, workspace events, Program eyebrow only when a period exists; entry via Overview link in the room brief. Evidence phase4/14.
+- 4.2 Settings IA (1f2d3f9): nine tabs on the single-page shell (Workspace/Members/Notifications/Appearance/Security/Storage/Billing/Privacy and data/Danger zone). Storage = usage vs config quotas; Privacy = export download + type-to-confirm erasure with explicit failure handling. Evidence phase4/15.
+- 4.3 Stripe portal: SECURITY hardening per Opus blocker — verified-primary-email gate before the email-based customer lookup, >1-match refusal, allow-listed return path; button gated to paid tiers; sandbox verification remains operator-gated (Stripe env unset; QA_MATRIX).
+- 4.4 Themes (D-013): migration 0020 theme_mode under full ledger workflow (21/21 db:contract); server allow-list system|light only (dark unreachable even from crafted payloads); data-theme on a contents div inside AppShell (demo-guarded pref read folded into the existing Promise.all); dark tokens designed-not-shipped in app-owned theme-overrides.css; cookie-based html-level read recorded as the prerequisite if dark ever ships.
+- Also fixed: banned indigo-500 in the Phase 3 lab fixture (ds:check had been red on the branch); ds-grandfather manifest resynced (programme files' raw-hex pinned — Phase 9 cleanup candidate).
+- Evidence discipline: fresh production build + 46/46 attested playwright run (raw b115854e…), tasks.page.app-settings re-attested. ALL gates green incl. ds:check + chrome-contract.
+- Phase 3 COMPLETE at tasks a6fa9d9: production port (7317624) + all four context-action deferrals closed (Assign submenu over runtime people, due-date presets, Make subtask of via new setParent dispatcher, Archive exposure). Evidence phase3-port/. Operator-todo premium-inapp-themes FILED (D-013).
 
 **Phase 1 — Platform foundations, IN PROGRESS.**
 - Worktree `_wt-premium-p1` (branch `feat/premium-foundations` off tasks main 831ecb0).
