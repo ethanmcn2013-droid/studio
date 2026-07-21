@@ -6600,6 +6600,369 @@ a.vault-row:hover .vault-row-go { color: var(--accent); }
   .hq-crm-book-tab { min-width: calc(50% - 0.2rem); }
 }
 
+/* ══ Schools book — national, scale-aware view ═══════════════════════ */
+.hq-crm-schools > * + * {
+  margin-top: 1.75rem;
+}
+
+/* ── Country segmented control ────────────────────────────────────── */
+.hq-crm-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.3rem;
+  border: 1px solid var(--hairline-2);
+  border-radius: 5px;
+  background: var(--paper-deep);
+}
+.hq-crm-country-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.14s var(--ease-out), border-color 0.14s var(--ease-out);
+}
+.hq-crm-country-tab:hover {
+  background: var(--paper);
+  border-color: var(--hairline-2);
+}
+.hq-crm-country-tab[data-active="true"] {
+  background: var(--paper);
+  border-color: var(--accent);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.hq-crm-country-tab[data-empty="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.hq-crm-country-flag {
+  font-size: 15px;
+  line-height: 1;
+}
+.hq-crm-country-label {
+  font-size: 13px;
+  font-weight: var(--weight-medium, 500);
+  color: var(--ink-soft);
+}
+.hq-crm-country-tab[data-active="true"] .hq-crm-country-label {
+  color: var(--ink);
+}
+.hq-crm-country-count {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-faint);
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--paper-deep);
+}
+.hq-crm-country-tab[data-active="true"] .hq-crm-country-count {
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+}
+
+/* ── Per-nation context strip ─────────────────────────────────────── */
+.hq-crm-nation-ctx {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--hairline-2);
+  border-left-width: 3px;
+  border-radius: 4px;
+  background: var(--paper);
+}
+.hq-crm-nation-ctx[data-ready="send"] { border-left-color: #10b981; }
+.hq-crm-nation-ctx[data-ready="verify"] { border-left-color: #f59e0b; }
+.hq-crm-nation-ctx[data-ready="enrich"] { border-left-color: #f43f5e; }
+.hq-crm-nation-ctx-tag {
+  flex-shrink: 0;
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.hq-crm-nation-ctx[data-ready="send"] .hq-crm-nation-ctx-tag { color: #065f46; background: #d1fae5; }
+.hq-crm-nation-ctx[data-ready="verify"] .hq-crm-nation-ctx-tag { color: #b45309; background: #fffbeb; }
+.hq-crm-nation-ctx[data-ready="enrich"] .hq-crm-nation-ctx-tag { color: #9f1239; background: #fff1f2; }
+.hq-crm-nation-ctx-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.hq-crm-nation-ctx-src {
+  color: var(--ink-faint);
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+}
+
+/* ── Filter toolbar ───────────────────────────────────────────────── */
+.hq-crm-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.12s;
+}
+.hq-crm-filters[data-pending="true"] { opacity: 0.6; }
+.hq-crm-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 280px;
+  min-width: 220px;
+}
+.hq-crm-search-icon {
+  position: absolute;
+  left: 0.65rem;
+  width: 15px;
+  height: 15px;
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+.hq-crm-search-input {
+  width: 100%;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  background: var(--paper);
+  padding: 0.5rem 2rem 0.5rem 2.1rem;
+  font-size: 13px;
+  color: var(--ink);
+  font-family: inherit;
+  transition: border-color 0.12s;
+}
+.hq-crm-search-input::placeholder { color: var(--ink-faint); }
+.hq-crm-search-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+.hq-crm-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--ink-faint);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.2rem;
+}
+.hq-crm-search-clear:hover { color: var(--ink); }
+.hq-crm-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.hq-crm-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.hq-crm-select-label {
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+}
+.hq-crm-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  background: var(--paper)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%2394a3b8' stroke-width='1.4' stroke-linecap='round'/></svg>")
+    no-repeat right 0.55rem center;
+  padding: 0.4rem 1.6rem 0.4rem 0.6rem;
+  font-size: 12px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  max-width: 200px;
+}
+.hq-crm-select select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.hq-crm-filter-reset {
+  appearance: none;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  background: var(--paper);
+  padding: 0.4rem 0.7rem;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--ink-quiet);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.hq-crm-filter-reset:hover { color: var(--ink); border-color: var(--ink-quiet); }
+
+/* ── Bulk action bar ──────────────────────────────────────────────── */
+.hq-crm-bulkbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--hairline-2);
+  border-radius: 5px;
+  background: var(--paper-soft, var(--paper-deep));
+}
+.hq-crm-bulkbar-count {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.hq-crm-bulkbar-count strong {
+  font-weight: var(--weight-semibold, 600);
+  color: var(--ink);
+}
+.hq-crm-bulkbar-emails {
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+.hq-crm-bulkbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.hq-crm-bulk-btn {
+  appearance: none;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  background: var(--paper);
+  padding: 0.45rem 0.85rem;
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+.hq-crm-bulk-btn:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: var(--ink-quiet);
+}
+.hq-crm-bulk-btn:disabled,
+.hq-crm-bulk-btn[data-disabled="true"] { opacity: 0.4; cursor: default; pointer-events: none; }
+a.hq-crm-bulk-btn { text-decoration: none; display: inline-flex; align-items: center; }
+.hq-crm-bulk-btn[data-done="true"] {
+  color: #065f46;
+  border-color: #6ee7b7;
+  background: #ecfdf5;
+}
+.hq-crm-bulk-btn--primary {
+  color: var(--paper);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.hq-crm-bulk-btn--primary:hover:not(:disabled) {
+  color: var(--paper);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+/* ── Row badges (type + tags) ─────────────────────────────────────── */
+.hq-crm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.15rem 0 0.05rem;
+}
+.hq-crm-badge {
+  font-family: var(--font-mono-stack);
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: var(--ink-quiet);
+  background: var(--paper-deep);
+  border: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+.hq-crm-badge--type {
+  color: var(--ink-soft);
+  background: var(--paper);
+  border-color: var(--hairline-2);
+}
+.hq-crm-badge[data-flag="DEIS"] { color: #92400e; background: #fef3c7; border-color: #fde68a; }
+.hq-crm-badge[data-flag="Gaelcholáiste"],
+.hq-crm-badge[data-flag="Gaeltacht"],
+.hq-crm-badge[data-flag="Welsh-medium"] { color: #065f46; background: #d1fae5; border-color: #6ee7b7; }
+.hq-crm-badge[data-flag="Fee-Paying"] { color: var(--accent-deep); background: var(--accent-soft); border-color: var(--accent-tint, var(--accent-soft)); }
+.hq-crm-badge[data-flag="ETB"],
+.hq-crm-badge[data-flag="Grammar"] { color: #3730a3; background: #e0e7ff; border-color: #c7d2fe; }
+.hq-crm-badge[data-flag="Faith"],
+.hq-crm-badge[data-flag="Academy"],
+.hq-crm-badge[data-flag="Boys"],
+.hq-crm-badge[data-flag="Girls"],
+.hq-crm-badge[data-flag="All-through"] { color: var(--ink-soft); background: var(--paper-deep); border-color: var(--hairline-2); }
+.hq-crm-badge[data-flag="email-inferred"] { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+.hq-crm-badge[data-flag="email-missing"] { color: #9f1239; background: #fff1f2; border-color: #fecdd3; }
+
+/* ── Pager ────────────────────────────────────────────────────────── */
+.hq-crm-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+.hq-crm-pager-range {
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+.hq-crm-pager-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hq-crm-pager-btn {
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--hairline-2);
+  border-radius: 4px;
+  transition: color 0.12s, border-color 0.12s;
+}
+.hq-crm-pager-btn:hover { color: var(--ink); border-color: var(--ink-quiet); }
+.hq-crm-pager-btn[data-disabled="true"] {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.hq-crm-pager-page {
+  font-family: var(--font-mono-stack);
+  font-size: 11.5px;
+  color: var(--ink-quiet);
+  min-width: 9ch;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hq-crm-filters { flex-direction: column; align-items: stretch; }
+  .hq-crm-selects { justify-content: space-between; }
+  .hq-crm-bulkbar { flex-direction: column; align-items: stretch; }
+  .hq-crm-bulkbar-actions { justify-content: space-between; }
+  .hq-crm-bulk-btn { flex: 1; }
+}
+
 /* ── /hq/org — Executive Leadership Team chart ────────────────────── */
 
 .org-apex {

@@ -21,14 +21,18 @@ export function HqCrmPipeline({
   segment,
   stageCounts,
   activeStage,
+  buildHref,
 }: {
   segment: ProspectSegment;
   stageCounts: StageCounts;
   activeStage: ProspectStage | "all";
+  /** optional href builder so a book (schools) can preserve country + filters */
+  buildHref?: (stage: ProspectStage | "all") => string;
 }) {
   const total = PIPELINE_STAGES.reduce((n, s) => n + stageCounts[s], 0);
-  const bookHref = `/hq/crm?book=${segment}`;
-  const stageHref = (stage: ProspectStage) => `${bookHref}&stage=${stage}`;
+  const bookHref = buildHref ? buildHref("all") : `/hq/crm?book=${segment}`;
+  const stageHref = (stage: ProspectStage) =>
+    buildHref ? buildHref(stage) : `${bookHref}&stage=${stage}`;
 
   return (
     <nav className="hq-crm-pipeline" aria-label="CRM pipeline filter">

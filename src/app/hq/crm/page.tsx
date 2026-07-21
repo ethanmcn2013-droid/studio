@@ -6,20 +6,28 @@ import { HqCrmBooks } from "@/components/hq/hq-crm-books";
 import { HqCrmIntel } from "@/components/hq/hq-crm-intel";
 import { HqCrmList } from "@/components/hq/hq-crm-list";
 import { HqCrmPipeline } from "@/components/hq/hq-crm-pipeline";
+import { HqCrmSchools } from "@/components/hq/hq-crm-schools";
 import { HQ_ACCESS_COOKIE, verifyHqToken } from "@/lib/hq/auth";
 import { getProspects } from "@/lib/hq/crm-db";
 import {
+  type BookFilters,
   computeBookCounts,
   computeLockdownSummary,
   computeStageCounts,
   getDueToday,
   getNextActions,
+  normalizeCountry,
   normalizeSegment,
   PIPELINE_STAGES,
+  PROSPECT_COUNTRIES,
   PROSPECT_SEGMENTS,
   SEGMENT_CONFIG,
 } from "@/lib/hq/crm-utils";
-import type { ProspectSegment, ProspectStage } from "@/lib/db/schema";
+import type {
+  ProspectCountry,
+  ProspectSegment,
+  ProspectStage,
+} from "@/lib/db/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -28,28 +36,34 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+type CrmParams = {
+  book?: string;
+  stage?: string;
+  country?: string;
+  county?: string;
+  category?: string;
+  flag?: string;
+  q?: string;
+  page?: string;
+};
+
 /**
  * Signal HQ Outreach CRM — four lead books, one page.
  *
- * Venues, students, schools, and small business are separate outbound
- * motions (market-entry deck 2026–2028) and stay separate lists by
- * construction: ?book=<segment> picks the book, ?stage=<stage> filters
- * within it. The venue book opens first — it is the live motion and the
- * proof gate.
+ * Venues, students, schools and small business are separate outbound motions
+ * (market-entry deck 2026–2028) and stay separate lists by construction:
+ * ?book=<segment> picks the book. The venue book opens first — it is the live
+ * motion and the proof gate.
  *
- * Panels, top to bottom:
- *   1. Book switcher — totals, locked-down counts, due pips per book.
- *   2. Intelligence strip — the book's playbook, lock-down meter, next actions.
- *   3. Pipeline rail — stage counts in the book's vocabulary.
- *   4. Lead list — rows with lock-down marks and an expandable dossier.
- *
- * Server component: auth-checked, data fetched at render time; client
- * state lives only in the row islands.
+ * The schools book is national: it spans Ireland, England, Scotland and Wales
+ * on a within-book country axis, and renders the scale-aware view (country
+ * tabs, search, county/type/tag filters, pagination, bulk export). The other
+ * books keep the curated pipeline view.
  */
 export default async function HqCrmPage({
   searchParams,
 }: {
-  searchParams: Promise<{ book?: string; stage?: string }>;
+  searchParams: Promise<CrmParams>;
 }) {
   const cookieStore = await cookies();
   const token = cookieStore.get(HQ_ACCESS_COOKIE)?.value ?? "";
@@ -63,15 +77,93 @@ export default async function HqCrmPage({
       ? (rawBook as ProspectSegment)
       : "venue";
 
+  const prospects = await getProspects();
+  const books = computeBookCounts(prospects);
+
+  // ── Schools book: national, scale-aware view ────────────────────────────────
+  if (activeBook === "school") {
+    const allSchools = prospects.filter(
+      (p) => normalizeSegment(p.segment) === "school",
+    );
+
+    const rawCountry = params.country;
+    const activeCountry: ProspectCountry | "all" =
+      rawCountry === "all"
+        ? "all"
+        : rawCountry &&
+            (PROSPECT_COUNTRIES as readonly string[]).includes(rawCountry)
+          ? (rawCountry as ProspectCountry)
+          : "all";
+
+    const countryCounts = PROSPECT_COUNTRIES.map((c) => ({
+      value: c,
+      count: allSchools.filter((p) => normalizeCountry(p.country) === c).length,
+    })).filter((c) => c.count > 0);
+
+    const scoped =
+      activeCountry === "all"
+        ? allSchools
+        : allSchools.filter(
+            (p) => normalizeCountry(p.country) === activeCountry,
+          );
+
+    const rawStage = params.stage;
+    const stage: ProspectStage | "all" = (
+      rawStage &&
+      [...PIPELINE_STAGES, "not_interested", "later"].includes(rawStage)
+        ? rawStage
+        : "all"
+    ) as ProspectStage | "all";
+
+    const filters: BookFilters = {
+      country: activeCountry,
+      county: params.county?.trim() || "all",
+      category: params.category?.trim() || "all",
+      flag: params.flag?.trim() || "all",
+      stage,
+      search: params.q?.trim() ?? "",
+    };
+
+    const pageNumber = Math.max(
+      1,
+      Number.parseInt(params.page ?? "1", 10) || 1,
+    );
+
+    return (
+      <div className="hq-crm-page">
+        <HqPageHeader
+          slug="crm"
+          title={SEGMENT_CONFIG.school.title}
+          meta={
+            <span className="hq-page-head-note">
+              {allSchools.length.toLocaleString()} schools ·{" "}
+              {countryCounts.length} nation
+              {countryCounts.length === 1 ? "" : "s"} · staff-only, zero pupil data
+            </span>
+          }
+        />
+        <HqCrmBooks books={books} activeBook="school" />
+        <HqCrmSchools
+          rows={scoped}
+          activeCountry={activeCountry}
+          countryCounts={countryCounts}
+          allTotal={allSchools.length}
+          filters={filters}
+          pageNumber={pageNumber}
+        />
+      </div>
+    );
+  }
+
+  // ── Venue / student / smb: curated pipeline view ────────────────────────────
   const rawStage = params.stage;
   const activeStage: ProspectStage | "all" = (
-    rawStage && [...PIPELINE_STAGES, "not_interested", "later", "all"].includes(rawStage)
+    rawStage &&
+    [...PIPELINE_STAGES, "not_interested", "later", "all"].includes(rawStage)
       ? rawStage
       : "all"
   ) as ProspectStage | "all";
 
-  const prospects = await getProspects();
-  const books = computeBookCounts(prospects);
   const bookProspects = prospects.filter(
     (p) => normalizeSegment(p.segment) === activeBook,
   );

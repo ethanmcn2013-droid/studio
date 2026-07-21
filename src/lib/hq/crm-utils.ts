@@ -14,14 +14,94 @@
 import type {
   DbProspect,
   NewDbProspect,
+  ProspectCountry,
   ProspectSegment,
   ProspectStage,
 } from "@/lib/db/schema";
-import { PROSPECT_SEGMENTS, PROSPECT_STAGES } from "@/lib/db/schema";
+import {
+  PROSPECT_COUNTRIES,
+  PROSPECT_SEGMENTS,
+  PROSPECT_STAGES,
+} from "@/lib/db/schema";
 import type { Prospect } from "@/lib/hq/data";
 
-export type { ProspectSegment, ProspectStage };
-export { PROSPECT_SEGMENTS };
+export type { ProspectCountry, ProspectSegment, ProspectStage };
+export { PROSPECT_COUNTRIES, PROSPECT_SEGMENTS };
+
+// ── Countries (the within-book nation axis) ──────────────────────────────────
+
+export type CountryConfig = {
+  /** short filter-tab label */
+  label: string;
+  /** full name for aria / headers */
+  name: string;
+  /** flag emoji for a light visual anchor */
+  flag: string;
+};
+
+export const COUNTRY_CONFIG: Record<ProspectCountry, CountryConfig> = {
+  IE: { label: "Ireland", name: "Republic of Ireland", flag: "🇮🇪" },
+  "GB-ENG": { label: "England", name: "England", flag: "🏴\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}" },
+  "GB-SCT": { label: "Scotland", name: "Scotland", flag: "🏴\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}" },
+  "GB-WLS": { label: "Wales", name: "Wales", flag: "🏴\u{E0067}\u{E0062}\u{E0077}\u{E006C}\u{E0073}\u{E007F}" },
+};
+
+/** Legacy/blank rows resolve to Ireland, the default outreach nation. */
+export function normalizeCountry(raw: string | undefined | null): ProspectCountry {
+  return raw && (PROSPECT_COUNTRIES as readonly string[]).includes(raw)
+    ? (raw as ProspectCountry)
+    : "IE";
+}
+
+/**
+ * Per-nation context for the schools book. Each nation's list comes from a
+ * different official register with a different email reality, so each bucket
+ * says plainly where it came from and what has to happen before a send.
+ * `readiness`: send = official email, verify = email inferred, enrich = no email.
+ */
+export type Readiness = "send" | "verify" | "enrich";
+
+export type CountryContext = {
+  readiness: Readiness;
+  readinessLabel: string;
+  /** the register the list was built from */
+  source: string;
+  /** one plain line: what this bucket is and what to do before sending */
+  line: string;
+};
+
+export const READINESS_LABEL: Record<Readiness, string> = {
+  send: "send-ready",
+  verify: "verify first",
+  enrich: "enrich first",
+};
+
+export const COUNTRY_CONTEXT: Record<ProspectCountry, CountryContext> = {
+  IE: {
+    readiness: "send",
+    readinessLabel: READINESS_LABEL.send,
+    source: "Dept. of Education, Data on Individual Schools 2025/26",
+    line: "Every school carries an official email. Send-ready.",
+  },
+  "GB-SCT": {
+    readiness: "send",
+    readinessLabel: READINESS_LABEL.send,
+    source: "gov.scot School contact list, 31 January 2026",
+    line: "Every school carries an official email. Send-ready.",
+  },
+  "GB-ENG": {
+    readiness: "verify",
+    readinessLabel: READINESS_LABEL.verify,
+    source: "DfE Get Information About Schools (GIAS)",
+    line: "GIAS carries no email, so each office address is inferred from the school's official website. Verify the email-inferred tag before a bulk send.",
+  },
+  "GB-WLS": {
+    readiness: "enrich",
+    readinessLabel: READINESS_LABEL.enrich,
+    source: "Welsh Government address list of schools",
+    line: "The register carries no email or website. Enrich the email-missing tag from local-authority sites before sending.",
+  },
+};
 
 // ── Lead books ───────────────────────────────────────────────────────────────
 
@@ -449,6 +529,9 @@ export function seedToDb(p: Prospect): NewDbProspect {
     id: p.id,
     organisation: p.organisation,
     segment: normalizeSegment(p.segment),
+    country: normalizeCountry(p.country),
+    category: p.category ?? "",
+    flags: p.flags ?? "",
     contactName: p.contactName,
     role: p.role,
     email: p.email,
@@ -479,6 +562,9 @@ export function seedToDb(p: Prospect): NewDbProspect {
 export const SEED_RESEARCH_FIELDS = [
   "organisation",
   "segment",
+  "country",
+  "category",
+  "flags",
   "contactName",
   "role",
   "email",
@@ -504,4 +590,170 @@ export function buildMailtoHref(
 ): string {
   const subject = encodeURIComponent(SEGMENT_CONFIG[segment].offer);
   return `mailto:${email}?subject=${subject}`;
+}
+
+// ── Scale-aware book filtering (schools book, national volume) ────────────────
+//
+// The schools book runs to hundreds of rows per nation and thousands across
+// all four. These pure helpers power the country tabs, search, county/type/tag
+// filters, pagination and bulk export — the server component reads URL params,
+// calls these, and renders. No client state, fully shareable URLs.
+
+export type BookFilters = {
+  country: ProspectCountry | "all";
+  county: string | "all";
+  category: string | "all";
+  flag: string | "all";
+  stage: ProspectStage | "all";
+  search: string;
+};
+
+export const EMPTY_FILTERS: BookFilters = {
+  country: "all",
+  county: "all",
+  category: "all",
+  flag: "all",
+  stage: "all",
+  search: "",
+};
+
+/** Split the semicolon-joined flags string into trimmed, non-empty tags. */
+export function parseFlags(flags: string): string[] {
+  return flags
+    .split(";")
+    .map((f) => f.trim())
+    .filter(Boolean);
+}
+
+export type Facet = { value: string; count: number };
+
+export type BookFacets = {
+  countries: Facet[];
+  counties: Facet[];
+  categories: Facet[];
+  flags: Facet[];
+};
+
+function tally(map: Map<string, number>, key: string) {
+  if (!key) return;
+  map.set(key, (map.get(key) ?? 0) + 1);
+}
+
+function facetList(map: Map<string, number>, sortByCount = true): Facet[] {
+  const list = [...map.entries()].map(([value, count]) => ({ value, count }));
+  list.sort((a, b) =>
+    sortByCount
+      ? b.count - a.count || a.value.localeCompare(b.value)
+      : a.value.localeCompare(b.value),
+  );
+  return list;
+}
+
+/** Build the filter facets (with counts) over a book's full row set. */
+export function computeBookFacets(rows: DbProspect[]): BookFacets {
+  const countries = new Map<string, number>();
+  const counties = new Map<string, number>();
+  const categories = new Map<string, number>();
+  const flags = new Map<string, number>();
+  for (const r of rows) {
+    tally(countries, r.country ?? "IE");
+    tally(counties, r.county);
+    tally(categories, r.category);
+    for (const f of parseFlags(r.flags ?? "")) tally(flags, f);
+  }
+  return {
+    countries: facetList(countries),
+    counties: facetList(counties, false),
+    categories: facetList(categories),
+    flags: facetList(flags),
+  };
+}
+
+/** Apply the active filters to a book's rows (country handled at query time). */
+export function filterBook(
+  rows: DbProspect[],
+  filters: BookFilters,
+): DbProspect[] {
+  const q = filters.search.trim().toLowerCase();
+  return rows.filter((r) => {
+    if (filters.county !== "all" && r.county !== filters.county) return false;
+    if (filters.category !== "all" && r.category !== filters.category)
+      return false;
+    if (filters.flag !== "all" && !parseFlags(r.flags ?? "").includes(filters.flag))
+      return false;
+    if (filters.stage !== "all" && r.stage !== filters.stage) return false;
+    if (q) {
+      const hay = `${r.organisation} ${r.county} ${r.location} ${r.email} ${r.contactName} ${r.orgGroup}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+export type Paged<T> = {
+  rows: T[];
+  page: number;
+  pageCount: number;
+  total: number;
+  pageSize: number;
+  from: number;
+  to: number;
+};
+
+export function paginate<T>(rows: T[], page: number, pageSize: number): Paged<T> {
+  const total = rows.length;
+  const pageCount = Math.max(1, Math.ceil(total / pageSize));
+  const clamped = Math.min(Math.max(1, page), pageCount);
+  const start = (clamped - 1) * pageSize;
+  const slice = rows.slice(start, start + pageSize);
+  return {
+    rows: slice,
+    page: clamped,
+    pageCount,
+    total,
+    pageSize,
+    from: total === 0 ? 0 : start + 1,
+    to: Math.min(start + pageSize, total),
+  };
+}
+
+/** De-duplicated, lower-cased email list for a bulk copy. */
+export function emailsOf(rows: DbProspect[]): string[] {
+  const seen = new Set<string>();
+  for (const r of rows) {
+    const e = r.email.trim().toLowerCase();
+    if (e && e.includes("@")) seen.add(e);
+  }
+  return [...seen];
+}
+
+const CSV_COLUMNS: { header: string; get: (r: DbProspect) => string }[] = [
+  { header: "Email", get: (r) => r.email },
+  { header: "School", get: (r) => r.organisation },
+  { header: "Contact", get: (r) => r.contactName },
+  { header: "Role", get: (r) => r.role },
+  { header: "Country", get: (r) => r.country ?? "IE" },
+  { header: "County", get: (r) => r.county },
+  { header: "Location", get: (r) => r.location },
+  { header: "Type", get: (r) => r.category },
+  { header: "Tags", get: (r) => r.flags },
+  { header: "Enrolment", get: (r) => r.tier },
+  { header: "Patron", get: (r) => r.orgGroup },
+  { header: "Phone", get: (r) => r.phone },
+  { header: "Website", get: (r) => r.website },
+  { header: "Stage", get: (r) => r.stage },
+];
+
+function csvCell(value: string): string {
+  const v = value ?? "";
+  return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+}
+
+/** Build a mail-merge-ready CSV for the current filtered set. */
+export function toCsv(rows: DbProspect[]): string {
+  const head = CSV_COLUMNS.map((c) => c.header).join(",");
+  const body = rows
+    .map((r) => CSV_COLUMNS.map((c) => csvCell(c.get(r))).join(","))
+    .join("\n");
+  return `${head}\n${body}`;
 }

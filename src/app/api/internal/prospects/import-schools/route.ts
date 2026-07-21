@@ -1,41 +1,40 @@
 import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
-import { eq, sql } from "drizzle-orm";
+import { and, eq, like, not, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { prospectsTable, type NewDbProspect } from "@/lib/db/schema";
 import { SEED_RESEARCH_FIELDS, seedToDb } from "@/lib/hq/crm-utils";
-import { seedHqData } from "@/lib/hq/data";
+import { SCHOOLS_MANIFEST, schoolCountsByCountry } from "@/lib/hq/schools";
 
 /**
- * Operator migration + seed-sync endpoint for the CRM lead books
- * (2026-07-16, sync added 2026-07-17).
+ * Operator bulk-import endpoint for the CRM schools book (2026-07-20).
  *
- * Turso credentials are sensitive-only in Vercel, so `pnpm db:push`
- * cannot run from a laptop without the founder's keys. This route runs
- * the same DDL inside the deployed app, which already holds the
- * credentials at runtime — then reconciles the table with the committed
- * seed so research waves land in production without clobbering worked
- * pipeline.
+ * National school registers (Ireland's 721 post-primary schools first, then
+ * England, Scotland and Wales) are far too large for the curated TS seed, so
+ * they are JSON datasets loaded from `src/lib/hq/schools/` and upserted here.
  *
- *   curl -X POST https://signalstudio.ie/api/internal/prospects/migrate \
+ *   curl -X POST https://signalstudio.ie/api/internal/prospects/import-schools \
  *        -H "Authorization: Bearer $STUDIO_MIGRATE_SECRET"
  *
- * Idempotent by construction:
- *   1. DDL — CREATE TABLE/INDEX IF NOT EXISTS + guarded ADD COLUMNs.
- *   2. Insert — seed records whose id is not in the table.
- *   3. Refresh — rows never touched by the operator (updatedAt equals
- *      createdAt) take the seed's research fields wholesale.
- *   4. Fill — operator-touched rows only gain values where the DB field
- *      is empty and the seed has one. Stage, contact dates, and outcome
- *      are never written by sync in any mode (SEED_RESEARCH_FIELDS).
+ * Same idempotent, pipeline-safe contract as the seed-sync route:
+ *   0. DDL — CREATE TABLE / guarded ADD COLUMN, so this route stands alone.
+ *   1. Retire legacy anchors — the old hand-seeded Limerick school rows
+ *      (ids without the `sch-` prefix) that the founder never worked are
+ *      deleted, because the national IE dataset supersedes them. Worked rows
+ *      (updatedAt !== createdAt) are left untouched.
+ *   2. Insert — school leads whose id is new.
+ *   3. Refresh — untouched rows take the dataset's research fields wholesale.
+ *   4. Fill — operator-touched rows only gain values where the DB field is
+ *      empty. Stage, contact dates and outcome are never written (see
+ *      SEED_RESEARCH_FIELDS).
  *
- * The DDL below is the drizzle-kit push output for prospectsTable in
- * src/lib/db/schema.ts — change the schema there first, then mirror it
- * here, never the other way around.
+ * The schema source of truth is src/lib/db/schema.ts; the DDL below mirrors
+ * it, and matches the seed-sync route's DDL exactly.
  */
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 function authOk(req: Request): boolean {
   const expected = process.env.STUDIO_MIGRATE_SECRET;
@@ -80,27 +79,20 @@ const CREATE_TABLE = sql.raw(`CREATE TABLE IF NOT EXISTS \`prospects\` (
   \`updated_at\` integer DEFAULT (unixepoch() * 1000) NOT NULL
 )`);
 
-/** Columns added after the original table shape; guarded individually. */
 const ADD_COLUMNS = [
-  "ALTER TABLE `prospects` ADD COLUMN `phone` text DEFAULT '' NOT NULL",
-  "ALTER TABLE `prospects` ADD COLUMN `address` text DEFAULT '' NOT NULL",
-  "ALTER TABLE `prospects` ADD COLUMN `county` text DEFAULT '' NOT NULL",
-  "ALTER TABLE `prospects` ADD COLUMN `org_group` text DEFAULT '' NOT NULL",
-  "ALTER TABLE `prospects` ADD COLUMN `inbox_type` text DEFAULT '' NOT NULL",
-  "ALTER TABLE `prospects` ADD COLUMN `tier` text DEFAULT '' NOT NULL",
   "ALTER TABLE `prospects` ADD COLUMN `country` text DEFAULT 'IE' NOT NULL",
   "ALTER TABLE `prospects` ADD COLUMN `category` text DEFAULT '' NOT NULL",
   "ALTER TABLE `prospects` ADD COLUMN `flags` text DEFAULT '' NOT NULL",
 ];
 
 const CREATE_INDEXES = [
-  "CREATE INDEX IF NOT EXISTS `prospects_stage_idx` ON `prospects` (`stage`)",
   "CREATE INDEX IF NOT EXISTS `prospects_segment_idx` ON `prospects` (`segment`)",
   "CREATE INDEX IF NOT EXISTS `prospects_country_idx` ON `prospects` (`segment`, `country`)",
-  "CREATE INDEX IF NOT EXISTS `prospects_next_follow_up_idx` ON `prospects` (`next_follow_up_at`)",
 ];
 
-type ResearchPatch = Partial<Pick<NewDbProspect, (typeof SEED_RESEARCH_FIELDS)[number]>>;
+type ResearchPatch = Partial<
+  Pick<NewDbProspect, (typeof SEED_RESEARCH_FIELDS)[number]>
+>;
 
 export async function POST(req: Request) {
   if (!authOk(req)) {
@@ -108,22 +100,38 @@ export async function POST(req: Request) {
   }
 
   try {
-    // 1. DDL
+    // 0. DDL — stand-alone safe.
     await db.run(CREATE_TABLE);
     for (const ddl of ADD_COLUMNS) {
       try {
         await db.run(sql.raw(ddl));
       } catch {
-        // duplicate column, table already carries it
+        // column already present
       }
     }
     for (const ddl of CREATE_INDEXES) {
       await db.run(sql.raw(ddl));
     }
 
-    // 2–4. Seed sync
-    const seeds = (seedHqData.prospects ?? []).map(seedToDb);
-    const existing = await db.select().from(prospectsTable);
+    const seeds = SCHOOLS_MANIFEST.flatMap((m) => m.leads).map(seedToDb);
+
+    // 1. Retire un-worked legacy anchor school rows (old id scheme, no `sch-`).
+    const retired = await db
+      .delete(prospectsTable)
+      .where(
+        and(
+          eq(prospectsTable.segment, "school"),
+          not(like(prospectsTable.id, "sch-%")),
+          eq(prospectsTable.updatedAt, prospectsTable.createdAt),
+        ),
+      )
+      .returning({ id: prospectsTable.id });
+
+    // 2–4. Upsert the national datasets.
+    const existing = await db
+      .select()
+      .from(prospectsTable)
+      .where(eq(prospectsTable.segment, "school"));
     const byId = new Map(existing.map((row) => [row.id, row]));
 
     let inserted = 0;
@@ -143,8 +151,6 @@ export async function POST(req: Request) {
       const untouched = row.updatedAt === row.createdAt;
       const patch: ResearchPatch = {};
       for (const field of SEED_RESEARCH_FIELDS) {
-        // every research field is a text column; the segment union narrows
-        // back at the drizzle layer
         const seedValue = (seed[field] ?? "") as string;
         const rowValue = (row[field] ?? "") as string;
         if (untouched) {
@@ -167,12 +173,15 @@ export async function POST(req: Request) {
 
     const rows = await db
       .select({ n: sql<number>`count(*)` })
-      .from(prospectsTable);
+      .from(prospectsTable)
+      .where(eq(prospectsTable.segment, "school"));
 
     return NextResponse.json({
       ok: true,
-      tableRows: rows[0]?.n ?? 0,
-      seedRecords: seeds.length,
+      schoolRows: rows[0]?.n ?? 0,
+      datasetRecords: seeds.length,
+      byCountry: schoolCountsByCountry(),
+      retiredLegacyAnchors: retired.length,
       inserted,
       refreshed,
       filled,

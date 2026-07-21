@@ -16,6 +16,7 @@ import {
   getStageLabel,
   isOverdue,
   isDueToday,
+  parseFlags,
   PIPELINE_STAGES,
   PARKED_STAGES,
   STAGE_COLORS,
@@ -157,6 +158,18 @@ export function HqCrmRow({
             </span>
           ))}
         </span>
+        {(p.category || p.flags) && (
+          <span className="hq-crm-badges">
+            {p.category && (
+              <span className="hq-crm-badge hq-crm-badge--type">{p.category}</span>
+            )}
+            {parseFlags(p.flags ?? "").map((f) => (
+              <span key={f} className="hq-crm-badge" data-flag={f}>
+                {f}
+              </span>
+            ))}
+          </span>
+        )}
         {p.personalisationNote && (
           <span className="hq-crm-org-note">{p.personalisationNote}</span>
         )}
