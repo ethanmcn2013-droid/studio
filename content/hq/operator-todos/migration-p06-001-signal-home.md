@@ -1,7 +1,7 @@
 ---
 id: migration-p06-001-signal-home
 title: Decide whether Signal becomes the unified app's home screen at cutover
-status: open
+status: done
 priority: P1
 blocking: false
 phase: Consolidation Phase 6
@@ -17,3 +17,5 @@ date: 2026-07-21
 3. Other realistic options: (a) Signal brief becomes the landing for onboarded users only, board for everyone else; (b) per-user setting, default board.
 4. Consequence of delay: none before cutover — the unified app ships with the recommended default until this is decided.
 5. Latest useful decision point: production cutover of the consolidated app.
+
+DONE: Recommended default shipped: /app lands on the board; Signal one click away on the rail.
