@@ -56,6 +56,9 @@ Deck already carries The Hundred (A7). Add a slide pair: one primary simplified 
 ## D-017 · 2026-07-21 · provisional (validate at Phase 7 entry) · Hero motion language
 The hero must demonstrate the real hybrid board: real tokens, representative `hybrid/` components with demo fixtures (never live data), collaboration narrative with causality, calm settle into a production-realistic final frame. Current `TasksHeroTicker` (split-flap wordmark) may remain as the typographic opener *above* the board demonstration or be retired — decide against the page as a whole at Phase 7 with the brand register in hand. Constraints: static poster, reduced-motion, mobile-light, lazy-load, zero CLS, off-viewport pause; no new heavy animation framework without a recorded reason (stack: `motion` 12 + CSS).
 
+## D-007a · 2026-07-21 · decided · Server-path upload cap until client-direct multipart ships
+Server-action uploads buffer the whole file in memory (Opus §1.4: OOM risk at 250MB). Effective per-file cap = min(quota maxFileBytes, 50MB server-path limit), encoded in storage-config with a labelled comment. The Vercel Blob client-direct multipart flow is a recorded follow-up that must ship before any Pro 250MB per-file claim is advertised. Reversal: raise/remove SERVER_UPLOAD_LIMIT_BYTES when the client flow lands.
+
 ## Assumption corrections (brief §3)
 - A3: "Programs are collections of Projects" → mapped to planning_periods/workspaces (D-011).
 - A4: Timeline is its own product (roadmap repo); domain already migrated in code; only the legacy-hostname redirect remains (D-014).

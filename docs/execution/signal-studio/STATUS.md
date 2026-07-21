@@ -7,8 +7,11 @@ Updated: 2026-07-21 (session 1, Fable lead — Phase 1 in progress)
 - Worktree `_wt-premium-p1` (branch `feat/premium-foundations` off tasks main 831ecb0).
 - Operator gate G-03 FILED: `content/hq/operator-todos/premium-blob-storage.md` (Vercel Blob provisioning; upload work ships dark until done).
 - Opus architecture review COMPLETE — all items approve-with-amendments; binding amendments in `agent-reports/phase1-opus-architecture-review.md`. Found two pre-existing integrity bugs (parent-delete orphans children; roll-up counts archived children) and the no-runtime-FK-cascade fact — all folded into the plan.
-- Step 1 (activity taxonomy + hierarchy integrity fixes + setParentAction) delegated to a bounded builder on the worktree.
-- Remaining steps: 1.3 resources table (0017, read-through union, erasure wiring) → 1.4 Blob seam + claim-then-verify quotas → parent-complete choice dialog UI (scheduled with the resources panel work).
+- Step 1 LANDED (3 commits ..61d3cb0): activity taxonomy (8 new kinds, PII-free), parent-delete subtree fix, archive cascade, roll-up archived-children fix, setParentAction + 7-test integrity suite. Gates green (typecheck clean, lint 0 errors, 74/74).
+- Step 2 LANDED (commits 00c9a07/1069df9/f7ab7c2): resources table 0017 under the ledger workflow (receipt + 6 proofs, db:contract 19/19), read-through union actions with provider detection, hand-wired cascades incl. account erasure, panel Resources section. LESSON: the migration runner splits on `--> statement-breakpoint`, NOT semicolons — a migration without markers runs only its first statement; ledger + receipt SHAs must be recomputed canonically (LF) after any SQL edit.
+- Step 3 IN PROGRESS (builder): storage seam (@vercel/blob added, eebd7b6), claim-then-verify quotas per Opus §1.4, storage-config with D-007a server-path 50MB effective cap, reconcile script, warn toasts. Ships dark without BLOB_READ_WRITE_TOKEN (operator gate premium-blob-storage).
+- Remaining Phase 1: verify+land Step 3 → parent-complete choice dialog (folded into Phase 3 task-detail rebuild — decision) → QA_MATRIX Phase-1 row + HQ sync (CHANGELOG dispatch + feature file) at phase close.
+- Builder sessions cannot run Bash in this environment: builders edit, the Fable lead verifies (typecheck/lint/test/db:contract) and commits. Working division confirmed across Steps 1-2.
 
 Phase 0 — COMPLETE (committed 0a7c9ce): all exit criteria met.
 
