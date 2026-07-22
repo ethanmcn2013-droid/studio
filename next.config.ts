@@ -89,6 +89,49 @@ const nextConfig: NextConfig = {
         destination: "/hq/experience-quality",
         permanent: false,
       },
+      // ── Retired product domains (2026-07-22) ──────────────────────────
+      // notes/timeline/signal.signalstudio.ie point at THIS project after
+      // their own Vercel deployments were deleted. Host-scoped so they are
+      // inert for signalstudio.ie itself. Per host: /app/* deep links go to
+      // the matching module in the unified app; everything else (marketing,
+      // sign-in, api) folds into the umbrella home. The /app rule precedes
+      // the catch-all so it wins for /app paths.
+      {
+        source: "/app/:path*",
+        has: [{ type: "host", value: "notes.signalstudio.ie" }],
+        destination: "https://app.signalstudio.ie/app/notes",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "notes.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/",
+        permanent: true,
+      },
+      {
+        source: "/app/:path*",
+        has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+        destination: "https://app.signalstudio.ie/app/plan",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/",
+        permanent: true,
+      },
+      {
+        source: "/app/:path*",
+        has: [{ type: "host", value: "signal.signalstudio.ie" }],
+        destination: "https://app.signalstudio.ie/app/brief",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "signal.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/",
+        permanent: true,
+      },
     ];
   },
   experimental: {
