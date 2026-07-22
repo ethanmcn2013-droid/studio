@@ -11,7 +11,7 @@ This file is the source for current public product, access and commercial claims
 
 Never shorten deployed or private preview to Live when the claim could imply general availability.
 
-**Last verified:** 2026-07-12.
+**Last full-suite verification:** 2026-07-12. **Architecture truth updated:** 2026-07-22.
 
 Evidence used in this verification:
 
@@ -21,6 +21,8 @@ Evidence used in this verification:
 - July suite architecture review and operator-gate records;
 - docs/content-truth-audit.md.
 
+The 2026-07-22 architecture update also uses the completed consolidation records: `app.signalstudio.ie` is the canonical authenticated app, `tasks.signalstudio.ie` remains a working alias, and the retired Notes, Timeline, and Signal product domains route app traffic into their unified modules. This update does not re-certify every provider or broad launch gate.
+
 Authenticated provider journeys, production checkout amounts, restore recency and all operator gates were not re-certified. Broad external launch remains no-go.
 
 ## Current suite state
@@ -28,10 +30,10 @@ Authenticated provider journeys, production checkout amounts, restore recency an
 | Product | Production URL | Deployment | Access claim that is safe now |
 | --- | --- | --- | --- |
 | Signal Studio | signalstudio.ie | Deployed | Public marketing and waitlist. Private preview with staged access. |
-| Signal Tasks | tasks.signalstudio.ie | Deployed | Task product exists and is used in preview. Do not claim broad availability or certified checkout. |
-| Signal Timeline | timeline.signalstudio.ie | Deployed | Legacy public examples exist. Do not describe legacy slug pages as private Class or Couple Timelines. |
-| Signal Notes | notes.signalstudio.ie | Deployed | Private capture and the Notes-to-Tasks extract path exist in code. Authenticated production journey remains an operator gate. |
-| Signal | signal.signalstudio.ie | Deployed | Briefing product exists in preview. Do not claim Planning Period Signal until its rollout evidence is complete. |
+| Signal Tasks | app.signalstudio.ie/app/work | Deployed | Tasks is the execution module in the unified authenticated app. `tasks.signalstudio.ie` remains a working alias. Do not claim broad availability or certified checkout. |
+| Signal Timeline | app.signalstudio.ie/app/plan | Deployed owner module; Option D artifact release pending | Timeline is the Direction module in the unified app. The new link-only artifact and qualified view count are not a safe production claim until this release has migration and live journey evidence. |
+| Signal Notes | app.signalstudio.ie/app/notes | Deployed | Private capture and the exact Notes-to-Tasks handoff are served by the unified app. The retired product domain routes app traffic here. |
+| Signal | app.signalstudio.ie/app/brief | Deployed | The briefing module exists in the unified app. Do not claim Planning Period Signal until its rollout evidence is complete. |
 
 Public conversion is waitlist-first. There is no authorized broad launch date. Dates used as internal targets do not become launch state automatically.
 
@@ -46,8 +48,11 @@ Public conversion is waitlist-first. There is no authorized broad launch date. D
 
 ### Timeline
 
-- Legacy public-by-slug pages are a separate historical publication model.
-- New Class, Module and Couple Timeline claims require the frozen safe projection, hashed share lifecycle, strict DTO and immediate revocation evidence.
+- Legacy public-by-slug pages are a separate historical publication model and do not satisfy the selected artifact contract.
+- Option D is selected for the new artifact: a horizontal, date-scaled milestone line with completed distance, a Today dash, the next milestone, and completion or days-remaining lenses.
+- Owners manage Timeline inside the authenticated unified app. A recipient gets a standalone link-only page with no operating rail, account shell, public directory, sitemap entry, or search indexing.
+- The share remains a bearer capability: use a frozen safe projection, hashed token lifecycle, strict DTO, immediate rotation and revocation, no-referrer/no-store controls, and no raw token in analytics or error reporting.
+- The owner phone preview renders the same artifact but must never record a view. A qualified view is a visible, deduplicated publication session, not a request, reload, metadata fetch, prefetch, or owner preview.
 - Do not claim that a private Task or Note is shared merely because a Timeline page hides fields in the UI.
 
 ### Notes
@@ -104,3 +109,17 @@ The Planning Period contract and implementation work do not become shipped by ap
 7. deployment and post-deploy smoke receipts.
 
 Until those receipts exist, describe Planning Periods and Audience Timeline as staged pilot work, not generally available functionality.
+
+## Option D Timeline artifact release state
+
+The direction is selected and production implementation is in progress. This is not yet a shipped-state claim. Mark the artifact deployed only after:
+
+1. the additive publication-view migration has a named backup, isolated-copy dry run, integrity check, foreign-key check, production apply receipt, and post-check;
+2. owner and cross-tenant authorization tests pass in the unified app;
+3. the public DTO leak suite, link rotation, and immediate revocation pass;
+4. qualified viewing counts once for a real session and excludes preview, prefetch, metadata, bots, reloads, and duplicate sessions as designed;
+5. the standalone route is verified without the app rail, Clerk, general page analytics, or token-bearing third-party requests;
+6. desktop, phone, keyboard, accessibility, reduced-motion, overflow, and privacy-header evidence passes;
+7. the compatibility redirect and final production URL are smoke-tested after deployment.
+
+Milestone photos are a future story layer. They are not part of this release and must not ship before consent, publication, storage, retention, export, and deletion rules are approved and implemented.

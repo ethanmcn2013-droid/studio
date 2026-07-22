@@ -11,11 +11,11 @@ owner: Ethan
 principleAlignment: 98
 ---
 
-## Verdict — Phase 1 is ready for selection
+## Verdict — Option D selected, production pass in progress
 
-Three structurally distinct, coded directions are preserved across the Owner Plan, Public Timeline, Shared Update, and Item Detail surfaces. They share one deterministic fixture and state contract, remain isolated from production data, and do not replace any production Timeline route.
+The original three structurally distinct directions remain preserved across the Owner Plan, Public Timeline, Shared Update, and Item Detail surfaces. A fourth direction was then built from the founder's artifact-first feedback: one horizontal line, milestones as points, visible completed distance, and motion that supports the read rather than turning the page into a dashboard.
 
-No direction or hybrid has been selected. Phase 2 stays blocked until Ethan records one exact selection command in the Timeline decision log.
+Ethan selected **Option D** on 2026-07-22. Phase 2 is now authorised for that direction only. Production implementation is in progress; this lab record is not a deployment claim.
 
 ## Review surface
 
@@ -30,11 +30,13 @@ The review lab uses synthetic, in-memory fixtures and session-only interactions.
 
 ## Saved design set
 
-Each direction is available across all four surfaces:
+The original review deployment preserves Options A–C across all four surfaces:
 
 - Option A — Quiet Direction Ledger: [Owner](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=a&surface=owner&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Public](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=a&surface=public&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Update](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=a&surface=update&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Detail](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=a&surface=detail&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working)
 - Option B — Editorial Plan Room: [Owner](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=b&surface=owner&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Public](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=b&surface=public&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Update](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=b&surface=update&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Detail](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=b&surface=detail&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working)
 - Option C — Signal Horizon: [Owner](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=c&surface=owner&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Public](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=c&surface=public&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Update](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=c&surface=update&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working) · [Detail](https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=c&surface=detail&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working)
+
+Option D was developed in the continuation lab after that deployment. Its selected contract is recorded in `timeline-option-d-selected-2026-07-22`; the production record is `timeline-shareable-artifact`. No public preview URL is recorded for Option D because the reviewed surface was local and the production release is still being verified.
 
 The protected links require authorised Vercel access.
 
@@ -46,7 +48,7 @@ The protected links require authorised Vercel access.
 | B — Editorial Plan Room | 9.81 | Public comprehension and forwardable updates | Longest owner surface |
 | C — Signal Horizon | 9.76 | Distinctive movement and spatial hierarchy | Highest responsive and implementation complexity |
 
-Recommendation, not selection: **A owner ledger + B public timeline + B shared update + B item detail, with C's Before/Now receipt only for real bucket moves.** If a complete option is preferred, B is the strongest consensus direction.
+The original panel recommendation remains historical evidence. The founder's later artifact-first review supersedes it for production: **Option D is selected.**
 
 ## Verification receipts
 
@@ -61,6 +63,6 @@ Recommendation, not selection: **A owner ledger + B public timeline + B shared u
 
 ## Phase 2 boundary
 
-Selection authorises implementation planning for the named direction. It does not waive canonical data mapping, durable working and published persistence, server-enforced public projection, anonymous-share verification, real history and refusal migration, production-volume performance testing, accessibility, observability, rollback, changelog, or deployment proof.
+Selection authorises implementation of Option D. It does not waive canonical data mapping, durable publication persistence, server-enforced allowlisting, anonymous-share verification, qualified-view integrity, production-volume performance testing, accessibility, observability, rollback, changelog, or deployment proof.
 
-Production Timeline remains unchanged until that work is implemented and verified after selection.
+As of this record, the unified owner module is deployed but the new Option D link-only artifact is not yet claimed as released. Production evidence fields remain pending until the migration, app deployment, compatibility edge, and live recipient journey pass.

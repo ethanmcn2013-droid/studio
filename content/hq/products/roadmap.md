@@ -2,19 +2,27 @@
 id: roadmap
 title: Signal Timeline
 layer: Direction
-maturity: 76
+maturity: 84
 status: Private preview
-uxPolish: 82
-integrationScore: 42
-launchReadiness: 66
+uxPolish: 90
+integrationScore: 90
+launchReadiness: 70
 majorFeatures: ["Workspace creation","editor","public viewer (Cycle 8 — GTM-beat redesign)","shared update page","milestones as first-class section with per-milestone progress + T-N countdown","bold-in-markdown promotes items to milestones (parser)","item→milestone soft linkage in list view (Cycle 9 — '→ for <milestone>' line, deduped per contiguous group)","hero dial gated on hasMomentum (Cycle 10 — ≥5 items or ≥1 milestone earns the dial; below threshold, single understated 'N of M shipped' line)","meta-strip brand primitive carries the uppercase identity/timeline/count rhythm across workspace, project-detail, and refusals heroes (Cycle 11)","BigStat brand primitive — values-first tabular stat treatment, shared across workspace + project-detail heroes (Cycle 12)","cinematic homepage demo (cycle 11.3)","Public guest-view attribution + last-updated (Sprint 2 cycle 10.2, 2026-05-12)","Invited-by bar + mailto reply on /update (Sprint 2 cycle 10.3, 2026-05-12)","Copy-link button on the workspace public URL (R·3, 2026-05-15 — closes the value-moment gap that left the product's reason-to-exist as static monospace text)","Mobile nav on SiteNav marketing surface (R·3, 2026-05-15 — was hidden md:flex with no fallback)","Public-surface chrome gated to isOwner (R·24, 2026-06-09) — demo banner, MetaStrip, and the BigStat band (Total/Done/Doing/Next/Waiting/Won't do) no longer render for non-owner viewers; chrome that reassembled dashboard energy on the page mandated for the never-log-in reader is gone","KindPill taxonomy hidden on public list (R·24, 2026-06-09) — 11-kind labels (PAID/KPI/POST/ASSET/PRESS etc.) read as marketing-team vocabulary to non-technical recipients; editor view retains them","Refusals page renamed to 'What didn't make it' (R·24, 2026-06-09) — breadcrumb, H1, and nav chip updated; MetaStrip cut from the page; URL slug preserved so shared links survive","Marketing hero recipient path (R·24, 2026-06-09) — quiet 'Were you sent this? What Signal Timeline is.' link to /about, so the curious recipient who arrived from a shared plan has a way back to the explainer","Milestone glyph on the public ladder + plain-English freshness stamp (R·25, 2026-06-14) — milestones render as a dated diamond on the Now/Soon/Later ladder (not a new lane, not a drag-bar); the public freshness signal now reads 'Updated this morning / 3 days ago' from the latest edit, no raw timestamps, no PM phrasing"]
-blockers: ["Confidence and change history need a sharper model.","Optional: backfill owner_name + owner_email for pre-Sprint-2 workspaces (columns applied to prod Turso 2026-05-12; existing workspaces fall back gracefully when null)."]
-nextActions: ["R·4: workspace-routing refactor — getCurrentWorkspace anchors to workspaces[0], so the workspace paid tier can create N workspaces under the entitlement cap but the editor and /app silently scope to the first one. Add [workspaceSlug] URL segment to /app and /app/source. Held from R·3 to keep blast radius isolated.","Confidence + change-history model — the deepest backlog item, still untouched.","Optional: backfill owner_name + owner_email for pre-Sprint-2 workspaces via UPDATE statement (columns now exist in prod Turso).","CSP enforce-mode promotion across suite (still Report-Only across all four products).","Add Sentry (memory had claimed Timeline was covered by Plan 4.2 PII scrubbing; verified 2026-05-13 that no @sentry/nextjs is installed and no sentry.*.config.ts exists)."]
+blockers: ["Option D is selected but its publication migration, link-only route, qualified view receipt, compatibility redirect, and live release evidence are not complete.","Planning Period and audience publication remain staged pilot claims until their wider production gates close."]
+nextActions: ["Finish and verify the Option D owner studio and standalone artifact in the unified app.","Back up, dry-run, and apply the additive qualified-view migration through the canonical Timeline ledger.","Verify link rotation, revocation, privacy headers, owner phone preview, mobile access, reduced motion, and one qualified production view before marking the artifact shipped.","Design milestone photo memories as a separate consent, retention, export, deletion, and storage pass."]
 ---
 
 ## Role
 
 Where the work is going, what changed, and what people should expect.
+
+## Current direction — 2026-07-22
+
+Signal Timeline now runs as the Direction module inside the unified app at `app.signalstudio.ie/app/plan`. The retired Timeline app domain remains a compatibility edge, not a separate operating product.
+
+Option D is the selected artifact direction. The owner will curate and publish inside the authenticated app, see a true phone-width preview, manage the link, and read a qualified view count. A recipient with the unguessable link will see one horizontal, date-scaled milestone line outside the app shell. There is no public directory, black operating rail, account requirement, or search-discoverable listing.
+
+The selected production pass is in progress. Do not describe the Option D artifact or its qualified view count as deployed until the migration, release, and live verification receipts are attached. The old notes below remain the historical record of the retired standalone Timeline product.
 
 ## Notes
 

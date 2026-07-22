@@ -1,161 +1,114 @@
 # Signal Studio · Suite primer
 
-What this is: a Codex-facing primer on the **Signal Studio suite as a system**. BRAND.md handles voice and visual rules. VISION.md handles strategic intent. AGENTS.md handles workflow. SUITE.md handles **how the four products fit together** — architecture-level, not brand-level.
+This is the architecture-level primer for the four Signal Studio products. `BRAND.md` owns voice and visual rules. `VISION.md` owns strategic intent. `AGENTS.md` owns workflow. This file owns how the products fit together now.
 
-Read this when you need cross-product context. When working on the Studio (umbrella) repo specifically, this tells you what the umbrella is *referring to* whenever it links out, and what the suite-shared rules are.
+**Architecture verified:** 2026-07-22. **Option D Timeline release:** implementation and production evidence in progress.
 
----
+## 1 · Four products, one authenticated app
 
-## 1 · The four products
+Signal Studio still has four product identities. Consolidation changed the runtime, not the product promise.
 
-Each product lives in its own repo, deploying to its own Vercel project, on its own subdomain. They are not a monorepo. They share no code packages today. They share **brand**, **chrome conventions**, and **a single accent color**.
+| Product | Role | Canonical authenticated route | Current claim |
+| --- | --- | --- | --- |
+| Signal Notes | Context | `app.signalstudio.ie/app/notes` | Private capture and the exact Notes-to-Tasks handoff are deployed. |
+| Signal Tasks | Execution | `app.signalstudio.ie/app/work` | The execution workspace is deployed in private preview. |
+| Signal Timeline | Direction | `app.signalstudio.ie/app/plan` | The owner module is deployed. The selected Option D link-only artifact is in its production release pass and is not yet a safe deployed claim. |
+| Signal | Attention | `app.signalstudio.ie/app/brief` | The briefing module is deployed in private preview. Planning Period depth remains gated by its own release evidence. |
 
-| Product | Subdomain | Repo (local) | Status | What it does |
-|---|---|---|---|---|
-| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. Also hosts private `/hq` for internal operations. No public auth or CMS. |
-| Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
-| Signal Timeline | `timeline.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Timeline workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
-| Signal | `signal.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
-| Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Private build | Capture clarity. First live surface exists; PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Full v1 still pending. |
+`signalstudio.ie` remains the public umbrella and the home of marketing, pricing, the waitlist, brand, and private Signal HQ. `app.signalstudio.ie` is the canonical authenticated product origin. `tasks.signalstudio.ie` remains a working alias. The former Notes, Timeline, and Signal product app routes redirect into the corresponding unified modules, while product marketing routes return to the umbrella.
 
-**Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.
+The unified app lives in the Tasks repository and contains bounded `notes`, `timeline`, and `signal` modules. The retired product repositories remain canonical evidence and, where explicitly recorded, migration ledgers or rollback references. They are not parallel product front ends.
 
-The Studio repo (this one) is the **smallest and most restrained** of the five. It is a brand surface, not a product. Anything that would turn it into a product (forms, dashboards, interactive widgets) is a refusal candidate — propose, don't build.
+## 2 · Shell and artifact boundaries
 
----
+The authenticated app uses one shared operating shell, one identity session, and one product rail. That shell is correct for work: switching modules, managing a Workspace, editing, publishing, and checking settings.
 
-## 2 · Cross-product chrome (suite-shared conventions)
+A shareable artifact is different. It is an experience page, not an operating page.
 
-These rules apply identically across all four products' marketing surfaces.
+- The owner manages Signal Timeline inside `/app/plan` and its audience routes.
+- A recipient opens `/s/<unguessable token>` outside the app shell.
+- The recipient does not see the black product rail, account controls, owner tools, or a dashboard.
+- The owner phone preview renders the same artifact component at phone width but never records a view.
+- The shared route is not listed, indexed, added to a sitemap, or discoverable through a public directory.
+- The compatibility edge for `timeline.signalstudio.ie/s/<token>` belongs to the Option D release and must not be described as working until its deployment receipt exists.
 
-### Suite-strip nav
-A small lowercase strip near the header of every product's marketing pages: `tasks.   roadmap.   analytics.   notes.` — each a link to its product's subdomain. The current product's wordmark renders in the brand indigo + its per-product gesture (see below); the others render dimmed.
+Lowercase wordmarks remain motion-typographic marks. Body copy uses Signal Tasks, Signal Timeline, Signal, Signal Notes, and Signal Studio. The suite still uses Geist, white paper, one indigo accent, and reduced-motion equivalents.
 
-### Footer
-4-column on desktop, cascading down: **Product · Company · Resources · Suite.** Cross-product links live in the Suite column with `↗` external arrows. Attribution always reads "Made by Signal Studio".
+## 3 · Data shape after consolidation
 
-### Per-product wordmark gestures (suite-shared mark grammar)
-- `tasks·` — dot **pulses** continuously (live signal). CSS class `.tasks-dot`.
-- `timeline·` — dot **slides on mount** then settles (motion toward a destination). CSS class `.roadmap-dot`. Plays once per page load.
-- `signal·` — dot is **static** (ambient presence). Inline-styled, no class. The quietest of the four.
-- `notes.` — **underline writes itself** under the word, stops just before the dot, persists. CSS class `.notes-mark`. Lives in `studio/globals.css` until Notes carries the gesture natively. Plays once on first paint.
+Application consolidation did not merge all product data into one schema.
 
-All four respect `prefers-reduced-motion`.
+- Tasks remains the runtime authority for Workspace and Membership.
+- Notes, Timeline, Signal, and entitlement data keep their recorded stores and permission boundaries.
+- The unified app opens those stores through module-scoped configuration. Credentials never cross into the browser.
+- Canonical migrations remain in the ledger named by the product contract. A mirrored runtime schema must change in the same release and pass contract checks.
+- Cross-module publication still uses server-side allowlists. Hiding a private field in a component is not a privacy boundary.
 
-### Suite-shared favicon system
-Brand-soft tile `#eef2ff` (one family). Per-product letter (t/r/a/s) + accent. Studio and products now use the same indigo dot/period treatment. Favicon generated via `icon.tsx` + `apple-icon.tsx` (Next.js convention).
+For the selected Timeline artifact, the canonical publication ledger remains under the Timeline repository's `drizzle/` history while the serving runtime lives in the Timeline module inside Tasks. The Option D release adds qualified-view state through an additive migration only after backup, isolated-copy dry run, integrity checks, production apply, and post-check receipts.
 
-### Single accent across the suite
-`#4f46e5` brand indigo is the single suite accent. Antique gold `#c9a96a` is retired and must not be reintroduced for new work. There is no per-product color identity beyond the shared indigo. Do not introduce one.
+The view metric stores a publication aggregate and a short-lived hashed receipt. It does not store the raw bearer token, IP address, referrer, or user-agent. Owner previews, metadata fetches, prefetches, hidden tabs, reload storms, and duplicate sessions do not count as separate people.
 
-### Audience accents (Tasks-specific)
-Tasks's audience landing pages each have their own color accent (`/for/freelancers` green, `/for/students` amber, `/for/weddings` rose, `/for/trades` orange, `/for/marketing` indigo). These accents are **scoped to landing pages only** — they do not propagate to suite-shared chrome. If you find yourself reaching for a wedding-rose color in Studio code, stop.
+## 4 · Product handoffs
 
----
+The products stay narrow even though they now share a shell.
 
-## 3 · Suite-shared stack
+1. **Notes → Tasks.** A person selects an exact note extract and sends it into Tasks. Notes keeps the source. The handoff is explicit and one-way.
+2. **Tasks → Timeline.** The owner chooses the milestone projection that becomes the published direction artifact. Private Tasks do not cross automatically.
+3. **Tasks → Signal.** Signal reads bounded work state and explains why an item needs attention. Signal does not become a second editor.
+4. **Signal → Studio HQ.** Operational receipts can inform the founder view without making HQ a product surface.
 
-All four products run the same baseline:
+The operating loop remains:
 
-- **Next.js 16** (App Router, Turbopack, RSC-first)
-- **React 19**
-- **Tailwind v4**
-- **Geist** font family (sans + mono)
-- **pnpm** (workspaces declared per repo as `packages: - "."`)
-- **Vercel** hosting, with subdomain routing under `signalstudio.ie`
-- **TypeScript** everywhere, strict mode
+`Notes → Tasks → Timeline → Signal`
 
-Variations by product:
-- **Tasks + Timeline + Signal:** Clerk for auth.
-- **Tasks + Timeline + Signal:** each owns its **own Turso (libSQL)** database. Signal's DB stores user prefs only — the actual task data it reads comes from Tasks's DB via a read-only token.
-- **Timeline:** Stripe for Pro tier; Sentry for error monitoring (with PII scrubbing — see §5).
-- **Signal:** Resend for email dispatch.
-- **Studio:** public site stays static-ish with one client component (`RevealEngine`) for the motion stack. Private `/hq` uses `SIGNAL_HQ_PASSWORD`, an HTTP-only cookie, localStorage persistence, and JSON export/import.
+Capture the context. Do the work. Show the direction. See what needs attention.
 
----
+The collaboration loop remains:
 
-## 4 · How data flows across the suite
+`Workspace created → collaborators invited → work becomes clearer → shareable output created → new creator discovered`
 
-The intended cross-product data flow is **Tasks → Signal**. Treat it as a launch claim only after the current Signal repo contains the engine files and the preview proves the briefing path. The contract is:
+Signal Timeline is the strongest travelling object in that loop. The selected artifact is one horizontal, date-scaled line with completed distance, milestone points, a precise Today dash, **Our next milestone**, and completion or days-remaining lenses.
 
-1. Tasks's Turso DB is the source of truth for task data, project data (mapped from tags — see below), and user-Clerk linkage.
-2. Signal has a **read-only Turso token** (`turso db tokens create ... --read-only`, JWT flag `"a":"ro"`). Writes are blocked at the token layer.
-3. Signal's `tasksDbSource` (`analytics/src/lib/data/tasks-db-source.ts`) implements the `DataSource` interface against this read-only connection.
-4. The briefing pipeline runs: `data → triggers → insights → prose → compression → briefing` and renders to web (`/app`) or email (via Resend).
+## 5 · Current release boundaries
 
-**Architectural decision worth knowing about:** Tasks does **not** have a `projects` table. Tags-as-projects is the locked mapping. Each unique tag in a workspace = one synthesized `ProjectRead` (slug = tag verbatim, name = title-cased, members = union of assignees on tasks bearing that tag). This was deliberate — adding a `projects` table to Tasks would have violated the anti-configuration positioning per BRAND.md §2.2 ("Configuration tax"). Signal flexes here, not Tasks.
+### Deployed
 
----
+- The unified authenticated app at `app.signalstudio.ie`.
+- Tasks, Notes, Timeline owner, and Signal modules inside that app.
+- The exact Notes-to-Tasks handoff.
+- Legacy product app redirects and the umbrella marketing home.
 
-## 5 · What's shipped (suite-wide milestones)
+### In production release work
 
-Plans are the suite's unit of work. Plans 1–6 are closed. Plan 7 is in flight.
+- Option D Timeline owner studio and standalone link-only artifact.
+- Publication-level qualified view aggregate and privacy-minimised deduplication receipts.
+- The Timeline-domain compatibility redirect for share links.
+- Owner phone preview, link rotation, revocation, and final accessibility/privacy/browser evidence.
 
-- **Plan 1 — Strategic Foundation.** Locked Signal PRODUCT.md (rules + curated prose, no LLM in v1). Locked Notes PRODUCT.md (one-way Notes→Tasks promotion; never auto-detect todos). Added BRAND.md §2.1–§2.3 (audience archetypes, what fails them, the moat = discipline-sustained-across-suite-over-time).
-- **Plan 2 — Visual Ecosystem Coherence.** Notes underline-writes-itself gesture designed. Suite-shared favicon system. Tasks + Timeline navs upgraded to client components with `usePathname` active-state + `<details>/<summary>` mobile menu (parity with Signal).
-- **Plan 3 — Timeline Parity Buildout.** Workspace creation form (slug→URL purge, live preview). Editor surface (mechanism-first → outcome-first copy). Public viewer (universalised demo banner, Pro CTA reframed, "iCal" jargon purged). Marketing surface depth (purged "engineering team", "engineers", "front-matter spec", "prefill"). Demo seed data ("Signal Timeline" workspace, "Stakeholders"→"Anyone with an account").
-- **Plan 4 — Security + Performance.** Suite-wide HSTS + X-Frame + Permissions-Policy in enforce mode + CSP in **Report-Only** mode (promotion to enforce owed). Sentry PII scrubbing (`beforeSend` + `sendDefaultPii: false`) on all 5 init points across Tasks + Timeline. Orphan-asset purge (~790KB removed from Tasks bundle).
-- **Plan 5 — 80% Audience Refinement.** Tasks `DOMAIN_ORDER` reordered (wedding → trades → student → freelance → marketing — service-operators-with-clients lead). Audience landing pages audited (~1000 lines, already strong). Cross-product banned-word catch-net (single real fix: "autonomous demo" → "scripted demo").
-- **Plan 6 — Signal MVP.** Architecture + data layer + auth + Tasks DB read + 10 triggers + curated prose with rotation/self/focus variants + compression + web render + email render + Resend dispatch + Vercel daily cron + marketing alignment to shipped reality. Engine end-to-end production-ready.
-- **Plan 7 (in flight) — Demo.** 7.1 30s narrative + storyboard locked. 7.2 Remotion scaffold (`~/Projects/personal/analytics-demo/`) + first typography cut rendered (~2.4MB MP4) and embedded at signal-phi-ten.vercel.app/demo.
+### Staged or later
 
----
+- Planning Period and Audience Timeline broad availability remain gated by their production programme.
+- Milestone photo memories are a later story layer. They require explicit publication, consent, storage, retention, export, and deletion rules.
+- Viewer-to-creator attribution is later than qualified viewing and must never leak the bearer link into general analytics.
 
-## 6 · What's planned (next on the horizon)
+## 6 · Locked boundaries
 
-- **Direction C — Daily Signal as page.** Alternative for the Studio umbrella landing: the umbrella IS a Daily Signal briefing. Branch off main, do NOT replace production.
-- ~~**Notes scaffolding.**~~ Closed 2026-06-06. Signal Notes is standing at N·21 with: marketing site + animated hero, full notebook (capture / search / long-press tray / promote-to-Tasks / archive), capture-by-email API, account + danger-zone, Clerk-backed sign-in/up, four drizzle migrations (FTS5 search, user prefs, note-extract columns, archived_at), and the canonical SuiteSwitcher pills shipped (N·18) so the chrome reads as suite-coherent. PRODUCT.md remains locked. The brand-locked refusal stands: one-way Notes→Tasks promotion only, never auto-detect todos.
-- **Cross-product chrome — top-bar product switcher, shared auth seam.** All four products carry the SuiteSwitcher pills (T·18-equivalent, N·18, R·… , A·…). Remaining: a shared auth seam so Tasks/Timeline/Notes/Signal share session, not four parallel Clerk sessions. That's the real chrome work — name it precisely instead of "deferred until Notes."
-- ~~**Audience archetype completion.**~~ Closed 2026-06-06. All 5 of 5 BRAND.md §2.1 archetypes now have dedicated landing pages on Tasks: `/for/freelancers`, `/for/trades`, `/for/students`, `/for/small-business` (operators), `/for/community` (public-facing coordinators). Sitemap and footer Resources column carry all five. Surface complete.
-- **Performance pass.** Plan 4 closed pragmatically without browser access. Owed: Lighthouse / Core Web Vitals run against each deployed product, identify Largest Contentful Paint + Cumulative Layout Shift outliers, fix.
-- **CSP enforce-mode promotion.** Currently Report-Only across all four products. Promote after browser verification confirms no false-positive blocks.
+- No fifth product. The suite is Signal Notes, Signal Tasks, Signal Timeline, and Signal.
+- No public directory of Timeline publications.
+- No public-by-default private work. Sharing is an explicit owner action through an unguessable, rotatable, revocable link.
+- No comment-thread system on Timeline.
+- No raw private Note or Task body crossing into a publication by implication.
+- No request count presented as people. Qualified viewing has an explicit definition and a privacy-minimised receipt.
+- No app rail on the recipient artifact.
+- No automatic task extraction from Notes. Promotion is user-selected.
+- No Signal dashboard builder. Briefing stays first and bounded.
+- No model marketing, generic category visuals, extra accent colours, or jargon that assumes a technical team.
+- No demo-versus-reality gap. Planned and local work stays labelled as planned or local until production proof exists.
 
----
+## 7 · Truth and release rule
 
-## 7 · What's owed (operator-pending — won't be done by an agent)
+GitHub `main`, the production deployment, provider-backed journeys, and retained receipts together form the release truth. None is sufficient alone.
 
-These are setup-ish tasks that need a human in the loop because they touch secrets, billing, or third-party admin consoles.
+For a shareable Timeline release, verification must cover the owner route, cross-tenant denial, strict public projection, token rotation, immediate revocation, qualified-view deduplication, owner-preview exclusion, response privacy controls, absence of third-party token leakage, keyboard access, reduced motion, phone layout, and the compatibility link. Until that evidence exists, describe Option D as selected and in production release work, not deployed.
 
-- **`CRON_SECRET` + `RESEND_API_KEY` on Vercel (Signal project).** Sensitive-flagged. Without these, the daily cron handler will return 401 / fail to dispatch email.
-- **DKIM completion in Google Workspace Admin Console** for `hello@signalstudio.ie`. Domain verified, alias added; DKIM still pending generation. Once generated, agent can add the DNS record via Vercel API.
-- **Live demo seed for Timeline.** `roadmap/scripts/seed-demo.ts` was edited in Plan 3.5 but `npm run seed:demo` against prod Turso has not run — `/tasks` demo workspace on Timeline won't reflect the rewrites until the seed runs.
-
----
-
-## 8 · Suite-wide locked refusals (cross-cutting)
-
-These apply to *any* product in the suite, not just Studio:
-
-- **No "AI-powered" anything in marketing.** Ambient AI is fine inside engines (Signal's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed.
-- **No team tier on Timeline.** v1 lock. Solo + Pro only.
-- **No private workspaces on Timeline.** Public-by-default is the position.
-- **No comment threading on Timeline.** Refused.
-- **No public directory of Timeline workspaces.** Refused in v1.
-- **No projects table in Tasks.** Tags-as-projects is the locked mapping (per §4 above). Any feature that would require a projects table is a refusal candidate — flex Signal's read model instead.
-- **No auto-detect-todos in Notes.** One-way Notes → Tasks promotion only, user-initiated.
-- **No demo-vs-reality gap.** Marketing reflects what's shipped. Planned features marked planned.
-- **No category-fragmentation visuals** (mascots, robot iconography, 3-adjective hero grids, holographic gradients, glow blooms, generic SaaS hero stock).
-
----
-
-## 9 · How to think about cross-product work
-
-If you're working on the Studio repo and a request would imply a change in another product's repo, **stop and surface it before doing anything.** Studio is the umbrella — its job is to refer outward. Other products are responsible for their own surfaces.
-
-Examples of work that should escalate, not silently happen:
-- Adding a new product to the suite-strip nav (touches all four products).
-- Changing a per-product wordmark gesture (touches that product's CSS + Studio's reveal sequence).
-- Renaming a product (touches BRAND.md, every product's nav, every footer, DNS, Vercel project name).
-- Changing the umbrella domain or any subdomain (DNS + every product's `NEXT_PUBLIC_*_URL` + favicon system).
-
-What's safe to do inside Studio without escalating:
-- Copy edits inside Studio that respect AGENTS.md + BRAND.md.
-- Visual/motion polish on the Reveal sequence that respects the choreographed timing.
-- Adding entries to `CHANGELOG.md`.
-- Refactors that don't change observable behavior.
-
----
-
-## 10 · Tonal note for any output that touches users
-
-When you write copy that ships — even a button label, even an alt text — the question to ask is: **"would a wedding planner, a tradesperson, a freelance designer, or a tutor read this and feel addressed?"** If the answer is no, the line is wrong. The audience definition in BRAND.md §2.1 isn't decoration — it's the test. Every cycle of the suite has been measured against it. Don't drift here.
+The Studio repository remains the umbrella and Signal HQ. Product behavior belongs in the unified app. Studio may record decisions, risks, architecture, compatibility redirects, and release truth; it does not recreate the product.

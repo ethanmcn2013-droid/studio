@@ -15,7 +15,7 @@ The operating category is **operational clarity**. The current homepage tests "P
 - **Signal Tasks** — execution clarity. Run the work.
 - **Signal Timeline** — direction clarity. Explain the work.
 - **Signal** — attention clarity. Surface what matters in the work.
-- **Signal Notes** — capture clarity. Hold the work as it happens. *(Private build; full v1 still pending.)*
+- **Signal Notes** — capture clarity. Hold the work as it happens.
 
 Each product solves one slice. The suite is the system. The umbrella site (this repo) is the brand surface that makes the relationship between the four legible without forcing a "platform" story.
 
@@ -31,15 +31,15 @@ The moat is **disciplined refusal sustained across a suite of products over time
 
 Discipline moats are slower than feature moats. There will be cycles where Signal Studio looks "behind" because an incumbent shipped a feature we refused. **That is the moat working, not failing.** The metric to watch is *unprompted user language* — when users say back to us "this doesn't talk like Jira," the moat is paying out. When users start describing Signal Studio in incumbents' vocabulary, the moat has been breached.
 
-## 4 · Current state (as of 2026-05-10)
+## 4 · Current state (as of 2026-07-22)
 
 | Surface | URL | Status |
 |---|---|---|
-| Signal Studio (umbrella) | signalstudio.ie | **Live private preview.** Reveal v3 shipped as the umbrella brand surface. |
-| Signal Tasks | tasks.signalstudio.ie | **Private preview.** Auth, persistence, app workspace, cinematic demo, and audience pages are in active refinement. |
-| Signal Timeline | timeline.signalstudio.ie | **Private preview.** Core timeline, editor, and public viewer are in active refinement. Launch claims must stay tied to what the repo and preview prove. |
-| Signal | signal.signalstudio.ie | **Private preview · product committed.** Attention clarity is locked as a product. The briefing engine claim must be reconciled with the current repo before it appears in marketing. |
-| Signal Notes | notes.signalstudio.ie | **Private build.** First capture-clarity surface is live; PRODUCT.md drafted; one-way Notes → Tasks promotion is locked; full v1 product work remains pending. |
+| Signal Studio (umbrella) | signalstudio.ie | **Deployed.** Public marketing and waitlist; private preview remains the safe access claim. |
+| Signal Tasks | app.signalstudio.ie/app/work | **Deployed private preview.** Execution module inside the unified authenticated app; `tasks.signalstudio.ie` remains a working alias. |
+| Signal Timeline | app.signalstudio.ie/app/plan | **Deployed owner module.** Option D is selected for the new link-only artifact; migration, deployment, and live recipient proof remain in progress. |
+| Signal | app.signalstudio.ie/app/brief | **Deployed private preview.** Briefing is the default. Planning Period depth remains gated by its separate release evidence. |
+| Signal Notes | app.signalstudio.ie/app/notes | **Deployed private preview.** Durable private capture and the exact Notes-to-Tasks handoff are in the unified app. |
 
 **Signal HQ:** `/hq` is the private operating dashboard for building and launching Signal Studio. It is password-gated, `noindex`, absent from public navigation, and local-first in v1.
 
@@ -54,7 +54,7 @@ Discipline moats are slower than feature moats. There will be cycles where Signa
 - **Direction C — Daily Signal as page.** Alternative experiment for the umbrella landing: the umbrella IS a Daily Signal briefing (Signal's product format applied to the studio itself, dated, timestamped, sectioned). Strategically distinctive — only Signal Studio could ship this. Build off main on a fresh branch, do NOT replace production.
 - **Notes v1 scaffolding.** Turn the first live Notes surface into the real product. Position: capture clarity. One-way Notes→Tasks promotion only — never auto-detect todos (that's a refusal locked in `notes/docs/PRODUCT.md`).
 - **Signal HQ operating cadence.** Keep product, launch, growth, decisions, risks, and next actions current inside `/hq` as the suite changes. HQ is now the internal source of truth for meaningful strategic movement.
-- **Cross-product chrome.** Top-bar product switcher, shared auth seam. Deferred until all four products are at parity. All four now have public surfaces; shared chrome work waits for product parity.
+- ~~**Cross-product chrome.**~~ Closed by the 2026-07-21 to 2026-07-22 consolidation. The four products now share one authenticated app, one session, and one operating shell at `app.signalstudio.ie`. Shareable artifacts may leave that shell when the product contract requires a composed recipient experience.
 - ~~**Audience archetype completion.**~~ Closed 2026-06-06. All 5 of 5 BRAND.md §2.1 archetypes carry dedicated Tasks landing pages: `/for/freelancers`, `/for/trades`, `/for/students`, `/for/small-business` (operators — restaurants, shops, clinics, studios; operational teal accent), `/for/community` (public-facing coordinators — teachers, coaches, parish coordinators, community organisers; community-violet accent). Sitemap and footer Resources column carry all five; the two newly-surfaced pages had shipped to the repo 2026-06-03 but were never wired to nav/sitemap until T·83.
 - **Performance pass with a real browser.** Plan 4 closed pragmatically without Lighthouse access. Owed: Core Web Vitals run against each deployed product, surface Largest Contentful Paint / Cumulative Layout Shift outliers, fix.
 - **CSP enforce-mode promotion.** Suite-wide Content-Security-Policy currently in Report-Only mode. Promote to enforce after browser verification confirms no false-positive blocks.
@@ -65,7 +65,7 @@ These are locked refusals. Not "maybe later" — refusals.
 
 - **No "AI-powered" anything.** Ambient AI is fine inside the engine (Signal's trigger detection is rules-based today; if it ever uses an LLM, it stays unmarketed). Never named in copy. Never themed in marketing.
 - **No "team tier" on Timeline.** v1 lock. Solo + Pro only.
-- **No private workspaces on Timeline.** Public-by-default is the position.
+- **No discoverable Timeline workspaces.** The owner workspace is private. Sharing is an explicit publication through an unguessable, rotatable, revocable link; it is never a public-by-default workspace or indexed profile.
 - **No comment threading on Timeline.** Refused.
 - **No public directory of Timeline workspaces.** Refused in v1.
 - **No "all-in-one productivity platform" framing.** Anywhere. Ever.
