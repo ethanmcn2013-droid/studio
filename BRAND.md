@@ -14,12 +14,14 @@ Signal Studio is the umbrella. Four products live under it.
 
 | Product | Position | Domain | Repo | Status |
 |---|---|---|---|---|
-| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Live |
-| Signal Timeline | Direction clarity | timeline.signalstudio.ie | `~/Projects/personal/roadmap` | Live |
-| Signal | Operational clarity (read: attention) | signal.signalstudio.ie | `~/Projects/personal/analytics` | Marketing live · product in flight |
-| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Marketing live · private notebook in flight |
+| Signal Tasks | Execution clarity | app.signalstudio.ie/app/work | `~/Projects/personal/tasks` | Deployed private preview |
+| Signal Timeline | Direction clarity | app.signalstudio.ie/app/plan | `~/Projects/personal/tasks` (`src/modules/timeline`) | Owner module deployed · Option D artifact release in progress |
+| Signal | Operational clarity (read: attention) | app.signalstudio.ie/app/brief | `~/Projects/personal/tasks` (`src/modules/signal`) | Deployed private preview |
+| Signal Notes | Capture clarity | app.signalstudio.ie/app/notes | `~/Projects/personal/tasks` (`src/modules/notes`) | Deployed private preview |
 
 **Umbrella domain:** signalstudio.ie · **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
+
+The former product domains remain compatibility and marketing edges; they are not separate authenticated product homes. `app.signalstudio.ie` is the canonical app origin. A link-only Timeline artifact may render outside the operating shell at `/s/<unguessable token>` without becoming a listed or indexed workspace.
 
 The system: every product is a different *kind* of clarity. Tasks runs the work. Timeline explains the work. Signal surfaces what matters in the work. Notes captures the work as it happens. Each product solves one slice; the suite is the system.
 

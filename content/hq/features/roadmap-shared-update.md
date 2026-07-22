@@ -15,4 +15,6 @@ relatedMetric: New workspace creators
 
 ## Notes
 
-First built shareable artefact: a short read-only update at `/[workspace]/update` with source fields, Created with Signal Studio, and bundled demo fallback for preview reliability.
+Historical first shareable artifact: a short read-only update at `/[workspace]/update` with source fields, Created with Signal Studio, and a bundled demo fallback for preview reliability.
+
+The current production direction is the standalone Option D Timeline artifact tracked in `timeline-shareable-artifact`. This record preserves the earlier collaboration proof and is not a claim that the legacy route is the canonical share path after consolidation.

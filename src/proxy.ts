@@ -16,6 +16,41 @@ const CONFIDENTIAL_BRAND_PATHS = new Set([
   "/brand/business-loan-pack-2026.html",
 ]);
 
+const LEGACY_TIMELINE_HOSTS = new Set([
+  "timeline.signalstudio.ie",
+  "roadmap.signalstudio.ie",
+]);
+
+const TIMELINE_SHARE_REDIRECT_HEADERS = {
+  "Cache-Control": "private, no-store, max-age=0, must-revalidate",
+  "CDN-Cache-Control": "no-store",
+  "Vercel-CDN-Cache-Control": "no-store",
+  "Referrer-Policy": "no-referrer",
+  "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
+} as const;
+
+function timelineShareHandoff(request: NextRequest): NextResponse | null {
+  const { pathname, search } = request.nextUrl;
+  if (pathname !== "/s" && !pathname.startsWith("/s/")) return null;
+
+  const requestHost = (request.headers.get("host") ?? request.nextUrl.host)
+    .split(":", 1)[0]
+    ?.toLowerCase();
+  if (!requestHost || !LEGACY_TIMELINE_HOSTS.has(requestHost)) return null;
+
+  const destination = new URL(
+    `${pathname}${search}`,
+    "https://app.signalstudio.ie",
+  );
+  const response = NextResponse.redirect(destination, 307);
+
+  for (const [key, value] of Object.entries(TIMELINE_SHARE_REDIRECT_HEADERS)) {
+    response.headers.set(key, value);
+  }
+
+  return response;
+}
+
 async function confidentialBrandGate(
   request: NextRequest,
 ): Promise<NextResponse | null> {
@@ -128,15 +163,19 @@ function suiteRedirect(request: NextRequest): NextResponse | null {
 // ── Composed proxy ────────────────────────────────────────────────────────
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
-  // 0. Confidential static brand assets (lender pack, HQ password required)
+  // 0. Preserve retired Timeline share links without exposing bearer paths.
+  const timelineShareResult = timelineShareHandoff(request);
+  if (timelineShareResult) return timelineShareResult;
+
+  // 1. Confidential static brand assets (lender pack, HQ password required)
   const brandResult = await confidentialBrandGate(request);
   if (brandResult) return brandResult;
 
-  // 1. HQ gate (must run first, /hq is excluded from suite redirect logic)
+  // 2. HQ gate (must run first, /hq is excluded from suite redirect logic)
   const hqResult = await hqGate(request);
   if (hqResult) return hqResult;
 
-  // 2. Suite launcher redirect (M routes, authed, no escape hatch)
+  // 3. Suite launcher redirect (M routes, authed, no escape hatch)
   const suiteResult = suiteRedirect(request);
   if (suiteResult) return suiteResult;
 

@@ -63,7 +63,7 @@ The umbrella is mostly *editorial discipline*, not technical machinery. Three op
 
 - **No fifth product.** Tasks, Timeline, Signal, Notes. Four. The temptation to scaffold a "Signal Chat" or "Signal Inbox" is the most common cardinality risk.
 - **No team tier.** The suite is sold to individuals and small teams. Enterprise tier would require multi-seat billing, role-based access, audit logs — features that change the product shape, not just the pricing page.
-- **No private workspaces in Timeline.** Timeline is public-facing by design. Adding private mode would gut the moat.
+- **No discoverable Timeline workspaces.** Owner work stays private. Sharing is an explicit, link-only publication with rotation and revocation, never an indexed profile or public-by-default workspace.
 - **No comment threading.** Anywhere. Comments are a productivity-tool trap.
 - **No public directory.** Of users, of workspaces, of templates. The suite refuses the "discover other users' content" surface.
 - **No engineering-team-flavored language.** The audience is wedding planners, freelancers, tradespeople, students, marketing operators — not "engineering teams". Banned in copy (see [[brand-enforcement]]).

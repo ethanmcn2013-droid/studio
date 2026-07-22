@@ -115,7 +115,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        // /s is handled in proxy.ts so the temporary bearer-link redirect can
+        // carry privacy headers. All other retired paths still fold home.
+        source: "/:path((?!s(?:/|$)).*)",
         has: [{ type: "host", value: "timeline.signalstudio.ie" }],
         destination: "https://signalstudio.ie/",
         permanent: true,
@@ -141,7 +143,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        // Keep legacy roadmap share links on the same private handoff.
+        source: "/:path((?!s(?:/|$)).*)",
         has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
         destination: "https://signalstudio.ie/",
         permanent: true,

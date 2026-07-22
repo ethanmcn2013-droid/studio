@@ -165,6 +165,36 @@ Acceptance criteria:
 - the page explains the product through a wedding venue/planner/couple context
 - the route can be used in venue outreach and the first demo script
 
+### Current production step: link-only Timeline artifact
+
+Status: Option D selected on 2026-07-22; production implementation and release proof in progress.
+
+Purpose:
+
+Make Signal Timeline the suite's clearest travelling object: a project shown on one horizontal line so a recipient understands completion, today, and the next milestone before reading the detail.
+
+Deliverables:
+
+- authenticated owner studio inside the unified app at the Timeline module
+- the production artifact shown in a real phone-width frame before sharing
+- standalone `/s/<unguessable token>` artifact with no operating rail or account shell
+- frozen server-side allowlist that excludes private Notes, Tasks, comments, files, collaborators, and unpublished changes
+- token rotation, immediate revocation, noindex, noarchive, no-store, and no-referrer controls
+- qualified publication view count that excludes owner previews, metadata fetches, prefetches, hidden tabs, reload storms, and duplicate sessions
+- compatibility handling for existing `timeline.signalstudio.ie/s/<token>` links while `app.signalstudio.ie` serves the unified runtime
+
+Acceptance criteria:
+
+- the completed distance is legible at a glance and matches completed milestones divided by all non-cancelled milestones
+- milestone points, the Today dash, **Our next milestone**, and completion/days-remaining lenses work on desktop and phone
+- the owner and recipient render the same artifact component, but only a qualified recipient session records a view
+- a person without the unguessable link cannot browse, search, enumerate, or discover publications
+- rotation and revocation invalidate the former link without resetting the publication's qualified view aggregate
+- no raw share token, IP address, referrer, or user-agent is persisted for the metric
+- migration, accessibility, privacy, browser, and production receipts exist before the feature is described as deployed
+
+Future extension: milestone photos may turn the artifact into a lasting story after the project ends. That work requires a separate consent, explicit-publish, storage, retention, export, and deletion contract. It is not bundled into the current release.
+
 ### Templates as a cross-suite primitive (locked 2026-05-12)
 
 Detailed spec: `docs/TEMPLATES_STRATEGY.md`.
@@ -227,7 +257,7 @@ Acceptance criteria:
 
 ### Phase 4: Shareable outputs
 
-- Timeline: public plan, change log, and shared update.
+- Timeline: owner-controlled link-only artifact, change log, and shared update. Link-only means possession of the unguessable link grants read access; it does not mean listed, indexed, or publicly discoverable.
 - Notes: decision summary and action summary.
 - Tasks: checklist and status update.
 - Signal: Today Signal / workspace briefing.
@@ -239,6 +269,8 @@ Acceptance criteria:
 - Add duplicate/use-template CTAs where natural.
 - Track new workspace creators who arrive through a shared workspace or output.
 - Build workspace creator dashboard only after invite and activation behaviour exists.
+
+Qualified Timeline views are the first privacy-minimised artifact metric. They measure whether the artifact was actually viewed; they do not identify the viewer. Viewer-to-creator attribution remains a later, separately consented step and must never place the bearer token in general analytics.
 
 ## First Wedge: Weddings And Events
 
