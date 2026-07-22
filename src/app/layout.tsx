@@ -157,14 +157,9 @@ export default async function RootLayout({
             shaves ~100-300ms from the first cross-domain navigation.
             Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
             for browsers that don't support preconnect. */}
-        <link rel="preconnect" href="https://tasks.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://tasks.signalstudio.ie" />
-        <link rel="preconnect" href="https://timeline.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://timeline.signalstudio.ie" />
-        <link rel="preconnect" href="https://signal.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://signal.signalstudio.ie" />
-        <link rel="preconnect" href="https://notes.signalstudio.ie" />
-        <link rel="dns-prefetch" href="https://notes.signalstudio.ie" />
+        {/* The four products are now one app at app.signalstudio.ie. */}
+        <link rel="preconnect" href="https://app.signalstudio.ie" />
+        <link rel="dns-prefetch" href="https://app.signalstudio.ie" />
       </head>
       <body
         className="flex min-h-full flex-col"

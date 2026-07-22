@@ -41,13 +41,13 @@ import { useEffect } from "react";
 const STUDIO_URL =
   process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie";
 const NOTES_URL =
-  process.env.NEXT_PUBLIC_NOTES_URL ?? "https://notes.signalstudio.ie";
+  process.env.NEXT_PUBLIC_NOTES_URL ?? "https://app.signalstudio.ie/app/notes";
 const TASKS_URL =
-  process.env.NEXT_PUBLIC_TASKS_URL ?? "https://tasks.signalstudio.ie";
+  process.env.NEXT_PUBLIC_TASKS_URL ?? "https://app.signalstudio.ie/app/board";
 const TIMELINE_URL =
-  process.env.NEXT_PUBLIC_TIMELINE_URL ?? "https://timeline.signalstudio.ie";
+  process.env.NEXT_PUBLIC_TIMELINE_URL ?? "https://app.signalstudio.ie/app/plan";
 const SIGNAL_URL =
-  process.env.NEXT_PUBLIC_SIGNAL_URL ?? "https://signal.signalstudio.ie";
+  process.env.NEXT_PUBLIC_SIGNAL_URL ?? "https://app.signalstudio.ie/app/brief";
 
 const INDIGO = "#4f46e5";
 

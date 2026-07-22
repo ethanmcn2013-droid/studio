@@ -83,28 +83,28 @@ const PRODUCTS: {
     word: "notes",
     verb: "Open notes",
     tagline: "Capture clarity",
-    url: "https://notes.signalstudio.ie/app",
+    url: "https://app.signalstudio.ie/app/notes",
   },
   {
     slug: "tasks",
     word: "tasks",
     verb: "Open tasks",
     tagline: "Execution clarity",
-    url: "https://tasks.signalstudio.ie/app",
+    url: "https://app.signalstudio.ie/app/board",
   },
   {
     slug: "timeline",
     word: "timeline",
     verb: "Open timeline",
     tagline: "Direction clarity",
-    url: "https://timeline.signalstudio.ie/app",
+    url: "https://app.signalstudio.ie/app/plan",
   },
   {
     slug: "signal",
     word: "signal",
     verb: "Open signal",
     tagline: "Attention clarity",
-    url: "https://signal.signalstudio.ie/app",
+    url: "https://app.signalstudio.ie/app/brief",
   },
 ];
 
