@@ -1,14 +1,17 @@
 ---
 id: migration-p10-002-clerk-app-domain
 title: Verify / allow app.signalstudio.ie in Clerk before the app domain goes canonical
-status: open
+status: done
 priority: P0
-blocking: true
+blocking: false
 phase: Consolidation Phase 10
 why: The unified app is being renamed from tasks.signalstudio.ie to app.signalstudio.ie (founder-approved). The domain is live and serving, but authentication must work there before we point users at it. app.signalstudio.ie shares the same registrable domain as tasks.signalstudio.ie (Clerk's Frontend API is clerk.signalstudio.ie), so sign-in may already work via subdomain cookie sharing — but this must be verified, and the domain added in Clerk if not.
 href: /hq/decisions
 date: 2026-07-22
 ---
+
+## DONE 2026-07-22
+Founder confirmed sign-in works end-to-end on app.signalstudio.ie. The canonical flip is live: app.signalstudio.ie is the primary app domain, tasks.signalstudio.ie remains a working alias, and the three retired product domains redirect into app.signalstudio.ie.
 
 ## Steps
 1. Open https://app.signalstudio.ie/sign-in and sign in with your account. If it works end-to-end (you land in /app), nothing more is needed — mark done.
