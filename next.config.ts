@@ -132,6 +132,32 @@ const nextConfig: NextConfig = {
         destination: "https://signalstudio.ie/",
         permanent: true,
       },
+      // Legacy pre-rename domains (roadmap→timeline, analytics→signal). Same
+      // treatment so old bookmarks keep resolving after their projects are gone.
+      {
+        source: "/app/:path*",
+        has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+        destination: "https://app.signalstudio.ie/app/plan",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/",
+        permanent: true,
+      },
+      {
+        source: "/app/:path*",
+        has: [{ type: "host", value: "analytics.signalstudio.ie" }],
+        destination: "https://app.signalstudio.ie/app/brief",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "analytics.signalstudio.ie" }],
+        destination: "https://signalstudio.ie/",
+        permanent: true,
+      },
     ];
   },
   experimental: {
