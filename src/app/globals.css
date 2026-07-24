@@ -7763,6 +7763,20 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
 .hq-cmdk-input { flex: 1; min-width: 0; border: 0; background: transparent; font-size: 15px; color: var(--ink); outline: none; }
 .hq-cmdk-input::placeholder { color: var(--ink-ghost); }
 .hq-cmdk-esc { font-family: var(--font-mono-stack); font-size: 10px; color: var(--ink-quiet); border: 1px solid var(--border-soft); border-radius: var(--r-1); padding: 2px 6px; }
+/* Argument chip (Delight Layer): a scoped-jump filter painted before the input. */
+.hq-cmdk-chip {
+  display: inline-flex; align-items: center; gap: 5px; flex: none;
+  padding: 3px 5px 3px 8px; border: 1px solid var(--border-soft); border-radius: var(--r-1);
+  background: transparent; font-size: 12px; line-height: 1; color: var(--ink); cursor: pointer;
+  transition: border-color var(--motion-fast) var(--ease-out), background-color var(--motion-fast) var(--ease-out);
+}
+.hq-cmdk-chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+.hq-cmdk-chip-key { color: var(--ink-quiet); }
+.hq-cmdk-chip-val { font-weight: 600; }
+.hq-cmdk-chip-x { display: inline-flex; color: var(--ink-ghost); }
+.hq-cmdk-chip:hover .hq-cmdk-chip-x { color: var(--ink); }
+.hq-cmdk-chip-enter { animation: hq-cmdk-chip-in var(--motion-fast) var(--ease-out); }
+@keyframes hq-cmdk-chip-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 .hq-cmdk-list { list-style: none; margin: 0; padding: 6px; overflow-y: auto; }
 .hq-cmdk-row {
   display: flex; align-items: baseline; gap: 10px; width: 100%; text-align: left;
@@ -7793,7 +7807,7 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) {
   .hq-statusdot-dot { animation: none !important; }
-  .hq-cmdk, .hq-cmdk-panel, .hq-statusdot-pop { animation: none !important; }
+  .hq-cmdk, .hq-cmdk-panel, .hq-statusdot-pop, .hq-cmdk-chip-enter { animation: none !important; }
   .hq-hub-grid .hq-hub-card, .hq-os-metrics .hq-os-metric { animation: none !important; opacity: 1; transform: none; }
 }
 
