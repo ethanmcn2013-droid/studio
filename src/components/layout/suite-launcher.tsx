@@ -13,12 +13,7 @@
 
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import {
-  TASKS_URL,
-  TIMELINE_URL,
-  SIGNAL_URL,
-  NOTES_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_APP_URLS } from "@/lib/product-urls";
 
 // App entries per Layer 0 allowlist (LAYER0_ROUTE_ALLOWLIST.md)
 const PRODUCTS: {
@@ -33,28 +28,28 @@ const PRODUCTS: {
     slug: "notes",
     word: "notes",
     label: "Open the notebook",
-    url: `${NOTES_URL}/app`,
+    url: PRODUCT_APP_URLS.notes,
     description: "Capture clarity",
   },
   {
     slug: "tasks",
     word: "tasks",
     label: "Open the workspace",
-    url: `${TASKS_URL}/app`,
+    url: PRODUCT_APP_URLS.tasks,
     description: "Execution clarity",
   },
   {
     slug: "timeline",
     word: "timeline",
     label: "Open the timeline",
-    url: `${TIMELINE_URL}/app`,
+    url: PRODUCT_APP_URLS.timeline,
     description: "Direction clarity",
   },
   {
     slug: "signal",
     word: "signal",
     label: "Open the briefing",
-    url: `${SIGNAL_URL}/app`,
+    url: PRODUCT_APP_URLS.signal,
     description: "Attention clarity",
   },
 ];

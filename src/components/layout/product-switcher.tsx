@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  SIGNAL_URL,
-  NOTES_URL,
-  TIMELINE_URL,
-  TASKS_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 type ProductSlug = "tasks" | "timeline" | "notes" | "signal";
 
@@ -17,10 +12,10 @@ const PRODUCTS: {
   url: string;
 }[] = [
   // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
-  { slug: "notes", word: "notes", tagline: "Capture clarity", url: NOTES_URL },
-  { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: TASKS_URL },
-  { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: TIMELINE_URL },
-  { slug: "signal", word: "signal", tagline: "Attention clarity", url: SIGNAL_URL },
+  { slug: "notes", word: "notes", tagline: "Capture clarity", url: PRODUCT_MARKETING_URLS.notes },
+  { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: PRODUCT_MARKETING_URLS.tasks },
+  { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: PRODUCT_MARKETING_URLS.timeline },
+  { slug: "signal", word: "signal", tagline: "Attention clarity", url: PRODUCT_MARKETING_URLS.signal },
 ];
 
 const INDIGO = "#4f46e5";
@@ -101,10 +96,8 @@ export function ProductSwitcher() {
           <ul className="p-1">
             {PRODUCTS.map((p) => (
               <li key={p.slug}>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <a
+                    href={p.url}
                   onClick={() => setOpen(false)}
                   className="group flex items-center justify-between gap-3 rounded-md px-2.5 py-2 text-ink no-underline transition-colors hover:bg-bg-deep"
                 >

@@ -27,3 +27,7 @@ The copy is tighter and gives fewer feature details. If a first-time reader need
 ## Notes
 
 Shipped in `RevealProducts` and mirrored in suite messaging so the public surface and HQ record stay aligned. The CTA meta row now keeps the open link on one line.
+
+## 2026-07-25 update
+
+The hero sentence now names the current suite: “Notes, tasks, timelines, and the signal that matters, for people who have work to manage, not software to manage.” Homepage product rows use the canonical `/notes`, `/tasks`, `/timeline`, and `/signal` marketing pages; authenticated launchers use the consolidated `app.signalstudio.ie/app/*` routes. Public Timeline/share links and Tasks template deep links retain their classified public/service origins.

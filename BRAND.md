@@ -12,14 +12,15 @@ This document is the reference for every future change to any Signal Studio prod
 
 Signal Studio is the umbrella. Four products live under it.
 
-| Product | Position | Domain | Repo | Status |
+| Product | Position | Marketing | App module | Status |
 |---|---|---|---|---|
-| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Live |
-| Signal Timeline | Direction clarity | timeline.signalstudio.ie | `~/Projects/personal/roadmap` | Live |
-| Signal | Operational clarity (read: attention) | signal.signalstudio.ie | `~/Projects/personal/analytics` | Marketing live · product in flight |
-| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Marketing live · private notebook in flight |
+| Signal Notes | Capture clarity | `signalstudio.ie/notes` | `app.signalstudio.ie/app/notes` | Live in the unified app |
+| Signal Tasks | Execution clarity | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/board` | Live in the unified app |
+| Signal Timeline | Direction clarity | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/plan` | Live in the unified app |
+| Signal | Attention clarity | `signalstudio.ie/signal` | `app.signalstudio.ie/app/brief` | Live in the unified app |
 
-**Umbrella domain:** signalstudio.ie · **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
+**Marketing origin:** signalstudio.ie · **App origin:** app.signalstudio.ie ·
+**Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
 
 The system: every product is a different *kind* of clarity. Tasks runs the work. Timeline explains the work. Signal surfaces what matters in the work. Notes captures the work as it happens. Each product solves one slice; the suite is the system.
 
@@ -164,7 +165,13 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `support@`, not `team@`.
 
 ### URLs
-- Production: `*.signalstudio.ie` subdomain per product (apex is the umbrella).
+- Production marketing: `signalstudio.ie/notes`, `/tasks`, `/timeline`, and
+  `/signal`.
+- Production app: one origin, `app.signalstudio.ie`, with the module entries
+  `/app/notes`, `/app/board`, `/app/plan`, and `/app/brief`.
+- Legacy product subdomains are compatibility or public-service origins, not
+  canonical marketing homes or separate apps. See
+  `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md`.
 - Vercel default URLs (`*.vercel.app`) are fallbacks only — never link to them in marketing.
 
 ---

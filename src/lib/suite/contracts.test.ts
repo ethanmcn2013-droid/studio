@@ -12,12 +12,14 @@ import {
 } from "./contracts";
 
 describe("suite contracts", () => {
-  it("keeps the five independently deployed surfaces in one registry", () => {
+  it("keeps the umbrella and four unified-app products in one registry", () => {
     assert.deepEqual(PRODUCT_IDS, ["studio", "tasks", "timeline", "signal", "notes"]);
-    assert.equal(PRODUCT_REGISTRY.tasks.canonicalUrl, "https://tasks.signalstudio.ie");
+    assert.equal(PRODUCT_REGISTRY.tasks.canonicalUrl, "https://signalstudio.ie/tasks");
+    assert.equal(PRODUCT_REGISTRY.tasks.appUrl, "https://app.signalstudio.ie/app/board");
+    assert.equal(PRODUCT_REGISTRY.timeline.publicOrigin, "https://timeline.signalstudio.ie");
     assert.equal(PRODUCT_REGISTRY.notes.access, "private-first");
     assert.equal(productUrl("timeline", "/workspaces/demo"),
-      "https://timeline.signalstudio.ie/workspaces/demo",
+      "https://signalstudio.ie/timeline/workspaces/demo",
     );
   });
 

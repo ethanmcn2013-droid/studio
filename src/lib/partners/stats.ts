@@ -8,7 +8,7 @@ import {
   licenseCodes,
   type Sponsor,
 } from "@/lib/entitlements-db/schema";
-import { TASKS_URL } from "@/lib/product-urls";
+import { TASKS_PUBLIC_ORIGIN } from "@/lib/product-urls";
 
 export type PartnerStat = {
   sponsor: Sponsor;
@@ -101,7 +101,7 @@ async function fetchTasksStats(sponsorSlug: string): Promise<TasksPartnerStats> 
     return EMPTY_TASKS_STATS;
   }
 
-  const url = `${TASKS_URL}/api/internal/partner-stats?sponsor=${encodeURIComponent(sponsorSlug)}`;
+  const url = `${TASKS_PUBLIC_ORIGIN}/api/internal/partner-stats?sponsor=${encodeURIComponent(sponsorSlug)}`;
 
   try {
     const res = await fetch(url, {

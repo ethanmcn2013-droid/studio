@@ -23,7 +23,7 @@ export function RevealWeddingWedge() {
           ·
         </span>
         <span className="reveal-wedge-line">
-          Plans, tasks, briefings, and a public timeline, ready to use.
+          Notes, tasks, timelines, and Signal, ready to use.
         </span>
         <Link href="/weddings" className="reveal-wedge-link">
           See it for weddings

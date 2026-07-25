@@ -1,7 +1,7 @@
 /**
  * Reveal products, four typographic-poster rows. Position-clarity label
  * as mono eyebrow → giant wordmark → essence + meta. Hrefs point at the
- * real product subdomains via product-urls.ts.
+ * canonical product marketing pages via product-urls.ts.
  *
  * Each row's layout enters from both sides on scroll (left from -x,
  * right from +x), directional, not generic fade-up. Per-character
@@ -9,18 +9,13 @@
  * (hover: hover) devices.
  */
 
-import {
-  TASKS_URL,
-  TIMELINE_URL,
-  SIGNAL_URL,
-  NOTES_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 interface ProductRowProps {
   id: string;
   // dataKey is the internal gesture-identity hook (drives the per-product
   // dot animation in globals.css). Kept stable across the 2026-06-13 rename
-  // so the CSS selectors + hero anchors don't move; only the visible `word`
+  // so the CSS selectors stay stable; only the visible `word`
   // changed (roadmap→timeline, analytics→signal).
   dataKey: "tasks" | "timeline" | "signal" | "notes";
   position: string;
@@ -113,8 +108,7 @@ export function RevealProducts() {
         essence="Keep the thought until it earns a task."
         pills={["Private preview", "Capture"]}
         cta="Open the notebook →"
-        href={NOTES_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.notes}
       />
       <ProductRow
         id="tasks"
@@ -124,8 +118,7 @@ export function RevealProducts() {
         essence="Keep ownership clear without learning a new language."
         pills={["Private preview", "Multi-view"]}
         cta="Open the workspace →"
-        href={TASKS_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.tasks}
       />
       <ProductRow
         id="timeline"
@@ -135,15 +128,13 @@ export function RevealProducts() {
         essence="Give everyone one page that says where things stand."
         pills={["Private preview", "Public timelines"]}
         cta="Open the timeline →"
-        href={TIMELINE_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.timeline}
       />
       {/*
         Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
         product the suite hangs on. The wordmark reads `signal`, the product
         name, matching its siblings; the Daily Signal briefing it delivers
-        lives in the pill + essence. The href + internal gesture key stay
-        `analytics` (the dot identity / CSS hook); the URL is SIGNAL_URL.
+        lives in the pill + essence.
       */}
       <ProductRow
         id="signal"
@@ -153,8 +144,7 @@ export function RevealProducts() {
         essence="What actually needs you today."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
-        href={SIGNAL_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.signal}
       />
 
       {/*

@@ -8,15 +8,24 @@ Read this when you need cross-product context. When working on the Studio (umbre
 
 ## 1 · The four products
 
-Each product lives in its own repo, deploying to its own Vercel project, on its own subdomain. They are not a monorepo. They share no code packages today. They share **brand**, **chrome conventions**, and **a single accent color**.
+Signal Studio is one application with four products. Application code is
+consolidated in the Tasks repo; the former Notes, Timeline, and Signal repos
+remain historical/reference sources, not separate production applications.
+Marketing is consolidated in the Studio repo.
 
-| Product | Subdomain | Repo (local) | Status | What it does |
-|---|---|---|---|---|
-| Signal Studio (umbrella) | `signalstudio.ie` | `~/Projects/personal/studio` | Live private preview | Choreographed entrance introducing the suite. Also hosts private `/hq` for internal operations. No public auth or CMS. |
-| Signal Tasks | `tasks.signalstudio.ie` | `~/Projects/personal/tasks` | Private preview | Task workspace with auth, persistence, audience pages, and cinematic demo in active refinement. |
-| Signal Timeline | `timeline.signalstudio.ie` | `~/Projects/personal/roadmap` | Private preview | Timeline workspace, editor, and public viewer in active refinement. Launch claims must be verified against the repo and preview. |
-| Signal | `signal.signalstudio.ie` | `~/Projects/personal/analytics` | Private preview · product committed | Attention-clarity product. The briefing engine claim must be reconciled with the current repo before marketing says it is live. |
-| Signal Notes | `notes.signalstudio.ie` | `~/Projects/personal/notes` | Private build | Capture clarity. First live surface exists; PRODUCT.md drafted (`notes/docs/PRODUCT.md`). One-way Notes → Tasks promotion only. Full v1 still pending. |
+| Product | Canonical marketing page | App module | What it does |
+|---|---|---|---|
+| Signal Studio | `signalstudio.ie` | `app.signalstudio.ie` | The company, shared commercial surface, and one application. Studio also hosts private `/hq`. |
+| Signal Notes | `signalstudio.ie/notes` | `app.signalstudio.ie/app/notes` | Capture clarity. Hold the work as it happens and promote it deliberately. |
+| Signal Tasks | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/board` | Execution clarity. Run the work. |
+| Signal Timeline | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/plan` | Direction clarity. Explain and selectively publish the work. |
+| Signal | `signalstudio.ie/signal` | `app.signalstudio.ie/app/brief` | Attention clarity. Surface what matters in the work. |
+
+Legacy hosts are classified separately. `tasks.signalstudio.ie` remains a
+service/public compatibility origin; `timeline.signalstudio.ie` remains the
+public bearer-artifact origin. The retired Notes and Signal hosts are redirect
+entry points. The complete contract is
+`docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md`.
 
 **Launch-claim rule:** GitHub `main` plus the deployed preview is the current source of truth. Do not describe a capability as shipped unless the repo contains it and the preview proves it. Local-only agent work must be pushed, reviewed, and reconciled before it becomes marketing copy.
 
@@ -26,10 +35,14 @@ The Studio repo (this one) is the **smallest and most restrained** of the five. 
 
 ## 2 · Cross-product chrome (suite-shared conventions)
 
-These rules apply identically across all four products' marketing surfaces.
+These rules apply to the four product pages on the umbrella and to product
+identity inside the unified app.
 
-### Suite-strip nav
-A small lowercase strip near the header of every product's marketing pages: `tasks.   roadmap.   analytics.   notes.` — each a link to its product's subdomain. The current product's wordmark renders in the brand indigo + its per-product gesture (see below); the others render dimmed.
+### Product navigation
+Marketing navigation uses the fixed order `Notes -> Tasks -> Timeline ->
+Signal` and links to `signalstudio.ie/<product>`. App navigation uses the same
+labels and order but links to the four internal module entries. Marketing and
+app destinations must never share one ambiguous URL constant.
 
 ### Footer
 4-column on desktop, cascading down: **Product · Company · Resources · Suite.** Cross-product links live in the Suite column with `↗` external arrows. Attribution always reads "Made by Signal Studio".
@@ -55,22 +68,27 @@ Tasks's audience landing pages each have their own color accent (`/for/freelance
 
 ## 3 · Suite-shared stack
 
-All four products run the same baseline:
+The Studio marketing project and unified app share the same baseline:
 
 - **Next.js 16** (App Router, Turbopack, RSC-first)
 - **React 19**
 - **Tailwind v4**
 - **Geist** font family (sans + mono)
 - **pnpm** (workspaces declared per repo as `packages: - "."`)
-- **Vercel** hosting, with subdomain routing under `signalstudio.ie`
+- **Vercel** hosting. Studio owns the marketing and retired-host facade;
+  Tasks owns `app.signalstudio.ie` plus the Tasks compatibility origin.
 - **TypeScript** everywhere, strict mode
 
-Variations by product:
-- **Tasks + Timeline + Signal:** Clerk for auth.
-- **Tasks + Timeline + Signal:** each owns its **own Turso (libSQL)** database. Signal's DB stores user prefs only — the actual task data it reads comes from Tasks's DB via a read-only token.
+Module variations:
+- The unified app uses Clerk once across Notes, Tasks, Timeline, and Signal.
+- Each module retains its existing **Turso (libSQL)** data boundary. Signal's
+  DB stores user preferences; the actual task data it reads comes from Tasks's
+  data source through the existing read boundary.
 - **Timeline:** Stripe for Pro tier; Sentry for error monitoring (with PII scrubbing — see §5).
 - **Signal:** Resend for email dispatch.
-- **Studio:** public site stays static-ish with one client component (`RevealEngine`) for the motion stack. Private `/hq` uses `SIGNAL_HQ_PASSWORD`, an HTTP-only cookie, localStorage persistence, and JSON export/import.
+- **Studio:** public site stays static-ish. The homepage uses `RevealEngine`;
+  the four product pages are restrained server-rendered marketing routes.
+  Private `/hq` uses its separate operator gate.
 
 ---
 

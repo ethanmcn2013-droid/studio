@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-25 Â· SÂ·133 Â· tightens Â· one front door, one app, four clear products
+
+**Signal Studio now gives each product a real place to explain itself and one exact route into the same app.** Notes, Tasks, Timeline, and Signal live at `/notes`, `/tasks`, `/timeline`, and `/signal` on the umbrella site; signed-in work stays at the established module routes on `app.signalstudio.ie`. The old product hosts remain only where redirects, public Timeline links, templates, embeds, or service traffic need them.
+
+The naming constitution, machine contract, navigation helpers, sitemap, and retirement rules now carry the same map. Homepage rows stay in the current tab, product wordmarks no longer point at temporary hash anchors, and the opening sentence names the four products in their current order.
+
 ## 2026-07-18 Â· SÂ·132 Â· ships Â· Signal Notes goes durable, and the note-to-task line becomes exact
 
 **The Hybrid notebook is live in production: instant private capture, a flat newest-first stream, contextual search, a responsive detail split, and a durable Notes-to-Tasks handoff that sends an exact approved selection without deleting the source note.** The release ran behind two receipt-backed production migrations applied in order against the live databases, each only after a verified backup and an isolated-copy dry run that matched the ledger schema fingerprint, passed `integrity_check`, and showed zero foreign-key violations. Tasks `0015` adds the exact-identity provenance columns the strict v2 receiver checks; Notes `0007` adds the send outbox with immutable request bodies, expiring sender leases, and safe replay.

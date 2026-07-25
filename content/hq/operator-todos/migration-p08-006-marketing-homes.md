@@ -5,15 +5,30 @@ status: done
 priority: P2
 blocking: false
 phase: Consolidation Phase 8
-why: Marketing pages for Notes/Timeline/Signal stay on their subdomains through and after cutover (out of consolidation scope). A later decision can fold them into the umbrella.
+why: Product marketing is consolidated into canonical product-name paths on the umbrella. Legacy hosts remain redirect entry points, not marketing homes.
 href: /hq/decisions
 date: 2026-07-22
 ---
 
-## DECIDED + LIVE 2026-07-22 — one marketing home (the umbrella)
-Decision: all product marketing consolidates onto signalstudio.ie (the umbrella). This is already LIVE — notes/timeline/signal marketing routes (/ + info/legal/audience pages) now 308-redirect to the umbrella (Phase 1), so nobody loads the old heavy product bundles (TTFB dropped from ~2s to ~0.06s). The old product marketing deployments are being retired in the domain-rename/retirement step; their marketing content lives in git history if any product-specific page is later wanted on the umbrella.
+## SUPERSEDED 2026-07-25 — one marketing origin, four product pages
+
+The 2026-07-22 root-only consolidation was incomplete: it made the old hosts
+fast, but erased the product destination by sending Notes, Timeline, and Signal
+to the umbrella homepage.
+
+The accepted map is now:
+
+- `signalstudio.ie/notes`
+- `signalstudio.ie/tasks`
+- `signalstudio.ie/timeline`
+- `signalstudio.ie/signal`
+
+Legacy roots redirect to the matching product page. The four signed-in products
+remain modules of the one app at `app.signalstudio.ie`.
 
 ## Steps
 
-1. No action needed for launch. Post-launch options: keep on subdomains (default) or consolidate into signalstudio.ie marketing.
-2. Revisit after the unified app has real usage.
+1. Keep product navigation bound to the four canonical umbrella paths.
+2. Keep authenticated launchers bound to the four `app.signalstudio.ie/app/*`
+   entries.
+3. Preserve Tasks service routes and Timeline public artifacts separately.

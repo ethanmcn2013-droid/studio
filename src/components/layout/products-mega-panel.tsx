@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import {
-  SIGNAL_URL,
-  NOTES_URL,
-  TIMELINE_URL,
-  TASKS_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 const INDIGO = "#4f46e5";
 const INK = "#111111";
@@ -14,10 +9,10 @@ const INK = "#111111";
 type ProductSlug = "notes" | "tasks" | "timeline" | "signal";
 
 const PRODUCTS = [
-  { slug: "notes"    as ProductSlug, name: "notes",    tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: NOTES_URL    },
-  { slug: "tasks"    as ProductSlug, name: "tasks",    tagline: "Execution clarity", description: "Track what matters without the noise.",    url: TASKS_URL    },
-  { slug: "timeline" as ProductSlug, name: "timeline", tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: TIMELINE_URL },
-  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what's working, simply.",          url: SIGNAL_URL   },
+  { slug: "notes"    as ProductSlug, name: "notes",    tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: PRODUCT_MARKETING_URLS.notes },
+  { slug: "tasks"    as ProductSlug, name: "tasks",    tagline: "Execution clarity", description: "Track what matters without the noise.",    url: PRODUCT_MARKETING_URLS.tasks },
+  { slug: "timeline" as ProductSlug, name: "timeline", tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: PRODUCT_MARKETING_URLS.timeline },
+  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what's working, simply.",          url: PRODUCT_MARKETING_URLS.signal },
 ] as const;
 
 /* ── Embedded stylesheet ──────────────────────────────────────────
@@ -338,8 +333,6 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
                 <a
                   key={product.slug}
                   href={product.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   onClick={onClose}
                   className="mpanel-card"
                   data-slug={product.slug}

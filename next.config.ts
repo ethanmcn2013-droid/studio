@@ -93,9 +93,8 @@ const nextConfig: NextConfig = {
       // notes/timeline/signal.signalstudio.ie point at THIS project after
       // their own Vercel deployments were deleted. Host-scoped so they are
       // inert for signalstudio.ie itself. Per host: /app/* deep links go to
-      // the matching module in the unified app; everything else (marketing,
-      // sign-in, api) folds into the umbrella home. The /app rule precedes
-      // the catch-all so it wins for /app paths.
+      // the matching module in the unified app; retired marketing paths go
+      // to the matching canonical product page on the umbrella.
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "notes.signalstudio.ie" }],
@@ -105,7 +104,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "notes.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/",
+        destination: "https://signalstudio.ie/notes",
         permanent: true,
       },
       {
@@ -115,9 +114,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        // /s/* and /the-wedding are preserved by beforeFiles rewrites below.
+        // _next assets must follow those proxied artifacts to the app build.
+        source:
+          "/:path((?!s(?:/|$)|the-wedding(?:/|$)|_next(?:/|$)).*)",
         has: [{ type: "host", value: "timeline.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/",
+        destination: "https://signalstudio.ie/timeline",
         permanent: true,
       },
       {
@@ -129,7 +131,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "signal.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/",
+        destination: "https://signalstudio.ie/signal",
         permanent: true,
       },
       // Legacy pre-rename domains (roadmap→timeline, analytics→signal). Same
@@ -141,9 +143,10 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        source:
+          "/:path((?!s(?:/|$)|the-wedding(?:/|$)|_next(?:/|$)).*)",
         has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/",
+        destination: "https://signalstudio.ie/timeline",
         permanent: true,
       },
       {
@@ -155,10 +158,53 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "analytics.signalstudio.ie" }],
-        destination: "https://signalstudio.ie/",
+        destination: "https://signalstudio.ie/signal",
         permanent: true,
       },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // AD-009 compatibility: keep opaque Timeline bearer links and the
+        // venue example on the stable branded host while the unified app
+        // serves the actual artifact. Assets are proxied from the same build
+        // so the browser never needs to learn the app deployment hostname.
+        {
+          source: "/s/:path*",
+          has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/s/:path*",
+        },
+        {
+          source: "/the-wedding/:path*",
+          has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/the-wedding/:path*",
+        },
+        {
+          source: "/_next/:path*",
+          has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/_next/:path*",
+        },
+        // Pre-rename Timeline host receives the same compatibility treatment.
+        {
+          source: "/s/:path*",
+          has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/s/:path*",
+        },
+        {
+          source: "/the-wedding/:path*",
+          has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/the-wedding/:path*",
+        },
+        {
+          source: "/_next/:path*",
+          has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/_next/:path*",
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
   experimental: {
     // Tree-shake heavy barrel imports — motion is used across reveal
