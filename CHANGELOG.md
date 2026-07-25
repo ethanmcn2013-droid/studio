@@ -7,6 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-25 · S·135 · fixes · the public wedding link stays put
+
+**The public Timeline wedding example now opens on its branded address without
+circling back to itself.** The exact path crosses into the unified app before
+the wildcard proxy can add a trailing slash, while the browser keeps
+`timeline.signalstudio.ie/the-wedding` in view. The same guard covers the older
+Roadmap hostname.
+
 ## 2026-07-25 · S·134 · holds · venue proof stops before private work
 
 **Venue Portal now has a product and privacy contract before it has a route.**

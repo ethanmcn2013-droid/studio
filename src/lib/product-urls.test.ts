@@ -35,6 +35,22 @@ describe("product URL contract", () => {
     assert.notEqual(TIMELINE_PUBLIC_ORIGIN, PRODUCT_APP_URLS.timeline);
   });
 
+  it("keeps the exact public wedding path ahead of wildcard proxying", () => {
+    const nextConfig = readFileSync(
+      new URL("../../next.config.ts", import.meta.url),
+      "utf8",
+    );
+    const exactSource = 'source: "/the-wedding"';
+    const wildcardSource = 'source: "/the-wedding/:path*"';
+
+    assert.equal(nextConfig.split(exactSource).length - 1, 2);
+    assert.equal(nextConfig.split(wildcardSource).length - 1, 2);
+    assert.ok(
+      nextConfig.indexOf(exactSource) < nextConfig.indexOf(wildcardSource),
+      "the exact path must avoid an empty wildcard that adds a trailing slash",
+    );
+  });
+
   it("keeps every homepage product link same-tab and bound to marketing destinations", () => {
     const productRows = readFileSync(
       new URL("../components/reveal/reveal-products.tsx", import.meta.url),
