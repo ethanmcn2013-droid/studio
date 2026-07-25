@@ -16,8 +16,12 @@ Signal Studio is one application with four products in this order:
 Marketing lives at `signalstudio.ie`. Each product has a real canonical page:
 `/notes`, `/tasks`, `/timeline`, and `/signal`.
 
-Signed-in work lives at `app.signalstudio.ie`. The established module entries
-remain `/app/notes`, `/app/board`, `/app/plan`, and `/app/brief`.
+Signed-in work lives at `app.signalstudio.ie`. The canonical product entries
+are `/app/notes`, `/app/tasks`, `/app/timeline`, and `/app/signal`.
+
+Tasks' internal views are nested under its product entry:
+`/app/tasks`, `/app/tasks/list`, `/app/tasks/timeline`, and
+`/app/tasks/calendar`.
 
 The product rail uses the labels Notes, Tasks, Timeline, and Signal. It does not
 present four separate apps.
@@ -30,9 +34,12 @@ entirely. Hash fragments were rejected because they are not independent,
 crawlable marketing pages and cannot carry product metadata or a durable
 information architecture.
 
-The existing functional app paths remain because they are already deep-link
-contracts and `/app/timeline` is a Tasks view. Renaming them for visual symmetry
-would create a collision and unnecessary migration risk.
+The route names must describe the product the customer opened. The prior
+implementation mixed product names (`notes`) with view names (`board`), retired
+product names (`plan`), and content types (`brief`). That ambiguity made one app
+feel like four partially consolidated applications. Nesting Tasks views under
+`/app/tasks` resolves the only real collision and preserves both concepts:
+`/app/tasks/timeline` is a Tasks view; `/app/timeline` is the Timeline product.
 
 ## Compatibility
 

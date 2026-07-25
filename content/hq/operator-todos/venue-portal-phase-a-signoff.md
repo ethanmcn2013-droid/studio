@@ -1,13 +1,14 @@
 ---
 id: venue-portal-phase-a-signoff
 title: Approve the Venue Portal product, metric, and privacy contract
-status: open
+status: done
 priority: P1
-blocking: true
+blocking: false
 phase: Venue Portal Phase A
 why: Instrumentation and a client route must not begin until the founder accepts what is measured, withheld, retained, and claimed.
 href: /hq/decisions/venue-portal-phase-a
 date: 2026-07-25
+completed: 2026-07-25
 ---
 
 ## Review
@@ -28,4 +29,11 @@ Read `docs/venue-portal/README.md` and the linked Phase A artifacts.
 Record the approval date and any amendment in
 `content/hq/decisions/venue-portal-phase-a.md`, change its status to Active,
 and mark this item done. Only then may Phase B instrumentation begin.
+
+## Approval record
+
+Founder approval was given on 25 July 2026 for all six statements. Phase B
+instrumentation and projection work may begin. Production exposure remains
+gated by the Phase C tenant-isolation, sponsor-membership, provider/auth, and
+named-pilot checks.
 

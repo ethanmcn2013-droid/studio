@@ -20,9 +20,14 @@ independent marketing sites.
 | Product | Marketing | App module | Stable public/service origin |
 |---|---|---|---|
 | Signal Notes | `https://signalstudio.ie/notes` | `https://app.signalstudio.ie/app/notes` | None; `notes.signalstudio.ie` is redirect-only |
-| Signal Tasks | `https://signalstudio.ie/tasks` | `https://app.signalstudio.ie/app/board` | `https://tasks.signalstudio.ie` for templates, embeds, invites, webhooks, and operational API compatibility |
-| Signal Timeline | `https://signalstudio.ie/timeline` | `https://app.signalstudio.ie/app/plan` | `https://timeline.signalstudio.ie` for `/s/*` bearer artifacts and `/the-wedding` |
-| Signal | `https://signalstudio.ie/signal` | `https://app.signalstudio.ie/app/brief` | None; `signal.signalstudio.ie` is redirect-only |
+| Signal Tasks | `https://signalstudio.ie/tasks` | `https://app.signalstudio.ie/app/tasks` | `https://tasks.signalstudio.ie` for templates, embeds, invites, webhooks, and operational API compatibility |
+| Signal Timeline | `https://signalstudio.ie/timeline` | `https://app.signalstudio.ie/app/timeline` | `https://timeline.signalstudio.ie` for `/s/*` bearer artifacts and `/the-wedding` |
+| Signal | `https://signalstudio.ie/signal` | `https://app.signalstudio.ie/app/signal` | None; `signal.signalstudio.ie` is redirect-only |
+
+Tasks' own views are nested beneath the Tasks product root:
+`/app/tasks`, `/app/tasks/list`, `/app/tasks/timeline`, and
+`/app/tasks/calendar`. `/app/timeline` is the distinct Signal Timeline
+product, not the Tasks timeline view.
 
 ## Link classification
 
@@ -47,8 +52,9 @@ code. Use explicit marketing, app, public, or service names.
 
 - Retired marketing roots redirect to their matching product page, never to
   the umbrella root.
-- Retired `/app/*` entries redirect to their matching module in the unified
-  app.
+- Retired `/app/board`, `/app/list`, `/app/calendar`, `/app/plan`, and
+  `/app/brief` entries redirect to their product-named destinations in the
+  unified app.
 - `timeline.signalstudio.ie/s/*` remains a stable branded entry and is proxied
   to the unified app so bearer tokens do not appear in a new public hostname.
 - `timeline.signalstudio.ie/the-wedding` remains the canonical venue example.

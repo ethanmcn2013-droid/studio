@@ -1,7 +1,7 @@
 # Venue Portal Phase A
 
-Status: product and privacy contract ready for founder sign-off. No production
-route exists.
+Status: founder-approved on 25 July 2026. Phase B instrumentation may begin.
+No sponsor-facing production route exists.
 
 Signal Studio has two venue-facing responsibilities. They stay separate:
 
@@ -34,8 +34,9 @@ Signal Notes, Signal Tasks, Signal Timeline, and Signal.
   coerced to zero.
 - Allotment changes remain operator-controlled in Signal HQ and write an audit
   event. A venue can request more, never grant itself more.
-- Phase A creates documents and a deterministic review prototype only. It
-  creates no public or authenticated production route.
+- Phase A creates documents and a deterministic review prototype only. The
+  prototype also runs inside authenticated Signal HQ at
+  `/hq/venue-portal-review`; this is founder review, not sponsor auth.
 
 ## Phase A artifacts
 
@@ -49,9 +50,9 @@ Signal Notes, Signal Tasks, Signal Timeline, and Signal.
 - [Architecture decision](../architecture/ADR-007-venue-portal-phase-a.md)
 - [Review prototype](./phase-a-wireframes.html)
 
-## Sign-off gate
+## Sign-off
 
-Phase B may begin only after the founder approves all six statements:
+The founder approved all six statements on 25 July 2026:
 
 1. The portal proves use without showing private work.
 2. The metric definitions match the commercial promise.
@@ -60,6 +61,10 @@ Phase B may begin only after the founder approves all six statements:
 5. The permitted venue-facing claims are commercially useful and honest.
 6. Signal HQ remains the only place that changes access or allotments.
 
-The standing sign-off is tracked in
+The completed sign-off is tracked in
 `content/hq/operator-todos/venue-portal-phase-a-signoff.md`.
+
+Phase C production exposure remains stopped until tenant isolation,
+sponsor-membership authentication, privacy/export parity, and one named venue
+pilot are proven.
 
