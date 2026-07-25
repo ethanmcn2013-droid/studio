@@ -176,6 +176,11 @@ const nextConfig: NextConfig = {
           destination: "https://app.signalstudio.ie/s/:path*",
         },
         {
+          source: "/the-wedding",
+          has: [{ type: "host", value: "timeline.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/the-wedding",
+        },
+        {
           source: "/the-wedding/:path*",
           has: [{ type: "host", value: "timeline.signalstudio.ie" }],
           destination: "https://app.signalstudio.ie/the-wedding/:path*",
@@ -190,6 +195,11 @@ const nextConfig: NextConfig = {
           source: "/s/:path*",
           has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
           destination: "https://app.signalstudio.ie/s/:path*",
+        },
+        {
+          source: "/the-wedding",
+          has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
+          destination: "https://app.signalstudio.ie/the-wedding",
         },
         {
           source: "/the-wedding/:path*",
