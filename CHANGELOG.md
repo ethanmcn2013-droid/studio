@@ -7,6 +7,24 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-25 · S·134 · holds · venue proof stops before private work
+
+**Venue Portal now has a product and privacy contract before it has a route.**
+Signal HQ Access remains the only place that onboards venues, changes
+allotments, mints or revokes codes, reconciles access, and records the operator.
+The future portal gets the quieter job: show a venue how much access was
+available, issued, redeemed, and meaningfully used.
+
+Meaningful use is now exact. A committed note, task, Timeline, or briefing
+action can count; a visit cannot. Reports keep people, names, workspaces, notes,
+tasks, project names, private timelines, briefings, comments, files, and
+members out. Small groups are withheld, missing telemetry says it is missing,
+and no report turns use into invented time, money, or outcome claims. The
+metric dictionary, roles, retention, claims, deterministic wireframes,
+architecture decision, implementation tests, and founder sign-off gate all
+land together. Nothing public ships until the privacy and tenant-isolation
+tests earn it.
+
 ## 2026-07-25 Â· SÂ·133 Â· tightens Â· one front door, one app, four clear products
 
 **Signal Studio now gives each product a real place to explain itself and one exact route into the same app.** Notes, Tasks, Timeline, and Signal live at `/notes`, `/tasks`, `/timeline`, and `/signal` on the umbrella site; signed-in work stays at the established module routes on `app.signalstudio.ie`. The old product hosts remain only where redirects, public Timeline links, templates, embeds, or service traffic need them.

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='6' fill='%234f46e5'/%3E%3C/svg%3E" />
+    <title>Venue Portal Phase A review</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #15161a;
+        --soft: #5c606b;
+        --quiet: #747986;
+        --line: #e3e5eb;
+        --paper: #fbfbfc;
+        --raised: #fff;
+        --accent: #4f46e5;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Geist, Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 14px;
+      }
+      button { font: inherit; }
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 36px auto 80px;
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 0 2px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .word { font-size: 18px; font-weight: 650; letter-spacing: -.045em; }
+      .dot { color: var(--accent); }
+      .venue { text-align: right; }
+      .venue strong { display: block; font-size: 13px; }
+      .venue span, .eyebrow, .meta { color: var(--quiet); font-size: 11px; }
+      nav {
+        display: flex;
+        gap: 2px;
+        overflow-x: auto;
+        padding: 12px 0 28px;
+      }
+      nav button {
+        min-height: 44px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--soft);
+        padding: 0 16px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      nav button[aria-selected="true"] {
+        border-color: var(--accent);
+        color: var(--ink);
+      }
+      [role="tabpanel"][hidden] { display: none; }
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 22px;
+      }
+      h1 { margin: 5px 0 6px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.045em; }
+      h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: -.015em; }
+      p { color: var(--soft); line-height: 1.55; }
+      .coverage {
+        align-self: flex-end;
+        border-left: 2px solid var(--accent);
+        padding: 6px 0 6px 12px;
+        color: var(--soft);
+        font-size: 12px;
+      }
+      .grid { display: grid; gap: 12px; }
+      .stats { grid-template-columns: repeat(4, 1fr); }
+      .split { grid-template-columns: 1.35fr .65fr; margin-top: 12px; }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--raised);
+        padding: 18px;
+      }
+      .value { font-size: 30px; font-weight: 640; letter-spacing: -.035em; }
+      .label { margin-top: 3px; color: var(--quiet); font-size: 12px; }
+      .spark { margin-top: 24px; color: var(--accent); font: 600 24px/1 ui-monospace, monospace; letter-spacing: .12em; }
+      .modules { display: grid; gap: 12px; }
+      .module { display: grid; grid-template-columns: 72px 1fr 24px; align-items: center; gap: 10px; }
+      .bar { height: 5px; border-radius: 99px; background: #eeeff4; overflow: hidden; }
+      .bar i { display: block; height: 100%; background: var(--accent); }
+      .notice { margin-top: 12px; border-left: 2px solid var(--line); padding: 10px 12px; color: var(--soft); }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 13px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+      th { color: var(--quiet); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+      .state { display: inline-flex; align-items: center; gap: 7px; }
+      .state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+      .button {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--raised);
+        color: var(--ink);
+        padding: 0 14px;
+      }
+      .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 18px 0; }
+      .flow .card { position: relative; padding: 14px; }
+      .flow .card:not(:last-child)::after {
+        content: "→"; position: absolute; right: -9px; top: 50%; color: var(--quiet);
+      }
+      .rate { margin-top: 4px; color: var(--quiet); font-size: 11px; }
+      .warning { border-left: 2px solid #9a6a28; }
+      .privacy { max-width: 720px; }
+      footer { margin-top: 36px; color: var(--quiet); font-size: 11px; }
+      @media (max-width: 760px) {
+        .shell { width: min(100% - 24px, 560px); margin-top: 18px; }
+        .stats, .split, .flow { grid-template-columns: 1fr 1fr; }
+        .flow .card::after { display: none; }
+        .hero { display: block; }
+        .coverage { margin-top: 14px; }
+        table { min-width: 620px; }
+        .table-wrap { overflow-x: auto; }
+      }
+      @media (max-width: 430px) {
+        .stats, .split, .flow { grid-template-columns: 1fr; }
+        header { align-items: flex-start; }
+        .venue { max-width: 150px; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        [role="tabpanel"] { animation: enter 160ms ease-out; }
+        @keyframes enter { from { opacity: .4; transform: translateY(3px); } }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="word">signal studio<span class="dot">.</span></div>
+        <div class="venue"><strong>Glenmara House</strong><span>Venue owner</span></div>
+      </header>
+      <nav aria-label="Venue Portal" role="tablist">
+        <button id="overview-tab" role="tab" aria-selected="true" aria-controls="overview">Overview</button>
+        <button id="access-tab" role="tab" aria-selected="false" aria-controls="access">Access</button>
+        <button id="usage-tab" role="tab" aria-selected="false" aria-controls="usage">Usage</button>
+        <button id="reports-tab" role="tab" aria-selected="false" aria-controls="reports">Reports</button>
+        <button id="settings-tab" role="tab" aria-selected="false" aria-controls="settings">Venue settings</button>
+      </nav>
+
+      <section id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <div class="hero">
+          <div><div class="eyebrow">VENUE EDITION · REVIEW FIXTURE</div><h1>The benefit, in use.</h1><p>1 Aug 2026 — 31 Jul 2027. Renews in 11 months.</p></div>
+          <div class="coverage">Complete coverage<br /><span class="meta">Data through 24 Jul 2026</span></div>
+        </div>
+        <div class="grid stats">
+          <div class="card"><div class="value">40</div><div class="label">licences allotted</div></div>
+          <div class="card"><div class="value">26</div><div class="label">codes issued</div></div>
+          <div class="card"><div class="value">18</div><div class="label">codes redeemed</div></div>
+          <div class="card"><div class="value">14</div><div class="label">codes remaining</div></div>
+        </div>
+        <div class="grid split">
+          <div class="card">
+            <h2>Usage over 12 weeks</h2>
+            <div class="grid stats">
+              <div><div class="value">11</div><div class="label">active workspaces · 30 days</div></div>
+              <div><div class="value">21</div><div class="label">venue active days · 30 days</div></div>
+              <div><div class="value">69.2%</div><div class="label">18 of 26 issued codes</div></div>
+              <div><div class="value">24 Jul</div><div class="label">last redemption</div></div>
+            </div>
+            <div class="spark" aria-label="Usage rose gradually across the last 12 weeks">▁▂▃▃▄▅▅▆▅▇▆█</div>
+          </div>
+          <div class="card">
+            <h2>Product use · last 30 days</h2>
+            <div class="modules">
+              <div class="module"><span>Notes</span><span class="bar"><i style="width:80%"></i></span><b>8</b></div>
+              <div class="module"><span>Tasks</span><span class="bar"><i style="width:100%"></i></span><b>10</b></div>
+              <div class="module"><span>Timeline</span><span class="bar"><i style="width:60%"></i></span><b>6</b></div>
+              <div class="module"><span>Signal</span><span class="bar"><i style="width:50%"></i></span><b>5</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="notice">Counters and canonical code rows agree. Reconciled 24 Jul at 06:12.</div>
+      </section>
+
+      <section id="access" role="tabpanel" aria-labelledby="access-tab" hidden>
+        <div class="hero"><div><div class="eyebrow">ACCESS</div><h1>14 codes remain.</h1><p>Code values stay masked until an owner or manager deliberately reveals or downloads them.</p></div><button class="button">Download unused codes</button></div>
+        <div class="card table-wrap">
+          <table>
+            <thead><tr><th>Code</th><th>State</th><th>Issued</th><th>Redeemed</th><th>Expires</th></tr></thead>
+            <tbody>
+              <tr><td>GH-••••-21</td><td><span class="state">Redeemed</span></td><td>03 Jul</td><td>05 Jul</td><td>—</td></tr>
+              <tr><td>GH-••••-22</td><td><span class="state">Delivered</span></td><td>03 Jul</td><td>—</td><td>31 Aug</td></tr>
+              <tr><td>GH-••••-23</td><td><span class="state">Minted</span></td><td>03 Jul</td><td>—</td><td>31 Aug</td></tr>
+              <tr><td>GH-••••-08</td><td><span class="state">Revoked</span></td><td>14 Jun</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning">Delivery and expiry are fixture states. Production must not show them until the canonical code schema records both.</div>
+      </section>
+
+      <section id="usage" role="tabpanel" aria-labelledby="usage-tab" hidden>
+        <div class="hero"><div><div class="eyebrow">USAGE · LAST 30 DAYS</div><h1>Use, without surveillance.</h1><p>Committed actions count. Visits do not. Private work never enters this report.</p></div><div class="coverage">Complete coverage<br /><span class="meta">venue-metrics.v1</span></div></div>
+        <div class="grid stats">
+          <div class="card"><div class="value">11</div><div class="label">active sponsored workspaces</div></div>
+          <div class="card"><div class="value">21</div><div class="label">venue active days</div></div>
+          <div class="card"><div class="value">73</div><div class="label">meaningful actions</div></div>
+          <div class="card"><div class="value">15</div><div class="label">activated this term</div></div>
+        </div>
+        <div class="flow">
+          <div class="card"><b>26</b><div class="label">Issued</div></div>
+          <div class="card"><b>18</b><div class="label">Redeemed</div></div>
+          <div class="card"><b>15</b><div class="label">First action</div></div>
+          <div class="card"><b>11</b><div class="label">Active in 30d</div></div>
+        </div>
+        <div class="grid stats">
+          <div class="card"><h2>Day 7</h2><div class="value">83.3%</div><div class="rate">10 of 12 eligible</div></div>
+          <div class="card"><h2>Day 30</h2><div class="value">75.0%</div><div class="rate">9 of 12 eligible</div></div>
+          <div class="card"><h2>Day 90</h2><p>Not enough closed cohorts yet.</p></div>
+          <div class="card"><h2>Coverage</h2><p>30 of 30 days. All four products.</p></div>
+        </div>
+      </section>
+
+      <section id="reports" role="tabpanel" aria-labelledby="reports-tab" hidden>
+        <div class="hero"><div><div class="eyebrow">REPORTS</div><h1>Definitions travel with the number.</h1><p>Each export freezes the window, coverage, suppression, and dictionary version.</p></div></div>
+        <div class="card table-wrap">
+          <table>
+            <thead><tr><th>Period</th><th>Coverage</th><th>Dictionary</th><th>Exports</th></tr></thead>
+            <tbody>
+              <tr><td>July 2026</td><td>Complete</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
+              <tr><td>June 2026</td><td>Partial · 27/30 days</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
+              <tr><td>May 2026</td><td>Small group · usage withheld</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="settings" role="tabpanel" aria-labelledby="settings-tab" hidden>
+        <div class="hero"><div><div class="eyebrow">VENUE SETTINGS</div><h1>Glenmara House.</h1><p>Venue Edition.</p></div></div>
+        <div class="grid split">
+          <div class="card"><h2>Portal members</h2><p>Venue owner · 1 active</p><p>Venue manager · 2 active</p><p>Venue viewer · 1 active</p></div>
+          <div class="card privacy"><h2>Privacy</h2><p>The portal shows access and aggregate use. It never shows notes, tasks, project names, briefings, private timelines, comments, files, or members.</p></div>
+        </div>
+      </section>
+
+      <footer>Phase A review artifact. Deterministic data. No production route. No private content.</footer>
+    </main>
+    <script>
+      const buttons = [...document.querySelectorAll("nav button")];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      const selectTab = (button) => {
+        buttons.forEach((item) => item.setAttribute("aria-selected", String(item === button)));
+        panels.forEach((panel) => { panel.hidden = panel.id !== button.getAttribute("aria-controls"); });
+        button.scrollIntoView({ block: "nearest", inline: "center" });
+      };
+      buttons.forEach((button, index) => {
+        button.addEventListener("click", () => selectTab(button));
+        button.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? buttons.length - 1
+              : (index + (event.key === "ArrowRight" ? 1 : -1) + buttons.length) % buttons.length;
+          buttons[next].focus();
+          selectTab(buttons[next]);
+        });
+      });
+    </script>
+  </body>
+</html>
