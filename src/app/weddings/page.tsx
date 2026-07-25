@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
-import { TIMELINE_URL } from "@/lib/product-urls";
+import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { withTracking } from "@/lib/tracking";
 import { VENUE_EDITION_COUPLE_ACCESS_MONTHS } from "@/lib/venue-edition";
 
@@ -34,7 +34,7 @@ const weddingTracking = {
   touch: "site",
   venue: "unknown",
 };
-const sharedUpdateHref = withTracking(`${TIMELINE_URL.replace(/\/$/, "")}/the-wedding`, {
+const sharedUpdateHref = withTracking(`${TIMELINE_PUBLIC_ORIGIN}/the-wedding`, {
   ...weddingTracking,
   artifact: "roadmap_example",
 });

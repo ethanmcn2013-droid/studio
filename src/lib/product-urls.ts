@@ -1,51 +1,75 @@
 /**
- * Explicit URL contract for Signal Studio's four products.
+ * Signal Studio URL contract.
  *
- * Marketing destinations are umbrella anchors. Authenticated product work
- * lives on the consolidated app. Public Timeline/share links and the Tasks
- * template surface retain their own public origins for compatibility.
+ * There are two canonical user-facing origins:
+ *   - signalstudio.ie: company and product marketing
+ *   - app.signalstudio.ie: the one signed-in application
+ *
+ * Legacy product hosts are compatibility/public-service origins, not product
+ * marketing homes and not separate applications. Keep those categories
+ * explicit so a marketing link cannot accidentally become an app, webhook,
+ * template, redeem, or share link.
  */
 
-const studioOrigin = (process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie").replace(/\/$/, "");
-const appOrigin = (process.env.NEXT_PUBLIC_APP_URL ?? "https://app.signalstudio.ie").replace(/\/$/, "");
+export type ProductId = "notes" | "tasks" | "timeline" | "signal";
 
-export const PRODUCT_MARKETING_URLS = Object.freeze({
-  notes: `${studioOrigin}/#notes`,
-  tasks: `${studioOrigin}/#tasks`,
-  timeline: `${studioOrigin}/#timeline`,
-  signal: `${studioOrigin}/#signal`,
-});
+export const STUDIO_ORIGIN = (
+  process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie"
+).replace(/\/$/, "");
 
-export const PRODUCT_APP_URLS = Object.freeze({
-  notes: `${appOrigin}/app/notes`,
-  tasks: `${appOrigin}/app/board`,
-  timeline: `${appOrigin}/app/plan`,
-  signal: `${appOrigin}/app/brief`,
-});
+export const APP_ORIGIN = (
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://app.signalstudio.ie"
+).replace(/\/$/, "");
 
-/** Public origins retained for share links, templates, and compatibility routes. */
-export const PRODUCT_PUBLIC_ORIGINS = Object.freeze({
-  tasks: process.env.NEXT_PUBLIC_TASKS_PUBLIC_URL ?? "https://tasks.signalstudio.ie",
-  timeline: process.env.NEXT_PUBLIC_TIMELINE_PUBLIC_URL ?? "https://timeline.signalstudio.ie",
-  signal: process.env.NEXT_PUBLIC_SIGNAL_PUBLIC_URL ?? "https://signal.signalstudio.ie",
-  notes: process.env.NEXT_PUBLIC_NOTES_PUBLIC_URL ?? "https://notes.signalstudio.ie",
-});
+export const PRODUCT_MARKETING_URLS: Readonly<Record<ProductId, string>> =
+  Object.freeze({
+    notes: `${STUDIO_ORIGIN}/notes`,
+    tasks: `${STUDIO_ORIGIN}/tasks`,
+    timeline: `${STUDIO_ORIGIN}/timeline`,
+    signal: `${STUDIO_ORIGIN}/signal`,
+  });
 
-/** @deprecated Use an explicit marketing, app, or public-origin contract. */
-export const TASKS_URL = PRODUCT_PUBLIC_ORIGINS.tasks;
-/** @deprecated Use an explicit marketing, app, or public-origin contract. */
-export const TIMELINE_URL = PRODUCT_PUBLIC_ORIGINS.timeline;
-/** @deprecated Use an explicit marketing, app, or public-origin contract. */
-export const SIGNAL_URL = PRODUCT_PUBLIC_ORIGINS.signal;
-/** @deprecated Use an explicit marketing, app, or public-origin contract. */
-export const NOTES_URL = PRODUCT_PUBLIC_ORIGINS.notes;
+export const PRODUCT_APP_PATHS: Readonly<Record<ProductId, string>> =
+  Object.freeze({
+    notes: "/app/notes",
+    tasks: "/app/board",
+    timeline: "/app/plan",
+    signal: "/app/brief",
+  });
 
-export const APP_ORIGIN = appOrigin;
-export const TASKS_MARKETING_ORIGIN = PRODUCT_PUBLIC_ORIGINS.tasks;
-export const TIMELINE_PUBLIC_ORIGIN = PRODUCT_PUBLIC_ORIGINS.timeline;
+export const PRODUCT_APP_URLS: Readonly<Record<ProductId, string>> =
+  Object.freeze({
+    notes: `${APP_ORIGIN}${PRODUCT_APP_PATHS.notes}`,
+    tasks: `${APP_ORIGIN}${PRODUCT_APP_PATHS.tasks}`,
+    timeline: `${APP_ORIGIN}${PRODUCT_APP_PATHS.timeline}`,
+    signal: `${APP_ORIGIN}${PRODUCT_APP_PATHS.signal}`,
+  });
+
+/**
+ * Retired product origins. These remain useful as redirect entry points and,
+ * in the cases called out below, as stable public/service origins.
+ */
+export const LEGACY_PRODUCT_ORIGINS: Readonly<Record<ProductId, string>> =
+  Object.freeze({
+    notes: "https://notes.signalstudio.ie",
+    tasks: "https://tasks.signalstudio.ie",
+    timeline: "https://timeline.signalstudio.ie",
+    signal: "https://signal.signalstudio.ie",
+  });
+
+/** Templates, embeds, webhooks, invites, and operational APIs still use it. */
+export const TASKS_PUBLIC_ORIGIN =
+  process.env.NEXT_PUBLIC_TASKS_PUBLIC_URL ??
+  LEGACY_PRODUCT_ORIGINS.tasks;
+
+/** Bearer Timeline artifacts and the public wedding example use this host. */
+export const TIMELINE_PUBLIC_ORIGIN =
+  process.env.NEXT_PUBLIC_TIMELINE_SITE_URL ??
+  process.env.NEXT_PUBLIC_TIMELINE_PUBLIC_URL ??
+  LEGACY_PRODUCT_ORIGINS.timeline;
 
 export const IOS_APP_URL =
-  process.env.NEXT_PUBLIC_IOS_APP_URL ?? "https://signalstudio.ie/ios";
+  process.env.NEXT_PUBLIC_IOS_APP_URL ?? `${STUDIO_ORIGIN}/ios`;
 
 /** Marketing deep link, pre-selects onboarding segment after sign-up. */
 export function tasksSignUpUrl(useCase?: string | null): string {
@@ -59,3 +83,12 @@ export function tasksWelcomeUrl(useCase?: string | null): string {
   if (!useCase) return base;
   return `${base}?use=${encodeURIComponent(useCase)}`;
 }
+
+/** @deprecated Use TASKS_PUBLIC_ORIGIN, PRODUCT_MARKETING_URLS, or PRODUCT_APP_URLS. */
+export const TASKS_URL = TASKS_PUBLIC_ORIGIN;
+/** @deprecated Use TIMELINE_PUBLIC_ORIGIN, PRODUCT_MARKETING_URLS, or PRODUCT_APP_URLS. */
+export const TIMELINE_URL = TIMELINE_PUBLIC_ORIGIN;
+/** @deprecated Compatibility-only. Use PRODUCT_MARKETING_URLS or PRODUCT_APP_URLS. */
+export const SIGNAL_URL = LEGACY_PRODUCT_ORIGINS.signal;
+/** @deprecated Compatibility-only. Use PRODUCT_MARKETING_URLS or PRODUCT_APP_URLS. */
+export const NOTES_URL = LEGACY_PRODUCT_ORIGINS.notes;

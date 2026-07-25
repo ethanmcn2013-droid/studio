@@ -22,7 +22,7 @@ If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wi
 
 ## What this is
 
-This is the **umbrella site for Signal Studio** — a four-product suite (Signal Tasks, Signal Timeline, Signal, Signal Notes). The umbrella lives at `signalstudio.ie`. The public site is a single-page choreographed entrance ("The Reveal v3") that introduces the suite. Static-ish Next.js 16 with one client orchestrator for motion.
+This is the **umbrella site for Signal Studio** — one app with four products (Signal Notes, Signal Tasks, Signal Timeline, Signal). The marketing origin is `signalstudio.ie`; the signed-in app is `app.signalstudio.ie`. The public site includes the choreographed Reveal v3 entrance plus canonical `/notes`, `/tasks`, `/timeline`, and `/signal` product pages. Read `docs/brand-guide/naming/NAMING_CONSTITUTION.md` and `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md` before changing cross-product names, routes, or domains.
 
 The repo also contains **Signal HQ** at `/hq`: a private, password-gated internal operating dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. It is not public marketing, is not linked from public navigation, and must stay `noindex`.
 
@@ -85,7 +85,7 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 src/app/page.tsx
   ├─ <RevealHero>        — indigo hairline → masked headline word-by-word → product wordmark stack with per-product gestures
   ├─ <RevealManifesto>   — operating principle eyebrow → display H2 → two-paragraph thesis
-  ├─ <RevealProducts>    — four typographic-poster product rows, subdomain links via @/lib/product-urls
+  ├─ <RevealProducts>    — four typographic-poster rows linking to canonical product pages via @/lib/product-urls
   ├─ <RevealClosing>     — indigo hairline + "Built for everyone else." sign-off + mono `hello@signalstudio.ie · Dublin, 2026`
   └─ <RevealEngine>      — single client orchestrator (GSAP timeline + Lenis + ScrollTrigger)
 ```

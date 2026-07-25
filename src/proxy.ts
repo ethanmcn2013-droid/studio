@@ -75,6 +75,10 @@ const MARKETING_PATHS = new Set([
   "/contact",
   "/dispatch",
   "/method",
+  "/notes",
+  "/tasks",
+  "/timeline",
+  "/signal",
 ]);
 
 // Clerk's shared-session cookie name (set by the shared prod Clerk instance
@@ -157,6 +161,10 @@ export const config = {
     "/contact",
     "/dispatch",
     "/method",
+    "/notes",
+    "/tasks",
+    "/timeline",
+    "/signal",
     // Exclude _next internals and static assets
     "/((?!_next|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff2?|ttf|eot|ico|css|js)$).*)",
   ],

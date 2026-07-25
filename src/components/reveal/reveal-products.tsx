@@ -1,7 +1,7 @@
 /**
  * Reveal products, four typographic-poster rows. Position-clarity label
  * as mono eyebrow → giant wordmark → essence + meta. Hrefs point at the
- * real product subdomains via product-urls.ts.
+ * canonical product marketing pages via product-urls.ts.
  *
  * Each row's layout enters from both sides on scroll (left from -x,
  * right from +x), directional, not generic fade-up. Per-character
@@ -15,7 +15,7 @@ interface ProductRowProps {
   id: string;
   // dataKey is the internal gesture-identity hook (drives the per-product
   // dot animation in globals.css). Kept stable across the 2026-06-13 rename
-  // so the CSS selectors + hero anchors don't move; only the visible `word`
+  // so the CSS selectors stay stable; only the visible `word`
   // changed (roadmap→timeline, analytics→signal).
   dataKey: "tasks" | "timeline" | "signal" | "notes";
   position: string;
@@ -134,8 +134,7 @@ export function RevealProducts() {
         Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
         product the suite hangs on. The wordmark reads `signal`, the product
         name, matching its siblings; the Daily Signal briefing it delivers
-        lives in the pill + essence. The href + internal gesture key stay
-        `analytics` (the dot identity / CSS hook); the URL is SIGNAL_URL.
+        lives in the pill + essence.
       */}
       <ProductRow
         id="signal"

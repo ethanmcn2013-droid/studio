@@ -9,6 +9,7 @@
  * (TypewriterSub) which types itself in and keeps its caret blinking.
  */
 
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 import { TypewriterSub } from "./typewriter-sub";
 
 export function RevealHero() {
@@ -102,27 +103,43 @@ export function RevealHero() {
       {/* Stack order follows the operator-directed product order
           (Notes → Tasks → Timeline → Signal, 2026-05-18) so the
           first product impression matches the grid + meta + pricing.
-          data-key/href use the public canonical product names. */}
+          Every row uses the canonical product marketing destination. */}
       <nav className="reveal-stack" aria-label="Signal Studio products">
-        <a className="stack-row" data-key="notes" href="#notes">
+        <a
+          className="stack-row"
+          data-key="notes"
+          href={PRODUCT_MARKETING_URLS.notes}
+        >
           <span className="mark">
             <span className="word">notes</span>
             <span className="dot" />
           </span>
         </a>
-        <a className="stack-row" data-key="tasks" href="#tasks">
+        <a
+          className="stack-row"
+          data-key="tasks"
+          href={PRODUCT_MARKETING_URLS.tasks}
+        >
           <span className="mark">
             <span className="word">tasks</span>
             <span className="dot" />
           </span>
         </a>
-        <a className="stack-row" data-key="timeline" href="#timeline">
+        <a
+          className="stack-row"
+          data-key="timeline"
+          href={PRODUCT_MARKETING_URLS.timeline}
+        >
           <span className="mark">
             <span className="word">timeline</span>
             <span className="dot" />
           </span>
         </a>
-        <a className="stack-row" data-key="signal" href="#signal">
+        <a
+          className="stack-row"
+          data-key="signal"
+          href={PRODUCT_MARKETING_URLS.signal}
+        >
           <span className="mark">
             <span className="word">signal</span>
             <span className="dot" />

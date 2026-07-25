@@ -1,6 +1,11 @@
 import {
   IOS_APP_URL,
-  PRODUCT_PUBLIC_ORIGINS,
+  LEGACY_PRODUCT_ORIGINS,
+  PRODUCT_APP_URLS,
+  PRODUCT_MARKETING_URLS,
+  STUDIO_ORIGIN,
+  TASKS_PUBLIC_ORIGIN,
+  TIMELINE_PUBLIC_ORIGIN,
 } from "@/lib/product-urls";
 
 /** The version of the cross-product shapes in this module. */
@@ -24,6 +29,10 @@ export type ProductDefinition = Readonly<{
   id: ProductId;
   name: string;
   canonicalUrl: string;
+  marketingUrl: string;
+  appUrl?: string;
+  publicOrigin?: string;
+  legacyOrigins?: readonly string[];
   surface: ProductSurface;
   access: ProductAccess;
 }>;
@@ -37,35 +46,56 @@ export const PRODUCT_REGISTRY: Readonly<Record<ProductId, ProductDefinition>> = 
   studio: Object.freeze({
     id: "studio",
     name: "Signal Studio",
-    canonicalUrl: process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie",
+    canonicalUrl: STUDIO_ORIGIN,
+    marketingUrl: STUDIO_ORIGIN,
     surface: "umbrella",
     access: "public-first",
   }),
   tasks: Object.freeze({
     id: "tasks",
     name: "Signal Tasks",
-    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.tasks,
+    canonicalUrl: PRODUCT_MARKETING_URLS.tasks,
+    marketingUrl: PRODUCT_MARKETING_URLS.tasks,
+    appUrl: PRODUCT_APP_URLS.tasks,
+    publicOrigin: TASKS_PUBLIC_ORIGIN,
+    legacyOrigins: [LEGACY_PRODUCT_ORIGINS.tasks],
     surface: "execution",
     access: "collaboration-first",
   }),
   timeline: Object.freeze({
     id: "timeline",
     name: "Signal Timeline",
-    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.timeline,
+    canonicalUrl: PRODUCT_MARKETING_URLS.timeline,
+    marketingUrl: PRODUCT_MARKETING_URLS.timeline,
+    appUrl: PRODUCT_APP_URLS.timeline,
+    publicOrigin: TIMELINE_PUBLIC_ORIGIN,
+    legacyOrigins: [
+      LEGACY_PRODUCT_ORIGINS.timeline,
+      "https://roadmap.signalstudio.ie",
+    ],
     surface: "direction",
     access: "public-first",
   }),
   signal: Object.freeze({
     id: "signal",
     name: "Signal",
-    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.signal,
+    canonicalUrl: PRODUCT_MARKETING_URLS.signal,
+    marketingUrl: PRODUCT_MARKETING_URLS.signal,
+    appUrl: PRODUCT_APP_URLS.signal,
+    legacyOrigins: [
+      LEGACY_PRODUCT_ORIGINS.signal,
+      "https://analytics.signalstudio.ie",
+    ],
     surface: "attention",
     access: "derived",
   }),
   notes: Object.freeze({
     id: "notes",
     name: "Signal Notes",
-    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.notes,
+    canonicalUrl: PRODUCT_MARKETING_URLS.notes,
+    marketingUrl: PRODUCT_MARKETING_URLS.notes,
+    appUrl: PRODUCT_APP_URLS.notes,
+    legacyOrigins: [LEGACY_PRODUCT_ORIGINS.notes],
     surface: "capture",
     access: "private-first",
   }),

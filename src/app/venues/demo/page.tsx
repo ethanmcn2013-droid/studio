@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
-import { TIMELINE_URL } from "@/lib/product-urls";
+import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ const venueHref = withTracking("/venues", {
   artifact: "venue_page",
 });
 
-const couplePlanRawHref = `${TIMELINE_URL.replace(/\/$/, "")}/the-wedding`;
+const couplePlanRawHref = `${TIMELINE_PUBLIC_ORIGIN}/the-wedding`;
 const couplePlanHref = withTracking(couplePlanRawHref, {
   ...VENUE_SITE_TRACKING,
   artifact: "couple_plan",

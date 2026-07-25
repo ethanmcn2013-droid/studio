@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { lookupRedemption, type RedemptionLookup } from "@/lib/redeem/lookup";
-import { TASKS_URL } from "@/lib/product-urls";
+import { APP_ORIGIN } from "@/lib/product-urls";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 
 export const dynamic = "force-dynamic";
@@ -125,7 +125,7 @@ function ClaimableView({
 
       <div className="mb-10">
         <a
-            href={`${TASKS_URL}/redeem/${encodeURIComponent(view.code)}`}
+            href={`${APP_ORIGIN}/redeem/${encodeURIComponent(view.code)}`}
           className="flex w-full min-h-[52px] items-center justify-center rounded-md px-6 py-3.5 text-[17px] font-medium text-white transition-opacity hover:opacity-90 sm:inline-flex sm:w-auto sm:min-h-0 sm:py-3 sm:text-[15px]"
           style={{ background: "var(--accent)" }}
         >

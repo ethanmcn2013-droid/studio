@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
+import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 const examplePlanHref = withTracking(
-  "https://timeline.signalstudio.ie/the-wedding",
+  `${TIMELINE_PUBLIC_ORIGIN}/the-wedding`,
   { ...VENUE_SITE_TRACKING, artifact: "example_plan" },
 );
 const demoHref = withTracking("/venues/demo", {
