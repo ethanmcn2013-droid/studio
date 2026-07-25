@@ -1,9 +1,6 @@
 import {
   IOS_APP_URL,
-  NOTES_URL,
-  SIGNAL_URL,
-  TASKS_URL,
-  TIMELINE_URL,
+  PRODUCT_PUBLIC_ORIGINS,
 } from "@/lib/product-urls";
 
 /** The version of the cross-product shapes in this module. */
@@ -47,28 +44,28 @@ export const PRODUCT_REGISTRY: Readonly<Record<ProductId, ProductDefinition>> = 
   tasks: Object.freeze({
     id: "tasks",
     name: "Signal Tasks",
-    canonicalUrl: TASKS_URL,
+    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.tasks,
     surface: "execution",
     access: "collaboration-first",
   }),
   timeline: Object.freeze({
     id: "timeline",
     name: "Signal Timeline",
-    canonicalUrl: TIMELINE_URL,
+    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.timeline,
     surface: "direction",
     access: "public-first",
   }),
   signal: Object.freeze({
     id: "signal",
     name: "Signal",
-    canonicalUrl: SIGNAL_URL,
+    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.signal,
     surface: "attention",
     access: "derived",
   }),
   notes: Object.freeze({
     id: "notes",
     name: "Signal Notes",
-    canonicalUrl: NOTES_URL,
+    canonicalUrl: PRODUCT_PUBLIC_ORIGINS.notes,
     surface: "capture",
     access: "private-first",
   }),

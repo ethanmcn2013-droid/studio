@@ -94,7 +94,7 @@ export function RevealHero() {
         names the parts, names the audience, refuses the "workflow" word.
       */}
       <TypewriterSub
-        text="Plans, tasks, notes, and a morning briefing, for people who have work to manage, not software to manage."
+        text="Notes, tasks, timelines, and the signal that matters, for people who have work to manage, not software to manage."
         startDelayMs={700}
         speed={28}
       />

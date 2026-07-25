@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { PRODUCT_APP_URLS } from "@/lib/product-urls";
 
 /**
  * SuiteSwitcher, canonical always-visible 4-product pill switcher.
@@ -40,27 +41,18 @@ import { useEffect } from "react";
 
 const STUDIO_URL =
   process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie";
-const NOTES_URL =
-  process.env.NEXT_PUBLIC_NOTES_URL ?? "https://app.signalstudio.ie/app/notes";
-const TASKS_URL =
-  process.env.NEXT_PUBLIC_TASKS_URL ?? "https://app.signalstudio.ie/app/board";
-const TIMELINE_URL =
-  process.env.NEXT_PUBLIC_TIMELINE_URL ?? "https://app.signalstudio.ie/app/plan";
-const SIGNAL_URL =
-  process.env.NEXT_PUBLIC_SIGNAL_URL ?? "https://app.signalstudio.ie/app/brief";
-
 const INDIGO = "#4f46e5";
 
 type ProductSlug = "tasks" | "roadmap" | "notes" | "analytics";
 
 const PRODUCTS: { slug: ProductSlug; word: string; appUrl: string }[] = [
-  { slug: "notes", word: "notes", appUrl: `${NOTES_URL}/app` },
-  { slug: "tasks", word: "tasks", appUrl: `${TASKS_URL}/app` },
-  { slug: "roadmap", word: "timeline", appUrl: `${TIMELINE_URL}/app` },
-  { slug: "analytics", word: "signal", appUrl: `${SIGNAL_URL}/app` },
+  { slug: "notes", word: "notes", appUrl: PRODUCT_APP_URLS.notes },
+  { slug: "tasks", word: "tasks", appUrl: PRODUCT_APP_URLS.tasks },
+  { slug: "roadmap", word: "timeline", appUrl: PRODUCT_APP_URLS.timeline },
+  { slug: "analytics", word: "signal", appUrl: PRODUCT_APP_URLS.signal },
 ];
 
-const PRODUCT_ORIGINS = [NOTES_URL, TASKS_URL, TIMELINE_URL, SIGNAL_URL];
+const PRODUCT_ORIGINS = [...new Set(PRODUCTS.map((product) => new URL(product.appUrl).origin))];
 
 /**
  * Phase 3 (instant-jump): warm a sibling product on hover/focus so the

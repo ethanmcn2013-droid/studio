@@ -338,9 +338,9 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
                 <a
                   key={product.slug}
                   href={product.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onClose}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={onClose}
                   className="mpanel-card"
                   data-slug={product.slug}
                   style={{ animationDelay: `${i * 55}ms` }}

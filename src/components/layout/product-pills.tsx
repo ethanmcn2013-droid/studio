@@ -16,20 +16,15 @@
  */
 
 import { useRef, useState, useCallback } from "react";
-import {
-  SIGNAL_URL,
-  NOTES_URL,
-  TIMELINE_URL,
-  TASKS_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 type Product = { slug: string; label: string; href: string };
 
 const PRODUCTS: Product[] = [
-  { slug: "notes", label: "notes", href: NOTES_URL },
-  { slug: "tasks", label: "tasks", href: TASKS_URL },
-  { slug: "timeline", label: "timeline", href: TIMELINE_URL },
-  { slug: "signal", label: "signal", href: SIGNAL_URL },
+  { slug: "notes", label: "notes", href: PRODUCT_MARKETING_URLS.notes },
+  { slug: "tasks", label: "tasks", href: PRODUCT_MARKETING_URLS.tasks },
+  { slug: "timeline", label: "timeline", href: PRODUCT_MARKETING_URLS.timeline },
+  { slug: "signal", label: "signal", href: PRODUCT_MARKETING_URLS.signal },
 ];
 
 export function ProductPills({ current }: { current?: string }) {

@@ -9,12 +9,7 @@
  * (hover: hover) devices.
  */
 
-import {
-  TASKS_URL,
-  TIMELINE_URL,
-  SIGNAL_URL,
-  NOTES_URL,
-} from "@/lib/product-urls";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 interface ProductRowProps {
   id: string;
@@ -113,8 +108,7 @@ export function RevealProducts() {
         essence="Keep the thought until it earns a task."
         pills={["Private preview", "Capture"]}
         cta="Open the notebook →"
-        href={NOTES_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.notes}
       />
       <ProductRow
         id="tasks"
@@ -124,8 +118,7 @@ export function RevealProducts() {
         essence="Keep ownership clear without learning a new language."
         pills={["Private preview", "Multi-view"]}
         cta="Open the workspace →"
-        href={TASKS_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.tasks}
       />
       <ProductRow
         id="timeline"
@@ -135,8 +128,7 @@ export function RevealProducts() {
         essence="Give everyone one page that says where things stand."
         pills={["Private preview", "Public timelines"]}
         cta="Open the timeline →"
-        href={TIMELINE_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.timeline}
       />
       {/*
         Signal prominence (2026-06-07 walkover #3, renamed 2026-06-13): the
@@ -153,8 +145,7 @@ export function RevealProducts() {
         essence="What actually needs you today."
         pills={["Private preview", "Daily Signal"]}
         cta="Open the briefing →"
-        href={SIGNAL_URL}
-        external
+        href={PRODUCT_MARKETING_URLS.signal}
       />
 
       {/*
