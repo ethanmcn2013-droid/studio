@@ -138,6 +138,17 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["sales kit", "demo script", "pricing"],
   },
   {
+    slug: "venue-portal-review",
+    route: "/hq/venue-portal-review",
+    name: "Venue Portal review",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "The privacy-bounded client account experience, with deterministic complete, partial, and suppressed states.",
+    aliases: ["venue account", "venue usage", "sponsor portal"],
+  },
+  {
     slug: "marketing",
     route: "/hq/marketing",
     name: "Marketing engine",

@@ -39,6 +39,8 @@ Exit gate:
 
 ## Phase B. Instrumentation and projection
 
+Status: approved to begin by founder sign-off on 25 July 2026.
+
 1. Define a shared `venue-meaningful-action.v1` event schema.
 2. Emit events server-side after committed, allowlisted actions.
 3. Attribute only through the canonical entitlement/redemption/activation

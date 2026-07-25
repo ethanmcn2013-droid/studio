@@ -42,5 +42,19 @@ Phase A contains the product contract, metric dictionary, roles, privacy and
 retention rules, venue-facing claims, deterministic wireframes, architecture
 decision, and implementation/test plan under `docs/venue-portal/`.
 
-No production route or usage instrumentation is approved by this record.
-Founder sign-off is tracked separately.
+Phase A itself creates no production route or usage instrumentation. Founder
+sign-off and the resulting Phase B authority are recorded below.
+
+## Approval
+
+The founder approved all six Phase A statements on 25 July 2026 without
+amendment. Phase B instrumentation and projection work is approved to begin.
+
+The authenticated `/hq/venue-portal-review` route is a deterministic founder
+review surface only. It is not sponsor authentication and is not a production
+Venue Portal route. Client production exposure remains prohibited until:
+
+- sponsor membership and tenant isolation are implemented and tested;
+- production provider/auth behaviour is verified;
+- privacy and suppression tests pass across screen and export formats; and
+- one named venue pilot is approved.

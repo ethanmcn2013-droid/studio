@@ -58,6 +58,7 @@ export const HQ_NAV: HqNavGroup[] = [
     label: "Systems",
     items: [
       { href: "/hq/entitlements", icon: "access", label: "Access", hint: "Grants, codes, venues, audit" },
+      { href: "/hq/venue-portal-review", icon: "quality", label: "Venue portal", hint: "Privacy-bounded client account review" },
       { href: "/hq/experience-quality", icon: "quality", label: "Quality", hint: "The experience quality gate" },
       { href: "/hq/platform-readiness", icon: "readiness", label: "Readiness", hint: "Remediation program + P0 gates" },
       { href: "/hq/health", icon: "health", label: "Health", hint: "Scheduled-job health" },
@@ -116,6 +117,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/hq/data-room": "Data Room",
   "/hq/deck": "Pitch deck",
   "/hq/entitlements": "Access",
+  "/hq/venue-portal-review": "Venue portal",
   "/hq/experience-quality": "Quality",
   "/hq/platform-readiness": "Readiness",
   "/hq/health": "Health",
