@@ -45,6 +45,6 @@ npm run account:migrate-requests
 
 | Cycle | Work |
 | --- | --- |
-| Phase B | Sponsored-use instrumentation → real Usage coverage |
+| Phase B | Sponsored-use instrumentation → real Usage coverage — see [PHASE_B_INSTRUMENTATION_PLAN.md](./PHASE_B_INSTRUMENTATION_PLAN.md) |
 | Phase C | `sponsor_members` + Clerk → public Account route |
 | Phase D | Frozen behavioural reports + real PDF print pipeline at runtime |

@@ -7,6 +7,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-26 · S·140 · reads · Account Phase B instrumentation plan
+
+**Sponsored-use instrumentation is sequenced for the next dedicated cycle.** The
+plan locks event allowlist, attribution, daily projection, Account Usage
+mapping, tests, and an explicit stop before any public Account route.
+
 ## 2026-07-26 · S·139 · ships · Account HQ live Venue access preview
 
 **Account review can now project live Venue access from Signal HQ Access while

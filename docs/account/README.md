@@ -56,6 +56,7 @@ remain valid.
 3. **Selected Venue Edition system** — Overview, Access, Usage, Reports, Account.
 4. **Cross-edition proofs** — Education and Organisation vocabulary proofs.
 5. **HQ live Venue access preview** — complete (see [LIVE_HQ_PREVIEW.md](./LIVE_HQ_PREVIEW.md)).
+6. **Phase B instrumentation** — planned (see [PHASE_B_INSTRUMENTATION_PLAN.md](./PHASE_B_INSTRUMENTATION_PLAN.md)); not executed in this branch.
 
 Sample PDF/CSV assets live in `private/account-samples/` and are served only
 from the authenticated `/hq/account-review/download` route. Live access CSV/HTML
@@ -67,5 +68,6 @@ exports use the same route with `source=live`.
 - [Vocabulary](./VOCABULARY.md)
 - [Concept selection](./CONCEPT_SELECTION.md)
 - [HQ live preview](./LIVE_HQ_PREVIEW.md)
+- [Phase B instrumentation plan](./PHASE_B_INSTRUMENTATION_PLAN.md)
 - [Quality lift 9.5](./QUALITY_LIFT_9_5.md)
 - Historical Phase A: [../venue-portal/README.md](../venue-portal/README.md)
