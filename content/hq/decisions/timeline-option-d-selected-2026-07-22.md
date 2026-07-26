@@ -16,8 +16,9 @@ communicates progress at a glance. It replaces dashboard-shaped public
 presentation with one artifact designed to be opened, understood, and shared.
 
 This decision is about the recipient artifact. The authenticated owner
-workflow remains a separate product surface and may continue to improve
-without redesigning the selected artifact.
+workflow is a separate product surface, but its default View mode now renders
+this same artifact directly. Owner controls frame the artifact; they do not
+redesign or replace it.
 
 ## Reason
 
@@ -64,9 +65,11 @@ referrers, and user-agents are not stored for this metric.
 - The Studio compatibility edge preserves branded `/s/*` and
   `/the-wedding` paths while the unified app serves the artifact.
 
-The public artifact is selected and shipped. The owner experience is being
-reviewed independently; that review must not reopen or dilute this artifact
-contract.
+The public artifact is selected and shipped. Tasks PR #54 makes it the default
+owner view with authorised project switching, Edit, and Preview and share
+modes. Studio product marketing carries the same component contract and the
+public Mara and Finn fixture. Neither surface may reopen or dilute this
+artifact contract.
 
 ## Future story layer
 

@@ -7,6 +7,27 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-26 · S·137 · ships · a day in the work becomes the product proof
+
+**Notes, Tasks, Timeline, and Signal now explain themselves through three
+recognisable moments in a real day, with a useful product interaction beside
+the story.** The selected A day in the work direction replaces the generic
+three-card marketing template. Each product keeps its own proof-first hero
+gesture: a waiting caret, a resolved commitment, a travelling milestone line,
+or a briefing reading.
+
+Timeline marketing renders the signed Mara and Finn artifact itself. It keeps
+the progress and countdown lens, date-scaled line, Today marker, milestone
+selection, planning decisions, keyboard path, mobile transformation, and
+reduced-motion state. The public page security boundary remains frame-deny, so
+marketing carries an explicit parity component and deterministic public
+fixture instead of weakening the artifact host.
+
+The shared mobile footer now compacts its four navigation groups into a
+two-by-two block, trims the mobile-only gaps and tap-row height, and keeps the
+canonical five-column desktop geometry. Product naming and app routes remain
+Notes, Tasks, Timeline, and Signal on one app.
+
 ## 2026-07-26 · S·136 · tightens · venue proof becomes a complete review journey
 
 **The private Venue Portal review now works like the account surface a venue

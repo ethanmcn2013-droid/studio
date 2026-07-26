@@ -56,11 +56,11 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="mt-32 w-full border-t border-hairline-soft pb-10 pt-16"
+      className="mt-20 w-full border-t border-hairline-soft pb-8 pt-10 md:mt-32 md:pb-10 md:pt-16"
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
-      <div className="mx-auto grid w-full max-w-[1240px] gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
-        <div className="sm:col-span-2 lg:col-span-1">
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(4,1fr)] lg:gap-10">
+        <div className="col-span-2 lg:col-span-1">
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
             Four products, one system. Built for the work.
@@ -114,7 +114,7 @@ export function SiteFooter() {
         />
       </div>
 
-      <div className="mx-auto mt-12 flex w-full max-w-[1240px] flex-col items-start justify-between gap-2 border-t border-hairline-soft px-6 pt-6 text-[12px] text-ink-quiet md:flex-row md:items-center">
+      <div className="mx-auto mt-9 flex w-full max-w-[1240px] flex-col items-start justify-between gap-2 border-t border-hairline-soft px-5 pt-5 text-[12px] text-ink-quiet sm:px-6 md:mt-12 md:flex-row md:items-center md:pt-6">
         <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
         <span>Clarity, not configuration.</span>
       </div>
@@ -161,7 +161,7 @@ function FooterCol({
       >
         {heading}
       </div>
-      <ul className="space-y-2 text-[13.5px] text-ink-soft">
+      <ul className="space-y-1 text-[13px] text-ink-soft sm:space-y-2 sm:text-[13.5px]">
         {links.map((link) => (
           <li key={`${heading}-${link.href}`}>
             {link.external ? (
@@ -169,7 +169,7 @@ function FooterCol({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[32px] items-center transition-colors hover:text-ink"
+                className="inline-flex min-h-[28px] items-center transition-colors hover:text-ink sm:min-h-[32px]"
               >
                 {link.label}
                 <span aria-hidden className="ml-1 text-[11px] text-ink-faint">
@@ -179,7 +179,7 @@ function FooterCol({
             ) : (
               <Link
                 href={link.href}
-                className="inline-flex min-h-[32px] items-center transition-colors hover:text-ink"
+                className="inline-flex min-h-[28px] items-center transition-colors hover:text-ink sm:min-h-[32px]"
               >
                 {link.label}
               </Link>
@@ -203,7 +203,7 @@ function LegalLinks() {
   return (
     <nav
       aria-label="Legal"
-      className="mx-auto mt-4 flex w-full max-w-[1240px] flex-wrap items-center gap-x-1 gap-y-1 px-6 font-mono text-[12px] uppercase tracking-[0.08em] text-ink-quiet"
+      className="mx-auto mt-3 flex w-full max-w-[1240px] flex-wrap items-center gap-x-1 gap-y-0 px-3 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-quiet sm:mt-4 sm:px-6 sm:text-[12px]"
       style={{ letterSpacing: "0.08em" }}
     >
       {links.map((link, index) => (
@@ -215,7 +215,7 @@ function LegalLinks() {
           )}
           <Link
             href={link.href}
-            className="inline-flex min-h-[32px] items-center px-2 py-1 transition-colors hover:text-ink-quiet"
+            className="inline-flex min-h-[28px] items-center px-2 py-1 transition-colors hover:text-ink-quiet sm:min-h-[32px]"
           >
             {link.label}
           </Link>
