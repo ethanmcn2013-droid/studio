@@ -7,6 +7,24 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-26 · S·138 · ships · Account Brief becomes the full Venue Edition review
+
+**Account Brief is the selected Signal Studio Account system.** Overview, Access,
+Usage, Reports, and Account now share one typed snapshot, role-aware fixture
+controls, and deterministic sample PDF/CSV downloads from an authenticated HQ
+route. Education and Organisation proofs validate shared vocabulary without
+parallel products. The production sponsor gate stays closed.
+
+## 2026-07-26 · S·137 · ships · Signal Studio Account opens for concept selection
+
+**The customer-facing account model is now Signal Studio Account, with three
+selectable Overview concepts on one typed Venue fixture.** Account Brief,
+Access Ledger, and Guided Review share complete, partial, suppressed, and
+unavailable snapshots. The authenticated review lives at `/hq/account-review`;
+`/hq/venue-portal-review` redirects. Venue Portal Phase A docs remain historical
+evidence. Founder selection is required before the full Venue Edition system
+is built. No sponsor auth, live telemetry, or entitlement mutation ships here.
+
 ## 2026-07-26 · S·136 · tightens · venue proof becomes a complete review journey
 
 **The private Venue Portal review now works like the account surface a venue

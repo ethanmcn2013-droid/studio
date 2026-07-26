@@ -1,0 +1,140 @@
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.compactHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 16px;
+}
+
+.compactHead h1 {
+  margin: 0;
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 560;
+  letter-spacing: -0.045em;
+}
+
+.compactHead p {
+  margin: 8px 0 0;
+  max-width: 48ch;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.primaryButton,
+.secondaryButton,
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--ink);
+  padding: 0 14px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: var(--ink);
+  color: white;
+}
+
+.secondaryButton,
+.ghostButton {
+  background: white;
+  color: var(--ink);
+}
+
+.ghostButton {
+  border-color: var(--hairline);
+  color: var(--ink-soft);
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled,
+.ghostButton:disabled,
+.primaryButton[aria-disabled="true"],
+.secondaryButton[aria-disabled="true"],
+.ghostButton[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 22px;
+  border: 1px solid var(--hairline);
+  background: var(--hairline);
+}
+
+.total {
+  background: white;
+  padding: 16px 14px;
+}
+
+.total strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 620;
+  letter-spacing: -0.045em;
+}
+
+.total span,
+.total small {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.lockNote {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .totals {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compactHead {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .totals {
+    grid-template-columns: 1fr;
+  }
+}

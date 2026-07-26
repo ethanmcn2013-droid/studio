@@ -1,0 +1,67 @@
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+signal studio
+Glenmara House
+
+July 2026 · account-metrics.v2
+
+The benefit, in use.
+
+Account active · 2026/27 access term · Data through 2026-07-24
+
+40
+Allotted
+26
+Issued
+18
+Redeemed
+Unavailable
+First useful action
+Unavailable
+Active recently
+Unavailable
+Continued after 30 days
+Product reach
+Notes
+Unavailable
+Tasks
+Unavailable
+Timeline
+Unavailable
+Signal
+Unavailable
+
+Recommended next action
+
+Confirm access distribution while reporting catches up
+
+Access totals are exact. Behavioural evidence is unavailable for this window.
+
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+Reporting coverage and privacy
+
+Reporting unavailable
+
+No reliable sponsored-use coverage for this window. Access totals remain exact.
+
+Data through
+2026-07-24
+Definition version
+account-metrics.v2
+Days with sponsored use
+Unavailable
+Privacy posture
+Aggregate sponsored use
+
+This account shows aggregate sponsored use only. Private work is never included.
+
+Behavioural values are withheld below three eligible sponsored workspaces.
+
+names or emails of recipients
+notes, task text, or comments
+Timeline content or attachments
+private membership lists
+raw identifiers
+
+Aggregate use only. Private work is never included.

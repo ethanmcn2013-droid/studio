@@ -1,0 +1,274 @@
+.review {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  padding-bottom: 64px;
+  color: var(--ink);
+}
+
+.review button,
+.review input,
+.review select,
+.review a {
+  font: inherit;
+}
+
+.reviewBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 0 2px;
+  font-size: 11px;
+}
+
+.reviewSummary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: baseline;
+}
+
+.reviewSummary span {
+  color: var(--ink-faint);
+}
+
+.reviewSummary strong {
+  font-weight: 600;
+}
+
+.controlsToggle {
+  min-height: 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: transparent;
+  padding: 0 10px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.controlsToggle:hover,
+.controlsToggle[aria-expanded="true"] {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink-faint) 55%, var(--hairline));
+}
+
+.controlsPanel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--hairline);
+  background: var(--paper-deep);
+  padding: 12px 14px;
+}
+
+.controlsPanel label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.controlsPanel select {
+  min-height: 34px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: white;
+  padding: 0 30px 0 9px;
+  color: var(--ink);
+}
+
+.portal {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+  font-family: var(--font-geist-sans), "Geist", Arial, sans-serif;
+}
+
+.masthead {
+  position: relative;
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--hairline);
+  padding: 0 clamp(18px, 4vw, 48px);
+  background: var(--paper);
+}
+
+.skip {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  z-index: 8;
+  background: var(--ink);
+  padding: 9px 11px;
+  color: white;
+  font-size: 11px;
+}
+
+.skip:focus {
+  top: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.brand strong {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.brand small {
+  border-left: 1px solid var(--hairline);
+  margin-left: 4px;
+  padding-left: 12px;
+  color: var(--ink-faint);
+  font-size: 10px;
+}
+
+.mastTools {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.sampleChip {
+  max-width: 240px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.account {
+  border-left: 1px solid var(--hairline);
+  padding-left: 18px;
+  text-align: right;
+}
+
+.account span {
+  display: block;
+  font-size: 12px;
+  font-weight: 620;
+}
+
+.account small {
+  color: var(--ink-faint);
+  font-size: 9px;
+}
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--hairline);
+  padding: 0 clamp(10px, 3vw, 40px);
+  background: white;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs a,
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding: 0 14px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  text-decoration: none;
+  white-space: nowrap;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+
+.tabs a[aria-current="page"],
+.tabs button[aria-selected="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 620;
+}
+
+.canvas {
+  min-height: 680px;
+  padding: clamp(24px, 4vw, 56px);
+}
+
+.reportSlot {
+  margin-top: 28px;
+}
+
+@media (max-width: 720px) {
+  .reviewBar {
+    align-items: flex-start;
+  }
+
+  .masthead {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .mastTools {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .account {
+    border-left: 0;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .sampleChip {
+    max-width: none;
+  }
+
+  .tabs {
+    /* Stay above HQ page chrome; keep drawer/scrim higher when open. */
+    z-index: 3;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .tabs button {
+    min-height: 48px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .canvas {
+    min-height: 0;
+    padding: 20px 16px 40px;
+  }
+}

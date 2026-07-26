@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { requireHqAccess } from "@/lib/hq/access-guard";
+import { AccountReview } from "./account-review";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Account review · Signal HQ",
   description:
-    "Legacy Venue Portal review URL. Redirects to Signal Studio Account review.",
+    "Authenticated founder review of Signal Studio Account design concepts and deterministic fixtures.",
   robots: { index: false, follow: false },
 };
 
-/** Preserve existing review links after the Account V2 rename. */
-export default async function VenuePortalReviewRedirectPage() {
+export default async function AccountReviewPage() {
   await requireHqAccess();
-  redirect("/hq/account-review");
+  return <AccountReview />;
 }

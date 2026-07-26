@@ -1,0 +1,278 @@
+.root {
+  display: grid;
+  gap: 22px;
+}
+
+.headActions {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  max-width: 280px;
+}
+
+.denial {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .headActions {
+    justify-items: start;
+    max-width: none;
+  }
+
+  .denial {
+    text-align: left;
+  }
+}
+
+.kit {
+  border: 1px solid var(--hairline);
+  padding: 18px;
+}
+
+.kit h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.kitActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.copied {
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 560;
+}
+
+.kitNote,
+.reconcile {
+  margin: 10px 0 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.attention {
+  display: grid;
+  gap: 10px;
+}
+
+.attention > div {
+  border-left: 2px solid var(--status-flight);
+  padding-left: 12px;
+}
+
+.attention strong,
+.attention span {
+  display: block;
+}
+
+.attention span {
+  margin-top: 3px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toolbar > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toolbar button {
+  min-height: 36px;
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 0 10px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.toolbar button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.toolbar > span {
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+}
+
+.tableWrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.tableWrap th,
+.tableWrap td {
+  border-top: 1px solid var(--hairline);
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tableWrap th {
+  border-top: 0;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-weight: 560;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tableWrap strong,
+.tableWrap small {
+  display: block;
+}
+
+.tableWrap small {
+  margin-top: 4px;
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.rowAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 0 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.rowAction:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.sheetBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: rgba(18, 19, 27, 0.28);
+  padding: 20px;
+}
+
+.sheet {
+  position: relative;
+  width: min(480px, 100%);
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 28px 24px 24px;
+  box-shadow: 0 24px 60px -40px rgba(18, 19, 27, 0.55);
+}
+
+.sheetClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sheet h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  letter-spacing: -0.035em;
+}
+
+.sheetIntro {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sheetField {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.sheetField select,
+.sheetField textarea {
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 10px;
+  font: inherit;
+}
+
+.sheetBoundary {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 14px 0 18px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.sheetSuccess {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.sheetSuccess i {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--hairline);
+}
+
+.sheetSuccess p {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sheetSuccess span {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,67 @@
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+signal studio
+Ashford Barn
+
+July 2026 · account-metrics.v2
+
+The benefit, in use.
+
+Account active · 2026/27 access term · Data through 2026-07-24
+
+8
+Allotted
+4
+Issued
+2
+Redeemed
+Withheld
+First useful action
+Withheld
+Active recently
+Withheld
+Continued after 30 days
+Product reach
+Notes
+Withheld
+Tasks
+Withheld
+Timeline
+Withheld
+Signal
+Withheld
+
+Recommended next action
+
+Send the remaining available access
+
+Four codes remain available. Behavioural reporting unlocks once three eligible workspaces exist.
+
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+Reporting coverage and privacy
+
+Small-group privacy protection
+
+Two eligible sponsored workspaces. Behavioural values are withheld.
+
+Data through
+2026-07-24
+Definition version
+account-metrics.v2
+Days with sponsored use
+Withheld
+Privacy posture
+Aggregate sponsored use
+
+Access totals remain visible. Behavioural use is withheld while fewer than three eligible sponsored workspaces exist.
+
+Behavioural values are withheld below three eligible sponsored workspaces.
+
+names or emails of recipients
+notes, task text, or comments
+Timeline content or attachments
+private membership lists
+raw identifiers
+
+Aggregate use only. Private work is never included.

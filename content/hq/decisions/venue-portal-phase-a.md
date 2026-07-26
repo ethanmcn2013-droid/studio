@@ -50,18 +50,18 @@ sign-off and the resulting Phase B authority are recorded below.
 The founder approved all six Phase A statements on 25 July 2026 without
 amendment. Phase B instrumentation and projection work is approved to begin.
 
-The authenticated `/hq/venue-portal-review` route is a deterministic founder
-review surface only. It is not sponsor authentication and is not a production
-Venue Portal route. Client production exposure remains prohibited until:
+The authenticated founder review surface is now `/hq/account-review` under the
+Signal Studio Account model. `/hq/venue-portal-review` redirects there so
+existing review links remain valid. It is not sponsor authentication and is
+not a production customer route. Client production exposure remains prohibited
+until:
 
 - sponsor membership and tenant isolation are implemented and tested;
 - production provider/auth behaviour is verified;
 - privacy and suppression tests pass across screen and export formats; and
 - one named venue pilot is approved.
 
-On 26 July 2026 the authenticated review surface was expanded to exercise the
-full Phase C information architecture with deterministic complete, partial,
-and suppressed states. It also demonstrates masked access status, report
-preview, venue roles, and a request-more-licences flow that leaves allotment
-unchanged pending Signal HQ review. This closes the UI review gap only; it does
-not satisfy any production-exposure gate above.
+On 26 July 2026 the review surface was renamed into Signal Studio Account and
+opened for founder concept selection. Venue Portal Phase A remains historical
+evidence for the privacy boundary and metric honesty rules. This does not
+satisfy any production-exposure gate above.
