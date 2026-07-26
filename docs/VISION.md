@@ -40,9 +40,9 @@ umbrella; signed-in work lives on `app.signalstudio.ie`.
 |---|---|---|---|
 | Signal Studio | `signalstudio.ie` | `app.signalstudio.ie` | Umbrella marketing, shared commercial pages, and one unified app. |
 | Signal Notes | `signalstudio.ie/notes` | `/app/notes` | Consolidated module. Private capture with user-initiated Notes -> Tasks promotion. |
-| Signal Tasks | `signalstudio.ie/tasks` | `/app/board` | Consolidated module and execution core. |
-| Signal Timeline | `signalstudio.ie/timeline` | `/app/plan` | Consolidated owner module; bearer artifacts retain the branded Timeline public origin. |
-| Signal | `signalstudio.ie/signal` | `/app/brief` | Consolidated attention-clarity module. |
+| Signal Tasks | `signalstudio.ie/tasks` | `/app/tasks` | Consolidated module and execution core. |
+| Signal Timeline | `signalstudio.ie/timeline` | `/app/timeline` | Consolidated owner module; bearer artifacts retain the branded Timeline public origin. |
+| Signal | `signalstudio.ie/signal` | `/app/signal` | Consolidated attention-clarity module. |
 
 The route and compatibility rules are locked in
 `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md`.

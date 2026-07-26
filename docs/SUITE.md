@@ -17,9 +17,9 @@ Marketing is consolidated in the Studio repo.
 |---|---|---|---|
 | Signal Studio | `signalstudio.ie` | `app.signalstudio.ie` | The company, shared commercial surface, and one application. Studio also hosts private `/hq`. |
 | Signal Notes | `signalstudio.ie/notes` | `app.signalstudio.ie/app/notes` | Capture clarity. Hold the work as it happens and promote it deliberately. |
-| Signal Tasks | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/board` | Execution clarity. Run the work. |
-| Signal Timeline | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/plan` | Direction clarity. Explain and selectively publish the work. |
-| Signal | `signalstudio.ie/signal` | `app.signalstudio.ie/app/brief` | Attention clarity. Surface what matters in the work. |
+| Signal Tasks | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/tasks` | Execution clarity. Run the work. |
+| Signal Timeline | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/timeline` | Direction clarity. Explain and selectively publish the work. |
+| Signal | `signalstudio.ie/signal` | `app.signalstudio.ie/app/signal` | Attention clarity. Surface what matters in the work. |
 
 Legacy hosts are classified separately. `tasks.signalstudio.ie` remains a
 service/public compatibility origin; `timeline.signalstudio.ie` remains the
