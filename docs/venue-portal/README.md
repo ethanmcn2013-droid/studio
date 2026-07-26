@@ -38,6 +38,25 @@ Signal Notes, Signal Tasks, Signal Timeline, and Signal.
   prototype also runs inside authenticated Signal HQ at
   `/hq/venue-portal-review`; this is founder review, not sponsor auth.
 
+## Authenticated review surface
+
+The Signal HQ review surface was expanded on 26 July 2026 so the product
+contract can be tested as an actual account journey before any sponsor route
+or production telemetry exists. Its deterministic fixture now covers:
+
+- account standing, licence position, and the next useful action;
+- 30-day, 90-day, and term reporting windows;
+- complete, partial, and suppressed data states;
+- aggregate meaningful use and product-level drill-down;
+- masked access-code status and filtering;
+- a controlled request-more-licences journey that cannot change allotment;
+- frozen report preview and venue member, privacy, and support settings.
+
+The surface passed the Studio contract suite, typecheck, production build,
+targeted lint, and scripted desktop/mobile browser review with no console
+errors or horizontal overflow. This is evidence about the review fixture, not
+evidence that Phase B telemetry or Phase C sponsor authentication exists.
+
 ## Phase A artifacts
 
 - [Product contract](./PRODUCT_CONTRACT.md)
