@@ -2,6 +2,20 @@
 
 “Studio grade” is a release claim backed by complete evidence. It is not a synonym for implemented, registered, green CI, visually attractive, or approved by an agent.
 
+## Active four-product promotion rule
+
+The general per-audit gate below remains the baseline for governed Studio and
+founder-operator surfaces. Notes, Tasks, Timeline, and Signal are currently
+subject to the stricter
+[9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
+
+For those four products, every required state-by-breakpoint audit must total at
+least `50/52`, with no dimension below `3`. Products, states, and viewports are
+never averaged together. A missing or stale cell fails closed. The existing
+machine audit still enforces the general `3.5` mean, so a machine green is
+necessary but not sufficient until the 50/52 rule is implemented and verified
+in executable policy.
+
 ## Per-audit gate
 
 An audit for one experience, state, and breakpoint passes only when:
@@ -70,6 +84,9 @@ Any one of these blocks Studio-grade completion regardless of aggregate score:
 8. An expired, incomplete, unknown, or unapproved exception.
 9. A required state/breakpoint with no current audit or baseline evidence.
 10. A provisional golden set presented as approved reference quality.
+11. For Notes, Tasks, Timeline, or Signal in the active product-quality
+    programme: any required state-by-breakpoint cell below `50/52`, missing a
+    current council ledger, or hidden inside a stronger aggregate.
 
 ## Exceptions
 

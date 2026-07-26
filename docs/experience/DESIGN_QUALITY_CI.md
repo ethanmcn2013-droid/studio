@@ -2,6 +2,13 @@
 
 Design Quality CI is a fail-closed evidence pipeline. It protects the registry and known-debt ratchet today; rendered product capture and strict visual no-regression require explicit execution and enforcement.
 
+The current four-product release uses the stricter
+[50/52 product gate](./SUITE_95_PRODUCT_RELEASE_GATE.md). The Studio audit
+command still validates the general 3.5 mean and does not yet enforce 50/52.
+Until executable enforcement lands and is verified, a green Studio
+`design:quality` result cannot by itself promote Notes, Tasks, Timeline, or
+Signal.
+
 Sources: [`package.json`](../../package.json), [`design-quality.yml`](../../.github/workflows/design-quality.yml), [`playwright.config.ts`](../../playwright.config.ts), [`experience/conformance.json`](../../experience/conformance.json), and [`scripts/experience/`](../../scripts/experience/).
 
 ## Implemented commands
@@ -78,15 +85,25 @@ Console errors and missing baselines are not capture-pass conditions. Enforced U
 
 ## Central contract, federated checks
 
-Signal HQ owns the schemas, taxonomy, registry assembly, reports, and cross-suite gate as a private founder-operator control plane. Tasks, Timeline, Signal, and Notes are the four customer products; their repositories own deterministic fixtures and fast PR checks close to the code they change. Studio owns equivalent checks for its public company surface. Signal Review supplies manual-review evidence as an internal instrument. The target required-check shape is:
+Signal HQ owns the schemas, taxonomy, registry assembly, reports, and cross-suite gate as a private founder-operator control plane. Notes, Tasks, Timeline, and Signal are the four customer products inside one application codebase. That unified application owns deterministic fixtures and fast PR checks close to the product modules it changes. Studio owns equivalent checks for its public company surface. Signal Review supplies manual-review evidence as an internal instrument. The target required-check shape is:
 
-1. product PR: local discovery/fixture/accessibility/visual checks;
+1. unified-app PR: module-scoped discovery, fixture, accessibility, visual, and
+   cross-product journey checks;
 2. central Studio integration: schema, registry, finding/baseline ratchets, and evidence aggregation;
 3. human review: subjective dimensions, golden approval, and exceptions.
 
-Studio, Tasks, Timeline, Signal, and Notes now have codebase-local design-quality workflows for their registry and available fixture/design-system ratchets. The shared design-system package has its own package/ESM/component CI. [`experience/conformance.json`](../../experience/conformance.json) records the latest reproducible command result for the six governed repositories; the aggregate report exposes that rate, while the local workflows prevent the recorded legacy value counts from growing.
+The existing `experience/conformance.json` includes standalone-product
+repository results captured before application consolidation. Those rows are
+historical provenance, not proof of the canonical `/app/notes`, `/app/tasks`,
+`/app/timeline`, or `/app/signal` routes. Current release evidence must come
+from the unified application and current aliases. The shared design-system
+package retains its own package, ESM, and component checks.
 
-Those product checks do not yet provide complete state-by-breakpoint rendered capture. Central green CI is therefore evidence about inventory, ratchets, and the current pilot harness—not proof that every product experience is Studio grade.
+The current checks do not yet provide complete unified-app
+state-by-breakpoint rendered capture or executable 50/52 enforcement. Central
+green CI is therefore evidence about inventory, ratchets, and the current
+pilot harness—not proof that every product experience passes the 9.5 release
+gate.
 
 ## Branch protection
 

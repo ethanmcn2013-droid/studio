@@ -15,6 +15,10 @@ Signal Studio uses two canonical user-facing origins:
 The product model is **one app with four products**, not four apps and not four
 independent marketing sites.
 
+The fixed product spine is `Notes -> Tasks -> Timeline -> Signal`. Route
+helpers, navigation, account surfaces, review fixtures, and documentation must
+preserve that order.
+
 ## Canonical map
 
 | Product | Marketing | App module | Stable public/service origin |
@@ -75,6 +79,9 @@ Current Vercel ownership:
 
 - Human contract: this file and
   `docs/brand-guide/naming/NAMING_CONSTITUTION.md`
+- Product architecture and protected contracts: `docs/SUITE.md`
+- Product quality and release evidence:
+  `docs/experience/SUITE_95_PRODUCT_RELEASE_GATE.md`
 - Machine-readable contract: `contracts/suite-contracts.v1.json`
 - Studio link helpers: `src/lib/product-urls.ts`
 - Unified-app link helpers: `tasks/src/lib/product-urls.ts`

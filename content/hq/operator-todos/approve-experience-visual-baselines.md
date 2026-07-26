@@ -20,6 +20,11 @@ links: ["../../../experience/output/capture-manifest.json", "../../../docs/exper
 
 ## Steps
 
+> **Consolidation note · 2026-07-26.** This completed task approves only the
+> exact historical candidate bytes and routes listed below. It does not approve
+> changed unified-app visuals or certify the current 50/52 product gate. New
+> materiality hashes require new candidate, review, and baseline evidence.
+
 1. Approve the [Signal Experience Standard](approve-signal-experience-standard.md) first.
 2. Inspect every candidate in [`capture-manifest.json`](../../../experience/output/capture-manifest.json) at mobile, tablet, desktop, and wide. Confirm the route, state, fixture, locale, time zone, reduced-motion setting, and visual content are intentional.
 3. Review HTTP/runtime results, overflow, Axe output, console/page errors, open findings, and any diff together. A stable screenshot hash alone is not approval evidence.

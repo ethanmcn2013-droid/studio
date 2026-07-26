@@ -1,6 +1,14 @@
 # Signal Studio · Brand Handbook
 
-> **⚠️ DEPRECATED (2026-07-02).** This is an older copy of the root `BRAND.md`. For visuals and tokens, the source of truth is **Signal Design System 2.0** (`signal-design-system` repo). For voice and naming, see the root `BRAND.md`. Kept as history only.
+> **⚠️ RETIRED REFERENCE (2026-07-26).** This is an older copy of the root
+> `BRAND.md`, kept only to preserve decision history. Do not use its domain,
+> repository, product-status, route, chrome, or visual-token statements as
+> current truth. Current voice and positioning live in root `BRAND.md`;
+> current naming and routes live in
+> `docs/brand-guide/naming/NAMING_CONSTITUTION.md` and
+> `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md`; current product
+> architecture lives in `docs/SUITE.md`; visual authority is Signal Design
+> System 2.0.
 
 **Single source of truth for voice, naming, visual register, and audience tone across the Signal Studio suite.**
 

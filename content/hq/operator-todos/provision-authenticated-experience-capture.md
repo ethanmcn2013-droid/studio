@@ -20,6 +20,14 @@ links: ["../../../experience/capture-plan.json", "../../../docs/experience/VISUA
 
 ## Steps
 
+> **Consolidation note · 2026-07-26.** The protected identity and secret
+> provisioning remain complete, so this founder task stays `done`. The route
+> and deployment evidence below predates the single-app quality programme.
+> Refreshing fixtures, registry IDs, and captures against
+> `app.signalstudio.ie/app/notes`, `/app/tasks`, `/app/timeline`, and
+> `/app/signal` is now engineering evidence work, not a new founder credential
+> gate. Historical passing runs do not satisfy the current 50/52 council gate.
+
 1. Confirm the exact authenticated critical/core route and state inventory for Tasks, Timeline, Signal, Notes, Studio, and Signal HQ. Signal Review remains a local founder-operator instrument and must not receive customer credentials.
 2. Choose controlled production-equivalent targets. Where only production can reproduce behavior, create clearly named fixture accounts with no personal or customer data and the minimum entitlements needed.
 3. Store credentials in the approved CI/credential manager. Set product base URLs through the documented `EXPERIENCE_BASE_URL_<PRODUCT>` variables. Never paste a secret into Markdown, chat, screenshots, fixtures, logs, or committed environment files.
