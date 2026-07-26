@@ -6,10 +6,11 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type CSSProperties,
   type KeyboardEvent,
 } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import type { AudienceTimelineDto } from "./timeline-artifact-types";
 import {
   buildTimelineArtifactModel,
@@ -42,6 +43,25 @@ type PositionStyle = CSSProperties & {
 };
 
 const METRIC_EASE = [0.23, 1, 0.32, 1] as const;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const media = window.matchMedia(REDUCED_MOTION_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+function reducedMotionSnapshot() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function useHydrationSafeReducedMotion() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    reducedMotionSnapshot,
+    () => false,
+  );
+}
 
 export type TimelineArtifactProps = Readonly<{
   timeline: AudienceTimelineDto;
@@ -119,7 +139,7 @@ function TimeLens({
   timeline: AudienceTimelineDto;
   model: TimelineArtifactModel;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydrationSafeReducedMotion();
   const countdown = buildTimelineCountdown(timeline.primaryDate?.date, timeline.today);
   const canCountDown = countdown?.kind === "future" || countdown?.kind === "today";
   const [requestedMode, setRequestedMode] = useState<MetricMode>("progress");
@@ -306,7 +326,7 @@ function MilestoneDetail({
   detailId: string;
   titleId: string;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydrationSafeReducedMotion();
 
   return (
     <section
@@ -359,7 +379,7 @@ function Journey({
   model: TimelineArtifactModel;
   idPrefix: string;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydrationSafeReducedMotion();
   const [selectedId, setSelectedId] = useState(model.defaultSelectedId);
   const [focusIndex, setFocusIndex] = useState(() => Math.max(
     0,
@@ -599,7 +619,7 @@ export function TimelineArtifact({
   onCopyLink,
   copyLinkLabel,
 }: TimelineArtifactProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydrationSafeReducedMotion();
   const reactId = useId().replaceAll(":", "");
   const model = useMemo(() => buildTimelineArtifactModel(timeline), [timeline]);
   const TimelineTitle = embedded ? "h3" : "h1";
