@@ -22,8 +22,10 @@ current position between them. The primary readout can move between
 completion and days remaining, and the next unfinished point is labelled
 **Our next milestone**.
 
-The owner works at `app.signalstudio.ie/app/timeline`. The recipient receives
-an unguessable `/s/*` link without the app shell. Branded
+The owner works at `app.signalstudio.ie/app/timeline`, which resolves directly
+to the current project artifact with a project switcher and clear View, Edit,
+and Preview and share modes. The recipient receives an unguessable `/s/*`
+link without the app shell. Branded
 `timeline.signalstudio.ie/s/*` links are preserved through the Studio
 compatibility edge.
 
@@ -51,5 +53,6 @@ share token, IP address, referrer, or user-agent.
   isolation.
 - Studio PR #90: exact branded wedding path repair and production smoke.
 
-The owner-workspace redesign is a separate review track. It must preserve this
-component and publication boundary.
+The owner workspace now opens on this component and preserves the publication
+boundary. The Timeline marketing page also uses this artifact contract as its
+product proof.

@@ -21,6 +21,12 @@ Resources, and Suite link columns. Below: a divider on the same hairline, a
 copyright row with the product sign-off line, and the legal row — mono, 12px,
 uppercase, `tracking-[0.08em]`, `text-ink-quiet`.
 
+At mobile widths the brand block spans the container and the four navigation
+groups form a two-by-two grid. They do not become four long vertical stacks.
+Mobile may tighten section gaps and link-row height while preserving a minimum
+28px row and clear focus treatment. Desktop keeps the canonical
+`1.35fr + 4×1fr` geometry.
+
 Products may customize the content of each slot — their own promise line,
 their own Product/Resources links, their own sign-off. They may not change the
 shell geometry, the column kinds, the hairline token, or the legal-row
