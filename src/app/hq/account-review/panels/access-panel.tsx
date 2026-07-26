@@ -34,14 +34,19 @@ ${WELCOME_LINK}`;
 export function AccessPanel({
   snapshot,
   role,
+  mode = "fixture",
+  sponsorId = null,
 }: {
   snapshot: AccountSnapshot;
   role: AccountRole;
+  mode?: "fixture" | "live";
+  sponsorId?: string | null;
 }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [copied, setCopied] = useState<string | null>(null);
   const [requestOpen, setRequestOpen] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
+  const [requestError, setRequestError] = useState<string | null>(null);
   const canRequest = roleCan(role, "request_access");
   const requestDenial = roleDenialReason(role, "request_access");
   const availableLabel = formatMetricValue(snapshot.access.available);
@@ -230,16 +235,27 @@ export function AccessPanel({
                   <button
                     type="button"
                     className={styles.rowAction}
-                    disabled={row.state !== "available"}
+                    disabled={row.state !== "available" || mode === "live"}
+                    title={
+                      mode === "live"
+                        ? "Plaintext codes are never exposed in Account. Use HQ Access to deliver codes."
+                        : undefined
+                    }
                     onClick={() =>
                       copyText(
                         `${row.maskedCode} copied`,
-                        `${WELCOME_LINK}?code=${row.maskedCode}`,
+                        mode === "live"
+                          ? WELCOME_LINK
+                          : `${WELCOME_LINK}?code=${row.maskedCode}`,
                       )
                     }
                   >
                     <AccountIcon name="copy" />
-                    {row.state === "available" ? "Copy" : "View"}
+                    {mode === "live"
+                      ? "Masked"
+                      : row.state === "available"
+                        ? "Copy"
+                        : "View"}
                   </button>
                 </td>
               </tr>
@@ -256,8 +272,33 @@ export function AccessPanel({
       <RequestSheet
         open={requestOpen}
         sent={requestSent}
-        onClose={() => setRequestOpen(false)}
-        onSend={() => setRequestSent(true)}
+        error={requestError}
+        mode={mode}
+        sponsorId={sponsorId}
+        onClose={() => {
+          setRequestOpen(false);
+          setRequestError(null);
+        }}
+        onSend={async ({ quantity, note }) => {
+          setRequestError(null);
+          if (mode === "live") {
+            if (!sponsorId) {
+              setRequestError("Select a live venue before requesting access.");
+              return;
+            }
+            const { recordMoreAccessRequestAction } = await import("../actions");
+            const result = await recordMoreAccessRequestAction({
+              sponsorId,
+              quantity,
+              note,
+            });
+            if (!result.ok) {
+              setRequestError(result.error);
+              return;
+            }
+          }
+          setRequestSent(true);
+        }}
       />
     </div>
   );
@@ -266,13 +307,19 @@ export function AccessPanel({
 function RequestSheet({
   open,
   sent,
+  error,
+  mode,
+  sponsorId,
   onClose,
   onSend,
 }: {
   open: boolean;
   sent: boolean;
+  error: string | null;
+  mode: "fixture" | "live";
+  sponsorId: string | null;
   onClose: () => void;
-  onSend: () => void;
+  onSend: (input: { quantity: number; note: string }) => void | Promise<void>;
 }) {
   const titleId = useId();
   const closeRef = useRef<HTMLButtonElement | null>(null);
@@ -342,8 +389,9 @@ function RequestSheet({
             <p>Request recorded for Signal Studio review</p>
             <h2 id={titleId}>Nothing changed without approval.</h2>
             <span>
-              This review prototype records the request only. Allotment and
-              codes stay unchanged until Signal HQ Access acts.
+              {mode === "live"
+                ? "The request is stored on sponsor_requests. Allotment and codes stay unchanged until Signal HQ Access acts."
+                : "This review fixture records the request only. Allotment and codes stay unchanged until Signal HQ Access acts."}
             </span>
             <button
               type="button"
@@ -360,10 +408,13 @@ function RequestSheet({
             <p className={styles.sheetIntro}>
               This never changes allotment or creates codes. Signal HQ Access
               remains the only control plane.
+              {mode === "live" && !sponsorId
+                ? " Select a live venue first."
+                : ""}
             </p>
             <label className={styles.sheetField}>
               <span>How much access do you need?</span>
-              <select defaultValue="10">
+              <select id="account-request-qty" defaultValue="10">
                 <option value="5">5 codes</option>
                 <option value="10">10 codes</option>
                 <option value="20">20 codes</option>
@@ -372,6 +423,7 @@ function RequestSheet({
             <label className={styles.sheetField}>
               <span>What are they for?</span>
               <textarea
+                id="account-request-note"
                 rows={4}
                 defaultValue="Autumn showcase couples and two venue coordinators."
               />
@@ -379,13 +431,35 @@ function RequestSheet({
             <div className={styles.sheetBoundary}>
               <AccountIcon name="lock" />
               <span>
-                Deterministic review interaction. No entitlement mutation.
+                {mode === "live"
+                  ? "Persisted request only. No entitlement mutation."
+                  : "Deterministic review interaction. No entitlement mutation."}
               </span>
             </div>
+            {error ? (
+              <p className={styles.denial} role="alert">
+                {error}
+              </p>
+            ) : null}
             <button
               type="button"
               className={shared.primaryButton}
-              onClick={onSend}
+              onClick={() => {
+                const qty = Number(
+                  (
+                    document.getElementById(
+                      "account-request-qty",
+                    ) as HTMLSelectElement | null
+                  )?.value ?? "10",
+                );
+                const note =
+                  (
+                    document.getElementById(
+                      "account-request-note",
+                    ) as HTMLTextAreaElement | null
+                  )?.value ?? "";
+                void onSend({ quantity: qty, note });
+              }}
             >
               Send request
             </button>

@@ -143,6 +143,16 @@ async function TodayTab() {
         {stat(today.inGraceExpiringSoon, "in grace, expiring soon")}
         {stat(today.driftSponsors, "venues with drift")}
       </div>
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
+        {stat(today.openAccountRequests, "open Account requests")}
+      </div>
+      {today.openAccountRequests > 0 ? (
+        <p className="text-[12px] text-ink-quiet">
+          Open Account requests are recorded from Account review. Fulfillment
+          still requires an allotment ledger write here — approving in prose
+          does not change codes.
+        </p>
+      ) : null}
       {today.venuesNearAllotment.length > 0 ? (
         <div>
           <h3 className="mb-2 text-[12px] font-semibold">Venues near their allotment</h3>

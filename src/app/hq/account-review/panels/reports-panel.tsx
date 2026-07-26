@@ -17,10 +17,14 @@ export function ReportsPanel({
   snapshot,
   role,
   fixtureKey,
+  mode = "fixture",
+  liveSlug = "",
 }: {
   snapshot: AccountSnapshot;
   role: AccountRole;
   fixtureKey: VenueFixtureKey;
+  mode?: "fixture" | "live";
+  liveSlug?: string;
 }) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [cadence, setCadence] = useState<"monthly" | "term" | "renewal">(
@@ -31,6 +35,14 @@ export function ReportsPanel({
   const downloadDenial = roleDenialReason(role, "download_reports");
   const prefsDenial = roleDenialReason(role, "edit_reporting_preferences");
   const latest = snapshot.reports[0];
+  const primaryHref =
+    mode === "live"
+      ? `/hq/account-review/download?source=live&venue=${encodeURIComponent(liveSlug)}&format=html`
+      : `/hq/account-review/download?fixture=${fixtureKey}&format=pdf`;
+  const csvHref =
+    mode === "live"
+      ? `/hq/account-review/download?source=live&venue=${encodeURIComponent(liveSlug)}&format=csv`
+      : `/hq/account-review/download?fixture=${fixtureKey}&format=csv`;
 
   return (
     <div className={styles.root}>
@@ -39,9 +51,9 @@ export function ReportsPanel({
           <p className={shared.eyebrow}>Reports</p>
           <h1>Frozen evidence for renewal.</h1>
           <p>
-            Same journey language as Overview: allotted access through continued
-            use, with coverage, privacy receipt, and definition version locked
-            into every sample pack.
+            {mode === "live"
+              ? "Live access totals with usage marked unavailable. Printable HTML and CSV are generated on demand under HQ auth."
+              : "Same journey language as Overview: allotted access through continued use, with coverage, privacy receipt, and definition version locked into every sample pack."}
           </p>
         </div>
         <button
@@ -56,7 +68,9 @@ export function ReportsPanel({
 
       <section className={styles.latest} aria-label="Latest report">
         <div>
-          <p className={shared.eyebrow}>Latest report · sample</p>
+          <p className={shared.eyebrow}>
+            Latest report · {mode === "live" ? "live access" : "sample"}
+          </p>
           <h2>{latest?.title}</h2>
           <p>
             {latest?.periodLabel} · {latest?.coverageLabel} · Data through{" "}
@@ -72,27 +86,19 @@ export function ReportsPanel({
               className={shared.primaryButton}
               aria-disabled={!canDownload}
               tabIndex={canDownload ? 0 : -1}
-              href={
-                canDownload
-                  ? `/hq/account-review/download?fixture=${fixtureKey}&format=pdf`
-                  : undefined
-              }
+              href={canDownload ? primaryHref : undefined}
               onClick={(event) => {
                 if (!canDownload) event.preventDefault();
               }}
             >
               <AccountIcon name="download" />
-              Download PDF
+              {mode === "live" ? "Download HTML" : "Download PDF"}
             </a>
             <a
               className={shared.secondaryButton}
               aria-disabled={!canDownload}
               tabIndex={canDownload ? 0 : -1}
-              href={
-                canDownload
-                  ? `/hq/account-review/download?fixture=${fixtureKey}&format=csv`
-                  : undefined
-              }
+              href={canDownload ? csvHref : undefined}
               onClick={(event) => {
                 if (!canDownload) event.preventDefault();
               }}

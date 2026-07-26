@@ -1,7 +1,8 @@
 # Signal Studio Account
 
 Status: Account Brief selected. Full Venue Edition review system plus
-Education/Organisation proofs. Not a sponsor production route.
+Education/Organisation proofs, plus HQ live Venue access preview.
+Not a sponsor production route.
 
 Signal Studio Account is the customer-facing account family for commercial
 editions:
@@ -54,13 +55,17 @@ remain valid.
 2. **Three design concepts** — complete; founder selected **Account Brief**.
 3. **Selected Venue Edition system** — Overview, Access, Usage, Reports, Account.
 4. **Cross-edition proofs** — Education and Organisation vocabulary proofs.
+5. **HQ live Venue access preview** — complete (see [LIVE_HQ_PREVIEW.md](./LIVE_HQ_PREVIEW.md)).
 
 Sample PDF/CSV assets live in `private/account-samples/` and are served only
-from the authenticated `/hq/account-review/download` route.
+from the authenticated `/hq/account-review/download` route. Live access CSV/HTML
+exports use the same route with `source=live`.
 
 ## Artifacts
 
 - [Product contract](./PRODUCT_CONTRACT.md)
 - [Vocabulary](./VOCABULARY.md)
 - [Concept selection](./CONCEPT_SELECTION.md)
+- [HQ live preview](./LIVE_HQ_PREVIEW.md)
+- [Quality lift 9.5](./QUALITY_LIFT_9_5.md)
 - Historical Phase A: [../venue-portal/README.md](../venue-portal/README.md)

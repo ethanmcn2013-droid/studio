@@ -141,11 +141,16 @@ export type AccountNextAction = {
   target: "access" | "usage" | "reports" | "account" | "none";
 };
 
+/** Review fixtures vs HQ live access preview (usage still unavailable). */
+export type AccountSampleLabel =
+  | "SAMPLE · DETERMINISTIC REVIEW DATA."
+  | "LIVE ACCESS PREVIEW · USAGE UNAVAILABLE.";
+
 export type AccountSnapshot = {
   snapshotId: string;
   definitionVersion: string;
   edition: AccountEdition;
-  sampleLabel: "SAMPLE · DETERMINISTIC REVIEW DATA.";
+  sampleLabel: AccountSampleLabel;
   account: AccountIdentity;
   term: AccountTerm;
   coverage: ReportingCoverage;

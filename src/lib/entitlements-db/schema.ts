@@ -532,3 +532,57 @@ export const allotmentLedger = sqliteTable(
 
 export type AllotmentLedgerEntry = typeof allotmentLedger.$inferSelect;
 export type NewAllotmentLedgerEntry = typeof allotmentLedger.$inferInsert;
+
+/**
+ * Account / portal may create a request. It may not fulfill it.
+ * Approving more codes remains an HQ Access ledger write.
+ */
+export const SPONSOR_REQUEST_KINDS = [
+  "more_codes",
+  "report",
+  "support",
+  "profile_change",
+] as const;
+export type SponsorRequestKind = (typeof SPONSOR_REQUEST_KINDS)[number];
+
+export const SPONSOR_REQUEST_STATES = [
+  "open",
+  "approved",
+  "declined",
+  "fulfilled",
+  "canceled",
+] as const;
+export type SponsorRequestState = (typeof SPONSOR_REQUEST_STATES)[number];
+
+export const sponsorRequests = sqliteTable(
+  "sponsor_requests",
+  {
+    id: text("id").primaryKey(),
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    /** Opaque member/subject id when portal membership exists; HQ preview uses operator id. */
+    requestingMemberId: text("requesting_member_id").notNull(),
+    kind: text("kind").$type<SponsorRequestKind>().notNull(),
+    requestedQuantity: integer("requested_quantity"),
+    note: text("note").notNull().default(""),
+    state: text("state")
+      .$type<SponsorRequestState>()
+      .notNull()
+      .default("open"),
+    operatorActorId: text("operator_actor_id"),
+    decisionReason: text("decision_reason"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    decidedAt: integer("decided_at"),
+    fulfilledAt: integer("fulfilled_at"),
+  },
+  (table) => [
+    index("sponsor_requests_sponsor_state_idx").on(table.sponsorId, table.state),
+    index("sponsor_requests_created_idx").on(table.createdAt),
+  ],
+);
+
+export type SponsorRequest = typeof sponsorRequests.$inferSelect;
+export type NewSponsorRequest = typeof sponsorRequests.$inferInsert;

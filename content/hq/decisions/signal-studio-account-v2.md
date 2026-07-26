@@ -38,7 +38,14 @@ Prove the benefit without exposing the work.
 Founder selected **Account Brief** on 2026-07-26. Phase 3 Venue Edition and
 Phase 4 edition proofs proceed from that direction only.
 
+## HQ live access preview (2026-07-26)
+
+Account review may project **live Venue access** from `signal-entitlements`
+for founder/operator preview. Behavioural usage stays unavailable.
+`sponsor_requests` may persist “request more access” without mutating
+allotment. This is not a production sponsor route.
+
 ## Still closed
 
-No sponsor authentication, live telemetry, entitlement mutation, real email,
-or production customer route.
+No sponsor authentication, live behavioural telemetry, entitlement mutation
+from Account, real customer email, or production customer route.

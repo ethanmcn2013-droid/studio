@@ -7,6 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-26 · S·139 · ships · Account HQ live Venue access preview
+
+**Account review can now project live Venue access from Signal HQ Access while
+keeping usage honest and unavailable.** Operators pick a real venue, see masked
+codes and exact allotment totals, persist request-more-access rows, and download
+live CSV/HTML under HQ auth. Sponsor production auth and behavioural telemetry
+remain closed.
+
 ## 2026-07-26 · S·138 · ships · Account Brief becomes the full Venue Edition review
 
 **Account Brief is the selected Signal Studio Account system.** Overview, Access,

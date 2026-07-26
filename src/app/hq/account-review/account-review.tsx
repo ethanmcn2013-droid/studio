@@ -11,9 +11,11 @@ import {
   getVenueFixture,
   type VenueFixtureKey,
 } from "@/lib/account/fixtures";
-import type { AccountRole } from "@/lib/account/types";
+import type { LiveVenueOption } from "@/lib/account/live/project-venue-access";
+import type { AccountRole, AccountSnapshot } from "@/lib/account/types";
 import { ACCOUNT_VOCABULARY } from "@/lib/account/vocabulary";
 import { ROLE_OPTIONS } from "@/lib/account/roles";
+import { loadLiveVenueSnapshotAction } from "./actions";
 import { AccountBriefOverview } from "./concepts/account-brief";
 import { AccessPanel } from "./panels/access-panel";
 import { AccountPanel } from "./panels/account-panel";
@@ -33,20 +35,76 @@ const FIXTURE_OPTIONS: Array<{ value: VenueFixtureKey; label: string }> = [
 ];
 
 type SurfaceMode = "venue" | "education" | "organisation";
+type DataSource = "fixture" | "live";
 
-export function AccountReview() {
+type OpenRequestRow = {
+  id: string;
+  sponsorName: string;
+  sponsorSlug: string;
+  kind: string;
+  requestedQuantity: number | null;
+  note: string;
+  createdAt: number;
+};
+
+export function AccountReview({
+  liveVenues,
+  liveVenuesError,
+  openRequests,
+}: {
+  liveVenues: LiveVenueOption[];
+  liveVenuesError: string | null;
+  openRequests: OpenRequestRow[];
+}) {
   const [fixtureKey, setFixtureKey] = useState<VenueFixtureKey>("complete");
   const [role, setRole] = useState<AccountRole>("owner");
   const [tab, setTab] = useState<TabId>("Overview");
   const [surface, setSurface] = useState<SurfaceMode>("venue");
+  const [dataSource, setDataSource] = useState<DataSource>("fixture");
+  const [liveSlug, setLiveSlug] = useState(liveVenues[0]?.slug ?? "");
+  const [liveSnapshot, setLiveSnapshot] = useState<AccountSnapshot | null>(null);
+  const [liveError, setLiveError] = useState<string | null>(null);
+  const [liveLoading, setLiveLoading] = useState(false);
   const [controlsOpen, setControlsOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const didMountTabs = useRef(false);
   const surfaceId = useId();
+  const sourceId = useId();
   const fixtureId = useId();
+  const venueId = useId();
   const roleId = useId();
-  const snapshot = getVenueFixture(fixtureKey);
+
+  const fixtureSnapshot = getVenueFixture(fixtureKey);
+  const snapshot =
+    dataSource === "live" && liveSnapshot ? liveSnapshot : fixtureSnapshot;
   const roleLabel = ROLE_OPTIONS.find((item) => item.value === role)?.label;
+  const liveSponsorId =
+    liveVenues.find((venue) => venue.slug === liveSlug)?.id ?? null;
+
+  useEffect(() => {
+    if (dataSource !== "live" || !liveSlug) {
+      setLiveSnapshot(null);
+      setLiveError(null);
+      setLiveLoading(false);
+      return;
+    }
+    let cancelled = false;
+    setLiveLoading(true);
+    setLiveError(null);
+    void loadLiveVenueSnapshotAction(liveSlug).then((result) => {
+      if (cancelled) return;
+      setLiveLoading(false);
+      if (!result.ok) {
+        setLiveSnapshot(null);
+        setLiveError(result.error);
+        return;
+      }
+      setLiveSnapshot(result.snapshot);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [dataSource, liveSlug]);
 
   useEffect(() => {
     if (!didMountTabs.current) {
@@ -95,12 +153,21 @@ export function AccountReview() {
         ? "Education Edition"
         : "Organisation Edition";
 
+  const sampleChip =
+    dataSource === "live" && liveSnapshot
+      ? liveSnapshot.sampleLabel
+      : ACCOUNT_VOCABULARY.sampleIndicator;
+
   return (
     <div className={styles.review}>
       <aside className={styles.reviewBar} aria-label="Review controls">
         <div className={styles.reviewSummary}>
           <strong>Account Brief review</strong>
-          <span>Not a sponsor route</span>
+          <span>
+            {dataSource === "live"
+              ? "HQ live access preview · not a sponsor route"
+              : "Not a sponsor route"}
+          </span>
         </div>
         <button
           type="button"
@@ -108,7 +175,7 @@ export function AccountReview() {
           aria-expanded={controlsOpen}
           onClick={() => setControlsOpen((open) => !open)}
         >
-          {controlsOpen ? "Hide fixtures" : "Fixtures & role"}
+          {controlsOpen ? "Hide controls" : "Fixtures, live & role"}
         </button>
       </aside>
 
@@ -128,23 +195,59 @@ export function AccountReview() {
               <option value="organisation">Organisation proof</option>
             </select>
           </label>
-          <label htmlFor={fixtureId}>
-            Fixture
+          <label htmlFor={sourceId}>
+            Data
             <select
-              id={fixtureId}
-              value={fixtureKey}
-              onChange={(event) => {
-                setFixtureKey(event.target.value as VenueFixtureKey);
-              }}
+              id={sourceId}
+              value={dataSource}
+              onChange={(event) =>
+                setDataSource(event.target.value as DataSource)
+              }
               disabled={surface !== "venue"}
             >
-              {FIXTURE_OPTIONS.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
+              <option value="fixture">Deterministic fixture</option>
+              <option value="live">Live access (HQ)</option>
             </select>
           </label>
+          {dataSource === "fixture" ? (
+            <label htmlFor={fixtureId}>
+              Fixture
+              <select
+                id={fixtureId}
+                value={fixtureKey}
+                onChange={(event) => {
+                  setFixtureKey(event.target.value as VenueFixtureKey);
+                }}
+                disabled={surface !== "venue"}
+              >
+                {FIXTURE_OPTIONS.map((item) => (
+                  <option key={item.value} value={item.value}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : (
+            <label htmlFor={venueId}>
+              Venue
+              <select
+                id={venueId}
+                value={liveSlug}
+                onChange={(event) => setLiveSlug(event.target.value)}
+                disabled={surface !== "venue" || liveVenues.length === 0}
+              >
+                {liveVenues.length === 0 ? (
+                  <option value="">No venues reachable</option>
+                ) : (
+                  liveVenues.map((venue) => (
+                    <option key={venue.id} value={venue.slug}>
+                      {venue.name}
+                    </option>
+                  ))
+                )}
+              </select>
+            </label>
+          )}
           <label htmlFor={roleId}>
             Role
             <select
@@ -160,12 +263,24 @@ export function AccountReview() {
               ))}
             </select>
           </label>
+          {liveVenuesError ? (
+            <p className={styles.controlsNote} role="status">
+              Live venues unavailable: {liveVenuesError}
+            </p>
+          ) : null}
+          {openRequests.length > 0 ? (
+            <p className={styles.controlsNote} role="status">
+              {openRequests.length} open access request
+              {openRequests.length === 1 ? "" : "s"} awaiting HQ Access.
+            </p>
+          ) : null}
         </div>
       ) : null}
 
       <section
         className={styles.portal}
         data-concept="account-brief"
+        data-source={dataSource}
         aria-label="Signal Studio Account review"
       >
         <header className={styles.masthead}>
@@ -179,7 +294,7 @@ export function AccountReview() {
           </div>
           <div className={styles.mastTools}>
             <div className={styles.sampleChip} role="status">
-              {ACCOUNT_VOCABULARY.sampleIndicator}
+              {sampleChip}
             </div>
             <div className={styles.account}>
               <span>{accountName}</span>
@@ -214,6 +329,14 @@ export function AccountReview() {
             </nav>
 
             <main id="account-main" className={styles.canvas}>
+              {dataSource === "live" && liveLoading ? (
+                <p className={styles.liveStatus}>Loading live access…</p>
+              ) : null}
+              {dataSource === "live" && liveError ? (
+                <p className={styles.liveStatus} role="alert">
+                  Live access unavailable: {liveError}
+                </p>
+              ) : null}
               <div
                 id="account-panel"
                 role="tabpanel"
@@ -226,7 +349,12 @@ export function AccountReview() {
                   />
                 ) : null}
                 {tab === "Access" ? (
-                  <AccessPanel snapshot={snapshot} role={role} />
+                  <AccessPanel
+                    snapshot={snapshot}
+                    role={role}
+                    mode={dataSource}
+                    sponsorId={dataSource === "live" ? liveSponsorId : null}
+                  />
                 ) : null}
                 {tab === "Usage" ? (
                   <UsagePanel snapshot={snapshot} role={role} />
@@ -236,6 +364,8 @@ export function AccountReview() {
                     snapshot={snapshot}
                     role={role}
                     fixtureKey={fixtureKey}
+                    mode={dataSource}
+                    liveSlug={liveSlug}
                   />
                 ) : null}
                 {tab === "Account" ? (
