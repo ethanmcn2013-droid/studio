@@ -11,15 +11,17 @@ This file is the source for current public product, access and commercial claims
 
 Never shorten deployed or private preview to Live when the claim could imply general availability.
 
-**Last verified:** 2026-07-12.
+**Last verified:** 2026-07-26.
 
 Evidence used in this verification:
 
 - remote-main source and clean isolated installs for all five deployables;
 - type checks, existing core tests, design-system checks and production builds;
-- current public pages at signalstudio.ie plus reachable product surfaces;
+- current public pages at signalstudio.ie, the unified app routes, and branded
+  Timeline public paths;
 - July suite architecture review and operator-gate records;
-- docs/content-truth-audit.md.
+- docs/content-truth-audit.md;
+- Timeline PR #28, Tasks PRs #46 and #51, and Studio PRs #90 and #91.
 
 Authenticated provider journeys, production checkout amounts, restore recency and all operator gates were not re-certified. Broad external launch remains no-go.
 
@@ -27,11 +29,11 @@ Authenticated provider journeys, production checkout amounts, restore recency an
 
 | Product | Production URL | Deployment | Access claim that is safe now |
 | --- | --- | --- | --- |
-| Signal Studio | signalstudio.ie | Deployed | Public marketing and waitlist. Private preview with staged access. |
-| Signal Tasks | tasks.signalstudio.ie | Deployed | Task product exists and is used in preview. Do not claim broad availability or certified checkout. |
-| Signal Timeline | timeline.signalstudio.ie | Deployed | Legacy public examples exist. Do not describe legacy slug pages as private Class or Couple Timelines. |
-| Signal Notes | notes.signalstudio.ie | Deployed | Private capture and the Notes-to-Tasks extract path exist in code. Authenticated production journey remains an operator gate. |
-| Signal | signal.signalstudio.ie | Deployed | Briefing product exists in preview. Do not claim Planning Period Signal until its rollout evidence is complete. |
+| Signal Studio | `signalstudio.ie` | Deployed | Public marketing, pricing, waitlist, and private Signal HQ. |
+| Signal Notes | `app.signalstudio.ie/app/notes` | Deployed | Private capture and the exact user-approved Notes-to-Tasks handoff are in the unified app. |
+| Signal Tasks | `app.signalstudio.ie/app/tasks` | Deployed | Execution core in the unified app. Do not claim broad availability or certified checkout. |
+| Signal Timeline | `app.signalstudio.ie/app/timeline` | Deployed | Owner module and Option D link-only artifact are shipped. `timeline.signalstudio.ie` remains the branded public artifact origin. |
+| Signal | `app.signalstudio.ie/app/signal` | Deployed | Briefing-first attention product in the unified app. Provider journeys still require operator evidence. |
 
 Public conversion is waitlist-first. There is no authorized broad launch date. Dates used as internal targets do not become launch state automatically.
 
@@ -46,9 +48,16 @@ Public conversion is waitlist-first. There is no authorized broad launch date. D
 
 ### Timeline
 
-- Legacy public-by-slug pages are a separate historical publication model.
-- New Class, Module and Couple Timeline claims require the frozen safe projection, hashed share lifecycle, strict DTO and immediate revocation evidence.
-- Do not claim that a private Task or Note is shared merely because a Timeline page hides fields in the UI.
+- Option D is the selected public artifact and is shipped through the unified
+  app.
+- The publication uses a frozen safe projection, hashed share lifecycle,
+  strict DTO, immediate rotation/revocation, and a privacy-minimised qualified
+  view receipt.
+- Legacy public-by-slug pages remain a separate historical publication model.
+- Do not claim that a private Task or Note is shared merely because a Timeline
+  page hides fields in the UI.
+- Owner-workspace redesigns may change curation flow, but must preserve the
+  selected artifact and publication boundary.
 
 ### Notes
 

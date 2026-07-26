@@ -11,11 +11,13 @@ owner: Ethan
 principleAlignment: 98
 ---
 
-## Verdict — Phase 1 is ready for selection
+## Verdict — evidence preserved, selection completed
 
 Three structurally distinct, coded directions are preserved across the Owner Plan, Public Timeline, Shared Update, and Item Detail surfaces. They share one deterministic fixture and state contract, remain isolated from production data, and do not replace any production Timeline route.
 
-No direction or hybrid has been selected. Phase 2 stays blocked until Ethan records one exact selection command in the Timeline decision log.
+Option D was selected for the public artifact on 22 July 2026 and shipped
+through Timeline PR #28 and Tasks PR #46. The A, B, and C review set remains
+useful historical evidence; it is no longer an open production-selection gate.
 
 ## Review surface
 
@@ -46,7 +48,8 @@ The protected links require authorised Vercel access.
 | B — Editorial Plan Room | 9.81 | Public comprehension and forwardable updates | Longest owner surface |
 | C — Signal Horizon | 9.76 | Distinctive movement and spatial hierarchy | Highest responsive and implementation complexity |
 
-Recommendation, not selection: **A owner ledger + B public timeline + B shared update + B item detail, with C's Before/Now receipt only for real bucket moves.** If a complete option is preferred, B is the strongest consensus direction.
+The final production selection is recorded in
+`content/hq/decisions/timeline-option-d-selected-2026-07-22.md`.
 
 ## Verification receipts
 
@@ -61,6 +64,6 @@ Recommendation, not selection: **A owner ledger + B public timeline + B shared u
 
 ## Phase 2 boundary
 
-Selection authorises implementation planning for the named direction. It does not waive canonical data mapping, durable working and published persistence, server-enforced public projection, anonymous-share verification, real history and refusal migration, production-volume performance testing, accessibility, observability, rollback, changelog, or deployment proof.
-
-Production Timeline remains unchanged until that work is implemented and verified after selection.
+The selected public artifact is now a fixed boundary. Future owner-workspace
+changes may improve project context, editing, and publication flow but must
+reuse the shipped artifact component and retain the frozen public projection.

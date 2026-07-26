@@ -90,21 +90,21 @@ const PRODUCTS: {
     word: "tasks",
     verb: "Open tasks",
     tagline: "Execution clarity",
-    url: "https://app.signalstudio.ie/app/board",
+    url: "https://app.signalstudio.ie/app/tasks",
   },
   {
     slug: "timeline",
     word: "timeline",
     verb: "Open timeline",
     tagline: "Direction clarity",
-    url: "https://app.signalstudio.ie/app/plan",
+    url: "https://app.signalstudio.ie/app/timeline",
   },
   {
     slug: "signal",
     word: "signal",
     verb: "Open signal",
     tagline: "Attention clarity",
-    url: "https://app.signalstudio.ie/app/brief",
+    url: "https://app.signalstudio.ie/app/signal",
   },
 ];
 

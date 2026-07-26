@@ -2988,7 +2988,7 @@ export const seedHqData: HqData = {
       dueDate: "2026-05-14",
       status: "To do",
       relatedObject: "Cycle 8.5, Lamb's Hill send",
-      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #2. Use one of the 3 seeded LAMBSHIL test codes (MP93X, 7U2DF, M52XX), not Sinéad's batch. Verify: /redeem/CODE → Clerk sign-up with venue strip → return to /redeem → /app/board?welcome=venue&v=lambs-hill → rose result card. Last failed walk surfaced 3 defects beneath the bridge 500, don't ship without re-walking.",
+      notes: "Per CYCLE_8_5_HANDOFF.md §Operator action #2. Use one of the 3 seeded LAMBSHIL test codes (MP93X, 7U2DF, M52XX), not Sinéad's batch. Verify: /redeem/CODE → Clerk sign-up with venue strip → return to /redeem → /app/tasks?welcome=venue&v=lambs-hill → rose result card. Last failed walk surfaced 3 defects beneath the bridge 500, don't ship without re-walking.",
     },
     {
       id: "pilot-block-dkim-finalize",
