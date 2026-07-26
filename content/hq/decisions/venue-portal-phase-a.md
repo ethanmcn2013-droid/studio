@@ -58,3 +58,10 @@ Venue Portal route. Client production exposure remains prohibited until:
 - production provider/auth behaviour is verified;
 - privacy and suppression tests pass across screen and export formats; and
 - one named venue pilot is approved.
+
+On 26 July 2026 the authenticated review surface was expanded to exercise the
+full Phase C information architecture with deterministic complete, partial,
+and suppressed states. It also demonstrates masked access status, report
+preview, venue roles, and a request-more-licences flow that leaves allotment
+unchanged pending Signal HQ review. This closes the UI review gap only; it does
+not satisfy any production-exposure gate above.

@@ -7,6 +7,22 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-26 · S·136 · tightens · venue proof becomes a complete review journey
+
+**The private Venue Portal review now works like the account surface a venue
+would actually use, while keeping the production boundary closed.** The
+founder can move through account standing, access, aggregate use, frozen
+reports, roles, privacy, and support in one authenticated Signal HQ fixture.
+Complete, partial, and suppressed states are explicit. Access codes stay
+masked. Asking for more licences records a request and confirms that the
+allotment did not change.
+
+The route still has no sponsor authentication, production telemetry, or
+client exposure. Those remain gated on sponsor membership, tenant isolation,
+screen/export privacy parity, and a named pilot. The point of this pass is to
+make the product and its boundaries reviewable before those systems are
+allowed to exist.
+
 ## 2026-07-25 · S·135 · fixes · the public wedding link stays put
 
 **The public Timeline wedding example now opens on its branded address without
