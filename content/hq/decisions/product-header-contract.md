@@ -34,6 +34,21 @@ As of 2026-07-06, the contract also fixes the nav *content*, not just the shell.
 
 As of 2026-07-17, the **authed app surface** graduates from the marketing shell to the **Studio Bar** (founder direction, Tasks dispatch T·94; promoted from the Option B design lab). The app chrome is a 48px neutral-charcoal bar plus a 60px product rail forming one L-shaped Signal Studio frame around the white canvas. Bar grid, aligned to the shell below it: 60px Signal Studio mark cell over the rail; 248px workspace-switcher cell over the sidebar; scope capsule (planning period › workspace, the one off-white element); universal "Search, jump or create…" command field on Cmd/Ctrl+K; reserved restrained Signal-pulse slot (never a generic notification bell); contextual create; account. The rail carries the four products in the canonical tile geometry with the current product lit indigo. Product-local navigation, view controls, filters, progress, and milestones stay out of the bar. Tasks ships it first; the other three products migrate to the same bar, and this section is the contract they copy. The marketing header contract above is unchanged. The tasks repo's `scripts/check-chrome-contract.mjs` now asserts the Studio Bar geometry (48px, charcoal token, z-40, grid cells, pulse slot) in place of the app-chrome SuiteHeader rule; SuiteSwitcher remains the rule only for products that have not yet migrated.
 
+### Consolidation amendment · 2026-07-26
+
+The migration is complete in topology. Notes, Tasks, Timeline, and Signal now
+share one application frame at `app.signalstudio.ie`; no product copies app
+chrome into a standalone repository. The shared frame owns account identity,
+suite search, authorized context, the Studio bar, and the product rail in the
+fixed order Notes, Tasks, Timeline, Signal. Product modules own their local
+canvas and controls.
+
+The current implementation must isolate module data failures. Loading Tasks
+must not be a prerequisite for Notes capture, the Timeline owner artifact, or
+the Signal briefing. Historical byte-seal and per-repository copy rules above
+remain provenance for the visual contract, not the current implementation
+mechanism.
+
 ## Risks
 
 Over-uniformity can flatten product meaning. The mitigation is to keep the hero and product body highly specific, while keeping the header quiet and consistent.

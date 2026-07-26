@@ -37,6 +37,20 @@ Authenticated provider journeys, production checkout amounts, restore recency an
 
 Public conversion is waitlist-first. There is no authorized broad launch date. Dates used as internal targets do not become launch state automatically.
 
+## Product-quality release boundary
+
+The 2026-07-26 product-quality programme does not change the shipped claims
+above merely by existing. Notes, Tasks, Timeline, and Signal may be described
+as passing the new 9.5 gate only after every required state-by-viewport cell
+has current evidence and reaches at least `50/52`, with no dimension below `3`
+and no hard veto. Products and cells are never averaged together.
+
+The complete contract is
+`docs/experience/SUITE_95_PRODUCT_RELEASE_GATE.md`. Until its executable
+50/52 enforcement and complete current-route council ledger exist, a green
+build or the general Studio-grade 3.5 audit is necessary evidence, not
+promotion proof.
+
 ## Capability boundaries
 
 ### Tasks

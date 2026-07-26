@@ -2,6 +2,23 @@
 
 Every audit scores exactly 13 dimensions from 0 through 4. Scores are integers. The overall score is the arithmetic mean rounded to two decimals; weighting is not permitted.
 
+## Active four-product release threshold
+
+The general Studio-grade threshold remains every dimension at least `3` and a
+mean of at least `3.5`. Notes, Tasks, Timeline, and Signal are currently under
+the stricter [9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
+For every required state-by-breakpoint cell:
+
+- all 13 dimensions must be present;
+- no dimension may be below `3`;
+- the unweighted integer total must be at least `50/52`;
+- current rendered and deterministic evidence must exist; and
+- no hard veto may remain.
+
+`49/52` is `9.42/10` and fails. `50/52` is `9.62/10` and is the first
+integer total above 9.5. Totals may not be averaged across states, breakpoints,
+products, specialists, or disciplines.
+
 ## Universal anchors
 
 | Score | Meaning |
@@ -51,10 +68,19 @@ The current specialist routing in [`specialists.json`](../../experience/speciali
 2. Capture deterministic evidence under the canonical environment.
 3. Route the rendered result to the responsible specialists.
 4. Record findings before assigning scores; do not lower a score merely to encode severity twice.
-5. Score all 13 dimensions, cite evidence, calculate the mean, and set `pass` from the gate—not reviewer preference.
+5. Score all 13 dimensions, cite evidence, calculate the mean and integer
+   total, and set `pass` from the applicable gate—not reviewer preference.
 6. Repeat for every required state and breakpoint before changing the experience to `passing`.
 
-The TypeScript helper and executable gate require every score ≥3, mean ≥3.5, rendered evidence, and no release blocker whose status is neither `resolved` nor `accepted-exception`. An accepted exception is valid only when its exception record is linked, founder-approved, unexpired, and carries a remediation plan; it does not turn the underlying finding into a resolved finding.
+The current TypeScript helper and executable gate require every score ≥3, mean
+≥3.5, rendered evidence, and no release blocker whose status is neither
+`resolved` nor `accepted-exception`. They do not yet enforce the 50/52 product
+overlay. Until that executable change is implemented and verified, a machine
+green cannot promote one of the four authenticated products without the
+complete council ledger required by the product release gate. An accepted
+exception is valid only when its exception record is linked, founder-approved,
+unexpired, and carries a remediation plan; it does not turn the underlying
+finding into a resolved finding.
 
 ## Finding severity
 

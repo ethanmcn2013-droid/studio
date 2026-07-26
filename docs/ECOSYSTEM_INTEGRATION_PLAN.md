@@ -31,7 +31,9 @@ Workspace created -> collaborators invited -> work becomes clearer -> shareable 
 
 ## Shared Objects
 
-These objects should be defined once and reused across all product repos.
+These objects should be defined once and reused across the four product modules
+inside the unified application. Historical standalone repositories are
+provenance only; they are not a second place to extend the live object model.
 
 | Object | Purpose |
 | --- | --- |
@@ -53,20 +55,22 @@ Status: in progress from May 11, 2026.
 
 Purpose:
 
-Make the collaboration growth loop explicit across all four product repos before deeper implementation starts.
+Make the collaboration growth loop explicit across all four product modules
+before deeper implementation starts.
 
 Deliverables:
 
-- product-specific collaboration loop docs in Tasks, Timeline, Signal, and Notes
+- product-specific collaboration contracts for Notes, Tasks, Timeline, and
+  Signal inside the unified application
 - shared object language aligned across repos
 - HQ Collab Loop data kept current
 - first implementation targets named for invites, guest value, shareable outputs, and source tracking
 
 Acceptance criteria:
 
-- every product repo names its role in the loop
-- every product repo lists the shared objects it must respect
-- every product repo names its Cycle 1 acceptance test
+- every product module names its role in the loop
+- every product module lists the shared objects it must respect
+- every product module names its Cycle 1 acceptance test
 - Studio HQ tracks collaboration readiness and active next actions
 
 ### Cycle 2: Invite and collaborator first view
@@ -171,7 +175,13 @@ Detailed spec: `docs/TEMPLATES_STRATEGY.md`.
 
 Templates are owned by the studio repo. Tasks is the only product with a template gallery; Notes, Timeline, and Signal consume template metadata via lazy expression on first visit. No per-product template galleries beyond Tasks.
 
-Canonical shape — `WorkspaceTemplate { id, name, domain, audience, problem, seoSummary, tasks[], notes[], roadmap, analytics }` — lives in `studio/src/lib/templates/`. Each product runs a build-time sync to pull the slices it needs.
+Canonical marketing/template metadata remains governed in Studio. The unified
+application consumes the product slices through an explicit, versioned
+contract; there is no longer one build-time sync per standalone product
+repository. The historical shape
+`WorkspaceTemplate { id, name, domain, audience, problem, seoSummary, tasks[],
+notes[], roadmap, analytics }` remains migration provenance until the current
+machine contract supersedes it.
 
 Five anchor templates, one per BRAND.md §2.1 archetype, sequenced in Cycles T-1 through T-7:
 

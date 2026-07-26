@@ -4,11 +4,11 @@ Read this before making any change. It is the contract every agent (Codex, Claud
 
 **Required reading on first session, in order:**
 1. **This file** — locked rules + workflow.
-2. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
-3. **`docs/BRAND.md`** — full voice/brand handbook (audience archetypes, banned words, visual register, page conventions). Source of truth for the suite.
-4. **`docs/brand-guide/naming/LOCKED_OPERATING_VOCABULARY.md`** — exact operating words: Initiative, Project, Cycle, Task, Problem, Queue, Finding.
-5. **`docs/brand-guide/naming/NAMING_CONSTITUTION.md`** — product names, rename rules, and do-not-rename boundaries.
-6. **`docs/SUITE.md`** — how the four products fit together at the architecture level. Read for cross-product context.
+2. **`BRAND.md`** — current voice, naming, positioning, and audience handbook. Its visual sections defer to Signal Design System 2.0.
+3. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
+4. **`docs/brand-guide/naming/NAMING_CONSTITUTION.md`** — product names, canonical routes, rename rules, and do-not-rename boundaries.
+5. **`docs/SUITE.md`** — current single-app architecture, product archetypes, and protected cross-product contracts.
+6. **`docs/experience/SUITE_95_PRODUCT_RELEASE_GATE.md`** — the stricter evidence and council gate for the four authenticated products.
 7. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or timeline work.
 8. **`docs/ECOSYSTEM_INTEGRATION_PLAN.md`** — shared object model and collaboration growth loop. Read before cross-product, sharing, invite, template, or collaboration work.
 9. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
@@ -36,7 +36,7 @@ These are not suggestions. Breaking any of them is a regression that will be rev
 
 ### Naming
 - Brand is **Signal Studio** in body copy. Do not shorten the company to "Signal".
-- Products are **Signal Tasks**, **Signal Timeline**, **Signal**, **Signal Notes**. "Signal" alone is reserved for the briefing/attention product or the visual mark; never use it as a casual company shorthand.
+- Products are **Signal Notes**, **Signal Tasks**, **Signal Timeline**, **Signal**, in that fixed order. "Signal" alone is reserved for the briefing/attention product or the visual mark; never use it as a casual company shorthand.
 - Wordmark stylization: lowercase wordmarks (`tasks.`, `timeline.`, `signal.`, `notes.`) appear only as motion-typographic elements. Body copy is title case.
 - Operating spine is **Initiative -> Project -> Cycle -> Task -> Step**. Use **Problem** instead of bug, **Queue** instead of backlog, **Finding** instead of issue, and **Review** instead of retro/post-mortem.
 
@@ -124,7 +124,7 @@ If the request is ambiguous, ask one tight question. Don't ask three.
 
 ## Reference
 
-- **`docs/BRAND.md`** — full voice/brand handbook (mirrors `~/Projects/personal/BRAND.md` so it's accessible to repo-scoped agents). Read first. When in doubt about voice or audience tone, this is the source.
+- **`BRAND.md`** — current voice, naming, positioning, and audience handbook. Read first. `docs/BRAND.md` is retained history and must not be used for current topology, URLs, product status, or visual tokens.
 - **`docs/VISION.md`** — strategic intent: where the suite is, where it's going, locked refusals.
 - **`docs/SUITE.md`** — architecture-level primer on how the four products fit together. Read before any work that could ripple across products.
 - **`CHANGELOG.md`** — narrative log of suite-level launches. Add an entry for any user-visible change. Voice is playful and narrative, not procedural.
