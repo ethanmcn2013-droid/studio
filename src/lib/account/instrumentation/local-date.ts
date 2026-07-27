@@ -100,3 +100,21 @@ function previousLocalDate(localDate: string): string {
   const prior = new Date(Date.UTC(y, m - 1, d, 12) - 86_400_000);
   return prior.toISOString().slice(0, 10);
 }
+
+/** Local-date arithmetic. Dates are calendar labels, so the maths is done on
+ *  the label rather than on an instant, which keeps a 23-hour or 25-hour day
+ *  from shifting the answer. */
+export function addLocalDays(localDate: string, days: number): string {
+  const [y, m, d] = localDate.split("-").map(Number);
+  const shifted = new Date(Date.UTC(y, m - 1, d, 12) + days * 86_400_000);
+  return shifted.toISOString().slice(0, 10);
+}
+
+/** Whole calendar days from one local date to another. */
+export function diffLocalDays(from: string, to: string): number {
+  const [fy, fm, fd] = from.split("-").map(Number);
+  const [ty, tm, td] = to.split("-").map(Number);
+  return Math.round(
+    (Date.UTC(ty, tm - 1, td, 12) - Date.UTC(fy, fm - 1, fd, 12)) / 86_400_000,
+  );
+}
