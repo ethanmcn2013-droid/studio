@@ -1,6 +1,24 @@
 import { formatMetricValue } from "./format";
 import type { AccountSnapshot } from "./types";
 
+/**
+ * Print ink for the standalone report document.
+ *
+ * This file emits a self-contained HTML file for PDF rendering. It is served
+ * outside the app shell, so `var(--...)` design tokens do not resolve — the
+ * print engine has no stylesheet to inherit from. Literal values are required
+ * here and are kept in one place so the print surface stays reviewable.
+ * Same constraint as the standalone email templates in `src/emails`.
+ */
+const PRINT_INK = {
+  body: "#12131b", // ds-allow, standalone print document, no token context
+  muted: "#6b6f7c", // ds-allow, standalone print document, no token context
+  secondary: "#3c4050", // ds-allow, standalone print document, no token context
+  ruleStrong: "#d8dbe3", // ds-allow, standalone print document, no token context
+  ruleLight: "#e4e6ee", // ds-allow, standalone print document, no token context
+  surface: "#fff", // ds-allow, standalone print document, no token context
+} as const;
+
 function escapeHtml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -43,14 +61,14 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      color: #12131b;
+      color: ${PRINT_INK.body};
       font: 12px/1.45 "Geist", "Segoe UI", sans-serif;
     }
     .page { page-break-after: always; }
     .page:last-child { page-break-after: auto; }
     .sample {
       margin: 0 0 14px;
-      color: #6b6f7c;
+      color: ${PRINT_INK.muted};
       font-size: 9px;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -73,17 +91,17 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
       font-weight: 560;
       letter-spacing: -.03em;
     }
-    .standing, .period, p { color: #3c4050; }
+    .standing, .period, p { color: ${PRINT_INK.secondary}; }
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       margin: 18px 0;
-      border: 1px solid #d8dbe3;
-      background: #d8dbe3;
+      border: 1px solid ${PRINT_INK.ruleStrong};
+      background: ${PRINT_INK.ruleStrong};
     }
     .grid div {
-      background: #fff;
+      background: ${PRINT_INK.surface};
       padding: 10px;
     }
     .grid strong {
@@ -91,17 +109,17 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
       font-size: 20px;
       letter-spacing: -.04em;
     }
-    .grid span { color: #6b6f7c; font-size: 10px; }
+    .grid span { color: ${PRINT_INK.muted}; font-size: 10px; }
     ul { margin: 8px 0 0; padding: 0; list-style: none; }
     li {
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid #e4e6ee;
+      border-top: 1px solid ${PRINT_INK.ruleLight};
       padding: 7px 0;
     }
     .next {
       margin-top: 18px;
-      border-top: 1px solid #d8dbe3;
+      border-top: 1px solid ${PRINT_INK.ruleStrong};
       padding-top: 12px;
     }
     .defs {
@@ -110,8 +128,8 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
       gap: 10px 16px;
       margin: 14px 0;
     }
-    .defs div { border-top: 1px solid #e4e6ee; padding-top: 7px; }
-    .defs dt { color: #6b6f7c; font-size: 10px; }
+    .defs div { border-top: 1px solid ${PRINT_INK.ruleLight}; padding-top: 7px; }
+    .defs dt { color: ${PRINT_INK.muted}; font-size: 10px; }
     .defs dd { margin: 2px 0 0; }
     .never { list-style: disc; padding-left: 18px; }
     .never li { display: list-item; border: 0; }
