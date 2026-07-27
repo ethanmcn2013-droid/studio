@@ -1,6 +1,6 @@
 # Phase B — Sponsored-use instrumentation plan
 
-Status: **B0 frozen and B1 built · B2–B6 gated on entitlements credentials**  
+Status: **B0–B6 built and tested · applying the migration is the only gate left**  
 Date: 2026-07-26  
 Owner: founder + Studio eng  
 Depends on: Account Brief HQ preview (shipped), Venue Portal Phase A contracts  
@@ -128,9 +128,9 @@ Ingest path into `signal-entitlements` (or short-lived events table):
 
 Deliverables:
 
-- [ ] `sponsor_usage_events` (or equivalent) short-lived table, 35-day retention
+- [x] `sponsor_usage_events` (or equivalent) short-lived table, 35-day retention
 - [x] Attribution pure function + ambiguity tests
-- [ ] Payload privacy scan (no prohibited patterns)
+- [x] Payload privacy scan (no prohibited patterns)
 
 ### B3 — Projection tables + daily rollup (3–5 days)
 
@@ -154,17 +154,17 @@ Rollup job:
 
 Deliverables:
 
-- [ ] Migration script (idempotent, like `migrate-account-requests.mjs`)
-- [ ] Rollup cron / HQ-triggered job with dry-run
-- [ ] Reconciliation fixtures: source events → daily → snapshot
+- [x] Migration script (idempotent, like `migrate-account-requests.mjs`)
+- [x] Rollup cron / HQ-triggered job with dry-run
+- [x] Reconciliation fixtures: source events → daily → snapshot
 
 ### B4 — Access delivery fields (1–2 days, parallel)
 
 Before Account Access can show `issued` / `expired` honestly:
 
-- [ ] `license_codes.delivered_at` (nullable)
-- [ ] `license_codes.expires_at` (nullable) if product needs it
-- [ ] Map minted+undelivered → available; delivered → issued
+- [x] `license_codes.delivered_at` (nullable)
+- [x] `license_codes.expires_at` (nullable) if product needs it
+- [x] Map minted+undelivered → available; delivered → issued
 
 Until then, live Access keeps “minted · delivery not tracked”.
 
@@ -172,10 +172,10 @@ Until then, live Access keeps “minted · delivery not tracked”.
 
 Extend `src/lib/account/live/`:
 
-- [ ] `loadVenueUsageProjection(sponsorId, window)` → adoption + productReach + coverage
-- [ ] Compose with existing access projection into full live `AccountSnapshot`
-- [ ] Keep fixture modes for regression
-- [ ] HQ preview toggle continues: Fixture · Live access · Live access+usage (when coverage exists)
+- [x] `loadVenueUsageProjection(sponsorId, window)` → adoption + productReach + coverage
+- [x] Compose with existing access projection into full live `AccountSnapshot`
+- [x] Keep fixture modes for regression
+- [x] HQ preview toggle continues: Fixture · Live access · Live access+usage (when coverage exists)
 
 Honesty:
 
@@ -185,43 +185,59 @@ Honesty:
 
 ### B6 — Frozen access+usage report (1–2 days)
 
-- [ ] Generate snapshot into `sponsor_report_snapshots` for closed months
-- [ ] HQ download prefers frozen snapshot when present
-- [ ] SAMPLE / LIVE labels only when not a closed production freeze
+- [x] Generate snapshot into `sponsor_report_snapshots` for closed months
+- [x] HQ download prefers frozen snapshot when present
+- [x] SAMPLE / LIVE labels only when not a closed production freeze
 
 ## Execution progress — 2026-07-27
 
-Sprint 1 landed on `feat/account-phase-b-instrumentation`.
+All six workstreams are built and tested. The entitlements credentials are still
+absent, so every SQL path is proven against a real SQLite engine held in memory
+with the same DDL as `signal-entitlements`, and the migration was run twice
+against a temporary database to prove it is idempotent.
 
-**Built and tested (40 unit tests):**
+**Studio.** `event-schema`, `emitter`, `attribution`, `suppression`,
+`local-date`, `retention`, `ingest`, `ingest-db`, `rollup`, `daily-metrics`,
+`freeze`, `project-venue-usage`, plus the delivery-state change to
+`project-venue-access`. Migration at `scripts/migrate-sponsor-usage.mjs`.
 
-- `docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md` — the frozen contract.
-- `src/lib/account/instrumentation/event-schema.ts` — exactly seven fields, a
-  per-product kind allowlist, and forbidden-field rejection at every nesting
-  depth. Rejects rather than strips, so a new field cannot leak by omission.
-- `src/lib/account/instrumentation/emitter.ts` — commit-after-success, salted
-  identity hashing, feature flag off by default.
-- `src/lib/account/instrumentation/attribution.ts` — the redemption chain, with
-  ambiguity, pre-redemption, ended-access, and demo/seed/view-as all excluded.
-- `src/lib/account/instrumentation/suppression.ts` — the 3-workspace and
-  5-workspace thresholds and the coverage state machine, enforced in the
-  projector with a guard that throws if an absent metric is dressed as a value.
+**Unified app.** The emitter is duplicated under
+`src/lib/account/instrumentation/`, gated by a byte-compared contract, with
+call sites in Notes, Tasks, and Timeline behind `SPONSOR_USAGE_EVENTS`.
 
-**Not built, and why.** Everything from B2 onward writes to or reads from
-`signal-entitlements`, and the credentials for that database are not available
-in this environment. The operator to-do
-`apply-sponsor-requests-migration` covers the same gate. Specifically still
-open: the ingest table and retention job, `sponsor_usage_daily` and
-`sponsor_report_snapshots` with their migration, the rollup job, the access
-delivery fields in B4, the live Usage projection in B5, and the frozen report in
-B6.
+**Decisions worth keeping.**
 
-**Also still open:** the product call sites. The emitter exists and is tested,
-but Notes, Tasks, Timeline, and Signal do not yet call it. That work belongs in
-the `tasks` repository and should land with the flag off.
+- Attribution joins `redemptions -> license_codes -> sponsors`. It does *not*
+  use `sponsor_activations.owner_subject_id`, which is an opaque suite subject
+  id in a different identity space from the Clerk id the products carry. That
+  join would match nothing and report the silence as low adoption.
+- A missing hash salt stores nothing rather than filling the unattributed
+  bucket, because a configuration fault must not read as a venue whose
+  recipients stopped working.
+- Per-product daily counters are nullable. Null means not instrumented; zero
+  means instrumented and quiet.
+- Partial coverage presents as `lower_bound` with a denominator, never a total.
+- Day-30 continuation needs facts daily counts cannot hold, so a minimal
+  advance-only lifecycle row carries first action, last action, and the sealed
+  verdict. There is a real interlock: the sealing job must run at least every
+  24 days or bands seal `indeterminate`, which is the honest failure and never
+  a zero.
 
-Account Usage continues to render `unavailable`. Nothing in this sprint changes
-what the surface claims.
+**Still open, and why.**
+
+1. **Apply the migration.** Needs `TURSO_ENTITLEMENTS_DATABASE_URL` and
+   `TURSO_ENTITLEMENTS_AUTH_TOKEN`. Tracked as the operator to-do
+   `apply-sponsor-requests-migration`.
+2. **Schedule the rollup and the sealing job.** Both are written; neither has a
+   cron. The sealing cadence above is a hard constraint.
+3. **Signal is unmapped, deliberately.** Its briefing has no deliberate-open
+   commit point: every candidate is an automatic render, a system-surfaced
+   record, or a redirect that writes nothing, and acknowledgement carries no
+   workspace. Signal reports partial rather than borrowing a metric that means
+   something else. Closing it is product work — a real "Open today's brief"
+   affordance — not instrumentation work.
+4. **Account Usage still renders `unavailable` in production**, because the
+   flag is off and no events exist yet. Nothing the surface claims has changed.
 
 ## Test inventory (must pass before exit)
 
