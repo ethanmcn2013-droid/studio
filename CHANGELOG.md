@@ -7,6 +7,44 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-27 · S·143 · ships · sponsored use becomes measurable without becoming surveillance
+
+**A venue can now be shown that its sponsorship was used, and still never be
+shown the work.** The whole path exists: a product commits an action, the action
+becomes a seven-field event carrying no content and no identity, the event is
+attributed to a venue through the redemption chain, and the venue sees totals
+with the small groups withheld.
+
+The honesty is in the shape rather than the wording. A day with a row and no
+activity was measured and was quiet; a day with no row was never measured, and
+the two can never be confused because per-product counters are null rather than
+zero when a product is not instrumented. Partial coverage is presented as a
+lower bound with its denominator instead of a total. Day-30 continuation
+excludes anyone whose thirty days have not passed, because dividing by people
+who have not had the chance to return yet reads as churn when it is only
+impatience. Nothing absent is ever rendered as a zero, and a test asserts it
+directly.
+
+Two decisions are worth recording because both had a tempting wrong answer.
+Attribution follows the redemption chain and refuses the opaque suite subject
+id, which sits in a different identity space from the id the products carry and
+would have matched nothing while reporting the silence as low adoption. And a
+missing hash salt now stores nothing at all rather than filling the
+unattributed bucket, because a configuration fault must not read downstream as
+a venue whose couples stopped working.
+
+Frozen reports close the loop: a closed month is computed once and stored whole
+with a content hash, so a venue that received a report in March opens the same
+numbers in June and a later edit is detectable rather than merely discouraged.
+
+Honest edge: none of it is running. The flag is off, no events exist, and
+Account Usage still reads unavailable, which is the truth. Applying the
+migration and scheduling the jobs are founder gates, and the sealing job
+carries a real cadence — miss twenty-four days and a cohort seals
+indeterminate for good. Signal is also deliberately unmapped: its briefing has
+no honest deliberate-open moment to measure, so it reports partial rather than
+borrowing a number that means something else.
+
 ## 2026-07-27 · S·142 · tightens · the workspace stops holding work in the dark
 
 **Every repository now sits on its own current branch with nothing stranded
