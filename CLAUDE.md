@@ -25,7 +25,7 @@ The sources, by section:
 | segments, content, demos, templates, pilots, growth workflow       | `content/hq/<section>/<id>.md`                       |
 | a documented system (cron, DB, hook, cross-repo writer, etc.)      | `content/atlas/<slug>.md` — and bump `lastVerified`  |
 | voice, naming, banned words, visual register                       | `BRAND.md`                                           |
-| the active cycle / phase line                                      | `~/.claude/state/phase.md`                           |
+| the active cycle / phase line                                      | `CHANGELOG.md` — the newest dispatch is the cycle    |
 | something shipped that users or leadership should know about       | `CHANGELOG.md` — dispatch shape per BRAND.md §6.5    |
 | a founder/operator-gated task (API key, account, prod env var, legal doc, cost limit, policy) | `content/hq/operator-todos/<id>.md` |
 
