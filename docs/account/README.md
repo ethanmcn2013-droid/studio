@@ -53,10 +53,10 @@ remain valid.
 
 1. **Account V2 contract** — complete.
 2. **Three design concepts** — complete; founder selected **Account Brief**.
-3. **Selected Venue Edition system** — Overview, Access, Usage, Reports, Account.
-4. **Cross-edition proofs** — Education and Organisation vocabulary proofs.
+3. **Selected Venue Edition system** — complete; Overview, Access, Usage, Reports, Account.
+4. **Cross-edition proofs** — complete; Education and Organisation vocabulary proofs.
 5. **HQ live Venue access preview** — complete (see [LIVE_HQ_PREVIEW.md](./LIVE_HQ_PREVIEW.md)).
-6. **Phase B instrumentation** — planned (see [PHASE_B_INSTRUMENTATION_PLAN.md](./PHASE_B_INSTRUMENTATION_PLAN.md)); not executed in this branch.
+6. **Phase B instrumentation** — planned (see [PHASE_B_INSTRUMENTATION_PLAN.md](./PHASE_B_INSTRUMENTATION_PLAN.md)); not built. Account Usage carries no production telemetry until it is.
 
 Sample PDF/CSV assets live in `private/account-samples/` and are served only
 from the authenticated `/hq/account-review/download` route. Live access CSV/HTML

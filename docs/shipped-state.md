@@ -11,7 +11,7 @@ This file is the source for current public product, access and commercial claims
 
 Never shorten deployed or private preview to Live when the claim could imply general availability.
 
-**Last verified:** 2026-07-26.
+**Last verified:** 2026-07-27.
 
 Evidence used in this verification:
 
@@ -21,7 +21,10 @@ Evidence used in this verification:
   Timeline public paths;
 - July suite architecture review and operator-gate records;
 - docs/content-truth-audit.md;
-- Timeline PR #28, Tasks PRs #46 and #51, and Studio PRs #90 and #91.
+- Timeline PR #28, Tasks PRs #46 and #51, and Studio PRs #90, #91 and #97;
+- the authenticated Account review walkthrough on 2026-07-27, covering the
+  complete, suppressed and unavailable reporting states and the legacy
+  Venue Portal redirect.
 
 Authenticated provider journeys, production checkout amounts, restore recency and all operator gates were not re-certified. Broad external launch remains no-go.
 
@@ -106,6 +109,23 @@ A school or venue entitlement does not create Workspace Membership or private-co
 A sponsor may administer invitation, entitlement and activation state plus a sponsor-local reference. Workspace label, primary date or ceremony information needs a separate versioned field-level consent receipt. Notes, Tasks, private Timeline material, comments, attachments and collaborators are never sponsor-visible through the sponsor relation.
 
 A venue activation register may group sponsor-owned activation references. It must not claim to show every couple’s plan, infer On track, or expose names/dates by default.
+
+### Signal Studio Account review
+
+The Account review at `/hq/account-review` is deployed as a private Signal HQ
+surface only. It is not a sponsor route, not a customer login, and not staged
+access. `/hq/venue-portal-review` redirects to it, and no public Account or
+Venue Portal route exists.
+
+It reads deterministic fixtures across the Venue, Education and Organisation
+proofs, and can project live Venue access from `signal-entitlements` under HQ
+authentication with masked codes. Requests for more access record an intent;
+they never mutate allotment. Behavioural values are withheld below three
+eligible sponsored workspaces, and incomplete reporting renders as unavailable
+rather than zero.
+
+Sponsored-use instrumentation has not been built. Account Usage carries no
+production telemetry, so it may not be described as showing real venue use.
 
 ## Programmes
 
