@@ -26,6 +26,10 @@ export type LiveVenueCodeRow = {
   status: "minted" | "redeemed" | "revoked" | string;
   createdAt: number;
   redeemedAt: number | null;
+  /** Null when delivery was never recorded, which is not a claim it did not
+   *  happen. Absent columns keep every row on its pre-delivery state. */
+  deliveredAt?: number | null;
+  expiresAt?: number | null;
 };
 
 export type LiveVenueAccessInput = {
@@ -57,11 +61,58 @@ function formatDay(ms: number | null | undefined): string {
   return new Date(ms).toISOString().slice(0, 10);
 }
 
-function mapCodeState(status: string): AccessCodeState {
-  if (status === "redeemed") return "redeemed";
+/**
+ * The row-state ladder: revoked > redeemed > expired > issued > available.
+ *
+ * Ledger facts outrank the clock. A redeemed code past its date reads as
+ * redeemed, not expired: the entitlement it produced carries its own expiry and
+ * is a different object from the code.
+ *
+ * Both delivery columns are nullable and un-backfilled, so a venue with no
+ * delivery data lands on exactly the states it landed on before they existed.
+ */
+function mapCodeState(
+  status: string,
+  deliveredAt: number | null | undefined,
+  expiresAt: number | null | undefined,
+  now: number,
+): AccessCodeState {
   if (status === "revoked") return "revoked";
-  // Delivery tracking is not in the ledger yet — minted codes are available.
+  if (status === "redeemed") return "redeemed";
+  if (expiresAt != null && expiresAt <= now) return "expired";
+  if (deliveredAt != null) return "issued";
   return "available";
+}
+
+/**
+ * The mint date has always been shown under "Issued" for redeemed and revoked
+ * rows. That fudge is kept exactly where it already ships and is deliberately
+ * not extended: a delivered row shows its real delivery date, and an expired
+ * row shows nothing rather than a mint date dressed as a send date.
+ */
+function issuedOnFor(state: AccessCodeState, row: LiveVenueCodeRow): string | null {
+  if (state === "issued") return formatDay(row.deliveredAt as number);
+  if (state === "redeemed" || state === "revoked") {
+    return formatDay(row.deliveredAt ?? row.createdAt);
+  }
+  return null;
+}
+
+function noteFor(state: AccessCodeState, deliveryTracked: boolean): string {
+  switch (state) {
+    case "redeemed":
+      return "Redeemed";
+    case "revoked":
+      return "Revoked";
+    case "expired":
+      return "Expired before redemption";
+    case "issued":
+      return "Delivered · not yet redeemed";
+    default:
+      return deliveryTracked
+        ? "Minted · not delivered yet"
+        : "Minted · delivery not tracked in Account";
+  }
 }
 
 function standingFor(input: LiveVenueAccessInput, now: number): {
@@ -114,24 +165,23 @@ export function projectVenueAccessSnapshot(
     });
   }
 
+  // Copy wording only. A venue that records delivery gets an honest "not
+  // delivered yet"; one that does not keeps the standing caveat.
+  const deliveryTracked = codes.some((row) => row.deliveredAt != null);
+
   const codeRows: AccessCodeRow[] = codes
     .slice()
     .sort((a, b) => b.createdAt - a.createdAt)
     .slice(0, 40)
     .map((row) => {
-      const state = mapCodeState(row.status);
+      const state = mapCodeState(row.status, row.deliveredAt, row.expiresAt, now);
       return {
         maskedCode: maskLicenseCode(row.code),
         state,
-        issuedOn: state === "available" ? null : formatDay(row.createdAt),
+        issuedOn: issuedOnFor(state, row),
         redeemedOn: row.redeemedAt ? formatDay(row.redeemedAt) : null,
-        expiresOn: null,
-        note:
-          state === "available"
-            ? "Minted · delivery not tracked in Account"
-            : state === "redeemed"
-              ? "Redeemed"
-              : "Revoked",
+        expiresOn: row.expiresAt != null ? formatDay(row.expiresAt) : null,
+        note: noteFor(state, deliveryTracked),
       };
     });
 

@@ -144,7 +144,11 @@ export type AccountNextAction = {
 /** Review fixtures vs HQ live access preview (usage still unavailable). */
 export type AccountSampleLabel =
   | "SAMPLE · DETERMINISTIC REVIEW DATA."
-  | "LIVE ACCESS PREVIEW · USAGE UNAVAILABLE.";
+  | "LIVE ACCESS PREVIEW · USAGE UNAVAILABLE."
+  | "LIVE ACCESS AND USAGE."
+  /** A closed period frozen into a snapshot. It carries no SAMPLE or LIVE
+   *  qualifier because it is neither: it is the record of a finished month. */
+  | "FROZEN REPORT · CLOSED PERIOD.";
 
 export type AccountSnapshot = {
   snapshotId: string;

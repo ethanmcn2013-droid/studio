@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 import {
   SPONSOR_CONSENT_POLICY_VERSION,
   type SponsorConsentField,
@@ -159,6 +165,8 @@ export const sponsors = sqliteTable("sponsors", {
   codesIssued: integer("codes_issued").notNull().default(0),
   /* Distinguishes a venue/patron from any future sponsor kind. */
   kind: text("kind").notNull().default("venue"),
+  /** IANA zone for this venue reporting calendar. Null means Europe/Dublin. */
+  reportingTimezone: text("reporting_timezone"),
   createdAt: integer("created_at")
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
@@ -336,6 +344,12 @@ export const licenseCodes = sqliteTable(
     batchId: text("batch_id"),
     /** Recipient lock for high-tier cohort codes: only this email may redeem. */
     recipientEmailHash: text("recipient_email_hash"),
+    /** When the code was handed to a recipient. NULL means delivery was never
+     *  recorded, which is not the same as a claim that it did not happen;
+     *  Account reads NULL as available rather than inventing an issue date. */
+    deliveredAt: integer("delivered_at"),
+    /** When the code stops being redeemable. NULL means no expiry is tracked. */
+    expiresAt: integer("expires_at"),
     createdAt: integer("created_at")
       .notNull()
       .default(sql`(unixepoch() * 1000)`),
@@ -347,6 +361,11 @@ export const licenseCodes = sqliteTable(
     index("license_codes_sponsor_id_idx").on(table.sponsorId),
     index("license_codes_status_idx").on(table.status),
     index("license_codes_batch_id_idx").on(table.batchId),
+    index("license_codes_sponsor_delivered_idx").on(
+      table.sponsorId,
+      table.deliveredAt,
+    ),
+    index("license_codes_expires_at_idx").on(table.expiresAt),
   ],
 );
 
@@ -586,3 +605,253 @@ export const sponsorRequests = sqliteTable(
 
 export type SponsorRequest = typeof sponsorRequests.$inferSelect;
 export type NewSponsorRequest = typeof sponsorRequests.$inferInsert;
+
+/* ── Sponsored-use instrumentation (Phase B) ─────────────────────────
+ * Three projections and one short-lived event stream. Nothing here can
+ * name a person: subject and workspace arrive already salted and hashed,
+ * and the projections that survive carry counts only.
+ * -------------------------------------------------------------------- */
+
+export const METRIC_DICTIONARY_VERSION = "venue-metrics.v1" as const;
+
+export const SPONSOR_USAGE_ATTRIBUTION_STATES = [
+  "attributed",
+  "unattributed",
+  "excluded",
+] as const;
+export type SponsorUsageAttributionState =
+  (typeof SPONSOR_USAGE_ATTRIBUTION_STATES)[number];
+
+/**
+ * Raw sponsored-use events. Short-lived by design: a 35-day sweep deletes them
+ * and the daily projection survives instead. Keeping the stream would mean
+ * holding a per-person activity log to answer a question about totals.
+ */
+export const sponsorUsageEvents = sqliteTable(
+  "sponsor_usage_events",
+  {
+    /** The venue-meaningful-action.v1 idempotency key, and the sole primary
+     *  key: a replay must land on this row rather than beside it. */
+    eventId: text("event_id").primaryKey(),
+    instrumentationVersion: text("instrumentation_version")
+      .notNull()
+      .default("instrumentation.v1"),
+    product: text("product").notNull(),
+    kind: text("kind").notNull(),
+    occurredAt: integer("occurred_at").notNull(),
+    subjectIdHash: text("subject_id_hash").notNull(),
+    workspaceIdHash: text("workspace_id_hash").notNull(),
+    /** Null unless attribution succeeded. */
+    sponsorId: text("sponsor_id").references(() => sponsors.id),
+    attributionState: text("attribution_state")
+      .$type<SponsorUsageAttributionState>()
+      .notNull(),
+    /** The rejection reason when not attributed; null when attributed. */
+    attributionReason: text("attribution_reason"),
+    /** Which salt produced the hashes. Rows across epochs are never compared;
+     *  a rotation is a coverage break, not a fall in activity. */
+    hashSaltEpoch: text("hash_salt_epoch").notNull(),
+    /** Venue-local calendar day of occurredAt, as YYYY-MM-DD. */
+    localDate: text("local_date").notNull(),
+    ingestedAt: integer("ingested_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("sponsor_usage_events_sponsor_date_idx").on(
+      table.sponsorId,
+      table.localDate,
+      table.workspaceIdHash,
+    ),
+    index("sponsor_usage_events_occurred_idx").on(table.occurredAt),
+    index("sponsor_usage_events_state_date_idx").on(
+      table.attributionState,
+      table.localDate,
+    ),
+  ],
+);
+
+export type SponsorUsageEvent = typeof sponsorUsageEvents.$inferSelect;
+export type NewSponsorUsageEvent = typeof sponsorUsageEvents.$inferInsert;
+
+/**
+ * One aggregate row per sponsor, per venue-local day, per dictionary version.
+ *
+ * The per-product counters are nullable on purpose. NULL means the product was
+ * not instrumented that day; 0 means it was instrumented and nothing happened.
+ * Defaulting them to 0 would turn "we did not measure" into "nothing
+ * happened", which is the one claim this table exists never to make.
+ */
+export const sponsorUsageDaily = sqliteTable(
+  "sponsor_usage_daily",
+  {
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    localDate: text("local_date").notNull(),
+    metricDictionaryVersion: text("metric_dictionary_version")
+      .notNull()
+      .default(METRIC_DICTIONARY_VERSION),
+    instrumentationVersion: text("instrumentation_version")
+      .notNull()
+      .default("instrumentation.v1"),
+    /** The zone localDate was computed in, so a later zone change reads as a
+     *  visible break rather than a silent reinterpretation of history. */
+    timezone: text("timezone").notNull().default("Europe/Dublin"),
+    hashSaltEpoch: text("hash_salt_epoch").notNull(),
+
+    activeWorkspaces: integer("active_workspaces").notNull(),
+    activeSubjects: integer("active_subjects").notNull(),
+    firstActionWorkspaces: integer("first_action_workspaces").notNull(),
+    /** The suppression denominator, taken from access rather than from event
+     *  volume: a quiet venue must not be mistaken for a small one. */
+    eligibleWorkspaces: integer("eligible_workspaces").notNull(),
+    meaningfulActions: integer("meaningful_actions").notNull(),
+
+    notesActions: integer("notes_actions"),
+    notesWorkspaces: integer("notes_workspaces"),
+    tasksActions: integer("tasks_actions"),
+    tasksWorkspaces: integer("tasks_workspaces"),
+    timelineActions: integer("timeline_actions"),
+    timelineWorkspaces: integer("timeline_workspaces"),
+    signalActions: integer("signal_actions"),
+    signalWorkspaces: integer("signal_workspaces"),
+
+    /** Products instrumented on this date (notes 1, tasks 2, timeline 4,
+     *  signal 8), and what was expected at rollup time. Storing both keeps a
+     *  later product from retroactively downgrading closed days. */
+    coverageMask: integer("coverage_mask").notNull(),
+    expectedMask: integer("expected_mask").notNull(),
+
+    /** The instant through which this row is authoritative. */
+    dataThrough: integer("data_through").notNull(),
+    revision: integer("revision").notNull().default(1),
+    computedAt: integer("computed_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    lastRepairedAt: integer("last_repaired_at"),
+  },
+  (table) => [
+    primaryKey({
+      columns: [table.sponsorId, table.localDate, table.metricDictionaryVersion],
+    }),
+    index("sponsor_usage_daily_sponsor_date_idx").on(
+      table.sponsorId,
+      table.localDate,
+    ),
+    index("sponsor_usage_daily_epoch_idx").on(table.sponsorId, table.hashSaltEpoch),
+  ],
+);
+
+export type SponsorUsageDailyRow = typeof sponsorUsageDaily.$inferSelect;
+export type NewSponsorUsageDailyRow = typeof sponsorUsageDaily.$inferInsert;
+
+export const DAY30_STATES = ["returned", "not_returned", "indeterminate"] as const;
+export type Day30State = (typeof DAY30_STATES)[number];
+
+/**
+ * Minimal per-workspace lifecycle. Day-30 continuation and trailing distinct
+ * counts cannot be recovered from daily rows, because per-day distincts do not
+ * sum and the events are swept, so the few facts those metrics need are kept
+ * here and nothing else is.
+ *
+ * Advance-only: dates move forward, or back to the earliest, and are never
+ * rebuilt from events, because after the sweep a rebuild would quietly
+ * truncate history. The workspace hash is internal to the projector and must
+ * never reach a snapshot, an export, or a report.
+ */
+export const sponsorWorkspaceLifecycle = sqliteTable(
+  "sponsor_workspace_lifecycle",
+  {
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    workspaceIdHash: text("workspace_id_hash").notNull(),
+    hashSaltEpoch: text("hash_salt_epoch").notNull(),
+
+    firstActionLocalDate: text("first_action_local_date").notNull(),
+    lastActionLocalDate: text("last_action_local_date").notNull(),
+
+    notesLastActionLocalDate: text("notes_last_action_local_date"),
+    tasksLastActionLocalDate: text("tasks_last_action_local_date"),
+    timelineLastActionLocalDate: text("timeline_last_action_local_date"),
+    signalLastActionLocalDate: text("signal_last_action_local_date"),
+
+    /** Set once the day-35 boundary closes. Null means the cohort is still
+     *  open, which keeps the row out of both numerator and denominator. */
+    day30State: text("day30_state").$type<Day30State>(),
+    day30SealedAt: integer("day30_sealed_at"),
+
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    primaryKey({
+      columns: [table.sponsorId, table.workspaceIdHash, table.hashSaltEpoch],
+    }),
+    index("sponsor_workspace_lifecycle_last_action_idx").on(
+      table.sponsorId,
+      table.hashSaltEpoch,
+      table.lastActionLocalDate,
+    ),
+    index("sponsor_workspace_lifecycle_first_action_idx").on(
+      table.sponsorId,
+      table.hashSaltEpoch,
+      table.firstActionLocalDate,
+    ),
+  ],
+);
+
+export type SponsorWorkspaceLifecycle =
+  typeof sponsorWorkspaceLifecycle.$inferSelect;
+export type NewSponsorWorkspaceLifecycle =
+  typeof sponsorWorkspaceLifecycle.$inferInsert;
+
+/**
+ * A frozen report for a closed period. Once written it is never recomputed: a
+ * venue that received a report in March must be able to open the same numbers
+ * in June. The content hash makes a later edit detectable rather than merely
+ * discouraged.
+ */
+export const sponsorReportSnapshots = sqliteTable(
+  "sponsor_report_snapshots",
+  {
+    id: text("id").primaryKey(),
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    periodStart: text("period_start").notNull(),
+    periodEnd: text("period_end").notNull(),
+    periodLabel: text("period_label").notNull(),
+    metricDictionaryVersion: text("metric_dictionary_version")
+      .notNull()
+      .default(METRIC_DICTIONARY_VERSION),
+    timezone: text("timezone").notNull().default("Europe/Dublin"),
+    hashSaltEpoch: text("hash_salt_epoch").notNull(),
+    /** The frozen payload, already suppressed. Never re-derived on read. */
+    payloadJson: text("payload_json").notNull(),
+    coverageState: text("coverage_state").notNull(),
+    suppressionApplied: integer("suppression_applied").notNull().default(0),
+    eligibleWorkspaces: integer("eligible_workspaces").notNull(),
+    contentHash: text("content_hash").notNull(),
+    dataThrough: integer("data_through").notNull(),
+    frozenAt: integer("frozen_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("sponsor_report_snapshots_sponsor_period_idx").on(
+      table.sponsorId,
+      table.periodStart,
+      table.periodEnd,
+    ),
+    index("sponsor_report_snapshots_frozen_idx").on(table.frozenAt),
+  ],
+);
+
+export type SponsorReportSnapshot = typeof sponsorReportSnapshots.$inferSelect;
+export type NewSponsorReportSnapshot = typeof sponsorReportSnapshots.$inferInsert;
