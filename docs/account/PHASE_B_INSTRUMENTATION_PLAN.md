@@ -1,6 +1,6 @@
 # Phase B — Sponsored-use instrumentation plan
 
-Status: **planning complete · ready to execute in a dedicated cycle**  
+Status: **B0 frozen and B1 built · B2–B6 gated on entitlements credentials**  
 Date: 2026-07-26  
 Owner: founder + Studio eng  
 Depends on: Account Brief HQ preview (shipped), Venue Portal Phase A contracts  
@@ -67,9 +67,9 @@ Lock versions before code:
 
 Deliverables:
 
-- [ ] `docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md` (or extend METRIC_DICTIONARY)
-- [ ] Explicit field allowlist + forbidden field list
-- [ ] Mapping table: dictionary metric → `AccountSnapshot` field
+- [x] `docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md` (or extend METRIC_DICTIONARY)
+- [x] Explicit field allowlist + forbidden field list
+- [x] Mapping table: dictionary metric → `AccountSnapshot` field
 
 Account mapping (target):
 
@@ -112,9 +112,9 @@ Emit **only after successful commit**, in product servers (Tasks / Notes / Timel
 
 Deliverables:
 
-- [ ] Shared schema package or `src/lib/account/instrumentation/event-schema.ts`
-- [ ] Per-product emitter stubs behind feature flag `SPONSOR_USAGE_EVENTS=1`
-- [ ] Unit tests: allowlist accept/reject; failed transaction does not emit
+- [x] Shared schema package or `src/lib/account/instrumentation/event-schema.ts`
+- [x] Per-product emitter stubs behind feature flag `SPONSOR_USAGE_EVENTS=1` (shared emitter in Studio; product call sites still to wire)
+- [x] Unit tests: allowlist accept/reject; failed transaction does not emit
 
 ### B2 — Ingest + attribution (2–3 days)
 
@@ -129,7 +129,7 @@ Ingest path into `signal-entitlements` (or short-lived events table):
 Deliverables:
 
 - [ ] `sponsor_usage_events` (or equivalent) short-lived table, 35-day retention
-- [ ] Attribution pure function + ambiguity tests
+- [x] Attribution pure function + ambiguity tests
 - [ ] Payload privacy scan (no prohibited patterns)
 
 ### B3 — Projection tables + daily rollup (3–5 days)
@@ -188,6 +188,40 @@ Honesty:
 - [ ] Generate snapshot into `sponsor_report_snapshots` for closed months
 - [ ] HQ download prefers frozen snapshot when present
 - [ ] SAMPLE / LIVE labels only when not a closed production freeze
+
+## Execution progress — 2026-07-27
+
+Sprint 1 landed on `feat/account-phase-b-instrumentation`.
+
+**Built and tested (40 unit tests):**
+
+- `docs/account/EVENT_SCHEMA_MEANINGFUL_ACTION_V1.md` — the frozen contract.
+- `src/lib/account/instrumentation/event-schema.ts` — exactly seven fields, a
+  per-product kind allowlist, and forbidden-field rejection at every nesting
+  depth. Rejects rather than strips, so a new field cannot leak by omission.
+- `src/lib/account/instrumentation/emitter.ts` — commit-after-success, salted
+  identity hashing, feature flag off by default.
+- `src/lib/account/instrumentation/attribution.ts` — the redemption chain, with
+  ambiguity, pre-redemption, ended-access, and demo/seed/view-as all excluded.
+- `src/lib/account/instrumentation/suppression.ts` — the 3-workspace and
+  5-workspace thresholds and the coverage state machine, enforced in the
+  projector with a guard that throws if an absent metric is dressed as a value.
+
+**Not built, and why.** Everything from B2 onward writes to or reads from
+`signal-entitlements`, and the credentials for that database are not available
+in this environment. The operator to-do
+`apply-sponsor-requests-migration` covers the same gate. Specifically still
+open: the ingest table and retention job, `sponsor_usage_daily` and
+`sponsor_report_snapshots` with their migration, the rollup job, the access
+delivery fields in B4, the live Usage projection in B5, and the frozen report in
+B6.
+
+**Also still open:** the product call sites. The emitter exists and is tested,
+but Notes, Tasks, Timeline, and Signal do not yet call it. That work belongs in
+the `tasks` repository and should land with the flag off.
+
+Account Usage continues to render `unavailable`. Nothing in this sprint changes
+what the surface claims.
 
 ## Test inventory (must pass before exit)
 
