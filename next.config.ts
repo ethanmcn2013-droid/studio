@@ -266,6 +266,14 @@ const nextConfig: NextConfig = {
           h.key === "X-Frame-Options" ? { ...h, value: "SAMEORIGIN" } : h,
         ),
       },
+      {
+        source: "/design-lab/:path*",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
     ];
   },
 };
