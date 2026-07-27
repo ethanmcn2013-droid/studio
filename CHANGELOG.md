@@ -7,6 +7,33 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-27 · S·142 · tightens · the workspace stops holding work in the dark
+
+**Every repository now sits on its own current branch with nothing stranded
+behind it, and the dispatch reads the way it was written.** Sixty-odd working
+copies left over from months of agent sessions are gone. Before any of them was
+removed, everything uncommitted inside them was committed to its own branch and
+named, including one working copy holding a hundred and thirty-five changed
+files, so nothing was traded for a tidy directory listing. Nine branches whose
+work had already landed were retired.
+
+The Account review is recorded in shipped state as what it is: a private Signal
+HQ surface, not a sponsor route, with usage that reports unavailable rather than
+zero until sponsored-use instrumentation exists. The HQ command palette takes a
+`room:` scope sourced from the room registry, so it cannot offer a room that is
+not there.
+
+About eleven hundred characters in this dispatch had been double-encoded and
+were rendering as mojibake, one entry appeared twice byte-for-byte, and S·135
+used a verb the brand does not carry. All three are fixed. Cycle numbers that
+collided in May are deliberately left alone; this file refuses retroactive
+rewrites before 22 May, and that refusal is worth more than tidy numbering.
+
+Honest edge: three founder gates were opened rather than closed — the
+sponsor_requests migration, the log-cycle credentials that have kept the public
+roadmap quiet since June, and a decision on whether the Delight Layer may touch
+sign-in and checkout at all.
+
 ## 2026-07-26 · S·141 · reads · Account Phase B instrumentation plan
 
 **Sponsored-use instrumentation is sequenced for the next dedicated cycle.** The
