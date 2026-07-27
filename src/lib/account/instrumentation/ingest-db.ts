@@ -10,6 +10,7 @@ import {
 } from "@/lib/entitlements-db/schema";
 
 import { toRedemptionLinks, type IngestDeps, type RawRedemptionRow } from "./ingest";
+import { EVENT_RETENTION_DAYS } from "./retention-window";
 
 /**
  * The server half of ingest: the reads and writes that need a database.
@@ -19,7 +20,7 @@ import { toRedemptionLinks, type IngestDeps, type RawRedemptionRow } from "./ing
  */
 
 /** Raw events are held for 35 days. The projection survives; the stream does not. */
-export const EVENT_RETENTION_DAYS = 35;
+export { EVENT_RETENTION_DAYS } from "./retention-window";
 
 /**
  * The attribution chain, read as rows.
