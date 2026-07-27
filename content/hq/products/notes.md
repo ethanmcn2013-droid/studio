@@ -2,14 +2,19 @@
 id: notes
 title: Signal Notes
 layer: Context
-maturity: 79
 status: Private preview
-uxPolish: 72
-integrationScore: 58
-launchReadiness: 75
-majorFeatures: ["Next.js 16 scaffold","Turso + Drizzle server persistence","suite-wide Clerk auth (live)","auth-gated /app","sign-in / sign-up routes","notebook surface with optimistic UI","private empty-state copy","private-by-default product treatment","collapsible search rail with ⌘K","wordmark gesture","anti-feature register","homepage","wedding planning demo","Draft action gesture (Cycle 9.4b extraction-half, 2026-05-12)","Cross-repo send to Tasks (Cycle 9.4b second half, 2026-05-12) — POST /api/notes-extract on Tasks, shared bearer auth, idempotent on (userId, noteId)","Marketing hero — Approach C 'The Voice' (N·21, 2026-05-28): product phrases type in loop below wordmark, two live carets, director panel 9.5+ gate, full-bleed hairline rule, §13 safety contract","Capture textarea raised to rows=6 (Product-excellence pass, 2026-06-09) — restores PRODUCT.md §4's 'largest visual weight on first paint'","Misfire toast retired (2026-06-09) — was advertising an unbound ⌘↵ keystroke in a no-tutorial product","Send-to-Tasks collapsed to a single shape (2026-06-09) — the open-note corner-arrow Send was cut; the explicit 'Send as-is' / drafted-extract Send is the one shape","Voice capture (N·25, 2026-06-14) — a mic affordance dictates into the existing capture field via the Web Speech API; hides when unsupported, degrades quietly on denied permission, reduced-motion-safe, no new note type, no model framing. Capture happens in life, not at a desk"]
-blockers: ["Inbound email webhook auth is a shared bearer — N·4 added a 256KB body cap and a 30/min per-IP+slug throttle, but there is still no timestamp/nonce/signature, so a captured valid request is replayable within the rate window; needs HMAC-signed-webhook migration (Resend supports it).","CSP enforce-mode is live as of N·4 but unvalidated against a real Clerk auth flow in prod — an unforeseen Clerk subdomain could silently break the auth modal until the first prod navigation is watched.","Operator-blocked: NOTES_CAPTURE_INBOUND_SECRET unset and Resend Inbound DNS not configured — email-to-capture code path is complete but mail is not flowing.","Operator-blocked: TASKS_API_URL must be set on the Vercel preview env or the cross-repo extract-to-Tasks edge hard-fails there by design (N·4 removed the silent prod default outside VERCEL_ENV=production)."]
-nextActions: ["Operator: push N·4 to prod and watch the first navigation for any unforeseen Clerk-subdomain CSP violation (rollback is one header line).","Operator: set TASKS_API_URL on the Vercel preview env.","Migrate /api/capture/email from shared-bearer to HMAC-signed webhook (replay protection); move the in-memory throttle to Upstash for cross-instance coverage.","Operator: set NOTES_CAPTURE_INBOUND_SECRET on Vercel + finish Resend Inbound DNS to unblock email-to-capture.","Restore extract-to-Tasks beat in the marketing demo (current demo stops at search — undersells the product's differentiator).","Wedding-planning page re-token sweep (ghost file from prior build with raw hex values bypassing the token system).","Reframe homepage H1 from architecture-register ('Your private layer') to audience-register (PRODUCT.md §3's three-part promise is cleaner).","Add Sentry (memory had claimed Notes was covered by Plan 4.2 PII scrubbing; verified 2026-05-13 that no @sentry/nextjs is installed)."]
+currentAsOf: 2026-07-26
+canonicalRoute: https://app.signalstudio.ie/app/notes
+archetype: Notes Hybrid
+maturity: not-scored
+uxPolish: not-scored
+integrationScore: not-scored
+launchReadiness: not-scored
+qualityGate: not-certified
+scoreBasis: current-route-council-evidence-required
+majorFeatures: ["Canonical unified route: https://app.signalstudio.ie/app/notes","Notes Hybrid: calm private capture, flat notebook, deliberate note detail, and explicit user-approved promotion to Tasks","Private-by-default boundary: raw note bodies remain in Notes and only approved task wording may cross","Shared Signal Studio frame and project context"]
+blockers: ["No current authenticated state-by-viewport council ledger proves the 50/52 release threshold for the consolidated Notes route.","The unified Notes-to-Tasks handoff still needs production-like evidence for payload minimization, ownership, idempotency, lineage, and failure recovery.","Executable Studio quality tooling still enforces the legacy general mean, not the active 50/52 per-cell product gate."]
+nextActions: ["Finish and verify the Notes Hybrid capture, search, selection, edit, delete, and explicit promote-to-Tasks journeys in the unified app.","Prove that promotion sends only approved wording, records source lineage, remains idempotent, and never exposes the raw private note.","Capture normal, empty, loading, and error states at 360px, 768px, and 1440px and repeat council review until every required cell reaches 50/52."]
 ---
 
 ## Role
@@ -17,6 +22,8 @@ nextActions: ["Operator: push N·4 to prod and watch the first navigation for an
 What was said, decided, learned, captured, and turned into work.
 
 ## Notes
+
+> **2026-07-26 consolidation note.** Current authority is the single Signal Studio app at `https://app.signalstudio.ie/app/notes`, using the Notes Hybrid archetype. The dated entries below are retained as provenance from the former standalone implementation; they do not certify the current unified route, launch readiness, retired hosts, or retired interfaces.
 
 2026-06-09 — product-excellence pass (Notes side, suite-wide today). Three commits on `notes` main (`a1b5239`, `739b341`, `f5b95dd`): capture textarea `rows={3}` → `rows={6}` so the capture surface earns the largest weight on first paint per PRODUCT.md §4; the misfire toast and its `MISFIRE_TOAST_KEY` are gone (advertised an unbound `⌘↵` shortcut in a product whose stance is no-tutorial); the open-note corner-arrow Send is gone, leaving the explicit Send-as-is / drafted-extract Send as the single Send-to-Tasks shape. The companion landing-page gesture fix shipped on the studio repo as S·70 the same day (Notes wordmark on signalstudio.ie now blinks as a caret from the start — the dot→caret morph wasn't replaying on reveal). Deferred to founder-gate: replacing the 617-line marketing hero + 577-line `/anatomy` with the actual `Notebook` as the hero (PRODUCT.md §2.2 demo-vs-reality move). Typecheck + build clean.
 

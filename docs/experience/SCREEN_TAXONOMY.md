@@ -22,11 +22,15 @@ Each entry must declare:
 
 | Canonical ID | Scope | Intended audience |
 |---|---|---|
-| `customer-product` | Tasks, Timeline, Signal, and Notes | Customers, members, guests, and viewers |
+| `customer-product` | Notes, Tasks, Timeline, and Signal in the unified app | Customers, members, guests, and viewers |
 | `company-public` | Studio routes outside `/hq*` | Public company and brand audiences |
 | `founder-operator` | Studio `/hq*`, explicit HQ surfaces, and all Signal Review surfaces | Founder/operator and internal reviewer roles |
 
-The class is deterministic in discovery and validated against these rules. `product` remains the source-system ID needed for repository ownership and capture routing; it is not a claim that Studio, HQ, or Signal Review is a customer product. `roles` provides the audience detail inside a class.
+The class is deterministic in discovery and validated against these rules.
+Historical product source-system IDs may remain during registry migration, but
+they do not imply separate application repositories or origins. Current
+customer-product evidence must resolve to the canonical unified-app routes.
+`roles` provides the audience detail inside a class.
 
 ## Twelve screen archetypes
 

@@ -61,6 +61,13 @@ until:
 - privacy and suppression tests pass across screen and export formats; and
 - one named venue pilot is approved.
 
+On 26 July 2026 the authenticated review surface was expanded to exercise the
+full Phase C information architecture with deterministic complete, partial,
+and suppressed states. It also demonstrates masked access status, report
+preview, venue roles, and a request-more-licences flow that leaves allotment
+unchanged pending Signal HQ review. This closes the UI review gap only; it does
+not satisfy any production-exposure gate above.
+
 On 26 July 2026 the review surface was renamed into Signal Studio Account and
 opened for founder concept selection. Venue Portal Phase A remains historical
 evidence for the privacy boundary and metric honesty rules. This does not

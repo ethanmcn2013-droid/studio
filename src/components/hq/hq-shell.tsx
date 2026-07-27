@@ -24,13 +24,9 @@ export function HqShell({ children }: { children: React.ReactNode }) {
   const active = activeHref(pathname);
   const crumb = resolveHqLocation(pathname);
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerPath, setDrawerPath] = useState<string | null>(null);
+  const drawerOpen = drawerPath === pathname;
   const [collapsed, setCollapsed] = useState(false);
-
-  // Close the mobile drawer on any route change.
-  useEffect(() => {
-    setDrawerOpen(false);
-  }, [pathname]);
 
   // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
@@ -72,7 +68,7 @@ export function HqShell({ children }: { children: React.ReactNode }) {
           <button
             type="button"
             className="hqx-rail-dismiss"
-            onClick={() => setDrawerOpen(false)}
+            onClick={() => setDrawerPath(null)}
             aria-label="Close navigation"
           >
             <HqIcons.close />
@@ -125,13 +121,13 @@ export function HqShell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      {drawerOpen ? <button type="button" className="hqx-scrim" aria-label="Close navigation" onClick={() => setDrawerOpen(false)} /> : null}
+      {drawerOpen ? <button type="button" className="hqx-scrim" aria-label="Close navigation" onClick={() => setDrawerPath(null)} /> : null}
 
       {/* ── Main column ───────────────────────────────────────── */}
       <div className="hqx-main">
         <header className="hqx-topbar">
           <div className="hqx-topbar-left">
-            <button type="button" className="hqx-menu-btn" onClick={() => setDrawerOpen(true)} aria-label="Open navigation">
+            <button type="button" className="hqx-menu-btn" onClick={() => setDrawerPath(pathname)} aria-label="Open navigation">
               <HqIcons.menu />
             </button>
             <nav className="hqx-crumbs" aria-label="Breadcrumb">

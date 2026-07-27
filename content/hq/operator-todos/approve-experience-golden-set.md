@@ -20,6 +20,13 @@ links: ["../../../experience/golden-set.json", "../../../experience/capture-plan
 
 ## Steps
 
+> **Consolidation note · 2026-07-26.** This founder approval remains valid for
+> the exact content-addressed historical references named below. It does not
+> approve the redesigned unified-app routes or award the current 50/52 product
+> gate. Materially changed Notes, Tasks, Timeline, or Signal references need
+> fresh rendered evidence and a new approval record under the existing
+> authorization rules.
+
 1. Approve the [Signal Experience Standard](approve-signal-experience-standard.md) first.
 2. Review the exact IDs in [`golden-set.json`](../../../experience/golden-set.json). Confirm the Studio item is a company-surface reference and the other four represent Tasks, Timeline, Signal, and Notes. Each must be a meaningful archetype, not merely an attractive screenshot.
 3. Reconcile the golden IDs/states with [`capture-plan.json`](../../../experience/capture-plan.json). Every approved golden reference must be directly and reproducibly captured.

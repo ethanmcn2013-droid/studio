@@ -14,6 +14,19 @@ Signal opens on zero to three things that genuinely need the user now. Overview,
 
 The deterministic layer owns metrics, observation detection, ranking, suppression, comparisons, coverage, and evidence. An optional server-side narrative provider may only phrase verified facts and must always fall back to curated wording.
 
+## Presentation amendment · 2026-07-26
+
+The founder-approved Quiet Briefing Ledger is the canonical default renderer
+inside the unified app at `app.signalstudio.ie/app/signal`. It is finite,
+prose-first, and evidence-backed. It states workspace and observation time,
+shows zero to three useful items, gives each claim one restrained receipt, and
+keeps exact authorized evidence available on demand.
+
+Overview, Trends, and Evidence remain subordinate depth. They may not replace
+the ledger with a dashboard-first first screen. Legacy standalone Signal
+screens, routes, deployments, and feature-flag visuals are provenance only;
+future presentation and release work lands in the unified application.
+
 ## Reason
 
 The short Briefing is still the clearest first answer, but a trusted conclusion needs a path to the facts. Keeping the deeper read inside Signal lets a user inspect the workspace, see change over time, and open the real Note, Task, decision, dependency, or milestone without losing scope.

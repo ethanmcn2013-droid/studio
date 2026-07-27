@@ -1,48 +1,30 @@
 ---
 id: select-timeline-design-direction
-title: Select the Signal Timeline design direction
-status: open
+title: Select the Signal Timeline public artifact direction
+status: done
 priority: P1
-blocking: true
+blocking: false
 phase: Timeline redesign · Phase 1
-why: Phase 2 cannot alter the real owner, public, update, or detail surfaces until the founder selects A, B, C, or an exact hybrid.
-href: https://roadmap-m7f3csrq3-ethanmcn2013-1730s-projects.vercel.app/__design-lab/timeline?option=b&surface=owner&dataset=wedding&density=normal&state=default&viewport=responsive&preview=working
+why: The public artifact needed one exact production direction before implementation.
+href: /hq/decisions/timeline-option-d-selected-2026-07-22
 date: 2026-07-18
-action: "Review all three directions across all four surfaces, then record one exact selection command."
+completed: 2026-07-22
+action: "Preserve Option D as the public artifact while the owner workflow improves independently."
 product: "Signal Timeline"
-recommended: "A owner ledger + B public timeline + B shared update + B item detail, with C's Before/Now receipt only for real bucket moves."
-alternatives: ["SELECT A — Quiet Direction Ledger", "SELECT B — Editorial Plan Room", "SELECT C — Signal Horizon", "SELECT HYBRID — followed by the exact components to combine"]
-default: "Production Timeline remains unchanged and Phase 2 remains blocked."
-consequence: "Without an explicit direction, implementation would collapse the review gate and risk mixing incompatible interaction and layout systems."
-trigger: "After reviewing the protected Phase 1 lab and before any production Timeline redesign begins."
-links: ["https://github.com/ethanmcn2013-droid/timeline/pull/24", "https://vercel.com/ethanmcn2013-1730s-projects/roadmap/3W6krhr15HicXNWQ5bSkNDxMDFyH", "../features/timeline-four-surface-review-lab.md"]
+recommended: "Option D horizontal, date-scaled public artifact."
+alternatives: ["Option A · Quiet Direction Ledger", "Option B · Editorial Plan Room", "Option C · Signal Horizon"]
+default: "Option D stays fixed for recipients."
+consequence: "The owner workspace can iterate without reopening the public artifact."
+trigger: "Complete."
+links: ["https://github.com/ethanmcn2013-droid/timeline/pull/28", "https://github.com/ethanmcn2013-droid/tasks/pull/46", "../features/timeline-shareable-artifact.md"]
 ---
 
-## Steps
+## Completion record
 
-1. Open Options A, B, and C in the protected review lab. Review each direction's Owner Plan, Public Timeline, Shared Update, and Item Detail surfaces.
-2. Exercise the dataset, density, state, working/published, edit, move, hide, restore, delete, undo, publish, attribution, keyboard, and mobile controls. The lab is synthetic and cannot change production data.
-3. Compare the tradeoffs: A is the strongest daily owner instrument, B is the strongest public and update system, and C is the strongest distinctive movement idea.
-4. Review the recommended synthesis: A owner ledger + B public timeline + B shared update + B item detail, with C's Before/Now receipt only for real bucket moves. This is a recommendation, not a selection.
-5. Record exactly one of the following commands in the Timeline decision log:
+The founder selected Option D on 22 July 2026. Timeline PR #28 applied the
+qualified-view migration and Tasks PR #46 shipped the production artifact,
+owner phone preview, publication controls, and browser evidence.
 
-```text
-SELECT A — Quiet Direction Ledger
-SELECT B — Editorial Plan Room
-SELECT C — Signal Horizon
-SELECT HYBRID — followed by the exact components to combine
-```
-
-6. For `SELECT HYBRID`, name every selected surface or bounded component. Phrases such as “mostly B” or “take the best parts” are not implementation decisions.
-7. Keep this task `open` until the exact selection, rationale, date, and Phase 2 boundaries are recorded in the Timeline decision log.
-
-## Done when
-
-The founder's exact selection command is recorded, the selected surfaces or components are unambiguous, and Phase 2 can begin without interpreting taste or silently combining directions.
-
-## Current evidence
-
-- All three directions clear the 9.5 category floor; consensus scores are A 9.78, B 9.81, and C 9.76.
-- 18 model checks, 52 browser checks, 94 screenshot captures, and 7 account-boundary checks pass.
-- The protected preview is READY and Vercel Authentication is scoped to Preview deployments.
-- Production Timeline routes and data remain unchanged.
+The current owner-workspace review is not a reopened public-artifact choice.
+It concerns how an owner arrives in project context, switches projects,
+curates milestone text and dates, and reaches preview and sharing controls.

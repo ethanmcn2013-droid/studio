@@ -22,6 +22,20 @@ production release. Signal Notes production will combine:
 - The shared exact-selection extraction boundary, editable approval,
   idempotent receipt, and conflict model.
 
+## Consolidation amendment · 2026-07-26
+
+The selected Hybrid now lives in the unified application. Its canonical
+production entry is `https://app.signalstudio.ie/app/notes`. The standalone
+Notes repository, old deployment, old alias, and historical PRs below remain
+selection and migration provenance only; they are not current release
+authorities.
+
+Future Notes work lands in the unified application and must preserve the
+selected capture, reading, privacy, recovery, exact extraction, idempotency,
+and conflict contracts. Current deployment claims come from
+`docs/shipped-state.md`, not from the pre-consolidation pending-release text in
+this record.
+
 Phase 2 now ports this composition onto the real Notes data, auth, persistence,
 search, recovery, exact extraction, and durable outbox machinery. The
 implementation is code-complete and pushed at Notes commit

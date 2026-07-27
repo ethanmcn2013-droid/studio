@@ -7,7 +7,17 @@
 - Approval source: [Founder authorization receipt](../../content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md)
 - Approval task: [Approve the Signal Experience Standard](../../content/hq/operator-todos/approve-signal-experience-standard.md)
 
-The Signal Experience Standard is the suite-wide quality contract for four customer products (Tasks, Timeline, Signal, and Notes), the Studio company and brand surface, and the private founder-operator tools in Signal HQ and Signal Review. Signal HQ is the internal control plane. Signal Review is its manual-review instrument. Neither is a customer-facing product. The standard governs complete experiences: a route or triggered surface, for a defined role, in a defined state, at a defined breakpoint. A component, screenshot, test, or aggregate score cannot be called Studio grade on its own.
+The Signal Experience Standard is the suite-wide quality contract for four customer products (Notes, Tasks, Timeline, and Signal) inside one application, the Studio company and brand surface, and the private founder-operator tools in Signal HQ and Signal Review. Signal HQ is the internal control plane. Signal Review is its manual-review instrument. Neither is a customer-facing product. The standard governs complete experiences: a route or triggered surface, for a defined role, in a defined state, at a defined breakpoint. A component, screenshot, test, or aggregate score cannot be called Studio grade on its own.
+
+## 2026-07-26 product-release overlay
+
+The four authenticated products are currently subject to the stricter
+[Signal Studio 9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
+For that programme, every required state-by-breakpoint cell must score at least
+`50/52`, with no dimension below `3`. Scores may not be averaged across cells
+or products. The general `3.5` mean below remains the baseline standard for
+other governed surfaces; it is not sufficient to promote Notes, Tasks,
+Timeline, or Signal through the current product-quality release.
 
 ## Authority
 
@@ -26,7 +36,7 @@ Generated reports are snapshots, not authority. If a report and a newer capture 
 1. **Inventory before claims.** Every route, state surface, overlay, shared link, report, email, and extension surface must have a stable registry entry before it can pass.
 2. **Evidence before scores.** Every audit names the experience, state, breakpoint, reviewer, date, and rendered evidence. Empty evidence invalidates the audit.
 3. **Checks do not manufacture taste.** Deterministic checks establish facts. They cannot award purpose, hierarchy, composition, voice, or craft scores without rendered specialist or human review.
-4. **The weakest dimension matters.** Studio grade requires all 13 dimensions at 3 or above and an average of at least 3.5. A high average cannot hide a broken category.
+4. **The weakest dimension matters.** General Studio grade requires all 13 dimensions at 3 or above and an average of at least 3.5. The active four-product release additionally requires at least 50/52 in each required state-by-breakpoint cell. A high average cannot hide a broken category or cell.
 5. **Hard blockers override arithmetic.** A release blocker, invalid registry, unsafe capture, or unapproved visual regression fails the gate regardless of score.
 6. **Quality only ratchets upward.** Approved baselines and known-debt lists may move forward or shrink. New high-risk debt needs an explicit, expiring exception; it is never silently absorbed.
 7. **Approval is not self-awarded.** Automated evidence, specialist review, and agents may recommend approval. Only the named human approver may approve the standard, the golden set, or a new visual baseline.
@@ -48,7 +58,7 @@ Every registry entry has one machine-readable `experienceClass`. The class ident
 
 | Experience class | Canonical scope | Audience rule |
 |---|---|---|
-| `customer-product` | Tasks, Timeline, Signal, and Notes | Customer and collaborator experiences |
+| `customer-product` | Notes, Tasks, Timeline, and Signal in the unified app | Customer and collaborator experiences |
 | `company-public` | Studio routes outside `/hq*` | Public company, brand, pricing, proof, legal, and access information |
 | `founder-operator` | Every Studio `/hq*` route, HQ surface, and Signal Review surface | Private founder/operator work and manual review only |
 
@@ -80,7 +90,7 @@ The complete gate is in [Studio-grade Definition of Done](./STUDIO_GRADE_DEFINIT
 
 ## Ownership model
 
-Signal Studio HQ is the private founder-operator control plane and centrally owns the vocabulary, schemas, taxonomy, golden set, reporting contract, and suite-level standard. The four customer-product repositories own their fixtures, deterministic checks, remediation, and evidence freshness. Studio owns equivalent evidence for its company-public surface. Signal Review is HQ's manual-review instrument: it can contribute review records and findings, but it is not a customer product and cannot approve its own work. See [ADR: Central quality, federated enforcement](./ADR-CENTRAL-QUALITY-FEDERATED-ENFORCEMENT.md).
+Signal Studio HQ is the private founder-operator control plane and centrally owns the vocabulary, schemas, taxonomy, golden set, reporting contract, and suite-level standard. The unified application codebase owns module fixtures, deterministic checks, remediation, and evidence freshness for Notes, Tasks, Timeline, and Signal. Studio owns equivalent evidence for its company-public surface. Signal Review is HQ's manual-review instrument: it can contribute review records and findings, but it is not a customer product and cannot approve its own work. Historical standalone-product evidence remains provenance only until it is refreshed against the canonical unified route. See [ADR: Central quality, federated enforcement](./ADR-CENTRAL-QUALITY-FEDERATED-ENFORCEMENT.md).
 
 ## No-regression rule
 

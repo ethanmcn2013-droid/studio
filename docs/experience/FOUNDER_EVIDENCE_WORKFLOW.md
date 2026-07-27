@@ -17,6 +17,14 @@ Pass a JSON file with `schemaVersion: "signal-founder-evidence-config/1"`. It mu
 
 There are no default scores. Missing dimensions, extra breakpoints, scores outside integer `0..4`, any category below `3`, or an overall score below `3.5` fail closed. Audit evidence is content-addressed as `...png#sha256=<64 hex characters>` and is also bound to the exact review ID; changing baseline bytes invalidates the proof.
 
+For Notes, Tasks, Timeline, and Signal in the active 9.5 programme, the
+supplied matrix must also total at least `50/52` in every required
+state-by-breakpoint cell. Cells and products are not averaged. The current
+founder-evidence command does not yet enforce that overlay, so its success is
+necessary but insufficient until executable enforcement lands; the signed
+council ledger remains required. See
+`docs/experience/SUITE_95_PRODUCT_RELEASE_GATE.md`.
+
 ## Run order
 
 1. Prepare schema-valid review records for the exact passing candidates:

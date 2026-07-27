@@ -1,5 +1,9 @@
 # Templates Session Handoff — 2026-05-12
 
+> Historical implementation record. Since 25 July 2026 the canonical Tasks
+> entry is `app.signalstudio.ie/app/tasks`; `/app/board` is a compatibility
+> input only.
+
 Session-end report for the templates strategy work. Read alongside `TEMPLATES_STRATEGY.md` (the locked plan) and `CHANGELOG.md` (what shipped per repo).
 
 ## Where we are
@@ -9,7 +13,7 @@ Session-end report for the templates strategy work. Read alongside `TEMPLATES_ST
 Live demo flow:
 
 1. `tasks.signalstudio.ie/templates/wedding-planning-workspace` → click **Remix in a new workspace**
-2. Tasks mints a fresh workspace, writes `templateId="wedding-planning-workspace"` and 18 seeded tasks, flips the active-workspace cookie, redirects to `/app/board?remixed=wedding-planning-workspace`
+2. Tasks mints a fresh workspace, writes `templateId="wedding-planning-workspace"` and 18 seeded tasks, flips the active-workspace cookie, redirects to `/app/tasks?remixed=wedding-planning-workspace`
 3. Toast appears: title `Wedding planning workspace applied`, body `Fresh workspace seeded with 18 tasks. Yours to edit.`, with a brand-arrow link **Create a Timeline for this →** opening in a new tab
 4. Link target: `roadmap.signalstudio.ie/onboarding/from-template/wedding-planning-workspace`
 5. Timeline form: eyebrow `From template · Wedding planning workspace`, headline `Start from the wedding planning workspace.`, copy `1 project, 8 starter items. Edit them once the workspace is live.`, pre-filled name field, slug auto-derives

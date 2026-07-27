@@ -15,9 +15,9 @@ Signal Studio is the umbrella. Four products live under it.
 | Product | Position | Marketing | App module | Status |
 |---|---|---|---|---|
 | Signal Notes | Capture clarity | `signalstudio.ie/notes` | `app.signalstudio.ie/app/notes` | Live in the unified app |
-| Signal Tasks | Execution clarity | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/board` | Live in the unified app |
-| Signal Timeline | Direction clarity | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/plan` | Live in the unified app |
-| Signal | Attention clarity | `signalstudio.ie/signal` | `app.signalstudio.ie/app/brief` | Live in the unified app |
+| Signal Tasks | Execution clarity | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/tasks` | Live in the unified app |
+| Signal Timeline | Direction clarity | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/timeline` | Live in the unified app |
+| Signal | Attention clarity | `signalstudio.ie/signal` | `app.signalstudio.ie/app/signal` | Live in the unified app |
 
 **Marketing origin:** signalstudio.ie · **App origin:** app.signalstudio.ie ·
 **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
@@ -168,7 +168,10 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 - Production marketing: `signalstudio.ie/notes`, `/tasks`, `/timeline`, and
   `/signal`.
 - Production app: one origin, `app.signalstudio.ie`, with the module entries
-  `/app/notes`, `/app/board`, `/app/plan`, and `/app/brief`.
+  `/app/notes`, `/app/tasks`, `/app/timeline`, and `/app/signal`.
+- Retired functional paths such as `/app/board`, `/app/plan`, and
+  `/app/brief` are compatibility inputs only. They redirect to the
+  product-named entries and must not appear in new navigation or copy.
 - Legacy product subdomains are compatibility or public-service origins, not
   canonical marketing homes or separate apps. See
   `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md`.

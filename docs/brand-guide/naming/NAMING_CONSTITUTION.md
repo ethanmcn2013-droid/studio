@@ -50,17 +50,18 @@ Marketing paths use product IDs:
 - `signalstudio.ie/timeline`
 - `signalstudio.ie/signal`
 
-Signed-in routes keep their established functional nouns:
+Signed-in routes use the same product IDs:
 
 - Notes: `app.signalstudio.ie/app/notes`
-- Tasks: `app.signalstudio.ie/app/board`
-- Timeline: `app.signalstudio.ie/app/plan`
-- Signal: `app.signalstudio.ie/app/brief`
+- Tasks: `app.signalstudio.ie/app/tasks`
+- Timeline: `app.signalstudio.ie/app/timeline`
+- Signal: `app.signalstudio.ie/app/signal`
 
-The app paths are intentionally not renamed to mirror the product IDs.
-`/app/timeline` already names a Tasks view, and `/app/board`, `/app/plan`, and
-`/app/brief` are established deep-link contracts. The product rail supplies
-the product names; the route supplies the primary surface within that product.
+The product name is the stable top-level route. Views inside Tasks sit below
+`/app/tasks`, for example `/app/tasks/list`, `/app/tasks/timeline`, and
+`/app/tasks/calendar`. Retired functional nouns such as `/app/board`,
+`/app/plan`, and `/app/brief` are compatibility inputs only. They redirect to
+the product-named entries and must not be used in new links.
 
 Legacy hosts such as `notes.signalstudio.ie` are compatibility entry points,
 not canonical marketing names and not separate products or apps.

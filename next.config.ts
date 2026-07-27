@@ -110,7 +110,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "timeline.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/plan",
+        destination: "https://app.signalstudio.ie/app/timeline",
         permanent: true,
       },
       {
@@ -125,7 +125,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "signal.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/brief",
+        destination: "https://app.signalstudio.ie/app/signal",
         permanent: true,
       },
       {
@@ -139,7 +139,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "roadmap.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/plan",
+        destination: "https://app.signalstudio.ie/app/timeline",
         permanent: true,
       },
       {
@@ -152,7 +152,7 @@ const nextConfig: NextConfig = {
       {
         source: "/app/:path*",
         has: [{ type: "host", value: "analytics.signalstudio.ie" }],
-        destination: "https://app.signalstudio.ie/app/brief",
+        destination: "https://app.signalstudio.ie/app/signal",
         permanent: true,
       },
       {

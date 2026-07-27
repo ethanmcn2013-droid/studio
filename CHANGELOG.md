@@ -7,13 +7,13 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back Â· look-ahead Â· mark Â· week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
-## 2026-07-26 · S·140 · reads · Account Phase B instrumentation plan
+## 2026-07-26 · S·141 · reads · Account Phase B instrumentation plan
 
 **Sponsored-use instrumentation is sequenced for the next dedicated cycle.** The
 plan locks event allowlist, attribution, daily projection, Account Usage
 mapping, tests, and an explicit stop before any public Account route.
 
-## 2026-07-26 · S·139 · ships · Account HQ live Venue access preview
+## 2026-07-26 · S·140 · ships · Account HQ live Venue access preview
 
 **Account review can now project live Venue access from Signal HQ Access while
 keeping usage honest and unavailable.** Operators pick a real venue, see masked
@@ -21,7 +21,7 @@ codes and exact allotment totals, persist request-more-access rows, and download
 live CSV/HTML under HQ auth. Sponsor production auth and behavioural telemetry
 remain closed.
 
-## 2026-07-26 · S·138 · ships · Account Brief becomes the full Venue Edition review
+## 2026-07-26 · S·139 · ships · Account Brief becomes the full Venue Edition review
 
 **Account Brief is the selected Signal Studio Account system.** Overview, Access,
 Usage, Reports, and Account now share one typed snapshot, role-aware fixture
@@ -29,7 +29,7 @@ controls, and deterministic sample PDF/CSV downloads from an authenticated HQ
 route. Education and Organisation proofs validate shared vocabulary without
 parallel products. The production sponsor gate stays closed.
 
-## 2026-07-26 · S·137 · ships · Signal Studio Account opens for concept selection
+## 2026-07-26 · S·138 · ships · Signal Studio Account opens for concept selection
 
 **The customer-facing account model is now Signal Studio Account, with three
 selectable Overview concepts on one typed Venue fixture.** Account Brief,
@@ -38,6 +38,27 @@ unavailable snapshots. The authenticated review lives at `/hq/account-review`;
 `/hq/venue-portal-review` redirects. Venue Portal Phase A docs remain historical
 evidence. Founder selection is required before the full Venue Edition system
 is built. No sponsor auth, live telemetry, or entitlement mutation ships here.
+
+## 2026-07-26 · S·137 · ships · a day in the work becomes the product proof
+
+**Notes, Tasks, Timeline, and Signal now explain themselves through three
+recognisable moments in a real day, with a useful product interaction beside
+the story.** The selected A day in the work direction replaces the generic
+three-card marketing template. Each product keeps its own proof-first hero
+gesture: a waiting caret, a resolved commitment, a travelling milestone line,
+or a briefing reading.
+
+Timeline marketing renders the signed Mara and Finn artifact itself. It keeps
+the progress and countdown lens, date-scaled line, Today marker, milestone
+selection, planning decisions, keyboard path, mobile transformation, and
+reduced-motion state. The public page security boundary remains frame-deny, so
+marketing carries an explicit parity component and deterministic public
+fixture instead of weakening the artifact host.
+
+The shared mobile footer now compacts its four navigation groups into a
+two-by-two block, trims the mobile-only gaps and tap-row height, and keeps the
+canonical five-column desktop geometry. Product naming and app routes remain
+Notes, Tasks, Timeline, and Signal on one app.
 
 ## 2026-07-26 · S·136 · tightens · venue proof becomes a complete review journey
 

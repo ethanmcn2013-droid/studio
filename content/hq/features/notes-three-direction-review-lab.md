@@ -105,7 +105,9 @@ code.
 - After any outbox row exists, rollback is forward-only: turn the flag off and
   redeploy compatibility code that understands the migrated schema and outbox.
   Do not restore the pre-Hybrid deployment.
-- Current live alias: `notes.signalstudio.ie`.
+- Current canonical app entry after consolidation:
+  `app.signalstudio.ie/app/notes`. The former `notes.signalstudio.ie` alias and
+  standalone repository are historical release provenance only.
 - Production migration, deployment, and verification receipts: pending
   authenticated Turso access.
 
