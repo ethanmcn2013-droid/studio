@@ -1,7 +1,13 @@
 # Venue Portal Phase A
 
-Status: founder-approved on 25 July 2026. Phase B instrumentation may begin.
-No sponsor-facing production route exists.
+Status: historical Phase A contract. Founder-approved on 25 July 2026.
+
+The current customer-facing model is **Signal Studio Account**. See
+[`docs/account/`](../account/README.md). The authenticated review route is now
+`/hq/account-review`; `/hq/venue-portal-review` redirects there.
+
+Phase B instrumentation may begin under the Account contract. No
+sponsor-facing production route exists.
 
 Signal Studio has two venue-facing responsibilities. They stay separate:
 

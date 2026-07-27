@@ -1,0 +1,261 @@
+.root {
+  display: grid;
+  gap: 18px;
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 560;
+}
+
+.decision h1 {
+  margin: 0;
+  font-size: clamp(34px, 7vw, 48px);
+  font-weight: 560;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+.decision h1 span {
+  display: block;
+  color: var(--ink-soft);
+  font-weight: 480;
+}
+
+.verdictLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: baseline;
+  margin-top: 16px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 12px;
+}
+
+.verdictLine strong {
+  font-size: 13px;
+}
+
+.verdictLine span {
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.nextCard {
+  border: 1px solid var(--ink);
+  padding: 22px 20px;
+  background: var(--paper);
+}
+
+.nextCard h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.035em;
+}
+
+.nextCard p {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.nextActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.primary,
+.ghost,
+.progress button {
+  min-height: 44px;
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 0 14px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+
+.ghost {
+  color: var(--ink-soft);
+}
+
+.progress {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.progress::-webkit-scrollbar {
+  display: none;
+}
+
+.progress button {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  color: var(--ink-faint);
+}
+
+.progress button[data-active="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.panel {
+  border: 1px solid var(--hairline);
+  background: var(--paper-soft);
+  padding: 18px;
+}
+
+.panel ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid var(--hairline);
+  padding: 12px 0;
+}
+
+.panel li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.panel li span {
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.panel strong {
+  display: block;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+}
+
+.panel small {
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.support {
+  margin: 12px 0 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.reachGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.reachMetric {
+  border: 1px solid var(--hairline);
+  background: white;
+  padding: 14px;
+}
+
+.reachMetric strong {
+  display: block;
+  font-size: 26px;
+  letter-spacing: -0.045em;
+}
+
+.reachMetric span,
+.reachMetric small {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+}
+
+.panel p {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.panel ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.lock {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+@media (max-width: 520px) {
+  .reachGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .root {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nextCard {
+    animation: guidedIn 480ms ease both;
+  }
+
+  .panel {
+    animation: guidedIn 360ms ease both;
+  }
+}
+
+@keyframes guidedIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

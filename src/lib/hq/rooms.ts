@@ -138,15 +138,32 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["sales kit", "demo script", "pricing"],
   },
   {
-    slug: "venue-portal-review",
-    route: "/hq/venue-portal-review",
-    name: "Venue Portal review",
+    slug: "account-review",
+    route: "/hq/account-review",
+    name: "Account review",
     group: "sell",
     kind: "artifact",
     lifecycle: "active",
     summary:
-      "The privacy-bounded client account experience, with deterministic complete, partial, and suppressed states.",
-    aliases: ["venue account", "venue usage", "sponsor portal"],
+      "Signal Studio Account concept review with deterministic complete, partial, suppressed, and unavailable fixtures.",
+    aliases: [
+      "venue portal",
+      "venue account",
+      "venue usage",
+      "sponsor portal",
+      "signal studio account",
+    ],
+  },
+  {
+    slug: "venue-portal-review",
+    route: "/hq/venue-portal-review",
+    name: "Account review (legacy redirect)",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "archived",
+    summary:
+      "Legacy Venue Portal review URL. Redirects to /hq/account-review.",
+    aliases: ["venue portal review"],
   },
   {
     slug: "marketing",

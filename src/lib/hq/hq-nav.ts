@@ -58,7 +58,7 @@ export const HQ_NAV: HqNavGroup[] = [
     label: "Systems",
     items: [
       { href: "/hq/entitlements", icon: "access", label: "Access", hint: "Grants, codes, venues, audit" },
-      { href: "/hq/venue-portal-review", icon: "quality", label: "Venue portal", hint: "Privacy-bounded client account review" },
+      { href: "/hq/account-review", icon: "quality", label: "Account review", hint: "Signal Studio Account concepts and privacy-bounded fixtures", owns: ["/hq/venue-portal-review"] },
       { href: "/hq/experience-quality", icon: "quality", label: "Quality", hint: "The experience quality gate" },
       { href: "/hq/platform-readiness", icon: "readiness", label: "Readiness", hint: "Remediation program + P0 gates" },
       { href: "/hq/health", icon: "health", label: "Health", hint: "Scheduled-job health" },
@@ -117,7 +117,8 @@ const PAGE_TITLES: Record<string, string> = {
   "/hq/data-room": "Data Room",
   "/hq/deck": "Pitch deck",
   "/hq/entitlements": "Access",
-  "/hq/venue-portal-review": "Venue portal",
+  "/hq/account-review": "Account review",
+  "/hq/venue-portal-review": "Account review",
   "/hq/experience-quality": "Quality",
   "/hq/platform-readiness": "Readiness",
   "/hq/health": "Health",
@@ -125,37 +126,52 @@ const PAGE_TITLES: Record<string, string> = {
 
 export type HqCrumb = { group: string; page: string; href: string };
 
-/** Resolve a pathname to its rail group + page label for breadcrumbs / active state. */
-export function resolveHqLocation(pathname: string): HqCrumb {
+/** Longest-prefix match so `/hq` does not steal every nested HQ route. */
+function matchHqNavItem(pathname: string) {
+  let best:
+    | {
+        group: string;
+        item: HqNavItem;
+        routeLen: number;
+      }
+    | null = null;
+
   for (const group of HQ_NAV) {
     for (const item of group.items) {
-      const owned = [item.href, ...(item.owns ?? [])];
-      const isMatch =
-        pathname === item.href ||
-        owned.some((o) => pathname === o || pathname.startsWith(o + "/"));
-      if (isMatch) {
-        // Sub-page: show the leaf title if we have one, else the item label.
-        const leaf =
-          pathname === item.href
-            ? item.label
-            : PAGE_TITLES[pathname] ?? deriveLeaf(pathname);
-        return { group: group.label, page: leaf, href: item.href };
+      const routes = [item.href, ...(item.owns ?? [])];
+      for (const route of routes) {
+        const matched =
+          pathname === route || pathname.startsWith(`${route}/`);
+        if (!matched) continue;
+        if (!best || route.length > best.routeLen) {
+          best = { group: group.label, item, routeLen: route.length };
+        }
       }
     }
   }
-  return { group: "Signal HQ", page: PAGE_TITLES[pathname] ?? deriveLeaf(pathname), href: "/hq" };
+  return best;
+}
+
+/** Resolve a pathname to its rail group + page label for breadcrumbs / active state. */
+export function resolveHqLocation(pathname: string): HqCrumb {
+  const match = matchHqNavItem(pathname);
+  if (!match) {
+    return {
+      group: "Signal HQ",
+      page: PAGE_TITLES[pathname] ?? deriveLeaf(pathname),
+      href: "/hq",
+    };
+  }
+  const leaf =
+    pathname === match.item.href
+      ? match.item.label
+      : PAGE_TITLES[pathname] ?? deriveLeaf(pathname);
+  return { group: match.group, page: leaf, href: match.item.href };
 }
 
 /** The rail item whose href/owns contains the path (for active highlighting). */
 export function activeHref(pathname: string): string | null {
-  for (const group of HQ_NAV) {
-    for (const item of group.items) {
-      const owned = [item.href, ...(item.owns ?? [])];
-      if (pathname === item.href) return item.href;
-      if (owned.some((o) => pathname === o || pathname.startsWith(o + "/"))) return item.href;
-    }
-  }
-  return null;
+  return matchHqNavItem(pathname)?.item.href ?? null;
 }
 
 function deriveLeaf(pathname: string): string {

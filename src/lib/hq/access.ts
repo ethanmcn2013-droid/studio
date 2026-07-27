@@ -9,6 +9,7 @@ import {
   licenseCodes,
   redemptions,
   sponsors,
+  sponsorRequests,
   type EntitlementTier,
 } from "@/lib/entitlements-db/schema";
 import { TIER_RANK } from "@/lib/entitlements-db/tiers";
@@ -74,6 +75,7 @@ export type TodayWorklist = {
   venuesNearAllotment: Array<{ slug: string; name: string; remaining: number; allotment: number }>;
   inGraceExpiringSoon: number;
   driftSponsors: number;
+  openAccountRequests: number;
 };
 
 export async function getAccessToday(): Promise<TodayWorklist> {
@@ -109,6 +111,17 @@ export async function getAccessToday(): Promise<TodayWorklist> {
           lte(entitlements.expiresAt, now + 3 * DAY),
         ),
       );
+
+    let openAccountRequestCount = 0;
+    try {
+      const openAccountRequests = await db
+        .select({ id: sponsorRequests.id })
+        .from(sponsorRequests)
+        .where(eq(sponsorRequests.state, "open"));
+      openAccountRequestCount = openAccountRequests.length;
+    } catch {
+      // Table lands via migrate-account-requests.mjs; Today stays up without it.
+    }
 
     const venues = await db
       .select({
@@ -146,6 +159,7 @@ export async function getAccessToday(): Promise<TodayWorklist> {
       inGraceExpiringSoon: inGrace.length,
       venuesNearAllotment: near,
       driftSponsors: drift,
+      openAccountRequests: openAccountRequestCount,
     };
   });
 
@@ -158,6 +172,7 @@ export async function getAccessToday(): Promise<TodayWorklist> {
       venuesNearAllotment: [],
       inGraceExpiringSoon: 0,
       driftSponsors: 0,
+      openAccountRequests: 0,
     };
   }
   return { reachable: true, ...r.data };
