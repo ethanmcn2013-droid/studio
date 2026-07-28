@@ -1,0 +1,433 @@
+/* Hero-only deviations from the shipped board CSS (`board-a.module.css`).
+   Everything else the hero board renders is the product's own stylesheet.
+   Keep this file small: each rule here is a place the hero and the app differ,
+   and every one should be justifiable as "because this is a hero". */
+
+/* ── column colour ───────────────────────────────────────────────────
+   Operator direction 2026-07-27: blocked red, in progress blue,
+   reviewing yellow, done green, and a backlog column stays uncoloured.
+   Tones come from the design system's status ramp, never from raw hex, so
+   the board cannot drift away from the rest of the suite. The colour is
+   carried at the lane and spent in exactly two places: the status pip and a
+   2px rule along the top of the lane header. Tinting whole columns would
+   fight the cards, which are the thing that should be read. */
+
+.lane[data-lane-tone="todo"]   { --lane-tone: var(--status-blocked); }
+.lane[data-lane-tone="doing"]  { --lane-tone: var(--accent); }
+.lane[data-lane-tone="review"] { --lane-tone: var(--status-flight); }
+.lane[data-lane-tone="done"]   { --lane-tone: var(--status-done); }
+/* A backlog lane inherits no tone and keeps the app's outlined pip. */
+
+.laneHeader {
+  position: relative;
+  /* The header takes the tone at 6%: enough to read as a coloured column at a
+     glance, light enough that the 10px lane name stays full-contrast ink. */
+  background: color-mix(in srgb, var(--lane-tone, transparent) 6%, var(--x-task-surface));
+}
+
+.laneHeader::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--lane-tone, transparent);
+}
+
+/* The column wash. A flat tint down a whole lane competes with the cards,
+   which are the thing to read, and it stacks badly behind a white card. A
+   gradient that starts at 5% under the header and is gone by 220px gives the
+   column a colour identity where the eye lands first, then releases the
+   surface so the cards sit on near-paper. Painted on ::after under the cards,
+   never on the lane background itself, so the done lane's own tint survives. */
+.lane {
+  position: relative;
+}
+
+.lane::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 220px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--lane-tone, transparent) 5%, transparent),
+    transparent
+  );
+}
+
+/* Specificity note: the product styles an un-statused pip via
+   `.statusPip:not([data-status])`, which outranks a bare `.pip`. Scoping to
+   `.lane[data-lane-tone]` wins cleanly without touching the vendored file, and a
+   lane carrying no tone still falls through to the product's outlined pip. */
+.lane[data-lane-tone] .pip {
+  background: var(--lane-tone, transparent);
+  border: 0;
+}
+
+/* ── lane geometry ───────────────────────────────────────────────────
+   The app scrolls the board horizontally and each lane vertically. A hero
+   must not scroll: the whole board is the picture, so lanes share the width
+   and size to their content. */
+
+.scroll {
+  overflow: visible;
+  /* The app nests this inside .boardSurface, which supplies the height. The
+     hero mounts it directly on the demo surface, so it claims that height
+     itself; without this the lanes collapse to their headers and the floating
+     cards spill out the bottom. */
+  height: 100%;
+}
+
+/* GALLERY EDIT 2026-07-27 — lanes were painted --x-task-canvas (the deep paper step),
+   which put a grey field behind white cards. In the app that grey is doing a
+   job: the board scrolls, and the canvas tells you where the scrollable region
+   is. A hero board never scrolls, so the grey was buying nothing and costing a
+   lot: it greyed out the whole picture, muted the column wash sitting on top
+   of it, and made the white cards read as patches rather than as the surface.
+   Lanes are paper now. Structure comes from the dividing rules, the coloured
+   header and the cards' own borders, which is how the columns read in the
+   product's own screenshots. */
+.lane {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--x-task-raised);
+}
+
+/* Done keeps a whisper of recession, but from paper rather than from grey. */
+.lane[data-done] {
+  background: color-mix(in srgb, var(--x-task-raised) 94%, var(--x-task-surface));
+}
+
+.lane:last-child {
+  border-right: 0;
+}
+
+/* The chrome paints the lane frames; the card layer floats above so cards can
+   morph between board, list and timeline. The body is the space cards land
+   in, sized to clear the 38px header and match `.laneList` padding. */
+.laneBody {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.laneCount {
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+}
+
+/* ── card layer ──────────────────────────────────────────────────────
+   Mirrors `.laneList` (7px padding, 6px gap) and clears the sticky header. */
+
+.cardColumn {
+  --hero-lane-header: 38px;
+  position: relative; /* anchors the celebration burst's [data-lane-header] */
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 6px;
+  /* Bottom padding clears the lane's sticky "Add task" row (33px) so a full
+     column never sits on top of it. */
+  padding: calc(var(--hero-lane-header) + 7px) 7px 40px;
+  min-width: 0;
+}
+
+.card {
+  list-style: none;
+}
+
+/* Card height. The product floors its title at 30px so single-line and
+   two-line cards align in a scrolling lane. A hero shows a fixed set of cards
+   that never scroll, so that floor only buys dead space: the title sizes to
+   its own lines and the rows close up. Roughly 14px off every card, which is
+   the difference between the board reading tight and reading padded. */
+.card > span[class*="boardTitle"] {
+  min-height: 0;
+  margin: 3px 0 5px;
+}
+
+.card > div[class*="cardSchedule"] {
+  margin-top: 6px;
+}
+
+.card > footer {
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.cardGlyph {
+  display: inline-flex;
+  align-items: center;
+  color: var(--x-task-text-muted);
+  opacity: 0.5;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* ── list view ───────────────────────────────────────────────────────
+   Reproduces the shipped table's geometry with grid, because each row is a
+   card morphing in from the board and cannot be a <tr>. Numbers below are
+   taken from `.taskTable` in board-a.module.css: 34px head at 8px uppercase,
+   32px group rows, 36px task rows at 9px, hairline column rules. */
+
+.listHead {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  display: grid;
+  align-items: center;
+  height: 34px;
+  background: var(--x-task-surface);
+  border-bottom: 1px solid var(--x-task-border-strong);
+}
+
+.listHead > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+  padding: 0 8px;
+  border-right: 1px solid var(--x-task-border);
+  color: var(--x-task-text-muted);
+  font-size: 8px;
+  font-weight: 610;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.listHead > span:last-child { border-right: 0; }
+.listHead svg { opacity: 0.5; flex: none; }
+
+.listBody {
+  height: 100%;
+  background: var(--x-task-raised);
+}
+
+/* Group rows carry the same colour system as the board columns, in the shape a
+   horizontal band allows. On the board the tone lands on a 2px rule along the
+   leading edge of the header, a 6% wash behind it, and the status pip. Here
+   the leading edge is the left side rather than the top, so the rule runs
+   vertically; the wash and the pip are identical. Same three signals, same
+   tones, same restraint, so a lane means one colour wherever you meet it. */
+.listGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 32px;
+  padding: 0 8px 0 11px;
+  background: color-mix(in srgb, var(--lane-tone, transparent) 6%, var(--x-task-canvas));
+  border-bottom: 1px solid var(--x-task-border);
+}
+
+.listGroup::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--lane-tone, transparent);
+}
+
+.listGroup[data-lane-tone="todo"]   { --lane-tone: var(--status-blocked); }
+.listGroup[data-lane-tone="doing"]  { --lane-tone: var(--accent); }
+.listGroup[data-lane-tone="review"] { --lane-tone: var(--status-flight); }
+.listGroup[data-lane-tone="done"]   { --lane-tone: var(--status-done); }
+
+.listGroup strong {
+  font-size: 9px;
+  font-weight: 660;
+  color: var(--x-task-text);
+}
+
+.listGroup span {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  color: var(--x-task-text-muted);
+}
+
+.listGroup em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 8px;
+  font-weight: 540;
+  color: var(--x-task-text-secondary);
+}
+
+.listRow {
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--x-task-border);
+  border-radius: 0;
+  font-size: 9px;
+}
+
+/* The cells are wrapped in a `display: contents` cross-fade element, so they
+   are grandchildren of the row even though they are grid items of it. Both
+   levels are targeted: the wrapper generates no box, so the rules only ever
+   take effect on the cells themselves. */
+.listRow > *,
+.listRow > * > * {
+  height: 36px;
+  padding: 0 8px;
+  border-right: 1px solid color-mix(in srgb, var(--x-task-border) 62%, transparent);
+  overflow: hidden;
+}
+
+.listRow > *:last-child,
+.listRow > * > *:last-child { border-right: 0; }
+
+.listTitleCell {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.listTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 9px;
+  font-weight: 620;
+  color: var(--x-task-text);
+}
+
+.listCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--x-task-text-secondary);
+  white-space: nowrap;
+}
+
+.listCell svg { opacity: 0.45; flex: none; }
+
+.listMuted { color: var(--x-task-text-muted); }
+
+.listDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* ── collaboration states ────────────────────────────────────────────
+   The scripted sequence needs states the app expresses through real
+   interaction. Each one borrows a product colour rather than inventing one. */
+
+/* Held by a collaborator: the card borrows that person's cursor colour, so
+   the board never needs a legend to explain who is holding what. */
+.card[data-held] {
+  border-color: var(--held-color);
+  box-shadow: 0 0 0 1px var(--held-color);
+}
+
+.card[data-linked] {
+  border-color: var(--x-task-accent);
+}
+
+.card[data-flash] {
+  border-color: var(--x-task-success);
+  box-shadow: 0 0 0 1px var(--x-task-success);
+}
+
+.heldBadge {
+  position: absolute;
+  top: -7px;
+  right: -4px;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.18);
+  z-index: 3;
+}
+
+/* ── inline thread (hero-only) ───────────────────────────────────────
+   The app opens threads in a side panel, which a hero has no room for. */
+
+.thread {
+  overflow: hidden;
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid var(--x-task-border);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.threadRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.threadRow p {
+  margin: 2px 0 0;
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--x-task-text-secondary);
+}
+
+.threadAvatar {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--x-task-raised);
+  background: color-mix(in srgb, var(--avatar-color) 14%, var(--x-task-raised));
+  color: var(--x-task-text);
+  font-size: 6.5px;
+  font-weight: 750;
+}
+
+.threadWho {
+  font-size: 9px;
+  font-weight: 660;
+  color: var(--x-task-text);
+}
+
+.threadWhen {
+  margin-left: 5px;
+  font-size: 9px;
+  color: var(--x-task-text-muted);
+}
+
+.typing {
+  display: inline-flex;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.typing i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--x-task-text-muted);
+  animation: hero-typing 1.05s ease-in-out infinite;
+}
+
+.typing i:nth-child(2) { animation-delay: 160ms; }
+.typing i:nth-child(3) { animation-delay: 320ms; }
+
+@keyframes hero-typing {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing i { animation: none; opacity: 0.6; }
+}
