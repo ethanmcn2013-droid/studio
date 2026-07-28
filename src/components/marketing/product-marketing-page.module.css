@@ -1,162 +1,18 @@
+/* The product page shell.
+ *
+ * 2026-07-28 — reduced to the page frame. The hero, gesture, day-in-work and
+ * boundary rules went with the sections they styled, and the five keyframes
+ * (caret, resolved, line, point, tick) went with the CSS gesture that was
+ * their only caller. Each hero now ships its own scoped styles and its own
+ * motion. */
+
 .page {
   flex: 1;
   background: var(--paper);
 }
 
-.boundary > p {
-  margin: 0;
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 560;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.boundary a {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: var(--ink);
-  padding: 0 19px;
-  color: var(--paper);
-  font-size: 14px;
-  font-weight: 560;
-  text-decoration: none;
-  transition: opacity var(--motion-fast) var(--ease-out);
-}
-
-.boundary a:hover {
-  opacity: 0.84;
-}
-
-.boundary {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.38fr) minmax(0, 1.62fr);
-  gap: clamp(36px, 7vw, 110px);
-  width: min(1440px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: clamp(76px, 10vw, 150px) 0;
-  border-block-start: 1px solid var(--hairline);
-}
-
-.boundary h2 {
-  max-width: 1050px;
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(2rem, 4.2vw, 4.5rem);
-  font-weight: 540;
-  letter-spacing: -0.055em;
-  line-height: 1.08;
-}
-
-.boundary a {
-  margin-top: 34px;
-}
-
-@keyframes caret {
-  0%,
-  48% {
-    opacity: 1;
-  }
-
-  49%,
-  100% {
-    opacity: 0;
-  }
-
-}
-
-@keyframes resolved {
-  0%,
-  18%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
-  }
-
-  26% {
-    box-shadow: 0 0 0 9px rgba(79, 70, 229, 0.12);
-  }
-
-  36% {
-    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
-  }
-
-}
-
-@keyframes line {
-  0%,
-  12% {
-    transform: scaleX(0);
-  }
-
-  50%,
-  88% {
-    transform: scaleX(1);
-  }
-
-  96%,
-  100% {
-    opacity: 0;
-    transform: scaleX(1);
-  }
-
-}
-
-@keyframes point {
-  0%,
-  16% {
-    opacity: 0;
-    translate: -50% 8px;
-  }
-
-  34%,
-  88% {
-    opacity: 1;
-    translate: -50% 0;
-  }
-
-  96%,
-  100% {
-    opacity: 0;
-  }
-
-}
-
-@keyframes tick {
-  0%,
-  100% {
-    scale: 1 0.48;
-  }
-
-  25% {
-    scale: 1 1;
-  }
-
-  50% {
-    scale: 1 0.72;
-  }
-
-  75% {
-    scale: 1 1.12;
-  }
-
-}
-
-@media (max-width: 720px) {
-  .boundary {
-    width: calc(100% - 32px);
-  }
-
-  .boundary {
-    grid-template-columns: 1fr;
-    padding: 72px 0;
-  }
-
-}
-
+/* The heroes gate their own motion; this stays as the page-level backstop for
+   anything rendered inside the shell. */
 @media (prefers-reduced-motion: reduce) {
   .page *,
   .page *::before,
@@ -165,5 +21,4 @@
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
-
 }

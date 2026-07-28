@@ -7,6 +7,30 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·145 · cuts · a product page is its hero
+
+**The four product pages now end where the hero ends.** The day-in-the-work
+tab strip and the what-stays-true boundary band are gone from Notes, Tasks,
+Timeline and Signal. What is left is the pill row, the hero, and the footer.
+
+Both sections were built to carry the proof when the hero could not. A static
+CSS gesture cannot show a board moving or a plan drawing itself, so the page
+argued underneath it instead: three tabbed moments, then a closing line. The
+hero is now the product actually running, and a tabbed retelling beneath it
+repeated the same argument in a weaker form.
+
+The words are kept even though the sections are not. Copy for both stays in
+`product-marketing.ts` rather than being deleted, so nothing has to be
+rewritten if a section is wanted back. Seven component files went with the
+tab strip, and the page's own stylesheet fell to a page frame and a
+reduced-motion backstop.
+
+The contract test was rewritten rather than trimmed. Its previous revision
+asserted the gesture was present and kept passing after the gesture was
+deleted, because the string survived in a comment explaining the deletion. It
+now asserts against JSX tags and import specifiers, so prose cannot satisfy
+it, and it fails if either retired section returns.
+
 ## 2026-07-28 · S·144 · ships · the four product pages open on the product
 
 **Notes, Tasks, Timeline and Signal now lead with the thing itself instead of a
