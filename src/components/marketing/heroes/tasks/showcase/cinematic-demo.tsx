@@ -74,8 +74,10 @@ function heroSeed(domain: DomainId) {
 }
 export function CinematicDemo({
   domain = "wedding",
+  staticFrame = false,
 }: {
   domain?: DomainId;
+  staticFrame?: boolean;
 } = {}) {
   const pack = DOMAINS[domain];
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -283,7 +285,7 @@ export function CinematicDemo({
     // frame (all 4 lanes visible, tasks in place), no frozen mid-animation,
     // no timing loops. The scene runner only starts for users who have not
     // opted out of motion.
-    if (!mounted || prefersReducedMotion) return;
+    if (!mounted || prefersReducedMotion || staticFrame) return;
     aliveRef.current = true;
     pausedRef.current = paused;
 
@@ -661,6 +663,7 @@ export function CinematicDemo({
     mounted,
     pack.demoCommentText,
     prefersReducedMotion,
+    staticFrame,
     paused,
     moveCursor,
     moveCursorToCard,
@@ -847,7 +850,9 @@ export function CinematicDemo({
         {/* Status bar */}
         <div className="flex items-center justify-between border-t border-line-soft bg-white px-4 py-1.5 text-[10.5px] text-ink-quiet">
           <span className="flex items-center gap-1.5">
-            <span className="block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+            <span
+              className={`block h-1.5 w-1.5 rounded-full bg-brand${staticFrame ? "" : " animate-pulse"}`}
+            />
             Demo
           </span>
           <span aria-hidden data-debug-scene={state.scene} />

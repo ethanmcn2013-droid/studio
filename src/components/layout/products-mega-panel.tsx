@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 const INDIGO = "#4f46e5";
@@ -12,7 +12,7 @@ const PRODUCTS = [
   { slug: "notes"    as ProductSlug, name: "notes",    tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: PRODUCT_MARKETING_URLS.notes },
   { slug: "tasks"    as ProductSlug, name: "tasks",    tagline: "Execution clarity", description: "Track what matters without the noise.",    url: PRODUCT_MARKETING_URLS.tasks },
   { slug: "timeline" as ProductSlug, name: "timeline", tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: PRODUCT_MARKETING_URLS.timeline },
-  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what's working, simply.",          url: PRODUCT_MARKETING_URLS.signal },
+  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what needs attention, with receipts.", url: PRODUCT_MARKETING_URLS.signal },
 ] as const;
 
 /* ── Embedded stylesheet ──────────────────────────────────────────
@@ -83,7 +83,12 @@ const PANEL_CSS = `
   background: rgba(79,70,229,0.05);
   border-color: rgba(79,70,229,0.18);
 }
-.mpanel-card:hover .mpanel-cta { opacity: 1; }
+.mpanel-card:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+  background: rgba(79,70,229,0.05);
+  border-color: rgba(79,70,229,0.24);
+}
 
 /* Visual stage */
 .mpanel-stage {
@@ -117,7 +122,7 @@ const PANEL_CSS = `
 /* Description */
 .mpanel-desc {
   font-size: 11px;
-  color: #d4d4d8;
+  color: var(--zinc-600);
   line-height: 1.55;
   margin-bottom: 12px;
 }
@@ -130,16 +135,14 @@ const PANEL_CSS = `
   font-size: 11px;
   font-weight: 500;
   color: #4f46e5;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 160ms ease-out;
 }
 
 /* ── Gesture animations ──────────────────────────────────────── */
 
 /* notes · caret blink */
-.mnotes-cursor {
-  animation: mnotes-caret 1.1s steps(1,end) infinite;
-}
+.mnotes-cursor { opacity: 1; }
 @keyframes mnotes-caret {
   0%,49% { opacity: 1; }
   50%,100% { opacity: 0; }
@@ -147,9 +150,9 @@ const PANEL_CSS = `
 
 /* tasks · pulse, staggered across 3 dots */
 .mtasks-dot { transform-box: fill-box; transform-origin: center; }
-.mtasks-dot-1 { animation: mtasks-pulse 2.6s ease-in-out infinite 0s; }
-.mtasks-dot-2 { animation: mtasks-pulse 2.6s ease-in-out infinite 0.4s; }
-.mtasks-dot-3 { animation: mtasks-pulse 2.6s ease-in-out infinite 0.8s; }
+.mtasks-dot-1,
+.mtasks-dot-2,
+.mtasks-dot-3 { transform: scale(1); }
 @keyframes mtasks-pulse {
   0%,30%,100% { transform: scale(1); }
   10%         { transform: scale(1.28); }
@@ -162,7 +165,7 @@ const PANEL_CSS = `
 .mroadmap-dot {
   transform-box: fill-box;
   transform-origin: center;
-  animation: mroadmap-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+  transform: translateX(36px);
 }
 @keyframes mroadmap-sweep {
   0%   { transform: translateX(0);    opacity: 1; }
@@ -175,10 +178,10 @@ const PANEL_CSS = `
 
 /* analytics · tick */
 .manalytics-bar { transform-box: fill-box; transform-origin: bottom; }
-.manalytics-bar-1 { animation: mbar1 3.6s steps(1,end) infinite 0s; }
-.manalytics-bar-2 { animation: mbar2 3.6s steps(1,end) infinite 0.9s; }
-.manalytics-bar-3 { animation: mbar3 3.6s steps(1,end) infinite 1.8s; }
-.manalytics-bar-4 { animation: mbar4 3.6s steps(1,end) infinite 0.45s; }
+.manalytics-bar-1 { transform: scaleY(0.72); }
+.manalytics-bar-2 { transform: scaleY(0.46); }
+.manalytics-bar-3 { transform: scaleY(0.88); }
+.manalytics-bar-4 { transform: scaleY(0.62); }
 @keyframes mbar1 {
   0%  { transform: scaleY(0.55); } 25% { transform: scaleY(0.85); }
   50% { transform: scaleY(0.35); } 75% { transform: scaleY(1.00); }
@@ -294,19 +297,24 @@ const VISUAL_MAP: Record<ProductSlug, () => React.ReactElement> = {
 interface Props {
   open: boolean;
   onClose: () => void;
+  triggerRef: RefObject<HTMLButtonElement | null>;
 }
 
-export function ProductsMegaPanel({ open, onClose }: Props) {
-  const panelRef = useRef<HTMLDivElement>(null);
+export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
+  const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        window.requestAnimationFrame(() => triggerRef.current?.focus());
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [open, onClose, triggerRef]);
 
   if (!open) return null;
 
@@ -315,12 +323,10 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
       {/* Embedded stylesheet, self-contained, no build-cache dependency */}
       <style dangerouslySetInnerHTML={{ __html: PANEL_CSS }} />
 
-      <div
+      <nav
         ref={panelRef}
         id="products-mega-panel"
-        role="dialog"
         aria-label="Signal Studio products"
-        aria-modal="false"
         className="mpanel"
       >
         <div className="mpanel-inner">
@@ -350,7 +356,7 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
 
                   <div className="mpanel-desc">{product.description}</div>
 
-                  <div className="mpanel-cta" aria-hidden>
+                  <div className="mpanel-cta">
                     Open
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" strokeWidth="2.4"
@@ -372,7 +378,7 @@ export function ProductsMegaPanel({ open, onClose }: Props) {
             </svg>
           </a>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

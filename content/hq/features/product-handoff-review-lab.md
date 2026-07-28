@@ -13,8 +13,9 @@ principleAlignment: 98
 
 ## Review status
 
-Phase 1 is code-complete. Production remains unchanged and the four product
-heroes are source-locked. The next gate is Ethan's explicit selection of
+Phase 1 is code-complete. The production Product Handoff remains unchanged and
+the four product heroes are source-locked to the coordinated homepage-relay
+baseline in commit `5edc460`. The next gate is Ethan's explicit selection of
 Living Artifact, Provenance Rail, Editorial Cause, or a precisely described
 hybrid.
 

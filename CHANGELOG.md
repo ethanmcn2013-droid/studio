@@ -7,13 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
-## 2026-07-28 · S·149 · ships · the Handoff enters the review room
+## 2026-07-28 · S·150 · ships · the Handoff enters the review room
 
 **The section below the four product heroes now has a permanent name and a
 protected place to decide what it becomes.** Product Handoff is the single
 transition; Product Walk is the connected Notes → Tasks → Timeline → Signal
-sequence. The live pages and their heroes are unchanged while three
-deterministic directions sit side by side for review.
+sequence. The production Handoff remains unchanged while three deterministic
+directions sit side by side for review. The coordinated homepage-relay hero
+changes are recorded separately below.
 
 Living Artifact lets one piece of work change product grammar without losing
 its wording, date, owner, or receipt. Provenance Rail draws the adjacent route.
@@ -27,6 +28,26 @@ four motion recordings, a clean three-browser accessibility matrix, and a 4×
 CPU trace with no long task, dropped-frame run, layout shift, or animated
 layout. The previous Handoff remains the production implementation until Ethan
 selects a direction.
+
+## 2026-07-28 · S·149 · ships · one line proves the whole studio
+
+**The homepage now follows one wedding detail through the real suite instead
+of explaining four products in four abstract rows.** A private Notes line is
+approved into Tasks, the task becomes a public Timeline milestone when it is
+confirmed, and Signal returns the remaining risk with its receipts. The four
+current product interfaces carry the proof; the page copy only explains the
+handoff around them.
+
+The top of the page now opens directly on the canonical headline, with `80%`
+in indigo. The separate oversized wordmark prelude and preview-status dot are
+gone, so the proposition owns the first frame. Two quiet actions replace the
+typewriter and “Read on” prompt. The weddings path now follows the suite proof,
+while public conversion stays waitlist-first.
+
+The navigation was tightened in the same pass. Products is a disclosure in DOM
+focus order, Escape returns to its trigger, descriptions meet contrast, calls
+to action remain visible without hover, and the mobile menu target is 44px.
+Automatic loops in the homepage proof and Products panel are gone.
 
 ## 2026-07-28 · S·148 · ships · the Schedule view stops being the exception
 

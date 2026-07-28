@@ -16,7 +16,11 @@ import { DOMAINS, type DomainId } from "@/components/marketing/heroes/tasks/lib/
  *   eyebrow removed. It said "Signal Tasks" directly under a pill nav that
  *           already says Tasks; the page introduced itself twice.
  */
-export function TasksTheBoard() {
+export function TasksTheBoard({
+  embedded = false,
+}: {
+  embedded?: boolean;
+} = {}) {
   // One workspace, fixed. Wedding matches the GTM wedge (Founding Venue
   // Programme) and is the highest-empathy opener for a first-time visitor.
   // The other three packs stay in `domains.ts` for later use.
@@ -24,8 +28,11 @@ export function TasksTheBoard() {
   const pack = DOMAINS[domain];
 
   return (
-    <section className="relative isolate overflow-hidden pt-2 md:pt-6">
-      <div className="mx-auto w-full max-w-[1080px] px-[clamp(20px,_5vw,_72px)]">
+    <section
+      className={`relative isolate overflow-hidden${embedded ? " tasks-embedded" : " pt-2 md:pt-6"}`}
+      aria-label={embedded ? "Signal Tasks wedding workspace" : undefined}
+    >
+      {!embedded ? <div className="mx-auto w-full max-w-[1080px] px-[clamp(20px,_5vw,_72px)]">
         <h1 className="mt-5 max-w-[14ch] text-balance text-[clamp(2.5rem,_1.2rem_+_3.9vw,_4.4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-ink">
           Work that moves
         </h1>
@@ -38,17 +45,26 @@ export function TasksTheBoard() {
           <span className="block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
           Demo is live
         </p>
-      </div>
+      </div> : null}
 
       {/* The board keeps its wider canvas: copy on the grid, artifact
           allowed to exceed it. Below md, `.demo-fit` scales the whole
           proven canvas down to fit the phone instead of crushing four
           lanes into slivers — the 80% are phone-first and this is the
           most-seen product surface. */}
-      <div className="mx-auto mt-6 w-full max-w-[1240px] px-5 md:mt-8 md:px-6">
+      <div
+        className={
+          embedded
+            ? "mx-auto w-full max-w-[1240px]"
+            : "mx-auto mt-6 w-full max-w-[1240px] px-5 md:mt-8 md:px-6"
+        }
+      >
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={domain}
+            role={embedded ? "region" : undefined}
+            aria-label={embedded ? "Scrollable Signal Tasks board" : undefined}
+            tabIndex={embedded ? 0 : undefined}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
@@ -56,7 +72,7 @@ export function TasksTheBoard() {
             className="demo-fit mx-auto"
           >
             <div className="demo-fit-inner">
-              <CinematicDemo domain={pack.id} />
+              <CinematicDemo domain={pack.id} staticFrame={embedded} />
             </div>
           </motion.div>
         </AnimatePresence>
@@ -81,6 +97,17 @@ export function TasksTheBoard() {
             width: 1180px;
             transform-origin: top left;
             transform: scale(min(1, (100vw - 2.5rem) / 1180px));
+          }
+          .tasks-embedded .demo-fit {
+            height: 590px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            overscroll-behavior-inline: contain;
+            scrollbar-width: thin;
+          }
+          .tasks-embedded .demo-fit > .demo-fit-inner {
+            width: 1180px;
+            transform: none;
           }
         }
       `}</style>

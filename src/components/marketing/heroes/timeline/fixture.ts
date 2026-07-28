@@ -104,3 +104,16 @@ export const TIMELINE_HERO_FIXTURE: AudienceTimelineDto = {
     },
   ],
 };
+
+export const HOMEPAGE_RELAY_TIMELINE_FIXTURE: AudienceTimelineDto = {
+  ...TIMELINE_HERO_FIXTURE,
+  publicationId: "homepage-relay-wedding",
+  sections: TIMELINE_HERO_FIXTURE.sections.map((section) => ({
+    ...section,
+    items: section.items.map((item) =>
+      item.publicId === "m3"
+        ? { ...item, title: "Side room held after six" }
+        : item,
+    ),
+  })),
+};

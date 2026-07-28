@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TimelineArtifact } from "@/components/marketing/heroes/timeline/artifact/timeline-artifact";
 import { TIMELINE_HERO_FIXTURE } from "./fixture";
+import type { AudienceTimelineDto } from "./audience-timeline";
 
 /**
  * Timeline hero, rebuilt 2026-07-27.
@@ -23,25 +24,37 @@ import { TIMELINE_HERO_FIXTURE } from "./fixture";
 /** A beat to let the frame paint before the rail starts drawing. */
 const OPEN_DELAY_MS = 120;
 
-export function TimelineTheLine() {
-  const [opened, setOpened] = useState(false);
+export function TimelineTheLine({
+  embedded = false,
+  timeline = TIMELINE_HERO_FIXTURE,
+}: {
+  embedded?: boolean;
+  timeline?: AudienceTimelineDto;
+} = {}) {
+  const [opened, setOpened] = useState(embedded);
 
   useEffect(() => {
+    if (embedded) {
+      return;
+    }
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced) {
-      setOpened(true);
-      return;
-    }
-    const timer = window.setTimeout(() => setOpened(true), OPEN_DELAY_MS);
+    const timer = window.setTimeout(
+      () => setOpened(true),
+      prefersReduced ? 0 : OPEN_DELAY_MS,
+    );
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [embedded]);
 
   return (
-    <section className="tlh" data-opened={opened ? "true" : undefined}>
+    <section
+      className={`tlh${embedded ? " tlh-embedded" : ""}`}
+      data-opened={opened ? "true" : undefined}
+      aria-label={embedded ? "Signal Timeline public wedding plan" : undefined}
+    >
       <div className="tlh-frame">
-        <div className="tlh-folio">
+        {!embedded ? <div className="tlh-folio">
           {/* POLISH 2026-07-28 — the page h1. It was the artifact's label,
               which put a demo couple's name as the page's largest and only
               top-level heading. The real heading is quiet and lives in the
@@ -61,7 +74,7 @@ export function TimelineTheLine() {
             </svg>
             timeline.signalstudio.ie/mara-and-finn
           </span>
-        </div>
+        </div> : null}
 
         {/* The artifact is mounted from the first frame so it reserves its
             space and the layout never jumps. But its entrance choreography
@@ -73,13 +86,17 @@ export function TimelineTheLine() {
         <div className="tlh-artifact">
           <TimelineArtifact
             key={opened ? "run" : "idle"}
-            timeline={TIMELINE_HERO_FIXTURE}
+            timeline={timeline}
+            embedded={embedded}
+            compact={embedded}
           />
         </div>
 
-        <p className="tlh-foot">
-          Anyone with the link sees this. No account, no login, nothing hidden.
-        </p>
+        {!embedded ? (
+          <p className="tlh-foot">
+            Anyone with the link sees this. No account, no login, nothing hidden.
+          </p>
+        ) : null}
       </div>
 
       <style>{CSS}</style>
@@ -105,6 +122,30 @@ const CSS = `
   background: var(--paper);
   font-family: var(--font-sans, var(--font-geist-sans));
   isolation: isolate;
+}
+
+.tlh.tlh-embedded {
+  min-height: auto;
+  display: block;
+  padding: 0;
+}
+
+.tlh-embedded .tlh-frame {
+  max-width: none;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.tlh.tlh-embedded[data-opened="true"] .tlh-frame {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.tlh-embedded button,
+.tlh-embedded a {
+  min-height: 32px;
 }
 
 /* ── frame ───────────────────────────────────────────────────────────── */

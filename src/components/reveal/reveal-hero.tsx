@@ -1,155 +1,45 @@
-/**
- * Reveal hero, indigo accent hairline + masked word-by-word headline +
- * typewriter subhead + four-product wordmark stack with the §4 brand
- * gestures.
- *
- * Mostly pure markup. The headline + stack choreography is owned by
- * RevealEngine which targets the class names in this file from a
- * client component. The subhead is a small client component
- * (TypewriterSub) which types itself in and keeps its caret blinking.
- */
-
-import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
-import { TypewriterSub } from "./typewriter-sub";
+import Link from "next/link";
 
 export function RevealHero() {
   return (
     <section
-      className="reveal-hero"
-      aria-label="Signal Studio, Project management for the 80% not in tech"
+      className="reveal-hero reveal-hero-v2"
+      aria-labelledby="home-title"
     >
-      <div className="reveal-gold-rule" aria-hidden />
+      <div className="reveal-hero-v2-inner">
+        <h1 id="home-title" className="reveal-headline-v2">
+          Project management for the{" "}
+          <span className="reveal-headline-accent">80%</span> not in tech.
+        </h1>
 
-      {/* Access note. Names the current staged state without inventing a
-          date-driven launch. A quiet band of light crosses the pill's
-          face every few seconds (globals.css .reveal-launch-note), clipped by
-          the pill; reduced motion sees the plain pill. */}
-      <p
-        className="reveal-launch-note"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          margin: "0 0 22px",
-          padding: "5px 13px",
-          border: "1px solid var(--border)",
-          borderRadius: 999,
-          background: "var(--paper-soft)",
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "var(--ink-quiet)",
-        }}
-      >
-        <span
-          aria-hidden
-          style={{
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            background: "var(--accent)",
-          }}
-        />
-        Private preview · staged access
-      </p>
+        <p className="reveal-lede-v2">
+          Notes, tasks, timelines, and the signal that matters. One calm
+          system for people with work to manage, not software to manage.
+        </p>
 
-      <h1
-        className="reveal-headline"
-        aria-label="Project management for the 80% not in tech."
-      >
-        <span className="line line-1">
-          <span className="word">
-            <span className="word-inner">Project</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">management</span>
-          </span>
-        </span>
-        <span className="line line-2">
-          <span className="word">
-            <span className="word-inner">for</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">the</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">80%</span>
-          </span>
-        </span>
-        <span className="line line-3">
-          <span className="word">
-            <span className="word-inner em">not</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">in</span>
-          </span>{" "}
-          <span className="word">
-            <span className="word-inner">tech.</span>
-          </span>
-        </span>
-      </h1>
+        <div className="reveal-hero-actions">
+          <a className="reveal-action reveal-action-primary" href="#system">
+            See the system at work
+            <span aria-hidden>↓</span>
+          </a>
+          <Link
+            className="reveal-action reveal-action-secondary"
+            href="/waitlist?source=home_hero&campaign=pre_access_waitlist&artifact=hero_cta&touch=site"
+          >
+            Join the waitlist
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
 
-      {/*
-        Walkover #7 (2026-06-07): subhead in the operator register —
-        names the parts, names the audience, refuses the "workflow" word.
-      */}
-      <TypewriterSub
-        text="Notes, tasks, timelines, and the signal that matters, for people who have work to manage, not software to manage."
-        startDelayMs={700}
-        speed={28}
-      />
-
-      {/* Stack order follows the operator-directed product order
-          (Notes → Tasks → Timeline → Signal, 2026-05-18) so the
-          first product impression matches the grid + meta + pricing.
-          Every row uses the canonical product marketing destination. */}
-      <nav className="reveal-stack" aria-label="Signal Studio products">
-        <a
-          className="stack-row"
-          data-key="notes"
-          href={PRODUCT_MARKETING_URLS.notes}
-        >
-          <span className="mark">
-            <span className="word">notes</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a
-          className="stack-row"
-          data-key="tasks"
-          href={PRODUCT_MARKETING_URLS.tasks}
-        >
-          <span className="mark">
-            <span className="word">tasks</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a
-          className="stack-row"
-          data-key="timeline"
-          href={PRODUCT_MARKETING_URLS.timeline}
-        >
-          <span className="mark">
-            <span className="word">timeline</span>
-            <span className="dot" />
-          </span>
-        </a>
-        <a
-          className="stack-row"
-          data-key="signal"
-          href={PRODUCT_MARKETING_URLS.signal}
-        >
-          <span className="mark">
-            <span className="word">signal</span>
-            <span className="dot" />
-          </span>
-        </a>
-      </nav>
-
-      <div className="reveal-scroll-cue" aria-hidden>
-        Read on
-        <span className="arrow">↓</span>
+        <p className="reveal-sequence" aria-label="Notes to Tasks to Timeline to Signal">
+          <span>Notes</span>
+          <span aria-hidden>→</span>
+          <span>Tasks</span>
+          <span aria-hidden>→</span>
+          <span>Timeline</span>
+          <span aria-hidden>→</span>
+          <span>Signal</span>
+        </p>
       </div>
     </section>
   );
