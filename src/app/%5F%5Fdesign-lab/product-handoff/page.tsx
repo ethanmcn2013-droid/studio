@@ -48,6 +48,14 @@ function boundedProgress(value: string | undefined): number | null {
   return Math.min(1, Math.max(0, parsed));
 }
 
+function hostname(value: string | null): string {
+  return (value ?? "")
+    .split(",")[0]
+    .trim()
+    .split(":")[0]
+    .toLowerCase();
+}
+
 export default async function ProductHandoffLabPage({
   searchParams,
 }: {
@@ -55,11 +63,15 @@ export default async function ProductHandoffLabPage({
 }) {
   const mode = getAccessMode();
   const requestHeaders = await headers();
-  const host = (requestHeaders.get("host") ?? "").split(":")[0].toLowerCase();
+  const host = hostname(
+    requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host"),
+  );
   const isCanonicalProductionHost =
     host === "signalstudio.ie" || host === "www.signalstudio.ie";
+  const isProductionDeployment = process.env.VERCEL_ENV === "production";
 
   if (
+    isProductionDeployment ||
     isCanonicalProductionHost ||
     (mode !== "development" && mode !== "review")
   ) {

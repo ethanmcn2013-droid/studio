@@ -61,6 +61,9 @@ product grammar while its source, date, owner, and provenance remain legible.
   34ms, no long task, no layout shift, and no animated layout.
 - TypeScript, the full 306-test suite, design-system drift, the Handoff
   contract, the optimized build, and scoped lint all pass.
+- The production smoke gate verified that canonical and forwarded canonical
+  hosts return 404. Vercel production now fails closed independently of access
+  mode, while protected preview review access remains available.
 - Full-project lint remains blocked by five pre-existing violations in four
   locked or unrelated files; none is in the review lab.
 
