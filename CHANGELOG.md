@@ -11,15 +11,16 @@ entries before 2026-05-22; the vocabulary starts at the next pass.
 
 **The Product Handoff lab now fails closed for every Vercel production
 deployment, including requests forwarded from the canonical domain.** The
-first live release check found that Vercel preserves its deployment hostname
-in `Host` and carries `signalstudio.ie` separately in `X-Forwarded-Host`.
-The route now reads the forwarded public host, rejects canonical requests, and
-also rejects any deployment whose Vercel environment is production.
+live smoke confirmed the canonical request returns HTTP 404; because Next.js
+retains route metadata on its not-found screen, the gate now records the
+network status as well as the rendered state.
 
-The regression check covers both direct and forwarded canonical hosts. A local
-production build with review mode deliberately enabled still returns 404 for
-the lab while the homepage returns 200. Preview review access remains
-unchanged.
+The same pass tightened the route defensively: it reads the forwarded public
+host before the deployment host and rejects every Vercel production
+environment independently of review mode. Regression coverage holds direct
+and forwarded canonical hosts. A local production build with review mode
+deliberately enabled returns 404 for the lab while the homepage returns 200.
+Protected preview review access remains unchanged.
 
 ## 2026-07-28 · S·150 · ships · the Handoff enters the review room
 
