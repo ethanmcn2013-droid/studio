@@ -97,7 +97,14 @@ function visibleRouteSegments(relativeDirectory) {
     .split(path.sep)
     .filter(Boolean)
     .filter((segment) => !(segment.startsWith("(") && segment.endsWith(")")))
-    .filter((segment) => !segment.startsWith("@"));
+    .filter((segment) => !segment.startsWith("@"))
+    .map((segment) => {
+      try {
+        return decodeURIComponent(segment);
+      } catch {
+        return segment;
+      }
+    });
 }
 
 export function normalizeRoute(appRoot, sourceFile) {
