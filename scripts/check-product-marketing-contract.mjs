@@ -22,12 +22,32 @@ const resolve = (path) => new URL(path, import.meta.url);
 
 const page = read("../src/components/marketing/product-marketing-page.tsx");
 const hero = read("../src/components/marketing/heroes/product-hero.tsx");
+const handoff = read(
+  "../src/components/marketing/handoff/product-handoff.tsx",
+);
 const footer = read("../src/components/landing/site-footer.tsx");
 
-// ── The page is the hero ───────────────────────────────────────────────────
+// ── The page is hero, handoff, close ───────────────────────────────────────
 assert.match(page, /<ProductHero\s+product=\{product\}\s*\/>/);
 assert.match(page, /<ProductPills\s+current=\{product\}\s*\/>/);
+assert.match(page, /<ProductHandoff\s+product=\{product\}\s*\/>/);
 assert.match(page, /<SiteFooter\s*\/>/);
+
+// The close: the product's refusal, then the one action the site asks for.
+assert.match(page, /\{definition\.boundary\}/);
+assert.match(page, /href="\/waitlist"/);
+assert.match(page, />Join the waitlist</);
+
+// ── The handoff walks the suite and exits at the waitlist ──────────────────
+// notes → tasks → timeline → signal → waitlist. The ring is the section's
+// whole argument, so the contract pins every link in it.
+assert.match(handoff, /nextHref: "\/tasks"/);
+assert.match(handoff, /nextHref: "\/timeline"/);
+assert.match(handoff, /nextHref: "\/signal"/);
+assert.match(handoff, /nextHref: "\/waitlist"/);
+// Plays once on visibility; settles instantly under reduced motion.
+assert.match(handoff, /IntersectionObserver/);
+assert.match(handoff, /prefers-reduced-motion/);
 
 // ── The retired sections stay retired ──────────────────────────────────────
 assert.doesNotMatch(page, /<DayInWorkExperience/);
@@ -64,5 +84,5 @@ assert.match(footer, /grid-cols-2/);
 assert.match(footer, /lg:grid-cols-\[1\.35fr_repeat\(4,1fr\)\]/);
 
 console.log(
-  "[product-marketing-contract] ok (hero-only product pages, four heroes wired, compact mobile footer)",
+  "[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)",
 );

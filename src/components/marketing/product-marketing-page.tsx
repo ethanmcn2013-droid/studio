@@ -1,32 +1,44 @@
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ProductPills } from "@/components/layout/product-pills";
+import { ProductHandoff } from "@/components/marketing/handoff/product-handoff";
 import { ProductHero } from "@/components/marketing/heroes/product-hero";
+import { PRODUCT_MARKETING } from "@/lib/product-marketing";
 import { type ProductId } from "@/lib/product-urls";
 import styles from "./product-marketing-page.module.css";
 
 /**
- * A product page is its hero.
+ * A product page is its hero, its handoff, and its close.
  *
- * 2026-07-28 — the "day in the work" tab strip and the "what stays true"
- * boundary band are both removed. They were built to carry the proof when the
- * hero was a static CSS gesture that could not carry anything. Now each hero
- * is the product actually running, so a tabbed retelling underneath repeated
- * the argument in a weaker form, and the boundary line closed a page the hero
- * had already made its point on.
+ * 2026-07-28 — the shape settled in two steps. First the day-in-the-work tab
+ * strip and the boundary band were cut, because the hero is the product
+ * actually running and a tabbed retelling repeated its argument in a weaker
+ * form. Then the two jobs the hero genuinely cannot do came back as one
+ * section each:
  *
- * What is left is the pill row, the hero, and the footer.
- *
- * Copy for the retired sections stays in `src/lib/product-marketing.ts`
- * rather than being deleted, so nothing has to be rewritten if a section is
- * ever wanted back. The components that rendered them are gone; the words
- * are not.
+ *   handoff  the suite story. Each page shows the single moment its product
+ *            passes work to the next, and links onward, so the four pages
+ *            can be walked the way work moves: notes → tasks → timeline →
+ *            signal → the waitlist.
+ *   close    the conversion. One boundary sentence (the product's refusal,
+ *            from `product-marketing.ts`) and one action. The old boundary
+ *            band's copy, at a fraction of its height.
  */
 export function ProductMarketingPage({ product }: { product: ProductId }) {
+  const definition = PRODUCT_MARKETING[product];
+
   return (
     <>
       <main id="main" tabIndex={-1} className={styles.page}>
         <ProductPills current={product} />
         <ProductHero product={product} />
+        <ProductHandoff product={product} />
+
+        <section aria-label="Join the waitlist" className={styles.close}>
+          <div className={styles.closeInner}>
+            <p>{definition.boundary}</p>
+            <a href="/waitlist">Join the waitlist</a>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </>
