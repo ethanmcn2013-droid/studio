@@ -25,6 +25,10 @@ product grammar while its source, date, owner, and provenance remain legible.
 ## Review surface
 
 - Route: `/__design-lab/product-handoff`
+- Protected preview:
+  `https://studio-v4wxn0txe-ethanmcn2013-1730s-projects.vercel.app/__design-lab/product-handoff?option=a&product=walk&progress=0.5&motion=auto&viewport=desktop`
+- Vercel inspector:
+  `https://vercel.com/ethanmcn2013-1730s-projects/studio/2EkyfgpEKJEfvYY21rYmSPvujs4U`
 - Query contract: `option=a|b|c`, `product=notes|tasks|timeline|signal|walk`,
   `progress=0..1`, `motion=auto|reduce`, and
   `viewport=auto|mobile|tablet|desktop`
@@ -68,4 +72,4 @@ connect the chosen scene progress to scroll with Motion's reduced-motion path.
 The 9.5 release score applies to the selected system; the alternative studies
 remain review evidence, not production dependencies.
 
-Saved: 2026-07-28 · Phase 1 code complete; founder selection pending.
+Saved: 2026-07-28 · Protected preview READY; founder selection pending.
