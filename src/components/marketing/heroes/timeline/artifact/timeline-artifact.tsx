@@ -715,7 +715,10 @@ export function TimelineArtifact({
             transition={{ duration: reduceMotion ? 0 : 0.22, ease: METRIC_EASE }}
           >
             <p className={styles.heroKicker}>{artifactKicker(timeline)}</p>
-            <h1>{timeline.label}</h1>
+            {/* POLISH 2026-07-28 — h2, not h1. On the marketing page the artifact
+              is embedded under a real page heading; a shared plan's label is
+              the document's title, not the page's. Size unchanged. */}
+            <h2>{timeline.label}</h2>
             <p className={styles.purpose}>{artifactPurpose(timeline)}</p>
           </motion.div>
           <TimeLens timeline={timeline} model={model} />

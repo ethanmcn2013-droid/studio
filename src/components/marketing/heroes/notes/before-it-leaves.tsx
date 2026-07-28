@@ -150,8 +150,10 @@ export function NotesBeforeItLeaves() {
           <p>
             The note stays private. Only the line you approve becomes work.
           </p>
-          <a className="bil-cta" href="/app">
-            Start a notebook
+          {/* POLISH 2026-07-28 — pointed at /app, which does not exist on this
+              domain and 404ed. The one conversion is the waitlist. */}
+          <a className="bil-cta" href="/waitlist">
+            Join the waitlist
           </a>
         </footer>
       </div>
@@ -190,7 +192,10 @@ const CSS = `
   font-family: var(--bil-sans);
 }
 .bil * { box-sizing: border-box; }
-.bil-frame { width: min(1080px, 100%); margin-inline: auto; }
+/* POLISH 2026-07-28 — 936px, not 1080: the bands below are a 1080px box
+   with 72px side padding, so their CONTENT edge is at 936. Matching it
+   puts the hero and every band on one left edge. */
+.bil-frame { width: min(936px, 100%); margin-inline: auto; }
 
 .bil-head { max-width: 720px; }
 .bil-kicker {
@@ -204,9 +209,11 @@ const CSS = `
 .bil-title {
   margin: 0;
   max-width: 15ch;
-  font-size: clamp(2.35rem, 1.55rem + 3.6vw, 4.8rem);
-  font-weight: 630;
-  letter-spacing: -0.05em;
+  /* POLISH 2026-07-28 — the shared headline register: one clamp, 600,
+     -0.04em across all four product pages. */
+  font-size: clamp(2.5rem, 1.2rem + 3.9vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
   line-height: 0.98;
   text-wrap: balance;
 }

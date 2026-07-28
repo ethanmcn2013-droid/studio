@@ -7,6 +7,28 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·147 · tightens · one grid, one voice, and two defects out
+
+**The four product pages now share one left edge and one headline register,
+and the design review that found this also found two live defects, both now
+fixed.** The Notes hero's only button pointed at a route that does not exist
+on this domain; it now joins the waitlist. The Tasks board lost its
+phone-scaling rules in the port and was rendering four 84px slivers; the
+whole proven board now scales down as one piece, the way it always did in
+its home repo.
+
+The grid work is the quiet majority of the change. Signal was the only page
+whose hero sat on the same left edge as the bands below it; Notes started
+72px off, Tasks 128px. Every page now opens on the 936px content line the
+handoff and close already use, and Timeline's folio and foot anchor to it
+too, so its full-bleed artifact reads as a chosen exception between two
+held lines rather than a page without a grid.
+
+One register replaces four: the marketing headlines land on the same clamp,
+the same weight, the same tracking. Timeline finally has a real page
+heading, one line in the folio, and the demo couple's name it used to lead
+with is a document title again. The redundant Tasks eyebrow is gone.
+
 ## 2026-07-28 · S·146 · ships · the four pages become a walk
 
 **Below each hero, one section now shows the moment that product hands work

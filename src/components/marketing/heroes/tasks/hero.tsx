@@ -4,6 +4,18 @@ import { motion, AnimatePresence } from "motion/react";
 import { CinematicDemo } from "./showcase/cinematic-demo";
 import { DOMAINS, type DomainId } from "@/components/marketing/heroes/tasks/lib/domains";
 
+/**
+ * POLISH 2026-07-28 — three changes from the design review.
+ *
+ *   grid    the copy column now sits on the site's 1080px grid (the same
+ *           left edge the handoff and close use), while the board keeps its
+ *           wider 1240px canvas. Copy on the grid, artifact allowed to
+ *           exceed it: the same relationship the Timeline page uses.
+ *   voice   the headline joins the shared register (one clamp, 600,
+ *           -0.04em) instead of running 20% larger than every other page.
+ *   eyebrow removed. It said "Signal Tasks" directly under a pill nav that
+ *           already says Tasks; the page introduced itself twice.
+ */
 export function TasksTheBoard() {
   // One workspace, fixed. Wedding matches the GTM wedge (Founding Venue
   // Programme) and is the highest-empathy opener for a first-time visitor.
@@ -13,18 +25,8 @@ export function TasksTheBoard() {
 
   return (
     <section className="relative isolate overflow-hidden pt-2 md:pt-6">
-      <div className="mx-auto w-full max-w-[1240px] px-5 md:px-6">
-        <Eyebrow />
-        {/* GALLERY EDIT 2026-07-27 — copy cut to the Notes shape.
-            Was: "Execution clarity for live work." over a four-clause
-            sentence carrying views, real-time, dates and "no vocabulary tax".
-            Four promises in one breath is a specification, not a headline,
-            and the last clause is itself jargon about avoiding jargon.
-            Notes works because it names one job in plain words and lets the
-            hero prove it. This does the same: the board underneath is already
-            showing people moving work, so the headline only has to point at
-            it. */}
-        <h1 className="mt-5 max-w-[14ch] text-balance text-[clamp(2.6rem,1.8rem+4.6vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-ink">
+      <div className="mx-auto w-full max-w-[1080px] px-[clamp(20px,_5vw,_72px)]">
+        <h1 className="mt-5 max-w-[14ch] text-balance text-[clamp(2.5rem,_1.2rem_+_3.9vw,_4.4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-ink">
           Work that moves
         </h1>
         <p className="mt-6 max-w-[46ch] text-[17px] leading-[1.55] text-ink-soft">
@@ -36,48 +38,52 @@ export function TasksTheBoard() {
           <span className="block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
           Demo is live
         </p>
-
-        {/* GALLERY EDIT 2026-07-27 — the audience pill row (Wedding planner,
-            Trades, Freelance, College student) is gone. Four switchable
-            personas asked the visitor to pick an identity before they had
-            seen anything work, and the row sat between the headline and the
-            product at exactly the point the eye should be travelling down
-            into the board. One workspace, shown well, does more. */}
-
-        {/* Demo, keyed by domain so swap = clean state reset.
-         *  Desktop renders at natural fluid width (perspective +
-         *  shadow intact). Below md, `.demo-fit` scales the whole
-         *  proven canvas down to fit the phone instead of clipping it
-         *  to a headless sliver, the 80% are phone-first and this is
-         *  the most-seen product surface. Scale rules: globals.css. */}
-        <div className="mt-6 md:mt-8">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={domain}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
-              className="demo-fit mx-auto"
-            >
-              <div className="demo-fit-inner">
-                <CinematicDemo domain={pack.id} />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
       </div>
-    </section>
-  );
-}
 
-function Eyebrow() {
-  return (
-    <p
-      className="font-mono text-[11px] font-semibold uppercase text-ink-quiet"
-      style={{ letterSpacing: "0.14em" }}
-    >
-      Signal Tasks
-    </p>
+      {/* The board keeps its wider canvas: copy on the grid, artifact
+          allowed to exceed it. Below md, `.demo-fit` scales the whole
+          proven canvas down to fit the phone instead of crushing four
+          lanes into slivers — the 80% are phone-first and this is the
+          most-seen product surface. */}
+      <div className="mx-auto mt-6 w-full max-w-[1240px] px-5 md:mt-8 md:px-6">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={domain}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+            className="demo-fit mx-auto"
+          >
+            <div className="demo-fit-inner">
+              <CinematicDemo domain={pack.id} />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* PORT FIX 2026-07-28 — these rules lived in the tasks repo's
+          globals.css and did not come across with the hero, so phones got
+          four 84px lanes instead of a scaled board. Copied with the
+          original's approach intact: pure CSS, SSR-safe, and an ancestor
+          scale() never touches the scripted scene's own coordinate space.
+          The scale factor divides a length by a length so min() compares
+          like with like. 1180 is the demo design width; 704 is the measured
+          natural height of this demo at that width (chrome + subheader +
+          560 surface + status bar + borders). */}
+      <style>{`
+        @media (max-width: 767px) {
+          .demo-fit {
+            overflow: hidden;
+            height: calc(704px * min(1, (100vw - 2.5rem) / 1180px));
+          }
+          .demo-fit > .demo-fit-inner {
+            width: 1180px;
+            transform-origin: top left;
+            transform: scale(min(1, (100vw - 2.5rem) / 1180px));
+          }
+        }
+      `}</style>
+    </section>
   );
 }

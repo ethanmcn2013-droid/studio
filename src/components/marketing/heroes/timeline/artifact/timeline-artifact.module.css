@@ -134,7 +134,7 @@ button.timeLens:active {
 }
 
 .heroKicker,
-.header h1,
+.header h2,
 .purpose {
   margin: 0;
 }
@@ -149,7 +149,7 @@ button.timeLens:active {
   text-transform: uppercase;
 }
 
-.header h1 {
+.header h2 {
   max-width: 16ch;
   font-size: clamp(3.4rem, 6.7vw, 7.7rem);
   font-weight: var(--weight-semibold);
@@ -768,7 +768,7 @@ button.timeLens:focus-visible .metricAlternate {
   margin-block-start: var(--space-8);
 }
 
-.artifact[data-compact="true"] .header h1 {
+.artifact[data-compact="true"] .header h2 {
   max-width: 10ch;
   font-size: clamp(3rem, 15vw, 4.7rem);
   line-height: 0.9;
@@ -888,7 +888,7 @@ button.timeLens:focus-visible .metricAlternate {
     gap: var(--space-7);
   }
 
-  .header h1 {
+  .header h2 {
     font-size: clamp(3.2rem, 9vw, 6rem);
   }
 
@@ -904,7 +904,7 @@ button.timeLens:focus-visible .metricAlternate {
     margin-block-start: var(--space-8);
   }
 
-  .header h1 {
+  .header h2 {
     max-width: 10ch;
     font-size: clamp(3rem, 15vw, 4.7rem);
     line-height: 0.9;
@@ -1136,7 +1136,7 @@ button.timeLens:focus-visible .metricAlternate {
     display: none;
   }
 
-  .header h1 {
+  .header h2 {
     font-size: clamp(2.85rem, 14.8vw, 3.65rem);
   }
 
