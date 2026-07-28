@@ -30,13 +30,21 @@ const STREAM = [
   },
 ];
 
-export function NotesBeforeItLeaves() {
+export function NotesBeforeItLeaves({
+  embedded = false,
+}: {
+  embedded?: boolean;
+} = {}) {
   return (
-    <section className="bil" aria-labelledby="bil-title">
+    <section
+      className={`bil${embedded ? " bil-embedded" : ""}`}
+      aria-label={embedded ? "Signal Notes approved extract" : undefined}
+      aria-labelledby={embedded ? undefined : "bil-title"}
+    >
       <style>{CSS}</style>
 
       <div className="bil-frame">
-        <header className="bil-head">
+        {!embedded ? <header className="bil-head">
           <p className="bil-kicker">Signal Notes</p>
           <h1 className="bil-title" id="bil-title">
             Catch it before it leaves
@@ -46,7 +54,7 @@ export function NotesBeforeItLeaves() {
             A private place for the thought you have now, and the work you
             choose later.
           </p>
-        </header>
+        </header> : null}
 
         <div className="bil-stage">
           <article className="bil-notebook" aria-labelledby="bil-stream-title">
@@ -59,10 +67,10 @@ export function NotesBeforeItLeaves() {
                 <span className="bil-capture-caret" aria-hidden />
                 <span className="bil-placeholder">Catch the next one.</span>
                 <span className="bil-incoming bil-incoming-one" aria-hidden>
-                  Move the rehearsal dinner if the shuttle can't do 6pm
+                  Move the rehearsal dinner if the shuttle can&rsquo;t do 6pm
                 </span>
                 <span className="bil-incoming bil-incoming-two" aria-hidden>
-                  Maeve's case study angle: the refund week
+                  Maeve&rsquo;s case study angle: the refund week
                 </span>
                 <span className="bil-incoming bil-incoming-three" aria-hidden>
                   Venue can open the side room after six
@@ -146,7 +154,7 @@ export function NotesBeforeItLeaves() {
           </article>
         </div>
 
-        <footer className="bil-foot">
+        {!embedded ? <footer className="bil-foot">
           <p>
             The note stays private. Only the line you approve becomes work.
           </p>
@@ -155,7 +163,7 @@ export function NotesBeforeItLeaves() {
           <a className="bil-cta" href="/waitlist">
             Join the waitlist
           </a>
-        </footer>
+        </footer> : null}
       </div>
     </section>
   );
@@ -196,6 +204,14 @@ const CSS = `
    with 72px side padding, so their CONTENT edge is at 936. Matching it
    puts the hero and every band on one left edge. */
 .bil-frame { width: min(936px, 100%); margin-inline: auto; }
+.bil.bil-embedded {
+  min-height: auto;
+  display: block;
+  overflow: visible;
+  padding: 0;
+}
+.bil-embedded .bil-frame { width: 100%; }
+.bil-embedded .bil-stage { margin-top: 0; }
 
 .bil-head { max-width: 720px; }
 .bil-kicker {
@@ -738,5 +754,34 @@ const CSS = `
   .bil-approval { right: 16px; }
   .bil-approval-full { display: none; }
   .bil-approval-short { display: inline; }
+}
+
+.bil-embedded *,
+.bil-embedded *::before,
+.bil-embedded *::after {
+  animation: none !important;
+}
+.bil-embedded .bil-placeholder,
+.bil-embedded .bil-item,
+.bil-embedded .bil-item-source::before,
+.bil-embedded .bil-item-source .bil-item-state,
+.bil-embedded .bil-tasks,
+.bil-embedded .bil-task-row,
+.bil-embedded .bil-task-box {
+  opacity: 1;
+  transform: none;
+}
+.bil-embedded .bil-item {
+  grid-template-rows: 1fr;
+}
+.bil-embedded .bil-incoming,
+.bil-embedded .bil-archive-swipe,
+.bil-embedded .bil-promote-swipe,
+.bil-embedded .bil-approval,
+.bil-embedded .bil-flight {
+  display: none;
+}
+.bil-embedded .bil-capture-hint kbd {
+  color: var(--zinc-600);
 }
 `;

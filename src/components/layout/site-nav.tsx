@@ -13,7 +13,6 @@ const NAV_LINKS = [
 ] as const;
 
 export function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
   const [intro, setIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -24,13 +23,6 @@ export function SiteNav() {
   const productsWrapRef = useRef<HTMLElement>(null);
 
   const closeProducts = useCallback(() => setProductsOpen(false), []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // House wordmark: broadcast once on DOM ready, then quiet. Skipped
   // under reduced motion; the wordmark just sits there, which is right.
@@ -52,15 +44,6 @@ export function SiteNav() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
-
-  // Close mobile nav + products panel on route change.
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setMobileOpen(false);
-      setProductsOpen(false);
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [pathname]);
 
   // Outside-click dismissal for products panel.
   useEffect(() => {
@@ -84,15 +67,15 @@ export function SiteNav() {
   return (
     <header
       ref={productsWrapRef}
-      className="sticky top-0 z-40 w-full backdrop-blur-md"
+      className="sticky top-0 z-40 w-full"
       style={{
-        background: "color-mix(in srgb, var(--bg) 85%, transparent)",
-        borderBottom: scrolled || productsOpen ? "1px solid var(--border-soft)" : "1px solid transparent",
+        background: "var(--bg)",
+        borderBottom: "1px solid var(--border-soft)",
         transition: "border-color var(--motion-base) var(--ease-out)",
       }}
     >
       <div className="mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6">
-        <Link href="/" className="wordmark-hover flex items-baseline" aria-label="Signal Studio, home">
+        <Link href="/" className="wordmark-hover flex min-h-11 items-center" aria-label="Signal Studio, home">
           <Wordmark size="sm" animate={false} intro={intro} />
         </Link>
 
@@ -104,7 +87,7 @@ export function SiteNav() {
             aria-expanded={productsOpen}
             aria-controls="products-mega-panel"
             onClick={() => setProductsOpen((o) => !o)}
-            className="inline-flex items-center gap-1 text-[13px] transition-colors hover:text-ink"
+            className="inline-flex min-h-11 items-center gap-1 text-[13px] transition-colors hover:text-ink"
             style={{
               letterSpacing: "0.01em",
               color: productsOpen ? "var(--ink)" : "var(--ink-quiet)",
@@ -130,24 +113,30 @@ export function SiteNav() {
             </svg>
           </button>
 
+          <ProductsMegaPanel
+            open={productsOpen}
+            onClose={closeProducts}
+            triggerRef={productsTriggerRef}
+          />
+
           {/* Desktop links, hidden below sm */}
           <Link
             href="/design"
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
+            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Design
           </Link>
           <Link
             href="/pricing"
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
+            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Pricing
           </Link>
           <Link
             href="/about"
-            className="hidden text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline"
+            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             About
@@ -161,7 +150,7 @@ export function SiteNav() {
             aria-controls="mobile-nav-panel"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
             onClick={() => setMobileOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center text-ink-quiet transition-colors hover:text-ink sm:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors hover:text-ink sm:hidden"
           >
             {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
             <svg
@@ -189,12 +178,6 @@ export function SiteNav() {
           </button>
         </nav>
       </div>
-
-      {/* Products mega-panel, full-width, absolutely positioned below nav */}
-      <ProductsMegaPanel
-        open={productsOpen}
-        onClose={closeProducts}
-      />
 
       {/* Mobile nav panel, paper-white, hairline border, no heavy shadow */}
       <div

@@ -4,21 +4,35 @@ const baseURL = "http://127.0.0.1:4387";
 
 export default defineConfig({
   testDir: "./tests/experience",
-  fullyParallel: true,
+  testMatch: "product-handoff-lab.spec.ts",
+  fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 2 : undefined,
-  reporter: [["line"], ["html", { outputFolder: "experience/output/playwright-report", open: "never" }]],
-  outputDir: "experience/output/playwright-results",
+  workers: 1,
+  reporter: [
+    ["line"],
+    [
+      "html",
+      {
+        outputFolder: "experience/output/handoff-playwright-report",
+        open: "never",
+      },
+    ],
+  ],
+  outputDir: "experience/output/handoff-playwright-results",
   use: {
     baseURL,
-    browserName: "chromium",
     locale: "en-GB",
     timezoneId: "Europe/London",
     colorScheme: "light",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
+  projects: [
+    { name: "chromium", use: { browserName: "chromium" } },
+    { name: "webkit", use: { browserName: "webkit" } },
+    { name: "firefox", use: { browserName: "firefox" } },
+  ],
   webServer: {
     command: "pnpm exec next dev -H 127.0.0.1 -p 4387",
     env: {

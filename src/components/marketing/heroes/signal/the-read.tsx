@@ -80,9 +80,28 @@ const READ_MARKS: Array<{ h: number; tone?: "now" | "next" }> = [
   { h: 9 },
 ];
 
-export function SignalTheRead() {
+export type SignalReadItem = {
+  ordinal: string;
+  claim: "now" | "next";
+  title: string;
+  why: string;
+  receipts: string[];
+  action: string;
+};
+
+export function SignalTheRead({
+  embedded = false,
+  items = ITEMS,
+}: {
+  embedded?: boolean;
+  items?: SignalReadItem[];
+} = {}) {
   return (
-    <section className="rd" aria-labelledby="rd-title">
+    <section
+      className={`rd${embedded ? " rd-embedded" : ""}`}
+      aria-label={embedded ? "Signal daily briefing" : undefined}
+      aria-labelledby={embedded ? undefined : "rd-title"}
+    >
       {/* PORT NOTE 2026-07-28 — the app chrome bar (wordmark, context,
           search) is dropped on the marketing page. It existed in the gallery
           so the frame read as a product screen standing alone; here the site
@@ -102,10 +121,17 @@ export function SignalTheRead() {
         </div>
 
         <div className="rd-head">
-          <h1 className="rd-headline" id="rd-title">
-            Two things genuinely
-            <br className="rd-br" /> need you.
-          </h1>
+          {embedded ? (
+            <h4 className="rd-headline">
+              Two things genuinely
+              <br className="rd-br" /> need you.
+            </h4>
+          ) : (
+            <h1 className="rd-headline" id="rd-title">
+              Two things genuinely
+              <br className="rd-br" /> need you.
+            </h1>
+          )}
 
           <div className="rd-distill">
             <div
@@ -126,7 +152,7 @@ export function SignalTheRead() {
         </div>
 
         <ol className="rd-items">
-          {ITEMS.map((item) => (
+          {items.map((item) => (
             <li className="rd-item" data-claim={item.claim} key={item.ordinal}>
               <div className="rd-rail">
                 <span className="rd-ordinal">{item.ordinal}</span>
@@ -137,7 +163,11 @@ export function SignalTheRead() {
               </div>
 
               <div className="rd-body">
-                <h2 className="rd-item-title">{item.title}</h2>
+                {embedded ? (
+                  <h5 className="rd-item-title">{item.title}</h5>
+                ) : (
+                  <h2 className="rd-item-title">{item.title}</h2>
+                )}
                 <p className="rd-why">{item.why}</p>
                 <p className="rd-receipts">
                   <span className="rd-receipt-label">Receipt</span>
@@ -205,6 +235,29 @@ const CSS = `
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.rd.rd-embedded {
+  min-height: auto;
+  display: block;
+}
+
+.rd-embedded .rd-page {
+  max-width: none;
+  padding: clamp(26px, 4vw, 48px);
+}
+
+.rd-embedded .rd-item[data-claim="now"] .rd-marker::after {
+  animation: none;
+}
+
+.rd-embedded .rd-button {
+  min-height: 44px;
+}
+
+.rd-embedded .rd-ordinal,
+.rd-embedded .rd-receipt-label {
+  color: var(--zinc-600);
 }
 
 /* ── page ────────────────────────────────────────────────────────────── */

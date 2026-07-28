@@ -15,11 +15,11 @@ export function RevealClosing() {
   return (
     <section className="reveal-closing">
       <div className="reveal-closing-rule" aria-hidden />
-      <p className="reveal-closing-sign reveal">
+      <p className="reveal-closing-sign">
         Built for <span className="em">everyone else</span>.
       </p>
 
-      <div className="reveal-closing-cta reveal">
+      <div className="reveal-closing-cta">
         <Link
           className="reveal-cta reveal-cta-primary"
           href="/waitlist?source=home_closing&campaign=pre_access_waitlist&artifact=closing_cta&touch=site"
@@ -39,7 +39,7 @@ export function RevealClosing() {
         </Link>
       </div>
 
-      <p className="reveal-closing-addr reveal">
+      <p className="reveal-closing-addr">
         <a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
         <span className="sep" aria-hidden>·</span>
         <span>Limerick, {new Date().getFullYear()}</span>

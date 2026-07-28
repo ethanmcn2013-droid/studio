@@ -52,23 +52,23 @@ describe("product URL contract", () => {
   });
 
   it("keeps every homepage product link same-tab and bound to marketing destinations", () => {
-    const productRows = readFileSync(
-      new URL("../components/reveal/reveal-products.tsx", import.meta.url),
+    const productRelay = readFileSync(
+      new URL("../components/reveal/reveal-product-relay.tsx", import.meta.url),
       "utf8",
     );
-    const heroStack = readFileSync(
-      new URL("../components/reveal/reveal-hero.tsx", import.meta.url),
+    const homepage = readFileSync(
+      new URL("../app/page.tsx", import.meta.url),
       "utf8",
     );
 
-    for (const source of [productRows, heroStack]) {
-      assert.match(source, /PRODUCT_MARKETING_URLS/);
-      assert.doesNotMatch(source, /href="#(?:notes|tasks|timeline|signal)"/);
-      assert.doesNotMatch(source, /target=["']_blank["']/);
-      assert.doesNotMatch(
-        source,
-        /href=\{(?:NOTES_URL|TASKS_URL|TIMELINE_URL|SIGNAL_URL)\}/,
-      );
-    }
+    assert.match(homepage, /RevealProductRelay/);
+    assert.doesNotMatch(homepage, /RevealProducts/);
+    assert.match(productRelay, /PRODUCT_MARKETING_URLS/);
+    assert.doesNotMatch(productRelay, /href="#(?:notes|tasks|timeline|signal)"/);
+    assert.doesNotMatch(productRelay, /target=["']_blank["']/);
+    assert.doesNotMatch(
+      productRelay,
+      /href=\{(?:NOTES_URL|TASKS_URL|TIMELINE_URL|SIGNAL_URL)\}/,
+    );
   });
 });

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience/1",
-  "generatedAt": "2026-07-25",
+  "generatedAt": "2026-07-28",
   "breakpoints": {
     "mobile": {
       "width": 390,
@@ -3363,6 +3363,49 @@
       "materialityHash": "ac6a2709f3c992e9"
     },
     {
+      "id": "studio.page.design-lab-product-handoff",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/product-handoff",
+      "source": "studio/src/app/%5F%5Fdesign-lab/product-handoff/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
+      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "eb740bf5ea9343b2"
+    },
+    {
       "id": "studio.page.dispatch",
       "product": "studio",
       "experienceClass": "company-public",
@@ -6456,7 +6499,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b1e63df5a537526d"
+      "materialityHash": "b8794749e6b9ec62"
     },
     {
       "id": "studio.page.security",
@@ -7346,7 +7389,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "9ed28a02b3651cf6"
+      "materialityHash": "85de6120aa658e82"
     },
     {
       "id": "studio.surface.site-navigation",
@@ -7391,7 +7434,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "3087bc53a0eb39a9"
+      "materialityHash": "e92951ba7364cb65"
     },
     {
       "id": "tasks.page.about",
