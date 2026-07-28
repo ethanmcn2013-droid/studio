@@ -48,7 +48,8 @@ pick, which you flagged as thinking-out-loud, so it stays gated on you.
 ## Resolution · 2026-07-28
 
 Founder approval landed as “Proceed with implementation” after the executive
-design review. The implemented direction keeps the wordmark but compresses it
-into the same first-view composition as the proposition, then makes the page
-prove one real wedding handoff through Notes, Tasks, Timeline, and Signal. The
-two-hero gap and the competing product-wordmark stack are gone.
+design review, followed by a final hierarchy correction. The oversized
+wordmark prelude and preview-status dot are removed; “Project management for
+the 80% not in tech.” is now the first and only hero statement. The page then
+proves one real wedding handoff through Notes, Tasks, Timeline, and Signal.
+The two-hero gap and the competing product-wordmark stack are gone.

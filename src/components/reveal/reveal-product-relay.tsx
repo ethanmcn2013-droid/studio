@@ -94,11 +94,14 @@ export function RevealProductRelay() {
     <section className="reveal-relay" id="system" aria-labelledby="relay-title">
       <header className="reveal-relay-head">
         <p className="reveal-relay-kicker">One line, through the studio</p>
-        <h2 id="relay-title">The system earns its place in the handoff.</h2>
+        <h2 id="relay-title">
+          Follow one detail from a private note to a daily briefing.
+        </h2>
         <p>
-          Follow one wedding detail from a private thought to a sourced daily
-          briefing. These are the current product interfaces, shown with one
-          fixed sample workspace.
+          Notes keeps the source private. Tasks gives it an owner. Timeline
+          publishes the confirmed milestone. Signal returns the open risk with
+          its receipt. These are the current product interfaces in one fixed
+          sample workspace.
         </p>
       </header>
 

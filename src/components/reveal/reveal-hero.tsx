@@ -7,11 +7,6 @@ export function RevealHero() {
       aria-labelledby="home-title"
     >
       <div className="reveal-hero-v2-inner">
-        <p className="reveal-hero-status">
-          <span aria-hidden />
-          Private preview
-        </p>
-
         <h1 id="home-title" className="reveal-headline-v2">
           Project management for the{" "}
           <span className="reveal-headline-accent">80%</span> not in tech.

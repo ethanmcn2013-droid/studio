@@ -22,9 +22,10 @@ product pages and consolidated app routes stay unchanged.
 ## Hero
 
 Keep the canonical headline, with `80%` carrying the indigo emphasis. The
-wordmark settles once in 1.45 seconds and then rests. The proposition is
-immediately readable, the typewriter and scroll prompt are gone, and the first
-view offers two quiet actions: see the system at work or join the waitlist.
+headline is the first and only hero statement; the separate oversized
+wordmark prelude and preview-status dot are removed. The typewriter and scroll
+prompt are gone, and the first view offers two quiet actions: see the system
+at work or join the waitlist.
 
 ## Proof fixture
 
@@ -35,11 +36,10 @@ six” when confirmed. The sample does not write to a live workspace.
 
 ## Motion and access
 
-The umbrella wordmark is the only automatic homepage motion. It plays once and
-rests. The embedded Tasks board is static, the Signal ping is disabled, and
-reduced motion renders the settled state. The Products disclosure follows DOM
-focus order, returns focus on Escape, and keeps its calls to action visible on
-touch and keyboard focus.
+The homepage opens without decorative automatic motion. The embedded Tasks
+board is static, the Signal ping is disabled, and reduced motion renders the
+settled state. The Products disclosure follows DOM focus order, returns focus
+on Escape, and keeps its calls to action visible on touch and keyboard focus.
 
 ## Market path
 

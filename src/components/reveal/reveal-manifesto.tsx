@@ -17,9 +17,7 @@ export function RevealManifesto() {
       </h2>
       <p className="reveal-manifesto-body">
         Less to manage. Less to monitor. Less to remember. The category isn’t
-        productivity. It’s clarity. Every tool here is built to reduce
-        ambiguity, not add information. If a feature can’t earn its place that
-        way, it doesn’t get in.
+        productivity. It’s clarity.
       </p>
       <p className="reveal-manifesto-body">
         Built for the <strong>80%</strong> of people who run real work without

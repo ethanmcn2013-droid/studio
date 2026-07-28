@@ -16,11 +16,11 @@ confirmed, and Signal returns the remaining risk with its receipts. The four
 current product interfaces carry the proof; the page copy only explains the
 handoff around them.
 
-The top of the page is one composition again. The umbrella wordmark settles in
-1.45 seconds and rests, the canonical headline is immediately readable with
-`80%` in indigo, and two quiet actions replace the typewriter and “Read on”
-prompt. The weddings path now follows the suite proof, while public conversion
-stays waitlist-first.
+The top of the page now opens directly on the canonical headline, with `80%`
+in indigo. The separate oversized wordmark prelude and preview-status dot are
+gone, so the proposition owns the first frame. Two quiet actions replace the
+typewriter and “Read on” prompt. The weddings path now follows the suite proof,
+while public conversion stays waitlist-first.
 
 The navigation was tightened in the same pass. Products is a disclosure in DOM
 focus order, Escape returns to its trigger, descriptions meet contrast, calls

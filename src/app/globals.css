@@ -178,54 +178,6 @@
    Existing product routes keep their own hero styling; these selectors are
    deliberately scoped to the homepage composition. */
 
-.reveal-loading-showcase {
-  min-height: clamp(148px, 20svh, 210px);
-  display: grid;
-  place-items: end center;
-  overflow: hidden;
-  padding: clamp(36px, 6svh, 64px) 20px 18px;
-  background: var(--bg);
-}
-
-.slx-wordmark {
-  display: inline-flex;
-  align-items: baseline;
-  margin: 0;
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: clamp(50px, 10.5vw, 144px);
-  font-weight: 520;
-  line-height: 0.88;
-  letter-spacing: -0.055em;
-  white-space: nowrap;
-}
-
-.slx-word {
-  animation: home-wordmark-settle 1.45s var(--spring-glide) both;
-}
-
-.slx-dot {
-  width: 0.13em;
-  height: 0.13em;
-  margin-left: 0.055em;
-  border-radius: 50%;
-  background: var(--accent);
-  transform-origin: center bottom;
-  animation: home-dot-settle 1.45s var(--spring-glide) both;
-}
-
-@keyframes home-wordmark-settle {
-  from { opacity: 0.35; transform: translateY(0.16em); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes home-dot-settle {
-  0% { opacity: 0; transform: translateX(-1.3em) scale(0.7); }
-  58% { opacity: 1; transform: translateX(0) scale(1.25, 0.72); }
-  78% { transform: translateX(0) scale(0.88, 1.12); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
-}
-
 .reveal-hero.reveal-hero-v2 {
   min-height: calc(80svh - 56px);
   display: grid;
@@ -239,26 +191,6 @@
 .reveal-hero-v2-inner {
   width: min(1120px, 100%);
   margin-inline: auto;
-}
-
-.reveal-hero-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 clamp(22px, 3vw, 36px);
-  color: var(--ink-quiet);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.reveal-hero-status > span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
 }
 
 .reveal-headline-v2 {
@@ -611,15 +543,6 @@
 }
 
 @media (max-width: 880px) {
-  .reveal-loading-showcase {
-    min-height: clamp(132px, 18svh, 170px);
-    padding-top: 30px;
-  }
-
-  .slx-wordmark {
-    font-size: clamp(44px, 13vw, 94px);
-  }
-
   .reveal-hero.reveal-hero-v2 {
     min-height: calc(82svh - 56px);
     padding-inline: clamp(20px, 6vw, 52px);
@@ -649,16 +572,6 @@
 }
 
 @media (max-width: 640px) {
-  .reveal-loading-showcase {
-    min-height: 118px;
-    place-items: end start;
-    padding: 28px 20px 12px;
-  }
-
-  .slx-wordmark {
-    font-size: clamp(43px, 14vw, 62px);
-  }
-
   .reveal-hero.reveal-hero-v2 {
     min-height: calc(100svh - 174px);
     padding: 30px 20px 64px;
@@ -739,11 +652,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slx-word,
-  .slx-dot {
-    animation: none;
-  }
-
   .reveal-action,
   .reveal-relay-link > span {
     transition: none;
@@ -1261,10 +1169,8 @@ body::after { content: none; }
 }
 
 /* ── Hero ─────────────────────────────────────────────────────── */
-/* Walkover #1 (2026-06-07): loader demoted to ~28vh prelude above the
-   hero (reveal-loading-showcase). The hero itself drops its min-height
-   so the proposition (H1 + subhead + product stack) finishes inside the
-   first viewport without scroll. */
+/* Legacy Reveal hero geometry. The current homepage uses the more specific
+   .reveal-hero-v2 contract above, where the proposition owns the first frame. */
 .reveal-hero {
   position: relative;
   min-height: clamp(520px, 62dvh, 720px);
