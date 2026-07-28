@@ -94,7 +94,10 @@ const CSS = `
   min-height: clamp(600px, 78svh, 820px);
   display: grid;
   place-items: center;
-  padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 48px);
+  /* Narrower side padding than the other heroes on purpose: this one is
+     meant to read as the artifact actually open, so it runs closer to the
+     edge of the screen than a centred column would. */
+  padding: clamp(20px, 4vw, 56px) clamp(14px, 2.4vw, 40px);
   background: var(--paper);
   font-family: var(--font-sans, var(--font-geist-sans));
   isolation: isolate;
@@ -102,9 +105,16 @@ const CSS = `
 
 /* ── frame ───────────────────────────────────────────────────────────── */
 
+/* 2026-07-28 — widened from 1080px. Timeline is the one hero whose subject is
+   a document rather than a workspace: it should read as the shared plan
+   actually open on screen, not as a screenshot of one sitting in a column.
+   The artifact drives its own layout from container queries (widest above
+   980px), so the frame can grow without anything inside it breaking, and the
+   six milestones simply take more of the rail. Capped so ultrawide displays
+   do not stretch the rail into a thin line with distant dots. */
 .tlh-frame {
   width: 100%;
-  max-width: 1080px;
+  max-width: min(1560px, 96vw);
   opacity: 0;
   transform: translateY(10px);
 }
