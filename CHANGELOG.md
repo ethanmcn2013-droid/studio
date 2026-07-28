@@ -7,6 +7,25 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·146 · ships · the four pages become a walk
+
+**Below each hero, one section now shows the moment that product hands work
+to the next, and the four pages link into a ring you can walk the way work
+moves: Notes to Tasks to Timeline to Signal, and out to the waitlist.** The
+hero proves the product; the handoff proves the suite. Each vignette is drawn
+in its products' own grammar: the approved line arriving on the board, a
+completion moving the public line, the plan feeding tomorrow's read, the read
+ending back in the work. It plays once as it enters view and sits settled
+under reduced motion.
+
+The close returns as one sentence and one action. The boundary copy that was
+cut with its band earlier today reads again, directly above the only button
+the site asks anyone to press. That fixes the quiet hole the hero-only pages
+had: three of the four had no conversion path at all.
+
+The walk exits on purpose. After Signal the loop is closed, so the last link
+is the waitlist rather than another lap.
+
 ## 2026-07-28 · S·145 · cuts · a product page is its hero
 
 **The four product pages now end where the hero ends.** The day-in-the-work
