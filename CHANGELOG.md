@@ -7,6 +7,26 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·149 · ships · one line proves the whole studio
+
+**The homepage now follows one wedding detail through the real suite instead
+of explaining four products in four abstract rows.** A private Notes line is
+approved into Tasks, the task becomes a public Timeline milestone when it is
+confirmed, and Signal returns the remaining risk with its receipts. The four
+current product interfaces carry the proof; the page copy only explains the
+handoff around them.
+
+The top of the page is one composition again. The umbrella wordmark settles in
+1.45 seconds and rests, the canonical headline is immediately readable with
+`80%` in indigo, and two quiet actions replace the typewriter and “Read on”
+prompt. The weddings path now follows the suite proof, while public conversion
+stays waitlist-first.
+
+The navigation was tightened in the same pass. Products is a disclosure in DOM
+focus order, Escape returns to its trigger, descriptions meet contrast, calls
+to action remain visible without hover, and the mobile menu target is 44px.
+Automatic loops in the homepage proof and Products panel are gone.
+
 ## 2026-07-28 · S·148 · ships · the Schedule view stops being the exception
 
 **The Tasks hero's third view is the product again.** Board and List were

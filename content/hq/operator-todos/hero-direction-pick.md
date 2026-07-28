@@ -1,9 +1,9 @@
 ---
 id: hero-direction-pick
 title: Pick the studio landing hero treatment (rebalance the two competing heroes)
-status: open
+status: done
 priority: P1
-blocking: true
+blocking: false
 phase: P1 punch-list
 why: the umbrella landing has two stacked hero moments competing for attention; the rebalance can't ship until you pick a direction.
 href: /
@@ -44,3 +44,11 @@ pick, which you flagged as thinking-out-loud, so it stays gated on you.
    candidate mockups in `audit/hero-candidates/` (if built).
 2. Pick A, B, or C (or ask for a combined treatment).
 3. Eng implements the pick, council-checks, ships to `main` and curl/screenshot-verifies.
+
+## Resolution · 2026-07-28
+
+Founder approval landed as “Proceed with implementation” after the executive
+design review. The implemented direction keeps the wordmark but compresses it
+into the same first-view composition as the proposition, then makes the page
+prove one real wedding handoff through Notes, Tasks, Timeline, and Signal. The
+two-hero gap and the competing product-wordmark stack are gone.

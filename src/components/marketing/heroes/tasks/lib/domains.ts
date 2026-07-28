@@ -382,8 +382,8 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
       // product's own board shows them unadorned. Open lanes read as things
       // still to do; the done lane reads as things that happened.
       "t-101": {
-        title: "Confirm the catering tasting menu",
-        tags: ["catering"],
+        title: "Ask the venue to hold the side room after six",
+        tags: ["venue"],
       },
       "t-102": {
         title: "Send save-the-dates to 200 guests",
