@@ -8,8 +8,8 @@ export function RevealHero() {
     >
       <div className="reveal-hero-v2-inner">
         <h1 id="home-title" className="reveal-headline-v2">
-          Project management for the{" "}
-          <span className="reveal-headline-accent">80%</span> not in tech.
+          Project management for the 80%{" "}
+          <span className="reveal-headline-accent">not</span> in tech.
         </h1>
 
         <p className="reveal-lede-v2">

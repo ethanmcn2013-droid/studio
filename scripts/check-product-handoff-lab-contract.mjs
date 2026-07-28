@@ -68,6 +68,9 @@ const data = read("../src/components/marketing/handoff-lab/data.ts");
 const living = read(
   "../src/components/marketing/handoff-lab/living-artifact.tsx",
 );
+const production = read(
+  "../src/components/marketing/handoff/product-handoff.tsx",
+);
 
 assert.match(route, /robots:\s*\{\s*index:\s*false/);
 assert.match(route, /isCanonicalProductionHost/);
@@ -98,6 +101,13 @@ assert.match(lab, /Animation progress/);
 assert.match(living, /useTransform/);
 assert.match(living, /scaleX/);
 assert.doesNotMatch(living, /\bleft:\s*|\btop:\s*|\bwidth:\s*|\bheight:\s*/);
+assert.equal(lock.selectedDirection, "a");
+assert.match(production, /LivingArtifact/);
+assert.match(production, /HANDOFF_DEFINITIONS/);
+assert.match(production, /useScroll/);
+assert.match(production, /useReducedMotion/);
+assert.match(production, /offset:\s*\["start 80%", "end 30%"\]/);
+assert.doesNotMatch(production, /IntersectionObserver/);
 
 assert.match(data, /Venue can open the side room after six/);
 assert.match(data, /Ask the venue to hold the side room/);
@@ -113,5 +123,5 @@ assert.doesNotMatch(data, /Open task/i);
 assert.match(data, /signal:\s*\{[\s\S]*?nextHref:\s*null/);
 
 console.log(
-  "[product-handoff-lab-contract] ok (heroes and production locked, three deterministic directions, product truth retained)",
+  "[product-handoff-lab-contract] ok (heroes locked, Living Artifact selected, three review directions retained, product truth retained)",
 );

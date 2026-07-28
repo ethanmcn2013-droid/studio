@@ -414,11 +414,6 @@
   line-height: 0.95;
 }
 
-.reveal-relay-copy h3 > span {
-  margin-left: 0.045em;
-  color: var(--accent);
-}
-
 .reveal-relay-eyebrow {
   margin: 22px 0 0;
   color: var(--ink);

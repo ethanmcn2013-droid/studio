@@ -3,7 +3,7 @@ id: product-handoff-review-lab
 title: Product Handoff three-direction review lab
 product: Signal Studio
 category: Core
-status: Shipping
+status: Shipped
 priority: High
 effort: Medium
 impact: High
@@ -13,11 +13,10 @@ principleAlignment: 98
 
 ## Review status
 
-Phase 1 is code-complete. The production Product Handoff remains unchanged and
-the four product heroes are source-locked to the coordinated homepage-relay
-baseline in commit `5edc460`. The next gate is Ethan's explicit selection of
-Living Artifact, Provenance Rail, Editorial Cause, or a precisely described
-hybrid.
+Ethan selected **Option A — Living Artifact** on 2026-07-28. It now powers the
+production Product Handoff on Notes, Tasks, Timeline, and Signal while the four
+product heroes remain source-locked to the coordinated homepage-relay baseline
+in commit `5edc460`.
 
 The panel recommends **Option A — Living Artifact**. It is the only direction
 where the motion itself explains the suite: one real piece of work changes
@@ -69,11 +68,9 @@ product grammar while its source, date, owner, and provenance remain legible.
 
 ## Release contract
 
-Do not replace the production `ProductHandoff({ product })`, modify a hero, or
-deploy the selected system to the live routes before Ethan selects a
-direction. After selection, preserve the current production interface and
-connect the chosen scene progress to scroll with Motion's reduced-motion path.
-The 9.5 release score applies to the selected system; the alternative studies
-remain review evidence, not production dependencies.
+The production interface remains `ProductHandoff({ product })`. Living
+Artifact connects directly to section scroll progress using Motion and renders
+the complete relationship immediately under reduced motion. The alternative
+studies remain protected review evidence, not production routes or dependencies.
 
-Saved: 2026-07-28 · Protected preview READY; founder selection pending.
+Saved: 2026-07-28 · Option A selected and integrated.

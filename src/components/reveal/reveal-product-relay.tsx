@@ -5,6 +5,7 @@ import { TasksTheBoard } from "@/components/marketing/heroes/tasks/hero";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
 import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
+import { ProductSignatureWordmark } from "./product-signature-wordmark";
 
 const RELAY_SIGNAL_ITEMS: SignalReadItem[] = [
   {
@@ -129,8 +130,7 @@ export function RevealProductRelay() {
                 {chapter.number}
               </p>
               <h3>
-                {chapter.title}
-                <span aria-hidden>·</span>
+                <ProductSignatureWordmark product={chapter.key} />
               </h3>
               <p className="reveal-relay-eyebrow">{chapter.eyebrow}</p>
               <p className="reveal-relay-body">{chapter.body}</p>

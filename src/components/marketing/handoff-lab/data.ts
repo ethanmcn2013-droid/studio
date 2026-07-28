@@ -67,7 +67,7 @@ export const HANDOFF_DEFINITIONS: Record<
     },
     payloadText: "Venue can open the side room after six",
     nextHref: "/tasks",
-    nextLabel: "Next: Signal Tasks",
+    nextLabel: "Next: Tasks",
     lineageLabel: "Approved meaning retained. Private note stays put.",
   },
   tasks: {
@@ -95,7 +95,7 @@ export const HANDOFF_DEFINITIONS: Record<
     },
     payloadText: "Confirm the catering tasting menu · done",
     nextHref: "/timeline",
-    nextLabel: "Next: Signal Timeline",
+    nextLabel: "Next: Timeline",
     lineageLabel: "Completion becomes a dated public fact.",
   },
   timeline: {

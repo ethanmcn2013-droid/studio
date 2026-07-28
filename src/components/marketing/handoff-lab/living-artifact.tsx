@@ -165,7 +165,7 @@ export function LivingArtifact({
 
   return (
     <article
-      className={`${styles.scene} ${styles.livingScene}`}
+      className={styles.scene}
       data-handoff-scene=""
       data-product={definition.product}
       data-reduced={reduced ? "true" : undefined}
@@ -200,6 +200,7 @@ export function LivingArtifact({
 
         <motion.div
           className={`${styles.livingSurface} ${styles.livingSource}`}
+          data-source-artifact=""
           style={{
             transform: reduced ? sourceFinal : sourceTransform,
           }}
