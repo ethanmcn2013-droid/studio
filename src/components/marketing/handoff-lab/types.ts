@@ -1,4 +1,5 @@
 import type { MotionValue } from "motion";
+import type { Ref } from "react";
 import type { ProductId } from "@/lib/product-urls";
 
 export type HandoffOption = "a" | "b" | "c";
@@ -37,4 +38,5 @@ export type HandoffSceneProps = {
   reduced: boolean;
   replayKey: number;
   compact: boolean;
+  stageRef?: Ref<HTMLDivElement>;
 };

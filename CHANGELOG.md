@@ -7,6 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·153 · fixes · the Handoff arrives intact
+
+**The Product Handoff now measures its motion from the artifact on screen, not
+from the section beginning above it.** Each product enters with its source
+state intact, transforms through the centre of the viewport, and resolves its
+destination and receipt before the stage leaves. The same timing holds across
+desktop and mobile; reduced motion remains complete and immediate.
+
 ## 2026-07-28 · S·152 · ships · one artifact walks the studio
 
 **Living Artifact is now the Product Handoff on Notes, Tasks, Timeline, and

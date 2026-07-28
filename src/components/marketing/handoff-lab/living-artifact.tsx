@@ -11,6 +11,7 @@ export function LivingArtifact({
   reduced,
   replayKey,
   compact,
+  stageRef,
 }: HandoffSceneProps) {
   const signalEase = cubicBezier(0.77, 0, 0.175, 1);
   const sourceFinal = compact
@@ -185,7 +186,12 @@ export function LivingArtifact({
         {definition.lineageLabel}
       </p>
 
-      <div aria-hidden="true" className={styles.livingStage}>
+      <div
+        ref={stageRef}
+        aria-hidden="true"
+        className={styles.livingStage}
+        data-handoff-stage=""
+      >
         <div className={styles.livingLedger}>
           <span className={styles.livingLedgerId}>Artifact / Wedding 024</span>
           <span className={styles.livingLedgerState}>Source retained</span>
