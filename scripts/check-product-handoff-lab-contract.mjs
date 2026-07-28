@@ -107,7 +107,7 @@ assert.match(production, /HANDOFF_DEFINITIONS/);
 assert.match(production, /useScroll/);
 assert.match(production, /useReducedMotion/);
 assert.match(production, /target:\s*stageRef/);
-assert.match(production, /offset:\s*\["start 78%", "center 38%"\]/);
+assert.match(production, /offset:\s*\["start 78%", "start 50%"\]/);
 assert.match(living, /data-handoff-stage/);
 assert.doesNotMatch(production, /IntersectionObserver/);
 
