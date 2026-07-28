@@ -21,7 +21,8 @@ product pages and consolidated app routes stay unchanged.
 
 ## Hero
 
-Keep the canonical headline, with `80%` carrying the indigo emphasis. The
+Keep the canonical headline, with only `not` carrying the indigo emphasis. The
+`80%` remains ink like the rest of the sentence. The
 headline is the first and only hero statement; the separate oversized
 wordmark prelude and preview-status dot are removed. The typewriter and scroll
 prompt are gone, and the first view offers two quiet actions: see the system
@@ -36,10 +37,13 @@ six” when confirmed. The sample does not write to a live workspace.
 
 ## Motion and access
 
-The homepage opens without decorative automatic motion. The embedded Tasks
-board is static, the Signal ping is disabled, and reduced motion renders the
-settled state. The Products disclosure follows DOM focus order, returns focus
-on Escape, and keeps its calls to action visible on touch and keyboard focus.
+The homepage opens without decorative automatic motion. Each product chapter
+does carry its identifying signature once it enters: Notes' caret, Tasks'
+indigo completion strike, Timeline's line and milestone, and Signal's two-beat
+pulse. Each plays once and settles; reduced motion renders the complete static
+mark. The embedded Tasks board is static, the Products disclosure follows DOM
+focus order, returns focus on Escape, and keeps its calls to action visible on
+touch and keyboard focus.
 
 ## Market path
 

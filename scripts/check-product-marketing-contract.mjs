@@ -25,6 +25,9 @@ const hero = read("../src/components/marketing/heroes/product-hero.tsx");
 const handoff = read(
   "../src/components/marketing/handoff/product-handoff.tsx",
 );
+const handoffData = read(
+  "../src/components/marketing/handoff-lab/data.ts",
+);
 const footer = read("../src/components/landing/site-footer.tsx");
 
 // ── The page is hero, handoff, close ───────────────────────────────────────
@@ -41,13 +44,17 @@ assert.match(page, />Join the waitlist</);
 // ── The handoff walks the suite and exits at the waitlist ──────────────────
 // notes → tasks → timeline → signal → waitlist. The ring is the section's
 // whole argument, so the contract pins every link in it.
-assert.match(handoff, /nextHref: "\/tasks"/);
-assert.match(handoff, /nextHref: "\/timeline"/);
-assert.match(handoff, /nextHref: "\/signal"/);
-assert.match(handoff, /nextHref: "\/waitlist"/);
-// Plays once on visibility; settles instantly under reduced motion.
-assert.match(handoff, /IntersectionObserver/);
-assert.match(handoff, /prefers-reduced-motion/);
+assert.match(handoffData, /nextHref: "\/tasks"/);
+assert.match(handoffData, /nextHref: "\/timeline"/);
+assert.match(handoffData, /nextHref: "\/signal"/);
+assert.match(handoffData, /signal:\s*\{[\s\S]*?nextHref:\s*null/);
+// Scroll drives the selected scene directly; reduced motion settles instantly.
+assert.match(handoff, /LivingArtifact/);
+assert.match(handoff, /useScroll/);
+assert.match(handoff, /useReducedMotion/);
+assert.match(handoff, /offset:\s*\["start 80%", "end 30%"\]/);
+assert.doesNotMatch(handoff, /IntersectionObserver/);
+assert.doesNotMatch(handoffData, /Open task/i);
 
 // ── The retired sections stay retired ──────────────────────────────────────
 assert.doesNotMatch(page, /<DayInWorkExperience/);

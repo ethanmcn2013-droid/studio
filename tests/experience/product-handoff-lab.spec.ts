@@ -39,6 +39,13 @@ const PRODUCT_TEXT = {
   ],
 } as const;
 
+const NEXT_HREF = {
+  notes: "/tasks",
+  tasks: "/timeline",
+  timeline: "/signal",
+  signal: null,
+} as const;
+
 function labUrl({
   option = "a",
   product = "notes",
@@ -164,6 +171,158 @@ for (const option of OPTIONS) {
     });
   }
 }
+
+for (const viewport of VIEWPORTS) {
+  test(`Living Artifact is the stable production Handoff at ${viewport.name}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+
+    for (const product of PRODUCTS) {
+      const response = await page.goto(`/${product}`);
+      expect(response?.status()).toBe(200);
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+
+      const handoff = page.locator("[data-product-handoff]");
+      await expect(handoff).toHaveCount(1);
+      const initialHeight = await handoff.evaluate(
+        (element) => element.getBoundingClientRect().height,
+      );
+      const initialDestinationOpacity = await handoff
+        .locator("[data-destination-artifact]")
+        .evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).opacity),
+        );
+      expect(initialDestinationOpacity).toBeLessThanOrEqual(0.05);
+
+      await handoff.evaluate((element) => {
+        const target =
+          window.scrollY +
+          element.getBoundingClientRect().bottom -
+          window.innerHeight * 0.28;
+        window.scrollTo({ top: target, behavior: "instant" });
+      });
+      await expect
+        .poll(() =>
+          handoff
+            .locator("[data-destination-artifact]")
+            .evaluate((element) =>
+              Number.parseFloat(getComputedStyle(element).opacity),
+            ),
+        )
+        .toBeGreaterThan(0.98);
+
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][0]);
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][1]);
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][2]);
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][3]);
+
+      const settledHeight = await handoff.evaluate(
+        (element) => element.getBoundingClientRect().height,
+      );
+      expect(Math.abs(settledHeight - initialHeight)).toBeLessThan(0.5);
+
+      const metrics = await page.evaluate(() => ({
+        viewport: document.documentElement.clientWidth,
+        scroll: document.documentElement.scrollWidth,
+      }));
+      expect(metrics.scroll).toBeLessThanOrEqual(metrics.viewport);
+
+      const expectedHref = NEXT_HREF[product];
+      const next = handoff.getByRole("link", { name: /Next:/ });
+      if (expectedHref) {
+        await expect(next).toHaveAttribute("href", expectedHref);
+        const box = await next.boundingBox();
+        expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+        await next.focus();
+        await expect(next).toBeFocused();
+      } else {
+        await expect(next).toHaveCount(0);
+        await expect(handoff.getByText(/Open task/i)).toHaveCount(0);
+      }
+    }
+  });
+}
+
+for (const viewport of [
+  { name: "mobile", width: 390, height: 844 },
+  { name: "desktop", width: 1440, height: 960 },
+] as const) {
+  test(`production reduced motion is complete at ${viewport.name}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "light" });
+
+    for (const product of PRODUCTS) {
+      await page.goto(`/${product}`);
+      const handoff = page.locator("[data-product-handoff]");
+      await expect(handoff).toHaveAttribute("data-reduced", "true");
+      const destination = handoff.locator("[data-destination-artifact]");
+      await expect(destination).toBeAttached();
+      expect(
+        await destination.evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).opacity),
+        ),
+      ).toBe(1);
+      expect(
+        await handoff.evaluate(
+          (element) => element.getAnimations({ subtree: true }).length,
+        ),
+      ).toBe(0);
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][0]);
+      await expect(handoff).toContainText(PRODUCT_TEXT[product][1]);
+    }
+  });
+}
+
+test("homepage emphasis and product signatures match the founder direction", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 960 });
+  await page.goto("/");
+
+  const headline = page.getByRole("heading", {
+    level: 1,
+    name: "Project management for the 80% not in tech.",
+  });
+  await expect(headline).toBeVisible();
+  const accent = headline.locator(".reveal-headline-accent");
+  await expect(accent).toHaveText("not");
+  const colours = await headline.evaluate((element) => ({
+    ink: getComputedStyle(element).color,
+    accent: getComputedStyle(
+      element.querySelector(".reveal-headline-accent") as Element,
+    ).color,
+  }));
+  expect(colours.accent).not.toBe(colours.ink);
+
+  const signatures = page.locator("[data-product-signature]");
+  await expect(signatures).toHaveCount(4);
+  await expect(
+    signatures.evaluateAll((elements) =>
+      elements.map((element) => element.getAttribute("data-product")),
+    ),
+  ).resolves.toEqual(["notes", "tasks", "timeline", "signal"]);
+  await signatures.first().scrollIntoViewIfNeeded();
+  await expect(signatures.first()).toHaveAttribute("data-active", "true");
+});
+
+test("the four production Handoffs have no serious accessibility violations", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "light" });
+
+  for (const product of PRODUCTS) {
+    await page.goto(`/${product}`);
+    const result = await new AxeBuilder({ page })
+      .include("[data-product-handoff]")
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(result.violations).toEqual([]);
+  }
+});
 
 for (const option of OPTIONS) {
   for (const viewport of [

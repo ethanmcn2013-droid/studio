@@ -7,6 +7,20 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·152 · ships · one artifact walks the studio
+
+**Living Artifact is now the Product Handoff on Notes, Tasks, Timeline, and
+Signal.** The selected direction keeps one piece of wedding work recognisable
+while its owner, date, public state, and receipt resolve in the next product's
+grammar. Scroll drives the explanation directly; reduced motion presents the
+complete relationship immediately. The product heroes and the final waitlist
+close remain untouched.
+
+The homepage's four chapter names have their signatures back, refined to play
+once and settle: Notes keeps the caret, Tasks earns the indigo strike, Timeline
+lays a line and milestone, and Signal sends two measured beats. The umbrella
+headline keeps its wording, but only `not` is indigo now; `80%` is ink.
+
 ## 2026-07-28 · S·151 · holds · the review room stays off the public floor
 
 **The Product Handoff lab now fails closed for every Vercel production
