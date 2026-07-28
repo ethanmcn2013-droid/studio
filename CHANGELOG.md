@@ -7,6 +7,30 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·148 · ships · the Schedule view stops being the exception
+
+**The Tasks hero's third view is the product again.** Board and List were
+rebuilt against the shipped app weeks of review ago; Schedule was left as a
+fourteen-column bar chart in a rounded card, matching nothing, and it was
+flagged in four consecutive reports without being fixed. Flagging a defect is
+not the same as closing it.
+
+It now renders the app's own Schedule: the range toolbar with its Day, Week
+and Month zoom, the unscheduled tray that names what still has no dates, a
+sticky task pane beside a dated grid with weekend shading and a today line,
+and range bars sitting on the product's own geometry. Every class is the
+shipped one; the hero's only deviations are that it does not scroll, because
+a hero must not.
+
+One judgement recorded rather than acted on. The Timeline hero is the tallest
+page at three screens, and the height is entirely product surface: header,
+rail, milestone detail, decisions, footer. Trimming the detail panel would buy
+a fifth of a screen and cost the page the thing that makes it worth showing,
+so it stays.
+
+Signal asked for the waitlist twice within four hundred pixels. The walk's
+exit is now a line rather than a button, so the close owns the only ask.
+
 ## 2026-07-28 · S·147 · tightens · one grid, one voice, and two defects out
 
 **The four product pages now share one left edge and one headline register,

@@ -29,6 +29,10 @@ import hero from "./board-hero.module.css";
 
 const TIMELINE_DAYS = 14;
 const TIMELINE_DAY_LABELS = ["M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F", "S", "S"];
+/** Today sits on Wednesday of week one, matching the board's "Today" chips. */
+const TODAY_INDEX = 2;
+/** The tray shows what has no dates yet — the state the Schedule view exists to clear. */
+const UNSCHEDULED = ["Pack the welcome bags", "Approve the DJ playlist"];
 /** Mirrors the shipped table's column set: Task carries the weight, the five
  *  attribute columns are even. Used by the head, the rows and the group rows
  *  from one constant so they cannot drift apart. */
@@ -272,87 +276,94 @@ function ListChrome() {
   );
 }
 
+/**
+ * The Schedule view chrome.
+ *
+ * REBUILT 2026-07-28 against the shipped Schedule (hybrid option A). The
+ * previous version was a 14-column bar chart in a rounded white card, which
+ * matched nothing in the product: no toolbar, no unscheduled tray, no date
+ * header, no today line in the app's own idiom. Every class below is the
+ * product's own, vendored in `board-a.module.css`.
+ *
+ * The app's own Schedule opens empty ("No scheduled work") on a fresh
+ * workspace. A hero has to show the populated state, so this renders the same
+ * chrome with real ranges on the grid — the screen you get once work has
+ * dates, not the one you get before.
+ */
 function TimelineChrome({
   transitions,
 }: {
   transitions: ReturnType<typeof useMorphTransition>;
 }) {
-  // Today is at column index 2 (Wed of week 1). The marker's parent is
-  // the day-grid container which sits inside a 200px gutter on the
-  // left, so we position with the same percentage math the cards use.
-  const todayLeftPct = (2 / TIMELINE_DAYS) * 100;
-
   return (
-    <div className="px-5 pt-4">
-      <div className="relative overflow-hidden rounded-xl border border-line-soft bg-white">
-        <div className="grid grid-cols-[200px_1fr] border-b border-line-soft bg-bg-sunken/40">
-          <div className="border-r border-line-soft px-4 py-2 text-[10.5px] font-medium uppercase tracking-wider text-ink-quiet">
-            Task
-          </div>
-          <div
-            className="relative grid text-center text-[10.5px] font-medium text-ink-quiet"
-            style={{ gridTemplateColumns: `repeat(${TIMELINE_DAYS}, 1fr)` }}
-          >
-            {TIMELINE_DAY_LABELS.map((d, i) => (
-              <div
-                key={i}
-                className={
-                  "py-2 " +
-                  (i === 0 ? "" : "border-l border-line-soft/70 ") +
-                  (d === "S" ? "bg-bg-sunken/70 text-ink-soft " : "")
-                }
-              >
-                {d}
-                <span className="ml-1 text-ink-faint">{i + 1}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className={`${a.timelineSurface} ${hero.scheduleSurface}`}>
+      <div className={a.timelineToolbar}>
+        <span className={a.rangeNavigation}>
+          <span>‹</span>
+          <span>Fit</span>
+          <span>›</span>
+        </span>
+        <strong>1 Jun 2026 · 14 Jun 2026</strong>
+        <span className={a.zoomControl}>
+          <span>Day</span>
+          <span aria-pressed="true">Week</span>
+          <span>Month</span>
+        </span>
+      </div>
 
-        {/* Today line, positioned in the same coordinate space as
-            timeline bars (relative to the day-grid track, which excludes
-            the 200px gutter). */}
-        <motion.div
-          className="pointer-events-none absolute top-0 z-30 h-full w-px"
-          style={{
-            // Container is the white card; left = 200px gutter +
-            // todayLeftPct of the remaining track width.
-            left: `calc(200px + ${todayLeftPct}% - 200px * ${todayLeftPct / 100})`,
-            background:
-              "linear-gradient(to bottom, transparent, var(--brand) 8%, var(--brand) 92%, transparent)",
-            boxShadow: "0 0 8px var(--brand-glow)",
-            transformOrigin: "top center",
-          }}
-          initial={{ scaleY: 0, opacity: 0 }}
-          animate={{ scaleY: 1, opacity: 1 }}
-          transition={transitions.todayDraw}
-        >
+      <div className={a.unscheduledTray}>
+        <header>
+          <div>
+            <strong>Unscheduled</strong>
+            <span>2</span>
+          </div>
+          <small>Drag a task onto any date, or focus it for date controls.</small>
+        </header>
+        <div className={a.unscheduledItems}>
+          {UNSCHEDULED.map((title) => (
+            <div className={a.unscheduledItem} key={title}>
+              <input checked={false} readOnly tabIndex={-1} type="checkbox" />
+              <i />
+              <button tabIndex={-1} type="button">{title}</button>
+              <button tabIndex={-1} type="button">Schedule</button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={`${a.timelineScroller} ${hero.scheduleScroller}`}>
+        <div className={`${a.timelineCanvas} ${hero.scheduleCanvas}`}>
+          <div className={a.timelineHeaderRow}>
+            <div className={a.timelinePaneHeader}>
+              <span>Task</span>
+              <span>12</span>
+            </div>
+            <div
+              className={a.timelineDateHeader}
+              style={{ gridTemplateColumns: `repeat(${TIMELINE_DAYS}, 1fr)` }}
+            >
+              {TIMELINE_DAY_LABELS.map((d, i) => (
+                <div
+                  className={a.timelineDate}
+                  data-today={i === TODAY_INDEX ? "true" : undefined}
+                  key={i}
+                >
+                  {d}
+                  <b>{i + 1}</b>
+                </div>
+              ))}
+            </div>
+          </div>
           <motion.div
-            className="absolute left-1/2 top-1 -translate-x-1/2 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white"
-            style={{ background: "var(--brand)" }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 380,
-              damping: 22,
-              delay: transitions.todayDraw.delay
-                ? (transitions.todayDraw.delay as number) +
-                  (transitions.todayDraw.duration as number)
-                : 0,
-            }}
-          >
-            Today
-          </motion.div>
-        </motion.div>
+            className={hero.scheduleBody}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: transitions.bodyIn }}
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-/* ─────────────────────────────────────────────────────────────────────
-   Card Layer, stable across views; cards FLIP via layoutId
-   ───────────────────────────────────────────────────────────────────── */
 
 function CardLayer({
   view,
@@ -436,38 +447,51 @@ function CardLayer({
     );
   }
 
-  // timeline, each task occupies one fixed-height row; bar is
-  // positioned absolutely inside a relative `track` with a 200px
-  // task-name gutter to the left.
+  // Schedule: one product row per task — a sticky task pane on the left and
+  // a geometry track on the right that the morphing bar positions into.
   return (
-    <div className="px-5 pt-4">
-      <div className="overflow-hidden rounded-xl border border-transparent">
-        <div className="h-[37px]" aria-hidden />
-        <div className="flex flex-col">
-          {tasks.map((task) => (
-            <div
-              key={task.id}
-              className="relative grid grid-cols-[200px_1fr] items-center"
-              style={{ height: 44 }}
-            >
-              <div className="truncate px-4 text-[12.5px] text-ink-soft">
-                {task.title}
-              </div>
-              <div
-                className="relative h-full"
-                data-timeline-track
-              >
-                <MorphCard
-                  task={task}
-                  view="timeline"
-                  state={state}
-                  cardRefs={cardRefs}
-                  transitions={transitions}
-                />
-              </div>
+    <div className={`${a.timelineScroller} ${hero.scheduleScroller}`}>
+      <div className={`${a.timelineCanvas} ${hero.scheduleCanvas}`}>
+        {/* Clears the sticky header painted by the chrome beneath. */}
+        <div className={hero.scheduleHeadSpacer} aria-hidden />
+        {tasks.map((task) => (
+          <div className={a.timelineRow} key={task.id}>
+            <div className={a.timelineTaskPane}>
+              <input
+                checked={task.lane === "done"}
+                readOnly
+                tabIndex={-1}
+                type="checkbox"
+              />
+              <i />
+              <span className={a.timelineTaskCopy}>
+                <button tabIndex={-1} type="button">{task.title}</button>
+              </span>
+              <AvatarStack users={task.assignees} size={18} />
             </div>
-          ))}
-        </div>
+            <div className={a.timelineGeometry} data-timeline-track>
+              <div
+                className={a.timelineGrid}
+                style={{ gridTemplateColumns: `repeat(${TIMELINE_DAYS}, 1fr)` }}
+              >
+                {TIMELINE_DAY_LABELS.map((d, i) => (
+                  <span data-weekend={d === "S" ? "true" : undefined} key={i} />
+                ))}
+              </div>
+              <span
+                className={a.todayLine}
+                style={{ left: `${((TODAY_INDEX + 1) / TIMELINE_DAYS) * 100}%` }}
+              />
+              <MorphCard
+                task={task}
+                view="timeline"
+                state={state}
+                cardRefs={cardRefs}
+                transitions={transitions}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -568,7 +592,7 @@ function MorphCard({
         // shadows and a 10px radius, which read softer than the real board.
         view === "board" && `${a.boardCard} ${hero.card}`,
         view === "list" && `grid items-center ${hero.listRow}`,
-        view === "timeline" && "rounded-md border-0 px-2 py-1.5",
+        view === "timeline" && `${a.timelineRange} ${hero.scheduleRange}`,
       ]
         .filter(Boolean)
         .join(" ")}
@@ -583,28 +607,14 @@ function MorphCard({
               ? undefined
               : view === "board"
                 ? "var(--x-task-border)"
-                : "transparent",
+                : undefined,
         boxShadow: pickedColor
           ? `0 0 0 1.5px ${pickedColor}, 0 1px 2px rgba(20,21,26,0.05)`
-          : view === "timeline"
-            ? task.lane === "doing"
-              ? "inset 0 0 0 1px rgba(79,70,229,0.28)"
-              : "inset 0 0 0 1px var(--line-soft)"
-            : undefined,
-        // Timeline bars read status at a glance: each bar wears its
-        // lane's wash and ink (the same --lane-* tokens as the board).
-        background:
-          view === "timeline"
-            ? task.lane === "doing"
-              ? "var(--brand-soft)"
-              : LANES[task.lane].bg
-            : "var(--paper)",
-        color:
-          view === "timeline"
-            ? task.lane === "doing"
-              ? "var(--brand-deep)"
-              : LANES[task.lane].ink
-            : "var(--ink)",
+          : undefined,
+        // Schedule bars are styled entirely by the product's own
+        // .timelineRange; only the board and list need per-view surfaces.
+        background: view === "timeline" ? undefined : "var(--paper)",
+        color: view === "timeline" ? undefined : "var(--ink)",
         opacity: isPicked ? 0 : 1,
       }}
     >
@@ -631,11 +641,10 @@ function timelineRowStyle(task: Task): React.CSSProperties {
   // excludes the 200px gutter. Pure percentages compose cleanly.
   return {
     position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    left: `calc(${leftPct}% + 4px)`,
-    width: `calc(${widthPct}% - 8px)`,
-    height: 28,
+    top: 6,
+    left: `calc(${leftPct}% + 3px)`,
+    width: `calc(${widthPct}% - 6px)`,
+    height: 27,
   };
 }
 
@@ -724,19 +733,12 @@ function CardBody({
 
 function SoulRow({ task, view }: { task: Task; view: ViewMode }) {
   if (view === "timeline") {
+    const days = task.durationDays ?? 1;
     return (
-      <div className="flex h-full items-center gap-1.5 overflow-hidden">
-        <Avatar user={task.assignees[0]} size={14} />
-        <span className="truncate text-[11px] font-medium">{task.title}</span>
-        {task.priority === "p0" ? (
-          <span
-            className="ml-auto font-mono text-[9px] font-semibold tracking-[0.08em]"
-            style={{ color: "var(--roadmap-red-fg)" }}
-          >
-            P0
-          </span>
-        ) : null}
-      </div>
+      <span className={a.timelineRangeButton}>
+        <span>{task.title}</span>
+        <small>{days}d</small>
+      </span>
     );
   }
 

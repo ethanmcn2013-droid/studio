@@ -83,7 +83,7 @@ const HANDOFFS: Record<ProductId, Handoff> = {
     ),
     chip: "open",
     nextHref: "/waitlist",
-    nextLabel: "Join the waitlist",
+    nextLabel: "That is the whole loop. The close below is the only ask.",
   },
 };
 
@@ -136,10 +136,20 @@ export function ProductHandoff({ product }: { product: ProductId }) {
           <strong>{h.lead}</strong> {h.body}
         </p>
 
-        <a className="ho-next" href={h.nextHref}>
-          {h.nextLabel}
-          <span aria-hidden="true">→</span>
-        </a>
+        {/* POLISH 2026-07-28 — Signal's walk exit and the close band below it
+            both said "Join the waitlist", so the page asked for the same thing
+            twice in 400px. On Signal the exit is a quiet line instead: the
+            close keeps the only button, and the walk still ends where it
+            should. The other three link onward to a product, not the
+            conversion, so they stay as links. */}
+        {product === "signal" ? (
+          <p className="ho-next ho-next-quiet">{h.nextLabel}</p>
+        ) : (
+          <a className="ho-next" href={h.nextHref}>
+            {h.nextLabel}
+            <span aria-hidden="true">→</span>
+          </a>
+        )}
       </div>
 
       <style>{CSS}</style>
@@ -648,6 +658,16 @@ const CSS = `
 
 .ho-next:hover span {
   translate: 3px 0;
+}
+
+/* Signal's exit: the sentence that ends the walk, with no second ask. */
+.ho-next-quiet {
+  margin: 18px 0 0;
+  border: 0;
+  padding: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-faint);
 }
 
 /* ── narrow ────────────────────────────────────────────────────────── */
