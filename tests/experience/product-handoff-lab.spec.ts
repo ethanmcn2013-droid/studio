@@ -65,10 +65,18 @@ function labUrl({
 test("the review route is hidden from canonical production hosts", async ({
   request,
 }) => {
-  const response = await request.get(labUrl({}), {
+  const directResponse = await request.get(labUrl({}), {
     headers: { host: "signalstudio.ie" },
   });
-  expect(response.status()).toBe(404);
+  expect(directResponse.status()).toBe(404);
+
+  const forwardedResponse = await request.get(labUrl({}), {
+    headers: {
+      host: "studio-production.vercel.app",
+      "x-forwarded-host": "signalstudio.ie",
+    },
+  });
+  expect(forwardedResponse.status()).toBe(404);
 });
 
 for (const viewport of VIEWPORTS) {

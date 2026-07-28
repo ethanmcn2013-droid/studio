@@ -7,6 +7,20 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·151 · holds · the review room stays off the public floor
+
+**The Product Handoff lab now fails closed for every Vercel production
+deployment, including requests forwarded from the canonical domain.** The
+first live release check found that Vercel preserves its deployment hostname
+in `Host` and carries `signalstudio.ie` separately in `X-Forwarded-Host`.
+The route now reads the forwarded public host, rejects canonical requests, and
+also rejects any deployment whose Vercel environment is production.
+
+The regression check covers both direct and forwarded canonical hosts. A local
+production build with review mode deliberately enabled still returns 404 for
+the lab while the homepage returns 200. Preview review access remains
+unchanged.
+
 ## 2026-07-28 · S·150 · ships · the Handoff enters the review room
 
 **The section below the four product heroes now has a permanent name and a
