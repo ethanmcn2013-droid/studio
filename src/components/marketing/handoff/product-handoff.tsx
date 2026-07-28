@@ -36,6 +36,7 @@ function getCompactViewportSnapshot() {
  */
 export function ProductHandoff({ product }: { product: ProductId }) {
   const sectionRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const hydrated = useSyncExternalStore(
     subscribeToHydration,
@@ -49,8 +50,12 @@ export function ProductHandoff({ product }: { product: ProductId }) {
   );
   const settledProgress = useMotionValue(1);
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 80%", "end 30%"],
+    target: stageRef,
+    // Begin only after the source artifact itself enters the viewport, then
+    // finish while the complete relationship is still comfortably visible.
+    // Tracking the whole section started the morph behind the scene header,
+    // which made the first visible frame look half-finished.
+    offset: ["start 78%", "center 38%"],
   });
   // Keep the server and first client render identical. Motion learns the
   // media preference in the browser; applying it after mount avoids a
@@ -75,6 +80,7 @@ export function ProductHandoff({ product }: { product: ProductId }) {
           reduced={reduced}
           replayKey={0}
           compact={compact}
+          stageRef={stageRef}
         />
 
         {definition.nextHref && definition.nextLabel ? (

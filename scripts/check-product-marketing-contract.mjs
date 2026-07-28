@@ -52,7 +52,8 @@ assert.match(handoffData, /signal:\s*\{[\s\S]*?nextHref:\s*null/);
 assert.match(handoff, /LivingArtifact/);
 assert.match(handoff, /useScroll/);
 assert.match(handoff, /useReducedMotion/);
-assert.match(handoff, /offset:\s*\["start 80%", "end 30%"\]/);
+assert.match(handoff, /target:\s*stageRef/);
+assert.match(handoff, /offset:\s*\["start 78%", "center 38%"\]/);
 assert.doesNotMatch(handoff, /IntersectionObserver/);
 assert.doesNotMatch(handoffData, /Open task/i);
 

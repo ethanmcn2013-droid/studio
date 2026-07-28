@@ -106,7 +106,9 @@ assert.match(production, /LivingArtifact/);
 assert.match(production, /HANDOFF_DEFINITIONS/);
 assert.match(production, /useScroll/);
 assert.match(production, /useReducedMotion/);
-assert.match(production, /offset:\s*\["start 80%", "end 30%"\]/);
+assert.match(production, /target:\s*stageRef/);
+assert.match(production, /offset:\s*\["start 78%", "center 38%"\]/);
+assert.match(living, /data-handoff-stage/);
 assert.doesNotMatch(production, /IntersectionObserver/);
 
 assert.match(data, /Venue can open the side room after six/);
