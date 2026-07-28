@@ -42,7 +42,11 @@ export function TimelineTheLine() {
     <section className="tlh" data-opened={opened ? "true" : undefined}>
       <div className="tlh-frame">
         <div className="tlh-folio">
-          <span className="tlh-folio-name">Shared plan</span>
+          {/* POLISH 2026-07-28 — the page h1. It was the artifact's label,
+              which put a demo couple's name as the page's largest and only
+              top-level heading. The real heading is quiet and lives in the
+              folio; the label below demotes to h2 and keeps its size. */}
+          <h1 className="tlh-folio-name">The plan, in the open</h1>
           <span className="tlh-folio-rule" aria-hidden="true" />
           <span className="tlh-folio-link">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -127,16 +131,30 @@ const CSS = `
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Folio and foot sit on the 1080/936 grid the bands below use, so the
+   full-bleed artifact reads as a chosen exception between two anchored
+   lines rather than a page with no grid. */
 .tlh-folio {
+  max-width: 936px;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   gap: 14px;
   margin-bottom: 14px;
+  width: 100%;
   font-family: var(--font-mono, var(--font-geist-mono));
   font-size: 10.5px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+
+.tlh-folio-name {
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
 .tlh-folio-rule {
@@ -172,8 +190,9 @@ const CSS = `
 }
 
 .tlh-foot {
-  margin: 16px 0 0;
-  text-align: center;
+  max-width: 936px;
+  margin: 16px auto 0;
+  text-align: left;
   font-size: 12.5px;
   color: var(--ink-faint);
 }

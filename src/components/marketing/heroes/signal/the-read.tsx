@@ -264,10 +264,12 @@ const CSS = `
    cap broke it by accident and left the upper-right quadrant dead. */
 .rd-headline {
   margin: 0;
-  font-size: clamp(2.3rem, 1rem + 4.1vw, 4.15rem);
-  font-weight: 580;
+  /* POLISH 2026-07-28 — the shared headline register: one clamp, 600,
+     -0.04em across all four product pages. */
+  font-size: clamp(2.5rem, 1.2rem + 3.9vw, 4.4rem);
+  font-weight: 600;
   line-height: 0.98;
-  letter-spacing: -0.043em;
+  letter-spacing: -0.04em;
   animation: rd-rise 700ms var(--rd-ease) 130ms both;
 }
 
