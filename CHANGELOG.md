@@ -7,6 +7,27 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·149 · ships · the Handoff enters the review room
+
+**The section below the four product heroes now has a permanent name and a
+protected place to decide what it becomes.** Product Handoff is the single
+transition; Product Walk is the connected Notes → Tasks → Timeline → Signal
+sequence. The live pages and their heroes are unchanged while three
+deterministic directions sit side by side for review.
+
+Living Artifact lets one piece of work change product grammar without losing
+its wording, date, owner, or receipt. Provenance Rail draws the adjacent route.
+Editorial Cause makes the consequence typographic and lets the product proof
+follow. The same wedding facts drive every option, at the same frames, across
+phone, tablet, landscape, and desktop.
+
+The review surface can pause, scrub, slow down, force reduced motion, and walk
+all four products in sequence. Its evidence set holds 168 deterministic frames,
+four motion recordings, a clean three-browser accessibility matrix, and a 4×
+CPU trace with no long task, dropped-frame run, layout shift, or animated
+layout. The previous Handoff remains the production implementation until Ethan
+selects a direction.
+
 ## 2026-07-28 · S·148 · ships · the Schedule view stops being the exception
 
 **The Tasks hero's third view is the product again.** Board and List were

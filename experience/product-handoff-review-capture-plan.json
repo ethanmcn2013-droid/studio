@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "signal-product-handoff-review-capture/1",
+  "canonicalPages": [
+    "https://signalstudio.ie/notes",
+    "https://signalstudio.ie/tasks",
+    "https://signalstudio.ie/timeline",
+    "https://signalstudio.ie/signal"
+  ],
+  "reviewPath": "/__design-lab/product-handoff",
+  "directions": ["a", "b", "c"],
+  "products": ["notes", "tasks", "timeline", "signal"],
+  "progressFrames": [0, 0.5, 1],
+  "viewports": [
+    { "name": "mobile", "width": 390, "height": 844 },
+    { "name": "tablet", "width": 768, "height": 1024 },
+    { "name": "landscape", "width": 1024, "height": 768 },
+    { "name": "desktop", "width": 1440, "height": 960 }
+  ],
+  "reducedMotion": [
+    { "name": "mobile", "width": 390, "height": 844 },
+    { "name": "desktop", "width": 1440, "height": 960 }
+  ]
+}

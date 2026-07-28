@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "signal-product-handoff-hero-lock/1",
+  "baselineCommit": "01df79eae9b8c05170c51c30a67d131046b709b9",
+  "heroFileCount": 28,
+  "heroAggregateSha256": "b68be826a64ffac0423cfaa2825485d6ea38a75e7039c812e1ae3a135c065519",
+  "productionHandoffSha256": "da7f56756509ce152275ca96f12911e84fdae420d1b383945b975006bdd10061",
+  "productMarketingPageSha256": "a62bb9d1d3e4214f35a71ab76d877e0aa0c43d81bc650ed48fdf16cfa0ea98ea"
+}
