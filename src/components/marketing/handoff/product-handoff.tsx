@@ -52,10 +52,9 @@ export function ProductHandoff({ product }: { product: ProductId }) {
   const { scrollYProgress } = useScroll({
     target: stageRef,
     // Begin only after the source artifact itself enters the viewport, then
-    // finish while the complete relationship is still comfortably visible.
-    // Tracking the whole section started the morph behind the scene header,
-    // which made the first visible frame look half-finished.
-    offset: ["start 78%", "center 38%"],
+    // finish when the artifact reaches the viewport centre. The remainder of
+    // the section stays settled so the completed relationship can be read.
+    offset: ["start 78%", "start 50%"],
   });
   // Keep the server and first client render identical. Motion learns the
   // media preference in the browser; applying it after mount avoids a

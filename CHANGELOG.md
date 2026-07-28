@@ -7,6 +7,14 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·154 · tightens · the finished state arrives at centre
+
+**Each Product Handoff now completes when its artifact reaches the middle of
+the viewport.** The source still enters intact, but the transformation resolves
+over a shorter, deliberate scroll window. The remaining section holds the
+finished destination and receipt in view instead of making the reader chase
+the final frame toward the bottom of the page.
+
 ## 2026-07-28 · S·153 · fixes · the Handoff arrives intact
 
 **The Product Handoff now measures its motion from the artifact on screen, not
