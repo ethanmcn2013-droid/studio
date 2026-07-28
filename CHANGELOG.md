@@ -7,6 +7,30 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-28 · S·144 · ships · the four product pages open on the product
+
+**Notes, Tasks, Timeline and Signal now lead with the thing itself instead of a
+drawing of it.** The static CSS gesture that stood at the top of all four pages
+is gone, and in its place each product runs its own hero: the animated board
+with live collaborators, the shared plan drawing itself milestone by milestone,
+the caret catching a thought before it leaves, and the morning read down to the
+two things that need you.
+
+These heroes were not new work. They were built before the five repos became
+one and were stranded afterwards across four of them, on three branches, two of
+which were backups. Recovering them was most of the job; the rest was deciding
+which of the seventeen directions survived, and cutting the other thirteen.
+
+The generic copy column went with the gesture. Every hero carries its own
+headline and its own proof, so a shared one above them was a second headline
+arguing with the first. What sits under each hero is unchanged: the day in the
+work, the boundary, the same source of truth driving metadata.
+
+Nothing new entered the palette. The board's surface tokens came across on the
+system ramp, the collaborator colours are derived rather than imported, and the
+review tone now rides the flight ramp, so Studio gained four heroes and zero
+colours.
+
 ## 2026-07-27 · S·143 · ships · sponsored use becomes measurable without becoming surveillance
 
 **A venue can now be shown that its sponsorship was used, and still never be

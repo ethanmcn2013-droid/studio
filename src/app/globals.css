@@ -78,6 +78,48 @@
   --shadow-3: var(--shadow-modal);
   --shadow-accent: 0 12px 32px -12px var(--accent-glow);
   --shadow-indigo: var(--shadow-accent);
+
+  /* ── Product-hero board surface (ported 2026-07-28) ──────────
+     The Tasks hero renders the product's real board, whose CSS is
+     written against the tasks repo's `--x-task-*` extension set.
+     Copied verbatim from tasks/src/app/globals.css so the hero and
+     the app cannot drift. Every value rides a system token — no raw
+     colour enters here, so ds-check stays clean. `--status-review`
+     The review tones derive from the flight ramp rather than importing
+     the tasks repo's raw cyan: the hero's review lane is amber by design
+     decision, and no new colour needs to enter Studio to say so. */
+  --x-task-canvas: var(--paper-deep);
+  --x-task-surface: var(--paper-soft);
+  --x-task-raised: var(--paper);
+  --x-task-selected: var(--accent-tint);
+  --x-task-hover: var(--paper-deep);
+  --x-task-overlay: var(--paper);
+  --x-task-border: var(--hairline);
+  --x-task-border-strong: var(--ink-ghost);
+  --x-task-text: var(--ink);
+  --x-task-text-secondary: var(--ink-soft);
+  --x-task-text-muted: color-mix(in srgb, var(--ink-faint) 90%, var(--ink));
+  --x-task-accent: var(--accent);
+  --x-task-accent-soft: var(--accent-tint);
+  --x-task-focus: var(--accent-hover);
+  --x-task-success: color-mix(in srgb, var(--status-done) 60%, var(--ink));
+  --x-task-success-soft: var(--status-done-bg);
+  --x-task-waiting: color-mix(in srgb, var(--status-flight) 52%, var(--ink));
+  --x-task-waiting-soft: var(--status-flight-bg);
+  --x-task-warning: color-mix(in srgb, var(--status-flight) 60%, var(--ink));
+  --x-task-danger: color-mix(in srgb, var(--status-blocked) 72%, var(--ink));
+  --x-task-danger-soft: var(--status-blocked-bg);
+  --x-task-review: color-mix(in srgb, var(--status-flight) 55%, var(--ink));
+  --x-task-review-soft: color-mix(in srgb, var(--status-flight) 10%, var(--paper));
+  --x-task-shadow: var(--shadow-modal);
+
+  /* Collaborator presence colours for the Tasks hero. The tasks repo
+     defines these from raw hex; here they are derived from the system
+     ramp, so no new colour enters Studio and the live cursors sit in the
+     same palette as the board they move across. */
+  --user-chloe: color-mix(in srgb, var(--status-blocked) 82%, var(--ink));
+  --user-david: color-mix(in srgb, var(--status-done) 70%, var(--ink));
+  --user-alex:  color-mix(in srgb, var(--accent) 90%, var(--ink));
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -205,6 +247,11 @@
   --color-bg:          var(--bg);
   --color-bg-elev:     var(--bg-elev);
   --color-bg-deep:     var(--bg-deep);
+  /* Aliases the Tasks hero's showcase calls by their tasks-repo names
+     (ported 2026-07-28). Same targets as -elev / -deep, added rather than
+     rewritten across the tree so the hero stays diffable against source. */
+  --color-bg-elevated: var(--bg-elev);
+  --color-bg-sunken:   var(--bg-deep);
   --color-line:        var(--line);
   --color-line-soft:   var(--line-soft);
   --color-border:      var(--border);
