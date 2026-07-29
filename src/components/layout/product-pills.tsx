@@ -3,8 +3,8 @@
 /**
  * ProductPills, four pills at the top of the umbrella front door to jump
  * between products. One indigo dot marks the product in use; the dot glides
- * to whichever pill is hovered/focused, and on click it travels to the
- * target pill before the page navigates ("the cool dot transition").
+ * to whichever pill is hovered/focused. Press moves it immediately, while
+ * navigation remains native and is never delayed for the animation.
  *
  * Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
  *
@@ -15,7 +15,7 @@
  * immediate navigation (no animated delay).
  */
 
-import { useRef, useState, useCallback } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 type Product = { slug: string; label: string; href: string };
@@ -29,6 +29,7 @@ const PRODUCTS: Product[] = [
 
 export function ProductPills({ current }: { current?: string }) {
   const barRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLSpanElement>(null);
   const pillRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   // active index drives the dot. Defaults to the in-use product if given,
   // else the home position (parked under the first pill, muted).
@@ -53,22 +54,55 @@ export function ProductPills({ current }: { current?: string }) {
     else setDotX(null);
   }, [currentIdx, moveDotTo]);
 
-  const onPillClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>, p: Product, i: number) => {
-      const reduce =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) return; // let the link navigate immediately
-      e.preventDefault();
-      moveDotTo(i);
-      // Source press <=120ms, never delays navigation (loading canon law 8).
-      // The dot starts travelling; the destination owns the arrival.
-      window.setTimeout(() => {
-        window.location.href = p.href;
-      }, 120);
-    },
-    [moveDotTo],
-  );
+  // The indicator must begin under the actual route, not at the bar origin.
+  // Remeasure after layout and whenever responsive text/pill geometry changes.
+  useLayoutEffect(() => {
+    if (currentIdx < 0) return;
+
+    const measure = () => moveDotTo(currentIdx);
+    dotRef.current?.classList.remove("pp-dot-interactive");
+    let cancelled = false;
+    let geometryReady = false;
+    let measureFrame: number | null = null;
+    let interactiveFrame: number | null = null;
+    const updateMeasuredGeometry = () => {
+      if (geometryReady) measure();
+    };
+    const enableMeasuredGeometry = () => {
+      if (cancelled) return;
+      measureFrame = window.requestAnimationFrame(() => {
+        if (cancelled) return;
+        geometryReady = true;
+        measure();
+        interactiveFrame = window.requestAnimationFrame(() => {
+          dotRef.current?.classList.add("pp-dot-interactive");
+        });
+      });
+    };
+
+    if (document.fonts) {
+      void document.fonts.ready.then(enableMeasuredGeometry);
+    } else {
+      enableMeasuredGeometry();
+    }
+    window.addEventListener("resize", updateMeasuredGeometry);
+
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(updateMeasuredGeometry);
+    if (barRef.current) observer?.observe(barRef.current);
+
+    return () => {
+      cancelled = true;
+      if (measureFrame !== null) window.cancelAnimationFrame(measureFrame);
+      if (interactiveFrame !== null) {
+        window.cancelAnimationFrame(interactiveFrame);
+      }
+      window.removeEventListener("resize", updateMeasuredGeometry);
+      observer?.disconnect();
+    };
+  }, [currentIdx, moveDotTo]);
 
   return (
     <nav className="pp" aria-label="Jump to a product">
@@ -98,7 +132,7 @@ export function ProductPills({ current }: { current?: string }) {
                 setHovering(true);
                 moveDotTo(i);
               }}
-              onClick={(e) => onPillClick(e, p, i)}
+              onPointerDown={() => moveDotTo(i)}
               aria-current={isCurrent ? "page" : undefined}
             >
               <span className="pp-word">{p.label}</span>
@@ -107,7 +141,8 @@ export function ProductPills({ current }: { current?: string }) {
           );
         })}
         <span
-          className={`pp-dot${dotX === null ? " pp-dot-parked" : ""}${hovering ? " pp-dot-live" : ""}`}
+          ref={dotRef}
+          className={`pp-dot${dotX !== null ? " pp-dot-ready" : ""}${hovering ? " pp-dot-live" : ""}`}
           style={dotX === null ? undefined : { transform: `translateX(${dotX}px)` }}
           aria-hidden
         />
@@ -126,19 +161,27 @@ const PP_CSS = `
 .pp-pill{position:relative;display:inline-flex;align-items:baseline;
   padding:7px 16px 9px;border-radius:999px;text-decoration:none;
   color:var(--ink-quiet,#6b6b6b);font-size:14px;font-weight:500;
-  letter-spacing:-.01em;transition:color .18s ease,background .18s ease;}
-.pp-pill:hover,.pp-pill:focus-visible{color:var(--ink,#111);
-  background:var(--paper-soft,#fafafa);outline:none;}
+  letter-spacing:-.01em;transition:color .16s var(--ease-out),
+  background .16s var(--ease-out),transform .12s var(--ease-out);}
+.pp-pill:focus-visible{color:var(--ink,#111);background:var(--paper-soft,#fafafa);
+  outline:2px solid var(--accent);outline-offset:1px;}
+.pp-pill:active{transform:scale(.98);}
 .pp-pill.pp-current{color:var(--ink,#111);}
 .pp-period{color:var(--indigo,#4f46e5);font-weight:600;margin-left:1px;}
 .pp-dot{position:absolute;bottom:3px;left:0;width:6px;height:6px;
   margin-left:-3px;border-radius:50%;background:var(--indigo,#4f46e5);
-  opacity:0;transition:transform .34s cubic-bezier(.34,1.4,.5,1),opacity .2s ease;
-  will-change:transform;pointer-events:none;}
+  opacity:0;transition:opacity .16s var(--ease-out);pointer-events:none;}
+.pp-dot.pp-dot-interactive{transition:transform .34s var(--ease-out),
+  opacity .16s var(--ease-out);}
 .pp-dot.pp-dot-live{opacity:1;}
-.pp-current ~ .pp-dot:not(.pp-dot-live){opacity:1;}
-.pp-dot-parked{opacity:0;}
+.pp-current ~ .pp-dot.pp-dot-ready:not(.pp-dot-live){opacity:1;}
+@media (hover:hover) and (pointer:fine){
+  .pp-pill:hover{color:var(--ink);background:var(--paper-soft);}
+}
 @media (prefers-reduced-motion:reduce){
-  .pp-dot{transition:opacity .15s ease;}
+  .pp-dot,.pp-dot.pp-dot-interactive{transition:opacity .15s ease;}
+  .pp-pill{transition:color .16s var(--ease-out),
+    background .16s var(--ease-out);}
+  .pp-pill:active{transform:none;}
 }
 `;

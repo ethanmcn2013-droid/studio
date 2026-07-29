@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience/1",
-  "generatedAt": "2026-07-28",
+  "generatedAt": "2026-07-29",
   "breakpoints": {
     "mobile": {
       "width": 390,
@@ -3134,7 +3134,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "0a3d79cbfbe52849"
+      "materialityHash": "62bccd420385f20b"
     },
     {
       "id": "studio.page.accessibility",
@@ -6277,7 +6277,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f9ab6a89e3e2e908"
+      "materialityHash": "df279c999de24382"
     },
     {
       "id": "studio.page.principles",
@@ -7389,7 +7389,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "85de6120aa658e82"
+      "materialityHash": "ffe3df5423a0fc38"
     },
     {
       "id": "studio.surface.site-navigation",
@@ -7434,7 +7434,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "e92951ba7364cb65"
+      "materialityHash": "663c77c1b6baf129"
     },
     {
       "id": "tasks.page.about",

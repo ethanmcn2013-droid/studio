@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
 const INDIGO = "#4f46e5";
@@ -30,11 +31,6 @@ const PANEL_CSS = `
   background: #ffffff;
   border-bottom: 1px solid rgba(17,17,17,0.08);
   box-shadow: 0 20px 48px -16px rgba(17,17,17,0.10), 0 4px 12px -4px rgba(17,17,17,0.05);
-  animation: mpanel-enter 220ms cubic-bezier(0,0,0.2,1) both;
-}
-@keyframes mpanel-enter {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Inner content, centred, matches nav max-width */
@@ -72,16 +68,10 @@ const PANEL_CSS = `
   color: #111111;
   background: transparent;
   cursor: pointer;
-  animation: mpanel-card-enter 280ms cubic-bezier(0,0,0.2,1) both;
-  transition: background 180ms ease-out, border-color 180ms ease-out;
-}
-@keyframes mpanel-card-enter {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.mpanel-card:hover {
-  background: rgba(79,70,229,0.05);
-  border-color: rgba(79,70,229,0.18);
+  transition:
+    background 160ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    transform 120ms var(--ease-out);
 }
 .mpanel-card:focus-visible {
   outline: 2px solid #4f46e5;
@@ -89,6 +79,7 @@ const PANEL_CSS = `
   background: rgba(79,70,229,0.05);
   border-color: rgba(79,70,229,0.24);
 }
+.mpanel-card:active { transform: scale(0.985); }
 
 /* Visual stage */
 .mpanel-stage {
@@ -147,6 +138,9 @@ const PANEL_CSS = `
   0%,49% { opacity: 1; }
   50%,100% { opacity: 0; }
 }
+.mpanel-card[data-slug="notes"] .mnotes-cursor {
+  animation: mnotes-caret 760ms steps(1,end) 140ms 2;
+}
 
 /* tasks · pulse, staggered across 3 dots */
 .mtasks-dot { transform-box: fill-box; transform-origin: center; }
@@ -160,6 +154,11 @@ const PANEL_CSS = `
   40%         { transform: scale(1.14); }
   50%         { transform: scale(1); }
 }
+.mpanel-card[data-slug="tasks"] .mtasks-dot {
+  animation: mtasks-pulse 1.1s var(--ease-out) 180ms 1 both;
+}
+.mpanel-card[data-slug="tasks"] .mtasks-dot-2 { animation-delay: 230ms; }
+.mpanel-card[data-slug="tasks"] .mtasks-dot-3 { animation-delay: 280ms; }
 
 /* roadmap · sweep */
 .mroadmap-dot {
@@ -174,6 +173,9 @@ const PANEL_CSS = `
   70%  { transform: translateX(0);    opacity: 0; }
   78%  { transform: translateX(0);    opacity: 1; }
   100% { transform: translateX(0);    opacity: 1; }
+}
+.mpanel-card[data-slug="timeline"] .mroadmap-dot {
+  animation: mroadmap-sweep 1.4s var(--ease-in-out) 220ms 1 both;
 }
 
 /* analytics · tick */
@@ -198,6 +200,18 @@ const PANEL_CSS = `
   0%  { transform: scaleY(1.00); } 25% { transform: scaleY(0.55); }
   50% { transform: scaleY(0.80); } 75% { transform: scaleY(0.40); }
 }
+.mpanel-card[data-slug="signal"] .manalytics-bar-1 {
+  animation: mbar1 1.1s steps(4,end) 260ms 1 both;
+}
+.mpanel-card[data-slug="signal"] .manalytics-bar-2 {
+  animation: mbar2 1.1s steps(4,end) 285ms 1 both;
+}
+.mpanel-card[data-slug="signal"] .manalytics-bar-3 {
+  animation: mbar3 1.1s steps(4,end) 310ms 1 both;
+}
+.mpanel-card[data-slug="signal"] .manalytics-bar-4 {
+  animation: mbar4 1.1s steps(4,end) 335ms 1 both;
+}
 
 /* Footer row, quiet link to the design system */
 .mpanel-foot {
@@ -216,6 +230,13 @@ const PANEL_CSS = `
 .mpanel-foot:hover { color: var(--ink); }
 .mpanel-foot svg { opacity: 0.7; }
 
+@media (hover: hover) and (pointer: fine) {
+  .mpanel-card:hover {
+    background: rgba(79,70,229,0.05);
+    border-color: rgba(79,70,229,0.18);
+  }
+}
+
 /* Mobile, 2×2 grid */
 @media (max-width: 640px) {
   .mpanel-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
@@ -225,7 +246,12 @@ const PANEL_CSS = `
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .mpanel, .mpanel-card { animation: none !important; }
+  .mpanel-card {
+    transition:
+      background 160ms var(--ease-out),
+      border-color 160ms var(--ease-out);
+  }
+  .mpanel-card:active { transform: none; }
   .mnotes-cursor, .mtasks-dot, .mroadmap-dot, .manalytics-bar { animation: none !important; }
   .mnotes-cursor { opacity: 1; }
   .mroadmap-dot  { transform: none; }
@@ -302,6 +328,7 @@ interface Props {
 
 export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
   const panelRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!open) return;
@@ -316,18 +343,26 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose, triggerRef]);
 
-  if (!open) return null;
-
   return (
     <>
       {/* Embedded stylesheet, self-contained, no build-cache dependency */}
       <style dangerouslySetInnerHTML={{ __html: PANEL_CSS }} />
 
-      <nav
+      <AnimatePresence initial={false}>
+        {open ? (
+      <motion.nav
+        key="products-mega-panel"
         ref={panelRef}
         id="products-mega-panel"
         aria-label="Signal Studio products"
         className="mpanel"
+        initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+        transition={{
+          duration: reducedMotion ? 0.01 : 0.22,
+          ease: [0.23, 1, 0.32, 1],
+        }}
       >
         <div className="mpanel-inner">
           <p className="mpanel-label">Four products, one studio.</p>
@@ -336,13 +371,19 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
             {PRODUCTS.map((product, i) => {
               const Visual = VISUAL_MAP[product.slug];
               return (
-                <a
+                <motion.a
                   key={product.slug}
                   href={product.url}
                   onClick={onClose}
                   className="mpanel-card"
                   data-slug={product.slug}
-                  style={{ animationDelay: `${i * 55}ms` }}
+                  initial={reducedMotion ? false : { opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: reducedMotion ? 0.01 : 0.2,
+                    delay: reducedMotion ? 0 : i * 0.035,
+                    ease: [0.23, 1, 0.32, 1],
+                  }}
                 >
                   <div className="mpanel-stage" aria-hidden>
                     <Visual />
@@ -364,7 +405,7 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
                       <path d="M7 17L17 7M17 7H8M17 7v9" />
                     </svg>
                   </div>
-                </a>
+                </motion.a>
               );
             })}
           </div>
@@ -378,7 +419,9 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
             </svg>
           </a>
         </div>
-      </nav>
+      </motion.nav>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

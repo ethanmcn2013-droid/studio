@@ -55,11 +55,19 @@
   font-weight: 560;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity var(--motion-fast) var(--ease-out);
+  transition:
+    opacity var(--motion-fast) var(--ease-out),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
 }
 
-.closeInner a:hover {
-  opacity: 0.84;
+.closeInner a:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .closeInner a:hover {
+    opacity: 0.84;
+  }
 }
 
 @media (max-width: 720px) {
@@ -81,6 +89,13 @@
   .page *::after {
     scroll-behavior: auto !important;
     animation: none !important;
-    transition-duration: 0.01ms !important;
+  }
+
+  .closeInner a {
+    transition: opacity var(--motion-fast) var(--ease-out);
+  }
+
+  .closeInner a:active {
+    transform: none;
   }
 }

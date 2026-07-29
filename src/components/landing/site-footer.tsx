@@ -137,7 +137,7 @@ function SocialLinks() {
           rel="noopener noreferrer"
           title={title}
           aria-label={title}
-          className="inline-flex h-10 w-10 items-center justify-center transition-colors hover:text-ink"
+          className="marketing-footer-action inline-flex h-10 w-10 items-center justify-center transition-colors"
         >
           {svg}
         </a>
@@ -169,17 +169,17 @@ function FooterCol({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[28px] items-center transition-colors hover:text-ink sm:min-h-[32px]"
+                className="marketing-footer-action inline-flex min-h-[28px] items-center transition-colors sm:min-h-[32px]"
               >
                 {link.label}
-                <span aria-hidden className="ml-1 text-[11px] text-ink-faint">
+                <span aria-hidden className="footer-external-arrow ml-1 text-[11px] text-ink-faint">
                   &rarr;
                 </span>
               </a>
             ) : (
               <Link
                 href={link.href}
-                className="inline-flex min-h-[28px] items-center transition-colors hover:text-ink sm:min-h-[32px]"
+                className="marketing-footer-action inline-flex min-h-[28px] items-center transition-colors sm:min-h-[32px]"
               >
                 {link.label}
               </Link>
@@ -215,7 +215,7 @@ function LegalLinks() {
           )}
           <Link
             href={link.href}
-            className="inline-flex min-h-[28px] items-center px-2 py-1 transition-colors hover:text-ink-quiet sm:min-h-[32px]"
+            className="marketing-footer-action inline-flex min-h-[28px] items-center px-2 py-1 transition-colors sm:min-h-[32px]"
           >
             {link.label}
           </Link>
