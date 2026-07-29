@@ -123,11 +123,12 @@ export default async function BrandGuidelinesLabPage() {
   const isCanonicalProductionHost =
     host === "signalstudio.ie" || host === "www.signalstudio.ie";
   const isProductionDeployment = process.env.VERCEL_ENV === "production";
+  const isPreviewDeployment = process.env.VERCEL_ENV === "preview";
 
   if (
     isProductionDeployment ||
     isCanonicalProductionHost ||
-    (mode !== "development" && mode !== "review")
+    (!isPreviewDeployment && mode !== "development" && mode !== "review")
   ) {
     notFound();
   }
