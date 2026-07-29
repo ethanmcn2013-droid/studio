@@ -3363,6 +3363,49 @@
       "materialityHash": "ac6a2709f3c992e9"
     },
     {
+      "id": "studio.page.design-lab-brand-guidelines",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/brand-guidelines",
+      "source": "studio/src/app/%5F%5Fdesign-lab/brand-guidelines/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "ce775b99a0d37c64"
+    },
+    {
       "id": "studio.page.design-lab-product-handoff",
       "product": "studio",
       "experienceClass": "company-public",
@@ -7427,14 +7470,14 @@
       "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "e92951ba7364cb65"
+      "materialityHash": "abcd3026519fea2c"
     },
     {
       "id": "tasks.page.about",

@@ -26,6 +26,20 @@ test("the review route is hidden from canonical production hosts", async ({
   expect(forwardedResponse.status()).toBe(404);
 });
 
+test("the review lab owns its shell while public design keeps site navigation", async ({
+  page,
+}) => {
+  await page.goto(LAB_PATH);
+  await expect(
+    page.getByRole("navigation", { name: "Site navigation" }),
+  ).toHaveCount(0);
+
+  await page.goto("/design");
+  await expect(
+    page.getByRole("navigation", { name: "Site navigation" }),
+  ).toBeVisible();
+});
+
 test("all nine chapters navigate in both directions and preserve hash history", async ({
   page,
 }) => {
