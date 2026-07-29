@@ -259,13 +259,13 @@ Two repo-level anchors matter for everything below and were both verified on `or
 | Field | Value |
 | --- | --- |
 | Topic | Canonical address |
-| Current apparent truth | One canonical address: `hello@signalstudio.ie`. "Not `contact@`, not `support@`, not `team@`." All current senders already comply, varying only the display name. |
-| Supporting source | `BRAND.md` §4 Email (worktree); production senders in 5.1 |
-| Conflicting source | None live. Any proposed multi-address architecture (for example separate transactional and outreach addresses or subdomain sending) contradicts BRAND.md as written. |
-| Date/version | BRAND.md current on main |
+| Current apparent truth | Six receiving aliases are verified for general, support, billing, privacy, security and partnership enquiries. Provider senders remain unchanged until separately verified. |
+| Supporting source | `BRAND.md` Email; `content/hq/decisions/contact-email-routing.md`; production senders in 5.1 |
+| Conflicting source | Historical single-address records predate the 2026-07-29 routing decision. |
+| Date/version | Ratified 2026-07-29 |
 | Confidence | High |
-| Implementation assumption | All fixtures send from `hello@signalstudio.ie` with per-product display names, matching production. Multi-address designs stay on paper until the founder rules. |
-| Founder decision required | Yes if the email system proposes more addresses. See decisions doc, item 3. |
+| Implementation assumption | Fixtures preserve current provider senders and use contextual reply-to aliases. No provider-level sender change is claimed. |
+| Founder decision required | No for receiving and reply-to routing. Yes for any provider sender or DNS change. |
 
 ---
 

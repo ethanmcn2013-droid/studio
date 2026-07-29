@@ -1,28 +1,28 @@
-# Sender and tracking architecture · proposal
+# Sender and tracking architecture
 
-Date: 2026-07-16. Status: **proposal, founder decision required**
-(docs/email-system/decisions-required.md). Nothing here changes DNS or any
-sending configuration. Today the suite sends only from
-`hello@signalstudio.ie` via Resend, and DKIM is still pending
-(docs/DKIM_SETUP.md); no new sending should begin before DKIM is live.
+Date: 2026-07-29. Status: **reply routing ratified; sender changes remain
+provider-gated**. Six receiving aliases are verified. Nothing here changes DNS
+or any sending configuration. Current provider-level sender behaviour remains
+unchanged until it is verified in Resend or the service that actually sends
+the message. DKIM is still pending (docs/DKIM_SETUP.md); no new sending should
+begin before DKIM is live.
 
 ## Proposed sender map
 
 | Category | Visible sender | Address | Reply-to | Why separate |
 |---|---|---|---|---|
-| Security and account | Signal Studio | account@signalstudio.ie | hello@ | Recipients can whitelist it; commercial mail never borrows its trust |
-| Billing | Signal Studio | billing@signalstudio.ie | hello@ | Payment mail filters differently; disputes need a clean thread |
-| Product and lifecycle | the product's full name (e.g. Signal Tasks) | hello@signalstudio.ie | hello@ | Continuity with the live briefing and invite senders |
-| Founder outreach | Ethan McNamara | hello@signalstudio.ie | hello@ | A person writes it; a person answers it |
-| Editorial (the Dispatch) | Signal Studio | dispatch@signalstudio.ie | hello@ | Subscribed mail carries list headers; separation protects the others' reputation |
+| Security and account | Current provider sender | Unchanged | security@ or support@ | Security reports separate from ordinary account help |
+| Billing | Current provider sender | Unchanged | billing@ | Payment disputes stay in one monitored thread |
+| Product and lifecycle | Current provider sender | Unchanged | support@ | Product and access replies reach support |
+| Privacy and data rights | Current provider sender | Unchanged | privacy@ | Deletion and export replies reach the privacy route |
+| Founder outreach | Ethan McNamara | hello@signalstudio.ie | partnerships@ | A person writes it; partnership replies stay grouped |
+| Editorial (the Dispatch) | Current provider sender | Unchanged | hello@ | General editorial replies remain company-level |
 
 Reply-to is always a monitored address. Never no-reply, anywhere: an email
 address that cannot be answered contradicts the support footer's promise.
 
-Operational separation is the point: if editorial mail ever damages sender
-reputation, security, billing and product mail must not be dragged down
-with it. Separate addresses now, separate subdomains (e.g.
-`dispatch.signalstudio.ie`) only if volume ever justifies it.
+Reply routing is the current change. Sender reputation remains shared until
+provider-level sender separation is explicitly configured and verified.
 
 ## Tracking policy by category
 

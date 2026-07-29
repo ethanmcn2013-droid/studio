@@ -5,6 +5,7 @@ import { BodyText } from "../components/text";
 import { VideoPoster } from "../components/imagery";
 import { PrivacyBoundary } from "../components/panels";
 import { FounderSignature } from "../components/signature";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * outreach.venue-first · Founder mode.
@@ -69,7 +70,11 @@ export function VenueOutreachEmail({
       <BodyText direction={direction}>
         Worth twenty minutes? Reply and pick a morning.
       </BodyText>
-      <FounderSignature direction={direction} closing="Thanks for your time," />
+      <FounderSignature
+        direction={direction}
+        closing="Thanks for your time,"
+        email={CONTACT_EMAILS.partnerships}
+      />
     </EmailShell>
   );
 }
@@ -89,7 +94,7 @@ export function venueOutreachText(data: VenueOutreachData): TextDoc {
       { kind: "p", text: `If it looks right for ${data.venueName}, I will set your next couple up with a code, with my compliments. And if it is not for you, a one-line reply saying so is genuinely welcome.` },
       { kind: "p", text: "Worth twenty minutes? Reply and pick a morning." },
     ],
-    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: "hello@signalstudio.ie" },
+    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: CONTACT_EMAILS.partnerships },
     enclosure: "Encl \u00b7 Film-Ven \u00b7 60 seconds",
     footerNote: `Ethan wrote this to ${data.venueName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`,
   };

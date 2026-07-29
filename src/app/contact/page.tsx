@@ -5,16 +5,50 @@ import {
   normalizeTrackingParams,
   type TrackingParamKey,
 } from "@/lib/tracking";
+import {
+  buildMailtoHref,
+  CONTACT_EMAILS,
+  CONTACT_SUBJECTS,
+  type ContactEmailKind,
+} from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact · Signal Studio",
-  description: "A real human reads everything sent to hello@signalstudio.ie.",
+  description: `A real human reads everything sent to ${CONTACT_EMAILS.general}.`,
 };
 
-const SUBJECT_EYEBROWS: Record<string, string> = {
-  weddings: "Wedding planning enquiry",
-  "founding-venue": "Founding Venue Programme",
+const SUBJECT_ROUTES: Record<
+  string,
+  { eyebrow: string; kind: ContactEmailKind; subject: string }
+> = {
+  weddings: {
+    eyebrow: "Wedding planning enquiry",
+    kind: "partnerships",
+    subject: "Wedding partnership enquiry",
+  },
+  "founding-venue": {
+    eyebrow: "Founding Venue Programme",
+    kind: "partnerships",
+    subject: "Wedding venue partnership enquiry",
+  },
 };
+
+const CONTACT_DIRECTORY: readonly {
+  kind: ContactEmailKind;
+  label: string;
+  use: string;
+}[] = [
+  { kind: "general", label: "General", use: "Company questions and press." },
+  { kind: "support", label: "Support", use: "Product, access and onboarding help." },
+  { kind: "billing", label: "Billing", use: "Payments, invoices, refunds and renewals." },
+  { kind: "privacy", label: "Privacy", use: "Data rights, deletion and consent." },
+  { kind: "security", label: "Security", use: "Vulnerabilities and suspected compromise." },
+  {
+    kind: "partnerships",
+    label: "Partnerships",
+    use: "Venues, schools, universities and organisations.",
+  },
+];
 
 /**
  * /contact, one screen, three honest intents.
@@ -29,15 +63,14 @@ const SUBJECT_EYEBROWS: Record<string, string> = {
  */
 function buildMailto(
   subject: string | undefined,
-  eyebrow: string | undefined,
+  route: (typeof SUBJECT_ROUTES)[string] | undefined,
   attr: Partial<Record<TrackingParamKey, string | undefined>>,
 ): string {
-  const base = "mailto:hello@signalstudio.ie";
   const ref = formatTrackingRef(attr);
-  if (!subject && !ref) return base;
+  if (!subject && !ref) return buildMailtoHref("general");
 
   const venueName = attr.venue && attr.venue !== "unknown" ? attr.venue : undefined;
-  const subjectLabel = eyebrow ?? "Signal Studio enquiry";
+  const subjectLabel = route?.subject ?? CONTACT_SUBJECTS.general;
   const subjectLine = venueName ? `${subjectLabel}, ${venueName}` : subjectLabel;
 
   const body =
@@ -54,9 +87,10 @@ function buildMailto(
         ? ["Hi Ethan,", "", "", "—", `Ref: ${ref}`].join("\n")
       : "";
 
-  const qs = new URLSearchParams({ subject: subjectLine });
-  if (body) qs.set("body", body);
-  return `${base}?${qs.toString()}`;
+  return buildMailtoHref(route?.kind ?? "general", {
+    subject: subjectLine,
+    body: body || undefined,
+  });
 }
 
 export default async function ContactPage({
@@ -73,7 +107,7 @@ export default async function ContactPage({
   }>;
 }) {
   const params = await searchParams;
-  const contextualEyebrow = params.subject ? SUBJECT_EYEBROWS[params.subject] : undefined;
+  const contextualRoute = params.subject ? SUBJECT_ROUTES[params.subject] : undefined;
   const tracking = normalizeTrackingParams({
     source: params.source,
     campaign: params.campaign,
@@ -83,7 +117,8 @@ export default async function ContactPage({
     venue: params.venue,
   });
   const trackingRef = formatTrackingRef(tracking);
-  const mailtoHref = buildMailto(params.subject, contextualEyebrow, tracking);
+  const mailtoHref = buildMailto(params.subject, contextualRoute, tracking);
+  const routedEmail = CONTACT_EMAILS[contextualRoute?.kind ?? "general"];
 
   return (
     <>
@@ -96,12 +131,12 @@ export default async function ContactPage({
             Contact
           </div>
 
-          {contextualEyebrow ? (
+          {contextualRoute ? (
             <p
               className="mb-4 text-[13px] font-medium text-ink-quiet"
               style={{ letterSpacing: "0.01em" }}
             >
-              {contextualEyebrow}
+              {contextualRoute.eyebrow}
             </p>
           ) : null}
 
@@ -126,10 +161,10 @@ export default async function ContactPage({
                 Best for
               </div>
               <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-soft">
-                <li>Product questions.</li>
+                <li>General company questions.</li>
                 <li>Private-preview access.</li>
                 <li>Thoughtful critique.</li>
-                <li>Partnership conversations.</li>
+                <li>Press and media enquiries.</li>
               </ul>
             </div>
             <div>
@@ -140,7 +175,6 @@ export default async function ContactPage({
                 Probably not for
               </div>
               <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-faint">
-                <li>Press and analyst outreach.</li>
                 <li>Sales and vendor pitches.</li>
                 <li>Recruiting.</li>
                 <li>Anything routed through a CRM.</li>
@@ -156,7 +190,7 @@ export default async function ContactPage({
               href={mailtoHref}
               className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
             >
-              hello@signalstudio.ie
+              {routedEmail}
             </a>
           </p>
 
@@ -165,6 +199,35 @@ export default async function ContactPage({
               Ref preserved: {trackingRef}
             </p>
           ) : null}
+
+          <section className="mt-16 border-t border-border-soft pt-10" aria-labelledby="contact-routes">
+            <h2 id="contact-routes" className="text-[18px] font-semibold tracking-[-0.015em] text-ink">
+              Send it to the right place.
+            </h2>
+            <dl className="mt-6 divide-y divide-border-soft border-y border-border-soft">
+              {CONTACT_DIRECTORY.map(({ kind, label, use }) => (
+                <div
+                  key={kind}
+                  className="grid gap-2 py-4 sm:grid-cols-[120px_minmax(0,1fr)] sm:gap-5"
+                >
+                  <dt className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-quiet">
+                    {label}
+                  </dt>
+                  <dd className="min-w-0">
+                    <a
+                      href={buildMailtoHref(kind, { subject: CONTACT_SUBJECTS[kind] })}
+                      className="break-words text-[14.5px] text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+                    >
+                      {CONTACT_EMAILS[kind]}
+                    </a>
+                    <span className="mt-1 block text-[13px] leading-[1.6] text-ink-quiet">
+                      {use}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         </section>
       </main>
       <SiteFooter />

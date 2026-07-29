@@ -17,6 +17,7 @@ import {
 } from "../directions";
 import { BrandHeader } from "./header";
 import { EmailFooter, type FooterLink } from "./footer";
+import { buildMailtoHref, CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * EmailShell owns everything a template should never think about: the
@@ -148,10 +149,10 @@ export function EmailShell({
                 <>
                   Signal Studio · Limerick, Ireland ·{" "}
                   <a
-                    href="mailto:hello@signalstudio.ie"
+                    href={buildMailtoHref("general")}
                     style={{ color: INK_SOFT, textDecoration: "underline" }}
                   >
-                    hello@signalstudio.ie
+                    {CONTACT_EMAILS.general}
                   </a>
                 </>
               ) : (

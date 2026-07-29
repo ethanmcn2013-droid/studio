@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
+import { buildMailtoHref, CONTACT_EMAILS, CONTACT_SUBJECTS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Accessibility · Signal Studio",
@@ -44,7 +45,7 @@ const SECTIONS = [
   {
     heading: "Flagging a barrier",
     body: [
-      "If you hit a wall, a page you cannot read, a flow you cannot complete, a button you cannot reach, write to hello@signalstudio.ie. Tell us what you were trying to do and what got in the way. We will reply within five working days and tell you whether and when we can fix it.",
+      `If you hit a wall, a page you cannot read, a flow you cannot complete, a button you cannot reach, write to ${CONTACT_EMAILS.support}. Tell us what you were trying to do and what got in the way. We will reply within five working days and tell you whether and when we can fix it.`,
       "We are not big enough to have a dedicated accessibility team. We are small enough to read every email.",
     ],
   },
@@ -68,7 +69,14 @@ export default function AccessibilityPage() {
       footnote={
         <>
           Hit a wall we didn&rsquo;t list? Tell us what you were trying to do
-          and what got in the way: hello@signalstudio.ie. We read every one.
+          and what got in the way:{" "}
+          <a
+            href={buildMailtoHref("support", { subject: CONTACT_SUBJECTS.support })}
+            className="break-words text-ink underline decoration-border-soft underline-offset-[3px]"
+          >
+            {CONTACT_EMAILS.support}
+          </a>
+          . We read every one.
         </>
       }
     />

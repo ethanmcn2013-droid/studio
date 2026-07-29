@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { buildMailtoHref } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Signal Studio for teachers",
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
 
 const waitlistHref =
   "/waitlist?source=teachers&campaign=school_design_partner&audience=teacher&artifact=teacher_page&touch=site&useCase=teachers";
+const schoolPartnershipHref = buildMailtoHref("partnerships", {
+  subject: "School partnership enquiry",
+});
 
 const PRINCIPLES = [
   {
@@ -54,6 +58,12 @@ export default function TeachersPage() {
               >
                 Join the school pilot waitlist
               </Link>
+              <a
+                href={schoolPartnershipHref}
+                className="text-[13px] leading-[1.5] text-ink-quiet underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent"
+              >
+                Discuss a school partnership
+              </a>
               <span className="text-[13px] leading-[1.5] text-ink-quiet">
                 No pupil names, emails, accounts, grades or attendance.
               </span>

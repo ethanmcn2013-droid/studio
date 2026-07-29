@@ -1,4 +1,5 @@
 import type { EmailDirection } from "./directions";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * The plain-text twin as a designed artifact (CL-14).
@@ -187,7 +188,7 @@ export function composeText(d: EmailDirection, doc: TextDoc): string {
   out.push(
     d.id === "letterhead"
       ? "Signal Studio · Limerick, Ireland"
-      : "Signal Studio · Limerick · hello@signalstudio.ie",
+      : `Signal Studio · Limerick · ${CONTACT_EMAILS.general}`,
   );
 
   // Collapse any accidental double blanks, end with one newline.

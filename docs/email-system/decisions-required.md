@@ -22,12 +22,11 @@ This is the short list of founder decisions that materially change email copy, e
 - **Recommendation:** confirm €89, since it is what the typed contract and the current public pricing page already assert, and sweep the €79 remnants in the same pass.
 - **Email system assumes meanwhile:** no email fixture asserts the Event price.
 
-## 3 · Sender architecture: hello@ only, or multiple addresses
+## 3 · Sender architecture: receiving routes ratified
 
-- **Decision:** keep the single canonical `hello@signalstudio.ie` (BRAND.md §4) or approve a multi-address architecture (for example a separate outreach address or subdomain sending for bulk mail).
-- **Consequences:** hello@-only keeps the brand rule intact and reputation concentrated, but one address carries transactional, briefing, and outreach traffic, so an outreach complaint spike could bruise transactional deliverability. Multiple addresses isolate reputation but contradict BRAND.md as written and multiply DNS and warm-up work.
-- **Recommendation:** stay hello@-only for now; volumes are tiny and outreach is founder-signed and low-volume by plan. Revisit if outreach ever becomes sequence-shaped, which the marketing plan currently forbids anyway.
-- **Email system assumes meanwhile:** every template sends from `hello@signalstudio.ie` with per-product display names, matching production.
+- **Decision:** resolved 2026-07-29. Six receiving aliases route general, support, billing, privacy, security and partnership enquiries.
+- **Boundary:** this decision changes public contact and reply-to routing. It does not prove that Resend, Clerk, Stripe or another provider sends from each alias.
+- **Email system now assumes:** current provider senders stay unchanged until verified; reply-to uses the narrowest monitored alias.
 
 ## 4 · DKIM before any outreach sending
 

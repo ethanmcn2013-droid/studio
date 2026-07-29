@@ -5,6 +5,7 @@ import { BodyText } from "../components/text";
 import { VideoPoster } from "../components/imagery";
 import { PrivacyBoundary } from "../components/panels";
 import { FounderSignature } from "../components/signature";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * outreach.school-first · Founder mode. PROTOTYPE ONLY.
@@ -63,7 +64,11 @@ export function SchoolOutreachEmail({
         twenty minutes of your time, reply and I will set it up around your
         calendar, not mine.
       </BodyText>
-      <FounderSignature direction={direction} closing="Thanks for your time," />
+      <FounderSignature
+        direction={direction}
+        closing="Thanks for your time,"
+        email={CONTACT_EMAILS.partnerships}
+      />
     </EmailShell>
   );
 }
@@ -81,7 +86,7 @@ export function schoolOutreachText(data: SchoolOutreachData): TextDoc {
       { kind: "link", label: "Watch the film (60 seconds)", href: "https://signalstudio.ie/films/schools" },
       { kind: "p", text: "If a quiet trial with two or three of your teachers would be worth twenty minutes of your time, reply and I will set it up around your calendar, not mine." },
     ],
-    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: "hello@signalstudio.ie" },
+    signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: CONTACT_EMAILS.partnerships },
     enclosure: "Encl \u00b7 Film-Sch \u00b7 60 seconds",
     footerNote: `Ethan wrote this to ${data.schoolName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`,
   };

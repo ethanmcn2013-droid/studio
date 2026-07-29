@@ -7,6 +7,7 @@ import { DevBanner } from "@/components/dev-banner";
 import { GoogleTag } from "@/components/analytics/google-tag";
 import { SITE_URL } from "@/lib/site-url";
 import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,7 @@ const structuredData = [
     "@type": "Organization",
     name: "Signal Studio",
     url: SITE_URL,
-    email: "hello@signalstudio.ie",
+    email: CONTACT_EMAILS.general,
     foundingDate: "2025",
     logo: {
       "@type": "ImageObject",
