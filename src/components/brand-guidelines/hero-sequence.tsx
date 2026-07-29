@@ -94,8 +94,6 @@ export function HeroSequence() {
             src={frame.src}
             alt={index === active ? frame.alt : ""}
             fill
-            priority={index === 0}
-            fetchPriority={index === 0 ? "high" : "auto"}
             sizes="(max-width: 900px) 100vw, calc(100vw - 288px)"
             className="guidelines-hero-image"
             data-first={index === 0 || undefined}
