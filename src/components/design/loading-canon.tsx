@@ -48,7 +48,13 @@ const PRODUCTS = [
   { name: "signal", gesture: "tick" },
 ] as const;
 
-export function LoadingCanon() {
+export function LoadingCanon({
+  autoAdvance = true,
+  singleRun = false,
+}: {
+  autoAdvance?: boolean;
+  singleRun?: boolean;
+} = {}) {
   const [active, setActive] = useState(0);
   const [seq, setSeq] = useState(0);
   const [inView, setInView] = useState(false);
@@ -80,13 +86,13 @@ export function LoadingCanon() {
   // The reel: hold the current moment, then advance. Paused offscreen
   // and under reduced motion.
   useEffect(() => {
-    if (!inView || reduced) return;
+    if (!autoAdvance || !inView || reduced) return;
     const t = setTimeout(() => {
       setActive((a) => (a + 1) % MOMENTS.length);
       setSeq((s) => s + 1);
     }, MOMENTS[active].hold);
     return () => clearTimeout(t);
-  }, [active, seq, inView, reduced]);
+  }, [active, seq, autoAdvance, inView, reduced]);
 
   const jump = (i: number) => {
     setActive(i);
@@ -137,6 +143,7 @@ export function LoadingCanon() {
           ref={stageRef}
           className="dsn-dot-stage ldc-stage"
           data-rm={reduced || undefined}
+          data-single-run={singleRun || undefined}
         >
           <i className="dsn-dot-corner dsn-dot-corner--tl" aria-hidden />
           <i className="dsn-dot-corner dsn-dot-corner--tr" aria-hidden />
@@ -918,6 +925,9 @@ const LDC_CSS = `
    settled state, verbatim from the review room's rm block. */
 [data-rm] .ldc-body *, [data-rm] .ldc-body *::before, [data-rm] .ldc-body *::after {
   animation: none !important;
+}
+[data-single-run] .ldc-body *, [data-single-run] .ldc-body *::before, [data-single-run] .ldc-body *::after {
+  animation-iteration-count: 1 !important;
 }
 [data-rm] .ldc-letter, [data-rm] .ldc-wdot { opacity: 1 !important; transform: none !important; }
 [data-rm] .ldc-land { opacity: 1; }
