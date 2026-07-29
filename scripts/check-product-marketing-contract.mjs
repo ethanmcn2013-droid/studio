@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { readFileSync } from "node:fs";
+import "./check-homepage-product-motion-contract.mjs";
 
 /**
  * Product marketing page contract.

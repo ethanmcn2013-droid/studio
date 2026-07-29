@@ -7,6 +7,18 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-29 · S·156 · ships · the studio moves on first meeting
+
+**The homepage now carries the real Notes, Tasks, Timeline, and Signal motion
+proofs from their product pages.** Each chapter begins as it reaches the
+visitor's reading zone: a private note resolves into work, the shared board
+moves, the public plan draws, and the briefing surfaces what needs attention.
+
+Only the visible chapter spends motion. Scripted work pauses after it leaves
+the screen, while reduced-motion visitors receive the complete static
+evidence immediately. The accepted product-page heroes, Product Handoff, page
+copy, and suite sequence remain unchanged.
+
 ## 2026-07-29 · S·155 · tightens · six quiet pages learn when to move
 
 **Notes, Tasks, Timeline, Signal, Pricing, and About now share one restrained

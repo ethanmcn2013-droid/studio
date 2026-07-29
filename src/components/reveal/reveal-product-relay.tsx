@@ -4,6 +4,7 @@ import { SignalTheRead, type SignalReadItem } from "@/components/marketing/heroe
 import { TasksTheBoard } from "@/components/marketing/heroes/tasks/hero";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
 import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
+import { MarketingPreviewMotion } from "@/components/marketing/delight/marketing-preview-motion";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 import { ProductSignatureWordmark } from "./product-signature-wordmark";
 
@@ -141,13 +142,10 @@ export function RevealProductRelay() {
               </Link>
             </div>
 
-            <div
-              className="reveal-relay-preview"
-              data-product={chapter.key}
-            >
+            <MarketingPreviewMotion product={chapter.key}>
               <p className="reveal-relay-sample">Sample product view</p>
               <ProductPreview product={chapter.key} />
-            </div>
+            </MarketingPreviewMotion>
           </article>
         ))}
       </div>

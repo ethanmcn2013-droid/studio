@@ -756,32 +756,37 @@ const CSS = `
   .bil-approval-short { display: inline; }
 }
 
-.bil-embedded *,
-.bil-embedded *::before,
-.bil-embedded *::after {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *::before,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *::after {
   animation: none !important;
 }
-.bil-embedded .bil-placeholder,
-.bil-embedded .bil-item,
-.bil-embedded .bil-item-source::before,
-.bil-embedded .bil-item-source .bil-item-state,
-.bil-embedded .bil-tasks,
-.bil-embedded .bil-task-row,
-.bil-embedded .bil-task-box {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-placeholder,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source::before,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source .bil-item-state,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-tasks,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-task-row,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-task-box {
   opacity: 1;
   transform: none;
 }
-.bil-embedded .bil-item {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item {
   grid-template-rows: 1fr;
 }
-.bil-embedded .bil-incoming,
-.bil-embedded .bil-archive-swipe,
-.bil-embedded .bil-promote-swipe,
-.bil-embedded .bil-approval,
-.bil-embedded .bil-flight {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-incoming,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-archive-swipe,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-promote-swipe,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-approval,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-flight {
   display: none;
 }
 .bil-embedded .bil-capture-hint kbd {
   color: var(--zinc-600);
+}
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *::before,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *::after {
+  animation-play-state: paused !important;
 }
 `;

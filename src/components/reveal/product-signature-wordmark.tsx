@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useInView, useReducedMotion } from "motion/react";
+import { useHydrated } from "@/components/marketing/heroes/tasks/lib/use-hydrated";
 import styles from "./product-signature-wordmark.module.css";
 
 type SignatureProduct = "notes" | "tasks" | "timeline" | "signal";
@@ -17,12 +18,13 @@ export function ProductSignatureWordmark({
   product: SignatureProduct;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const hydrated = useHydrated();
   const prefersReducedMotion = useReducedMotion();
   const inView = useInView(ref, {
     once: true,
     margin: "-12% 0px",
   });
-  const active = Boolean(prefersReducedMotion || inView);
+  const active = hydrated && Boolean(prefersReducedMotion || inView);
 
   return (
     <span
@@ -31,11 +33,8 @@ export function ProductSignatureWordmark({
       data-product-signature=""
       data-active={active ? "true" : undefined}
       data-product={product}
-      aria-label={product}
     >
-      <span className={styles.word} aria-hidden="true">
-        {product}
-      </span>
+      <span className={styles.word}>{product}</span>
 
       {product === "notes" ? (
         <span

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { CinematicDemo } from "./showcase/cinematic-demo";
 import { DOMAINS, type DomainId } from "@/components/marketing/heroes/tasks/lib/domains";
+import { useMarketingPreviewMotion } from "@/components/marketing/delight/marketing-preview-motion";
 
 /**
  * POLISH 2026-07-28 — three changes from the design review.
@@ -21,6 +22,7 @@ export function TasksTheBoard({
 }: {
   embedded?: boolean;
 } = {}) {
+  const previewMotion = useMarketingPreviewMotion();
   // One workspace, fixed. Wedding matches the GTM wedge (Founding Venue
   // Programme) and is the highest-empathy opener for a first-time visitor.
   // The other three packs stay in `domains.ts` for later use.
@@ -72,7 +74,15 @@ export function TasksTheBoard({
             className="demo-fit mx-auto"
           >
             <div className="demo-fit-inner">
-              <CinematicDemo domain={pack.id} staticFrame={embedded} />
+              <CinematicDemo
+                domain={pack.id}
+                paused={
+                  embedded &&
+                  previewMotion.hasStarted &&
+                  !previewMotion.isVisible
+                }
+                staticFrame={embedded && !previewMotion.hasStarted}
+              />
             </div>
           </motion.div>
         </AnimatePresence>
@@ -109,6 +119,12 @@ export function TasksTheBoard({
             width: 1180px;
             transform: none;
           }
+        }
+
+        .marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tasks-embedded *,
+        .marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tasks-embedded *::before,
+        .marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tasks-embedded *::after {
+          animation-play-state: paused !important;
         }
       `}</style>
     </section>

@@ -180,9 +180,13 @@ export function SignalTheRead({
               </div>
 
               <div className="rd-action">
-                <button className="rd-button" type="button">
-                  {item.action}
-                </button>
+                {embedded ? (
+                  <span className="rd-button">{item.action}</span>
+                ) : (
+                  <button className="rd-button" type="button">
+                    {item.action}
+                  </button>
+                )}
               </div>
             </li>
           ))}
@@ -247,12 +251,26 @@ const CSS = `
   padding: clamp(26px, 4vw, 48px);
 }
 
-.rd-embedded .rd-item[data-claim="now"] .rd-marker::after {
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded *,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded *::before,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded *::after {
+  animation: none !important;
+}
+
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-item[data-claim="now"] .rd-marker::after {
   animation: none;
+}
+
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .rd-embedded *,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .rd-embedded *::before,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .rd-embedded *::after {
+  animation-play-state: paused !important;
 }
 
 .rd-embedded .rd-button {
   min-height: 44px;
+  cursor: default;
+  pointer-events: none;
 }
 
 .rd-embedded .rd-ordinal,
