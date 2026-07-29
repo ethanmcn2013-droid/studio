@@ -186,6 +186,9 @@ When writing about the suite, lead with the work the audience does, not the soft
 
 ## 7 · Contact
 
-Single canonical address: `hello@signalstudio.ie`. Not `contact@`, not `support@`, not `team@`.
+Press and media enquiries use `hello@signalstudio.ie`. Product, billing,
+privacy, security and partnership requests use their contextual aliases; the
+public contact directory at `signalstudio.ie/contact` is the current routing
+source.
 
 For motion-graphics and animation handoff, the gesture spec lives at `animation-specs.md` in this directory. For known caveats marketing should avoid claiming, read `KNOWN_LIMITATIONS.md`. For the live pitch flow, read `DEMO_SCRIPT.md`.

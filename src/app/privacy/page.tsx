@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
+import { buildMailtoHref, CONTACT_EMAILS, CONTACT_SUBJECTS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Privacy · Signal Studio",
@@ -16,7 +17,7 @@ const SECTIONS = [
       "Planning Period and Workspace context stores the label, context type, calendar dates, timezone and archive/order state you choose. Context changes the language and grouping; it is not a permanent account role.",
       "Where a school or venue sponsors access, we keep entitlement, invitation and activation records. Sponsorship does not give the sponsor access to private Notes, Tasks or unpublished Timeline material. Optional Workspace metadata is shared with a sponsor only through a separate, field-level consent you can revoke.",
       "The school design-partner experience does not require or store pupil accounts, pupil names, pupil emails, grades, attendance or pupil identifiers.",
-      "If you reach out to hello@signalstudio.ie, we keep the message in a standard email inbox.",
+      `If you reach out to ${CONTACT_EMAILS.privacy}, we keep the message in a standard email inbox.`,
     ],
   },
   {
@@ -44,7 +45,7 @@ const SECTIONS = [
       "Sentry, error monitoring (PII scrubbed at the SDK before transmission).",
       "Resend, outbound email delivery.",
       "Stripe, payments for paid plans, when applicable. Stripe stores card details; we never see them.",
-      "Google Workspace, operator email at hello@signalstudio.ie.",
+      `Google Workspace, privacy email at ${CONTACT_EMAILS.privacy}.`,
     ],
   },
   {
@@ -56,7 +57,7 @@ const SECTIONS = [
   {
     heading: "Your rights",
     body: [
-      "If you are in the EU, EEA, or UK, the GDPR gives you the right to access, correct, export, restrict, or delete the personal data we hold about you. Send a request to hello@signalstudio.ie from the address on the account. We respond inside thirty days, usually faster.",
+      `If you are in the EU, EEA, or UK, the GDPR gives you the right to access, correct, export, restrict, or delete the personal data we hold about you. Send a request to ${CONTACT_EMAILS.privacy} from the address on the account. We respond inside thirty days, usually faster.`,
       "If you are in California, the CCPA gives you parallel rights. Same address, same response time.",
       "You can also close your account at any time and your data will be deleted within sixty days, except records we are required to retain (billing, fraud prevention).",
     ],
@@ -77,7 +78,7 @@ const SECTIONS = [
   {
     heading: "Contact",
     body: [
-      "Questions, complaints, data requests: hello@signalstudio.ie. The address is read by a person.",
+      `Questions, complaints, data requests: ${CONTACT_EMAILS.privacy}. The address is read by a person.`,
       "The data controller is Ethan McNamara, Limerick, Ireland.",
     ],
   },
@@ -100,8 +101,14 @@ export default function PrivacyPage() {
       footnote={
         <>
           No dark patterns, no buried clauses. If something here is unclear,
-          that&rsquo;s a bug, write to hello@signalstudio.ie and we&rsquo;ll
-          fix the wording or the system.
+          that&rsquo;s a bug, write to{" "}
+          <a
+            href={buildMailtoHref("privacy", { subject: CONTACT_SUBJECTS.privacy })}
+            className="break-words text-ink underline decoration-border-soft underline-offset-[3px]"
+          >
+            {CONTACT_EMAILS.privacy}
+          </a>{" "}
+          and we&rsquo;ll fix the wording or the system.
         </>
       }
     />

@@ -1,6 +1,7 @@
 import { Link, Section, Text } from "@react-email/components";
 import type { EmailDirection } from "../directions";
 import { INK, INK_FAINT, INK_SOFT } from "../directions";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * FounderSignature · three registers of the same person.
@@ -21,12 +22,14 @@ export function FounderSignature({
   fullName = "Ethan McNamara",
   role = "Founder, Signal Studio",
   closing = "Thanks,",
+  email = CONTACT_EMAILS.general,
 }: {
   direction: EmailDirection;
   name?: string;
   fullName?: string;
   role?: string;
   closing?: string;
+  email?: string;
 }) {
   const d = direction;
 
@@ -69,11 +72,11 @@ export function FounderSignature({
         </Text>
         <Text style={{ fontSize: 13, lineHeight: "20px", margin: 0 }}>
           <Link
-            href="mailto:hello@signalstudio.ie"
+            href={`mailto:${email}`}
             className="em-link"
             style={{ color: INK_FAINT, textDecoration: "underline" }}
           >
-            hello@signalstudio.ie
+            {email}
           </Link>
         </Text>
       </Section>

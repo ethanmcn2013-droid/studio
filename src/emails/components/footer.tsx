@@ -2,6 +2,7 @@ import { Link, Section, Text } from "@react-email/components";
 import type { EmailDirection } from "../directions";
 import { HAIRLINE, INK, INK_FAINT, INK_SOFT } from "../directions";
 import { Wordmark } from "./shell";
+import { buildMailtoHref, CONTACT_EMAILS } from "@/lib/contact";
 
 export type FooterLink = { label: string; href: string };
 
@@ -119,7 +120,7 @@ export function EmailFooter({
       <Text className="em-faint" style={{ ...d.label, margin: 0 }}>
         Signal Studio · Limerick ·{" "}
         <Link
-          href="mailto:hello@signalstudio.ie"
+          href={buildMailtoHref("general")}
           style={{
             color: INK_FAINT,
             textDecoration: "underline",
@@ -127,7 +128,7 @@ export function EmailFooter({
             letterSpacing: "0.02em",
           }}
         >
-          hello@signalstudio.ie
+          {CONTACT_EMAILS.general}
         </Link>
       </Text>
     </Section>

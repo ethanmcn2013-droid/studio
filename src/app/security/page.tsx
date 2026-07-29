@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
+import { buildMailtoHref, CONTACT_EMAILS, CONTACT_SUBJECTS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Security · Signal Studio",
@@ -56,7 +57,7 @@ const SECTIONS = [
   {
     heading: "Reporting a vulnerability",
     body: [
-      "If you find a security issue, write to hello@signalstudio.ie with the subject line \"security\". Include enough detail for us to reproduce it. Please do not exploit the issue beyond what is necessary to demonstrate it, and please do not share it publicly until we have had thirty days to fix it.",
+      `If you find a security issue, write to ${CONTACT_EMAILS.security} with the subject line "Signal Studio security report". Include enough detail for us to reproduce it. Please do not exploit the issue beyond what is necessary to demonstrate it, and please do not share it publicly until we have had thirty days to fix it.`,
       "We will acknowledge inside two working days and keep you updated until the issue is resolved. We do not currently run a paid bug bounty, but we will credit serious reports in the changelog at signalstudio.ie/dispatch unless you ask us not to.",
     ],
   },
@@ -76,8 +77,14 @@ export default function SecurityPage() {
       intro={
         <>
           A trust page should be specific, not aspirational. This one is. If
-          something below is wrong, write to hello@signalstudio.ie and we will
-          either fix the page or fix the system.
+          something below is wrong, write to{" "}
+          <a
+            href={buildMailtoHref("security", { subject: CONTACT_SUBJECTS.security })}
+            className="break-words text-ink underline decoration-border-soft underline-offset-[3px]"
+          >
+            {CONTACT_EMAILS.security}
+          </a>{" "}
+          and we will either fix the page or fix the system.
         </>
       }
       updated="2026-07-12"

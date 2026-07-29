@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { joinWaitlist } from "@/lib/waitlist";
+import { CONTACT_EMAILS } from "@/lib/contact";
 import type { WaitlistFormState } from "./types";
 
 function value(formData: FormData, key: string): string | null {
@@ -56,7 +57,7 @@ export async function joinWaitlistAction(
       status: "error",
       message: isValidation
         ? message
-        : "That did not save. Try again in a moment, or write to hello@signalstudio.ie.",
+        : `That did not save. Try again in a moment, or write to ${CONTACT_EMAILS.support}.`,
     };
   }
 }

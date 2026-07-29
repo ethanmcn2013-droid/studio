@@ -162,7 +162,17 @@ Not "AI nudges." but "Daily nudges" or "Cards that ask for attention."
 - **Never:** just "Signal" alone in body copy — collides with Signal Messenger.
 
 ### Email
-Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `support@`, not `team@`.
+Signal Studio uses six verified aliases with one clear job each:
+
+- **`hello@signalstudio.ie`** for general company and press enquiries.
+- **`support@signalstudio.ie`** for product, access, onboarding and accessibility help.
+- **`billing@signalstudio.ie`** for payments, invoices, refunds and renewals.
+- **`privacy@signalstudio.ie`** for data rights, deletion, cookies and consent.
+- **`security@signalstudio.ie`** for vulnerabilities, incidents and suspected compromise.
+- **`partnerships@signalstudio.ie`** for venues, schools, universities and commercial collaboration.
+
+Use the narrowest correct route. Keep `hello@` in company-level footers and
+general contact. Do not print all six addresses on every surface.
 
 ### URLs
 - Production marketing: `signalstudio.ie/notes`, `/tasks`, `/timeline`, and

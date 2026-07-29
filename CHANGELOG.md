@@ -7,6 +7,18 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-29 · S·155 · tightens · every enquiry has a clear route
+
+**Product help, billing, privacy, security and partnership enquiries now reach
+the address built for them.** The general company and press address stays in
+the homepage close and shared footer, while contextual pages, mail links and
+email replies use the narrowest correct route.
+
+The contact page remains one restrained surface. It now carries a compact
+directory, encoded subject lines and partnership-aware venue links. One typed
+source holds the six verified aliases; provider sender configuration remains
+unchanged until it is separately verified.
+
 ## 2026-07-28 · S·154 · tightens · the finished state arrives at centre
 
 **Each Product Handoff now completes when its artifact reaches the middle of

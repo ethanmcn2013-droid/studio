@@ -5,7 +5,15 @@
 
 This document is the comprehensive inventory of every email Signal Studio may need to send: what exists today, what is delegated to third parties, what is blocked by strategy decisions, and what is proposed. Each entry records the trigger, audience, sending policy and current implementation status, so the email design system can be built against a complete map rather than discovered piecemeal. Sender names, reply-to behaviour and tracking rules stated here are proposals consistent with `docs/email-system/sender-architecture.md`, which is being written separately.
 
-Delivery context today: the provider is Resend, the single canonical address is `hello@signalstudio.ie`, and DKIM is pending. Reply-to is always a monitored address, never no-reply.
+Delivery context today: the provider is Resend, six receiving aliases are
+verified, and DKIM is pending. Reply-to is always the monitored contextual
+alias, never no-reply. Sender addresses remain provider-gated and are not
+changed merely because a receiving alias exists.
+
+The per-entry `Sender · Reply-to` rows below are inventory-era proposals, not
+the implementation source of truth. For implemented prototypes,
+`src/emails/registry.tsx` is authoritative; for future sends, use the category
+map in `sender-architecture.md`.
 
 Eight emails have working prototypes built in `src/emails/`. They are marked with `Prototype: yes` in their entry: `auth.sign-in-code`, `access.ready`, `billing.payment-failed`, `account.deletion-scheduled`, `outreach.venue-first`, `outreach.school-first`, `student.verification-approved`, `editorial.dispatch-issue`.
 

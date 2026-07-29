@@ -40,6 +40,15 @@ Authenticated provider journeys, production checkout amounts, restore recency an
 
 Public conversion is waitlist-first. There is no authorized broad launch date. Dates used as internal targets do not become launch state automatically.
 
+## Contact routing
+
+Six verified receiving aliases route general, support, billing, privacy,
+security and partnership enquiries. `hello@signalstudio.ie` remains the
+company-level and press address. The public contact directory and contextual
+legal, pricing, access and partnership surfaces use the matching alias.
+Provider-level sender configuration is a separate verification boundary and
+must not be inferred from the receiving aliases.
+
 ## Product-quality release boundary
 
 The 2026-07-26 product-quality programme does not change the shipped claims

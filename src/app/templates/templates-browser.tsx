@@ -7,6 +7,7 @@ import {
   type TemplatePill,
 } from "@/components/marketing/template-pills";
 import type { FeaturedTemplate } from "@/lib/templates/featured";
+import { buildMailtoHref, CONTACT_EMAILS } from "@/lib/contact";
 
 /**
  * Templates browser, client wrapper around <TemplatePills> + the
@@ -135,10 +136,12 @@ export function TemplatesBrowser({
           <div className="tbrowse-empty" role="listitem">
             No templates for this audience yet. Tell us what would help:{" "}
             <a
-              href="/contact"
+              href={buildMailtoHref("support", {
+                subject: "Signal Studio template request",
+              })}
               style={{ color: "var(--accent)", textDecoration: "underline" }}
             >
-              hello@signalstudio.ie
+              {CONTACT_EMAILS.support}
             </a>
             .
           </div>

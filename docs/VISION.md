@@ -51,7 +51,10 @@ The route and compatibility rules are locked in
 
 **Signal Growth Studio:** `signal-growth/` holds growth memory, review rules, campaign notes, demo planning, template strategy, and learning that should outlive a single chat session.
 
-**Email:** `hello@signalstudio.ie` via Google Workspace (DKIM completion pending in Admin Console).
+**Email:** six verified Google Workspace aliases route general, support,
+billing, privacy, security and partnership enquiries. `hello@signalstudio.ie`
+remains the company-level address. DKIM completion remains pending in Admin
+Console.
 
 **Defensive:** `signalhq.ie` reserved, will 301 to signalstudio.ie post-cutover.
 

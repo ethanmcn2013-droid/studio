@@ -9,6 +9,7 @@ import { RestDot } from "@/components/design/rest-dot";
 import { FlipCard } from "@/components/design/flip-card";
 import { DotCharacter } from "@/components/design/dot/dot-character";
 import { LoadingCanon } from "@/components/design/loading-canon";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Design · Signal Studio",
@@ -1310,7 +1311,7 @@ export default function DesignPage() {
               The dot got here first.
             </p>
             <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.08em] text-ink-quiet">
-              hello@signalstudio.ie
+              {CONTACT_EMAILS.general}
             </p>
           </div>
         </Arrive>

@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
+import { buildMailtoHref } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Founding Venue Programme · Signal Studio",
@@ -28,6 +29,9 @@ const demoHref = withTracking("/venues/demo", {
 const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
   ...VENUE_SITE_TRACKING,
   artifact: "venue_waitlist",
+});
+const venuePartnershipHref = buildMailtoHref("partnerships", {
+  subject: "Wedding venue partnership enquiry",
 });
 
 /**
@@ -159,6 +163,12 @@ export default function VenuesPage() {
               >
                 Watch one wedding Tuesday &rarr;
               </Link>
+              <a
+                href={venuePartnershipHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Discuss a venue partnership
+              </a>
               <a
                 href={examplePlanHref}
                 target="_blank"
@@ -584,6 +594,12 @@ export default function VenuesPage() {
               >
                 Watch the venue demo &rarr;
               </Link>
+              <a
+                href={venuePartnershipHref}
+                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+              >
+                Discuss a venue partnership
+              </a>
               <a
                 href={examplePlanHref}
                 target="_blank"

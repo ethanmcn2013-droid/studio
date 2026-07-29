@@ -10,6 +10,7 @@
  */
 
 import Link from "next/link";
+import { buildMailtoHref, CONTACT_EMAILS } from "@/lib/contact";
 
 export function RevealClosing() {
   return (
@@ -40,7 +41,7 @@ export function RevealClosing() {
       </div>
 
       <p className="reveal-closing-addr">
-        <a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
+        <a href={buildMailtoHref("general")}>{CONTACT_EMAILS.general}</a>
         <span className="sep" aria-hidden>·</span>
         <span>Limerick, {new Date().getFullYear()}</span>
       </p>

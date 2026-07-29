@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDocument } from "@/components/legal/legal-document";
+import { CONTACT_EMAILS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Terms · Signal Studio",
@@ -24,7 +25,7 @@ const SECTIONS = [
   {
     heading: "Your account",
     body: [
-      "You are responsible for everything that happens under your account. Keep your sign-in credentials private. If you suspect someone else has accessed your account, contact hello@signalstudio.ie immediately.",
+      `You are responsible for everything that happens under your account. Keep your sign-in credentials private. If you suspect someone else has accessed your account, contact ${CONTACT_EMAILS.security} immediately.`,
       "You must be at least 16 years old to create an account.",
       "We may suspend or close an account that is being used to harm other people, send spam, scrape data at scale, or otherwise abuse the service. We will say what we observed before we act.",
     ],
@@ -56,7 +57,7 @@ const SECTIONS = [
   {
     heading: "Refunds",
     body: [
-      "If a paid plan does not work as described inside the first thirty days, write to hello@signalstudio.ie and we will refund what you paid for that period.",
+      `If a paid plan does not work as described inside the first thirty days, write to ${CONTACT_EMAILS.billing} and we will refund what you paid for that period.`,
       "If the service breaks badly and we cannot fix it inside a reasonable time, we will refund the unused portion.",
     ],
   },
@@ -103,7 +104,7 @@ const SECTIONS = [
   {
     heading: "Contact",
     body: [
-      "Questions about these terms: hello@signalstudio.ie. Signal Studio is operated by Ethan McNamara, Limerick, Ireland.",
+      `Questions about these terms: ${CONTACT_EMAILS.general}. Signal Studio is operated by Ethan McNamara, Limerick, Ireland.`,
     ],
   },
 ] as const;

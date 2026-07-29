@@ -2,6 +2,12 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { DocContents } from "./doc-contents";
+import {
+  buildMailtoHref,
+  CONTACT_EMAILS,
+  CONTACT_SUBJECTS,
+  type ContactEmailKind,
+} from "@/lib/contact";
 
 /**
  * Shared scaffold for the trust stack, /privacy, /terms, /security,
@@ -26,6 +32,33 @@ function slugify(heading: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+const CONTACT_KIND_BY_EMAIL = new Map<string, ContactEmailKind>(
+  (Object.entries(CONTACT_EMAILS) as [ContactEmailKind, string][]).map(
+    ([kind, email]) => [email, kind],
+  ),
+);
+
+function renderLegalText(text: string): ReactNode {
+  const parts = text.split(
+    /((?:hello|support|billing|privacy|security|partnerships)@signalstudio\.ie)/g,
+  );
+
+  return parts.map((part, index) => {
+    const kind = CONTACT_KIND_BY_EMAIL.get(part);
+    if (!kind) return part;
+
+    return (
+      <a
+        key={`${part}-${index}`}
+        href={buildMailtoHref(kind, { subject: CONTACT_SUBJECTS[kind] })}
+        className="break-words text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+      >
+        {part}
+      </a>
+    );
+  });
 }
 
 export function LegalDocument({
@@ -98,7 +131,7 @@ export function LegalDocument({
                     </a>
                     <div className="space-y-4 pl-[34px] text-[15px] leading-[1.7] text-ink-soft">
                       {s.body.map((p, j) => (
-                        <p key={j}>{p}</p>
+                        <p key={j}>{renderLegalText(p)}</p>
                       ))}
                     </div>
                   </section>

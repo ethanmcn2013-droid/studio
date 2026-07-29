@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { lookupRedemption, type RedemptionLookup } from "@/lib/redeem/lookup";
 import { APP_ORIGIN } from "@/lib/product-urls";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
+import { buildMailtoHref, CONTACT_EMAILS, CONTACT_SUBJECTS } from "@/lib/contact";
 
 export const dynamic = "force-dynamic";
 
@@ -216,10 +217,10 @@ function NetworkErrorView() {
       <p className="mb-8 text-[17px] leading-[1.6] text-ink-soft">
         Try again in a minute, or email{" "}
         <a
-          href="mailto:hello@signalstudio.ie"
+          href={buildMailtoHref("support", { subject: CONTACT_SUBJECTS.support })}
           className="text-ink underline decoration-1 underline-offset-2 transition-opacity hover:opacity-70"
         >
-          hello@signalstudio.ie
+          {CONTACT_EMAILS.support}
         </a>{" "}
         and we&rsquo;ll sort it.
       </p>
@@ -277,10 +278,10 @@ function ContactFooter() {
     <p className="mb-8 text-[14px] text-ink-quiet">
       Stuck? Email{" "}
       <a
-        href="mailto:hello@signalstudio.ie"
+        href={buildMailtoHref("support", { subject: CONTACT_SUBJECTS.support })}
         className="text-ink underline decoration-1 underline-offset-2 transition-opacity hover:opacity-70"
       >
-        hello@signalstudio.ie
+        {CONTACT_EMAILS.support}
       </a>
       .
     </p>

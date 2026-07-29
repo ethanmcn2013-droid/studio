@@ -5,6 +5,7 @@ import {
   formatEuroCents,
   requireVerifiedAmount,
 } from "@/lib/commercial-terms";
+import { buildMailtoHref, CONTACT_EMAILS, CONTACT_SUBJECTS } from "@/lib/contact";
 
 const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
 const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
@@ -304,10 +305,10 @@ export default async function PricingPage({
               Pro and Event purchases will resume when resolved. Free and
               Student access remain available, start there, or email{" "}
               <a
-                href="mailto:hello@signalstudio.ie"
+                href={buildMailtoHref("billing", { subject: CONTACT_SUBJECTS.billing })}
                 style={{ color: "var(--ink)" }}
               >
-                hello@signalstudio.ie
+                {CONTACT_EMAILS.billing}
               </a>{" "}
               and we&apos;ll grant access manually.
             </div>
@@ -1148,14 +1149,14 @@ export default async function PricingPage({
             }}
           >
             <a
-              href="mailto:hello@signalstudio.ie"
+              href={buildMailtoHref("general")}
               style={{
                 color: "var(--ink-soft)",
                 borderBottom: "1px solid var(--ink-300)",
                 paddingBottom: 1,
               }}
             >
-              hello@signalstudio.ie
+              {CONTACT_EMAILS.general}
             </a>
             <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
             Limerick
