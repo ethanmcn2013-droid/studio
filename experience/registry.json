@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience/1",
-  "generatedAt": "2026-07-28",
+  "generatedAt": "2026-07-29",
   "breakpoints": {
     "mobile": {
       "width": 390,
@@ -3178,7 +3178,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "844f30442dfb36a9"
+      "materialityHash": "8d32d7efd3969c17"
     },
     {
       "id": "studio.page.changelog",
@@ -3316,7 +3316,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "81f84f68b5ac55db"
+      "materialityHash": "77854d29a0d5a3cf"
     },
     {
       "id": "studio.page.design",
@@ -3360,7 +3360,7 @@
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "ac6a2709f3c992e9"
+      "materialityHash": "f6fc71af0efd1e6d"
     },
     {
       "id": "studio.page.design-lab-product-handoff",
@@ -6233,7 +6233,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "7996d2e1b7df8e58"
+      "materialityHash": "1dd3fd679271959a"
     },
     {
       "id": "studio.page.pricing",
@@ -6277,7 +6277,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f9ab6a89e3e2e908"
+      "materialityHash": "d865b75a411c0e9b"
     },
     {
       "id": "studio.page.principles",
@@ -6365,7 +6365,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "34bd129dcfa8e519"
+      "materialityHash": "18525b86ab306b5e"
     },
     {
       "id": "studio.page.proof",
@@ -6455,7 +6455,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d2058ed057e0354a"
+      "materialityHash": "3c7c9af142be3357"
     },
     {
       "id": "studio.page.root",
@@ -6543,7 +6543,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d9f9262477c48f37"
+      "materialityHash": "93cd25bb42fd0e57"
     },
     {
       "id": "studio.page.signal",
@@ -6719,7 +6719,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "008fc30678dd76d6"
+      "materialityHash": "b657929790ca6b47"
     },
     {
       "id": "studio.page.templates",
@@ -6807,7 +6807,7 @@
       "lastReviewedAt": "2026-07-15",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b15d88ea68dd6d52"
+      "materialityHash": "a014faafffd585fb"
     },
     {
       "id": "studio.page.timeline",
@@ -6895,7 +6895,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1c495f57ce696265"
+      "materialityHash": "ea3ab50ed97b84dd"
     },
     {
       "id": "studio.page.venues-demo",
