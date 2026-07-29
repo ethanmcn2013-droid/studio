@@ -853,13 +853,19 @@ body::after { content: none; }
   font-size: 15px;
   letter-spacing: -0.005em;
   text-decoration: none;
-  transition: opacity var(--motion-base) var(--ease-out), background var(--motion-base) var(--ease-out);
+  transition:
+    opacity var(--marketing-motion-fast) var(--marketing-ease-hover),
+    background var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
 }
 .pricing-tier-cta[data-recommended="true"] {
   background: var(--accent);
   color: #fff;
 }
-.pricing-tier-cta:hover { opacity: 0.9; }
+.pricing-tier-cta:active { transform: scale(.98); }
+@media (hover: hover) and (pointer: fine) {
+  .pricing-tier-cta:hover { opacity: 0.9; }
+}
 @media (min-width: 640px) {
   .pricing-tier-cta {
     align-self: flex-start;
@@ -869,15 +875,39 @@ body::after { content: none; }
     color: var(--accent);
     border-radius: 0;
     border-bottom: 1px solid transparent;
-    transition: border-color var(--motion-base) var(--ease-out);
+    transition:
+      border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
+      transform var(--marketing-motion-press) var(--marketing-ease-out);
   }
   .pricing-tier-cta[data-recommended="true"] {
     background: transparent;
     color: var(--accent);
   }
-  .pricing-tier-cta:hover {
-    opacity: 1;
-    border-bottom-color: var(--accent);
+  .pricing-tier-cta:active {
+    transform: translateY(1px);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .pricing-tier-cta:hover {
+      opacity: 1;
+      border-bottom-color: var(--accent);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-products-chevron {
+    transition: none !important;
+  }
+
+  .pricing-tier-cta {
+    transition:
+      opacity var(--marketing-motion-fast) var(--marketing-ease-hover),
+      background var(--marketing-motion-fast) var(--marketing-ease-hover),
+      border-color var(--marketing-motion-fast) var(--marketing-ease-hover);
+  }
+
+  .pricing-tier-cta:active {
+    transform: none;
   }
 }
 
@@ -1005,6 +1035,70 @@ body::after { content: none; }
 }
 
 /* ── Utilities ────────────────────────────────────────────── */
+/* Public marketing interaction contract.
+   Shared feedback for the six public product/company surfaces. */
+:root {
+  --marketing-motion-press: 120ms;
+  --marketing-motion-fast: 160ms;
+  --marketing-motion-state: 220ms;
+  --marketing-motion-settle: 360ms;
+  --marketing-ease-out: var(--ease-out);
+  --marketing-ease-move: var(--ease-in-out);
+  --marketing-ease-hover: var(--ease-out);
+}
+
+.marketing-nav-action {
+  transition:
+    color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
+}
+
+.marketing-nav-action:active {
+  transform: scale(.985);
+}
+
+.marketing-footer-action {
+  transition:
+    color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
+}
+
+.marketing-footer-action:active {
+  transform: scale(.985);
+}
+
+.footer-external-arrow {
+  display: inline-block;
+  transition: transform var(--marketing-motion-fast) var(--marketing-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marketing-nav-action:hover,
+  .marketing-footer-action:hover {
+    color: var(--ink);
+  }
+
+  .marketing-footer-action:hover .footer-external-arrow,
+  .marketing-footer-action:focus-visible .footer-external-arrow {
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-nav-action,
+  .marketing-footer-action,
+  .footer-external-arrow {
+    transition: color var(--marketing-motion-fast) var(--marketing-ease-hover);
+  }
+
+  .marketing-nav-action:active,
+  .marketing-footer-action:active,
+  .marketing-footer-action:hover .footer-external-arrow,
+  .marketing-footer-action:focus-visible .footer-external-arrow {
+    transform: none;
+  }
+}
+
 .lift {
   transition:
     transform var(--motion-moderate) var(--spring-glide),
@@ -2244,8 +2338,8 @@ body::after { content: none; }
 }
 
 /* tasks · M·02 pulse — dot breathes every 2.6s. */
-.pricing-mark[data-key="tasks"] .dot {
-  animation: pricing-pulse 2.6s ease-in-out infinite;
+[data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark[data-key="tasks"] .dot {
+  animation: pricing-pulse 1.1s var(--marketing-ease-out) 80ms 1 both;
 }
 @keyframes pricing-pulse {
   0%, 30%, 100% { transform: translateY(-0.04em) scale(1); }
@@ -2256,8 +2350,8 @@ body::after { content: none; }
 }
 
 /* roadmap · M·03 sweep — dot tracks left→right, every 5.4s. */
-.pricing-mark[data-key="timeline"] .dot {
-  animation: pricing-sweep 5.4s cubic-bezier(.22,.7,.2,1) infinite;
+[data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark[data-key="timeline"] .dot {
+  animation: pricing-sweep 1.4s var(--marketing-ease-move) 160ms 1 both;
 }
 @keyframes pricing-sweep {
   0%   { transform: translateY(-0.04em) translateX(0); opacity: 1; }
@@ -2272,8 +2366,8 @@ body::after { content: none; }
    Canon (DESIGN.md §5) + the live Analytics product: the dot snaps
    between discrete Y samples and holds; it never glides between
    them. The old 2.4s scaleY squash read as a blink — wrong gesture. */
-.pricing-mark[data-key="signal"] .dot {
-  animation: pricing-tick 3.6s steps(1, end) infinite;
+[data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark[data-key="signal"] .dot {
+  animation: pricing-tick 1.1s steps(4, end) 240ms 1 both;
 }
 @keyframes pricing-tick {
   0%   { transform: translateY(-0.04em); }
@@ -2284,8 +2378,8 @@ body::after { content: none; }
 }
 
 /* notes · M·05 caret — dot blinks like a held cursor, 1.1s. */
-.pricing-mark[data-key="notes"] .dot {
-  animation: pricing-caret 1.1s steps(1,end) infinite;
+[data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark[data-key="notes"] .dot {
+  animation: pricing-caret 760ms steps(1,end) 0ms 2;
 }
 @keyframes pricing-caret {
   0%, 100% { transform: translateY(-0.04em) scale(0.92); opacity: 0.85; }
@@ -2315,15 +2409,193 @@ body::after { content: none; }
   border-radius: 50%;
   background: var(--accent);
   margin-right: 8px;
-  animation: pricing-anchor-pulse 5.2s ease-in-out infinite;
+  animation: none;
   vertical-align: middle;
 }
-@keyframes pricing-anchor-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.55; transform: scale(0.85); }
+[data-delight="pricing-plans"][data-delight-visible="true"] .pricing-anchor-dot,
+[data-delight="pricing-compare"][data-delight-visible="true"] .pricing-anchor-dot {
+  animation: pricing-anchor-pulse 780ms var(--marketing-ease-out) 220ms 1 both;
 }
+@keyframes pricing-anchor-pulse {
+  0%   { opacity: 0.55; transform: scale(0.78); }
+  58%  { opacity: 1; transform: scale(1.18); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Pricing cards acknowledge the decision set once, in reading order.
+   The cards never lift on hover because the full card is not a control. */
+[data-delight="pricing-plans"][data-delight-visible="true"] > div {
+  animation: pricing-plan-settle var(--marketing-motion-settle)
+    var(--marketing-ease-out) both;
+}
+
+[data-delight="pricing-plans"][data-delight-visible="true"] > div:nth-child(2) {
+  animation-delay: 35ms;
+}
+
+[data-delight="pricing-plans"][data-delight-visible="true"] > div:nth-child(3) {
+  animation-delay: 70ms;
+}
+
+[data-delight="pricing-plans"][data-delight-visible="true"] > div:nth-child(4) {
+  animation-delay: 105ms;
+}
+
+@keyframes pricing-plan-settle {
+  from { opacity: .74; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pricing-annual-link,
+.pricing-event-link,
+.pricing-email-link {
+  transition:
+    color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    opacity var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
+}
+
+.pricing-event-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pricing-annual-link:active,
+.pricing-event-link:active,
+.pricing-email-link:active {
+  transform: translateY(1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-annual-link:hover,
+  .pricing-email-link:hover {
+    border-color: var(--accent) !important;
+    color: var(--ink) !important;
+  }
+
+  .pricing-event-link-secondary:hover {
+    color: var(--ink) !important;
+  }
+}
+
+/* About stays editorial. Product rows carry direction; the founder signature
+   is the page's single expressive acknowledgement. */
+.about-product-link {
+  transition:
+    border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
+}
+
+.about-product-arrow {
+  display: inline-block;
+  transition:
+    color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-fast) var(--marketing-ease-out);
+}
+
+.about-product-link:focus-visible {
+  border-color: var(--accent);
+}
+
+.about-product-link:focus-visible .about-product-arrow {
+  color: var(--ink-quiet);
+  transform: translateX(4px);
+}
+
+.about-product-link:active {
+  transform: translateY(1px) scale(.99);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-product-link:hover {
+    border-color: var(--accent);
+  }
+
+  .about-product-link:hover .about-product-arrow {
+    color: var(--ink-quiet);
+    transform: translateX(4px);
+  }
+}
+
+.about-founder-signature {
+  position: relative;
+}
+
+.about-founder-signature::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: var(--border-soft);
+  content: "";
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+[data-delight="about-founder"][data-delight-visible="true"]
+  .about-founder-signature::before {
+  animation: about-signature-rule 420ms var(--marketing-ease-out) both;
+}
+
+[data-delight="about-founder"][data-delight-visible="true"]
+  .about-founder-dot {
+  animation: about-signature-dot 240ms var(--marketing-ease-out) 330ms both;
+}
+
+[data-delight="about-founder"][data-delight-visible="true"]
+  .about-founder-identity {
+  animation: about-signature-identity 280ms var(--marketing-ease-out) 390ms both;
+}
+
+@keyframes about-signature-rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes about-signature-dot {
+  from { opacity: .25; transform: scale(.72); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes about-signature-identity {
+  from { opacity: .55; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pricing-anchor-dot { animation: none; }
+  .pricing-anchor-dot { animation: none !important; }
+  [data-delight="pricing-plans"][data-delight-visible="true"] > div,
+  [data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark .dot,
+  [data-delight="about-founder"][data-delight-visible="true"]
+    .about-founder-signature::before,
+  [data-delight="about-founder"][data-delight-visible="true"]
+    .about-founder-dot,
+  [data-delight="about-founder"][data-delight-visible="true"]
+    .about-founder-identity {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pricing-annual-link,
+  .pricing-event-link,
+  .pricing-email-link,
+  .about-product-link,
+  .about-product-arrow {
+    transition:
+      color var(--marketing-motion-fast) var(--marketing-ease-hover),
+      border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
+      opacity var(--marketing-motion-fast) var(--marketing-ease-hover);
+  }
+
+  .pricing-annual-link:active,
+  .pricing-event-link:active,
+  .pricing-email-link:active,
+  .about-product-link:active,
+  .about-product-link:hover .about-product-arrow,
+  .about-product-link:focus-visible .about-product-arrow {
+    transform: none;
+  }
 }
 
 /* ── Reduced motion ───────────────────────────────────────────── */

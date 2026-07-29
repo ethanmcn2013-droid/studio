@@ -7,6 +7,21 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-29 · S·155 · tightens · six quiet pages learn when to move
+
+**Notes, Tasks, Timeline, Signal, Pricing, and About now share one restrained
+interaction contract.** Navigation opens and closes with continuity, the
+product indicator tells the truth immediately, and every real action responds
+without an authored delay. The four accepted product heroes and the Living
+Artifact timing remain exactly where their prior review left them.
+
+Pricing's perpetual product-mark loops now play once when the suite enters the
+story. About's founder signature draws once at the point of authorship.
+Reduced-motion visitors receive every final state without spatial travel.
+The release is governed by a 130-plus-decision ledger, including the stillness
+decisions and rejected candidates that keep future polish passes from adding
+motion without purpose.
+
 ## 2026-07-28 · S·154 · tightens · the finished state arrives at centre
 
 **Each Product Handoff now completes when its artifact reaches the middle of

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
+import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
 import {
   formatEuroCents,
   requireVerifiedAmount,
@@ -282,6 +283,7 @@ export default async function PricingPage({
   return (
     <>
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+        <MarketingDelightController />
         {checkoutOffline ? (
           <div
             role="status"
@@ -372,6 +374,8 @@ export default async function PricingPage({
 
           <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            data-delight="pricing-plans"
+            data-delight-once
             style={{
               border: "1px solid var(--border)",
               background: "var(--bg-elev)",
@@ -464,6 +468,7 @@ export default async function PricingPage({
                     {t.annualHref ? (
                       <Link
                         href={t.annualHref}
+                        className="pricing-annual-link"
                         style={{
                           color: "var(--ink-soft)",
                           borderBottom: "1px solid var(--border)",
@@ -507,7 +512,7 @@ export default async function PricingPage({
                           style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: 10,
-                            color: "var(--ink-quiet)",
+                            color: "var(--ink-soft)",
                             letterSpacing: "var(--tracking-eyebrow)",
                             textTransform: "uppercase",
                             fontWeight: 600,
@@ -542,7 +547,11 @@ export default async function PricingPage({
         </section>
 
         {/* ── 3.5 · Side-by-side compare ────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 pb-20 md:pb-24">
+        <section
+          className="mx-auto w-full max-w-[1180px] px-6 pb-20 md:pb-24"
+          data-delight="pricing-compare"
+          data-delight-once
+        >
           <div className="mb-4" style={eyebrowStyle()}>
             Side by side
           </div>
@@ -619,7 +628,7 @@ export default async function PricingPage({
                             fontSize: 10,
                             letterSpacing: "var(--tracking-eyebrow)",
                             textTransform: "uppercase",
-                            color: "var(--ink-quiet)",
+                            color: "var(--ink-soft)",
                             fontWeight: 600,
                             marginBottom: 8,
                           }}
@@ -723,7 +732,7 @@ export default async function PricingPage({
                         fontSize: 10,
                         letterSpacing: "var(--tracking-eyebrow)",
                         textTransform: "uppercase",
-                        color: "var(--ink-quiet)",
+                        color: "var(--ink-soft)",
                         fontWeight: 600,
                         marginBottom: 6,
                       }}
@@ -808,7 +817,11 @@ export default async function PricingPage({
         </section>
 
         {/* ── 4 · What's inside ─────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
+        <section
+          className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24"
+          data-delight="pricing-suite"
+          data-delight-once
+        >
           <div className="mb-4" style={eyebrowStyle()}>
             What&apos;s in Signal Studio
           </div>
@@ -820,9 +833,11 @@ export default async function PricingPage({
           </h2>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
-            {SUITE.map((p) => (
+            {SUITE.map((p, index) => (
               <div
                 key={p.key}
+                data-delight-suite-card
+                data-delight-index={index}
                 style={{
                   borderTop: "1px solid var(--border)",
                   paddingTop: 24,
@@ -893,7 +908,10 @@ export default async function PricingPage({
           }}
         >
           <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div className="mb-6" style={eyebrowStyle()}>
+            <div
+              className="mb-6"
+              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
+            >
               Development state
             </div>
             <div
@@ -983,6 +1001,7 @@ export default async function PricingPage({
                 <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
                   <Link
                     href="/weddings"
+                    className="pricing-event-link pricing-event-link-primary"
                     style={{
                       color: "var(--accent)",
                       fontSize: 15,
@@ -996,6 +1015,7 @@ export default async function PricingPage({
                   </Link>
                   <Link
                     href="/weddings"
+                    className="pricing-event-link pricing-event-link-secondary"
                     style={{
                       color: "var(--ink-quiet)",
                       fontSize: 13,
@@ -1084,7 +1104,10 @@ export default async function PricingPage({
           }}
         >
           <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div className="mb-4" style={eyebrowStyle()}>
+            <div
+              className="mb-4"
+              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
+            >
               Questions
             </div>
             <h2
@@ -1149,6 +1172,7 @@ export default async function PricingPage({
           >
             <a
               href="mailto:hello@signalstudio.ie"
+              className="pricing-email-link"
               style={{
                 color: "var(--ink-soft)",
                 borderBottom: "1px solid var(--ink-300)",
