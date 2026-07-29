@@ -56,3 +56,32 @@ share token, IP address, referrer, or user-agent.
 The owner workspace now opens on this component and preserves the publication
 boundary. The Timeline marketing page also uses this artifact contract as its
 product proof.
+
+## World-class pass (Tasks dispatch T·107, 2026-07-29)
+
+The Timeline product received the same four-wave design pass the Tasks board
+received with T·106, across every surface: shared artifact, owner view,
+curation, sharing manager, artifact studio, phone preview, and the loading,
+error, and empty states.
+
+Truth repairs shipped with it. The Today dash now rides the same collision
+geometry as the milestone points, so it can no longer render to the right of
+milestones weeks in the future when dates cluster. Review mode runs on one
+suite clock, guarded by tests at the fixture and DTO level. The public share
+page renders complete before JavaScript arrives, and reduced motion is
+absolute from first paint. Error copy renders in a real colour; it had been
+pointing at an undefined token and displaying as plain ink.
+
+The owner side now speaks the design system: the curation surface moved from
+inline styles to DS 2.0 tokens with the board's lane-tone grammar, an 11px
+type floor, and 32px targets; the sharing manager traded ten stacked forms
+for one ruled list; the owner view drops the duplicate wordmark behind an
+"Owner view" strip; the anchor countdown is mounted in the plan header. Wide
+rails title every milestone that fits, decided by edge-aware collision math.
+Structural motion shipped in the ratified class only; fourteen discretionary
+micro-interaction sites are catalogued in the Tasks repo's
+docs/DELIGHT_CATALOG.md awaiting the reference review.
+
+The hero on the Timeline marketing page carries a copy of the artifact
+model; its Today-dash math was brought to parity in the same studio change
+that records this entry.
