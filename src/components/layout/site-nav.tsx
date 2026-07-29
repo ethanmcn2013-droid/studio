@@ -60,7 +60,10 @@ export function SiteNav() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [productsOpen]);
 
-  if (pathname?.startsWith("/hq")) {
+  if (
+    pathname?.startsWith("/hq") ||
+    pathname === "/__design-lab/brand-guidelines"
+  ) {
     return null;
   }
 
