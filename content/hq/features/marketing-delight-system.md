@@ -13,8 +13,9 @@ principleAlignment: 99
 
 ## Current state
 
-The six canonical public pages — Notes, Tasks, Timeline, Signal, Pricing, and
-About — share one production interaction contract.
+The canonical suite homepage and the six public product and company pages —
+Notes, Tasks, Timeline, Signal, Pricing, and About — share one production
+interaction contract.
 
 Navigation state is immediate and interruptible. The product switcher measures
 its active route rather than guessing, and route changes are no longer held
@@ -25,6 +26,12 @@ feedback use the same restrained grammar across shared actions.
 The four product heroes remain the dominant expressive moments on their pages.
 Their source was deliberately left untouched. The Product Handoff also retains
 its reviewed centre-completion window and reduced-motion contract.
+
+The homepage now brings those same four product proofs into the suite story.
+Notes, Tasks, Timeline, and Signal each begin once their chapter reaches the
+reading zone. A chapter pauses when it leaves the viewport; reduced-motion
+visitors receive its complete settled evidence. This makes the first visit
+show the product work without creating a second, competing animation system.
 
 Pricing's previous perpetual gestures are bounded acknowledgements that play
 once when relevant. About reserves its only authored reveal for the founder
@@ -44,9 +51,14 @@ The governing principle is simple: motion earns its place by communicating
 state, continuity, responsiveness, or explanation. Expressive motion remains
 rare enough to carry meaning.
 
+The homepage extension and its panel decision are recorded in
+[`docs/experience/HOMEPAGE_PRODUCT_MOTION_RELEASE_REVIEW.md`](../../../docs/experience/HOMEPAGE_PRODUCT_MOTION_RELEASE_REVIEW.md).
+
 ## Release evidence
 
 - Six canonical routes reviewed at desktop and mobile widths.
+- The suite homepage's four real product proofs verified at desktop and mobile
+  widths, including offscreen pause and reduced-motion settlement.
 - Keyboard entry, Escape closure, outside-click closure, rapid interruption,
   active-route measurement, and immediate navigation covered in browser tests.
 - Pricing and About one-shot gestures verified as finite.
@@ -56,4 +68,4 @@ rare enough to carry meaning.
 - Typecheck, unit tests, design-system enforcement, targeted lint, and the
   production build pass before release.
 
-Dispatch: S·155 · 2026-07-29.
+Dispatch: S·156 · 2026-07-29.

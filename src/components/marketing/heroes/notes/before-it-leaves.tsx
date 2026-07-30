@@ -353,8 +353,6 @@ const CSS = `
 .bil-stream { margin: 0; padding: 0; list-style: none; }
 .bil-item {
   position: relative;
-  display: grid;
-  grid-template-rows: 1fr;
   border-bottom: 1px solid var(--bil-line-soft);
 }
 .bil-item:last-child { border-bottom: 0; }
@@ -600,9 +598,11 @@ const CSS = `
     animation: bil-caret-catch 360ms var(--ease-out) 300ms both,
       bil-blink 1.05s steps(1, end) 1.2s infinite;
   }
-  .bil-item-archived { animation: bil-log 440ms var(--ease-out) .8s both, bil-archive-row 760ms var(--ease-out) 4.05s both; }
-  .bil-item-private { animation: bil-log 440ms var(--ease-out) 2.1s both; }
-  .bil-item-source { animation: bil-log 440ms var(--ease-out) 3.45s both, bil-source-pulse 520ms var(--ease-out) 4.3s both; }
+  .bil-item-archived { animation: bil-archive-row 760ms var(--ease-out) 4.05s both; }
+  .bil-item-archived .bil-item-inner { animation: bil-log 440ms var(--ease-out) .8s both; }
+  .bil-item-private .bil-item-inner { animation: bil-log 440ms var(--ease-out) 2.1s both; }
+  .bil-item-source { animation: bil-source-pulse 520ms var(--ease-out) 4.3s both; }
+  .bil-item-source .bil-item-inner { animation: bil-log 440ms var(--ease-out) 3.45s both; }
   .bil-item-source::before { animation: bil-accent-in 340ms var(--ease-out) 4.78s both; }
   .bil-item-source .bil-item-state { animation: bil-state-in 360ms var(--ease-out) 4.92s both; }
   .bil-item-archived .bil-archive-swipe { animation: bil-archive-swipe 760ms var(--ease-in-out) 4.02s both; }
@@ -644,9 +644,9 @@ const CSS = `
     100% { opacity: 1; transform: scaleY(1); }
   }
   @keyframes bil-log {
-    0% { grid-template-rows: 0fr; opacity: 0; background: var(--bil-accent-soft); }
+    0% { opacity: 0; transform: translateY(7px); }
     72% { opacity: 1; }
-    100% { grid-template-rows: 1fr; opacity: 1; background: transparent; }
+    100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes bil-source-pulse {
     0%, 100% { background: transparent; }
@@ -756,32 +756,34 @@ const CSS = `
   .bil-approval-short { display: inline; }
 }
 
-.bil-embedded *,
-.bil-embedded *::before,
-.bil-embedded *::after {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *::before,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded *::after {
   animation: none !important;
 }
-.bil-embedded .bil-placeholder,
-.bil-embedded .bil-item,
-.bil-embedded .bil-item-source::before,
-.bil-embedded .bil-item-source .bil-item-state,
-.bil-embedded .bil-tasks,
-.bil-embedded .bil-task-row,
-.bil-embedded .bil-task-box {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-placeholder,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-inner,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source::before,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source .bil-item-state,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-tasks,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-task-row,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-task-box {
   opacity: 1;
   transform: none;
 }
-.bil-embedded .bil-item {
-  grid-template-rows: 1fr;
-}
-.bil-embedded .bil-incoming,
-.bil-embedded .bil-archive-swipe,
-.bil-embedded .bil-promote-swipe,
-.bil-embedded .bil-approval,
-.bil-embedded .bil-flight {
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-incoming,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-archive-swipe,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-promote-swipe,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-approval,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-flight {
   display: none;
 }
 .bil-embedded .bil-capture-hint kbd {
   color: var(--zinc-600);
+}
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *::before,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .bil-embedded *::after {
+  animation-play-state: paused !important;
 }
 `;

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { TimelineArtifact } from "@/components/marketing/heroes/timeline/artifact/timeline-artifact";
 import { TIMELINE_HERO_FIXTURE } from "./fixture";
 import type { AudienceTimelineDto } from "./audience-timeline";
+import { useMarketingPreviewMotion } from "@/components/marketing/delight/marketing-preview-motion";
 
 /**
  * Timeline hero, rebuilt 2026-07-27.
@@ -31,7 +32,9 @@ export function TimelineTheLine({
   embedded?: boolean;
   timeline?: AudienceTimelineDto;
 } = {}) {
-  const [opened, setOpened] = useState(embedded);
+  const previewMotion = useMarketingPreviewMotion();
+  const [opened, setOpened] = useState(false);
+  const isOpened = embedded ? previewMotion.hasStarted : opened;
 
   useEffect(() => {
     if (embedded) {
@@ -50,7 +53,7 @@ export function TimelineTheLine({
   return (
     <section
       className={`tlh${embedded ? " tlh-embedded" : ""}`}
-      data-opened={opened ? "true" : undefined}
+      data-opened={isOpened ? "true" : undefined}
       aria-label={embedded ? "Signal Timeline public wedding plan" : undefined}
     >
       <div className="tlh-frame">
@@ -85,7 +88,7 @@ export function TimelineTheLine({
             wake while the viewer is watching. */}
         <div className="tlh-artifact">
           <TimelineArtifact
-            key={opened ? "run" : "idle"}
+            key={isOpened ? "run" : "idle"}
             timeline={timeline}
             embedded={embedded}
             compact={embedded}
@@ -141,6 +144,12 @@ const CSS = `
   opacity: 1;
   transform: none;
   animation: none;
+}
+
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tlh-embedded *,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tlh-embedded *::before,
+.marketing-preview-motion[data-motion-started="true"][data-motion-visible="false"] .tlh-embedded *::after {
+  animation-play-state: paused !important;
 }
 
 .tlh-embedded button,

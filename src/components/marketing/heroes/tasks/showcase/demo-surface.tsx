@@ -51,9 +51,11 @@ const LIST_GRID_COLS = "minmax(0, 2.4fr) 0.9fr 0.9fr 1fr 0.9fr 0.75fr";
 export function DemoSurface({
   state,
   cardRefs,
+  plainLaneLimits = false,
 }: {
   state: DemoState;
   cardRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
+  plainLaneLimits?: boolean;
 }) {
   const transitions = useMorphTransition();
   const view = state.view;
@@ -78,7 +80,12 @@ export function DemoSurface({
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      <ViewWrappers view={view} transitions={transitions} laneCounts={laneCounts} />
+      <ViewWrappers
+        view={view}
+        transitions={transitions}
+        laneCounts={laneCounts}
+        plainLaneLimits={plainLaneLimits}
+      />
       <CardLayer
         view={view}
         tasks={orderedTasks}
@@ -98,10 +105,12 @@ function ViewWrappers({
   view,
   transitions,
   laneCounts,
+  plainLaneLimits,
 }: {
   view: ViewMode;
   transitions: ReturnType<typeof useMorphTransition>;
   laneCounts: Record<LaneId, number>;
+  plainLaneLimits: boolean;
 }) {
   return (
     <div className="pointer-events-none absolute inset-0">
@@ -115,7 +124,10 @@ function ViewWrappers({
             transition={transitions.chrome}
             className="absolute inset-0"
           >
-            <BoardChrome laneCounts={laneCounts} />
+            <BoardChrome
+              laneCounts={laneCounts}
+              plainLaneLimits={plainLaneLimits}
+            />
           </motion.div>
         ) : null}
         {view === "list" ? (
@@ -147,7 +159,13 @@ function ViewWrappers({
   );
 }
 
-function BoardChrome({ laneCounts }: { laneCounts: Record<LaneId, number> }) {
+function BoardChrome({
+  laneCounts,
+  plainLaneLimits,
+}: {
+  laneCounts: Record<LaneId, number>;
+  plainLaneLimits: boolean;
+}) {
   // NOTE: no `data-lane` here, those attributes live on the card-layer
   // columns (single source of truth so cursor / drop math doesn't see
   // duplicates from `document.querySelector`).
@@ -183,7 +201,8 @@ function BoardChrome({ laneCounts }: { laneCounts: Record<LaneId, number> }) {
               <LaneCount value={laneCounts[laneId]} />
             </div>
             <span className={a.wipCount}>
-              WIP {laneCounts[laneId]}/{WIP_CAP[laneId]}
+              {plainLaneLimits ? "Limit" : "WIP"} {laneCounts[laneId]}/
+              {WIP_CAP[laneId]}
             </span>
           </header>
 

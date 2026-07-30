@@ -1,7 +1,8 @@
 # Marketing motion contract
 
 Date: 2026-07-29
-Applies to: the six public marketing surfaces in the marketing delight ledger
+Applies to: the suite homepage and the six public marketing surfaces in the
+marketing delight ledger
 
 ## Purpose
 
@@ -38,6 +39,7 @@ Rules:
 
 | Page | Dominant expressive moment | Supporting motion |
 | --- | --- | --- |
+| Home | four real product proofs, one active chapter at a time | product signatures, handoff, action feedback |
 | Notes | accepted Notes hero | product switcher, handoff, action feedback |
 | Tasks | accepted Tasks hero | product switcher, handoff, action feedback |
 | Timeline | accepted Timeline artifact | product switcher, handoff, action feedback |
@@ -69,6 +71,10 @@ Rules:
 
 - Scroll progress reflects scroll directly; it is never eased.
 - Living Artifact remains coupled to its reviewed stage.
+- Homepage product proofs start once in the lower reading zone and preserve
+  the source product's own choreography.
+- A scripted homepage proof pauses when it leaves the viewport; adjacent
+  chapters do not run competing motion.
 - Pricing and About one-shots fire once per page mount.
 - Long-form paragraphs do not stagger or reveal.
 
@@ -100,6 +106,7 @@ Remove:
 - No animation owns layout height after a panel is dismissed.
 - Rapid open/close leaves one authoritative state.
 - Observers disconnect after their one-shot has fired.
+- Long scripted proofs stop advancing while offscreen.
 - No `will-change` remains on long-lived static content.
 - Production verification checks that Pricing has zero infinite decorative
   animations after the suite acknowledgement has settled.
