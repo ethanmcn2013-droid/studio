@@ -7,6 +7,22 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-30 · S·157 · tightens · the moving parts learn to stop
+
+**The public interaction system now gives every long-running demonstration an
+honest state.** Notes and Tasks can be paused and replayed, stop advancing when
+they leave the screen or the tab goes into the background, and resume without
+inventing elapsed work. Tasks cursors move only when the story explains why.
+Signal's two actions now open the real products, its homepage receipts no
+longer pretend to be buttons, and its NOW ring settles after two broadcasts.
+Timeline's complete plan is present on first paint.
+
+Design follows the same rule. Loading Canon has transport controls, printed
+cards keep the face the reader selected, and the closing dot is a real
+keyboard-operable button. The mobile menu contains focus and page scroll while
+open. The reviewed Product Handoff, homepage proof choreography, native route
+navigation, and reduced-motion final states remain unchanged.
+
 ## 2026-07-29 · S·156 · ships · the studio moves on first meeting
 
 **The homepage now carries the real Notes, Tasks, Timeline, and Signal motion

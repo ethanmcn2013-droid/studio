@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 /**
  * Notes hero lab direction: Before It Leaves.
  *
@@ -30,21 +34,102 @@ const STREAM = [
   },
 ];
 
+const FILM_DURATION_MS = 6600;
+
 export function NotesBeforeItLeaves({
   embedded = false,
 }: {
   embedded?: boolean;
 } = {}) {
+  const rootRef = useRef<HTMLElement | null>(null);
+  const elapsedRef = useRef(0);
+  const startedAtRef = useRef<number | null>(null);
+  const [runId, setRunId] = useState(0);
+  const [manualPaused, setManualPaused] = useState(false);
+  const [settled, setSettled] = useState(false);
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
+  const [reduced, setReduced] = useState(false);
+  const running =
+    !embedded &&
+    !reduced &&
+    inView &&
+    pageVisible &&
+    !manualPaused &&
+    !settled;
+
+  useEffect(() => {
+    if (embedded) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, [embedded]);
+
+  useEffect(() => {
+    if (embedded) return;
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [embedded]);
+
+  useEffect(() => {
+    if (embedded) return;
+    const sync = () => setPageVisible(document.visibilityState === "visible");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, [embedded]);
+
+  useEffect(() => {
+    if (!running) return;
+    const startedAt = performance.now();
+    startedAtRef.current = startedAt;
+    const remaining = Math.max(0, FILM_DURATION_MS - elapsedRef.current);
+    const timer = window.setTimeout(() => {
+      elapsedRef.current = FILM_DURATION_MS;
+      startedAtRef.current = null;
+      setSettled(true);
+    }, remaining);
+    return () => {
+      window.clearTimeout(timer);
+      if (startedAtRef.current !== null) {
+        elapsedRef.current = Math.min(
+          FILM_DURATION_MS,
+          elapsedRef.current + performance.now() - startedAtRef.current,
+        );
+        startedAtRef.current = null;
+      }
+    };
+  }, [runId, running]);
+
+  const replay = () => {
+    elapsedRef.current = 0;
+    startedAtRef.current = null;
+    setSettled(false);
+    setManualPaused(false);
+    setRunId((value) => value + 1);
+  };
+
   return (
     <section
+      ref={rootRef}
       className={`bil${embedded ? " bil-embedded" : ""}`}
+      data-paused={!running && !settled && !reduced ? "true" : undefined}
+      data-settled={settled || reduced ? "true" : undefined}
       aria-label={embedded ? "Signal Notes approved extract" : undefined}
       aria-labelledby={embedded ? undefined : "bil-title"}
     >
       <style>{CSS}</style>
 
       <div className="bil-frame">
-        {!embedded ? <header className="bil-head">
+        {!embedded ? <header className="bil-head" key={`head-${runId}`}>
           <p className="bil-kicker">Signal Notes</p>
           <h1 className="bil-title" id="bil-title">
             Catch it before it leaves
@@ -56,7 +141,7 @@ export function NotesBeforeItLeaves({
           </p>
         </header> : null}
 
-        <div className="bil-stage">
+        <div className="bil-stage" key={`stage-${runId}`}>
           <article className="bil-notebook" aria-labelledby="bil-stream-title">
             <div className="bil-capture">
               <div className="bil-capture-labels">
@@ -154,6 +239,31 @@ export function NotesBeforeItLeaves({
           </article>
         </div>
 
+        {!embedded ? (
+          <div className="bil-transport" aria-label="Notes film controls">
+            <span className="bil-transport-status" aria-live="polite">
+              {reduced
+                ? "Motion reduced"
+                : settled
+                  ? "Story complete"
+                  : manualPaused
+                    ? "Story paused"
+                    : "Story playing"}
+            </span>
+            <button
+              type="button"
+              aria-pressed={manualPaused}
+              disabled={reduced || settled}
+              onClick={() => setManualPaused((value) => !value)}
+            >
+              {manualPaused ? "Resume" : "Pause"}
+            </button>
+            <button type="button" disabled={reduced} onClick={replay}>
+              Replay
+            </button>
+          </div>
+        ) : null}
+
         {!embedded ? <footer className="bil-foot">
           <p>
             The note stays private. Only the line you approve becomes work.
@@ -200,6 +310,16 @@ const CSS = `
   font-family: var(--bil-sans);
 }
 .bil * { box-sizing: border-box; }
+.bil[data-paused="true"] *,
+.bil[data-paused="true"] *::before,
+.bil[data-paused="true"] *::after {
+  animation-play-state: paused !important;
+}
+.bil[data-settled="true"] .bil-title-caret,
+.bil[data-settled="true"] .bil-capture-caret {
+  animation: none !important;
+  opacity: 0;
+}
 /* POLISH 2026-07-28 — 936px, not 1080: the bands below are a 1080px box
    with 72px side padding, so their CONTENT edge is at 936. Matching it
    puts the hero and every band on one left edge. */
@@ -538,6 +658,58 @@ const CSS = `
   background: var(--bil-accent-soft);
 }
 
+.bil-transport {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.bil-transport-status {
+  margin-right: auto;
+  color: var(--bil-faint);
+  font-family: var(--bil-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.bil-transport button {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid var(--bil-line);
+  border-radius: 999px;
+  background: var(--bil-paper);
+  color: var(--bil-soft);
+  font-family: var(--bil-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+.bil-transport button:focus-visible {
+  outline: 2px solid var(--bil-accent);
+  outline-offset: 2px;
+}
+.bil-transport button:active:not(:disabled) { transform: scale(0.98); }
+.bil-transport button[aria-pressed="true"] {
+  border-color: var(--bil-accent);
+  color: var(--bil-accent);
+}
+.bil-transport button:disabled {
+  cursor: default;
+  color: var(--bil-ghost);
+}
+@media (hover: hover) and (pointer: fine) {
+  .bil-transport button:hover:not(:disabled) {
+    border-color: var(--bil-faint);
+    color: var(--bil-ink);
+  }
+}
+
 .bil-foot {
   display: flex;
   align-items: center;
@@ -571,7 +743,7 @@ const CSS = `
   transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
 }
 .bil-cta:hover { opacity: 0.86; }
-.bil-cta:active { transform: translateY(1px); }
+.bil-cta:active { transform: scale(0.98); }
 .bil-cta:focus-visible {
   outline: 2px solid var(--bil-accent);
   outline-offset: 3px;
@@ -589,7 +761,7 @@ const CSS = `
      share one heartbeat instead of beating against each other. */
   .bil-title-caret {
     animation: bil-caret-catch 360ms var(--ease-out) 420ms both,
-      bil-blink 1.05s steps(1, end) 1.2s infinite;
+      bil-blink 1.05s steps(1, end) 1.2s 5;
   }
 
   .bil-placeholder { animation: bil-placeholder 6.15s var(--ease-out) both; }
@@ -598,7 +770,7 @@ const CSS = `
   .bil-incoming-three { animation: bil-note-type 1.1s steps(18, end) 3.16s both; }
   .bil-capture-caret {
     animation: bil-caret-catch 360ms var(--ease-out) 300ms both,
-      bil-blink 1.05s steps(1, end) 1.2s infinite;
+      bil-blink 1.05s steps(1, end) 1.2s 5;
   }
   .bil-item-archived { animation: bil-log 440ms var(--ease-out) .8s both, bil-archive-row 760ms var(--ease-out) 4.05s both; }
   .bil-item-private { animation: bil-log 440ms var(--ease-out) 2.1s both; }
@@ -739,6 +911,8 @@ const CSS = `
   }
   .bil-bridge-arrow { rotate: 90deg; }
   .bil-foot { align-items: flex-start; flex-direction: column; }
+  .bil-transport { flex-wrap: wrap; justify-content: flex-start; }
+  .bil-transport-status { width: 100%; }
   .bil-cta { width: 100%; }
   .bil-item-title,
   .bil-task-title { overflow-wrap: anywhere; }

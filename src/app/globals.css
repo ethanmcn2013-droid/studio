@@ -237,15 +237,20 @@
   font-weight: 520;
   text-decoration: none;
   transition:
-    color 180ms var(--ease-out),
-    background 180ms var(--ease-out),
-    border-color 180ms var(--ease-out),
-    transform 180ms var(--ease-out);
+    color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    background var(--marketing-motion-fast) var(--marketing-ease-hover),
+    border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
+    transform var(--marketing-motion-press) var(--marketing-ease-out);
 }
 
-.reveal-action:hover,
-.reveal-action:focus-visible {
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .reveal-action:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.reveal-action:active {
+  transform: scale(0.98);
 }
 
 .reveal-action:focus-visible {
@@ -448,16 +453,22 @@
   font-size: 12px;
   font-weight: 540;
   text-decoration: none;
+  transition: transform var(--marketing-motion-press) var(--marketing-ease-out);
 }
 
 .reveal-relay-link > span {
   color: var(--accent);
-  transition: transform 180ms var(--ease-out);
+  transition: transform var(--marketing-motion-fast) var(--marketing-ease-out);
 }
 
-.reveal-relay-link:hover > span,
-.reveal-relay-link:focus-visible > span {
-  transform: translate(2px, -2px);
+@media (hover: hover) and (pointer: fine) {
+  .reveal-relay-link:hover > span {
+    transform: translate(2px, -2px);
+  }
+}
+
+.reveal-relay-link:active {
+  transform: scale(0.98);
 }
 
 .reveal-relay-link:focus-visible {
@@ -648,8 +659,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-action,
+  .reveal-relay-link,
   .reveal-relay-link > span {
     transition: none;
+  }
+
+  .reveal-action:active,
+  .reveal-relay-link:active {
+    transform: none;
   }
 }
 

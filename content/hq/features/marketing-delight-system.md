@@ -13,9 +13,9 @@ principleAlignment: 99
 
 ## Current state
 
-The canonical suite homepage and the six public product and company pages —
-Notes, Tasks, Timeline, Signal, Pricing, and About — share one production
-interaction contract.
+The canonical suite homepage, Design, and the six public product and company
+pages — Notes, Tasks, Timeline, Signal, Pricing, and About — share one
+production interaction contract.
 
 Navigation state is immediate and interruptible. The product switcher measures
 its active route rather than guessing, and route changes are no longer held
@@ -24,8 +24,12 @@ ArrowDown and enter its first destination directly. Press, hover, and focus
 feedback use the same restrained grammar across shared actions.
 
 The four product heroes remain the dominant expressive moments on their pages.
-Their source was deliberately left untouched. The Product Handoff also retains
-its reviewed centre-completion window and reduced-motion contract.
+Their accepted composition is unchanged, while playback now tells the truth:
+Notes and Tasks expose Pause and Replay, stop offscreen and in background tabs,
+and settle without ambient cursor or caret drift. Timeline is fully present on
+first paint. Signal's live actions are links, its embedded actions are receipt
+labels, and its NOW broadcast is finite. Product Handoff retains its reviewed
+centre-completion window and reduced-motion contract.
 
 The homepage now brings those same four product proofs into the suite story.
 Notes, Tasks, Timeline, and Signal each begin once their chapter reaches the
@@ -37,6 +41,10 @@ Pricing's previous perpetual gestures are bounded acknowledgements that play
 once when relevant. About reserves its only authored reveal for the founder
 signature. Neither page uses generic section reveals, card lifts, count-ups,
 parallax, or ambient status motion.
+
+Design's specimens now follow the same honesty rule. Loading Canon has Pause
+and Replay, card reverses stay where the reader put them, and the closing dot
+is a keyboard-operable button instead of an aria-hidden clickable decoration.
 
 ## Governance
 
@@ -62,10 +70,14 @@ The homepage extension and its panel decision are recorded in
 - Keyboard entry, Escape closure, outside-click closure, rapid interruption,
   active-route measurement, and immediate navigation covered in browser tests.
 - Pricing and About one-shot gestures verified as finite.
+- Notes and Tasks pause, resume, replay, stop offscreen, and honour background
+  visibility; Signal actions and Timeline first paint are covered in browser
+  tests.
+- Design's loading, card, and dot controls are keyboard-operable.
 - Reduced motion verified on all final states.
 - Accessibility checks cover every changed surface.
 - Existing Product Handoff centre-completion coverage remains green.
 - Typecheck, unit tests, design-system enforcement, targeted lint, and the
   production build pass before release.
 
-Dispatch: S·156 · 2026-07-29.
+Dispatch: S·157 · 2026-07-30.

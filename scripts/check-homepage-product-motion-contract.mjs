@@ -58,7 +58,8 @@ assert.match(
   /while \(remaining > 0 && aliveRef\.current\)[\s\S]*?pausedRef\.current/,
 );
 assert.match(tasksDemo, /data-cinematic-demo-snapshot/);
-assert.match(timeline, /embedded \? previewMotion\.hasStarted : opened/);
+assert.match(timeline, /embedded \? previewMotion\.hasStarted : true/);
+assert.doesNotMatch(timeline, /OPEN_DELAY_MS/);
 assert.match(timeline, /animation-play-state:\s*paused !important/);
 assert.match(signal, /data-motion-visible="false"/);
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { TimelineArtifact } from "@/components/marketing/heroes/timeline/artifact/timeline-artifact";
 import { TIMELINE_HERO_FIXTURE } from "./fixture";
 import type { AudienceTimelineDto } from "./audience-timeline";
@@ -22,9 +21,6 @@ import { useMarketingPreviewMotion } from "@/components/marketing/delight/market
  * straight onto the artifact and lets the rail do the talking.
  */
 
-/** A beat to let the frame paint before the rail starts drawing. */
-const OPEN_DELAY_MS = 120;
-
 export function TimelineTheLine({
   embedded = false,
   timeline = TIMELINE_HERO_FIXTURE,
@@ -33,22 +29,7 @@ export function TimelineTheLine({
   timeline?: AudienceTimelineDto;
 } = {}) {
   const previewMotion = useMarketingPreviewMotion();
-  const [opened, setOpened] = useState(false);
-  const isOpened = embedded ? previewMotion.hasStarted : opened;
-
-  useEffect(() => {
-    if (embedded) {
-      return;
-    }
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const timer = window.setTimeout(
-      () => setOpened(true),
-      prefersReduced ? 0 : OPEN_DELAY_MS,
-    );
-    return () => window.clearTimeout(timer);
-  }, [embedded]);
+  const isOpened = embedded ? previewMotion.hasStarted : true;
 
   return (
     <section
@@ -79,13 +60,9 @@ export function TimelineTheLine({
           </span>
         </div> : null}
 
-        {/* The artifact is mounted from the first frame so it reserves its
-            space and the layout never jumps. But its entrance choreography
-            fires on mount, which at t=0 is seven seconds before anyone can see
-            it behind the overture veil — which is exactly why the timeline
-            used to look like it simply appeared. Re-keying on `opened`
-            remounts it as the veil lifts, so the rail draws and the milestones
-            wake while the viewer is watching. */}
+        {/* The complete frame is legible from first paint. The homepage
+            preview may still remount the artifact when it enters the reading
+            zone, but the wrapper never withholds the document. */}
         <div className="tlh-artifact">
           <TimelineArtifact
             key={isOpened ? "run" : "idle"}
@@ -109,8 +86,6 @@ export function TimelineTheLine({
 
 const CSS = `
 .tlh {
-  --tlh-ease-soft: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow — hero motion choreography */
-
   position: relative;
   /* PORT NOTE 2026-07-28 — was min-height 100svh for a standalone gallery
      route. As a hero it is one band above the rest of the page, so it sizes
@@ -169,16 +144,6 @@ const CSS = `
 .tlh-frame {
   width: 100%;
   max-width: min(1560px, 96vw);
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.tlh[data-opened="true"] .tlh-frame {
-  animation: tlh-settle 760ms var(--tlh-ease-soft) both;
-}
-
-@keyframes tlh-settle {
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Folio and foot sit on the 1080/936 grid the bands below use, so the
@@ -248,11 +213,6 @@ const CSS = `
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tlh-frame,
-  .tlh[data-opened="true"] .tlh-frame {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
+  .tlh-frame { animation: none; }
 }
 `;
