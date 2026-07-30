@@ -353,8 +353,6 @@ const CSS = `
 .bil-stream { margin: 0; padding: 0; list-style: none; }
 .bil-item {
   position: relative;
-  display: grid;
-  grid-template-rows: 1fr;
   border-bottom: 1px solid var(--bil-line-soft);
 }
 .bil-item:last-child { border-bottom: 0; }
@@ -600,9 +598,11 @@ const CSS = `
     animation: bil-caret-catch 360ms var(--ease-out) 300ms both,
       bil-blink 1.05s steps(1, end) 1.2s infinite;
   }
-  .bil-item-archived { animation: bil-log 440ms var(--ease-out) .8s both, bil-archive-row 760ms var(--ease-out) 4.05s both; }
-  .bil-item-private { animation: bil-log 440ms var(--ease-out) 2.1s both; }
-  .bil-item-source { animation: bil-log 440ms var(--ease-out) 3.45s both, bil-source-pulse 520ms var(--ease-out) 4.3s both; }
+  .bil-item-archived { animation: bil-archive-row 760ms var(--ease-out) 4.05s both; }
+  .bil-item-archived .bil-item-inner { animation: bil-log 440ms var(--ease-out) .8s both; }
+  .bil-item-private .bil-item-inner { animation: bil-log 440ms var(--ease-out) 2.1s both; }
+  .bil-item-source { animation: bil-source-pulse 520ms var(--ease-out) 4.3s both; }
+  .bil-item-source .bil-item-inner { animation: bil-log 440ms var(--ease-out) 3.45s both; }
   .bil-item-source::before { animation: bil-accent-in 340ms var(--ease-out) 4.78s both; }
   .bil-item-source .bil-item-state { animation: bil-state-in 360ms var(--ease-out) 4.92s both; }
   .bil-item-archived .bil-archive-swipe { animation: bil-archive-swipe 760ms var(--ease-in-out) 4.02s both; }
@@ -644,9 +644,9 @@ const CSS = `
     100% { opacity: 1; transform: scaleY(1); }
   }
   @keyframes bil-log {
-    0% { grid-template-rows: 0fr; opacity: 0; background: var(--bil-accent-soft); }
+    0% { opacity: 0; transform: translateY(7px); }
     72% { opacity: 1; }
-    100% { grid-template-rows: 1fr; opacity: 1; background: transparent; }
+    100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes bil-source-pulse {
     0%, 100% { background: transparent; }
@@ -762,7 +762,7 @@ const CSS = `
   animation: none !important;
 }
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-placeholder,
-.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item,
+.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-inner,
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source::before,
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item-source .bil-item-state,
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-tasks,
@@ -770,9 +770,6 @@ const CSS = `
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-task-box {
   opacity: 1;
   transform: none;
-}
-.marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-item {
-  grid-template-rows: 1fr;
 }
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-incoming,
 .marketing-preview-motion:not([data-motion-started="true"]) .bil-embedded .bil-archive-swipe,

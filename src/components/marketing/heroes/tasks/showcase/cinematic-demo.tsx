@@ -74,10 +74,12 @@ function heroSeed(domain: DomainId) {
 }
 export function CinematicDemo({
   domain = "wedding",
+  homepageEmbedded = false,
   paused = false,
   staticFrame = false,
 }: {
   domain?: DomainId;
+  homepageEmbedded?: boolean;
   paused?: boolean;
   staticFrame?: boolean;
 } = {}) {
@@ -862,7 +864,11 @@ export function CinematicDemo({
           className="relative h-[560px] overflow-hidden bg-white"
         >
           <LayoutGroup>
-            <DemoSurface state={state} cardRefs={cardRefs} />
+            <DemoSurface
+              state={state}
+              cardRefs={cardRefs}
+              plainLaneLimits={homepageEmbedded}
+            />
           </LayoutGroup>
 
           {/* GALLERY EDIT 2026-07-27 — the "Open work" burn-down overlay is

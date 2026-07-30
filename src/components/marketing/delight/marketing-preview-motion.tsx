@@ -34,13 +34,19 @@ export function useMarketingPreviewMotion(): PreviewMotionContextValue {
  * there is no blank placeholder or layout shift.
  */
 export function MarketingPreviewMotion({
+  ariaLabelledby,
   children,
   product,
+  startDelayMs = 0,
 }: {
+  ariaLabelledby?: string;
   children: ReactNode;
   product: ProductId;
+  startDelayMs?: number;
 }) {
-  const frameRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLElement>(null);
+  const hasStartedRef = useRef(false);
+  const startTimerRef = useRef<number | null>(null);
   const reduceMotion = Boolean(useReducedMotion());
   const [observed, setObserved] = useState({
     hasStarted: false,
@@ -52,10 +58,15 @@ export function MarketingPreviewMotion({
     if (!frame) return;
 
     if (typeof IntersectionObserver === "undefined") {
-      const fallbackFrame = requestAnimationFrame(() => {
+      startTimerRef.current = window.setTimeout(() => {
+        hasStartedRef.current = true;
         setObserved({ hasStarted: true, isVisible: true });
-      });
-      return () => cancelAnimationFrame(fallbackFrame);
+      }, startDelayMs);
+      return () => {
+        if (startTimerRef.current !== null) {
+          window.clearTimeout(startTimerRef.current);
+        }
+      };
     }
 
     const observer = new IntersectionObserver(
@@ -64,15 +75,23 @@ export function MarketingPreviewMotion({
 
         setObserved((current) => {
           const isVisible = entry.isIntersecting;
-          const hasStarted = current.hasStarted || isVisible;
           if (
-            current.hasStarted === hasStarted &&
             current.isVisible === isVisible
           ) {
             return current;
           }
-          return { hasStarted, isVisible };
+          return { ...current, isVisible };
         });
+
+        if (entry.isIntersecting && !hasStartedRef.current) {
+          hasStartedRef.current = true;
+          startTimerRef.current = window.setTimeout(() => {
+            setObserved((current) => ({
+              ...current,
+              hasStarted: true,
+            }));
+          }, startDelayMs);
+        }
       },
       {
         // Begin as the frame reaches the lower reading zone, so the opening
@@ -83,8 +102,13 @@ export function MarketingPreviewMotion({
     );
 
     observer.observe(frame);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      if (startTimerRef.current !== null) {
+        window.clearTimeout(startTimerRef.current);
+      }
+    };
+  }, [startDelayMs]);
 
   const hasStarted = observed.hasStarted && !reduceMotion;
   const isVisible = observed.isVisible && !reduceMotion;
@@ -100,7 +124,8 @@ export function MarketingPreviewMotion({
 
   return (
     <PreviewMotionContext.Provider value={contextValue}>
-      <div
+      <figure
+        aria-labelledby={ariaLabelledby}
         className="reveal-relay-preview marketing-preview-motion"
         data-motion-started={hasStarted ? "true" : "false"}
         data-motion-state={motionState}
@@ -110,7 +135,7 @@ export function MarketingPreviewMotion({
         ref={frameRef}
       >
         {children}
-      </div>
+      </figure>
     </PreviewMotionContext.Provider>
   );
 }

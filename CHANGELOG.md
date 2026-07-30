@@ -7,6 +7,21 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-29 · S·157 · tightens · one detail keeps its receipt
+
+**The homepage's four live product proofs now read as one chain of custody.**
+The repeated chapter frame is gone. Notes stays close and private, Tasks gets
+the broad working canvas, Timeline opens as a public document, and Signal
+closes the sequence as a sourced briefing. A quiet proof thread marks the
+handoffs without crossing an interface, then resolves into one receipt.
+
+The page says less around the evidence. One trust line covers every fixed
+sample, each chapter names the state it receives, and the wedding path now
+follows as a colophon. Phone visitors get a compact Tasks commitment with its
+owner and completion receipt instead of an off-screen board. Illustrative
+controls no longer enter the tab order, off-screen motion pauses, and reduced
+motion keeps the whole account visible without a rewind.
+
 ## 2026-07-29 · S·156 · ships · the studio moves on first meeting
 
 **The homepage now carries the real Notes, Tasks, Timeline, and Signal motion

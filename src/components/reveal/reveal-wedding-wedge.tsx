@@ -16,17 +16,13 @@ export function RevealWeddingWedge() {
     <aside className="reveal-wedge" aria-label="For wedding teams">
       <div className="reveal-wedge-inner">
         <span className="reveal-wedge-eyebrow">
-          <span className="reveal-wedge-dot" aria-hidden />
           For wedding teams
         </span>
-        <span className="reveal-wedge-sep" aria-hidden>
-          ·
-        </span>
         <span className="reveal-wedge-line">
-          Notes, tasks, timelines, and Signal, ready to use.
+          From the first venue note to the final headcount.
         </span>
         <Link href="/weddings" className="reveal-wedge-link">
-          See it for weddings
+          See Signal Studio for weddings
           <span className="cta-arrow" aria-hidden>
             {" "}→
           </span>
