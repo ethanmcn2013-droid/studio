@@ -72,7 +72,6 @@ function heroSeed(domain: DomainId) {
     (task) => !HERO_OMITTED_TASKS.has(task.id),
   );
 }
-
 function initialDemoState(domain: DomainId): DemoState {
   const pack = DOMAINS[domain];
   return {
@@ -112,12 +111,14 @@ function initialDemoState(domain: DomainId): DemoState {
 
 type CinematicDemoProps = {
   domain?: DomainId;
+  homepageEmbedded?: boolean;
   paused?: boolean;
   staticFrame?: boolean;
 };
 
 export function CinematicDemo({
   domain = "wedding",
+  homepageEmbedded = false,
   paused = false,
   staticFrame = false,
 }: CinematicDemoProps = {}) {
@@ -127,6 +128,7 @@ export function CinematicDemo({
     <CinematicDemoRun
       key={runKey}
       domain={domain}
+      homepageEmbedded={homepageEmbedded}
       paused={paused}
       staticFrame={staticFrame}
       onReplay={() => setRunKey((value) => value + 1)}
@@ -136,6 +138,7 @@ export function CinematicDemo({
 
 function CinematicDemoRun({
   domain = "wedding",
+  homepageEmbedded = false,
   paused: externallyPaused = false,
   staticFrame = false,
   onReplay,
@@ -883,7 +886,11 @@ function CinematicDemoRun({
           className="relative h-[560px] overflow-hidden bg-white"
         >
           <LayoutGroup>
-            <DemoSurface state={state} cardRefs={cardRefs} />
+            <DemoSurface
+              state={state}
+              cardRefs={cardRefs}
+              plainLaneLimits={homepageEmbedded}
+            />
           </LayoutGroup>
 
           {/* GALLERY EDIT 2026-07-27 — the "Open work" burn-down overlay is

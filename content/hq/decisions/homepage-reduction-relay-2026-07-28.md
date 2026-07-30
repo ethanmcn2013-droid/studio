@@ -38,12 +38,39 @@ six” when confirmed. The sample does not write to a live workspace.
 ## Motion and access
 
 The homepage opens without decorative automatic motion. Each product chapter
-does carry its identifying signature once it enters: Notes' caret, Tasks'
-indigo completion strike, Timeline's line and milestone, and Signal's two-beat
-pulse. Each plays once and settles; reduced motion renders the complete static
-mark. The embedded Tasks board is static, the Products disclosure follows DOM
-focus order, returns focus on Escape, and keeps its calls to action visible on
-touch and keyboard focus.
+carries its identifying signature and the real product proof as it enters:
+Notes' caret and private extract, Tasks' working board, Timeline's published
+line, and Signal's sourced read. Only the visible proof runs. Each pauses
+off-screen, and reduced motion renders the complete static frame.
+
+The proof sequence uses one reading-zone observer, not continuous scroll
+progress. Its gutter thread records each handoff once and never crosses a
+product interface. The chapter map, anchors, focus states, skip path, and final
+receipt remain usable by keyboard. The illustrative interfaces sit in inert,
+labelled figures so their controls and internal headings do not duplicate the
+page's navigation or heading tree.
+
+At phone width, Tasks replaces the 1180px four-lane canvas with a compact live
+commitment: request, owner, state, move, and completion receipt. The full board
+does not mount behind that scene after the viewport is known. Notes reserves
+its row geometry while animating inner content, Timeline keeps the milestone
+and date legible, and Signal keeps meaningful briefing copy visible before its
+entrance begins.
+
+## 2026-07-29 editorial refinement
+
+The relay now carries one proof thread through four deliberately different
+scales. Notes is intimate and inset. Tasks takes the broad working canvas.
+Timeline is a panoramic public document. Signal is the broad editorial
+conclusion. Repeated chapter numbers, sample bars, transition labels, and the
+second manifesto paragraph are removed.
+
+One trust statement governs the fixed fixture: “Real interfaces. Fixed sample
+data. No customer data.” After Signal, the sequence ends with “One detail,
+accounted for.” and the provenance line from private source to sourced
+briefing. The wedding rail follows as a one-hairline colophon. The accepted
+hero, the four product interfaces, the single indigo accent, and the global
+closing remain unchanged.
 
 ## Market path
 

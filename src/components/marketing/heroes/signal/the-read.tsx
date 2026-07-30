@@ -265,8 +265,20 @@ const CSS = `
   animation: none !important;
 }
 
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-dateline,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-headline,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-distill,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-bars i,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-item,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-item[data-claim="now"]:not(:last-child)::after,
+.marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-close {
+  opacity: 1;
+  transform: none;
+}
+
 .marketing-preview-motion:not([data-motion-started="true"]) .rd-embedded .rd-item[data-claim="now"] .rd-marker::after {
   animation: none;
+  opacity: 0;
 }
 
 .marketing-preview-motion[data-motion-started="true"] .rd-embedded .rd-headline {
