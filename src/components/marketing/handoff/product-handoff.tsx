@@ -95,7 +95,6 @@ export function ProductHandoff({ product }: { product: ProductId }) {
     const el = sectionRef.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setPlayed(true);
       return;
     }
     const observer = new IntersectionObserver(
@@ -345,7 +344,7 @@ const CSS = `
 }
 
 .ho[data-played="true"] .ho-recv {
-  animation: ho-receive 460ms var(--ease-out) 1250ms both;
+  animation: ho-receive 400ms var(--ease-out) 700ms both;
 }
 
 @keyframes ho-receive {
@@ -356,7 +355,7 @@ const CSS = `
 
 /* Signal's board card receives as held work: the accent border stays. */
 .ho[data-played="true"] .ho-recv-held {
-  animation: ho-receive-held 460ms var(--ease-out) 1250ms both;
+  animation: ho-receive-held 400ms var(--ease-out) 700ms both;
 }
 
 @keyframes ho-receive-held {
@@ -367,6 +366,7 @@ const CSS = `
 /* ── the lane and the crossing chip ────────────────────────────────── */
 
 .ho-lane {
+  --ho-travel: calc(clamp(72px, 10vw, 132px) - 20px);
   position: relative;
   height: 1px;
   background: var(--hairline);
@@ -404,14 +404,14 @@ const CSS = `
 }
 
 .ho[data-played="true"] .ho-chip {
-  animation: ho-cross 1000ms var(--ease-out) 380ms both;
+  animation: ho-cross 600ms var(--ease-in-out) 160ms both;
 }
 
 @keyframes ho-cross {
-  0% { left: -6%; opacity: 0; }
+  0% { opacity: 0; transform: translate(calc(-50% - 6px), -50%); }
   18% { opacity: 1; }
   82% { opacity: 1; }
-  100% { left: 106%; opacity: 0; }
+  100% { opacity: 0; transform: translate(calc(var(--ho-travel) - 50% + 6px), -50%); }
 }
 
 /* ── note grammar ──────────────────────────────────────────────────── */
@@ -478,11 +478,11 @@ const CSS = `
 
 /* The tasks vignette ticks its box as the handoff begins. */
 .ho[data-played="true"] .ho-box-ticks {
-  animation: ho-box-fill 240ms var(--ease-out) 180ms both;
+  animation: ho-box-fill 220ms var(--ease-out) 80ms both;
 }
 
 .ho[data-played="true"] .ho-box-ticks::after {
-  animation: ho-box-check 240ms var(--ease-out) 260ms both;
+  animation: ho-box-check 220ms var(--ease-out) 160ms both;
 }
 
 @keyframes ho-box-fill {
@@ -515,18 +515,25 @@ const CSS = `
 }
 
 .ho-rail-fill {
-  width: 34%;
+  width: 66%;
   height: 2px;
   background: var(--ink);
+  transform: translateY(-50%) scaleX(0.5152);
+  transform-origin: left center;
+}
+
+.ho-rail-fill[data-still] {
+  width: 34%;
+  transform: translateY(-50%);
 }
 
 /* On the tasks page the fill extends to the landing dot when it receives. */
 .ho[data-played="true"] .ho-rail-fill:not([data-still]) {
-  animation: ho-rail-extend 520ms var(--ease-out) 1350ms both;
+  animation: ho-rail-extend 400ms var(--ease-out) 760ms both;
 }
 
 @keyframes ho-rail-extend {
-  to { width: 66%; }
+  to { transform: translateY(-50%) scaleX(1); }
 }
 
 .ho-dot {
@@ -558,7 +565,7 @@ const CSS = `
 }
 
 .ho[data-played="true"] .ho-dot-lands {
-  animation: ho-dot-fill 300ms var(--ease-out) 1600ms both;
+  animation: ho-dot-fill 220ms var(--ease-out) 980ms both;
 }
 
 @keyframes ho-dot-fill {
@@ -645,7 +652,9 @@ const CSS = `
   text-decoration: none;
   border-bottom: 1px solid var(--ink-ghost);
   padding-bottom: 2px;
-  transition: border-color var(--motion-fast) var(--ease-out);
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
 .ho-next:hover {
@@ -656,8 +665,14 @@ const CSS = `
   transition: translate var(--motion-fast) var(--ease-out);
 }
 
-.ho-next:hover span {
-  translate: 3px 0;
+@media (hover: hover) and (pointer: fine) {
+  .ho-next:hover span {
+    translate: 3px 0;
+  }
+}
+
+.ho-next:active {
+  transform: scale(0.98);
 }
 
 /* Signal's exit: the sentence that ends the walk, with no second ask. */
@@ -679,6 +694,7 @@ const CSS = `
   }
 
   .ho-lane {
+    --ho-travel: 44px;
     height: 44px;
     width: 1px;
     background: var(--hairline);
@@ -698,10 +714,10 @@ const CSS = `
   }
 
   @keyframes ho-cross-down {
-    0% { left: 50%; top: -10%; opacity: 0; }
+    0% { left: 50%; top: 0; opacity: 0; transform: translate(-50%, calc(-50% - 5px)); }
     18% { opacity: 1; }
     82% { opacity: 1; }
-    100% { left: 50%; top: 110%; opacity: 0; }
+    100% { left: 50%; top: 0; opacity: 0; transform: translate(-50%, calc(var(--ho-travel) - 50% + 5px)); }
   }
 }
 
@@ -719,28 +735,33 @@ const CSS = `
     opacity: 1;
   }
 
+  .ho-recv-held,
   .ho[data-played="true"] .ho-recv-held {
     animation: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 1px var(--accent);
   }
 
+  .ho-box-ticks,
   .ho[data-played="true"] .ho-box-ticks {
     animation: none;
     background: var(--accent);
     border-color: var(--accent);
   }
 
+  .ho-box-ticks::after,
   .ho[data-played="true"] .ho-box-ticks::after {
     animation: none;
     opacity: 1;
   }
 
+  .ho-rail-fill:not([data-still]),
   .ho[data-played="true"] .ho-rail-fill:not([data-still]) {
     animation: none;
-    width: 66%;
+    transform: translateY(-50%) scaleX(1);
   }
 
+  .ho-dot-lands,
   .ho[data-played="true"] .ho-dot-lands {
     animation: none;
     border-color: var(--ink);

@@ -126,14 +126,21 @@ const PP_CSS = `
 .pp-pill{position:relative;display:inline-flex;align-items:baseline;
   padding:7px 16px 9px;border-radius:999px;text-decoration:none;
   color:var(--ink-quiet,#6b6b6b);font-size:14px;font-weight:500;
-  letter-spacing:-.01em;transition:color .18s ease,background .18s ease;}
-.pp-pill:hover,.pp-pill:focus-visible{color:var(--ink,#111);
+  letter-spacing:-.01em;transition:color var(--motion-fast) var(--ease-out),
+  background var(--motion-fast) var(--ease-out),
+  transform var(--motion-fast) var(--ease-out);}
+.pp-pill:focus-visible{color:var(--ink,#111);
   background:var(--paper-soft,#fafafa);outline:none;}
+@media (hover:hover) and (pointer:fine){
+  .pp-pill:hover{color:var(--ink);background:var(--paper-soft);}
+}
+.pp-pill:active{transform:scale(.98);}
 .pp-pill.pp-current{color:var(--ink,#111);}
 .pp-period{color:var(--indigo,#4f46e5);font-weight:600;margin-left:1px;}
 .pp-dot{position:absolute;bottom:3px;left:0;width:6px;height:6px;
   margin-left:-3px;border-radius:50%;background:var(--indigo,#4f46e5);
-  opacity:0;transition:transform .34s cubic-bezier(.34,1.4,.5,1),opacity .2s ease;
+  opacity:0;transition:transform var(--motion-base) var(--ease-out),
+  opacity var(--motion-fast) var(--ease-out);
   will-change:transform;pointer-events:none;}
 .pp-dot.pp-dot-live{opacity:1;}
 .pp-current ~ .pp-dot:not(.pp-dot-live){opacity:1;}

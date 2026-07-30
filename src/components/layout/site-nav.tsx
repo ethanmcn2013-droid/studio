@@ -32,17 +32,50 @@ export function SiteNav() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // Close on Escape and return focus to trigger.
+  // Treat the narrow navigation as a contained disclosure: the page behind it
+  // cannot scroll or receive focus, Escape returns to the trigger, and Tab
+  // cycles through the close control and the three destinations.
   useEffect(() => {
     if (!mobileOpen) return;
+    const root = document.documentElement;
+    const main = document.querySelector<HTMLElement>("main");
+    const previousOverflow = root.style.overflow;
+    const previousInert = main?.inert ?? false;
+
+    root.style.overflow = "hidden";
+    if (main) main.inert = true;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMobileOpen(false);
         triggerRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const panelLinks = panelRef.current?.querySelectorAll<HTMLElement>("a");
+      const focusable = [
+        triggerRef.current,
+        ...(panelLinks ? Array.from(panelLinks) : []),
+      ].filter((node): node is HTMLElement => Boolean(node));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      root.style.overflow = previousOverflow;
+      if (main) main.inert = previousInert;
+    };
   }, [mobileOpen]);
 
   // Outside-click dismissal for products panel.
@@ -86,7 +119,10 @@ export function SiteNav() {
             type="button"
             aria-expanded={productsOpen}
             aria-controls="products-mega-panel"
-            onClick={() => setProductsOpen((o) => !o)}
+            onClick={() => {
+              setMobileOpen(false);
+              setProductsOpen((o) => !o);
+            }}
             className="inline-flex min-h-11 items-center gap-1 text-[13px] transition-colors hover:text-ink"
             style={{
               letterSpacing: "0.01em",
@@ -149,7 +185,10 @@ export function SiteNav() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav-panel"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => setMobileOpen((o) => !o)}
+            onClick={() => {
+              setProductsOpen(false);
+              setMobileOpen((o) => !o);
+            }}
             className="inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors hover:text-ink sm:hidden"
           >
             {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
@@ -186,7 +225,7 @@ export function SiteNav() {
         role="region"
         aria-label="Mobile navigation"
         hidden={!mobileOpen}
-        className="sm:hidden"
+        className="mobile-nav-panel sm:hidden"
         style={{
           borderTop: "1px solid var(--border-soft)",
           background: "var(--bg)",
@@ -212,6 +251,19 @@ export function SiteNav() {
           </ul>
         </nav>
       </div>
+      <style>{`
+        .mobile-nav-panel {
+          transform-origin: top center;
+          animation: mobile-nav-enter var(--motion-base) var(--ease-out) both;
+        }
+        @keyframes mobile-nav-enter {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .mobile-nav-panel { animation: none; }
+        }
+      `}</style>
     </header>
   );
 }

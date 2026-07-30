@@ -55,11 +55,24 @@
   font-weight: 560;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity var(--motion-fast) var(--ease-out);
+  transition:
+    opacity var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
-.closeInner a:hover {
-  opacity: 0.84;
+@media (hover: hover) and (pointer: fine) {
+  .closeInner a:hover {
+    opacity: 0.84;
+  }
+}
+
+.closeInner a:active {
+  transform: scale(0.98);
+}
+
+.closeInner a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 @media (max-width: 720px) {

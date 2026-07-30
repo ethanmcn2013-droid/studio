@@ -962,10 +962,10 @@ function CommentThread({
               {USERS[typingUser as keyof typeof USERS].name}
             </span>
             <span className="ml-1 text-ink-quiet">is typing…</span>
-            <div className="mt-1 inline-flex gap-1">
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:0ms]" />
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:160ms]" />
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:320ms]" />
+            <div aria-hidden="true" className="mt-1 inline-flex gap-1">
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet opacity-40" />
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet opacity-65" />
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet" />
             </div>
           </div>
         </div>
