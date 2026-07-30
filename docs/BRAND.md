@@ -217,7 +217,7 @@ The H1 is the umbrella headline on every product. The eyebrow + sub do the diffe
 
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
-- Tasks: `Open the workspace`
+- Tasks: `Open the project`
 - Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`
