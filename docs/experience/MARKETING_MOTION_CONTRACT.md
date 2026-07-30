@@ -1,8 +1,8 @@
 # Marketing motion contract
 
-Date: 2026-07-29
-Applies to: the suite homepage and the six public marketing surfaces in the
-marketing delight ledger
+Date: 2026-07-30
+Applies to: the suite homepage, Design, and the public marketing surfaces in
+the marketing delight ledger
 
 ## Purpose
 
@@ -75,6 +75,14 @@ Rules:
   the source product's own choreography.
 - A scripted homepage proof pauses when it leaves the viewport; adjacent
   chapters do not run competing motion.
+- Long scripted proofs on their canonical pages expose Pause and Replay,
+  pause offscreen and in a background tab, and resume from the same beat.
+- Notes ends after its approved capture story. Tasks may repeat its scripted
+  workflow, but cursor presence never drifts without an explained action.
+- Timeline's useful document is present on first paint; only its internal
+  explanatory rail is allowed to draw.
+- Signal's NOW ring is finite, and every button-shaped action is a real
+  destination or is rendered as non-interactive receipt text.
 - Pricing and About one-shots fire once per page mount.
 - Long-form paragraphs do not stagger or reveal.
 
@@ -108,5 +116,7 @@ Remove:
 - Observers disconnect after their one-shot has fired.
 - Long scripted proofs stop advancing while offscreen.
 - No `will-change` remains on long-lived static content.
+- Autoplaying Design specimens provide Pause and Replay; card faces and the
+  closing dot retain keyboard-operable state instead of simulating controls.
 - Production verification checks that Pricing has zero infinite decorative
   animations after the suite acknowledgement has settled.

@@ -655,9 +655,8 @@ const DSN_CSS = `
 }
 
 /* ── §9 · the card turn ──
-   Hover, click, or Enter turns a card over to its reverse, holds a
-   beat, and settles back. 3D transform only; the timing matches the
-   FlipCard component's FLIP_MS. Reduced motion turns instantly. */
+   Fine-pointer hover previews the reverse. Click or keyboard activation
+   pins the chosen face, and Escape returns to the front. */
 .dsn-flip {
   perspective: 1400px;
   cursor: pointer;
@@ -670,7 +669,7 @@ const DSN_CSS = `
 .dsn-flip-inner {
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 640ms cubic-bezier(0.3, 0.7, 0.25, 1); /* ds-allow, card-turn choreography, one settle curve */
+  transition: transform var(--motion-slow) var(--ease-in-out);
 }
 .dsn-flip[data-flipped="true"] .dsn-flip-inner {
   transform: rotateY(180deg);
