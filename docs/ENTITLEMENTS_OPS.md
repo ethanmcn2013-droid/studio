@@ -8,8 +8,8 @@ without dropping into raw SQL. Companion to
 ## Env vars you'll need (all on the **studio** Vercel project)
 
 ```
-TURSO_ENTITLEMENTS_DATABASE_URL    # already set (E-1 2026-05-14)
-TURSO_ENTITLEMENTS_AUTH_TOKEN      # already set
+ENTITLEMENTS_DATABASE_URL    # already set (E-1 2026-05-14)
+ENTITLEMENTS_AUTH_TOKEN      # already set
 STUDIO_OPS_SECRET                  # NOT YET SET — needed for grant/expire endpoints
                                    #   suggested: openssl rand -hex 32
 CRON_SECRET                        # used by reconcile endpoint
@@ -132,8 +132,8 @@ Use the guarded migration once for Venue Edition codes minted at the old
 
 ```text
 TASKS_DATABASE_URL + TASKS_AUTH_TOKEN
-TURSO_ENTITLEMENTS_DATABASE_URL + TURSO_ENTITLEMENTS_AUTH_TOKEN
-TURSO_STUDIO_DATABASE_URL + TURSO_STUDIO_AUTH_TOKEN
+ENTITLEMENTS_DATABASE_URL + ENTITLEMENTS_AUTH_TOKEN
+STUDIO_DATABASE_URL + STUDIO_AUTH_TOKEN
 ```
 
 Audit first. The default mode only runs `SELECT` queries:

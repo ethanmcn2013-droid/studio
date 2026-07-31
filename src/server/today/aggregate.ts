@@ -19,10 +19,10 @@ import type {
  * env namespace inside the studio deployment so the four product
  * apps don't collide on `TURSO_DATABASE_URL`:
  *
- *   TASKS_TURSO_URL       / TASKS_TURSO_TOKEN
- *   NOTES_TURSO_URL       / NOTES_TURSO_TOKEN
- *   ROADMAP_TURSO_URL     / ROADMAP_TURSO_TOKEN
- *   ANALYTICS_TURSO_URL   / ANALYTICS_TURSO_TOKEN
+ *   TASKS_DATABASE_URL       / TASKS_AUTH_TOKEN
+ *   NOTES_DATABASE_URL       / NOTES_AUTH_TOKEN
+ *   TIMELINE_DATABASE_URL    / TIMELINE_AUTH_TOKEN
+ *   SIGNAL_DATABASE_URL      / SIGNAL_AUTH_TOKEN
  *   SUITE_API_KEY                              (route Bearer)
  *
  * Provisioning checklist for a fresh studio deployment lives at
@@ -77,7 +77,7 @@ function clientForEnv(urlEnv: string, tokenEnv: string): Client | null {
 async function readTasks(
   req: TodayRequest,
 ): Promise<{ data: TaskSummary[] | null; read: ProductRead }> {
-  const client = clientForEnv("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
+  const client = clientForEnv("TASKS_DATABASE_URL", "TASKS_AUTH_TOKEN");
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
@@ -168,7 +168,7 @@ async function readTasks(
 async function readNotes(
   req: TodayRequest,
 ): Promise<{ data: NoteSummary | null; read: ProductRead }> {
-  const client = clientForEnv("NOTES_TURSO_URL", "NOTES_TURSO_TOKEN");
+  const client = clientForEnv("NOTES_DATABASE_URL", "NOTES_AUTH_TOKEN");
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
@@ -204,7 +204,7 @@ async function readNotes(
 async function readRoadmap(
   req: TodayRequest,
 ): Promise<{ data: RoadmapSummary | null; read: ProductRead }> {
-  const client = clientForEnv("ROADMAP_TURSO_URL", "ROADMAP_TURSO_TOKEN");
+  const client = clientForEnv("TIMELINE_DATABASE_URL", "TIMELINE_AUTH_TOKEN");
   if (!client) return { data: null, read: "skipped_no_env" };
 
   try {
@@ -268,10 +268,10 @@ async function readAnalytics(
   req: TodayRequest,
 ): Promise<{ data: AnalyticsSummary | null; read: ProductRead }> {
   const analyticsClient = clientForEnv(
-    "ANALYTICS_TURSO_URL",
-    "ANALYTICS_TURSO_TOKEN",
+    "SIGNAL_DATABASE_URL",
+    "SIGNAL_AUTH_TOKEN",
   );
-  const tasksClient = clientForEnv("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
+  const tasksClient = clientForEnv("TASKS_DATABASE_URL", "TASKS_AUTH_TOKEN");
   // The cadence is the source of truth for whether Analytics is on,
   // and it lives on the Tasks DB. If the Tasks token isn't wired we
   // can't answer the question, report `skipped_no_env` rather than

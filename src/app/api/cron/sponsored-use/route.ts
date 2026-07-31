@@ -35,7 +35,7 @@ function authOk(req: Request): boolean {
 }
 
 function entitlementsConfigured(): boolean {
-  return Boolean(process.env.TURSO_ENTITLEMENTS_DATABASE_URL);
+  return Boolean(process.env.ENTITLEMENTS_DATABASE_URL);
 }
 
 async function run(dryRun: boolean): Promise<NextResponse> {

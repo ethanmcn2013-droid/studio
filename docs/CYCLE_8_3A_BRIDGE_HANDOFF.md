@@ -73,8 +73,8 @@ Tasks-side implementation should be a direct copy — stdlib `node:crypto` only,
 | Var | Value | Purpose |
 |---|---|---|
 | `REDEMPTION_HANDOFF_SECRET` | same as studio (64-hex) | HMAC verify |
-| `TURSO_STUDIO_DATABASE_URL` | `libsql://ethanmcnamara-studio-ethan387.aws-eu-west-1.turso.io` | Read entitlements + write license_codes status |
-| `TURSO_STUDIO_AUTH_TOKEN` | full-access token to studio DB | (Same token currently set on studio. May want to create a Tasks-scoped token via `turso db tokens create ethanmcnamara-studio --expiration none` for revocability.) |
+| `STUDIO_DATABASE_URL` | `libsql://ethanmcnamara-studio-ethan387.aws-eu-west-1.turso.io` | Read entitlements + write license_codes status |
+| `STUDIO_AUTH_TOKEN` | full-access token to studio DB | (Same token currently set on studio. May want to create a Tasks-scoped token via `turso db tokens create ethanmcnamara-studio --expiration none` for revocability.) |
 
 ### 4 · Sign-up page change
 
@@ -132,7 +132,7 @@ After successful redemption, the user lands in Tasks. Two UX changes (per `VENUE
 
 **How does Tasks read studio's entitlements long-term?** Two options:
 
-- **Option A — Direct DB read.** Tasks holds `TURSO_STUDIO_*` env and imports `getEntitlement` from a duplicated `tasks/src/lib/entitlements/` (copy of studio's). Pro: fastest, simplest, matches the Cycle 6.3 precedent (signal reads Tasks's DB this way). Con: schema knowledge duplicated.
+- **Option A — Direct DB read.** Tasks holds `STUDIO_*` env and imports `getEntitlement` from a duplicated `tasks/src/lib/entitlements/` (copy of studio's). Pro: fastest, simplest, matches the Cycle 6.3 precedent (signal reads Tasks's DB this way). Con: schema knowledge duplicated.
 - **Option B — HTTP fetch.** Tasks calls `signalstudio.ie/api/entitlements/[clerkId]` (a new studio endpoint protected by a shared secret). Pro: schema owned in one place. Con: extra network hop on every paywall check (mitigated by per-request caching).
 
 Recommendation: **Option A for 8.3b.** Mirrors the existing pattern in the codebase. Revisit if Notes/Timeline/Signal also need entitlement reads (then HTTP starts looking better).
@@ -152,7 +152,7 @@ Recommendation: **Option A for 8.3b.** Mirrors the existing pattern in the codeb
 
 ## What remains for Cycle 8.3b
 
-- [ ] Tasks: add env vars (REDEMPTION_HANDOFF_SECRET, TURSO_STUDIO_*)
+- [ ] Tasks: add env vars (REDEMPTION_HANDOFF_SECRET, STUDIO_*)
 - [ ] Tasks: copy verify helper from studio
 - [ ] Tasks: sign-up page reads `?redemption=` into Clerk unsafeMetadata
 - [ ] Tasks: webhook handler consumes redemption — transactional entitlement write + status flip + audit row
@@ -162,6 +162,6 @@ Recommendation: **Option A for 8.3b.** Mirrors the existing pattern in the codeb
 - [ ] Tasks: replace `"Pick a starter so you have something to play with"` and `"Loaded · ready to open"` strings
 - [ ] Tasks: deploy + end-to-end test with `LAMBSHIL-MP93X`
 - [ ] Vercel: set REDEMPTION_HANDOFF_SECRET on Tasks production (sensitive)
-- [ ] Vercel: set TURSO_STUDIO_* on Tasks production
+- [ ] Vercel: set STUDIO_* on Tasks production
 
 Once 8.3b ships, the flow is end-to-end live and Cycle 8.4 (operator surface) can start.

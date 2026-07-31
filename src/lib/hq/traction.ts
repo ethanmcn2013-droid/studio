@@ -269,7 +269,7 @@ export async function getTraction(): Promise<TractionState> {
     return {
       available: false,
       reason:
-        err instanceof Error && /TURSO_STUDIO/.test(err.message)
+        err instanceof Error && /STUDIO_DATABASE_URL/.test(err.message)
           ? "Studio Turso not configured on this host."
           : "Studio Turso unreachable, traction cannot be read.",
     };
