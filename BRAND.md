@@ -181,6 +181,8 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 
 ## 5 · Visual register
 
+**Register amended 2026-07-31: expressive by default, restraint is the edit.** Confident, premium, expressive — edited, not timid. Indigo `#4f46e5` is the anchor, not a cage — its tints, gradients, and supporting tones are welcome when the moment earns them. Motion is a first-class material: use it generously where it clarifies or delights, cut it where it merely decorates. Reach further than feels safe in exploration; restraint is the edit at the end, never the brief at the start. Never cheap: no clutter, no stock effects, no noise. (Voice, vocabulary, and banned words in §3 are unchanged — this amendment is visual and motion only.)
+
 ### Reference register
 - **Aspire to:** Apple, Linear, Arc, Notion Calendar, Raycast.
 - **Avoid:** Jira, Monday, Tableau, PowerBI, Salesforce.
@@ -208,7 +210,7 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 - **Mono labels:** 11px tabular, letter-spacing `0.02em`, color `var(--ink-quiet)`.
 
 ### Motion
-Sparingly. Rise stagger on hero entries (`0.6s`, 60ms stagger). Subtle fade between sections. Cinematic demo on Tasks's homepage is the brand-feature; everything else is restrained.
+A first-class material, generous where it clarifies or delights, cut where it merely decorates — see the amended register above. Rise stagger on hero entries (`0.6s`, 60ms stagger) and subtle fades between sections remain the baseline; the cinematic demo on Tasks's homepage is the brand-feature. Restraint is the edit applied after the reach, not a ceiling on it.
 
 `prefers-reduced-motion` is respected everywhere via `useReducedMotion()`.
 
