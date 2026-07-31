@@ -4,14 +4,14 @@ Closed 2026-05-13.
 
 ## What shipped
 
-**Studio** (`~/Projects/personal/studio`):
+**Studio** (`studio`):
 - `src/lib/db/schema.ts` — `cronRuns` table + `CronRunSource` enum (currently one value: `analytics_daily`)
 - `drizzle/0002_init_cron_runs.sql` — migration
 - `src/app/api/internal/cron-ping/route.ts` — POST endpoint, Bearer-authed via `CRON_PING_SECRET`, inserts a `cron_runs` row
 - `src/lib/cron/runs.ts` — `getLatestCronRun(source)` + `getCronHealth(source)` with `green | amber | red | never` status thresholds (green < 12h, amber 12–26h, red > 26h or `ok=0`)
 - `src/app/hq/health/page.tsx` — server-rendered `/hq/health` page, HQ-cookie-gated, same chrome pattern as `/hq/partners`
 
-**Signal** (`~/Projects/personal/analytics`):
+**Signal** (`analytics`):
 - `src/lib/ops/ping-studio.ts` — `pingStudio(payload)` helper with 2s AbortController timeout, never throws
 - `src/app/api/cron/briefings/route.ts` — added `pingStudio()` call after counts are aggregated, before the JSON response
 
@@ -24,7 +24,7 @@ The system gracefully no-ops without env vars (signal's `pingStudio` returns ear
 ### 1. Apply the migration to prod Turso (studio)
 
 ```bash
-turso db shell ethanmcnamara-studio < ~/Projects/personal/studio/drizzle/0002_init_cron_runs.sql
+turso db shell ethanmcnamara-studio < studio/drizzle/0002_init_cron_runs.sql
 ```
 
 Verify:

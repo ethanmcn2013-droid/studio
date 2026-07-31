@@ -136,7 +136,7 @@ Acceptance: code in prod redeems through `lookupRedemption()` to the correct vie
 
 **Reconciled scope after 8.3a/8.3b discovery (2026-05-13):** the originally-planned signed-handoff bridge was abandoned mid-cycle when grep across Tasks revealed a pre-existing redemption system (comp_codes table + /redeem/[code] route + redeemCompCodeAction + workspace-scoped entitlements + Stripe-wired grantEntitlement). The reconciliation: studio's /redeem/[code] stays as the co-branded landing; studio's sponsors + license_codes tables stay as the source-of-truth for sponsor audit; the CTA redirects to tasks.signalstudio.ie/redeem/[code] which runs Tasks's existing redemption flow; issue-codes.ts dual-writes to both studio's license_codes (audit) and Tasks's comp_codes (runtime) so codes work end-to-end through the existing path.
 
-Ships across studio + `~/Projects/personal/tasks`:
+Ships across studio + `tasks`:
 - **Redemption-completion bridge.** When the `/redeem/[code]` CTA fires, atomically: insert an `entitlements` row (using `license_codes.source_type` + `tier` + `duration_days` to compute the entitlement shape), update `license_codes.status` to `redeemed` (with `redeemed_by_user_id` + `redeemed_at`), insert a `redemptions` audit row. Likely shape: studio renders /redeem/, hands a signed token to Tasks's sign-up flow, Tasks consumes the token after Clerk auth completes and writes the entitlement via shared Turso token.
 - **"Already on a paid plan" error state** wires here — only reachable when an authenticated user attempts redemption.
 - Tasks reads `getEntitlement(userId)` on first session. If source is `venue_edition` + tier is wedding, **skip the `/welcome` picker entirely** — auto-create the wedding workspace.
@@ -225,4 +225,4 @@ Acceptance: Ethan dispenses both flavours from CLI in under 30 seconds each. Bot
 - `BRAND.md` §6 — page-level conventions (footer, changelog, "What this isn't")
 - `analytics/docs/PRODUCT.md` — entitlements-aware briefing scope (Cycle 8.7+ candidate)
 - `roadmap/CHANGELOG.md`, `tasks/CHANGELOG.md` — per-product launch notes routing to umbrella `signalstudio.ie/changelog` per locked convention (BRAND.md §6)
-- `~/Projects/personal/studio/.claude/state/phase.md` — cycle status of record
+- `studio/.claude/state/phase.md` — cycle status of record

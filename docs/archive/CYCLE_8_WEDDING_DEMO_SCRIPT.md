@@ -95,7 +95,7 @@ The whole point is to show one wedding, walked across four layers, in plain Engl
 
 ## Render target paths
 
-**Standalone Remotion project**: `~/Projects/personal/analytics-demo/`. Add a new composition `SignalWeddingDemo` (or fork `SignalAnalyticsDemo.tsx`) parameterized for wedding scenes. Both compositions can share the same code with a `wedge: "analytics" | "wedding"` prop.
+**Standalone Remotion project**: `analytics-demo/`. Add a new composition `SignalWeddingDemo` (or fork `SignalAnalyticsDemo.tsx`) parameterized for wedding scenes. Both compositions can share the same code with a `wedge: "analytics" | "wedding"` prop.
 
 **Output files**:
 - `out/demo-wedding-wide.mp4` (16:9 1920×1080)

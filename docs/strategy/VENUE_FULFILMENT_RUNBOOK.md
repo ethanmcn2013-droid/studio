@@ -66,7 +66,7 @@ Complete before a venue is allowed to buy.
 Reference from `ENTITLEMENTS_OPS.md`:
 
 ```bash
-cd ~/Projects/personal/studio
+cd studio
 pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 548
 ```
 

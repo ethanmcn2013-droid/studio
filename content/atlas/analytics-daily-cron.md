@@ -3,10 +3,10 @@ title: Signal daily cron + briefing engine
 slug: analytics-daily-cron
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-18
+lastVerified: 2026-07-31
 links: [turso-databases-and-reads, five-products-as-a-system, log-cycle-cross-repo-writer]
 tags: [vercel.json, 06:00 UTC, CRON_SECRET, RESEND_API_KEY, briefing, 6 triggers, RFC 8058, /api/cron/briefings, ping-studio, STUDIO_CRON_PING_SECRET, CRON_PING_SECRET]
-references: [~/Projects/personal/signal/vercel.json, ~/Projects/personal/signal/src/app/api/cron/briefings/route.ts, ~/Projects/personal/signal/src/lib/briefing/triggers.ts, ~/Projects/personal/signal/src/lib/briefing/prose.ts, ~/Projects/personal/signal/src/lib/briefing/voice.ts, ~/Projects/personal/signal/src/lib/briefing/build.ts, ~/Projects/personal/signal/src/lib/email/dispatch.ts, ~/Projects/personal/signal/src/lib/ops/ping-studio.ts, src/app/api/internal/cron-ping/route.ts]
+references: [signal/vercel.json, signal/src/app/api/cron/briefings/route.ts, signal/src/lib/briefing/triggers.ts, signal/src/lib/briefing/prose.ts, signal/src/lib/briefing/voice.ts, signal/src/lib/briefing/build.ts, signal/src/lib/email/dispatch.ts, signal/src/lib/ops/ping-studio.ts, src/app/api/internal/cron-ping/route.ts]
 summary: Daily 06:00 UTC Vercel cron reads Tasks DB, runs 6-trigger attention engine with rotated phrasings, renders briefing to /app + email via Resend, pings Studio on success. Wired end-to-end; has not yet fired in prod (zero analytics_daily cron_runs rows).
 status: complete
 pinned: false
@@ -37,15 +37,15 @@ Ethan owns the engine, the prose libraries, the cron, and the receiver. No exter
 
 ## WHERE
 
-- `~/Projects/personal/analytics/vercel.json` — declares the cron: `{ "crons": [{ "path": "/api/cron/briefings", "schedule": "0 6 * * *" }] }`.
-- `~/Projects/personal/analytics/src/app/api/cron/briefings/route.ts` — receives the cron call. Exports both `GET` (Vercel cron invokes via GET) and `POST` (manual triggers/tests); both share the same auth + fanout. Bearer `CRON_SECRET` auth, `maxDuration = 60`.
-- `~/Projects/personal/analytics/src/lib/briefing/triggers.ts` — the six triggers: `stuck-work`, `due-soon`, `just-shipped`, `overload`, `crowded-week`, `blocked-too-long`. Plan 6 spec'd ten; v1 shipped six, intentionally — overbuilt for an engine no user has stressed yet.
-- `~/Projects/personal/analytics/src/lib/briefing/prose.ts` — the phrasing library. `LIBRARY: Record<TriggerKind, Phrasing[]>` — three phrasings per trigger; `phraseFor()` selects by rotation index.
-- `~/Projects/personal/analytics/src/lib/briefing/voice.ts` — `selfPhrasings` (you-detection) + `focusPhrasings` (action register for Suggested Focus).
-- `~/Projects/personal/analytics/src/lib/briefing/build.ts` — assembles the briefing payload. Entry point is `buildBriefing(source, { userId, email }, now)` — there is no `buildBriefingForUser`; the route calls `buildBriefing` directly.
-- `~/Projects/personal/analytics/src/lib/email/dispatch.ts` — Resend wrapper; graceful no-key skip in dev, **hard `ok:false` error in production** when `RESEND_API_KEY` is unset.
-- `~/Projects/personal/analytics/src/lib/ops/ping-studio.ts` — fires the cross-repo signal to Studio at the end of each run. Refuses to send its bearer to any non-`signalstudio.ie` https host (credential safety); 2s timeout; never throws.
-- `~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts` — the receiver. Bearer `CRON_PING_SECRET` (Studio-side env), timing-safe. Validates `source` against `CRON_RUN_SOURCES` (`["analytics_daily"]`) and writes a row to the `cron_runs` table.
+- `analytics/vercel.json` — declares the cron: `{ "crons": [{ "path": "/api/cron/briefings", "schedule": "0 6 * * *" }] }`.
+- `analytics/src/app/api/cron/briefings/route.ts` — receives the cron call. Exports both `GET` (Vercel cron invokes via GET) and `POST` (manual triggers/tests); both share the same auth + fanout. Bearer `CRON_SECRET` auth, `maxDuration = 60`.
+- `analytics/src/lib/briefing/triggers.ts` — the six triggers: `stuck-work`, `due-soon`, `just-shipped`, `overload`, `crowded-week`, `blocked-too-long`. Plan 6 spec'd ten; v1 shipped six, intentionally — overbuilt for an engine no user has stressed yet.
+- `analytics/src/lib/briefing/prose.ts` — the phrasing library. `LIBRARY: Record<TriggerKind, Phrasing[]>` — three phrasings per trigger; `phraseFor()` selects by rotation index.
+- `analytics/src/lib/briefing/voice.ts` — `selfPhrasings` (you-detection) + `focusPhrasings` (action register for Suggested Focus).
+- `analytics/src/lib/briefing/build.ts` — assembles the briefing payload. Entry point is `buildBriefing(source, { userId, email }, now)` — there is no `buildBriefingForUser`; the route calls `buildBriefing` directly.
+- `analytics/src/lib/email/dispatch.ts` — Resend wrapper; graceful no-key skip in dev, **hard `ok:false` error in production** when `RESEND_API_KEY` is unset.
+- `analytics/src/lib/ops/ping-studio.ts` — fires the cross-repo signal to Studio at the end of each run. Refuses to send its bearer to any non-`signalstudio.ie` https host (credential safety); 2s timeout; never throws.
+- `studio/src/app/api/internal/cron-ping/route.ts` — the receiver. Bearer `CRON_PING_SECRET` (Studio-side env), timing-safe. Validates `source` against `CRON_RUN_SOURCES` (`["analytics_daily"]`) and writes a row to the `cron_runs` table.
 
 ## HOW
 
