@@ -2,7 +2,7 @@
 id: tasks-board-truth
 title: Tasks board truth programme
 product: tasks
-status: In Progress
+status: Shipped
 lastVerified: 2026-07-31
 ---
 
@@ -100,11 +100,29 @@ views. Full inventory:
   and sum only, nothing converted or forecast, no money on share, print,
   embed or /p/{slug}.
 
+- **T·125** (2026-07-31, PR #81). Block 4b — the programme's close. The
+  room tools are remounted into the hybrid view bar on all four views:
+  Filter (widened to priority, column by name, owner by name, and date),
+  Sort, and saved views with their full save/apply/delete loop restored
+  in-panel; the Share, export, print and calendar-subscribe cluster rides
+  every view. The list regains per-row completion, inline priority, the
+  description line and owner names; the schedule regains per-row
+  completion; the calendar regains its phone day-list and a visible
+  Subscribe button; empty projects greet with the guided first-run state,
+  and a filter that admits nothing says so with the way back. The last
+  2,856 orphaned lines (list/calendar/timeline apps, export menu, room
+  view bar and helpers) are deleted — every loss in the 2026-07-31
+  capability audit is either restored or deliberately retired, and the
+  four views' behavior has exactly one source. Evidence: 128/128
+  materiality checks attested, fixtures refreshed, full gate chain, live
+  DB-verified round trips.
+
 ## Remaining
 
-| Phase | Work | Gate |
-|---|---|---|
-| 4b | Remount the filter/sort layer (the room tools band is unmounted); widen Filter to date, owner-by-name, column; restore share/export/print/subscribe controls to the four views; restore list inline edits, calendar mobile day-list, per-row complete; delete the remaining dead view components | UI only |
+Nothing. The programme closed with T·125; every audit finding is
+resolved. Recorded follow-up edges live with their owners: the
+cross-project "Your work" rollup counts the canonical Done lane only,
+and the Signal mirror reads default done semantics.
 
 Boundary ratified for Phase 5: Tasks may restate a number the operator entered.
 It must never compute, forecast, convert or publish a financial claim, and
