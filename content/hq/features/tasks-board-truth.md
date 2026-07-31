@@ -2,7 +2,7 @@
 id: tasks-board-truth
 title: Tasks board truth programme
 product: tasks
-status: in-progress
+status: In Progress
 lastVerified: 2026-07-30
 ---
 

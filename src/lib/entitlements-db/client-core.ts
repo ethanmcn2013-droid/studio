@@ -9,8 +9,8 @@ import * as schema from "./schema";
  * code and tsx operator scripts. The server-only wrapper lives in
  * `client.ts`.
  */
-const url = process.env.TURSO_ENTITLEMENTS_DATABASE_URL;
-const authToken = process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN;
+const url = process.env.ENTITLEMENTS_DATABASE_URL;
+const authToken = process.env.ENTITLEMENTS_AUTH_TOKEN;
 
 let cached: ReturnType<typeof drizzle<typeof schema>> | null = null;
 
@@ -18,7 +18,7 @@ export function entitlementsDb() {
   if (cached) return cached;
   if (!url) {
     throw new Error(
-      "TURSO_ENTITLEMENTS_DATABASE_URL is not set. Add it to .env.local " +
+      "ENTITLEMENTS_DATABASE_URL is not set. Add it to .env.local " +
         "(see signal-entitlements Turso DB; provisioned 2026-05-14 in E-1).",
     );
   }

@@ -375,10 +375,10 @@ test("CLI dry-run, apply, and rerun no-op work against disposable local database
       ...process.env,
       TASKS_DATABASE_URL: tasksUrl,
       TASKS_AUTH_TOKEN: "",
-      TURSO_ENTITLEMENTS_DATABASE_URL: sharedUrl,
-      TURSO_ENTITLEMENTS_AUTH_TOKEN: "",
-      TURSO_STUDIO_DATABASE_URL: studioUrl,
-      TURSO_STUDIO_AUTH_TOKEN: "",
+      ENTITLEMENTS_DATABASE_URL: sharedUrl,
+      ENTITLEMENTS_AUTH_TOKEN: "",
+      STUDIO_DATABASE_URL: studioUrl,
+      STUDIO_AUTH_TOKEN: "",
     };
     const run = (args) =>
       spawnSync(process.execPath, [script, ...args], {

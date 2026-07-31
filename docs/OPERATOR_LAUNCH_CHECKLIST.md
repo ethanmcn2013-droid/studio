@@ -37,8 +37,8 @@ secrets as **Sensitive**.
 | **Tasks** | `TASKS_DATABASE_URL`, `TASKS_AUTH_TOKEN`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `CRON_SECRET`, `RESEND_API_KEY` |
 | **Notes** | `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` | `CRON_SECRET`, `NOTES_CAPTURE_INBOUND_SECRET` |
 | **Signal** (analytics) | `TURSO_ANALYTICS_DATABASE_URL`, `TURSO_ANALYTICS_AUTH_TOKEN`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` | `TURSO_DATABASE_URL` (prefs), `RESEND_API_KEY`, `CRON_SECRET` |
-| **Timeline** (roadmap) | `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN` | Clerk keys (owner sign-in), `TURSO_ENTITLEMENTS_*` |
-| **Studio** | *(warn-only — never blocks the marketing site)* | `TURSO_STUDIO_DATABASE_URL/_AUTH_TOKEN`, `TURSO_ENTITLEMENTS_*` |
+| **Timeline** (roadmap) | `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN` | Clerk keys (owner sign-in), `ENTITLEMENTS_*` |
+| **Studio** | *(warn-only — never blocks the marketing site)* | `STUDIO_DATABASE_URL/_AUTH_TOKEN`, `ENTITLEMENTS_*` |
 
 - [ ] Confirm every **Required** cell above is set in the matching Vercel project.
 - [ ] Confirm the **Recommended** ones for features you're launching (email, billing, crons).

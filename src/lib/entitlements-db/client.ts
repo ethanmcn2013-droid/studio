@@ -4,8 +4,8 @@ import "server-only";
  * Drizzle client for the shared signal-entitlements DB.
  *
  * Connection envs:
- *   - TURSO_ENTITLEMENTS_DATABASE_URL, required
- *   - TURSO_ENTITLEMENTS_AUTH_TOKEN, required in prod
+ *   - ENTITLEMENTS_DATABASE_URL, required
+ *   - ENTITLEMENTS_AUTH_TOKEN, required in prod
  *
  * On preview/dev environments where the envs are unset the client
  * throws on first use, not at import time, so build-time prerender

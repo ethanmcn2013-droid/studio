@@ -29,8 +29,8 @@ Naming convention follows `ethanmcnamara-tasks` / `ethanmcnamara-analytics` prec
 Append to `~/Projects/personal/studio/.env.local` (create the file if it doesn't exist — `.gitignore` already excludes it):
 
 ```bash
-TURSO_STUDIO_DATABASE_URL=libsql://ethanmcnamara-studio-<...>.turso.io
-TURSO_STUDIO_AUTH_TOKEN=<token from step 1>
+STUDIO_DATABASE_URL=libsql://ethanmcnamara-studio-<...>.turso.io
+STUDIO_AUTH_TOKEN=<token from step 1>
 ```
 
 ## 3 · Apply the migration
@@ -64,18 +64,18 @@ turso db shell ethanmcnamara-studio "SELECT id, tier, source, expires_at FROM en
 
 ## 5 · Set env vars on Vercel
 
-**Production — done 2026-05-13 (agent).** `TURSO_STUDIO_AUTH_TOKEN` set with `--sensitive`; `TURSO_STUDIO_DATABASE_URL` set unflagged. Both visible in `vercel env ls`.
+**Production — done 2026-05-13 (agent).** `STUDIO_AUTH_TOKEN` set with `--sensitive`; `STUDIO_DATABASE_URL` set unflagged. Both visible in `vercel env ls`.
 
 **Preview — pending operator.** The Vercel CLI's `vercel env add … preview` (without a branch) requires explicit confirmation that the agent path gates against. Two options:
 
 ```bash
 # Option A — add to all preview branches (operator-confirmed)
-vercel env add TURSO_STUDIO_DATABASE_URL preview --value 'libsql://ethanmcnamara-studio-ethan387.aws-eu-west-1.turso.io' --yes
-vercel env add TURSO_STUDIO_AUTH_TOKEN preview --value '<token from step 1>' --sensitive --yes
+vercel env add STUDIO_DATABASE_URL preview --value 'libsql://ethanmcnamara-studio-ethan387.aws-eu-west-1.turso.io' --yes
+vercel env add STUDIO_AUTH_TOKEN preview --value '<token from step 1>' --sensitive --yes
 
 # Option B — add to a single preview branch (preferred for new feature branches per existing project pattern)
-vercel env add TURSO_STUDIO_DATABASE_URL preview <branch-name>
-vercel env add TURSO_STUDIO_AUTH_TOKEN preview <branch-name> --sensitive
+vercel env add STUDIO_DATABASE_URL preview <branch-name>
+vercel env add STUDIO_AUTH_TOKEN preview <branch-name> --sensitive
 ```
 
 **Deferral rationale:** no studio surface imports `@/lib/db` from a route yet, so preview deploys do not need the vars *to build*. Wire preview env when (a) studio starts reading entitlements from a route (Cycle 8.4+), or (b) you want to test entitlements behaviour on a preview branch.
@@ -113,10 +113,10 @@ vercel --prod
 - [x] `pnpm typecheck` clean
 - [x] `pnpm build` clean
 - [x] **Operator:** `ethanmcnamara-studio` Turso DB provisioned (2026-05-13)
-- [x] **Agent:** `.env.local` populated with `TURSO_STUDIO_DATABASE_URL` + `TURSO_STUDIO_AUTH_TOKEN` (2026-05-13)
+- [x] **Agent:** `.env.local` populated with `STUDIO_DATABASE_URL` + `STUDIO_AUTH_TOKEN` (2026-05-13)
 - [x] **Agent:** migration applied via `turso db shell ethanmcnamara-studio < drizzle/0000_init_entitlements.sql` (2026-05-13); schema + 2 indexes verified in prod
 - [x] **Agent:** seed script verified end-to-end against prod (test row `user_test_seed_001` + getEntitlement returns expected shape)
-- [x] **Agent:** Vercel **production** env vars set (`TURSO_STUDIO_AUTH_TOKEN` sensitive, `TURSO_STUDIO_DATABASE_URL` standard)
+- [x] **Agent:** Vercel **production** env vars set (`STUDIO_AUTH_TOKEN` sensitive, `STUDIO_DATABASE_URL` standard)
 - [ ] **Operator (deferred):** Vercel **preview** env vars — wire when studio starts reading entitlements from a route (Cycle 8.4+), or when a feature branch needs to test the layer
 - [ ] **Operator (deferred):** redeploy — no production surface reads the table yet, so rolls into Cycle 8.4
 

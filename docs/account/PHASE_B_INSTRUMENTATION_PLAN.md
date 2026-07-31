@@ -225,8 +225,8 @@ call sites in Notes, Tasks, and Timeline behind `SPONSOR_USAGE_EVENTS`.
 
 **Still open, and why.**
 
-1. **Apply the migration.** Needs `TURSO_ENTITLEMENTS_DATABASE_URL` and
-   `TURSO_ENTITLEMENTS_AUTH_TOKEN`. Tracked as the operator to-do
+1. **Apply the migration.** Needs `ENTITLEMENTS_DATABASE_URL` and
+   `ENTITLEMENTS_AUTH_TOKEN`. Tracked as the operator to-do
    `apply-sponsor-requests-migration`.
 2. **Schedule the rollup and the sealing job.** Both are written; neither has a
    cron. The sealing cadence above is a hard constraint.

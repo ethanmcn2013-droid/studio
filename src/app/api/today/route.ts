@@ -29,8 +29,8 @@ export const dynamic = "force-dynamic";
  * cycle. Until then, a shared-key SSR proxy is the iOS-friendly
  * pattern with the lowest blast radius.
  *
- * The 4 Turso read tokens (TASKS_TURSO_*, NOTES_TURSO_*, ROADMAP_TURSO_*,
- * ANALYTICS_TURSO_*) are read inside the aggregator; missing pairs
+ * The 4 Turso read tokens (TASKS_*, NOTES_*, TIMELINE_*,
+ * SIGNAL_*) are read inside the aggregator; missing pairs
  * gracefully degrade per-product, never abort the whole response.
  */
 export async function POST(req: Request) {

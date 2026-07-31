@@ -19,8 +19,8 @@
  * Run: node scripts/migrate-access.mjs           (apply)
  *      node scripts/migrate-access.mjs --dry-run  (report only, no writes)
  *
- * Reads creds from env (or .env.local): TURSO_ENTITLEMENTS_DATABASE_URL /
- * _AUTH_TOKEN (the canonical shared DB) and TURSO_STUDIO_DATABASE_URL /
+ * Reads creds from env (or .env.local): ENTITLEMENTS_DATABASE_URL /
+ * _AUTH_TOKEN (the canonical shared DB) and STUDIO_DATABASE_URL /
  * _AUTH_TOKEN (studio-local sponsors, kept in parity during transition).
  */
 import { config } from "dotenv";
@@ -375,15 +375,15 @@ log(DRY ? "=== migrate-access DRY RUN (no writes) ===" : "=== migrate-access APP
 // Studio-local: keep sponsors in parity (HQ Traction reads it during transition).
 const okStudio = await applyTo(
   "studio",
-  process.env.TURSO_STUDIO_DATABASE_URL,
-  process.env.TURSO_STUDIO_AUTH_TOKEN,
+  process.env.STUDIO_DATABASE_URL,
+  process.env.STUDIO_AUTH_TOKEN,
   { shared: false },
 );
 // signal-entitlements: the canonical access store — full access-system schema.
 const okShared = await applyTo(
   "signal-entitlements",
-  process.env.TURSO_ENTITLEMENTS_DATABASE_URL,
-  process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN,
+  process.env.ENTITLEMENTS_DATABASE_URL,
+  process.env.ENTITLEMENTS_AUTH_TOKEN,
   { shared: true },
 );
 process.exit(okStudio && okShared ? 0 : 1);

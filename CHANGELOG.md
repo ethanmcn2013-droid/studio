@@ -7,6 +7,33 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-31 · S·156 · cuts · the stack now says what it means
+
+**Every database, project, and credential now carries the name of the thing
+it actually is.** The audit that opened the day found four generations of
+naming layered over the same infrastructure: databases named for retired
+products, the same physical database answered to by four different
+environment variables, eight dead Vercel projects, twenty-one dead
+repositories, and misnamed variable pairs pointing at the wrong databases
+entirely.
+
+The reset lands in coordinated branches across both repos: one env
+convention (`<MODULE>_DATABASE_URL` + `<MODULE>_AUTH_TOKEN`) in code,
+Vercel, and CI; regenerated drizzle baselines that finally match reality
+(two production tables existed in no migration file anywhere); the
+signal-prefs database folded into Signal; the empty GTM scaffolding
+retired; every pre-reset database dumped to a manifest-verified archive
+before anything moves. The dead projects and repositories are already gone
+— deleted and archived respectively, with domains and personal projects
+untouched.
+
+Honest edges: the entry describes branches, not production — the cutover
+(new databases, env replacement, deploy, verification) is gated on one
+founder step, the Turso platform token, and the dashboard key rotation is
+its own open operator to-do. `docs/INFRASTRUCTURE.md` is now the canonical
+map, and drift between that file and reality is a defect from today
+forward.
+
 ## 2026-07-29 · S·155 · tightens · six quiet pages learn when to move
 
 **Notes, Tasks, Timeline, Signal, Pricing, and About now share one restrained

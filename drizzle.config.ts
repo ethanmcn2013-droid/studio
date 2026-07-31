@@ -9,7 +9,7 @@ export default {
   out: "./drizzle",
   dialect: "turso",
   dbCredentials: {
-    url: process.env.TURSO_STUDIO_DATABASE_URL ?? "",
-    authToken: process.env.TURSO_STUDIO_AUTH_TOKEN,
+    url: process.env.STUDIO_DATABASE_URL ?? "",
+    authToken: process.env.STUDIO_AUTH_TOKEN,
   },
 } satisfies Config;
