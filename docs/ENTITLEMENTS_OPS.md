@@ -119,7 +119,7 @@ LIMIT 10;
 local + shared signal-entitlements + Tasks comp_codes.
 
 ```bash
-cd ~/Projects/personal/studio
+cd studio
 pnpm issue:codes lambs-hill 10 venue_edition wedding 548
 ```
 

@@ -3,7 +3,7 @@ title: iOS — the suite app
 slug: ios-suite-app
 lens: Products
 owner: Ethan
-lastVerified: 2026-06-30
+lastVerified: 2026-07-31
 links: [signal-studio-umbrella, five-products-as-a-system, brand-enforcement]
 tags: [iOS, App Store, SwiftUI, native, Apple, Capacitor, signal-ios, 4.2, IAP, Clerk, suite app]
 references: [signal-ios/IOS_PLAN.md, signal-ios/FUNCTIONING_APP_PLAN.md, signal-ios/SignalStudio/, ~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md]
@@ -41,14 +41,14 @@ Ethan owns the app outright. No iOS-team, no separate stakeholders. The agentic 
 
 ## WHERE
 
-- `~/Projects/personal/signal-ios/` — the Xcode project (xcodegen-generated; `.xcodeproj` itself is gitignored). Schema in `project.yml`.
-- `~/Projects/personal/signal-ios/SignalStudio/` — the Swift source root, organised by feature (App / Brand / Today / Notes / Tasks / Timeline / Signal / Settings / Loading / Empty / Onboarding / Fonts / Assets.xcassets / Preview Content).
-- `~/Projects/personal/signal-ios/panel-reviews/` — gate-keeping reports for cycles 1 (baseline + final), 2 (final), 3 (status + final), and 5 (final). Cycle 4 ran as in-cycle remediation without a standalone report.
-- `~/Projects/personal/signal-ios/IOS_PLAN.md` — original 13-screen plan, 9.5-gate rubric, mock-data strategy.
-- `~/Projects/personal/signal-ios/FUNCTIONING_APP_PLAN.md` — Bucket A (operator-gated) and Bucket B (agent-shippable) split.
-- `~/Projects/personal/signal-ios/README.md` — what's running on simulator today.
+- `signal-ios/` — the Xcode project (xcodegen-generated; `.xcodeproj` itself is gitignored). Schema in `project.yml`.
+- `signal-ios/SignalStudio/` — the Swift source root, organised by feature (App / Brand / Today / Notes / Tasks / Timeline / Signal / Settings / Loading / Empty / Onboarding / Fonts / Assets.xcassets / Preview Content).
+- `signal-ios/panel-reviews/` — gate-keeping reports for cycles 1 (baseline + final), 2 (final), 3 (status + final), and 5 (final). Cycle 4 ran as in-cycle remediation without a standalone report.
+- `signal-ios/IOS_PLAN.md` — original 13-screen plan, 9.5-gate rubric, mock-data strategy.
+- `signal-ios/FUNCTIONING_APP_PLAN.md` — Bucket A (operator-gated) and Bucket B (agent-shippable) split.
+- `signal-ios/README.md` — what's running on simulator today.
 - `~/.claude/projects/-Users-ethanmcnamara/memory/project_ios_app_research_2026_05_19.md` — the strategic memo: feasibility scissors, scope rationale, gate logic.
-- `~/Projects/personal/studio/docs/ios/` — submission artifact drafts (privacy labels, listing copy, data-flow doc — drafted in this cycle).
+- `studio/docs/ios/` — submission artifact drafts (privacy labels, listing copy, data-flow doc — drafted in this cycle).
 - `https://signalstudio.ie/ios` — public web status page linked from suite footers while the App Store listing is not live.
 
 ## HOW

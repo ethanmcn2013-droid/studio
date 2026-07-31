@@ -3,7 +3,7 @@ title: Brand enforcement — BRAND.md as catch-net
 slug: brand-enforcement
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-07-31
 links: [signal-studio-umbrella, plan-cycle, five-products-as-a-system]
 tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Project management for the 80% not in tech.", Stark+Jobs, Pentagram, Manual]
 references: [BRAND.md, DESIGN.md, src/app/globals.css, src/components/brand/wordmark.tsx, src/app/brand/page.tsx]
@@ -27,7 +27,7 @@ Ethan owns BRAND.md outright. Every other contributor (Claude in any role, Codex
 
 ## WHERE
 
-- `~/Projects/personal/studio/BRAND.md` — the handbook. Section structure:
+- `studio/BRAND.md` — the handbook. Section structure:
   - §1 The suite (four products under one umbrella; refusals; what doesn't get added)
   - §2 Operating thesis (the 80% audience archetypes, what fails them, the moat)
   - §3 Voice — Stark+Jobs (cadence, banned words, cadence words, emotional intelligence)

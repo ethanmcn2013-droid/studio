@@ -48,7 +48,7 @@ Rotate the webhook signing secret in Clerk dashboard (the one set tonight is exp
 
 1. Clerk dashboard → Configure → Webhooks → endpoint `gsRNXc` (or whichever points at tasks.signalstudio.ie/api/webhooks/clerk) → click the "..." or "Roll secret" option next to the signing secret → confirm rotation.
 2. Copy the new `whsec_...` value.
-3. From the `~/Projects/personal/tasks` repo:
+3. From the `tasks` repo:
    ```sh
    vercel env rm CLERK_WEBHOOK_SIGNING_SECRET production -y
    vercel env add CLERK_WEBHOOK_SIGNING_SECRET production --sensitive
@@ -80,7 +80,7 @@ Checklist:
 
 Then verify the operator surface caught it:
 
-8. Run `cd ~/Projects/personal/studio && pnpm partner:digest lambs-hill` — should now read "1 couple has redeemed (33%)" with a fresh timestamp.
+8. Run `cd studio && pnpm partner:digest lambs-hill` — should now read "1 couple has redeemed (33%)" with a fresh timestamp.
 9. Visit `signalstudio.ie/hq/partners` (sign in with HQ password) — Lamb's Hill row should show 3 / 1 / 1 / "X minutes ago".
 
 If anything in steps 1–9 breaks, name the symptom and we debug before sending Lamb's Hill anything.
@@ -100,7 +100,7 @@ Once the walk passes, send Sinéad at Lamb's Hill the operator handoff:
 
 1. Mint the first batch of 10 codes:
    ```sh
-   cd ~/Projects/personal/studio
+   cd studio
    pnpm issue:codes lambs-hill 10
    ```
    This dual-writes to studio license_codes + Tasks comp_codes and emits a CSV.
@@ -133,8 +133,8 @@ Once the walk passes, send Sinéad at Lamb's Hill the operator handoff:
 - `docs/CYCLE_8_3_RECONCILIATION.md` — the parallel-infrastructure lesson
 - `docs/CYCLE_8_5_HANDOFF.md` — this file
 - `.claude/state/phase.md` — rolling status (auto-injected at session start)
-- `~/Projects/personal/tasks/CHANGELOG.md` — the three 2026-05-13 entries narrate the bridge saga
-- `~/Projects/personal/studio/CHANGELOG.md` — operator-surface + plan-8 entries
+- `tasks/CHANGELOG.md` — the three 2026-05-13 entries narrate the bridge saga
+- `studio/CHANGELOG.md` — operator-surface + plan-8 entries
 
 ---
 

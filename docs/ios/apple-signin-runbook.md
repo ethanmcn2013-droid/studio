@@ -65,7 +65,7 @@ Repeat for the next product. Use the same .p8 / Team ID / Key ID across all four
 Run the verification script from the studio repo:
 
 ```bash
-cd ~/Projects/personal/studio
+cd studio
 node scripts/verify-clerk-apple.mjs
 ```
 

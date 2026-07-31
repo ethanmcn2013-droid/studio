@@ -26,7 +26,7 @@ Naming convention follows `ethanmcnamara-tasks` / `ethanmcnamara-analytics` prec
 
 ## 2 · Add env vars locally
 
-Append to `~/Projects/personal/studio/.env.local` (create the file if it doesn't exist — `.gitignore` already excludes it):
+Append to `studio/.env.local` (create the file if it doesn't exist — `.gitignore` already excludes it):
 
 ```bash
 STUDIO_DATABASE_URL=libsql://ethanmcnamara-studio-<...>.turso.io
@@ -36,7 +36,7 @@ STUDIO_AUTH_TOKEN=<token from step 1>
 ## 3 · Apply the migration
 
 ```bash
-cd ~/Projects/personal/studio
+cd studio
 pnpm db:push
 # or, equivalently:
 # turso db shell ethanmcnamara-studio < drizzle/0000_init_entitlements.sql

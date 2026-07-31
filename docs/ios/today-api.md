@@ -2,9 +2,9 @@
 
 Per-user "today" digest that aggregates state across the four products (Tasks / Notes / Timeline / Signal). Powers the native iOS app's Today home screen and the web seamless-ecosystem widget.
 
-Type contract: `~/Projects/personal/studio/src/server/today/types.ts`.
-Aggregator: `~/Projects/personal/studio/src/server/today/aggregate.ts`.
-Route: `~/Projects/personal/studio/src/app/api/today/route.ts`.
+Type contract: `studio/src/server/today/types.ts`.
+Aggregator: `studio/src/server/today/aggregate.ts`.
+Route: `studio/src/app/api/today/route.ts`.
 
 ## Request
 

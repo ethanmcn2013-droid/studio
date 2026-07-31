@@ -3,10 +3,10 @@ title: Signal progressive analytics
 slug: signal-progressive-analytics
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-07-16
+lastVerified: 2026-07-31
 links: [analytics-daily-cron, turso-databases-and-reads, five-products-as-a-system]
 tags: [Signal, Briefing, Overview, Trends, Evidence, SIGNAL_ANALYTICS_V1_ENABLED, Clerk, Turso, tenant isolation, coverage]
-references: [~/Projects/personal/analytics/docs/PRODUCT.md, ~/Projects/personal/analytics/docs/ADR-2026-07-13-SIGNAL-PROGRESSIVE-ANALYTICS.md, ~/Projects/personal/analytics/src/lib/analytics/, ~/Projects/personal/analytics/src/server/analytics/, ~/Projects/personal/analytics/src/app/api/signal-studio/v1/, ~/Projects/personal/analytics/src/components/signal/, ~/Projects/personal/analytics/drizzle-signal/]
+references: [analytics/docs/PRODUCT.md, analytics/docs/ADR-2026-07-13-SIGNAL-PROGRESSIVE-ANALYTICS.md, analytics/src/lib/analytics/, analytics/src/server/analytics/, analytics/src/app/api/signal-studio/v1/, analytics/src/components/signal/, analytics/drizzle-signal/]
 summary: "Feature-flagged Signal depth: zero-to-three Briefing, scoped Overview, one-metric Trends, and permission-safe Evidence over canonical suite records."
 status: complete
 pinned: false
@@ -42,13 +42,13 @@ Ethan owns the product decision, thresholds, release flag, and production promot
 
 ## WHERE
 
-- `~/Projects/personal/analytics/docs/PRODUCT.md` holds the user-facing product contract.
-- `~/Projects/personal/analytics/docs/ADR-2026-07-13-SIGNAL-PROGRESSIVE-ANALYTICS.md` holds architecture, setup, release, and rollback decisions.
-- `~/Projects/personal/analytics/src/lib/analytics/` holds UI-safe normalized contracts and response shapes (`contracts.ts`), timezone-safe dates (`time.ts`), scope filtering (`scope.ts`), deterministic metrics (`metrics.ts`), coverage-bounded time series (`trend-series.ts`), observation rules and ranking (`rules.ts`), and shareable context state (`url-state.ts`).
-- `~/Projects/personal/analytics/src/server/analytics/` holds the centralized feature flag, query validation, live membership policy, provider adapters, response assembly, preferences, and private error handling. `service.ts` assembles the four response depths; `route.ts` applies their shared HTTP receipt.
-- `~/Projects/personal/analytics/drizzle-signal/` is the isolated additive migration stream for per-user card preferences, prospective metric snapshots, snapshot-run state, and schema version. It stores no canonical source record or raw Note body.
-- The versioned HTTP controllers live under `~/Projects/personal/analytics/src/app/api/signal-studio/v1/`.
-- `~/Projects/personal/analytics/src/components/signal/` holds the scoped shell, controls, Briefing, Overview, Trends, Evidence drawer, chart, tables, coverage, freshness, and action components. The product views remain in the existing authenticated `~/Projects/personal/analytics/src/app/app/` shell.
+- `analytics/docs/PRODUCT.md` holds the user-facing product contract.
+- `analytics/docs/ADR-2026-07-13-SIGNAL-PROGRESSIVE-ANALYTICS.md` holds architecture, setup, release, and rollback decisions.
+- `analytics/src/lib/analytics/` holds UI-safe normalized contracts and response shapes (`contracts.ts`), timezone-safe dates (`time.ts`), scope filtering (`scope.ts`), deterministic metrics (`metrics.ts`), coverage-bounded time series (`trend-series.ts`), observation rules and ranking (`rules.ts`), and shareable context state (`url-state.ts`).
+- `analytics/src/server/analytics/` holds the centralized feature flag, query validation, live membership policy, provider adapters, response assembly, preferences, and private error handling. `service.ts` assembles the four response depths; `route.ts` applies their shared HTTP receipt.
+- `analytics/drizzle-signal/` is the isolated additive migration stream for per-user card preferences, prospective metric snapshots, snapshot-run state, and schema version. It stores no canonical source record or raw Note body.
+- The versioned HTTP controllers live under `analytics/src/app/api/signal-studio/v1/`.
+- `analytics/src/components/signal/` holds the scoped shell, controls, Briefing, Overview, Trends, Evidence drawer, chart, tables, coverage, freshness, and action components. The product views remain in the existing authenticated `analytics/src/app/app/` shell.
 
 ## HOW
 

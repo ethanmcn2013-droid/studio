@@ -37,7 +37,7 @@ hook that runs against its own staged files and writes drift into the
 canonical sidecar at:
 
 ```
-~/Projects/personal/studio/content/atlas/_drift.json
+studio/content/atlas/_drift.json
 ```
 
 The studio repo's atlas loader already reads this sidecar
@@ -81,16 +81,16 @@ Pseudocode:
 
 ```ts
 // 1. Read all atlas entries from
-//    ~/Projects/personal/studio/content/atlas/*.md
+//    studio/content/atlas/*.md
 // 2. For each entry, normalize its references[] into a set of
 //    repo-relative paths that could exist in THIS repo.
-//    References use leading "~/Projects/personal/<repo>/" prefix —
+//    References use leading "<repo>/" prefix —
 //    only references matching THIS repo's path are checked here.
 // 3. Run `git diff --cached --name-only` to get staged files.
 // 4. For each entry whose normalized references overlap with the
 //    staged file set, mark the entry as drifted.
 // 5. Read the existing sidecar at
-//    ~/Projects/personal/studio/content/atlas/_drift.json
+//    studio/content/atlas/_drift.json
 //    (or {} if missing).
 // 6. Merge the new drift entries — union, not replace — so drift
 //    detected in one repo doesn't clear drift detected in another.
@@ -163,7 +163,7 @@ and disposable.
 
    **Architecture decision — shared write, not per-repo sidecars.**
    All five repos write into a single sidecar at
-   `~/Projects/personal/studio/content/atlas/_drift.json`. The atlas
+   `studio/content/atlas/_drift.json`. The atlas
    itself lives in studio; drift is a property of the atlas, not of
    the writing repo. Per-repo sidecars would scatter atlas-slug-keyed
    metadata across four repos that have no atlas content — a leak.
@@ -175,7 +175,7 @@ and disposable.
    that writes to a foreign path is surprising on first read. It would
    also degrade more gracefully when studio isn't checked out adjacent
    (e.g. on CI, in a clone of just `tasks/`). Mitigation: the shared
-   script skips silently if `~/Projects/personal/studio/content/atlas/`
+   script skips silently if `studio/content/atlas/`
    is missing — the hook is a signal, not a gate, so silent no-op is
    the right failure mode. Accepted cost: cycle work in `tasks/` writes
    to studio's working tree without staging (the cross-repo run only
@@ -218,9 +218,9 @@ and disposable.
 
 The drift-trigger is shipped when:
 
-- Editing `~/Projects/personal/analytics/src/lib/briefing/triggers.ts`
+- Editing `analytics/src/lib/briefing/triggers.ts`
   flags `analytics-daily-cron` as drifted on the next commit.
-- Editing `~/Projects/personal/notes/src/server/actions/notes.ts`
+- Editing `notes/src/server/actions/notes.ts`
   flags `log-cycle-cross-repo-writer` as drifted.
 - Bumping `lastVerified` in either entry clears the flag.
 - The drift banner renders in the entry detail page with the right
