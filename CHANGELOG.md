@@ -7,6 +7,19 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-31 · S·158 · holds · creativity outranks restraint, in writing
+
+**The design register now states its priority order permanently: creativity
+and emotion outrank restraint.** The morning's amendment loosened the
+register; this addendum settles the hierarchy. No rule in the register may
+be used to flatten a genuinely better idea — a conflict puts the rule under
+review through the lab wildcard and, on repeat, a further named amendment,
+never the idea pre-censored. The work is asked to move the person using it,
+not merely function. One standing exception holds: voice never bends —
+plain English, no exclamation marks, the banned-words list intact. Recorded
+identically in BRAND.md §5 and the operating contract so the two cannot
+drift.
+
 ## 2026-07-31 · S·157 · cuts · two rulebooks become one
 
 **Signal Studio's operating contract is now one file.** AGENTS.md carries

@@ -49,7 +49,7 @@ Any founder/operator-gated task — provision an account, get an API key, set a 
 
 Shipped, operator-visible work gets a `CHANGELOG.md` entry: `## YYYY-MM-DD · X·NN · verb · headline`, verbs `ships / tightens / cuts / holds / reads`. Full entry shape and voice rules live in `BRAND.md` §6.5 — don't duplicate the spec here.
 
-## Design register (amended 2026-07-31)
+## Design register (amended 2026-07-31 · A1 + A1.1)
 
 Confident, premium, expressive — edited, not timid. Geist; indigo `#4f46e5`
 is the anchor, not a cage — its tints, gradients, and supporting tones are
@@ -57,8 +57,15 @@ welcome when the moment earns them. Motion is a first-class material: use it
 generously where it clarifies or delights, cut it where it merely decorates.
 Reach further than feels safe in exploration; restraint is the edit at the
 end, never the brief at the start. Never cheap: no clutter, no stock
-effects, no noise. Voice rules are unchanged — plain English, active verbs,
-no exclamation marks, banned-words list in BRAND.md.
+effects, no noise.
+
+**Priority order, permanent (A1.1): creativity and emotion outrank
+restraint.** No rule in this register may be used to flatten a genuinely
+better idea — when they conflict, the rule goes under review (wildcard →
+amendment), never the idea pre-censored. Design for feeling as much as
+function: the work should move the person using it. Voice rules are the one
+standing exception — plain English, active verbs, no exclamation marks,
+banned-words list in BRAND.md — they never bend.
 
 ## Pointers
 
