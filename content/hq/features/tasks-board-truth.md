@@ -93,12 +93,18 @@ views. Full inventory:
   toggles now clear custom-column claims. Known edge: the cross-project
   "Your work" SQL rollup still counts the canonical Done lane only.
 
+- **T·124** (2026-07-31). Phase 5. One currency label and one operator
+  budget per project (migration 0026); the brief restates the sum with
+  coverage first ("EUR 1,684 of EUR 50,000. 2 tasks costed, 24 without a
+  price."); the hardcoded USD formatter is gone. Boundary held: restate
+  and sum only, nothing converted or forecast, no money on share, print,
+  embed or /p/{slug}.
+
 ## Remaining
 
 | Phase | Work | Gate |
 |---|---|---|
 | 4b | Remount the filter/sort layer (the room tools band is unmounted); widen Filter to date, owner-by-name, column; restore share/export/print/subscribe controls to the four views; restore list inline edits, calendar mobile day-list, per-row complete; delete the remaining dead view components | UI only |
-| 5 | Budget over the existing `tasks.cents`; fix the hardcoded USD; `workspaces.budgetCents` and `currency` | Schema add |
 
 Boundary ratified for Phase 5: Tasks may restate a number the operator entered.
 It must never compute, forecast, convert or publish a financial claim, and
