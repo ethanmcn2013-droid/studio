@@ -7,6 +7,28 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-07-31 · S·157 · cuts · two rulebooks become one
+
+**Signal Studio's operating contract is now one file.** AGENTS.md carries
+every Signal HQ rule — the source-of-truth table, the operator to-do
+ledger, the room registry, the dispatch shape — in one place; CLAUDE.md is
+a three-line pointer to it, and the separate CODEX.md shim is gone.
+
+The visual register catches up to the company-wide amendment agreed the
+same day: expressive by default, restraint is the edit, not the brief.
+BRAND.md's voice, naming, and banned-words sections are untouched — only
+the visual and motion framing moved. The threat model, ASVS matrix,
+disaster-recovery plan, and subprocessor list — previously sitting
+untracked outside any repo — now live in `docs/security/`, in git and
+reviewable. Twenty stale cycle handoffs and one old audit moved into
+`docs/archive/` rather than cluttering the live docs list, and the
+machine-specific `~/Projects/personal` path is gone from every doc that
+still carried it.
+
+Honest edge: this is a contract-and-docs pass, not a product change —
+nothing here ships new user-facing behaviour, and moving the security docs
+into the repo records existing practice rather than adding new controls.
+
 ## 2026-07-31 · S·156 · cuts · the stack now says what it means
 
 **Every database, project, and credential now carries the name of the thing
