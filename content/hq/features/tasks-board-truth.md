@@ -85,11 +85,18 @@ views. Full inventory:
   and `card-actions.tsx` are deleted. Production counts measured
   read-only via the db-migrate measure command before execution (1 waiting row moved; verified 0 after apply). The parallel data-layer reset shipped as T·120 (PR #76) with its own migration 0023, and this release renumbered on top of it.
 
+- **T·122** (2026-07-31). Phase 3. `doneKeys` joins the column config with
+  one `isTaskDone()` predicate behind every surface (the column menu gains
+  "Counts as done"); every write path stamps `tasks.completedAt` on real
+  done transitions (migration 0025, activity-log-provable backfill only);
+  Signal reads the stamp before reconstructing; lane moves and completion
+  toggles now clear custom-column claims. Known edge: the cross-project
+  "Your work" SQL rollup still counts the canonical Done lane only.
+
 ## Remaining
 
 | Phase | Work | Gate |
 |---|---|---|
-| 3 | `doneKeys` + one `isDone()` predicate, replacing bare `lane === "done"` (28 files, audited count; the ~12 estimate was low); add `tasks.completedAt` | Schema add |
 | 4b | Remount the filter/sort layer (the room tools band is unmounted); widen Filter to date, owner-by-name, column; restore share/export/print/subscribe controls to the four views; restore list inline edits, calendar mobile day-list, per-row complete; delete the remaining dead view components | UI only |
 | 5 | Budget over the existing `tasks.cents`; fix the hardcoded USD; `workspaces.budgetCents` and `currency` | Schema add |
 
