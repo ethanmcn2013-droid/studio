@@ -74,16 +74,16 @@ views. Full inventory:
 - **T·119** (2026-07-31, PR #75). Members resolve server-side and hydrate
   the assign menu and avatars; the fixture roster is confined to the
   design lab. An empty roster reads as empty, never as fake people.
-- **T·120** (2026-07-31). Phase 2. The live board renders and manages
+- **T·121** (2026-07-31, PR #77). Phase 2. The live board renders and manages
   config-driven columns (add-after from the header "+", pinned append,
   rename, describe, recolour with true-tint swatches, soft limits, move,
   safe delete with destination); share, print, embed and the CSV and
   Markdown exports group and label by the same columns; `LANES` defaults
   align to the shipped vocabulary so a guest's "Blocked" never disagrees
-  with the operator's "Queued" again; migration 0023 retires the raw-text
+  with the operator's "Queued" again; migration 0024 retires the raw-text
   waiting lane (claim + canonical lane + seeded configs); `board-app.tsx`
   and `card-actions.tsx` are deleted. Production counts measured
-  read-only via the db-migrate `measure` command before execution.
+  read-only via the db-migrate measure command before execution (1 waiting row moved; verified 0 after apply). The parallel data-layer reset shipped as T·120 (PR #76) with its own migration 0023, and this release renumbered on top of it.
 
 ## Remaining
 
