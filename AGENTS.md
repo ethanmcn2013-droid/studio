@@ -49,6 +49,27 @@ Any founder/operator-gated task — provision an account, get an API key, set a 
 
 Shipped, operator-visible work gets a `CHANGELOG.md` entry: `## YYYY-MM-DD · X·NN · verb · headline`, verbs `ships / tightens / cuts / holds / reads`. Full entry shape and voice rules live in `BRAND.md` §6.5 — don't duplicate the spec here.
 
+## North star (set 2026-08 · operator re-derives ~every six months)
+
+Three priorities govern everything front-facing — the four product
+modules and this marketing surface alike — in this order:
+
+1. **Experience.** Using the product should feel considered end to end,
+   and in the right moments delightful. Delight is deliberate: in the
+   app, candidate moments run through `app/docs/DELIGHT_CATALOG.md` —
+   never sprinkled ad hoc.
+2. **Design.** Every front-facing surface ships at the standard of the
+   best studios working today — spacing, type, motion, empty, loading,
+   and error states, microcopy, all deliberate, nothing default. The
+   register below and the 9.5 gate hold the bar.
+3. **Utility.** Someone who has never used a project-management tool
+   must be able to pick it up and understand it unaided — the
+   first-contact test. No jargon, no technical lock-out; a surface that
+   needs explaining is not done.
+
+When the three pull against each other, that order decides. Canonical
+record and review date: `content/hq/decisions/product-north-star.md`.
+
 ## Design register (amended 2026-07-31 · A1 + A1.1)
 
 Confident, premium, expressive — edited, not timid. Geist; indigo `#4f46e5`

@@ -7,6 +7,24 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-01 · S·159 · holds · the north star: experience, then design, then utility
+
+**The suite now has a written priority order for everything
+front-facing.** The operator set it on 2026-08-01: experience first
+(considered end to end, delightful in the right moments), design second
+(the standard of the best studios working today, nothing default),
+utility third (understandable unaided by someone who has never used a
+project-management tool — the first-contact test). When they pull
+against each other, that order decides; the register's own hierarchy
+(A1.1: creativity and emotion outrank restraint) stands beneath it
+untouched. No new machinery — the priorities bind to the delight
+catalog, the register, and the 9.5 gate, which already exist. Canonical
+record, carrying the ~six-month review date (next 2027-02):
+`content/hq/decisions/product-north-star.md`; ambient copies in this
+repo's AGENTS.md and the app repo's AGENTS.md, worded to match. The
+operator re-derives the north star roughly every six months as a
+standing practice.
+
 ## 2026-07-31 · S·158 · holds · creativity outranks restraint, in writing
 
 **The design register now states its priority order permanently: creativity
