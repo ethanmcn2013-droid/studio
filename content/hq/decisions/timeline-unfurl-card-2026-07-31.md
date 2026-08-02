@@ -80,7 +80,7 @@ quietly restore the enum grammar or drop the image.
 
 ## Notes
 
-Shipped 2026-07-31 in Tasks dispatch T·126, from item P0-3 of the design
+Shipped 2026-07-31 in Tasks dispatch T·127, from item P0-3 of the design
 review at `docs/TIMELINE_DESIGN_REVIEW.md`. The card renders at
 `/s/[token]/opengraph-image` with the design system values flattened to
 literals, since the image renderer cannot read CSS custom properties. The

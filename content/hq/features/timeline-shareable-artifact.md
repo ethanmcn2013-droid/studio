@@ -86,7 +86,7 @@ The hero on the Timeline marketing page carries a copy of the artifact
 model; its Today-dash math was brought to parity in the same studio change
 that records this entry.
 
-## Artifact finish pass (Tasks dispatch T·126, 2026-07-31)
+## Artifact finish pass (Tasks dispatch T·127, 2026-07-31 to 2026-08-02)
 
 A design review ran against the real render: the Mara and Finn fixture
 measured at 360 to 1728 pixels, printed to A4, driven by keyboard, and

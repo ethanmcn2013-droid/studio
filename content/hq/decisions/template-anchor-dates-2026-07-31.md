@@ -99,7 +99,7 @@ convention.
 
 ## Notes
 
-Shipped 2026-07-31 in Tasks dispatch T·126, from item P1-8 of the design
+Shipped 2026-08-02 in Tasks dispatch T·127, from item P1-8 of the design
 review at `docs/TIMELINE_DESIGN_REVIEW.md`, which had been deferred
 because the fix is studio-side. Template types and the wedding seed live
 in the studio repo; the resolver and its tests live in the Timeline

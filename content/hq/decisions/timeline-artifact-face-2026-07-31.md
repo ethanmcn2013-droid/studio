@@ -87,7 +87,7 @@ budget should be measured against it, not added beside it.
 
 ## Notes
 
-Shipped 2026-07-31 in Tasks dispatch T·126, alongside the design review
+Shipped 2026-07-31 in Tasks dispatch T·127, alongside the design review
 at `docs/TIMELINE_DESIGN_REVIEW.md` (items P1-1 and the elevation pass).
 The mark geometry lives in `timeline-artifact.module.css` under "The mark
 system". The detail panel's status echo reproduces the same three
