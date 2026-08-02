@@ -3,7 +3,7 @@ title: Timeline shareable artifact
 slug: timeline-shareable-artifact
 lens: Data Flows
 owner: Ethan
-lastVerified: 2026-07-26
+lastVerified: 2026-08-02
 links: [five-products-as-a-system, turso-databases-and-reads, pricing-and-entitlements]
 tags: [Timeline, publication, link-only, share token, qualified view, privacy, unified app]
 references: [../tasks/src/modules/timeline, ../tasks/src/app/s, ../roadmap/drizzle, docs/architecture/ADR-006-planning-periods-and-audience-publication.md, content/hq/decisions/timeline-option-d-selected-2026-07-22.md]
@@ -50,10 +50,15 @@ that publication and nothing else.
 3. The shared route renders without Clerk, the app rail, general page
    analytics, or third-party scripts. It sends noindex, noarchive, no-store,
    and no-referrer controls.
-4. The browser posts a viewing receipt only after the artifact remains visible
+4. A pasted link unfurls as a data-free card. The image is the Timeline
+   wordmark, the rail motif, and one indigo mark, identical for every
+   publication and carrying no names, dates, milestone titles, or progress.
+   Beside it the unfurl shows the publication label and a per-kind
+   description. Metadata fetches never count as views.
+5. The browser posts a viewing receipt only after the artifact remains visible
    for the qualification window. The server deduplicates the publication
    session and increments the aggregate once.
-5. The owner route reads the aggregate and shows the production renderer at
+6. The owner route reads the aggregate and shows the production renderer at
    desktop and phone widths. It never fires the viewing receipt.
 
 ## WHEN

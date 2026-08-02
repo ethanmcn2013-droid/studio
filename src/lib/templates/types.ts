@@ -78,11 +78,36 @@ export type RoadmapItemSeed = {
   status: RoadmapStatus;
   /** Plain-English when label or YYYY-MM-DD. Optional. */
   targetDate?: string;
+  /**
+   * Days from the seed's anchor date, negative meaning before it. Applied
+   * only when the template declares an anchor and the customer supplies the
+   * date at instantiation; otherwise the item seeds undated, exactly as
+   * before. Never combine with `targetDate` — the offset wins.
+   */
+  anchorOffsetDays?: number;
+};
+
+/**
+ * The one date this template's customer already knows before anything else
+ * is planned: a wedding day, a move-in, an opening night. A plan that points
+ * at a known day earns a countdown, a Today dash, and real calendar spacing;
+ * an undated seed earns none of them, which is why the flagship template's
+ * first-run artifact read flat next to the dated fixture everyone reviews.
+ */
+export type RoadmapAnchorSeed = {
+  /** Noun phrase for the day itself, used as the countdown's label. */
+  label: string;
+  /** The question instantiation asks. One line, plain. */
+  prompt: string;
+  /** Optional helper under the field. */
+  hint?: string;
 };
 
 export type RoadmapSeed = {
   projects: RoadmapProjectSeed[];
   items: RoadmapItemSeed[];
+  /** Declared when this template's plan points at one known day. */
+  anchor?: RoadmapAnchorSeed;
 };
 
 /**
