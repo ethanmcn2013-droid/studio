@@ -7,6 +7,33 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-01 · S·160 · reads · what actually enforces the north star
+
+**The three priorities were checked against the machinery that enforces them,
+and the machinery runs in the inverse order of the priorities.** Experience is
+priority 1 and its only instrument had been frozen since 2026-07-28 waiting on
+the operator. Design is priority 2 and its gate — 13 dimensions, 50/52, fail
+closed — has never certified anything. Utility is priority 3 and had no
+instrument at all.
+
+Two founder-gated decisions are now in the ledger where /hq shows them, rather
+than resting in a repo doc nobody opens. **Supply delight reference
+components** carries the unblocking work: the app repo grouped its 66
+catalogued sites into nine families, so the input needed is nine decisions,
+not sixty, and four of those families already have a shipped internal
+reference that can simply be adopted. It also carries the one question no
+reference answers — whether the product gets one perpetual mark or none.
+**Rule on the 9.5 gate's scope** carries the measurement: one certification
+pass requires 1,560 evidenced taste judgements, which is why zero have ever
+been produced. The recommendation is to narrow the first pass to one product
+at one viewport and let the ratchet widen it. Nothing proposes lowering the
+50/52 threshold, the fail-closed posture, or the ban on automated taste
+scores.
+
+Utility's instrument shipped in the app repo this cycle rather than here: the
+first-contact test, with an automated language half running in CI and an
+eight-step unaided walk for the human half.
+
 ## 2026-08-01 · S·159 · holds · the north star: experience, then design, then utility
 
 **The suite now has a written priority order for everything
