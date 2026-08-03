@@ -111,14 +111,14 @@ export function SignalTheRead({
   /**
    * The heading level the embedded frame's headline takes; item titles sit
    * one level under it. The homepage embeds this inside an h3 chapter, so 4
-   * is the default. A page whose sections are h2 passes 3, so the briefing
-   * nests as a sibling of the other sample's own h3 content rather than
-   * under it.
+   * is the default. A page that stacks this beside another sample document
+   * with h2 headings of its own passes 2, so the briefing reads as a
+   * sibling sample rather than a subsection of its neighbour's outline.
    */
-  embeddedHeadingLevel?: 3 | 4;
+  embeddedHeadingLevel?: 2 | 3 | 4;
 } = {}) {
-  const EmbeddedHeadline = `h${embeddedHeadingLevel}` as "h3" | "h4";
-  const EmbeddedItemTitle = `h${embeddedHeadingLevel + 1}` as "h4" | "h5";
+  const EmbeddedHeadline = `h${embeddedHeadingLevel}` as "h2" | "h3" | "h4";
+  const EmbeddedItemTitle = `h${embeddedHeadingLevel + 1}` as "h3" | "h4" | "h5";
   return (
     <section
       className={`rd${embedded ? " rd-embedded" : ""}`}

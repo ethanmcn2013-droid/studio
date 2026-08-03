@@ -83,12 +83,14 @@ import styles from "./venue-a.module.css";
  * the embedded timeline sample ships two h2s of its own, both deliberate
  * house decisions inside timeline-artifact.tsx: the visible document header
  * that carries the couple's names, and a screen-reader-only "Plan timeline"
- * section heading. With the rungs at the same level, the sample reads as one
- * small sibling document, two headings long, after rung 01, and can never
- * own rungs 02 through 07 in a heading-list navigation. Demoting the pair
- * would mean editing the shared artifact every marketing surface embeds, and
- * flattening the sample for assistive technology would take rung 01's
- * display answer away from exactly the readers heading navigation serves.
+ * section heading. With the rungs at the same level, the samples read as
+ * two small sibling documents after rung 01 — the plan, then the briefing,
+ * which takes embeddedHeadingLevel 2 for exactly this reason — and neither
+ * can own rungs 02 through 07 in a heading-list navigation. Demoting the
+ * timeline's pair would mean editing the shared artifact every marketing
+ * surface embeds, and flattening the samples for assistive technology would
+ * take rung 01's display answer away from exactly the readers heading
+ * navigation serves.
  * The block titles inside a rung (the ledger, the film) are h3 under it. The
  * 17-row ledger lives inside rung 03 because it is the price's conditions;
  * the reserved film frame lives inside rung 04 because the film is what a
@@ -181,6 +183,7 @@ const COPY = {
   notUsedTerm: "If your couples do not use it",
   whereTerm: "Where",
 
+  closingName: "Ethan McNamara",
   closingProgramme: "The Founding 25",
   closingPlace: "Limerick, 2026",
 } as const;
@@ -373,6 +376,11 @@ export default function VenuesLabA() {
 
           <div
             className="reveal-relay-source"
+            /* role="group" makes the aria-label valid: a label on a plain
+               div is ARIA-prohibited (axe aria-prohibited-attr). The
+               homepage's own relay carries the byte-identical pattern
+               without the role; flagged there, fixed here. */
+            role="group"
             aria-label="Sample workspace context"
           >
             <span>{COPY.sourceLabel}</span>
@@ -406,9 +414,12 @@ export default function VenuesLabA() {
 
               <div className="reveal-relay-preview" data-product="signal">
                 <p className="reveal-relay-sample">{COPY.sampleView}</p>
+                {/* Heading level 2, so the briefing is its own sample
+                    document beside the timeline's, not a subsection of
+                    the timeline's screen-reader outline. */}
                 <SignalTheRead
                   embedded
-                  embeddedHeadingLevel={3}
+                  embeddedHeadingLevel={2}
                   items={VENUE_SIGNAL_ITEMS}
                   venue={COPY.sourceVenue}
                 />
@@ -530,12 +541,13 @@ export default function VenuesLabA() {
                   row that governs all of them; scrolled, it pins under the
                   site nav and the sixteen conditions pass beneath their
                   own price. One object, both jobs, and it needs no
-                  animation support to be correct. Where scroll-driven
-                  animations are supported, the module's authored
-                  crossfade also fades this row in over the price
-                  figure's exit, so the arrival viewport does not state
-                  the number three times; see "Authored motion" in
-                  venue-a.module.css. */}
+                  animation support to be correct. Deliberately
+                  unanimated: an earlier fade timed to the price
+                  figure's exit left this row invisible while on
+                  screen, and the decision of record, written up in the
+                  module's "Authored motion" note, is that the number
+                  repeating between the display figure and the ledger's
+                  own first row is the honest state. */}
               {/* The dl itself carries the sticky position: a sticky element
                   travels only within its parent, and a wrapper exactly one
                   row tall would give it zero travel. As a direct child of
@@ -779,7 +791,19 @@ export default function VenuesLabA() {
             </Link>
           </div>
 
+          {/* The page's whole trust register hangs on a first person:
+              "extendable by me, personally", "neither can I", "I will
+              tell you the true number", and the sign directly above,
+              "It goes to me, not a form". The address strip resolves
+              that person by name, where a letter would sign, so the
+              forwarded partner and the coordinator can place the "me"
+              without clicking through. Attribution furniture, not a
+              new claim. */}
           <p className="reveal-closing-addr">
+            <span>{COPY.closingName}</span>
+            <span className="sep" aria-hidden>
+              ·
+            </span>
             <span>{COPY.closingProgramme}</span>
             <span className="sep" aria-hidden>
               ·

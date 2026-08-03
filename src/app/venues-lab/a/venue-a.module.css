@@ -47,7 +47,7 @@
      radius     14px, from .reveal-relay-preview
      grounds    var(--paper), --paper-soft, --paper-deep. No new colour.
 
-   MOTION. Four authored keyframes, all scroll-driven on named view
+   MOTION. Three authored keyframes, all scroll-driven on named view
    timelines, all inside @supports + prefers-reduced-motion:
    no-preference, so the static page is the baseline and the drawing is
    the enhancement. The rank's timeline lives on its whole column, not
@@ -711,8 +711,13 @@
    size than the 67px/540 answers one step above it. 540 here keeps
    the scale ladder's weight logic: same weight, smaller size, one
    step quieter. */
+/* Terminal capped at 4.2rem, one step under the relay head's 4.6rem:
+   the two shared a terminal and tied at 73.6px from 1821px up, which
+   collapsed one rung of the documented ladder at full-screen desktop
+   widths. With this cap the order answers, head, ask holds strictly
+   at every width. */
 .page :global(.reveal-closing-sign) {
-  font-size: clamp(1.9rem, 1.3rem + 2.9vw, 4.6rem);
+  font-size: clamp(1.9rem, 1.3rem + 2.9vw, 4.2rem);
   font-weight: 540;
   letter-spacing: -0.046em;
   line-height: 1.02;
