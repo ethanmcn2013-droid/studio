@@ -79,7 +79,7 @@ export function HqTraction({ state }: { state: TractionState }) {
         <Stat
           n={state.foundingVenues}
           label="founding"
-          note="€1.5k locked for life"
+          note="€1k, held on renewal"
         />
         <Stat
           n={state.signedUnpaidVenues}

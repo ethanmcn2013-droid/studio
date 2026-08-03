@@ -4,6 +4,10 @@ Status: draft operating plan - 2026-05-26
 Owner: founder
 Boundary: no venue outreach is sent until the founder approves the visual pack, motion/video assets, and final email copy.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Mission
@@ -47,7 +51,7 @@ Signal Studio is not being sold as "planning software for weddings." It is the p
 | Exclusive-use or one-wedding-per-day model | The venue is selling calm, privacy, and service. Signal can extend that promise into planning. |
 | Visible wedding team/coordinator | The buyer already knows planning friction exists and has staff who feel the pain. |
 | Destination or multi-day weddings | Long planning windows, remote couples, guests, travel, suppliers, and repeated questions create a real coordination problem. |
-| Premium brand and high average spend | EUR1,500/year is easiest to justify when one incremental premium booking or smoother client experience covers it. |
+| Premium brand and high average spend | EUR1,500/year standard (EUR1,000/year for the Founding 25) is easiest to justify when one incremental premium booking or smoother client experience covers it. |
 | Independent or family-run decision path | Faster early adoption than large corporate procurement. |
 | Existing content quality | Venues already investing in brand experience are more likely to value a polished post-booking layer. |
 

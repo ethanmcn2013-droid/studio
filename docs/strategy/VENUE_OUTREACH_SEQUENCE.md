@@ -4,6 +4,10 @@ Status: held draft - 2026-05-26
 Owner: founder
 Boundary: do not send. These are working drafts for later founder approval after sales pack, motion/video, tracking, and ops rehearsal are ready.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Rule
@@ -100,7 +104,7 @@ For a venue, the operation is deliberately small:
 
 1. You pay once a year.
 2. You give each couple a code.
-3. The couple gets eighteen months of Signal Studio.
+3. The couple gets Signal Studio for eighteen months, or until three months after the wedding, whichever is later.
 4. Your team has nothing to run.
 
 The couple never sees a price.
@@ -157,7 +161,7 @@ I am building Signal Studio for premium wedding venues: one planning layer a ven
 | "Send more information" | Send the one-page PDF and ask one question: "Is repeated planning admin a live issue for your team, or is the current process already calm?" |
 | "We already have planners" | "That usually helps. The question is whether the planner, couple, suppliers, and venue are all working from one current picture. Signal Studio is for that shared picture." |
 | "We are too busy right now" | "Completely fair. Is there a better month to revisit, or should I leave it?" |
-| "What does it cost?" | "Venue Edition is EUR1,500 per venue/year, prepaid. Founding venues lock that price for as long as they stay. The couple never sees a price." |
+| "What does it cost?" | "Venue Edition is EUR1,500 per venue/year, prepaid, VAT included. If you're one of the Founding 25, it's EUR1,000, five hundred less, for as long as you stay. The couple never sees a price." |
 | "Who else uses it?" | Be honest. "This is the founding cohort, so the early venues are shaping the motion before there is a case study." |
 | "Can we see a demo?" | Offer the setup ritual, not a feature demo: "The best version is 25 minutes with one real upcoming wedding from your side. I build the shape live, you see whether it is useful." |
 | "No thanks" | Thank them and stop. No nurture unless they explicitly invite it. |

@@ -6,17 +6,23 @@ const contracts = [
   "suite-contracts.v1.json",
   "suite-contracts.v2.json",
   "commercial-terms.v1.json",
+  "commercial-terms.v2.json",
 ];
 /**
  * Consumers of the suite contracts.
  *
- * Since the July 2026 consolidation there is one signed-in application, and it
- * lives in `tasks`. The former `notes`, `roadmap`, and `analytics` repositories
- * are provenance only, so their fixtures are frozen at whatever the contract
- * said when they stopped shipping. Checking them would report that history as
- * drift and train everyone to ignore this gate.
+ * Since the July 2026 consolidation there is one signed-in application. It was
+ * called `tasks`; the July 2026 infrastructure reset renamed the directory to
+ * `app`. The former `notes`, `roadmap`, and `analytics` repositories are
+ * provenance only, so their fixtures are frozen at whatever the contract said
+ * when they stopped shipping. Checking them would report that history as drift
+ * and train everyone to ignore this gate.
+ *
+ * The alias below carried the old name on both sides, so after the rename this
+ * gate reported "missing generated fixture" for every contract and stopped
+ * checking anything. Found while shipping commercial-terms.v2 (VEF-2026 WP-10).
  */
-const repoAliases = [["tasks", "tasks"]];
+const repoAliases = [["tasks", "app"]];
 const errors = [];
 for (const contract of contracts) {
   const canonical = fs.readFileSync(path.join(process.cwd(), "contracts", contract), "utf8");
@@ -41,14 +47,14 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `suite-contract-consumers: ok (unified app, suite v1+v2, commercial v1)`,
+  `suite-contract-consumers: ok (unified app, suite v1+v2, commercial v1+v2)`,
 );
 
 const readContract = JSON.parse(fs.readFileSync(path.join(process.cwd(), "contracts", "tasks-read-contract.v1.json"), "utf8"));
 // Module paths in the unified app, not the pre-consolidation repo layout.
 const readConsumers = [
-  [["tasks"], "src/modules/signal/lib/briefing/tasks-read-contract.v1.json", "briefing"],
-  [["tasks"], "src/modules/timeline/server/sync/tasks-read-contract.v1.json", "milestones"],
+  [["app", "tasks"], "src/modules/signal/lib/briefing/tasks-read-contract.v1.json", "briefing"],
+  [["app", "tasks"], "src/modules/timeline/server/sync/tasks-read-contract.v1.json", "milestones"],
 ];
 for (const [aliases, relative, operation] of readConsumers) {
   const repo = aliases.find((candidate) => fs.existsSync(path.join(root, candidate)));
@@ -83,19 +89,20 @@ if (fs.existsSync(instrumentationCanonical)) {
   const canonicalShape = JSON.stringify(
     JSON.parse(fs.readFileSync(instrumentationCanonical, "utf8")),
   );
+  const appRepo = fs.existsSync(path.join(root, "app")) ? "app" : "tasks";
   const consumer = path.join(
     root,
-    "tasks",
+    appRepo,
     "src/lib/account/instrumentation",
     instrumentationContract,
   );
   if (!fs.existsSync(consumer)) {
-    console.error(`tasks: missing ${instrumentationContract} fixture`);
+    console.error(`${appRepo}: missing ${instrumentationContract} fixture`);
     process.exit(1);
   }
   const consumerShape = JSON.stringify(JSON.parse(fs.readFileSync(consumer, "utf8")));
   if (consumerShape !== canonicalShape) {
-    console.error(`tasks: ${instrumentationContract} differs from studio/contracts`);
+    console.error(`${appRepo}: ${instrumentationContract} differs from studio/contracts`);
     process.exit(1);
   }
   console.log("suite-contract-consumers: ok (venue-meaningful-action v1)");

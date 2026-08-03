@@ -1,4 +1,4 @@
-import commercialTerms from "../../contracts/commercial-terms.v1.json";
+import commercialTerms from "../../contracts/commercial-terms.v2.json";
 
 export const COMMERCIAL_TERMS_VERSION = commercialTerms.version;
 export const COMMERCIAL_TERMS = Object.freeze(commercialTerms);

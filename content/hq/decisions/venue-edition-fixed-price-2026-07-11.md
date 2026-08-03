@@ -3,10 +3,16 @@ id: venue-edition-fixed-price-2026-07-11
 title: Venue Edition holds one price at €1,500 per venue, per year
 category: Pricing
 date: 2026-07-11
-status: Active
+status: Superseded
 reviewDate: 2026-10-11
 relatedObjects: [Founding Venue Programme, Venue Editions, venue-editions-paid-tier, venue-editions-mechanic, pricing-and-entitlements, Access]
 ---
+
+> **Superseded on 2026-08-03 by `venue-edition-founding-25-2026-08-03`.** The
+> standard price is unchanged at €1,500 and is now stated VAT-inclusive. The
+> founding cohort is 25 venues, not 15, and pays €1,000. The argument below
+> against a founding discount is dated history and is not the current offer.
+> Nothing below has been rewritten.
 
 ## Decision
 
