@@ -96,9 +96,17 @@ export type SignalReadItem = {
 export function SignalTheRead({
   embedded = false,
   items = ITEMS,
+  venue = "The Orchard",
 }: {
   embedded?: boolean;
   items?: SignalReadItem[];
+  /**
+   * The sample workspace's venue, shown in the dateline stamp. Defaults to the
+   * homepage relay fixture. Surfaces with their own canon pass their own name:
+   * hiding this with CSS still ships the wrong name in the HTML, the RSC
+   * payload and any link preview.
+   */
+  venue?: string;
 } = {}) {
   return (
     <section
@@ -120,7 +128,7 @@ export function SignalTheRead({
           <span className="rd-stamp">
             <time dateTime="2026-07-29T09:00">Wednesday, 09:00</time>
             <span aria-hidden="true">·</span>
-            The Orchard
+            {venue}
           </span>
         </div>
 

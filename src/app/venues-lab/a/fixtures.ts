@@ -15,6 +15,13 @@ import type { SignalReadItem } from "@/components/marketing/heroes/signal/the-re
  * and the position of `today` are copied from the shipped fixture on purpose,
  * because the artifact derives a milestone's state from its date, and a "now"
  * milestone dated in the past renders as overdue instead of current.
+ *
+ * `today` is Wednesday 29 July 2026, and that one date governs three surfaces
+ * that a reader can see at once: this card's "Updated 29 Jul 2026", the
+ * provenance strip above the two previews, and the Signal frame's label, which
+ * carries the 09:00 timestamp proving the briefing is a morning note. They
+ * previously disagreed, so the page said 27 July while the product inside it
+ * said Wednesday the 29th.
  */
 export const VENUE_TIMELINE_FIXTURE: AudienceTimelineDto = {
   version: 1,
@@ -23,8 +30,8 @@ export const VENUE_TIMELINE_FIXTURE: AudienceTimelineDto = {
   label: "Mara and Finn",
   ownerDisplayLabel: "Mara",
   primaryDate: { label: "The wedding", date: "2026-09-12" },
-  lastUpdatedAt: "2026-07-27T09:14:00.000Z",
-  today: "2026-07-27",
+  lastUpdatedAt: "2026-07-29T09:14:00.000Z",
+  today: "2026-07-29",
   sections: [
     {
       state: "covered",

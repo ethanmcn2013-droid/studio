@@ -13,6 +13,10 @@
  * belongs here. The frame itself is `.reveal-relay-preview`, the same product
  * chrome the timeline sits in, supplied by the page.
  *
+ * PANEL 2026-08-03. The 9px "16 : 9" corner mark is gone. It was --ink-ghost
+ * on --paper-deep at 1.34:1, a WCAG 1.4.3 failure, and it restated an aspect
+ * note the copy column already carried 40px away.
+ *
  * When the founder supplies the file, pass `src` (and `captionsSrc`, `poster`)
  * and the same frame becomes the player with nothing else to change.
  */
@@ -70,10 +74,6 @@ export function FilmSlot({
           <PlayMark />
           <p className="vb-film-line">{placeholder}</p>
         </div>
-
-        <span className="vb-film-ratio" aria-hidden="true">
-          16 : 9
-        </span>
       </div>
     );
   }
