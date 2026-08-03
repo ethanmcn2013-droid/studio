@@ -13,14 +13,17 @@
    and are reached near 1650-1700), largest to smallest:
      h1                104px   .reveal-headline-v2 (house)
      price figure       95px   .priceFigure          (max 102)
-     relay head h2      74px   .reveal-relay-head h2 (house, max 80).
-                               The one display voice that is connective
-                               rather than ratified: it is the house
-                               relay grammar this page borrows whole,
-                               and restyling it would break the "same
-                               studio" read against the homepage.
      the two answers    67px   .answerLg  (what a venue can never see,
                                and "Nobody yet.")     (max 75)
+     relay head h2      65px   .reveal-relay-head h2  (max 74). The one
+                               display voice that is connective rather
+                               than ratified: the house relay grammar,
+                               borrowed whole in face, weight, tracking,
+                               leading and measure, with the terminal
+                               size alone capped one step under the
+                               answers, because on this page the display
+                               register is the answers' by law and the
+                               head only introduces them.
      the ask            63px   .reveal-closing-sign (raised, house base)
      rung answers       48px   .answer
      the access term    36px   .answerTerm — a 91-character contract
@@ -44,7 +47,7 @@
      radius     14px, from .reveal-relay-preview
      grounds    var(--paper), --paper-soft, --paper-deep. No new colour.
 
-   MOTION. Three authored keyframes, all scroll-driven on named view
+   MOTION. Four authored keyframes, all scroll-driven on named view
    timelines, all inside @supports + prefers-reduced-motion:
    no-preference, so the static page is the baseline and the drawing is
    the enhancement. The rank's timeline lives on its whole column, not
@@ -89,6 +92,33 @@
   }
 }
 
+/* ── The rung 02 to rung 03 seam ──────────────────────────────────
+   Rung 02 breaks out into the manifesto grammar, and the homepage
+   never resumes a relay after its manifesto, so the house has no
+   rule for this seam: the manifesto's own exit padding (172px at
+   1440) stacked on the resuming relay's head padding (144px) put
+   316px of air above rung 03's hairline against the 116px below it.
+   The page's largest gap landed mid-argument, before "What it
+   costs", around an off-centre rule, where every other chapter seam
+   reads 116/rule/116. The manifesto keeps its full house entrance
+   from rung 01; its exit takes the chapter seam's own clamp, and the
+   resumed relay contributes nothing, so this seam reads exactly like
+   every other chapter seam at every width. */
+.page .rung:global(.reveal-manifesto) {
+  /* The house manifesto rides a 1080px container against the relay's
+     1240px, which jogged the seven-numeral spine 80px to the right at
+     rung 02 and back again at rung 03. On this page the numerals ARE
+     the ladder, so rung 02 takes the relay's own container and the
+     spine runs straight from 01 to 07. The manifesto's type keeps its
+     own measures (17ch head, its body clamps), so nothing else moves. */
+  width: min(1240px, calc(100% - 40px));
+  padding-bottom: clamp(64px, 9vw, 116px);
+}
+
+.page .relayResume {
+  padding-top: 0;
+}
+
 /* ── The rung 02 numeral ──────────────────────────────────────────
    Rung 02 breaks out of the relay into the manifesto grammar, and the
    house manifesto eyebrow (11px, --ink-500, 0.14em, 28px drop) set its
@@ -103,6 +133,21 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
+}
+
+/* ── The relay head, one step under the answers ───────────────────
+   The house sets .reveal-relay-head h2 at clamp(2.4rem, 1.45rem +
+   3.5vw, 5rem): 74px at 1440, above the 67px answers. On the
+   homepage nothing that head introduces outranks it. Here the page's
+   stated law is that the display register belongs to the ratified
+   answers, and the head is the one connective voice, so it is kept
+   in every respect but terminal size: same face, weight 560,
+   -0.052em, 0.98 leading, 14ch measure. This clamp resolves to 65px
+   at 1440 and sits under .answerLg at every viewport width, and
+   above the raised ask through the widths the page is read at, so
+   the scale reads answers, head, ask, in that order. */
+.page :global(.reveal-relay-head) h2 {
+  font-size: clamp(2.2rem, 1.35rem + 3vw, 4.6rem);
 }
 
 /* ── The question register ────────────────────────────────────────
@@ -427,14 +472,16 @@
    The ratified rule is that the price never travels without its
    conditions, and the mechanism that enforces it is ledger row 01
    itself. At rest it is simply the first row of the first group,
-   drawn by .ledgerRow like its sixteen siblings, so the arrival
-   viewport repeats nothing. Scrolled, it pins under the site nav and
-   the conditions pass beneath their own price. One object, both
-   jobs, correct with no animation support at all. Top offset is the
-   nav's 56px; z-index stays below the nav's 40 and above the group
-   labels it passes. The paper ground and the bottom hairline only
-   matter once it is stuck; at rest the bottom hairline reads as the
-   next row's top rule, which is exactly what it is standing in for. */
+   drawn by .ledgerRow like its sixteen siblings. Scrolled, it pins
+   under the site nav and the conditions pass beneath their own
+   price. One object, both jobs, correct with no animation support at
+   all, and deliberately unanimated: see the motion block's note on
+   why the row's earlier fade was retired. Top offset is the nav's
+   56px; z-index stays below the nav's 40 and
+   above the group labels it passes. The paper ground and the bottom
+   hairline only matter once it is stuck; at rest the bottom hairline
+   reads as the next row's top rule, which is exactly what it is
+   standing in for. */
 .stickyBar {
   position: sticky;
   top: 56px;
@@ -690,18 +737,16 @@
    draws its baseline and then stands its twenty-five places up along
    it, one after another.
 
-   And one crossfade: the sticky price bar's text is verbatim ledger
-   row 01, so at rest, with the 95px figure directly above, the same
-   sentence showed three times in one arrival viewport. The bar now
-   fades in on a scroll-driven animation keyed to the price figure's
-   own view timeline, over exactly the scroll in which the figure
-   exits the top of the viewport. The geometry the bar exists for is
-   preserved at every position: while the figure is on screen the
-   figure itself is the number over the rows, and by the moment it has
-   gone the bar is at full opacity and riding. In browsers without
-   scroll-driven animations, and under prefers-reduced-motion, the
-   bar is simply always visible, which is the current shipped state
-   and the safe baseline.
+   The sticky price row is deliberately NOT animated. An earlier build
+   faded it in on the price figure's exit so the number would not
+   appear twice in the arrival viewport, and the fade was worse than
+   the repetition: for the whole stationary window in which the figure
+   and the ledger share the screen, row 01 rendered as a blank slot in
+   a seventeen-row ledger. The repetition is the honest state. The
+   95px figure is rung 03's display answer; row 01 is the ledger's own
+   first row; they are different objects with different jobs, and a
+   ledger that opens with its price is not a defect. A row that is
+   invisible while on screen is.
 
    The rank's timeline is named on .rankColumn, the whole right-hand
    column of rung 07, which is several hundred pixels tall. Its entry
@@ -801,6 +846,12 @@
 }
 
 @media (max-width: 640px) {
+  /* The house chapter seam narrows to 66px each side at this width;
+     the manifesto's exit follows it, same as at every other width. */
+  .page .rung:global(.reveal-manifesto) {
+    padding-bottom: 66px;
+  }
+
   .contents {
     grid-column: 1;
   }
@@ -826,6 +877,14 @@
 
   .rankTick[data-major] {
     height: 26px;
+  }
+
+  /* The scale ladder's law is h1 first, price second, at every width.
+     The price clamp's floor outran the h1's at phone widths (49.6px
+     against 46.5px at 375), the one place a lower rung outranked a
+     higher one. Capped under the h1's own mobile floor. */
+  .priceFigure {
+    font-size: clamp(2.35rem, 11.2vw, 2.9rem);
   }
 
   /* The sticky price row must not tax a phone viewport: stacked like

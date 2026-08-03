@@ -80,10 +80,15 @@ import styles from "./venue-a.module.css";
  *
  * STRUCTURE. Exactly seven h2 rungs, in ladder order, each with an id the
  * contents in the relay head can reach. The rungs sit at h2, not h3, because
- * the embedded timeline sample ships its own h2 document header (a deliberate
- * house decision inside timeline-artifact.tsx): with the rungs one level
- * above it, the sample card reads as one small sibling document after rung
- * 01, and can never own rungs 02 through 07 in a heading-list navigation.
+ * the embedded timeline sample ships two h2s of its own, both deliberate
+ * house decisions inside timeline-artifact.tsx: the visible document header
+ * that carries the couple's names, and a screen-reader-only "Plan timeline"
+ * section heading. With the rungs at the same level, the sample reads as one
+ * small sibling document, two headings long, after rung 01, and can never
+ * own rungs 02 through 07 in a heading-list navigation. Demoting the pair
+ * would mean editing the shared artifact every marketing surface embeds, and
+ * flattening the sample for assistive technology would take rung 01's
+ * display answer away from exactly the readers heading navigation serves.
  * The block titles inside a rung (the ledger, the film) are h3 under it. The
  * 17-row ledger lives inside rung 03 because it is the price's conditions;
  * the reserved film frame lives inside rung 04 because the film is what a
@@ -403,6 +408,7 @@ export default function VenuesLabA() {
                 <p className="reveal-relay-sample">{COPY.sampleView}</p>
                 <SignalTheRead
                   embedded
+                  embeddedHeadingLevel={3}
                   items={VENUE_SIGNAL_ITEMS}
                   venue={COPY.sourceVenue}
                 />
@@ -476,8 +482,11 @@ export default function VenuesLabA() {
           </dl>
         </section>
 
-        {/* ── Relay, part two · .reveal-relay ────────────────────── */}
-        <div className="reveal-relay">
+        {/* ── Relay, part two · .reveal-relay. relayResume drops the
+            head padding the house reserves for a relay's own head,
+            which part two does not have: without it the rung 02 to
+            rung 03 seam was the page's largest gap. ──────────────── */}
+        <div className={`reveal-relay ${styles.relayResume}`}>
           {/* Rung 03 · what it costs. The number is the rung's display
               answer, and it never travels without its conditions: the
               sticky bar carries the ratified price sentence over the whole
@@ -521,7 +530,12 @@ export default function VenuesLabA() {
                   row that governs all of them; scrolled, it pins under the
                   site nav and the sixteen conditions pass beneath their
                   own price. One object, both jobs, and it needs no
-                  animation support to be correct. */}
+                  animation support to be correct. Where scroll-driven
+                  animations are supported, the module's authored
+                  crossfade also fades this row in over the price
+                  figure's exit, so the arrival viewport does not state
+                  the number three times; see "Authored motion" in
+                  venue-a.module.css. */}
               {/* The dl itself carries the sticky position: a sticky element
                   travels only within its parent, and a wrapper exactly one
                   row tall would give it zero travel. As a direct child of

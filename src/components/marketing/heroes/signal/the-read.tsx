@@ -97,6 +97,7 @@ export function SignalTheRead({
   embedded = false,
   items = ITEMS,
   venue = "The Orchard",
+  embeddedHeadingLevel = 4,
 }: {
   embedded?: boolean;
   items?: SignalReadItem[];
@@ -107,7 +108,17 @@ export function SignalTheRead({
    * payload and any link preview.
    */
   venue?: string;
+  /**
+   * The heading level the embedded frame's headline takes; item titles sit
+   * one level under it. The homepage embeds this inside an h3 chapter, so 4
+   * is the default. A page whose sections are h2 passes 3, so the briefing
+   * nests as a sibling of the other sample's own h3 content rather than
+   * under it.
+   */
+  embeddedHeadingLevel?: 3 | 4;
 } = {}) {
+  const EmbeddedHeadline = `h${embeddedHeadingLevel}` as "h3" | "h4";
+  const EmbeddedItemTitle = `h${embeddedHeadingLevel + 1}` as "h4" | "h5";
   return (
     <section
       className={`rd${embedded ? " rd-embedded" : ""}`}
@@ -134,10 +145,10 @@ export function SignalTheRead({
 
         <div className="rd-head">
           {embedded ? (
-            <h4 className="rd-headline">
+            <EmbeddedHeadline className="rd-headline">
               Two things genuinely
               <br className="rd-br" /> need you.
-            </h4>
+            </EmbeddedHeadline>
           ) : (
             <h1 className="rd-headline" id="rd-title">
               Two things genuinely
@@ -176,7 +187,9 @@ export function SignalTheRead({
 
               <div className="rd-body">
                 {embedded ? (
-                  <h5 className="rd-item-title">{item.title}</h5>
+                  <EmbeddedItemTitle className="rd-item-title">
+                    {item.title}
+                  </EmbeddedItemTitle>
                 ) : (
                   <h2 className="rd-item-title">{item.title}</h2>
                 )}
