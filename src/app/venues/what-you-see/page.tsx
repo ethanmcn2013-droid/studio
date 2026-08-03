@@ -63,7 +63,7 @@ const rhythm = [
   },
   {
     title: "The record comes back with your name on it",
-    copy: "What was issued for your venue, and what was opened. Your name at the top, the figures underneath, nothing to log into.",
+    copy: "What was issued for your venue, and what was redeemed. Your name at the top, the figures underneath, nothing to log into.",
   },
 ];
 
@@ -129,7 +129,7 @@ export default function VenueRecordPreviewPage() {
               At launch
             </p>
             <p className="max-w-3xl text-[clamp(1.25rem,1.05rem+1vw,1.75rem)] font-semibold leading-[1.25] tracking-[-0.025em] text-ink">
-              At launch you see your invitations and who opened them. Adoption
+              At launch you see your invitations and which couples redeemed them. Adoption
               figures follow later in the year.
             </p>
             <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-ink-soft">
@@ -163,7 +163,7 @@ export default function VenueRecordPreviewPage() {
                   What you see
                 </p>
                 <p className="text-[15.5px] leading-[1.65] text-ink">
-                  Which invitations you sent, and which couples opened them.
+                  Which invitations you sent, and which couples redeemed them.
                   Adoption figures across your couples as a group. Small numbers
                   are held back so a figure can never point at one couple.
                 </p>
@@ -185,7 +185,7 @@ export default function VenueRecordPreviewPage() {
             </div>
             <p className="mt-6 max-w-2xl text-[14px] leading-[1.6] text-ink-quiet">
               Three things and no fourth: the invitations you sent, the evidence
-              that a couple opened one, and adoption figures across the group.
+              that a couple redeemed one, and adoption figures across the group.
               Nothing else about a couple reaches you through us.
             </p>
           </div>

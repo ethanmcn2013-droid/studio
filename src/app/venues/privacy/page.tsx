@@ -6,11 +6,11 @@ import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 export const metadata: Metadata = {
   title: "What your venue sees · Signal Studio",
   description:
-    "The whole list of what a venue can see about a couple’s planning, and the longer list of what it never sees. At launch you see your invitations and who opened them.",
+    "The whole list of what a venue can see about a couple’s planning, and the longer list of what it never sees. At launch you see your invitations and which couples redeemed them.",
   openGraph: {
     title: "What your venue sees · Signal Studio",
     description:
-      "What a venue sees: its invitations and who opened them. What it never sees: the plan itself. The venue’s name is the only venue thing on a couple’s workspace.",
+      "What a venue sees: its invitations and which couples redeemed them. What it never sees: the plan itself. The venue’s name is the only venue thing on a couple’s workspace.",
     type: "website",
   },
 };
@@ -73,7 +73,7 @@ const contactHref = withTracking("/contact?subject=venue-edition", {
 const privacyBlock = [
   {
     title: "What you see",
-    copy: "Which invitations you sent, and which couples opened them. Adoption figures across your couples as a group. Small numbers are held back so a figure can never point at one couple.",
+    copy: "Which invitations you sent, and which couples redeemed them. Adoption figures across your couples as a group. Small numbers are held back so a figure can never point at one couple.",
   },
   {
     title: "What you never see",
@@ -81,7 +81,7 @@ const privacyBlock = [
   },
   {
     title: "At launch",
-    copy: "At launch you see your invitations and who opened them. Adoption figures follow later in the year.",
+    copy: "At launch you see your invitations and which couples redeemed them. Adoption figures follow later in the year.",
   },
 ];
 
@@ -89,7 +89,7 @@ const privacyBlock = [
 const threeThings = [
   {
     label: "Invitation administration",
-    copy: "The invitations you sent, and the state each one is in: sent, opened, redeemed, expired or withdrawn. The dates that go with each state. Your own term start and end.",
+    copy: "The invitations you sent, and the state each one is in: issued, redeemed, expired or withdrawn. The dates that go with each state. Your own term start and end.",
   },
   {
     label: "Activation evidence",
@@ -258,7 +258,7 @@ export default function VenuePrivacyPage() {
           </div>
         </section>
 
-        {/* ── What opened means ── */}
+        {/* ── What redeemed means ── */}
         <section className="border-b border-border-soft px-6 py-14 md:py-16">
           <div className="mx-auto grid w-full max-w-[1040px] gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
             <div>
@@ -269,13 +269,16 @@ export default function VenuePrivacyPage() {
                 One word, defined
               </p>
               <h2 className="text-[clamp(1.35rem,1.1rem+1.2vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                What “opened” means.
+                What “redeemed” means.
               </h2>
             </div>
             <div className="space-y-4 self-end">
               <p className="text-[15px] leading-[1.65] text-ink-soft">
-                Opened means the couple loaded the page their invitation points
-                at, and nothing else. It is explicitly not an email open.
+                Redeemed means the couple used their invitation and their
+                workspace now exists. It is explicitly not an email open, and it
+                is not a page view either. There is no lighter signal than this
+                one: whether a couple looked at the invitation without using it
+                is not recorded anywhere, so it is not something you can be told.
               </p>
               <p className="text-[15px] leading-[1.65] text-ink-soft">
                 Cold outreach from Signal Studio carries no open pixel either.
