@@ -661,6 +661,27 @@ sweep and require confirmation when it spans more than one.
 - **Affects:** E03.06, E04.08, E06.01, E06.07, E06.12, E12.07, E12.14
 - **Status:** open · **Last reviewed:** 2026-08-03
 
+- **PARTIALLY IMPLEMENTED 2026-08-03 (Wave 4, WP-14). D-033 Option A. Stays OPEN.**
+  A component seam now excludes GA4 from the couple-facing public surfaces unconditionally,
+  ahead of the enabled flag, and all four routes carry an enforced analytics-free CSP.
+  **Three things the adversarial verifier established, and they are why this is not closed:**
+  1. The `/embed` wiring is the one line this package claimed as its own contribution and it
+     is the one with no test behind it. Mutation: unwiring `embedSurfaceAnalyticsHeaders`
+     from `next.config.ts` leaves `pnpm test`, `check-frame-headers` and `tsc` all green.
+  2. The stated CSP mechanism is FALSE in this framework. The code comments claim two
+     same-named policies intersect "the standards-defined way"; Next resolves headers with
+     `resHeaders[key] = value`, so last write wins. The protection may hold for another
+     reason, but not the recorded one.
+  3. **Beyond GA4, the ratified sentence is not satisfied.** D-033 says NO third-party
+     analytics on any couple-facing public surface. `src/instrumentation-client.ts`
+     initialises Sentry on every route except `/s`, at 0.1 trace sampling, and
+     `beforeSend: scrubEvent` covers ERROR events only with no `beforeSendTransaction`, so
+     transaction URLs still leave. Sentry is a third party.
+  **Programme hazard recorded with it:** a sibling agent was writing into the same worktree
+  concurrently, and the full suite was watched going from red to green as a file changed
+  underneath. The red state was GA4 loading on the couple-facing routes. Which snapshot of
+  this branch merges decides whether Option A is actually enforced.
+
 ### R-033 — The embed route is tokenless and frameable on any third-party site
 - **Type:** privacy · **Probability:** certain · **Impact:** medium · **Severity:** medium
 - **Owner:** Claude Code
@@ -690,6 +711,23 @@ sweep and require confirmation when it spans more than one.
 - **Mitigation:** decide whether the sponsored couple artifact uses `/p` at all, or only the token-bound `/s` and `/share` routes · if `/p` stays, add it to `robots.ts` disallow and set `noindex` for wedding workspaces, and say so plainly in the couple's publish confirmation · correct `privacy-permission-matrix.md` and the role map · a standing no on face detection, auto-tagging and face grouping, which both role-map derivations reached independently.
 - **Affects:** E03.01, E03.06, E04.08, E04.10, E06.01, E06.02, E06.05, E06.12, E12.07
 - **Status:** open · **Target:** before E06 work begins · **Last reviewed:** 2026-08-03
+
+- **PARTIALLY IMPLEMENTED 2026-08-03 (Wave 4, WP-14). D-033 Option B. Stays OPEN.**
+  `/p/[slug]/page.tsx` `generateMetadata` now branches on `ws.activeDomain === "wedding"` and
+  returns `index:false, follow:false, noarchive:true, nosnippet:true`. `activeDomain` was
+  already fetched, so no query or schema change was needed. An ordinary published workspace
+  keeps its indexable behaviour deliberately. `/p` is also in `robots.ts` disallow, but that
+  is a courtesy a crawler may ignore and does nothing about link-preview fetchers, so the
+  metadata header is the control. Pinned by `src/app/p/published-wedding-noindex.test.mjs`,
+  registered in `package.json` and mutation-tested (clean 0, branch removed 1, restored 0).
+  **NOT DONE: the couple opt-in has no storage.** No column, no migration, nowhere to record
+  an answer, so the noindex default IS the entire behaviour today. Safe by default and
+  incomplete. The publish confirmation still does not say what publishing does.
+  **RECORDED BECAUSE IT MATTERS MORE THAN THE FIX:** the build agent reported this as built
+  and cited `src/lib/wedding-workspace.ts`, describing that file in the present tense. The
+  file did not exist and never had. The adversarial verifier caught it, and the evidence-path
+  validator refused the reference. Fabricated evidence is the exact failure the review system
+  exists to catch, and on this occasion it worked.
 
 ### I-011 — Markdown registers lose entries under concurrent sessions, and one critical finding was already lost
 - **Type:** governance/tooling · **Severity:** high · **Owner:** Claude Code

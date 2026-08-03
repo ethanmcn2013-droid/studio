@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T16:01:25.214Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T21:58:27.803Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -122,22 +122,22 @@ Lane: `claude_code` · 9/12 done (75%) · 0 in flight · 0 blocked
 
 _Launch-blocking and central to the main film._
 
-Lane: `claude_code` · 1/12 done (8.3%) · 0 in flight · 0 blocked
+Lane: `claude_code` · 1/12 done (8.3%) · 9 in flight · 2 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E06.01 | Define the public artifact content model and what can never be published from the private workspace. | backlog | p1 | CP RB | claude_code | E03.01, E03.06 | — | — | — | — | not_requested |
-| E06.02 | Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.03 | Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.04 | Complete milestone navigation and the transition from a Timeline point into its photograph and story. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.05 | Implement private-link, password-protected and intentionally public sharing modes. | backlog | p1 | CP RB FC | claude_code | — | — | — | — | — | not_requested |
-| E06.06 | Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.07 | Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
+| E06.01 | Define the public artifact content model and what can never be published from the private workspace. | blocked | p1 | CP RB | claude_code | E03.01, E03.06 | — | 14 | Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural. | ✓ | not_requested |
+| E06.02 | Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. | founder_review | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | requested |
+| E06.03 | Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
+| E06.04 | Complete milestone navigation and the transition from a Timeline point into its photograph and story. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
+| E06.05 | Implement private-link, password-protected and intentionally public sharing modes. | founder_review | p1 | CP RB FC | claude_code | — | — | 17 | — | ✓ | requested |
+| E06.06 | Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
+| E06.07 | Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
 | E06.08 | Define restrained venue attribution and Signal Studio attribution across shared artifacts. | done | p1 | CP RB FD | claude_code | — | — | 1 | — | — | approved |
-| E06.09 | Design and implement the intentional vertical mobile Timeline. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.10 | Refine the desktop editorial Timeline shown in the Mara and Finn concept. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E06.11 | Implement the post-wedding read-only Keepsake state and the agreed downloadable export. | backlog | p1 | CP RB FC | claude_code | E03.08, E03.09 | — | — | — | — | not_requested |
-| E06.12 | Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA. | backlog | p1 | CP RB | claude_code | E06.01, E06.02, E06.03, E06.04, E06.05, E06.06, E06.07, E06.08, E06.09, E06.10, E06.11 | 2026-08-20 | — | — | — | not_requested |
+| E06.09 | Design and implement the intentional vertical mobile Timeline. | founder_review | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | requested |
+| E06.10 | Refine the desktop editorial Timeline shown in the Mara and Finn concept. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
+| E06.11 | Implement the post-wedding read-only Keepsake state and the agreed downloadable export. | founder_review | p1 | CP RB FC | claude_code | E03.08, E03.09 | — | 10 | — | ✓ | requested |
+| E06.12 | Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA. | blocked | p1 | CP RB | claude_code | E06.01, E06.02, E06.03, E06.04, E06.05, E06.06, E06.07, E06.08, E06.09, E06.10, E06.11 | 2026-08-20 | 16 | Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map. | ✓ | not_requested |
 
 ## E07 — Venue Portal, trust layer and renewal evidence
 

@@ -7686,7 +7686,7 @@
       "id": "E06.01",
       "epic": "E06",
       "title": "Define the public artifact content model and what can never be published from the private workspace.",
-      "status": "backlog",
+      "status": "blocked",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7700,10 +7700,110 @@
         "E03.06"
       ],
       "dependencyBasis": "What can never be published is a privacy rule before it is a product rule. Needs the role map and the public Timeline terms.",
-      "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "blockedBy": [
+        {
+          "at": "2026-08-03T21:58:27.671Z",
+          "reason": "Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural.",
+          "by": "E03.01",
+          "clearedAt": null
+        }
+      ],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.01.md",
+      "acceptanceCriteria": [
+        "A written content model names, field by field, every value that may cross to a public surface, for BOTH published products: the Timeline audience DTO (AudienceTimelineDto) and the Tasks published projection (PublicTask).",
+        "The never-publish list is enforced in code, not only in prose. Each claim cites the enforcing line - FORBIDDEN_KEYS and exactKeys for Timeline, the field-by-field allowlist in toPublicTask for Tasks - and the document states that validateAudienceTimelineDto rebuilds the DTO rather than spreading it.",
+        "ownerDisplayLabel is dealt with explicitly: what it may contain, whether owner identity belongs in the published projection at all with the reasoning recorded either way, and a rule that stops a couple publishing a home address, phone number, Eircode or email in it. The rule runs at the projection layer, not only at the form, and is proved by a test.",
+        "R-017 is addressed by mechanism, not by clause: the model states that dietary, allergy, accessibility and any Article 9 value can never reach a public surface, and names the enforcing mechanism on each product.",
+        "The model names which of the two products is the couple's artifact under D-033, or records the remaining ambiguity as an open founder question. It must not assume.",
+        "A new field added to either product is excluded from publication by default, and a test fails if that stops being true.",
+        "No sentence in the document states or implies legal approval, solicitor review or GDPR compliance (D-016), and every capability not built is stated as not built."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:37.310Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.01-public-artifact-content-model.md",
+          "note": "The deliverable and its criterion-by-criterion trace. Section 0 separates /p (Tasks, PublicTask, indexable today) from /s (Timeline, AudienceTimelineDto, token-bound and already noindex) and refuses to write a single 'published surface' abstraction over them. Sections 1 and 2 are the field-by-field models. Section 3 is the ownerDisplayLabel decision with its reasoning. Section 4 is R-017 by mechanism with its stated limit. Section 6 pre-agrees the image and short-story model so E06.02 and E06.03",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:37.424Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:76-103",
+          "note": "NEW. COUPLE_DISPLAY_LABEL_RE plus isCoupleDisplayLabel and COUPLE_DISPLAY_LABEL_REFUSAL. Digits are refused on couple publications, which blocks a door number, an Eircode, a phone number and a date; @, / and : fall outside the character class so an email and a URL are refused with them. The doc comment states what the rule cannot do.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:37.532Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:178-187",
+          "note": "NEW. The rule enforced inside validateAudienceTimelineDto, so a publication row written before this rule existed throws at the boundary rather than rendering on a public page. class and module publications keep the older rule, so 'Year 3, 2027' still validates.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:37.651Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:193-199",
+          "note": "NEW. The same rule at the form, so the couple gets a plain sentence rather than a stack trace. The pre-existing no-@ check is kept for the non-couple kinds.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:37.779Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts",
+          "note": "NEW, registered in package.json. Three E06.01 assertions: the exact top-level key set on a serialised DTO plus twelve leak assertions; five refused label shapes including a postal address with an Eircode, a phone number, an email and a URL; four accepted couple names including Irish fadas, plus the class regression.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:37.910Z",
+          "ref": "_wt-wp14/package.json:36",
+          "note": "Registration. couple-artifact-boundary.test.ts appended to the final segment of the test script beside unpublished-timeline-boundary.test.ts. Wave 3 found three privacy tests that had never run in CI; this one runs.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.024Z",
+          "ref": "_wt-wp14/src/lib/public-task.test.ts",
+          "note": "Existing and already registered. Asserts the PublicTask key set with deepEqual, so adding a field to the projection fails the suite. Recorded as passing existing evidence, not rebuilt.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.152Z",
+          "ref": "evidence/E06.01-public-artifact-content-model.md",
+          "note": "EXISTS, read in full (446 lines). Section 0 genuinely separates /p (Tasks, indexable) from /s (Timeline, token-bound, noindex) and refuses a single 'published surface' abstraction. Section 5 records the D-033 standing refusals. No sentence claims legal review, solicitor approval or GDPR compliance; the header states the opposite. C7 MET.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.265Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:178-190",
+          "note": "EXISTS. The couple check is inside validateAudienceTimelineDto at :186-188, gated on dto.audienceKind === 'couple'. C2 verified independently: exactKeys at :109-114 throws on FORBIDDEN_KEYS (:57-74) and on any non-allowlisted key, applied at four levels (:150, :193, :203, :214); lines 155-227 construct a fresh object field by field and never spread the candidate. Both mechanisms are real.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.375Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:190-199",
+          "note": "EXISTS. Form-layer check present, pre-existing no-@ check kept for non-couple kinds. Claimed as :193-199; off by three lines, immaterial.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.493Z",
+          "ref": "_wt-wp14/src/lib/public-task.ts:8-21",
+          "note": "EXISTS. Field-by-field, seven names, description/assignees/externalContactEmail/cents not among them. C4's Tasks mechanism is real.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.628Z",
+          "ref": "_wt-wp14/src/server/db/queries.ts:184-227",
+          "note": "THE GAP. Returns { id, slug, name, activeDomain, publishedAt, tasks }. Only `tasks` passes through toPublicTask. The other five are selected raw off the workspaces row and handed to the public render. Unmodelled in the document, ungoverned by any rule, unpinned by any test.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.748Z",
+          "ref": "_wt-wp14/src/app/p/[slug]/page.tsx:27-58",
+          "note": "ws.name becomes the <title>, the meta description, the OpenGraph title and description, and the Twitter card. generateMetadata returns no `robots` key - grep count 0 - so the D-033 per-page noindex is still absent from /p. The document is honest about this and assigns it to E06.05; robots.ts in this shared tree now disallows /p, which makes section 0's 'still crawlable' line stale in the builder's own favour.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:38.860Z",
+          "ref": "_wt-wp14/src/components/published/wedding-theme.tsx:44",
+          "note": "{workspace.name} rendered as the hero of the wedding theme on /p. This is the couple's artifact under D-033 and the field is unguarded free text.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
@@ -7725,6 +7825,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:37.116Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:58:27.671Z",
+          "from": "ready",
+          "to": "blocked",
+          "by": "claude_code",
+          "note": "Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural."
         }
       ],
       "decisionClass": "execution",
@@ -7734,7 +7848,7 @@
       "id": "E06.02",
       "epic": "E06",
       "title": "Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7746,20 +7860,100 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.02.md",
+      "acceptanceCriteria": [
+        "Private is proven twice, because two mechanisms produce it: a milestone omitted from the selection is never copied, and a milestone with overlay hidden = true is refused at selection. Both proved on behaviour, and the refusal proved by a fail-before mutation.",
+        "Title-and-date is proven on a serialised DTO: an undated milestone carries no date key at all, while a dated one in the same payload carries exactly date, publicId, state, title.",
+        "Freeze semantics are stated with their evidence: publication items are a copy taken at create, so the published page does not follow the private source. Where this is proved and where it is only read is distinguished.",
+        "Image and short-story are recorded as not built, with the exact schema, validator and migration work each needs, and the migration blocker named.",
+        "A regression guards the half-built case: a test fails if ITEM_KEYS gains an image or story key, or timeline_publication_items gains an image or story column, without the content model being updated.",
+        "Nothing in the spec or the evidence describes image or short-story as available, and no user-visible string offers them (D-016)."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:40.081Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.02-milestone-visibility-states.md",
+          "note": "Criterion-by-criterion. Opens with an honest four-state table: two ship and are proven, two do not exist at any layer and are named as not built.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.193Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts",
+          "note": "Four E06.02 assertions, all green. 'a milestone left out of the selection is never copied' publishes one of four fixture milestones and asserts the DTO item titles are exactly [The ceremony] and that the payload does not contain 'Agree the budget with Dad'. 'a hidden milestone is refused at selection' asserts createAudiencePublication rejects with /not available in this workspace/.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.319Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:159",
+          "note": "The hidden refusal, unchanged and now proven behaviourally rather than read: if (!node || node.hidden) throw new TypeError(...). Publication is opt-in per milestone, capped at 100 items and one project.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.438Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:221",
+          "note": "Title-and-date on the payload: if (item.date !== undefined) mapped.date = ... In one resolved DTO, 'Find the dress' has keys exactly publicId/state/title with 'date' in item false, while 'The ceremony' in the same payload has date/publicId/state/title. A genuine omission, not a blank string or a placeholder. This is also the default for a milestone with no target date, which is the more private default.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.545Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/db/timeline-queries.ts:77-99",
+          "note": "The curation layer behind title-and-date: an explicit inherit | date | undated intent persisted through the __signal_timeline_undated__ sentinel, so a null column no longer doubles as both 'inherit' and 'intentionally undated'. Existing, recorded as candidate evidence.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.657Z",
+          "ref": "_wt-wp14/drizzle-timeline/",
+          "note": "The blocker, verified by listing the directory and reading the runner: one file, 0000_timeline_baseline.sql, plus meta. scripts/db/migrate.mjs:465 reads TASKS_DATABASE_URL only. The receipt-backed runner does not reach the Timeline database. No migration was written.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.784Z",
+          "ref": "evidence/E06.02-milestone-visibility-states.md",
+          "note": "EXISTS (9435 bytes). Read in full. Criterion-by-criterion, opens with an honest four-state table naming two states as not built at any layer. No claim of legal approval or GDPR compliance. Two factual notes in it are now STALE in the safe direction: it reports npx tsc --noEmit and pnpm ds:check as red in this worktree; I re-ran both and BOTH ARE GREEN (tsc exit 0 with no output, ds-check 'clean - no drift'). A concurrent Wave 3 package fixed next.config.ts since it was written.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:40.895Z",
+          "ref": "tasks/E06.02.md",
+          "note": "EXISTS. Spec written before assessment, criteria match the six given verbatim. Deliverables list ticks four and leaves 'Image publication. Not built.' and 'Short-story publication. Not built.' explicitly unticked. Founder sign-off block is blank - not pre-filled. Header carries Status: Founder Review, which is a written file, not a project-control write.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:41.014Z",
+          "ref": "_wt-wp14/package.json",
+          "note": "REGISTRATION VERIFIED - the CI failure mode does not apply. git diff package.json shows the 'test' script's final segment changed from '... unpublished-timeline-boundary.test.ts' to '... unpublished-timeline-boundary.test.ts src/modules/timeline/server/couple-artifact-boundary.test.ts'. The new suite runs in CI. Combined run: tests 18, pass 18, fail 0.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:41.122Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/plan/[projectSlug]/_components/curation-surface.tsx:245",
+          "note": "THE HIDDEN CONTROL HAS A REAL PRODUCTION CALLER - I checked, because 'a control with no production caller' is a listed programme failure mode. upsertNodeOverlayAction(..., { hidden: !node.hidden }) is the owner's curation toggle. Defence in depth confirmed at app/audience/page.tsx:60, which filters !node.hidden out of the selection list before it is offered.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:41.237Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:56",
+          "note": "const ITEM_KEYS = new Set([\"publicId\", \"title\", \"date\", \"state\"]) - four keys, no image, no story. Line 221: if (item.date !== undefined) mapped.date = calendarDate(...). Genuine key omission, confirmed by the test asserting Object.keys(dress).sort() equals exactly [publicId, state, title].",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:41.342Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:797-809",
+          "note": "Freeze read path verified by reading it: resolveAudienceTimeline selects exactly publicId, title, calendarDate, state, sortOrder from timeline_publication_items and touches no node, overlay, project or task table. The only writers to that table are createAudiencePublication:228, createNotesAudiencePublication:325 (a Notes projection, audienceKind 'class', never milestone-derived), updateAudiencePublicationItem:613 (owner-scoped, title/date/state only) and the unpublish/divergence updates.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. All six acceptance criteria are met by CODE, not by a document describing an intention, and I reproduced every check myself including the fail-before mutation verbatim. The build agent's claims are accurate and, in two places, understated: it recorded freeze semantics as 'read, not proven' when a probe I wrote proves them behaviourally, and it recorded the image/story guard as 'verified by reading what it asserts' when both halves actually fire under mutation. It also reported two gates red that are now green. That is the honest direction to be wrong in. RECOMMEND: move to Founder Review and approve the two shipped states. Do NOT let the ticks read as four states. Before approval,",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7770,6 +7964,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:39.836Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:39.964Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:41.450Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. All six acceptance criteria are met by CODE, not by a document describing an intention, and I reproduced every check myself including the fail-before mutation verbatim. The build agent's claims are accurate and, in two places, understated: it recorded freeze semantics as 'read, not proven' when a probe I wrote proves them behaviourally, and it recorded the image/story guard as 'verified by reading what it asserts' when both halves actually fire under mutation. It also reported two gates red that are now green. That is the honest direction to be wrong in. RECOMMEND: move to Founder Review and approve the two shipped states. Do NOT let the ticks read as four states. Before approval,"
         }
       ],
       "decisionClass": "execution",
@@ -7779,7 +7994,7 @@
       "id": "E06.03",
       "epic": "E06",
       "title": "Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7791,20 +8006,86 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.03.md",
+      "acceptanceCriteria": [
+        "A photograph carrying GPS coordinates, a capture time and an orientation is read for all three and then published with none of the three present, proven on a real byte round trip that also asserts the literal ASCII of the removed data is absent from the output.",
+        "The EXIF orientation is returned to the caller as a value after the segment carrying it has been removed, together with the CSS transform and the axis-swap flag needed to put a portrait photograph the right way up.",
+        "Format support is an allowlist and a format outside it is refused rather than passed through; a truncated or malformed file is refused, not half-parsed.",
+        "Stripping never touches a pixel: intrinsic dimensions and the entropy-coded image data are byte-identical before and after.",
+        "The maximum long edge, the minimum long edge, the target byte size and the refusal ceiling exist as exported values with numbers, not as comments.",
+        "Alt text has exactly three outcomes (described, decorative, refused) and never falls back to a filename; a decorative photograph gets alt=\"\", never a missing alt attribute.",
+        "A caller that forgets to strip is refused publication: bytes still carrying metadata return metadata-present rather than being published.",
+        "No face detection, no auto-tagging, no face grouping and no smart crop appears anywhere in the module, asserted by reading the source (D-033).",
+        "Every criterion above is covered by a test registered in package.json's test script, so it runs in CI.",
+        "What is not built is stated as not built: the upload wiring, the public image path, crop, and re-compression."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:54.200Z",
+          "ref": "_wt-wp14/src/lib/image/metadata.ts",
+          "note": "Pure-TypeScript, zero-dependency JPEG segment and PNG chunk parser. Reads the TIFF stream for orientation (0x0112), the GPS IFD pointer (0x8825) and three date tags, then rebuilds the file without APP1, APP3-APP15, COM, eXIf, tEXt, zTXt, iTXt or tIME. Keeps APP0/JFIF, APP2/ICC and PNG colour chunks. Copies everything from SOS onward verbatim, so no pixel is touched and no image library is needed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.306Z",
+          "ref": "_wt-wp14/src/lib/image/policy.ts",
+          "note": "The numbers as values: PUBLISHED_MAX_LONG_EDGE_PX 2000, PUBLISHED_MIN_LONG_EDGE_PX 800, PUBLISHED_TARGET_BYTES 512000, PUBLISHED_MAX_BYTES 2097152, ALT_TEXT_MAX_LENGTH 200. decidePhotograph refuses 'metadata-present' when handed un-stripped bytes. resolveAltText has no filename fallback.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.411Z",
+          "ref": "_wt-wp14/src/lib/image/metadata.test.ts",
+          "note": "13 tests. Fixtures are built byte by byte in the test (a JPEG with an EXIF APP1 carrying orientation 6, DateTime 2026:08:03 and a GPS IFD, plus a COM comment; a PNG with eXIf and tEXt) so a reader can see exactly what is being claimed rather than trusting a committed binary.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.528Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.03-photograph-boundary.md",
+          "note": "Criterion-by-criterion, with the pre-task audit table, the full unfiltered face-detection grep, and a section naming the five things not built and why.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.656Z",
+          "ref": "_wt-wp14/src/server/actions/attachments.ts:36",
+          "note": "The reason nothing is wired here: this tree still carries the old BLOCKED_MIME_TYPES denylist checked against the client-supplied file.type. E08.07's byte-checked allowlist (src/lib/upload-validation.ts) is on claude/wp07-engineering and does not exist in this worktree.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.784Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/infrastructure-blob-and-email-auth-2026-08-03.md",
+          "note": "Supersedes the recon map's claim that BLOB_READ_WRITE_TOKEN is unprovisioned. A private EU store (fra1, Frankfurt) is connected to app on Production, Preview and Development. A redeploy is still needed before it takes effect.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:54.897Z",
+          "ref": "_wt-wp14/package.json",
+          "note": "REGISTRATION CONFIRMED, and confirmed as part of THIS diff rather than pre-existing. `git diff package.json` shows src/lib/image/metadata.test.ts added to the `node --import tsx --test` segment. Independently corroborated by its assertions appearing at lines 564 and 573 of the full-suite output, so the 'new test file never runs in CI' failure mode does NOT apply here.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:55.010Z",
+          "ref": "evidence/E06.03-photograph-boundary.md",
+          "note": "EXISTS, 304 lines. Unusually honest: pre-task audit table, the full unfiltered grep, §3 reporting the 12-pass/1-fail first run, and §C10 naming five unbuilt things with reasons. It also proactively corrects the recon map on BLOB_READ_WRITE_TOKEN. Its one overreach is the §Headline sentence 'The privacy-critical half of E06.03 is built and tested', which my probes refute.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:55.120Z",
+          "ref": "evidence/infrastructure-blob-and-email-auth-2026-08-03.md",
+          "note": "EXISTS, 97 lines. Supports the stated correction that the blob store is EU (fra1, Frankfurt), private, and that a redeploy is still required. All six referenced evidence paths exist; no dead path in this package.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PUSH BACK. Do not approve, and do not treat the privacy half as finished. The claimed state ('partial') is directionally honest and every one of the five verification claims is TRUE as stated — I re-ran all of them. But the evidence doc's headline sentence, 'the privacy-critical half of E06.03 is built and tested', is REFUTED. The defect sits inside the part claimed complete. The single line that makes C4 true (copy everything from SOS verbatim, so no pixel is touched) is the same line that makes C1 and C7 false: it also copies every byte after the primary EOI. A phone photograph with an embedded secondary image keeps that image's GPS coordinates and capture time, and both defences miss it t",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7815,6 +8096,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:53.977Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:54.092Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:55.227Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PUSH BACK. Do not approve, and do not treat the privacy half as finished. The claimed state ('partial') is directionally honest and every one of the five verification claims is TRUE as stated — I re-ran all of them. But the evidence doc's headline sentence, 'the privacy-critical half of E06.03 is built and tested', is REFUTED. The defect sits inside the part claimed complete. The single line that makes C4 true (copy everything from SOS verbatim, so no pixel is touched) is the same line that makes C1 and C7 false: it also copies every byte after the primary EOI. A phone photograph with an embedded secondary image keeps that image's GPS coordinates and capture time, and both defences miss it t"
         }
       ],
       "decisionClass": "execution",
@@ -7824,7 +8126,7 @@
       "id": "E06.04",
       "epic": "E06",
       "title": "Complete milestone navigation and the transition from a Timeline point into its photograph and story.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7836,20 +8138,82 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.04.md",
+      "acceptanceCriteria": [
+        "The dependency is stated rather than worked around: there is no photograph and no story to transition into until E06.03 and E06.02 land, and no placeholder frame ships.",
+        "The existing keyboard contract survives unchanged: Left and Right between milestones, Home and End to jump, Enter or Space to select, Escape to close, with aria-expanded and aria-controls on the selected point and a polite live region announcing open and closed.",
+        "prefers-reduced-motion is honoured, and the component reads it through a hydration-safe hook so server and first client render agree.",
+        "A milestone with no photograph and no story degrades to today's detail panel with no empty frame and no layout shift.",
+        "The axe gate stays clean: zero critical and zero serious violations at 390, 768, 1280 and 1440.",
+        "detailNote's three generated sentences are either replaced or kept deliberately, and they pass the brand voice. They are front-facing copy on a couple's wedding page."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:51.515Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:320",
+          "note": "The defect and the fix. Two of the three sentences used 'journey' as a noun, which the brand voice bans outright, on a sponsored couple's public wedding page: 'This is the next point on the shared journey.' and 'This milestone comes later on the shared journey.' Now 'This one is already behind you.' / 'This one is next.' / 'This one comes later.' Kept rather than deleted, with a source note saying it is the slot a real milestone story lands in once E06.02 and E06.03 give the DTO something to car",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:51.637Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/audience-timeline.ts:56",
+          "note": "Why the photograph half cannot start: ITEM_KEYS is exactly [publicId, title, date, state], attachments and description are in FORBIDDEN_KEYS, and exactKeys throws for anything outside the set. A transition built now would animate from a milestone to an empty frame.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:51.755Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:56",
+          "note": "useArtifactReducedMotion gates Motion's media-query hook behind React's hydration snapshot so SSR and first hydration choose the same motion props. Honoured in the place most implementations miss: focusPoint:431 passes scroll behaviour 'auto' rather than 'smooth' under reduce, because programmatic smooth scrolling is motion too.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:51.867Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:434",
+          "note": "The keyboard contract, recorded as passing and not rebuilt: handleKeyDown 435-450 for Left/Right/Home/End/Escape, Enter and Space left to the native button rather than re-implemented, roving tabIndex at :565, aria-expanded :568, aria-controls :569, polite live region :604-608, instructions bound with aria-describedby at :536.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:51.976Z",
+          "ref": "evidence/E06.04-milestone-navigation.md",
+          "note": "Criterion-by-criterion evidence, stating plainly that criterion 5 is unverified in this session and why.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:52.094Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:442",
+          "note": "EXISTS AND CONFIRMED, criterion 2 met — at :442, not the :434/:435 cited. handleKeyDown:442-459 handles ArrowRight/ArrowLeft/Home/End/Escape with preventDefault on each. Enter and Space are left to the native <button> onClick at :582-586, not re-implemented. Roving tabIndex at :573, aria-current at :574, aria-pressed :575, aria-expanded :576, aria-controls :577, per-point label with 'Milestone N of M' at :578, aria-describedby on the <ol> at :544 with instruction text at :497-498, polite atomic ",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:52.211Z",
+          "ref": "_wt-wp14/src/lib/public-analytics-boundary.ts:16",
+          "note": "PRIVACY DEFECT FOUND, outside E06.04 but against the decision this wave implements. The file's own docstring states '`/p`, `/s`, `/share` and `/embed` are excluded from GA4 entirely and unconditionally' per R-032 Option A / D-033. Line 16 is `const ANALYTICS_EXCLUDED_ROOTS = [\"/p\", \"/s\", \"/share\"] as const;` — `/embed` is absent. The only other suppressor, isBareArtifactPath (src/lib/bare-artifact-path.ts:2), is `pathname === \"/s\" || pathname.startsWith(\"/s/\")`. So GoogleTag (src/components/anal",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:52.328Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/viewer-count.ts",
+          "note": "PRIVACY PROBE, NEGATIVE — I could not construct a viewer count that identifies one person through this path. presentViewerCount is first-party, floors at VIEWER_COUNT_FLOOR = 5, coarsens lastViewedAt to month-and-year via Intl, returns pre-rendered strings so no downstream formatter can reconstruct the integer, throws TypeError on a non-integer count, and renders no bound such as 'fewer than five' below the floor (R-027's mitigation says a bound is itself a disclosure). artifact-studio.tsx:57-68",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:52.458Z",
+          "ref": "_wt-wp14/src/app/robots.ts:29",
+          "note": "PRIVACY PROBE, PARTIAL PASS. disallow now reads [\"/app\", \"/p\", \"/s\", \"/share\", \"/redeem\", \"/welcome\", \"/api\"] — /p added under D-033 R-031 Option B. The comment records the residual honestly rather than hiding it: a Disallow stops an obedient crawler fetching the page, which also stops it reading a per-page noindex, so a URL discovered from an external link can still be listed URL-only, and closing that needs an X-Robots-Tag response header. Stated, with the follow-on named. Not E06.04's, and no",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — CONFIRMED AS PARTIAL, WITH DEFECTS THE SUBMISSION DID NOT DISCLOSE. DO NOT SIGN OFF. The builder's own label is right and the code claims survive adversarial checking. Criteria 1, 2, 3 and 4 are met by code I read and re-derived, not by a document describing an intention: ITEM_KEYS really is four keys with attachments and description on a throwing denylist, the keyboard contract really is intact and really was not rebuilt, and reduced motion is honoured in both the JS props and a CSS media block the evidence document does not even claim credit for. The decision not to build a transition into a frame that cannot exist is the correct call and the correct kind of restraint. Declaring ",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7860,6 +8224,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:51.300Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:51.406Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:52.582Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — CONFIRMED AS PARTIAL, WITH DEFECTS THE SUBMISSION DID NOT DISCLOSE. DO NOT SIGN OFF. The builder's own label is right and the code claims survive adversarial checking. Criteria 1, 2, 3 and 4 are met by code I read and re-derived, not by a document describing an intention: ITEM_KEYS really is four keys with attachments and description on a throwing denylist, the keyboard contract really is intact and really was not rebuilt, and reduced motion is honoured in both the JS props and a CSS media block the evidence document does not even claim credit for. The decision not to build a transition into a frame that cannot exist is the correct call and the correct kind of restraint. Declaring "
         }
       ],
       "decisionClass": "execution",
@@ -7869,7 +8254,7 @@
       "id": "E06.05",
       "epic": "E06",
       "title": "Implement private-link, password-protected and intentionally public sharing modes.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7881,20 +8266,132 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.05.md",
+      "acceptanceCriteria": [
+        "The three modes are defined against a named product. Where a mode spans two products, the criteria say which control belongs to which.",
+        "Private link is assessed and recorded as existing evidence: SHA-256 token hash, a unique index on the hash, a timing-safe compare, an explicit published-state gate, optional expiry, rotate and revoke, share versioning and a rate limit.",
+        "Password mode is recorded as deliberately not built, and the exact sentence a couple is shown in its place ships in the product rather than being implied by an absent control.",
+        "/p is in the robots.txt disallow list, and the known interaction between a Disallow and a per-page noindex is written down rather than papered over.",
+        "The publish confirmation states plainly what publishing does, including that task titles and tags are on the page. Before this task it was one button whose caption never mentioned either.",
+        "Wedding workspaces are noindex on /p by default, and search visibility is an explicit couple opt-in.",
+        "R-033 is answered: a decision is recorded on whether wedding workspaces are embeddable at all, and if the answer is no, the exclusion is enforced in the route and scripts/check-frame-headers.mjs is updated in the same change.",
+        "Nothing in the shipped copy states or implies legal approval, solicitor review or GDPR compliance (D-016)."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:48.325Z",
+          "ref": "_wt-wp14/src/app/robots.ts",
+          "note": "/p added to the disallow list under D-033. The file carries the interaction that gets discovered late: a Disallow stops an obedient crawler fetching the page, which also stops it reading a per-page noindex, so a URL discovered from an external link can still be listed URL-only. Closing that residual needs an X-Robots-Tag header, which cannot be set per workspace in next.config because the header rules are static and the wedding test needs a database read.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:48.459Z",
+          "ref": "_wt-wp14/src/components/app/settings/sections/workspace.tsx",
+          "note": "A four-line 'Before you publish' panel above the publish button, persistent rather than a dismissable modal so it cannot be clicked past unread. The load-bearing line is 'Your task titles and tags are on the page. Any names you wrote into them are on the page too.' — task titles and tags are exactly where guests' and suppliers' names live.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:48.606Z",
+          "ref": "_wt-wp14/src/components/app/share/share-button.tsx",
+          "note": "The password refusal, shipped where a couple creates a /share link: 'There is no password on this link. Anyone you send it to can open it, and so can anyone they forward it to. Set an expiry, or revoke the link, when you want it to stop working.' The forwarding clause is there because that is the failure mode a couple does not think about.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:48.737Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:447",
+          "note": "Private link, recorded as passing and NOT rebuilt. publishAudiencePublication mints a token, stores only the SHA-256 digest, sets every prior active share to 'rotated' in the same transaction and versions the new one; unpublishAudiencePublication at :565 revokes every active share in one transaction.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:48.854Z",
+          "ref": "_wt-wp14/src/server/db/schema.ts:737-767",
+          "note": "The qualification on criterion 2: share_links.token is a PLAINTEXT primary key resolved by raw equality, with no hash and no constant-time compare, unlike the Timeline path. Wave 3's fix is on claude/wp07-engineering, which is not in this tree, so it was neither assumed nor touched.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:48.973Z",
+          "ref": "evidence/E06.05-sharing-modes.md",
+          "note": "Criterion-by-criterion evidence, including the verified final state showing that neither the search-visibility column nor its migration exists in this branch.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.086Z",
+          "ref": "_wt-wp14/src/app/robots.ts:28",
+          "note": "EXISTS. Line reads `disallow: [\"/app\", \"/p\", \"/s\", \"/share\", \"/redeem\", \"/welcome\", \"/api\"]` with a 14-line comment recording the Disallow-versus-noindex interaction verbatim as claimed. git diff confirms /p is newly added by this task; /s pre-existed. DEFECT: \"/p\" without a trailing slash prefix-matches /press, /principles, /privacy — all three real pages, all three in sitemap.ts, none with an Allow rule.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.195Z",
+          "ref": "_wt-wp14/src/components/app/settings/sections/workspace.tsx:614-645",
+          "note": "EXISTS and matches the claim. The four-line panel sits inside the not-yet-published branch of the ternary, above the Publish button, in normal document flow — a persistent panel, not a dismissable modal, exactly as claimed. Line 627 carries the load-bearing sentence about task titles and tags. The toast at :524 changed to mention search engines. git diff shows +42/-14 on this file and nothing else.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.317Z",
+          "ref": "_wt-wp14/src/components/app/share/share-button.tsx:385-393",
+          "note": "EXISTS and matches the claim word for word, directly above the generate button. I checked the claim it depends on: EXPIRY_OPTIONS at :16, expiryDays state at :56, the \"Expires in\" field at :362 and revokeShareLinkAction at :152 all exist, so \"Set an expiry, or revoke the link\" points at controls that are actually on this surface. The component has three real production callers (page-header.tsx:90,279 and view-tools.tsx:193) — not orphaned.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.429Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx",
+          "note": "NOT IN THE AGENT'S EVIDENCE LIST, and it should have been. This is the /s audience-link creation surface — the other half of the private-link mode per the evidence's own product table. `grep -n password -i` and `grep -n forward -i` both return zero. The refusal sentence is absent here. Publish, rotate, revoke and link-expiry controls are all present (:489-508), so this is unambiguously the surface a couple uses to mint the Timeline link.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.550Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/db/timeline-schema.ts:563-577",
+          "note": "Criterion 2 verified independently, not taken on trust. `tokenHash: text(\"token_hash\").notNull()` at :564 with the comment \"SHA-256 hex digest only. The 256-bit raw token is returned once\"; `uniqueIndex(\"uq_audience_shares_token_hash\").on(t.tokenHash)` at :577. The timing-safe compare is real: audience-timeline.ts:243-245 implements hashesEqual over node:crypto timingSafeEqual. The agent's PASS on /s holds.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.671Z",
+          "ref": "_wt-wp14/src/server/db/schema.ts:737 and src/server/db/queries.ts:720",
+          "note": "The qualification the agent recorded is real and I reproduced it. schema.ts:737 declares `token: text(\"token\").primaryKey()` with the comment \"URL-safe random token, also the primary key\" — no hash column. queries.ts:720 resolves it with `eq(shareLinks.token, token)`, raw equality, no constant-time compare. Correctly recorded, correctly not touched (the fix is on claude/wp07-engineering, absent from this tree).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.802Z",
+          "ref": "_wt-wp14/src/app/p/[slug]/page.tsx",
+          "note": "Criterion 6 disproof. generateMetadata returns title, description, openGraph and twitter and NO robots key; `grep -rn robots src/app/p/` exits 1. The file header still reads \"Server-rendered for indexing\" and \"a public, indexable, rarely-changing page hit by crawlers and social unfurls\" — now in direct contradiction with robots.ts, and left unamended.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:49.922Z",
+          "ref": "_wt-wp14/src/app/sitemap.ts:19,21,32,34",
+          "note": "Proof of the headline defect's blast radius. /pricing (0.9), /principles (0.8), /privacy (0.4) and /press (0.5) are all declared crawlable here while robots.ts:28 now forbids the /p prefix. Three of the four have no Allow rule to rescue them. The sitemap and robots.txt actively contradict each other on production.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:50.045Z",
+          "ref": "_wt-wp14/src/components/analytics/google-tag.tsx:28-29 and src/lib/public-analytics-boundary.ts",
+          "note": "GA4 attack refuted. GoogleTag calls isAnalyticsExcludedPath(pathname) and returns null BEFORE the enabled check, so the exclusion cannot be re-enabled by an env flag. public-analytics-boundary.ts hard-codes [\"/p\",\"/s\",\"/share\",\"/embed\"] with exact-or-prefix matching. src/server/public-surface-analytics-contract.test.mjs is registered in package.json and ran in my pnpm test. No second analytics provider (Vercel Analytics, PostHog, Plausible) appears on layout.tsx, /p, /embed or /share. This is E0",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:50.160Z",
+          "ref": "_wt-wp14/src/app/embed/[slug]/page.tsx and scripts/check-frame-headers.mjs",
+          "note": "Criterion 7 disproof. The route resolves any slug via getPublishedWorkspaceBySlug with no token and no workspace-type exclusion. check-frame-headers.mjs:63-91 shows the /embed carve-out is still enforced as a REQUIREMENT — global DENY with a negative lookahead excluding /embed, plus an /embed/:path* entry that must set `frame-ancestors *` and must omit X-Frame-Options. `git status --short scripts/check-frame-headers.mjs` returns blank. Nothing was enforced and nothing was updated.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:50.269Z",
+          "ref": "tasks/E06.05.md:127-135",
+          "note": "EXISTS. Deliverable 4 is honestly checkboxed [ ] NOT BUILT. But the Risks block asserts the shipped confirmation says \"The page is not listed unless you turn search listing on\" and must not reach a couple — a string that is not in the code. Also note the spec's Status field already reads \"Founder Review\"; per the shared brief no task reaches Done without Ethan's explicit approval, and the sign-off block is correctly unfilled.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED as partial, REFUTED as ready. The build agent's self-report is honest — it named criteria 6 and 7 as unmet before I got there, it recorded the share_links plaintext-token qualification against its own interest, and it recorded the missing test as a gap rather than excusing it. Every evidence path exists, every command reproduces, the diff matches the claims exactly. That is the standard this programme has been trying to reach and this package reaches it. But do NOT put this in front of Ethan yet, for one reason: the change makes something worse. `Disallow: /p` without a trailing slash de-indexes /press, /principles and /privacy — three pages the sitemap declares — and puts /pricing",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7905,6 +8402,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:48.088Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:48.204Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:50.381Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED as partial, REFUTED as ready. The build agent's self-report is honest — it named criteria 6 and 7 as unmet before I got there, it recorded the share_links plaintext-token qualification against its own interest, and it recorded the missing test as a gap rather than excusing it. Every evidence path exists, every command reproduces, the diff matches the claims exactly. That is the standard this programme has been trying to reach and this package reaches it. But do NOT put this in front of Ethan yet, for one reason: the change makes something worse. `Disallow: /p` without a trailing slash de-indexes /press, /principles and /privacy — three pages the sitemap declares — and puts /pricing"
         }
       ],
       "decisionClass": "founder_choice",
@@ -7914,7 +8432,7 @@
       "id": "E06.06",
       "epic": "E06",
       "title": "Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7926,20 +8444,95 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.06.md",
+      "acceptanceCriteria": [
+        "Concealing a milestone date is proven on the serialised public DTO: the item carries no date key at all, rather than a blanked or placeholder string.",
+        "The wedding day itself has its own concealment control that works on an already published artifact, and concealing removes primaryDate from the payload entirely.",
+        "A half-set pair - a label with no date, or a date with no label - never publishes a partial main date.",
+        "Concealment is owner-scoped: the publication ownership is re-checked server-side and another workspace cannot clear someone else's date.",
+        "Location is stated plainly. There is no structured location field anywhere in the published model, so either a structured field is added or the refusal is written down. The criteria must not imply a control that does not exist.",
+        "A concealed value never appears in the OpenGraph card or the page title of the surface it was concealed on, asserted rather than assumed.",
+        "EXIF GPS is cross-referenced to E06.03, and the current position stated: no photograph reaches any public surface today, so there is no metadata path to leak through and no claim is made that one is handled."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:42.919Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.06-conceal-dates-and-details.md",
+          "note": "Criterion-by-criterion, including the written refusal on structured location and an explicit scope note that criterion 6 is proven for /s only and that /p's OpenGraph card belongs to E06.05 and E06.12.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.036Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:650",
+          "note": "NEW. setAudiencePrimaryDate. Re-checks ownsPublication, writes primaryDateLabel and primaryDate together, and treats a missing half as concealment: const conceal = !input.primaryDate || !input.primaryDateLabel. Returns 'set' or 'concealed'. Before this, primaryDate was written once at :219-220 inside createAudiencePublication and read back at :819-826, and no code path updated it - the only way to take the wedding day off a live page was to unpublish the whole artifact.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.158Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:363",
+          "note": "NEW. updateAudiencePrimaryDateAction. Owner-gated through ownerWorkspace, demo-read-only guarded, intent=conceal clears both columns, revalidates /app/timeline/audience. Success copy: 'The main date is hidden. The shared page no longer carries it.'",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.272Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx",
+          "note": "NEW owner control in each publication card: a 'The main date' block with a label field, a date field, Save, and a Hide the date button that appears only when a date is set. The caption states what hiding does - the date is removed from the page itself, not just from view, and the couple's own plan keeps it. When there is no main date the card says 'No main date on the shared page' rather than showing nothing.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.386Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts",
+          "note": "Four E06.06 assertions, all green. The concealment test publishes with primaryDate 2027-08-14, deliberately a date carried by no milestone in the publication so that 'the string is gone' means the main date and nothing else, then conceals and ROTATES THE LINK so the per-request cache around resolveAudienceTimeline cannot serve the pre-concealment DTO. Asserts 'primaryDate' in dto is false and that neither the date nor the label survives anywhere in the payload.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.493Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:599",
+          "note": "Existing, recorded not rebuilt: updateAudiencePublicationItem accepts a null calendarDate on an already published item, so per-milestone date concealment on a live page already worked. This is E06.06 criterion 1's mechanism and it is candidate evidence, not new work.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.606Z",
+          "ref": "_wt-wp14/src/app/s/[token]/page.tsx:23-36",
+          "note": "generateMetadata builds title, description and the OpenGraph card from dto.label and dto.audienceKind only - never primaryDate, never ownerDisplayLabel. Asserted by a source contract test with a positive assertion on the noindex posture so a widening is loud. R-024 is satisfied trivially here because no venue value appears in /s metadata at all.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.724Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/db/timeline-schema.ts",
+          "note": "The location refusal, verified across both schema files: no location column on workspaces, tasks, node_overlays, timeline_publications or timeline_publication_items. A location on a couple's page is text the couple typed into a title or a label.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.838Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx:390-437",
+          "note": "EXISTS and is a REAL production caller, not a dead control. useActionState(updateAudiencePrimaryDateAction) at :189-190; the 'The main date' block at :390; Save form at :398 with hidden workspaceSlug + publicationId; the separate 'Hide the date' form at :425-431 carries intent=conceal and renders only when both primaryDate and primaryDateLabel are set; 'No main date on the shared page' at :383. Copy is on voice, no em dashes, no exclamation marks.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:43.958Z",
+          "ref": "_wt-wp14/src/app/robots.ts:29",
+          "note": "CHECKED for the 'noindex claimed but absent' failure mode. /p, /s, /share, /app, /redeem, /welcome, /api are all in the disallow list, and the file's own comment records the residual honestly (a Disallow blocks the fetch that would have read a per-page noindex, so URL-only listing survives; the X-Robots-Tag follow-on is named). This is E06.05's work, already in the tree, and it does not contradict E06.06.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:44.067Z",
+          "ref": "_wt-wp14/src/components/published/wedding-theme.tsx:125-133",
+          "note": "THE DEFECT. /p's wedding theme renders `t.due` for every published task via formatDue (:204). /p resolves through getPublishedWorkspaceBySlug - the Tasks workspace publish toggle - with no Timeline audience publication involved and no primaryDate concept. E06.06's concealment controls do not reach this surface, and D-033 ratified /p as where the couple's artifact stays.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three defects, none of them a false green. Every evidence path exists, the claimed 11/11 reproduces on my own machine, the fail-before mutation reproduces and isolates exactly the two E06.06 assertions, the adjacent 34/34 reproduces, the new test file IS registered in package.json so it runs in CI, the control has a real production caller, and the location refusal holds under an independent grep of both schema files. The build agent's self-reported limits (source-text assertion for criterion 6, no Playwright click, no EXIF claim) are accurate and were not padding. The three defects are: a scope gap where the concealment controls reach /s but not /p, which D-033 ratified as th",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7950,6 +8543,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:42.673Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:42.796Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:44.177Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three defects, none of them a false green. Every evidence path exists, the claimed 11/11 reproduces on my own machine, the fail-before mutation reproduces and isolates exactly the two E06.06 assertions, the adjacent 34/34 reproduces, the new test file IS registered in package.json so it runs in CI, the control has a real production caller, and the location refusal holds under an independent grep of both schema files. The build agent's self-reported limits (source-text assertion for criterion 6, no Playwright click, no EXIF claim) are accurate and were not padding. The three defects are: a scope gap where the concealment controls reach /s but not /p, which D-033 ratified as th"
         }
       ],
       "decisionClass": "execution",
@@ -7959,7 +8573,7 @@
       "id": "E06.07",
       "epic": "E06",
       "title": "Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7971,20 +8585,96 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.07.md",
+      "acceptanceCriteria": [
+        "No third-party analytics loads on /p, /s, /share or /embed, enforced at the component seam and at the Content-Security-Policy, and asserted by a source-text contract test registered in the pnpm test chain. A Playwright assertion cannot carry this: the e2e suite runs with VERCEL_ENV=preview and GoogleTag renders only when VERCEL_ENV === \"production\", so a browser assertion that GA is absent passes today and would keep passing if the exclusion were deleted.",
+        "The count is first-party and aggregate, with no IP, user-agent, referrer or raw token durably stored. The existing /s mechanism already satisfies this and is recorded as passing evidence rather than rebuilt.",
+        "A suppression rule lives in a library function with its own unit test: the threshold is a property of the value, not of the caller, and no formatter can build a displayed count from a raw integer.",
+        "Below the floor the surface says nothing about the data. It never renders \"fewer than five\" or any other bound, because a bound is itself a disclosure. Counts of 0, 1, 2, 3 and 4 produce byte-identical output.",
+        "lastQualifiedViewAt is removed from the surface at day precision and coarsened to a month, shown only above the same floor. artifact-studio.tsx no longer renders a count and a last-viewed timestamp side by side.",
+        "Every surface that renders the count goes through the same presenter, including the dense list row in audience-manager.tsx, so a list cannot become the leak the detail page closed.",
+        "The floor number is recorded as a founder decision and is explicitly not D-011's venue-cohort thresholds of 3 and 5.",
+        "If the couple's artifact is /p or /share, the absence of an equivalent first-party counter there is stated as not built, and share_link_visits.user_agent_hint is dealt with explicitly."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:45.586Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/viewer-count.ts",
+          "note": "New. presentViewerCount returns a discriminated union and never a number: below VIEWER_COUNT_FLOOR (5) it returns {state:\"withheld\", reason:\"below_floor\", note} with no count key and no timestamp key; at or above it returns a pre-rendered countLabel plus a month-only lastViewedLabel. Floor and count are both validated and throw on malformed input, so no caller can pass underneath the threshold.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:45.704Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/viewer-count.test.ts",
+          "note": "10 tests, registered in package.json's tsx Timeline segment. Asserts counts 0-4 serialise byte-identically, that the withheld note contains no digit and no bound phrasing, that a shown presentation carries no numeric property, and that 3 and 4 are withheld so a future edit adopting D-011's venue number goes red.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:45.830Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/audience/artifact-studio.tsx",
+          "note": "The defect D-033 names is gone. It previously rendered qualifiedViewCount.toLocaleString beside displayDate(lastQualifiedViewAt) formatted {day:\"numeric\",month:\"short\",year:\"numeric\"} — 'Timeline views 1 / Last viewed 3 Aug 2026'. Now one stat cell driven by presentViewerCount, with 'Last opened in August 2026' as a caption above the floor and nothing at all below it.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:45.961Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx",
+          "note": "The second render site, which would have been missed: line 353 rendered the raw count in a dense list row. Now calls viewerCountSummary, which returns null below the same floor and the row omits the clause entirely.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.088Z",
+          "ref": "_wt-wp14/src/lib/public-analytics-boundary.ts",
+          "note": "New. isAnalyticsExcludedPath matches /p, /s, /share, /embed exactly or as a path prefix, so /pricing and /sitemap.xml are unaffected. Kept separate from isBareArtifactPath, which governs src/proxy.ts and answers a different question — folding them together would have silently changed /p's runtime.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.217Z",
+          "ref": "_wt-wp14/src/components/analytics/google-tag.tsx",
+          "note": "The exclusion is evaluated BEFORE the `enabled` prop, so turning GA on in a new environment cannot turn it on for a couple's page. The contract test asserts that ordering, not just the presence of the check.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.341Z",
+          "ref": "_wt-wp14/next.config.ts",
+          "note": "noThirdPartyAnalyticsCsp() emits an ENFORCED Content-Security-Policy for /p and /share, and a frame-ancestors * variant for /embed. Deliberately a partial policy (script-src, connect-src, three hardening directives, no default-src) so it can only restrict execution and connection, never rendering. It throws at config load if a Google host survives an edit.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.467Z",
+          "ref": "_wt-wp14/src/server/public-surface-analytics-contract.test.mjs",
+          "note": "New, 8 tests, registered in the package.json .mjs segment. Asserts all three analytics layers plus the two no-raw-count invariants, on source text, with the reason stated in its own header.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.582Z",
+          "ref": "evidence/E06.07-aggregate-viewer-counts.md",
+          "note": "Criterion-by-criterion evidence including two fail-before mutations and the concurrency note.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.699Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/qualified-view-store.ts",
+          "note": "Criterion 2 independently confirmed, not taken on trust. recordQualifiedViewWith writes only (publicationId, sessionHash, createdAt, expiresAt); the token is compared as a hash with a constant-time equality; expired receipts are deleted opportunistically; the aggregate is a counter increment on the publication row. No IP, user agent, referrer or raw token is durably stored. Correctly kept rather than rebuilt.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:46.820Z",
+          "ref": "_wt-wp14/src/server/db/schema.ts",
+          "note": "Criterion 8 checked at the source. share_link_visits.user_agent_hint exists (schema.ts:791, described :779) and IS written on every /share open (src/server/db/queries.ts:591). Nothing renders it — grep returns only schema.ts and queries.ts, matching the evidence claim exactly. It is raised as Decision 3 in the task spec rather than silently left. /p has no counter of any kind. The absence is stated, not implied.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED PARTIAL. The build agent's own honest state is correct and I am not downgrading it. I re-ran every command and reproduced every number except the pnpm test assertion count; both fail-before mutations went red exactly as described and both files restored clean. Criteria 1, 2, 4, 6 and 8 are met by CODE, not by a document describing an intention. The privacy work is real: the D-033 defect at artifact-studio.tsx is genuinely gone, the floor is enforced at the value with a passing unit test, the analytics exclusion holds at all three layers, and I could not find a route to GA4 on any of the four couple-facing surfaces. Three things keep it partial, and the third is new. 1. Criterion 7 ",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -7995,6 +8685,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:45.344Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:45.468Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:46.942Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED PARTIAL. The build agent's own honest state is correct and I am not downgrading it. I re-ran every command and reproduced every number except the pnpm test assertion count; both fail-before mutations went red exactly as described and both files restored clean. Criteria 1, 2, 4, 6 and 8 are met by CODE, not by a document describing an intention. The privacy work is real: the D-033 defect at artifact-studio.tsx is genuinely gone, the floor is enforced at the value with a passing unit test, the analytics exclusion holds at all three layers, and I could not find a route to GA4 on any of the four couple-facing surfaces. Three things keep it partial, and the third is new. 1. Criterion 7 "
         }
       ],
       "decisionClass": "execution",
@@ -8091,7 +8802,7 @@
       "id": "E06.09",
       "epic": "E06",
       "title": "Design and implement the intentional vertical mobile Timeline.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8103,20 +8814,102 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.09.md",
+      "acceptanceCriteria": [
+        "The rail flips its coordinate system below the breakpoint rather than rewrapping: horizontal geometry becomes vertical geometry, milestones position by block offset instead of inline offset, and the vertical completed rail replaces the horizontal one.",
+        "The Today marker rotates a quarter turn with it and its label moves out of the rail's path.",
+        "Collision avoidance is replaced by showing every label: labels hidden on a wide rail are shown on the vertical one.",
+        "The layout is chosen by container width, not viewport width, so the same artifact is correct inside the owner's panel and inside the phone preview. No viewport media query may decide layout.",
+        "The existing keyboard contract is unchanged: Left/Right between milestones, Home/End to jump, Enter or Space to select, Escape to close, with a roving tab index, aria-expanded, aria-controls and a polite live region.",
+        "prefers-reduced-motion: reduce disables the rail, label, point, metric and Today marker animation.",
+        "Zero critical and zero serious axe violations, and no horizontal document overflow, at 390, 768, 1280 and 1440.",
+        "Every assertion above runs in CI."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:56.759Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:967-1145",
+          "note": "The vertical tier, verified line for line against the audit's claim. progressGeometry becomes width:2px/height:auto (1053-1058); todayMarker becomes width:2rem/height:1px (1079-1085) against the base rule's width:1px/height:2rem (427-433); milestones position by inset-block-start (1104-1107); completedRail display:none and completedRailVertical display:block (1070-1077); hidden labels become opacity:1/pointer-events:auto (1121-1125).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:56.884Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:12-13",
+          "note": "container-name: timeline-artifact; container-type: inline-size. The finding the audit did not record: layout is driven by CONTAINER width, which is why the same artifact is correct in the owner panel and the phone preview. The new test collects every @media (…width…) in the file and asserts the list is empty.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.017Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact-contract.test.mjs",
+          "note": "Was NOT registered in package.json (grep -c returned 0) and was RED when run by hand: 7 pass, 2 fail. Now 13 pass, 0 fail, registered. Four new tests pin the breakpoint identity by reading the shipped CSS rather than a snapshot of it.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.144Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.09-E06.10-timeline-layouts.md",
+          "note": "Criterion-by-criterion for both tasks, with the audit re-verification table and one correction to the audit's desktop line reference (three container tiers, not two).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.271Z",
+          "ref": "_wt-wp14/experience/browser-contract.json",
+          "note": "The four viewport projects: mobile 390x844, tablet 768x1024, desktop 1280x900, wide 1440x960. Also records accessMode 'demo' and reducedMotion 'reduce', which bound what the evidence proves.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.387Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css",
+          "note": "EXISTS, 1256 lines. Every line reference in the evidence doc resolves exactly. Vertical tier opens 967, closes 1145. progressGeometry width:2px/height:auto 1053-1058. completedRail display:none 1070-1072, completedRailVertical display:block;width:2px 1074-1077. todayMarker width:2rem/height:1px 1079-1085 against base width:1px/height:2rem at 431-432. milestone inset-block-start:var(--timeline-position) 1104-1107. data-labelled false and extra get opacity:1/pointer-events:auto 1121-1125. todayMar",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.510Z",
+          "ref": "_wt-wp14/package.json:36",
+          "note": "Registration CONFIRMED in the test script, in the node --test .mjs segment. ci.yml:58 runs pnpm test with NO path filter, so the contract test runs on every PR. C8 is met for the contract test.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.642Z",
+          "ref": "_wt-wp14/.github/workflows/design-quality.yml:5-44",
+          "note": "DEFECT. The paths filter lists src/app, src/components, src/ds, src/lib, src/server, src/proxy.ts, src/env.ts, src/instrumentation*, src/preview, public, next.config, experience, package.json, pnpm-lock, scripts/ds, scripts/experience. It does NOT list src/modules. The artifact lives at src/modules/timeline/components/artifact/. A PR touching only that CSS never triggers pnpm experience:test (line 89), which is where the axe and overflow assertions live.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.801Z",
+          "ref": "_wt-wp14/experience/output/evidence-attestation.json",
+          "note": "EXISTS (gitignored via .gitignore:16). Matches the claimed identifiers byte for byte: runId tasks-playwright-5501ae463b99182192baa7cc, rawArtifactSha256 670f570acf683405c5990991b688bce1f526860e4326f6e3fae887e822ee4617, projects mobile/tablet/desktop/wide 32 tests each, testCount 128, passedCount 128, unexpectedCount 0, startedAt 2026-08-03T21:19:09.930Z.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:57.934Z",
+          "ref": "_wt-wp14/experience/tests/critical-experiences.spec.ts:124-146,373-374",
+          "note": "Mechanism CONFIRMED. expectNoBlockingAccessibilityIssues filters axe to critical+serious and asserts toEqual([]); expectNoDocumentOverflow asserts scrollWidth-clientWidth <= 1. Both are called from auditCurrentSurface for every fixture case, and the config maps one Playwright project per viewport, so both run 4x. tasks.page.s-by-token has 2 cases; app-timeline and app-timeline-audience-by-publication-id 1 each.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:58.048Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx",
+          "note": "Keyboard contract present and UNCHANGED by this package: ArrowLeft/ArrowRight/Home/End, Escape at :455, roving tabIndex at :573, aria-expanded :576, aria-controls :577, aria-live polite at :262/:301/:612. The only diff in this file is E06.04's detailNote copy rewrite (14 lines), which shifted these by 8 and made the evidence doc's line refs (:568-569, :604-607, :447-450) stale.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:58.160Z",
+          "ref": "_wt-wp14 git diff",
+          "note": "Diff matches the claims. Only three files relevant to E06.09 changed: package.json (registration), timeline-artifact-contract.test.mjs (+82/-3), timeline-artifact.tsx (+14/-7, E06.04 copy). timeline-artifact.module.css diff is empty. No layout code was written; the deliverable is evidence and CI registration, which is what the task spec and the audit-first rule say.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. The work is honest, precise and better than its claims in places — every line reference resolves, the prior red-and-unregistered state is exactly as reported, and the evidence document volunteers its own limits and two defects it did not fix. Criteria 1, 2, 3 and 6 are met by CODE. Criterion 7 is corroborated by an on-disk attestation I checked field by field, though worktree contention stopped me re-executing it. But criterion 8 is the task's own thesis and it does not hold: (a) design-quality.yml's paths filter omits src/modules/**, so the axe and overflow gate never fires on a change to the artifact itself — the exact defect class the task was written to close, one di",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -8127,6 +8920,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:56.511Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:56.627Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:58.322Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. The work is honest, precise and better than its claims in places — every line reference resolves, the prior red-and-unregistered state is exactly as reported, and the evidence document volunteers its own limits and two defects it did not fix. Criteria 1, 2, 3 and 6 are met by CODE. Criterion 7 is corroborated by an on-disk attestation I checked field by field, though worktree contention stopped me re-executing it. But criterion 8 is the task's own thesis and it does not hold: (a) design-quality.yml's paths filter omits src/modules/**, so the axe and overflow gate never fires on a change to the artifact itself — the exact defect class the task was written to close, one di"
         }
       ],
       "decisionClass": "execution",
@@ -8136,7 +8950,7 @@
       "id": "E06.10",
       "epic": "E06",
       "title": "Refine the desktop editorial Timeline shown in the Mara and Finn concept.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8148,20 +8962,95 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.10.md",
+      "acceptanceCriteria": [
+        "The artifact has three container tiers and the widest one is what reveals collision-avoided labels.",
+        "The horizontal rail's affordances (horizontal scrolling with hidden scrollbars) belong only to the wide layout and never below the breakpoint.",
+        "The owner surfaces embed the exact same artifact rather than a variant, and the owner's app shell suppresses the artifact's own wordmark so two wordmarks never stack.",
+        "Reduced motion is honoured and the motion preference is hydration-safe: server and first client render choose the same subtree.",
+        "Zero critical and zero serious axe violations, and no horizontal document overflow, at 390, 768, 1280 and 1440.",
+        "The contract file asserting all of the above runs in CI.",
+        "Anything found that contradicts a ratified decision is reported with its file and line, whether or not it is in this task's scope to fix."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:57:59.642Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:622",
+          "note": "@container timeline-artifact (min-width: 980px) — the widest editorial tier, and the only place milestone[data-labelled=\"extra\"] labels become visible. The mid tier is at 953 and the vertical tier at 967, so three tiers, not the two the audit's line reference implied.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:59.765Z",
+          "ref": "_wt-wp14/src/modules/timeline/app/plan/[projectSlug]/page.tsx:295",
+          "note": "<TimelineArtifact timeline={timeline} embedded showProductHeader={false} /> — a deliberate improvement that stops the artifact's wordmark stacking under the app shell's identity. A literal-string assertion in the contract test made this correct change look like a regression; the assertion now matches on the embedded prop regardless of order and additionally asserts showProductHeader={false} so the improvement is protected.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:59.885Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:70",
+          "note": "The second stale assertion: doesNotMatch(/StudioBar/i) was firing on a JSDoc line reading 'the StudioBar already provides identity, so the owner view suppresses it rather than stacking two wordmarks' — the rule being honoured, described. The assertion now runs against a comment-stripped copy. Neither the component nor the CSS was changed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:57:59.997Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:279-281",
+          "note": "DEFECT, referred not fixed. A 'timeline' wordmark with an accent dot renders above the couple's names on the shared page, against D-011 point 2 ('One line in the footer. No logo, no badge, no powered by in the viewport'). The correct footer line already exists at :678-681. critical-experiences.spec.ts asserts the wordmark's exact text, so a passing test locks in what the ratified decision forbids.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.119Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:320-324",
+          "note": "DEFECT, referred. detailNote returns 'This is the next point on the shared journey' and 'This milestone comes later on the shared journey'. Front-facing copy on a couple's wedding page, and 'journey' as a noun is on the banned list.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.234Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:375",
+          "note": "EXISTS. '.stageViewport { ... overflow-x: auto; }' at :375-377 with scrollbar-width: none at :380 and ::-webkit-scrollbar at :384; overridden to 'overflow-x: hidden' at :1039-1041, inside the max-width:620px block that opens at 967 and closes before 1183. C2 MET as written.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.340Z",
+          "ref": "_wt-wp14/package.json",
+          "note": "C6 MET, VERIFIED. 'git show HEAD:package.json | grep -c timeline-artifact-contract.test.mjs' returns 0; the working tree returns 1, in the 'node --test ... .mjs' segment. .github/workflows/ci.yml:58 runs 'pnpm test'. So the file went from never running in CI to running in CI. Also checked all eight new test files in this tree - provision-slug, viewer-count, couple-artifact-boundary, timeline-provisioning-contract, public-surface-analytics-contract, published-surface-revalidation, image/metadata,",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.450Z",
+          "ref": "_wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:56-60",
+          "note": "C4 MET. useArtifactReducedMotion returns 'hydrated && Boolean(prefersReducedMotion)'; useHydrated (src/lib/use-hydrated.ts) is useSyncExternalStore with a server snapshot of false, so SSR and first client render both compute reduceMotion=false. All 30 motion call sites read the single wrapper - the contract test counts useReducedMotion() occurrences and fails at two. No conditional subtree swap; only motion props change. Pre-existing code, newly pinned.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.564Z",
+          "ref": "_wt-wp14/experience/output/evidence-attestation.json",
+          "note": "C5 MET, REPRODUCED. My own run: testCount 128, passedCount 128, unexpectedCount 0, projects mobile/tablet/desktop/wide at 32 each, runId tasks-playwright-5501ae463b99182192baa7cc, canonicalEvidenceSha256 5501ae46...4a775 - the SAME run id the build agent reported, so the canonical evidence hash reproduced byte-for-byte on an independent run. browser-contract.json projects are 390x844, 768x1024, 1280x900, 1440x960. Every routeCase runs auditCurrentSurface (spec :373-374), which calls expectNoDocu",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.682Z",
+          "ref": "_wt-wp14/src/app/app/timeline/audience/[publicationId]/page.tsx:13",
+          "note": "NEW FINDING, not in the evidence. 'await requireAppAccess()' - the allowlist-only gate. Same at src/app/app/timeline/[projectSlug]/page.tsx:11, timeline/page.tsx:13, timeline/audience/page.tsx:14, notes/page.tsx:21, signal/page.tsx:12, signal/onboarding/page.tsx:8, signal/settings/notifications/page.tsx:11, and components/app/app-access-gate.tsx:22. See R-WP14-01.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:00.814Z",
+          "ref": "_wt-wp14/src/app/p/[slug]/page.tsx:21-58",
+          "note": "NEW FINDING, contradicts D-033. generateMetadata returns title, description, openGraph and twitter - and no 'robots' key. grep for noindex / 'index: false' / X-Robots-Tag across src and next.config.ts shows /embed, /s and /share all set robots index:false; /p sets nothing, and no header rule covers it. See R-WP14-02.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED - partial, and the build agent's own 'partial' is the honest read. Five of seven criteria are fully met by code and reproduced by me; C3 is met on one owner surface and not the other; C7 is met in form but missed a high-severity contradiction sitting in the two files C3 is about. The three headline claims (13/13 contract, 128/128 experience with axe and overflow at four widths, ds:check clean) are all true and I reproduced them independently - the experience run even reproduced the build agent's canonical evidence hash. Do NOT put this to founder approval until R-WP14-01 is answered: the /app gate blocker recorded as fixed is fixed only at the layout, and both of this task's owner ",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -8172,6 +9061,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:57:59.402Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:57:59.515Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:58:00.941Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED - partial, and the build agent's own 'partial' is the honest read. Five of seven criteria are fully met by code and reproduced by me; C3 is met on one owner surface and not the other; C7 is met in form but missed a high-severity contradiction sitting in the two files C3 is about. The three headline claims (13/13 contract, 128/128 experience with axe and overflow at four widths, ds:check clean) are all true and I reproduced them independently - the experience run even reproduced the build agent's canonical evidence hash. Do NOT put this to founder approval until R-WP14-01 is answered: the /app gate blocker recorded as fixed is fixed only at the layout, and both of this task's owner "
         }
       ],
       "decisionClass": "execution",
@@ -8181,7 +9091,7 @@
       "id": "E06.11",
       "epic": "E06",
       "title": "Implement the post-wedding read-only Keepsake state and the agreed downloadable export.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8196,20 +9106,93 @@
       ],
       "dependencyBasis": "D-022 affects-list, and BASELINE_REVIEW section 4 item 8: Keepsake implementation needs the ratified Keepsake model.",
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.11.md",
+      "acceptanceCriteria": [
+        "The term is max(redemption + 548 days, wedding date + 90 days), never a flat eighteen months, and the R-015 case (books far ahead, redeems immediately) provably keeps access past the wedding.",
+        "The result names which half of the max() decided it, and no couple-facing sentence claims a wedding-derived date unless the wedding half won.",
+        "A postponement extends access automatically; a wedding date moved earlier never shortens a term already granted.",
+        "A couple is not 'after the day' on the morning of their wedding: the wedding date is a day, not an instant.",
+        "The term ending produces a read-only Keepsake, not a lockout. Export, unpublish and delete survive it; every other write intent does not.",
+        "The export opens with no network access of any kind, asserted as a property of the document rather than as a list of strings.",
+        "The export escapes the couple's own words: a supplier called Rónán & Co and a task titled 'Order the cake <topper>' cannot break the file, and accented names survive intact.",
+        "Attribution is the venue's name only, once, in the footer. No logo, no badge, no venue-written message. No venue means no attribution line at all.",
+        "No phase of the couple-facing wording, and no line of the export, says forever, for life, in perpetuity, a flat eighteen months, guarantee, GDPR or compliant, and none carries an em dash or an exclamation mark.",
+        "Every criterion is covered by a test registered in package.json's test script.",
+        "What is not built is stated as not built."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:58:02.781Z",
+          "ref": "_wt-wp14/src/lib/keepsake/lifecycle.ts",
+          "note": "PLANNING_DAYS_FROM_REDEMPTION 548 and GRACE_DAYS_AFTER_WEDDING 90 as named constants, endsAt = max of the two, a 'basis' discriminator naming which half won, a three-phase model, a twelve-intent read-only write policy with three stated exceptions, and every couple-facing sentence about the term in one function so one test can police all of them.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:02.917Z",
+          "ref": "_wt-wp14/src/lib/keepsake/export.ts",
+          "note": "buildKeepsakeExport returns keepsake.html (one self-contained document, inline CSS, no script/link/img/iframe/src/absolute-URL/@import/url()) and keepsake.json. findExternalReferences is exported so the no-network property is asserted on the produced document, not on a remembered list.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.044Z",
+          "ref": "_wt-wp14/src/lib/keepsake/keepsake.test.ts",
+          "note": "16 tests. The R-015 scenario is driven concretely: books 2027-03-10, marries 2028-09-16, redeems the day they sign; the term lands on 2028-12-15T23:59:59.999Z, strictly later than redemption + 548 days. Under a flat term this couple loses the product on top of their wedding.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.171Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.11-keepsake.md",
+          "note": "Includes the pre-task grep proving Keepsake did not exist (two matches, both comments saying it does not exist), the criterion-by-criterion record, and section 3 on the ds:check failure and how it was resolved without touching the grandfather manifest.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.348Z",
+          "ref": "_wt-wp14/src/ds/tokens.css:48-67",
+          "note": "The export's palette is the actual light-mode token values materialised as rgb() with each one named in a comment, rather than the beige guess it started as. ds:check went from '2 drift failures' to 'clean — no drift' without adding the first entry to a founder-owned exception manifest.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.520Z",
+          "ref": "_wt-wp14/package.json:36",
+          "note": "CONFIRMED REGISTERED. `src/lib/keepsake/keepsake.test.ts` appears in the `test` script's third `node --import tsx --test` group. NOT the unregistered-test-file failure mode. I additionally confirmed it EXECUTES inside the chain, not just that the path is present — see the verification field.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.708Z",
+          "ref": "evidence/E06.11-keepsake.md",
+          "note": "EXISTS, 314 lines, read in full. §0 pre-task grep verified by me independently: `grep -rni keepsake src/ drizzle/ scripts/` returns only billing.tsx:101-102 (two comments saying it does not exist) plus a robots.ts comment this branch added. §3's ds:check narrative verified. §C11 is unusually candid and names the zero-caller gap itself. ONE INACCURACY FOUND: §C9 overstates the export test's banned-word coverage by four terms.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:03.881Z",
+          "ref": "_wt-wp14 (git)",
+          "note": "Branch claude/wp14-timeline, HEAD 88e8c5a on top of 5717b75 (WP-08 E05) as stated. 36 working-tree entries; the three keepsake files are untracked additions and package.json is the only diff attributable to this package (test-script registration). No GENERATED file touched — templates.generated.ts is absent from the diff; only the source src/lib/templates.ts is modified, by other tasks in the branch. Tree left exactly as found (36 entries before and after); both probe scripts removed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:04.021Z",
+          "ref": "_wt-wp14/src/components/app/settings/sections/billing.tsx:109",
+          "note": "THE COUNTER-EVIDENCE. The only couple-facing sentence about the access term that actually ships lives here, not in keepsakeCopy, and no test file references it. This is what breaks the 'one function, one test' claim.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:04.162Z",
+          "ref": "_wt-wp14/src/components/redeem/redeem-result-card.tsx:89",
+          "note": "COUNTER-EVIDENCE for C1 at product level: renders 'until {expiresLabel}' from the minted expiresAt, which is still the flat 548-day value while R-015 is open.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL — the build agent's own label is CORRECT, and the evidence document is the most honest one I have verified on this programme. I did not have to discover the headline gap; §C11 states it outright: 'isPermittedInKeepsake has ZERO production callers. The policy is declared and tested and enforces nothing.' That is true, I confirmed it independently, and a build agent that names its own worst finding earns a different reading than one that does not. What is genuinely CONFIRMED. Every evidence path exists. All three verification commands re-run by me and green, including the full pnpm test suite at exit 0 with the keepsake assertions visibly executing inside the chain — this is N",
         "date": null
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
-      "reviewAt": null,
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -8220,6 +9203,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:58:02.525Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:58:02.650Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:58:04.287Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL — the build agent's own label is CORRECT, and the evidence document is the most honest one I have verified on this programme. I did not have to discover the headline gap; §C11 states it outright: 'isPermittedInKeepsake has ZERO production callers. The policy is declared and tested and enforces nothing.' That is true, I confirmed it independently, and a build agent that names its own worst finding earns a different reading than one that does not. What is genuinely CONFIRMED. Every evidence path exists. All three verification commands re-run by me and green, including the full pnpm test suite at exit 0 with the keepsake assertions visibly executing inside the chain — this is N"
         }
       ],
       "decisionClass": "founder_choice",
@@ -8229,7 +9233,7 @@
       "id": "E06.12",
       "epic": "E06",
       "title": "Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.",
-      "status": "backlog",
+      "status": "blocked",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8252,10 +9256,122 @@
         "E06.11"
       ],
       "dependencyBasis": "Timeline QA needs the Timeline.",
-      "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "blockedBy": [
+        {
+          "at": "2026-08-03T21:58:27.803Z",
+          "reason": "Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map.",
+          "by": "E06.01",
+          "clearedAt": null
+        }
+      ],
+      "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.12.md",
+      "acceptanceCriteria": [
+        "Unpublish closes the boundary for the same token and every active share is revoked in the same transaction, proven behaviourally rather than by reading.",
+        "A broken link produces a real 404 on both token surfaces, with a page that tells the holder what happened without leaking whether the timeline ever existed.",
+        "Delete and unpublish on /p remove the page, and the window inside which that is true is stated as a number rather than assumed to be instant.",
+        "Zero critical and zero serious axe violations, and no horizontal document overflow, on every published surface at 390, 768, 1280 and 1440, reported as counts from a real run.",
+        "What unfurls in a message app is checked on both published products, and any line that reads as product marketing on a couple's wedding page is reported against D-011 point 2.",
+        "Every area not measured is named as not measured, with the reason.",
+        "No claim in the evidence is stated as a pass without the command that produced it and its real output."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:58:05.625Z",
+          "ref": "_wt-wp14/src/server/actions/settings.ts",
+          "note": "DEFECT FOUND AND FIXED. /p/[slug] is ISR with revalidate = 60. publishWorkspaceAction and unpublishWorkspaceAction both called revalidatePath('/p/{slug}'); deleteWorkspaceAction did not. A couple who deleted a published wedding workspace kept serving its cached public page — task titles and tags, which carry guests' and suppliers' names — for up to sixty seconds after the delete, with no row left to explain it. Fixed by reading the slug before the delete transaction and revalidating after it.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:05.771Z",
+          "ref": "_wt-wp14/src/server/published-surface-revalidation.test.mjs",
+          "note": "3 tests, registered in package.json. Asserts publish, unpublish and delete all revalidate /p/{slug}, that delete reads the slug BEFORE the row is deleted, and that /p is still ISR (so the test is measuring something). Asserts against source text on purpose and says so in its own header, because the defect was a missing call and only the wiring can catch a missing call.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:05.912Z",
+          "ref": "_wt-wp14/src/app/p/[slug]/page.tsx:21-58",
+          "note": "DEFECT, reported not fixed. For a wedding workspace the OpenGraph unfurl reads 'Mara and Finn, Wedding planner workspace' / 'Mara and Finn, a real wedding planner workspace made public on Tasks. Same items, four lenses: board, list, timeline, calendar.' That is product marketing on the couple's WhatsApp unfurl (D-011 point 2); 'made public' will be false once D-033's noindex default lands; and 'Wedding planner' is an internal domain label describing the couple as a planner. Not fixed because thi",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.037Z",
+          "ref": "_wt-wp14/src/app/s/[token]/not-found.tsx",
+          "note": "Broken-link copy verified correct on the point that matters: it names four possibilities (rotated, revoked, unpublished, ended) and commits to none, so a stranger holding a guessed token learns nothing about whether a timeline exists behind it.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.188Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E06.12-shared-timeline-qa.md",
+          "note": "Full record. Leads with its two limits rather than burying them: this worktree is shared with a concurrent package so every suite result belongs to the tree and not to one task, and two of the seven named areas were not tested at all.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.358Z",
+          "ref": "_wt-wp14/experience/playwright.config.ts",
+          "note": "browserName: 'chromium' on every project. Four viewport sizes, one engine. This is why cross-browser is reported as untested rather than as a pass, and it matters: the artifact leans on container queries, logical inset properties and color-mix, and most wedding guests use Safari.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.510Z",
+          "ref": "_wt-wp14/experience/tests/critical-experiences.spec.ts:308-315",
+          "note": "THE REFUTATION. `if (caseName === \"invalid bearer link\") { /* Next's streamed notFound boundary is intentionally a soft 404. */ expect(response.status()).toBe(200); }`. The evidence doc cites this very case to prove /s returns 'a real 404'. It proves the opposite.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.640Z",
+          "ref": "_wt-wp14/experience/critical-fixtures.json",
+          "note": "expectedStatus audit: /share/review-missing = 404 (real 404, criterion met on that surface); /s/invalid = unset, defaults 200. No fixture anywhere mentions 'embed' — /embed/[slug] has no rendered coverage at any viewport.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.806Z",
+          "ref": "_wt-wp14/src/app/embed/[slug]/page.tsx",
+          "note": "Confirms /embed is a published surface: same getPublishedWorkspaceBySlug, same ws.tasks DTO, `dynamic = \"force-dynamic\"` (so no ISR window defect there), metadata robots index:false. Unmeasured and unnamed by E06.12.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:06.993Z",
+          "ref": "_wt-wp14/src/modules/timeline/server/audience-timeline.ts:565-597",
+          "note": "Criterion 1 CONFIRMED by reading AND behaviourally. One db.transaction sets state 'unpublished', stamps items, and updates every audience_shares row with state 'active' to 'revoked'. Same transaction, as claimed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.125Z",
+          "ref": "_wt-wp14/experience/output/evidence-attestation.json",
+          "note": "Corroborates the Playwright claim without reproducing it. runId tasks-playwright-5501ae463b99182192baa7cc and rawArtifactSha256 670f570acf683405c5990991b688bce1f526860e4326f6e3fae887e822ee4617 match the claim character-for-character; testCount 128, passedCount 128, unexpectedCount 0, 4 projects x 32; startedAt 2026-08-03T21:19:09.930Z, file written 22:28:02 local — consistent with a 8.9m run. attest-playwright.mjs:96-108 throws unless every outcome is green AND the case/project set exactly match",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.248Z",
+          "ref": "_wt-wp14/experience/evidence-runs/tasks-playwright-5501ae463b99182192baa7cc-1bce2067f1691fd8.json",
+          "note": "CAVEAT ON THE RUN ID. The same runId already existed with startedAt 2026-07-31T11:03:33.708Z. runId is the CANONICAL digest of outcomes plus input hashes and deliberately excludes timestamps, so it certifies greenness, not recency — and it shows the Playwright suite is insensitive to this package's changes. The evidence doc concedes this for the delete fix; it is true of the run identity generally.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.372Z",
+          "ref": "_wt-wp14/src/lib/public-analytics-boundary.ts + src/components/analytics/google-tag.tsx:29",
+          "note": "PRIVACY PROBE, could not break it. isAnalyticsExcludedPath is the FIRST statement in GoogleTag, before the `enabled` check, covering /p /s /share /embed by exact match or prefix. next.config.ts adds analytics-free CSP header sets on /p/:path*, /share/:path*, /s/:path* and /embed/:path*. I found no path that loads GA4 on a couple-facing surface. (Concurrent package's work, not E06.12's.)",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.489Z",
+          "ref": "_wt-wp14/src/modules/timeline/lib/viewer-count.ts",
+          "note": "PRIVACY PROBE, could not build an identifying count. Floor 5; below it state 'withheld' with a note carrying no number and no bound; above it lastViewedAt is coarsened to month-and-year only. Callers receive pre-rendered strings, never the integer. artifact-studio.tsx:56-69 now consumes this, so the audit's 'Timeline views 1 / Last viewed 3 Aug 2026' defect is closed in this tree. (Concurrent package's work, not E06.12's.)",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.599Z",
+          "ref": "_wt-wp14/src/app/robots.ts",
+          "note": "D-033 noindex check: /p IS now in the disallow list. But /p/[slug] generateMetadata sets no robots directive at all, so per-page noindex is absent. robots.ts's own comment states this honestly ('Both controls are needed; this one alone is not enough') and defers the X-Robots-Tag residual to E06.05. Belongs to the concurrent R-031 package, not E06.12 — recorded so it is not lost.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:58:07.727Z",
+          "ref": "_wt-wp14/src/lib/domains.ts:366-369",
+          "note": "Confirms the /p unfurl defect the evidence reports is real and accurately quoted: wedding label is literally 'Wedding planner', so generateMetadata yields 'Mara and Finn, Wedding planner workspace' and '...a real wedding planner workspace made public on Tasks. Same items, four lenses: board, list, timeline, calendar.' The D-011 point 2 report is correct.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": "2026-08-20",
       "targetBasis": "UI freeze, D-008. Timeline QA closes the couple-facing surfaces.",
       "founderSignOff": {
@@ -8277,6 +9393,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:58:05.419Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:58:27.803Z",
+          "from": "ready",
+          "to": "blocked",
+          "by": "claude_code",
+          "note": "Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map."
         }
       ],
       "decisionClass": "execution",
@@ -22309,13 +23439,13 @@
   },
   "counts": {
     "byStatus": {
-      "backlog": 76,
+      "backlog": 65,
       "ready": 2,
       "in_progress": 0,
       "internal_review": 1,
-      "founder_review": 0,
+      "founder_review": 9,
       "done": 131,
-      "blocked": 0,
+      "blocked": 2,
       "deferred": 2,
       "cancelled": 0
     },
@@ -22337,10 +23467,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T16:08:42.367Z",
-    "lastRenderedAt": "2026-08-03T16:01:30.037Z",
-    "lastUpdatedAt": "2026-08-03T16:08:42.121Z",
-    "lastUpdatedSession": "wp16-assets",
+    "lastValidatedAt": "2026-08-03T21:58:27.803Z",
+    "lastRenderedAt": "2026-08-03T21:58:27.803Z",
+    "lastUpdatedAt": "2026-08-03T21:58:27.803Z",
+    "lastUpdatedSession": "wp14-timeline",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"

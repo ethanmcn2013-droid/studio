@@ -167,7 +167,19 @@ $ pnpm run typecheck
 $ pnpm test
   exit: 0
 $ pnpm run build
-  exit: 1
+  exit: 1 on the first two attempts, and NOT because of this code:
+
+      Another next build process is already running.
+
+  A concurrent WP-16 session was building in the same working tree. Retried
+  until the lock cleared; attempt 3 returned exit 0 with all four routes
+  present. Recorded rather than re-run quietly, because "the build went red
+  and then it did not" is exactly the kind of thing that should be visible.
+
+$ pnpm run build   (attempt 3)
+  exit: 0
+  Compiled successfully. Route table carries /hq/venue-deck,
+  /hq/founding-certificate, /hq/venue-prebooking-kit and /hq/couple-welcome-kit.
 $ pnpm exec tsx --test  (the four suites together)
 ℹ tests 79
 ℹ pass 79

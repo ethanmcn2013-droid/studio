@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T16:01:30.037Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T16:01:25.214Z · session `wp13-commercial`
+**Report generated:** 2026-08-03T21:58:27.803Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T21:58:27.803Z · session `wp14-timeline`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -22,7 +22,7 @@
 **Verified completion: 62.4%** — 131 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 62.7% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 66.3% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -32,13 +32,13 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 
 | Status | Count |
 |---|---|
-| backlog | 76 |
+| backlog | 65 |
 | ready | 2 |
 | in_progress | 0 |
 | internal_review | 1 |
-| founder_review | 0 |
+| founder_review | 9 |
 | done | 131 |
-| blocked | 0 |
+| blocked | 2 |
 | deferred | 2 |
 | cancelled | 0 |
 | **total** | **212** |
@@ -52,7 +52,7 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 1 | 0 |
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 9/12 | 75% | 0 | 0 |
-| E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 0 | 0 |
+| E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 9 | 2 |
 | E07 | Venue Portal, trust layer and renewal evidence | 18/18 | 100% | 0 | 0 |
 | E08 | Billing, security, reliability and release engineering | 12/12 | 100% | 0 | 0 |
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
@@ -112,15 +112,34 @@ Ratified in D-008. Moving one is change control, not an edit.
 **Internal review (1):**
 - `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
 
-**Awaiting founder review (0):**
-- None.
+**Awaiting founder review (9):**
+- `E06.02` Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. — claude_code
+- `E06.03` Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. — claude_code
+- `E06.04` Complete milestone navigation and the transition from a Timeline point into its photograph and story. — claude_code
+- `E06.05` Implement private-link, password-protected and intentionally public sharing modes. — claude_code
+- `E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. — claude_code
+- `E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. — claude_code
+- `E06.09` Design and implement the intentional vertical mobile Timeline. — claude_code
+- `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept. — claude_code
+- `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export. — claude_code
 
-**Blocked (0):**
-- None.
+**Blocked (2):**
+- `E06.01` Define the public artifact content model and what can never be published from the private workspace.
+  - Blocked by: Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural.
+- `E06.12` Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.
+  - Blocked by: Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map.
 
 ## Founder decisions required
 
-- None.
+1. Approve or reject `E06.02` — Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.
+2. Approve or reject `E06.03` — Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.
+3. Approve or reject `E06.04` — Complete milestone navigation and the transition from a Timeline point into its photograph and story.
+4. Approve or reject `E06.05` — Implement private-link, password-protected and intentionally public sharing modes.
+5. Approve or reject `E06.06` — Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
+6. Approve or reject `E06.07` — Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
+7. Approve or reject `E06.09` — Design and implement the intentional vertical mobile Timeline.
+8. Approve or reject `E06.10` — Refine the desktop editorial Timeline shown in the Mara and Finn concept.
+9. Approve or reject `E06.11` — Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
 
 ## Completed since the last report
 
@@ -143,7 +162,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Critical-path condition
 
-87/120 critical-path tasks complete. 0 blocked.
+87/120 critical-path tasks complete. 2 blocked: E06.01, E06.12
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 
@@ -185,7 +204,7 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** none
+**Open sessions:** wp14-timeline (WP-14 · E06 Shared Timeline and Keepsake, plus R-031 and R-032 implementation and the Timeline workspace blocker) · wp15-term (WP-15 · R-015 access-term correctness in the app redemption path) · wp16-assets (WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets)
 **Last closed session:** wp13-commercial (2026-08-03T15:29:44.570Z) → `sessions/2026-08-03--wp13-commercial.md`
 
 ## Next recommended project-management action
