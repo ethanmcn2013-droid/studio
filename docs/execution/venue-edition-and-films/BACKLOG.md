@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T15:38:02.979Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T16:01:25.214Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -180,7 +180,7 @@ Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 | E08.04 | Complete multi-tenant data isolation for venues and couple workspaces, enforced by application-level scoping, a CI gate and a behavioural negative suite. | done | p1 | CP RB | claude_code | — | — | 13 | — | ✓ | approved |
 | E08.05 | Complete role-based authentication and authorisation across venue owners, managers, viewers and couples. | done | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | approved |
 | E08.06 | Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption. | done | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | approved |
-| E08.07 | Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E08.07 | Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. | done | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | approved |
 | E08.08 | Complete audit logging, operational logging, error monitoring and alert escalation. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
 | E08.09 | Complete backups, restore testing, disaster-recovery procedures and data-integrity verification. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
 | E08.10 | Set and test performance budgets across portal, couple workspace, Timeline images and public artifact. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
@@ -242,7 +242,7 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 | E11.01 | Build the Venue Edition CRM stages from researched through paid, onboarded and first couple activated. | done | p2 | — | claude_code | — | — | 1 | — | — | approved |
 | E11.02 | Define objective entry and exit criteria for every sales stage. | done | p2 | — | claude_code | — | — | 1 | — | — | approved |
 | E11.03 | Define cohort-release cadence, weekly account capacity and the rule for releasing the next 25. | done | p2 | FD | claude_code | — | — | 1 | — | — | approved |
-| E11.04 | Configure the outreach sending identity, SPF, DKIM, DMARC, tracking policy, unsubscribe handling and suppression list. | ready | p2 | FD | founder | — | — | — | — | — | not_requested |
+| E11.04 | Configure the outreach sending identity, SPF, DKIM, DMARC, tracking policy, unsubscribe handling and suppression list. | ready | p2 | FD | founder | — | — | 1 | — | — | not_requested |
 | E11.05 | Write the concise founder introduction email and its personalised venue-specific opening. | done | p2 | — | claude_code | — | — | 1 | — | — | approved |
 | E11.06 | Design the physical founder letter, envelope, leave-behind and in-person visit route. | deferred | p2 | FD | founder | — | — | — | — | — | not_requested |
 | E11.07 | Define how each private personalised film and landing page is delivered without sending large video attachments. | done | p2 | — | claude_code | — | — | 1 | — | — | approved |
@@ -259,7 +259,7 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 8/14 done (57.1%) · 0 in flight · 2 blocked
+Lane: `claude_code` · 10/14 done (71.4%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -267,7 +267,7 @@ Lane: `claude_code` · 8/14 done (57.1%) · 0 in flight · 2 blocked
 | E12.02 | Build the private Founding 25 invitation page. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
 | E12.03 | Build a parameterised private proposal page for each venue. | done | p2 | — | claude_code | — | — | 6 | — | ✓ | approved |
 | E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | done | p2 | — | claude_code | E02.01, E02.03 | — | 3 | — | ✓ | approved |
-| E12.05 | Add the branded couple-experience preview. | blocked | p2 | — | claude_code | E05.12 | — | 17 | Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps. | ✓ | not_requested |
+| E12.05 | Add the branded couple-experience preview. | done | p2 | — | claude_code | E05.12 | — | 17 | — | ✓ | approved |
 | E12.06 | Add the Venue Portal trust-and-renewal preview. | done | p2 | — | claude_code | E07.18 | — | 12 | — | ✓ | approved |
 | E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
 | E12.08 | Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. | done | p2 | — | claude_code | E02.12 | — | 14 | — | ✓ | approved |
@@ -276,7 +276,7 @@ Lane: `claude_code` · 8/14 done (57.1%) · 0 in flight · 2 blocked
 | E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | backlog | p2 | FC | claude_code | E02.01, E02.10 | — | — | — | — | not_requested |
 | E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
 | E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
-| E12.14 | Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page. | blocked | p1 | CP | claude_code | E12.04, E12.05, E12.06 | — | 14 | Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver. | ✓ | not_requested |
+| E12.14 | Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page. | done | p1 | CP | claude_code | E12.04, E12.05, E12.06 | — | 14 | — | ✓ | approved |
 
 ## E13 — Motion system and Limerick First invitation film
 

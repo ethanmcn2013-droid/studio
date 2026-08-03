@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T15:38:24.139Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T15:38:02.979Z · session `wp13-commercial`
+**Report generated:** 2026-08-03T16:01:30.037Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T16:01:25.214Z · session `wp13-commercial`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,10 +19,10 @@
 
 ## Completion
 
-**Verified completion: 61.4%** — 129 of 210 tasks.
+**Verified completion: 62.4%** — 131 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 61.7% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 62.7% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -37,8 +37,8 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | in_progress | 0 |
 | internal_review | 1 |
 | founder_review | 0 |
-| done | 129 |
-| blocked | 2 |
+| done | 131 |
+| blocked | 0 |
 | deferred | 2 |
 | cancelled | 0 |
 | **total** | **212** |
@@ -58,7 +58,7 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
-| E12 | Website, proposal and commercial asset system | 8/14 | 57.1% | 0 | 2 |
+| E12 | Website, proposal and commercial asset system | 10/14 | 71.4% | 0 | 0 |
 | E13 | Motion system and Limerick First invitation film | 4/18 | 22.2% | 0 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
@@ -115,11 +115,8 @@ Ratified in D-008. Moving one is change control, not an edit.
 **Awaiting founder review (0):**
 - None.
 
-**Blocked (2):**
-- `E12.05` Add the branded couple-experience preview.
-  - Blocked by: Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps.
-- `E12.14` Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.
-  - Blocked by: Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver.
+**Blocked (0):**
+- None.
 
 ## Founder decisions required
 
@@ -132,11 +129,11 @@ Ratified in D-008. Moving one is change control, not an edit.
 - 2026-08-03 `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
 - 2026-08-03 `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata.
 - 2026-08-03 `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
+- 2026-08-03 `E12.14` Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.
 - 2026-08-03 `E12.09` Produce the concise one-page commercial proposal.
 - 2026-08-03 `E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
 - 2026-08-03 `E12.07` Add the privacy explanation covering exactly what the venue sees and never sees.
 - 2026-08-03 `E12.06` Add the Venue Portal trust-and-renewal preview.
-- 2026-08-03 `E12.04` Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly.
 
 ## Three highest-value next actions
 
@@ -146,7 +143,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Critical-path condition
 
-86/120 critical-path tasks complete. 1 blocked: E12.14
+87/120 critical-path tasks complete. 0 blocked.
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 

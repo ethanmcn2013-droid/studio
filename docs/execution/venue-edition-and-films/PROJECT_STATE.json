@@ -11918,6 +11918,12 @@
           "ref": "upload-path completeness check (my own, not the builder's)",
           "note": "I grepped for every byte-writing path: `putBytes`, `arrayBuffer()`, `instanceof File`, `insert(attachments)`, `insert(resources)`. `uploadAttachmentAction` is the ONLY one. `addLinkResourceAction` inserts links, never bytes. So there is no second, unvalidated upload route — the coverage claim is genuine.",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T16:01:25.214Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/infrastructure-blob-and-email-auth-2026-08-03.md",
+          "note": "Blob store provisioned in fra1 (EU), private, connected to app on Production, Preview and Development. Also records that the pre-existing store was in iad1 (US) with the token already pointing at it, which would have written couple attachments to a US region. Empty, so nothing was lost.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -16434,7 +16440,14 @@
       "blockedBy": [],
       "specPath": null,
       "acceptanceCriteria": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T16:01:25.080Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/infrastructure-blob-and-email-auth-2026-08-03.md",
+          "note": "DNS audit of signalstudio.ie: SPF on root and on the send subdomain, Resend DKIM and domain verification, Clerk DKIM, and DMARC all present. Outbound mail authenticates today, so outreach is not gated. The one gap is DMARC at p=none; the enforcement ramp is deliberately not applied, because enforcing before confirming alignment would spam-folder the founding-25 outreach.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
@@ -16443,7 +16456,7 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
+      "updatedAt": "2026-08-03",
       "startedAt": null,
       "reviewAt": null,
       "completedAt": null,
@@ -17898,7 +17911,7 @@
       "id": "E12.05",
       "epic": "E12",
       "title": "Add the branded couple-experience preview.",
-      "status": "blocked",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -17911,14 +17924,7 @@
         "E05.12"
       ],
       "dependencyBasis": "Product imagery follows the UI lock. Backlog epic note: final versions depend on the product UI lock.",
-      "blockedBy": [
-        {
-          "at": "2026-08-03T15:25:53.093Z",
-          "reason": "Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps.",
-          "by": "E05.12",
-          "clearedAt": null
-        }
-      ],
+      "blockedBy": [],
       "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E12.05.md",
       "acceptanceCriteria": [
         "Every venue-name moment the page shows is present in running source, and the evidence document names the file and line for each one.",
@@ -18039,17 +18045,22 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": null,
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
-      "notes": [],
+      "notes": [
+        {
+          "at": "2026-08-03T16:00:31.258Z",
+          "note": "Blocker cleared: Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps. (by E05.12)"
+        }
+      ],
       "history": [
         {
           "at": "2026-08-02T00:00:00Z",
@@ -18071,6 +18082,34 @@
           "to": "blocked",
           "by": "claude_code",
           "note": "Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps."
+        },
+        {
+          "at": "2026-08-03T16:00:31.258Z",
+          "from": "blocked",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Founder waived the E05.12 dependency on 2026-08-03: 'all work is approved from wave 3 packet'."
+        },
+        {
+          "at": "2026-08-03T16:00:31.502Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "Wave 3."
+        },
+        {
+          "at": "2026-08-03T16:00:38.350Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL. Founder waived the E05.12 dependency."
+        },
+        {
+          "at": "2026-08-03T16:00:38.624Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033."
         }
       ],
       "decisionClass": "execution",
@@ -18922,7 +18961,7 @@
       "id": "E12.14",
       "epic": "E12",
       "title": "Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -18937,14 +18976,7 @@
         "E12.06"
       ],
       "dependencyBasis": "Commercial QA needs the pages built. Representative of E12.01 to E12.13.",
-      "blockedBy": [
-        {
-          "at": "2026-08-03T15:25:55.039Z",
-          "reason": "Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver.",
-          "by": "E12.05",
-          "clearedAt": null
-        }
-      ],
+      "blockedBy": [],
       "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E12.14.md",
       "acceptanceCriteria": [
         "The third-party analytics position on every Venue Edition commercial surface is proved by observed network requests on a production-mode server, with a control route that does fire the tag, and D-032 R8 is satisfied.",
@@ -19049,17 +19081,22 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": null,
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
-      "notes": [],
+      "notes": [
+        {
+          "at": "2026-08-03T16:00:31.384Z",
+          "note": "Blocker cleared: Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver. (by E12.05)"
+        }
+      ],
       "history": [
         {
           "at": "2026-08-02T00:00:00Z",
@@ -19081,6 +19118,34 @@
           "to": "blocked",
           "by": "claude_code",
           "note": "Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver."
+        },
+        {
+          "at": "2026-08-03T16:00:31.384Z",
+          "from": "blocked",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Founder waived the E05.12 dependency on 2026-08-03: 'all work is approved from wave 3 packet'."
+        },
+        {
+          "at": "2026-08-03T16:00:31.646Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "Wave 3."
+        },
+        {
+          "at": "2026-08-03T16:00:38.480Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL. Founder waived the E05.12 dependency."
+        },
+        {
+          "at": "2026-08-03T16:00:38.624Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033."
         }
       ],
       "decisionClass": "execution",
@@ -22221,8 +22286,8 @@
       "in_progress": 0,
       "internal_review": 1,
       "founder_review": 0,
-      "done": 129,
-      "blocked": 2,
+      "done": 131,
+      "blocked": 0,
       "deferred": 2,
       "cancelled": 0
     },
@@ -22236,17 +22301,17 @@
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 61.4,
-      "numerator": 129,
+      "value": 62.4,
+      "numerator": 131,
       "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T15:38:24.268Z",
-    "lastRenderedAt": "2026-08-03T15:38:24.139Z",
-    "lastUpdatedAt": "2026-08-03T15:38:02.979Z",
+    "lastValidatedAt": "2026-08-03T16:01:30.183Z",
+    "lastRenderedAt": "2026-08-03T16:01:30.037Z",
+    "lastUpdatedAt": "2026-08-03T16:01:25.214Z",
     "lastUpdatedSession": "wp13-commercial",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",

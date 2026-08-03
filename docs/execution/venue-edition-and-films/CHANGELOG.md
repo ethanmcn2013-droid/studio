@@ -519,3 +519,10 @@ Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-admin
 `E12.09` Produce the concise one-page commercial proposal.
 
 Founder note: Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).
+
+## 2026-08-03 · Batch approved — 2 task(s)
+
+`E12.05` Add the branded couple-experience preview.
+`E12.14` Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.
+
+Founder note: Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033.
