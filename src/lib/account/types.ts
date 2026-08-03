@@ -36,6 +36,39 @@ export type MetricValue =
    */
   | { state: "unlimited" };
 
+/**
+ * The brand that makes a rate unforgeable.
+ *
+ * Declared, never exported, and erased at compile time. Only
+ * `instrumentation/suppression.ts` can produce a value carrying it, and it does
+ * so through one assertion in one function. Everywhere else an object literal
+ * of shape `{ state: "rate", … }` fails to compile, which is the point: R-028
+ * was a percentage anyone could assemble from two loose numbers.
+ */
+declare const RATE_VALUE_BRAND: unique symbol;
+
+/**
+ * A rate is one value, not two.
+ *
+ * Numerator and denominator travel together so no surface can pair a numerator
+ * from one metric with a denominator from another, and so the five-workspace
+ * floor ratified in D-011 is a property of the value rather than a discipline
+ * at the call site. `presentRate` in the projector is the only constructor.
+ *
+ * There is no `exact` variant on purpose. A rate that cleared the floor is a
+ * rate; one that did not is withheld, and it never carries the numbers it
+ * withheld.
+ */
+export type RateValue =
+  | {
+      state: "rate";
+      numerator: number;
+      denominator: number;
+      readonly [RATE_VALUE_BRAND]: true;
+    }
+  | { state: "withheld"; reason: "small_group" }
+  | { state: "unavailable"; reason: string };
+
 export type AccountIdentity = {
   accountId: string;
   name: string;
@@ -104,7 +137,8 @@ export type AdoptionLifecycle = {
   redeemed: MetricValue;
   firstUsefulAction: MetricValue;
   activeRecently: MetricValue;
-  continuedAfter30Days: MetricValue;
+  /** A rate, not a count. It carries its own denominator and its own floor. */
+  continuedAfter30Days: RateValue;
   daysWithSponsoredUse: MetricValue;
 };
 

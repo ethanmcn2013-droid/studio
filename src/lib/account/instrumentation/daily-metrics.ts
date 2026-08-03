@@ -11,13 +11,21 @@
  *
  * A fourth, `withheld`, is the small-group rule, and it outranks all of them:
  * a number that would describe fewer than three workspaces is not shown at any
- * confidence.
+ * confidence, and neither is one that leaves fewer than three undescribed.
+ *
+ * Every threshold here comes from `suppression.ts`. This module used to
+ * reimplement the population check and skip the two-sided test entirely, which
+ * is how R-027 shipped; it now owns no thresholds of its own.
  */
 
-import type { MetricValue, ProductReach } from "../types";
+import type { MetricValue, ProductReach, RateValue } from "../types";
 import type { SponsoredProduct } from "./event-schema";
 import { diffLocalDays } from "./local-date";
-import { BEHAVIOURAL_MIN_WORKSPACES } from "./suppression";
+import {
+  BEHAVIOURAL_MIN_WORKSPACES,
+  isSmallCell,
+  presentRate,
+} from "./suppression";
 import { ALL_PRODUCTS, PRODUCT_BITS } from "./rollup";
 
 export type StoredDailyRow = {
@@ -79,12 +87,38 @@ export function eligibleForWindow(rows: readonly StoredDailyRow[]): number {
 }
 
 /**
- * Present a counted value against the coverage of the window.
+ * Present a count of sponsored workspaces against the coverage of the window.
  *
  * Partial coverage can only understate a count, so it becomes a lower bound
- * rather than a number presented as complete.
+ * rather than a number presented as complete. A lower bound is still a
+ * disclosure — "at least 39 of 40" names the fortieth — so it passes the same
+ * two-sided test as an exact value.
  */
-function present(
+function presentWorkspaces(
+  value: number,
+  rows: readonly StoredDailyRow[],
+  window: MetricWindow,
+  eligible: number,
+  emptyReason: string,
+): MetricValue {
+  const expected = daysExpected(window);
+  const covered = rows.length;
+  if (covered === 0) return unavailable(emptyReason);
+  if (eligible < BEHAVIOURAL_MIN_WORKSPACES) return withheld();
+  if (isSmallCell(value, eligible)) return withheld();
+  if (covered < expected) {
+    return { state: "lower_bound", value, denominator: expected };
+  }
+  return { state: "exact", value, denominator: expected };
+}
+
+/**
+ * The same, for a count whose unit is the day rather than the workspace.
+ *
+ * The population floor applies; the complement rule does not. Days are not
+ * people, and suppressing "four of thirty days" protects nobody.
+ */
+function presentDays(
   value: number,
   rows: readonly StoredDailyRow[],
   window: MetricWindow,
@@ -101,11 +135,28 @@ function present(
   return { state: "exact", value, denominator: expected };
 }
 
+/**
+ * A workspace count that can only ever be a lower bound — a closed historical
+ * window, where the best honest answer is the largest single day.
+ *
+ * It runs the same two-sided test. Skipping it here was half of R-027: this
+ * path never touched a threshold at all.
+ */
+function lowerBoundWorkspaces(
+  value: number,
+  eligible: number,
+  denominator: number,
+): MetricValue {
+  if (eligible < BEHAVIOURAL_MIN_WORKSPACES) return withheld();
+  if (isSmallCell(value, eligible)) return withheld();
+  return { state: "lower_bound", value, denominator };
+}
+
 export function daysWithSponsoredUse(inputs: WindowInputs): MetricValue {
   const { rows, window } = inputs;
   const eligible = eligibleForWindow(rows);
   const value = rows.filter((row) => row.activeWorkspaces >= 1).length;
-  return present(
+  return presentDays(
     value,
     rows,
     window,
@@ -121,7 +172,13 @@ export function firstUsefulAction(inputs: WindowInputs): MetricValue {
     (row) =>
       row.firstActionLocalDate >= window.start && row.firstActionLocalDate <= window.end,
   ).length;
-  return present(value, rows, window, eligible, "No sponsored-use rollup for this period");
+  return presentWorkspaces(
+    value,
+    rows,
+    window,
+    eligible,
+    "No sponsored-use rollup for this period",
+  );
 }
 
 /**
@@ -144,22 +201,30 @@ export function activeRecently(inputs: WindowInputs): MetricValue {
     const value = lifecycle.filter(
       (row) => row.lastActionLocalDate >= window.start,
     ).length;
-    return present(value, rows, window, eligible, "No sponsored-use rollup for this period");
+    return presentWorkspaces(
+      value,
+      rows,
+      window,
+      eligible,
+      "No sponsored-use rollup for this period",
+    );
   }
   const value = rows.reduce((max, row) => Math.max(max, row.activeWorkspaces), 0);
-  return { state: "lower_bound", value, denominator: daysExpected(window) };
+  return lowerBoundWorkspaces(value, eligible, daysExpected(window));
 }
 
 /**
  * Day-30 continuation over the closed part of the cohort.
  *
- * A rate, so the threshold is five rather than three, and the denominator
- * travels with it. Workspaces whose band has not closed are excluded from both
- * sides: dividing by people who have not had the chance to return yet reads as
- * churn when it is only impatience.
+ * A rate, so it returns `RateValue` and not a count: numerator and denominator
+ * leave here as one value, and the five-workspace floor is applied by
+ * `presentRate` rather than by a number written out here. Workspaces whose band
+ * has not closed are excluded from both sides — dividing by people who have not
+ * had the chance to return yet reads as churn when it is only impatience.
  */
-export function continuedAfter30Days(inputs: WindowInputs): MetricValue {
+export function continuedAfter30Days(inputs: WindowInputs): RateValue {
   const { lifecycle, window } = inputs;
+  const absentReason = "No closed day-30 cohort for this period";
   const inWindow = lifecycle.filter(
     (row) =>
       row.firstActionLocalDate >= window.start && row.firstActionLocalDate <= window.end,
@@ -170,11 +235,10 @@ export function continuedAfter30Days(inputs: WindowInputs): MetricValue {
       (row.day30State === "returned" || row.day30State === "not_returned"),
   );
   if (sealed.length === 0) {
-    return unavailable("No closed day-30 cohort for this period");
+    return presentRate(null, null, absentReason);
   }
-  if (sealed.length < 5) return withheld();
   const returned = sealed.filter((row) => row.day30State === "returned").length;
-  return { state: "exact", value: returned, denominator: sealed.length };
+  return presentRate(returned, sealed.length, absentReason);
 }
 
 export function productReach(inputs: WindowInputs): ProductReach[] {
@@ -218,7 +282,7 @@ export function productReach(inputs: WindowInputs): ProductReach[] {
       }).length;
       return {
         product: label,
-        workspacesReached: present(
+        workspacesReached: presentWorkspaces(
           value,
           rows,
           window,
@@ -234,7 +298,7 @@ export function productReach(inputs: WindowInputs): ProductReach[] {
     );
     return {
       product: label,
-      workspacesReached: { state: "lower_bound", value, denominator: daysExpected(window) },
+      workspacesReached: lowerBoundWorkspaces(value, eligible, daysExpected(window)),
       supportingDetail: detail,
     };
   });

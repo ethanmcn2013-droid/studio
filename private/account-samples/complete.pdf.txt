@@ -19,7 +19,7 @@ Redeemed
 First useful action
 11
 Active recently
-9
+75%
 Continued after 30 days
 Product reach
 Notes
@@ -56,7 +56,7 @@ Aggregate sponsored use
 
 This account shows aggregate sponsored use only. Private work is never included.
 
-Behavioural values are withheld below three eligible sponsored workspaces.
+Behavioural values are withheld when the group is too small to describe, and when a value would leave too few workspaces undescribed.
 
 names or emails of recipients
 notes, task text, or comments

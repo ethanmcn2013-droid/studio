@@ -300,7 +300,11 @@ export function projectVenueAccessSnapshot(
       redeemed: exact(redeemedCount),
       firstUsefulAction: unavailable(LIVE_USAGE_UNAVAILABLE_REASON),
       activeRecently: unavailable(LIVE_USAGE_UNAVAILABLE_REASON),
-      continuedAfter30Days: unavailable(LIVE_USAGE_UNAVAILABLE_REASON),
+      // A rate, so it carries the rate type even while it has nothing to say.
+      continuedAfter30Days: {
+        state: "unavailable",
+        reason: LIVE_USAGE_UNAVAILABLE_REASON,
+      },
       daysWithSponsoredUse: unavailable(LIVE_USAGE_UNAVAILABLE_REASON),
     },
     productReach: (

@@ -381,6 +381,96 @@ export function isPaidVenue(s: Pick<Sponsor, "venuePlan" | "paidAt">): boolean {
   );
 }
 
+/**
+ * One prepaid annual term at one price — E08.01, E08.02, E08.03.
+ *
+ * **Append-only.** Physically enforced by SQLite triggers (RAISE(ABORT) on
+ * UPDATE and DELETE), created in `scripts/migrate-venue-billing.mjs`, the same
+ * discipline `entitlement_events` already runs under.
+ *
+ * ── Why a table and not columns on `sponsors` ─────────────────────────────
+ *
+ * `sponsors.annual_amount_cents` is a mutable column: the next write overwrites
+ * it. That is fine for "what does this venue pay now" and useless for
+ * everything E08.02 actually asks for. A venue that joined at EUR 1,000 must
+ * still read EUR 1,000 after the standard price moves to EUR 1,800, and the
+ * amount charged in each past term must be retrievable rather than replaced.
+ * A row per term is the only shape where a price change cannot reach backwards.
+ *
+ * The `sponsors` columns are kept and still written, because HQ Traction and
+ * the venue portal read them for the current position. They are a cache of the
+ * latest row here, never the record of it.
+ *
+ * ── Why the money columns look like this ──────────────────────────────────
+ *
+ * D-021: the published price is what the venue PAYS and VAT comes out of it.
+ * `gross_amount_cents` is therefore the authoritative number and
+ * `net_amount_cents` is derived and stored only so a cash report does not have
+ * to recompute it. The read path recomputes it anyway
+ * (`vatInclusiveFromRecord`), so a corrupted net column can never become a
+ * number anybody sees.
+ *
+ * `vat_rate_basis_points` is NULLABLE and null means **not determined**, not
+ * zero-rated. Whether Signal Studio is an accountable person is unconfirmed and
+ * the Revenue MyEnquiries submission is unfiled (R-014, R-018, R-022). Every
+ * term is individually identifiable here precisely so the treatment can be
+ * corrected retrospectively when that answer arrives.
+ */
+export const sponsorPriceAgreements = sqliteTable(
+  "sponsor_price_agreements",
+  {
+    id: text("id").primaryKey(),
+    sponsorId: text("sponsor_id")
+      .notNull()
+      .references(() => sponsors.id),
+    /** 'founding' | 'paid'. Pilots do not have a price agreement. */
+    venuePlan: text("venue_plan").notNull(),
+    /** What the venue pays for this term. VAT-INCLUSIVE (D-021). */
+    grossAmountCents: integer("gross_amount_cents").notNull(),
+    /** What actually landed, so a discrepancy is visible rather than smoothed. */
+    amountReceivedCents: integer("amount_received_cents").notNull(),
+    /** Always 'inclusive' under D-021. Stored so a future basis change is a new
+     *  value on a new row rather than a silent reinterpretation of old rows. */
+    vatBasis: text("vat_basis").notNull().default("inclusive"),
+    /** Basis points. NULL = the treatment has not been determined. */
+    vatRateBasisPoints: integer("vat_rate_basis_points"),
+    /** Derived from gross at write time. Null whenever the rate is null. */
+    netAmountCents: integer("net_amount_cents"),
+    vatAmountCents: integer("vat_amount_cents"),
+    /** 1 when this term was charged under the Founding 25 rate lock. */
+    foundingLocked: integer("founding_locked").notNull().default(0),
+    /** The decision and contract version this price came from, so a reader can
+     *  audit the basis without reconstructing which rules were live that day. */
+    priceBasis: text("price_basis").notNull(),
+    /** Half-open term window: [effective_from, effective_to). */
+    effectiveFrom: integer("effective_from").notNull(),
+    effectiveTo: integer("effective_to").notNull(),
+    paidAt: integer("paid_at").notNull(),
+    recordedBy: text("recorded_by").notNull(),
+    /** How it was recorded: 'cli:mark-venue-paid', 'hq:console', and so on.
+     *  There is no payment-provider path today and this column is where one
+     *  would become visible rather than assumed. */
+    recordedVia: text("recorded_via").notNull(),
+    note: text("note"),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    index("sponsor_price_agreements_sponsor_idx").on(
+      table.sponsorId,
+      table.effectiveFrom,
+    ),
+    index("sponsor_price_agreements_paid_idx").on(table.paidAt),
+    // One agreement per sponsor per term start is a UNIQUE index created in
+    // scripts/migrate-venue-billing.mjs, so a double-recorded payment is
+    // refused by the database rather than by the writer that raced.
+  ],
+);
+
+export type SponsorPriceAgreement = typeof sponsorPriceAgreements.$inferSelect;
+export type NewSponsorPriceAgreement = typeof sponsorPriceAgreements.$inferInsert;
+
 export const LICENSE_CODE_STATUSES = ["minted", "redeemed", "revoked"] as const;
 export type LicenseCodeStatus = (typeof LICENSE_CODE_STATUSES)[number];
 

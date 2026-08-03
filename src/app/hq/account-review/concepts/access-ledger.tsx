@@ -1,6 +1,10 @@
 "use client";
 
-import { coverageTone, formatMetricValue } from "@/lib/account/format";
+import {
+  coverageTone,
+  formatMetricValue,
+  formatRateValue,
+} from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
@@ -24,8 +28,11 @@ export function AccessLedgerOverview({
     ["Redeemed", snapshot.adoption.redeemed],
     ["First useful action", snapshot.adoption.firstUsefulAction],
     ["Active recently", snapshot.adoption.activeRecently],
-    ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
   ] as const;
+
+  // Continuation is a rate and is rendered as one. It cannot join the count
+  // list without being flattened into a number that lost its denominator.
+  const continuation = formatRateValue(snapshot.adoption.continuedAfter30Days);
 
   return (
     <div className={styles.root} data-concept="access-ledger">
@@ -86,6 +93,11 @@ export function AccessLedgerOverview({
               <span>{label}</span>
             </div>
           ))}
+          <div role="listitem">
+            <i aria-hidden="true">{String(lifecycle.length + 1)}</i>
+            <strong>{continuation}</strong>
+            <span>Continued after 30 days</span>
+          </div>
         </div>
       </section>
 

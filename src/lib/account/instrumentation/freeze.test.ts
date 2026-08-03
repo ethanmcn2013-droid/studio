@@ -12,6 +12,7 @@ import {
   readFrozenReport,
   type FreezeCandidate,
 } from "./freeze";
+import { presentRate } from "./suppression";
 
 /** Well past the grace hour on 2026-07-02, so June is closed. */
 const NOW = Date.UTC(2026, 6, 2, 12);
@@ -48,7 +49,9 @@ function snapshot(coverageState = "complete"): AccountSnapshot {
       ...base.adoption,
       firstUsefulAction: { state: "exact", value: 7 },
       activeRecently: { state: "exact", value: 5 },
-      continuedAfter30Days: { state: "exact", value: 4, denominator: 6 },
+      // A test helper cannot hand-build a rate either. It goes through the
+      // projector like every other caller.
+      continuedAfter30Days: presentRate(4, 6, "No closed day-30 cohort"),
       daysWithSponsoredUse: { state: "exact", value: 21 },
     },
   };

@@ -35,7 +35,9 @@ Signal Notes, Signal Tasks, Signal Timeline, and Signal.
 - Usage output is aggregate. There is no "biggest user" or person ranking.
 - Small usage groups are suppressed. Commercial access counts remain visible;
   behavioural usage counts require at least three eligible sponsored
-  workspaces, and percentage cohorts require at least five.
+  workspaces, and percentage cohorts require at least five. The behavioural
+  floor is two-sided: a count is withheld when it is too small and when it
+  leaves too few workspaces outside it (R-027).
 - Missing or partial telemetry is shown as missing or partial. It is never
   coerced to zero.
 - Allotment changes remain operator-controlled in Signal HQ and write an audit

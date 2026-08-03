@@ -1,4 +1,4 @@
-import { formatMetricValue } from "./format";
+import { formatMetricValue, formatRateValue } from "./format";
 import type { AccountSnapshot } from "./types";
 
 /**
@@ -35,8 +35,11 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
     ["Redeemed", snapshot.adoption.redeemed],
     ["First useful action", snapshot.adoption.firstUsefulAction],
     ["Active recently", snapshot.adoption.activeRecently],
-    ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
   ] as const;
+
+  // Continuation is a rate, so it is rendered by the rate formatter and never
+  // reassembled from a value and a denominator.
+  const continuation = formatRateValue(snapshot.adoption.continuedAfter30Days);
 
   const reach = snapshot.productReach
     .map(
@@ -152,6 +155,7 @@ export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
             `<div><strong>${escapeHtml(formatMetricValue(metric))}</strong><span>${escapeHtml(label)}</span></div>`,
         )
         .join("")}
+      <div><strong>${escapeHtml(continuation)}</strong><span>Continued after 30 days</span></div>
     </div>
     <h2>Product reach</h2>
     <ul>${reach}</ul>

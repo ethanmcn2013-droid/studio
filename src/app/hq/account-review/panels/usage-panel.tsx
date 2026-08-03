@@ -3,12 +3,14 @@
 import {
   coverageTone,
   formatMetricValue,
+  formatRateValue,
   metricNumericOrNull,
+  rateNumericOrNull,
 } from "@/lib/account/format";
 import { roleCan, roleDenialReason } from "@/lib/account/roles";
 import type { AccountRole, AccountSnapshot } from "@/lib/account/types";
 import { AccountIcon } from "../components/icons";
-import { Metric } from "../components/metric";
+import { Metric, RateMetric } from "../components/metric";
 import styles from "./usage-panel.module.css";
 import shared from "./shared.module.css";
 
@@ -34,10 +36,13 @@ export function UsagePanel({
     snapshot.definitionVersion === "account-metrics.v2";
 
   const chartValues = [
-    snapshot.adoption.firstUsefulAction,
-    snapshot.adoption.activeRecently,
-    snapshot.adoption.continuedAfter30Days,
-  ].map((metric) => metricNumericOrNull(metric));
+    metricNumericOrNull(snapshot.adoption.firstUsefulAction),
+    metricNumericOrNull(snapshot.adoption.activeRecently),
+    // A rate has no count to plot as a bar, so the chart shows the two counts
+    // and the rate stays a rate. Its presence still gates the chart: a
+    // withheld continuation means the lifecycle is not fully described.
+    rateNumericOrNull(snapshot.adoption.continuedAfter30Days),
+  ];
 
   // Never render decorative empty bars for suppressed/unavailable/partial metrics.
   const showBars =
@@ -79,9 +84,9 @@ export function UsagePanel({
           label="Recent use"
           detail="Active in the current window"
         />
-        <Metric
+        <RateMetric
           className={styles.card}
-          metric={snapshot.adoption.continuedAfter30Days}
+          rate={snapshot.adoption.continuedAfter30Days}
           label="30-day continuation"
           detail="Still active after first month"
         />
@@ -140,11 +145,7 @@ export function UsagePanel({
         </div>
         {showBars ? (
           <div className={styles.bars} role="img" aria-label="Lifecycle bars">
-            {[
-              "First useful action",
-              "Recent use",
-              "Continued after 30 days",
-            ].map((label, index) => {
+            {["First useful action", "Recent use"].map((label, index) => {
               const value = chartValues[index] as number;
               const height = Math.max(12, Math.min(100, value * 6));
               return (
@@ -175,7 +176,7 @@ export function UsagePanel({
               </li>
               <li>
                 Continued after 30 days ·{" "}
-                {formatMetricValue(snapshot.adoption.continuedAfter30Days)}
+                {formatRateValue(snapshot.adoption.continuedAfter30Days)}
               </li>
             </ul>
           </div>

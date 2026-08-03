@@ -1,3 +1,24 @@
+/**
+ * Venue account roles and capabilities.
+ *
+ * WHAT THIS GOVERNS TODAY: the four /hq/account-review panels, which are
+ * a founder-facing review fixture. Nothing else imports `roleCan`. There
+ * is no venue-authenticated route anywhere in the product (R-043), so no
+ * venue currently holds any of these roles, and this file is a
+ * specification rather than a running control. Do not cite it as evidence
+ * that venue authorisation is implemented (E08.05).
+ *
+ * `docs/venue-portal/ROLES_AND_PERMISSIONS.md` describes a larger design
+ * — four roles including a Signal operator, a thirteen-row matrix, and a
+ * `sponsor_members` lifecycle. None of that is implemented; grep for
+ * `sponsor_members` returns nothing. The three roles below are what
+ * exists.
+ *
+ * The full truth table, and the rule that no venue role may ever hold a
+ * capability reaching couple content, are enforced in
+ * `role-matrix.test.ts`.
+ */
+
 import type { AccountRole } from "./types";
 
 export type AccountCapability =
