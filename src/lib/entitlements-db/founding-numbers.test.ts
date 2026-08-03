@@ -108,6 +108,13 @@ before(async () => {
   const url = `file:${path.join(temp, "entitlements.db").replaceAll("\\", "/")}`;
   client = createClient({ url });
   for (const statement of DDL) await client.execute(statement);
+  // Both names, deliberately. The 2026-07-31 stack reset renamed these to
+  // ENTITLEMENTS_DATABASE_URL (INFRASTRUCTURE.md: never encode the vendor in a
+  // variable name), and branches cut before that still read the TURSO_ prefix.
+  // Setting one leaves the test passing on one side of the rename and failing
+  // on the other, which is how CI caught this.
+  process.env.ENTITLEMENTS_DATABASE_URL = url;
+  process.env.ENTITLEMENTS_AUTH_TOKEN = "";
   process.env.TURSO_ENTITLEMENTS_DATABASE_URL = url;
   process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN = "";
   mod = await import("./founding-numbers");

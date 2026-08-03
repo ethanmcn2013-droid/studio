@@ -55,6 +55,10 @@ function runMigrationRaw(databaseUrl, extraArgs = []) {
       ...process.env,
       TURSO_STUDIO_DATABASE_URL: "",
       TURSO_STUDIO_AUTH_TOKEN: "",
+      // Both names: the stack reset renamed these, and a branch cut before
+      // it still reads the TURSO_ prefix. The migration accepts either.
+      ENTITLEMENTS_DATABASE_URL: databaseUrl,
+      ENTITLEMENTS_AUTH_TOKEN: "",
       TURSO_ENTITLEMENTS_DATABASE_URL: databaseUrl,
       TURSO_ENTITLEMENTS_AUTH_TOKEN: "",
     },
