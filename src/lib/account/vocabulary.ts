@@ -28,8 +28,51 @@ export const VOCABULARY_MAP = {
   "Venue settings": "Account",
   "Venue active days": "Days with sponsored use",
   "Venue Portal": "Signal Studio Account",
+  Allotted: "Covered",
   licences: "access",
 } as const;
+
+/**
+ * The metric labels the venue-facing Account surfaces render. One source.
+ *
+ * The retired label was a literal on six components, in the CSV and in the
+ * printed report. D-020 sold this entitlement as every couple the venue books,
+ * with no per-couple maths, and the retired word was that maths in a single
+ * word: a quantity handed down and counted off. On an unlimited venue the tile
+ * read "Unlimited" above it, contradicting itself on the same tile.
+ *
+ * "Covered" is true in all three states a venue can be in. Unlimited: every
+ * couple the venue books is covered. Limited with a record: this many are
+ * covered. No record at all: coverage is unavailable, and never zero.
+ *
+ * VOCABULARY_MAP above keeps the retired word as a key, so the mapping from
+ * legacy wording to current wording stays readable.
+ */
+export const ACCOUNT_METRIC_LABELS = {
+  covered: "Covered",
+  available: "Available",
+  issued: "Issued",
+  redeemed: "Redeemed",
+  firstUsefulAction: "First useful action",
+  activeRecently: "Active recently",
+  continuedAfter30Days: "Continued after 30 days",
+} as const;
+
+/**
+ * The adoption journey in order, as [label, `AdoptionLifecycle` key].
+ *
+ * Four surfaces render exactly this list and each carried its own copy of it,
+ * which is how one retired word survived in six places. The second element is
+ * a field name on the snapshot contract, not copy, so it does not change.
+ */
+export const ADOPTION_JOURNEY = [
+  [ACCOUNT_METRIC_LABELS.covered, "allotted"],
+  [ACCOUNT_METRIC_LABELS.issued, "issued"],
+  [ACCOUNT_METRIC_LABELS.redeemed, "redeemed"],
+  [ACCOUNT_METRIC_LABELS.firstUsefulAction, "firstUsefulAction"],
+  [ACCOUNT_METRIC_LABELS.activeRecently, "activeRecently"],
+  [ACCOUNT_METRIC_LABELS.continuedAfter30Days, "continuedAfter30Days"],
+] as const;
 
 export const EDITION_VOCABULARY = {
   venue: {

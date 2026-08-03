@@ -112,7 +112,7 @@ async function migrate(c, label) {
     `CREATE TABLE IF NOT EXISTS sponsor_usage_daily (
       sponsor_id text NOT NULL REFERENCES sponsors(id),
       local_date text NOT NULL,
-      metric_dictionary_version text NOT NULL DEFAULT 'venue-metrics.v1',
+      metric_dictionary_version text NOT NULL DEFAULT 'account-metrics.v2',
       instrumentation_version text NOT NULL DEFAULT 'instrumentation.v1',
       timezone text NOT NULL DEFAULT 'Europe/Dublin',
       hash_salt_epoch text NOT NULL,
@@ -187,7 +187,7 @@ async function migrate(c, label) {
       period_start text NOT NULL,
       period_end text NOT NULL,
       period_label text NOT NULL,
-      metric_dictionary_version text NOT NULL DEFAULT 'venue-metrics.v1',
+      metric_dictionary_version text NOT NULL DEFAULT 'account-metrics.v2',
       timezone text NOT NULL DEFAULT 'Europe/Dublin',
       hash_salt_epoch text NOT NULL,
       payload_json text NOT NULL,

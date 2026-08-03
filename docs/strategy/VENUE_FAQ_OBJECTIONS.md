@@ -1,5 +1,47 @@
 # Venue FAQ And Objections
 
+> # SUPERSEDED, 2026-08-03. Do not read this file to a venue.
+>
+> **Basis:** D-032 R3, approved 2026-08-03 by Ethan McNamara.
+>
+> **What replaces it.**
+>
+> | For | Read this instead |
+> | --- | --- |
+> | The FAQ | `studio/docs/execution/venue-edition-and-films/evidence/E09.11-copy-system.md` §10 |
+> | The objections | `studio/docs/execution/venue-edition-and-films/evidence/E11.11-12-proposal-and-objections.md` §§9–16 |
+> | The four answers that must never be improvised | `studio/docs/execution/venue-edition-and-films/evidence/E09.10-copy-hierarchy.md` §6 |
+>
+> **Why the banner and not deletion.** This file is dated 2026-05-27 and headed
+> "internal use only", and it was still the only FAQ artifact in the repository.
+> A header does not stop a file being reached for on a live call. It is kept
+> because it is part of the record of what was believed in May, and it is
+> bannered because it is wrong in two specific ways.
+>
+> **Two defects it carries. Neither is corrected here, because correcting a
+> superseded file is how two live answers happen.**
+>
+> 1. **Line 31**, the answer to "Can we see the couple workspace?", names a
+>    **fourth visible thing**. D-001 point 4 fixes the venue-visible list at
+>    exactly three: invitation administration, activation evidence and aggregate
+>    adoption evidence. The answer also describes a consent layer that D-027
+>    point 4 says stays unwired at launch. It is the most consequential wrong
+>    sentence in the repository's front-facing copy, because it answers the
+>    question every venue asks. The correct answer is E09.11 §10, which opens
+>    with "No".
+> 2. **Line 32** contains a SaaS-fluff word from the E09.10 §2 master never-list
+>    and the `BRAND.md` §3 list. It is not reproduced here, because this file is
+>    a swept surface with a pinned hit count and naming the word again would
+>    raise the count.
+>
+> **Its commercial figures are correct** and are not the reason for the banner.
+> €1,500 standard, €1,000 for the Founding 25, both VAT-inclusive, per D-009 and
+> D-021.
+>
+> **Nothing below this line may be quoted to a venue, a couple or a supplier.**
+
+---
+
 Status: private answer bank - 2026-05-27
 Owner: founder
 Boundary: internal use only until a real venue conversation proves which objections matter. No public FAQ is required yet.

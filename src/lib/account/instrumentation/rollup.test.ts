@@ -139,6 +139,72 @@ test("a workspace already known from an earlier window is not a first action", (
   assert.equal(daily[0].activeWorkspaces, 1);
 });
 
+/**
+ * D-032 R10. An unpublish is a couple withdrawing a share. E09.02 §2 accepted
+ * any qualifying Tier 1 event of any kind, which made taking a Timeline down
+ * the moment the venue's gift landed. These four tests fail if that ever
+ * becomes true again.
+ */
+function unpublish(overrides: Partial<RollupEvent> = {}): RollupEvent {
+  return event({
+    eventId: "unpub",
+    product: "timeline",
+    kind: "timeline_unpublished",
+    ...overrides,
+  });
+}
+
+test("an unpublish is never a first useful action", () => {
+  const { daily, lifecycle } = rollupDaily(input([unpublish()]));
+  assert.equal(
+    daily[0].firstActionWorkspaces,
+    0,
+    "taking a Timeline down is not the couple starting",
+  );
+  assert.equal(
+    daily[0].activeWorkspaces,
+    1,
+    "it is still a meaningful action, and the day still measured it",
+  );
+  assert.equal(lifecycle[0].firstActionLocalDate, null);
+  assert.equal(lifecycle[0].lastActionLocalDate, "2026-06-01");
+});
+
+test("an unpublish first does not stop a later action being the first one", () => {
+  const { daily, lifecycle } = rollupDaily(
+    input([unpublish({ occurredAt: D1 }), event({ eventId: "real", occurredAt: D1 + DAY })]),
+  );
+  assert.equal(daily[0].firstActionWorkspaces, 0);
+  assert.equal(daily[1].firstActionWorkspaces, 1);
+  assert.equal(lifecycle[0].firstActionLocalDate, "2026-06-02");
+});
+
+test("a workspace that only unpublished has no lifecycle row to store", () => {
+  const { lifecycle } = rollupDaily(input([unpublish()]));
+  assert.equal(
+    mergeLifecycle(undefined, lifecycle[0]),
+    null,
+    "no start happened, so nothing may be written into the column the day-30 band is measured from",
+  );
+});
+
+test("an unpublish never moves a stored first-action date", () => {
+  const stored = {
+    workspaceIdHash: "w1",
+    hashSaltEpoch: EPOCH,
+    firstActionLocalDate: "2026-05-10",
+    lastActionLocalDate: "2026-05-10",
+    productLastActionLocalDate: {} as Partial<Record<SponsoredProduct, string>>,
+  };
+  const { lifecycle } = rollupDaily(
+    input([unpublish()], { knownWorkspaces: new Set(["w1"]) }),
+  );
+  const merged = mergeLifecycle(stored, lifecycle[0]);
+  assert.ok(merged, "a workspace with a stored start keeps its row");
+  assert.equal(merged.firstActionLocalDate, "2026-05-10");
+  assert.equal(merged.lastActionLocalDate, "2026-06-01", "it is still recent use");
+});
+
 test("lifecycle records the earliest and latest day a workspace acted", () => {
   const { lifecycle } = rollupDaily(
     input([
@@ -179,6 +245,7 @@ test("merging lifecycle only ever widens the span", () => {
     lastActionLocalDate: "2026-06-03",
     productLastActionLocalDate: { notes: "2026-06-02" },
   });
+  assert.ok(merged, "a stored row plus a delta always merges to a row");
   assert.equal(merged.firstActionLocalDate, "2026-05-10", "the earliest first action wins");
   assert.equal(merged.lastActionLocalDate, "2026-06-03", "the latest last action wins");
   assert.equal(merged.productLastActionLocalDate.tasks, "2026-05-20");

@@ -1,3 +1,4 @@
+import { assertSnapshotPrivacy } from "../privacy";
 import type { AccountSnapshot } from "../types";
 import {
   activeRecently,
@@ -59,6 +60,12 @@ const COVERAGE_COPY: Record<
  *
  * The access half is never recomputed here, so a usage fault cannot make an
  * exact allotment look uncertain.
+ *
+ * This builds a **new** snapshot, so the privacy assertion the access loader
+ * ran no longer covers it. It is re-run here rather than trusted: an
+ * enforcement point that only guards the first of several payload paths is not
+ * an enforcement point. A violation throws, because there is no honest partial
+ * answer to give a venue whose payload failed its own privacy contract.
  */
 export function projectVenueUsageSnapshot(
   accessSnapshot: AccountSnapshot,
@@ -72,7 +79,7 @@ export function projectVenueUsageSnapshot(
   const coverage = summariseCoverage(inputs);
   const copy = COVERAGE_COPY[coverage.state];
 
-  return {
+  const composed: AccountSnapshot = {
     ...accessSnapshot,
     definitionVersion: LIVE_USAGE_DEFINITION,
     sampleLabel: "LIVE ACCESS AND USAGE.",
@@ -102,4 +109,12 @@ export function projectVenueUsageSnapshot(
     },
     productReach: productReach(inputs),
   };
+
+  const privacyErrors = assertSnapshotPrivacy(composed);
+  if (privacyErrors.length > 0) {
+    throw new Error(
+      `Usage projection failed its privacy contract: ${privacyErrors[0]}`,
+    );
+  }
+  return composed;
 }

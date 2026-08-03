@@ -101,7 +101,10 @@ function row(
 
 export function snapshotToCsvRows(snapshot: AccountSnapshot): CsvRow[] {
   const rows: CsvRow[] = [
-    row(snapshot, "access.allotted", snapshot.access.allotted, "codes"),
+    // `access.covered`, not `access.allotted`. The export is read by a venue,
+    // so the metric key is copy as much as the tile is. The snapshot field
+    // keeps its contract name; only what leaves the building changes.
+    row(snapshot, "access.covered", snapshot.access.allotted, "codes"),
     row(snapshot, "access.available", snapshot.access.available, "codes"),
     row(snapshot, "access.issued", snapshot.access.issued, "codes"),
     row(snapshot, "access.redeemed", snapshot.access.redeemed, "codes"),

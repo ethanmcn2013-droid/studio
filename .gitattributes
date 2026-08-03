@@ -1,0 +1,11 @@
+# The venue instrumentation contract is duplicated byte-for-byte between this repo
+# and app/, and scripts/check-sponsored-use-instrumentation-contract.mjs asserts the
+# two files hash the same. A Windows checkout that rewrites one side to CRLF breaks
+# that assertion while the content is identical, which reads as a divergence that is
+# not there. Pin both sides to LF. Added 2026-08-03 (Wave 2, WP-06).
+src/lib/account/instrumentation/*.ts text eol=lf
+src/lib/account/instrumentation/*.json text eol=lf
+
+# Migrations are compared and hashed across environments.
+drizzle/*.sql text eol=lf
+drizzle-entitlements/*.sql text eol=lf

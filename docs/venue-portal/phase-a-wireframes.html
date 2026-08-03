@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='6' fill='%234f46e5'/%3E%3C/svg%3E" />
-    <title>Venue Portal Phase A review</title>
+    <title>Signal Studio Account · Phase A review (filed as "Venue Portal")</title>
     <style>
       :root {
         color-scheme: light;
@@ -142,38 +142,49 @@
       }
     </style>
   </head>
+
+  <!--
+    Signal Studio Account · Phase A review prototype (filed as "Venue Portal").
+    Naming: the Signal Studio Account IS the Venue Portal (D-015 Q4).
+    Corrected 2026-08-03 against D-020 (unlimited entitlement), D-027 point 3
+    (venue name only) and D-027 point 4 (launch scope is invitation
+    administration). The fifth tab is Account, matching the shipped surface.
+    The exact superseded lines are recorded in WIREFRAMES.md, which is the
+    superseded record for this file. They are deliberately not restated here:
+    this artifact is shown on screen and its source is viewable.
+  -->
   <body>
     <main class="shell">
       <header>
         <div class="word">signal studio<span class="dot">.</span></div>
         <div class="venue"><strong>Glenmara House</strong><span>Venue owner</span></div>
       </header>
-      <nav aria-label="Venue Portal" role="tablist">
+      <nav aria-label="Signal Studio Account" role="tablist">
         <button id="overview-tab" role="tab" aria-selected="true" aria-controls="overview">Overview</button>
         <button id="access-tab" role="tab" aria-selected="false" aria-controls="access">Access</button>
         <button id="usage-tab" role="tab" aria-selected="false" aria-controls="usage">Usage</button>
         <button id="reports-tab" role="tab" aria-selected="false" aria-controls="reports">Reports</button>
-        <button id="settings-tab" role="tab" aria-selected="false" aria-controls="settings">Venue settings</button>
+        <button id="settings-tab" role="tab" aria-selected="false" aria-controls="settings">Account</button>
       </nav>
 
       <section id="overview" role="tabpanel" aria-labelledby="overview-tab">
         <div class="hero">
-          <div><div class="eyebrow">VENUE EDITION · REVIEW FIXTURE</div><h1>The benefit, in use.</h1><p>1 Aug 2026 — 31 Jul 2027. Renews in 11 months.</p></div>
+          <div><div class="eyebrow">VENUE EDITION · REVIEW FIXTURE</div><h1>The benefit, in use.</h1><p>1 Aug 2026 – 31 Jul 2027. Renews in 11 months.</p></div>
           <div class="coverage">Complete coverage<br /><span class="meta">Data through 24 Jul 2026</span></div>
         </div>
         <div class="grid stats">
-          <div class="card"><div class="value">40</div><div class="label">licences allotted</div></div>
-          <div class="card"><div class="value">26</div><div class="label">codes issued</div></div>
-          <div class="card"><div class="value">18</div><div class="label">codes redeemed</div></div>
-          <div class="card"><div class="value">14</div><div class="label">codes remaining</div></div>
+          <div class="card"><div class="value">Unlimited</div><div class="label">every couple who books with you</div></div>
+          <div class="card"><div class="value">26</div><div class="label">invitations sent</div></div>
+          <div class="card"><div class="value">18</div><div class="label">opened their workspace</div></div>
+          <div class="card"><div class="value">8</div><div class="label">invitations ready to send</div></div>
         </div>
         <div class="grid split">
           <div class="card">
             <h2>Usage over 12 weeks</h2>
             <div class="grid stats">
               <div><div class="value">11</div><div class="label">active workspaces · 30 days</div></div>
-              <div><div class="value">21</div><div class="label">venue active days · 30 days</div></div>
-              <div><div class="value">69.2%</div><div class="label">18 of 26 issued codes</div></div>
+              <div><div class="value">21</div><div class="label">days with sponsored use · 30 days</div></div>
+              <div><div class="value">18 of 26</div><div class="label">invitations redeemed</div></div>
               <div><div class="value">24 Jul</div><div class="label">last redemption</div></div>
             </div>
             <div class="spark" aria-label="Usage rose gradually across the last 12 weeks">▁▂▃▃▄▅▅▆▅▇▆█</div>
@@ -192,15 +203,15 @@
       </section>
 
       <section id="access" role="tabpanel" aria-labelledby="access-tab" hidden>
-        <div class="hero"><div><div class="eyebrow">ACCESS</div><h1>14 codes remain.</h1><p>Code values stay masked until an owner or manager deliberately reveals or downloads them.</p></div><button class="button">Download unused codes</button></div>
+        <div class="hero"><div><div class="eyebrow">ACCESS</div><h1>8 invitations ready to send.</h1><p>Invitation values stay masked until an owner or manager deliberately reveals or downloads them.</p></div><button class="button">Download unsent invitations</button></div>
         <div class="card table-wrap">
           <table>
             <thead><tr><th>Code</th><th>State</th><th>Issued</th><th>Redeemed</th><th>Expires</th></tr></thead>
             <tbody>
-              <tr><td>GH-••••-21</td><td><span class="state">Redeemed</span></td><td>03 Jul</td><td>05 Jul</td><td>—</td></tr>
-              <tr><td>GH-••••-22</td><td><span class="state">Delivered</span></td><td>03 Jul</td><td>—</td><td>31 Aug</td></tr>
-              <tr><td>GH-••••-23</td><td><span class="state">Minted</span></td><td>03 Jul</td><td>—</td><td>31 Aug</td></tr>
-              <tr><td>GH-••••-08</td><td><span class="state">Revoked</span></td><td>14 Jun</td><td>—</td><td>—</td></tr>
+              <tr><td>GH-••••-21</td><td><span class="state">Redeemed</span></td><td>03 Jul</td><td>05 Jul</td><td>–</td></tr>
+              <tr><td>GH-••••-22</td><td><span class="state">Sent</span></td><td>03 Jul</td><td>–</td><td>31 Aug</td></tr>
+              <tr><td>GH-••••-23</td><td><span class="state">Ready</span></td><td>03 Jul</td><td>–</td><td>31 Aug</td></tr>
+              <tr><td>GH-••••-08</td><td><span class="state">Revoked</span></td><td>14 Jun</td><td>–</td><td>–</td></tr>
             </tbody>
           </table>
         </div>
@@ -208,10 +219,10 @@
       </section>
 
       <section id="usage" role="tabpanel" aria-labelledby="usage-tab" hidden>
-        <div class="hero"><div><div class="eyebrow">USAGE · LAST 30 DAYS</div><h1>Use, without surveillance.</h1><p>Committed actions count. Visits do not. Private work never enters this report.</p></div><div class="coverage">Complete coverage<br /><span class="meta">venue-metrics.v1</span></div></div>
+        <div class="hero"><div><div class="eyebrow">USAGE · LAST 30 DAYS</div><h1>Use, without surveillance.</h1><p>Committed actions count. Visits do not. Private work never enters this report.</p></div><div class="coverage">Complete coverage<br /><span class="meta">account-metrics.v2</span></div></div>
         <div class="grid stats">
           <div class="card"><div class="value">11</div><div class="label">active sponsored workspaces</div></div>
-          <div class="card"><div class="value">21</div><div class="label">venue active days</div></div>
+          <div class="card"><div class="value">21</div><div class="label">days with sponsored use</div></div>
           <div class="card"><div class="value">73</div><div class="label">meaningful actions</div></div>
           <div class="card"><div class="value">15</div><div class="label">activated this term</div></div>
         </div>
@@ -235,16 +246,16 @@
           <table>
             <thead><tr><th>Period</th><th>Coverage</th><th>Dictionary</th><th>Exports</th></tr></thead>
             <tbody>
-              <tr><td>July 2026</td><td>Complete</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
-              <tr><td>June 2026</td><td>Partial · 27/30 days</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
-              <tr><td>May 2026</td><td>Small group · usage withheld</td><td>venue-metrics.v1</td><td>PDF · CSV</td></tr>
+              <tr><td>July 2026</td><td>Complete</td><td>account-metrics.v2</td><td>PDF · CSV</td></tr>
+              <tr><td>June 2026</td><td>Partial · 27/30 days</td><td>account-metrics.v2</td><td>PDF · CSV</td></tr>
+              <tr><td>May 2026</td><td>Small group · usage withheld</td><td>account-metrics.v2</td><td>PDF · CSV</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section id="settings" role="tabpanel" aria-labelledby="settings-tab" hidden>
-        <div class="hero"><div><div class="eyebrow">VENUE SETTINGS</div><h1>Glenmara House.</h1><p>Venue Edition.</p></div></div>
+        <div class="hero"><div><div class="eyebrow">ACCOUNT</div><h1>Glenmara House.</h1><p>Venue Edition.</p></div></div>
         <div class="grid split">
           <div class="card"><h2>Portal members</h2><p>Venue owner · 1 active</p><p>Venue manager · 2 active</p><p>Venue viewer · 1 active</p></div>
           <div class="card privacy"><h2>Privacy</h2><p>The portal shows access and aggregate use. It never shows notes, tasks, project names, briefings, private timelines, comments, files, or members.</p></div>

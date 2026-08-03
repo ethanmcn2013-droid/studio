@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { coverageTone, formatMetricValue } from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
+import { ADOPTION_JOURNEY } from "@/lib/account/vocabulary";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
 import styles from "./guided-review.module.css";
@@ -84,20 +85,11 @@ export function GuidedReviewOverview({
       {openDetail === "journey" ? (
         <section className={styles.panel} aria-label="Adoption journey">
           <ol>
-            {(
-              [
-                ["Allotted", snapshot.adoption.allotted],
-                ["Issued", snapshot.adoption.issued],
-                ["Redeemed", snapshot.adoption.redeemed],
-                ["First useful action", snapshot.adoption.firstUsefulAction],
-                ["Active recently", snapshot.adoption.activeRecently],
-                ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
-              ] as const
-            ).map(([label, metric], index) => (
+            {ADOPTION_JOURNEY.map(([label, key], index) => (
               <li key={label}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div>
-                  <strong>{formatMetricValue(metric)}</strong>
+                  <strong>{formatMetricValue(snapshot.adoption[key])}</strong>
                   <small>{label}</small>
                 </div>
               </li>

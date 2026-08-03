@@ -360,14 +360,74 @@
     {
       "path": "docs/venue-portal/METRIC_DICTIONARY.md",
       "rule": "p5-numeric-entitlement",
-      "contains": "Was the dictionary of record. Retitled and corrected here.",
-      "reason": "The version-history row recording that the allotment-era dictionary was superseded."
+      "contains": "Its allotment-era metrics were already retired by D-020.",
+      "reason": "The version-history row recording that the allotment-era dictionary was superseded. Re-anchored when D-032 R9 reworded the row; the exemption is unchanged, only the substring it names."
     },
     {
       "path": "docs/venue-portal/METRIC_DICTIONARY.md",
       "rule": "p5-numeric-entitlement",
       "contains": "the entitlement model is unlimited. There is no allotment,",
       "reason": "The D-020 retirement note stating that no allotment exists."
+    },
+    {
+      "path": "src/lib/account/vocabulary.ts",
+      "rule": "p5-numeric-entitlement",
+      "contains": "[ACCOUNT_METRIC_LABELS.covered, \"allotted\"]",
+      "reason": "The label is \"Covered\". The second element is the AdoptionLifecycle field name on the snapshot contract, carried here so the journey has one source. A field name is not copy, and this is the line that removed the word from every render site."
+    },
+    {
+      "path": "src/lib/account/vocabulary.ts",
+      "rule": "p5-numeric-entitlement",
+      "contains": "Allotted: \"Covered\"",
+      "reason": "VOCABULARY_MAP is the legacy-wording to current-wording map. The retired word is the key it retires, exactly as METRIC_DICTIONARY keeps its struck-through rows."
+    },
+    {
+      "path": "src/app/hq/account-review/concepts/access-ledger.tsx",
+      "rule": "p5-numeric-entitlement",
+      "contains": "[ACCOUNT_METRIC_LABELS.covered, snapshot.access.allotted]",
+      "reason": "Field access on the snapshot contract, labelled \"Covered\". Nothing on this line reaches a screen."
+    },
+    {
+      "path": "src/app/hq/account-review/panels/access-panel.tsx",
+      "rule": "p5-numeric-entitlement",
+      "contains": "metric={snapshot.access.allotted}",
+      "reason": "Field access on the snapshot contract. The label prop on the next line is ACCOUNT_METRIC_LABELS.covered."
+    },
+    {
+      "path": "src/app/hq/account-review/panels/account-panel.tsx",
+      "rule": "p5-numeric-entitlement",
+      "contains": "\"allotment unchanged\" is prohibited",
+      "reason": "A comment naming the phrase it forbids. Naming, not using."
+    },
+    {
+      "path": "../app/src/components/app/settings/sections/billing.tsx",
+      "rule": "p1-permanence",
+      "contains": "is that promise. The",
+      "reason": "A code comment explaining that the word is forbidden by D-001 point 16 and R-008. Naming the ban, not making the claim."
+    },
+    {
+      "path": "../app/src/components/app/settings/sections/billing.tsx",
+      "rule": "p5-numeric-entitlement",
+      "contains": "No per-seat tax inside any of them",
+      "reason": "A refusal, the same shape as the accepted \"No seats. No per-couple maths.\" pinned on /venues. Rewriting it would delete a true statement that says the right thing."
+    },
+    {
+      "path": "../app/src/components/app/settings/sections/billing.tsx",
+      "rule": "p6-unlimited-blocked",
+      "contains": "Unlimited workspaces. Unlimited guests. All four products.",
+      "reason": "A Signal Studio consumer plan feature, not a Venue Edition entitlement claim. P6 exists to stop the venue-facing entitlement promising what the mint could not represent; it does not govern the price card of a paid consumer plan, where the feature is simply true."
+    },
+    {
+      "path": "../app/src/components/app/settings/sections/billing.tsx",
+      "rule": "p6-unlimited-blocked",
+      "contains": "\"Unlimited workspaces\",",
+      "reason": "Same consumer plan feature list."
+    },
+    {
+      "path": "../app/src/components/app/settings/sections/billing.tsx",
+      "rule": "p6-unlimited-blocked",
+      "contains": "Unlimited workspaces, one per client, one per project",
+      "reason": "Same, on the Studio tier."
     }
   ],
   "surfaces": {
@@ -515,6 +575,118 @@
         "owner": "E04"
       },
       {
+        "path": "src/lib/account/vocabulary.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05. The one source of the venue-facing metric labels."
+      },
+      {
+        "path": "src/app/hq/account-review/account-review.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/actions.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/page.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/download/route.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/components/icons.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/components/metric.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/components/report-preview.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/concepts/access-ledger.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/concepts/account-brief.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/concepts/guided-review.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/panels/access-panel.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/panels/account-panel.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/panels/edition-proof.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/panels/reports-panel.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
+        "path": "src/app/hq/account-review/panels/usage-panel.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "D-032 R5 / WP-05"
+      },
+      {
         "path": "docs/execution/venue-edition-and-films/evidence/E11.11-12-proposal-and-objections.md",
         "scope": "blockquote",
         "kind": "copy",
@@ -527,6 +699,12 @@
         "kind": "copy",
         "expected": 0,
         "owner": "E11.05 / E11.07"
+      },
+      {
+        "path": "../app/src/components/app/settings/sections/billing.tsx",
+        "expected": 0,
+        "owner": "D-032 R7 / E05.03",
+        "note": "D-032 R7 widened the permanence and entitlement bans to couple-facing product copy and named this file. It was not swept, which is how a front-facing em dash survived the same pass that fixed the rest of it."
       }
     ]
   }

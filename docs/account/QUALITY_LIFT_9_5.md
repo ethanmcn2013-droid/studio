@@ -1,6 +1,10 @@
-# Account Brief quality lift → 9.5+
+# Signal Studio Account Brief · quality lift → 9.5+ (the surface E07 calls the Venue Portal)
 
-Status: complete (implementation + tests).
+Naming: the **Signal Studio Account IS the Venue Portal** (**D-015 Q4**). One
+surface, two names.
+
+Status: complete (implementation + tests). **Candidate evidence, not
+founder-approved completion (D-015 Q2).** Tests passing is not approval.
 Target: Design ≥9.5 · UX ≥9.5 · Practical utility ≥9.5.
 
 ## Shipped in this lift
@@ -8,7 +12,10 @@ Target: Design ≥9.5 · UX ≥9.5 · Practical utility ≥9.5.
 - HQ nav longest-prefix active match (`/hq` no longer steals Account review)
 - Collapsed founder fixture chrome; single sample chip inside product frame
 - Portal decorative shadow removed; quieter review bar
-- Access headline: “N codes ready to send.” + role denial copy
+- Access headline: ~~“N codes ready to send.”~~ `[SUPERSEDED D-020 · 2026-08-03]`
+  “N invitations ready to send.” + role denial copy. The count is unsent
+  invitations, never a remainder against a budget, and it disappears when there
+  are none.
 - Usage: text-only lifecycle state when coverage is not complete (no empty bars)
 - Reports/Account: point-of-denial role explanations; Overview ↔ report journey parity
 - Sticky mobile tabs + mount-safe tab scrollIntoView (hydration hardening)

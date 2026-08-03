@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
+import { recordVenueEditionPageView } from "@/lib/venue-edition-page-views-server";
 
 export const metadata: Metadata = {
   title: "Venue Edition Demo · Signal Studio",
@@ -116,7 +117,11 @@ const demoSteps = [
   },
 ] as const;
 
-export default function VenueDemoPage() {
+// D-032 R8: no Google tag on this page. The view is counted server-side and
+// first-party instead. See the note on /venues.
+export default async function VenueDemoPage() {
+  await recordVenueEditionPageView("venues_demo");
+
   return (
     <>
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">

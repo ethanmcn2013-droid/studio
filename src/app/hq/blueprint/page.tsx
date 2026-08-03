@@ -16,14 +16,24 @@ import {
   PRODUCTS,
   RISK_LOG,
   resolveBlueprintMetrics,
+  resolveCrmStageCoverage,
+  VEF_STAGE_MAP,
 } from "@/lib/hq/blueprint";
 import { CLUSTERS, directorsByCluster, formatCadence } from "@/lib/hq/elt";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { getTraction } from "@/lib/hq/traction";
 import { getProspects } from "@/lib/hq/crm-db";
-import { normalizeSegment, PIPELINE_STAGES } from "@/lib/hq/crm-utils";
+import { normalizeSegment, PIPELINE_STAGES, STAGE_COLORS } from "@/lib/hq/crm-utils";
 import { getProductAnalytics } from "@/lib/hq/product-analytics";
 import { getModeledRunway } from "@/lib/hq/financial-model";
+import {
+  daysBetween,
+  getVefRegisters,
+  getVefState,
+  isoDate,
+  type VefGateStatus,
+  type VefSnapshot,
+} from "@/lib/hq/vef-state";
 
 export const dynamic = "force-dynamic";
 
@@ -63,16 +73,28 @@ export default async function BlueprintPage() {
   // wired figures onto the metric catalog. Prospects fall back to seed when
   // the table is absent, so venue pipeline is always readable; traction goes
   // `null` (→ honest placeholder) when Studio Turso is unreachable.
-  const [traction, prospects, product] = await Promise.all([
+  const [traction, prospects, product, vef, registers] = await Promise.all([
     getTraction(),
     getProspects(),
     getProductAnalytics(),
+    getVefState(),
+    getVefRegisters(),
   ]);
   const venuePipeline = prospects.filter(
     (p) =>
       normalizeSegment(p.segment) === "venue" &&
       PIPELINE_STAGES.includes(p.stage),
   ).length;
+
+  // ── VEF-2026 register ────────────────────────────────────────────────
+  // Read-only. This page never writes PROJECT_STATE.json; project state is
+  // written by tools/project-control.mjs and by nothing else.
+  const today = isoDate(new Date());
+  const vefState = vef.read === "ok" ? vef.state : null;
+  const daysToRelease = vefState
+    ? daysBetween(today, vefState.releaseDate)
+    : null;
+
   const metrics = resolveBlueprintMetrics({
     mrrEur: traction.available ? traction.workspaceSubs * 12 : null,
     activeGrants: traction.available ? traction.activeEntitlements : null,
@@ -84,12 +106,36 @@ export default async function BlueprintPage() {
     onboardingPct: product.onboardingPct,
     modulesActive: product.modulesActive,
     runway: getModeledRunway(traction.available ? traction.cashCollectedEur : null),
+    paidVenuesLedger: traction.available ? traction.paidVenues : null,
+    vef: vefState
+      ? {
+          daysToRelease,
+          gatesPassed: vefState.gatesPassed,
+          gatesTotal: vefState.gatesTotal,
+          completionPct: vefState.completion?.value ?? null,
+          completionNumerator: vefState.completion?.numerator ?? null,
+          completionDenominator: vefState.completion?.denominator ?? null,
+          completionBasis: vefState.completion?.basis ?? "unstated",
+          completionProvisional: vefState.completion?.provisional ?? false,
+          paidTracker:
+            vefState.founding25.ladder.find((s) => s.key === "paidAgreements")
+              ?.count ?? null,
+          foundingTarget: vefState.founding25.target,
+        }
+      : null,
   });
   const liveCount = metrics.filter((m) => m.live).length;
   const tractionUnread = !traction.available;
   // Product-analytics read health, for an honest line under the metrics.
   const productOk = Object.values(product.reads).filter((r) => r === "ok").length;
   const productUnread = productOk === 0;
+
+  // The CRM's reach against the twelve ratified stages, derived from the
+  // shipped PIPELINE_STAGES rather than hard-coded, so it self-corrects.
+  const crmCoverage = resolveCrmStageCoverage(PIPELINE_STAGES);
+  // The won colour, read straight from the shipped CRM palette. #d1fae5 is
+  // the register the brand reserves for shipped, and pilot_active wears it.
+  const pilotActiveColor = STAGE_COLORS.pilot_active.bg;
 
   return (
     <div className="blueprint-os">
@@ -334,9 +380,10 @@ export default async function BlueprintPage() {
         {/* ── 8 · METRICS ───────────────────────────────────────────── */}
         <Section id="metrics" index={8} label="Metrics" title="How we measure">
           <p className="bp-section-note">
-            Only the numbers that matter. {liveCount} of {metrics.length} are
-            live, from the Studio ledger, the CRM, and the four product
-            apps&rsquo; analytics{tractionUnread ? "; ledger unread this load" : ""}
+            Only the numbers that matter. {liveCount} of {metrics.length}{" "}
+            are live, from the Studio ledger, the CRM, the four product
+            apps&rsquo; analytics and the VEF-2026 register
+            {tractionUnread ? "; ledger unread this load" : ""}
             {productUnread ? "; product analytics unread this load" : ""}. Support
             sentiment and runway stay placeholders (no DB source). See{" "}
             <span className="bp-mono">resolveBlueprintMetrics</span> in{" "}
@@ -357,8 +404,50 @@ export default async function BlueprintPage() {
           </div>
         </Section>
 
-        {/* ── 9 · RISK & DECISION LOG ───────────────────────────────── */}
-        <Section id="risk" index={9} label="Risk & Decisions" title="How we stay honest">
+        {/* ── 9 · VENUE EDITION (VEF-2026 register) ─────────────────── */}
+        <Section
+          id="venue-edition"
+          index={9}
+          label="Venue Edition"
+          title="The wedge, to the release"
+        >
+          {vefState == null ? (
+            <div className="bp-card bp-log" data-tone="critical">
+              <h4 className="bp-card-title bp-log-title">
+                VEF register could not be read
+              </h4>
+              <p className="bp-body">{vef.note}</p>
+              <p className="bp-absorbed-surface">
+                Read state · <span className="bp-mono">{vef.read}</span>
+                {vef.origin ? ` · ${vef.origin.path}` : ""}
+              </p>
+              <p className="bp-never">
+                <span>not shown as zero</span> No programme number is rendered
+                on this load. A 0 would be a claim that nothing has happened.
+                This says only that the register was not readable.
+              </p>
+            </div>
+          ) : (
+            <VenueEditionPanels
+              state={vefState}
+              today={today}
+              daysToRelease={daysToRelease}
+              originPath={vef.origin?.path ?? null}
+              paidLedger={traction.available ? traction.paidVenues : null}
+              signedUnpaidLedger={
+                traction.available ? traction.signedUnpaidVenues : null
+              }
+              pilotLedger={traction.available ? traction.pilotVenues : null}
+              crmCoverage={crmCoverage}
+              crmVenueFunnel={venuePipeline}
+              pilotActiveColor={pilotActiveColor}
+              registers={registers}
+            />
+          )}
+        </Section>
+
+        {/* ── 10 · RISK & DECISION LOG ──────────────────────────────── */}
+        <Section id="risk" index={10} label="Risk & Decisions" title="How we stay honest">
           <div className="bp-grid bp-grid--2">
             <LogCard title="Current risks" tone="critical" items={RISK_LOG.currentRisks} />
             <LogCard title="Open decisions" tone="warn" items={RISK_LOG.openDecisions} />
@@ -376,8 +465,8 @@ export default async function BlueprintPage() {
           </div>
         </Section>
 
-        {/* ── 10 · OPERATING CADENCE ────────────────────────────────── */}
-        <Section id="cadence" index={10} label="Cadence" title="How we stay in rhythm">
+        {/* ── 11 · OPERATING CADENCE ────────────────────────────────── */}
+        <Section id="cadence" index={11} label="Cadence" title="How we stay in rhythm">
           <div className="bp-cadence">
             {OPERATING_CADENCE.map((b) => (
               <article key={b.name} className="bp-card bp-cadence-beat">
@@ -401,6 +490,412 @@ export default async function BlueprintPage() {
           </footer>
         </Section>
       </BlueprintCanvas>
+    </div>
+  );
+}
+
+/* ── Venue Edition (VEF-2026) ─────────────────────────────────────────── */
+
+/**
+ * Gate status → the three visual registers the blueprint theme already has.
+ *
+ * Only `passed` gets the green. A waiver is a founder decision to ship
+ * without the evidence, and painting it the same colour as passed is the
+ * same defect as the CRM painting `pilot_active` green: it launders a
+ * decision into an achievement.
+ */
+function gateTone(status: VefGateStatus): "live" | "building" | "queued" {
+  if (status === "passed") return "live";
+  if (status === "in_progress" || status === "ready_for_review") return "building";
+  return "queued";
+}
+
+function VenueEditionPanels({
+  state,
+  today,
+  daysToRelease,
+  originPath,
+  paidLedger,
+  signedUnpaidLedger,
+  pilotLedger,
+  crmCoverage,
+  crmVenueFunnel,
+  pilotActiveColor,
+  registers,
+}: {
+  state: VefSnapshot;
+  today: string;
+  daysToRelease: number | null;
+  originPath: string | null;
+  paidLedger: number | null;
+  signedUnpaidLedger: number | null;
+  pilotLedger: number | null;
+  crmCoverage: ReturnType<typeof resolveCrmStageCoverage>;
+  crmVenueFunnel: number;
+  pilotActiveColor: string;
+  registers: Awaited<ReturnType<typeof getVefRegisters>>;
+}) {
+  const paidTracker =
+    state.founding25.ladder.find((s) => s.key === "paidAgreements")?.count ??
+    null;
+  const ledgerDisagrees =
+    paidLedger != null && paidTracker != null && paidLedger !== paidTracker;
+
+  return (
+    <>
+      <p className="bp-section-note">
+        Read from the VEF-2026 register, <span className="bp-mono">PROJECT_STATE.json</span>,
+        which <span className="bp-mono">tools/project-control.mjs</span> writes and
+        this page only reads. Register schema{" "}
+        <span className="bp-mono">{state.schemaVersion}</span> · last written{" "}
+        {state.lastUpdatedAt?.slice(0, 10) ?? "unknown"} · last validated{" "}
+        {state.lastValidatedAt?.slice(0, 10) ?? "never"}
+        {originPath ? (
+          <>
+            {" "}
+            · <span className="bp-mono">{originPath.replace(/\\/g, "/")}</span>
+          </>
+        ) : null}
+      </p>
+
+      {/* The condition the whole programme closes on, and the health call. */}
+      <div className="bp-northstar">
+        <div className="bp-card bp-card--feature">
+          <span className="bp-kicker">completion condition</span>
+          <p className="bp-lead">{state.completionCondition}</p>
+          <div className="bp-positioning">
+            <span className="bp-chip">{state.founding25.geography}</span>
+            <span className="bp-chip">
+              {daysToRelease == null
+                ? "release date unreadable"
+                : daysToRelease >= 0
+                  ? `${daysToRelease} days to ${state.releaseDate}`
+                  : `${Math.abs(daysToRelease)} days past ${state.releaseDate}`}
+            </span>
+            <span className="bp-chip">baseline · {state.baselineState}</span>
+          </div>
+        </div>
+        <div className="bp-card">
+          <span className="bp-kicker">
+            health · {state.health?.rag ?? "unstated"}
+          </span>
+          <p className="bp-body">
+            {state.health?.reason ?? "No reason recorded on the health rating."}
+          </p>
+          <p className="bp-absorbed-surface">{state.currentPhase}</p>
+        </div>
+      </div>
+
+      {/* ── Release gates ─────────────────────────────────────────────── */}
+      <div className="bp-subhead">
+        Release gates · {state.gatesPassed} of {state.gatesTotal} passed
+      </div>
+      <div className="bp-grid bp-grid--3">
+        {state.gates.map((g) => (
+          <div key={g.id} className="bp-card bp-card--tight bp-growth-node" data-status={gateTone(g.status)}>
+            <div className="bp-growth-top">
+              <span className="bp-phase">{g.owner.replace(/_/g, " ")}</span>
+              <span className="bp-status" data-status={gateTone(g.status)}>
+                {g.status.replace(/_/g, " ")}
+              </span>
+            </div>
+            <h4 className="bp-card-title">{g.name}</h4>
+            <p className="bp-metric-line">
+              {g.exitCriteria} exit criteria · {g.evidence} evidence ·{" "}
+              {g.blockers} blocker{g.blockers === 1 ? "" : "s"}
+            </p>
+            {g.waived ? (
+              <p className="bp-risk-line">
+                <span>waived</span> by the founder, not passed on evidence
+              </p>
+            ) : null}
+          </div>
+        ))}
+      </div>
+
+      {/* ── The Founding 25 ladder ────────────────────────────────────── */}
+      <div className="bp-subhead">
+        The Founding 25 ladder · {state.founding25.target} venues ·{" "}
+        {state.founding25.placesAvailable ?? "unknown"} places available
+      </div>
+      <ol className="bp-flywheel">
+        {VEF_STAGE_MAP.map((s) => {
+          const row = state.founding25.ladder.find((l) => l.key === s.counter);
+          return (
+            <li key={s.stage} className="bp-flywheel-step">
+              <span className="bp-flywheel-num">{s.n}</span>
+              <span className="bp-flywheel-name">
+                {row?.label ?? s.stage}
+                {" · "}
+                {row ? row.count : "not tracked"}
+              </span>
+              <span className="bp-flywheel-detail">
+                {s.crmToken
+                  ? `CRM · ${s.crmToken.replace(/_/g, " ")}`
+                  : "no CRM stage exists"}
+                {" · authority: "}
+                {s.authority}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+
+      {/* ── The founder queue ─────────────────────────────────────────── */}
+      <div className="bp-subhead">The queue</div>
+      <div className="bp-grid bp-grid--3">
+        <QueueCard
+          label="Founder review"
+          n={state.queue.founderReview}
+          detail={
+            state.queue.founderReviewIds.length
+              ? state.queue.founderReviewIds.join(", ")
+              : "Nothing waiting on a founder decision."
+          }
+          tone={state.queue.founderReview > 0 ? "warn" : "done"}
+        />
+        <QueueCard
+          label="Blocked"
+          n={state.queue.blocked}
+          detail={
+            state.queue.blockedIds.length
+              ? state.queue.blockedIds.join(", ")
+              : "No task carries a recorded blocker."
+          }
+          tone={state.queue.blocked > 0 ? "critical" : "done"}
+        />
+        <QueueCard
+          label="In progress"
+          n={state.queue.inProgress}
+          detail={`${state.queue.internalReview} in internal review · ${state.queue.ready} ready · ${state.queue.backlog} backlog`}
+          tone="warn"
+        />
+      </div>
+
+      {/* ── Freezes ───────────────────────────────────────────────────── */}
+      <div className="bp-subhead">Freezes</div>
+      <div className="bp-grid bp-grid--3">
+        {state.freezes.map((f) => {
+          const d = daysBetween(today, f.date);
+          return (
+            <div key={f.id} className="bp-card bp-card--tight">
+              <h4 className="bp-card-title">{f.name}</h4>
+              <p className="bp-metric-line">
+                {f.date} ·{" "}
+                {d == null
+                  ? "date unreadable"
+                  : d >= 0
+                    ? `${d} days away`
+                    : `${Math.abs(d)} days past`}{" "}
+                · {f.status}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── Reconciliation, the part that is supposed to be uncomfortable ─ */}
+      <div className="bp-subhead">Reconciliation across the four sources</div>
+      <div className="bp-grid bp-grid--2">
+        <div
+          className="bp-card bp-log"
+          data-tone={crmCoverage.reachesCompletionCondition ? "done" : "critical"}
+        >
+          <h4 className="bp-card-title bp-log-title">
+            The CRM cannot reach the completion condition
+          </h4>
+          <ul className="bp-log-list">
+            <li className="bp-log-item">
+              <span className="bp-log-label">
+                {crmCoverage.expressible} of {crmCoverage.total} stages
+              </span>
+              <span className="bp-log-detail">
+                The shipped CRM has a stage token for {crmCoverage.expressible}{" "}
+                of the twelve ratified Venue Edition stages. Missing entirely:{" "}
+                {crmCoverage.missing.join(", ")}.
+              </span>
+            </li>
+            <li className="bp-log-item">
+              <span className="bp-log-label">
+                pilot_active wears the won colour
+              </span>
+              <span className="bp-log-detail">
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: "inline-block",
+                    width: "0.7em",
+                    height: "0.7em",
+                    borderRadius: "2px",
+                    marginRight: "0.4em",
+                    verticalAlign: "baseline",
+                    background: pilotActiveColor,
+                  }}
+                />
+                <span className="bp-mono">STAGE_COLORS.pilot_active</span> is{" "}
+                {pilotActiveColor}, the register the brand reserves for shipped.
+                A venue that has paid nothing renders as won on the CRM board.
+                The token is also retired vocabulary: there are no pilots in the
+                ratified offer, and{" "}
+                <span className="bp-mono">computeOutreachSummary</span> counts it
+                inside both REPLIED_STAGES and BOOKED_STAGES.
+              </span>
+            </li>
+            <li className="bp-log-item">
+              <span className="bp-log-label">no link to a sponsor</span>
+              <span className="bp-log-detail">
+                The prospects table carries no sponsor or account key, so a paid
+                venue in the ledger cannot be attributed back to the prospect
+                that converted. The join below is by count, not by row.
+              </span>
+            </li>
+            {crmCoverage.orphanCrmTokens.length ? (
+              <li className="bp-log-item">
+                <span className="bp-log-label">CRM tokens with no VEF stage</span>
+                <span className="bp-log-detail">
+                  {crmCoverage.orphanCrmTokens.join(", ")}
+                </span>
+              </li>
+            ) : null}
+          </ul>
+          <p className="bp-absorbed-surface">
+            evidence/E11.01-02-crm-stages.md §3 · schema.ts PROSPECT_STAGES ·
+            crm-utils.ts PIPELINE_STAGES
+          </p>
+        </div>
+
+        <div
+          className="bp-card bp-log"
+          data-tone={
+            ledgerDisagrees || state.countsDrifted || !state.founding25.monotonic
+              ? "critical"
+              : "done"
+          }
+        >
+          <h4 className="bp-card-title bp-log-title">Tracker against ledger</h4>
+          <ul className="bp-log-list">
+            <li className="bp-log-item">
+              <span className="bp-log-label">paid venues</span>
+              <span className="bp-log-detail">
+                Ledger {paidLedger ?? "unread"} · tracker{" "}
+                {paidTracker ?? "not tracked"}.{" "}
+                {paidLedger == null || paidTracker == null
+                  ? "One side is unreadable, so the two cannot be compared this load. This is not agreement."
+                  : ledgerDisagrees
+                    ? "They disagree. The ledger is the record of money received and wins; correct the tracker, never the reverse (E11.01 §5)."
+                    : "In agreement."}
+              </span>
+            </li>
+            <li className="bp-log-item">
+              <span className="bp-log-label">pipeline, not money</span>
+              <span className="bp-log-detail">
+                Signed but unpaid: {signedUnpaidLedger ?? "unread"} · free
+                pilots: {pilotLedger ?? "unread"} · venue prospects in the CRM
+                funnel: {crmVenueFunnel}. None of these is revenue.
+              </span>
+            </li>
+            <li className="bp-log-item">
+              <span className="bp-log-label">counter monotonicity</span>
+              <span className="bp-log-detail">
+                {state.founding25.monotonic
+                  ? "Every cumulative counter is at most the one above it."
+                  : `Break: ${state.founding25.monotonicBreaks.join("; ")}. A monotonicity break is a data error, not a surprising quarter.`}
+              </span>
+            </li>
+            <li className="bp-log-item">
+              <span className="bp-log-label">derived counts</span>
+              <span className="bp-log-detail">
+                {state.countsDrifted
+                  ? "The register’s derived counts disagree with a recount of its own task list. Run project-control validate."
+                  : "The register’s derived counts match a recount of its task list."}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* ── Register integrity ────────────────────────────────────────── */}
+      <div className="bp-subhead">Register integrity</div>
+      <div className="bp-grid bp-grid--2">
+        <RegisterCard
+          title="Decisions"
+          headlineLabel="ratified"
+          register={registers.decisions}
+          unreadNote="DECISIONS.md could not be read. No decision count is shown."
+        />
+        <RegisterCard
+          title="RAID"
+          headlineLabel="open"
+          register={registers.raid}
+          unreadNote="RAID.md could not be read. No risk count is shown."
+        />
+      </div>
+    </>
+  );
+}
+
+function QueueCard({
+  label,
+  n,
+  detail,
+  tone,
+}: {
+  label: string;
+  n: number;
+  detail: string;
+  tone: "critical" | "warn" | "done";
+}) {
+  return (
+    <div className="bp-card bp-log" data-tone={tone}>
+      <h4 className="bp-card-title bp-log-title">
+        {label} · {n}
+      </h4>
+      <p className="bp-body">{detail}</p>
+    </div>
+  );
+}
+
+function RegisterCard({
+  title,
+  headlineLabel,
+  register,
+  unreadNote,
+}: {
+  title: string;
+  headlineLabel: string;
+  register: Awaited<ReturnType<typeof getVefRegisters>>["decisions"];
+  unreadNote: string;
+}) {
+  if (register.read !== "ok") {
+    return (
+      <div className="bp-card bp-log" data-tone="warn">
+        <h4 className="bp-card-title bp-log-title">{title}</h4>
+        <p className="bp-body">{unreadNote}</p>
+      </div>
+    );
+  }
+  const duped = register.duplicates.length > 0;
+  return (
+    <div className="bp-card bp-log" data-tone={duped ? "critical" : "done"}>
+      <h4 className="bp-card-title bp-log-title">
+        {title} · {register.headline} {headlineLabel}
+      </h4>
+      <ul className="bp-log-list">
+        <li className="bp-log-item">
+          <span className="bp-log-label">entries</span>
+          <span className="bp-log-detail">
+            {register.entries} headings · {register.distinct} distinct ids
+          </span>
+        </li>
+        <li className="bp-log-item">
+          <span className="bp-log-label">duplicate ids</span>
+          <span className="bp-log-detail">
+            {duped
+              ? `${register.duplicates.join(", ")}. Two entries share one id. Renumbering is change-controlled; record it, do not silently fix it.`
+              : "None. Every id appears once."}
+          </span>
+        </li>
+      </ul>
     </div>
   );
 }

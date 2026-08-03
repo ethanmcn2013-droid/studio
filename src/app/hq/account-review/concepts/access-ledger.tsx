@@ -2,6 +2,7 @@
 
 import { coverageTone, formatMetricValue } from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
+import { ACCOUNT_METRIC_LABELS } from "@/lib/account/vocabulary";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
 import styles from "./access-ledger.module.css";
@@ -14,17 +15,20 @@ export function AccessLedgerOverview({
   onOpenReport: () => void;
 }) {
   const totals = [
-    ["Allotted", snapshot.access.allotted],
-    ["Issued", snapshot.access.issued],
-    ["Redeemed", snapshot.access.redeemed],
-    ["Available", snapshot.access.available],
+    [ACCOUNT_METRIC_LABELS.covered, snapshot.access.allotted],
+    [ACCOUNT_METRIC_LABELS.issued, snapshot.access.issued],
+    [ACCOUNT_METRIC_LABELS.redeemed, snapshot.access.redeemed],
+    [ACCOUNT_METRIC_LABELS.available, snapshot.access.available],
   ] as const;
 
   const lifecycle = [
-    ["Redeemed", snapshot.adoption.redeemed],
-    ["First useful action", snapshot.adoption.firstUsefulAction],
-    ["Active recently", snapshot.adoption.activeRecently],
-    ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
+    [ACCOUNT_METRIC_LABELS.redeemed, snapshot.adoption.redeemed],
+    [ACCOUNT_METRIC_LABELS.firstUsefulAction, snapshot.adoption.firstUsefulAction],
+    [ACCOUNT_METRIC_LABELS.activeRecently, snapshot.adoption.activeRecently],
+    [
+      ACCOUNT_METRIC_LABELS.continuedAfter30Days,
+      snapshot.adoption.continuedAfter30Days,
+    ],
   ] as const;
 
   return (

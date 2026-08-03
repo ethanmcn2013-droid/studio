@@ -1,0 +1,16 @@
+# SAMPLE · DETERMINISTIC REVIEW DATA.
+# snapshot_id=venue-unlimited-2026-07-24
+# definition_version=account-metrics.v2
+account_name,edition,period_start,period_end,coverage_state,data_through,metric_key,value_state,value,denominator,unit,definition_version,withheld_reason
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.covered,unlimited,,,codes,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.available,unlimited,,,codes,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.issued,exact,9,,codes,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.redeemed,exact,6,,codes,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.first_useful_action,exact,5,,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.active_recently,exact,4,,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.continued_after_30_days,exact,4,6,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.days_with_sponsored_use,exact,18,,days,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.notes,exact,4,,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.tasks,exact,5,,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.timeline,exact,3,,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.signal,exact,2,,workspaces,account-metrics.v2,

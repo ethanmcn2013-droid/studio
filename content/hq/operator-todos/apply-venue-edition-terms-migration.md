@@ -1,16 +1,66 @@
 ---
 id: apply-venue-edition-terms-migration
 title: Apply the Venue Edition terms migration to the production entitlements DB.
-status: done
+status: open
 priority: P0
-blocking: false
+blocking: true
 phase: Phase 2
-why: Done. Both passes applied 2026-08-03. The couple access term, the unlimited entitlement and the founding number all have somewhere to write.
+why: REOPENED. Verified by direct query 2026-08-03 — the first pass is live, the second is not. founding_number and founding_number_assigned_at are absent from entitlements-prod, so a founding place has nowhere to be written.
 href: /hq
 date: 2026-08-03
 ---
 
-## Complete — both passes applied 2026-08-03
+## REOPENED 2026-08-03 — the second pass did not land
+
+**This file said done. The database says otherwise.** Verified by reading the live
+schema of `entitlements-prod` directly, not by inference:
+
+| Column | State |
+|---|---|
+| `entitlements.wedding_date` | **present** — first pass. D-022 is live. |
+| `sponsors.allotment_mode` | **present** — first pass. D-020 is live. |
+| `sponsors.annual_wedding_count` | **present** |
+| `sponsors.fair_use_ceiling` | **present** |
+| `sponsors.founding_number` | **ABSENT** |
+| `sponsors.founding_number_assigned_at` | **ABSENT** |
+| unique index on `founding_number` | **ABSENT** — `sponsors` carries only `sqlite_autoindex_sponsors_1` and `sponsors_slug_unique` |
+
+**The good news, and it is real.** R-015 and R-016 are live in production. The couple
+access term and the unlimited entitlement both work today. Anything saying otherwise,
+including section 1.3 of the Wave 2 packet, is out of date and is corrected here.
+
+**What was actually broken.** `src/lib/account/live/load-venue-access.ts` selected
+`founding_number`, so one absent column took the whole live venue list dark with
+"Live venues could not be reached". That select is now defensive: the founding number
+is attempted and degrades to null on failure, because a founding number is a label
+and the venue list is the surface. So the Account no longer depends on this migration.
+
+**But E02.13's `assignFoundingNumber` still has nowhere to write**, and D-009 point 6
+promises every founding venue a number on cleared payment.
+
+**What to run — the same guided command.** It skips everything already applied and
+adds only the two columns and the index. You are looking for `VERIFIED` naming six
+columns rather than four. No existing row is changed, and if two venues somehow held
+the same number it refuses to create the unique index and names the clash rather than
+half-applying.
+
+```
+pnpm venue:migrate-terms:setup
+```
+
+**Worth pausing on.** A todo marked done for work that did not land is worse than one
+left open: it takes the item off the list and out of everyone's attention. Whatever
+happened on the second pass, it did not reach the database and nothing checked. The
+fix for the class of problem is a schema assertion in `pnpm test` that fails when the
+deployed schema is behind `schema.ts`, so the next gap is caught by a gate rather than
+by someone querying by hand.
+
+---
+
+## Superseded — the earlier claim that both passes had applied
+
+The text below was written on 2026-08-03 and is left in place because nothing here is
+rewritten silently. Its first-pass account is correct. Its second-pass account is not.
 
 Ethan ran the second pass and confirmed it. All six columns and both indexes are
 on the production entitlements database:

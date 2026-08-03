@@ -53,7 +53,7 @@ export function ReportsPanel({
           <p>
             {mode === "live"
               ? "Live access totals with usage marked unavailable. Printable HTML and CSV are generated on demand under HQ auth."
-              : "Same journey language as Overview: allotted access through continued use, with coverage, privacy receipt, and definition version locked into every sample pack."}
+              : "Same journey language as Overview: covered access through continued use, with coverage, privacy receipt, and definition version locked into every sample pack."}
           </p>
         </div>
         <button

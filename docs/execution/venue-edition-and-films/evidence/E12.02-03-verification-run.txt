@@ -1,0 +1,201 @@
+E12.02 / E12.03 — verification run
+Worktree: _wt-wp13  Branch: claude/wp13-commercial  Base: 90c566d  Date: 2026-08-03
+
+================ BASELINE, before any file was touched ================
+=== BASELINE Mon Aug  3 06:59:35 UTC 2026 commit 90c566d ===
+--- pnpm typecheck ---
+
+> studio@0.1.0 typecheck C:\Users\ethan\signal-studio-workspace\_wt-wp13
+> tsc --noEmit
+
+exit=0
+--- pnpm lint ---
+  86:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\ethan\signal-studio-workspace\_wt-wp13\src\app\hq\account-review\account-review.tsx:86:7
+  84 |   useEffect(() => {
+  85 |     if (dataSource !== "live" || !liveSlug) {
+> 86 |       setLiveSnapshot(null);
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  87 |       setLiveError(null);
+  88 |       setLiveLoading(false);
+  89 |       return;  react-hooks/set-state-in-effect
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+exit=0
+--- pnpm test ---
+  ✔ gives the next venue the next place (13.4236ms)
+  ✔ refuses before the payment clears (8.5885ms)
+  ✔ refuses a venue that is not on the founding plan (6.6757ms)
+  ✔ is idempotent — a second call returns the same number, not a second one (1.5204ms)
+  ✔ skips a number already held and never reissues it (20.9714ms)
+  ✔ records the assignment in the audit ledger (0.4564ms)
+✔ assignFoundingNumber (81.4467ms)
+▶ the unique index is the real guarantee
+  ✔ the database refuses a duplicate number outright (14.8009ms)
+  ✔ any number of venues may hold no number at all (12.3161ms)
+  ✔ a run of assignments never repeats a number (73.6107ms)
+  ✔ recognises the two recoverable failures through drizzle's wrapper (0.492ms)
+✔ the unique index is the real guarantee (101.6319ms)
+▶ withdrawFoundingNumber
+  ✔ returns the place to the pool on a reversed payment (17.6245ms)
+  ✔ requires a reason, because the venue is told (6.1676ms)
+  ✔ records the withdrawal and its reason in the audit ledger (0.359ms)
+  ✔ reports a venue that holds no number rather than throwing (7.4248ms)
+✔ withdrawFoundingNumber (31.8031ms)
+▶ programme status
+  ✔ reports places honestly, for scarcity claims (1.3666ms)
+✔ programme status (1.4763ms)
+ℹ tests 38
+ℹ suites 8
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1807.9391
+exit=0
+
+--- experience validate --product=studio ---
+experience:validate: 2 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+EXIT=1
+
+================ AFTER ================
+=== FINAL VERIFICATION Mon Aug  3 07:28:58 UTC 2026 commit 90c566d ===
+--- pnpm typecheck ---
+EXIT=0
+> studio@0.1.0 typecheck C:\Users\ethan\signal-studio-workspace\_wt-wp13
+> tsc --noEmit
+
+--- pnpm test ---
+EXIT=0
+532
+ℹ pass 16
+ℹ fail 0
+ℹ pass 448
+ℹ fail 0
+ℹ pass 38
+ℹ fail 0
+--- check-venue-edition-contract ---
+[venue-edition-contract] ok
+EXIT=0
+
+--- pnpm lint (tail) ---
+C:\Users\ethan\signal-studio-workspace\_wt-wp13\src\app\hq\account-review\account-review.tsx:86:7
+  84 |   useEffect(() => {
+  85 |     if (dataSource !== "live" || !liveSlug) {
+> 86 |       setLiveSnapshot(null);
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  87 |       setLiveError(null);
+  88 |       setLiveLoading(false);
+  89 |       return;  react-hooks/set-state-in-effect
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+--- pnpm build (route table tail) ---
+├ ƒ /templates
+├ ƒ /terms
+├ ƒ /timeline
+├ ƒ /v/[token]
+├ ƒ /venues
+├ ƒ /venues/couple-preview
+├ ƒ /venues/demo
+├ ƒ /venues/privacy
+├ ƒ /venues/questions
+├ ƒ /venues/what-you-see
+├ ƒ /waitlist
+├ ƒ /weddings
+└ ƒ /work
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+--- experience validate --product=studio ---
+experience:validate: 8 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+  x studio.page.hq-venue-proposal: discovered experience is not registered (studio/src/app/hq/venue-proposal/page.tsx)
+  x studio.page.v-by-token: discovered experience is not registered (studio/src/app/v/[token]/page.tsx)
+  x studio.page.venues-couple-preview: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.venues-privacy: discovered experience is not registered (studio/src/app/venues/privacy/page.tsx)
+  x studio.page.venues-questions: discovered experience is not registered (studio/src/app/venues/questions/page.tsx)
+  x studio.state.v-by-token-not-found: discovered experience is not registered (studio/src/app/v/[token]/not-found.tsx)
+
+--- other design:quality sub-gates ---
+--- audit --enforce ---
+{
+  "status": "baseline-held",
+  "structuralErrors": 0,
+  "unbaselinedHighRisk": 0,
+  "captureRegressions": 0
+}
+EXIT=0
+--- ux-assurance --enforce ---
+{
+  "releaseBlocking": 0,
+  "high": 0,
+  "pass": true
+}
+EXIT=0
+--- ds:check ---
+ds-check: clean — no drift.
+EXIT=0
+
+================ LIVE ROUTE PROBE (dev server, VERCEL_ENV=production, port 3311) ================
+route                         HTTP  googletagmanager  marketing-nav  bytes
+/                             200   1                 5              208808
+/venues                       200   0                 5              -
+/v/<invitation>               200   0                 0              79431
+/v/<proposal>                 200   0                 0              96361
+/v/<replaced>                 200   0                 0              65238
+/v/<unknown 24-char>          404   0                 0              54290
+/v/<revoked 24-char>          404   0                 0              54290
+
+unknown vs revoked, after substituting the echoed token: identical except Next's
+per-request self.__next_r nonce, which is regenerated on every request to every route.
+
+--- robots.txt as served ---
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /hq/
+Disallow: /redeem/
+Disallow: /review
+Disallow: /v/
+
+Host: https://signalstudio.ie
+Sitemap: https://signalstudio.ie/sitemap.xml
+
+--- emitted events, from the server log ---
+{"stream":"venue-outreach.v1","kind":"venue_page_viewed","idempotencyKey":"ce0e0d2696ef0808e14cfed17bf34decc3645c6739b7e63a641996c47868c499","event":{"accountId":"VEN-0042","occurredAt":1785741473884,"cohort":1,"touch":"email_1","state":"invitation","firstView":true,"repeatViewCount":0}}
+{"stream":"venue-outreach.v1","kind":"venue_page_viewed","idempotencyKey":"d26db2b73d93f02ac479c4b1b3f68ae8d5cd91bb10068cfcb456a5789a84e147","event":{"accountId":"VEN-0043","occurredAt":1785741474385,"cohort":1,"touch":"proposal","state":"proposal","firstView":true,"repeatViewCount":0}}
+{"stream":"venue-outreach.v1","kind":"venue_page_viewed","idempotencyKey":"ce0e0d2696ef0808e14cfed17bf34decc3645c6739b7e63a641996c47868c499","event":{"accountId":"VEN-0042","occurredAt":1785741583813,"cohort":1,"touch":"email_1","state":"invitation","firstView":true,"repeatViewCount":0}}
+{"stream":"venue-outreach.v1","kind":"venue_page_viewed","idempotencyKey":"d26db2b73d93f02ac479c4b1b3f68ae8d5cd91bb10068cfcb456a5789a84e147","event":{"accountId":"VEN-0043","occurredAt":1785741584183,"cohort":1,"touch":"proposal","state":"proposal","firstView":true,"repeatViewCount":0}}
+
+--- experience validate --product=studio, re-run at session close ---
+experience:validate: 7 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+  x studio.page.hq-venue-proposal: discovered experience is not registered (studio/src/app/hq/venue-proposal/page.tsx)
+  x studio.page.v-by-token: discovered experience is not registered (studio/src/app/v/[token]/page.tsx)
+  x studio.page.venues-privacy: discovered experience is not registered (studio/src/app/venues/privacy/page.tsx)
+  x studio.page.venues-questions: discovered experience is not registered (studio/src/app/venues/questions/page.tsx)
+  x studio.state.v-by-token-not-found: discovered experience is not registered (studio/src/app/v/[token]/not-found.tsx)
+(the count moved from 8 to 7 because the concurrent session re-baselined one of its own;
+ this task's contribution is studio.page.v-by-token and studio.state.v-by-token-not-found)

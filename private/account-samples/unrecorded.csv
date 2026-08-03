@@ -1,0 +1,16 @@
+# SAMPLE · DETERMINISTIC REVIEW DATA.
+# snapshot_id=venue-unrecorded-2026-07-24
+# definition_version=account-metrics.v2
+account_name,edition,period_start,period_end,coverage_state,data_through,metric_key,value_state,value,denominator,unit,definition_version,withheld_reason
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,access.covered,unavailable,,,codes,account-metrics.v2,Signal HQ Access holds no issuing record for this venue
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,access.available,unavailable,,,codes,account-metrics.v2,Signal HQ Access holds no issuing record for this venue
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,access.issued,exact,3,,codes,account-metrics.v2,
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,access.redeemed,exact,1,,codes,account-metrics.v2,
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,adoption.first_useful_action,unavailable,,,workspaces,account-metrics.v2,Sponsored-use instrumentation not yet available for this account
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,adoption.active_recently,unavailable,,,workspaces,account-metrics.v2,Sponsored-use instrumentation not yet available for this account
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,adoption.continued_after_30_days,unavailable,,,workspaces,account-metrics.v2,Sponsored-use instrumentation not yet available for this account
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,adoption.days_with_sponsored_use,unavailable,,,days,account-metrics.v2,Sponsored-use instrumentation not yet available for this account
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,product_reach.notes,unavailable,,,workspaces,account-metrics.v2,Coverage unavailable
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,product_reach.tasks,unavailable,,,workspaces,account-metrics.v2,Coverage unavailable
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,product_reach.timeline,unavailable,,,workspaces,account-metrics.v2,Coverage unavailable
+Rivermill Hall,venue,2026-06-25,2026-07-24,unavailable,2026-07-24,product_reach.signal,unavailable,,,workspaces,account-metrics.v2,Coverage unavailable

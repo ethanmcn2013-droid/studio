@@ -7,11 +7,21 @@ import { AccountIcon } from "../components/icons";
 import styles from "./account-panel.module.css";
 import shared from "./shared.module.css";
 
-const SUPPORT_HISTORY = [
+/**
+ * Two illustrative rows for the deterministic review fixture.
+ *
+ * They are NOT rendered on live data. Before this guard they were: a real
+ * founding venue opening its own Account saw two support requests it had never
+ * made, with July 2026 dates. `sponsor_requests` is written by the live
+ * request path, so the honest live answer is either those rows or nothing,
+ * never these. Wording also fixed: "allotment unchanged" is prohibited
+ * venue-facing vocabulary under D-020.
+ */
+const SUPPORT_HISTORY_FIXTURE = [
   {
     id: "req-1",
     label: "Request more access",
-    detail: "Recorded for Signal Studio review · allotment unchanged",
+    detail: "Recorded for Signal Studio review · nothing changed",
     when: "24 Jul 2026",
   },
   {
@@ -25,9 +35,11 @@ const SUPPORT_HISTORY = [
 export function AccountPanel({
   snapshot,
   role,
+  mode = "fixture",
 }: {
   snapshot: AccountSnapshot;
   role: AccountRole;
+  mode?: "fixture" | "live";
 }) {
   const canManageMembers = roleCan(role, "manage_members");
   const canEditPrefs = roleCan(role, "edit_reporting_preferences");
@@ -148,15 +160,23 @@ export function AccountPanel({
             <h2>Request history</h2>
           </div>
         </div>
-        <ul className={styles.history}>
-          {SUPPORT_HISTORY.map((item) => (
-            <li key={item.id}>
-              <strong>{item.label}</strong>
-              <span>{item.detail}</span>
-              <small>{item.when}</small>
-            </li>
-          ))}
-        </ul>
+        {mode === "live" ? (
+          <p className={styles.note} role="note">
+            Request history is not wired to this preview yet. Nothing is shown
+            here rather than an example, because an example on live data reads
+            as your own record.
+          </p>
+        ) : (
+          <ul className={styles.history}>
+            {SUPPORT_HISTORY_FIXTURE.map((item) => (
+              <li key={item.id}>
+                <strong>{item.label}</strong>
+                <span>{item.detail}</span>
+                <small>{item.when}</small>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <div className={shared.lockNote}>

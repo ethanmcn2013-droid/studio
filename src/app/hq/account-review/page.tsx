@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Account review · Signal HQ",
   description:
-    "Authenticated HQ review of Signal Studio Account — fixtures and live Venue access preview.",
+    "Authenticated HQ review of Signal Studio Account. Fixtures and live Venue access preview.",
   robots: { index: false, follow: false },
 };
 

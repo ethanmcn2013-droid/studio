@@ -32,10 +32,24 @@ const FIXTURE_OPTIONS: Array<{ value: VenueFixtureKey; label: string }> = [
   { value: "partial", label: "Partial" },
   { value: "suppressed", label: "Suppressed" },
   { value: "unavailable", label: "Unavailable" },
+  // R-016 · D-020. The branch every founding venue actually takes, and the
+  // legacy branch with nothing recorded. Both had fixtures and generated
+  // artefacts but were unreachable from this picker.
+  { value: "unlimited", label: "Unlimited entitlement" },
+  { value: "unrecorded", label: "No issuing record" },
 ];
 
 type SurfaceMode = "venue" | "education" | "organisation";
 type DataSource = "fixture" | "live";
+
+/**
+ * A live load, tagged with the venue slug it was requested for. Carrying the slug
+ * is what lets the component tell "still loading" from "loaded, for a venue you
+ * are no longer looking at" without an extra flag.
+ */
+type LiveResult =
+  | { slug: string; snapshot: AccountSnapshot }
+  | { slug: string; error: string };
 
 type OpenRequestRow = {
   id: string;
@@ -62,9 +76,11 @@ export function AccountReview({
   const [surface, setSurface] = useState<SurfaceMode>("venue");
   const [dataSource, setDataSource] = useState<DataSource>("fixture");
   const [liveSlug, setLiveSlug] = useState(liveVenues[0]?.slug ?? "");
-  const [liveSnapshot, setLiveSnapshot] = useState<AccountSnapshot | null>(null);
-  const [liveError, setLiveError] = useState<string | null>(null);
-  const [liveLoading, setLiveLoading] = useState(false);
+  // One piece of state, tagged with the slug it belongs to. Loading and staleness
+  // are then derived during render rather than written by the effect, so the
+  // effect never calls setState synchronously and a result for the previous venue
+  // can never be shown against the current one.
+  const [liveResult, setLiveResult] = useState<LiveResult | null>(null);
   const [controlsOpen, setControlsOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const didMountTabs = useRef(false);
@@ -75,36 +91,38 @@ export function AccountReview({
   const roleId = useId();
 
   const fixtureSnapshot = getVenueFixture(fixtureKey);
-  const snapshot =
-    dataSource === "live" && liveSnapshot ? liveSnapshot : fixtureSnapshot;
+  const liveActive = dataSource === "live" && Boolean(liveSlug);
+  const liveForSlug =
+    liveActive && liveResult?.slug === liveSlug ? liveResult : null;
+  const liveSnapshot =
+    liveForSlug && "snapshot" in liveForSlug ? liveForSlug.snapshot : null;
+  const liveError =
+    liveForSlug && "error" in liveForSlug ? liveForSlug.error : null;
+  // No result yet for the venue currently selected means the request is in
+  // flight. Deriving it removes the loading flag, and with it the cascading
+  // render the react-hooks/set-state-in-effect rule exists to prevent.
+  const liveLoading = liveActive && !liveForSlug;
+  const snapshot = liveSnapshot ?? fixtureSnapshot;
   const roleLabel = ROLE_OPTIONS.find((item) => item.value === role)?.label;
   const liveSponsorId =
     liveVenues.find((venue) => venue.slug === liveSlug)?.id ?? null;
 
   useEffect(() => {
-    if (dataSource !== "live" || !liveSlug) {
-      setLiveSnapshot(null);
-      setLiveError(null);
-      setLiveLoading(false);
-      return;
-    }
+    if (!liveActive) return;
     let cancelled = false;
-    setLiveLoading(true);
-    setLiveError(null);
-    void loadLiveVenueSnapshotAction(liveSlug).then((result) => {
+    const slug = liveSlug;
+    void loadLiveVenueSnapshotAction(slug).then((result) => {
       if (cancelled) return;
-      setLiveLoading(false);
-      if (!result.ok) {
-        setLiveSnapshot(null);
-        setLiveError(result.error);
-        return;
-      }
-      setLiveSnapshot(result.snapshot);
+      setLiveResult(
+        result.ok
+          ? { slug, snapshot: result.snapshot }
+          : { slug, error: result.error },
+      );
     });
     return () => {
       cancelled = true;
     };
-  }, [dataSource, liveSlug]);
+  }, [liveActive, liveSlug]);
 
   useEffect(() => {
     if (!didMountTabs.current) {
@@ -240,8 +258,12 @@ export function AccountReview({
                   <option value="">No venues reachable</option>
                 ) : (
                   liveVenues.map((venue) => (
+                    // Finding F-2. The label is the venue's founding place or
+                    // an opaque id, never its name and never its slug: this
+                    // page is used on screen shares and consent to be named
+                    // publicly is unknown for every account.
                     <option key={venue.id} value={venue.slug}>
-                      {venue.name}
+                      {venue.displayLabel}
                     </option>
                   ))
                 )}
@@ -264,8 +286,11 @@ export function AccountReview({
             </select>
           </label>
           {liveVenuesError ? (
+            // A fixed string, produced by listLiveVenueOptions. It used to be
+            // the driver's own message, which for a failed sponsors SELECT is
+            // the whole statement including the contact_email column.
             <p className={styles.controlsNote} role="status">
-              Live venues unavailable: {liveVenuesError}
+              {liveVenuesError}
             </p>
           ) : null}
           {openRequests.length > 0 ? (
@@ -354,6 +379,10 @@ export function AccountReview({
                     role={role}
                     mode={dataSource}
                     sponsorId={dataSource === "live" ? liveSponsorId : null}
+                    // The slug, not the id: every mutating action resolves the
+                    // sponsor server-side so a caller cannot name one venue
+                    // and change another.
+                    slug={dataSource === "live" ? liveSlug : null}
                   />
                 ) : null}
                 {tab === "Usage" ? (
@@ -369,7 +398,11 @@ export function AccountReview({
                   />
                 ) : null}
                 {tab === "Account" ? (
-                  <AccountPanel snapshot={snapshot} role={role} />
+                  <AccountPanel
+                    snapshot={snapshot}
+                    role={role}
+                    mode={dataSource}
+                  />
                 ) : null}
               </div>
             </main>

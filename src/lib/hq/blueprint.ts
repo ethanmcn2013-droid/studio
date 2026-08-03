@@ -16,10 +16,11 @@
  *
  * ── LIVE DATA ───────────────────────────────────────────────────────
  * The metrics section is wired. The page fetches getTraction() (Turso
- * ledger), getProspects() (CRM), and getProductAnalytics() (the four
- * product Tursos), reduces them to BlueprintLiveData primitives, and
+ * ledger), getProspects() (CRM), getProductAnalytics() (the four
+ * product Tursos) and getVefState() (the VEF-2026 programme register),
+ * reduces them to BlueprintLiveData primitives, and
  * resolveBlueprintMetrics() overlays them onto the catalog.
- * Wired live today (10 of 11):
+ * Wired live today (14 of 15):
  *   - MRR              → workspace_subscription grants × €12/mo (traction)
  *   - Active users     → active entitlement grants (traction)
  *   - Venue pipeline   → prospects in active CRM funnel (crm-db)
@@ -31,6 +32,10 @@
  *   - Usage by module  → active users across the 4 apps (product-analytics)
  *   - Runway           → modeled by src/lib/hq/financial-model.ts (cash basis)
  *   - Directors        → src/lib/hq/elt.ts (live in the section render)
+ *   - Founding 25      → sponsor ledger first, VEF tracker second (vef-state)
+ *   - Days to release  → VEF releaseDate (vef-state)
+ *   - Release gates    → VEF releaseGates (vef-state)
+ *   - Verified done    → VEF counts.verifiedCompletion (vef-state)
  * Still placeholder (no source in the suite yet):
  *   - Support sentiment → support inbox (no DB)
  * Each placeholder carries an honest source label, no vanity numbers
@@ -561,7 +566,12 @@ export type MetricKey =
   | "venue-pipeline"
   | "student-signups"
   | "support-sentiment"
-  | "runway";
+  | "runway"
+  // ── VEF-2026 programme register (src/lib/hq/vef-state.ts) ──
+  | "founding-25"
+  | "days-to-release"
+  | "release-gates"
+  | "verified-completion";
 
 export type BlueprintMetric = {
   key: MetricKey;
@@ -588,6 +598,13 @@ export const BLUEPRINT_METRICS: BlueprintMetric[] = [
   { key: "usage-by-module", label: "Usage by module", value: "—", target: "all four touched", source: "per-app analytics", tone: "quiet" },
   { key: "support-sentiment", label: "Support sentiment", value: "—", target: "positive", source: "support inbox", tone: "quiet" },
   { key: "runway", label: "Runway", value: "—", target: ">12 months", source: "finance model", tone: "critical" },
+  // Wired live from the VEF-2026 register (see resolveBlueprintMetrics).
+  // Founding 25 prefers the sponsor ledger over the hand-maintained tracker,
+  // because the ledger is the record of money received (E11.01 §5, stage 8).
+  { key: "founding-25", label: "Founding 25 paid", value: "—", target: "25 paid", source: "sponsor ledger", tone: "critical" },
+  { key: "days-to-release", label: "Days to release", value: "—", target: "1 Sep 2026", source: "VEF register", tone: "critical" },
+  { key: "release-gates", label: "Release gates passed", value: "—", target: "6 of 6", source: "VEF register", tone: "accent" },
+  { key: "verified-completion", label: "Verified completion", value: "—", target: "100% of 210", source: "VEF register", tone: "quiet" },
 ];
 
 /* ── Live overlay ─────────────────────────────────────────────────────
@@ -622,6 +639,31 @@ export type BlueprintLiveData = {
   modulesActive: { active: number; readable: number } | null;
   // LIVE DATA: modeled runway in months (finance model); defaultAlive caps it.
   runway: { months: number; defaultAlive: boolean } | null;
+  // ── From the VEF-2026 register (src/lib/hq/vef-state.ts) ──
+  // `null` means the register could not be read this render. Every field
+  // inside is separately nullable for the same reason: a missing counter is
+  // a coverage fact, never a zero.
+  vef: BlueprintVefLive | null;
+  // LIVE DATA: paid venues with cash in the door (sponsor ledger, traction).
+  // The ledger outranks the tracker wherever the two disagree.
+  paidVenuesLedger: number | null;
+};
+
+/** The VEF-2026 slice of the live overlay. */
+export type BlueprintVefLive = {
+  /** Whole days from today to the release date; negative once it has passed. */
+  daysToRelease: number | null;
+  gatesPassed: number;
+  gatesTotal: number;
+  /** Provisional task-count completion, 0–100, or null when unstated. */
+  completionPct: number | null;
+  completionNumerator: number | null;
+  completionDenominator: number | null;
+  completionBasis: string;
+  completionProvisional: boolean;
+  /** The tracker's own paid counter. Hand-maintained; the ledger wins. */
+  paidTracker: number | null;
+  foundingTarget: number;
 };
 
 export type ResolvedMetric = BlueprintMetric & {
@@ -642,6 +684,7 @@ function eur(n: number): string {
 }
 
 const UNREAD_NOTE = "Studio Turso unread";
+const VEF_UNREAD_NOTE = "VEF register unread";
 
 export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric[] {
   const wired = (m: BlueprintMetric, display: string, liveNote: string): ResolvedMetric => ({
@@ -707,11 +750,142 @@ export function resolveBlueprintMetrics(live: BlueprintLiveData): ResolvedMetric
               live.runway.defaultAlive ? "18+ mo" : `${live.runway.months} mo`,
               "modeled · finance model",
             );
+      case "founding-25": {
+        // Ledger first. E11.01 §5 stage 8: "Where the tracker and the ledger
+        // disagree, the ledger wins" — the tracker is hand-maintained, the
+        // sponsor ledger is the record of money received. The tracker is used
+        // only when the ledger is unreadable, and it says so.
+        const target = live.vef?.foundingTarget ?? 25;
+        if (live.paidVenuesLedger != null) {
+          return wired(m, `${live.paidVenuesLedger}/${target}`, "paid · sponsor ledger");
+        }
+        if (live.vef?.paidTracker != null) {
+          return wired(
+            m,
+            `${live.vef.paidTracker}/${target}`,
+            "tracker counter · ledger unread",
+          );
+        }
+        return placeholder(m, live.vef == null ? VEF_UNREAD_NOTE : UNREAD_NOTE);
+      }
+      case "days-to-release": {
+        const d = live.vef?.daysToRelease;
+        if (d == null) return placeholder(m, VEF_UNREAD_NOTE);
+        return wired(
+          m,
+          d >= 0 ? `${d}` : `${Math.abs(d)} past`,
+          d >= 0 ? "days · VEF release date" : "days past the release date",
+        );
+      }
+      case "release-gates":
+        return live.vef == null
+          ? placeholder(m, VEF_UNREAD_NOTE)
+          : wired(
+              m,
+              `${live.vef.gatesPassed}/${live.vef.gatesTotal}`,
+              "passed · VEF release gates",
+            );
+      case "verified-completion": {
+        const v = live.vef;
+        if (v == null) return placeholder(m, VEF_UNREAD_NOTE);
+        if (v.completionPct == null) return placeholder(m, "completion unstated");
+        const basis =
+          v.completionNumerator != null && v.completionDenominator != null
+            ? `${v.completionNumerator} of ${v.completionDenominator} tasks`
+            : v.completionBasis;
+        return wired(
+          m,
+          `${v.completionPct}%`,
+          v.completionProvisional ? `${basis} · provisional` : basis,
+        );
+      }
       default:
         // Not yet wired, honest placeholder, source label carries the plan.
         return placeholder(m);
     }
   });
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   8b · VENUE EDITION, the wedge as a pipeline the CRM cannot yet hold
+
+   The twelve ratified Venue Edition stages
+   (docs/execution/venue-edition-and-films/evidence/E11.01-02-crm-stages.md
+   §2). The programme tracks all twelve as counters in PROJECT_STATE.json.
+   The shipped CRM holds five active stages and stops at `pilot_active`, a
+   token the ratified offer does not contain at all.
+
+   `crmToken` is the CRM stage that *most nearly* expresses the VEF stage.
+   It is a mapping, not an equivalence: `demo_booked` is a scheduled call,
+   the VEF `demo` stage requires four named things to have been shown. Where
+   `crmToken` is null the CRM has no vocabulary for the stage at all, and
+   nothing an operator types into the CRM can record it.
+   ════════════════════════════════════════════════════════════════════ */
+
+export type VefStageMap = {
+  /** 1-based stage number, per E11.01 §2. */
+  n: number;
+  /** The ratified stage token. */
+  stage: string;
+  /** The PROJECT_STATE.json counter that carries it. */
+  counter: string;
+  /** Nearest CRM stage token, or null when the CRM cannot express it. */
+  crmToken: string | null;
+  /** Where the truth actually lives once the stage is reached. */
+  authority: "research" | "founder" | "ledger" | "product";
+};
+
+export const VEF_STAGE_MAP: VefStageMap[] = [
+  { n: 1,  stage: "researched",             counter: "researchedAccountUniverse", crmToken: "to_contact",  authority: "research" },
+  { n: 2,  stage: "invited",                counter: "invitationsIssued",         crmToken: "contacted",   authority: "founder" },
+  { n: 3,  stage: "responded",              counter: "responses",                 crmToken: "replied",     authority: "founder" },
+  { n: 4,  stage: "meeting",                counter: "qualifiedMeetings",         crmToken: "demo_booked", authority: "founder" },
+  { n: 5,  stage: "demo",                   counter: "demonstrations",            crmToken: null,          authority: "founder" },
+  { n: 6,  stage: "proposal",               counter: "proposals",                 crmToken: null,          authority: "founder" },
+  { n: 7,  stage: "signed",                 counter: "signedAgreements",          crmToken: null,          authority: "founder" },
+  { n: 8,  stage: "paid",                   counter: "paidAgreements",            crmToken: null,          authority: "ledger" },
+  { n: 9,  stage: "configured",             counter: "configuredVenueAccounts",   crmToken: null,          authority: "ledger" },
+  { n: 10, stage: "onboarded",              counter: "onboardedVenues",           crmToken: null,          authority: "founder" },
+  { n: 11, stage: "first couple invited",   counter: "firstCoupleInvitations",    crmToken: null,          authority: "product" },
+  { n: 12, stage: "first couple activated", counter: "firstCoupleActivations",    crmToken: null,          authority: "product" },
+];
+
+export type CrmStageCoverage = {
+  /** VEF stages the shipped CRM has a token for. */
+  expressible: number;
+  total: number;
+  /** VEF stages with no CRM vocabulary at all. */
+  missing: string[];
+  /** CRM stage tokens that map to no ratified VEF stage. */
+  orphanCrmTokens: string[];
+  /** True when the CRM can reach stage 10, the completion condition. */
+  reachesCompletionCondition: boolean;
+};
+
+/**
+ * Derived from the CRM's *shipped* stage list rather than hard-coded, so this
+ * panel corrects itself the day PROSPECT_STAGES grows. Pass the live
+ * `PIPELINE_STAGES` (the active funnel) — parked states are not stages.
+ */
+export function resolveCrmStageCoverage(
+  crmPipelineStages: readonly string[],
+): CrmStageCoverage {
+  const shipped = new Set(crmPipelineStages);
+  const mapped = new Set(
+    VEF_STAGE_MAP.map((s) => s.crmToken).filter((t): t is string => t != null),
+  );
+  const covered = VEF_STAGE_MAP.filter(
+    (s) => s.crmToken != null && shipped.has(s.crmToken),
+  );
+  return {
+    expressible: covered.length,
+    total: VEF_STAGE_MAP.length,
+    missing: VEF_STAGE_MAP.filter(
+      (s) => s.crmToken == null || !shipped.has(s.crmToken),
+    ).map((s) => s.stage),
+    orphanCrmTokens: [...shipped].filter((t) => !mapped.has(t)).sort(),
+    reachesCompletionCondition: covered.some((s) => s.n >= 10),
+  };
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -796,6 +970,7 @@ export const BLUEPRINT_SECTIONS: BlueprintSection[] = [
   { id: "directors", index: 6, label: "AI Directors", title: "How it decides", blurb: "The standing org and review cycles." },
   { id: "automation", index: 7, label: "Automation", title: "Absorbed by the system", blurb: "What the system does so the founder doesn't." },
   { id: "metrics", index: 8, label: "Metrics", title: "How we measure", blurb: "Only the numbers that matter." },
-  { id: "risk", index: 9, label: "Risk & Decisions", title: "How we stay honest", blurb: "Risks, decisions, blockers, dependencies." },
-  { id: "cadence", index: 10, label: "Cadence", title: "How we stay in rhythm", blurb: "Daily to quarterly operating beats." },
+  { id: "venue-edition", index: 9, label: "Venue Edition", title: "The wedge, to the release", blurb: "VEF-2026 state, gates, the Founding 25 ladder." },
+  { id: "risk", index: 10, label: "Risk & Decisions", title: "How we stay honest", blurb: "Risks, decisions, blockers, dependencies." },
+  { id: "cadence", index: 11, label: "Cadence", title: "How we stay in rhythm", blurb: "Daily to quarterly operating beats." },
 ];

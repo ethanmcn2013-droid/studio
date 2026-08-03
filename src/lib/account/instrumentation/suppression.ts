@@ -13,6 +13,40 @@
 export const BEHAVIOURAL_MIN_WORKSPACES = 3;
 export const RATE_MIN_WORKSPACES = 5;
 
+/**
+ * Access metrics carry no cohort floor. **Ratified in D-032 R12.**
+ *
+ * Covered, available, issued and redeemed are the direct contract record
+ * between Signal Studio and the venue: the venue's own commercial facts, about
+ * invitations Signal issued on its instruction. They are not behavioural
+ * observation of couples, so the risk the floors of 3 and 5 exist to manage —
+ * a number resolving toward one identifiable couple's conduct — is not present.
+ * A venue with one redeemed invitation is told one, at any cohort size.
+ *
+ * This was an open question until D-032. It is now a rule, and the reasoning is
+ * here rather than in a document so that raising this to 3 "for consistency"
+ * has to argue with the sentence above first. The asymmetry is deliberate.
+ *
+ * The floors either side of it are ratified in D-011 point 3 and are not
+ * editable here.
+ */
+export const ACCESS_METRIC_MIN_WORKSPACES = 0;
+
+/**
+ * Which floor a metric answers to, by class.
+ *
+ * One table rather than three scattered constants: a projector that has to pick
+ * a threshold picks a class instead, and the classes are exhaustive.
+ */
+export const COHORT_FLOOR = {
+  /** Counts of what couples did. */
+  behavioural: BEHAVIOURAL_MIN_WORKSPACES,
+  /** Rates, medians and cohort comparisons. */
+  rate: RATE_MIN_WORKSPACES,
+  /** Covered, available, issued, redeemed. The contract record. */
+  access: ACCESS_METRIC_MIN_WORKSPACES,
+} as const;
+
 export type CoverageState = "complete" | "partial" | "suppressed" | "unavailable";
 
 export type MetricPresentation =
@@ -47,6 +81,19 @@ export function presentRate(
 ): MetricPresentation {
   if (value === null) return { state: "unavailable" };
   if (eligibleWorkspaces < RATE_MIN_WORKSPACES) return { state: "withheld" };
+  return { state: "value", value };
+}
+
+/**
+ * An access count: emitted exactly, at any cohort size. D-032 R12.
+ *
+ * There is no `eligibleWorkspaces` argument, and that absence is the point. A
+ * caller cannot accidentally apply a behavioural floor to a contract fact, and
+ * a reader can see from the signature that no floor exists to apply. Absent is
+ * still absent: `null` in, `unavailable` out, never a zero.
+ */
+export function presentAccess(value: number | null): MetricPresentation {
+  if (value === null) return { state: "unavailable" };
   return { state: "value", value };
 }
 

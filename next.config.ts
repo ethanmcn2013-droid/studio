@@ -229,6 +229,14 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/dispatch": ["./content/dispatch/*.md"],
     "/changelog.rss": ["./content/dispatch/*.md"],
+    // The Venue Edition panel reads canonical programme state at request time. Without
+    // these the panel renders its honest "could not be read" state on Vercel while
+    // working locally, which is the worst of both.
+    "/hq/blueprint": [
+      "./docs/execution/venue-edition-and-films/PROJECT_STATE.json",
+      "./docs/execution/venue-edition-and-films/DECISIONS.md",
+      "./docs/execution/venue-edition-and-films/RAID.md",
+    ],
   },
   async headers() {
     return [

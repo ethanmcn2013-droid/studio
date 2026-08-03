@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
+import { recordVenueEditionPageView } from "@/lib/venue-edition-page-views-server";
 
 export const metadata: Metadata = {
   title: "The Founding 25 · Signal Studio",
@@ -127,7 +128,15 @@ const mechanicLines = [
 ];
 
 // ── Page ─────────────────────────────────────────────────────────
-export default function VenuesPage() {
+//
+// D-032 R8: no Google tag on this page. The view is counted server-side and
+// first-party instead, which is why the component is async and the route is
+// dynamic. `recordVenueEditionPageView` reads request headers, so the page is
+// rendered per request rather than once at build; a prerendered page would
+// count once and never again.
+export default async function VenuesPage() {
+  await recordVenueEditionPageView("venues");
+
   return (
     <>
       <ReadingProgress />

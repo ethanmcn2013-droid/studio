@@ -2,9 +2,12 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+  ACCESS_METRIC_MIN_WORKSPACES,
   BEHAVIOURAL_MIN_WORKSPACES,
+  COHORT_FLOOR,
   RATE_MIN_WORKSPACES,
   assertNoZeroForAbsent,
+  presentAccess,
   presentBehavioural,
   presentRate,
   resolveCoverage,
@@ -78,4 +81,34 @@ test("the guard catches an absent metric dressed up as a value", () => {
 test("the thresholds are the ones the privacy contract names", () => {
   assert.equal(BEHAVIOURAL_MIN_WORKSPACES, 3);
   assert.equal(RATE_MIN_WORKSPACES, 5);
+});
+
+/**
+ * D-032 R12 ratified the asymmetry. Access counts are the contract record
+ * between Signal Studio and the venue, not behavioural observation of couples,
+ * which is why they carry no cohort floor.
+ */
+test("an access count is emitted exactly at any cohort size", () => {
+  assert.equal(ACCESS_METRIC_MIN_WORKSPACES, 0);
+  for (const eligible of [0, 1, 2]) {
+    assert.deepEqual(
+      presentBehavioural(1, eligible),
+      { state: "withheld" },
+      "a behavioural count below three is still withheld",
+    );
+  }
+  assert.deepEqual(presentAccess(1), { state: "value", value: 1 });
+});
+
+test("an absent access count is unavailable, never zero", () => {
+  assert.deepEqual(presentAccess(null), { state: "unavailable" });
+  assert.doesNotThrow(() => assertNoZeroForAbsent(presentAccess(null), null));
+  assert.throws(
+    () => assertNoZeroForAbsent({ state: "value", value: 0 }, null),
+    /absent metric/,
+  );
+});
+
+test("the three floors are named by class so a projector picks one deliberately", () => {
+  assert.deepEqual(COHORT_FLOOR, { behavioural: 3, rate: 5, access: 0 });
 });

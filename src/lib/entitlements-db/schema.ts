@@ -670,7 +670,18 @@ export type NewSponsorRequest = typeof sponsorRequests.$inferInsert;
  * and the projections that survive carry counts only.
  * -------------------------------------------------------------------- */
 
-export const METRIC_DICTIONARY_VERSION = "venue-metrics.v1" as const;
+/**
+ * The metric dictionary these projections are computed under.
+ *
+ * `venue-metrics.v1` was written for the retired 15-venue code-allotment model
+ * that D-020 abolished, and E09.01 §0 retires it as a name. It mattered more
+ * here than anywhere else: this constant is the DEFAULT on
+ * `sponsor_usage_daily.metric_dictionary_version`, which is also part of that
+ * table's composite primary key, so every row inserted without an explicit
+ * version was keyed under the retired dictionary. Corrected by
+ * `0001_account_metrics_v2.sql`.
+ */
+export const METRIC_DICTIONARY_VERSION = "account-metrics.v2" as const;
 
 export const SPONSOR_USAGE_ATTRIBUTION_STATES = [
   "attributed",

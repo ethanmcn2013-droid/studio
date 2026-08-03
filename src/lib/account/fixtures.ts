@@ -544,11 +544,344 @@ export const VENUE_UNAVAILABLE: AccountSnapshot = {
   },
 };
 
+const unlimited: MetricValue = { state: "unlimited" };
+
+/**
+ * Unlimited: the D-020 entitlement, which is what every founding venue is sold.
+ *
+ * Until this fixture existed, all four review samples carried an exact cap, so
+ * no deterministic artefact anywhere exercised the branch a real founding venue
+ * takes. The reviewable consequences are all here: no count in the two
+ * headroom positions, an empty attention list, and a next action that is to
+ * issue rather than to ask for more.
+ */
+export const VENUE_UNLIMITED: AccountSnapshot = {
+  snapshotId: "venue-unlimited-2026-07-24",
+  definitionVersion: DEFINITION_VERSION,
+  edition: "venue",
+  sampleLabel: SAMPLE_LABEL,
+  account: {
+    accountId: "acct-glenmara-house-unlimited",
+    name: "Glenmara House",
+    edition: venueBase.edition,
+    editionLabel: venueBase.editionLabel,
+    recipientNoun: venueBase.recipientNoun,
+    recipientNounPlural: venueBase.recipientNounPlural,
+  },
+  term: {
+    label: "Founding access term",
+    start: "2026-04-01",
+    end: "2027-09-30",
+    renewalDate: "2027-09-30",
+    standing: "account_active",
+    standingLabel: "Account active",
+  },
+  coverage: {
+    state: "complete",
+    label: "Reporting complete",
+    detail: "All four products. Data through 24 Jul 2026.",
+    dataThrough: "2026-07-24",
+    periodStart: "2026-06-25",
+    periodEnd: "2026-07-24",
+    periodLabel: "Last 30 days",
+    definitionVersion: DEFINITION_VERSION,
+    modulesCovered: 4,
+    modulesExpected: 4,
+    daysCovered: 30,
+    daysExpected: 30,
+  },
+  access: {
+    allotted: unlimited,
+    available: unlimited,
+    issued: exact(9),
+    redeemed: exact(6),
+    reconciliation: {
+      state: "checked",
+      label: "Access totals checked",
+      detail: "Reconciled 24 Jul at 06:12 · no action needed",
+    },
+    codes: [
+      {
+        maskedCode: "GH-••••-41",
+        state: "redeemed",
+        issuedOn: "2026-07-02",
+        redeemedOn: "2026-07-03",
+        expiresOn: null,
+        note: "Activated through the venue welcome link.",
+      },
+      {
+        maskedCode: "GH-••••-42",
+        state: "redeemed",
+        issuedOn: "2026-07-06",
+        redeemedOn: "2026-07-09",
+        expiresOn: null,
+        note: "Activated through the venue welcome link.",
+      },
+      {
+        maskedCode: "GH-••••-43",
+        state: "issued",
+        issuedOn: "2026-07-18",
+        redeemedOn: null,
+        expiresOn: "2026-10-31",
+        note: "Delivered · not yet redeemed",
+      },
+      {
+        maskedCode: "GH-••••-44",
+        state: "available",
+        issuedOn: null,
+        redeemedOn: null,
+        expiresOn: "2026-10-31",
+        note: "Ready for an authorised account member to send.",
+      },
+    ],
+    // Nothing to warn about. A venue that was promised no per-couple maths
+    // cannot be short of anything, so this list stays empty by construction.
+    attention: [],
+  },
+  adoption: {
+    allotted: unlimited,
+    issued: exact(9),
+    redeemed: exact(6),
+    firstUsefulAction: exact(5),
+    activeRecently: exact(4),
+    continuedAfter30Days: exact(4, 6),
+    daysWithSponsoredUse: exact(18),
+  },
+  productReach: [
+    {
+      product: "Notes",
+      workspacesReached: exact(4),
+      supportingDetail: "Reached through committed note work",
+    },
+    {
+      product: "Tasks",
+      workspacesReached: exact(5),
+      supportingDetail: "Reached through committed task work",
+    },
+    {
+      product: "Timeline",
+      workspacesReached: exact(3),
+      supportingDetail: "Reached through curated timeline work",
+    },
+    {
+      product: "Signal",
+      workspacesReached: exact(2),
+      supportingDetail: "Reached through deliberately opened briefings",
+    },
+  ],
+  reports: [
+    {
+      reportId: "rpt-unlimited-2026-07",
+      title: "July 2026 account review",
+      periodLabel: "July 2026",
+      coverageState: "complete",
+      coverageLabel: "Reporting complete",
+      dataThrough: "2026-07-24",
+      generatedOn: "2026-07-24",
+      formats: ["pdf", "csv"],
+      filenameStem: "glenmara-house-account-review-unlimited-2026-07",
+    },
+  ],
+  members: sharedMembers,
+  privacyReceipt: {
+    headline: "Prove the benefit without exposing the work.",
+    body: "This account shows aggregate sponsored use only. Private work is never included.",
+    postureLabel: venueBase.privacyPosture,
+    withheldRule:
+      "Behavioural values are withheld below three eligible sponsored workspaces.",
+    neverIncludes: [
+      "names or emails of recipients",
+      "notes, task text, or comments",
+      "Timeline content or attachments",
+      "private membership lists",
+      "raw identifiers",
+    ],
+  },
+  nextAction: {
+    id: "issue-next",
+    label: "Issue access for your next booked couple",
+    detail:
+      "Every couple who books with you is covered while your licence is current. Delivery still happens outside Account.",
+    target: "access",
+  },
+  brandLines: sharedBrand,
+};
+
+/**
+ * Unrecorded: a legacy venue still on the capped mode whose cap was never set.
+ *
+ * R-016's residual case. It is neither unlimited nor exhausted, and the whole
+ * point of the fixture is that the two positions where a number would go read
+ * as unavailable rather than as a zero. The reason string is the one the live
+ * projection emits (`LIVE_ACCESS_UNRECORDED_REASON`), kept literal here so the
+ * fixtures stay free-standing and clock-free.
+ */
+const UNRECORDED_REASON = "Signal HQ Access holds no issuing record for this venue";
+
+export const VENUE_UNRECORDED: AccountSnapshot = {
+  snapshotId: "venue-unrecorded-2026-07-24",
+  definitionVersion: DEFINITION_VERSION,
+  edition: "venue",
+  sampleLabel: SAMPLE_LABEL,
+  account: {
+    accountId: "acct-rivermill-hall",
+    name: "Rivermill Hall",
+    edition: venueBase.edition,
+    editionLabel: venueBase.editionLabel,
+    recipientNoun: venueBase.recipientNoun,
+    recipientNounPlural: venueBase.recipientNounPlural,
+  },
+  term: {
+    label: "2026/27 access term",
+    start: "2026-05-01",
+    end: "2027-04-30",
+    renewalDate: "2027-04-30",
+    standing: "account_active",
+    standingLabel: "Account active",
+  },
+  coverage: {
+    state: "unavailable",
+    label: "Reporting unavailable",
+    detail:
+      "No reliable sponsored-use coverage for this window. Issued and redeemed totals remain exact.",
+    dataThrough: "2026-07-24",
+    periodStart: "2026-06-25",
+    periodEnd: "2026-07-24",
+    periodLabel: "Last 30 days",
+    definitionVersion: DEFINITION_VERSION,
+    modulesCovered: 0,
+    modulesExpected: 4,
+  },
+  access: {
+    allotted: unavailable(UNRECORDED_REASON),
+    available: unavailable(UNRECORDED_REASON),
+    // What was issued and redeemed is still a fact about what happened.
+    issued: exact(3),
+    redeemed: exact(1),
+    reconciliation: {
+      state: "checked",
+      label: "Access totals checked",
+      detail: "Minted rows match the issued counter.",
+    },
+    codes: [
+      {
+        maskedCode: "RM-••••-01",
+        state: "redeemed",
+        issuedOn: "2026-06-11",
+        redeemedOn: "2026-06-14",
+        expiresOn: null,
+        note: "Activated through the venue welcome link.",
+      },
+      {
+        maskedCode: "RM-••••-02",
+        state: "available",
+        issuedOn: null,
+        redeemedOn: null,
+        expiresOn: null,
+        note: "Minted · delivery not tracked in Account",
+      },
+      {
+        maskedCode: "RM-••••-03",
+        state: "available",
+        issuedOn: null,
+        redeemedOn: null,
+        expiresOn: null,
+        note: "Minted · delivery not tracked in Account",
+      },
+    ],
+    attention: [
+      {
+        id: "access-record-missing",
+        label: "No issuing record for this venue",
+        detail:
+          "Signal HQ Access has nothing recorded for this account, so Account cannot report what it may issue. Record it in Signal HQ Access.",
+      },
+    ],
+  },
+  adoption: {
+    allotted: unavailable(UNRECORDED_REASON),
+    issued: exact(3),
+    redeemed: exact(1),
+    firstUsefulAction: unavailable(
+      "Sponsored-use instrumentation not yet available for this account",
+    ),
+    activeRecently: unavailable(
+      "Sponsored-use instrumentation not yet available for this account",
+    ),
+    continuedAfter30Days: unavailable(
+      "Sponsored-use instrumentation not yet available for this account",
+    ),
+    daysWithSponsoredUse: unavailable(
+      "Sponsored-use instrumentation not yet available for this account",
+    ),
+  },
+  productReach: [
+    {
+      product: "Notes",
+      workspacesReached: unavailable("Coverage unavailable"),
+      supportingDetail: "Coverage unavailable",
+    },
+    {
+      product: "Tasks",
+      workspacesReached: unavailable("Coverage unavailable"),
+      supportingDetail: "Coverage unavailable",
+    },
+    {
+      product: "Timeline",
+      workspacesReached: unavailable("Coverage unavailable"),
+      supportingDetail: "Coverage unavailable",
+    },
+    {
+      product: "Signal",
+      workspacesReached: unavailable("Coverage unavailable"),
+      supportingDetail: "Coverage unavailable",
+    },
+  ],
+  reports: [
+    {
+      reportId: "rpt-unrecorded-2026-07",
+      title: "July 2026 account review",
+      periodLabel: "July 2026",
+      coverageState: "unavailable",
+      coverageLabel: "Reporting unavailable",
+      dataThrough: "2026-07-24",
+      generatedOn: "2026-07-24",
+      formats: ["pdf", "csv"],
+      filenameStem: "rivermill-hall-account-review-2026-07",
+    },
+  ],
+  members: sharedMembers.slice(0, 2),
+  privacyReceipt: {
+    headline: "Prove the benefit without exposing the work.",
+    body: "Issued and redeemed totals remain visible. Everything Account cannot measure is shown as unavailable.",
+    postureLabel: venueBase.privacyPosture,
+    withheldRule:
+      "A value Account does not hold is shown as unavailable. It is never shown as zero.",
+    neverIncludes: [
+      "names or emails of recipients",
+      "notes, task text, or comments",
+      "Timeline content or attachments",
+      "private membership lists",
+      "raw identifiers",
+    ],
+  },
+  nextAction: {
+    id: "confirm-access-record",
+    label: "Confirm this account's access in Signal HQ Access",
+    detail:
+      "Signal HQ Access holds no issuing record for this venue, so Account has nothing to report here. Missing configuration is never shown as zero.",
+    target: "access",
+  },
+  brandLines: sharedBrand,
+};
+
 export const VENUE_FIXTURES = {
   complete: VENUE_COMPLETE,
   partial: VENUE_PARTIAL,
   suppressed: VENUE_SUPPRESSED,
   unavailable: VENUE_UNAVAILABLE,
+  unlimited: VENUE_UNLIMITED,
+  unrecorded: VENUE_UNRECORDED,
 } as const;
 
 export type VenueFixtureKey = keyof typeof VENUE_FIXTURES;

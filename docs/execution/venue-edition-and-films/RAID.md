@@ -485,6 +485,8 @@ the repository by the main session before being recorded.
 - **Why this is the most serious finding on this register:** the venue knows exactly which couples it invited. A behavioural count of **1** shown to a venue with 40 sponsored workspaces is a statement about one identifiable couple's private use of the product. The complement is as bad: 39 of 40 identifies the one who did not. This is precisely the thing the privacy contract exists to prevent, it passes every existing test, and D-011 ratified the thresholds believing they covered it.
 - **Mitigation:** make the floor two-sided and put it in the definition, not only the projector. Withhold when `value < 3` **or** `(eligible - value) < 3`, with reason `small_cell`, independent of population size. Change the signature to carry the population so the complement can be computed. Never render "fewer than 3" — that is itself a disclosure.
 - **Affects:** E07.11, E07.12, E07.15, E07.18, E09.02, E15.04
+- **FIXED 2026-08-03, Wave 3 (WP-07). Awaiting founder approval; not closed.** The floor is now two-sided: `isSmallCell(value, population)` in `studio/src/lib/account/instrumentation/suppression.ts` withholds when the value is under three OR when the complement is, so `presentBehavioural(1, 40)` and `presentBehavioural(39, 40)` are both withheld where the shipped code published 1 and 39. The withheld state carries no key beyond `state`, so it cannot be read backwards to recover which edge it hit, and nothing renders "fewer than 3". **The defect was wider than this entry recorded:** `presentBehavioural` had no production caller at all, and the live venue-facing path reimplemented the same one-sided shape in `daily-metrics.ts`, where two closed-historical lower-bound paths applied no threshold whatsoever. Fixing only `suppression.ts` would have been cosmetic. Proven by mutation: restoring the one-sided floor fails six named tests. **Two behaviour changes need a founder eye before Venue Portal copy is signed off:** a measured zero is now withheld ("0 of 40" is a statement about forty identifiable couples), and a young venue account will show "Withheld" against most behavioural counts until it has roughly six active workspaces. Evidence: `evidence/R-027-R-028-suppression-fix.md`.
+- **R-027 EXTENDS TO A SECOND SURFACE THAT THE FIX DOES NOT REACH, AND IT IS ARMED RATHER THAN FIRING.** `app/src/app/api/internal/partner-stats/route.ts` is the only production venue-facing egress in the app repo and it applies **no small-cell floor at all**. `reachedBoard` is a behavioural count: a venue with two sponsored couples would be told exactly how many of them opened the product. `codesRedeemed: 1` against a venue that issued four identifies one couple. **This is not a disclosure today** — the route's only consumer is studio's `/hq/marketing`, which sums across every sponsor and sits behind the founder-only HQ password. **It becomes one the moment D-027 point 4's per-venue "aggregate adoption evidence" is turned on after 1 September.** Deliberately documented rather than fixed in Wave 3, because the floor's correct shape depends on the same founder question as the rest of R-027, and it is pinned by `partner-stats-boundary.test.mjs` ("the missing small-cell floor is acknowledged in the route, not forgotten"). **Anyone adding a per-venue caller must apply the D-011 floor to `reachedBoard` first.**
 - **Status:** open · **Target:** before any venue-facing usage surface ships (WP-05) · **Last reviewed:** 2026-08-03
 
 ### R-028 — The rate threshold has never been applied to anything
@@ -494,6 +496,7 @@ the repository by the main session before being recorded.
 - **Detail:** so the 5-eligible-activation floor on percentages, ratified in D-011 and documented in `PRIVACY_AND_RETENTION.md`, is enforced in a test and nowhere else. Every percentage a venue would see today is computed without it.
 - **Mitigation:** make the threshold a property of the value rather than of the caller — have the projector emit a rate variant that is withheld below 5 and carries its numerator and denominator together, and remove the ability of any formatter to construct a percentage from two loose metrics.
 - **Affects:** E07.11, E07.15, E09.02
+- **FIXED 2026-08-03, Wave 3 (WP-07). Awaiting founder approval; not closed.** The threshold is now a property of the value rather than a call-site discipline. `RateValue` carries numerator and denominator together behind an unexported unique-symbol brand, so a bare object literal fails to compile (TS2322); `presentRate` is the only constructor and applies D-011’s five-eligible floor; `metricRateLabel` is deleted and no formatter can build a percentage from two loose metrics. A second parallel rate shape in `retention.ts` was folded into the one type. Evidence: `evidence/R-027-R-028-suppression-fix.md`.
 - **Status:** open · **Last reviewed:** 2026-08-03
 
 ### R-029 — The attribution unit is incoherent: definitions count workspaces, the mechanism attributes subjects
@@ -838,8 +841,11 @@ this session, and it does not.
 - **Not introduced by VEF.** Commit `06bc713` touched those lines only to repair mojibake (`Â·` → `·`); the term predates it.
 - **Not fixed in the review, deliberately:** it is outside E12.04's scope, it spans two lanes' surfaces, and rewriting venue-facing deck copy inside a hash re-baseline would be exactly the kind of quiet change this project forbids.
 - **Mitigation:** decide whether "founding partner" is retired in favour of "Founding 25" everywhere, or whether it is a distinct thing that needs its own definition · sweep both surfaces plus any collateral built from them · fold the banned-term list into the standing string check (E09.10 already defines it).
-- **Affects:** E02.08, E02.10, E09.10, E12.10, E12.12
-- **Status:** open · **Last reviewed:** 2026-08-03
+- **SCOPE CORRECTED 2026-08-03, Wave 3.** The entry above understates the finding by more than half. A fresh sweep of both trees found **eleven occurrences across seven files, plus two routes and four print-ready social assets carrying the term in their filenames.** Verified counts: `public/brand/market-entry-deck-2026.html` 4 (as recorded, including `:4404` "The founding partner variant · presented at signing" and `:4713` "Founding partner pack"); `src/app/design/page.tsx` **2, not 1** (`:1242` `frontAlt`, `:1247` `SpecLine`); and four surfaces the entry does not name at all — `public/brand/collateral/identity/index.html` 1, `public/brand/collateral/identity/print-notes.txt` 1, `src/app/hq/asset-command/page.tsx` 1, `src/app/hq/venue-kit/page.tsx` 1. Two routes are named for it: `src/app/hq/partner-card/` (registered in `src/lib/hq/rooms.ts:358`) and `src/app/hq/partners/`. Four assets: `public/brand/collateral/social/s4-partner-sp01-{ig-portrait,ig-square,ig-story,li-landscape}.png`.
+  **The worst instance is not a web page.** `print-notes.txt` carries print instructions for a *physical card*, and the deck says that card is presented at signing. A printed object reading "Founding Partner", handed over at the moment of signature, is the one artifact of this programme a venue keeps, and the hardest to walk back.
+  **Recommendation prepared, not applied:** retire the term; programme is "Founding 25", a member is a "founding venue". Full reasoning, the ready-to-apply change list, and why it was not applied (R-042's own reservation on deck copy, I-014 making any registered-surface edit deepen a red `design-quality`, and a physical reprint being a spending decision) are in `evidence/R-042-decision-brief.md`. **Awaiting one founder line: retire, or define.**
+- **Affects:** E02.08, E02.10, E09.10, E12.10, E12.12 — and, per the corrected scope, E12.04's banned-term list and the `/hq` room registry
+- **Status:** open, scope corrected and recommendation prepared · **Last reviewed:** 2026-08-03
 
 ---
 
@@ -884,24 +890,51 @@ this session, and it does not.
 - **Affects:** every remaining wave
 - **Status:** open, standing · **Last reviewed:** 2026-08-03
 
-### I-015 — Three register IDs are duplicated, and the registers are validated by nothing
-- **Type:** governance · **Severity:** high
+### I-015 — CORRECTED AND CLOSED. The duplicates were real and were fixed during Wave 2.
+- **Type:** governance · **Severity:** was high · **Owner:** Claude Code
+- **Status:** **RESOLVED 2026-08-03**, on the same day it was raised.
+- **What was recorded, and it was accurate when it was read:** reconnaissance at the start of
+  Wave 2 found three duplicated register IDs — two D-028 entries in `DECISIONS.md`, two R-025
+  entries and two I-007 entries in `RAID.md`. The Wave 2 packet reports them as open.
+- **What is true now, verified rather than assumed:** all three are resolved. A concurrent
+  session renumbered the standing-publication decision from D-028 to **D-031** while Wave 2 was
+  running, and the two RAID pairs were separated in the same period.
+  `grep -oE '^#+ D-[0-9]{3}' DECISIONS.md | sort | uniq -d` and the RAID equivalent both return
+  nothing.
+- **And the registers are NOT validated by nothing, which the original entry also got wrong.**
+  `project-control.mjs validate` parses both files and fails on a duplicate id, and `next-id`
+  refuses to allocate while one exists: *"the register already contains a duplicate, so the
+  maximum is not trustworthy"*. This was demonstrated the hard way — writing the Wave 2 approval
+  decision as D-031 collided with the renumbered entry, `validate` caught it, `next-id` refused
+  to guess a gap, and it was renumbered to **D-032** above the maximum.
+- **What survives, and it is the part worth keeping:** I-011's underlying finding stands.
+  Markdown registers do drift under concurrent sessions, and three duplicate pairs existed at
+  once. The guard that catches it is real and it works. The remaining discipline is to run
+  `validate` at the END of every session rather than only at the start, which is exactly what
+  turned a silent collision into a refusal here.
+- **Affects:** DECISIONS.md, RAID.md
+- **Status:** closed · **Last reviewed:** 2026-08-03
+
+### R-045 — Five of the 25 Cohort 1 venue names will not fit the film, and the render refuses them
+- **Type:** delivery/film · **Probability:** certain · **Impact:** medium · **Severity:** medium
 - **Owner:** Ethan McNamara
-- **Verified:** `DECISIONS.md:980` and `:1179` are both **D-028** (cohort ranking / standing
-  publication authorisation). `RAID.md:430` and `:693` are both **R-025** (all six gates pass with
-  backlog work / the public price coupled to an unapproved task). `RAID.md:443` and `:776` are both
-  **I-007** (control root untracked, resolved / the wave PR's red gate, open).
-- **Detail:** any tool or cross-reference resolving one of these IDs picks one silently, and citing
-  "D-028" without a line number is ambiguous between two live approved decisions with disjoint
-  subject matter. I-011 already records that these markdown registers lose entries under concurrent
-  sessions and that four entries were destroyed once and reissued under new numbers. This is the
-  same failure continuing, and three more waves of parallel sessions are scheduled.
-- **Why it was not fixed in Wave 2:** renumbering is change-controlled. `DECISIONS.md` is
-  append-only by its own header, these are ratified records, and the previous renumbering required
-  repointing every reference across three files.
-- **Mitigation:** extend `project-control.mjs validate` to parse `DECISIONS.md` and `RAID.md` and
-  fail on a duplicate ID, which is the check that would have caught all three on the day they
-  landed · then renumber the later member of each pair under a change request, with a full
-  cross-file sweep · until then, cite these three IDs by line number.
-- **Affects:** DECISIONS.md, RAID.md, every document citing D-028, R-025 or I-007
-- **Status:** open · **Target:** before Wave 3 opens · **Last reviewed:** 2026-08-03
+- **Verified 2026-08-03 (D-032 R17):** measured against `private/cohort-convert.json` cohort 1.
+  25 venues. **Longest name 54 characters. Five exceed the 34-character cap.** Counts only —
+  no name is recorded here, because consent to publication is `unknown` for all 219 accounts.
+- **Detail:** `signal-motion`'s map composition refuses a recipient venue name over 34
+  characters **at parse time** rather than shrinking or wrapping it. That is the right failure
+  mode for a batch of 25 — a silent shrink puts a name past the safe area on somebody's
+  personalised film — but it means five of the first twenty-five renders fail on render night
+  unless something is decided first. The cap is derived from the layout: it is the longest
+  name whose plate fits the content box at the smallest supported format.
+- **The three options, and the recommendation:** (a) raise the cap, which pushes the plate past
+  the safe area at 9x16 and is the wrong trade; (b) wrap to two lines or shrink the type, which
+  changes the composition for all 25 to accommodate five; (c) **add a per-account
+  `film_display_name` to the venue record — the venue's own name, shortened deliberately by a
+  person, for the five that need it.** (c) is recommended: it is five editorial decisions taken
+  once, it keeps the composition unchanged for the other twenty, and a venue's own name on
+  their own film is exactly the thing that should not be truncated by an algorithm.
+- **Mitigation:** decide before E13.17 renders anything. The column belongs in
+  `private/venues.csv` and in `venue-map-export.mjs`'s payload, not in a signal-motion fixture.
+- **Affects:** E13.15, E13.16, E13.17, E10.06
+- **Status:** open · **Target:** before the Cohort 1 render run · **Last reviewed:** 2026-08-03

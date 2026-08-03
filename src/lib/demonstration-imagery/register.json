@@ -1,0 +1,704 @@
+{
+  "schemaVersion": "demonstration-imagery-register/v1",
+  "updatedAt": "2026-08-03",
+  "basis": {
+    "decision": "D-012 point 2 — demonstration imagery is AI-generated, not licensed stock. Budget zero.",
+    "risk": "R-011 — AI-generated imagery in an emotional wedding product.",
+    "copyRule": "E09.10 P14 — demonstration imagery is never presented as a real venue, a real couple or a real photograph.",
+    "gate": "gates/data.json criterion 11 — every demonstration image records how it was generated (model, prompt or source, date) and a named reviewer confirms no unapproved real venue or couple material appears.",
+    "creativeGate": "gates/creative.json criterion 11 — the record lists every shot containing a generated human face.",
+    "assumption": "A-007 — Glenmara House and Mara-and-Finn are synthetic."
+  },
+  "storyConstants": {
+    "venueName": "Glenmara House",
+    "coupleNames": [
+      "Mara",
+      "Finn"
+    ],
+    "venueNameSource": "D-012 point 1",
+    "note": "Any generated image whose filename, alt text or caption names a venue must name this one. No real venue name from the private universe may appear."
+  },
+  "surfaces": [
+    {
+      "id": "film-limerick-first",
+      "label": "Limerick First",
+      "repo": "signal-motion",
+      "locator": "src/compositions/limerick-first",
+      "audience": "venue-owner",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "R-011 mitigation — no close-up generated faces in either film.",
+      "captionRule": "none-on-screen",
+      "captionRuleBasis": "E09.10 section 4 — Limerick First carries no product screenshot as a hero and no hard CTA. A provenance caption on a film frame would read as a disclaimer.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "film-before-the-day",
+      "label": "Before the Day",
+      "repo": "signal-motion",
+      "locator": "src/compositions/before-the-day",
+      "audience": "venue-owner",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "R-011 mitigation — no close-up generated faces in either film.",
+      "captionRule": "end-card-declaration",
+      "captionRuleBasis": "E09.10 P14 — the film declares once, on the end card, that the venue and couple are examples.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "public-timeline-demo",
+      "label": "The public Timeline demonstration",
+      "repo": "app",
+      "locator": "src/app/the-wedding/page.tsx",
+      "audience": "public-timeline-viewer",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "R-011 mitigation — no close-up generated faces on the public Timeline demo.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14 — substitute caption: Example venue and couple.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "timeline-milestone-photographs",
+      "label": "Milestone photographs on the demonstration Timeline",
+      "repo": "app",
+      "locator": "E06.03 — milestone photograph upload, crop, compression, orientation, alt text and deletion",
+      "audience": "public-timeline-viewer",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "R-011, and E09.10 section 3.4 — a guest who agreed to nothing must not be shown a generated face presented as a wedding guest.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14.",
+      "imageryPermitted": true,
+      "blockedBy": "E06.03 is in backlog. No milestone photograph surface exists in the product today."
+    },
+    {
+      "id": "venues-offer-page",
+      "label": "The Founding 25 offer page",
+      "repo": "studio",
+      "locator": "src/app/venues/page.tsx",
+      "audience": "venue-owner",
+      "facesPolicy": "founder-note-required",
+      "facesPolicyBasis": "R-011 prefers environments over faces. A face here is possible but must be accepted in writing per the creative gate.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "venues-walkthrough",
+      "label": "The venue walkthrough page",
+      "repo": "studio",
+      "locator": "src/app/venues/demo/page.tsx",
+      "audience": "venue-owner",
+      "facesPolicy": "founder-note-required",
+      "facesPolicyBasis": "R-011.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "venue-proposal-page",
+      "label": "The proposal and landing page",
+      "repo": "studio",
+      "locator": "E12.04",
+      "audience": "venue-owner",
+      "facesPolicy": "founder-note-required",
+      "facesPolicyBasis": "R-011.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "outreach-email",
+      "label": "The Cohort 1 outreach email",
+      "repo": "studio",
+      "locator": "src/emails/templates/venue-outreach.tsx",
+      "audience": "venue-owner",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "R-011, and R-010 — a cold email from a domain with no sending history should carry as little embedded imagery as it can. A generated face in a first cold email is the fastest available route to the word cheap.",
+      "captionRule": "alt-text-declaration",
+      "captionRuleBasis": "E09.10 P14 and section 1 — the never-list binds alt text.",
+      "imageryPermitted": true
+    },
+    {
+      "id": "couple-experience-preview",
+      "label": "The branded couple-experience preview",
+      "repo": "studio",
+      "locator": "E12.05",
+      "audience": "venue-owner",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "This surface is product capture, not photography. Its content comes from the E09.12 frozen capture of the real product.",
+      "captionRule": "visible-caption-required",
+      "captionRuleBasis": "E09.10 P14.",
+      "imageryPermitted": false,
+      "imageryProhibitedBasis": "E12.05 shows what the product actually renders. Generated photography on this surface would be invented UI, which the creative gate lists as a named failure."
+    },
+    {
+      "id": "venue-account",
+      "label": "The venue's Signal Studio account",
+      "repo": "studio",
+      "locator": "src/app/hq/account-review",
+      "audience": "coordinator",
+      "facesPolicy": "forbidden",
+      "facesPolicyBasis": "E09.10 section 4 — the account is a calm instrument. Photography on it is decoration on a record.",
+      "captionRule": "not-applicable",
+      "captionRuleBasis": "No imagery permitted, so no caption arises.",
+      "imageryPermitted": false,
+      "imageryProhibitedBasis": "D-027 point 4 — the portal at launch is invitation administration only. D-027 point 3 — venue branding at launch is the venue's name only, no logo."
+    }
+  ],
+  "shots": [
+    {
+      "id": "LF-01",
+      "surfaceIds": [
+        "film-limerick-first"
+      ],
+      "title": "The river before the town wakes",
+      "whyItExists": "Limerick First opens on place, not on product. The Shannon is the one thing every venue owner in the ring shares and none of them owns.",
+      "subjectClass": "environment",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A wide dawn photograph of a broad grey-green river running through a low Irish city, taken from the bank at eye level. Flat overcast light with one break of pale sun on the water. Limestone quay wall in the near foreground, wet. No people, no boats, no signage, no text. Documentary stills photography, 35mm, natural colour, slightly cool white balance, deep focus, no vignette, no HDR.",
+      "negativePrompt": "people, faces, text, signage, logos, boats, palm trees, cypress, olive trees, Mediterranean roof tiles, warm golden-hour grading, lens flare, oversaturation, HDR halo, tilt-shift, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-4",
+        "AT-5",
+        "AT-6",
+        "AT-9",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "LF-02",
+      "surfaceIds": [
+        "film-limerick-first"
+      ],
+      "title": "Wet limestone",
+      "whyItExists": "A texture cut that carries the region without naming a building. It is the safest possible shot: no venue can be recognised in a wall.",
+      "subjectClass": "detail",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A close photograph of an old limestone wall after rain, grey stone with lichen in the joints, shallow depth of field, flat overcast light. Frame filled edge to edge with stone. No people, no text, no carved lettering, no plaque.",
+      "negativePrompt": "people, faces, text, carved letters, plaques, dates, logos, warm grading, HDR, oversaturation, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "LF-03",
+      "surfaceIds": [
+        "film-limerick-first"
+      ],
+      "title": "The avenue",
+      "whyItExists": "The country-house venue, established without ever being seen clearly. The house is small in frame on purpose, because a legible facade is a resemblance risk.",
+      "subjectClass": "environment",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A long beech-lined avenue in Irish countryside at dusk, receding to a Georgian country house that is small and indistinct at the end of it. Bare-ish late-summer trees, wet gravel, low flat light, no sun in frame. The house occupies less than one twentieth of the frame width and its windows are not individually legible. No people, no cars, no gates with lettering, no text.",
+      "negativePrompt": "people, faces, cars, gate signage, house names, text, castle, turrets, palm trees, cypress, Tuscan, Cotswolds, English manor, American colonial, warm golden grading, HDR, oversaturation, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-4",
+        "AT-5",
+        "AT-6",
+        "AT-8",
+        "AT-9",
+        "AT-10",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "LF-04",
+      "surfaceIds": [
+        "film-limerick-first",
+        "venues-offer-page"
+      ],
+      "title": "The room, set, before anyone is in it",
+      "whyItExists": "The single most useful image in the programme. It is what a venue owner sees every Saturday at four o'clock, it carries the whole product claim, and it contains no person at all.",
+      "subjectClass": "environment",
+      "containsFaces": false,
+      "aspect": "3:2",
+      "minLongEdgePx": 4000,
+      "prompt": "A wide photograph of an empty wedding function room fully set for dinner, in an Irish country house. Round tables with white linen, folded napkins, glassware, low flower arrangements, chairs pushed in. Late afternoon daylight from tall sash windows on the left, no artificial light visible, no candles lit. Nobody in the room. Documentary interior photography, natural colour, deep focus, no vignette.",
+      "negativePrompt": "people, faces, hands, staff, text, menus with legible writing, place cards with legible names, logos, chandeliers with impossible geometry, HDR, oversaturation, fisheye, warm orange grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-4",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-8",
+        "AT-9",
+        "AT-10",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "LF-05",
+      "surfaceIds": [
+        "film-limerick-first"
+      ],
+      "title": "The door being opened",
+      "whyItExists": "The film's turn. Hands only, because R-011's mitigation is that hands are recoverable and faces are not.",
+      "subjectClass": "hands",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A close photograph of one adult hand resting on a heavy brass door handle on a painted timber door, seen from just behind and to the side. The hand is in the lower third, the hall beyond is soft and out of focus. Daylight only. Five fingers, clearly separated, natural skin, no ring on the visible hand. No face, no second person, no text.",
+      "negativePrompt": "face, faces, head, extra fingers, six fingers, fused fingers, malformed hand, rings, jewellery, watches, text, signage, warm grading, HDR, watermark",
+      "acceptanceTests": [
+        "AT-1",
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-8",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "LF-06",
+      "surfaceIds": [
+        "film-limerick-first"
+      ],
+      "title": "Rain on the windscreen",
+      "whyItExists": "Connective tissue that reads as Irish without a single identifying feature. Also the cheapest shot to make convincing, because the defocus hides generation error.",
+      "subjectClass": "light",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "Rain beaded on a car windscreen seen from inside, the road and hedgerow beyond thrown completely out of focus into soft grey-green shapes. Overcast daylight. No dashboard, no wipers in frame, no people, no text.",
+      "negativePrompt": "people, faces, dashboard instruments, number plates, text, road signs, logos, warm grading, HDR, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-9",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "BD-01",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "We said yes",
+      "whyItExists": "E14.09 names this moment. It is the one moment in the film that would normally be two faces, and it is the one this programme most needs to do without them.",
+      "subjectClass": "hands",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A top-down photograph of a worn kitchen table. Two adult hands rest near each other, not clasped, one wearing a plain thin engagement ring. Two mugs of tea, one nearly finished. Morning light from one window off frame left. Both hands show exactly five fingers, natural nails, no manicure. No faces, no arms above the elbow, no text, no phone screens.",
+      "negativePrompt": "face, faces, head, hair, extra fingers, six fingers, fused fingers, malformed hands, phone screens with text, legible text, newspapers, laptops, warm orange grading, HDR, oversaturation, watermark",
+      "acceptanceTests": [
+        "AT-1",
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-8",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "BD-02",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "The date",
+      "whyItExists": "The film needs to show a wedding date being chosen without showing a wedding date. The page is deliberately illegible so the real date can be composited from the demonstration fixture, which keeps the film and the product in sync.",
+      "subjectClass": "detail",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A close photograph of an open paper diary on a table, one page in shallow focus, a pen resting across it. The printed grid of a month is visible as structure but no words or numbers are legible at any point in the frame. Daylight from the side. No hands, no faces, no legible text.",
+      "negativePrompt": "legible text, readable numbers, dates, words, letters, garbled lettering, hands, faces, logos, HDR, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-5",
+        "AT-6",
+        "AT-8",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated",
+      "compositeNote": "The date is composited afterwards from the demonstration fixture, never generated. See the E09.09 reconciliation harness."
+    },
+    {
+      "id": "BD-03",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "The venue reserved",
+      "whyItExists": "E14.09 names this moment. Shown as arrival rather than as a signature, because a contract on screen invites a reader to read it.",
+      "subjectClass": "hands",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A photograph from just behind an adult hand pushing open a tall painted timber door into a bright country-house hall. The hand is small in the lower left of the frame, five fingers clearly separated. The hall beyond is soft, with a stone floor and daylight from a window at the far end. No people in the hall. No text, no signage, no faces.",
+      "negativePrompt": "face, faces, people in the hall, extra fingers, malformed hand, text, signage, house names, portraits on the wall with faces, HDR, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-1",
+        "AT-2",
+        "AT-4",
+        "AT-5",
+        "AT-6",
+        "AT-8",
+        "AT-9",
+        "AT-10",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "BD-04",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "Menu tasting",
+      "whyItExists": "E14.09 names this moment, and it is the one the demonstration fixture already carries as a milestone. Hands and plates only. No dietary content of any kind appears, per P8.",
+      "subjectClass": "table",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "Three small tasting plates on a pale linen tablecloth, seen from a low three-quarter angle. Two adult hands at the edge of frame, one holding a fork above a plate, both showing exactly five fingers. Simple modern Irish plating, no garnish sculpture. Daylight, no candles. No faces, no heads, no text, no menus, no place cards, no written notes.",
+      "negativePrompt": "faces, heads, hair, extra fingers, fused fingers, malformed hands, menus, place cards, written notes, legible text, allergy cards, dietary labels, HDR, warm orange grading, oversaturation, watermark",
+      "acceptanceTests": [
+        "AT-1",
+        "AT-2",
+        "AT-3",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-8",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated",
+      "prohibitionNote": "P8 — no dietary, allergy, accessibility or health information about a named person may appear in any film frame. This shot is the most likely place for it to arrive by accident, so no card, label or written note is permitted in the frame at all."
+    },
+    {
+      "id": "BD-05",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "Flowers, mid-arrangement",
+      "whyItExists": "R-011 names flowers as a preferred subject. It is also the shot that most reliably reads as real, because botanical error is forgiving where anatomical error is not.",
+      "subjectClass": "flowers",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A work bench with cut flowers part-way through being arranged. Loose stems, a ball of garden twine, secateurs, water pooled on the wood. Muted seasonal Irish flowers in cream, dusty pink and green, nothing tropical. Flat window light from the left. No people, no hands, no text.",
+      "negativePrompt": "people, faces, hands, tropical flowers, orchids, birds of paradise, plastic flowers, text, labels, price tags, HDR, oversaturation, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-9",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "BD-06",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "The morning of",
+      "whyItExists": "E14.09 names a wedding-day photograph moment. This is that moment done without a wedding photograph: the room set for the ceremony, empty, an hour before. It is the emotional peak of the film and it needs no person in it.",
+      "subjectClass": "environment",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A wide photograph of a ceremony room in an Irish country house, chairs set in rows either side of a single aisle, empty. Morning light through tall windows on one side, falling across the aisle. Simple flowers at the aisle ends. Nobody present. Natural colour, deep focus, no vignette, no artificial light.",
+      "negativePrompt": "people, faces, guests, celebrant, photographers, text, order of service with legible words, logos, church iconography, HDR, warm orange grading, oversaturation, fisheye, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-4",
+        "AT-5",
+        "AT-6",
+        "AT-8",
+        "AT-9",
+        "AT-10",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "BD-07",
+      "surfaceIds": [
+        "film-before-the-day"
+      ],
+      "title": "After",
+      "whyItExists": "The film ends on Keepsake, which is a quiet idea and needs a quiet image. A folded napkin and one glass says the day happened without showing any of it.",
+      "subjectClass": "table",
+      "containsFaces": false,
+      "aspect": "16:9",
+      "minLongEdgePx": 3840,
+      "prompt": "A close photograph of a dinner table after service. One folded linen napkin left on the cloth, a single wine glass with a trace of wine, a chair pushed back out of focus behind. Low evening daylight, no candles lit. Nobody in frame. Natural colour, shallow depth of field.",
+      "negativePrompt": "people, faces, hands, text, confetti, balloons, HDR, warm orange grading, oversaturation, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-11",
+        "AT-12",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "PT-01",
+      "surfaceIds": [
+        "public-timeline-demo"
+      ],
+      "title": "The optional Timeline header",
+      "whyItExists": "Only if the founder decides the public Timeline demonstration needs a header image at all. E09.10 section 3.4 says the public Timeline is almost silent and the test is that a guest can read it and leave without learning what Signal Studio is. The recommendation in the specification is to ship no header image. This shot exists so the option is costed, not so it is assumed.",
+      "subjectClass": "light",
+      "containsFaces": false,
+      "aspect": "21:9",
+      "minLongEdgePx": 3000,
+      "prompt": "A very wide, very quiet photograph of soft daylight falling across a plain pale wall and part of a wooden table edge. Almost abstract. No objects that identify a place, no people, no text. Low contrast, muted, nothing decorative.",
+      "negativePrompt": "people, faces, wedding imagery, rings, flowers arranged for a shoot, text, logos, HDR, oversaturation, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14"
+      ],
+      "status": "not_generated",
+      "founderCall": "OQ-E09.08-1 — whether the public Timeline demonstration carries a header image at all. Recommendation: no."
+    },
+    {
+      "id": "VO-01",
+      "surfaceIds": [
+        "venues-offer-page",
+        "venue-proposal-page"
+      ],
+      "title": "The coordinator's desk",
+      "whyItExists": "The offer page speaks to the venue owner and the coordinator. E09.10 section 3.2 says the coordinator's first assumption is that this is a new system they now have to run. A desk with almost nothing on it is the argument.",
+      "subjectClass": "detail",
+      "containsFaces": false,
+      "aspect": "3:2",
+      "minLongEdgePx": 3000,
+      "prompt": "A close photograph of a tidy wooden desk in a country-house office. A closed paper diary, a phone face down, a cup, a small vase with two stems. Daylight from a window off frame. Nothing else. No screens on, no paperwork, no people, no text.",
+      "negativePrompt": "people, faces, hands, computer screens with content, legible text, paperwork, logos, brand marks, HDR, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-3",
+        "AT-5",
+        "AT-6",
+        "AT-8",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14"
+      ],
+      "status": "not_generated"
+    },
+    {
+      "id": "OE-01",
+      "surfaceIds": [
+        "outreach-email"
+      ],
+      "title": "The one image in the email, if there is one",
+      "whyItExists": "E09.10 section 4 caps the outreach email at under 200 words with no attachments, and R-010 warns that a heavy first cold email from a domain with no sending history is a deliverability problem. If the email carries an image at all it is one, small, and it is LF-04 reused rather than generated again.",
+      "subjectClass": "environment",
+      "containsFaces": false,
+      "aspect": "3:2",
+      "minLongEdgePx": 1200,
+      "prompt": "Reuse LF-04 at email size. Do not generate a second image for this surface.",
+      "negativePrompt": "not applicable, this shot reuses LF-04",
+      "acceptanceTests": [
+        "AT-13",
+        "AT-14"
+      ],
+      "status": "not_generated",
+      "reuseOf": "LF-04"
+    },
+    {
+      "id": "MS-01",
+      "surfaceIds": [
+        "timeline-milestone-photographs"
+      ],
+      "title": "Milestone photograph, the venue visit",
+      "whyItExists": "E06.03 builds milestone photograph upload. The demonstration Timeline needs images that read as the couple's own phone photographs, not as photography. An image that looks professional here breaks the claim that the couple made this page.",
+      "subjectClass": "couple-own-snapshot",
+      "containsFaces": false,
+      "aspect": "4:3",
+      "minLongEdgePx": 2000,
+      "prompt": "An ordinary phone snapshot of a country-house courtyard on a grey day, slightly crooked horizon, nothing composed, a corner of a car visible at the edge of frame. Flat light, mid contrast, the mild over-sharpening of a phone camera. No people, no text, no signage.",
+      "negativePrompt": "professional composition, shallow depth of field, bokeh, people, faces, text, signage, number plates, HDR, warm grading, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-9",
+        "AT-10",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14",
+        "AT-15"
+      ],
+      "status": "not_generated",
+      "blockedBy": "E06.03"
+    },
+    {
+      "id": "MS-02",
+      "surfaceIds": [
+        "timeline-milestone-photographs"
+      ],
+      "title": "Milestone photograph, the tasting",
+      "whyItExists": "Pairs with the menu tasting milestone that already exists in the demonstration fixture, so the Timeline demonstration and the film show the same day.",
+      "subjectClass": "couple-own-snapshot",
+      "containsFaces": false,
+      "aspect": "4:3",
+      "minLongEdgePx": 2000,
+      "prompt": "An ordinary phone snapshot of two small plates on a restaurant table, shot from above at a slight angle, one plate cropped by the frame edge. Mixed indoor daylight, mild colour cast. No people, no menus, no written cards, no text.",
+      "negativePrompt": "professional food photography, styled plating, people, faces, hands, menus, written cards, dietary labels, legible text, HDR, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14",
+        "AT-15"
+      ],
+      "status": "not_generated",
+      "blockedBy": "E06.03",
+      "prohibitionNote": "P8 — no card, label or written note in frame."
+    },
+    {
+      "id": "MS-03",
+      "surfaceIds": [
+        "timeline-milestone-photographs"
+      ],
+      "title": "Milestone photograph, the flowers",
+      "whyItExists": "A third milestone image so the demonstration Timeline shows a rhythm rather than a single decorated row.",
+      "subjectClass": "couple-own-snapshot",
+      "containsFaces": false,
+      "aspect": "4:3",
+      "minLongEdgePx": 2000,
+      "prompt": "An ordinary phone snapshot of a handful of cut flowers lying on a kitchen worktop still in their paper, taken quickly, slightly off-centre. Kitchen daylight, ordinary domestic background partly in frame. No people, no text, no shop labels.",
+      "negativePrompt": "professional composition, styling, people, faces, hands, shop labels, price tags, legible text, tropical flowers, HDR, watermark",
+      "acceptanceTests": [
+        "AT-2",
+        "AT-5",
+        "AT-6",
+        "AT-7",
+        "AT-9",
+        "AT-11",
+        "AT-12",
+        "AT-13",
+        "AT-14",
+        "AT-15"
+      ],
+      "status": "not_generated",
+      "blockedBy": "E06.03"
+    }
+  ],
+  "assets": [],
+  "acknowledgedNonDemonstrationRasters": [
+    {
+      "id": "founder-portrait",
+      "repo": "studio",
+      "paths": [
+        "public/brand/assets/ethan-founder-color-20260715.jpg",
+        "public/brand/assets/ethan-headshot.jpg"
+      ],
+      "sha256": "cf8b9bc2903b1ee4b317f65454f756e30270bf9bd11516c1bfde157dac4a21fe",
+      "kind": "real-photograph",
+      "subject": "The founder, Ethan McNamara",
+      "rightsPosition": "The founder's own likeness, used with his own authority. No third-party subject appears.",
+      "embeddedMetadata": "EXIF Software=Picasa, DateTimeOriginal=2026:06:10 16:43:49.",
+      "permittedSurfaces": [
+        "public/brand/business-loan-pack-2026.html"
+      ],
+      "prohibitedOn": [
+        "film-limerick-first",
+        "film-before-the-day",
+        "public-timeline-demo",
+        "timeline-milestone-photographs",
+        "venues-offer-page",
+        "venues-walkthrough",
+        "venue-proposal-page",
+        "outreach-email"
+      ],
+      "note": "The two paths are byte-identical. This is real photographic material of a real person, it is not demonstration imagery, and it must never stand in for a venue owner, a coordinator or a couple."
+    },
+    {
+      "id": "third-party-merchant-marks",
+      "repo": "studio",
+      "paths": [],
+      "kind": "third-party-trademark",
+      "subject": "Ten third-party company marks and two source sheets. DELETED 2026-08-03.",
+      "rightsPosition": "RESOLVED BY DELETION (D-032). No licence, permission or fair-dealing basis was ever recorded, nothing rendered them, and they were served publicly under studio/public/. Both public/brand/assets/merchants/ and public/brand/assets/transactions/ are removed. The entry is kept rather than deleted so the finding and its resolution stay on the record.",
+      "permittedSurfaces": [],
+      "prohibitedOn": [
+        "film-limerick-first",
+        "film-before-the-day",
+        "public-timeline-demo",
+        "timeline-milestone-photographs",
+        "venues-offer-page",
+        "venues-walkthrough",
+        "venue-proposal-page",
+        "outreach-email",
+        "couple-experience-preview",
+        "venue-account"
+      ],
+      "note": "Recorded by E09.08 as an adjacent finding. These are not venue or couple material and are outside E09.08's own question, but they are real third-party marks served publicly with no recorded basis. Needs a founder call: delete, or record a basis.",
+      "status": "deleted"
+    }
+  ],
+  "entries": []
+}

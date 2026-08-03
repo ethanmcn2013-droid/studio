@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
+import {
+  BEHAVIOURAL_MIN_WORKSPACES,
+  RATE_MIN_WORKSPACES,
+} from "./suppression";
 import {
   activeRecently,
   continuedAfter30Days,
@@ -98,6 +103,23 @@ test("a small group is withheld regardless of coverage", () => {
   );
   assert.equal(value.state, "withheld");
   if (value.state === "withheld") assert.equal(value.reason, "small_group");
+});
+
+/**
+ * D-032 R11 adopted this as the seventh definition on the ground that it is an
+ * aggregate over dates and cannot resolve toward an individual. The bound is
+ * the length of the window, not the size of the cohort, and this is the test
+ * that says so.
+ */
+test("the unit is days, so the count can never exceed the window", () => {
+  const rows = fullWindowRows();
+  for (const row of rows) row.activeWorkspaces = 40;
+  const value = daysWithSponsoredUse(inputs({ rows }));
+  assert.equal(value.state, "exact");
+  if (value.state === "exact") {
+    assert.equal(value.value, rows.length, "forty workspaces on a day is still one day");
+    assert.equal(value.denominator, 5);
+  }
 });
 
 test("the eligible count takes the largest day, not the average", () => {
@@ -236,6 +258,71 @@ test("coverage is complete only with every day and every expected module", () =>
     summariseCoverage(inputs({ rows: fullWindowRows({ eligibleWorkspaces: 1 }) })).state,
     "suppressed",
   );
+});
+
+/* ── The declared threshold and the enforced threshold are one thing ─────
+ *
+ * The defect these replace: `if (sealed.length < 5)` sat beside an exported
+ * RATE_MIN_WORKSPACES = 5 in suppression.ts. Editing the declared rule changed
+ * nothing about what a venue was actually shown, and no test noticed.
+ * Every boundary below is derived from the constant, so moving the constant
+ * moves the test with it — and any module that kept its own copy of the number
+ * fails immediately.
+ * ------------------------------------------------------------------------ */
+
+function sealedCohort(size: number): StoredLifecycleRow[] {
+  return Array.from({ length: size }, (_, i) =>
+    life({ workspaceIdHash: `r${i}`, day30State: "returned", day30SealedAt: 1 }),
+  );
+}
+
+test("the rate threshold is whatever suppression.ts declares, not a literal", () => {
+  assert.equal(
+    continuedAfter30Days(inputs({ lifecycle: sealedCohort(RATE_MIN_WORKSPACES - 1) }))
+      .state,
+    "withheld",
+    "one short of the declared rate threshold must be withheld",
+  );
+  assert.equal(
+    continuedAfter30Days(inputs({ lifecycle: sealedCohort(RATE_MIN_WORKSPACES) })).state,
+    "exact",
+    "the declared rate threshold must be the boundary the code enforces",
+  );
+});
+
+test("the behavioural threshold is whatever suppression.ts declares", () => {
+  const stateAt = (eligible: number) =>
+    daysWithSponsoredUse(
+      inputs({ rows: fullWindowRows({ eligibleWorkspaces: eligible }) }),
+    ).state;
+  assert.equal(stateAt(BEHAVIOURAL_MIN_WORKSPACES - 1), "withheld");
+  assert.equal(stateAt(BEHAVIOURAL_MIN_WORKSPACES), "exact");
+});
+
+test("this module holds no private copy of a suppression rule", () => {
+  const source = readFileSync(new URL("./daily-metrics.ts", import.meta.url), "utf8");
+  assert.doesNotMatch(
+    source,
+    /\.length\s*<\s*\d/,
+    "a cohort size compared against a literal is a second implementation",
+  );
+  assert.doesNotMatch(
+    source,
+    /eligible\w*\s*<\s*\d/i,
+    "an eligibility count compared against a literal is a second implementation",
+  );
+  for (const guard of [
+    "presentBehavioural",
+    "presentRate",
+    "resolveCoverage",
+    "assertNoZeroForAbsent",
+  ]) {
+    assert.match(
+      source,
+      new RegExp(`\\b${guard}\\b`),
+      `${guard} must be the live path, not a helper only its own test calls`,
+    );
+  }
 });
 
 test("no metric in any state ever renders as an exact zero for absent data", () => {

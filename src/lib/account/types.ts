@@ -81,6 +81,23 @@ export type AccessLifecycle = {
   };
   codes: AccessCodeRow[];
   attention: AccessAttention[];
+  /**
+   * How many rows exist versus how many are carried.
+   *
+   * Optional so a fixture that carries its whole set need not declare one.
+   * When present and `truncated`, the surface must say so: the live projection
+   * used to keep the newest 40 rows and drop the rest silently while the
+   * toolbar reported the count it had been handed as the total.
+   */
+  page?: AccessCodePageInfo;
+};
+
+export type AccessCodePageInfo = {
+  /** Rows carried in `codes`. */
+  shown: number;
+  /** Rows that exist for this account. */
+  total: number;
+  truncated: boolean;
 };
 
 export type AccessCodeRow = {

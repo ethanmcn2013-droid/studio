@@ -1,5 +1,6 @@
 import { formatMetricValue } from "./format";
 import type { AccountSnapshot } from "./types";
+import { ADOPTION_JOURNEY } from "./vocabulary";
 
 /**
  * Print ink for the standalone report document.
@@ -29,14 +30,9 @@ function escapeHtml(value: string): string {
 
 export function snapshotToReportHtml(snapshot: AccountSnapshot): string {
   const report = snapshot.reports[0];
-  const journey = [
-    ["Allotted", snapshot.adoption.allotted],
-    ["Issued", snapshot.adoption.issued],
-    ["Redeemed", snapshot.adoption.redeemed],
-    ["First useful action", snapshot.adoption.firstUsefulAction],
-    ["Active recently", snapshot.adoption.activeRecently],
-    ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
-  ] as const;
+  const journey = ADOPTION_JOURNEY.map(
+    ([label, key]) => [label, snapshot.adoption[key]] as const,
+  );
 
   const reach = snapshot.productReach
     .map(

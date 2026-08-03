@@ -1215,3 +1215,66 @@ question Claude can answer and evidence.
 
 **What this does not relax.** No task reaches Done without explicit founder
 approval. This authorises publication, not sign-off.
+
+---
+
+## D-032 — Wave 2 approved in full, and the seventeen recommendations with it
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** E07 (all 18), E09.03–E09.12, E13.03/.04/.15/.16, E05.03, E06.01, E11, E12
+- **Resolves:** R-016 residual, R-043 (identity), the three-dictionary conflict
+- **Narrows:** D-001 point 5, following D-027 point 4
+
+**Decision.** Ethan, on the Wave 2 packet: *"all are approved"*. That approves the thirty
+tasks, the three items in §1 and every recommendation R1–R17.
+
+**The three structural answers.**
+
+1. **Venue identity at launch is Option C.** Signal HQ administers invitations on the
+   venue's behalf and the venue receives evidence rather than a login. No venue-authenticated
+   route is built before 1 September. **A′** — Option C plus a read-only venue link — is held
+   as a two-day follow-on to be decided after the first three venue conversations. **B**, a
+   real venue account with members and roles, is not started before the 2026-08-20 UI freeze.
+   This is the only option that already passes its acceptance criteria, and it is what ships
+   today. R-043 is answered rather than left open.
+2. **E07's launch scope is invitation administration.** E07.01, .02, .03, .07, .08, .09, .10,
+   .16, .17 and .18 are the 1 September set. E07.04, .05, .06, .11, .12, .13, .14 and .15 are
+   the adoption-evidence layer and land after 1 September. Every task keeps its criteria and
+   its evidence; the split governs build order, not standard.
+3. **The entitlements drift-closure migration is authorised**, with the disagreement inside
+   it settled: `sponsors.allotment_mode` keeps `NOT NULL DEFAULT 'limited'`. An unlimited
+   entitlement is a deliberate act, not a default — the HQ onboarding form sends `unlimited`
+   explicitly for every founding venue, so the column default only governs rows created by
+   some other path, and for those the safe answer is the capped one. **Applying it to the
+   shared production database is an operator action** and is recorded as an operator todo
+   with the exact command, not run from a work-package session.
+
+**The seventeen, as resolved.**
+
+| # | Resolution |
+|---|---|
+| R1 | 2026-10-03 is **ratified** as the demonstration wedding date. It stops being a determination. The studio marketing hero moves off 2026-09-12. |
+| R2 | E09.11 §6 is the **collaboration contract**, recorded as an amendment to E09.10 rather than an edit to it. |
+| R3 | E09.11 §10 is the **FAQ of record**. `VENUE_FAQ_OBJECTIONS.md` is bannered superseded. |
+| R4 | The launch-scope sentence goes **in writing** on the commercial surfaces, not only into the call. |
+| R5 | The metric label "Allotted" becomes **"Covered"**, and `src/app/hq/account-review/**` joins the copy sweep in the same change. |
+| R6 | The five prohibited strings on the live projection path are **rewritten now**, em dashes included. |
+| R7 | The permanence and entitlement bans **reach couple-facing product copy**, not only venue-facing commercial copy. The copy freeze scope widens accordingly. |
+| R8 | **Option B.** GA4 comes off `/venues`, `/v/*` and every Venue Edition commercial page; those surfaces are measured server-side, first-party, no cookie, no third party. |
+| R9 | **`account-metrics.v2` is ratified.** `venue-metrics.v1` and the four-condition activation bundle in `planning-period-analytics.md` are marked superseded in the same change. E07.04's ten §9 calls are answered by adopting E09.02 as proposed. |
+| R10 | `timeline_visibility_changed` is **excluded from the first-useful-action computation**, as it already is from any sharing computation. |
+| R11 | `daysWithSponsoredUse` is **adopted as a seventh definition** in `account-metrics.v2` with a written rule. It is aggregate and does not resolve toward an individual, so it does not fall under E09.02 §2's founder-only bar. |
+| R12 | The **access-metric suppression asymmetry is ratified**: access counts are the contract record and are emitted exactly at any cohort size; behavioural counts stay withheld below three and rates below five. |
+| R13 | Private film URLs carry a **bare token**, never a venue slug. |
+| R14 | **No user-agent class** is recorded on a click. |
+| R15 | **Page view only** for Cohort 1. No play or watch-through events. This answers E09.04 §8.1, E11.05-07 FD-B and E13.16 FQ-3 together. |
+| R16 | The **leaked-token replacement path is specified now** and built before the first send. |
+| R17 | The 34-character venue-name cap is **checked against Cohort 1 before the render run**. |
+
+**Also approved, from §4 of the packet.** `public/brand/assets/merchants/` and
+`public/brand/assets/transactions/` are deleted: ten third-party trademarks, publicly served,
+with no licence and no recorded basis, rendered by nothing.
+
+**Not approved here, because it was not asked.** Nothing is committed, pushed or deployed.
+R-025 still blocks a studio deploy and I-007 still records PR #139's red gate.
+

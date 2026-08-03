@@ -17,7 +17,13 @@
 import type { MetricValue, ProductReach } from "../types";
 import type { SponsoredProduct } from "./event-schema";
 import { diffLocalDays } from "./local-date";
-import { BEHAVIOURAL_MIN_WORKSPACES } from "./suppression";
+import {
+  assertNoZeroForAbsent,
+  presentBehavioural,
+  presentRate,
+  resolveCoverage,
+  type MetricPresentation,
+} from "./suppression";
 import { ALL_PRODUCTS, PRODUCT_BITS } from "./rollup";
 
 export type StoredDailyRow = {
@@ -79,6 +85,26 @@ export function eligibleForWindow(rows: readonly StoredDailyRow[]): number {
 }
 
 /**
+ * Turn a suppression decision into the snapshot's own metric shape.
+ *
+ * The decision itself is never taken here. `suppression.ts` owns the thresholds
+ * and the order they apply in, and this module now asks it rather than
+ * restating it — a second implementation of a ratified privacy rule is how the
+ * declared threshold and the enforced one drift apart.
+ */
+function fromPresentation(
+  presentation: MetricPresentation,
+  raw: number | null,
+  emptyReason: string,
+  onValue: (value: number) => MetricValue,
+): MetricValue {
+  assertNoZeroForAbsent(presentation, raw);
+  if (presentation.state === "unavailable") return unavailable(emptyReason);
+  if (presentation.state === "withheld") return withheld();
+  return onValue(presentation.value);
+}
+
+/**
  * Present a counted value against the coverage of the window.
  *
  * Partial coverage can only understate a count, so it becomes a lower bound
@@ -93,14 +119,39 @@ function present(
 ): MetricValue {
   const expected = daysExpected(window);
   const covered = rows.length;
-  if (covered === 0) return unavailable(emptyReason);
-  if (eligible < BEHAVIOURAL_MIN_WORKSPACES) return withheld();
-  if (covered < expected) {
-    return { state: "lower_bound", value, denominator: expected };
-  }
-  return { state: "exact", value, denominator: expected };
+  // No measured day means no answer, whatever the counter says.
+  const raw = covered === 0 ? null : value;
+  return fromPresentation(
+    presentBehavioural(raw, eligible),
+    raw,
+    emptyReason,
+    (measured) =>
+      covered < expected
+        ? { state: "lower_bound", value: measured, denominator: expected }
+        : { state: "exact", value: measured, denominator: expected },
+  );
 }
 
+/**
+ * Days with sponsored use: `account-metrics.v2` §7A, ratified by D-032 R11.
+ *
+ * Distinct venue-local dates in the window on which at least one sponsored
+ * workspace recorded at least one meaningful action. **The unit is days.** A
+ * date on which nine workspaces acted four hundred times is one day.
+ *
+ * It shipped on screen and in the PDF before it was defined anywhere. R11
+ * adopted it rather than removing it, and recorded why it is not founder-only:
+ * it is an aggregate over dates, bounded by the length of the window rather
+ * than by the size of the cohort, so no arrangement of it resolves toward an
+ * individual couple. E09.02 §2's founder-only bar does not reach it.
+ *
+ * It is still withheld below three eligible workspaces. That is not because the
+ * number is unsafe on its own reasoning, but because it sits beside the
+ * behavioural counts, and a figure that appears while its neighbours are
+ * withheld invites a reader to reason about the withheld ones. Sharing
+ * `present()` with the others is what keeps that true without a second rule to
+ * maintain.
+ */
 export function daysWithSponsoredUse(inputs: WindowInputs): MetricValue {
   const { rows, window } = inputs;
   const eligible = eligibleForWindow(rows);
@@ -135,19 +186,28 @@ export function firstUsefulAction(inputs: WindowInputs): MetricValue {
 export function activeRecently(inputs: WindowInputs): MetricValue {
   const { rows, lifecycle, window } = inputs;
   const eligible = eligibleForWindow(rows);
-  if (rows.length === 0) {
-    return unavailable("No sponsored-use rollup for this period");
-  }
-  if (eligible < BEHAVIOURAL_MIN_WORKSPACES) return withheld();
+  const emptyReason = "No sponsored-use rollup for this period";
 
   if (window.trailing) {
     const value = lifecycle.filter(
       (row) => row.lastActionLocalDate >= window.start,
     ).length;
-    return present(value, rows, window, eligible, "No sponsored-use rollup for this period");
+    return present(value, rows, window, eligible, emptyReason);
   }
-  const value = rows.reduce((max, row) => Math.max(max, row.activeWorkspaces), 0);
-  return { state: "lower_bound", value, denominator: daysExpected(window) };
+  const raw =
+    rows.length === 0
+      ? null
+      : rows.reduce((max, row) => Math.max(max, row.activeWorkspaces), 0);
+  return fromPresentation(
+    presentBehavioural(raw, eligible),
+    raw,
+    emptyReason,
+    (measured) => ({
+      state: "lower_bound",
+      value: measured,
+      denominator: daysExpected(window),
+    }),
+  );
 }
 
 /**
@@ -169,12 +229,22 @@ export function continuedAfter30Days(inputs: WindowInputs): MetricValue {
       row.day30SealedAt != null &&
       (row.day30State === "returned" || row.day30State === "not_returned"),
   );
-  if (sealed.length === 0) {
-    return unavailable("No closed day-30 cohort for this period");
-  }
-  if (sealed.length < 5) return withheld();
-  const returned = sealed.filter((row) => row.day30State === "returned").length;
-  return { state: "exact", value: returned, denominator: sealed.length };
+  const raw =
+    sealed.length === 0
+      ? null
+      : sealed.filter((row) => row.day30State === "returned").length;
+  // The cohort itself is the population at risk of re-identification here, so
+  // it is what the rate threshold is measured against.
+  return fromPresentation(
+    presentRate(raw, sealed.length),
+    raw,
+    "No closed day-30 cohort for this period",
+    (returned) => ({
+      state: "exact",
+      value: returned,
+      denominator: sealed.length,
+    }),
+  );
 }
 
 export function productReach(inputs: WindowInputs): ProductReach[] {
@@ -200,17 +270,7 @@ export function productReach(inputs: WindowInputs): ProductReach[] {
         supportingDetail: detail,
       };
     }
-    if (rows.length === 0) {
-      return {
-        product: label,
-        workspacesReached: unavailable("No sponsored-use rollup for this period"),
-        supportingDetail: detail,
-      };
-    }
-    if (eligible < BEHAVIOURAL_MIN_WORKSPACES) {
-      return { product: label, workspacesReached: withheld(), supportingDetail: detail };
-    }
-
+    const emptyReason = "No sponsored-use rollup for this period";
     if (window.trailing) {
       const value = lifecycle.filter((row) => {
         const last = row.productLastActionLocalDate[product];
@@ -218,23 +278,29 @@ export function productReach(inputs: WindowInputs): ProductReach[] {
       }).length;
       return {
         product: label,
-        workspacesReached: present(
-          value,
-          rows,
-          window,
-          eligible,
-          "No sponsored-use rollup for this period",
-        ),
+        workspacesReached: present(value, rows, window, eligible, emptyReason),
         supportingDetail: detail,
       };
     }
-    const value = rows.reduce(
-      (max, row) => Math.max(max, row.perProduct[product]?.workspaces ?? 0),
-      0,
-    );
+    const raw =
+      rows.length === 0
+        ? null
+        : rows.reduce(
+            (max, row) => Math.max(max, row.perProduct[product]?.workspaces ?? 0),
+            0,
+          );
     return {
       product: label,
-      workspacesReached: { state: "lower_bound", value, denominator: daysExpected(window) },
+      workspacesReached: fromPresentation(
+        presentBehavioural(raw, eligible),
+        raw,
+        emptyReason,
+        (measured) => ({
+          state: "lower_bound",
+          value: measured,
+          denominator: daysExpected(window),
+        }),
+      ),
       supportingDetail: detail,
     };
   });
@@ -261,19 +327,26 @@ export function summariseCoverage(inputs: WindowInputs): CoverageSummary {
   const covered = rows.length;
   const expectedMask = rows.reduce((mask, row) => mask | row.expectedMask, 0);
   const coveredMask = rows.reduce((mask, row) => mask | row.coverageMask, 0);
-  const modulesExpected = ALL_PRODUCTS.filter(
+  const expectedProducts = ALL_PRODUCTS.filter(
     (p) => (expectedMask & PRODUCT_BITS[p]) !== 0,
-  ).length;
+  );
+  const modulesExpected = expectedProducts.length;
   const modulesCovered = ALL_PRODUCTS.filter(
     (p) => (coveredMask & PRODUCT_BITS[p]) !== 0,
   ).length;
+  const missingProducts = expectedProducts.filter(
+    (p) => (coveredMask & PRODUCT_BITS[p]) === 0,
+  );
   const eligible = eligibleForWindow(rows);
 
-  let state: CoverageSummary["state"];
-  if (covered === 0) state = "unavailable";
-  else if (eligible < BEHAVIOURAL_MIN_WORKSPACES) state = "suppressed";
-  else if (covered < expected || modulesCovered < modulesExpected) state = "partial";
-  else state = "complete";
+  // The ordering of unavailable over suppressed over partial is a privacy
+  // rule, not a presentation choice, so it is asked for rather than repeated.
+  const state: CoverageSummary["state"] = resolveCoverage({
+    eligibleWorkspaces: eligible,
+    daysCovered: covered,
+    daysExpected: expected,
+    missingProducts,
+  });
 
   return {
     state,

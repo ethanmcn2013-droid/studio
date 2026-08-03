@@ -6,17 +6,38 @@ import type {
   MetricValue,
 } from "../types";
 import { maskLicenseCode } from "./mask-code";
-import { isUnlimitedSponsor } from "@/lib/venue-allotment";
+import { isUnlimitedSponsor, remainingAllotment } from "@/lib/venue-allotment";
 
 export const LIVE_ACCESS_DEFINITION = "account-metrics.v2";
 export const LIVE_USAGE_UNAVAILABLE_REASON =
   "Sponsored-use instrumentation not yet available for this account";
 
-/** Client-safe venue picker row (no server-only import). */
+/**
+ * R-016, legacy branch. A sponsor still on `limited` whose `code_allotment` was
+ * never set has no issuing record at all. `remainingAllotment` returns null for
+ * exactly this case so it is never rendered as a number, and this projection
+ * must agree with it: a missing record is not a count of zero, and a venue that
+ * has never been configured must not be told it has run out.
+ */
+export const LIVE_ACCESS_UNRECORDED_REASON =
+  "Signal HQ Access holds no issuing record for this venue";
+
+/** Rows the snapshot carries. Anything beyond it is declared, not dropped. */
+export const LIVE_ACCESS_SNAPSHOT_ROWS = 40;
+
+/**
+ * Client-safe venue picker row (no server-only import).
+ *
+ * There is no `name` field, and that is the point. Finding F-2: the picker
+ * rendered every live venue by name on a surface used for screen shares, and
+ * `consent_public_naming` is `unknown` for all 219 accounts. The component
+ * never receives a name, so it cannot render one by accident.
+ */
 export type LiveVenueOption = {
   id: string;
   slug: string;
-  name: string;
+  /** Non-identifying. Founding place where assigned, otherwise an opaque id. */
+  displayLabel: string;
   paid: boolean;
   allotment: number | null;
   /** R-016. 'unlimited' means `allotment` carries no meaning for this venue. */
@@ -64,7 +85,10 @@ function unavailable(reason: string): MetricValue {
 const UNLIMITED: MetricValue = { state: "unlimited" };
 
 function formatDay(ms: number | null | undefined): string {
-  if (ms == null || !Number.isFinite(ms)) return "—";
+  // "Not recorded", not a dash. A dash reads as a value the surface chose not
+  // to print; the honest answer is that nothing was ever recorded. It also
+  // keeps the em dash off a venue-facing string.
+  if (ms == null || !Number.isFinite(ms)) return "Not recorded";
   return new Date(ms).toISOString().slice(0, 10);
 }
 
@@ -146,7 +170,7 @@ function standingFor(input: LiveVenueAccessInput, now: number): {
  */
 function nextActionFor(input: {
   unlimited: boolean;
-  availableCount: number;
+  availableCount: number | null;
 }): AccountSnapshot["nextAction"] {
   if (input.unlimited) {
     return {
@@ -157,19 +181,34 @@ function nextActionFor(input: {
       target: "access",
     };
   }
+  // Nothing recorded. Account cannot say what this venue may issue, and must
+  // not fill the gap with a number or with an instruction that assumes one.
+  if (input.availableCount === null) {
+    return {
+      id: "confirm-access-record",
+      label: "Confirm this account's access in Signal HQ Access",
+      detail:
+        "Signal HQ Access holds no issuing record for this venue, so Account has nothing to report here. Missing configuration is never shown as zero.",
+      target: "access",
+    };
+  }
   if (input.availableCount > 0) {
     return {
       id: "distribute-remaining",
       label: "Distribute remaining access",
-      detail: `${input.availableCount} codes remain against allotment. Delivery still happens outside Account.`,
+      detail: `This account's record covers ${input.availableCount} more invitations. Delivery still happens outside Account.`,
       target: "access",
     };
   }
+  // A limited venue whose issuance really is used up still needs a useful
+  // answer. The constraint is the wording, not the fact: say what has
+  // happened and what the venue can do, without the retired vocabulary and
+  // without an em dash.
   return {
     id: "request-more",
     label: "Request more access for Signal Studio review",
     detail:
-      "Allotment headroom is exhausted. Account can only record a request — HQ Access remains the control plane.",
+      "Every invitation on this account's record has been issued. Account can only record a request. Signal HQ Access remains the control plane.",
     target: "access",
   };
 }
@@ -184,10 +223,12 @@ export function projectVenueAccessSnapshot(
   const now = input.nowMs ?? Date.now();
   const { sponsor, codes } = input;
   const unlimited = isUnlimitedSponsor(sponsor);
-  const allotted = sponsor.codeAllotment ?? 0;
+  // Null in either sense — unlimited, or no cap recorded — never becomes a
+  // number here. `remainingAllotment` is the one definition of that rule.
+  const allotted = unlimited ? null : sponsor.codeAllotment ?? null;
   const mintedCount = codes.length;
   const redeemedCount = codes.filter((c) => c.status === "redeemed").length;
-  const availableCount = Math.max(0, allotted - sponsor.codesIssued);
+  const availableCount = remainingAllotment(sponsor);
   const drift = mintedCount !== sponsor.codesIssued;
   const { standing, standingLabel } = standingFor(input, now);
 
@@ -196,23 +237,43 @@ export function projectVenueAccessSnapshot(
   // warning below is therefore suppressed for them — not zeroed. Showing a
   // seat count to a venue that was promised there are none is the specific
   // contradiction this branch exists to remove.
-  const allottedMetric = unlimited ? UNLIMITED : exact(allotted);
-  const availableMetric = unlimited ? UNLIMITED : exact(availableCount);
+  //
+  // The legacy limited venue with nothing recorded takes the third road:
+  // unavailable. It is neither a count nor an entitlement, and saying so is
+  // the only honest answer available.
+  const allottedMetric = unlimited
+    ? UNLIMITED
+    : allotted === null
+      ? unavailable(LIVE_ACCESS_UNRECORDED_REASON)
+      : exact(allotted);
+  const availableMetric = unlimited
+    ? UNLIMITED
+    : availableCount === null
+      ? unavailable(LIVE_ACCESS_UNRECORDED_REASON)
+      : exact(availableCount);
 
   const attention: AccessAttention[] = [];
   if (drift) {
     attention.push({
       id: "allotment-drift",
-      label: "Allotment counter drift",
+      label: "Issuing counter drift",
       detail: `Minted codes (${mintedCount}) differ from codes_issued (${sponsor.codesIssued}). Reconcile in Signal HQ Access.`,
     });
   }
-  if (!unlimited && availableCount === 0 && allotted > 0) {
+  if (!unlimited && allotted === null) {
+    attention.push({
+      id: "access-record-missing",
+      label: "No issuing record for this venue",
+      detail:
+        "Signal HQ Access has nothing recorded for this account, so Account cannot report what it may issue. Record it in Signal HQ Access.",
+    });
+  }
+  if (!unlimited && availableCount === 0 && allotted !== null && allotted > 0) {
     attention.push({
       id: "no-remaining",
-      label: "No remaining allotment headroom",
+      label: "Nothing left to issue on this record",
       detail:
-        "Allotted codes are fully issued. Request more access for Signal Studio review — allotment does not change here.",
+        "Every invitation on this account's record has been issued. Request more access for Signal Studio review. Nothing changes here until Signal HQ Access acts.",
     });
   }
 
@@ -220,10 +281,16 @@ export function projectVenueAccessSnapshot(
   // delivered yet"; one that does not keeps the standing caveat.
   const deliveryTracked = codes.some((row) => row.deliveredAt != null);
 
+  // The snapshot carries a bounded window so a venue with thousands of codes
+  // cannot blow the payload. What changed is that the window is now DECLARED:
+  // `access.page` states the true total and whether rows were left out, so the
+  // surface can say "40 of 96" instead of reporting 40 as the whole account.
+  // The Access table's own paging and search run server-side through
+  // `lib/account/invitations/store.ts`, over the full set.
   const codeRows: AccessCodeRow[] = codes
     .slice()
     .sort((a, b) => b.createdAt - a.createdAt)
-    .slice(0, 40)
+    .slice(0, LIVE_ACCESS_SNAPSHOT_ROWS)
     .map((row) => {
       const state = mapCodeState(row.status, row.deliveredAt, row.expiresAt, now);
       return {
@@ -293,6 +360,11 @@ export function projectVenueAccessSnapshot(
           },
       codes: codeRows,
       attention,
+      page: {
+        shown: codeRows.length,
+        total: mintedCount,
+        truncated: mintedCount > codeRows.length,
+      },
     },
     adoption: {
       allotted: allottedMetric,
@@ -319,7 +391,10 @@ export function projectVenueAccessSnapshot(
         coverageLabel: "Usage unavailable · access exact",
         dataThrough,
         generatedOn: dataThrough,
-        formats: ["pdf", "csv"],
+        // CSV only, deliberately. The live download route refuses `pdf`
+        // (there is no print engine at runtime), so advertising it here
+        // offered a format the server will not serve.
+        formats: ["csv"],
         filenameStem: `${sponsor.slug}-access-preview`,
       },
     ],

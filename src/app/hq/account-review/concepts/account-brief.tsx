@@ -2,18 +2,12 @@
 
 import { coverageTone, formatMetricValue } from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
+import { ADOPTION_JOURNEY } from "@/lib/account/vocabulary";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
 import styles from "./account-brief.module.css";
 
-const JOURNEY = [
-  ["Allotted", "allotted"],
-  ["Issued", "issued"],
-  ["Redeemed", "redeemed"],
-  ["First useful action", "firstUsefulAction"],
-  ["Active recently", "activeRecently"],
-  ["Continued after 30 days", "continuedAfter30Days"],
-] as const;
+const JOURNEY = ADOPTION_JOURNEY;
 
 export function AccountBriefOverview({
   snapshot,
@@ -32,7 +26,7 @@ export function AccountBriefOverview({
           <h1 id="brief-hero-title">{snapshot.brandLines.hero}</h1>
           <p className={styles.lede}>
             A calm account review for renewal and governance. Access issued,
-            taken up, and continued — without exposing private work.
+            taken up, and continued, without exposing private work.
           </p>
         </div>
         <aside
@@ -54,7 +48,7 @@ export function AccountBriefOverview({
         <div className={styles.sectionHead}>
           <div>
             <p className={styles.eyebrow}>Adoption story</p>
-            <h2>From allotted access to continued use</h2>
+            <h2>From covered access to continued use</h2>
           </div>
           <span>{snapshot.coverage.periodLabel}</span>
         </div>

@@ -140,8 +140,12 @@ export default async function RootLayout({
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
-        {/* Google tag (gtag.js) — production only, on every page. */}
-        <GoogleTag />
+        {/* Google tag (gtag.js) — production only, and never on a Venue
+            Edition commercial surface. D-032 R8: /venues, /v/* and the rest of
+            that set are measured server-side and first-party instead. The path
+            list lives in src/lib/venue-edition-surfaces.ts; the component
+            reads it rather than restating it. */}
+        <GoogleTag enabled={process.env.VERCEL_ENV === "production"} />
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}

@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import { assertSnapshotPrivacy } from "../privacy";
+import {
+  LIVE_ACCESS_CODE_COLUMNS,
+  LIVE_ACCESS_CODE_FIELDS,
+} from "./code-columns";
 import {
   projectVenueAccessSnapshot,
   type LiveVenueAccessInput,
@@ -163,6 +168,36 @@ describe("access delivery state", () => {
       code({ status: "redeemed", redeemedAt: Date.parse("2026-07-12T00:00:00.000Z") }),
     ]);
     assert.equal(redeemed.issuedOn, "2026-07-01");
+  });
+
+  /* The ladder above is only reachable if the query asks for the columns it
+   * branches on. It did not, so `issued` and `expired` were unreachable on
+   * live data and an expired code rendered as available — as safe to send. */
+  it("the live query asks for every column the ladder branches on", () => {
+    assert.deepEqual(
+      Object.keys(LIVE_ACCESS_CODE_COLUMNS).sort(),
+      [...LIVE_ACCESS_CODE_FIELDS].sort(),
+    );
+    assert.ok(LIVE_ACCESS_CODE_FIELDS.includes("deliveredAt"));
+    assert.ok(LIVE_ACCESS_CODE_FIELDS.includes("expiresAt"));
+  });
+
+  it("the selection maps to the real license_codes delivery columns", () => {
+    assert.equal(LIVE_ACCESS_CODE_COLUMNS.deliveredAt.name, "delivered_at");
+    assert.equal(LIVE_ACCESS_CODE_COLUMNS.expiresAt.name, "expires_at");
+  });
+
+  it("the loader selects through that constant, not a private column list", () => {
+    const source = readFileSync(
+      new URL("./load-venue-access.ts", import.meta.url),
+      "utf8",
+    );
+    assert.match(source, /\.select\(LIVE_ACCESS_CODE_COLUMNS\)/);
+    assert.doesNotMatch(
+      source,
+      /redeemedAt:\s*licenseCodes\.redeemedAt/,
+      "an inline column list is how the delivery columns went missing",
+    );
   });
 
   it("never leaks a plaintext code through the new states", () => {

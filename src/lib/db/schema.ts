@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import {
   index,
   integer,
+  primaryKey,
   sqliteTable,
   text,
   uniqueIndex,
@@ -365,3 +366,43 @@ export const waitlistEntries = sqliteTable(
 
 export type WaitlistEntry = typeof waitlistEntries.$inferSelect;
 export type NewWaitlistEntry = typeof waitlistEntries.$inferInsert;
+
+// ── Venue Edition surface page views ─────────────────────────────────────────
+//
+// D-032 R8 (Option B). Google Analytics came off the Venue Edition commercial
+// pages; this table is what replaced it. One row per surface per UTC day,
+// holding a count and nothing else.
+//
+// What is deliberately absent, and must stay absent: no IP, no user agent, no
+// referrer, no path, no token, no cookie identifier, no session identifier, no
+// device or browser field, no per-visit row. `userAgent` and `ip` are on the
+// E09.01 §6.1 frozen forbidden list and D-032 R14 records that no user-agent
+// class is kept on a click. `path` is on the same list, and the private film
+// link is `/v/<token>` — storing the path would store the token. The `surface`
+// column holds a fixed key from `VENUE_EDITION_SURFACE_KEYS`, never a URL.
+//
+// `src/lib/venue-edition-page-views.test.ts` asserts this column set exactly,
+// so adding a field here fails a test rather than passing quietly.
+export const venueSurfaceViews = sqliteTable(
+  "venue_surface_views",
+  {
+    /** A key from VENUE_EDITION_SURFACE_KEYS. Never a path, never a token. */
+    surface: text("surface").notNull(),
+    /** UTC calendar day, `YYYY-MM-DD`. */
+    day: text("day").notNull(),
+    views: integer("views").notNull().default(0),
+    firstRecordedAt: integer("first_recorded_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    updatedAt: integer("updated_at")
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+  },
+  (table) => [
+    primaryKey({ columns: [table.surface, table.day] }),
+    index("venue_surface_views_day_idx").on(table.day),
+  ],
+);
+
+export type VenueSurfaceView = typeof venueSurfaceViews.$inferSelect;
+export type NewVenueSurfaceView = typeof venueSurfaceViews.$inferInsert;

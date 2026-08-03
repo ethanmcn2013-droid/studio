@@ -176,6 +176,36 @@ test("the composed snapshot leaks no identity", () => {
   }
 });
 
+/* The overlay builds a new snapshot object, so the assertion the access loader
+ * ran does not cover it. It must assert for itself, or every usage payload is
+ * unchecked by construction. */
+test("the overlay refuses to emit a snapshot that fails the privacy contract", () => {
+  const poisoned = {
+    ...accessSnapshot,
+    account: { ...accessSnapshot.account, name: "owner@glenmara.example" },
+  };
+  assert.throws(
+    () =>
+      projectVenueUsageSnapshot(poisoned, {
+        window: WINDOW,
+        rows: fullRows,
+        lifecycle,
+        dataThrough: "2026-06-05",
+      }),
+    /privacy contract/,
+  );
+});
+
+test("a masked, aggregate overlay is emitted normally", () => {
+  const snapshot = projectVenueUsageSnapshot(accessSnapshot, {
+    window: WINDOW,
+    rows: fullRows,
+    lifecycle,
+    dataThrough: "2026-06-05",
+  });
+  assert.deepEqual(assertSnapshotPrivacy(snapshot), []);
+});
+
 test("no absent metric is ever rendered as an exact zero", () => {
   const snapshot = projectVenueUsageSnapshot(accessSnapshot, {
     window: WINDOW,

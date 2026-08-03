@@ -1,13 +1,39 @@
-# Phase B — Sponsored-use instrumentation plan
+# Phase B · Sponsored-use instrumentation plan (Signal Studio Account, the surface E07 calls the Venue Portal)
+
+Naming: the **Signal Studio Account IS the Venue Portal** (**D-015 Q4**). One
+surface, two names.
 
 Status: **B0–B6 built and tested · applying the migration is the only gate left**  
-Date: 2026-07-26  
+Date: 2026-07-26 · corrected 2026-08-03  
 Owner: founder + Studio eng  
-Depends on: Account Brief HQ preview (shipped), Venue Portal Phase A contracts  
+Depends on: Account Brief HQ preview (shipped), the Phase A contracts in `docs/venue-portal/`  
 Out of scope for this plan: public Account route, sponsor membership, entitlement mutation
 
 > Note: Historical docs call this **Phase B**. It is the next instrumentation
-> cycle after Account V1 live access preview — not a new product surface.
+> cycle after Account V1 live access preview, not a new product surface.
+
+**POST-LAUNCH (D-027 point 4, ratified 2026-08-03).** *"The Venue Portal at
+launch is invitation administration only. Aggregate adoption evidence follows
+after 1 September. The consent layer stays unwired for now."* Everything in this
+plan is the adoption-evidence layer. It is not built for 1 September unless it
+is cheap and safe. The plan is not rewritten: the charter is still the
+destination.
+
+**"Built and tested" is candidate evidence, not completion (D-015 Q2).** The
+checked boxes below record that code exists and tests pass. Neither is founder
+approval, and nothing here is Done.
+
+**Dictionary version.** This plan mapped `venue-metrics.v1` into
+`account-metrics.v2`. `account-metrics.v2` is now the only version any shipped
+code stamps, and `docs/venue-portal/METRIC_DICTIONARY.md` has been corrected to
+carry that name.
+
+`[RESOLVED D-032 R9 · 2026-08-03. **`account-metrics.v2` is ratified as the
+dictionary of record.** `venue-metrics.v1` is superseded and bannered.
+The four-condition activation bundle in `docs/planning-period-analytics.md` is
+renamed "period-setup completeness" and marked founder-only, so the word
+"activation" means exactly one thing on any venue-facing surface. Three
+dictionaries no longer disagree, because there is one.]`
 
 ## Goal
 
@@ -17,7 +43,7 @@ evidence that answers:
 1. Did sponsored recipients reach a first useful action?
 2. Are they still active recently?
 3. Did use continue after ~30 days?
-4. Which products were reached — without exposing private work?
+4. Which products were reached. Without exposing private work?
 
 Exit gate: projection + tests green; **no public portal route**; HQ Account
 live preview can render real coverage states (`complete` / `partial` /
@@ -54,13 +80,13 @@ Control plane remains Signal HQ Access. Account stays read-mostly.
 
 ## Workstreams (execute in order)
 
-### B0 — Contracts freeze (½ day)
+### B0 · Contracts freeze (½ day)
 
 Lock versions before code:
 
 | Artifact | Version |
 | --- | --- |
-| Metric dictionary | `venue-metrics.v1` (existing) → map into Account `account-metrics.v2` |
+| Metric dictionary | ~~`venue-metrics.v1` (existing) → map into Account `account-metrics.v2`~~ `[SUPERSEDED · 2026-08-03]` `account-metrics.v2` is the only version shipped code stamps, and the dictionary document now carries that name |
 | Event schema | `venue-meaningful-action.v1` |
 | Instrumentation | `instrumentation.v1` |
 | Calendar default | `Europe/Dublin` |
@@ -75,14 +101,19 @@ Account mapping (target):
 
 | Dictionary metric | Account field |
 | --- | --- |
-| First meaningful action | `adoption.firstUsefulAction` |
-| Active sponsored workspaces (window) | `adoption.activeRecently` |
-| Day-30 retention band | `adoption.continuedAfter30Days` |
-| Venue active days | `adoption.daysWithSponsoredUse` |
-| Module adoption | `productReach[]` |
+| First useful action | `adoption.firstUsefulAction` |
+| Recent use, 30 complete days | `adoption.activeRecently` |
+| 30-day continuation, days 25 to 35 | `adoption.continuedAfter30Days` |
+| Days with sponsored use | `adoption.daysWithSponsoredUse` (**`account-metrics.v2` §7A, adopted by D-032 R11 · 2026-08-03**) |
+| Product reach | `productReach[]` |
 | Coverage envelope | `coverage.*` |
 
-### B1 — Event schema + emitters (2–4 days)
+`[CORRECTED 2026-08-03: "Venue active days" is renamed to "Days with sponsored
+use" per VOCABULARY.md, and `account-metrics.v2` ratifies one continuation band,
+not three retention bands. Every share renders with its denominator, drawn from
+invitations issued and redemptions recorded, never from bookings (E09.02 §1).]`
+
+### B1 · Event schema + emitters (2–4 days)
 
 Define minimal event shape (no content):
 
@@ -105,8 +136,17 @@ Allowlist (from `METRIC_DICTIONARY.md`):
 | --- | --- |
 | Notes | `note_created`, `note_materially_edited` |
 | Tasks | `task_created`, `task_completed`, `task_reopened`, `task_reassigned`, `task_rescheduled`, `task_status_changed` |
-| Timeline | `timeline_curated`, `timeline_visibility_changed`, `timeline_published` |
-| Signal | `briefing_deliberately_opened`, `briefing_acknowledged` |
+| Timeline | `timeline_curated`, `timeline_visibility_changed` **(unpublish only)**, `timeline_published` |
+| Signal | `briefing_deliberately_opened`, `briefing_acknowledged` **(no call site)** |
+
+`[CORRECTED 2026-08-03, E09.02 §9.0 points 4 and 5. The kind now named
+`timeline_unpublished` fires on unpublish and only on unpublish, so it must
+appear in no sharing computation, and **D-032 R10 excludes it from first useful
+action as well**. `briefing_acknowledged` has no call site anywhere, so any
+metric built on it is permanently zero. Both are determinations of fact.
+E09.02 §9.8 is **ratified by D-032 R9**: `briefing_acknowledged` comes off the
+allowlist until it has a call site, and the allowlist change itself belongs to
+E09.03.]`
 
 Emit **only after successful commit**, in product servers (Tasks / Notes / Timeline / Signal repos as applicable). Studio may host the ingest + rollup initially.
 
@@ -116,7 +156,7 @@ Deliverables:
 - [x] Per-product emitter stubs behind feature flag `SPONSOR_USAGE_EVENTS=1` (shared emitter in Studio; product call sites still to wire)
 - [x] Unit tests: allowlist accept/reject; failed transaction does not emit
 
-### B2 — Ingest + attribution (2–3 days)
+### B2 · Ingest + attribution (2–3 days)
 
 Ingest path into `signal-entitlements` (or short-lived events table):
 
@@ -132,11 +172,11 @@ Deliverables:
 - [x] Attribution pure function + ambiguity tests
 - [x] Payload privacy scan (no prohibited patterns)
 
-### B3 — Projection tables + daily rollup (3–5 days)
+### B3 · Projection tables + daily rollup (3–5 days)
 
 Additive schema on `signal-entitlements`:
 
-**`sponsor_usage_daily`** — PK `(sponsor_id, local_date, metric_dictionary_version)`
+**`sponsor_usage_daily`**. PK `(sponsor_id, local_date, metric_dictionary_version)`
 
 - active workspace counts, module action counts, coverage mask, `data_through`
 
@@ -158,7 +198,7 @@ Deliverables:
 - [x] Rollup cron / HQ-triggered job with dry-run
 - [x] Reconciliation fixtures: source events → daily → snapshot
 
-### B4 — Access delivery fields (1–2 days, parallel)
+### B4 · Access delivery fields (1–2 days, parallel)
 
 Before Account Access can show `issued` / `expired` honestly:
 
@@ -168,7 +208,7 @@ Before Account Access can show `issued` / `expired` honestly:
 
 Until then, live Access keeps “minted · delivery not tracked”.
 
-### B5 — Wire Account live Usage (1–2 days)
+### B5 · Wire Account live Usage (1–2 days)
 
 Extend `src/lib/account/live/`:
 
@@ -183,13 +223,13 @@ Honesty:
 - Small cohort → `withheld` / coverage `suppressed`
 - No rows → `unavailable`
 
-### B6 — Frozen access+usage report (1–2 days)
+### B6 · Frozen access+usage report (1–2 days)
 
 - [x] Generate snapshot into `sponsor_report_snapshots` for closed months
 - [x] HQ download prefers frozen snapshot when present
 - [x] SAMPLE / LIVE labels only when not a closed production freeze
 
-## Execution progress — 2026-07-27
+## Execution progress · 2026-07-27
 
 All six workstreams are built and tested. The entitlements credentials are still
 absent, so every SQL path is proven against a real SQLite engine held in memory
@@ -234,8 +274,8 @@ call sites in Notes, Tasks, and Timeline behind `SPONSOR_USAGE_EVENTS`.
    commit point: every candidate is an automatic render, a system-surfaced
    record, or a redirect that writes nothing, and acknowledgement carries no
    workspace. Signal reports partial rather than borrowing a metric that means
-   something else. Closing it is product work — a real "Open today's brief"
-   affordance — not instrumentation work.
+   something else. Closing it is product work. A real "Open today's brief"
+   affordance. Not instrumentation work.
 4. **Account Usage still renders `unavailable` in production**, because the
    flag is off and no events exist yet. Nothing the surface claims has changed.
 

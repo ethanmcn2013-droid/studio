@@ -2,18 +2,12 @@
 
 import { formatMetricValue } from "@/lib/account/format";
 import { getEditionProof } from "@/lib/account/fixtures";
+import { ADOPTION_JOURNEY } from "@/lib/account/vocabulary";
 import { AccountIcon } from "../components/icons";
 import styles from "./edition-proof.module.css";
 import shared from "./shared.module.css";
 
-const JOURNEY = [
-  ["Allotted", "allotted"],
-  ["Issued", "issued"],
-  ["Redeemed", "redeemed"],
-  ["First useful action", "firstUsefulAction"],
-  ["Active recently", "activeRecently"],
-  ["Continued after 30 days", "continuedAfter30Days"],
-] as const;
+const JOURNEY = ADOPTION_JOURNEY;
 
 export function EditionProof({
   edition,

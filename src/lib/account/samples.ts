@@ -6,6 +6,11 @@ export const ACCOUNT_SAMPLE_FIXTURES: VenueFixtureKey[] = [
   "partial",
   "suppressed",
   "unavailable",
+  // R-016. The entitlement every founding venue is actually sold, and the
+  // legacy state that used to render as an exact zero. Neither had a
+  // deterministic artefact before.
+  "unlimited",
+  "unrecorded",
 ];
 
 export const ACCOUNT_SAMPLE_FORMATS = ["pdf", "csv"] as const;

@@ -441,3 +441,48 @@ anyone noticed. They are reissued as **R-038, R-039, R-040 and I-012**, and ever
 reference in `DECISIONS.md`, `CHANGELOG.md`, `venue-universe/` and four tasks'
 evidence has been repointed. This is the second recorded instance of the failure
 in I-011 and the first one to lose four entries at once.
+
+## 2026-08-03 · Batch approved — 18 task(s)
+
+`E07.01` Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit.
+`E07.02` Redesign Overview so “Invite a couple” is the principal action.
+`E07.03` Complete account-standing, current-term, founding-status, renewal-date and support-status presentation.
+`E07.04` Ratify every adoption-funnel definition from invitation through meaningful first action and continued use.
+`E07.05` Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation.
+`E07.06` Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful.
+`E07.07` Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model.
+`E07.08` Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status.
+`E07.09` Complete access search, filters, pagination, stale-invitation alerts and masked-code handling.
+`E07.10` Complete the distribution kit with approved email wording, welcome link and printable welcome card.
+`E07.11` Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions.
+`E07.12` Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt.
+`E07.13` Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail.
+`E07.14` Complete monthly, access-term and renewal-report generation.
+`E07.15` Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions.
+`E07.16` Complete Account, organisation settings, members, roles, support history and reporting preferences.
+`E07.17` Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view.
+`E07.18` Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation.
+
+Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-administration build, the E09 instrumentation, fixture, imagery and copy work, and the E13 map system and render pipeline — plus every recommendation R1-R17 and the three items in section 1 of the Wave 2 packet. Ethan McNamara, 2026-08-03: 'all are approved'.
+
+## 2026-08-03 · Batch approved — 8 task(s)
+
+`E09.03` Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions.
+`E09.04` Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion.
+`E09.05` Join CRM, commercial, product and reporting data into one founder operating dashboard.
+`E09.07` Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal.
+`E09.08` Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used.
+`E09.09` Reconcile every sample invitation count, adoption metric, report number, date and product-reach value.
+`E09.11` Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy.
+`E09.12` Freeze the capture copy and build a one-action demo reset that restores the canonical state.
+
+Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-administration build, the E09 instrumentation, fixture, imagery and copy work, and the E13 map system and render pipeline — plus every recommendation R1-R17 and the three items in section 1 of the Wave 2 packet. Ethan McNamara, 2026-08-03: 'all are approved'.
+
+## 2026-08-03 · Batch approved — 4 task(s)
+
+`E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
+`E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata.
+`E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
+`E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render.
+
+Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-administration build, the E09 instrumentation, fixture, imagery and copy work, and the E13 map system and render pipeline — plus every recommendation R1-R17 and the three items in section 1 of the Wave 2 packet. Ethan McNamara, 2026-08-03: 'all are approved'.

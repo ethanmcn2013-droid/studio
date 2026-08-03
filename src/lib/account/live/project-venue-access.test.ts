@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { remainingAllotment } from "@/lib/venue-allotment";
 import { assertSnapshotPrivacy } from "../privacy";
 import { maskLicenseCode } from "./mask-code";
 import { projectVenueAccessSnapshot } from "./project-venue-access";
@@ -191,6 +192,103 @@ describe("projectVenueAccessSnapshot", () => {
     assert.equal(snapshot.nextAction.id, "request-more");
   });
 
+  /* R-016, legacy branch. A `limited` sponsor whose cap was never recorded is
+   * neither unlimited nor exhausted. It has no answer, and the surface must
+   * say so rather than manufacture a zero. */
+  function unrecordedSnapshot(
+    over: { allotmentMode?: string | null; codesIssued?: number } = {},
+  ) {
+    return projectVenueAccessSnapshot({
+      nowMs: Date.parse("2026-08-03T12:00:00.000Z"),
+      sponsor: {
+        id: "sp_6",
+        slug: "unrecorded-house",
+        name: "Unrecorded House",
+        venuePlan: "paid",
+        paid: true,
+        termStartsAt: null,
+        termEndsAt: null,
+        codeAllotment: null,
+        allotmentMode: "limited",
+        codesIssued: 0,
+        ...over,
+      },
+      codes: [],
+    });
+  }
+
+  it("R-016: a limited venue with nothing recorded is unavailable, not zero", () => {
+    const snapshot = unrecordedSnapshot();
+    assert.equal(snapshot.access.allotted.state, "unavailable");
+    assert.equal(snapshot.access.available.state, "unavailable");
+    assert.equal(snapshot.adoption.allotted.state, "unavailable");
+    // The exact failure this guards: a fabricated 0 on the Overview journey.
+    assert.equal(
+      JSON.stringify(snapshot.access.allotted).includes('"value":0'),
+      false,
+    );
+    assert.equal(
+      JSON.stringify(snapshot.access.available).includes('"value":0'),
+      false,
+    );
+    assert.deepEqual(assertSnapshotPrivacy(snapshot), []);
+  });
+
+  it("R-016: it is never told its headroom is exhausted", () => {
+    const snapshot = unrecordedSnapshot();
+    assert.notEqual(snapshot.nextAction.id, "request-more");
+    assert.equal(snapshot.nextAction.id, "confirm-access-record");
+    assert.doesNotMatch(snapshot.nextAction.detail, /exhausted/i);
+    assert.doesNotMatch(JSON.stringify(snapshot.nextAction), /allotment/i);
+    assert.equal(
+      snapshot.access.attention.some((a) => a.id === "no-remaining"),
+      false,
+    );
+  });
+
+  it("R-016: the missing record is surfaced rather than hidden", () => {
+    const snapshot = unrecordedSnapshot();
+    assert.equal(
+      snapshot.access.attention.some((a) => a.id === "access-record-missing"),
+      true,
+    );
+  });
+
+  it("R-016: the projection agrees with remainingAllotment on the same input", () => {
+    const sponsor = {
+      allotmentMode: "limited" as const,
+      codeAllotment: null,
+      codesIssued: 0,
+    };
+    assert.equal(remainingAllotment(sponsor), null);
+    const snapshot = unrecordedSnapshot();
+    assert.equal(snapshot.access.available.state, "unavailable");
+  });
+
+  it("R-016: an unrecorded cap stays unavailable even once codes are issued", () => {
+    const snapshot = unrecordedSnapshot({ codesIssued: 3 });
+    assert.equal(snapshot.access.allotted.state, "unavailable");
+    assert.equal(snapshot.access.available.state, "unavailable");
+    // Issued is still a fact about what happened, so it stays exact.
+    assert.equal(
+      snapshot.access.issued.state === "exact" && snapshot.access.issued.value,
+      3,
+    );
+  });
+
+  it("R-016: a sponsor with no mode at all and no cap is also unavailable", () => {
+    // Pre-migration rows arrive with neither field set.
+    const snapshot = unrecordedSnapshot({ allotmentMode: null });
+    assert.equal(snapshot.access.allotted.state, "unavailable");
+    assert.equal(snapshot.nextAction.id, "confirm-access-record");
+  });
+
+  it("the live report advertises only the format the server will serve", () => {
+    // The live download route refuses `pdf`; offering it was a broken button.
+    const snapshot = unrecordedSnapshot();
+    assert.deepEqual(snapshot.reports[0]?.formats, ["csv"]);
+  });
+
   it("a sponsor with no mode recorded keeps the capped behaviour", () => {
     // Every pre-migration row arrives here without the field.
     const snapshot = projectVenueAccessSnapshot({
@@ -209,5 +307,120 @@ describe("projectVenueAccessSnapshot", () => {
       codes: [],
     });
     assert.equal(snapshot.access.available.state === "exact" && snapshot.access.available.value, 6);
+  });
+
+  /* D-032 R6. The five prohibited strings on this path were unreachable only
+   * because the live path is dark. The moment the migration lands they are
+   * the first thing an exhausted venue reads, so the guard runs over every
+   * branch rather than over the one branch a test happened to build. */
+  describe("D-032 R6: prohibited vocabulary on the live projection", () => {
+    function limitedSnapshot(codeAllotment: number, codesIssued: number) {
+      return projectVenueAccessSnapshot({
+        nowMs: Date.parse("2026-08-03T12:00:00.000Z"),
+        sponsor: {
+          id: "sp_r6",
+          slug: "r6-house",
+          name: "R6 House",
+          venuePlan: "paid",
+          paid: true,
+          termStartsAt: null,
+          termEndsAt: null,
+          codeAllotment,
+          allotmentMode: "limited",
+          codesIssued,
+        },
+        codes: [],
+      });
+    }
+
+    const BRANCHES: Array<[string, ReturnType<typeof limitedSnapshot>]> = [
+      ["exhausted limited", limitedSnapshot(4, 4)],
+      ["limited with headroom", limitedSnapshot(10, 2)],
+      ["counter drift", limitedSnapshot(10, 99)],
+      ["unlimited", unlimitedSnapshot(4)],
+      ["unrecorded", unrecordedSnapshot()],
+    ];
+
+    /**
+     * Only the strings a person reads.
+     *
+     * Sweeping `JSON.stringify(snapshot)` sweeps the field names too, and
+     * `access.allotted` is a contract identifier, not copy. That is the same
+     * distinction `prohibited-claims.v1.json` draws with `copyOnly`, and a
+     * guard that cannot draw it either fails on the contract or gets deleted.
+     */
+    const NON_COPY_KEYS = new Set([
+      "id",
+      "snapshotId",
+      "reportId",
+      "accountId",
+      "filenameStem",
+      "state",
+      "standing",
+      "edition",
+      "definitionVersion",
+      "coverageState",
+      "formats",
+      "maskedCode",
+      "target",
+    ]);
+
+    function copyStrings(node: unknown, key = ""): string[] {
+      if (typeof node === "string") {
+        return NON_COPY_KEYS.has(key) ? [] : [node];
+      }
+      if (Array.isArray(node)) return node.flatMap((v) => copyStrings(v, key));
+      if (node && typeof node === "object") {
+        return Object.entries(node).flatMap(([k, v]) => copyStrings(v, k));
+      }
+      return [];
+    }
+
+    // D-020 / E09.02 section 8, mirroring the p5 patterns in
+    // prohibited-claims.v1.json, plus the two BRAND.md punctuation bans.
+    const BANNED: Array<[RegExp, string]> = [
+      [/\ballotment\b/i, "D-020"],
+      [/\ballotted\b/i, "D-020"],
+      [/\bcodes remaining\b/i, "D-020"],
+      [/\bseats?\b/i, "D-020"],
+      [/\bheadroom\b/i, "D-020"],
+      [/—/, "BRAND.md section 3, em dash"],
+      [/!/, "BRAND.md section 3, exclamation mark"],
+    ];
+
+    for (const [name, snapshot] of BRANCHES) {
+      it(`${name}: every string a venue reads is clean`, () => {
+        for (const text of copyStrings(snapshot)) {
+          for (const [pattern, basis] of BANNED) {
+            assert.doesNotMatch(text, pattern, `${name} (${basis}): ${text}`);
+          }
+        }
+      });
+    }
+
+    it("the guard reads real strings rather than passing on an empty list", () => {
+      const strings = copyStrings(BRANCHES[0][1]);
+      assert.ok(strings.length > 20, `only ${strings.length} strings collected`);
+      assert.ok(strings.includes("Request more access for Signal Studio review"));
+    });
+
+    it("an exhausted limited venue is still told something useful", () => {
+      const snapshot = limitedSnapshot(4, 4);
+      assert.equal(snapshot.nextAction.id, "request-more");
+      // The constraint is the wording, not the fact. It still says what
+      // happened and what the venue can do about it.
+      assert.match(snapshot.nextAction.detail, /has been issued/);
+      assert.match(snapshot.nextAction.detail, /record a request/);
+      assert.equal(
+        snapshot.access.attention.some((a) => a.id === "no-remaining"),
+        true,
+      );
+    });
+
+    it("a missing date reads as not recorded, never as a dash", () => {
+      const snapshot = limitedSnapshot(4, 1);
+      assert.equal(snapshot.term.start, "Not recorded");
+      assert.equal(snapshot.term.end, "Not recorded");
+    });
   });
 });

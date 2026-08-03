@@ -2,22 +2,40 @@ import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 
-import { sweepExpiredEvents } from "@/lib/account/instrumentation/ingest-db";
+import { runNightlyMaintenance } from "@/lib/account/instrumentation/nightly";
+import { drizzleNightlyStore } from "@/lib/account/instrumentation/nightly-db";
+import {
+  DEFAULT_ACCOUNT_TIME_ZONE,
+  toLocalDate,
+} from "@/lib/account/instrumentation/local-date";
 import { MAX_SEALING_GAP_DAYS } from "@/lib/account/instrumentation/sealing";
 
 /**
  * Nightly sponsored-use maintenance.
  *
- * The three jobs run here in one handler rather than on three schedules,
- * because their order is load-bearing and independent crons could interleave:
+ * The four jobs run here in one handler rather than on four schedules, because
+ * their order is load-bearing and independent crons could interleave:
  *
- *   1. roll up closed days into the daily projection;
- *   2. seal day-30 bands whose evidence is still present;
- *   3. only then sweep events past retention.
+ *   1. repair the attribution of events that arrived before their redemption;
+ *   2. roll up closed days into the daily projection;
+ *   3. seal day-30 bands whose evidence is still present;
+ *   4. only then sweep events past retention.
  *
  * Sweeping before the rollup would delete the evidence for a day nobody had
- * counted yet, and the events cannot be recovered. Sequencing them in one
- * request makes that impossible rather than merely discouraged.
+ * counted yet, and the events cannot be recovered. `runNightlyMaintenance`
+ * makes that impossible rather than merely discouraged: it returns the order it
+ * actually executed, and it refuses to sweep at all if a step in front of the
+ * sweep failed. Holding events past retention is recoverable. Deleting
+ * uncounted days is not.
+ *
+ * ## The sealing interlock, in the response and not in a runbook
+ *
+ * A day-30 band's earliest day is 10 days old when the band closes, against a
+ * 35-day retention. If this job falls more than MAX_SEALING_GAP_DAYS behind,
+ * bands start closing over days whose events are already gone, and those
+ * cohorts seal `indeterminate` permanently. `sealing.cadence` and `alert` carry
+ * that, and a breach answers 500 so the platform's own cron alerting fires. A
+ * clock running against data that cannot be rebuilt is not a quiet warning.
  *
  * Auth is the same CRON_SECRET bearer the access-reconcile job uses.
  */
@@ -46,23 +64,30 @@ async function run(dryRun: boolean): Promise<NextResponse> {
       ok: true,
       skipped: "entitlements-not-configured",
       note: "Apply the sponsored-use migration and set the entitlements credentials to enable this job.",
+      sealingCadenceDays: MAX_SEALING_GAP_DAYS,
     });
   }
 
   const now = Date.now();
-
-  // 3. Retention sweep. The rollup and sealing steps land in a follow-up once
-  //    the projection tables exist in a reachable database; the sweep is safe
-  //    to run today because it only ever deletes events older than retention,
-  //    which no closed-day rollup still needs.
-  const sweep = await sweepExpiredEvents(now, { dryRun });
-
-  return NextResponse.json({
-    ok: true,
+  const outcome = await runNightlyMaintenance(drizzleNightlyStore(), {
+    now,
+    todayLocalDate: toLocalDate(now, DEFAULT_ACCOUNT_TIME_ZONE),
     dryRun,
-    sweep,
-    sealingCadenceDays: MAX_SEALING_GAP_DAYS,
+    timeZone: DEFAULT_ACCOUNT_TIME_ZONE,
   });
+
+  const body = {
+    ...outcome,
+    sealingCadenceDays: MAX_SEALING_GAP_DAYS,
+    // Stated every night, healthy or not, so nobody has to know the number.
+    sealingInterlock:
+      `The sealing job must run at least every ${MAX_SEALING_GAP_DAYS} days. ` +
+      "Raw events are deleted at 35 days, and a band that closes after its " +
+      "evidence was swept seals indeterminate and cannot be rebuilt.",
+  };
+
+  // A failed step or a breached cadence answers non-2xx so cron alerting fires.
+  return NextResponse.json(body, { status: outcome.ok ? 200 : 500 });
 }
 
 export async function GET(req: Request) {

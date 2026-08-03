@@ -12,7 +12,7 @@
  * number.
  */
 
-import type { SponsoredProduct } from "./event-schema";
+import { qualifiesAsFirstUsefulAction, type SponsoredProduct } from "./event-schema";
 
 export const PRODUCT_BITS: Record<SponsoredProduct, number> = {
   notes: 1,
@@ -58,12 +58,27 @@ export type DailyCounts = {
 export type LifecycleDelta = {
   workspaceIdHash: string;
   hashSaltEpoch: string;
-  /** Merged toward the earliest known. */
-  firstActionLocalDate: string;
+  /**
+   * Merged toward the earliest known.
+   *
+   * **Null when this batch saw no qualifying first useful action.** A workspace
+   * whose only events in the window are excluded kinds has acted, and that
+   * activity is counted on the daily row, but it has not started. D-032 R10.
+   */
+  firstActionLocalDate: string | null;
   /** Merged toward the latest known. */
   lastActionLocalDate: string;
   productLastActionLocalDate: Partial<Record<SponsoredProduct, string>>;
 };
+
+/**
+ * A lifecycle row that is safe to store.
+ *
+ * The stored row is keyed on a first useful action: the day-30 band is measured
+ * from it and the column is `NOT NULL`. A workspace that has not taken one has
+ * no row, rather than a row carrying a date that means something else.
+ */
+export type LifecycleRow = LifecycleDelta & { firstActionLocalDate: string };
 
 export type RollupInput = {
   sponsorId: string;
@@ -166,7 +181,13 @@ export function rollupDaily(input: RollupInput): RollupOutput {
     bucket.actions += 1;
     bucket.workspaces.add(event.workspaceIdHash);
     bucket.subjects.add(event.subjectIdHash);
-    if (!known.has(event.workspaceIdHash)) {
+
+    // An excluded kind is still a meaningful action — it is counted above, and
+    // it still advances the last-action dates below. It may not be the *first*
+    // one. Skipping the `known` write as well as the day bucket is what lets a
+    // later qualifying event still register as the workspace's first.
+    const startsTheClock = qualifiesAsFirstUsefulAction(event.kind);
+    if (startsTheClock && !known.has(event.workspaceIdHash)) {
       known.add(event.workspaceIdHash);
       bucket.firstAction.add(event.workspaceIdHash);
     }
@@ -184,12 +205,16 @@ export function rollupDaily(input: RollupInput): RollupOutput {
       lifecycle.set(event.workspaceIdHash, {
         workspaceIdHash: event.workspaceIdHash,
         hashSaltEpoch: event.hashSaltEpoch,
-        firstActionLocalDate: event.localDate,
+        firstActionLocalDate: startsTheClock ? event.localDate : null,
         lastActionLocalDate: event.localDate,
         productLastActionLocalDate: { [event.product]: event.localDate },
       });
     } else {
-      if (event.localDate < existing.firstActionLocalDate) {
+      if (
+        startsTheClock &&
+        (existing.firstActionLocalDate === null ||
+          event.localDate < existing.firstActionLocalDate)
+      ) {
         existing.firstActionLocalDate = event.localDate;
       }
       if (event.localDate > existing.lastActionLocalDate) {
@@ -239,19 +264,46 @@ export function rollupDaily(input: RollupInput): RollupOutput {
   };
 }
 
-/** Merge a delta into a stored lifecycle row. Advance-only in both directions. */
+/**
+ * The earlier of two first-action dates, either of which may be absent.
+ *
+ * Absent is not early. A batch that saw no qualifying action must not pull a
+ * stored start date anywhere, and two absences stay absent.
+ */
+function earliestFirstAction(a: string | null, b: string | null): string | null {
+  if (a === null) return b;
+  if (b === null) return a;
+  return b < a ? b : a;
+}
+
+/**
+ * Merge a delta into a stored lifecycle row. Advance-only in both directions.
+ *
+ * Returns **null** when neither side records a first useful action. That is a
+ * workspace which has acted only through excluded kinds, and it has no
+ * lifecycle row to write: storing one would put a date in the column the day-30
+ * band is measured from and claim a start that never happened. D-032 R10.
+ */
 export function mergeLifecycle(
-  stored: LifecycleDelta | undefined,
+  stored: LifecycleRow | undefined,
   delta: LifecycleDelta,
-): LifecycleDelta {
-  if (!stored) return { ...delta, productLastActionLocalDate: { ...delta.productLastActionLocalDate } };
-  const merged: LifecycleDelta = {
+): LifecycleRow | null {
+  const firstAction = earliestFirstAction(
+    stored?.firstActionLocalDate ?? null,
+    delta.firstActionLocalDate,
+  );
+  if (firstAction === null) return null;
+  if (!stored) {
+    return {
+      ...delta,
+      firstActionLocalDate: firstAction,
+      productLastActionLocalDate: { ...delta.productLastActionLocalDate },
+    };
+  }
+  const merged: LifecycleRow = {
     workspaceIdHash: delta.workspaceIdHash,
     hashSaltEpoch: delta.hashSaltEpoch,
-    firstActionLocalDate:
-      delta.firstActionLocalDate < stored.firstActionLocalDate
-        ? delta.firstActionLocalDate
-        : stored.firstActionLocalDate,
+    firstActionLocalDate: firstAction,
     lastActionLocalDate:
       delta.lastActionLocalDate > stored.lastActionLocalDate
         ? delta.lastActionLocalDate

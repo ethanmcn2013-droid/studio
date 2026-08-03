@@ -2,9 +2,12 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+  FIRST_USEFUL_ACTION_EXCLUDED_KINDS,
   INSTRUMENTATION_VERSION,
   MEANINGFUL_ACTION_KINDS,
+  SHARING_KINDS,
   isAllowedKind,
+  qualifiesAsFirstUsefulAction,
   validateMeaningfulAction,
 } from "./event-schema";
 
@@ -98,4 +101,39 @@ test("timestamps must be positive numbers", () => {
 
 test("isAllowedKind refuses unknown products", () => {
   assert.equal(isAllowedKind("roadmap", "task_created"), false);
+});
+
+/**
+ * D-032 R10. An unpublish is allowlisted use — the couple did commit an action —
+ * but it is a withdrawal, so it can neither evidence sharing nor be the moment
+ * the venue's gift landed.
+ */
+test("an unpublish counts as use and still cannot be a first useful action", () => {
+  assert.equal(isAllowedKind("timeline", "timeline_unpublished"), true);
+  assert.equal(qualifiesAsFirstUsefulAction("timeline_unpublished"), false);
+});
+
+test("every other allowlisted kind may start a workspace's clock", () => {
+  const excluded = FIRST_USEFUL_ACTION_EXCLUDED_KINDS as readonly string[];
+  for (const [product, kinds] of Object.entries(MEANINGFUL_ACTION_KINDS)) {
+    for (const kind of kinds) {
+      if (excluded.includes(kind)) continue;
+      assert.equal(
+        qualifiesAsFirstUsefulAction(kind),
+        true,
+        `${product}/${kind} should be able to start the clock`,
+      );
+    }
+  }
+});
+
+test("a kind excluded from first useful action is excluded from sharing too", () => {
+  assert.ok(FIRST_USEFUL_ACTION_EXCLUDED_KINDS.length > 0);
+  for (const kind of FIRST_USEFUL_ACTION_EXCLUDED_KINDS) {
+    assert.equal(
+      SHARING_KINDS.includes(kind),
+      false,
+      `${kind} must appear in no sharing computation either`,
+    );
+  }
 });

@@ -135,7 +135,7 @@ export function UsagePanel({
           <span>
             {showBars
               ? "Comparable complete coverage"
-              : "Chart withheld — text state only"}
+              : "Chart withheld · text state only"}
           </span>
         </div>
         {showBars ? (
@@ -162,7 +162,7 @@ export function UsagePanel({
             <p>
               Lifecycle bars stay hidden when coverage is incomplete or metrics
               are unavailable. Values above remain labeled as withheld,
-              unavailable, or partial — never as empty bars or zeros.
+              unavailable, or partial, never as empty bars or zeros.
             </p>
             <ul>
               <li>

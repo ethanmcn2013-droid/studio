@@ -1,0 +1,83 @@
+# E12.07 / E12.08 verification run
+# worktree _wt-wp13, branch claude/wp13-commercial, 2026-08-03
+# NOTE: this worktree is shared with concurrent WP-13 packages. Sibling
+#       uncommitted work is present and is attributed where it fails.
+
+$ node scripts/check-venue-edition-contract.mjs
+[venue-edition-contract] ok
+exit=0
+
+$ pnpm typecheck
+
+> studio@0.1.0 typecheck C:\Users\ethan\signal-studio-workspace\_wt-wp13
+> tsc --noEmit
+
+exit=0
+
+$ pnpm lint
+  86:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+  119:8  warning  Unused eslint-disable directive (no problems were reported from 'jsx-a11y/media-has-caption')
+✖ 2 problems (1 error, 1 warning)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+exit=1
+
+$ pnpm test
+[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)
+[suite-switcher-contract] ok
+[chrome-contract] ok (studio)
+[loading-contract] ok (studio)
+[venue-edition-contract] ok
+[venue-term-parity] ok (7498cee02c07)
+[content-truth] ok
+[access-anomaly] bulk_cap op-test mint refused for sp-capped: 1 requested, 0 remaining
+[access-anomaly] bulk_cap op-test mint refused for sp-nullcap: 1 requested, 0 remaining
+[access-anomaly] fair_use op-test sp-fairuse issuance 3 crosses its fair-use ceiling 2 this term. Issuing anyway — unlimited means unlimited.
+[access-anomaly] invalid_terms - venue_edition code terms 'wedding/365'
+[access-anomaly] invalid_terms - venue_edition code terms 'wedding/null'
+[access-anomaly] invalid_terms - venue_edition code terms 'studio/548'
+exit=0
+
+# lint findings attributed:
+#   src/app/hq/account-review/account-review.tsx:86  react-hooks/set-state-in-effect  (WP-05, pre-existing)
+#   src/app/v/[token]/states.tsx:119                 unused eslint-disable (warning)  (E12.02/E12.03 sibling)
+#   zero findings in src/app/venues/privacy/page.tsx or src/app/venues/questions/page.tsx
+
+$ pnpm build
+exit=1
+
+$ forbidden-wording sweep (grep -o -i; NOTE: 'grep -i -F' together aborts on this
+  Git Bash build and returns a SILENT zero, so -F is not used anywhere below)
+##### src/app/venues/privacy/page.tsx
+  HIT 2 : consent
+  HIT 2 : your couples
+  HIT 2 : logo
+  em-dash 0 | exclamation 0
+##### src/app/venues/questions/page.tsx
+  HIT 2 : GDPR compliant
+  HIT 1 : 18 months
+  HIT 3 : your couples
+  HIT 1 : logo
+  em-dash 0 | exclamation 0
+
+$ pnpm build   (re-run after the shared-worktree build lock cleared, final code)
+  route table contains: /venues/privacy and /venues/questions
+  EXIT=0
+
+$ node scripts/check-venue-edition-contract.mjs   (final, after copy fixes)
+[venue-edition-contract] ok
+exit=0
+
+$ pnpm typecheck   (final)
+  EXIT=0
+
+$ node scripts/experience/validate.mjs --product=studio
+experience:validate: 8 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+  x studio.page.hq-venue-proposal: discovered experience is not registered (studio/src/app/hq/venue-proposal/page.tsx)
+  x studio.page.v-by-token: discovered experience is not registered (studio/src/app/v/[token]/page.tsx)
+  x studio.page.venues-couple-preview: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.page.venues-privacy: discovered experience is not registered (studio/src/app/venues/privacy/page.tsx)
+  x studio.page.venues-questions: discovered experience is not registered (studio/src/app/venues/questions/page.tsx)
+  x studio.state.v-by-token-not-found: discovered experience is not registered (studio/src/app/v/[token]/not-found.tsx)
+exit=1  (I-014; two of the failures are this task's new routes and are NOT registered here)

@@ -86,6 +86,25 @@ export function assertSnapshotPrivacy(snapshot: AccountSnapshot): string[] {
   return errors;
 }
 
+/**
+ * The check every export must pass before its bytes leave the server.
+ *
+ * `assertSnapshotPrivacy` guards the object; `scanTextForPrivacyLeaks` guards
+ * the rendered body, which is a different artefact — a serialiser can compose
+ * a string from parts that were each individually clean. Any route that
+ * re-serialises a snapshot is a new payload path and must call this, not
+ * assume the loader already covered it.
+ */
+export function assertExportPayloadSafe(
+  snapshot: AccountSnapshot,
+  renderedBody: string,
+): string[] {
+  return [
+    ...assertSnapshotPrivacy(snapshot),
+    ...scanTextForPrivacyLeaks(renderedBody),
+  ];
+}
+
 export function scanTextForPrivacyLeaks(text: string): string[] {
   const errors: string[] = [];
   for (const pattern of PROHIBITED_PATTERNS) {

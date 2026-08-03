@@ -1,8 +1,26 @@
-# Venue Portal implementation phases and test plan
+# Signal Studio Account · implementation phases and test plan (filed as "Venue Portal")
+
+Naming: the **Signal Studio Account IS the Venue Portal** (**D-015 Q4**). One
+surface, two names.
+
+**This is the current test inventory of record. Roughly 45 cases.** It is not
+historical and it is not superseded. Corrected against the ratified decision
+record on 2026-08-03. Superseded text is struck through and marked
+`[SUPERSEDED <id> · <date>]`; it is never deleted silently.
+
+**Launch scope (D-027 point 4, 2026-08-03).** At launch the surface is
+invitation administration only. Aggregate adoption evidence follows after
+1 September, and the consent layer stays unwired. The phases below are not
+rewritten. Phase C's Access work and the tenant-isolation, privacy and role
+suites are launch-critical. The Usage and Reports work is post-launch.
+
+**This is an audit, not a build (D-015 Q2).** The criteria below exist so that
+existing implementation can be assessed against them. Existing implementation is
+candidate evidence. It is never founder-approved completion.
 
 ## Architecture boundary
 
-The Venue Portal is a read model over `signal-entitlements`. It does not create
+The Account is a read model over `signal-entitlements`. It does not create
 a second entitlement authority and does not query product content.
 
 ```text
@@ -23,7 +41,7 @@ Notes / Tasks / Timeline / Signal
         Venue Portal read-only endpoints
 
 Signal HQ Access ----------------------> canonical access mutations
-Venue Portal requests ----------------> HQ queue, never direct mutation
+Account requests ---------------------> HQ queue, never direct mutation
 ```
 
 ## Phase A. Product and privacy contract
@@ -90,8 +108,8 @@ Phase C exit gate:
 - notification preferences;
 - optional operational contact label only after lawful-basis review.
 
-Allotment, mint, revoke, entitlement, reconciliation, and view-as mutations
-remain Signal HQ actions.
+~~Allotment~~ Entitlement mode `[SUPERSEDED D-020 · 2026-08-03]`, mint, revoke,
+entitlement, reconciliation, and view-as mutations remain Signal HQ actions.
 
 ## Phase E. Sales proof
 
@@ -140,14 +158,48 @@ remain Signal HQ actions.
 - one workspace with many actions is one active workspace;
 - module adoption deduplicates by activation/module/window;
 - automatic Signal landing does not count as a deliberate briefing open;
-- reconciliation drift blocks "remaining" and raises attention.
+- ~~reconciliation drift blocks "remaining" and raises attention~~ `[SUPERSEDED
+  D-020 · 2026-08-03. There is no remainder to block]` reconciliation drift
+  raises attention and blocks any reconciled claim.
+
+### Entitlement, added 2026-08-03 (D-020, R-016)
+
+- an unlimited entitlement renders `unlimited`, never a number and never `0`;
+- an absent stored entitlement figure renders `unavailable`, never `0`, and
+  produces no exhaustion message and no request prompt;
+- CSV writes `value_state=unlimited` with a blank `value` cell, in every export
+  format;
+- the request control, the exhaustion message and any copy describing a
+  quantity left are absent from an unlimited venue's surface, not merely
+  disabled;
+- a venue-facing string sweep returns zero unmarked hits for "allotment",
+  "seat", "codes remaining" and "licences allotted";
+- the entitlement-mode default is the same in the database column, the library
+  constant and the HQ onboarding form.
+
+### Wedding dates, added 2026-08-03 (D-011 point 1)
+
+- a wedding date reaches a venue only where that venue's code was redeemed by
+  that couple, proven server-side against the canonical redemption chain;
+- **no date change is ever rendered**: no previous date, no delta, no
+  "postponed" flag, no change count, no edit timestamp, no derived attention
+  item, in any format including exports, accessibility text and support view-as;
+- a client-supplied sponsor id cannot widen the projection.
+
+### Denominators, added 2026-08-03 (E09.02 §1)
+
+- the redemption denominator query touches no booking, contract or wedding-date
+  column, proven by a schema-level test;
+- every share renders with its denominator; a bare percentage fails the test.
 
 ### Roles and actions
 
 - capability matrix is table-driven;
 - final venue owner cannot be removed;
 - revoked member session is rejected;
-- a request cannot mutate allotment;
+- a request cannot mutate entitlement `[was "allotment", SUPERSEDED D-020 · 2026-08-03]`;
+- a mutation resolves its sponsor server-side and ignores any client-supplied
+  sponsor id;
 - fulfilled request references an audited HQ ledger event.
 
 ### Experience

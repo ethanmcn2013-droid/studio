@@ -1,0 +1,67 @@
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+signal studio
+Rivermill Hall
+
+July 2026 · account-metrics.v2
+
+The benefit, in use.
+
+Account active · 2026/27 access term · Data through 2026-07-24
+
+Unavailable
+Covered
+3
+Issued
+1
+Redeemed
+Unavailable
+First useful action
+Unavailable
+Active recently
+Unavailable
+Continued after 30 days
+Product reach
+Notes
+Unavailable
+Tasks
+Unavailable
+Timeline
+Unavailable
+Signal
+Unavailable
+
+Recommended next action
+
+Confirm this account's access in Signal HQ Access
+
+Signal HQ Access holds no issuing record for this venue, so Account has nothing to report here. Missing configuration is never shown as zero.
+
+SAMPLE · DETERMINISTIC REVIEW DATA.
+
+Reporting coverage and privacy
+
+Reporting unavailable
+
+No reliable sponsored-use coverage for this window. Issued and redeemed totals remain exact.
+
+Data through
+2026-07-24
+Definition version
+account-metrics.v2
+Days with sponsored use
+Unavailable
+Privacy posture
+Aggregate sponsored use
+
+Issued and redeemed totals remain visible. Everything Account cannot measure is shown as unavailable.
+
+A value Account does not hold is shown as unavailable. It is never shown as zero.
+
+names or emails of recipients
+notes, task text, or comments
+Timeline content or attachments
+private membership lists
+raw identifiers
+
+Aggregate use only. Private work is never included.

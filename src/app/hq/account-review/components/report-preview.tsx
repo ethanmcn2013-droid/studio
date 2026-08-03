@@ -6,6 +6,7 @@ import {
   metricRateLabel,
 } from "@/lib/account/format";
 import type { AccountSnapshot, DesignConceptId } from "@/lib/account/types";
+import { ADOPTION_JOURNEY } from "@/lib/account/vocabulary";
 import { AccountIcon } from "./icons";
 import { Metric } from "./metric";
 import styles from "./report-preview.module.css";
@@ -68,20 +69,11 @@ export function ReportPreview({
           </p>
 
           <div className={styles.journey}>
-            {(
-              [
-                ["Allotted", snapshot.adoption.allotted],
-                ["Issued", snapshot.adoption.issued],
-                ["Redeemed", snapshot.adoption.redeemed],
-                ["First useful action", snapshot.adoption.firstUsefulAction],
-                ["Active recently", snapshot.adoption.activeRecently],
-                ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
-              ] as const
-            ).map(([label, metric]) => (
+            {ADOPTION_JOURNEY.map(([label, key]) => (
               <Metric
                 key={label}
                 className={styles.metric}
-                metric={metric}
+                metric={snapshot.adoption[key]}
                 label={label}
               />
             ))}

@@ -288,10 +288,220 @@ forbidText(
   "Venue Edition structured data must remain one exact offer",
 );
 
+/* ------------------------------------------------------------------ *
+ * Stage 2 — [venue-copy]
+ *
+ * R-020's recorded mitigation is an automated check that polices Signal
+ * Studio's own strings. That was necessary and insufficient: the strings
+ * twenty-five untrained venues say to couples are not in this repository,
+ * and the check above reached exactly two copy files.
+ *
+ * This stage reads its patterns from the prohibited-claims list that the
+ * venue copy pack renders, so the pack a venue is handed and the gate that
+ * polices us cannot drift apart. It sweeps a named surface list across both
+ * repositories.
+ *
+ * Every surface carries a PINNED expected hit count. A count going up fails.
+ * A count going down fails too, with a message saying to lower the pin, so a
+ * fix cannot land silently and the number can only ratchet toward zero.
+ *
+ * Two tiers, because a gate another package cannot make green is a gate that
+ * gets deleted. `enforced` surfaces are inside WP-06's column and are pinned
+ * at zero. `tracked` surfaces are owned elsewhere; their hits are named,
+ * counted and attributed to the owning task on every run.
+ * ------------------------------------------------------------------ */
+
+const CLAIMS_PATH =
+  "docs/execution/venue-edition-and-films/evidence/copy/prohibited-claims.v1.json";
+
+const claims = JSON.parse(read(CLAIMS_PATH));
+
+/** A question is not a claim. A FAQ has to be able to ask what it answers. */
+function isQuestion(line) {
+  return /\?[*_`"'\s)]*$/.test(line.trim());
+}
+
+/**
+ * In an evidence document the copy is what is inside the blockquote. The
+ * prose around it states the rule, and a rule has to be able to name the
+ * word it forbids.
+ */
+function selectLines(source, scope) {
+  const lines = source.split(/\r?\n/);
+  const out = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const text = lines[i];
+    if (scope === "blockquote" && !/^\s*>/.test(text)) continue;
+    out.push({ text, line: i + 1 });
+  }
+  return out;
+}
+
+/**
+ * A line that forbids a word is not a line that uses it, and a voice guard
+ * listing the banned register has to be able to list it.
+ *
+ * This was first written as a heuristic: a quoted match on a line carrying a
+ * prohibition word. It suppressed two REAL defects on the live venues page,
+ * because ordinary copy is full of "no" and "not" and both defects happened
+ * to sit inside a quoted string. A heuristic that hides the thing the check
+ * exists to find is worse than no heuristic.
+ *
+ * So citations are explicit, and each one names the line it exempts by a
+ * distinctive substring rather than by line number. If the line is reworded,
+ * the entry stops matching and the hit comes back, which is the correct
+ * failure direction.
+ */
+function isCitation(surface, rule, entry) {
+  const list = claims.citations ?? [];
+  return list.some(
+    (c) =>
+      c.path === surface.path &&
+      c.rule === rule.id &&
+      entry.text.includes(c.contains),
+  );
+}
+
+function compiled(rule) {
+  return rule.patterns.map((p) => new RegExp(p, "i"));
+}
+
+/**
+ * P7 is contextual, not a word. "18 months" is only a defect when the grace
+ * rule does not travel with it, so the match carries a lookahead window.
+ */
+function bareTermHits(rule, text) {
+  const re = new RegExp(rule.patterns[0], "gi");
+  const grace = new RegExp(rule.gracePattern, "i");
+  const found = [];
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    const window = text.slice(m.index, m.index + rule.graceWithin);
+    if (!grace.test(window)) found.push({ match: m[0], index: m.index });
+  }
+  return found;
+}
+
+function sweep(surface) {
+  let source;
+  try {
+    source = read(surface.path);
+  } catch {
+    return { missing: true, hits: [], cited: 0 };
+  }
+  const selected = selectLines(source, surface.scope);
+  const hits = [];
+  let cited = 0;
+
+  const record = (rule, entry, match) => {
+    if (isCitation(surface, rule, entry)) {
+      cited += 1;
+      return;
+    }
+    hits.push({
+      rule: rule.id,
+      line: entry.line,
+      match,
+      text: entry.text.trim(),
+    });
+  };
+
+  for (const rule of claims.rules) {
+    if (rule.copyOnly && surface.kind === "code") continue;
+    if (rule.punctuation && surface.scope !== "blockquote") continue;
+
+    if (rule.kind === "bare-term") {
+      for (const entry of selected) {
+        for (const { match, index } of bareTermHits(rule, entry.text)) {
+          record(rule, entry, match, index);
+        }
+      }
+      continue;
+    }
+
+    for (const re of compiled(rule)) {
+      for (const entry of selected) {
+        if (rule.claimOnly && isQuestion(entry.text)) continue;
+        const m = re.exec(entry.text);
+        if (m) record(rule, entry, m[0], m.index);
+      }
+    }
+  }
+  return { missing: false, hits, cited };
+}
+
+const copyReport = [];
+let sweptSurfaces = 0;
+let totalHits = 0;
+let totalCited = 0;
+
+for (const tier of ["enforced", "tracked"]) {
+  for (const surface of claims.surfaces[tier]) {
+    const { missing, hits, cited } = sweep(surface);
+    totalCited += cited ?? 0;
+    if (missing) {
+      failures.push(
+        `[venue-copy] ${surface.path} is listed in ${CLAIMS_PATH} but does not exist. ` +
+          `A surface that vanishes from the sweep is how a defect stops being counted.`,
+      );
+      continue;
+    }
+    sweptSurfaces += 1;
+    totalHits += hits.length;
+    copyReport.push({ tier, surface, hits, cited });
+
+    if (hits.length > surface.expected) {
+      const fresh = hits.slice(surface.expected);
+      failures.push(
+        `[venue-copy] ${surface.path} has ${hits.length} prohibited-claim hit(s), ` +
+          `pinned at ${surface.expected} (owner: ${surface.owner}). New: ` +
+          fresh
+            .map((h) => `${h.rule} at line ${h.line} ${JSON.stringify(h.match)}`)
+            .join("; "),
+      );
+    } else if (hits.length < surface.expected) {
+      failures.push(
+        `[venue-copy] ${surface.path} now has ${hits.length} hit(s) but is pinned at ` +
+          `${surface.expected}. Lower the pin in ${CLAIMS_PATH} in the same change, ` +
+          `so a fix is recorded rather than absorbed.`,
+      );
+    }
+  }
+}
+
+const shouldReport =
+  process.argv.includes("--copy-report") || failures.length > 0;
+
+if (shouldReport) {
+  console.log(
+    `[venue-copy] swept ${sweptSurfaces} surface(s) against ` +
+      `${claims.rules.length} rule(s) / ` +
+      `${claims.rules.reduce((n, r) => n + r.patterns.length, 0)} pattern(s); ` +
+      `${totalHits} hit(s), ${totalCited} suppressed as citations`,
+  );
+  for (const { tier, surface, hits, cited } of copyReport) {
+    if (hits.length === 0 && !cited) continue;
+    console.log(
+      `  [${tier}] ${surface.path} ` +
+        `${hits.length} hit(s), pinned ${surface.expected}` +
+        (cited ? `, ${cited} cited` : "") +
+        `, owner ${surface.owner}`,
+    );
+    for (const h of hits) {
+      console.log(
+        `      ${h.rule}  line ${h.line}  ${JSON.stringify(h.match)}  |  ${h.text.slice(0, 96)}`,
+      );
+    }
+  }
+}
+
 if (failures.length > 0) {
   console.error("[venue-edition-contract] failed");
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log("[venue-edition-contract] ok");
+console.log(
+  `[venue-edition-contract] ok  ·  [venue-copy] ${sweptSurfaces} surfaces, ` +
+    `${totalHits} tracked hit(s), all at their pinned counts`,
+);

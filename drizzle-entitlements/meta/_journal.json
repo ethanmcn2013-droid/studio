@@ -8,6 +8,13 @@
       "when": 1785485547368,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1785727157128,
+      "tag": "0001_account_metrics_v2_and_drift_closure",
+      "breakpoints": true
     }
   ]
 }

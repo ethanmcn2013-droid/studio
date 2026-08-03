@@ -1,0 +1,167 @@
+E12.09 / E12.14 — raw verification output
+Captured 2026-08-03, branch claude/wp13-commercial, worktree _wt-wp13.
+Server: next start -p 3462, VERCEL_ENV=production, fresh build with all fixes.
+
+==================== ACCESSIBILITY / RESPONSIVE / REDUCED MOTION ====================
+axe-core, tags: wcag2a wcag2aa wcag21a wcag21aa
+Breakpoints: 375x812, 768x1024, 1280x800, 1600x1000
+
+===== SUMMARY =====
+/venues	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/venues/demo	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/venues/privacy	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/venues/questions	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/venues/couple-preview	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/venues/what-you-see	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+/v/Rt9wZaQ4nHs6uKe2VbXm8Cd3	http=200	axe_total=0	axe_serious=0	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=3	offscreen=0	animating_reduced=0	h_overflow=none
+/v/Kf3rNqW8dJ2mBv5tXcYp7Lz1	http=200	axe_total=0	axe_serious=0	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=2	offscreen=0	animating_reduced=0	h_overflow=none
+/hq/venue-proposal	http=200	axe_total=4	axe_serious=4	h1=1	skips=0	main=1	img_no_alt=0	tab_stops=25	offscreen=0	animating_reduced=0	h_overflow=none
+
+Per-route axe rule ids at the desktop breakpoint:
+  /venues                         ["color-contrast(serious, 21)"]
+  /venues/demo                    ["color-contrast(serious, 1)"]
+  /venues/privacy                 ["color-contrast(serious, 5)"]
+  /venues/questions               ["color-contrast(serious, 1)"]
+  /venues/couple-preview          ["color-contrast(serious, 1)"]
+  /venues/what-you-see            ["color-contrast(serious, 5)"]
+  /v/Rt9wZaQ4nHs6uKe2VbXm8Cd3     []
+  /v/Kf3rNqW8dJ2mBv5tXcYp7Lz1     []
+  /hq/venue-proposal              ["color-contrast(serious, 12)"]
+
+==================== THIRD-PARTY ANALYTICS (D-032 R8) ====================
+Served HTML, count of googletagmanager.com/gtag/js script tags:
+  /                                      gtag_script_tags=2   <- control, fires
+  /pricing                               gtag_script_tags=2   <- control, fires
+  /weddings                              gtag_script_tags=2   <- control, fires
+  /venues                                gtag_script_tags=0
+  /venues/demo                           gtag_script_tags=0
+  /venues/privacy                        gtag_script_tags=0
+  /venues/questions                      gtag_script_tags=0
+  /venues/couple-preview                 gtag_script_tags=0
+  /venues/what-you-see                   gtag_script_tags=0
+  /v/Rt9wZaQ4nHs6uKe2VbXm8Cd3            gtag_script_tags=0
+  /v/Kf3rNqW8dJ2mBv5tXcYp7Lz1            gtag_script_tags=0
+
+Observed outbound requests, headless Chromium, networkidle + 2500ms:
+  /                             third_party_requests=2  [www.googletagmanager.com, region1.google-analytics.com]
+  /pricing                      third_party_requests=2  [www.googletagmanager.com, region1.google-analytics.com]
+  /venues                       third_party_requests=0  []
+  /venues/privacy               third_party_requests=0  []
+  /venues/questions             third_party_requests=0  []
+  /venues/couple-preview        third_party_requests=0  []
+  /venues/what-you-see          third_party_requests=0  []
+  /venues/demo                  third_party_requests=0  []
+  /v/Rt9wZaQ4nHs6uKe2VbXm8Cd3   third_party_requests=0  []
+  /v/Kf3rNqW8dJ2mBv5tXcYp7Lz1   third_party_requests=0  []
+
+==================== COPY SWEEP: prohibited-claims.v1.json ====================
+
+### src/app/venues/page.tsx  ·  E12.04 (pinned reference)
+    hits 8, cited 0  [pin 8 HOLDS]
+     469  p6-unlimited-blocked   "No seats"   booking gets the full suite. No seats. No per-couple maths.
+      15  p7-bare-term           "eighteen months"   "A venue stands behind its couples' planning, eighteen months of Signal Studio each, under the v
+      55  p7-bare-term           "18 months"   entitlement: "18 months",
+      61  p7-bare-term           "18 months"   entitlement: "18 months",
+      67  p7-bare-term           "18 months"   entitlement: "18 months",
+      73  p7-bare-term           "18 months"   entitlement: "18 months",
+     176  d027-name-only         "Co-branded"   {/* Co-branded workspace mock */}
+     118  d001-4-fourth-thing    "couple separately consents"   copy: "A calm record of invitations, activation state and entitlement validity. Private couple w
+
+### src/app/venues/privacy/page.tsx  ·  E12.07
+    hits 0, cited 0
+
+### src/app/venues/questions/page.tsx  ·  E12.08
+    hits 0, cited 0
+
+### src/app/venues/couple-preview/page.tsx  ·  E12.05
+    hits 1, cited 0
+     251  p7-bare-term           "eighteen months"   Each couple keeps it for eighteen months from the day they open
+
+### src/app/venues/what-you-see/page.tsx  ·  E12.06
+    hits 0, cited 0
+
+### src/app/venues/demo/page.tsx  ·  E12.01 (pre-existing)
+    hits 0, cited 0
+
+### src/lib/venue-proposal.ts  ·  E12.09
+    hits 0, cited 0
+
+### src/components/venue/venue-proposal-sheet.tsx  ·  E12.09
+    hits 0, cited 0
+
+### src/app/hq/venue-proposal/composer.tsx  ·  E12.09
+    hits 0, cited 0
+
+### src/lib/venue-invitation/copy.ts  ·  E12.02/03
+    hits 1, cited 0
+      39  p7-bare-term           "eighteen months"   /** E11.11 section 2. D-010 point 2 and D-022. Never a bare eighteen months. */
+
+### src/app/v/[token]/page.tsx  ·  E12.02/03
+    hits 0, cited 0
+
+### src/app/v/[token]/states.tsx  ·  E12.02/03
+    hits 0, cited 0
+
+### src/app/v/[token]/not-found.tsx  ·  E12.02/03
+    hits 0, cited 0
+
+===== TOTAL UNCITED HITS ACROSS 13 SURFACES: 10 =====
+
+==================== ROBOTS / SITEMAP ====================
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /hq/
+Disallow: /redeem/
+Disallow: /review
+Disallow: /v/
+
+Host: https://signalstudio.ie
+Sitemap: https://signalstudio.ie/sitemap.xml
+
+==================== GATES ====================
+$ pnpm typecheck
+> studio@0.1.0 typecheck C:\Users\ethan\signal-studio-workspace\_wt-wp13
+> tsc --noEmit
+
+   exit=0
+$ pnpm test
+[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)
+[suite-switcher-contract] ok
+[chrome-contract] ok (studio)
+[loading-contract] ok (studio)
+[venue-edition-contract] ok
+[venue-term-parity] ok (7498cee02c07)
+[content-truth] ok
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+ℹ tests 448
+ℹ pass 448
+ℹ fail 0
+[access-anomaly] bulk_cap op-test mint refused for sp-capped: 1 requested, 0 remaining
+[access-anomaly] bulk_cap op-test mint refused for sp-nullcap: 1 requested, 0 remaining
+[access-anomaly] fair_use op-test sp-fairuse issuance 3 crosses its fair-use ceiling 2 this term. Issuing anyway — unlimited means unlimited.
+[access-anomaly] invalid_terms - venue_edition code terms 'wedding/365'
+[access-anomaly] invalid_terms - venue_edition code terms 'wedding/null'
+[access-anomaly] invalid_terms - venue_edition code terms 'studio/548'
+ℹ tests 38
+ℹ pass 38
+ℹ fail 0
+   exit=0
+$ node scripts/ds/ds-check.mjs
+ds-check: clean — no drift.
+   exit=0
+$ pnpm lint
+  86:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+✖ 1 problem (1 error, 0 warnings)
+   exit=1  (PRE-EXISTING, WP-05's file)
+$ node scripts/experience/validate.mjs --product=studio
+experience:validate: 7 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+  x studio.page.hq-venue-proposal: discovered experience is not registered (studio/src/app/hq/venue-proposal/page.tsx)
+  x studio.page.v-by-token: discovered experience is not registered (studio/src/app/v/[token]/page.tsx)
+  x studio.page.venues-privacy: discovered experience is not registered (studio/src/app/venues/privacy/page.tsx)
+  x studio.page.venues-questions: discovered experience is not registered (studio/src/app/venues/questions/page.tsx)
+  x studio.state.v-by-token-not-found: discovered experience is not registered (studio/src/app/v/[token]/not-found.tsx)
