@@ -1,8 +1,17 @@
 # Venue Edition Strategy
 
-Status: operating detail · 2026-05-16
+Status: operating detail · 2026-05-16 · **commercial sections amended 2026-08-03**
 Owner: founder
 This document owns the operating detail for the venue wedge. The thesis lives in `docs/strategy/BUSINESS_PARTNER_REVIEW_2026_05.md`.
+
+> **Amended 2026-08-03.** The commercial position is now the Founding 25:
+> €1,500 standard, €1,000 for the first 25 founding agreements, both inclusive
+> of VAT. It replaces the retired fifteen-venue lock at €1,500. The sales
+> narrative, objections, metrics and kill triggers below are unchanged and still
+> hold. Authoritative source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`. Programme
+> rules: `FOUNDING_25_PROGRAMME_MECHANICS.md`. Benefits and their boundaries:
+> `FOUNDING_25_BENEFITS_CHARTER.md`.
 
 ---
 
@@ -20,7 +29,7 @@ Signal Studio gives each couple a single calm place to plan. Notes to capture wh
 
 The Venue Edition puts your venue's name on it. Not as a logo wall — as a quiet line at the top of the workspace. An eyebrow. The couple's plan stays the thing in focus. Your name is just there, part of the experience, carrying the signal that this venue looks after you.
 
-You pay €1,500 once a year. Every couple you are booking gets eighteen months of the full suite, then it drops to the free plan with a quiet prompt. No seats, no per-couple arithmetic, no software to run. Your team's only involvement is handing a code to a couple when they book. That is the whole operation on your side.
+You pay €1,500 once a year, and €1,000 if you are one of the first twenty-five. Every couple you are booking gets eighteen months of the full suite, or three months past the wedding if the engagement runs long, then it drops to the free plan with a quiet prompt. No seats, no per-couple arithmetic, no software to run. Your team's only involvement is handing a code to a couple when they book. That is the whole operation on your side.
 
 This is patronage, not software. You are not licensing a tool. You are standing behind your couples' planning. The value to you is not a feature list — it is fewer confused couples, fewer repetitive emails, and a planning experience that carries your venue's name and reflects its standard of care.
 
@@ -34,28 +43,39 @@ The venue pays Signal Studio once a year, prepaid. The couple never sees a price
 
 ### Size → price logic
 
-| Venue size | Annual venues (approx.) | Annual fee |
+| Who | Annual weddings | Annual fee |
 |---|---|---|
-| Every venue | Any size | €1,500 |
+| The Founding 25 | Any size | €1,000 |
+| Every venue after them | Any size | €1,500 |
 
-The logic: Signal Studio gives every couple the venue sends eighteen months of the full suite. One fixed annual price removes negotiation by venue size, keeps the offer legible, and leaves the value to compound as more couples use it. There is one Venue Edition, not a hidden set of enterprise tiers.
+Both numbers are inclusive of VAT at the prevailing rate. The number a venue sees is the number it pays.
 
-There is no per-couple maths and no seat counting. The venue pays the flat annual fee. Every couple booked in that year gets a code.
+The logic: Signal Studio gives every couple the venue sends eighteen months of the full suite. One price per tier removes negotiation by venue size, keeps the offer legible, and leaves the value to compound as more couples use it. There is one Venue Edition, not a hidden set of enterprise tiers.
+
+Volume does not move the price in either direction. A venue running 250 weddings a year pays what a venue running 25 pays. That is a deliberate choice, and its cost at the top end is on the record as R-021.
+
+There is no per-couple maths and no seat counting. The venue pays the flat annual fee. Every couple with a signed booking gets a code, for as long as the licence is current.
 
 ### Founding terms
 
-The first fifteen venues lock €1,500 a year for as long as they stay. This is not an introductory rate. There is no clause that expires it into a higher number. The asset is permanence, not a temporary markdown. A founding venue that stays at €1,500 in year five has not missed a price increase — that is the deal, and it holds.
+The first twenty-five venues pay €1,000 a year. €500 a year less, for as long as they stay. The rate holds for as long as the agreement renews continuously, without a lapse, and there is no clause that expires it into a higher number.
 
-Why the founding lock still matters: the first fifteen venues are taking a position before there is a case study or a referral. Every venue pays €1,500 today; founding venues receive the contractual certainty that the number will not move for as long as they stay.
+**No permanence wording, ever.** The substance is a rate with no expiry clause, and saying so must never become a promise that the service itself is eternal. D-001 point 16 forbids that promise outright. The exact banned phrasings are listed in `FOUNDING_25_PROGRAMME_MECHANICS.md` §1 and enforced by `scripts/check-venue-edition-contract.mjs`.
+
+Why a real reduction rather than a locked standard price: a venue owner doing arithmetic in euro understands €500 a year better than a percentage or a promise about year five. The first twenty-five are taking a position before there is a case study or a referral, and the reward for that should be money rather than certainty alone. They get both.
+
+The rate follows the property, not the company. It survives a sale, a rebrand and a change of ownership while the agreement runs continuously. It does not travel to other properties a new owner already holds.
+
+Per-wedding arithmetic is the strongest line available and it belongs in the conversation: €1,000 across 20 weddings is €50 a wedding. Across 40 it is €25. Across 80 it is €12.50. Against a €25,000 wedding, that is the whole argument. The founder does that arithmetic. The venue is never asked to supply the number before signature.
 
 ### What the venue gets
 
 - Codes to pass to couples at booking (or at any point in the planning year).
-- A co-branded workspace eyebrow — the venue name, quiet, at the top.
+- A workspace eyebrow carrying the venue name, quiet, at the top. The name only: no logo, no colour, nothing the venue authors (D-027 point 3).
 - One coordinator walkthrough (30 minutes, once — not a standing arrangement).
 - A soft two-week redemption window for the first cohort, watched quietly.
 - One short review at the end of the window. That is the whole commitment.
-- Founding venues: first look at new work and a standing to shape what changes.
+- Founding venues: a numbered place from 01/25 to 25/25, one 30-minute call a year with the founder plus a named email route, first look at new work, and requests that are logged and shape the roadmap. Nothing is built for one venue. Full detail and every boundary: `FOUNDING_25_BENEFITS_CHARTER.md`.
 
 ---
 
@@ -65,7 +85,7 @@ The founding-venue pilot is not a free trial. It is a paid founding position wit
 
 ### The arc
 
-1. **Settle the year.** The venue pays €1,500, prepaid. One price applies to every venue.
+1. **Settle the year.** The venue pays, prepaid: €1,000 for a founding place, €1,500 after the programme closes. The place and its number are assigned when the payment clears, not at signature.
 2. **Codes and a short note.** Signal Studio sends the redemption codes and a brief note the venue can pass to couples at booking. The note does not require editing — it is written for the venue's voice to carry it.
 3. **One walkthrough.** A coordinator gets a 30-minute walkthrough — what the workspace looks like for a couple, how the eyebrow appears, what happens at month 18. Once. Not a recurring training.
 4. **Soft redemption window.** About two weeks. Couples redeem and start planning. Signal Studio watches quietly and stays out of the way. There is no live dashboard for the venue to monitor — the product runs itself.
@@ -73,7 +93,7 @@ The founding-venue pilot is not a free trial. It is a paid founding position wit
 
 ### What the pilot is not
 
-It is not a free trial with an upgrade prompt. It is not a pilot that converts to a more expensive tier. €1,500 is the Venue Edition price. The review is the mechanism for shaping what comes next — not the mechanism for reselling.
+It is not a free trial with an upgrade prompt, and it is not a pilot that converts to a more expensive tier. €1,000 is the founding rate and it is held on continuous renewal. A founding venue never gets moved to €1,500 for staying. The review is the mechanism for shaping what comes next, not the mechanism for reselling.
 
 ---
 
@@ -107,7 +127,9 @@ Not in the product — the suite is built for coordination across event types. B
 
 **"What happens after 18 months?"**
 
-The couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 18 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and timeline stay intact on the free tier. Nothing is held hostage.
+Eighteen months is the floor, not the whole answer. A couple keeps the full suite for eighteen months from the day they open it, or three months past the wedding, whichever is later. A couple who books two years out does not run out before the day.
+
+After that the couple's workspace drops to the free plan. They get a quiet prompt beforehand — not a countdown in their face, just a clear note that the venue's sponsorship is ending and they can continue for free or move to a paid plan if they want to keep using the full suite. The venue's co-branded eyebrow stays visible for the full 18 months, then it drops with the sponsorship. The couple's data does not disappear. Their notes, tasks, and timeline stay intact on the free tier. Nothing is held hostage.
 
 **"What about our couples' data and privacy?"**
 
@@ -127,9 +149,9 @@ The ideal founding venue:
 
 - **Premium.** Not expensive-per-night as the only signal — premium in the sense that the brand promise is care, not throughput. A venue that sells being looked after.
 - **Owner-operator who can sign alone.** No procurement committee, no regional manager who needs approval from a parent group. One person who feels the pain and can write the cheque. This is non-negotiable for the pilot stage — the buyer and the decision-maker must be the same person, or the sale cannot close in a reasonable timeframe.
-- **Real coordination volume.** Roughly ≥ 40 weddings per year. Below that, the coordination pain is real but diffuse — the venue may not feel it sharply enough to pay to fix it. Above 40, the admin compounds visibly each season.
+- **Real coordination volume.** Roughly ≥ 20 weddings per year, per D-012. Below that, €1,000 a year cannot be justified to them honestly, and a venue that cannot justify it will not renew. Above 40, the admin compounds visibly each season and the case makes itself. There is no upper limit: volume never changes the price.
 - **Feels repetitive admin pain.** The owner or head coordinator can name specific recurring questions without prompting. If they say "it's actually fine" or "we have a system," the pain may not be live. It may also mean the system is working, in which case this is not the right moment.
-- **Sells a looked-after feeling.** The product protects a brand promise. If the brand promise is throughput, the venue will not spend €1,500 to reduce emails. If the brand promise is care, €1,500 to reduce noise while keeping their name on the experience is a straightforward decision.
+- **Sells a looked-after feeling.** The product protects a brand promise. If the brand promise is throughput, the venue will not spend €1,000 to reduce emails. If the brand promise is care, €1,000 to reduce noise while keeping their name on the experience is a straightforward decision.
 
 ### Disqualifiers
 

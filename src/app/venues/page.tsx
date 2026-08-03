@@ -6,13 +6,13 @@ import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
 import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 
 export const metadata: Metadata = {
-  title: "Founding Venue Programme · Signal Studio",
+  title: "The Founding 25 · Signal Studio",
   description:
-    "Stand behind every couple's planning. The Venue Edition is €1,500 a year, prepaid, the venue's name in a quiet line, nothing for the team to run. Founding venues lock that price for as long as they stay.",
+    "Stand behind every couple's planning. The Venue Edition is €1,500 a year, prepaid, the venue's name in a quiet line, nothing for the team to run. The first twenty-five venues pay €1,000, held for as long as they stay.",
   openGraph: {
-    title: "Founding Venue Programme · Signal Studio",
+    title: "The Founding 25 · Signal Studio",
     description:
-      "A venue stands behind its couples' planning, eighteen months of Signal Studio each, co-branded, paid once a year. Patronage, not software.",
+      "A venue stands behind its couples' planning, eighteen months of Signal Studio each, under the venue name, paid once a year. Patronage, not software.",
     type: "website",
   },
 };
@@ -33,7 +33,7 @@ const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
 /**
  * Founding Venue Programme, rebuilt 2026-05-26 (S·68).
  * Audience: warm leads who have already had an outreach conversation.
- * Job: prove the product is real, show the co-branded moment inline,
+ * Job: prove the product is real, show the venue-name moment inline,
  * explain the activation register (coming for founding venues), state the
  * price plainly, and make the ask feel low-stakes.
  *
@@ -83,8 +83,8 @@ const coupleExperience = [
     copy: "Notes, decisions, tasks, and a plan anyone can forward, instead of a spreadsheet and a thread.",
   },
   {
-    title: "Eighteen months",
-    copy: "The venue prepays the year. Each couple gets eighteen months, then it drops to the free plan with a quiet prompt beforehand.",
+    title: "Eighteen months, at least",
+    copy: "The venue prepays the year. Each couple gets eighteen months, or three months past the wedding, whichever is later. A long engagement never runs out before the day.",
   },
   {
     title: "Your name on it, quietly",
@@ -98,16 +98,20 @@ const coupleExperience = [
 
 const foundingPerks = [
   {
-    title: "A price that holds",
-    copy: "€1,500 a year, locked for as long as you stay. Not an introductory rate that climbs. A standing that holds.",
+    title: "€500 a year less",
+    copy: "€1,000 a year instead of €1,500, for as long as you stay. The rate holds while the agreement keeps renewing. Not an introductory price that climbs.",
   },
   {
-    title: "A short conversation, once",
-    copy: "What the planning year looks like from your side, and where it gets noisy. Thirty minutes, once, not a standing meeting.",
+    title: "A number that means something",
+    copy: "Twenty-five places, 01/25 to 25/25. Your number is assigned when your payment clears, not when you sign. It is the one step nobody can walk back.",
+  },
+  {
+    title: "A short conversation, once a year",
+    copy: "Thirty minutes with Ethan on what the planning year looks like from your side, plus an email address that reaches him. Not a standing meeting.",
   },
   {
     title: "First look at what is next",
-    copy: "Founding venues see new work before anyone else, and can say what should change while it still can.",
+    copy: "Founding venues see new work before anyone else, and can say what should change while it still can. Your requests are written down and shape the roadmap. Nothing gets built for one venue.",
   },
   {
     title: "The activation register, first",
@@ -116,7 +120,7 @@ const foundingPerks = [
 ];
 
 const mechanicLines = [
-  "You pay once a year. Every couple you send gets eighteen months of the full suite.",
+  "You pay once a year. Every couple you book gets the full suite for eighteen months, or three months past the wedding, whichever is later.",
   "When access opens, each couple gets a code and a clear first step.",
   "After a couple accepts sponsored access, the interface can acknowledge your venue while their plan remains private.",
   "Nothing for your team to run.",
@@ -136,7 +140,7 @@ export default function VenuesPage() {
               className="mb-5 text-[11px] font-semibold uppercase text-ink-quiet"
               style={{ letterSpacing: "var(--tracking-eyebrow)" }}
             >
-              Founding Venue Programme
+              The Founding 25
             </p>
             <h1 className="max-w-3xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
               Stand behind every couple who plans with you.
@@ -172,7 +176,7 @@ export default function VenuesPage() {
             {/* Co-branded workspace mock */}
             <div className="mt-12 overflow-hidden rounded-[10px] border border-border-soft bg-bg-elev shadow-2">
 
-              {/* Venue identity bar, the co-branded line */}
+              {/* Venue identity bar: the venue name, one quiet line. Never a logo (D-027 point 3). */}
               <div className="flex items-center gap-2.5 border-b border-border-soft bg-bg px-4 py-2.5">
                 <span
                   aria-hidden
@@ -180,7 +184,7 @@ export default function VenuesPage() {
                   style={{ background: "var(--accent)" }}
                 />
                 <span className="text-[11px] font-medium text-ink-soft">
-                  Glenmara Estate · complimentary access
+                  Sponsored by Glenmara Estate
                 </span>
               </div>
 
@@ -461,30 +465,53 @@ export default function VenuesPage() {
             <div className="mt-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
               <div>
                 <p className="text-[16px] leading-[1.65] text-ink-soft">
-                  €1,500 per venue, per year, prepaid. Every couple gets
-                  eighteen months of the
-                  full suite. No seats. No per-couple maths. The venue pays
-                  so the couple never has to think about it.
+                  €1,500 per venue, per year, prepaid. Every couple with a
+                  booking gets the full suite. No seats. No per-couple maths.
+                  The venue pays so the couple never has to think about it.
                 </p>
                 <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
-                  The founding cohort, the first fifteen venues, lock
-                  €1,500 a year for as long as they stay. Not an
-                  introductory rate that climbs. A standing that holds.
+                  The first twenty-five venues pay €1,000. That is €500 a
+                  year less, for as long as you stay. The rate holds while
+                  the agreement keeps renewing, and there is no clause that
+                  expires it into a higher number.
+                </p>
+                <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
+                  Both prices include VAT at the prevailing rate. The number
+                  you see is the number you pay.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 border-t border-border-soft pt-7 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-                <span
-                  className="text-[11px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  Annual · prepaid
-                </span>
-                <span className="text-[clamp(2rem,1.6rem+1.6vw,3rem)] font-semibold leading-none tracking-[-0.045em] text-ink">
-                  €1,500
-                </span>
-                <span className="text-[13px] leading-[1.5] text-ink-quiet">
-                  per venue, per year · prepaid
-                </span>
+              <div className="flex flex-col gap-6 border-t border-border-soft pt-7 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+                <div className="flex flex-col gap-2">
+                  <span
+                    className="text-[11px] font-semibold uppercase"
+                    style={{
+                      letterSpacing: "var(--tracking-eyebrow)",
+                      color: "var(--accent)",
+                    }}
+                  >
+                    The Founding 25
+                  </span>
+                  <span className="text-[clamp(2rem,1.6rem+1.6vw,3rem)] font-semibold leading-none tracking-[-0.045em] text-ink">
+                    €1,000
+                  </span>
+                  <span className="text-[13px] leading-[1.5] text-ink-quiet">
+                    per venue, per year · prepaid · VAT included
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2 border-t border-border-soft pt-6">
+                  <span
+                    className="text-[11px] font-semibold uppercase text-ink-quiet"
+                    style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+                  >
+                    After the twenty-five
+                  </span>
+                  <span className="text-[22px] font-semibold leading-none tracking-[-0.03em] text-ink-soft">
+                    €1,500
+                  </span>
+                  <span className="text-[13px] leading-[1.5] text-ink-quiet">
+                    per venue, per year · prepaid · VAT included
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -500,7 +527,7 @@ export default function VenuesPage() {
               What founding means
             </p>
             <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              You shape it. The price never moves.
+              Twenty-five places. You shape what gets built.
             </h2>
             <div className="mt-10 border-t border-border-soft">
               {foundingPerks.map((item) => (
@@ -565,11 +592,12 @@ export default function VenuesPage() {
         <section className="px-6 py-16 md:py-24">
           <div className="mx-auto w-full max-w-[1040px]">
             <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              We are taking a founding group of fifteen venues.
+              We are taking twenty-five founding venues.
             </h2>
             <p className="mt-5 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              No deck, no demo gate. A short conversation about whether
-              this fits, and what your venue would pay.
+              No deck, no demo gate. A short conversation about whether this
+              fits. Places are held for fourteen days and assigned when
+              payment clears, so nobody is left wondering where they stand.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link

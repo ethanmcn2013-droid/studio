@@ -2,7 +2,14 @@
 
 **Status:** Drafted. Operator send owed. Nothing here has been sent.
 **Owner:** Ethan (send, one at a time, signed by a person)
-**Model:** Venue Edition is €1,500 per venue/year, prepaid. The founding fifteen lock that price for as long as they stay. Source of truth: `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md` + `docs/strategy/VENUE_EDITION_STRATEGY.md`.
+**Model:** Venue Edition is €1,500 per venue/year, prepaid, VAT included. The Founding 25 pay €1,000, held for as long as the agreement keeps renewing. Source of truth: `content/hq/decisions/venue-edition-founding-25-2026-08-03.md` + `docs/strategy/FOUNDING_25_PROGRAMME_MECHANICS.md`.
+
+> **DO NOT SEND without founder sign-off (2026-08-03).** Prices and place counts
+> in this set were updated to the Founding 25, but the targeting was not. This set
+> was built for a national list. VEF-2026 restricts founding outreach to a
+> 45-minute drive-time ring from Limerick city centre (D-012), in sequential
+> cohorts of 25 (D-017). Re-target against the E10 venue universe before any of
+> this goes out. Owner: WP-11 / WP-02.
 **Voice:** Passed the `signal-brand-voice` gate. No exclamation marks, no AI/SaaS/PM register, no three-adjective trios, plain English. Founder-to-owner, not brand-to-lead.
 
 This set **supersedes `wedding-venue-outreach-kit.md`**, which pitches the reversed model (free for 12 months, then €49/month) and targets the coordinator as the buyer. That model no longer exists. Do not send from the old kit.
@@ -31,7 +38,7 @@ Founder-signed. One at a time. No automation, no drip tool. The two follow-ups b
 - Log every send / reply / call in the `/hq` Outbound CRM against the prospect row.
 - Every link uses the same tracking shape: `source`, `campaign`, `audience`, `artifact`, `touch`, `venue`. Cold email starts with `source=founder_email`, `campaign=founding_venue`, `audience=venue`, `venue=[venue-slug]`.
 - No social proof. No venue has signed. Claiming or implying otherwise breaks the one thing the brand is built on.
-- No urgency theatre. "Founding fifteen" is a real constraint stated plainly, never "limited spots, act now."
+- No urgency theatre. "Twenty-five places" is a real constraint stated plainly, never "limited spots, act now."
 
 ---
 
@@ -79,9 +86,9 @@ Mapped to `signal-growth/outbound/ireland-top-50-hotels.csv` / HQ `prospects` ro
 >
 > Signal Studio gives each couple one calm place to plan — notes, tasks, a plan they can forward to suppliers and family, and a short morning briefing so nothing slips. The Venue Edition puts your venue's name on it, as a quiet line at the top. Not a logo wall. The couple's plan stays the thing in focus.
 >
-> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
+> It is patronage, not software you run. You pay once a year. Every couple you book gets eighteen months of the full suite, or three months past the wedding, whichever is later. Your team's only job is handing a code to a couple at booking. No admin panel, no accounts, nothing to manage.
 >
-> We are taking a founding group of fifteen venues at €1,500 a year, locked for as long as they stay. I would rather have a short, honest call about whether it fits your venue than send a deck. Would a 20-minute call suit you in the next week or two.
+> We are taking twenty-five founding venues at €1,000 a year, VAT included, held for as long as you stay. That is €500 a year less than the standard price, and it does not climb. I would rather have a short, honest call about whether it fits your venue than send a deck. Would a 20-minute call suit you in the next week or two.
 >
 > Ethan
 > Signal Studio
@@ -110,7 +117,7 @@ Mapped to `signal-growth/outbound/ireland-top-50-hotels.csv` / HQ `prospects` ro
 >
 > Last note from me on this — I will not chase further.
 >
-> The founding fifteen places stay open until they are taken. If the moment comes later — even one upcoming wedding to see the shape of it — write to hello@signalstudio.ie any time and I will pick it up.
+> The twenty-five founding places stay open until they are taken. If the moment comes later — even one upcoming wedding to see the shape of it — write to hello@signalstudio.ie any time and I will pick it up.
 >
 > Best with the season.
 >
@@ -162,7 +169,7 @@ One email per group, to the commercial/events lead — never the same pitch cold
 ## What this set deliberately does not do
 
 - No social proof — no venue has signed.
-- No urgency framing — "founding fifteen" is a fact, not a scarcity trick.
+- No urgency framing — "twenty-five places" is a fact, not a scarcity trick.
 - No automated sequence — the follow-ups are a person choosing to write again.
-- No pricing softening — €1,500 is the Venue Edition price, stated once, not negotiated in the cold email.
+- No pricing softening — €1,000 is the founding rate and €1,500 is the standard price. Stated once, not negotiated in the cold email.
 - No Track B follow-up cadence — one founder note to a group, then wait. Chasing a procurement chain by email is the failure mode the pilot is designed to avoid.

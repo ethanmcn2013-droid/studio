@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { motion, LayoutGroup, useReducedMotion } from "motion/react";
-import { EASE_OUT_EXPO, MOTION_BASE, MOTION_MODERATE } from "@/components/marketing/heroes/tasks/lib/motion";
+import { EASE_OUT, MOTION_BASE } from "@/components/marketing/heroes/tasks/lib/motion";
 import { SEED_TASKS, type Task, type UserId } from "@/components/marketing/heroes/tasks/lib/data";
 import { useHydrated } from "@/components/marketing/heroes/tasks/lib/use-hydrated";
 import {
@@ -72,30 +72,12 @@ function heroSeed(domain: DomainId) {
     (task) => !HERO_OMITTED_TASKS.has(task.id),
   );
 }
-export function CinematicDemo({
-  domain = "wedding",
-  staticFrame = false,
-}: {
-  domain?: DomainId;
-  staticFrame?: boolean;
-} = {}) {
-  const pack = DOMAINS[domain];
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const surfaceRef = useRef<HTMLDivElement | null>(null);
-  const cardRefs = useRef(new Map<string, HTMLDivElement>());
-  const mounted = useHydrated();
-  const [paused, setPaused] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  const pausedRef = useRef(false);
-  const aliveRef = useRef(true);
-  const currentStateRef = useRef<DemoState | null>(null);
 
-  const [state, setState] = useState<DemoState>(() => ({
+function initialDemoState(domain: DomainId): DemoState {
+  const pack = DOMAINS[domain];
+  return {
     view: "board",
     tasks: heroSeed(domain),
-    // commentBodies[1] (not [0]) so the static teammate note differs
-    // from the line the scripted scene types live (demoCommentText),
-    // and falls back to [0] for any pack with a single body.
     staticComment: pack.commentBodies[1] ?? pack.commentBodies[0],
     cursors: {
       chloe: initialCursor(140, 60),
@@ -122,12 +104,71 @@ export function CinematicDemo({
     completedFlash: null,
     scene: "boot",
     filterByAssignee: null,
-  }));
+  };
+}
+
+export function CinematicDemo({
+  domain = "wedding",
+  staticFrame = false,
+}: {
+  domain?: DomainId;
+  staticFrame?: boolean;
+} = {}) {
+  const pack = DOMAINS[domain];
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const surfaceRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef(new Map<string, HTMLDivElement>());
+  const mounted = useHydrated();
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
+  const [runKey, setRunKey] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+  const reducedMode = mounted && Boolean(prefersReducedMotion);
+  const pausedRef = useRef(false);
+  const aliveRef = useRef(true);
+  const currentStateRef = useRef<DemoState | null>(null);
+
+  const [state, setState] = useState<DemoState>(() => initialDemoState(domain));
 
   const [celebration, setCelebration] = useState<{
     visible: boolean;
     origin: { x: number; y: number } | null;
   }>({ visible: false, origin: null });
+  const demoPaused = paused || !inView || !pageVisible;
+  const demoActive =
+    mounted && !reducedMode && !staticFrame && !demoPaused;
+
+  useEffect(() => {
+    if (staticFrame) return;
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [staticFrame]);
+
+  useEffect(() => {
+    if (staticFrame) return;
+    const sync = () => setPageVisible(document.visibilityState === "visible");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, [staticFrame]);
+
+  useEffect(() => {
+    pausedRef.current = demoPaused;
+  }, [demoPaused]);
+
+  const replay = () => {
+    setPaused(false);
+    setCelebration({ visible: false, origin: null });
+    setState(initialDemoState(domain));
+    setRunKey((value) => value + 1);
+  };
 
   // --- Helpers operating on state ---
 
@@ -285,19 +326,33 @@ export function CinematicDemo({
     // frame (all 4 lanes visible, tasks in place), no frozen mid-animation,
     // no timing loops. The scene runner only starts for users who have not
     // opted out of motion.
-    if (!mounted || prefersReducedMotion || staticFrame) return;
+    if (!mounted || reducedMode || staticFrame) return;
     aliveRef.current = true;
-    pausedRef.current = paused;
+
+    const waitFor = async (ms: number) => {
+      let remaining = Math.round(ms * TEMPO);
+      while (remaining > 0 && aliveRef.current) {
+        if (pausedRef.current) {
+          await new Promise<void>((resolve) => setTimeout(resolve, 60));
+          continue;
+        }
+        const slice = Math.min(remaining, 60);
+        await new Promise<void>((resolve) => setTimeout(resolve, slice));
+        if (!pausedRef.current) remaining -= slice;
+      }
+    };
 
     const waitWhilePaused = async () => {
-      while (pausedRef.current && aliveRef.current) await wait(120);
+      while (pausedRef.current && aliveRef.current) {
+        await new Promise<void>((resolve) => setTimeout(resolve, 60));
+      }
     };
 
     const run = async () => {
       // Initial settle, cursors arrive with their labels visible
       // (justArrived) for ~900ms so the eye reads who's here, then
       // the labels fade and we're at rest.
-      await wait(700);
+      await waitFor(700);
       setState((s) => ({
         ...s,
         cursors: {
@@ -322,7 +377,7 @@ export function CinematicDemo({
           },
         },
       }));
-      await wait(900);
+      await waitFor(900);
       setState((s) => ({
         ...s,
         cursors: {
@@ -375,34 +430,11 @@ export function CinematicDemo({
       }
     };
 
-    /**
-     * The room breathes. Sets `scene: "settle"` and gently drifts each
-     * cursor toward a nearby random point so the demo reads alive
-     * rather than dead. No state mutations to tasks, overlays, or
-     * activity feed, those keep their last value visible.
-     */
+    /** Settle without ambient cursor drift. Presence moves only when a
+     * scripted action explains who is doing what. */
     const sceneSettle = async (durationMs = 1600) => {
       setState((s) => ({ ...s, scene: "settle" }));
-      const startedAt = Date.now();
-      const driftEvery = 700;
-      while (Date.now() - startedAt < durationMs && aliveRef.current) {
-        // Drift each visible cursor to a small offset relative to its
-        // current position. Spring physics handle the easing.
-        setState((s) => {
-          const next = { ...s.cursors };
-          (Object.keys(next) as UserId[]).forEach((id) => {
-            const c = next[id];
-            if (!c.visible) return;
-            next[id] = {
-              ...c,
-              x: c.x + (Math.random() - 0.5) * 60,
-              y: c.y + (Math.random() - 0.5) * 32,
-            };
-          });
-          return { ...s, cursors: next };
-        });
-        await wait(Math.min(driftEvery, durationMs - (Date.now() - startedAt)));
-      }
+      await waitFor(durationMs);
     };
 
     const sceneCarry = async () => {
@@ -421,7 +453,7 @@ export function CinematicDemo({
 
       // Pick up
       pickUp("david", targetId);
-      await wait(220);
+      await waitFor(220);
 
       // Glide to the doing column area
       const doingCol = document.querySelector(
@@ -434,7 +466,7 @@ export function CinematicDemo({
         const y = cr.top - sr.top + 56;
         await moveGhostTo("david", x, y);
       } else {
-        await wait(700);
+        await waitFor(700);
       }
 
       drop("david", dest);
@@ -442,13 +474,13 @@ export function CinematicDemo({
         const t = currentStateRef.current?.tasks.find((x) => x.id === "t-101");
         pushActivity("david", "moved to Moving", shorten(t?.title ?? "this task"));
       }
-      await wait(900);
+      await waitFor(900);
 
       // Move another (alex pushes a review item to done with celebration)
       const reviewToDone = "t-303";
       await moveCursorToCard("alex", reviewToDone);
       pickUp("alex", reviewToDone);
-      await wait(200);
+      await waitFor(200);
 
       const doneCol = document.querySelector(
         `[data-lane="done"]`,
@@ -480,7 +512,7 @@ export function CinematicDemo({
         drop("alex", "done");
       }
 
-      await wait(1500);
+      await waitFor(1500);
     };
 
     const sceneComment = async () => {
@@ -498,7 +530,7 @@ export function CinematicDemo({
           chloe: { ...s.cursors.chloe, reading: true },
         },
       }));
-      await wait(900);
+      await waitFor(900);
 
       // Show typing
       setState((s) => ({
@@ -510,13 +542,13 @@ export function CinematicDemo({
 
       const text = pack.demoCommentText;
       for (let i = 1; i <= text.length; i += 2) {
-        await wait(40);
+        await waitFor(40);
         setState((s) => ({
           ...s,
           typingProgress: i / text.length,
         }));
       }
-      await wait(160);
+      await waitFor(160);
 
       setState((s) => ({
         ...s,
@@ -531,14 +563,14 @@ export function CinematicDemo({
         const t = currentStateRef.current?.tasks.find((x) => x.id === "t-202");
         pushActivity("chloe", "commented on", shorten(t?.title ?? "this task"));
       }
-      await wait(1500);
+      await waitFor(1500);
 
       setState((s) => ({
         ...s,
         openCommentTaskId: null,
         postedComment: null,
       }));
-      await wait(700);
+      await waitFor(700);
     };
 
     const sceneViewMorph = async () => {
@@ -557,11 +589,11 @@ export function CinematicDemo({
           reading: false,
         });
       }
-      await wait(700);
+      await waitFor(700);
 
       setState((s) => ({ ...s, view: "list" }));
       pushActivity("alex", "switched to", "List view");
-      await wait(2200);
+      await waitFor(2200);
 
       const tlEl = document.querySelector('[data-tab="timeline"]') as HTMLElement | null;
       if (tlEl && surfaceRef.current) {
@@ -569,10 +601,10 @@ export function CinematicDemo({
         const tr = tlEl.getBoundingClientRect();
         moveCursor("alex", tr.left - sr.left + 24, tr.top - sr.top + 12);
       }
-      await wait(700);
+      await waitFor(700);
       setState((s) => ({ ...s, view: "timeline" }));
       pushActivity("alex", "switched to", "Timeline view");
-      await wait(2400);
+      await waitFor(2400);
 
       const bdEl = document.querySelector('[data-tab="board"]') as HTMLElement | null;
       if (bdEl && surfaceRef.current) {
@@ -580,9 +612,9 @@ export function CinematicDemo({
         const tr = bdEl.getBoundingClientRect();
         moveCursor("alex", tr.left - sr.left + 24, tr.top - sr.top + 12);
       }
-      await wait(700);
+      await waitFor(700);
       setState((s) => ({ ...s, view: "board" }));
-      await wait(800);
+      await waitFor(800);
     };
 
     const sceneNudge = async () => {
@@ -594,7 +626,7 @@ export function CinematicDemo({
         nudgeTask: shorten(t202?.title ?? "this task", 28),
         nudgeStage: "open",
       }));
-      await wait(2200);
+      await waitFor(2200);
 
       // Chloe clicks Send
       // Move chloe's cursor toward the nudge button area (center top of demo)
@@ -607,10 +639,10 @@ export function CinematicDemo({
           { grabbing: false, reading: false },
         );
       }
-      await wait(700);
+      await waitFor(700);
       setCursorState("chloe", { grabbing: true });
       setState((s) => ({ ...s, nudgeStage: "sending" }));
-      await wait(900);
+      await waitFor(900);
       setState((s) => ({ ...s, nudgeStage: "sent" }));
       setCursorState("chloe", { grabbing: false });
       pushActivity(
@@ -618,14 +650,14 @@ export function CinematicDemo({
         "nudged",
         `David on ${shorten(t202?.title ?? "this task")}`,
       );
-      await wait(1100);
+      await waitFor(1100);
       setState((s) => ({
         ...s,
         nudgeOpen: false,
         nudgeStage: "idle",
         nudgeTask: null,
       }));
-      await wait(500);
+      await waitFor(500);
     };
 
     const sceneDependency = async () => {
@@ -637,9 +669,9 @@ export function CinematicDemo({
 
       // Quick glide of david's cursor between the two cards
       await moveCursorToCard("david", "t-201", "right");
-      await wait(450);
+      await waitFor(450);
       await moveCursorToCard("david", "t-202", "right");
-      await wait(900);
+      await waitFor(900);
 
       setState((s) => ({ ...s, dependencyHighlight: null }));
       {
@@ -651,7 +683,7 @@ export function CinematicDemo({
           `${shorten(t201?.title ?? "task", 14)} → ${shorten(t202?.title ?? "task", 14)}`,
         );
       }
-      await wait(700);
+      await waitFor(700);
     };
 
     run();
@@ -662,9 +694,9 @@ export function CinematicDemo({
   }, [
     mounted,
     pack.demoCommentText,
-    prefersReducedMotion,
+    reducedMode,
+    runKey,
     staticFrame,
-    paused,
     moveCursor,
     moveCursorToCard,
     pickUp,
@@ -675,26 +707,12 @@ export function CinematicDemo({
     triggerCelebration,
   ]);
 
-  useEffect(() => {
-    pausedRef.current = paused;
-  }, [paused]);
-
   // Mirror state into a ref so scene functions (running outside React's
   // render path inside the run() async loop) can read fresh values
   // without becoming stale closures.
   useEffect(() => {
     currentStateRef.current = state;
   }, [state]);
-
-  // Hover parallax (subtle depth shift on mouse position)
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const r = containerRef.current?.getBoundingClientRect();
-    if (!r) return;
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    setParallax({ x: px * 8, y: py * 6 });
-  };
 
   const pickedTask = useMemo(
     () =>
@@ -708,7 +726,6 @@ export function CinematicDemo({
     <div
       ref={containerRef}
       className="relative w-full"
-      onMouseMove={handleMouseMove}
     >
       {/* Floating depth shadow removed (review 04): the board's own perspective
           elevation carries the lift; the extra bottom blob read as heavy. */}
@@ -775,7 +792,7 @@ export function CinematicDemo({
                 key={pack.workspaceCrumb}
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: MOTION_BASE, ease: EASE_OUT_EXPO }}
+                transition={{ duration: MOTION_BASE, ease: EASE_OUT }}
               >
                 {pack.workspaceCrumb}
               </motion.span>
@@ -784,7 +801,7 @@ export function CinematicDemo({
               key={pack.workspaceTitle}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: MOTION_MODERATE, ease: EASE_OUT_EXPO }}
+              transition={{ duration: MOTION_BASE, ease: EASE_OUT }}
               className="mt-1 text-[19px] font-semibold tracking-tight"
             >
               {pack.workspaceTitle}
@@ -849,23 +866,43 @@ export function CinematicDemo({
 
         {/* Status bar */}
         <div className="flex items-center justify-between border-t border-line-soft bg-white px-4 py-1.5 text-[10.5px] text-ink-quiet">
-          <span className="flex items-center gap-1.5">
+          <span aria-live="polite" className="flex items-center gap-1.5">
             <span
-              className={`block h-1.5 w-1.5 rounded-full bg-brand${staticFrame ? "" : " animate-pulse"}`}
+              className="block h-1.5 w-1.5 rounded-full bg-brand"
             />
-            Demo
+            {staticFrame
+              ? "Sample board"
+              : reducedMode
+                ? "Motion reduced"
+                : demoActive
+                  ? "Demo playing"
+                  : "Demo paused"}
           </span>
-          <span aria-hidden data-debug-scene={state.scene} />
+          <span className="flex items-center gap-1.5">
+            {!staticFrame && !reducedMode ? (
+              <>
+                <button
+                  type="button"
+                  aria-pressed={paused}
+                  className="min-h-8 rounded-full border border-line px-3 text-[10px] font-medium text-ink-soft transition-[border-color,color,transform] duration-[140ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-ink-faint hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[.98] motion-reduce:transition-none"
+                  onClick={() => setPaused((value) => !value)}
+                >
+                  {paused ? "Resume" : "Pause"}
+                </button>
+                <button
+                  type="button"
+                  className="min-h-8 rounded-full border border-line px-3 text-[10px] font-medium text-ink-soft transition-[border-color,color,transform] duration-[140ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-ink-faint hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[.98] motion-reduce:transition-none"
+                  onClick={replay}
+                >
+                  Replay
+                </button>
+              </>
+            ) : null}
+            <span aria-hidden data-debug-scene={state.scene} />
+          </span>
         </div>
       </motion.div>
 
-      {/* GALLERY EDIT 2026-07-27 — the Pause control and the line "Runs
-          itself. Click anything to join in." are gone. Both were instructions
-          about the demo rather than the product, sitting below the frame where
-          the eye exits, and the second one told the viewer the thing they were
-          watching was a toy. The board runs itself either way; it does not
-          need to say so. `paused` and its runner gate stay in place, so a
-          control can be reinstated without touching the scene code. */}
     </div>
   );
 }

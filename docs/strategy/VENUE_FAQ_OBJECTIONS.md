@@ -4,6 +4,10 @@ Status: private answer bank - 2026-05-27
 Owner: founder
 Boundary: internal use only until a real venue conversation proves which objections matter. No public FAQ is required yet.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Answer Standard
@@ -26,7 +30,7 @@ Boundary: internal use only until a real venue conversation proves which objecti
 | What if couples do not use it? | Nothing breaks. The couples who use it get a materially calmer year; the venue loses nothing on couples who ignore the code. Usage is learned through the founding cohort. | The buyer wants adoption certainty before proof exists. |
 | Can we see the couple workspace? | The couple workspace is private by default. The venue sees what the couple chooses to share: timeline, updates, and the artefacts that belong in the planning relationship. | The buyer asks about privacy and oversight. |
 | Why annual instead of per couple? | The venue is not buying seats. It is backing the planning year for every couple it books. Annual prepay keeps the couple experience seamless and keeps pricing away from the couple. | The buyer asks for per-couple pricing. |
-| Who else uses it? | This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the fixed €1,500 price for as long as they stay. | The buyer asks for social proof before it exists. |
+| Who else uses it? | This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the Founding 25 pay €1,000 a year instead of €1,500, for as long as they stay. | The buyer asks for social proof before it exists. |
 | We are too busy right now. | That is fair. The right next step is not a demo; it is a calmer proof asset and one short conversation when planning bandwidth exists. | The venue has interest but no immediate time. |
 
 ---

@@ -67,6 +67,15 @@ function metricFields(metric: MetricValue): Pick<
         denominator: "",
         withheld_reason: metric.reason,
       };
+    case "unlimited":
+      // Blank, never 0. An export that says 0 codes remaining against an
+      // unlimited entitlement is the same lie as showing it on screen.
+      return {
+        value_state: "unlimited",
+        value: "",
+        denominator: "",
+        withheld_reason: "",
+      };
   }
 }
 

@@ -237,15 +237,20 @@
   font-weight: 520;
   text-decoration: none;
   transition:
-    color 180ms var(--ease-out),
-    background 180ms var(--ease-out),
-    border-color 180ms var(--ease-out),
-    transform 180ms var(--ease-out);
+    color var(--motion-fast) var(--ease-out),
+    background var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
-.reveal-action:hover,
-.reveal-action:focus-visible {
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .reveal-action:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.reveal-action:active {
+  transform: scale(0.98);
 }
 
 .reveal-action:focus-visible {
@@ -450,14 +455,23 @@
   text-decoration: none;
 }
 
-.reveal-relay-link > span {
-  color: var(--accent);
-  transition: transform 180ms var(--ease-out);
+.reveal-relay-link {
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.reveal-relay-link:hover > span,
-.reveal-relay-link:focus-visible > span {
-  transform: translate(2px, -2px);
+.reveal-relay-link > span {
+  color: var(--accent);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reveal-relay-link:hover > span {
+    transform: translate(2px, -2px);
+  }
+}
+
+.reveal-relay-link:active {
+  transform: scale(0.98);
 }
 
 .reveal-relay-link:focus-visible {

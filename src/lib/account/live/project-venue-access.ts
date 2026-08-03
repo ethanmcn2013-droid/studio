@@ -6,6 +6,7 @@ import type {
   MetricValue,
 } from "../types";
 import { maskLicenseCode } from "./mask-code";
+import { isUnlimitedSponsor } from "@/lib/venue-allotment";
 
 export const LIVE_ACCESS_DEFINITION = "account-metrics.v2";
 export const LIVE_USAGE_UNAVAILABLE_REASON =
@@ -18,6 +19,8 @@ export type LiveVenueOption = {
   name: string;
   paid: boolean;
   allotment: number | null;
+  /** R-016. 'unlimited' means `allotment` carries no meaning for this venue. */
+  allotmentMode?: string | null;
 };
 
 export type LiveVenueCodeRow = {
@@ -42,6 +45,8 @@ export type LiveVenueAccessInput = {
     termStartsAt: number | null;
     termEndsAt: number | null;
     codeAllotment: number | null;
+    /** R-016. 'unlimited' suppresses every headroom count and warning. */
+    allotmentMode?: string | null;
     codesIssued: number;
   };
   codes: LiveVenueCodeRow[];
@@ -55,6 +60,8 @@ function exact(value: number): MetricValue {
 function unavailable(reason: string): MetricValue {
   return { state: "unavailable", reason };
 }
+
+const UNLIMITED: MetricValue = { state: "unlimited" };
 
 function formatDay(ms: number | null | undefined): string {
   if (ms == null || !Number.isFinite(ms)) return "—";
@@ -133,6 +140,41 @@ function standingFor(input: LiveVenueAccessInput, now: number): {
 }
 
 /**
+ * An unlimited venue must never be told its headroom is exhausted, and must
+ * never be pointed at a "request more codes" flow — there is nothing to
+ * request. Issuing a code for the next booked couple is the whole action.
+ */
+function nextActionFor(input: {
+  unlimited: boolean;
+  availableCount: number;
+}): AccountSnapshot["nextAction"] {
+  if (input.unlimited) {
+    return {
+      id: "issue-next",
+      label: "Issue access for your next booked couple",
+      detail:
+        "Every couple who books with you is covered while your licence is current. Delivery still happens outside Account.",
+      target: "access",
+    };
+  }
+  if (input.availableCount > 0) {
+    return {
+      id: "distribute-remaining",
+      label: "Distribute remaining access",
+      detail: `${input.availableCount} codes remain against allotment. Delivery still happens outside Account.`,
+      target: "access",
+    };
+  }
+  return {
+    id: "request-more",
+    label: "Request more access for Signal Studio review",
+    detail:
+      "Allotment headroom is exhausted. Account can only record a request — HQ Access remains the control plane.",
+    target: "access",
+  };
+}
+
+/**
  * Pure projection: real access + term from entitlements; behavioural metrics
  * stay unavailable. Safe to unit-test without a database.
  */
@@ -141,12 +183,21 @@ export function projectVenueAccessSnapshot(
 ): AccountSnapshot {
   const now = input.nowMs ?? Date.now();
   const { sponsor, codes } = input;
+  const unlimited = isUnlimitedSponsor(sponsor);
   const allotted = sponsor.codeAllotment ?? 0;
   const mintedCount = codes.length;
   const redeemedCount = codes.filter((c) => c.status === "redeemed").length;
   const availableCount = Math.max(0, allotted - sponsor.codesIssued);
   const drift = mintedCount !== sponsor.codesIssued;
   const { standing, standingLabel } = standingFor(input, now);
+
+  // R-016. A venue on the ratified entitlement was sold "no seats, no
+  // per-couple maths" (D-020). Every headroom number and every headroom
+  // warning below is therefore suppressed for them — not zeroed. Showing a
+  // seat count to a venue that was promised there are none is the specific
+  // contradiction this branch exists to remove.
+  const allottedMetric = unlimited ? UNLIMITED : exact(allotted);
+  const availableMetric = unlimited ? UNLIMITED : exact(availableCount);
 
   const attention: AccessAttention[] = [];
   if (drift) {
@@ -156,7 +207,7 @@ export function projectVenueAccessSnapshot(
       detail: `Minted codes (${mintedCount}) differ from codes_issued (${sponsor.codesIssued}). Reconcile in Signal HQ Access.`,
     });
   }
-  if (availableCount === 0 && allotted > 0) {
+  if (!unlimited && availableCount === 0 && allotted > 0) {
     attention.push({
       id: "no-remaining",
       label: "No remaining allotment headroom",
@@ -225,8 +276,8 @@ export function projectVenueAccessSnapshot(
       modulesExpected: 4,
     },
     access: {
-      allotted: exact(allotted),
-      available: exact(availableCount),
+      allotted: allottedMetric,
+      available: availableMetric,
       issued: exact(sponsor.codesIssued),
       redeemed: exact(redeemedCount),
       reconciliation: drift
@@ -244,7 +295,7 @@ export function projectVenueAccessSnapshot(
       attention,
     },
     adoption: {
-      allotted: exact(allotted),
+      allotted: allottedMetric,
       issued: exact(sponsor.codesIssued),
       redeemed: exact(redeemedCount),
       firstUsefulAction: unavailable(LIVE_USAGE_UNAVAILABLE_REASON),
@@ -287,21 +338,7 @@ export function projectVenueAccessSnapshot(
         "Plaintext license codes",
       ],
     },
-    nextAction:
-      availableCount > 0
-        ? {
-            id: "distribute-remaining",
-            label: "Distribute remaining access",
-            detail: `${availableCount} codes remain against allotment. Delivery still happens outside Account.`,
-            target: "access",
-          }
-        : {
-            id: "request-more",
-            label: "Request more access for Signal Studio review",
-            detail:
-              "Allotment headroom is exhausted. Account can only record a request — HQ Access remains the control plane.",
-            target: "access",
-          },
+    nextAction: nextActionFor({ unlimited, availableCount }),
     brandLines: {
       hero: "The benefit, in use.",
       usage: "Use, without surveillance.",

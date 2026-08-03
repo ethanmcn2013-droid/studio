@@ -1,0 +1,107 @@
+# E01 verification run — 2026-08-03, final
+# Real output. Commands as run, from the workspace root.
+
+$ cd studio && node --test docs/execution/venue-edition-and-films/tools/project-control.test.mjs
+✔ the imported backlog is intact (2.1918ms)
+✔ every task title matches backlog.source.md character for character (1.077ms)
+✔ imported flags match the supplied statements, less documented changes (2.5029ms)
+✔ every task is classified by how it gets decided (0.3637ms)
+✔ a founder-only task carries either its open question or the decision that answered it (9.3787ms)
+✔ an answered question leaves the founder queue but not the record (13.0174ms)
+✔ an unknown decisionClass is rejected (4.8417ms)
+✔ done is unreachable without explicit founder approval (4.068ms)
+✔ done is rejected without evidence (5.6267ms)
+✔ done is rejected without acceptance criteria (4.3341ms)
+✔ founder approval cannot be parked on a task that is not done (3.8842ms)
+✔ no transition path reaches done except from founder_review (0.2524ms)
+✔ nothing in the live state is Done without approval, evidence and criteria (0.8443ms)
+✔ an approved baseline names its approver and its date (0.2373ms)
+✔ duplicate task ids are rejected (4.4568ms)
+✔ a dependency on a task that does not exist is rejected (4.8455ms)
+✔ dependency cycles are detected (5.0354ms)
+✔ self-dependency is rejected (5.1571ms)
+✔ the real backlog has no cycles (0.5166ms)
+✔ malformed task ids are rejected (6.8913ms)
+✔ a task cannot be filed under an epic it does not belong to (4.7511ms)
+✔ blocked without a recorded blocker is rejected (4.2703ms)
+✔ the WIP limit is enforced (7.7327ms)
+✔ the cross-session lock is released and leaves no file behind (0.2859ms)
+✔ effort points off the approved scale are rejected (5.3851ms)
+✔ an estimate status without points is rejected (5.0653ms)
+✔ an invalid status is rejected (4.7428ms)
+✔ a waived release gate requires a recorded founder waiver (6.7491ms)
+✔ a passed gate requires a pass date (5.5902ms)
+✔ an approved baseline requires an approver (5.3298ms)
+✔ contact data cannot be smuggled into the commercial tracker (4.5382ms)
+✔ verified completion stays count-based until effort estimates are approved (0.7526ms)
+✔ the delivery estimate is suppressed while the baseline is a draft (5.0029ms)
+✔ verified completion switches to approved effort points once the baseline says so (4.6415ms)
+✔ the status-credit model never credits backlog, ready or blocked work (0.1365ms)
+✔ deferred and cancelled work leaves the denominator but not the record (5.245ms)
+✔ legacy single-session state migrates into the open list without losing it (3.7255ms)
+✔ migrating state with no session at all yields an empty list (5.4649ms)
+✔ several sessions can be open at once (4.5969ms)
+✔ a task is only approvable with criteria, evidence and founder_review status (3.2976ms)
+✔ the packet separates approvable from not-approvable and never claims Done (3.413ms)
+✔ the packet is deterministic for the same state and clock (5.1221ms)
+✔ renders are byte-identical for the same state and clock (21.9513ms)
+✔ canonicalize gives a stable task order regardless of input order (9.5261ms)
+✔ generated files carry the do-not-edit warning (5.8936ms)
+✔ no generated report leaks a venue name or contact detail (3.7987ms)
+✔ daysBetween counts calendar days (0.1468ms)
+✔ every declared status has a transition rule (0.107ms)
+✔ the live state validates clean (0.8983ms)
+✔ the project board carries all eight fields E01.05 names (4.8428ms)
+✔ a target date without a basis is rejected (5.5274ms)
+✔ a malformed target date is rejected (5.1157ms)
+✔ the six ratified freeze dates are present and correct (3.9577ms)
+✔ freeze dates and milestones reach the generated status report (8.0697ms)
+✔ the weekly review is not the status report wearing a different name (12.0914ms)
+✔ the weekly review carries all six sections E01.12 names (7.1423ms)
+✔ the weekly review's horizon is seven days and it never blends activity with outcome (7.4796ms)
+✔ the weekly review is deterministic for the same state and clock (14.4513ms)
+✔ addDays counts calendar days in both directions (0.3169ms)
+✔ every release gate carries exit criteria that could actually fail it (0.4398ms)
+✔ no epic falls outside the gate system except the two declared in CR-002 (0.3565ms)
+ℹ tests 61
+ℹ suites 0
+ℹ pass 61
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 428.1516
+
+$ project-control.mjs validate
+⚠ WIP limit exceeded: 14 tasks In Progress (limit 3): E10.01, E10.02, E10.03, E10.04, E10.05, E10.06, E10.07, E10.08, E10.09, E10.10, E10.11, E10.12, E10.13, E10.14. A recorded exception is active.
+OK — 211 tasks, 15 epics, 134 dependency edges, no cycles, no duplicate ids.
+Baseline approved. 1 warning(s).
+
+$ project-control.mjs render --check
+OK — generated files match canonical state.
+
+$ project-control.mjs freeze
+offer              2026-08-15  12d  Offer freeze — Price, founding terms, entitlement and the founding-place mechanics stop changing. After this a change needs a change request.
+ui                 2026-08-20  17d  UI freeze — Couple experience, Timeline and Account surfaces stop changing visually. Bug fixes only.
+copy               2026-08-21  18d  Copy freeze — Every venue-facing and couple-facing string is final, including the commercial pages.
+capture            2026-08-22  19d  Capture freeze — Product footage for Before the Day is captured against a locked build. Nothing filmed after this is re-shot.
+film_lock          2026-08-28  25d  Film lock — Both films are locked: no further edit, no further render, QA complete.
+release_candidate  2026-08-30  27d  Release candidate — The build that goes live on 1 September exists and is the one being verified.
+
+$ voice-check BRIEF.md
+voice-check · source: C:/Users/ethan/signal-studio-workspace/studio/BRAND.md · scanned 1 file(s)
+✓ no mechanical voice violations. (Taste still needs the brand-voice skill + your eye.)
+
+$ E01 task states
+E01.01 founder_review | criteria 7 | evidence 6
+E01.02 founder_review | criteria 5 | evidence 4
+E01.03 founder_review | criteria 6 | evidence 4
+E01.04 founder_review | criteria 6 | evidence 4
+E01.05 founder_review | criteria 7 | evidence 4
+E01.06 founder_review | criteria 7 | evidence 4
+E01.07 founder_review | criteria 8 | evidence 4
+E01.08 founder_review | criteria 8 | evidence 4
+E01.09 founder_review | criteria 7 | evidence 5
+E01.10 founder_review | criteria 12 | evidence 8
+E01.11 founder_review | criteria 7 | evidence 4
+E01.12 founder_review | criteria 10 | evidence 5

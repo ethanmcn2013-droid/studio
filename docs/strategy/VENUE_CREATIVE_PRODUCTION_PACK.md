@@ -4,6 +4,10 @@ Status: production work order - 2026-05-27
 Owner: founder
 Boundary: this pack defines assets for later outreach. No email is sent from this document.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Production Goal
@@ -117,8 +121,8 @@ Fewer confused couples. Fewer repetitive emails. A better planning experience un
 | Lead | A couple books your venue. Everyone is warm. Then the planning year starts. Questions already answered. Supplier details scattered. Spreadsheet versions that stopped being current. That confusion reaches your team as admin. | Keep as one compact paragraph. |
 | Product visual | Screenshot with venue eyebrow visible. | The visual must prove "under your venue's name" without a logo wall. |
 | Four layers | Notes where it starts. Tasks where it gets done. Timeline what everyone sees. Signal what needs attention. | Four short rows, not cards. |
-| Mechanic | The venue pays once a year. Each couple gets a code. The couple gets eighteen months of Signal Studio. Your team has nothing to run. | Make this the cleanest part of the page. |
-| Pricing | EUR1,500 per venue/year, prepaid. Founding venues lock that price for life. | Plain. Do not hide price. |
+| Mechanic | The venue pays once a year. Each couple gets a code. The couple gets Signal Studio for eighteen months, or three months past the wedding if that is later. Your team has nothing to run. | Make this the cleanest part of the page. |
+| Pricing | EUR1,500 per venue/year standard, EUR1,000 per venue/year for the Founding 25, both prepaid and VAT-inclusive. | Plain. Do not hide price. |
 | Close | Fewer confused couples. Fewer repetitive emails. A better planning experience under your venue's name. | Same as video close. |
 
 ---

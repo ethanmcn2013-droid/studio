@@ -445,7 +445,7 @@ export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
   {
     objection: "Who else uses it?",
     answer:
-      "This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the fixed €1,500 price for as long as they stay.",
+      "This is the Founding 25. The early venues are shaping the motion before there is a case study, which is why the first twenty-five pay €1,000 instead of €1,500, held for as long as they stay. There is no territorial exclusivity: other venues nearby can hold a place too, and we say so before signature rather than after.",
     useWhen: "The buyer asks for social proof before it exists.",
   },
   {

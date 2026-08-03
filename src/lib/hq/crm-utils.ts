@@ -128,8 +128,8 @@ export const SEGMENT_CONFIG: Record<ProspectSegment, SegmentConfig> = {
     label: "venues",
     title: "Venue book",
     buyer: "owner-operators and weddings/events managers",
-    offer: "Founding Venue Programme",
-    price: "€1,500 / venue / year, prepaid",
+    offer: "The Founding 25",
+    price: "€1,000 / venue / year for the first 25, then €1,500, prepaid, VAT included",
     playbook:
       "phone-first founder outreach · hand-picked, one at a time, no sequences",
     stageLabels: {},

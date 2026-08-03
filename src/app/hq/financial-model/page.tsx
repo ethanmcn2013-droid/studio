@@ -47,9 +47,14 @@ export default async function FinancialModelPage() {
   const actualCash = traction.available ? traction.cashCollectedEur : null;
   const actualVenues = traction.available ? traction.paidVenues : null;
 
+  // Founder top-ups keep company cash at or above zero, so "runway" is months
+  // the company carries itself, not months before it hits zero.
   const runwayLabel = model.defaultAlive
-    ? `${FIN_META.horizonMonths}+ mo`
-    : `${model.runwayMonths} mo`;
+    ? `${model.runwayMonths} mo`
+    : "needs funding";
+  const founderNote = model.founderFundingEndsAt
+    ? `founder cash in, through ${model.founderFundingEndsAt}`
+    : "none needed";
 
   return (
     <main id="main" className="hq-page">
@@ -70,8 +75,17 @@ export default async function FinancialModelPage() {
         <Head
           label="Runway"
           value={runwayLabel}
-          note={model.defaultAlive ? "default-alive across the horizon" : "at trailing burn"}
+          note={
+            model.defaultAlive
+              ? "months the company carries itself"
+              : "still needs founder cash at the horizon"
+          }
           tone="accent"
+        />
+        <Head
+          label="Founder capital"
+          value={finEur(model.founderCapitalEur)}
+          note={founderNote}
         />
         <Head label="Peak monthly burn" value={finEur(model.peakMonthlyBurnEur)} note="worst modeled month" />
         <Head label="Venues by 2027" value={String(model.totalVenuesHorizon)} note={`+ ${model.workspaceSubsAtHorizon} workspace subs`} />

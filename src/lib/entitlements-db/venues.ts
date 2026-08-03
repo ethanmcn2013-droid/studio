@@ -5,6 +5,12 @@ import { entitlementsDb } from "./client";
 import { allotmentLedger, sponsors } from "./schema";
 import { requireActor, type MutationActor } from "./guard";
 import { venueEditionAnnualAmountCents } from "@/lib/venue-edition";
+import {
+  DEFAULT_ALLOTMENT_MODE,
+  fairUseCeilingFor,
+  isAllotmentMode,
+  type AllotmentMode,
+} from "@/lib/venue-allotment";
 
 /**
  * Venue lifecycle writers — the no-terminal replacement for the CLI scripts
@@ -36,20 +42,40 @@ export type OnboardVenueResult = {
   slug: string;
   created: boolean;
   paid: boolean;
+  allotmentMode: AllotmentMode;
+  /** Null for a limited venue. Monitoring only — it never blocks issuance. */
+  fairUseCeiling: number | null;
 };
 
 /**
  * Create or update a venue and record its payment + term + allotment in one
  * transaction. Idempotent on slug: re-onboarding an existing venue updates it
- * rather than duplicating. Requires a positive allotment (a paid/founding
- * venue MUST have a non-null allotment before any code can be minted).
+ * rather than duplicating.
+ *
+ * Two issuance shapes (R-016):
+ *
+ *  - `unlimited` — the ratified Venue Edition entitlement (D-020): every
+ *    couple who books, for as long as the licence is current. No cap. The
+ *    venue's own annual wedding count is collected here, AFTER signature, and
+ *    sets a fair-use monitoring ceiling that alerts and never blocks. It never
+ *    sets the price and it never changes at renewal.
+ *  - `limited` — an explicit positive cap, for pilots and anything that is not
+ *    the standard offer.
+ *
+ * The old contract required a positive allotment on every venue, which is why
+ * the console form shipped a `defaultValue={10}` nobody decided. Ten was the
+ * real entitlement of every venue onboarded through it.
  */
 export async function onboardVenue(input: {
   name: string;
   contactEmail: string;
   venuePlan: OnboardPlan;
-  allotment: number;
   actor: MutationActor;
+  /** Required when allotmentMode is 'limited'; ignored when 'unlimited'. */
+  allotment?: number | null;
+  allotmentMode?: AllotmentMode;
+  /** D-020 point 4. Collected after signature. Sets the ceiling, never the price. */
+  annualWeddingCount?: number | null;
   slug?: string | null;
   termMonths?: number | null;
   reason?: string | null;
@@ -62,9 +88,27 @@ export async function onboardVenue(input: {
   if (!(ONBOARD_PLANS as readonly string[]).includes(input.venuePlan)) {
     throw new Error(`onboardVenue: unknown plan '${input.venuePlan}'`);
   }
-  if (!Number.isInteger(input.allotment) || input.allotment < 1) {
-    throw new Error("onboardVenue: allotment must be a positive integer");
+  const allotmentMode: AllotmentMode = input.allotmentMode ?? DEFAULT_ALLOTMENT_MODE;
+  if (!isAllotmentMode(allotmentMode)) {
+    throw new Error(`onboardVenue: unknown allotment mode '${allotmentMode}'`);
   }
+  const unlimited = allotmentMode === "unlimited";
+  if (!unlimited && (!Number.isInteger(input.allotment) || (input.allotment ?? 0) < 1)) {
+    throw new Error(
+      "onboardVenue: a limited venue needs a positive allotment (use allotmentMode 'unlimited' for the standard Venue Edition entitlement)",
+    );
+  }
+  if (
+    input.annualWeddingCount != null &&
+    (!Number.isInteger(input.annualWeddingCount) || input.annualWeddingCount < 0)
+  ) {
+    throw new Error("onboardVenue: annualWeddingCount must be a whole number");
+  }
+  const annualWeddingCount = input.annualWeddingCount ?? null;
+  const fairUseCeiling = unlimited ? fairUseCeilingFor(annualWeddingCount) : null;
+  // An unlimited venue keeps a null cap, so a later switch back to 'limited'
+  // fails closed on the mint rather than inheriting a stale number.
+  const codeAllotment = unlimited ? null : (input.allotment as number);
   const slug = slugify(input.slug?.trim() || name);
   if (!slug) throw new Error("onboardVenue: could not derive a slug");
 
@@ -86,8 +130,13 @@ export async function onboardVenue(input: {
     const id = existing[0]?.id ?? genId();
     const created = !existing[0];
     // Ledger records the CHANGE in allotment, so SUM(delta) stays equal to
-    // code_allotment even when a venue is re-onboarded with a new number.
-    const allotmentDelta = input.allotment - (existing[0]?.codeAllotment ?? 0);
+    // code_allotment even when a venue is re-onboarded with a new number. An
+    // unlimited venue has no number to change, so it writes no delta — the
+    // ledger answers "why does this venue have N codes", and "unlimited" is
+    // not an answer that arithmetic can carry.
+    const allotmentDelta = unlimited
+      ? 0
+      : (codeAllotment as number) - (existing[0]?.codeAllotment ?? 0);
 
     if (created) {
       await tx.insert(sponsors).values({
@@ -102,7 +151,10 @@ export async function onboardVenue(input: {
         termStartsAt,
         termEndsAt,
         paidAt: isPaidPlan ? now : null,
-        codeAllotment: input.allotment,
+        codeAllotment,
+        allotmentMode,
+        annualWeddingCount,
+        fairUseCeiling,
       });
     } else {
       await tx
@@ -116,7 +168,10 @@ export async function onboardVenue(input: {
           termStartsAt,
           termEndsAt,
           paidAt: isPaidPlan ? now : null,
-          codeAllotment: input.allotment,
+          codeAllotment,
+          allotmentMode,
+          annualWeddingCount,
+          fairUseCeiling,
           updatedAt: now,
         })
         .where(eq(sponsors.id, id));
@@ -135,6 +190,6 @@ export async function onboardVenue(input: {
       });
     }
 
-    return { id, slug, created, paid: isPaidPlan };
+    return { id, slug, created, paid: isPaidPlan, allotmentMode, fairUseCeiling };
   });
 }

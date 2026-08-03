@@ -103,6 +103,10 @@
     "hex": 14,
     "ease": 0
   },
+  "src/components/design-lab/delight/prototype-picker.tsx": {
+    "hex": 1,
+    "ease": 0
+  },
   "src/components/dev-banner.tsx": {
     "hex": 10,
     "ease": 1

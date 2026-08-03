@@ -13,8 +13,14 @@ import { Metric } from "../components/metric";
 import styles from "./access-panel.module.css";
 import shared from "./shared.module.css";
 
-function accessReadyHeadline(available: number | string) {
-  const count = String(available);
+function accessReadyHeadline(available: AccountSnapshot["access"]["available"]) {
+  // R-016. An unlimited venue has no readiness count, and printing the
+  // formatted label into "N codes ready to send" would say "Unlimited codes
+  // ready to send" — true, but it invites the reader to look for the number.
+  if (available.state === "unlimited") {
+    return "Every couple you book is covered.";
+  }
+  const count = formatMetricValue(available);
   if (count === "1") return "1 code ready to send.";
   if (count === "Unavailable" || count === "Withheld") {
     return `${count} — access readiness not shown as zero.`;
@@ -47,9 +53,10 @@ export function AccessPanel({
   const [requestOpen, setRequestOpen] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
   const [requestError, setRequestError] = useState<string | null>(null);
-  const canRequest = roleCan(role, "request_access");
-  const requestDenial = roleDenialReason(role, "request_access");
-  const availableLabel = formatMetricValue(snapshot.access.available);
+  const unlimited = snapshot.access.available.state === "unlimited";
+  // Nothing to request when the entitlement is already every booked couple.
+  const canRequest = !unlimited && roleCan(role, "request_access");
+  const requestDenial = unlimited ? null : roleDenialReason(role, "request_access");
 
   const rows = useMemo(
     () =>
@@ -74,35 +81,38 @@ export function AccessPanel({
       <header className={shared.compactHead}>
         <div>
           <p className={shared.eyebrow}>Access</p>
-          <h1>{accessReadyHeadline(availableLabel)}</h1>
+          <h1>{accessReadyHeadline(snapshot.access.available)}</h1>
           <p>
-            Distribute access without seeing recipient work. Allotment changes
-            remain a request for Signal Studio review.
+            {unlimited
+              ? "Distribute access without seeing recipient work. There is no seat count to manage."
+              : "Distribute access without seeing recipient work. Allotment changes remain a request for Signal Studio review."}
           </p>
         </div>
-        <div className={styles.headActions}>
-          <button
-            type="button"
-            className={shared.secondaryButton}
-            disabled={!canRequest}
-            title={requestDenial ?? undefined}
-            aria-describedby={
-              !canRequest && requestDenial ? "access-request-denial" : undefined
-            }
-            onClick={() => {
-              setRequestSent(false);
-              setRequestOpen(true);
-            }}
-          >
-            <AccountIcon name="plus" />
-            Request more access
-          </button>
-          {!canRequest && requestDenial ? (
-            <p id="access-request-denial" className={styles.denial} role="note">
-              {requestDenial}
-            </p>
-          ) : null}
-        </div>
+        {unlimited ? null : (
+          <div className={styles.headActions}>
+            <button
+              type="button"
+              className={shared.secondaryButton}
+              disabled={!canRequest}
+              title={requestDenial ?? undefined}
+              aria-describedby={
+                !canRequest && requestDenial ? "access-request-denial" : undefined
+              }
+              onClick={() => {
+                setRequestSent(false);
+                setRequestOpen(true);
+              }}
+            >
+              <AccountIcon name="plus" />
+              Request more access
+            </button>
+            {!canRequest && requestDenial ? (
+              <p id="access-request-denial" className={styles.denial} role="note">
+                {requestDenial}
+              </p>
+            ) : null}
+          </div>
+        )}
       </header>
 
       <div className={shared.totals}>

@@ -10,7 +10,11 @@ const PROHIBITED_PATTERNS = [
 ];
 
 export function assertMetricHasNoHiddenValue(metric: MetricValue): void {
-  if (metric.state === "withheld" || metric.state === "unavailable") {
+  if (
+    metric.state === "withheld" ||
+    metric.state === "unavailable" ||
+    metric.state === "unlimited"
+  ) {
     if ("value" in metric && (metric as { value?: unknown }).value != null) {
       throw new Error(
         `MetricValue.${metric.state} must not carry a hidden numeric value`,

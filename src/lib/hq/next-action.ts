@@ -24,7 +24,8 @@ const TRACK_A_ORDER = [
   "hotel-waterford-castle",
 ] as const;
 
-const RATIFIED_SUBJECT = "Founding Venue Programme";
+/** The programme's ratified name (D-009 point 6). Was "Founding Venue Programme". */
+const RATIFIED_SUBJECT = "The Founding 25";
 
 export type NextAction = {
   organisation: string;

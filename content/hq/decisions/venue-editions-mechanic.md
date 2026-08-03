@@ -18,7 +18,7 @@ A sponsor-pays mechanic puts the venue in front of the couple as the gift-giver 
 
 ## Alternatives considered
 
-Bulk seat allocation (sponsor buys 10 seats, distributes themselves — loses attribution + welcome personalization); permanent free tier for venue couples (no graceful transition path); venue-logo co-branding (clashes with anti-theatre register).
+Bulk seat allocation (sponsor buys 10 seats, distributes themselves — loses the named sponsorship line); permanent free tier for venue couples (no graceful transition path); venue-logo co-branding (clashes with anti-theatre register).
 
 ## Risks
 

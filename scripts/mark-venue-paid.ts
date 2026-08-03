@@ -1,7 +1,8 @@
 import { config } from "dotenv";
 import {
-  VENUE_EDITION_ANNUAL_PRICE_CENTS,
   VENUE_EDITION_ANNUAL_PRICE_EUR,
+  VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR,
+  venueEditionAnnualAmountCents,
 } from "../src/lib/venue-edition";
 
 config({ path: ".env.local" });
@@ -15,7 +16,7 @@ config({ path: ".env" });
  * Usage:
  *   pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>
  *     plan: founding | paid
- *     The founding plan always records the lifetime price lock.
+ *     founding records the Founding 25 rate and sets the rate lock.
  *
  * Example:
  *   pnpm tsx scripts/mark-venue-paid.ts lambs-hill founding
@@ -37,8 +38,9 @@ async function main() {
       [
         "Usage: pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>",
         "  plan: founding | paid",
-        `  price: fixed at EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year`,
-        "  founding automatically records the lifetime price lock",
+        `  founding: EUR ${VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year, VAT included`,
+        `  paid:     EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year, VAT included`,
+        "  founding also sets the rate lock, held on continuous renewal",
         "",
         "Sets venue_plan, annual_amount_cents, founding_locked, the prepaid",
         "annual term window, and paid_at = now. Run on payment, not signature.",
@@ -54,7 +56,7 @@ async function main() {
   }
   if (unknownFlags.length > 0) {
     fail(
-      `Venue Edition is fixed at EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year. Remove unexpected argument(s): ${unknownFlags.join(" ")}.`,
+      `Venue Edition is fixed at EUR ${VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year founding, EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year standard. Remove unexpected argument(s): ${unknownFlags.join(" ")}.`,
     );
   }
   const founding = plan === "founding";
@@ -73,9 +75,16 @@ async function main() {
   }
 
   const now = Date.now();
+  // The writer chooses the amount from the plan, so a founding venue is never
+  // recorded at the standard price. Before 2026-08-03 both plans wrote the same
+  // constant, which was correct only while there was one price.
+  const amountCents = venueEditionAnnualAmountCents(plan);
+  if (amountCents == null) {
+    fail(`plan '${plan}' has no annual amount; only founding and paid are cash.`);
+  }
   const ledger = {
     venuePlan: plan,
-    annualAmountCents: VENUE_EDITION_ANNUAL_PRICE_CENTS,
+    annualAmountCents: amountCents,
     foundingLocked: founding ? 1 : null,
     termStartsAt: now,
     termEndsAt: now + ONE_YEAR_MS,
@@ -85,7 +94,7 @@ async function main() {
 
   await db.update(sponsors).set(ledger).where(eq(sponsors.slug, slug));
   console.log(
-    `[mark-venue-paid] ${slug} -> ${plan} | EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/yr${founding ? " | founding-locked" : ""} | paid_at set. Studio local written.`,
+    `[mark-venue-paid] ${slug} -> ${plan} | EUR ${(amountCents / 100).toLocaleString("en-IE")}/yr${founding ? " | rate locked on continuous renewal" : ""} | paid_at set. Studio local written.`,
   );
 
   // Mirror to shared signal-entitlements (same discipline as issue-codes).

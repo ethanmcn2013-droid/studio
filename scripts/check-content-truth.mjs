@@ -8,7 +8,7 @@ const aliases = {
   signal: fs.existsSync(path.join(parent, "analytics")) ? "analytics" : "signal",
 };
 const contract = JSON.parse(
-  fs.readFileSync(path.join(studio, "contracts", "commercial-terms.v1.json"), "utf8"),
+  fs.readFileSync(path.join(studio, "contracts", "commercial-terms.v2.json"), "utf8"),
 );
 const failures = [];
 

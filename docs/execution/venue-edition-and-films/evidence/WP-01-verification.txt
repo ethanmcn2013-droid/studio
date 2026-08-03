@@ -1,0 +1,200 @@
+WP-01 verification — captured 2026-08-03T00:56:27Z
+
+================ studio ================
+--- pnpm typecheck ---
+PASS (no output = clean)
+
+--- contract checks ---
+[venue-edition-contract] ok
+  exit=0
+[venue-term-parity] ok (7498cee02c07)
+  exit=0
+[content-truth] ok
+  exit=0
+
+--- migration tests (real temp SQLite) ---
+✔ the migration adds every column and index, and is idempotent (8223.7837ms)
+✔ no existing venue silently becomes unlimited (549.7144ms)
+✔ existing data survives untouched (11005.466ms)
+✔ a dry run applies nothing (10990.4454ms)
+✔ the migration fails closed when the base tables are absent (220.9472ms)
+ℹ tests 5
+ℹ pass 5
+ℹ fail 0
+
+--- entitlements writers (real temp SQLite) ---
+  ✔ still refuses a limited venue with no headroom (29.641ms)
+  ✔ still refuses a limited venue with a null allotment (8.5124ms)
+  ✔ R-016: an unlimited venue mints past any cap, repeatedly (30.6203ms)
+  ✔ D-020: crossing the fair-use ceiling alerts and still issues (15.8008ms)
+  ✔ stays quiet below the ceiling (12.256ms)
+  ✔ D-022: accepts a computed duration longer than the floor (12.8796ms)
+  ✔ refuses anything shorter than the ratified 548 days (6.7747ms)
+  ✔ refuses a null duration rather than granting perpetual access (6.8139ms)
+  ✔ refuses the wrong tier (5.5265ms)
+  ✔ R-015: a long-lead wedding survives to 90 days past the day (23.5167ms)
+  ✔ falls back to the 548-day floor when no date is given (15.377ms)
+  ✔ keeps a longer minted duration when the couple gives no date (16.8672ms)
+  ✔ ignores an unparseable date rather than shortening the term (16.7275ms)
+  ✔ extends access when a date arrives after redemption (25.0893ms)
+  ✔ extends on postponement (27.9087ms)
+  ✔ never shortens when the date moves earlier (22.3358ms)
+  ✔ never shortens when the date is cleared (25.2578ms)
+  ✔ is idempotent (18.1231ms)
+  ✔ writes an extend event that carries no wedding date (21.9997ms)
+  ✔ refuses a malformed date (17.5002ms)
+  ✔ refuses a non-sponsored entitlement (6.8856ms)
+  ✔ reports a missing entitlement rather than throwing (1.1371ms)
+ℹ tests 22
+ℹ pass 22
+ℹ fail 0
+
+--- pnpm test (full studio chain) ---
+[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)
+[suite-switcher-contract] ok
+[chrome-contract] ok (studio)
+[loading-contract] ok (studio)
+[venue-edition-contract] ok
+[venue-term-parity] ok (7498cee02c07)
+[content-truth] ok
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+ℹ tests 374
+ℹ pass 374
+ℹ fail 0
+ℹ tests 22
+ℹ pass 22
+ℹ fail 0
+  chain exit=0
+
+--- pnpm build ---
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+  build exit=0
+
+================ app ================
+--- typecheck ---
+PASS (no output = clean)
+
+--- venue-edition-term golden vectors ---
+✔ the shared constants match the vectors (1.0188ms)
+✔ wedding-date parsing matches the vectors (1.2553ms)
+✔ expiry computation matches the vectors (0.326ms)
+✔ recompute matches the vectors (0.258ms)
+✔ R-015: the case the fix exists for (0.2326ms)
+ℹ tests 5
+ℹ pass 5
+ℹ fail 0
+
+--- sponsored access term (real migrated SQLite) ---
+✔ R-015: redeeming with the wedding date already known outlasts the wedding (51.7868ms)
+✔ redeeming without a wedding date keeps the 548-day floor (21.5261ms)
+✔ a non-Venue-Edition comp is untouched by the rule (21.3033ms)
+✔ a date set after redemption extends the term (26.2283ms)
+✔ a postponement extends further, without anyone asking (25.9442ms)
+✔ bringing the wedding forward never shortens access (25.5761ms)
+✔ recompute is idempotent (23.8275ms)
+✔ a workspace with no wedding date reports rather than throwing (20.435ms)
+✔ an ordinary wedding comp is never extended by a venue rule (22.2671ms)
+✔ an unknown workspace is reported, not thrown (25.1357ms)
+✔ a longer minted duration survives a short-lead wedding date (21.7847ms)
+ℹ tests 11
+ℹ pass 11
+ℹ fail 0
+
+--- pnpm test (full app chain) ---
+ℹ tests 13
+ℹ pass 13
+ℹ fail 0
+ℹ tests 31
+ℹ pass 31
+ℹ fail 0
+ℹ tests 70
+ℹ pass 70
+ℹ fail 0
+ℹ tests 20
+ℹ pass 20
+ℹ fail 0
+ℹ tests 30
+ℹ pass 30
+ℹ fail 0
+ℹ tests 17
+ℹ pass 17
+ℹ fail 0
+[module-boundaries] ok
+[route-manifest] ok (110 route directories verified)
+[frame-headers] ok (global DENY confirmed; /embed exception confirmed)
+[suite-switcher-contract] ok
+[chrome-contract] ok (tasks)
+[marketing-waitlist-contract] ok (tasks)
+[loading-contract] ok (tasks)
+ℹ tests 82
+ℹ pass 82
+ℹ fail 0
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+ℹ tests 208
+ℹ pass 208
+ℹ fail 0
+ℹ tests 283
+ℹ pass 283
+ℹ fail 0
+  chain exit=0
+
+--- pnpm build ---
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+  build exit=0
+
+================================================================
+WP-01 continuation (E02.13 + R-024) — 2026-08-03T01:45:22Z
+================================================================
+--- typecheck ---
+src/lib/hq/financial-model.ts(297,3): error TS2739: Type '{ months: FinMonth[]; year1RevenueEur: number; horizonRevenueEur: number; totalVenuesHorizon: number; workspaceSubsAtHorizon: number; lowestCashEur: number; runwayMonths: number; defaultAlive: boolean; peakMonthlyBurnEur: number; unit: { ...; }; }' is missing the following properties from type 'FinancialSummary': founderCapitalEur, founderFundingEndsAt
+
+--- founding number, pure rules ---
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+
+--- founding number, writer against a real SQLite engine ---
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+
+--- full studio suite ---
+[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)
+[suite-switcher-contract] ok
+[chrome-contract] ok (studio)
+[loading-contract] ok (studio)
+[venue-edition-contract] ok
+[venue-term-parity] ok (7498cee02c07)
+[content-truth] ok
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+ℹ tests 389
+ℹ pass 389
+ℹ fail 0
+ℹ tests 38
+ℹ pass 38
+ℹ fail 0
+  chain exit=0
+
+--- build ---
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+  build exit=0
+
+--- typecheck, re-run ---
+NOTE: the run above caught src/lib/hq/financial-model.ts mid-edit by a
+concurrent session (FinancialSummary had gained founderCapitalEur and
+founderFundingEndsAt but the returned object had not). That file is
+WP-10 territory and was not touched by WP-01. It resolved on its own
+when that session finished. Re-run below:
+PASS — clean, zero errors in any file
