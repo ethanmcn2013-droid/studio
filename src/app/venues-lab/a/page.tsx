@@ -7,6 +7,7 @@ import { SignalTheRead } from "@/components/marketing/heroes/signal/the-read";
 import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
 
 import {
+  ACCESS_TERM,
   ACCESS_TERM_LONG,
   BRANDING,
   CAN_WE_SEE,
@@ -22,7 +23,6 @@ import {
   FOUNDING_NUMBER,
   FOUNDING_RATE,
   GEOGRAPHY,
-  HOLD,
   HOW_IT_REACHES_YOU,
   KEEPSAKE,
   LADDER,
@@ -49,47 +49,48 @@ import { VENUE_SIGNAL_ITEMS, VENUE_TIMELINE_FIXTURE } from "./fixtures";
 import styles from "./venue-a.module.css";
 
 /**
- * Venues lab · variant A · "The Relay".
+ * The venue landing page · "The Relay".
  *
  * The landing page's signature structure, the product relay, pointed at the
  * venue. On the homepage the relay follows one detail through four products.
  * Here it follows the venue's own argument down the seven rungs, and the real
  * product appears only where a rung is better shown than told.
  *
- * Every class on this page is a `.reveal-*` class from globals.css unless it
- * comes from `venue-a.module.css`, which exists only for the objects the house
- * has no shape for. The header of that file lists them and quotes the register
- * each one borrows.
+ * THE HIERARCHY IS THE ANSWERS'. The seven ladder questions are navigation,
+ * and they are set like navigation: a quiet 19-25px register beside the rung
+ * number. The display type on this page belongs to the ratified answers, one
+ * per rung, because the person this page is written for reads answers, not
+ * furniture. In order: two live product views, the sentence that settles what
+ * a venue can and cannot see, the price, the word "No.", the words "One
+ * action.", the full access term, and "Nobody yet." over twenty-five open
+ * places. Every one of those is an imported constant, and where a lead
+ * sentence is lifted into display type the remainder is sliced from the same
+ * constant, never retyped.
+ *
+ * THE PRICE NEVER TRAVELS WITHOUT ITS CONDITIONS, GEOMETRICALLY. The ratified
+ * rule is that a surface carrying the number carries all seventeen rows. This
+ * page makes that physical: the price sentence rides a sticky bar that stays
+ * pinned above the ledger for the whole of its scroll, so there is no scroll
+ * position from which a reader can see a condition without the number, or the
+ * number without conditions under it.
  *
  * COPY. Every claim, price, term and answer is imported from
  * `src/lib/venue-copy.ts`. The strings in COPY below are connective only:
- * section labels, the frame that tells a cold reader whose voice a sentence is
- * in, and the mono furniture. They are gathered in one place so a voice pass
- * can read them in a single sitting. No sentence here restates a ratified
- * claim.
+ * section labels, the frame that tells a cold reader whose voice a sentence
+ * is in, and the mono furniture. No sentence here restates a ratified claim.
  *
  * STRUCTURE. Exactly seven h3 rungs, in ladder order, each with an id the
- * contents in the relay head can reach. Two page-level objects that belong to
- * a rung rather than to the page sit inside that rung's chapter and span both
- * of its columns: the 17-row ledger inside rung 03, because it is the price's
- * conditions, and the reserved film frame inside rung 04, because the film is
- * what a couple opens and what a venue sees. Nothing else competes with the
- * seven.
+ * contents in the relay head can reach. The 17-row ledger lives inside rung
+ * 03 because it is the price's conditions; the reserved film frame lives
+ * inside rung 04 because the film is what a couple opens and what you see.
  *
  * THE FAQ OF RECORD. Twelve questions are ratified; ten of their answers were
- * already set on this page word for word, so repeating them as a thirteenth
- * two-column block before the single ask cost 523 words and roughly 1,700px to
- * say nothing new. The two answers that are NOT stated anywhere else are kept,
- * each placed in the rung that raises the question. Every one of the twelve is
- * therefore still answered on the page, and the page is 400 words shorter for
- * it. This is a selection call, not a copy edit, and it is reversible in one
- * commit.
+ * already set on this page word for word. The two that are not are kept, each
+ * in the rung that raises its question, so all twelve are answered without a
+ * 523-word repeat block. Reversible in one commit.
  *
- * NOT INSTRUMENTED. There is no page-view recorder in this repo:
- * `src/lib/venue-edition-analytics` does not resolve, `src/lib/tracking.ts`
- * is a URL query-param builder rather than an event recorder, and the live
- * `/venues` route is a server component with no analytics call. Rather than
- * invent an API, this page ships without instrumentation and the gap is
+ * NOT INSTRUMENTED. There is no page-view recorder in this repo; rather than
+ * invent an API the page ships without instrumentation and the gap is
  * reported.
  */
 const COPY = {
@@ -107,33 +108,32 @@ const COPY = {
   sourceDate: "2026-07-29",
 
   sampleView: "Sample product view",
-  /* The Signal frame's own label carries the timestamp, because the shared
-     component's dateline stamp is off-canon and is suppressed in the module
-     CSS. Three ratified strings claim the briefing arrives in the morning;
-     this is the page's proof of it. */
-  sampleSignal: "Sample product view · Wednesday, 09:00",
 
   eyebrow1: "What lands with the couple",
   foot1: "A booking → their wedding workspace",
 
-  /* PLAIN_THREE is documented in venue-copy.ts as "the three sentences a venue
-     says to a couple", so its "we" is the venue and its "they" is the couple.
-     Nothing else on the page uses that pair: everywhere else the venue is
-     "you" and the founder is "I". Without this frame a partner reading the
-     display line cold parses "We can see that they opened it" as Signal Studio
-     watching the venue, which is the opposite of what the rung says. */
+  /* PLAIN_THREE is documented in venue-copy.ts as "the three sentences a
+     venue says to a couple", so its "we" is the venue and its "they" is the
+     couple. Nothing else on the page uses that pair: everywhere else the
+     venue is "you" and the founder is "I". Without this frame a partner
+     reading the display line cold parses "We can see that they opened it" as
+     Signal Studio watching the venue, the opposite of what the rung says. */
   manifestoEyebrow: "Rung 02",
   manifestoFrame: "What a venue says to a couple",
 
   eyebrow3: "The number, and its conditions",
   foot3: "One number → seventeen conditions",
-  holdsTerm: "What holds the rate",
-  propertyTerm: "If the venue is sold",
   scaleTerm: "Across a year",
   vatTerm: "Is VAT on top",
 
   ledgerTitle: "The terms, in full",
   ledgerCount: "17 rows",
+  ledgerGroups: [
+    "The rate",
+    "The couple's workspace",
+    "If it ends",
+    "Your place, and theirs",
+  ],
 
   eyebrow4: "Both halves, together",
   foot4: "What you see → what you never see",
@@ -151,7 +151,7 @@ const COPY = {
 
   eyebrow6: "The term, and what outlives it",
   foot6: "The wedding → Keepsake",
-  accessTerm: "How long they have it",
+  keepsakeTerm: "After the wedding",
   survivalTerm: "If your agreement ends",
 
   eyebrow7: "One of twenty-five",
@@ -160,6 +160,7 @@ const COPY = {
   notUsedTerm: "If your couples do not use it",
   whereTerm: "Where",
 
+  closingProgramme: "The Founding 25",
   closingPlace: "Limerick, 2026",
 } as const;
 
@@ -167,12 +168,6 @@ const COPY = {
  * The two ratified FAQ answers that say something no other sentence on this
  * page says. Looked up by question rather than by index, so a reorder of FAQ
  * cannot silently move an answer under the wrong term.
- *
- * "How many couples does it cover?" is not among them, though it reads like a
- * third: its first sentence is ENTITLEMENT almost word for word and its second
- * is the opening sentence of PER_WEDDING_SCALE verbatim, and both of those are
- * already set, one in the hero lede and one in rung 03. Carrying it would have
- * put a verbatim repeat in the row directly under its own source.
  */
 const FAQ_BY_QUESTION = new Map(FAQ.map((entry) => [entry.q, entry.a]));
 const SHOW_US_ANSWER = FAQ_BY_QUESTION.get(
@@ -182,14 +177,54 @@ const NOT_USED_ANSWER = FAQ_BY_QUESTION.get(
   "What if our couples just don't use it?",
 );
 
+/**
+ * The ledger, grouped so it can be scanned as well as read. Row numbers stay
+ * absolute, 01 through 17, because the rule is "all seventeen rows" and the
+ * numbering is the proof of it. The slice boundaries follow the content:
+ * rows 1-8 are the rate and what holds it, 9-12 are the couple's own
+ * entitlement, 13-14 are the two ways it can end, 15-17 are the founding
+ * place and the one row about the couple's side of the price.
+ */
+const LEDGER_GROUPS = [
+  { label: COPY.ledgerGroups[0], rows: COMMERCIAL_SUMMARY.slice(0, 8), base: 0 },
+  { label: COPY.ledgerGroups[1], rows: COMMERCIAL_SUMMARY.slice(8, 12), base: 8 },
+  { label: COPY.ledgerGroups[2], rows: COMMERCIAL_SUMMARY.slice(12, 14), base: 12 },
+  { label: COPY.ledgerGroups[3], rows: COMMERCIAL_SUMMARY.slice(14, 17), base: 14 },
+] as const;
+
+/**
+ * The sticky bar's two halves, sliced from the ratified price sentence so the
+ * rendered text is provably the constant. If the sentence ever stops opening
+ * with the figure, the whole sentence renders in the rest slot untouched.
+ */
+const PRICE_SENTENCE_REST = FOUNDING_RATE.price.startsWith(PRICE_FOUNDING)
+  ? FOUNDING_RATE.price.slice(PRICE_FOUNDING.length).trim()
+  : FOUNDING_RATE.price;
+
+/** The postponement clause, sliced from the long form of the same term. */
+const ACCESS_TERM_REST = ACCESS_TERM_LONG.startsWith(ACCESS_TERM)
+  ? ACCESS_TERM_LONG.slice(ACCESS_TERM.length).trim()
+  : "";
+
 /** The twenty-five places. The first, and every fifth, is a major tick. */
 const RANK = Array.from({ length: 25 }, (_, index) => index);
 const RANK_SCALE = [1, 5, 10, 15, 20, 25];
 
 /**
- * Wrap one exact substring of a ratified string in an accent span.
- *
- * The point is that the rendered text is provably the constant: the slices
+ * Split a ratified string after its first sentence, so a lead can be set in
+ * display type and the remainder at reading size without retyping either.
+ */
+function splitLead(source: string): { lead: string; rest: string } {
+  const at = source.indexOf(". ");
+  if (at < 0) return { lead: source, rest: "" };
+  return { lead: source.slice(0, at + 1), rest: source.slice(at + 2) };
+}
+
+const TEAM_ASK_SPLIT = splitLead(TEAM_ASK);
+const WHO_ELSE_SPLIT = splitLead(WHO_ELSE);
+
+/**
+ * Wrap one exact substring of a ratified string in an accent span. The slices
  * are taken from `source` itself, never retyped, and a substring that is not
  * found returns the untouched string rather than silently dropping copy.
  */
@@ -232,10 +267,9 @@ export default function VenuesLabA() {
             <p className="reveal-lede-v2">{ENTITLEMENT}</p>
 
             {/* Navigation, not a second ask. The one call to action lives in
-                the close, after the ladder has earned it: the ratified copy
-                source states that a second CTA is a defect, not an option.
-                This anchor exists because a partner reading the page cold
-                needs a route to the number without six screens of scroll. */}
+                the close, after the ladder has earned it. This anchor exists
+                because a partner reading the page cold needs a route to the
+                number without six screens of scroll. */}
             <div className="reveal-hero-actions">
               <a
                 className="reveal-action reveal-action-secondary"
@@ -255,9 +289,7 @@ export default function VenuesLabA() {
             <h2 id="va-relay-title">{COPY.relayHeading}</h2>
 
             {/* The contents, in the left column the house grammar leaves
-                empty. A forwarded reader who never saw the email opens this
-                page to find out what it costs, and that answer is six screens
-                down. These are the only links on the page that are not the
+                empty. These are the only links on the page that are not the
                 ask, and each one lands on its rung. */}
             <nav className={styles.contents} aria-label={COPY.contentsLabel}>
               <ol className={styles.contentsList}>
@@ -296,17 +328,18 @@ export default function VenuesLabA() {
             <time dateTime={COPY.sourceDate}>{COPY.sourceDateLabel}</time>
           </div>
 
-          {/* Rung 01 · what their couples get. The one rung that promises
-              two things, so it carries two product views. */}
+          {/* Rung 01 · what their couples get. The one rung whose answer is
+              better shown than said: the display object is the product
+              itself, twice, and the words stay at reading size beside it. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-1"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">01</p>
-              <h3>{LADDER[0]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[0]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow1}</p>
-              <p className="reveal-relay-body">{WHAT_COUPLES_GET}</p>
+              <p className={styles.rungBody}>{WHAT_COUPLES_GET}</p>
               <p className="reveal-relay-foot">{COPY.foot1}</p>
             </div>
 
@@ -317,7 +350,7 @@ export default function VenuesLabA() {
               </div>
 
               <div className="reveal-relay-preview" data-product="signal">
-                <p className="reveal-relay-sample">{COPY.sampleSignal}</p>
+                <p className="reveal-relay-sample">{COPY.sampleView}</p>
                 <SignalTheRead
                   embedded
                   items={VENUE_SIGNAL_ITEMS}
@@ -330,10 +363,9 @@ export default function VenuesLabA() {
 
         {/* ── Rung 02 · whose it is · .reveal-manifesto ───────────
             Trust is won here, and it comes before price, so it breaks out
-            of the relay and takes the page's one big statement. The three
-            sentences run in their ratified order, and the middle one, the
-            one that settles the whole question, gets the display register
-            the other six rungs give only to their questions. */}
+            of the relay and takes the page's biggest statement: the middle
+            of the three sentences a venue says to a couple, the one that
+            settles the whole question. */}
         <section
           className={`reveal-manifesto reveal ${styles.rung}`}
           id="va-rung-2"
@@ -344,12 +376,12 @@ export default function VenuesLabA() {
             {COPY.manifestoFrame}
           </div>
 
-          <h3 id="va-whose" className={styles.rungHead}>
+          <h3 id="va-whose" className={styles.rungQ}>
             {LADDER[1]}
           </h3>
 
           <p className="reveal-manifesto-body">{PLAIN_THREE[0]}</p>
-          <p className={styles.answer}>
+          <p className={`${styles.answerLg} reveal`}>
             {accent(PLAIN_THREE[1], "cannot", "em")}
           </p>
           <p className="reveal-manifesto-body">{PLAIN_THREE[2]}</p>
@@ -366,31 +398,26 @@ export default function VenuesLabA() {
 
         {/* ── Relay, part two · .reveal-relay ────────────────────── */}
         <div className="reveal-relay">
-          {/* Rung 03 · what it costs. The price never travels without its
-              conditions, so all 17 rows sit inside this chapter, spanning
-              both of its columns and on its exact column ratio. */}
+          {/* Rung 03 · what it costs. The number is the rung's display
+              answer, and it never travels without its conditions: the
+              sticky bar carries the ratified price sentence over the whole
+              of the ledger's scroll. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-3"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">03</p>
-              <h3>{LADDER[2]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[2]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow3}</p>
-              <p className="reveal-relay-body">{FOUNDING_RATE.difference}</p>
+              <p className={styles.rungBody}>{FOUNDING_RATE.difference}</p>
               <p className="reveal-relay-foot">{COPY.foot3}</p>
             </div>
 
-            <div>
+            <div className="reveal">
               <p className={styles.priceFigure}>{PRICE_FOUNDING}</p>
-              <p className={styles.priceUnder}>{FOUNDING_RATE.price}</p>
 
               <dl className={styles.index}>
-                <IndexRow term={COPY.holdsTerm} detail={FOUNDING_RATE.lock} />
-                <IndexRow
-                  term={COPY.propertyTerm}
-                  detail={FOUNDING_RATE.property}
-                />
                 <IndexRow term={COPY.scaleTerm} detail={PER_WEDDING_SCALE} />
                 <IndexRow term={COPY.vatTerm} detail={VAT_ANSWER} />
               </dl>
@@ -404,38 +431,54 @@ export default function VenuesLabA() {
                 <span className={styles.wideMeta}>{COPY.ledgerCount}</span>
               </div>
 
-              <dl className={styles.ledger}>
-                {COMMERCIAL_SUMMARY.map(([term, detail], index) => (
-                  <div className={styles.ledgerRow} key={term}>
-                    <dt className={styles.ledgerTerm}>
-                      <span className={styles.ledgerNum} aria-hidden>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span>{term}</span>
-                    </dt>
-                    <dd className={styles.ledgerDetail}>{detail}</dd>
-                  </div>
-                ))}
-              </dl>
+              {/* The rule, made physical: while any of the seventeen rows
+                  is on screen, so is the number and its VAT clause. */}
+              <div className={styles.stickyBar}>
+                <span className={styles.stickyFigure}>{PRICE_FOUNDING}</span>
+                <span className={styles.stickyRest}>{PRICE_SENTENCE_REST}</span>
+              </div>
+
+              {LEDGER_GROUPS.map((group) => (
+                <div className={styles.ledgerGroup} key={group.label}>
+                  <p className={styles.groupLabel}>{group.label}</p>
+                  <dl className={styles.ledger}>
+                    {group.rows.map(([term, detail], index) => (
+                      <div className={styles.ledgerRow} key={term}>
+                        <dt className={styles.ledgerTerm}>
+                          <span className={styles.ledgerNum} aria-hidden>
+                            {String(group.base + index + 1).padStart(2, "0")}
+                          </span>
+                          <span>{term}</span>
+                        </dt>
+                        <dd className={styles.ledgerDetail}>{detail}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
             </section>
           </article>
 
-          {/* Rung 04 · what you see, and what you never see. The film sits
-              here because what it shows is exactly this rung's sentence:
-              what a couple opens, and what you see. */}
+          {/* Rung 04 · what you see, and what you never see. The display
+              answer is the refusal itself. The film sits here because what
+              it shows is exactly this rung's sentence: what a couple opens,
+              and what you see. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-4"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">04</p>
-              <h3>{LADDER[3]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[3]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow4}</p>
-              <p className="reveal-relay-body">{CAN_WE_SEE}</p>
               <p className="reveal-relay-foot">{COPY.foot4}</p>
             </div>
 
             <div>
+              <p className={`${styles.answer} reveal`}>
+                {accent(CAN_WE_SEE, "cannot", "em")}
+              </p>
+
               {/* Three parts, one object, because they travel together. */}
               <dl className={`${styles.index} ${styles.indexGroup}`}>
                 <IndexRow term={PRIVACY.seeLabel} detail={PRIVACY.see} />
@@ -467,64 +510,78 @@ export default function VenuesLabA() {
             </section>
           </article>
 
-          {/* Rung 05 · what it asks of your team. No product view: there is
-              nothing for the team to run, and showing a surface here would
-              contradict the sentence beside it. */}
+          {/* Rung 05 · what it asks of your team. No product view and no
+              large object: there is nothing for the team to run, and the
+              quietest rung on the page is the proof of the sentence. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-5"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">05</p>
-              <h3>{LADDER[4]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[4]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow5}</p>
-              <p className="reveal-relay-body">{TEAM_ASK}</p>
               <p className="reveal-relay-foot">{COPY.foot5}</p>
             </div>
 
-            <dl className={styles.index}>
-              <IndexRow term={COPY.coordinatorTerm} detail={COORDINATOR} />
-              <IndexRow term={COPY.notTechnicalTerm} detail={NOT_TECHNICAL} />
-              <IndexRow term={COPY.reachesTerm} detail={HOW_IT_REACHES_YOU} />
-            </dl>
+            <div>
+              <p className={`${styles.answer} reveal`}>{TEAM_ASK_SPLIT.lead}</p>
+              <p className={styles.answerRest}>{TEAM_ASK_SPLIT.rest}</p>
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.coordinatorTerm} detail={COORDINATOR} />
+                <IndexRow term={COPY.notTechnicalTerm} detail={NOT_TECHNICAL} />
+                <IndexRow term={COPY.reachesTerm} detail={HOW_IT_REACHES_YOU} />
+              </dl>
+            </div>
           </article>
 
-          {/* Rung 06 · what happens at the end */}
+          {/* Rung 06 · what happens at the end. The display answer is the
+              term itself, in full, because the bare figure is the one thing
+              this page must never say. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-6"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">06</p>
-              <h3>{LADDER[5]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[5]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow6}</p>
-              <p className="reveal-relay-body">{KEEPSAKE}</p>
               <p className="reveal-relay-foot">{COPY.foot6}</p>
             </div>
 
-            <dl className={styles.index}>
-              <IndexRow term={COPY.accessTerm} detail={ACCESS_TERM_LONG} />
-              <IndexRow term={COPY.survivalTerm} detail={SURVIVAL} />
-            </dl>
+            <div>
+              <p className={`${styles.answer} reveal`}>
+                {accent(ACCESS_TERM, "whichever is later", "em")}
+              </p>
+              {ACCESS_TERM_REST ? (
+                <p className={styles.answerRest}>{ACCESS_TERM_REST}</p>
+              ) : null}
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.keepsakeTerm} detail={KEEPSAKE} />
+                <IndexRow term={COPY.survivalTerm} detail={SURVIVAL} />
+              </dl>
+            </div>
           </article>
 
           {/* Rung 07 · what being one of twenty-five means. The rank is the
               page's one authored object: twenty-five places drawn as a
               measure, every one of them open, standing directly over the
-              ratified answer that says so in words. */}
+              two words that admit why. */}
           <article
             className={`reveal-relay-chapter ${styles.rung}`}
             id="va-rung-7"
           >
             <div className="reveal-relay-copy reveal">
               <p className="reveal-relay-number">07</p>
-              <h3>{LADDER[6]}</h3>
+              <h3 className={styles.rungQ}>{LADDER[6]}</h3>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow7}</p>
-              <p className="reveal-relay-body">{FOUNDING_NUMBER}</p>
+              <p className={styles.rungBody}>{FOUNDING_NUMBER}</p>
               <p className="reveal-relay-foot">{COPY.foot7}</p>
             </div>
 
-            <div>
+            <div className={styles.rankColumn}>
               <div className={styles.rank} aria-hidden>
                 <div className={styles.rankTicks}>
                   {RANK.map((index) => (
@@ -547,11 +604,12 @@ export default function VenuesLabA() {
                 </div>
               </div>
 
-              <p className={styles.answer}>
-                {accent(WHO_ELSE, "Nobody yet.", "em")}
+              <p className={`${styles.answerLg} reveal`}>
+                {WHO_ELSE_SPLIT.lead}
               </p>
+              <p className={styles.answerRest}>{WHO_ELSE_SPLIT.rest}</p>
 
-              <dl className={styles.index}>
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
                 <IndexRow term={COPY.roadmapTerm} detail={ROADMAP} />
                 <IndexRow term={COPY.notUsedTerm} detail={NOT_USED_ANSWER} />
                 <IndexRow term={COPY.whereTerm} detail={GEOGRAPHY} />
@@ -560,14 +618,15 @@ export default function VenuesLabA() {
           </article>
         </div>
 
-        {/* ── The ask · .reveal-closing. One for the whole page. ─── */}
+        {/* ── The ask · .reveal-closing. One for the whole page, and the
+            page ends on the person it reaches, not on a deadline. The
+            14-day hold is stated once, in ledger row 15, where it belongs
+            among the other conditions. ─────────────────────────────── */}
         <section className="reveal-closing reveal" aria-labelledby="va-ask">
           <div className="reveal-closing-rule" aria-hidden />
           <h2 id="va-ask" className="reveal-closing-sign">
-            {accent(HOLD, "14 days", "em")}
+            {accent(CTA_SUPPORT, "to me", "em")}
           </h2>
-
-          <p className={styles.closeSupport}>{CTA_SUPPORT}</p>
 
           <div className="reveal-closing-cta">
             <Link className="reveal-cta reveal-cta-primary" href={CTA_HREF}>
@@ -580,7 +639,7 @@ export default function VenuesLabA() {
           </div>
 
           <p className="reveal-closing-addr">
-            <span>{GEOGRAPHY}</span>
+            <span>{COPY.closingProgramme}</span>
             <span className="sep" aria-hidden>
               ·
             </span>
@@ -596,7 +655,7 @@ export default function VenuesLabA() {
 /**
  * One term and its answer.
  *
- * `detail` is optional because the three answers lifted out of the FAQ are
+ * `detail` is optional because the two answers lifted out of the FAQ are
  * looked up by their ratified question string. A row whose answer cannot be
  * found renders nothing rather than an empty rule, so a rename upstream can
  * never ship a term with no answer under it.

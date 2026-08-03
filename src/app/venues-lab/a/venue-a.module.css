@@ -1,24 +1,34 @@
 /* ═══════════════════════════════════════════════════════════════
-   Venues lab · variant A · "The Relay" — private CSS.
+   The venue landing page · "The Relay" — private CSS.
 
    The page is built out of the existing .reveal-* grammar in
    globals.css. These rules exist only for objects the house has no
-   shape for: the seven-rung contents, the 17-row commercial ledger,
-   the definition index that carries the objection library, the price
-   figure, the display register for the two ratified answers that earn
-   it, the reserved film frame, and the rank of twenty-five places.
+   shape for: the seven-rung contents, the grouped 17-row commercial
+   ledger and its sticky price bar, the definition index that carries
+   the objection library, the display register for the ratified
+   answers, the reserved film frame, and the rank of twenty-five
+   places.
 
-   Nothing here invents a register. Every value is quoted from the
-   .reveal-* set it sits beside:
-     display    Geist 540, -0.052em, line-height 0.95, the exact clamp
-                from .reveal-relay-copy h3
+   THE SCALE, at 1440, largest to smallest:
+     h1                104px   .reveal-headline-v2 (house)
+     price figure      ~102px  .priceFigure
+     the two answers   ~77px   .answerLg  (what a venue can never see,
+                               and "Nobody yet.")
+     the ask           ~74px   .reveal-closing-sign (raised, house base)
+     rung answers      ~48px   .answer
+     block titles       32px   .wideTitle
+     rung questions    ~25px   .rungQ  — navigation, set like navigation
+     reading           15-17px .indexDetail / .rungBody / .answerRest
+     furniture         8.5-10px mono uppercase
+   The questions used to be the loudest recurring voice on the page at
+   56px. They are a table of contents, and the page already has one of
+   those. The display type now belongs to the answers.
+
+   Every value is quoted from the .reveal-* set it sits beside:
+     display    Geist 540, -0.042 to -0.052em, lh 0.95-1.08
      furniture  var(--font-mono) 8.5-10px uppercase, 0.12-0.16em
      reading    clamp(15px, 0.88rem + 0.26vw, 17px), the exact clamp
-                from .reveal-relay-head > p:last-child, which is the
-                house register for discursive prose
-     narrow     14px / 1.62 / var(--ink-soft), from .reveal-relay-body,
-                kept only in the chapter's 321px left column where the
-                reading clamp would not fit
+                from .reveal-relay-head > p:last-child
      hairlines  var(--border) and var(--border-soft)
      radius     14px, from .reveal-relay-preview
      grounds    var(--paper), --paper-soft, --paper-deep. No new colour.
@@ -26,7 +36,10 @@
    MOTION. Three authored keyframes, all scroll-driven on named view
    timelines, all inside @supports + prefers-reduced-motion:
    no-preference, so the static page is the baseline and the drawing is
-   the enhancement. Same contract as .reveal in globals.css.
+   the enhancement. The rank's timeline lives on its whole column, not
+   on the 46px ruler, so the draw plays across ~400px of real scroll
+   instead of finishing inside the ruler's own height at the bottom
+   edge of the viewport, which is what the first build got wrong.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Anchor landing for the seven rungs. The site header is sticky at
@@ -36,24 +49,16 @@
 }
 
 /* ── Relay chapter measure ────────────────────────────────────────
-   The one place the house grammar had to be adjusted rather than
-   used as-is, and the reason is in the copy, not the design.
-
-   On the homepage a chapter head is a single-word product wordmark,
-   so the 0.29fr column never wraps. Every heading on this page is a
-   four-to-six word question from the ladder, and the same column
-   breaks "What being one of twenty-five means" across five lines at
-   53px. The column ratio is widened here so those headings settle on
-   two or three lines, and the chapter stacks one breakpoint earlier
-   than the house stacks it, because at 768 the narrow column is
-   tighter than any display heading should sit. Same grammar, at a
-   measure this copy can live in.
-
-   Everything else on this page that draws a term against a detail is
-   pinned to THIS ratio, not to the un-overridden house value, so the
-   ledger's first column starts exactly where rung 03's body starts. */
+   On the homepage a chapter head is a single-word product wordmark.
+   Here it is a quiet question register, so the narrow column can sit
+   close to the house's own ratio and still never wrap badly. The
+   chapter stacks one breakpoint earlier than the house stacks it,
+   because at 768 the narrow column is tighter than the ledger's terms
+   can live in. Every term/detail object on the page pins to THIS
+   ratio, so the ledger's first column starts exactly where rung 03's
+   body starts. */
 .page :global(.reveal-relay-chapter) {
-  grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
 }
 
 @media (max-width: 880px) {
@@ -64,22 +69,39 @@
   .page :global(.reveal-relay-copy) {
     padding-top: 0;
   }
+}
 
-  .page :global(.reveal-relay-body) {
-    max-width: 48ch;
-  }
+/* ── The question register ────────────────────────────────────────
+   The seven ladder questions, set like the navigation they are: one
+   quiet step above reading size, two full steps below every answer.
+   Overrides the house's display h3 (.reveal-relay-copy h3), which is
+   built for a one-word product wordmark, not a six-word question. */
+.page .rungQ {
+  max-width: 20ch;
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 1.02rem + 0.62vw, 1.55rem);
+  font-weight: 540;
+  letter-spacing: -0.022em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+/* The rung's own prose, at reading size rather than the house's 14px
+   caption register: these are 40-word ratified answers, not 20-word
+   captions, and the person this page was forwarded to reads them. */
+.rungBody {
+  max-width: 38ch;
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
 }
 
 /* ── The contents ─────────────────────────────────────────────────
-   Seven rungs, seven anchors. This replaces the .reveal-sequence rail
-   the hero used to carry: that device is built for four single-word
-   product marks (26 characters), and pouring 166 characters of ladder
-   into it produced two wrapped lines of 10px all-caps that named the
-   price section without being able to reach it.
-
-   It sits in the empty left column of .reveal-relay-head, beside the
-   section's own heading, which is where a table of contents belongs
-   and which was otherwise 390px of nothing. */
+   Seven rungs, seven anchors, in the left column of .reveal-relay-head
+   that the house grammar leaves empty. */
 .contents {
   grid-column: 1;
   margin: clamp(24px, 3vw, 34px) 0 0;
@@ -156,19 +178,15 @@
 }
 
 /* ── The definition index ─────────────────────────────────────────
-   Carries the objection library and the privacy triple. The terms are
-   set in sentence-case Geist rather than 10px mono uppercase: every
-   one of them is a question a venue owner actually asks, and 10px
-   all-caps turns a question into furniture. The details are set at the
-   house's discursive reading clamp, not at 14px, because this page
-   carries two and a half times the homepage's word count and the
-   person who was forwarded it reads these answers rather than scans
-   them.
+   Carries the objection library and the privacy triple. Terms in
+   sentence-case Geist rather than mono caps, because every one is a
+   question a venue owner actually asks, and all-caps turns a question
+   into furniture. Details at the house's discursive reading clamp.
 
-   align-content: start is load-bearing. .reveal-relay-chapter stretches
-   its children, so without it a two-row list beside a three-line
-   heading distributed 245px of slack into its own rows and read as a
-   rule with a missing answer under it. */
+   align-content: start is load-bearing: .reveal-relay-chapter
+   stretches its children, and without it a two-row list beside a tall
+   neighbour distributes slack into its own rows and reads as a rule
+   with a missing answer under it. */
 .index {
   display: grid;
   align-content: start;
@@ -208,8 +226,7 @@
 
 /* The one tinted panel on the page. PRIVACY is three parts and they
    travel together, so they are drawn as one object rather than three
-   rows a reader could take separately. Radius and ground are the
-   preview frame's own. */
+   rows a reader could take separately. */
 .indexGroup {
   padding: clamp(18px, 2.4vw, 28px) clamp(18px, 2.4vw, 28px) 10px;
   border: 1px solid var(--border);
@@ -226,16 +243,16 @@
   margin-top: clamp(26px, 3.4vw, 40px);
 }
 
-/* ── The answer register ──────────────────────────────────────────
-   The page's seven display headings are all questions. Two ratified
-   answers earn the same treatment and get it here: the sentence that
-   settles what a venue can and cannot see, and the sentence that
-   admits there are no customers yet. They sit one step below a rung
-   heading (56px) and well above the ledger title (32px), which is the
-   step the scale was otherwise missing between 19px and 56px. */
+/* ── The answer registers ─────────────────────────────────────────
+   The display type on this page belongs to the ratified answers. Two
+   sizes: .answer for a rung's lead answer, and .answerLg for the two
+   sentences that win the whole argument, the one about what a venue
+   can never see and the one that admits there are no customers yet.
+   Both sit far above the 25px question register, which is the entire
+   correction this revision makes. */
 .answer {
-  max-width: 30ch;
-  margin: clamp(26px, 3.4vw, 40px) 0;
+  max-width: 26ch;
+  margin: 4px 0 0;
   color: var(--ink);
   font-size: clamp(1.7rem, 1.05rem + 2.2vw, 3rem);
   font-weight: 540;
@@ -244,59 +261,54 @@
   text-wrap: balance;
 }
 
+.answerLg {
+  max-width: 19ch;
+  margin: clamp(26px, 3.4vw, 40px) 0;
+  color: var(--ink);
+  font-size: clamp(2.3rem, 1.4rem + 3.1vw, 4.7rem);
+  font-weight: 540;
+  letter-spacing: -0.048em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+/* The continuation of a lead answer, sliced from the same constant,
+   at reading size on the same left edge. */
+.answerRest {
+  max-width: 52ch;
+  margin: clamp(16px, 2vw, 24px) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
 /* The house marker, quoted from .reveal-manifesto-h2 .em, because the
    statement is a <p> here rather than the section heading. */
-.answer :global(.em) {
+.answer :global(.em),
+.answerLg :global(.em) {
   padding: 0 0.06em;
   background: linear-gradient(transparent 60%, var(--reveal-accent-soft) 60%);
 }
 
-/* Rung 02 breaks out of the relay into .reveal-manifesto, so its
-   heading needs the chapter heading's values written out rather than
-   inherited. Values copied from .reveal-relay-copy h3, so all seven
-   rungs are one size and one weight. */
-.rungHead {
-  max-width: 14ch;
-  margin: 20px 0 clamp(26px, 3.4vw, 38px);
-  color: var(--ink);
-  font-size: clamp(2.35rem, 1.72rem + 2vw, 4.2rem);
-  font-weight: 540;
-  letter-spacing: -0.052em;
-  line-height: 0.95;
-}
-
 /* ── The price ────────────────────────────────────────────────────
-   The figure is set at exactly the size of a rung heading, so the
-   number rhymes with the seven headings instead of shouting over
-   them. Clamp, weight, tracking and line-height are quoted from
-   .reveal-relay-copy h3. */
+   The one number the page exists to state, set one step under the h1
+   and above everything else, because a price that does not outrank
+   its own section label is a price the page is embarrassed by. */
 .priceFigure {
-  margin: 0;
+  margin: 0 0 clamp(24px, 3.2vw, 40px);
   color: var(--ink);
-  font-size: clamp(2.35rem, 1.72rem + 2vw, 4.2rem);
+  font-size: clamp(3.1rem, 2rem + 4.4vw, 6.4rem);
   font-weight: 540;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.052em;
   line-height: 0.95;
 }
 
-.priceUnder {
-  max-width: 46ch;
-  margin: 18px 0 clamp(30px, 4vw, 46px);
-  color: var(--ink-soft);
-  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
-  line-height: 1.62;
-}
-
 /* ── Blocks that span a chapter ───────────────────────────────────
    The ledger belongs to rung 03 and the film belongs to rung 04, so
-   each sits inside its own chapter and spans both columns rather than
-   floating between chapters as a section of its own. That is what
-   keeps the document outline at exactly seven h3 rungs. */
-/* The chapter's own row gap already contributes up to 72px above this rule,
-   which is why the margin here is small. The previous arrangement, where the
-   ledger was a sibling section carrying a full chapter's padding, opened 232px
-   of nothing between rung 03's body and the first row of the ledger. */
+   each sits inside its own chapter and spans both columns. That keeps
+   the document outline at exactly seven h3 rungs. */
 .spanBlock {
   grid-column: 1 / -1;
   margin-top: clamp(6px, 1vw, 14px);
@@ -310,7 +322,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 10px 20px;
-  margin: 0 0 clamp(26px, 3.6vw, 44px);
+  margin: 0 0 clamp(20px, 2.8vw, 32px);
 }
 
 .wideTitle {
@@ -330,17 +342,62 @@
   text-transform: uppercase;
 }
 
-/* ── The commercial ledger, 17 rows ───────────────────────────────
-   The densest object on the page and the one a forwarded business
-   partner actually reads.
+/* ── The sticky price bar ─────────────────────────────────────────
+   The ratified rule is that the price never travels without its
+   conditions. This bar makes the rule geometric: it rides sticky at
+   the top of the viewport for the whole of the ledger's scroll, so
+   there is no position from which a reader sees a condition without
+   the number, or the number without conditions under it. Top offset
+   is the site nav's 56px; z-index stays below the nav's 40. */
+.stickyBar {
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
 
-   Three deliberate differences from the index above. The column ratio
-   is the chapter's, exactly, so row 01 (the price and its VAT clause)
-   starts on the same vertical as rung 03's body copy directly above
-   it. Every row rule is var(--border) rather than var(--border-soft),
-   because seventeen rules at 1.10:1 do not read as seventeen rows.
-   And the row number is the only mono in the object, set as its own
-   grid column so 01 through 17 stack in a true column. */
+.stickyFigure {
+  color: var(--ink);
+  font-size: clamp(19px, 1.05rem + 0.5vw, 24px);
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.032em;
+  line-height: 1;
+}
+
+.stickyRest {
+  color: var(--ink-soft);
+  font-size: clamp(13.5px, 0.8rem + 0.2vw, 15px);
+  line-height: 1.5;
+}
+
+/* ── The commercial ledger, 17 rows in four groups ────────────────
+   The densest object on the page and the one a forwarded business
+   partner actually reads. Grouped so it can be scanned as well as
+   read: the rate, the couple's workspace, the two ways it ends, and
+   the founding place. Row numbers stay absolute, 01 through 17,
+   because "all seventeen rows" is the rule and the numbering is the
+   proof. The group label is the only mono besides the numbers, so the
+   groups read as furniture and the rows read as content. */
+.ledgerGroup {
+  padding-top: clamp(24px, 3.2vw, 38px);
+}
+
+.groupLabel {
+  margin: 0 0 6px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .ledger {
   display: grid;
   margin: 0;
@@ -348,10 +405,14 @@
 
 .ledgerRow {
   display: grid;
-  grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
   gap: 7px clamp(28px, 5vw, 72px);
-  padding: 20px 0;
-  border-top: 1px solid var(--border);
+  padding: 18px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.ledgerRow:first-child {
+  border-top-color: var(--border);
 }
 
 .ledgerTerm {
@@ -388,16 +449,12 @@
 
 /* ── The film slot ────────────────────────────────────────────────
    Sits inside .reveal-relay-preview, so the chrome, radius and shadow
-   are the house's. Only the reserved 16:9 interior is local.
-
-   It is drawn at the width of a real product view rather than at the
-   full container. An empty frame should not be the largest object on
-   a page whose other objects are live product, and the earlier
-   full-width version put three words into 864,000 square pixels,
-   which read as a failed image rather than a reserved one. */
+   are the house's. Drawn at the width of a real product view rather
+   than the full container: an empty frame should not be the largest
+   object on a page whose other objects are live product. */
 .mediaGrid {
   display: grid;
-  grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
   gap: clamp(28px, 5vw, 72px);
 }
 
@@ -464,9 +521,9 @@
   line-height: 1.6;
 }
 
-/* var(--ink-faint) on var(--paper-deep) computes to 4.40:1, which is
-   under the 4.5:1 floor for text this size, and it was the page's only
-   measured contrast failure. --ink-soft on the same ground is 9.5:1. */
+/* var(--ink-faint) on var(--paper-deep) computes to 4.40:1, under the
+   4.5:1 floor for text this size. --ink-soft on the same ground is
+   9.5:1. */
 .filmMeta {
   margin: 0;
   color: var(--ink-soft);
@@ -477,13 +534,12 @@
 }
 
 /* ── The rank of twenty-five ──────────────────────────────────────
-   The page's signature object, and the one place it authors motion of
-   its own. Twenty-five places, drawn as a measure, every one of them
-   open, because the ratified answer directly beneath it says nobody
-   has taken one yet. Decorative by construction: FOUNDING_NUMBER and
-   WHO_ELSE state the whole of its content in text, so it is hidden
-   from assistive technology rather than given a label that would
-   duplicate them. */
+   The page's signature object. Twenty-five places, drawn as a
+   measure, every one of them open, standing directly over the two
+   ratified words that admit why. Decorative by construction:
+   FOUNDING_NUMBER and WHO_ELSE state the whole of its content in
+   text, so it is hidden from assistive technology rather than given
+   a label that would duplicate them. */
 .rank {
   margin: 0 0 clamp(30px, 3.8vw, 46px);
 }
@@ -496,8 +552,9 @@
   height: 46px;
 }
 
-/* The baseline stops exactly under the first and last tick rather than at
-   the container edges. Twenty-five equal tracks, so half a track is 2%. */
+/* The baseline stops exactly under the first and last tick rather
+   than at the container edges. Twenty-five equal tracks, so half a
+   track is 2%. */
 .rankTicks::after {
   content: "";
   position: absolute;
@@ -533,58 +590,37 @@
   letter-spacing: 0.14em;
 }
 
-/* Centred in its own track, which is where the tick above it sits, so every
-   numeral is directly under the place it names. */
+/* Centred in its own track, which is where the tick above it sits, so
+   every numeral is directly under the place it names. */
 .rankScale > span {
   grid-column: var(--n);
   justify-self: center;
 }
 
 /* ── Two product views in one chapter ─────────────────────────────
-   Rung 1 promises two things: a plan the couple can share, and a short
-   note in the morning. One frame each. */
+   Rung 1 promises two things: a plan the couple can share, and a
+   short note in the morning. One frame each. */
 .previewStack {
   display: grid;
   min-width: 0;
   gap: clamp(16px, 2.2vw, 24px);
 }
 
-/* The dateline stamp used to be hidden here, because SignalTheRead
-   hardcoded "The Orchard" and exposed no way to change it. Hiding it
-   was wrong: the string still shipped in the HTML, the RSC payload and
-   every link preview, which is exactly what the canon rule forbids.
-   The shared component now takes a `venue` prop, defaulting to the
-   homepage fixture, and this page passes Glenmara House. Nothing to
-   suppress, so the stamp and its timestamp are shown as designed. */
-
-/* ── The close ────────────────────────────────────────────────── */
-
-/* The page has exactly one ask, and .reveal-closing-sign caps at 40px,
-   which left it the fifth-largest type on the page, behind seven
-   repeated section labels. Raised to sit just under the manifesto and
-   just over a rung heading. Values follow .reveal-relay-head h2. */
+/* ── The close ────────────────────────────────────────────────────
+   One ask, and the sign above it is the sentence about the person it
+   reaches. .reveal-closing-sign caps at 40px in the house; raised to
+   sit between the answers and the rung questions. */
 .page :global(.reveal-closing-sign) {
   font-size: clamp(1.9rem, 1.3rem + 2.9vw, 4.6rem);
   letter-spacing: -0.046em;
   line-height: 1.02;
 }
 
-.closeSupport {
-  max-width: 44ch;
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
-  line-height: 1.62;
-}
-
 /* ── Dark theme ───────────────────────────────────────────────────
    --zinc-600 is defined in :root and never remapped by the dark block
    in src/ds/tokens.css, so it computes to 2.48:1 on the dark paper.
-   No product sets data-theme=dark before launch, so this is a trap
-   rather than a live failure, but the ledger's row numbering is among
-   the elements that would go dark on dark. Remapped here rather than
-   swapped for --ink-faint outright, because --zinc-600 is the stronger
-   value in light and the light page is the one that ships. */
+   No product sets data-theme=dark before launch; remapped so the trap
+   cannot fire. */
 :global([data-theme="dark"]) .wideMeta,
 :global([data-theme="dark"]) .ledgerNum,
 :global([data-theme="dark"]) .page :global(.reveal-relay-number) {
@@ -594,15 +630,17 @@
 /* ── Authored motion ──────────────────────────────────────────────
    Two moments, one idea: this page is a document in seven parts, so
    things are drawn in order, left to right. The contents draws itself
-   rule by rule as the reader arrives at it; the rank of twenty-five
-   draws its baseline and then stands its twenty-five places up along
-   it, one after another.
+   rule by rule as the reader arrives at it; the rank draws its
+   baseline and then stands its twenty-five places up along it, one
+   after another.
 
-   Both hang off named view timelines on their own containers, both
-   are gated on @supports and prefers-reduced-motion, and the static
-   state is the finished state. Same contract as .reveal in
-   globals.css: nothing is withheld from a reader whose browser or
-   settings decline the animation. */
+   The rank's timeline is named on .rankColumn, the whole right-hand
+   column of rung 07, which is several hundred pixels tall. Its entry
+   therefore spans real scroll, and the ticks finish standing while
+   the ruler is in the middle of the viewport rather than pinned to
+   its bottom edge. The static state is the finished state; nothing is
+   withheld from a reader whose browser or settings decline the
+   animation. */
 @keyframes va-draw-x {
   from {
     transform: scaleX(0);
@@ -657,21 +695,21 @@
         calc(35% + var(--i) * 3.4%);
     }
 
-    .rankTicks {
+    .rankColumn {
       view-timeline-name: --va-rank;
     }
 
     .rankTicks::after {
       animation: va-draw-x var(--motion-slow) var(--ease-out) both;
       animation-timeline: --va-rank;
-      animation-range: entry 6% entry 46%;
+      animation-range: entry 4% entry 22%;
     }
 
     .rankTick {
       animation: va-rise-y var(--motion-slow) var(--ease-out) both;
       animation-timeline: --va-rank;
-      animation-range: entry calc(18% + var(--i) * 0.9%) entry
-        calc(40% + var(--i) * 0.9%);
+      animation-range: entry calc(8% + var(--i) * 1.3%) entry
+        calc(26% + var(--i) * 1.3%);
     }
   }
 }
@@ -726,8 +764,13 @@
     height: 44px;
   }
 
+  .stickyBar {
+    gap: 4px 10px;
+    padding: 11px 0;
+  }
+
   /* Keeps the raised ask inside the house's own mobile band for
-     .reveal-closing-sign (26px to 36px at 640, 24px to 32px at 540). */
+     .reveal-closing-sign. */
   .page :global(.reveal-closing-sign) {
     font-size: clamp(26px, 6.6vw, 40px);
   }
