@@ -4,9 +4,9 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T02:48:15.814Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T05:25:22.122Z · baseline **approved** (0.1.0)
 
-212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 187 unestimated.
+212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
 Legend: **CP** imported critical path · **RB** release-blocking · **SN** start-now · **FD** founder decision, only Ethan can answer it · **FC** Claude brings options, Ethan picks · spec ✓ when a task specification exists · **Evidence** is the count of recorded evidence references · **Target** is a deliberately set date, never a forecast · sign-off is the founder state.
 
@@ -143,28 +143,28 @@ Lane: `claude_code` · 1/12 done (8.3%) · 0 in flight · 0 blocked
 
 _Launch-blocking. This is not deferred until after sales._
 
-Lane: `claude_code` · 0/18 done (0%) · 17 in flight · 0 blocked
+Lane: `claude_code` · 0/18 done (0%) · 18 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E07.01 | Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit. | in_progress | p1 | CP RB FC | claude_code | — | — | — | — | — | not_requested |
-| E07.02 | Redesign Overview so “Invite a couple” is the principal action. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.03 | Complete account-standing, current-term, founding-status, renewal-date and support-status presentation. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.04 | Ratify every adoption-funnel definition from invitation through meaningful first action and continued use. | in_progress | p1 | CP RB FD | claude_code | E09.02 | — | — | — | — | not_requested |
-| E07.05 | Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.06 | Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.07 | Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model. | in_progress | p1 | CP RB FD | claude_code | E02.12 | — | — | — | — | not_requested |
-| E07.08 | Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status. | in_progress | p1 | CP RB | claude_code | E02.12 | — | — | — | — | not_requested |
-| E07.09 | Complete access search, filters, pagination, stale-invitation alerts and masked-code handling. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.10 | Complete the distribution kit with approved email wording, welcome link and printable welcome card. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.11 | Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.12 | Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt. | in_progress | p1 | CP RB FD | claude_code | — | — | — | — | — | not_requested |
-| E07.13 | Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.14 | Complete monthly, access-term and renewal-report generation. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.15 | Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.16 | Complete Account, organisation settings, members, roles, support history and reporting preferences. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.17 | Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view. | in_progress | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E07.18 | Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation. | ready | p1 | CP RB | claude_code | E07.01, E07.02, E07.03, E07.04, E07.05, E07.06, E07.07, E07.08, E07.09, E07.10, E07.11, E07.12, E07.13, E07.14, E07.15, E07.16, E07.17 | 2026-08-20 | — | — | — | not_requested |
+| E07.01 | Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit. | founder_review | p1 | CP RB FC | claude_code | — | — | 11 | — | — | requested |
+| E07.02 | Redesign Overview so “Invite a couple” is the principal action. | founder_review | p1 | CP RB | claude_code | — | — | 8 | — | — | requested |
+| E07.03 | Complete account-standing, current-term, founding-status, renewal-date and support-status presentation. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | — | requested |
+| E07.04 | Ratify every adoption-funnel definition from invitation through meaningful first action and continued use. | founder_review | p1 | CP RB FD | claude_code | E09.02 | — | 6 | — | — | requested |
+| E07.05 | Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation. | founder_review | p1 | CP RB | claude_code | — | — | 7 | — | — | requested |
+| E07.06 | Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful. | founder_review | p1 | CP RB | claude_code | — | — | 5 | — | — | requested |
+| E07.07 | Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model. | founder_review | p1 | CP RB FD | claude_code | E02.12 | — | 19 | — | — | requested |
+| E07.08 | Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status. | founder_review | p1 | CP RB | claude_code | E02.12 | — | 13 | — | — | requested |
+| E07.09 | Complete access search, filters, pagination, stale-invitation alerts and masked-code handling. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | — | requested |
+| E07.10 | Complete the distribution kit with approved email wording, welcome link and printable welcome card. | founder_review | p1 | CP RB | claude_code | — | — | 8 | — | — | requested |
+| E07.11 | Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions. | founder_review | p1 | CP RB | claude_code | — | — | 6 | — | — | requested |
+| E07.12 | Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt. | founder_review | p1 | CP RB FD | claude_code | — | — | 10 | — | — | requested |
+| E07.13 | Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail. | founder_review | p1 | CP RB | claude_code | — | — | 5 | — | — | requested |
+| E07.14 | Complete monthly, access-term and renewal-report generation. | founder_review | p1 | CP RB | claude_code | — | — | 7 | — | — | requested |
+| E07.15 | Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions. | founder_review | p1 | CP RB | claude_code | — | — | 10 | — | — | requested |
+| E07.16 | Complete Account, organisation settings, members, roles, support history and reporting preferences. | founder_review | p1 | CP RB | claude_code | — | — | 21 | — | ✓ | requested |
+| E07.17 | Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view. | founder_review | p1 | CP RB | claude_code | — | — | 7 | — | — | requested |
+| E07.18 | Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation. | founder_review | p1 | CP RB | claude_code | E07.01, E07.02, E07.03, E07.04, E07.05, E07.06, E07.07, E07.08, E07.09, E07.10, E07.11, E07.12, E07.13, E07.14, E07.15, E07.16, E07.17 | 2026-08-20 | 13 | — | — | requested |
 
 ## E08 — Billing, security, reliability and release engineering
 
@@ -191,22 +191,22 @@ Lane: `claude_code` · 0/12 done (0%) · 0 in flight · 0 blocked
 
 _Blocks trustworthy portal reports, product capture and final scripts._
 
-Lane: `claude_code` · 4/12 done (33.3%) · 6 in flight · 0 blocked
+Lane: `claude_code` · 4/12 done (33.3%) · 8 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E09.01 | Publish the Venue Edition event taxonomy and metric data dictionary. | done | p1 | CP | claude_code | — | — | 2 | — | — | approved |
 | E09.02 | Define first useful action, recent use, 30-day continuation, product reach, Timeline creation and Timeline sharing. | done | p1 | CP FC | claude_code | — | — | 2 | — | — | approved |
-| E09.03 | Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions. | in_progress | p1 | CP | claude_code | — | — | — | — | — | not_requested |
-| E09.04 | Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion. | in_progress | p1 | CP | claude_code | — | — | — | — | — | not_requested |
-| E09.05 | Join CRM, commercial, product and reporting data into one founder operating dashboard. | in_progress | p1 | CP | claude_code | — | — | — | — | — | not_requested |
+| E09.03 | Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions. | founder_review | p1 | CP | claude_code | — | — | 26 | — | — | requested |
+| E09.04 | Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion. | founder_review | p1 | CP | claude_code | — | — | 12 | — | ✓ | requested |
+| E09.05 | Join CRM, commercial, product and reporting data into one founder operating dashboard. | founder_review | p1 | CP | claude_code | — | — | 14 | — | — | requested |
 | E09.06 | Lock the canonical demo story for the venue, couple and wedding journey. | done | p1 | CP FD | claude_code | — | — | 1 | — | — | approved |
-| E09.07 | Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal. | in_progress | p1 | CP | claude_code | — | — | — | — | — | not_requested |
-| E09.08 | Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used. | in_progress | p1 | CP FD | claude_code | — | — | — | — | — | not_requested |
-| E09.09 | Reconcile every sample invitation count, adoption metric, report number, date and product-reach value. | ready | p1 | CP | claude_code | E09.06, E09.07 | — | — | — | — | not_requested |
+| E09.07 | Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal. | founder_review | p1 | CP | claude_code | — | — | 23 | — | — | requested |
+| E09.08 | Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used. | founder_review | p1 | CP FD | claude_code | — | — | 15 | — | ✓ | requested |
+| E09.09 | Reconcile every sample invitation count, adoption metric, report number, date and product-reach value. | founder_review | p1 | CP | claude_code | E09.06, E09.07 | — | 13 | — | — | requested |
 | E09.10 | Publish the Venue Edition copy hierarchy, terminology and tone rules. | done | p1 | CP FC | claude_code | — | — | 1 | — | — | approved |
-| E09.11 | Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy. | in_progress | p1 | CP | claude_code | E09.10 | — | — | — | — | not_requested |
-| E09.12 | Freeze the capture copy and build a one-action demo reset that restores the canonical state. | ready | p1 | CP | claude_code | E02.01, E02.03, E02.12, E03.09, E09.11 | 2026-08-21 | — | — | — | not_requested |
+| E09.11 | Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy. | founder_review | p1 | CP | claude_code | E09.10 | — | 14 | — | ✓ | requested |
+| E09.12 | Freeze the capture copy and build a one-action demo reset that restores the canonical state. | founder_review | p1 | CP | claude_code | E02.01, E02.03, E02.12, E03.09, E09.11 | 2026-08-21 | 13 | — | ✓ | requested |
 
 ## E10 — Greater Limerick venue universe and outreach cohorts
 
@@ -288,8 +288,8 @@ Lane: `codex_motion` · 0/18 done (0%) · 4 in flight · 0 blocked
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E13.01 | Write the formal creative brief for the personalised Limerick First invitation film. | backlog | p1 | SN | codex_motion | — | — | — | — | — | not_requested |
 | E13.02 | Define the indigo-dot motion language connecting the map, venue pin, Timeline milestone and Signal Studio mark. | backlog | p1 | SN | codex_motion | — | — | — | — | — | not_requested |
-| E13.03 | Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E13.04 | Build the data-driven map composition using verified venue coordinates and cohort metadata. | in_progress | p2 | — | claude_code | — | — | — | — | — | not_requested |
+| E13.03 | Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings. | founder_review | p1 | SN | claude_code | — | — | 12 | — | ✓ | requested |
+| E13.04 | Build the data-driven map composition using verified venue coordinates and cohort metadata. | founder_review | p2 | — | claude_code | — | — | 24 | — | — | requested |
 | E13.05 | Animate all 25 cohort pins while keeping names anonymous except the private recipient until permission is granted. | backlog | p2 | — | codex_motion | — | — | — | — | — | not_requested |
 | E13.06 | Build the recipient-highlight sequence showing the venue name, location and personal invitation. | backlog | p2 | — | codex_motion | — | — | — | — | — | not_requested |
 | E13.07 | Finalise the 35–45 second script and on-screen copy. | backlog | p1 | SN FC | codex_motion | — | — | — | — | — | not_requested |
@@ -300,8 +300,8 @@ Lane: `codex_motion` · 0/18 done (0%) · 4 in flight · 0 blocked
 | E13.12 | Record or generate the final approved voiceover. | backlog | p2 | — | codex_motion | — | — | — | — | — | not_requested |
 | E13.13 | Source and license the music and sound-effects palette. | backlog | p2 | — | codex_motion | — | — | — | — | — | not_requested |
 | E13.14 | Produce the final motion, typography, map animation, price sequence and CTA. | backlog | p2 | — | codex_motion | E13.11, E13.12, E13.13 | — | — | — | — | not_requested |
-| E13.15 | Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data. | in_progress | p2 | — | claude_code | — | — | — | — | — | not_requested |
-| E13.16 | Generate unique tracked links, thumbnails and landing destinations for every personalised render. | in_progress | p2 | — | claude_code | — | — | — | — | — | not_requested |
+| E13.15 | Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data. | founder_review | p2 | — | claude_code | — | — | 9 | — | — | requested |
+| E13.16 | Generate unique tracked links, thumbnails and landing destinations for every personalised render. | founder_review | p2 | — | claude_code | — | — | 11 | — | ✓ | requested |
 | E13.17 | Render and manually QA all 25 Cohort 1 videos. | backlog | p1 | CP | codex_motion | E10.06, E10.08, E10.12, E13.14, E13.15, E13.16 | 2026-08-28 | — | — | — | not_requested |
 | E13.18 | Prepare Cohort 2–4 templates, versioning, archive structure and rapid rerender procedure. | backlog | p2 | — | codex_motion | — | — | — | — | — | not_requested |
 

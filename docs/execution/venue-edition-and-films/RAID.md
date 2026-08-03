@@ -840,3 +840,68 @@ this session, and it does not.
 - **Mitigation:** decide whether "founding partner" is retired in favour of "Founding 25" everywhere, or whether it is a distinct thing that needs its own definition · sweep both surfaces plus any collateral built from them · fold the banned-term list into the standing string check (E09.10 already defines it).
 - **Affects:** E02.08, E02.10, E09.10, E12.10, E12.12
 - **Status:** open · **Last reviewed:** 2026-08-03
+
+---
+
+## Opened 2026-08-03 by Wave 2 (WP-05, WP-06, WP-12) · verified in shipped code
+
+### R-043 — The Venue Portal has no venue. There is no venue-authenticated route anywhere.
+- **Type:** product/security · **Probability:** certain · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara
+- **Verified:** `studio/src/lib/hq/auth.ts:3,23-25` — the only guard on every Account surface
+  is one shared password whose cookie is `sha256('signal-hq-session:v1:' + SIGNAL_HQ_PASSWORD)`,
+  deterministically derivable. `studio/src/lib/account/live/project-venue-access.ts:326` —
+  the live snapshot returns `members: []` unconditionally.
+  `studio/src/app/hq/account-review/panels/account-panel.tsx:77-91` — "Invite member" sets a
+  local notice string and nothing else; `:10-23` — support history is a hardcoded two-row array.
+- **Detail:** D-027 point 4 makes the portal at launch "invitation administration only", which
+  implies an administrator. There is none. The four roles and the 13-row capability matrix in
+  `lib/account/roles.ts` govern nothing on the live path, and `ROLES_AND_PERMISSIONS.md`'s
+  `sponsor_members` lifecycle has no implementation. The same shared password also opens Today,
+  Money, Company, Vault, Atlas, Decks, Founders Circle and the Data Room, so the blast radius of
+  handing it to a venue is the whole of Signal HQ.
+- **Mitigation:** four options are set out with costs in `evidence/E07.16-venue-identity-lab.md`.
+  Recommended: **Option C** for 1 September — Signal HQ administers, the venue receives evidence
+  rather than a login — with A′ (a read-only venue link) held as a two-day follow-on and B (a real
+  venue account) not started before the 2026-08-20 UI freeze.
+- **Affects:** E07.16, E07.18, E07.02, E07.03, E15.04
+- **Status:** open · **Target:** before the UI freeze, 2026-08-20 · **Last reviewed:** 2026-08-03
+
+### R-044 — A concurrent session committed another lane's in-flight work into an unrelated commit
+- **Type:** governance/delivery · **Probability:** high · **Impact:** medium · **Severity:** medium
+- **Owner:** Claude Code
+- **Verified:** `studio` commit `05974d1` ("Re-baseline seven reviewed surfaces…", 2026-08-03
+  04:22:40) contains `docs/execution/venue-edition-and-films/tools/venue-map-export.mjs`, a WP-12
+  deliverable, in a commit whose message is about homepage surfaces and does not mention it.
+- **Detail:** the file itself is clean — no venue name, no contact data — so there is nothing to
+  remediate. The failure is that a `git add` in a shared repository swept an unreviewed package's
+  work into an unrelated commit, which makes that change invisible to review and unattributable in
+  history. Waves 3, 4 and 5 each run three sessions against the same two repositories.
+- **Mitigation:** never `git add -A` or `git add <dir>` in a repository another session may be
+  writing; stage explicit paths · a session that commits states which package's files it staged ·
+  prefer leaving a wave uncommitted and handing the founder an explicit path list, which is what
+  Wave 2 did.
+- **Affects:** every remaining wave
+- **Status:** open, standing · **Last reviewed:** 2026-08-03
+
+### I-015 — Three register IDs are duplicated, and the registers are validated by nothing
+- **Type:** governance · **Severity:** high
+- **Owner:** Ethan McNamara
+- **Verified:** `DECISIONS.md:980` and `:1179` are both **D-028** (cohort ranking / standing
+  publication authorisation). `RAID.md:430` and `:693` are both **R-025** (all six gates pass with
+  backlog work / the public price coupled to an unapproved task). `RAID.md:443` and `:776` are both
+  **I-007** (control root untracked, resolved / the wave PR's red gate, open).
+- **Detail:** any tool or cross-reference resolving one of these IDs picks one silently, and citing
+  "D-028" without a line number is ambiguous between two live approved decisions with disjoint
+  subject matter. I-011 already records that these markdown registers lose entries under concurrent
+  sessions and that four entries were destroyed once and reissued under new numbers. This is the
+  same failure continuing, and three more waves of parallel sessions are scheduled.
+- **Why it was not fixed in Wave 2:** renumbering is change-controlled. `DECISIONS.md` is
+  append-only by its own header, these are ratified records, and the previous renumbering required
+  repointing every reference across three files.
+- **Mitigation:** extend `project-control.mjs validate` to parse `DECISIONS.md` and `RAID.md` and
+  fail on a duplicate ID, which is the check that would have caught all three on the day they
+  landed · then renumber the later member of each pair under a change request, with a full
+  cross-file sweep · until then, cite these three IDs by line number.
+- **Affects:** DECISIONS.md, RAID.md, every document citing D-028, R-025 or I-007
+- **Status:** open · **Target:** before Wave 3 opens · **Last reviewed:** 2026-08-03

@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T02:48:15.814Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T02:48:15.814Z · session `wp03-e0506-audit`
+**Report generated:** 2026-08-03T05:25:22.122Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T05:25:22.122Z · session `wp03-e0506-audit`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -22,9 +22,9 @@
 **Verified completion: 33.8%** — 71 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 37.3% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 46.2% (estimate, not verified completion — status-credit model in REPORTING.md)
 
-**Unestimated active tasks:** 187 of 210.
+**Unestimated active tasks:** 157 of 210.
 
 A task counts as complete only when its acceptance criteria are met, evidence is recorded, verification passed, and the founder has explicitly approved it.
 
@@ -33,10 +33,10 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | Status | Count |
 |---|---|
 | backlog | 106 |
-| ready | 5 |
-| in_progress | 27 |
+| ready | 2 |
+| in_progress | 0 |
 | internal_review | 1 |
-| founder_review | 0 |
+| founder_review | 30 |
 | done | 71 |
 | blocked | 0 |
 | deferred | 2 |
@@ -53,9 +53,9 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 0/12 | 0% | 0 | 0 |
 | E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 0 | 0 |
-| E07 | Venue Portal, trust layer and renewal evidence | 0/18 | 0% | 17 | 0 |
+| E07 | Venue Portal, trust layer and renewal evidence | 0/18 | 0% | 18 | 0 |
 | E08 | Billing, security, reliability and release engineering | 0/12 | 0% | 0 | 0 |
-| E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 6 | 0 |
+| E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 8 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
 | E12 | Website, proposal and commercial asset system | 1/14 | 7.1% | 0 | 0 |
@@ -106,7 +106,13 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 **Focus task:** none — No focus task. Baseline approval comes first.
 
-**In progress (27/3):**
+**In progress (0/3):**
+- None.
+
+**Internal review (1):**
+- `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
+
+**Awaiting founder review (30):**
 - `E07.01` Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit. — claude_code
 - `E07.02` Redesign Overview so “Invite a couple” is the principal action. — claude_code
 - `E07.03` Complete account-standing, current-term, founding-status, renewal-date and support-status presentation. — claude_code
@@ -124,29 +130,55 @@ Ratified in D-008. Moving one is change control, not an edit.
 - `E07.15` Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions. — claude_code
 - `E07.16` Complete Account, organisation settings, members, roles, support history and reporting preferences. — claude_code
 - `E07.17` Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view. — claude_code
+- `E07.18` Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation. — claude_code
 - `E09.03` Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions. — claude_code
 - `E09.04` Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion. — claude_code
 - `E09.05` Join CRM, commercial, product and reporting data into one founder operating dashboard. — claude_code
 - `E09.07` Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal. — claude_code
 - `E09.08` Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used. — claude_code
+- `E09.09` Reconcile every sample invitation count, adoption metric, report number, date and product-reach value. — claude_code
 - `E09.11` Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy. — claude_code
+- `E09.12` Freeze the capture copy and build a one-action demo reset that restores the canonical state. — claude_code
 - `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings. — claude_code
 - `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata. — claude_code
 - `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data. — claude_code
 - `E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render. — claude_code
-
-**Internal review (1):**
-- `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
-
-**Awaiting founder review (0):**
-- None.
 
 **Blocked (0):**
 - None.
 
 ## Founder decisions required
 
-- None.
+1. Approve or reject `E07.01` — Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit.
+2. Approve or reject `E07.02` — Redesign Overview so “Invite a couple” is the principal action.
+3. Approve or reject `E07.03` — Complete account-standing, current-term, founding-status, renewal-date and support-status presentation.
+4. Approve or reject `E07.04` — Ratify every adoption-funnel definition from invitation through meaningful first action and continued use.
+5. Approve or reject `E07.05` — Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation.
+6. Approve or reject `E07.06` — Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful.
+7. Approve or reject `E07.07` — Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model.
+8. Approve or reject `E07.08` — Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status.
+9. Approve or reject `E07.09` — Complete access search, filters, pagination, stale-invitation alerts and masked-code handling.
+10. Approve or reject `E07.10` — Complete the distribution kit with approved email wording, welcome link and printable welcome card.
+11. Approve or reject `E07.11` — Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions.
+12. Approve or reject `E07.12` — Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt.
+13. Approve or reject `E07.13` — Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail.
+14. Approve or reject `E07.14` — Complete monthly, access-term and renewal-report generation.
+15. Approve or reject `E07.15` — Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions.
+16. Approve or reject `E07.16` — Complete Account, organisation settings, members, roles, support history and reporting preferences.
+17. Approve or reject `E07.17` — Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view.
+18. Approve or reject `E07.18` — Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation.
+19. Approve or reject `E09.03` — Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions.
+20. Approve or reject `E09.04` — Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion.
+21. Approve or reject `E09.05` — Join CRM, commercial, product and reporting data into one founder operating dashboard.
+22. Approve or reject `E09.07` — Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal.
+23. Approve or reject `E09.08` — Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used.
+24. Approve or reject `E09.09` — Reconcile every sample invitation count, adoption metric, report number, date and product-reach value.
+25. Approve or reject `E09.11` — Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy.
+26. Approve or reject `E09.12` — Freeze the capture copy and build a one-action demo reset that restores the canonical state.
+27. Approve or reject `E13.03` — Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
+28. Approve or reject `E13.04` — Build the data-driven map composition using verified venue coordinates and cohort metadata.
+29. Approve or reject `E13.15` — Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
+30. Approve or reject `E13.16` — Generate unique tracked links, thumbnails and landing destinations for every personalised render.
 
 ## Completed since the last report
 
@@ -211,8 +243,8 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** wp03-e0506-audit (E05/E06 audit against shipped implementation, per D-015 Q2) · wp05-portal (WP-05 Venue Portal audit and completion (E07.01-E07.18)) · wp06-measurement (WP-06 instrumentation, demo fixture and copy (E09 remainder)) · wp12-mapsystem (WP-12 map system and render pipeline (E13.03,.04,.15,.16))
-**Last closed session:** eed55e9e-deploy (2026-08-03T02:33:41.907Z) → `sessions/2026-08-03--eed55e9e-deploy.md`
+**Open sessions:** none
+**Last closed session:** wp03-e0506-audit (2026-08-03T05:25:22.122Z) → `sessions/2026-08-03--wp03-e0506-audit.md`
 
 ## Next recommended project-management action
 
