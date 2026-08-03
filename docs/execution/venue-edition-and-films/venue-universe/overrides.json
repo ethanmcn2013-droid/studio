@@ -1,0 +1,91 @@
+{
+  "_comment": [
+    "Durable human decisions about individual accounts, keyed by venue name.",
+    "",
+    "The merge, geocode and routing passes are all regenerable from the research",
+    "sweeps, and re-running them must not quietly discard a judgement someone",
+    "made. Anything decided by a person rather than computed lives here and is",
+    "reapplied after every rebuild.",
+    "",
+    "Each entry says who decided, when, and why. An override without a reason is",
+    "indistinguishable from a mistake."
+  ],
+
+  "eligibility": {
+    "The Thatched Cottage": {
+      "eligibility": "out",
+      "reason": "Restaurant and bar with a banquet room. D-012 excludes restaurants and pubs explicitly.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "St. John's Church, Knockainey": {
+      "eligibility": "out",
+      "reason": "Ceremony venue only, no reception. Cannot sponsor a couple experience.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "The Bedford Townhouse & Café": {
+      "eligibility": "out",
+      "reason": "Twenty-four guests and no wedding marketing of its own. Fails the coordinator and calendar tests.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "Ballyneety Golf Club": {
+      "eligibility": "out",
+      "reason": "Has function capacity but markets no weddings. Fails the coordinator test.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "Limerick Racecourse (Greenmount Park)": {
+      "eligibility": "borderline",
+      "reason": "Markets wedding packages with real banqueting capacity, but a racecourse is not one of the six D-012 types. Founder call.",
+      "decided_by": "Claude Code, E10.02 rule — escalated",
+      "decided_on": "2026-08-03"
+    },
+    "Thomond Park Stadium": {
+      "eligibility": "borderline",
+      "reason": "Five wedding suites and a civil-ceremony licence is a real weddings operation, but a stadium is not one of the six D-012 types. Founder call.",
+      "decided_by": "Claude Code, E10.02 rule — escalated",
+      "decided_on": "2026-08-03"
+    }
+  },
+
+  "coordinates": {
+    "Limerick Strand Hotel": {
+      "latitude": 52.66624,
+      "longitude": -8.63207,
+      "coord_confidence": "verified",
+      "coord_precision": "venue",
+      "coord_source": "https://nominatim.openstreetmap.org/ (The Strand Hotel, Ennis Road)",
+      "reason": "Listed on OpenStreetMap as The Strand Hotel, so the venue name alone would not resolve.",
+      "decided_on": "2026-08-03"
+    },
+    "Cahermoyle House": {
+      "latitude": 52.49444,
+      "longitude": -9.06306,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Ardagh, Co. Limerick)",
+      "reason": "Venue would not resolve; Ardagh centroid used. Ring-usable, NOT film-usable.",
+      "decided_on": "2026-08-03"
+    },
+    "The Black Castle (Tullaun Castle)": {
+      "latitude": 52.86194,
+      "longitude": -8.19667,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Nenagh, Co. Tipperary)",
+      "reason": "Venue would not resolve; Nenagh centroid used. Ring-usable, NOT film-usable.",
+      "decided_on": "2026-08-03"
+    }
+  },
+
+  "ring": {
+    "Fota Island Clubhouse": { "drive_time_ring": "out", "reason": "Cork, no coordinate and no town recorded. Far outside the ring on county alone." },
+    "Inish Beg Estate": { "drive_time_ring": "out", "reason": "West Cork. Far outside the ring on county alone." },
+    "The Galmont Hotel & Spa": { "drive_time_ring": "out", "reason": "Galway city. Far outside the ring on county alone." },
+    "The Brehon Hotel & Spa": { "drive_time_ring": "out", "reason": "Killarney. Far outside the ring on county alone." },
+    "The Killarney Park Hotel": { "drive_time_ring": "out", "reason": "Killarney. Far outside the ring on county alone." },
+    "The Manor West Hotel": { "drive_time_ring": "out", "reason": "Tralee. Far outside the ring on county alone." }
+  }
+}

@@ -56,3 +56,16 @@ next-env.d.ts
 
 # local dev scratch DB (schools UI verification)
 dev-local.db*
+
+# VEF-2026 private operating data. The template and the handling guidance are
+# tracked; the live venue file and anything else dropped in here is not.
+/docs/execution/venue-edition-and-films/private/*
+!/docs/execution/venue-edition-and-films/private/README.md
+!/docs/execution/venue-edition-and-films/private/venues.template.csv
+
+# project-control atomic-write scratch files
+/docs/execution/venue-edition-and-films/**/*.tmp
+
+# Geocoding response cache. Regenerable, and its filenames are derived from
+# venue names and addresses, so several exceed the filesystem path limit.
+/docs/execution/venue-edition-and-films/.geo-cache/

@@ -1,0 +1,31 @@
+account_id,venue_name,cluster,drive_time_ring,latitude,longitude,venue_type,rank_score,cohort,buyer_role,contact_verified_on,consent_public_naming,consent_map_publication,crm_stage,conflict_flag,fit_reason,notes
+VEN-0001,,,,,,,,,,,,,,,,
+# ---------------------------------------------------------------------------
+# TEMPLATE ONLY. The live file is private/venues.csv and is gitignored.
+#
+# account_id            Stable ID. The join key to Signal HQ / CRM. Never reuse.
+# venue_name            Business name only. Not a person.
+# cluster               Geographic cluster (E10.06).
+# drive_time_ring       15 | 30 | 45 minutes (E10.06, feeds the film map E13.03).
+# latitude/longitude    Verified coordinates (E10.06). Required before E13.17.
+# venue_type            Eligible type per E10.02.
+# rank_score            E10.03 score.
+# cohort                1 | 2 | 3 | 4 | reserve (E10.12, E10.13, E10.14).
+# buyer_role            owner | general_manager | wedding_manager | sales_lead | events_lead.
+#                       ROLE ONLY. Never a person's name in this file.
+# contact_verified_on   YYYY-MM-DD the contact details were last verified (E10.08, E10.14).
+# consent_public_naming TRUE | FALSE | unknown (E10.14, E15.16).
+# consent_map_publication TRUE | FALSE | unknown.
+# crm_stage             Mirrors the CRM stage (E11.01). The CRM is authoritative.
+# conflict_flag         Group ownership, shared operator, rename, duplicate (E10.05, E10.14).
+# fit_reason            One honest sentence: why this account belongs in the founding
+#                       outreach (E10.11).
+# notes                 Operating notes. One line. No personal data.
+#
+# DELIBERATELY ABSENT: contact_name, email, phone, postal_address, linkedin_url.
+# Those live in the CRM, joined on account_id. Putting them here creates a second
+# stale copy and turns a repo share into a data incident.
+#
+# A researched venue is not a founding venue. An invited venue is not signed.
+# A signed venue is not paid. A paid venue is not onboarded.
+# ---------------------------------------------------------------------------
