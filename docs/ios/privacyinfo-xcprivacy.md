@@ -4,7 +4,7 @@ Required for all iOS app submissions from iOS 17 onwards. Declares the app's pri
 
 ## Status
 
-This file is a **template**. As of 2026-05-20 there is no `PrivacyInfo.xcprivacy` in the signal-ios repo (verify: `find ~/Projects/personal/signal-ios -name 'PrivacyInfo*'` returns empty). The XML below should be copied into a real `SignalStudio/PrivacyInfo.xcprivacy` file before any TestFlight or App Store submission, and a `sources:` entry added in `project.yml` so xcodegen wires it into the target.
+This file is a **template**. As of 2026-05-20 there is no `PrivacyInfo.xcprivacy` in the signal-ios repo (verify: `find signal-ios -name 'PrivacyInfo*'` returns empty). The XML below should be copied into a real `SignalStudio/PrivacyInfo.xcprivacy` file before any TestFlight or App Store submission, and a `sources:` entry added in `project.yml` so xcodegen wires it into the target.
 
 ## File location (when materialised)
 

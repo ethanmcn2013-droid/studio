@@ -3,7 +3,7 @@ title: Brand enforcement — BRAND.md as catch-net
 slug: brand-enforcement
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-07-31
 links: [signal-studio-umbrella, plan-cycle, five-products-as-a-system]
 tags: [BRAND.md, voice, banned words, locked H1, indigo #4f46e5, signal studio., wordmark, "Project management for the 80% not in tech.", Stark+Jobs, Pentagram, Manual]
 references: [BRAND.md, DESIGN.md, src/app/globals.css, src/components/brand/wordmark.tsx, src/app/brand/page.tsx]
@@ -27,7 +27,7 @@ Ethan owns BRAND.md outright. Every other contributor (Claude in any role, Codex
 
 ## WHERE
 
-- `~/Projects/personal/studio/BRAND.md` — the handbook. Section structure:
+- `studio/BRAND.md` — the handbook. Section structure:
   - §1 The suite (four products under one umbrella; refusals; what doesn't get added)
   - §2 Operating thesis (the 80% audience archetypes, what fails them, the moat)
   - §3 Voice — Stark+Jobs (cadence, banned words, cadence words, emotional intelligence)
@@ -60,7 +60,7 @@ The enforcement is *operational*, not technical. There's no linter checking bann
 1. **Cycle opens with copy or visual work.** Before drafting, read the relevant BRAND.md section (§3 for words, §5 for visuals, §6 for page patterns, §7 for audience accents).
 2. **Draft against the rules.** Examples: hero patterns follow §6.1's three-line shape; CTAs use the verbs in §6.2; banned words in §3 are off-limits unless explicitly carved out for a security/docs page.
 3. **Cross-check before commit.** If the cycle is non-trivial (a new page, a hero rewrite, a naming decision), the catch-net is a second read against BRAND.md before staging. Most cycles catch one or two banned words on this pass.
-4. **The umbrella H1 is "Project management for the 80% not in tech."** — operator-ratified 2026-05-15 (the prior "Cut through the noise." wedding-vow line is retired as the umbrella signature). `80%` carries the indigo highlight. Each product carries its own sharper H1 (Tasks "Execution clarity for live work.", Timeline "Show your work, not your Jira.", Signal "A briefing, not a dashboard.", Notes "Not everything is ready for the room. Write it here first."). The umbrella line is never changed without a decision recorded in §4/§10.
+4. **The umbrella H1 is "Project management for the 80% not in tech."** — operator-ratified 2026-05-15 (the prior "Cut through the noise." wedding-vow line is retired as the umbrella signature). As corrected by the operator on 2026-07-28, only `not` carries the indigo highlight; `80%` remains ink. Each product carries its own sharper H1 (Tasks "Execution clarity for live work.", Timeline "Show your work, not your Jira.", Signal "A briefing, not a dashboard.", Notes "Not everything is ready for the room. Write it here first."). The umbrella line is never changed without a decision recorded in §4/§10.
 5. **Refusals stay refusals.** §1 lists what doesn't get built (no team tier, no private workspaces, no comment threading, no public directory). When a cycle proposes one of these, the catch-net is: name the refusal, then decide whether *this* cycle is the one that overturns it. Almost always: no.
 
 ### The most common catches

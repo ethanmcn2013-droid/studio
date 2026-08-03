@@ -88,7 +88,7 @@ or Studio (writer). Studio won. Reading the result:
   to shared. The mirror is the load-bearing piece — if it fails, the
   reconcile cron picks up the gap on the next sweep.
 - Sibling products do not call Studio for reads. They each open the
-  shared Turso DB directly with `TURSO_ENTITLEMENTS_*` env vars.
+  shared Turso DB directly with `ENTITLEMENTS_*` env vars.
 
 **Verdict on E-2:** the lift to Studio was correct. The alternative
 (Tasks as suite-wide entitlement writer) would have inverted product

@@ -9,8 +9,8 @@
  *
  * Required env:
  *   TASKS_DATABASE_URL + TASKS_AUTH_TOKEN
- *   TURSO_ENTITLEMENTS_DATABASE_URL + TURSO_ENTITLEMENTS_AUTH_TOKEN
- *   TURSO_STUDIO_DATABASE_URL + TURSO_STUDIO_AUTH_TOKEN
+ *   ENTITLEMENTS_DATABASE_URL + ENTITLEMENTS_AUTH_TOKEN
+ *   STUDIO_DATABASE_URL + STUDIO_AUTH_TOKEN
  *
  * Run:
  *   pnpm venue:migrate-access-18mo          # dry-run (default)
@@ -870,10 +870,10 @@ function createConnections() {
     mirrors: [
       envConnection(
         "Shared entitlements mirror",
-        "TURSO_ENTITLEMENTS_DATABASE_URL",
-        "TURSO_ENTITLEMENTS_AUTH_TOKEN",
+        "ENTITLEMENTS_DATABASE_URL",
+        "ENTITLEMENTS_AUTH_TOKEN",
       ),
-      envConnection("Studio local mirror", "TURSO_STUDIO_DATABASE_URL", "TURSO_STUDIO_AUTH_TOKEN"),
+      envConnection("Studio local mirror", "STUDIO_DATABASE_URL", "STUDIO_AUTH_TOKEN"),
     ],
   };
 }

@@ -52,4 +52,6 @@ design review, followed by a final hierarchy correction. The oversized
 wordmark prelude and preview-status dot are removed; “Project management for
 the 80% not in tech.” is now the first and only hero statement. The page then
 proves one real wedding handoff through Notes, Tasks, Timeline, and Signal.
-The two-hero gap and the competing product-wordmark stack are gone.
+The two-hero gap and the competing product-wordmark stack are gone. The four
+product chapter labels later in the page regained their small identifying
+gestures on 2026-07-28; they do not reinstate the retired hero stack.

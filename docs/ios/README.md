@@ -1,6 +1,6 @@
 # Signal Studio iOS — submission artifacts
 
-This folder holds App Store submission artifacts drafted at the umbrella layer. The iOS app itself lives in `~/Projects/personal/signal-ios/`. These docs live in the studio repo because the umbrella owns suite-wide brand, voice, and privacy posture — and the App Store submission speaks for the suite, not just for one product.
+This folder holds App Store submission artifacts drafted at the umbrella layer. The iOS app itself lives in `signal-ios/`. These docs live in the studio repo because the umbrella owns suite-wide brand, voice, and privacy posture — and the App Store submission speaks for the suite, not just for one product.
 
 ## Files
 

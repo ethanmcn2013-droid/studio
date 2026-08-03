@@ -1,140 +1,93 @@
 # AGENTS.md — Signal Studio
 
-Read this before making any change. It is the contract every agent (Codex, Claude Code, Cursor, anyone else) operates under in this repo.
-
-**Required reading on first session, in order:**
-1. **This file** — locked rules + workflow.
-2. **`BRAND.md`** — current voice, naming, positioning, and audience handbook. Its visual sections defer to Signal Design System 2.0.
-3. **`docs/VISION.md`** — what Signal Studio is, what it's becoming, what it's explicitly NOT building.
-4. **`docs/brand-guide/naming/NAMING_CONSTITUTION.md`** — product names, canonical routes, rename rules, and do-not-rename boundaries.
-5. **`docs/SUITE.md`** — current single-app architecture, product archetypes, and protected cross-product contracts.
-6. **`docs/experience/SUITE_95_PRODUCT_RELEASE_GATE.md`** — the stricter evidence and council gate for the four authenticated products.
-7. **`docs/SIGNAL_HQ.md`** — private operating dashboard rules. Read before product, brand, GTM, campaign, or timeline work.
-8. **`docs/ECOSYSTEM_INTEGRATION_PLAN.md`** — shared object model and collaboration growth loop. Read before cross-product, sharing, invite, template, or collaboration work.
-9. **`docs/CYCLE_2_INVITE_AND_FIRST_VIEW.md`** — invite roles, guest access, first-view model, source tracking. Read before Cycle 2 implementation.
-10. **`CLAUDE.md` or `CODEX.md`** — thin shims for tool-specific instruction loading. They point back here and repeat the Signal HQ rule.
-11. **`CHANGELOG.md`** — narrative log; read for tonal reference.
-12. **`docs/LICENSING_ACCESS_DESIGN.md`** — buildable spec for the licensing/entitlements/subscription backend + HQ "Access" console (ratified 2026-07-09). Read before any entitlements, licensing, venue/allotment, code/redemption, subscription/Stripe, or grant/revoke work. Decisions in `content/hq/decisions/licensing-access-architecture.md` + `gdpr-data-lifecycle-policy.md`.
-
-If any conflict between these, BRAND.md wins on voice/visual rules; VISION.md wins on strategic intent and refusals; SUITE.md wins on cross-product architecture; AGENTS.md wins on workflow.
-
----
+Read this before any change. Canonical contract for every agent in this repo. Workspace contract: `../AGENTS.md` — read that first for the company map; this file is now the canonical home of the HQ rules — `CLAUDE.md` no longer duplicates them.
 
 ## What this is
 
-This is the **umbrella site for Signal Studio** — one app with four products (Signal Notes, Signal Tasks, Signal Timeline, Signal). The marketing origin is `signalstudio.ie`; the signed-in app is `app.signalstudio.ie`. The public site includes the choreographed Reveal v3 entrance plus canonical `/notes`, `/tasks`, `/timeline`, and `/signal` product pages. Read `docs/brand-guide/naming/NAMING_CONSTITUTION.md` and `docs/architecture/SUITE_URL_AND_NAMING_CONTRACT.md` before changing cross-product names, routes, or domains.
+Studio is **signalstudio.ie** — the marketing site for the suite (Signal Notes, Signal Tasks, Signal Timeline, Signal) — plus **Signal HQ** at `/hq`, a private, password-gated founder dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. Not public, not linked from nav, stays `noindex`.
 
-The repo also contains **Signal HQ** at `/hq`: a private, password-gated internal operating dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. It is not public marketing, is not linked from public navigation, and must stay `noindex`.
+## Commands
 
-The repo's job is to be the most restrained, premium, brand-coherent surface in the suite. Every other product takes its visual cues from here.
+`pnpm typecheck` · `pnpm build` · `pnpm test` — run all three before any PR. Local dev launches via the workspace `launch.json`, not an ad hoc `pnpm dev`. `pnpm-workspace.yaml`'s `packages` line is required — don't remove it.
 
----
+## The Signal HQ rule (canonical, rewritten HQ-6c.4, 2026-05-14)
 
-## Locked rules (do not break, ever)
+Signal HQ is the internal source of truth for product, brand, GTM, marketing, outreach, launch readiness, decisions, risks, metrics, and next actions. **HQ reads from source files; it is not the source itself.** When you change strategic HQ content, you change the source — HQ picks it up on the next render.
 
-These are not suggestions. Breaking any of them is a regression that will be reverted on review.
+The sources, by section:
 
-### Naming
-- Brand is **Signal Studio** in body copy. Do not shorten the company to "Signal".
-- Products are **Signal Notes**, **Signal Tasks**, **Signal Timeline**, **Signal**, in that fixed order. "Signal" alone is reserved for the briefing/attention product or the visual mark; never use it as a casual company shorthand.
-- Wordmark stylization: lowercase wordmarks (`tasks.`, `timeline.`, `signal.`, `notes.`) appear only as motion-typographic elements. Body copy is title case.
-- Operating spine is **Initiative -> Project -> Cycle -> Task -> Step**. Use **Problem** instead of bug, **Queue** instead of backlog, **Finding** instead of issue, and **Review** instead of retro/post-mortem.
+| If you're changing…                                                | Source file                                          |
+|----------------------------------------------------------------------|--------------------------------------------------------|
+| a decision, its review date, or its status                         | `content/hq/decisions/<id>.md`                       |
+| a risk, mitigation, likelihood, or impact                          | `content/hq/risks/<id>.md`                           |
+| a feature scope or status                                          | `content/hq/features/<id>.md`                        |
+| a finance data pack (cost/revenue model JSON)                      | `content/hq/finance/<pack>.json`                     |
+| a campaign goal, blocker, or progress                              | `content/hq/campaigns/<id>.md`                       |
+| messaging, positioning, hooks, pitches                             | `content/hq/messaging.md`                            |
+| a product's role, maturity, status                                 | `content/hq/products/<id>.md`                        |
+| a cross-product flow                                               | `content/hq/ecosystem-flows/<id>.md`                 |
+| collaboration loop, shared objects, access roles, first view, shareable artifacts | `content/hq/<section>/<id>.md`        |
+| launch readiness scorecard                                         | `content/hq/launch-readiness/<id>.md`                |
+| segments, content, demos, templates, pilots, growth workflow       | `content/hq/<section>/<id>.md`                       |
+| a documented system (cron, DB, hook, cross-repo writer, etc.)      | `content/atlas/<slug>.md` — and bump `lastVerified`  |
+| voice, naming, banned words, visual register                       | `BRAND.md`                                           |
+| the active cycle / phase line                                      | `CHANGELOG.md` — the newest dispatch is the cycle    |
+| something shipped that users or leadership should know about       | `CHANGELOG.md` — dispatch shape per BRAND.md §6.5    |
+| a founder/operator-gated task (API key, account, prod env var, legal doc, cost limit, policy) | `content/hq/operator-todos/<id>.md` |
 
-### Voice (full version in `~/Projects/personal/BRAND.md` §3)
-- Declarative. Periods, not exclamation marks. Anywhere.
-- Plain English, ~7th-grade reading level. Not childish — clean.
-- Verbs over nouns. Active over passive. Concrete over abstract.
-- Universal examples. A wedding planner, a freelancer, a tradesperson, a student. **Never** "engineering teams", "developers", "product managers", "stakeholders".
+**Live operator surfaces** (browser-edited, localStorage-backed, no markdown source): `prospects` (CRM), `feedback`, `weeklyRhythm`, `nextActions` stay editable at runtime — don't migrate them without cause.
 
-### Banned words (non-exhaustive — full list in BRAND.md §3)
-- AI-marketing: `AI`, `AI-powered`, `intelligent`, `smart`, `copilot`, `agent`, `autonomous`, `predicts`, `recommends`
-- SaaS fluff: `seamless`, `world-class`, `cutting-edge`, `transform`, `revolutionize`, `unleash`, `supercharge`, `delight`, `pleasure` (as UX qualifier), `leverage` (as verb)
-- PM jargon: `sprint`, `epic`, `ticket`, `backlog`, `bug`, `story point`, `burndown`, `stakeholder`, `MVP` (in body copy), `Kanban`, `Scrum`, `Agile` (capitalized)
-- Tech jargon on user-facing pages: `API`, `webhook`, `endpoint`, `OAuth`, `deploy`, `build`, `repo`, `PR`, `merge`, `commit`, `integration` (use "connect" or "works with")
-- Three-adjective trios ("modern, simple, beautiful") — anywhere, any order.
+## Operator to-do rule (codified 2026-06-23)
 
-### Category framing
-- The operating category is **operational clarity**. The current homepage headline deliberately tests "Project Management for the 80% who don't work in tech" as market-facing shorthand. Do not let that pull body copy into project-management theatre, PM jargon, productivity-platform framing, or "all-in-one" language.
-- AI is ambient, never marketed. No "AI-powered" copy. No AI feature names.
+Any founder/operator-gated task — provision an account, get an API key, set a production env var, publish a legal/privacy doc, approve a cost limit, decide a policy — must be logged as a file in `content/hq/operator-todos/<id>.md` (file shape in that folder's `README.md`), never left in a chat message or a buried doc. It renders on `/hq` via `HqOperatorTodos`. Mark `status: done` only when genuinely complete — never optimistically. Applies to work surfaced in **any** Signal product repo, not just Studio.
 
-### Visual
-- Accent color: `#4f46e5` (brand indigo). Single accent across the suite — do not introduce per-product accents in this repo. Antique gold `#c9a96a` is retired.
-- Type: Geist (sans + mono). No other typefaces.
-- Visual register: calm, premium, neutral with one indigo accent. Reference points: Apple, Linear, Arc, Notion Calendar, Raycast. **Never** Jira, Monday, Tableau, or any 3-adjective hero grid.
+## Room registry rule (codified 2026-07-12)
 
----
+**A room exists iff it is in `src/lib/hq/rooms.ts`.** The registry renders the HQ nav, the group landing pages, the Today group cards, and the command palette; `src/lib/hq/rooms.test.ts` fails `pnpm test` when a route directory and the registry disagree in either direction. Never hand-edit a room list anywhere else — there isn't one. New content-collection status values are added by extending `DECLARED_STATUSES` in the contract test — deliberately, never implicitly. Full architecture and governance: `docs/HQ_ARCHITECTURE.md`.
 
-## Stack
+## Dispatch
 
-- Next.js 16 (App Router, Turbopack)
-- React 19
-- Tailwind v4
-- Geist font family
-- Motion stack: GSAP 3.13 + ScrollTrigger + Lenis 1.1.20 (dynamically imported in `RevealEngine` to keep the initial server bundle clean)
-- Private HQ gate: `SIGNAL_HQ_PASSWORD` + HTTP-only cookie scoped to `/hq`
-- Signal HQ data: typed seed data + localStorage persistence + JSON export/import in v1
-- Package manager: `pnpm`
+Shipped, operator-visible work gets a `CHANGELOG.md` entry: `## YYYY-MM-DD · X·NN · verb · headline`, verbs `ships / tightens / cuts / holds / reads`. Full entry shape and voice rules live in `BRAND.md` §6.5 — don't duplicate the spec here.
 
-`pnpm-workspace.yaml` requires `packages: - "."` plus explicit build-script approval settings — without the `packages` line, `pnpm add` errors with "packages field missing or empty". Don't remove either.
+## North star (set 2026-08 · operator re-derives ~every six months)
 
----
+Three priorities govern everything front-facing — the four product
+modules and this marketing surface alike — in this order:
 
-## Page structure (current — v3 The Reveal)
+1. **Experience.** Using the product should feel considered end to end,
+   and in the right moments delightful. Delight is deliberate: in the
+   app, candidate moments run through `app/docs/DELIGHT_CATALOG.md` —
+   never sprinkled ad hoc.
+2. **Design.** Every front-facing surface ships at the standard of the
+   best studios working today — spacing, type, motion, empty, loading,
+   and error states, microcopy, all deliberate, nothing default. The
+   register below and the 9.5 gate hold the bar.
+3. **Utility.** Someone who has never used a project-management tool
+   must be able to pick it up and understand it unaided — the
+   first-contact test. No jargon, no technical lock-out; a surface that
+   needs explaining is not done.
 
-```
-src/app/page.tsx
-  ├─ <RevealHero>        — indigo hairline → masked headline word-by-word → product wordmark stack with per-product gestures
-  ├─ <RevealManifesto>   — operating principle eyebrow → display H2 → two-paragraph thesis
-  ├─ <RevealProducts>    — four typographic-poster rows linking to canonical product pages via @/lib/product-urls
-  ├─ <RevealClosing>     — indigo hairline + "Built for everyone else." sign-off + mono `hello@signalstudio.ie · Dublin, 2026`
-  └─ <RevealEngine>      — single client orchestrator (GSAP timeline + Lenis + ScrollTrigger)
-```
+When the three pull against each other, that order decides. Canonical
+record and review date: `content/hq/decisions/product-north-star.md`.
 
-`RevealEngine` is the *only* client component. Everything else is RSC. Honor `prefers-reduced-motion` — the engine already does, do not undo that.
+## Design register (amended 2026-07-31 · A1 + A1.1)
 
-**Analytics:** every page carries the Google tag (gtag.js, `G-YHBS152PJK`) via `<GoogleTag />` in the root layout — production only. New pages inherit it; never paste the snippet per-page. Standalone HTML (decks) paste it after `<head>` once. Full convention: `docs/ANALYTICS.md`.
+Confident, premium, expressive — edited, not timid. Geist; indigo `#4f46e5`
+is the anchor, not a cage — its tints, gradients, and supporting tones are
+welcome when the moment earns them. Motion is a first-class material: use it
+generously where it clarifies or delights, cut it where it merely decorates.
+Reach further than feels safe in exploration; restraint is the edit at the
+end, never the brief at the start. Never cheap: no clutter, no stock
+effects, no noise.
 
----
+**Priority order, permanent (A1.1): creativity and emotion outrank
+restraint.** No rule in this register may be used to flatten a genuinely
+better idea — when they conflict, the rule goes under review (wildcard →
+amendment), never the idea pre-censored. Design for feeling as much as
+function: the work should move the person using it. Voice rules are the one
+standing exception — plain English, active verbs, no exclamation marks,
+banned-words list in BRAND.md — they never bend.
 
-## Workflow
+## Pointers
 
-1. **Branch.** Never push directly to `main`. Use a descriptive branch name (`fix/closing-block-typo`, `feat/notes-row-hover-state`).
-2. **Commit style.** Match the existing log: `studio · <scope> — <change in plain English>`. Look at `git log --oneline` for the cadence.
-3. **PR, don't merge.** Open a PR against `main`. Vercel will post a preview URL on the PR — review the preview, not just the diff. Brand drift is invisible in diffs.
-4. **Local dev.** `pnpm dev` (Turbopack). The motion stack only fires on production builds in some cases; if a motion change looks broken, also test `pnpm build && pnpm start`.
-5. **No new dependencies** without naming why in the PR description. The dependency surface here is deliberately small.
-6. **Signal HQ stays current.** Any meaningful product, brand, GTM, marketing, timeline, feature, campaign, workflow, template, outreach, demo, report, or strategic learning change must be reflected in Signal HQ before the task is complete. In practice, update the canonical source file for the change: `content/hq/decisions/<id>.md`, `content/hq/risks/<id>.md`, `content/hq/features/<id>.md`, `content/hq/campaigns/<id>.md`, `content/hq/products/<id>.md`, `content/hq/operator-todos/<id>.md`, `content/atlas/<slug>.md`, `signal-growth/**`, or `CHANGELOG.md`. `src/lib/hq/data.ts` is a seed fallback and type substrate; touch it only when the live code path still reads from it.
-7. **Collaboration is the growth loop.** Cross-product work should strengthen the loop: workspace created -> collaborators invited -> work becomes clearer -> shareable output created -> new creator discovered. If a feature touches invites, sharing, templates, guest access, public outputs, or source tracking, update `docs/ECOSYSTEM_INTEGRATION_PLAN.md` and the HQ Collab Loop data.
-8. **Operator-gated work goes on the HQ operator to-do ledger.** Whenever any cycle — in this repo or any Signal product repo — surfaces a task that **only the founder/operator can do** (provision an account, get an API key, set a production env var, publish a legal doc, approve a cost limit, decide a policy), add it as a file in `content/hq/operator-todos/<id>.md` so it renders on the `/hq` main page. Never bury an operator blocker in a chat message or a doc. This keeps the founder accountable and gives both sides full visibility on what is being blocked. Mark a task `status: done` only when it is genuinely complete — never optimistically. See `content/hq/operator-todos/README.md` for the file shape.
-
----
-
-## What to push back on
-
-You are not a yes-man. If a request would break a locked rule above, **say so before doing it**. Surface the conflict, name the rule it violates, propose an alternative that respects the rule. Examples:
-
-- Asked to add "AI-powered briefings" to copy → refuse, propose plain-English alternative, cite §3.
-- Asked to add a fifth product row before that product is real → refuse, point at the Notes row (which is dimmed/inert by design until Notes ships).
-- Asked to introduce a second accent color → refuse, cite §5.
-- Asked to add a 3-adjective hero ("Calm. Clear. Confident.") → refuse, cite the anti-quotable rule in §2.
-
-If the request is ambiguous, ask one tight question. Don't ask three.
-
----
-
-## Reference
-
-- **`BRAND.md`** — current voice, naming, positioning, and audience handbook. Read first. `docs/BRAND.md` is retained history and must not be used for current topology, URLs, product status, or visual tokens.
-- **`docs/VISION.md`** — strategic intent: where the suite is, where it's going, locked refusals.
-- **`docs/SUITE.md`** — architecture-level primer on how the four products fit together. Read before any work that could ripple across products.
-- **`CHANGELOG.md`** — narrative log of suite-level launches. Add an entry for any user-visible change. Voice is playful and narrative, not procedural.
-
----
-
-## Anti-patterns
-
-- Adding public features. This repo is primarily a brand surface, not a public product. If you find yourself building a form, an interactive widget, or a dashboard outside the private `/hq` operating system — stop and ask first.
-- Marketing copy in the AI register. Even "ambient AI" or "AI-light" — no.
-- Adding a CMS, analytics tag, or third-party script without explicit ask.
-- "Cleaning up" the motion choreography because the timing looks "off" — the choreography is intentional and Ethan-tuned. Don't touch timing without an explicit ask.
-- Generic AI-aesthetic UI (gradient backgrounds, glassmorphism, generic grid hero). The visual register is specific. Read it. Match it.
+Infrastructure → `docs/INFRASTRUCTURE.md`. Brand + voice → `BRAND.md`. Strategy → `docs/VISION.md`. Deprecated, do not follow: `DESIGN.md` and `docs/BRAND.md` are v1 history, superseded by `BRAND.md` (voice) and Signal Design System 2.0 (visual tokens).

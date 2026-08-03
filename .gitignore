@@ -53,6 +53,8 @@ next-env.d.ts
 /experience/output/playwright-report/
 /experience/output/playwright-results/
 /experience/output/hq-gallery/
+/experience/output/handoff-playwright-report/
+/experience/output/handoff-playwright-results/
 
 # local dev scratch DB (schools UI verification)
 dev-local.db*

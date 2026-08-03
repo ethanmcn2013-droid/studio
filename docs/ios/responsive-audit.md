@@ -1,6 +1,6 @@
 # iPhone-width responsive audit
 
-Suite-wide audit of the four product `/app` surfaces against modern iPhone widths. Source for the iOS-prep cycle's Item 5; pairs with `~/Projects/personal/studio/scripts/responsive-audit.mjs` which Playwright-screenshots each surface at every documented width.
+Suite-wide audit of the four product `/app` surfaces against modern iPhone widths. Source for the iOS-prep cycle's Item 5; pairs with `studio/scripts/responsive-audit.mjs` which Playwright-screenshots each surface at every documented width.
 
 ## Why this exists
 
@@ -38,7 +38,7 @@ Recommended future-proofing (not applied in this cycle since it would touch the 
 
 ## Visual-audit findings (deferred to operator)
 
-A full Playwright screenshot pass at all six widths × four products = 24 screenshots minimum, more with PWA-standalone and authed surfaces. The script at `~/Projects/personal/studio/scripts/responsive-audit.mjs` runs this end-to-end. Operator runs it because:
+A full Playwright screenshot pass at all six widths × four products = 24 screenshots minimum, more with PWA-standalone and authed surfaces. The script at `studio/scripts/responsive-audit.mjs` runs this end-to-end. Operator runs it because:
 
 - Authenticated `/app` surfaces require a real Clerk session — one per product, since the four products run separate Clerk instances and a `__session` cookie from one does not cross-validate against the others. The script reads per-product session tokens from `CLERK_SESSION_TASKS`, `CLERK_SESSION_ROADMAP`, `CLERK_SESSION_ANALYTICS`, `CLERK_SESSION_NOTES` and skips authed surfaces for products without a token in env.
 - Visual judgment ("does this look right") needs a human; the script captures evidence, doesn't judge it.
@@ -56,7 +56,7 @@ The script flags any screenshot where the final URL doesn't match the requested 
 
 The `--pwa` pass overrides `navigator.standalone = true` (so JS-feature-gated PWA code paths render) but **does NOT** emulate the `@media (display-mode: standalone)` CSS media query — Playwright/Chromium has no override for that media feature. Any UI gated on the CSS rule (rather than the JS property) won't render under the `-pwa` screenshots. Worth running a real installed PWA pass on a physical phone before iOS submission for the surfaces that use standalone-only CSS rules.
 
-Operator output target: `~/Projects/personal/studio/.responsive-audit/<run-id>/<product>-<surface>-<width>[-pwa][-REDIRECT].png` — gitignored by default.
+Operator output target: `studio/.responsive-audit/<run-id>/<product>-<surface>-<width>[-pwa][-REDIRECT].png` — gitignored by default.
 
 ### Scope-of-coverage caveat
 

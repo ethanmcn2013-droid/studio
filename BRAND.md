@@ -181,6 +181,10 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 
 ## 5 · Visual register
 
+**Register amended 2026-07-31: expressive by default, restraint is the edit.** Confident, premium, expressive — edited, not timid. Indigo `#4f46e5` is the anchor, not a cage — its tints, gradients, and supporting tones are welcome when the moment earns them. Motion is a first-class material: use it generously where it clarifies or delights, cut it where it merely decorates. Reach further than feels safe in exploration; restraint is the edit at the end, never the brief at the start. Never cheap: no clutter, no stock effects, no noise. (Voice, vocabulary, and banned words in §3 are unchanged — this amendment is visual and motion only.)
+
+**A1.1 addendum, same day — priority order, permanent: creativity and emotion outrank restraint.** No rule in this register may be used to flatten a genuinely better idea. When a rule and a better idea conflict, the rule goes under review — through the lab wildcard and, on repeat, a further named amendment — never the idea pre-censored. Design for feeling as much as function: the work should move the person using it (wonder, relief, delight, pride). Voice remains the one standing exception; §3 never bends.
+
 ### Reference register
 - **Aspire to:** Apple, Linear, Arc, Notion Calendar, Raycast.
 - **Avoid:** Jira, Monday, Tableau, PowerBI, Salesforce.
@@ -208,7 +212,7 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 - **Mono labels:** 11px tabular, letter-spacing `0.02em`, color `var(--ink-quiet)`.
 
 ### Motion
-Sparingly. Rise stagger on hero entries (`0.6s`, 60ms stagger). Subtle fade between sections. Cinematic demo on Tasks's homepage is the brand-feature; everything else is restrained.
+A first-class material, generous where it clarifies or delights, cut where it merely decorates — see the amended register above. Rise stagger on hero entries (`0.6s`, 60ms stagger) and subtle fades between sections remain the baseline; the cinematic demo on Tasks's homepage is the brand-feature. Restraint is the edit applied after the reach, not a ceiling on it.
 
 `prefers-reduced-motion` is respected everywhere via `useReducedMotion()`.
 
@@ -242,7 +246,9 @@ CTA secondary: [product-specific deeper link]
 
 **Update 2026-05-12:** the original lock used `"Cut through the noise."` as the umbrella H1 on every product. In practice each product evolved a sharper, product-specific H1 — Tasks ships "Execution clarity for live work.", Timeline "The plan your client can actually read." (R·-, 2026-07-03 — the prior "Show your work, not your Jira." is retired: the founder rated it off-taste, it now sits in TASTE.md as an anti-exemplar), Signal "A briefing, not a dashboard.", Notes "Not everything is ready for the room. Write it here first." (N·5, 2026-05-15 — the prior "Your private layer." used *layer*, system-architecture vocabulary the 80% would never say; §2.2/§3 drift, now retired) All four are stronger than a repeated umbrella headline would be, and each carries the umbrella thesis through its own register. The eyebrow + product wordmark do the umbrella anchoring on product pages.
 
-**Update 2026-05-15 (operator-ratified):** the signalstudio.ie umbrella hero H1 is now **"Project management for the 80% not in tech."** — confirmed twice by Ethan, overriding the prior `"Cut through the noise."` umbrella line. `80%` carries the indigo highlight. `"Cut through the noise."` is retired as the umbrella signature; product-specific H1s are unaffected. Dissent on record (cycle log): this narrows a four-product suite toward Tasks' category and competes with Tasks' own positioning — kept anyway per explicit operator instruction. The alternative I recommended was "Software for the 80% not in tech."
+**Update 2026-05-15 (operator-ratified):** the signalstudio.ie umbrella hero H1 is now **"Project management for the 80% not in tech."** — confirmed twice by Ethan, overriding the prior `"Cut through the noise."` umbrella line. At ratification, `80%` carried the indigo highlight. `"Cut through the noise."` is retired as the umbrella signature; product-specific H1s are unaffected. Dissent on record (cycle log): this narrows a four-product suite toward Tasks' category and competes with Tasks' own positioning — kept anyway per explicit operator instruction. The alternative I recommended was "Software for the 80% not in tech."
+
+**Update 2026-07-28 (operator correction):** the umbrella H1 wording remains locked, but the emphasis changes: only `not` is indigo and `80%` returns to ink. This supersedes the 2026-05-15 colour instruction without changing the sentence.
 
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:

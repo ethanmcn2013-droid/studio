@@ -49,6 +49,35 @@ the Signal briefing. Historical byte-seal and per-repository copy rules above
 remain provenance for the visual contract, not the current implementation
 mechanism.
 
+### Mobile bounds amendment · 2026-07-30
+
+The chrome holds its declared height at every width. A control inside the bar
+may not exceed it (Tasks dispatch T·110). At 375px the Tasks bar was drawing
+three 80px controls inside its 56px mobile shell: the account avatar, the
+contextual create button, and the product wordmark. The avatar read as a large
+black circle clipped by the right edge; the other two spilled invisible pointer
+targets over the canvas below the bar.
+
+The cause is a trap the other three products will hit as they copy this
+contract. The suite spacing scale is semantic, not derived from pixels:
+`tokens.css` maps step 8 to 40px, step 10 to 64px, and step 11 to 80px. In
+stock Tailwind those same numeric utilities mean 32px, 40px, and 44px. Chrome
+written as `h-11`, meaning "the 44px touch step," therefore renders at 80px.
+**Chrome geometry that has to land on a real pixel value is written in pixels,
+not in scale steps.** Semantic steps stay correct for spacing, where the scale
+is the point.
+
+Two consequences to carry into the remaining migrations. First, the numbers
+quoted in the sections above describe intent, not measured output: the bar's
+`h-10` reads as 64px live, not the 48px the 2026-07-17 section states, so
+`scripts/check-chrome-contract.mjs` is asserting a token name rather than a
+height. The contract's stated geometry and the rendered geometry should be
+reconciled against measured values in a following pass, and the checker taught
+to assert measured height. Second, floating chrome yields to the docked rail.
+The in-development notice measures the mobile product rail and sits above it
+rather than across the Notes, Tasks, Timeline, and Signal tabs, inside the
+device safe area.
+
 ## Risks
 
 Over-uniformity can flatten product meaning. The mitigation is to keep the hero and product body highly specific, while keeping the header quiet and consistent.

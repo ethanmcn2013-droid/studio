@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
+import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
 
 export const metadata: Metadata = {
   title: "About · Signal Studio",
@@ -17,6 +18,7 @@ export default function AboutPage() {
     <>
       <ReadingProgress />
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+        <MarketingDelightController />
         <section className="mx-auto w-full max-w-[760px] px-6 pb-16 pt-16 md:pb-20 md:pt-24">
           {/* Section label */}
           <div
@@ -78,13 +80,13 @@ export default function AboutPage() {
                 <div className="flex flex-col gap-3">
                   <a
                     href={waitlistHref("notes")}
-                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
-                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                    <span className="text-[14px] font-medium text-ink transition-colors">
                       Notes
                     </span>
                     <span
-                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
                       aria-hidden
                     >
                       &rarr;
@@ -92,13 +94,13 @@ export default function AboutPage() {
                   </a>
                   <a
                     href={waitlistHref("tasks")}
-                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
-                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                    <span className="text-[14px] font-medium text-ink transition-colors">
                       Tasks
                     </span>
                     <span
-                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
                       aria-hidden
                     >
                       &rarr;
@@ -106,13 +108,13 @@ export default function AboutPage() {
                   </a>
                   <a
                     href={waitlistHref("timeline")}
-                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
-                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                    <span className="text-[14px] font-medium text-ink transition-colors">
                       Timeline
                     </span>
                     <span
-                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
                       aria-hidden
                     >
                       &rarr;
@@ -120,13 +122,13 @@ export default function AboutPage() {
                   </a>
                   <a
                     href={waitlistHref("signal")}
-                    className="group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
-                    <span className="text-[14px] font-medium text-ink transition-colors group-hover:text-ink-soft">
+                    <span className="text-[14px] font-medium text-ink transition-colors">
                       Signal
                     </span>
                     <span
-                      className="text-[12.5px] text-ink-faint transition-colors group-hover:text-ink-quiet"
+                      className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
                       aria-hidden
                     >
                       &rarr;
@@ -149,7 +151,11 @@ export default function AboutPage() {
 
         {/* Founder note, restrained, text-led, set apart on a soft inset panel */}
         <section className="mx-auto w-full max-w-[760px] px-6 pb-28">
-          <div className="rounded-[14px] border border-border-soft bg-[var(--paper-soft)] px-7 py-10 md:px-12 md:py-14">
+          <div
+            className="rounded-[14px] border border-border-soft bg-[var(--paper-soft)] px-7 py-10 md:px-12 md:py-14"
+            data-delight="about-founder"
+            data-delight-once
+          >
             <div className="mx-auto max-w-[560px]">
               {/* Eyebrow */}
               <div
@@ -251,13 +257,13 @@ export default function AboutPage() {
               </p>
 
               {/* Signature */}
-              <div className="mt-9 flex items-center gap-3 border-t border-border-soft pt-6">
+              <div className="about-founder-signature mt-9 flex items-center gap-3 pt-6">
                 <span
                   aria-hidden
-                  className="h-[7px] w-[7px] flex-shrink-0 rounded-full"
+                  className="about-founder-dot h-[7px] w-[7px] flex-shrink-0 rounded-full"
                   style={{ background: "var(--accent)" }}
                 />
-                <div className="leading-tight">
+                <div className="about-founder-identity leading-tight">
                   <div className="text-[14px] font-medium text-ink">
                     Ethan McNamara
                   </div>

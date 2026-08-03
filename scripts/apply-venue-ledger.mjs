@@ -58,12 +58,12 @@ async function applyTo(label, url, authToken) {
 
 const okStudio = await applyTo(
   "studio",
-  process.env.TURSO_STUDIO_DATABASE_URL,
-  process.env.TURSO_STUDIO_AUTH_TOKEN,
+  process.env.STUDIO_DATABASE_URL,
+  process.env.STUDIO_AUTH_TOKEN,
 );
 const okShared = await applyTo(
   "signal-entitlements",
-  process.env.TURSO_ENTITLEMENTS_DATABASE_URL,
-  process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN,
+  process.env.ENTITLEMENTS_DATABASE_URL,
+  process.env.ENTITLEMENTS_AUTH_TOKEN,
 );
 process.exit(okStudio && okShared ? 0 : 1);

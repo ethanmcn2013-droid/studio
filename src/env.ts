@@ -21,10 +21,10 @@ const REQUIRED_IN_PRODUCTION: ReadonlyArray<readonly [string, string]> = [];
 
 // HQ + entitlement enforcement need these; the public site does not.
 const RECOMMENDED_IN_PRODUCTION: ReadonlyArray<readonly [string, string]> = [
-  ["TURSO_STUDIO_DATABASE_URL", "Studio / HQ database"],
-  ["TURSO_STUDIO_AUTH_TOKEN", "Studio / HQ database auth token"],
-  ["TURSO_ENTITLEMENTS_DATABASE_URL", "shared tier entitlements"],
-  ["TURSO_ENTITLEMENTS_AUTH_TOKEN", "shared tier entitlements auth token"],
+  ["STUDIO_DATABASE_URL", "Studio / HQ database"],
+  ["STUDIO_AUTH_TOKEN", "Studio / HQ database auth token"],
+  ["ENTITLEMENTS_DATABASE_URL", "shared tier entitlements"],
+  ["ENTITLEMENTS_AUTH_TOKEN", "shared tier entitlements auth token"],
 ];
 
 let validated = false;

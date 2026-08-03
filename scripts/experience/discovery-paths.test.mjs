@@ -19,6 +19,14 @@ test("Studio discovery uses the current checkout while preserving canonical sour
   const currentExplicit = path.join(studioRoot, "src", "components", "hq", "hq-shell.tsx");
   const decoyExplicit = path.join(decoyStudioRoot, "src", "components", "hq", "hq-shell.tsx");
   const tasksPage = path.join(tasksRoot, "src", "app", "page.tsx");
+  const encodedLabPage = path.join(
+    studioRoot,
+    "src",
+    "app",
+    "%5F%5Fdesign-lab",
+    "product-handoff",
+    "page.tsx",
+  );
 
   try {
     writeSource(currentPage, "export default function Current(){return <main>current worktree</main>}\n");
@@ -29,6 +37,10 @@ test("Studio discovery uses the current checkout while preserving canonical sour
     );
     writeSource(decoyExplicit, "export function HqShell(){return <nav>wrong sibling</nav>}\n");
     writeSource(tasksPage, "export default function Tasks(){return <main>tasks sibling</main>}\n");
+    writeSource(
+      encodedLabPage,
+      "export default function ProductHandoffLab(){return <main>review</main>}\n",
+    );
 
     const config = {
       products: [
@@ -58,6 +70,9 @@ test("Studio discovery uses the current checkout while preserving canonical sour
     const current = registered.experiences.find((entry) => entry.id === "studio.page.current");
     const decoy = registered.experiences.find((entry) => entry.id === "studio.page.decoy");
     const tasks = registered.experiences.find((entry) => entry.id === "tasks.page.root");
+    const encodedLab = registered.experiences.find(
+      (entry) => entry.id === "studio.page.design-lab-product-handoff",
+    );
     const hqShell = registered.experiences.find(
       (entry) => entry.id === "studio.surface.hq-shell-navigation",
     );
@@ -67,6 +82,11 @@ test("Studio discovery uses the current checkout while preserving canonical sour
     assert.equal(decoy, undefined, "the canonical sibling must not masquerade as the current checkout");
     assert.equal(tasks?.source, "tasks/src/app/page.tsx");
     assert.equal(tasks?.materialityHash, hashFile(tasksPage));
+    assert.equal(encodedLab?.route, "/__design-lab/product-handoff");
+    assert.equal(
+      encodedLab?.source,
+      "studio/src/app/%5F%5Fdesign-lab/product-handoff/page.tsx",
+    );
     assert.equal(hqShell?.materialityHash, hashFile(currentExplicit));
     assert.notEqual(hqShell?.materialityHash, hashFile(decoyExplicit));
 

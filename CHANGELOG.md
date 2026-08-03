@@ -7,6 +7,209 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-03 · S·160 · ships · a couple can no longer lose the product before their wedding
+
+**Venue Edition's ratified access term is real in the code for the
+first time.** A couple's access now runs to eighteen months from
+redemption or three months past the wedding day, whichever is later.
+Until today the second half was unmintable: a constant pinned the term
+at 548 days and the mint threw on anything else, so a couple booking
+eighteen months out and redeeming on signing would have lost Signal
+Studio before the wedding it was bought for, in public, at the venue
+that gifted it. The wedding date is the workspace's own primary date,
+so nobody is asked for it twice, and a postponement extends access
+automatically. Access moves later; it never moves earlier.
+
+The fix spans both repositories, because the production redemption
+write lives in the app and a studio-only change would have passed every
+test while changing nothing a couple experiences. The rule is
+duplicated deliberately, with a golden-vector file and a parity check
+that fails the build when the two copies drift.
+
+Three other things the commercial position had already decided and the
+schema could not express. "Unlimited" is representable, so a venue sold
+"no seats, no per-couple maths" is no longer capped by an onboarding
+form default of ten that nobody chose. Fair use alerts and never
+blocks. The Founding Venue number is a stored field with a unique index
+behind it, assigned when payment clears and never on signature, which
+makes two venues holding 07/25 impossible rather than unlikely.
+
+Twenty-nine venue-facing surfaces were promising more branding than the
+product delivers. Launch branding is the venue's name, and only the
+name. The lender pack had been offering a venue's mark and welcome
+message on couple workspaces; neither exists. Corrected, along with the
+public decks and the venues page, each claim traced to the decision
+that authorises it.
+
+The honest edges. Nothing detects a cleared payment yet, so the first
+founding numbers need an operator until the billing work lands. Ten of
+the twenty-nine branding surfaces are still open, owned by other
+packages. And one defect this pass found and did not fix: deleting your
+account hard-deletes the shared workspace, including your partner's
+work, in a product whose unit is a couple.
+
+## 2026-08-01 · S·159 · holds · the north star: experience, then design, then utility
+
+**The suite now has a written priority order for everything
+front-facing.** The operator set it on 2026-08-01: experience first
+(considered end to end, delightful in the right moments), design second
+(the standard of the best studios working today, nothing default),
+utility third (understandable unaided by someone who has never used a
+project-management tool — the first-contact test). When they pull
+against each other, that order decides; the register's own hierarchy
+(A1.1: creativity and emotion outrank restraint) stands beneath it
+untouched. No new machinery — the priorities bind to the delight
+catalog, the register, and the 9.5 gate, which already exist. Canonical
+record, carrying the ~six-month review date (next 2027-02):
+`content/hq/decisions/product-north-star.md`; ambient copies in this
+repo's AGENTS.md and the app repo's AGENTS.md, worded to match. The
+operator re-derives the north star roughly every six months as a
+standing practice.
+
+## 2026-07-31 · S·158 · holds · creativity outranks restraint, in writing
+
+**The design register now states its priority order permanently: creativity
+and emotion outrank restraint.** The morning's amendment loosened the
+register; this addendum settles the hierarchy. No rule in the register may
+be used to flatten a genuinely better idea — a conflict puts the rule under
+review through the lab wildcard and, on repeat, a further named amendment,
+never the idea pre-censored. The work is asked to move the person using it,
+not merely function. One standing exception holds: voice never bends —
+plain English, no exclamation marks, the banned-words list intact. Recorded
+identically in BRAND.md §5 and the operating contract so the two cannot
+drift.
+
+## 2026-07-31 · S·157 · cuts · two rulebooks become one
+
+**Signal Studio's operating contract is now one file.** AGENTS.md carries
+every Signal HQ rule — the source-of-truth table, the operator to-do
+ledger, the room registry, the dispatch shape — in one place; CLAUDE.md is
+a three-line pointer to it, and the separate CODEX.md shim is gone.
+
+The visual register catches up to the company-wide amendment agreed the
+same day: expressive by default, restraint is the edit, not the brief.
+BRAND.md's voice, naming, and banned-words sections are untouched — only
+the visual and motion framing moved. The threat model, ASVS matrix,
+disaster-recovery plan, and subprocessor list — previously sitting
+untracked outside any repo — now live in `docs/security/`, in git and
+reviewable. Twenty stale cycle handoffs and one old audit moved into
+`docs/archive/` rather than cluttering the live docs list, and the
+machine-specific `~/Projects/personal` path is gone from every doc that
+still carried it.
+
+Honest edge: this is a contract-and-docs pass, not a product change —
+nothing here ships new user-facing behaviour, and moving the security docs
+into the repo records existing practice rather than adding new controls.
+
+## 2026-07-31 · S·156 · cuts · the stack now says what it means
+
+**Every database, project, and credential now carries the name of the thing
+it actually is.** The audit that opened the day found four generations of
+naming layered over the same infrastructure: databases named for retired
+products, the same physical database answered to by four different
+environment variables, eight dead Vercel projects, twenty-one dead
+repositories, and misnamed variable pairs pointing at the wrong databases
+entirely.
+
+The reset lands in coordinated branches across both repos: one env
+convention (`<MODULE>_DATABASE_URL` + `<MODULE>_AUTH_TOKEN`) in code,
+Vercel, and CI; regenerated drizzle baselines that finally match reality
+(two production tables existed in no migration file anywhere); the
+signal-prefs database folded into Signal; the empty GTM scaffolding
+retired; every pre-reset database dumped to a manifest-verified archive
+before anything moves. The dead projects and repositories are already gone
+— deleted and archived respectively, with domains and personal projects
+untouched.
+
+Honest edges: the entry describes branches, not production — the cutover
+(new databases, env replacement, deploy, verification) is gated on one
+founder step, the Turso platform token, and the dashboard key rotation is
+its own open operator to-do. `docs/INFRASTRUCTURE.md` is now the canonical
+map, and drift between that file and reality is a defect from today
+forward.
+
+## 2026-07-29 · S·155 · tightens · six quiet pages learn when to move
+
+**Notes, Tasks, Timeline, Signal, Pricing, and About now share one restrained
+interaction contract.** Navigation opens and closes with continuity, the
+product indicator tells the truth immediately, and every real action responds
+without an authored delay. The four accepted product heroes and the Living
+Artifact timing remain exactly where their prior review left them.
+
+Pricing's perpetual product-mark loops now play once when the suite enters the
+story. About's founder signature draws once at the point of authorship.
+Reduced-motion visitors receive every final state without spatial travel.
+The release is governed by a 130-plus-decision ledger, including the stillness
+decisions and rejected candidates that keep future polish passes from adding
+motion without purpose.
+
+## 2026-07-28 · S·154 · tightens · the finished state arrives at centre
+
+**Each Product Handoff now completes when its artifact reaches the middle of
+the viewport.** The source still enters intact, but the transformation resolves
+over a shorter, deliberate scroll window. The remaining section holds the
+finished destination and receipt in view instead of making the reader chase
+the final frame toward the bottom of the page.
+
+## 2026-07-28 · S·153 · fixes · the Handoff arrives intact
+
+**The Product Handoff now measures its motion from the artifact on screen, not
+from the section beginning above it.** Each product enters with its source
+state intact, transforms through the centre of the viewport, and resolves its
+destination and receipt before the stage leaves. The same timing holds across
+desktop and mobile; reduced motion remains complete and immediate.
+
+## 2026-07-28 · S·152 · ships · one artifact walks the studio
+
+**Living Artifact is now the Product Handoff on Notes, Tasks, Timeline, and
+Signal.** The selected direction keeps one piece of wedding work recognisable
+while its owner, date, public state, and receipt resolve in the next product's
+grammar. Scroll drives the explanation directly; reduced motion presents the
+complete relationship immediately. The product heroes and the final waitlist
+close remain untouched.
+
+The homepage's four chapter names have their signatures back, refined to play
+once and settle: Notes keeps the caret, Tasks earns the indigo strike, Timeline
+lays a line and milestone, and Signal sends two measured beats. The umbrella
+headline keeps its wording, but only `not` is indigo now; `80%` is ink.
+
+## 2026-07-28 · S·151 · holds · the review room stays off the public floor
+
+**The Product Handoff lab now fails closed for every Vercel production
+deployment, including requests forwarded from the canonical domain.** The
+live smoke confirmed the canonical request returns HTTP 404; because Next.js
+retains route metadata on its not-found screen, the gate now records the
+network status as well as the rendered state.
+
+The same pass tightened the route defensively: it reads the forwarded public
+host before the deployment host and rejects every Vercel production
+environment independently of review mode. Regression coverage holds direct
+and forwarded canonical hosts. A local production build with review mode
+deliberately enabled returns 404 for the lab while the homepage returns 200.
+Protected preview review access remains unchanged.
+
+## 2026-07-28 · S·150 · ships · the Handoff enters the review room
+
+**The section below the four product heroes now has a permanent name and a
+protected place to decide what it becomes.** Product Handoff is the single
+transition; Product Walk is the connected Notes → Tasks → Timeline → Signal
+sequence. The production Handoff remains unchanged while three deterministic
+directions sit side by side for review. The coordinated homepage-relay hero
+changes are recorded separately below.
+
+Living Artifact lets one piece of work change product grammar without losing
+its wording, date, owner, or receipt. Provenance Rail draws the adjacent route.
+Editorial Cause makes the consequence typographic and lets the product proof
+follow. The same wedding facts drive every option, at the same frames, across
+phone, tablet, landscape, and desktop.
+
+The review surface can pause, scrub, slow down, force reduced motion, and walk
+all four products in sequence. Its evidence set holds 168 deterministic frames,
+four motion recordings, a clean three-browser accessibility matrix, and a 4×
+CPU trace with no long task, dropped-frame run, layout shift, or animated
+layout. The previous Handoff remains the production implementation until Ethan
+selects a direction.
+
 ## 2026-07-28 · S·149 · ships · one line proves the whole studio
 
 **The homepage now follows one wedding detail through the real suite instead

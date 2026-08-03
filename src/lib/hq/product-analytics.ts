@@ -9,10 +9,10 @@ import { createClient, type Client } from "@libsql/client";
  * so wiring this needs no new secrets, just the tokens that are already
  * provisioned on the studio deployment:
  *
- *   TASKS_TURSO_URL     / TASKS_TURSO_TOKEN
- *   NOTES_TURSO_URL     / NOTES_TURSO_TOKEN
- *   ROADMAP_TURSO_URL   / ROADMAP_TURSO_TOKEN
- *   ANALYTICS_TURSO_URL / ANALYTICS_TURSO_TOKEN
+ *   TASKS_DATABASE_URL     / TASKS_AUTH_TOKEN
+ *   NOTES_DATABASE_URL     / NOTES_AUTH_TOKEN
+ *   TIMELINE_DATABASE_URL  / TIMELINE_AUTH_TOKEN
+ *   SIGNAL_DATABASE_URL    / SIGNAL_AUTH_TOKEN
  *
  * Provisioning checklist: docs/ios/today-api.md § Operator provisioning.
  *
@@ -90,7 +90,7 @@ async function readTasks(): Promise<{
     churnPct: null,
     onboardingPct: null,
   };
-  const client = clientForEnv("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
+  const client = clientForEnv("TASKS_DATABASE_URL", "TASKS_AUTH_TOKEN");
   if (!client) return { ...empty, read: "skipped_no_env" };
 
   try {
@@ -172,30 +172,30 @@ export async function getProductAnalytics(): Promise<ProductAnalytics> {
     readTasks(),
     // Notes (ms): distinct authors who touched a live note in 30d.
     readModuleActive(
-      "NOTES_TURSO_URL",
-      "NOTES_TURSO_TOKEN",
+      "NOTES_DATABASE_URL",
+      "NOTES_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT user_id) AS n FROM notes WHERE archived_at IS NULL AND updated_at >= ?",
       d30ms,
     ),
     // Tasks (s): distinct users who did anything in 30d (activity log).
     readModuleActive(
-      "TASKS_TURSO_URL",
-      "TASKS_TURSO_TOKEN",
+      "TASKS_DATABASE_URL",
+      "TASKS_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT user_id) AS n FROM activities WHERE created_at >= ?",
       d30s,
     ),
     // Roadmap/Timeline (s): distinct workspaces with item edits in 30d.
     readModuleActive(
-      "ROADMAP_TURSO_URL",
-      "ROADMAP_TURSO_TOKEN",
+      "TIMELINE_DATABASE_URL",
+      "TIMELINE_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT workspace_slug) AS n FROM tasks WHERE updated_at >= ?",
       d30s,
     ),
     // Signal (ms): subscribers with a live cadence who were sent in 30d.
     // last_sent_at null (never sent) doesn't count as active engagement.
     readModuleActive(
-      "ANALYTICS_TURSO_URL",
-      "ANALYTICS_TURSO_TOKEN",
+      "SIGNAL_DATABASE_URL",
+      "SIGNAL_AUTH_TOKEN",
       "SELECT COUNT(*) AS n FROM user_preferences WHERE cadence != 'off' AND last_sent_at >= ?",
       d30ms,
     ),

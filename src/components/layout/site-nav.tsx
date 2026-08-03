@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Wordmark } from "@/components/brand/wordmark";
 import { ProductsMegaPanel } from "@/components/layout/products-mega-panel";
 
@@ -16,6 +17,7 @@ export function SiteNav() {
   const [intro, setIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const reducedMotion = useReducedMotion();
   const pathname = usePathname();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -32,50 +34,17 @@ export function SiteNav() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // Treat the narrow navigation as a contained disclosure: the page behind it
-  // cannot scroll or receive focus, Escape returns to the trigger, and Tab
-  // cycles through the close control and the three destinations.
+  // Close on Escape and return focus to trigger.
   useEffect(() => {
     if (!mobileOpen) return;
-    const root = document.documentElement;
-    const main = document.querySelector<HTMLElement>("main");
-    const previousOverflow = root.style.overflow;
-    const previousInert = main?.inert ?? false;
-
-    root.style.overflow = "hidden";
-    if (main) main.inert = true;
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMobileOpen(false);
         triggerRef.current?.focus();
-        return;
-      }
-      if (e.key !== "Tab") return;
-
-      const panelLinks = panelRef.current?.querySelectorAll<HTMLElement>("a");
-      const focusable = [
-        triggerRef.current,
-        ...(panelLinks ? Array.from(panelLinks) : []),
-      ].filter((node): node is HTMLElement => Boolean(node));
-      if (focusable.length === 0) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
       }
     };
     document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      root.style.overflow = previousOverflow;
-      if (main) main.inert = previousInert;
-    };
+    return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
   // Outside-click dismissal for products panel.
@@ -119,11 +88,22 @@ export function SiteNav() {
             type="button"
             aria-expanded={productsOpen}
             aria-controls="products-mega-panel"
-            onClick={() => {
-              setMobileOpen(false);
-              setProductsOpen((o) => !o);
+            onClick={() => setProductsOpen((o) => !o)}
+            onKeyDown={(event) => {
+              if (event.key !== "ArrowDown") return;
+              event.preventDefault();
+              setProductsOpen(true);
+              window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                  document
+                    .querySelector<HTMLAnchorElement>(
+                      "#products-mega-panel .mpanel-card",
+                    )
+                    ?.focus();
+                });
+              });
             }}
-            className="inline-flex min-h-11 items-center gap-1 text-[13px] transition-colors hover:text-ink"
+            className="marketing-nav-action inline-flex min-h-11 items-center gap-1 text-[13px] transition-colors"
             style={{
               letterSpacing: "0.01em",
               color: productsOpen ? "var(--ink)" : "var(--ink-quiet)",
@@ -139,8 +119,9 @@ export function SiteNav() {
               strokeWidth="2.4"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="site-products-chevron"
               style={{
-                transition: "transform 200ms",
+                transition: "transform 200ms var(--ease-out)",
                 transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)",
               }}
               aria-hidden
@@ -158,21 +139,21 @@ export function SiteNav() {
           {/* Desktop links, hidden below sm */}
           <Link
             href="/design"
-            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
+            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Design
           </Link>
           <Link
             href="/pricing"
-            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
+            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Pricing
           </Link>
           <Link
             href="/about"
-            className="hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors hover:text-ink sm:inline-flex"
+            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             About
@@ -185,11 +166,8 @@ export function SiteNav() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav-panel"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => {
-              setProductsOpen(false);
-              setMobileOpen((o) => !o);
-            }}
-            className="inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors hover:text-ink sm:hidden"
+            onClick={() => setMobileOpen((o) => !o)}
+            className="marketing-nav-action inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors sm:hidden"
           >
             {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
             <svg
@@ -219,51 +197,53 @@ export function SiteNav() {
       </div>
 
       {/* Mobile nav panel, paper-white, hairline border, no heavy shadow */}
-      <div
-        id="mobile-nav-panel"
-        ref={panelRef}
-        role="region"
-        aria-label="Mobile navigation"
-        hidden={!mobileOpen}
-        className="mobile-nav-panel sm:hidden"
-        style={{
-          borderTop: "1px solid var(--border-soft)",
-          background: "var(--bg)",
-        }}
-      >
-        <nav aria-label="All pages" className="mx-auto w-full max-w-[1240px] px-6 py-4">
-          <ul className="flex flex-col" style={{ gap: 0 }}>
-            {NAV_LINKS.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="flex min-h-[44px] items-center border-b text-[14px] text-ink-quiet transition-colors hover:text-ink"
-                  style={{
-                    borderColor: "var(--border-soft)",
-                    letterSpacing: "0.01em",
-                  }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-      <style>{`
-        .mobile-nav-panel {
-          transform-origin: top center;
-          animation: mobile-nav-enter var(--motion-base) var(--ease-out) both;
-        }
-        @keyframes mobile-nav-enter {
-          from { opacity: 0; transform: translateY(-8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .mobile-nav-panel { animation: none; }
-        }
-      `}</style>
+      <AnimatePresence initial={false}>
+        {mobileOpen ? (
+          <motion.div
+            key="mobile-nav-panel"
+            id="mobile-nav-panel"
+            ref={panelRef}
+            role="region"
+            aria-label="Mobile navigation"
+            className="sm:hidden"
+            initial={
+              reducedMotion ? { opacity: 1 } : { opacity: 0, y: -6 }
+            }
+            animate={{ opacity: 1, y: 0 }}
+            exit={
+              reducedMotion ? { opacity: 0 } : { opacity: 0, y: -4 }
+            }
+            transition={{
+              duration: reducedMotion ? 0.01 : 0.2,
+              ease: [0.23, 1, 0.32, 1],
+            }}
+            style={{
+              borderTop: "1px solid var(--border-soft)",
+              background: "var(--bg)",
+            }}
+          >
+            <nav aria-label="All pages" className="mx-auto w-full max-w-[1240px] px-6 py-4">
+              <ul className="flex flex-col" style={{ gap: 0 }}>
+                {NAV_LINKS.map(({ href, label }) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="marketing-nav-action flex min-h-[44px] items-center border-b text-[14px] text-ink-quiet transition-colors"
+                      style={{
+                        borderColor: "var(--border-soft)",
+                        letterSpacing: "0.01em",
+                      }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

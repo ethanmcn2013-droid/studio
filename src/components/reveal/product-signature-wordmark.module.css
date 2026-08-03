@@ -1,0 +1,202 @@
+.wordmark {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.word {
+  position: relative;
+}
+
+.mark {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  margin-left: 0.06em;
+  background: var(--accent);
+}
+
+.notesCaret {
+  top: 0.05em;
+  width: 0.075em;
+  height: 0.78em;
+  border-radius: 0.02em;
+  opacity: 0;
+  transform-origin: center bottom;
+}
+
+.wordmark[data-product="notes"][data-active="true"] .notesCaret {
+  animation: notes-caret-settle 2.12s steps(1, end) both;
+}
+
+.signature {
+  position: absolute;
+  pointer-events: none;
+}
+
+.tasksStrike {
+  top: 58%;
+  left: -0.04em;
+  width: calc(100% + 0.08em);
+  height: 0.055em;
+  background: var(--accent);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.wordmark[data-product="tasks"][data-active="true"] .tasksStrike {
+  animation: tasks-strike-settle 820ms var(--ease-in-out) 100ms both;
+}
+
+.timelineOrigin,
+.signalPulse {
+  width: 0.14em;
+  height: 0.14em;
+  border-radius: 50%;
+  transform: translateY(-0.04em);
+}
+
+.timelineTrack {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 1.4em;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+}
+
+.timelineMilestone {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1.4em);
+  width: 0.14em;
+  height: 0.14em;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+}
+
+.wordmark[data-product="timeline"][data-active="true"] .timelineTrack {
+  animation: timeline-track-settle 880ms var(--ease-in-out) 80ms both;
+}
+
+.wordmark[data-product="timeline"][data-active="true"] .timelineMilestone {
+  animation: timeline-milestone-settle 380ms var(--ease-out) 700ms both;
+}
+
+.wordmark[data-product="signal"][data-active="true"] .signalPulse {
+  animation: signal-heartbeat-settle 1.2s var(--ease-in-out) 100ms both;
+}
+
+@keyframes notes-caret-settle {
+  0%,
+  24%,
+  50%,
+  74%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  49%,
+  75%,
+  88% {
+    opacity: 0;
+  }
+}
+
+@keyframes tasks-strike-settle {
+  0% {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes timeline-track-settle {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+
+  16% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+@keyframes timeline-milestone-settle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes signal-heartbeat-settle {
+  0%,
+  16%,
+  32%,
+  100% {
+    transform: translateY(-0.04em) scale(1);
+  }
+
+  8% {
+    transform: translateY(-0.04em) scale(1.55);
+  }
+
+  24% {
+    transform: translateY(-0.04em) scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark[data-active="true"] .notesCaret,
+  .wordmark[data-active="true"] .tasksStrike,
+  .wordmark[data-active="true"] .timelineTrack,
+  .wordmark[data-active="true"] .timelineMilestone,
+  .wordmark[data-active="true"] .signalPulse {
+    animation: none;
+  }
+
+  .notesCaret,
+  .tasksStrike,
+  .timelineTrack,
+  .timelineMilestone {
+    opacity: 1;
+  }
+
+  .tasksStrike {
+    transform: scaleX(1);
+  }
+
+  .timelineTrack {
+    transform: translateY(-50%) scaleX(1);
+  }
+
+  .timelineMilestone {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

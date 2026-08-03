@@ -3,10 +3,10 @@ title: The four products as one system
 slug: five-products-as-a-system
 lens: Products
 owner: Ethan
-lastVerified: 2026-05-26
+lastVerified: 2026-07-31
 links: [signal-studio-umbrella, log-cycle-cross-repo-writer, turso-databases-and-reads, pricing-and-entitlements, brand-enforcement]
 tags: [Studio, Tasks, Timeline, Signal, Notes, suite, ecosystem, design system v1, wordmark gestures]
-references: [~/Projects/personal/tasks, ~/Projects/personal/timeline, ~/Projects/personal/signal, ~/Projects/personal/notes, BRAND.md, src/components/brand/wordmark.tsx]
+references: [tasks, timeline, signal, notes, BRAND.md, src/components/brand/wordmark.tsx]
 summary: Tasks does the work; Timeline shows the plan; Signal asks "what now"; Notes captures the rest. Four products, one umbrella, one design system, three explicit hand-offs.
 status: complete
 pinned: false
@@ -36,15 +36,15 @@ flowchart LR
 
 ## WHO
 
-Ethan owns every product. Each lives in its own repo under `~/Projects/personal/`. No external operators. The four products are the cardinality limit the umbrella refuses to break (see [[signal-studio-umbrella]]).
+Ethan owns every product. Each lives in its own repo at the workspace root. No external operators. The four products are the cardinality limit the umbrella refuses to break (see [[signal-studio-umbrella]]).
 
 ## WHERE
 
-- **Tasks** — `~/Projects/personal/tasks/`. Live at `tasks.signalstudio.ie`. Persistence on Turso since 2026-05-08.
-- **Timeline** — `~/Projects/personal/roadmap/`. Live at `roadmap.signalstudio.ie` (and `roadmap-ebon-eight.vercel.app`). Phases 1–5 shipped 2026-05-09.
-- **Signal** — `~/Projects/personal/analytics/`. Live at `analytics.signalstudio.ie`. End-to-end pipeline shipped 2026-05-13.
-- **Notes** — `~/Projects/personal/notes/`. Live at `notes.signalstudio.ie`. Cross-repo Notes→Tasks extract shipped Cycle 9.4b.
-- **Studio (umbrella)** — `~/Projects/personal/studio/`. Live at `signalstudio.ie`. The umbrella site, brand hub, pricing, HQ.
+- **Tasks** — `tasks/`. Live at `tasks.signalstudio.ie`. Persistence on Turso since 2026-05-08.
+- **Timeline** — `roadmap/`. Live at `roadmap.signalstudio.ie` (and `roadmap-ebon-eight.vercel.app`). Phases 1–5 shipped 2026-05-09.
+- **Signal** — `analytics/`. Live at `analytics.signalstudio.ie`. End-to-end pipeline shipped 2026-05-13.
+- **Notes** — `notes/`. Live at `notes.signalstudio.ie`. Cross-repo Notes→Tasks extract shipped Cycle 9.4b.
+- **Studio (umbrella)** — `studio/`. Live at `signalstudio.ie`. The umbrella site, brand hub, pricing, HQ.
 
 ## HOW
 
