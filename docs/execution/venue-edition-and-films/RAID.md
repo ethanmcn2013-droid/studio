@@ -446,7 +446,8 @@ wrong on the day. These three are the difference.
 - **Detail:** `PROJECT_STATE.json` is canonical for a 211-task programme. `DECISIONS.md` holds twenty-four ratified decisions that exist nowhere else. `BRIEF.md`, `RAID.md`, every session record and every piece of evidence sit in the same untracked directory. **There is no revert path for any of it, and one `git clean -fd` removes the project's entire memory.** D-002 chose this location specifically because "the workspace root is not a git repository, so a control system placed there would not be version-controlled" — and then the directory was never added.
 - **Why it is an issue and not a risk:** it is not a probability. It is the current state.
 - **Resolution:** commit the control root. It contains no credentials by rule, and `private/venues.csv` is already gitignored. This is a founder action because it puts programme state into a repository's history permanently.
-- **Status:** open · **Target:** immediately · **Last reviewed:** 2026-08-03
+- **RESOLVED 2026-08-03.** Committed on the founder's instruction as `40953f8`, 127 files. `private/*` stays ignored apart from its README and template, and the regenerable `.geo-cache/` was added to `.gitignore` because its filenames, built from venue names and addresses, exceed the path limit. Scanned before staging: no credentials, no venue contact data, no phone numbers. Other lanes' in-flight source changes were deliberately left uncommitted.
+- **Status:** **resolved** · **Last reviewed:** 2026-08-03
 
 ### I-008 — Two epics sit outside the release-gate system entirely
 - **Type:** governance · **Severity:** medium · **Owner:** Ethan McNamara
