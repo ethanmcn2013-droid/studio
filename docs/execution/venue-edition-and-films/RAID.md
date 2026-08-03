@@ -690,7 +690,8 @@ sweep and require confirmation when it spans more than one.
 - **The lesson worth keeping.** A model that cannot express how something is funded will invent a crisis when the funding is real but unmodelled. The check is not "does the number look bad" but "does the model know what actually happens".
 - **Last reviewed:** 2026-08-03
 
-### R-025 — The public price launch is coupled to an unapproved task in the working tree
+### R-041 — The public price launch is coupled to an unapproved task in the working tree
+- **ID note:** first written as R-025; renumbered to R-041 on 2026-08-03 during the Wave 1 cleanup, when two concurrent sessions were found to have claimed R-025 independently. The earlier claim keeps the number. This is the third such collision — see I-011.
 - **Type:** commercial/governance · **Probability:** high while the tree stays uncommitted · **Impact:** high · **Severity:** high
 - **Owner:** Ethan McNamara · **Target:** before any deploy of `studio`
 - **Detail:** `src/app/venues/page.tsx` and all three brand decks in the working
@@ -773,7 +774,8 @@ this session, and it does not.
 - **Affects:** E10.02, E10.03, E10.12, `studio/docs/strategy/VENUE_EDITION_STRATEGY.md`
 - **Status:** open, needs founder decision · **Last reviewed:** 2026-08-03
 
-### I-007 — The wave PR is mergeable but one quality gate is red across three lanes
+### I-013 — The wave PR is mergeable but one quality gate is red across three lanes
+- **ID note:** first written as I-007; renumbered to I-013 on 2026-08-03 during the Wave 1 cleanup, when two concurrent sessions were found to have claimed I-007 independently. The earlier claim keeps the number. This is the third such collision — see I-011.
 - **Type:** delivery/governance · **Severity:** high · **Owner:** Ethan McNamara
 - **Opened:** 2026-08-03 · PR [#139](https://github.com/ethanmcn2013-droid/studio/pull/139)
 - **State:** `mergeable`, no conflicts. `typecheck · test` **passes**. `verify`
