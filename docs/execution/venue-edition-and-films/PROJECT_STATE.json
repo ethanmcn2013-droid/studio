@@ -5560,7 +5560,7 @@
       "id": "E05.01",
       "epic": "E05",
       "title": "Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -5750,15 +5750,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PARTIALLY CONFIRMED — not complete. I set out to refute this and largely failed on the substance. Ten of the twelve evidence refs are exact, all twelve resolve, and every one of the three headline findings (D-022 implemented and unreachable, the /app allowlist gate bouncing redeemed couples, the wedding template declaring zero milestones so even a provisioned Timeline is empty) survived independent re-derivation. The two suites and the one gate reproduce byte-for-byte. THE PRIVACY BOUNDARY IS THE CLAIM I ATTACKED HARDEST AND IT HOLDS: beyond re-running the 23-line grep, I widened to all of src, read partner-stats in full, read the sponsor DTO allowlist field by field, read the sponsored-use ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -5789,6 +5789,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PARTIALLY CONFIRMED — not complete. I set out to refute this and largely failed on the substance. Ten of the twelve evidence refs are exact, all twelve resolve, and every one of the three headline findings (D-022 implemented and unreachable, the /app allowlist gate bouncing redeemed couples, the wedding template declaring zero milestones so even a provisioned Timeline is empty) survived independent re-derivation. The two suites and the one gate reproduce byte-for-byte. THE PRIVACY BOUNDARY IS THE CLAIM I ATTACKED HARDEST AND IT HOLDS: beyond re-running the 23-line grep, I widened to all of src, read partner-stats in full, read the sponsor DTO allowlist field by field, read the sponsored-use "
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -5843,7 +5850,7 @@
       "id": "E05.03",
       "epic": "E05",
       "title": "Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6011,15 +6018,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL CONFIRMED, BUT NARROWER THAN CLAIMED. The build agent's own honest state of 'partial' is right, and I am not upgrading it - I am widening it from two unmet criteria to five. WHAT SURVIVED MY ATTACK, AND IT IS SUBSTANTIAL. Every evidence path exists. All three test-suite results reproduced to the exact count. The fail-before run reproduced exactly, three named failures out of six, so the R-017 guard is genuinely non-tautological and is wired into the CI test chain rather than existing only as a local artifact. The generated file was not touched. R-017 was handled correctly: not removed, not redesigned, no dietary field invented, four decisions put to the founder in the spec. ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -6050,6 +6057,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL CONFIRMED, BUT NARROWER THAN CLAIMED. The build agent's own honest state of 'partial' is right, and I am not upgrading it - I am widening it from two unmet criteria to five. WHAT SURVIVED MY ATTACK, AND IT IS SUBSTANTIAL. Every evidence path exists. All three test-suite results reproduced to the exact count. The fail-before run reproduced exactly, three named failures out of six, so the R-017 guard is genuinely non-tautological and is wired into the CI test chain rather than existing only as a local artifact. The generated file was not touched. R-017 was handled correctly: not removed, not redesigned, no dietary field invented, four decisions put to the founder in the spec. "
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "founder_choice",
@@ -6059,7 +6073,7 @@
       "id": "E05.04",
       "epic": "E05",
       "title": "Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6180,15 +6194,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 9 criterion/criteria NOT met — see the packet. Verifier: PARTIAL, and the build agent's own state word is right, but its evidence is overstated on four of the ten criteria it marks 'met' and it introduces one defect that must be fixed before this goes anywhere near Founder Review. What genuinely holds, and I re-ran every check: typecheck clean, pnpm test 413/413 EXIT 0, ds:check clean, brand-voice clean on the new files, the eleven guards are non-tautological and are inside the CI chain, voice capture really does pre-exist, the seam really is free (no route, no field, no migration), and the wedding signal really is presentation-only. This is careful work and the audit's correction about contextType versus active_domain is right and non-obvious. Th",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -6219,6 +6233,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 9 criterion/criteria NOT met — see the packet. Verifier: PARTIAL, and the build agent's own state word is right, but its evidence is overstated on four of the ten criteria it marks 'met' and it introduces one defect that must be fixed before this goes anywhere near Founder Review. What genuinely holds, and I re-ran every check: typecheck clean, pnpm test 413/413 EXIT 0, ds:check clean, brand-voice clean on the new files, the eleven guards are non-tautological and are inside the CI chain, voice capture really does pre-exist, the seam really is free (no route, no field, no migration), and the wedding signal really is presentation-only. This is careful work and the audit's correction about contextType versus active_domain is right and non-obvious. Th"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -6228,7 +6249,7 @@
       "id": "E05.05",
       "epic": "E05",
       "title": "Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6314,15 +6335,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. Correct state is PARTIAL. Do not put this in front of the founder as a finished task. What survives scrutiny is substantial and I want to be fair about it. The typecheck, the full test run, the registration in the test chain, the fail-before, and the brand-voice result all reproduce exactly as claimed — I ran every one. The copy module is genuinely good work: two registers with enforced key parity, a documented ban list with a reasoned omission, and guards that fail for the right reasons when I mutate the strings back. The wedding register is wired to production, not stranded in a test. And on the question the brief said matters most, I went looking for a path where a ve",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -6358,6 +6379,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. Correct state is PARTIAL. Do not put this in front of the founder as a finished task. What survives scrutiny is substantial and I want to be fair about it. The typecheck, the full test run, the registration in the test chain, the fail-before, and the brand-voice result all reproduce exactly as claimed — I ran every one. The copy module is genuinely good work: two registers with enforced key parity, a documented ban list with a reasoned omission, and guards that fail for the right reasons when I mutate the strings back. The wedding register is wired to production, not stranded in a test. And on the question the brief said matters most, I went looking for a path where a ve"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -6367,7 +6395,7 @@
       "id": "E05.06",
       "epic": "E05",
       "title": "Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6605,15 +6633,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 5 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED AS PARTIAL, with the criterion-level accounting corrected downward. I could not refute the engineering. Every path exists, every command reproduces to the digit, and the fail-before is real — I mutated the file myself and got exactly one failure on exactly the right test, then restored the tree. The two things actually built are sound: the seed-persona roster is genuinely gone from a panel that mounts on every /app page, and anchor-due.ts refuses a malformed date rather than guessing. This agent also volunteered three findings against its own interest (the dead fixtures.test.ts, the concurrent typecheck failure, the demo-mode gap). That is the behaviour this programme has been shor",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -6644,6 +6672,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 5 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED AS PARTIAL, with the criterion-level accounting corrected downward. I could not refute the engineering. Every path exists, every command reproduces to the digit, and the fail-before is real — I mutated the file myself and got exactly one failure on exactly the right test, then restored the tree. The two things actually built are sound: the seed-persona roster is genuinely gone from a panel that mounts on every /app page, and anchor-due.ts refuses a malformed date rather than guessing. This agent also volunteered three findings against its own interest (the dead fixtures.test.ts, the concurrent typecheck failure, the demo-mode gap). That is the behaviour this programme has been shor"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -6653,7 +6688,7 @@
       "id": "E05.07",
       "epic": "E05",
       "title": "Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6831,15 +6866,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — the state label is right, but for a different reason than the build agent gives, and the difference is the point of the task. What I confirm without reservation: the audit-first half is honest and unusually well evidenced. Sixteen of sixteen evidence paths exist, every cited line number lands within a line or two of where it says, pnpm test reproduces to the exact ten group totals, typecheck and ds:check are green, and the fail-before proof survives a real file swap rather than a reading. I attacked the privacy boundary specifically and could not break it: toPublicTask is provably the only projection on /p, /embed and /share, the venue egress is four scalars behind a bearer token, ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -6870,6 +6905,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — the state label is right, but for a different reason than the build agent gives, and the difference is the point of the task. What I confirm without reservation: the audit-first half is honest and unusually well evidenced. Sixteen of sixteen evidence paths exist, every cited line number lands within a line or two of where it says, pnpm test reproduces to the exact ten group totals, typecheck and ds:check are green, and the fail-before proof survives a real file swap rather than a reading. I attacked the privacy boundary specifically and could not break it: toPublicTask is provably the only projection on /p, /embed and /share, the venue egress is four scalars behind a bearer token, "
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -6879,7 +6921,7 @@
       "id": "E05.08",
       "epic": "E05",
       "title": "Complete the authenticated Timeline planning experience and its relationship with tasks and milestones.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7062,15 +7104,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED ON THE PART THAT MATTERS, WITH THREE CORRECTIONS REQUIRED BEFORE FOUNDER REVIEW IS MEANINGFUL. I set out to refute the privacy boundary and could not. Criteria 1, 2, 3 and 4 are met by CODE, not prose, and I proved it two ways the builder did not: I re-ran their publish-gate mutation (5 pass / 2 fail, exactly as claimed) and then ran my own independent mutation, leaking sourceRelation into the emitted DTO, which turned the projection test red. That is the test that decides whether criterion 4 is real, and it is. I then hunted for a second bearer path into publication content and found none: resolveAudienceTimeline is the single reader, reachable only from /s/[token], and the only o",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -7101,6 +7143,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED ON THE PART THAT MATTERS, WITH THREE CORRECTIONS REQUIRED BEFORE FOUNDER REVIEW IS MEANINGFUL. I set out to refute the privacy boundary and could not. Criteria 1, 2, 3 and 4 are met by CODE, not prose, and I proved it two ways the builder did not: I re-ran their publish-gate mutation (5 pass / 2 fail, exactly as claimed) and then ran my own independent mutation, leaking sourceRelation into the emitted DTO, which turned the projection test red. That is the test that decides whether criterion 4 is real, and it is. I then hunted for a second bearer path into publication content and found none: resolveAudienceTimeline is the single reader, reachable only from /s/[token], and the only o"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -7110,7 +7159,7 @@
       "id": "E05.09",
       "epic": "E05",
       "title": "Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7270,15 +7319,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED — with one concrete defect to fix. I could not prove this overstated, and on substance it is UNDER-claimed rather than over-claimed. I set out to refute and failed on every material point. All eight evidence paths exist. The 9/9 test result is real and I pasted it. Most importantly, I did not take the agent's word on the two measurements that carry the whole honest finding — I wrote my own probes and got byte-identical results: 18 tasks / 0 offsets / 0 milestones / lanes {done:2,doing:4,review:3,todo:9}, and readCount 18 with exactly one row, synthetic:overload 'Seven items open at once', zero due-soon, zero crowded-week. ds:check and typecheck are clean because I ran them",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -7309,6 +7358,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED — with one concrete defect to fix. I could not prove this overstated, and on substance it is UNDER-claimed rather than over-claimed. I set out to refute and failed on every material point. All eight evidence paths exist. The 9/9 test result is real and I pasted it. Most importantly, I did not take the agent's word on the two measurements that carry the whole honest finding — I wrote my own probes and got byte-identical results: 18 tasks / 0 offsets / 0 milestones / lanes {done:2,doing:4,review:3,todo:9}, and readCount 18 with exactly one row, synthetic:overload 'Seven items open at once', zero due-soon, zero crowded-week. ds:check and typecheck are clean because I ran them"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -7318,7 +7374,7 @@
       "id": "E05.10",
       "epic": "E05",
       "title": "Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7443,15 +7499,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTLY REFUTED. The honest state label 'partial' is right, but the criteria breakdown behind it is overstated — two of the nine criteria the build agent marked MET are refuted by shipped code it did not open, and the one control it produced is not wired into CI. What holds, and I confirmed it personally. Every one of the twelve evidence paths exists. Every cited line number is accurate — I checked all of them rather than sampling. Criteria 3, 4, 5 and 8 are CONFIRMED by code, not by prose: six role values including venue-shaped ones drive through the real accept SQL against a real in-memory database and every one lands as member; three sponsor references all fail as tokens; wedding ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -7482,6 +7538,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTLY REFUTED. The honest state label 'partial' is right, but the criteria breakdown behind it is overstated — two of the nine criteria the build agent marked MET are refuted by shipped code it did not open, and the one control it produced is not wired into CI. What holds, and I confirmed it personally. Every one of the twelve evidence paths exists. Every cited line number is accurate — I checked all of them rather than sampling. Criteria 3, 4, 5 and 8 are CONFIRMED by code, not by prose: six role values including venue-shaped ones drive through the real accept SQL against a real in-memory database and every one lands as member; three sponsor references all fail as tokens; wedding "
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -10837,7 +10900,7 @@
       "id": "E08.01",
       "epic": "E08",
       "title": "Implement annual prepaid billing for standard and founding agreements.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -10947,15 +11010,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 12 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, trending REFUTED on three of the ten criteria. Do not let this reach Founder Review as 'partial with two known gaps' - there are five more, and two of them are the exact failure classes this programme keeps repeating. What is genuinely real and good: criteria 1, 4, 6, 7, 8, 9 and 10 are met by running code I read and tests I watched pass. venue-money.ts is a well-built constructor (gross-only, null-not-zero, net recomputed on read). prepaymentRefusal refuses both wrong-price directions. The mark-venue-paid.ts rewrite is a real improvement and the mirror now fails loudly. The contract-check edit is a strengthening, not a weakening. The runbook is honest about what is not built. The",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -10995,6 +11058,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 12 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, trending REFUTED on three of the ten criteria. Do not let this reach Founder Review as 'partial with two known gaps' - there are five more, and two of them are the exact failure classes this programme keeps repeating. What is genuinely real and good: criteria 1, 4, 6, 7, 8, 9 and 10 are met by running code I read and tests I watched pass. venue-money.ts is a well-built constructor (gross-only, null-not-zero, net recomputed on read). prepaymentRefusal refuses both wrong-price directions. The mark-venue-paid.ts rewrite is a real improvement and the mirror now fails loudly. The contract-check edit is a strengthening, not a weakening. The runbook is honest about what is not built. The"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11004,7 +11074,7 @@
       "id": "E08.02",
       "epic": "E08",
       "title": "Implement an immutable founding-rate flag and historical price record for each qualifying venue.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11090,15 +11160,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED on everything the builder claimed, and the builder's own honesty holds up under adversarial re-run — but the unmet list is materially incomplete, so 'partial' is right for the wrong reasons as much as the right ones. What is genuinely true. I re-ran all five verification commands and both mutation runs myself. Every number the builder reported reproduced to the digit, including the exact assertion message on mutation 2. All six cited evidence paths exist and contain what they are said to contain. planChangeRefusal is not decorative; the price of record comes from the plan constant rather than the caller; the append-only triggers are probed for firing rather than inferred f",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11129,6 +11199,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED on everything the builder claimed, and the builder's own honesty holds up under adversarial re-run — but the unmet list is materially incomplete, so 'partial' is right for the wrong reasons as much as the right ones. What is genuinely true. I re-ran all five verification commands and both mutation runs myself. Every number the builder reported reproduced to the digit, including the exact assertion message on mutation 2. All six cited evidence paths exist and contain what they are said to contain. planChangeRefusal is not decorative; the price of record comes from the plan constant rather than the caller; the append-only triggers are probed for firing rather than inferred f"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11138,7 +11215,7 @@
       "id": "E08.03",
       "epic": "E08",
       "title": "Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11221,15 +11298,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE — not CONFIRMED, and not REFUTED. The verification record is honest and survives attack on its strongest point: every evidence path exists, every command I re-ran returned what was claimed, and the couple-access invariant is genuinely enforced, which I proved by mutation rather than by reading. That is better discipline than this programme has usually seen and the build agent deserves credit for it. It is also correctly self-reported as 'partial' with five true UNMET items. What stops it being CONFIRMED is that the unmet list is incomplete in exactly the direction that flatters the work. Three criteria the agent counted as met are not met by running code. Criterion 2 requires the s",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11260,6 +11337,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE — not CONFIRMED, and not REFUTED. The verification record is honest and survives attack on its strongest point: every evidence path exists, every command I re-ran returned what was claimed, and the couple-access invariant is genuinely enforced, which I proved by mutation rather than by reading. That is better discipline than this programme has usually seen and the build agent deserves credit for it. It is also correctly self-reported as 'partial' with five true UNMET items. What stops it being CONFIRMED is that the unmet list is incomplete in exactly the direction that flatters the work. Three criteria the agent counted as met are not met by running code. Criterion 2 requires the s"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11268,8 +11352,8 @@
     {
       "id": "E08.04",
       "epic": "E08",
-      "title": "Complete multi-tenant data isolation and database row-level security for venues and couple workspaces.",
-      "status": "founder_review",
+      "title": "Complete multi-tenant data isolation for venues and couple workspaces, enforced by application-level scoping, a CI gate and a behavioural negative suite.",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11376,17 +11460,23 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED on 'all criteria met'. The build agent's own honest state of 'partial' is the right label, but it is paired with ALL CRITERIA MET: true and UNMET: [], which is internally contradictory and, more importantly, wrong on the headline criterion. What genuinely holds up, and it is substantial: every evidence path exists, all four claimed commands reproduce exactly (25/25, 5/5, tsc exit 0, 402/402), both new suites really are wired into pnpm test and pnpm test really does run in CI, the studio-side proofs for criterion 7 pass, the no-RLS position is stated plainly and repeatedly rather than papered over, the negative suite is real behavioural testing against libSQL with a non-vacuous contro",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
-      "notes": [],
+      "notes": [
+        {
+          "at": "2026-08-03T00:00:00.000Z",
+          "note": "CR-005 APPROVED (Option A), D-033. Title amended from: \"Complete multi-tenant data isolation and database row-level security for venues and couple workspaces.\". Turso/libSQL has no row-level security, so the original title could never have passed. The control is application-level tenant scoping, a CI gate failing the build on an unscoped query, and a behavioural negative suite. This is materially weaker than RLS, which fails closed below the application, and no venue-facing or legal-facing document may say otherwise (D-016). Residual risk: any future direct-database access path sits outside the control.",
+          "addedBy": "claude_code"
+        }
+      ],
       "history": [
         {
           "at": "2026-08-02T00:00:00Z",
@@ -11415,6 +11505,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED on 'all criteria met'. The build agent's own honest state of 'partial' is the right label, but it is paired with ALL CRITERIA MET: true and UNMET: [], which is internally contradictory and, more importantly, wrong on the headline criterion. What genuinely holds up, and it is substantial: every evidence path exists, all four claimed commands reproduce exactly (25/25, 5/5, tsc exit 0, 402/402), both new suites really are wired into pnpm test and pnpm test really does run in CI, the studio-side proofs for criterion 7 pass, the no-RLS position is stated plainly and repeatedly rather than papered over, the negative suite is real behavioural testing against libSQL with a non-vacuous contro"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11424,7 +11521,7 @@
       "id": "E08.05",
       "epic": "E08",
       "title": "Complete role-based authentication and authorisation across venue owners, managers, viewers and couples.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11513,15 +11610,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — not CONFIRMED, and the claim is overstated on one acceptance criterion. What survives adversarial checking, and it is the majority: every evidence path exists, three of the four verification commands reproduce EXACTLY as claimed (21/21, 5/5, tsc exit 0), and the load-bearing mutation probe is real — I re-ran it myself and the suite goes red on 'declares no capability that names couple content' with the mutation present and green with it removed. The 'the guard had never run in CI' finding is verifiable in the package.json diff. The auth.ts v2 token is genuinely sound and proxy.ts genuinely enforces it at the edge. This agent found and fixed a real defect in its predecess",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11552,6 +11649,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — not CONFIRMED, and the claim is overstated on one acceptance criterion. What survives adversarial checking, and it is the majority: every evidence path exists, three of the four verification commands reproduce EXACTLY as claimed (21/21, 5/5, tsc exit 0), and the load-bearing mutation probe is real — I re-ran it myself and the suite goes red on 'declares no capability that names couple content' with the mutation present and green with it removed. The 'the guard had never run in CI' finding is verifiable in the package.json diff. The auth.ts v2 token is genuinely sound and proxy.ts genuinely enforces it at the edge. This agent found and fixed a real defect in its predecess"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11561,7 +11665,7 @@
       "id": "E08.06",
       "epic": "E08",
       "title": "Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11681,15 +11785,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three narrowings. I re-ran every claimed command in the correct worktrees and the results reproduce almost exactly: app typecheck exit 0, app test exit 0 with 1066 tests across 10 segments and 0 failures, app db:contract 19/19 with the '28 SQL files, 28 receipts' line verbatim, studio typecheck exit 0, studio test exit 0, invitation-code.test.ts 11/11, share-token-security 23/23, invitation-code-security 13/13. Every one of the nine evidence paths exists. The one numeric drift is 75 lint warnings against a claimed 76, and the one red gate (studio lint) was disclosed by the builder before I found it, with an attribution I independently verified as correct (the offending file i",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11720,6 +11824,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three narrowings. I re-ran every claimed command in the correct worktrees and the results reproduce almost exactly: app typecheck exit 0, app test exit 0 with 1066 tests across 10 segments and 0 failures, app db:contract 19/19 with the '28 SQL files, 28 receipts' line verbatim, studio typecheck exit 0, studio test exit 0, invitation-code.test.ts 11/11, share-token-security 23/23, invitation-code-security 13/13. Every one of the nine evidence paths exists. The one numeric drift is 75 lint warnings against a claimed 76, and the one red gate (studio lint) was disclosed by the builder before I found it, with an attribution I independently verified as correct (the offending file i"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11729,7 +11840,7 @@
       "id": "E08.07",
       "epic": "E08",
       "title": "Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11812,15 +11923,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — not REFUTED, and not CONFIRMED. What survives adversarial reading, and it is most of it. Every evidence path exists. Every command re-ran green with numbers matching the claim (typecheck exit 0; 1066/1066 tests; the 16-test suite 16/16 and genuinely wired into `pnpm test`). The diff is what it says it is: a client-trusting 8-entry denylist replaced by a byte-checked allowlist, and a 302 to a private blob URL replaced by an authenticated server-side stream. I checked the SDK type declarations myself and the static case against the redirect is correct — that was a real latent production defect and finding it is the substantive value here. The builder also volunteered the Z",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11851,6 +11962,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — not REFUTED, and not CONFIRMED. What survives adversarial reading, and it is most of it. Every evidence path exists. Every command re-ran green with numbers matching the claim (typecheck exit 0; 1066/1066 tests; the 16-test suite 16/16 and genuinely wired into `pnpm test`). The diff is what it says it is: a client-trusting 8-entry denylist replaced by a byte-checked allowlist, and a 302 to a private blob URL replaced by an authenticated server-side stream. I checked the SDK type declarations myself and the static case against the redirect is correct — that was a real latent production defect and finding it is the substantive value here. The builder also volunteered the Z"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -11860,7 +11978,7 @@
       "id": "E08.08",
       "epic": "E08",
       "title": "Complete audit logging, operational logging, error monitoring and alert escalation.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -11954,15 +12072,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — the work is real, substantially better evidenced than this programme's average, and its one red gate was disclosed honestly and verified by me as genuinely pre-existing. But it is NOT fully CONFIRMED, because one acceptance criterion is refuted by my own probe and the 'partial' label understates which criteria are unmet. WHAT IS GENUINELY TRUE. Every one of the ten evidence paths exists. Every verification command reproduced: both typechecks exit 0, both full suites exit 0, 8/8 and 9/9 on the two new tests, and I confirmed both are actually wired into `pnpm test` rather than merely runnable standalone — the studio one genuinely never ran before. Criteria 1, 4, 5, 6 and 7",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -11993,6 +12111,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — the work is real, substantially better evidenced than this programme's average, and its one red gate was disclosed honestly and verified by me as genuinely pre-existing. But it is NOT fully CONFIRMED, because one acceptance criterion is refuted by my own probe and the 'partial' label understates which criteria are unmet. WHAT IS GENUINELY TRUE. Every one of the ten evidence paths exists. Every verification command reproduced: both typechecks exit 0, both full suites exit 0, 8/8 and 9/9 on the two new tests, and I confirmed both are actually wired into `pnpm test` rather than merely runnable standalone — the studio one genuinely never ran before. Criteria 1, 4, 5, 6 and 7"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -12002,7 +12127,7 @@
       "id": "E08.09",
       "epic": "E08",
       "title": "Complete backups, restore testing, disaster-recovery procedures and data-integrity verification.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -12097,15 +12222,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, not CONFIRMED. Every command the builder claimed, I re-ran, and every one reproduced: 27/27, 21/21, 7/7, 402/402, 56/56, drill PASSED, backup-all EXIT=1 on partial coverage, lint EXIT=1 on a genuinely pre-existing error in another lane's file. All fourteen evidence paths exist. The deleted predecessor drill really is deleted, and the builder's description of why it was worthless (a recovery_probe table compared to itself) is accurate. The four unmet items the builder self-declared are all real and I found no grounds to soften any of them. This is honest work and the studio-side artefacts in particular are the strongest in the set. But the claim is overstated in one specific and ch",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -12136,6 +12261,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, not CONFIRMED. Every command the builder claimed, I re-ran, and every one reproduced: 27/27, 21/21, 7/7, 402/402, 56/56, drill PASSED, backup-all EXIT=1 on partial coverage, lint EXIT=1 on a genuinely pre-existing error in another lane's file. All fourteen evidence paths exist. The deleted predecessor drill really is deleted, and the builder's description of why it was worthless (a recovery_probe table compared to itself) is accurate. The four unmet items the builder self-declared are all real and I found no grounds to soften any of them. This is honest work and the studio-side artefacts in particular are the strongest in the set. But the claim is overstated in one specific and ch"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -12145,7 +12277,7 @@
       "id": "E08.10",
       "epic": "E08",
       "title": "Set and test performance budgets across portal, couple workspace, Timeline images and public artifact.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -12227,15 +12359,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 9 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED, and the builder's honest state of 'partial' is correct - but I am adding four defects the builder did not list, so it stays partial for more reasons than it claimed. What I personally re-ran and can vouch for: every evidence path exists; the app numbers reproduce from a fresh pnpm build I ran myself (exit 0); the studio numbers reproduce exactly against the production build on disk; the ratchet genuinely fails the build (I lowered the ceiling to 100, got EXIT=2 and the FAILED banner, restored, got exit 0 and a byte-identical file); all six exit-3 refusal paths fire, proven in a sandbox rather than by reading; --self-test runs with no build and no contract present. This is",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -12266,6 +12398,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 9 criterion/criteria NOT met — see the packet. Verifier: VERDICT: CONFIRMED, and the builder's honest state of 'partial' is correct - but I am adding four defects the builder did not list, so it stays partial for more reasons than it claimed. What I personally re-ran and can vouch for: every evidence path exists; the app numbers reproduce from a fresh pnpm build I ran myself (exit 0); the studio numbers reproduce exactly against the production build on disk; the ratchet genuinely fails the build (I lowered the ceiling to 100, got EXIT=2 and the FAILED banner, restored, got exit 0 and a byte-identical file); all six exit-3 refusal paths fire, proven in a sandbox rather than by reading; --self-test runs with no build and no contract present. This is"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -12275,7 +12414,7 @@
       "id": "E08.11",
       "epic": "E08",
       "title": "Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -12369,15 +12508,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE, not CONFIRMED, and not REFUTED. I could not prove this overstated in the way the programme usually gets burned — there is no green gate here that is secretly red, no control with no production caller, no privacy claim the docs invent. The opposite: this builder reported a red studio lint nobody asked about, reported a flake against their own interest, and declared four gaps rather than papering them. The 1,066-test app figure reproduces exactly, the CI wiring is real in both repositories, and the orphan claim is corroborated by the package.json diff rather than asserted. That is the strongest evidence discipline I have verified in this programme. But two criteria the buil",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -12408,6 +12547,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE, not CONFIRMED, and not REFUTED. I could not prove this overstated in the way the programme usually gets burned — there is no green gate here that is secretly red, no control with no production caller, no privacy claim the docs invent. The opposite: this builder reported a red studio lint nobody asked about, reported a flake against their own interest, and declared four gaps rather than papering them. The 1,066-test app figure reproduces exactly, the CI wiring is real in both repositories, and the orphan claim is corroborated by the package.json diff rather than asserted. That is the strongest evidence discipline I have verified in this programme. But two criteria the buil"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -12417,7 +12563,7 @@
       "id": "E08.12",
       "epic": "E08",
       "title": "Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -12505,15 +12651,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 10 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — the work is real and largely excellent, but it is NOT confirmable as-is, and I found material defects the build agent missed. Corrected state stays 'partial', for MORE reasons than they gave. What survived adversarial verification, and it is a lot. All seven evidence paths exist. All twelve verification commands re-ran and reproduced, two of them to the exact test count (1,066 and 604) and one to the exact file and line of a claimed failure. The migration-0027 segment proof reproduced independently against a real libSQL database. Every code finding I chased was accurate by file and line. The banned-claims sweep is clean and I confirmed the adjacent traps too — no VAT-exc",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -12544,6 +12690,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 10 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PLAUSIBLE — the work is real and largely excellent, but it is NOT confirmable as-is, and I found material defects the build agent missed. Corrected state stays 'partial', for MORE reasons than they gave. What survived adversarial verification, and it is a lot. All seven evidence paths exist. All twelve verification commands re-ran and reproduced, two of them to the exact test count (1,066 and 604) and one to the exact file and line of a claimed failure. The migration-0027 segment proof reproduced independently against a real libSQL database. Every code finding I chased was accurate by file and line. The banned-claims sweep is clean and I confirmed the adjacent traps too — no VAT-exc"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -17215,7 +17368,7 @@
       "id": "E12.01",
       "epic": "E12",
       "title": "Build the public Venue Edition landing page around the sponsored couple experience.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -17311,15 +17464,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: DOCUMENTED-ONLY (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: VERDICT: honestState CONFIRMED as documented-only. The audit's completeness is REFUTED. The state claim is not overstated — it is one of the more honest submissions I have verified. I tried to break it and failed on every dimension the brief asked me to attack: no source file was changed (git-verified), no gate was claimed, typecheck and tests pass, the banned-term sweep is genuinely clean at zero hits, there are no em dashes or exclamation marks, no R-031 violation, every ratified commercial claim is correct in the page body, and the three reasons given for not editing (I-014, the WP-06 pin, R-025) are all real — I confirmed the branch sweep script genuinely cannot read the pin file. Criter",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -17350,6 +17503,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: DOCUMENTED-ONLY (adversarially verified; the verifier's read overrides the build agent's self-assessment). 6 criterion/criteria NOT met — see the packet. Verifier: VERDICT: honestState CONFIRMED as documented-only. The audit's completeness is REFUTED. The state claim is not overstated — it is one of the more honest submissions I have verified. I tried to break it and failed on every dimension the brief asked me to attack: no source file was changed (git-verified), no gate was claimed, typecheck and tests pass, the banned-term sweep is genuinely clean at zero hits, there are no em dashes or exclamation marks, no R-031 violation, every ratified commercial claim is correct in the page body, and the three reasons given for not editing (I-014, the WP-06 pin, R-025) are all real — I confirmed the branch sweep script genuinely cannot read the pin file. Criter"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -17359,7 +17519,7 @@
       "id": "E12.02",
       "epic": "E12",
       "title": "Build the private Founding 25 invitation page.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -17451,15 +17611,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, NOT CONFIRMED — and the engineering is the strongest I have verified on this programme, while the copy is not. Every mechanical claim the build agent made is TRUE. I re-ran typecheck, test, build, lint, the contract check, ds-check and experience:validate, and each result matched to the number, including the 502 tests, the single pre-existing lint error with zero warnings, and the exact seven-item validate failure list. I reproduced the live proof independently: the GA4 differential, the byte-identical 404s after nonce strip, the four events with none from an unresolvable token, the served robots.txt, the noindex head with no venue name in it, and one action per state. The agent u",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -17490,6 +17650,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: PLAUSIBLE, NOT CONFIRMED — and the engineering is the strongest I have verified on this programme, while the copy is not. Every mechanical claim the build agent made is TRUE. I re-ran typecheck, test, build, lint, the contract check, ds-check and experience:validate, and each result matched to the number, including the 502 tests, the single pre-existing lint error with zero warnings, and the exact seven-item validate failure list. I reproduced the live proof independently: the GA4 differential, the byte-identical 404s after nonce strip, the four events with none from an unresolvable token, the served robots.txt, the noindex head with no venue name in it, and one action per state. The agent u"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -17499,7 +17666,7 @@
       "id": "E12.03",
       "epic": "E12",
       "title": "Build a parameterised private proposal page for each venue.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -17565,15 +17732,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 10 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Correct state is PARTIAL, and it should go to Founder Review with the defects named rather than to Done. What I could not break, and this matters: every gate the build agent claimed, I re-ran and every number matched. Typecheck 0, test 38/38, build 0, lint 1 pre-existing error in a file this branch does not touch, experience:validate exit 1 with exactly two failures attributable to E12.03. The banned-term sweep is clean. The rendered page carries every ratified claim in the ratified words, VAT-inclusive on both prices, the lock on continuous renewal, 01/25 through 25/25 on cleared payment and explicitly not on signature, the couple term never a bare eighteen months, no",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -17604,6 +17771,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 10 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Correct state is PARTIAL, and it should go to Founder Review with the defects named rather than to Done. What I could not break, and this matters: every gate the build agent claimed, I re-ran and every number matched. Typecheck 0, test 38/38, build 0, lint 1 pre-existing error in a file this branch does not touch, experience:validate exit 1 with exactly two failures attributable to E12.03. The banned-term sweep is clean. The rendered page carries every ratified claim in the ratified words, VAT-inclusive on both prices, the lock on continuous renewal, 01/25 through 25/25 on cleared payment and explicitly not on signature, the couple term never a bare eighteen months, no"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -17906,7 +18080,7 @@
       "id": "E12.06",
       "epic": "E12",
       "title": "Add the Venue Portal trust-and-renewal preview.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -18011,15 +18185,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 5 criterion/criteria NOT met — see the packet. Verifier: PARTIALLY REFUTED. Keep at partial; do not advance to Founder Review yet. What survives adversarial verification, and it is a lot: every gate reproduced, including the exact 502/502/0 test figure and the 15-rule zero-hit sweep. I attacked the copy from three directions — the project's own banned-term list, all 15 prohibited-claims rules run by hand, and a manual read against E09.11 sections 3.1, 4.1, 5.1 and 5.1a — and could not find a single wording defect. The launch-scope sentence, both privacy halves, the R12 asymmetry and the survival sentence are verbatim, not paraphrased. The two red gates were reported honestly and correctly attributed to other lanes. This is careful work. What is ov",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -18050,6 +18224,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 5 criterion/criteria NOT met — see the packet. Verifier: PARTIALLY REFUTED. Keep at partial; do not advance to Founder Review yet. What survives adversarial verification, and it is a lot: every gate reproduced, including the exact 502/502/0 test figure and the 15-rule zero-hit sweep. I attacked the copy from three directions — the project's own banned-term list, all 15 prohibited-claims rules run by hand, and a manual read against E09.11 sections 3.1, 4.1, 5.1 and 5.1a — and could not find a single wording defect. The launch-scope sentence, both privacy halves, the R12 asymmetry and the survival sentence are verbatim, not paraphrased. The two red gates were reported honestly and correctly attributed to other lanes. This is careful work. What is ov"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -18059,7 +18240,7 @@
       "id": "E12.07",
       "epic": "E12",
       "title": "Add the privacy explanation covering exactly what the venue sees and never sees.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -18149,15 +18330,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: REFUTED IN PART — do not approve as-is; push back on one defect and one evidence correction, then approve. The agent's self-report of 'partial' is honest, and this is genuinely strong work: I re-ran every check and every green claim it made is green, every red claim it made is red, both attributions are correct, and its disclosure of its own broken first sweep (§8.0) is the kind of thing that raises confidence rather than lowering it. The negative half of the page is exemplary — I traced all six 'never visible' claims into project-venue-access.ts myself and every one holds, and I deliberately tried to break the 'Descriptions are not visible' claim and could not, because toPublicTask is a str",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -18193,6 +18374,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: REFUTED IN PART — do not approve as-is; push back on one defect and one evidence correction, then approve. The agent's self-report of 'partial' is honest, and this is genuinely strong work: I re-ran every check and every green claim it made is green, every red claim it made is red, both attributions are correct, and its disclosure of its own broken first sweep (§8.0) is the kind of thing that raises confidence rather than lowering it. The negative half of the page is exemplary — I traced all six 'never visible' claims into project-venue-access.ts myself and every one holds, and I deliberately tried to break the 'Descriptions are not visible' claim and could not, because toPublicTask is a str"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -18202,7 +18390,7 @@
       "id": "E12.08",
       "epic": "E12",
       "title": "Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -18318,15 +18506,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: REFUTED IN PART — the honest state 'partial' is right, but for three reasons the builder did not record. What is claimed and true: every gate I re-ran matches (contract ok/0, typecheck 0, build 0 with the route in the table, test 0/38 pass, lint 1 unrelated error, experience:validate red on this route). All five evidence paths exist. My independent banned-term sweep reproduces theirs exactly — zero hits across every prohibited class, zero em dashes, zero exclamation marks. The price, entitlement, access-term, privacy, branding, insurance and data-location answers all state the ratified position correctly and consistently with the Done /venues page, and the access-term promise is backed by re",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -18362,6 +18550,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: REFUTED IN PART — the honest state 'partial' is right, but for three reasons the builder did not record. What is claimed and true: every gate I re-ran matches (contract ok/0, typecheck 0, build 0 with the route in the table, test 0/38 pass, lint 1 unrelated error, experience:validate red on this route). All five evidence paths exist. My independent banned-term sweep reproduces theirs exactly — zero hits across every prohibited class, zero em dashes, zero exclamation marks. The price, entitlement, access-term, privacy, branding, insurance and data-location answers all state the ratified position correctly and consistently with the Done /venues page, and the access-term promise is backed by re"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -18371,7 +18566,7 @@
       "id": "E12.09",
       "epic": "E12",
       "title": "Produce the concise one-page commercial proposal.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -18475,15 +18670,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: REFUTED on three of the twelve criteria, and two of the three were asserted as met. The build is real and well made: everything I could re-run (typecheck, test with all three named contract lines and the 7498cee02c07 digest, build with the route in the table, ds-check, and the lint failure with its pre-existing attribution) matched the claim exactly, and criteria 3, 5, 6, 7, 8, 9 and 10 survived my own independent sweeps. What does not survive is this. (1) The standard rate is not stated as VAT-inclusive: 'The standard rate is EUR 1,500.' carries no VAT sentence, the test does not assert one, and the evidence document states the opposite as a checked fact. That is a defect in the one documen",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -18514,6 +18709,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: REFUTED on three of the twelve criteria, and two of the three were asserted as met. The build is real and well made: everything I could re-run (typecheck, test with all three named contract lines and the 7498cee02c07 digest, build with the route in the table, ds-check, and the lint failure with its pre-existing attribution) matched the claim exactly, and criteria 3, 5, 6, 7, 8, 9 and 10 survived my own independent sweeps. What does not survive is this. (1) The standard rate is not stated as VAT-inclusive: 'The standard rate is EUR 1,500.' carries no VAT sentence, the test does not assert one, and the evidence document states the opposite as a checked fact. That is a defect in the one documen"
+        },
+        {
+          "at": "2026-08-03T15:38:02.979Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded)."
         }
       ],
       "decisionClass": "execution",
@@ -22018,8 +22220,8 @@
       "ready": 2,
       "in_progress": 0,
       "internal_review": 1,
-      "founder_review": 28,
-      "done": 101,
+      "founder_review": 0,
+      "done": 129,
       "blocked": 2,
       "deferred": 2,
       "cancelled": 0
@@ -22034,17 +22236,17 @@
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 48.1,
-      "numerator": 101,
+      "value": 61.4,
+      "numerator": 129,
       "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T15:31:06.302Z",
-    "lastRenderedAt": "2026-08-03T15:30:56.059Z",
-    "lastUpdatedAt": "2026-08-03T15:30:56.059Z",
+    "lastValidatedAt": "2026-08-03T15:38:24.268Z",
+    "lastRenderedAt": "2026-08-03T15:38:24.139Z",
+    "lastUpdatedAt": "2026-08-03T15:38:02.979Z",
     "lastUpdatedSession": "wp13-commercial",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",

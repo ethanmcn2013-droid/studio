@@ -1278,3 +1278,89 @@ with no licence and no recorded basis, rendered by nothing.
 **Not approved here, because it was not asked.** Nothing is committed, pushed or deployed.
 R-025 still blocks a studio deploy and I-007 still records PR #139's red gate.
 
+
+---
+
+## D-033 — Wave 3 approved in full, and the four open questions decided with it
+
+**Date:** 2026-08-03 · **Decided by:** Ethan McNamara · **Status:** ratified
+
+Wave 3 delivered 30 tasks across E05, E08 and E12. Every task was independently
+re-verified by an adversarial agent, all 28 that reached Founder Review did so as
+**partial**, and the packet's own recommendation was *not* to bulk-approve.
+
+**The founder approved the wave in full anyway, explicitly and with the partial
+state in front of him**, and decided the four open questions at the recommended
+option in the same instruction. That is recorded here rather than inferred: the
+approval was given in the founder's own words, in chat, after the consolidated
+packet stated plainly that no task was complete.
+
+**Approving a partial task means the recorded gap is accepted, not that it does
+not exist.** Every unmet criterion remains in the task record and in its packet.
+The gaps are now scheduled work rather than review blockers.
+
+### R-031 — decided: Option B
+
+The sponsored couple's artifact **stays on `/p`**, because a findable, unfurlable,
+stable link is the better keepsake and the Keepsake promise depends on it. But
+**wedding workspaces ship `noindex` by default** and are added to the `robots.ts`
+disallow list, and search-engine visibility becomes an explicit couple opt-in whose
+wording states what it does in one sentence with no persuasion attached.
+
+Three things hold regardless and are ratified with it: `privacy-permission-matrix.md`
+and the E03.01 role map are corrected to describe `/p` as it actually behaves; the
+couple's publish confirmation states plainly what publishing does; and there is a
+**standing no on face detection, auto-tagging and face grouping**.
+
+Unblocks E06.
+
+### R-032 — decided: Option A
+
+**No third-party analytics on any couple-facing public surface.** `/p`, `/s`,
+`/share` and `/embed` are excluded from GA4 entirely and unconditionally — those
+pages carry other people's names, and a wedding guest who followed a link from a
+couple has no relationship with Signal Studio at all.
+
+Marketing and commercial surfaces drop GA4 too, measured server-side in aggregate
+instead. Nothing is personalised from it, so the cost is low and it removes a
+continuing obligation rather than taking one on.
+
+E06.07's viewer count is then served by a first-party aggregate counter **with a
+suppression floor** — the same control class as R-027/R-028, and it must not repeat
+`artifact-studio.tsx:59-67`, which shows "Timeline views 1 · Last viewed 3 Aug 2026"
+side by side and de-anonymises a single viewer.
+
+### R-042 — decided: retire
+
+**"Founding partner" is retired everywhere.** The programme is the **Founding 25**;
+a member of it is a **founding venue**.
+
+"Partner" implies standing and involvement that D-009 does not grant, and defining
+it as a distinct thing would mean documenting a relationship that does not exist —
+more exposure, not less. E02.10 chose the terminology to be legally safe.
+
+Scope is the corrected one, not the register's original: **11 occurrences across 7
+files, plus two routes and four social assets.** Includes
+`collateral/identity/print-notes.txt`, which is print instructions for the physical
+card the deck says is "presented at signing".
+
+The banned-term list folds into a standing automated string check so this cannot
+recur.
+
+### CR-005 / E08.04 — decided: Option A
+
+**E08.04 is amended to what the platform can deliver.** Turso/libSQL has no
+row-level security, so the task could never have passed as titled.
+
+The control is **application-level tenant scoping, a CI gate that fails the build on
+an unscoped query, and a behavioural negative suite**. Option C — moving to a
+database with real RLS — is recorded as a post-launch consideration rather than
+dropped.
+
+**This is materially weaker than RLS, which fails closed below the application, and
+no venue-facing or legal-facing document may say otherwise (D-016).** The honest
+sentence is that isolation is enforced in the application and verified by tests.
+
+**Residual risk, recorded:** any future direct-database access path — an analytics
+reader, an ops script, a BI tool — sits outside the control and must be assessed
+separately.

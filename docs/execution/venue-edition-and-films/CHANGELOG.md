@@ -486,3 +486,36 @@ Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-admin
 `E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render.
 
 Founder note: Approved. All of Wave 2 — the E07 audit and the invitation-administration build, the E09 instrumentation, fixture, imagery and copy work, and the E13 map system and render pipeline — plus every recommendation R1-R17 and the three items in section 1 of the Wave 2 packet. Ethan McNamara, 2026-08-03: 'all are approved'.
+
+## 2026-08-03 · Batch approved — 28 task(s)
+
+`E05.01` Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode.
+`E05.03` Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes.
+`E05.04` Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output.
+`E05.05` Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language.
+`E05.06` Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions.
+`E05.07` Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration.
+`E05.08` Complete the authenticated Timeline planning experience and its relationship with tasks and milestones.
+`E05.09` Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today.
+`E05.10` Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries.
+`E08.01` Implement annual prepaid billing for standard and founding agreements.
+`E08.02` Implement an immutable founding-rate flag and historical price record for each qualifying venue.
+`E08.03` Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour.
+`E08.04` Complete multi-tenant data isolation for venues and couple workspaces, enforced by application-level scoping, a CI gate and a behavioural negative suite.
+`E08.05` Complete role-based authentication and authorisation across venue owners, managers, viewers and couples.
+`E08.06` Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption.
+`E08.07` Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage.
+`E08.08` Complete audit logging, operational logging, error monitoring and alert escalation.
+`E08.09` Complete backups, restore testing, disaster-recovery procedures and data-integrity verification.
+`E08.10` Set and test performance budgets across portal, couple workspace, Timeline images and public artifact.
+`E08.11` Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey.
+`E08.12` Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook.
+`E12.01` Build the public Venue Edition landing page around the sponsored couple experience.
+`E12.02` Build the private Founding 25 invitation page.
+`E12.03` Build a parameterised private proposal page for each venue.
+`E12.06` Add the Venue Portal trust-and-renewal preview.
+`E12.07` Add the privacy explanation covering exactly what the venue sees and never sees.
+`E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
+`E12.09` Produce the concise one-page commercial proposal.
+
+Founder note: Approved. Wave 3 approved in full, with the partial state of all 28 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work. The four open questions are decided at the recommended option in the same instruction and ratified as D-033: R-031 Option B (/p stays, wedding workspaces noindex by default with an explicit couple opt-in), R-032 Option A (no third-party analytics on any couple-facing public surface), R-042 retire (the programme is the Founding 25, a member is a founding venue), and CR-005 Option A (E08.04 amended to application-level isolation, a CI gate and a behavioural negative suite, with the honest limitation recorded).

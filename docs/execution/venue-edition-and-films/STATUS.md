@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T15:30:56.059Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T15:30:56.059Z · session `wp13-commercial`
+**Report generated:** 2026-08-03T15:38:24.139Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T15:38:02.979Z · session `wp13-commercial`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,10 +19,10 @@
 
 ## Completion
 
-**Verified completion: 48.1%** — 101 of 210 tasks.
+**Verified completion: 61.4%** — 129 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 59.7% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 61.7% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -36,8 +36,8 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | ready | 2 |
 | in_progress | 0 |
 | internal_review | 1 |
-| founder_review | 28 |
-| done | 101 |
+| founder_review | 0 |
+| done | 129 |
 | blocked | 2 |
 | deferred | 2 |
 | cancelled | 0 |
@@ -51,14 +51,14 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E02 | Commercial offer and Founding 25 programme | 10/13 | 76.9% | 0 | 0 |
 | E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 1 | 0 |
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
-| E05 | Couple planning experience and product polish | 0/12 | 0% | 9 | 0 |
+| E05 | Couple planning experience and product polish | 9/12 | 75% | 0 | 0 |
 | E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 0 | 0 |
 | E07 | Venue Portal, trust layer and renewal evidence | 18/18 | 100% | 0 | 0 |
-| E08 | Billing, security, reliability and release engineering | 0/12 | 0% | 12 | 0 |
+| E08 | Billing, security, reliability and release engineering | 12/12 | 100% | 0 | 0 |
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
-| E12 | Website, proposal and commercial asset system | 1/14 | 7.1% | 7 | 2 |
+| E12 | Website, proposal and commercial asset system | 8/14 | 57.1% | 0 | 2 |
 | E13 | Motion system and Limerick First invitation film | 4/18 | 22.2% | 0 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
@@ -112,35 +112,8 @@ Ratified in D-008. Moving one is change control, not an edit.
 **Internal review (1):**
 - `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
 
-**Awaiting founder review (28):**
-- `E05.01` Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode. — claude_code
-- `E05.03` Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes. — claude_code
-- `E05.04` Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output. — claude_code
-- `E05.05` Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language. — claude_code
-- `E05.06` Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions. — claude_code
-- `E05.07` Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration. — claude_code
-- `E05.08` Complete the authenticated Timeline planning experience and its relationship with tasks and milestones. — claude_code
-- `E05.09` Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today. — claude_code
-- `E05.10` Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries. — claude_code
-- `E08.01` Implement annual prepaid billing for standard and founding agreements. — claude_code
-- `E08.02` Implement an immutable founding-rate flag and historical price record for each qualifying venue. — claude_code
-- `E08.03` Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour. — claude_code
-- `E08.04` Complete multi-tenant data isolation and database row-level security for venues and couple workspaces. — claude_code
-- `E08.05` Complete role-based authentication and authorisation across venue owners, managers, viewers and couples. — claude_code
-- `E08.06` Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption. — claude_code
-- `E08.07` Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. — claude_code
-- `E08.08` Complete audit logging, operational logging, error monitoring and alert escalation. — claude_code
-- `E08.09` Complete backups, restore testing, disaster-recovery procedures and data-integrity verification. — claude_code
-- `E08.10` Set and test performance budgets across portal, couple workspace, Timeline images and public artifact. — claude_code
-- `E08.11` Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey. — claude_code
-- `E08.12` Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook. — claude_code
-- `E12.01` Build the public Venue Edition landing page around the sponsored couple experience. — claude_code
-- `E12.02` Build the private Founding 25 invitation page. — claude_code
-- `E12.03` Build a parameterised private proposal page for each venue. — claude_code
-- `E12.06` Add the Venue Portal trust-and-renewal preview. — claude_code
-- `E12.07` Add the privacy explanation covering exactly what the venue sees and never sees. — claude_code
-- `E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. — claude_code
-- `E12.09` Produce the concise one-page commercial proposal. — claude_code
+**Awaiting founder review (0):**
+- None.
 
 **Blocked (2):**
 - `E12.05` Add the branded couple-experience preview.
@@ -150,34 +123,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Founder decisions required
 
-1. Approve or reject `E05.01` — Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode.
-2. Approve or reject `E05.03` — Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes.
-3. Approve or reject `E05.04` — Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output.
-4. Approve or reject `E05.05` — Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language.
-5. Approve or reject `E05.06` — Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions.
-6. Approve or reject `E05.07` — Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration.
-7. Approve or reject `E05.08` — Complete the authenticated Timeline planning experience and its relationship with tasks and milestones.
-8. Approve or reject `E05.09` — Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today.
-9. Approve or reject `E05.10` — Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries.
-10. Approve or reject `E08.01` — Implement annual prepaid billing for standard and founding agreements.
-11. Approve or reject `E08.02` — Implement an immutable founding-rate flag and historical price record for each qualifying venue.
-12. Approve or reject `E08.03` — Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour.
-13. Approve or reject `E08.04` — Complete multi-tenant data isolation and database row-level security for venues and couple workspaces.
-14. Approve or reject `E08.05` — Complete role-based authentication and authorisation across venue owners, managers, viewers and couples.
-15. Approve or reject `E08.06` — Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption.
-16. Approve or reject `E08.07` — Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage.
-17. Approve or reject `E08.08` — Complete audit logging, operational logging, error monitoring and alert escalation.
-18. Approve or reject `E08.09` — Complete backups, restore testing, disaster-recovery procedures and data-integrity verification.
-19. Approve or reject `E08.10` — Set and test performance budgets across portal, couple workspace, Timeline images and public artifact.
-20. Approve or reject `E08.11` — Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey.
-21. Approve or reject `E08.12` — Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook.
-22. Approve or reject `E12.01` — Build the public Venue Edition landing page around the sponsored couple experience.
-23. Approve or reject `E12.02` — Build the private Founding 25 invitation page.
-24. Approve or reject `E12.03` — Build a parameterised private proposal page for each venue.
-25. Approve or reject `E12.06` — Add the Venue Portal trust-and-renewal preview.
-26. Approve or reject `E12.07` — Add the privacy explanation covering exactly what the venue sees and never sees.
-27. Approve or reject `E12.08` — Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
-28. Approve or reject `E12.09` — Produce the concise one-page commercial proposal.
+- None.
 
 ## Completed since the last report
 
@@ -186,11 +132,11 @@ Ratified in D-008. Moving one is change control, not an edit.
 - 2026-08-03 `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
 - 2026-08-03 `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata.
 - 2026-08-03 `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
+- 2026-08-03 `E12.09` Produce the concise one-page commercial proposal.
+- 2026-08-03 `E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
+- 2026-08-03 `E12.07` Add the privacy explanation covering exactly what the venue sees and never sees.
+- 2026-08-03 `E12.06` Add the Venue Portal trust-and-renewal preview.
 - 2026-08-03 `E12.04` Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly.
-- 2026-08-03 `E11.15` Run a weekly conversion review covering cohort, channel, meeting quality, objections, proposals, wins and next-cohort changes.
-- 2026-08-03 `E11.14` Define founding-slot holds, proposal expiry, payment-to-lock procedure, close-lost reasons, referral asks and publicity consent.
-- 2026-08-03 `E11.13` Define the follow-up sequence, no-response sequence and respectful stopping rule.
-- 2026-08-03 `E11.12` Build the objection library covering price, adoption, privacy, support, existing tools, implementation and product maturity.
 
 ## Three highest-value next actions
 
@@ -200,7 +146,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Critical-path condition
 
-65/120 critical-path tasks complete. 1 blocked: E12.14
+86/120 critical-path tasks complete. 1 blocked: E12.14
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 

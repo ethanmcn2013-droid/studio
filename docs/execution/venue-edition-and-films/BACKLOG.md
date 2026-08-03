@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T15:30:56.059Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T15:38:02.979Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -101,20 +101,20 @@ Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 
 _Launch-blocking. Final film capture cannot begin until this epic passes._
 
-Lane: `claude_code` · 0/12 done (0%) · 9 in flight · 0 blocked
+Lane: `claude_code` · 9/12 done (75%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E05.01 | Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode. | founder_review | p1 | CP RB | claude_code | — | — | 27 | — | ✓ | requested |
+| E05.01 | Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode. | done | p1 | CP RB | claude_code | — | — | 27 | — | ✓ | approved |
 | E05.02 | Design the venue-branded welcome experience with “Compliments of [Venue]” and no visible price. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
-| E05.03 | Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes. | founder_review | p1 | CP RB FC | claude_code | — | — | 23 | — | ✓ | requested |
-| E05.04 | Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output. | founder_review | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | requested |
-| E05.05 | Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language. | founder_review | p1 | CP RB | claude_code | E05.04 | — | 9 | — | ✓ | requested |
-| E05.06 | Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions. | founder_review | p1 | CP RB | claude_code | — | — | 35 | — | ✓ | requested |
-| E05.07 | Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration. | founder_review | p1 | CP RB | claude_code | — | — | 25 | — | ✓ | requested |
-| E05.08 | Complete the authenticated Timeline planning experience and its relationship with tasks and milestones. | founder_review | p1 | CP RB | claude_code | — | — | 26 | — | ✓ | requested |
-| E05.09 | Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today. | founder_review | p1 | CP RB | claude_code | — | — | 22 | — | ✓ | requested |
-| E05.10 | Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries. | founder_review | p1 | CP RB | claude_code | — | — | 16 | — | ✓ | requested |
+| E05.03 | Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes. | done | p1 | CP RB FC | claude_code | — | — | 23 | — | ✓ | approved |
+| E05.04 | Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output. | done | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | approved |
+| E05.05 | Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language. | done | p1 | CP RB | claude_code | E05.04 | — | 9 | — | ✓ | approved |
+| E05.06 | Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions. | done | p1 | CP RB | claude_code | — | — | 35 | — | ✓ | approved |
+| E05.07 | Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration. | done | p1 | CP RB | claude_code | — | — | 25 | — | ✓ | approved |
+| E05.08 | Complete the authenticated Timeline planning experience and its relationship with tasks and milestones. | done | p1 | CP RB | claude_code | — | — | 26 | — | ✓ | approved |
+| E05.09 | Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today. | done | p1 | CP RB | claude_code | — | — | 22 | — | ✓ | approved |
+| E05.10 | Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries. | done | p1 | CP RB | claude_code | — | — | 16 | — | ✓ | approved |
 | E05.11 | Complete responsive, mobile, accessibility, loading, empty, error, permission and tasteful motion passes across the couple journey. | backlog | p1 | CP RB | claude_code | — | — | — | — | — | not_requested |
 | E05.12 | Run a world-class design-system review and lock visual regression baselines for every captured product surface. | backlog | p1 | CP RB | claude_code | E04.07, E04.09, E05.01, E05.02, E05.03, E05.04, E05.05, E05.06, E05.07, E05.08, E05.09, E05.10, E05.11 | 2026-08-20 | — | — | — | not_requested |
 
@@ -170,22 +170,22 @@ Lane: `claude_code` · 18/18 done (100%) · 0 in flight · 0 blocked
 
 _Launch-blocking. Runs in parallel with product completion._
 
-Lane: `claude_code` · 0/12 done (0%) · 12 in flight · 0 blocked
+Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E08.01 | Implement annual prepaid billing for standard and founding agreements. | founder_review | p1 | CP RB | claude_code | E03.08 | — | 13 | — | ✓ | requested |
-| E08.02 | Implement an immutable founding-rate flag and historical price record for each qualifying venue. | founder_review | p1 | CP RB | claude_code | E02.03 | — | 9 | — | ✓ | requested |
-| E08.03 | Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E08.04 | Complete multi-tenant data isolation and database row-level security for venues and couple workspaces. | founder_review | p1 | CP RB | claude_code | — | — | 13 | — | ✓ | requested |
-| E08.05 | Complete role-based authentication and authorisation across venue owners, managers, viewers and couples. | founder_review | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | requested |
-| E08.06 | Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption. | founder_review | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | requested |
-| E08.07 | Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E08.08 | Complete audit logging, operational logging, error monitoring and alert escalation. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
-| E08.09 | Complete backups, restore testing, disaster-recovery procedures and data-integrity verification. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
-| E08.10 | Set and test performance budgets across portal, couple workspace, Timeline images and public artifact. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E08.11 | Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
-| E08.12 | Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook. | founder_review | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | requested |
+| E08.01 | Implement annual prepaid billing for standard and founding agreements. | done | p1 | CP RB | claude_code | E03.08 | — | 13 | — | ✓ | approved |
+| E08.02 | Implement an immutable founding-rate flag and historical price record for each qualifying venue. | done | p1 | CP RB | claude_code | E02.03 | — | 9 | — | ✓ | approved |
+| E08.03 | Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E08.04 | Complete multi-tenant data isolation for venues and couple workspaces, enforced by application-level scoping, a CI gate and a behavioural negative suite. | done | p1 | CP RB | claude_code | — | — | 13 | — | ✓ | approved |
+| E08.05 | Complete role-based authentication and authorisation across venue owners, managers, viewers and couples. | done | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | approved |
+| E08.06 | Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption. | done | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | approved |
+| E08.07 | Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E08.08 | Complete audit logging, operational logging, error monitoring and alert escalation. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
+| E08.09 | Complete backups, restore testing, disaster-recovery procedures and data-integrity verification. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
+| E08.10 | Set and test performance budgets across portal, couple workspace, Timeline images and public artifact. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E08.11 | Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
+| E08.12 | Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook. | done | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | approved |
 
 ## E09 — Measurement, demo data and copy system
 
@@ -259,19 +259,19 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 1/14 done (7.1%) · 7 in flight · 2 blocked
+Lane: `claude_code` · 8/14 done (57.1%) · 0 in flight · 2 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E12.01 | Build the public Venue Edition landing page around the sponsored couple experience. | founder_review | p2 | — | claude_code | — | — | 11 | — | ✓ | requested |
-| E12.02 | Build the private Founding 25 invitation page. | founder_review | p2 | — | claude_code | — | — | 10 | — | ✓ | requested |
-| E12.03 | Build a parameterised private proposal page for each venue. | founder_review | p2 | — | claude_code | — | — | 6 | — | ✓ | requested |
+| E12.01 | Build the public Venue Edition landing page around the sponsored couple experience. | done | p2 | — | claude_code | — | — | 11 | — | ✓ | approved |
+| E12.02 | Build the private Founding 25 invitation page. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
+| E12.03 | Build a parameterised private proposal page for each venue. | done | p2 | — | claude_code | — | — | 6 | — | ✓ | approved |
 | E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | done | p2 | — | claude_code | E02.01, E02.03 | — | 3 | — | ✓ | approved |
 | E12.05 | Add the branded couple-experience preview. | blocked | p2 | — | claude_code | E05.12 | — | 17 | Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps. | ✓ | not_requested |
-| E12.06 | Add the Venue Portal trust-and-renewal preview. | founder_review | p2 | — | claude_code | E07.18 | — | 12 | — | ✓ | requested |
-| E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | founder_review | p2 | — | claude_code | — | — | 10 | — | ✓ | requested |
-| E12.08 | Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. | founder_review | p2 | — | claude_code | E02.12 | — | 14 | — | ✓ | requested |
-| E12.09 | Produce the concise one-page commercial proposal. | founder_review | p2 | — | claude_code | — | — | 12 | — | ✓ | requested |
+| E12.06 | Add the Venue Portal trust-and-renewal preview. | done | p2 | — | claude_code | E07.18 | — | 12 | — | ✓ | approved |
+| E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
+| E12.08 | Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. | done | p2 | — | claude_code | E02.12 | — | 14 | — | ✓ | approved |
+| E12.09 | Produce the concise one-page commercial proposal. | done | p2 | — | claude_code | — | — | 12 | — | ✓ | approved |
 | E12.10 | Produce the detailed Venue Edition sales deck. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
 | E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | backlog | p2 | FC | claude_code | E02.01, E02.10 | — | — | — | — | not_requested |
 | E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
