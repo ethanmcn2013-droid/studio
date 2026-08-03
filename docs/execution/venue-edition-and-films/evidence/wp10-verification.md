@@ -175,8 +175,32 @@ The plan stays default-alive and the runway does not move, because the founding
 revenue lands after the facility draw. The cost of the founding rate in this
 model is €5,000, not a cash-flow problem.
 
-**One thing the model does not say.** Its ramp schedules **10** founding venues
-(`FIN_RAMP.newFounding` sums to 10), not 25. The programme has 25 places and the
-project closes only when all 25 are paid. Left unchanged and raised in the
-packet, because the model's own header says every figure in it is an assumption
-the founder owns.
+**The ramp, answered by the founder 2026-08-03: 25 venues.**
+
+Setting the count to 25 exposed two sequencing errors that were already in the
+ramp and are worse at 25 than at 10:
+
+1. Founding revenue was booked from index 1, which is July 2026. "Release on
+   1 September" means ready to contact Cohort 1 (D-015 Q1), so no founding cash
+   can land before index 3.
+2. Standard-rate venues closed in parallel with founding places still open. A
+   venue that says yes while places remain takes a founding place by definition,
+   so it cannot bill at €1,500.
+
+Both were corrected. `newFounding` runs 25 across indices 3 to 9; `newPaid` runs
+52 from index 10, once the founding places are gone.
+
+| | 10 founding, old shape | 25 founding, shape unchanged | **25 founding, corrected sequencing (shipped)** |
+|---|---|---|---|
+| Founding · paid venues | 10 · 78 | 25 · 78 | **25 · 52** |
+| Year 1 revenue | €60,880 | €76,648 | **€36,496** |
+| Horizon revenue | €130,840 | €147,136 | **€106,012** |
+| Blended ACV | €1,443 | — | **€1,338** |
+| Lowest cash | €4,500 | — | **€3,470** |
+| Runway | 18 months | — | **18 months** |
+| Default alive | true | — | **true** |
+
+The middle column is what "25 founding venues" looks like with nothing else
+touched. It is €40k higher in year one and it cannot happen, because it sells
+venues before launch and at the wrong price. The shipped column is the honest
+one. The plan is still default-alive with €3,470 of headroom, which is thin.

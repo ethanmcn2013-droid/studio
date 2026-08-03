@@ -11,6 +11,64 @@
     "indistinguishable from a mistake."
   ],
 
+  "_merge_comment": [
+    "Pairs the matcher surfaced for review and a human then decided. Each entry",
+    "folds the listed names into the first one. The matcher stays conservative on",
+    "purpose — a false merge deletes a real prospect and nobody notices — so these",
+    "are the cases where a person looked and confirmed.",
+    "",
+    "Pairs deliberately NOT merged, and why:",
+    "  The Savoy / The George Limerick — one collection, two real properties.",
+    "    Two accounts with one buyer. Handled by the group rule, not by merging.",
+    "  Listowel Arms / The Cliff House — same, and both outside the ring anyway.",
+    "  Hotel Doolin / Doolin Inn — shared ownership unconfirmed; outside the ring.",
+    "  Bunratty Castle Hotel / Bunratty Manor Hotel — different businesses, one village.",
+    "  Dromoland Castle / The Rine — different venues on one estate."
+  ],
+
+  "merge": {
+    "Temple Gate Hotel": {
+      "fold": ["The Temple Gate Hotel, Miltown Malbay"],
+      "reason": "One Ennis property. The Miltown Malbay listing is a directory data error.",
+      "decided_on": "2026-08-03"
+    },
+    "Great National Ballykisteen Hotel & Golf Resort": {
+      "fold": ["Great National Ballykisteen Golf Hotel", "Ballykisteen Hotel & Golf Resort"],
+      "reason": "One property at Limerick Junction under three directory names. In-ring, so a duplicate here would waste an outreach slot.",
+      "decided_on": "2026-08-03"
+    },
+    "Springfield Castle": {
+      "fold": ["Dromcollogher Castle"],
+      "reason": "Same property; Dromcollogher Castle is the name a rental agency lists it under.",
+      "decided_on": "2026-08-03"
+    },
+    "Dundrum House Hotel": {
+      "fold": ["Dundrum House Hotel, Golf & Leisure Resort"],
+      "reason": "One property, longer directory name. Trading status separately unresolved.",
+      "decided_on": "2026-08-03"
+    },
+    "Cloghan Castle": {
+      "fold": ["Cloughan Castle"],
+      "reason": "Alternate spelling used by weddingsonline and by the venue's own domain.",
+      "decided_on": "2026-08-03"
+    },
+    "Slieve Aughty Centre": {
+      "fold": ["Slieve Aughty Centre (The Three Towers Eco House)", "Slieve Aughty Centre (The Three Towers Eco Weddings)", "The Three Towers at Slieve Aughty Centre"],
+      "reason": "One venue listed under three names across directories.",
+      "decided_on": "2026-08-03"
+    },
+    "The George Hotel Limerick": {
+      "fold": ["The George Limerick Hotel"],
+      "reason": "One Limerick city property under two word orders. Its weddings route to the Savoy, which stays a separate account in the same collection.",
+      "decided_on": "2026-08-03"
+    },
+    "Lahinch Coast Hotel & Suites": {
+      "fold": ["Lahinch Coast Hotel and Suites"],
+      "reason": "Same property; ampersand versus the word.",
+      "decided_on": "2026-08-03"
+    }
+  },
+
   "eligibility": {
     "The Thatched Cottage": {
       "eligibility": "out",
@@ -46,6 +104,36 @@
       "eligibility": "borderline",
       "reason": "Five wedding suites and a civil-ceremony licence is a real weddings operation, but a stadium is not one of the six D-012 types. Founder call.",
       "decided_by": "Claude Code, E10.02 rule — escalated",
+      "decided_on": "2026-08-03"
+    }
+  },
+
+  "_groups_comment": [
+    "Ownership the research recorded as independent and a closer look showed is not.",
+    "",
+    "This matters twice. It drops decision_access, because the decision moves up to",
+    "group level. And it triggers the one-property-per-operator cohort rule, without",
+    "which one buyer receives three personalised films in the same week — the exact",
+    "impression a personalised film exists to avoid.",
+    "",
+    "It also cuts the other way, and the packet says so: one group conversation",
+    "could land three founding venues at once."
+  ],
+
+  "groups": {
+    "Castle Oaks House Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Six-property group with unified booking and, per the group's own site, wedding services coordinated jointly across locations. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Castletroy Park Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Same group. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Charleville Park Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Same group. Recorded as independent by the first pass.",
       "decided_on": "2026-08-03"
     }
   },

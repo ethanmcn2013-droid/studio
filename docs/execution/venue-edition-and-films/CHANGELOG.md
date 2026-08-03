@@ -271,3 +271,19 @@ Founder note: note
 Define the data entities for venue, agreement, term, founding status, member, invitation, couple workspace and public artifact.
 
 Reason: Approved in a bulk run with a placeholder note; no packet had been written.
+
+## 2026-08-03 · Release gate Commercial exit criteria rewritten
+
+12 → 13 criteria. Source: studio/docs/execution/venue-edition-and-films/evidence/gates/commercial.json.
+
+## 2026-08-03 · Release gate Sales readiness exit criteria rewritten
+
+12 → 13 criteria. Source: studio/docs/execution/venue-edition-and-films/evidence/gates/sales_readiness.json.
+
+## 2026-08-03 · Release gate Commercial supporting epics changed
+
+E02 -> E02, E01. Basis: D-025, approving CR-002. E01 holds the freeze dates and the governance machinery R-006's mitigation depends on..
+
+## 2026-08-03 · Release gate Sales readiness supporting epics changed
+
+E10, E11, E12 -> E10, E11, E12, E15. Basis: D-025, approving CR-002. Nothing certified that what was sold could be delivered, because onboarding lives in E15..

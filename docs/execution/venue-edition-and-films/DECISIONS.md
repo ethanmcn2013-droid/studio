@@ -51,7 +51,7 @@ side: "Where a design direction is genuinely open it runs `/lab`."
 | CR | Subject | Status |
 |---|---|---|
 | CR-001 | Rewrite the legal gate's exit criteria, defer E03.12 | Approved, D-023 |
-| CR-002 | Bring E01 and E15 inside the release-gate system | **Awaiting the founder** |
+| CR-002 | Bring E01 and E15 inside the release-gate system | Approved, D-025 |
 
 ---
 
@@ -814,6 +814,47 @@ first invoice.
 
 ---
 
+## D-025 — CR-002 approved: E01 and E15 come inside the release-gate system
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** the commercial gate, the sales-readiness gate, E01.11, E15.09, E15.10, E15.11
+- **Resolves:** I-008 · **Implements:** `evidence/change-requests/CR-002.md`
+
+**Decision.** Ethan: *"approved"*, in response to CR-002 put to him as the first
+item of the WP-03 packet.
+
+1. **E15 joins the sales-readiness gate**, with a thirteenth exit criterion: one
+   venue configuration rehearsed end to end against a rehearsal account before
+   Cohort 1 is contacted, with a written list of what broke.
+2. **E01 joins the commercial gate**, with a thirteenth exit criterion: every
+   freeze date in D-008 either observed on its date or moved by a numbered change
+   request. No freeze passes silently.
+3. The declared coverage hole in `project-control.test.mjs` is emptied, so the
+   test returns to asserting that every epic is covered.
+
+**Rationale.** Mapping the six gates against the fifteen epics left E01 and E15
+under no gate. The consequence was concrete rather than theoretical: the gates
+certified that the product works and that the sale can be made, and **nothing
+certified that what was sold could be delivered**, because onboarding lives in
+E15 and `PROJECT.md` §4 and §22 both close the project on venues being
+"configured, onboarded and capable of issuing functioning couple invitations".
+That exposure is R-024. E01's absence meant no gate criterion checked that a
+freeze date had actually happened, which made D-008's six dates decorative.
+
+**Alternatives considered.** Recording the two conditions as E15.01 preconditions
+instead, leaving the gates untouched. Offered in CR-002 as the honest fallback
+and not taken: E15.01 is one meeting, a gate is a standing check.
+
+**Downstream.** Three further exposures were closed inside gates that already
+owned the relevant epic and needed no change request: the launch-day deploy steps
+into data criterion 12 (R-023), the freeze observation into commercial criterion
+12, and A-002's parameterised price sequence into creative criterion 12. **R-025
+is not addressed by this decision** — that all six gates could pass with
+release-blocking work still in Backlog is fixed by a precondition on E15.01, the
+go/no-go, which is the founder's to set.
+
+---
+
 ## D-024 — Work packages return one recommendation packet, not per-task reviews
 
 - **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
@@ -853,3 +894,37 @@ Every item is answerable with **approve** or **push back**.
 **Escalate mid-package only when** proceeding under any assumption would produce
 work that gets thrown away, or the action is irreversible. Otherwise state the
 assumption, proceed, and put it in the packet.
+
+---
+
+## D-026 — The bulk approvals are genuine, and WP-01's recommendations are approved
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** the 55 tasks recorded Done on 2026-08-03, WP-01 (R-015, R-016, E04.01–E04.12)
+
+**Decision.** Two things, on the founder's explicit instruction.
+
+1. **The approval record stands.** WP-01 raised that all 55 Done tasks carried a
+   documentation placeholder as their founder note — `"your note"` (33 tasks),
+   `"Approved."` (11), `"note"` (11) — written in four bulk events, the largest
+   marking 33 tasks in a single millisecond. Ethan: *"GENUINE"*. They are his own
+   approvals. Nothing is reopened and verified completion stands as recorded.
+
+2. **WP-01's six recommendations are approved:** R1 apply the terms migration to
+   production before UI-freeze · R2 fair-use ceiling at twice the venue's annual
+   wedding count, floor 40 · R3 wedding-date visibility triggered by redemption,
+   granted automatically, revocable by the couple · R4 `opened` defined as a
+   first-party load of the redemption page, never an email open · R5 E04.06
+   delivers the mechanism and the invariant, with the release writer left to E07
+   · R6 an explicit `allotment_mode` column rather than reusing a null allotment.
+
+**Recorded once, because it will come up again.** A future session reading the
+sign-off notes will see the same placeholders and reach the same conclusion
+WP-01 did. It is answered here so nobody spends the session re-raising it. The
+substantive point survives the answer: the notes do not say *why* anything was
+approved, so the record shows that approval happened and not what was judged.
+
+**Still open.** The four founder decisions in the WP-01 packet — D1 R-023
+(account deletion destroys the shared workspace), D2 the missing founding-number
+field, D3 the canonical venue-identity path, D4 the unwired consent layer — were
+not answered by this instruction and remain open.

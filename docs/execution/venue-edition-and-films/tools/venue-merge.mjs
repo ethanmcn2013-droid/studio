@@ -79,6 +79,44 @@ function assignIds(venues) {
 }
 
 /**
+ * Fold the pairs a human confirmed in `overrides.json`.
+ *
+ * Applied to the raw records before clustering, by renaming the losing records
+ * to the winning name — so they travel through the ordinary identical-name path
+ * and their sources, fields and corroboration all merge normally rather than
+ * being discarded. The original name survives in `alternate_names`, because a
+ * venue still listed under an old name in a directory is something outreach
+ * needs to know.
+ *
+ * A fold naming a venue that is not in the universe is reported STALE, not
+ * ignored: it means the decision has quietly stopped applying.
+ */
+function applyForcedMerges(records) {
+  if (!existsSync(OVERRIDES_PATH)) return { folded: 0, unmatched: [] };
+  const spec = JSON.parse(readFileSync(OVERRIDES_PATH, "utf8")).merge || {};
+  const present = new Set(records.map((r) => nameKey(r.venue_name)));
+
+  let folded = 0;
+  const unmatched = [];
+
+  for (const [winner, { fold = [], reason }] of Object.entries(spec)) {
+    if (!present.has(nameKey(winner))) { unmatched.push(`merge/${winner}`); continue; }
+    for (const loser of fold) {
+      const key = nameKey(loser);
+      const hits = records.filter((r) => nameKey(r.venue_name) === key && r.venue_name !== winner);
+      if (!hits.length) continue;
+      for (const r of hits) {
+        r.alternate_names = [...new Set([...(r.alternate_names || []), r.venue_name])];
+        r.venue_name = winner;
+        r.merge_reason = reason;
+        folded++;
+      }
+    }
+  }
+  return { folded, unmatched };
+}
+
+/**
  * Reapply the durable human decisions in `venue-universe/overrides.json`.
  *
  * Merge, geocode and routing are all regenerable from the research sweeps, so a
@@ -360,6 +398,8 @@ function cmdMerge(dir, outPath) {
     for (const v of venues) all.push({ ...v, _slice: raw.slice || f, _file: f });
   }
 
+  const forced = applyForcedMerges(all);
+
   // Single-pass clustering. Each record joins the first cluster it confidently
   // matches; near-misses are logged for a human instead of guessed at.
   const clusters = [];
@@ -414,6 +454,7 @@ function cmdMerge(dir, outPath) {
   console.log(`Files merged:        ${files.length}`);
   console.log(`Account IDs:         ${idStats.reused} kept, ${idStats.issued} newly issued, ${idStats.retired} retired`);
   console.log(`Human overrides:     ${overrideStats.applied} applied${overrideStats.unmatched.length ? `, ${overrideStats.unmatched.length} STALE: ${overrideStats.unmatched.join(", ")}` : ""}`);
+  console.log(`Confirmed merges:    ${forced.folded} record(s) folded by human decision${forced.unmatched.length ? `, ${forced.unmatched.length} STALE: ${forced.unmatched.join(", ")}` : ""}`);
   console.log(`Raw records:         ${all.length}`);
   console.log(`Unique accounts:     ${merged.length}`);
   console.log(`Duplicates folded:   ${dedupedAway}`);

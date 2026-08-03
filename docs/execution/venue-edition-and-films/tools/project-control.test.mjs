@@ -16,7 +16,7 @@ import {
   ROOT, loadState, validate, derive, canonicalize, findCycles, daysBetween, addDays,
   renderBacklog, renderStatus, renderWeekly, TRANSITIONS, STATUSES, STATUS_CREDIT,
   EFFORT_SCALE, DECISION_CLASSES, ACTIVE_STATUSES, packetBlockers, renderPacket,
-  migrateSessions, migrateSchedule, FREEZES,
+  migrateSessions, migrateSchedule, FREEZES, missingEvidenceFiles,
 } from "./project-control.mjs";
 
 const base = loadState();
@@ -445,6 +445,36 @@ test("the packet separates approvable from not-approvable and never claims Done"
   assert.ok(md.includes("no acceptance criteria"), "and says why it is blocked");
 });
 
+// Regression: a work-package session recorded a document as evidence and never
+// wrote it. The task passed `review` and reached the founder looking complete.
+// Evidence that names a file must name a file that exists.
+test("evidence claiming a file that does not exist is detected", () => {
+  const s = clone();
+  const t = task(s, "E05.04");
+  t.evidence = [{ at: "2026-08-03T00:00:00Z", ref: "evidence/never-written-by-anyone.md" }];
+  assert.deepEqual(missingEvidenceFiles(t), ["evidence/never-written-by-anyone.md"]);
+
+  t.evidence = [{ at: "2026-08-03T00:00:00Z", ref: "DECISIONS.md" }];
+  assert.deepEqual(missingEvidenceFiles(t), [], "a real file passes");
+
+  // Prose and URLs are not file claims and must not be failed as missing —
+  // tools/verify-evidence.mjs reports them as unverifiable instead.
+  t.evidence = [
+    { at: "2026-08-03T00:00:00Z", ref: "pnpm test — 74/74 pass" },
+    { at: "2026-08-03T00:00:00Z", ref: "https://example.com/receipt" },
+  ];
+  assert.deepEqual(missingEvidenceFiles(t), [], "prose and URLs are left to human judgement");
+});
+
+test("every file claimed as evidence in the live state actually exists", () => {
+  const broken = [];
+  for (const t of base.tasks) {
+    const missing = missingEvidenceFiles(t);
+    if (missing.length) broken.push(`${t.id}: ${missing.join(", ")}`);
+  }
+  assert.deepEqual(broken, [], "no task claims a document that was never written");
+});
+
 test("the packet is deterministic for the same state and clock", () => {
   const at = "2026-08-03T00:00:00Z";
   const ts = [task(base, "E01.01"), task(base, "E01.02")];
@@ -600,19 +630,31 @@ test("every release gate carries exit criteria that could actually fail it", () 
   }
 });
 
-// E01 (governance) and E15 (release and onboarding) are supporting epics of no
-// gate. That is a real hole, not an oversight of this test: the six gates
-// certify that the product works and the sale can be made, and nothing
-// certifies that what was sold can be delivered. Changing a gate's supporting
-// epics is change control under PROJECT.md section 20, so it is raised as
-// CR-002 rather than fixed here. This test exists to stop the hole growing and
-// to fail the moment CR-002 is actioned, forcing the list to be emptied.
-const KNOWN_UNGATED = ["E01", "E15"];
+// E01 and E15 were supporting epics of no gate until CR-002, approved as D-025,
+// brought them in. The list is empty and should stay empty: an epic outside the
+// gate system is work nothing certifies.
+const KNOWN_UNGATED = [];
 
-test("no epic falls outside the gate system except the two declared in CR-002", () => {
+test("every epic is covered by at least one release gate", () => {
   const covered = new Set(base.releaseGates.flatMap((g) => g.supportingEpics));
   const uncovered = base.epics.map((e) => e.id).filter((id) => !covered.has(id));
   assert.deepEqual(uncovered, KNOWN_UNGATED,
-    `Gate coverage changed. Uncovered epics are now [${uncovered.join(", ")}], declared is [${KNOWN_UNGATED.join(", ")}]. ` +
-    "If CR-002 was approved, empty KNOWN_UNGATED. If an epic slipped out of a gate, put it back.");
+    `Epics outside the gate system: [${uncovered.join(", ")}]. The six gates certify that the product works and ` +
+    "the sale can be made. An uncovered epic is work no gate certifies at all. Put it in a gate, or raise a change " +
+    "request and declare it here with the reason.");
+});
+
+test("the two epics CR-002 brought in carry a criterion that names them", () => {
+  const commercial = base.releaseGates.find((g) => g.id === "commercial");
+  const sales = base.releaseGates.find((g) => g.id === "sales_readiness");
+  assert.ok(commercial.supportingEpics.includes("E01"), "E01 is inside the commercial gate (D-025)");
+  assert.ok(sales.supportingEpics.includes("E15"), "E15 is inside the sales-readiness gate (D-025)");
+  assert.ok(
+    commercial.exitCriteria.some((c) => c.includes("freeze") && c.includes("change request")),
+    "the commercial gate checks that every freeze was observed or formally moved",
+  );
+  assert.ok(
+    sales.exitCriteria.some((c) => c.includes("rehearsed end to end")),
+    "the sales-readiness gate checks that one venue onboarding was actually rehearsed",
+  );
 });

@@ -184,20 +184,34 @@ Six independent gates. Each has an owner, exit criteria, supporting epics,
 blockers, evidence, a founder decision and a pass date. They live in
 `PROJECT_STATE.json` and render into `STATUS.md`.
 
-1. **Commercial** — founder — offer, founding rate, entitlement, renewal rules.
+**Every epic sits inside a gate.** E01 and E15 were outside the system until
+CR-002, approved as D-025: E01 joined the commercial gate and E15 the
+sales-readiness gate. Nothing had certified that what was sold could be
+delivered, because onboarding lives in E15. A test now fails if any epic falls
+out again.
+
+1. **Commercial** — founder — E02, E01 — offer, founding rate, entitlement,
+   renewal rules, and that every D-008 freeze was observed on its date or moved
+   by a numbered change request.
 2. **Legal** — founder — agreements, DPA, couple terms, Keepsake, the GDPR role
    map and the written VAT position. **No solicitor and no accountant** (D-016).
    The gate's twelve exit criteria were rewritten by CR-001 and approved as
    D-023; a pass is recorded as "founder-accepted without professional review",
    never as legal approval.
-3. **Product** — Claude Code — couple experience, Timeline, portal, lifecycle.
-4. **Data, security and reliability** — Claude Code — isolation, auth, backups, instrumentation.
-5. **Creative** — Codex (motion) — both films through QA and approval.
-6. **Sales readiness** — founder — cohorts, CRM, sequences, commercial pages.
+3. **Product** — Claude Code — E04 to E07 — couple experience, Timeline, portal, lifecycle.
+4. **Data, security and reliability** — Claude Code — E08, E09 — isolation, auth, backups, instrumentation.
+5. **Creative** — Codex (motion) — E13, E14 — both films through QA and approval, verifiable by the lane that did not produce them.
+6. **Sales readiness** — founder — E10, E11, E12, E15 — cohorts, CRM, sequences, commercial pages, and one venue onboarding rehearsed end to end before Cohort 1 is contacted.
+
+Each gate carries twelve or thirteen exit criteria, each naming the evidence that
+would satisfy it. A test asserts a minimum of eight per gate, so a gate cannot
+quietly revert to headlines.
 
 The launch go/no-go (E15.01) cannot pass unless every gate has passed or Ethan
 has documented an explicit waiver. A high task-completion percentage never
-overrides a failed gate.
+overrides a failed gate. **Nor does a passed gate mean the work finished** — a
+gate asks whether a thing is true, not whether every task meant to make it true
+is Done. That is R-025, and its fix is a precondition on E15.01.
 
 ## 14. Governance
 

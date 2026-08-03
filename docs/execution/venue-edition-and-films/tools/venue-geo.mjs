@@ -160,10 +160,26 @@ const CLUSTERS = [
   { id: "south_galway", label: "South Galway", test: (v) => v.lat >= 52.95 },
 ];
 
-export function clusterFor(latitude, longitude) {
+/**
+ * Clusters describe the market, so they only apply inside it.
+ *
+ * The outer clusters are defined by being beyond the others — south Galway is
+ * "north of everything else", north Kerry is "west of everything else" — which
+ * works fine for a venue in the catchment and not at all for one in Dublin.
+ * Applied blindly to the whole file, every Leinster account carried in from the
+ * old repository lists landed in south Galway, and the cluster tally read as
+ * though thirty venues sat around Gort.
+ *
+ * So a venue beyond the market is `out_of_market`, and the market's own
+ * geography is not asked to describe places it was never drawn for.
+ */
+export function clusterFor(latitude, longitude, ring) {
+  if (ring != null && !["15", "30", "45", "borderline_45_60"].includes(ring)) {
+    return { id: "out_of_market", label: "Outside the market" };
+  }
   const v = { lat: latitude, lon: longitude };
-  // Order matters: south Galway and north Kerry are tested first because they
-  // are defined by being beyond the others, not by a box of their own.
+  // Order matters: the two outer clusters are tested first, because they are
+  // defined by exclusion rather than by a box of their own.
   for (const c of [...CLUSTERS].sort((a, b) => (a.id === "south_galway" || a.id === "north_kerry" ? -1 : 0))) {
     if (c.test(v)) return { id: c.id, label: c.label };
   }
@@ -579,8 +595,6 @@ async function cmdDriveTime(inPath, outPath) {
         drive_time_note: v.drive_time_note ?? r?.error ?? "no coordinates",
       };
     }
-    const cluster = clusterFor(v.latitude, v.longitude);
-
     // See ESTATE_OVERRIDE_NOTE. A material disagreement means a private avenue,
     // so the lower figure is the one that answers "how far is this from
     // Limerick" — and the venue goes to a human either way.
@@ -597,8 +611,8 @@ async function cmdDriveTime(inPath, outPath) {
       drive_time_note: overridden ? ESTATE_OVERRIDE_NOTE : (v.drive_time_note ?? null),
       drive_time_ring: ringFor(minutes),
       near_boundary: isNearBoundary(minutes) || Boolean(overridden),
-      cluster: cluster.id,
-      cluster_label: cluster.label,
+      cluster: clusterFor(v.latitude, v.longitude, ringFor(minutes)).id,
+      cluster_label: clusterFor(v.latitude, v.longitude, ringFor(minutes)).label,
       road_km: Number(r.km.toFixed(1)),
     };
   });

@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T01:06:29.800Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T01:13:18.906Z · baseline **approved** (0.1.0)
 
 211 tasks across 15 epics · 119 on the imported critical path · 54 release-blocking · 188 unestimated.
 

@@ -735,6 +735,29 @@ const listOrNone = (arr) => (arr.length ? arr.map((t) => `- \`${t.id}\` ${t.titl
 // shape and can be approved in one pass.
 // ---------------------------------------------------------------------------
 
+// Evidence that names a file must name a file that exists. Prose evidence
+// ("pnpm test — 74/74 pass") and URLs are not checkable here and are left to the
+// packet and to tools/verify-evidence.mjs, which reports them explicitly rather
+// than passing them silently.
+const EVIDENCE_FILE_RE = /^[\w./\\-]+\.(md|json|mjs|js|ts|tsx|csv|png|jpg|svg|html|sql|yml|yaml|txt|pdf)(#.*)?$/i;
+
+export function missingEvidenceFiles(t, root = ROOT) {
+  const workspace = resolve(root, "../../../..");
+  const missing = [];
+  for (const e of t.evidence || []) {
+    const ref = String(e.ref || "").trim();
+    if (!ref || !EVIDENCE_FILE_RE.test(ref)) continue;
+    const clean = ref.split("#")[0];
+    const candidates = [join(root, clean), join(workspace, clean), join(workspace, "studio", clean)];
+    if (!candidates.some((c) => existsSync(c))) missing.push(ref);
+  }
+  if (t.specPath) {
+    const candidates = [join(root, t.specPath), join(workspace, t.specPath)];
+    if (!candidates.some((c) => existsSync(c))) missing.push(`specPath ${t.specPath}`);
+  }
+  return missing;
+}
+
 export function packetBlockers(t) {
   const problems = [];
   if (t.acceptanceCriteria.length === 0) problems.push("no acceptance criteria");
@@ -1051,6 +1074,7 @@ const HELP = `project-control.mjs — canonical state tool for VEF-2026
   reopen <ID> "reason"                  Reopen a Done task.
   gate <id> <state> ["note"]            Set a release gate. waived requires a founder note.
   gate <id> criteria <file.json>        Replace a gate's exit criteria from a JSON array.
+  gate <id> epics <E01,...> "basis"     Change which epics a gate covers. Change control.
   commercial <field> <value>            Update a Founding 25 counter.
   film <film> <stage> <state>           limerick_first|before_the_day · not_started|in_progress|complete
   baseline approve "note"               FOUNDER ONLY. Approves the project baseline.
@@ -1469,6 +1493,12 @@ function main(argv) {
       if (t.acceptanceCriteria.length === 0) problems.push("no acceptance criteria recorded (`criteria <ID> \"...\"`)");
       if (t.evidence.length === 0) problems.push("no evidence recorded (`evidence <ID> <ref>`)");
       if (!["in_progress", "internal_review"].includes(t.status)) problems.push(`status is "${t.status}"; expected in_progress or internal_review`);
+      // A session once recorded a document as evidence and never wrote it. The
+      // task passed review and reached the founder looking complete. Evidence
+      // that names a file must name a file that exists.
+      for (const missing of missingEvidenceFiles(t)) {
+        problems.push(`evidence claims a file that does not exist: ${missing}`);
+      }
       if (problems.length) fail(`${t.id} is not ready for founder review:\n  - ${problems.join("\n  - ")}`);
       const from = t.status;
       t.status = "founder_review";
@@ -1614,6 +1644,26 @@ function main(argv) {
         appendChangelog(now, `Release gate ${g.name} exit criteria rewritten`, `${before} → ${list.length} criteria. Source: ${path}.`);
         commit(state, now, sessionId);
         console.log(`Gate ${g.id}: ${before} → ${list.length} exit criteria.`);
+        return;
+      }
+
+      // Changing which epics a gate covers is a change to a launch gate, which
+      // PROJECT.md section 20 puts under change control. The command exists so
+      // an approved change is applied through the tool rather than by hand; it
+      // does not make the change approvable.
+      if (pos[2] === "epics") {
+        const list = (pos[3] || "").split(",").map((s) => s.trim()).filter(Boolean);
+        if (!list.length) fail(`Usage: gate ${g.id} epics <E01,E02,...> "the decision that approved this"`);
+        const basis = pos[4];
+        if (!basis) fail("Changing a gate's supporting epics needs the decision that approved it. This is change control, not an edit.");
+        const known = new Set(state.epics.map((e) => e.id));
+        for (const e of list) if (!known.has(e)) fail(`Unknown epic "${e}".`);
+        if (["passed", "waived"].includes(g.status)) fail(`Gate "${g.id}" is already ${g.status}. Changing what a decided gate covers is a new change request.`);
+        const before = [...g.supportingEpics];
+        g.supportingEpics = list;
+        appendChangelog(now, `Release gate ${g.name} supporting epics changed`, `${before.join(", ")} -> ${list.join(", ")}. Basis: ${basis}.`);
+        commit(state, now, sessionId);
+        console.log(`Gate ${g.id}: epics ${before.join(",")} -> ${list.join(",")}`);
         return;
       }
 

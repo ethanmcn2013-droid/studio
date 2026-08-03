@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T01:06:29.800Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T01:06:29.800Z · session `045404f1-wp02`
+**Report generated:** 2026-08-03T01:13:18.906Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T01:13:18.906Z · session `wp03-cr002`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -69,12 +69,12 @@ A high task percentage never overrides a failed gate. The go/no-go milestone can
 
 | Gate | Owner | Status | Exit criteria | Supporting epics | Blockers | Passed |
 |---|---|---|---|---|---|---|
-| Commercial | founder | **not_started** | 12 | E02 | — | — |
+| Commercial | founder | **not_started** | 13 | E02, E01 | — | — |
 | Legal | founder | **not_started** | 12 | E03 | 1 | — |
 | Product | claude_code | **not_started** | 12 | E04, E05, E06, E07 | — | — |
 | Data, security and reliability | claude_code | **not_started** | 12 | E08, E09 | — | — |
 | Creative | codex_motion | **not_started** | 13 | E13, E14 | — | — |
-| Sales readiness | founder | **not_started** | 12 | E10, E11, E12 | — | — |
+| Sales readiness | founder | **not_started** | 13 | E10, E11, E12, E15 | — | — |
 
 ## Milestones
 
@@ -201,7 +201,7 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 ## Session
 
 **Open sessions:** 045404f1-wp02 (WP-02 — Greater Limerick venue universe and cohorts (E10.01-E10.14))
-**Last closed session:** wp03-reapprove (2026-08-03T01:04:43.699Z) → `sessions/2026-08-03--wp03-reapprove.md`
+**Last closed session:** wp03-cr002 (2026-08-03T01:13:18.906Z) → `sessions/2026-08-03--wp03-cr002.md`
 
 ## Next recommended project-management action
 

@@ -217,7 +217,20 @@
     "shanbally house gardens": "VEN-0220",
     "shouldice hall": "VEN-0221"
   },
-  "retired": [],
+  "retired": [
+    {
+      "nameKey": "cloughan castle",
+      "id": "VEN-0087"
+    },
+    {
+      "nameKey": "dundrum house golf",
+      "id": "VEN-0184"
+    },
+    {
+      "nameKey": "dromcollogher castle",
+      "id": "VEN-0218"
+    }
+  ],
   "seededFrom": "first WP-02 merge, 2026-08-03",
   "updatedAt": "2026-08-03"
 }

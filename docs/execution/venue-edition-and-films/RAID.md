@@ -452,10 +452,11 @@ wrong on the day. These three are the difference.
 ### I-008 — Two epics sit outside the release-gate system entirely
 - **Type:** governance · **Severity:** medium · **Owner:** Ethan McNamara
 - **Detail:** mapping the six gates against the backlog: commercial covers E02, legal E03, product E04 to E07, data E08 and E09, creative E13 and E14, sales readiness E10 to E12. **E01 and E15 are supporting epics of no gate.** E01 holds the governance machinery that R-006's mitigation depends on, including the freeze dates, which no gate criterion checked until commercial criterion 12 was written. E15 holds onboarding and the go/no-go itself.
-- **Why it was not fixed here:** changing a gate's supporting-epic set is a change to a launch gate, which `PROJECT.md` §20 puts under change control. Recorded as **CR-002**, awaiting the founder.
-- **Interim cover:** the freeze check is now in commercial criterion 12, the deploy steps in data criterion 12, and a test asserts the coverage hole stays exactly two epics wide and fails if it grows, or if CR-002 is actioned without emptying the declared list.
+- **Why it was not fixed on the spot:** changing a gate's supporting-epic set is a change to a launch gate, which `PROJECT.md` §20 puts under change control. Raised as **CR-002**.
+- **RESOLVED 2026-08-03 by D-025.** CR-002 approved. E01 joined the commercial gate with a thirteenth criterion requiring every D-008 freeze to be observed on its date or moved by a numbered change request. E15 joined the sales-readiness gate with a thirteenth criterion requiring one venue configuration rehearsed end to end before Cohort 1 is contacted. Verified: `uncovered epics: NONE`, and a test now asserts full coverage rather than a declared hole.
+- **Three exposures were closed without a change request**, inside gates that already owned the relevant epic: the launch-day deploy steps into data criterion 12 (R-023), the freeze observation into commercial criterion 12, and A-002's parameterised price sequence into creative criterion 12.
 - **Affects:** E01, E15, all six gates, R-023, R-024, R-025
-- **Status:** open · **Resolution:** CR-002 · **Last reviewed:** 2026-08-03
+- **Status:** **resolved** · **Resolved by:** D-025 · **Last reviewed:** 2026-08-03
 
 ### I-009 — No design decision has ever been ratified, with UI freeze 17 days out
 - **Type:** governance/creative · **Severity:** medium · **Owner:** Ethan McNamara

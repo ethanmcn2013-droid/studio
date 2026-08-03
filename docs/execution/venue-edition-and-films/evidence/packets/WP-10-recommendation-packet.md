@@ -219,10 +219,18 @@ under "already evidenced". It gates checkout and broad launch.
 
 ## 5 · How to approve
 
-All nine, in one command:
+All nine, in one command. **Pass the IDs, not `--review`:**
 
 ```bash
-node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs approve-batch "note" --review
+node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs approve-batch "your reason here" E02.01 E02.02 E02.03 E02.05 E02.08 E02.09 E02.10 E02.11 E02.12
 ```
 
 Or push back on any single item above and I will rework it.
+
+> **Corrected 2026-08-03, after this bit me.** The first version of this line said
+> `approve-batch "note" --review`. `--review` approves **everything** sitting in
+> the founder-review queue, not just this package's tasks. With four work packages
+> running in parallel it took 32 tasks across E01, E02 and E04 in one command,
+> under the literal note `"your note"`. Always pass explicit IDs, and always write
+> a real note: the note is the only record of *why* something was approved, and
+> PROJECT.md §18 makes it one of the four conditions for Done.

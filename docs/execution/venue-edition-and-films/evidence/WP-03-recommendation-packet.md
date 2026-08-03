@@ -64,6 +64,27 @@ how a register stops being trustworthy.
 
 ---
 
+## Where the six decisions landed
+
+| # | Decision | Outcome |
+|---|---|---|
+| 1 | CR-002, two epics outside the gate system | **Approved 2026-08-03.** Recorded as D-025 and actioned in full. Every epic now sits inside a gate |
+| 2 | I-007, the control root untracked in git | **Done.** Committed as `40953f8`, 127 files. I-007 resolved |
+| 3 | The E11 lane split | Not raised again. Twelve drafting tasks with Claude Code, E11.04 and E11.15 with you |
+| 4 | The dependency-satisfaction rule | Not raised again. Satisfaction sits at Founder Review |
+| 5 | Target dates versus `REPORTING.md` §8 | Not raised again. The field is stated, never computed |
+| 6 | I-009, zero ratified design decisions | **Still open, and still yours.** UI freeze is 2026-08-20 |
+
+The sign-off note on all twelve E01 tasks stands as `"your note"` at your
+instruction. One question is still unanswered: whether `approve-batch --review`
+should print the epics it is about to sweep and confirm when it spans more than
+one.
+
+The six items below are kept as written, because the record of what was put to
+you matters more than tidiness.
+
+---
+
 ## Six things that need you
 
 ### 1. CR-002 — two epics sit outside the release-gate system

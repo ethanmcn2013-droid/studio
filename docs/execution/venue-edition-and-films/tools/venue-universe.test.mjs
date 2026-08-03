@@ -131,10 +131,22 @@ test("every cluster resolves for points across the ring", () => {
     [52.3547, -8.6797], [52.8078, -8.4383], [52.4736, -8.1611], [52.4489, -9.0553],
   ];
   for (const [lat, lon] of points) {
-    const c = clusterFor(lat, lon);
+    const c = clusterFor(lat, lon, "45");
     assert.notEqual(c.id, "unclassified", `${lat},${lon} fell through every cluster`);
     assert.ok(c.label.length > 0);
   }
+});
+
+test("the market's clusters are not used to describe places outside it", () => {
+  // The outer clusters are defined by exclusion, so applied to a Dublin or Mayo
+  // record they match something. They previously did: every Leinster account
+  // carried in from the old repository lists was tallied under south Galway.
+  const dublin = [53.35, -6.26], mayo = [53.8, -9.5];
+  for (const [lat, lon] of [dublin, mayo]) {
+    assert.equal(clusterFor(lat, lon, "out").id, "out_of_market");
+  }
+  assert.equal(clusterFor(53.35, -6.26, "45").id !== "out_of_market", true,
+    "a ring value is what gates it, so an in-ring point still clusters normally");
 });
 
 /* ------------------------------------------------------------- ranking ---- */

@@ -34,10 +34,10 @@
   },
   "session": {
     "lastClosed": {
-      "id": "wp03-reapprove",
-      "closedAt": "2026-08-03T01:04:43.699Z",
-      "record": "sessions/2026-08-03--wp03-reapprove.md",
-      "objective": "WP-03: reapprove E01 on the founder's explicit instruction; correct I-010"
+      "id": "wp03-cr002",
+      "closedAt": "2026-08-03T01:13:18.906Z",
+      "record": "sessions/2026-08-03--wp03-cr002.md",
+      "objective": "Action CR-002: bring E01 and E15 inside the release-gate system"
     },
     "open": [
       {
@@ -145,10 +145,12 @@
         "The Founding Venue Benefits Charter is published and every benefit carries its boundary on the same line: one 30-minute founder call per venue per year, the named email route, what early access and priority support mean in hours or releases, and the explicit statement that founding requests shape the roadmap and nothing is built for one venue. No benefit is stated without a limit. Evidence: the charter plus a reviewer checklist confirming a limit against every benefit line. (E02.08, E02.09, D-008 scope addition, D-014 point 2)",
         "The unit-economics model is rebuilt at both VAT positions and both are recorded: EUR 1,000 gross and EUR 813.01 net at 23 percent, each with break-even couples per year in the base and heavy usage profiles, plus a one-sentence statement of what changes if Revenue answers yes to accountable-person status. It reconciles into studio/content/hq/finance/ rather than standing alone. Evidence: the finance pack diff, the break-even figures, and agreement with evidence/E02.12-entitlement-choice.md. (E02.12, R-021, R-022, R-018)",
         "No venue-facing document, order form, proposal, FAQ, email or page contains a seat count, allotment, cap, or a numeric pause presented alongside 'unlimited'. The internal fair-use ceiling appears only in internal operating documents. Evidence: the string sweep extended to entitlement vocabulary plus a named reviewer's per-document verdict. (D-020 point 1, E02.12, E07.07)",
-        "The offer freeze is real and dated. On 2026-08-15 the ratified commercial position is tagged in version control and every subsequent change to price, terms, entitlement or founding mechanics carries a CR number. The pass note records that the founder read the whole offer in one sitting from a single page and saw both accepted exposures in figures: roughly EUR 750 a year lost on a flagship venue under R-021, and roughly EUR 4,675 a year absorbed under R-022. Evidence: the tag or commit, the CHANGELOG entry, the one-page offer sheet, and the pass basis in the founder's own words. (E01.11, D-008 point 3, PROJECT.md section 20)"
+        "The offer freeze is real and dated. On 2026-08-15 the ratified commercial position is tagged in version control and every subsequent change to price, terms, entitlement or founding mechanics carries a CR number. The pass note records that the founder read the whole offer in one sitting from a single page and saw both accepted exposures in figures: roughly EUR 750 a year lost on a flagship venue under R-021, and roughly EUR 4,675 a year absorbed under R-022. Evidence: the tag or commit, the CHANGELOG entry, the one-page offer sheet, and the pass basis in the founder's own words. (E01.11, D-008 point 3, PROJECT.md section 20)",
+        "Every freeze date ratified in D-008 was either observed on its date or moved by a numbered change request. No freeze passed silently. For each of offer 2026-08-15, UI 2026-08-20, copy 2026-08-21, capture 2026-08-22, film lock 2026-08-28 and release candidate 2026-08-30, the record states which of the two happened and names the evidence: the tag or commit that froze it, or the CR number that moved it. Evidence: the six-row table plus project-control.mjs freeze output. (E01.11, D-008 clause 3, D-025)"
       ],
       "supportingEpics": [
-        "E02"
+        "E02",
+        "E01"
       ],
       "blockers": [],
       "evidence": [],
@@ -293,12 +295,14 @@
         "The personalised delivery path works end to end for one venue before it runs for 25: a tracked link is generated, resolves to that venue's landing destination, plays the film without a large attachment, records the click, and the click appears in the founder operating dashboard. Evidence: the test link, the recorded click, the dashboard row. (E11.07, E13.16, E09.04, E09.05)",
         "The objection library answers the questions this specific offer creates, with a written answer per question matching the ratified position rather than improvising a new one: why EUR 1,000 and not EUR 1,500; what the price lock does on a venue sale; what unlimited means and what happens at fair use; what the venue sees and never sees; whether a solicitor reviewed the contract, using the pre-approved answer from the legal gate; what happens to couples if Signal Studio stops; and why there is no in-person meeting. Evidence: the library plus a cross-check of each answer against its D-number. (E11.12, E12.08, D-016, D-018)",
         "Consent is tracked per venue before any name is published. The E10.14 consent field is populated for every Cohort 1 account, and the map, the site and the certificate publish only where consent is recorded. Evidence: the consent field state per account and a check that the published surfaces name only consented venues. (E10.14, E15.16, PROJECT.md section 21)",
-        "No contact data has leaked into the project tree or a generated report. project-control.mjs validate passes, private/venues.csv is confirmed gitignored and untracked via git ls-files, and a scan of PROJECT_STATE.json, STATUS.md, BACKLOG.md and evidence/ finds no email address, phone number, postal address or venue name presented as a participant. Evidence: the scan output and the git ls-files result. (PROJECT.md section 21, REPORTING.md section 5)"
+        "No contact data has leaked into the project tree or a generated report. project-control.mjs validate passes, private/venues.csv is confirmed gitignored and untracked via git ls-files, and a scan of PROJECT_STATE.json, STATUS.md, BACKLOG.md and evidence/ finds no email address, phone number, postal address or venue name presented as a participant. Evidence: the scan output and the git ls-files result. (PROJECT.md section 21, REPORTING.md section 5)",
+        "One venue configuration has been rehearsed end to end against a rehearsal account before Cohort 1 is contacted: the account created and configured, the venue's first couple invitation issued, that invitation redeemed, and the venue able to see activation evidence in its own portal. A written list records what broke and what was changed as a result. Evidence: the rehearsal account's configuration record, the redeemed invitation, a screenshot of the venue-side evidence, and the what-broke list. Nothing certifies that what was sold can be delivered until one venue has actually been onboarded by the person who will onboard the other twenty-four. (E15.09, E15.10, E15.11, R-024, D-025)"
       ],
       "supportingEpics": [
         "E10",
         "E11",
-        "E12"
+        "E12",
+        "E15"
       ],
       "blockers": [],
       "evidence": [],
@@ -14049,10 +14053,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T01:06:29.800Z",
-    "lastRenderedAt": "2026-08-03T01:06:29.800Z",
-    "lastUpdatedAt": "2026-08-03T01:06:29.800Z",
-    "lastUpdatedSession": "045404f1-wp02",
+    "lastValidatedAt": "2026-08-03T01:13:18.906Z",
+    "lastRenderedAt": "2026-08-03T01:13:18.906Z",
+    "lastUpdatedAt": "2026-08-03T01:13:18.906Z",
+    "lastUpdatedSession": "wp03-cr002",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"
