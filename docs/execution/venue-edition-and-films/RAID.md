@@ -772,3 +772,35 @@ this session, and it does not.
 - **Recommendation:** D-012 governs, group-owned hotels stay eligible, and the owner-operator preference becomes a ranking weight rather than a filter. That is already how `decision_access` scores in `venue-rank.mjs` — an owner-operated single property scores 5, a chain with central procurement scores 1. The insight in the strategy document is right; encoding it as an exclusion rather than a weight is what is wrong.
 - **Affects:** E10.02, E10.03, E10.12, `studio/docs/strategy/VENUE_EDITION_STRATEGY.md`
 - **Status:** open, needs founder decision · **Last reviewed:** 2026-08-03
+
+### I-007 — The wave PR is mergeable but one quality gate is red across three lanes
+- **Type:** delivery/governance · **Severity:** high · **Owner:** Ethan McNamara
+- **Opened:** 2026-08-03 · PR [#139](https://github.com/ethanmcn2013-droid/studio/pull/139)
+- **State:** `mergeable`, no conflicts. `typecheck · test` **passes**. `verify`
+  passes. `contract-and-rendered-fixtures` **fails** with nine
+  `experience:validate` failures.
+- **Why production is still wrong meanwhile:** signalstudio.ie/venues currently
+  says "€1,500", "the first fifteen venues", no VAT line and a flat eighteen
+  months. Four ratified decisions are unrepresented on the live page. The
+  corrected page is committed, pushed and live on the branch preview only.
+- **The nine failures, by owner:**
+  - **WP-01 (this lane), 4:** the three brand decks and `/venues` — copy
+    corrected, so their captured evidence is now stale, plus `hq-entitlements`
+    from the R-016 form change. Fixable by re-running `pnpm experience:capture`,
+    which needs Playwright and a live server. Another session holds the studio
+    dev-server port and killing it was not this lane's to do.
+  - **Other lanes, 3:** `studio.page.design` and `hq-financial-model` changed by
+    concurrent sessions, plus their capture debt.
+  - **Not a capture problem at all, 2:**
+    `studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage` and
+    `route-continuity` are **discovered but unregistered**. They are another
+    session's in-flight lab routes, and the question is not whether to capture
+    them but whether a `__design-lab` route belongs in a production merge.
+- **Why it was not merged over:** the gate exists to stop exactly this — a
+  public surface changing without refreshed evidence. Overriding it to ship a
+  copy correction would spend the gate's credibility on the smallest possible
+  prize.
+- **Next action:** decide the design-lab routes (register or exclude), then run
+  one capture pass covering all changed surfaces, then merge. Merging deploys
+  production automatically.
+- **Status:** open · **Last reviewed:** 2026-08-03
