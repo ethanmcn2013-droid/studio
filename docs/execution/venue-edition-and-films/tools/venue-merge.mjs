@@ -140,7 +140,10 @@ function applyOverrides(venues) {
   const unmatched = [];
 
   for (const [section, entries] of Object.entries(o)) {
-    if (section.startsWith("_")) continue;
+    // `_`-prefixed keys are commentary. `merge` is handled by applyForcedMerges
+    // before clustering; treating it as a field patch here would copy its `fold`
+    // array onto the winning record as a stray field.
+    if (section.startsWith("_") || section === "merge") continue;
     for (const [name, patch] of Object.entries(entries)) {
       const v = find(name);
       if (!v) { unmatched.push(`${section}/${name}`); continue; }

@@ -34,20 +34,12 @@
   },
   "session": {
     "lastClosed": {
-      "id": "wp03-followups",
-      "closedAt": "2026-08-03T01:22:32.871Z",
-      "record": "sessions/2026-08-03--wp03-followups.md",
-      "objective": "Action the approve-batch sweep guard; scope the design directions for I-009"
+      "id": "eed55e9e-wp01d",
+      "closedAt": "2026-08-03T02:05:38.494Z",
+      "record": "sessions/2026-08-03--eed55e9e-wp01d.md",
+      "objective": "Close R-024 decision items; deploy decision escalated"
     },
-    "open": [
-      {
-        "id": "045404f1-wp02",
-        "objective": "WP-02 — Greater Limerick venue universe and cohorts (E10.01-E10.14)",
-        "openedAt": "2026-08-03T00:27:50.734Z",
-        "tasksTouched": [],
-        "statusChanges": []
-      }
-    ]
+    "open": []
   },
   "wip": {
     "primaryFocus": 1,
@@ -319,7 +311,7 @@
       "geography": "Greater Limerick"
     },
     "foundingPlacesAvailable": 25,
-    "researchedAccountUniverse": 0,
+    "researchedAccountUniverse": 219,
     "cohortReady": {
       "cohort1": false,
       "cohort2": false,
@@ -419,7 +411,7 @@
       "note": "Start now. Blocks contracts, portal language, films, pricing pages and outreach.",
       "gating": "Start now. Blocks contracts, portal language, films, pricing pages and outreach.",
       "executor": "founder",
-      "taskCount": 12
+      "taskCount": 13
     },
     {
       "id": "E03",
@@ -3335,10 +3327,139 @@
       "decisionQuestion": "Entitlement model and its unit economics at EUR 1,000."
     },
     {
+      "id": "E02.13",
+      "epic": "E02",
+      "title": "Implement the Founding Venue number as a stored, uniquely constrained field assigned on cleared payment.",
+      "status": "done",
+      "priority": "p0",
+      "releaseBlocking": true,
+      "criticalPath": true,
+      "startNow": true,
+      "effortPoints": 3,
+      "estimateStatus": "provisional",
+      "executor": "claude_code",
+      "approver": "founder",
+      "dependencies": [
+        "E02.10"
+      ],
+      "dependencyBasis": "E02.10 ratified the numbering policy — format, assignment on cleared payment, tie-breaking, non-reuse and payment reversal. This implements it.",
+      "blockedBy": [],
+      "specPath": "tasks/E02.13.md",
+      "acceptanceCriteria": [
+        "The number is stored on the sponsor row and rendered as NN/25 everywhere.",
+        "A partial UNIQUE index makes two venues holding the same number impossible at the database level, proved by test.",
+        "A number is assigned only when payment has cleared — never at signature, never on invoice.",
+        "Assignment is idempotent: a venue that already holds a number gets it back, never a second one.",
+        "A number held by a lapsed venue is never reissued.",
+        "Withdrawal exists only for a reversed payment, requires a reason, and records both in the audit ledger.",
+        "Remaining places are computed from the taken set, so a scarcity claim is true when it is sent.",
+        "Assignment order follows cleared payment, then earlier signature, and refuses to invent a winner when neither separates two claims."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:44:52.383Z",
+          "ref": "studio/src/lib/venue-founding-number.ts",
+          "note": "The pure rules: NN/25 format, next free place, remaining places, assignment order and the eligibility refusal.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:44:52.501Z",
+          "ref": "studio/src/lib/venue-founding-number.test.ts",
+          "note": "15 tests. Covers the lapsed-venue non-reuse rule and the refusal to invent a tie-break winner.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:44:52.626Z",
+          "ref": "studio/src/lib/entitlements-db/founding-numbers.ts",
+          "note": "assignFoundingNumber, withdrawFoundingNumber and foundingProgrammeStatus. Claim and ledger line commit in one transaction.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:44:52.749Z",
+          "ref": "studio/src/lib/entitlements-db/founding-numbers.test.ts",
+          "note": "16 tests against a real SQLite engine, including the database refusing a duplicate outright.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:44:52.880Z",
+          "ref": "studio/scripts/migrate-venue-edition-terms.mjs",
+          "note": "founding_number, founding_number_assigned_at and the partial unique index, with a fail-closed duplicate guard.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:44:53.029Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/change-requests/CR-003.md",
+          "note": "The change request this task was created under.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:48:18.256Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/WP-01-verification.txt",
+          "note": "Verification capture: typecheck clean, 7 contract checks, 443 studio tests, build exit 0.",
+          "addedBy": "claude_code"
+        }
+      ],
+      "targetDate": null,
+      "targetBasis": null,
+      "founderSignOff": {
+        "state": "approved",
+        "note": "Approved. The founding number is a stored field with a unique index behind it, assigned on cleared payment.",
+        "date": "2026-08-03"
+      },
+      "createdAt": "2026-08-03",
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
+      "source": "CR-003 (2026-08-03), approved as D-027 point 2",
+      "notes": [
+        "Added by CR-003, not by the master backlog import. E02.10 defined the numbering and never claimed the field; the only occurrence of 01/25 in the codebase was marketing copy on /venues."
+      ],
+      "history": [
+        {
+          "at": "2026-08-03T01:34:15.758Z",
+          "from": null,
+          "to": "backlog",
+          "by": "claude_code",
+          "note": "Created under CR-003, approved as D-027 point 2."
+        },
+        {
+          "at": "2026-08-03T01:44:53.141Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Spec, criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:44:53.272Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-01 continuation session eed55e9e-wp01b."
+        },
+        {
+          "at": "2026-08-03T01:44:53.421Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Implemented and verified. 31 tests across the pure rules and the writer, both against real engines. Not yet callable: nothing detects a cleared payment until E08."
+        },
+        {
+          "at": "2026-08-03T01:52:00.358Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. The founding number is a stored field with a unique index behind it, assigned on cleared payment."
+        }
+      ],
+      "decisionClass": "execution",
+      "decisionQuestion": null
+    },
+    {
       "id": "E03.01",
       "epic": "E03",
       "title": "Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers.",
-      "status": "blocked",
+      "status": "internal_review",
       "priority": "p0",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -3349,17 +3470,33 @@
       "approver": "founder",
       "dependencies": [],
       "dependencyBasis": null,
-      "blockedBy": [
+      "blockedBy": [],
+      "specPath": null,
+      "acceptanceCriteria": [
+        "A GDPR role map exists as a written document, covering every data category with the controller/processor position and lawful basis for each, including named rows for Article 9 categories, children's data, and published surfaces distinguishing /p from /share and /s.",
+        "Derived by two independent derivations that never saw each other, with divergences recorded as open questions rather than resolved by picking the more confident answer.",
+        "OPEN — five critical review findings are not yet closed: venue-facing reporting already ships and was modelled as future; GA4 runs on public surfaces with no consent gate; the Article 9 control cannot be built as specified; photographs in private workspaces are written out of the present tense; the /embed over-generalisation."
+      ],
+      "evidence": [
         {
-          "at": "2026-08-03T01:02:17.532Z",
-          "reason": "Two blind derivations completed and agreed on 26 substantive points, but the reconciled role-map document was never written to disk and one of two adversarial reviewers returned UNSOUND. Two of its load-bearing factual premises were verified WRONG by the main session: the dietary-notes venue flow does not exist (R-017 corrected), and /p is deliberately search-indexable while the map assumes every published surface is token-bound (R-031). The derivations are sound reasoning on partly wrong facts. Needs a second pass on corrected premises before it can gate E03.04/05/06.",
-          "by": "R-031",
-          "clearedAt": null
+          "at": "2026-08-03T01:31:24.402Z",
+          "ref": "evidence/E03.01-gdpr-role-map.md",
+          "note": "The role map, version 0.2, written and verified on disk",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:24.537Z",
+          "ref": "RAID.md#R-031",
+          "note": "The indexability finding this pass produced, restored after a concurrent write destroyed it",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:24.678Z",
+          "ref": "RAID.md#R-032",
+          "note": "GA4 with no consent gate, verified in google-tag.tsx",
+          "addedBy": "claude_code"
         }
       ],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
@@ -3377,6 +3514,10 @@
         {
           "at": "2026-08-02T23:25:07.534Z",
           "note": "CR-001 proposes making E03.01 a HARD GATE on E03.04, E03.05 and E03.06 — no legal document drafted until the role map is founder-ratified. Must cover Article 9 categories and children data explicitly (R-017), and reconcile against the Active gdpr-data-lifecycle-policy decision rather than inheriting it."
+        },
+        {
+          "at": "2026-08-03T01:31:23.746Z",
+          "note": "Blocker cleared: Two blind derivations completed and agreed on 26 substantive points, but the reconciled role-map document was never written to disk and one of two adversarial reviewers returned UNSOUND. Two of its load-bearing factual premises were verified WRONG by the main session: the dietary-notes venue flow does not exist (R-017 corrected), and /p is deliberately search-indexable while the map assumes every published surface is token-bound (R-031). The derivations are sound reasoning on partly wrong facts. Needs a second pass on corrected premises before it can gate E03.04/05/06. (by R-031)"
         }
       ],
       "history": [
@@ -3407,6 +3548,20 @@
           "to": "blocked",
           "by": "claude_code",
           "note": "Two blind derivations completed and agreed on 26 substantive points, but the reconciled role-map document was never written to disk and one of two adversarial reviewers returned UNSOUND. Two of its load-bearing factual premises were verified WRONG by the main session: the dietary-notes venue flow does not exist (R-017 corrected), and /p is deliberately search-indexable while the map assumes every published surface is token-bound (R-031). The derivations are sound reasoning on partly wrong facts. Needs a second pass on corrected premises before it can gate E03.04/05/06."
+        },
+        {
+          "at": "2026-08-03T01:31:23.746Z",
+          "from": "blocked",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Second pass complete and the document now exists on disk (68KB, verified). Both reviewers confirm documentExists true."
+        },
+        {
+          "at": "2026-08-03T01:31:24.830Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "Document delivered and verified. NOT ready to gate E03.04/05/06 — five critical review findings open, listed in the third acceptance criterion. Needs a v0.3 pass."
         }
       ],
       "decisionClass": "founder_choice",
@@ -4127,7 +4282,7 @@
       "id": "E04.01",
       "epic": "E04",
       "title": "Define the data entities for venue, agreement, term, founding status, member, invitation, couple workspace and public artifact.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -4163,15 +4318,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": "Reopened: Approved in a bulk run with a placeholder note; no packet had been written.",
-        "date": null
+        "state": "approved",
+        "note": "Unchanged. Reopened only while checking the approval record.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -4216,6 +4371,20 @@
           "to": "in_progress",
           "by": "founder",
           "note": "Reopened: Approved in a bulk run with a placeholder note; no packet had been written."
+        },
+        {
+          "at": "2026-08-03T01:30:45.557Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Unchanged since it was approved: same spec, same 4 criteria, same evidence. Reopened only while the approval record was being checked; D-026 confirmed the approvals are genuine."
+        },
+        {
+          "at": "2026-08-03T01:31:37.456Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Unchanged. Reopened only while checking the approval record."
         }
       ],
       "decisionClass": "execution",
@@ -4547,6 +4716,12 @@
           "at": "2026-08-03T01:03:07.211Z",
           "ref": "studio/docs/execution/venue-edition-and-films/evidence/WP-01-RECOMMENDATION-PACKET.md",
           "note": "The consolidated WP-01 recommendation packet (D-024) covering this task.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:48:18.389Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/R-024-name-only-copy-register.md",
+          "note": "R-024 register: the name-only position swept across 29 surfaces, 8 fixed, the rest tracked with owners.",
           "addedBy": "claude_code"
         }
       ],
@@ -8662,7 +8837,7 @@
       "id": "E10.01",
       "epic": "E10",
       "title": "Define the public geographic term and exact boundary for the “Greater Limerick wedding market.”",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -8682,19 +8857,38 @@
         "No correction factor is applied that cannot be sourced. Residual error is handled by a stated review band.",
         "The geometry is reproducible by one documented command and is cached so reruns do not drift."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:30:59.702Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/01-GEOGRAPHY.md",
+          "note": "The boundary: anchor point, two-engine method, measured ring, and the fabricated calibration factor that was removed",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:00.259Z",
+          "ref": "venue-geo.mjs compare — 16 reference towns through Valhalla and OSRM, 2026-08-03. Gort 50.9, Cashel 61.1, Mallow 58.3, Listowel 72.9 all measured OUTSIDE the ring",
+          "note": "Measured output that reshaped the assumed geography",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:17.577Z",
+          "ref": "docs/execution/venue-edition-and-films/tools/venue-geo.mjs",
+          "note": "The geometry itself, reproducible via venue-geo.mjs compare",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -8723,6 +8917,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:47.334Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:55.834Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "founder_only",
@@ -8732,7 +8947,7 @@
       "id": "E10.02",
       "epic": "E10",
       "title": "Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -8752,19 +8967,38 @@
         "Conflicts with existing repository material are recorded with both positions quoted, not silently reconciled.",
         "Every ambiguous account in the universe has an adjudication and a written reason."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:00.611Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/02-ELIGIBILITY.md",
+          "note": "The rule, the three field tests, and both conflicts with the existing record recorded rather than reconciled",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:00.889Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/overrides.json",
+          "note": "Every ambiguous account adjudicated with a written reason and a date",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:01.262Z",
+          "ref": "RAID.md I-011",
+          "note": "The owner-operator conflict with D-012, raised for a founder decision",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -8793,6 +9027,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:47.562Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:55.964Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "founder_only",
@@ -8802,7 +9057,7 @@
       "id": "E10.03",
       "epic": "E10",
       "title": "Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -8822,19 +9077,44 @@
         "Where the ranking model has a genuinely open choice, the options are built and compared rather than one being picked silently.",
         "Each model states its thesis and its risk, and the models are shown to select materially different venues."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:01.813Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/04-RANKING.md",
+          "note": "Five dimensions, four competing models, each with a stated thesis and risk",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:02.316Z",
+          "ref": "docs/execution/venue-edition-and-films/tools/venue-rank.mjs",
+          "note": "The scoring engine, with assertNoVolumeScreen enforcing D-020",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:02.815Z",
+          "ref": "docs/execution/venue-edition-and-films/private/ranking-comparison.json",
+          "note": "All four models run over the same universe: 15 venues picked by every model, 7 by exactly one",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:03.255Z",
+          "ref": "node --test tools/venue-universe.test.mjs — 25/25 pass, including 'no model screens a venue out by size'",
+          "note": "D-020 enforced by test, not by memory",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8858,6 +9138,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:47.791Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.095Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "founder_choice",
@@ -8867,7 +9168,7 @@
       "id": "E10.04",
       "epic": "E10",
       "title": "Build a master researched universe of at least 125 accounts, or formally document the available market shortfall.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -8887,19 +9188,50 @@
         "Corroboration is recorded per account: how many independent sweeps found it.",
         "Coverage limits are stated explicitly, including sources that could not be reached."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:03.446Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/03-UNIVERSE.md",
+          "note": "The formal shortfall document E10.04 asks for when 125 accounts do not exist",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:03.781Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.csv",
+          "note": "219 deduplicated accounts, 17 columns, no contact column",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:04.366Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/counts-only.md",
+          "note": "Counts-only report, safe to commit, names no venue",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:04.898Z",
+          "ref": "Eleven independent research sweeps: 4 by county, by venue type, by directory, by awards and press, by repository, village-by-village, historic houses, planning registers",
+          "note": "Method behind the count",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:05.397Z",
+          "ref": "Negative results: 39 of 61 villages hold no wedding venue; zero socials-only venues found; the barn segment is empty in-ring; Hidden Ireland has no member in Limerick or Clare; all six named Section 482 leads run no weddings",
+          "note": "The shortfall is a finding, not a failed search",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8923,6 +9255,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:48.001Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.238Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -8932,7 +9285,7 @@
       "id": "E10.05",
       "epic": "E10",
       "title": "Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -8951,19 +9304,38 @@
         "A researcher's explicit 'keep separate' instruction vetoes an automatic merge.",
         "Conflicting facts between sources are recorded as conflicts, not resolved by picking one."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:05.783Z",
+          "ref": "docs/execution/venue-edition-and-films/tools/venue-merge.mjs",
+          "note": "Matcher resolving on researcher instruction, identical name, shared domain, then name key — proposing, never silently collapsing",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:05.984Z",
+          "ref": "376 raw records folded to 219 unique accounts; 12 pairs confirmed by hand; 2 left for review; 4 multi-property operators detected",
+          "note": "Deduplication result",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:06.365Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/account-ids.json",
+          "note": "Persistent ID ledger. account_id is the CRM join key and is never reused",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8987,6 +9359,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:48.214Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.376Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -8996,7 +9389,7 @@
       "id": "E10.06",
       "epic": "E10",
       "title": "Record accurate map coordinates, geographic cluster and drive-time ring for every account.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9016,19 +9409,38 @@
         "Accounts near the ring boundary are listed for human confirmation rather than silently classified.",
         "The same geometry serves the film map in E13.03 without a second derivation."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:06.785Z",
+          "ref": "docs/execution/venue-edition-and-films/tools/venue-coord-audit.mjs",
+          "note": "Reverse-geocode audit that caught two coordinates on an industrial estate and one in the wrong county",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:07.152Z",
+          "ref": "docs/execution/venue-edition-and-films/private/coordinate-audit.json",
+          "note": "Audit output: 93 in-ring coordinates checked, 3 corrected",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:07.359Z",
+          "ref": "Coordinate precision recorded per account: 120 venue-precision, town centroids marked explicitly as insufficient for E13.17",
+          "note": "E13.17 renders from these, so precision is tracked as a gate",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9052,6 +9464,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:48.424Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.513Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9061,7 +9494,7 @@
       "id": "E10.07",
       "epic": "E10",
       "title": "Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9078,19 +9511,32 @@
         "Every account in the ring carries a likely buyer role from the five permitted roles, with a written basis.",
         "No personal name, email, phone number, address or LinkedIn profile appears anywhere in the project tree."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:07.886Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.csv column buyer_role",
+          "note": "Likely buyer recorded as a ROLE only, from five permitted values, with a written basis per account",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:08.248Z",
+          "ref": "node tools/venue-export.mjs guard — every one of eleven raw research files and every generated artefact audited clean",
+          "note": "No personal name, email, phone or address anywhere in the tree",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9114,6 +9560,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:48.623Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.640Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9123,7 +9590,7 @@
       "id": "E10.08",
       "epic": "E10",
       "title": "Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9141,19 +9608,44 @@
         "Contact details themselves live in the CRM and are joined on account_id, never duplicated into this tree.",
         "The export tool refuses to write any file containing an email address, phone number or contact-shaped column, and a test proves it refuses."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:08.604Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.template.csv",
+          "note": "The column set: no contact_name, email, phone, address or linkedin, deliberately",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:08.958Z",
+          "ref": "docs/execution/venue-edition-and-films/tools/venue-export.mjs",
+          "note": "Export refuses to write any file containing an email, phone number, contact-shaped column or out-of-list buyer_role",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:09.328Z",
+          "ref": "node --test tools/venue-universe.test.mjs — guard tests including 'the guard never echoes the value it found'",
+          "note": "The refusal is tested, and so is its false-positive behaviour",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:09.667Z",
+          "ref": "RAID.md R-032",
+          "note": "Pre-existing contact data found committed elsewhere in the workspace, reported for a founder decision, not remediated by this package",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9177,6 +9669,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:48.809Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.775Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9186,7 +9699,7 @@
       "id": "E10.09",
       "epic": "E10",
       "title": "Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9203,19 +9716,38 @@
         "Every account in the ring has its wedding proposition, package structure, likely annual volume and current couple-planning experience recorded.",
         "Every volume figure is labelled as an inference with its basis, or left null. No volume figure is presented as fact without a source."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:09.965Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.csv and the enrichment records",
+          "note": "Wedding proposition, package structure, likely annual volume and current couple-planning experience per in-ring account",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:10.235Z",
+          "ref": "Every likely_annual_weddings value carries its inference basis or is null. No venue in the ring publishes a weddings-per-year figure",
+          "note": "No fabricated volume",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:10.530Z",
+          "ref": "Finding: no venue in the ring gives a booked couple any planning system. The one reported exception traces to a single 2019 survey response and does not appear on the venue's current site",
+          "note": "The competitive position, verified",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9239,6 +9771,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.000Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:56.910Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9248,7 +9801,7 @@
       "id": "E10.10",
       "epic": "E10",
       "title": "Review each venue’s website, brochure, social presence and digital customer experience.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9265,19 +9818,32 @@
         "Every account in the ring has its website, brochure and social presence reviewed, with what is strong and what is thin recorded.",
         "Broken or missing wedding pages are recorded, because they are outreach openers rather than footnotes."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:10.818Z",
+          "ref": "Website, brochure and social presence reviewed per in-ring account, recorded in digital_experience_note and social_presence",
+          "note": "E10.10 deliverable",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:10.986Z",
+          "ref": "Broken assets recorded per account: dead brochure PDFs, 404 wedding pages, a soft-404 serving generic content, expired certificates, non-resolving domains",
+          "note": "Recorded as outreach openers rather than as footnotes",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9301,6 +9867,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.184Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:57.042Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9310,7 +9897,7 @@
       "id": "E10.11",
       "epic": "E10",
       "title": "Write one honest, venue-specific reason each account belongs in the founding outreach.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9327,19 +9914,32 @@
         "Every account in the ring has one venue-specific sentence saying why it belongs in the founding outreach.",
         "Each sentence fails if it could be sent to a different venue without editing. That test is applied and the failures are rewritten."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:11.220Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.csv column fit_reason",
+          "note": "One venue-specific sentence per in-ring account",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:11.395Z",
+          "ref": "Duplicate-sentence check: 0 identical fit sentences across the set",
+          "note": "The 'could this be sent to another venue unedited' test, applied mechanically",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9363,6 +9963,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.394Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:57.187Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9372,7 +9993,7 @@
       "id": "E10.12",
       "epic": "E10",
       "title": "Rank and lock Cohort 1 containing the first 25 venues.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9399,19 +10020,38 @@
         "No two properties of the same operator appear in Cohort 1.",
         "Every account in Cohort 1 carries a fit sentence, a buyer role and a verified-precision coordinate."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:11.649Z",
+          "ref": "docs/execution/venue-edition-and-films/private/cohort-convert.json",
+          "note": "Cohort 1 ranked, ordered and locked at 25 of 25",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:11.828Z",
+          "ref": "One property per operator enforced; 3 accounts deferred to a later cohort so one buyer is not sent two films in a week",
+          "note": "Cohort composition rule, enforced and tested",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:12.070Z",
+          "ref": "7 of the 25 sit in the 38-52 minute confirmation band and are flagged for a founder ring check before send",
+          "note": "Boundary honesty",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9435,6 +10075,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.591Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:57.307Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9444,7 +10105,7 @@
       "id": "E10.13",
       "epic": "E10",
       "title": "Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9461,19 +10122,38 @@
         "Cohorts 2, 3 and 4 are built by the same rules as Cohort 1, or the shortfall is reported per cohort.",
         "No cohort is padded from outside the ratified ring, and a short cohort reports as short."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:12.363Z",
+          "ref": "docs/execution/venue-edition-and-films/venue-universe/05-COHORTS.md",
+          "note": "Cohort 2 built and short by 9; Cohort 3 holds 2; Cohort 4 does not exist inside the ratified ring",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:12.514Z",
+          "ref": "docs/execution/venue-edition-and-films/private/cohort-convert.json shortfall block: 43 contactable accounts, 1 of 4 cohorts fillable",
+          "note": "Partial delivery, by design. Padding from outside the ring would overturn D-012",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:12.739Z",
+          "ref": "RAID.md R-031",
+          "note": "The shortfall raised as a risk with costed options",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9497,6 +10177,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.779Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:57.435Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "execution",
@@ -9506,7 +10207,7 @@
       "id": "E10.14",
       "epic": "E10",
       "title": "Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -9525,19 +10226,38 @@
         "Consent defaults to unknown and is never assumed. No venue is named publicly on the basis of research alone.",
         "Accounts whose trading status is unconfirmed are held out of every cohort until checked."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-03T01:31:13.022Z",
+          "ref": "docs/execution/venue-edition-and-films/private/venues.csv columns contact_verified_on, conflict_flag, consent_public_naming, consent_map_publication",
+          "note": "The register E10.14 asks for, on every account",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:13.178Z",
+          "ref": "consent_public_naming and consent_map_publication are 'unknown' for all 219 accounts",
+          "note": "Research is not consent. E15.16 and the E13.03 film map depend on this being recorded rather than assumed",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T01:31:13.434Z",
+          "ref": "8 in-ring accounts held out of every cohort on unconfirmed trading status; 6 of 6 suspected closures independently confirmed",
+          "note": "R-033 mitigated by process",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9561,6 +10281,27 @@
           "to": "in_progress",
           "by": "claude_code",
           "note": "WP-02: Greater Limerick venue universe"
+        },
+        {
+          "at": "2026-08-03T01:45:49.979Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "WP-02 complete; verified"
+        },
+        {
+          "at": "2026-08-03T01:45:57.584Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "WP-02 consolidated packet (D-024). Criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T01:57:58.303Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring."
         }
       ],
       "decisionClass": "founder_choice",
@@ -14027,36 +14768,36 @@
     "byStatus": {
       "backlog": 135,
       "ready": 4,
-      "in_progress": 15,
-      "internal_review": 0,
+      "in_progress": 0,
+      "internal_review": 1,
       "founder_review": 0,
-      "done": 54,
-      "blocked": 1,
+      "done": 70,
+      "blocked": 0,
       "deferred": 2,
       "cancelled": 0
     },
     "totals": {
-      "tasks": 211,
-      "active": 209,
+      "tasks": 212,
+      "active": 210,
       "unestimated": 188,
-      "criticalPath": 119,
-      "releaseBlocking": 54,
-      "dependencyEdges": 134
+      "criticalPath": 120,
+      "releaseBlocking": 55,
+      "dependencyEdges": 135
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 25.8,
-      "numerator": 54,
-      "denominator": 209,
+      "value": 33.3,
+      "numerator": 70,
+      "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T01:22:32.871Z",
-    "lastRenderedAt": "2026-08-03T01:22:32.871Z",
-    "lastUpdatedAt": "2026-08-03T01:22:32.871Z",
-    "lastUpdatedSession": "wp03-followups",
+    "lastValidatedAt": "2026-08-03T02:07:23.672Z",
+    "lastRenderedAt": "2026-08-03T02:05:38.494Z",
+    "lastUpdatedAt": "2026-08-03T02:05:38.494Z",
+    "lastUpdatedSession": "eed55e9e-wp01d",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"

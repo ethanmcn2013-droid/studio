@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T01:22:32.871Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T01:22:32.871Z · session `wp03-followups`
+**Report generated:** 2026-08-03T02:05:38.494Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T02:05:38.494Z · session `eed55e9e-wp01d`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,12 +19,12 @@
 
 ## Completion
 
-**Verified completion: 25.8%** — 54 of 209 tasks.
+**Verified completion: 33.3%** — 70 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 27.6% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 33.6% (estimate, not verified completion — status-credit model in REPORTING.md)
 
-**Unestimated active tasks:** 188 of 209.
+**Unestimated active tasks:** 188 of 210.
 
 A task counts as complete only when its acceptance criteria are met, evidence is recorded, verification passed, and the founder has explicitly approved it.
 
@@ -34,29 +34,29 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 |---|---|
 | backlog | 135 |
 | ready | 4 |
-| in_progress | 15 |
-| internal_review | 0 |
+| in_progress | 0 |
+| internal_review | 1 |
 | founder_review | 0 |
-| done | 54 |
-| blocked | 1 |
+| done | 70 |
+| blocked | 0 |
 | deferred | 2 |
 | cancelled | 0 |
-| **total** | **211** |
+| **total** | **212** |
 
 ## Progress by epic
 
 | Epic | Title | Done/Active | % | In flight | Blocked |
 |---|---|---|---|---|---|
 | E01 | Project governance and control | 12/12 | 100% | 0 | 0 |
-| E02 | Commercial offer and Founding 25 programme | 9/12 | 75% | 0 | 0 |
-| E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 0 | 1 |
-| E04 | Product architecture and workspace lifecycle | 11/12 | 91.7% | 1 | 0 |
+| E02 | Commercial offer and Founding 25 programme | 10/13 | 76.9% | 0 | 0 |
+| E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 1 | 0 |
+| E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 0/12 | 0% | 0 | 0 |
 | E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 0 | 0 |
 | E07 | Venue Portal, trust layer and renewal evidence | 0/18 | 0% | 0 | 0 |
 | E08 | Billing, security, reliability and release engineering | 0/12 | 0% | 0 | 0 |
 | E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 0 | 0 |
-| E10 | Greater Limerick venue universe and outreach cohorts | 0/14 | 0% | 14 | 0 |
+| E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
 | E12 | Website, proposal and commercial asset system | 0/14 | 0% | 0 | 0 |
 | E13 | Motion system and Limerick First invitation film | 0/18 | 0% | 0 | 0 |
@@ -106,32 +106,17 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 **Focus task:** none — No focus task. Baseline approval comes first.
 
-**In progress (15/3):**
-- `E04.01` Define the data entities for venue, agreement, term, founding status, member, invitation, couple workspace and public artifact. — claude_code
-- `E10.01` Define the public geographic term and exact boundary for the “Greater Limerick wedding market.” — claude_code
-- `E10.02` Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers. — claude_code
-- `E10.03` Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit. — claude_code
-- `E10.04` Build a master researched universe of at least 125 accounts, or formally document the available market shortfall. — claude_code
-- `E10.05` Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties. — claude_code
-- `E10.06` Record accurate map coordinates, geographic cluster and drive-time ring for every account. — claude_code
-- `E10.07` Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead. — claude_code
-- `E10.08` Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment. — claude_code
-- `E10.09` Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience. — claude_code
-- `E10.10` Review each venue’s website, brochure, social presence and digital customer experience. — claude_code
-- `E10.11` Write one honest, venue-specific reason each account belongs in the founding outreach. — claude_code
-- `E10.12` Rank and lock Cohort 1 containing the first 25 venues. — claude_code
-- `E10.13` Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues. — claude_code
-- `E10.14` Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication. — claude_code
-
-**Internal review (0):**
+**In progress (0/3):**
 - None.
+
+**Internal review (1):**
+- `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
 
 **Awaiting founder review (0):**
 - None.
 
-**Blocked (1):**
-- `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers.
-  - Blocked by: Two blind derivations completed and agreed on 26 substantive points, but the reconciled role-map document was never written to disk and one of two adversarial reviewers returned UNSOUND. Two of its load-bearing factual premises were verified WRONG by the main session: the dietary-notes venue flow does not exist (R-017 corrected), and /p is deliberately search-indexable while the map assumes every published surface is token-bound (R-031). The derivations are sound reasoning on partly wrong facts. Needs a second pass on corrected premises before it can gate E03.04/05/06.
+**Blocked (0):**
+- None.
 
 ## Founder decisions required
 
@@ -158,7 +143,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Critical-path condition
 
-37/119 critical-path tasks complete. 1 blocked: E03.01
+39/120 critical-path tasks complete. 0 blocked.
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 
@@ -170,7 +155,7 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 |---|---|
 | Founding target | 25 |
 | Founding places available | 25 |
-| Researched account universe | 0 |
+| Researched account universe | 219 |
 | Cohorts ready | none |
 | Invitations issued | 0 |
 | Responses | 0 |
@@ -200,8 +185,8 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** 045404f1-wp02 (WP-02 — Greater Limerick venue universe and cohorts (E10.01-E10.14))
-**Last closed session:** wp03-followups (2026-08-03T01:22:32.871Z) → `sessions/2026-08-03--wp03-followups.md`
+**Open sessions:** none
+**Last closed session:** eed55e9e-wp01d (2026-08-03T02:05:38.494Z) → `sessions/2026-08-03--eed55e9e-wp01d.md`
 
 ## Next recommended project-management action
 

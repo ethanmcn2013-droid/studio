@@ -555,3 +555,162 @@ sweep and require confirmation when it spans more than one.
 
 - **Affects:** E01 (all twelve, resolved), E09.01, E09.02, parallel-wave operating practice
 - **Status:** **closed on the facts.** The approvals were genuine and stand. The `--review` scope recommendation is open · **Last reviewed:** 2026-08-03
+
+---
+
+## Risks opened 2026-08-03 by WP-01
+
+### R-035 — One partner's account deletion destroys the couple's shared workspace
+- **ID note:** first written as R-023; renumbered to R-035 on 2026-08-03 when two concurrent sessions were found to have claimed R-023 independently. Ids are stable once published; the earlier claim keeps the number.
+- **Type:** product/privacy · **Probability:** low per couple, certain across a cohort · **Impact:** critical · **Severity:** high
+- **Owner:** Claude Code · **Target:** before Cohort 1 outreach (D-027 point 1)
+- **Verified:** `app/src/server/account-erasure.ts` selects every workspace where
+  `ownerUserId` matches the erasing user and hard-deletes all of it — tasks,
+  comments, attachments, share links — regardless of who created them.
+  `app/src/server/actions/settings.ts` enforces a one-active-owner floor on
+  removal and demotion, so a co-owner cannot be *demoted* out of the workspace,
+  but nothing prevents the account holding `ownerUserId` from deleting itself and
+  taking the workspace with it.
+- **Detail:** the unit of this product is a couple. Two people, one wedding, one
+  workspace. A co-owner recorded in `workspaceMembers` has full admin capability
+  inside the product and no protection from the other partner's account deletion.
+  Everything they wrote goes with it. This is not a hypothetical: it is the
+  shipped behaviour of the GDPR erasure path, which is exactly why it cannot
+  simply be blocked — someone has a legal right to leave.
+- **Why it is severe here rather than merely bad:** it lands on a couple, about
+  a wedding, in the product a venue gifted them. The same shape of failure as
+  R-015, and the same people carry it.
+- **Mitigation:** decide what "delete my account" means when the work is shared —
+  transfer ownership to the remaining owner, erase only the leaver's own
+  contributions, or require both owners to agree. Answered together with E03.10,
+  which asks the same question about separation. Until then, `ownerUserId` and
+  the current holder of the `owner` role are not reconciled by any code, so even
+  a transfer has nothing to write to.
+- **Affects:** E03.10, E04.04, E05, E15.03
+- **Status:** open · **Last reviewed:** 2026-08-03
+
+### R-036 — "Name only" branding is a promise the sales material has not been checked against
+- **ID note:** first written as R-024; renumbered to R-036 on 2026-08-03 when two concurrent sessions were found to have claimed R-024 independently. Ids are stable once published; the earlier claim keeps the number.
+- **Type:** commercial/brand · **Probability:** medium · **Impact:** medium · **Severity:** medium
+- **Owner:** Ethan McNamara · **Target:** copy-freeze 2026-08-21
+- **Detail:** D-027 point 3 fixes launch branding at the venue's name only — no
+  logo, no venue-written welcome. That is what ships today, but it was an
+  accident of `brandMeta` having no schema rather than a stated position, so no
+  sales asset has ever been checked against it. A proposal page, agreement,
+  venue pack, outreach email or film line that shows or implies a venue's logo
+  inside the couple's workspace is now a claim the product will not meet, and it
+  reaches 25 businesses at once.
+- **Mitigation:** check every venue-facing surface against the name-only position
+  before copy-freeze · extend the existing string check to cover logo and
+  branding claims the way it already covers permanence wording · when the venue
+  pack (E12.12) is written, state plainly what a venue's branding does and does
+  not do.
+- **Affects:** E11, E12.04, E12.12, E12.13, E13.09, E14.12, E15.10
+- **Progress 2026-08-03:** swept in full — 29 surfaces found across studio, app
+  and signal-motion, tracked in
+  `evidence/R-024-name-only-copy-register.md`. **All seven public surfaces are
+  corrected** on the founder's approval, including the lender pack panel that
+  promised a venue's mark and welcome message on couple workspaces. Two further
+  claims in the same pack were found while fixing and corrected. Eight internal
+  documents corrected. Ten items remain: four in files the running WP-02 session
+  owns, four in WP-04 and WP-11 proposal drafts, and two needing a decision
+  rather than a rewrite (the venue-written-content commitment in
+  VENUE_EXAMPLE_ROADMAP, and the still-open Hosted logo option in
+  DESIGN_DOCKET). Those two are now decided: the venue-written-content
+  commitment is restated as founder-written from the venue's own facts, and the
+  Hosted logo option is killed. Eight items remain, all in files owned by other
+  sessions or packages. **The corrected files are NOT deployed** — deploying the
+  tree today would also publish the EUR 1,000 founding rate and the Founding 25
+  programme on /venues and in all three decks, and E12.04, the task that owns
+  that page, is still in backlog. Escalated to the founder as one decision:
+  publish both together now, or hold the corrections until E12.04 is written and
+  approved.
+- **Status:** open · **Last reviewed:** 2026-08-03
+
+### R-032 — Google Analytics runs on public surfaces with no consent gate
+- **Type:** privacy/legal · **Probability:** certain · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara
+- **Verified in code:** `app/src/app/layout.tsx:81` renders `<GoogleTag enabled={process.env.VERCEL_ENV === "production"} />` on every route except bare artifact paths. `app/src/components/analytics/google-tag.tsx` carries its own admission in a comment: *"No consent gate yet — if a cookie-consent banner is added, switch to…"*
+- **Detail:** so a wedding guest who follows a link to a couple's published page is measured by a third-party US analytics provider before being asked. Under ePrivacy as transposed by SI 336/2011, consent is required for non-strictly-necessary storage and access on a device, and analytics is not strictly necessary. The role map's viewer row modelled first-party security logging with hashed IPs and a short TTL — that is a truthful description of a different thing than what runs.
+- **Why it lands here rather than in a general backlog:** E03.06 has to write "public Timeline terms, viewer privacy language, analytics disclosure and cookie requirements", and E12.14 has to clear analytics on every commercial page. Both would have been written against the map's description rather than the running code.
+- **Mitigation:** decide whether GA4 runs on couple-facing public artifacts at all — the strongest answer is that it does not, which removes the consent question rather than managing it · if it stays, a consent gate before any non-essential script, and the disclosure written to match · exclude `/p`, `/s`, `/share` and `/embed` from third-party analytics regardless, since those pages carry other people's names.
+- **Affects:** E03.06, E04.08, E06.01, E06.07, E06.12, E12.07, E12.14
+- **Status:** open · **Last reviewed:** 2026-08-03
+
+### R-033 — The embed route is tokenless and frameable on any third-party site
+- **Type:** privacy · **Probability:** certain · **Impact:** medium · **Severity:** medium
+- **Owner:** Claude Code
+- **Verified:** `app/src/app/embed/[slug]/page.tsx` resolves through the same `getPublishedWorkspaceBySlug` path as `/p`, with no token. Its purpose is stated plainly: *"A blogger drops `<iframe src=\"…/embed/{slug}\">` (or the one-step `/embed.js`) into their post and gets a compact, read-only view."* It is correctly `noindex`.
+- **Detail:** not an indexing exposure — a redistribution one. Anyone holding a slug can render a couple's published workspace inside a page the couple has never seen, and the couple has no signal that it happened and no route to stop it short of unpublishing entirely. For a sponsored wedding artifact carrying guests' and suppliers' names, that is a different proposition from a link the couple chose to share.
+- **Mitigation:** decide whether sponsored wedding workspaces are embeddable at all — the simple answer is no, and it costs nothing the couple asked for · if embedding stays, gate it per workspace with a default of off, and surface who is embedding in the couple's own share settings.
+- **Affects:** E06.01, E06.02, E06.05, E06.12, E03.06
+- **Status:** open · **Last reviewed:** 2026-08-03
+
+### R-034 — Venue-facing adoption reporting already ships, and the design work assumed it did not
+- **Type:** correctness/privacy · **Probability:** certain · **Impact:** high · **Severity:** high
+- **Owner:** Claude Code
+- **Verified:** `app/src/app/api/internal/partner-stats/route.ts`, `studio/src/lib/partners/stats.ts` and `studio/scripts/partner-digest.ts` all exist.
+- **Detail:** both the role map and the E09.02 metric work treated venue-facing adoption reporting as a thing to be designed, with suppression presented as a future founder trade-off. A path is already built. Anything already flowing through it is flowing under whatever rules that code implements, not under the rules being written for it — and R-027 established that the shipped suppression floor guards the population and leaves the count naked.
+- **Mitigation:** audit what `partner-stats` actually returns and to whom, before E07 work builds a second reporting path beside it · fold it into the E09.01 taxonomy as a live surface rather than a future one · re-check it specifically against R-027 and R-028.
+- **Affects:** E07.11, E07.14, E07.15, E09.01, E09.02, E09.03
+- **Status:** open · **Target:** before WP-05 begins E07 · **Last reviewed:** 2026-08-03
+
+### R-031 — The public workspace render is deliberately search-indexable, and the privacy model assumes it is not
+- **Restored 2026-08-03.** This entry was written earlier the same day and then **destroyed by a concurrent session's rewrite of this file** (see I-011). It is restored here with its correction already folded in. The loss is the reason I-011 exists.
+- **Type:** privacy · **Probability:** certain · **Impact:** critical · **Severity:** critical
+- **Owner:** Ethan McNamara
+- **Verified directly in code:** `app/src/app/p/[slug]/page.tsx` is "the public read-only render of any published workspace", and its own comment states the intent: *"Server-rendered for indexing"* and *"a public, indexable, rarely-changing page hit by crawlers and social unfurls."* `app/src/app/robots.ts` disallows `/app`, `/s`, `/share`, `/redeem`, `/welcome` and `/api`. **`/p` is not in that list and sets no `noindex`.**
+- **Correction carried forward:** the first version of this entry said "`/p` and `/embed` are not in that list", implying both are indexable. **`/embed` is deliberately unindexed** — its route file says so outright. I had concluded from `robots.ts` absence without opening the file, which is the same error class I had just criticised the role map for. `/embed` carries a different and real exposure, recorded separately as R-033.
+- **Why it matters:** `privacy-permission-matrix.md` and the E03.01 role map both model every published surface as token-bound, `noindex` and revocable. That is true of `/share/[token]` and `/s`. It is the opposite of true for `/p`, which exists to be crawled. A couple publishing a workspace containing guests' and suppliers' names is publishing to search engines, and the published DTO carries task titles and tags. The privacy documentation describes a different product from the one running.
+- **The decision underneath it:** `/p` being indexable is a deliberate product choice, not a bug. Whether a **sponsored wedding** workspace should default to that surface has never been decided.
+- **Mitigation:** decide whether the sponsored couple artifact uses `/p` at all, or only the token-bound `/s` and `/share` routes · if `/p` stays, add it to `robots.ts` disallow and set `noindex` for wedding workspaces, and say so plainly in the couple's publish confirmation · correct `privacy-permission-matrix.md` and the role map · a standing no on face detection, auto-tagging and face grouping, which both role-map derivations reached independently.
+- **Affects:** E03.01, E03.06, E04.08, E04.10, E06.01, E06.02, E06.05, E06.12, E12.07
+- **Status:** open · **Target:** before E06 work begins · **Last reviewed:** 2026-08-03
+
+### I-011 — Markdown registers lose entries under concurrent sessions, and one critical finding was already lost
+- **Type:** governance/tooling · **Severity:** high · **Owner:** Claude Code
+- **What happened:** `PROJECT_STATE.json` is protected by a cross-session lock, verified against twelve concurrent writers. `RAID.md`, `DECISIONS.md` and `CHANGELOG.md` are **not**. On 2026-08-03, with four work-package sessions running, a concurrent rewrite of `RAID.md` silently destroyed **R-031** — the finding that `/p` is deliberately search-indexable, which is the most consequential privacy result of the session. It was noticed only because a later edit failed to find its own anchor text. Two sessions also independently claimed `R-023` and `R-024`, producing genuine duplicate ids that had to be repaired by hand.
+- **Why the existing controls did not catch it:** the lock covers state mutations through `project-control.mjs`. Nothing covers a plain file write to a markdown register, and nothing validates that ids in those registers are unique. `validate` checks task ids, not RAID ids.
+- **What it cost:** one critical finding lost for roughly forty minutes, recovered only because I happened to edit the same entry again. Had I not, it would have been absent from the register while everything downstream assumed it was recorded.
+- **Mitigation:** append-only discipline is not enough when two writers append at once. Options, in order of preference: (1) extend the id-uniqueness check in `validate` to cover `RAID.md`, `DECISIONS.md` and change-request numbers, so a duplicate or a gap fails loudly; (2) allocate register ids through `project-control.mjs` so the lock covers them; (3) give each session an id range. Until one ships, **only the main session writes the registers**, which is what `WORKFLOWS.md` §7 already says and which was not followed here.
+- **Affects:** every register in the control root
+- **Status:** open · **Target:** before Wave 2 opens three more concurrent sessions · **Last reviewed:** 2026-08-03
+
+---
+
+## Opened 2026-08-03 by WP-10 · the financial model against real inputs
+
+### R-037 — WITHDRAWN. The "funding gap" was a modelling hole, not a business problem.
+- **Type:** financial · **Status:** **withdrawn 2026-08-03, same day it was opened**
+- **Owner:** Ethan McNamara
+- **What was recorded:** that setting `startingCashEur` to its real value of zero made the model report `defaultAlive: false`, `runwayMonths: 0` and a EUR 1,530 shortfall across June, July and August 2026, and that this gated the release date.
+- **Why it was wrong.** The founder funds the company personally until it earns. The company is mid-registration and has no bank account yet, so an opening balance of zero is **correct and expected**, not an absence of money. The model simply had no way to represent founder funding, so a zero balance read as "nothing is paying for this". The EUR 1,530 was never a gap; it is what the founder puts in, which he was always going to do.
+- **The founder, in his own words:** *"I'm funding everything personally myself out of my own account... The company is in the process of being registered... I will cover August until the company actually makes money. And from then, the company will fund itself rather than myself."*
+- **What changed instead.** `financial-model.ts` now models founder funding explicitly: any month the company cannot cover, the founder tops it up to zero and the top-up is recorded. Two new outputs replace the phantom: `founderCapitalEur` (**EUR 1,530**, what he is personally out of pocket) and `founderFundingEndsAt` (**Aug '26**, the month the company stops needing him). `defaultAlive` now means the company carries itself from its own revenue, and it is **true**.
+- **The lesson worth keeping.** A model that cannot express how something is funded will invent a crisis when the funding is real but unmodelled. The check is not "does the number look bad" but "does the model know what actually happens".
+- **Last reviewed:** 2026-08-03
+
+### R-025 — The public price launch is coupled to an unapproved task in the working tree
+- **Type:** commercial/governance · **Probability:** high while the tree stays uncommitted · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara · **Target:** before any deploy of `studio`
+- **Detail:** `src/app/venues/page.tsx` and all three brand decks in the working
+  tree carry a full rewrite publishing the **EUR 1,000 founding rate**, "The
+  Founding 25" and the 01/25 numbering. **E12.04, the task that owns the venues
+  page, is still in `backlog`** — never started, never reviewed, never approved.
+  D-009's own downstream note says that page change "is its own task with its own
+  founder sign-off".
+- **Why it is a risk and not just untidy:** any deploy of `studio` from this tree
+  publishes a new public price. Price is on the change-control list (WORKFLOWS
+  §5). It reaches search and link previews immediately and is awkward to walk
+  back with exactly the 25 businesses about to be approached.
+- **How it was found:** WP-01 was asked to deploy seven approved branding-copy
+  corrections. The corrections are interleaved in the same four files as the
+  price rewrite and cannot be separated cleanly, so the narrow authorisation and
+  the actual effect had come apart.
+- **Mitigation:** write and approve E12.04 before deploying, then publish both
+  together · or approve the price launch explicitly and knowingly, as one
+  decision · commit the tree in coherent pieces rather than leaving 120 files
+  from four sessions uncommitted on a feature branch, which is what allowed two
+  unrelated changes to become one deploy.
+- **Affects:** E12.04, E02.01, E15.10, the Commercial gate
+- **Status:** open · **Last reviewed:** 2026-08-03

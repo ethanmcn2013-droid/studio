@@ -149,3 +149,52 @@ PASS (no output = clean)
 ƒ  (Dynamic)  server-rendered on demand
 
   build exit=0
+
+================================================================
+WP-01 continuation (E02.13 + R-024) — 2026-08-03T01:45:22Z
+================================================================
+--- typecheck ---
+src/lib/hq/financial-model.ts(297,3): error TS2739: Type '{ months: FinMonth[]; year1RevenueEur: number; horizonRevenueEur: number; totalVenuesHorizon: number; workspaceSubsAtHorizon: number; lowestCashEur: number; runwayMonths: number; defaultAlive: boolean; peakMonthlyBurnEur: number; unit: { ...; }; }' is missing the following properties from type 'FinancialSummary': founderCapitalEur, founderFundingEndsAt
+
+--- founding number, pure rules ---
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+
+--- founding number, writer against a real SQLite engine ---
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+
+--- full studio suite ---
+[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)
+[suite-switcher-contract] ok
+[chrome-contract] ok (studio)
+[loading-contract] ok (studio)
+[venue-edition-contract] ok
+[venue-term-parity] ok (7498cee02c07)
+[content-truth] ok
+ℹ tests 16
+ℹ pass 16
+ℹ fail 0
+ℹ tests 389
+ℹ pass 389
+ℹ fail 0
+ℹ tests 38
+ℹ pass 38
+ℹ fail 0
+  chain exit=0
+
+--- build ---
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+  build exit=0
+
+--- typecheck, re-run ---
+NOTE: the run above caught src/lib/hq/financial-model.ts mid-edit by a
+concurrent session (FinancialSummary had gained founderCapitalEur and
+founderFundingEndsAt but the returned object had not). That file is
+WP-10 territory and was not touched by WP-01. It resolved on its own
+when that session finished. Re-run below:
+PASS — clean, zero errors in any file

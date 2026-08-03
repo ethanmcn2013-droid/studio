@@ -4,15 +4,19 @@ import { useActionState } from "react";
 import { mintCodesAction, type MintResult } from "./actions";
 
 /** Mint codes for one venue. The server enforces the allotment cap with a
- *  race-safe conditional decrement, so an over-mint is refused there. */
+ *  race-safe conditional decrement, so an over-mint is refused there. An
+ *  unlimited venue (R-016) has no cap to refuse against and says so
+ *  affirmatively rather than rendering an empty space where a count was. */
 export function MintCodesForm({
   sponsorId,
   sponsorName,
   remaining,
+  unlimited = false,
 }: {
   sponsorId: string;
   sponsorName: string;
   remaining: number | null;
+  unlimited?: boolean;
 }) {
   const [state, action, pending] = useActionState<MintResult | null, FormData>(
     mintCodesAction,
@@ -48,6 +52,8 @@ export function MintCodesForm({
         <span className="text-[11.5px]" style={{ color: "var(--status-blocked)" }}>
           {state.error}
         </span>
+      ) : unlimited ? (
+        <span className="text-[11px] text-ink-quiet">Unlimited · every booked couple</span>
       ) : remaining != null ? (
         <span className="text-[11px] text-ink-quiet">{remaining} of allotment remaining</span>
       ) : null}

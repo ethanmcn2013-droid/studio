@@ -22,6 +22,11 @@ import { systemActor } from "@/lib/entitlements-db/guard";
 import { GRANT_TIER_OPTIONS } from "@/lib/hq/access";
 import { getPerson } from "@/lib/hq/access";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
+import {
+  DEFAULT_ALLOTMENT_MODE,
+  isAllotmentMode,
+  type AllotmentMode,
+} from "@/lib/venue-allotment";
 
 /**
  * Server actions for the Access console (/hq/entitlements). Auth: HQ cookie.
@@ -246,7 +251,14 @@ export async function mintCodesAction(
 
 // ── Onboard a venue (create + record payment + allotment) ───────────────
 export type OnboardResult =
-  | { ok: true; slug: string; created: boolean; paid: boolean }
+  | {
+      ok: true;
+      slug: string;
+      created: boolean;
+      paid: boolean;
+      allotmentMode: AllotmentMode;
+      fairUseCeiling: number | null;
+    }
   | { error: string };
 
 export async function onboardVenueAction(
@@ -257,10 +269,26 @@ export async function onboardVenueAction(
   const name = field(fd, "name");
   const contactEmail = field(fd, "contactEmail");
   const venuePlan = field(fd, "venuePlan") as OnboardPlan;
-  const allotment = Number.parseInt(field(fd, "allotment"), 10);
+  const rawMode = field(fd, "allotmentMode") || DEFAULT_ALLOTMENT_MODE;
   const termMonthsRaw = field(fd, "termMonths");
   if (!name || !contactEmail) return { error: "Name and contact email are required." };
-  if (!Number.isInteger(allotment) || allotment < 1) return { error: "Allotment must be at least 1." };
+  if (!isAllotmentMode(rawMode)) return { error: "Pick an issuance mode." };
+
+  // R-016. The old form required a number and defaulted it to ten, so ten was
+  // every venue's real entitlement. Unlimited is now the standard shape and
+  // takes the venue's own annual wedding count instead — which sets a
+  // monitoring ceiling, never a cap.
+  const unlimited = rawMode === "unlimited";
+  const allotmentRaw = field(fd, "allotment");
+  const allotment = allotmentRaw ? Number.parseInt(allotmentRaw, 10) : null;
+  if (!unlimited && (!Number.isInteger(allotment) || (allotment ?? 0) < 1)) {
+    return { error: "A limited venue needs an allotment of at least 1." };
+  }
+  const countRaw = field(fd, "annualWeddingCount");
+  const annualWeddingCount = countRaw ? Number.parseInt(countRaw, 10) : null;
+  if (countRaw && (!Number.isInteger(annualWeddingCount) || (annualWeddingCount ?? -1) < 0)) {
+    return { error: "Annual wedding count must be a whole number." };
+  }
 
   try {
     const actor = await resolveHqOperatorActor();
@@ -268,13 +296,22 @@ export async function onboardVenueAction(
       name,
       contactEmail,
       venuePlan,
+      allotmentMode: rawMode,
       allotment,
+      annualWeddingCount,
       actor,
       termMonths: termMonthsRaw ? Number.parseInt(termMonthsRaw, 10) : null,
       reason: `onboard ${venuePlan} via console`,
     });
     revalidatePath(CONSOLE);
-    return { ok: true, slug: res.slug, created: res.created, paid: res.paid };
+    return {
+      ok: true,
+      slug: res.slug,
+      created: res.created,
+      paid: res.paid,
+      allotmentMode: res.allotmentMode,
+      fairUseCeiling: res.fairUseCeiling,
+    };
   } catch (err) {
     return { error: err instanceof Error ? err.message : "unknown error" };
   }

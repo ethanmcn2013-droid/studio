@@ -287,3 +287,112 @@ E02 -> E02, E01. Basis: D-025, approving CR-002. E01 holds the freeze dates and 
 ## 2026-08-03 · Release gate Sales readiness supporting epics changed
 
 E10, E11, E12 -> E10, E11, E12, E15. Basis: D-025, approving CR-002. Nothing certified that what was sold could be delivered, because onboarding lives in E15..
+
+## 2026-08-03 · WP-02 · the Greater Limerick venue universe, and the shortfall in it
+
+**The market the Founding 25 is sold into contains 43 contactable venues, not
+125.** E10.01 to E10.14 delivered; all fourteen in Founder Review, none Done.
+
+Eleven independent research sweeps — four by county, plus venue type, directories,
+awards and press, the existing repository, a village-by-village pass, historic
+houses and Section 482 properties, and the statutory planning registers —
+produced 376 raw records, deduplicated to **219 accounts**. Seventy sit inside
+the ratified 45-minute ring; fifty are an eligible venue type; **forty-three are
+confirmed trading and therefore contactable**.
+
+**Cohort 1 fills to 25. Cohort 2 reaches 16. Cohort 3 reaches 2. Cohort 4 does
+not exist.** Twenty-five founding venues out of forty-three accounts needs roughly
+a 58% conversion rate on cold email. Recorded as R-031 with five costed options;
+recommendation is to lock Cohorts 1 and 2 now, hold Cohort 3 as a contingent
+reserve, and decide the geography question on Cohort 1's measured conversion
+rather than on an assumption.
+
+**The ring is tighter than the programme assumed.** Measured with two independent
+routing engines from a fixed anchor: Gort 51 minutes, Glen of Aherlow 56, Mallow
+58, Cashel 61, Listowel 73. North Kerry, south Galway, Cashel and north Cork
+beyond Charleville are all outside it — four search areas the 125 target had been
+implicitly counting on.
+
+**The shortfall is a finding, not a failed search.** Thirty-nine of sixty-one
+villages checked hold no wedding venue at all. A dedicated socials-only pass found
+none. The barn segment is empty inside the ring. Hidden Ireland has no member
+house in Limerick or Clare. All six named Section 482 leads run no weddings.
+Limerick's planning register returned zero wedding-venue applications in five
+years. The last three sweeps, each aimed where venues were expected to be hiding,
+added seven accounts between them.
+
+**What the research also settled.** No venue in the ring gives a booked couple any
+planning system — the one reported exception traces to a single 2019 survey
+response and appears nowhere on that venue's current site. Six suspected closures
+were put to verification and six were confirmed, including a lakeside estate
+closed seven years whose website still sells weddings. Four operators run more
+than one property and three of those ties were recorded as independent until a
+second pass read the group's own site.
+
+**Honest edges.** Cohort 3 is contingent and Cohort 4 does not exist, so E10.13
+comes back partly delivered by design. Thirteen of the forty-three contactable
+accounts have only a town-centroid coordinate, which decides the ring but cannot
+carry an E13.17 film render. Two duplicate pairs remain for human judgement. The
+IHHA member list could not be reached. Consent for public naming and map
+publication is `unknown` on all 219 accounts, which is correct rather than
+incomplete.
+
+Two conflicts recorded rather than reconciled: the strategy document's
+owner-operator rule against D-012's eligible types (I-011), and pre-existing
+personal contact data found committed elsewhere in the workspace (R-032), reported
+for a founder decision and deliberately not remediated by this package.
+
+Verification: 25/25 tests pass · coordinate audit clean at 0 wrong across 91
+points · personal-data guard clean on all eleven raw research files and every
+generated artefact · `validate` clean.
+
+## 2026-08-03 · Batch approved — 14 task(s)
+
+`E10.01` Define the public geographic term and exact boundary for the “Greater Limerick wedding market.”
+`E10.02` Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers.
+`E10.03` Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit.
+`E10.04` Build a master researched universe of at least 125 accounts, or formally document the available market shortfall.
+`E10.05` Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties.
+`E10.06` Record accurate map coordinates, geographic cluster and drive-time ring for every account.
+`E10.07` Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead.
+`E10.08` Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment.
+`E10.09` Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience.
+`E10.10` Review each venue’s website, brochure, social presence and digital customer experience.
+`E10.11` Write one honest, venue-specific reason each account belongs in the founding outreach.
+`E10.12` Rank and lock Cohort 1 containing the first 25 venues.
+`E10.13` Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues.
+`E10.14` Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication.
+
+Founder note: Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.
+
+## 2026-08-03 · D-028 · E10 approved — Convert model, geography deferred
+
+**Epic E10 is complete: 14 of 14 tasks founder-approved and Done.** Verified
+completion moves to 33.3% (70/210).
+
+Ethan approved the `convert` ranking model for Cohort 1, deferred the geography
+decision until Cohort 1 conversion data exists, and approved all fourteen tasks
+in one instruction. Recorded as **D-028**.
+
+Approved knowing two things were reported as short: E10.04 returns a documented
+market shortfall — **43 contactable accounts inside the ratified ring against a
+125-account target** — rather than the universe the backlog asked for, and E10.13
+is partly delivered because Cohorts 3 and 4 do not exist inside that ring.
+
+**R-031 stays open.** Deferring buys information, it does not resolve the
+shortfall. Twenty-five founding venues from forty-three accounts still needs
+roughly a 58% conversion rate, and if Cohort 1 converts at an ordinary 10–15% the
+geography or the founding number has to move. Five costed options stand ready.
+
+**I-011 resolved as recommended:** D-012 governs, group-owned hotels stay
+eligible, and the owner-operator preference becomes a ranking weight rather than
+a filter — which is what `decision_access` already does. The 40-weddings
+threshold in `VENUE_EDITION_STRATEGY.md` is superseded by D-012's 20.
+
+**Deliberately not changed.** The `cohortReady` flags stay `false` for all four
+cohorts. Cohorts 1 and 2 are ranked, locked and approved, but no contact on any
+account has been verified, seven Cohort 1 accounts still need a ring
+confirmation, and thirteen contactable accounts carry only a town-centroid
+coordinate. "Ready" on that line reads as ready to send, and nothing is. The flag
+needs its meaning settled before it is set either way; `project-control.mjs`
+deliberately refuses to set structured fields through the counter command.

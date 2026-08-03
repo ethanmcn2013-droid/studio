@@ -15,40 +15,48 @@ It does not exist. This is that document.
 
 | | |
 |---|---|
-| Raw records gathered across ten research sweeps | **376** |
-| Unique accounts after deduplication | **221** |
-| Inside the ratified 45-minute ring | **71** |
-| Inside the ring **and** confirmed trading | **69** |
-| Inside the ring, trading, **and** an eligible venue type | **56** |
-| — of those, borderline on the ~20-weddings floor | 21 |
-| In the 45–60 minute band, eligible and trading (**not** in the market) | 22 |
+| Raw records gathered across eleven research sweeps | **376** |
+| Unique accounts after deduplication | **219** |
+| Inside the ratified 45-minute ring | **70** |
+| Inside the ring, an eligible venue type, not closed or sold | **50** |
+| Inside the ring, eligible, **and confirmed trading** — the real number | **43** |
+| — held pending a trading check | 7 |
+| In the 45–60 minute band, eligible and trading (**not** in the market) | 16 |
 
-**The addressable universe inside the ratified geography is 56 accounts, not
-125.** With the 45–60 band added it would be 78. Neither reaches the target.
+**The contactable universe inside the ratified geography is 43 accounts, not
+125.** With the 45–60 band added it would be 59. Neither reaches the target, and
+neither is close.
+
+The gap between 50 and 43 matters as much as the headline. Seven in-ring accounts
+cannot be contacted until someone checks whether they are still trading — and of
+six suspected closures put to a dedicated verification pass, **six were
+confirmed**, including a lakeside estate closed for seven years whose website
+still sells weddings.
 
 ### By county and type, inside the ring
 
-| County | Accounts | | Type | Accounts |
-|---|---|---|---|---|
-| Limerick | 27 | | Hotel with a real weddings operation | 36 |
-| Clare | 21 | | Castle | 8 |
-| Tipperary | 7 | | Country house | 8 |
-| Cork (Charleville only) | 1 | | Estate | 2 |
-| | | | Other | 2 |
+| County | | Type | |
+|---|---|---|---|
+| Limerick | 27 | Hotel with a real weddings operation | 33 |
+| Clare | 19 | Castle | 8 |
+| Tipperary | 7 | Country house | 8 |
+| Cork (Charleville only) | 1 | Estate | 3 |
 
-Two things are worth noticing here. The market is **hotel-dominated** — 36 of 56
-— which shapes who the Founding 25 can realistically be. And **north Tipperary
-and north Cork are nearly empty**: eight accounts between them.
+Two things are worth noticing. The market is **hotel-dominated**, which shapes who
+the Founding 25 can realistically be — no cohort built from this ring will not be.
+And **north Tipperary and north Cork are nearly empty**: eight accounts between
+them.
 
 ## 2. Why this is a finding and not a failed search
 
-The instinct on seeing 56 is that the research was not thorough enough. The
+The instinct on seeing 43 is that the research was not thorough enough. The
 negative results are the strongest part of this document, so here they are.
 
-**Ten independent sweeps, deliberately using different methods** so that no
+**Eleven independent sweeps, deliberately using different methods** so that no
 single blind spot could hide a segment: four by county, one by venue type, one by
 directory, one by awards and press, one over the existing repository, one
-village-by-village, one over historic houses and Section 482 properties.
+village-by-village, one over historic houses and Section 482 properties, and one
+over the statutory planning registers.
 
 **The village belt is empty.** A dedicated pass checked 61 named villages across
 east and mid Clare, county Limerick and north Tipperary. **39 returned no wedding
@@ -88,9 +96,10 @@ a census. Cross-checked against the universe: **zero new in-ring accounts.**
 - **The IHHA and Irish Georgian Society member lists** could not be reached —
   `ihha.ie` has an expired TLS certificate. This is the one source in the plan
   that remains unworked.
-- **Council planning registers** were not usably searchable. The "planning
-  permission granted for a wedding venue" angle — the only route to venues that
-  do not exist yet — is open.
+- **Council planning registers** were worked, in the end. All three counties
+  publish through the national ePlan portal, whose description search is POST-only
+  and had to be driven through a browser. Limerick returned **zero** wedding-venue
+  applications in five years. That angle is now closed, and it closed downwards.
 - **Regional press and supplier portfolios** (Limerick Leader, Clare Champion,
   Nenagh Guardian, photographer venue guides) hard-block automated fetch. A
   browser-driven pass over roughly five named URLs would likely add venues,
@@ -101,37 +110,42 @@ a census. Cross-checked against the universe: **zero new in-ring accounts.**
 
 Best estimate of what a further pass would add: **five to fifteen accounts,
 weighted toward small operations near the ~20-weddings floor.** That would take
-the universe to roughly 60–70. **It does not reach 125, and no plausible amount
-of further searching does.**
+the contactable universe to roughly 50–58. **It does not reach 125, and no
+plausible amount of further searching does.**
+
+The later sweeps are the evidence for that estimate. The village pass, the
+historic-house pass and the planning-register pass between them added **seven new
+accounts** to a universe of 212 — and each was aimed squarely at where undiscovered
+venues were expected to be hiding. The returns had already flattened.
 
 ## 4. What the shortfall actually means
 
 The cohort model is not broken. The arithmetic underneath it changes.
 
 D-017 ratifies twenty-five founding places, twenty-five venues contacted per
-cohort, released sequentially until twenty-five have signed and paid. Against a
-universe of 56:
+cohort, released sequentially until twenty-five have signed and paid. Against 43
+contactable accounts:
 
 | | |
 |---|---|
-| Cohort 1 | 25 — **buildable** |
-| Cohort 2 | 25 — **buildable** |
-| Cohort 3 | 6 available, not 25 |
+| Cohort 1 | **25 — fills** |
+| Cohort 2 | 16, short by 9 |
+| Cohort 3 | 2, short by 23 |
 | Cohort 4 | none |
 
-**Two cohorts exist. Cohorts 3 and 4 do not.** Fifty sends is the whole
-addressable market bar six accounts.
+**One cohort fills. The second is two-thirds of a cohort, and the third is a
+rounding error.** Forty-three sends is the entire addressable market.
 
 That produces the number that matters:
 
-> **Twenty-five founding venues out of 56 eligible accounts requires roughly a
-> 45% conversion rate on cold email.**
+> **Twenty-five founding venues out of 43 contactable accounts requires roughly a
+> 58% conversion rate on cold email.**
 
 For context, this is cold outreach to venue owners who have never heard of Signal
 Studio, from a domain whose DKIM is still pending (R-010), asking for €1,000 a
-year. A personalised film is a strong opener, but 45% would be an exceptional
-result. If conversion lands at a more ordinary 10–15%, the ring yields **six to
-eight founding venues, not twenty-five.**
+year. A personalised film is a strong opener, but 58% would be an extraordinary
+result — better than most warm inbound. If conversion lands at a more ordinary
+10–15%, the ring yields **four to six founding venues, not twenty-five.**
 
 **This is the real finding.** Not that the research came up short — that the
 25-venue target and the 45-minute ring are in tension with each other, and one of
@@ -143,14 +157,14 @@ it was simply invisible until the market was counted.
 Every option here is change-controlled (`WORKFLOWS.md` §5), so none has been
 actioned. Presented for approval or push-back.
 
-**A — Widen the ring to 60 minutes.** Adds **22 accounts** (universe 78, required
-conversion ~32%). Brings in Gort, Cashel, the Glen of Aherlow, Mallow and
+**A — Widen the ring to 60 minutes.** Adds **16 contactable accounts** (universe
+59, required conversion ~42%). Brings in Gort, Cashel, the Glen of Aherlow, Mallow and
 Ennistymon. *Cost:* changes ratified geography (D-012), stretches the film map in
 E13.03, and "Limerick and the surrounding counties" starts to strain when it
 reaches Cashel and Mallow.
 
-**B — Reduce the founding number.** Fifteen founding venues out of 56 needs ~27%
-conversion; ten needs ~18%. *Cost:* changes the founding-25 model, which is on the
+**B — Reduce the founding number.** Fifteen founding venues out of 43 needs ~35%
+conversion; ten needs ~23%. *Cost:* changes the founding-25 model, which is on the
 change-control list and is public-facing (`01/25` to `25/25` numbering). Worth
 noting the superseded 2026-07-11 decision set fifteen, so this is a return to a
 position the founder previously held rather than a new idea.
@@ -160,9 +174,9 @@ would add accounts. *Cost:* D-012 excluded them for a stated reason — a venue 
 cannot justify €1,000 will not renew — and it weakens the product story. **Not
 recommended.**
 
-**D — Smaller cohorts, more waves.** Cohorts of 15 across four waves reaches 60
+**D — Smaller cohorts, more waves.** Cohorts of 15 across three waves reaches 45
 sends. *Cost:* none to the model, but it does not create accounts. It reprofiles
-the same 56 over a longer calendar and is a scheduling change, not a supply one.
+the same 43 over a longer calendar and is a scheduling change, not a supply one.
 
 **E — Accept two cohorts and let the data decide.** Lock Cohorts 1 and 2 from the
 ring now, define Cohort 3 as the 45–60 band held in reserve, and decide the
@@ -195,13 +209,21 @@ every rebuild, so regenerating the universe cannot silently discard a judgement.
 
 ### Deduplication (E10.05)
 
-155 duplicate records folded into 221 unique accounts. The matcher is
+157 duplicate records folded into 219 unique accounts. The matcher is
 deliberately conservative — a false merge deletes a real prospect and nobody
 notices, a false split shows up as two similar rows and is fixed in seconds.
 
-It resolves in this order: an explicit researcher instruction (including a "keep
-separate" veto) · identical name · shared website domain · identical distinctive
-name key · then token overlap, which only ever proposes.
+It resolves in this order: an explicit "keep separate" instruction from a
+researcher, which vetoes everything · identical name · shared website domain · a
+researcher's positive identification · identical distinctive name key · then
+token overlap, which only ever proposes.
+
+That order was wrong at first and it mattered. The hints were checked before
+everything else, so an *ambiguous* note — "almost certainly a directory data
+error for the same Ennis property" — returned "not the same" and blocked two
+records with an identical name and an identical domain from merging, leaving two
+accounts sharing one CRM join key. The build now refuses to write a duplicate ID
+at all.
 
 Real cases it caught: **The Rine = The Inn at Dromoland = the old Clare Inn**, one
 property under three names all still live in directories · **Killaloe Hotel & Spa
@@ -211,12 +233,20 @@ merge: **Bunratty Castle Hotel** and **Bunratty Castle & Folk Park** are differe
 businesses in one village, as are **Dromoland Castle** and **The Rine** on one
 estate.
 
-**Eleven pairs remain for human review.** They are genuine judgement calls, listed
-in the merge output.
+**Two pairs remain for human review**, down from twenty-eight before the matcher
+was corrected and twelve pairs were confirmed by hand. Both are genuine judgement
+calls and both sit outside the ring.
 
 ### Groups and multi-property operators
 
-Three operators run more than one property in the universe. This matters
+Four operators run more than one property in the universe, and **three of those
+ties were recorded as independent by the first research pass** — found only when a
+second pass read the group's own site. One of them, a six-property group, owns
+three in-ring accounts including two of the largest.
+
+This cuts both ways, and the packet says so: it drops decision accessibility for
+all three, and it means one group conversation could land three founding venues at
+once. This matters
 operationally, not just tidily: **two properties of one group means one buyer
 receiving two personalised films in the same week**, which is precisely the
 impression a personalised film exists to avoid. The cohort builder enforces one
@@ -224,7 +254,7 @@ property per operator per cohort and defers the second, and a test holds it.
 
 ### Not confirmed trading
 
-**37 accounts** are flagged. Several are live commercial traps: a lakeside estate
+**41 accounts** are flagged, seven of them inside the ring. Several are live commercial traps: a lakeside estate
 reported in receivership whose website still sells weddings, a hotel described in
 its own sale listing as not trading that a 2026 blog still recommends, and a
 500-capacity Ennis hotel stating on its own wedding page that it is not currently

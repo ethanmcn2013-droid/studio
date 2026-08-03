@@ -928,3 +928,158 @@ approved, so the record shows that approval happened and not what was judged.
 (account deletion destroys the shared workspace), D2 the missing founding-number
 field, D3 the canonical venue-identity path, D4 the unwired consent layer — were
 not answered by this instruction and remain open.
+
+---
+
+## D-027 — The four WP-01 packet decisions answered
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** E02.10, E03.10, E04.04, E04.05, E04.08, E05, E07, E11, E12, E13
+
+**Decision.** All four open items from the WP-01 packet, answered together.
+
+1. **R-023 — account deletion destroys the shared workspace: fix before Cohort 1.**
+   Not release-blocking, but fixed before any venue is contacted. It needs a
+   product answer to "what does delete my account mean when the work is shared",
+   which is the same question E03.10 asks about separation, so the two are
+   answered together rather than separately.
+2. **The founding number gets a real field, now.** One column on `sponsors` with
+   a unique constraint, assigned on cleared payment per E02.10 and D-009 point 6.
+   E02.10 defined the numbering policy and never claimed the implementation; this
+   is the implementation, and it is due before the first payment clears.
+3. **Venue branding at launch is the venue's NAME ONLY.** No logo, no
+   venue-written welcome message. This matches what ships today
+   ("Compliments of <venue>") and it is now a stated position rather than an
+   accident of `brandMeta` having no schema.
+4. **The Venue Portal at launch is invitation administration only.** Aggregate
+   adoption evidence follows after 1 September. The consent layer stays unwired
+   for now.
+
+**Rationale.** Points 3 and 4 buy back the two largest pieces of unbuilt work in
+the 29 days before release, and both were going to be discovered late otherwise.
+Point 2 costs little and removes the one failure that cannot be walked back:
+two founding venues both told they hold the same number.
+
+**Downstream, and this is the part that must not be missed.**
+
+Point 3 turns a technical gap into a **standing copy constraint**. No sales
+asset, agreement, proposal page, film line, venue pack or outreach email may
+imply that a venue's logo or its own words appear in the couple's workspace.
+Every surface that would have said so has to be checked before copy-freeze
+(2026-08-21). This binds E11, E12.12, E12.13, E13.09 and E14.12.
+
+Point 4 **narrows D-001 point 5**, which describes the Venue Portal as "an
+aggregate adoption-evidence layer". At launch it is not one. The description is
+not rewritten — the decision records that the launch scope is smaller than the
+charter, deliberately, and that the charter is the destination.
+
+**Recorded as CR-003** because points 2, 3 and 4 change product scope.
+
+---
+
+## D-028 — Cohort 1 ranks on Convert; the geography decision waits for real conversion data
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** E10.03, E10.12, E10.13, E10.14, E11.03, E13.03, E13.17, E15.07, E15.15
+- **Answers:** R-031 (interim), I-011 · **Approves:** E10.01–E10.14, all fourteen
+
+**Decision.**
+
+1. **The ranking model is `convert`** — the twenty-five most likely to say yes,
+   weighting decision accessibility and strategic fit hardest. The three
+   alternatives built alongside it (`reference`, `learn`, and the `map` model
+   that optimises the film's constellation) are recorded and not adopted.
+   Eighteen of Cohort 1's twenty-five are selected by all four models, so the
+   choice determines the order and the last handful of places rather than the
+   bulk of the cohort.
+
+2. **The geography question is deferred until Cohort 1 conversion data exists.**
+   The ratified 45-minute ring in D-012 is **unchanged**. Cohorts 1 and 2 are
+   locked from inside it. Cohort 3 is defined as the 45–60 minute band, held in
+   reserve, released only on a later founder decision to widen the ring. Cohort 4
+   is recorded as **not available**.
+
+3. **All fourteen E10 tasks are approved**, including E10.04 returning a
+   documented market shortfall instead of 125 accounts, and E10.13 partly
+   delivered because Cohorts 3 and 4 do not exist.
+
+**Decision-maker's words.** *"Approve Convert and defer the geography call until
+Cohort 1 data, lets go with your recommendation … and all 14 tasks are founder
+approved."*
+
+**What this does not decide.** The shortfall itself stays open as **R-031**. The
+measured position is 43 contactable accounts inside the ring against a
+twenty-five-venue target, which needs roughly a **58% conversion rate on cold
+email**. Deferring is a decision to buy information, not a resolution: if
+Cohort 1 converts at an ordinary 10–15%, the ring yields four to six founding
+venues and the geography or the founding number has to move. The five costed
+options in `venue-universe/03-UNIVERSE.md` §5 stand ready for that moment.
+
+**Why deferring is the right shape.** Cohort 1 does not depend on the answer —
+the top twenty-five are the same under every option. Deciding now means deciding
+on an assumed conversion rate; deciding after Cohort 1 means deciding on a
+measured one, four to six weeks later, at no cost.
+
+**I-011 resolved as recommended.** D-012 governs: group-owned hotels stay
+eligible, and the owner-operator preference in
+`studio/docs/strategy/VENUE_EDITION_STRATEGY.md` becomes a ranking weight rather
+than a filter. It already is one — `decision_access` scores an owner-operated
+single property 5 and a chain with central procurement 1. That strategy
+document's 40-weddings threshold is stale against D-012's 20 and is superseded.
+
+**Downstream.**
+- E13.03 and E13.17 take the ring geometry and the coordinates as-is. **Thirteen
+  of the forty-three contactable accounts carry only a town-centroid coordinate**,
+  which decides the ring but cannot carry a film render. Resolving those is a
+  gate on E13.17, not a caveat.
+- Consent for public naming and map publication is `unknown` on all 219 accounts.
+  Nothing in this decision changes that, and E15.16 still depends on it.
+- Seven Cohort 1 accounts sit in the 38–52 minute confirmation band and need a
+  ring check before the send.
+- Seven in-ring accounts are held out of every cohort on unconfirmed trading
+  status and need a phone call, not research.
+
+---
+
+## D-029 — "Cohort ready" means ready to send, not ready as a list
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** `commercial.cohortReady`, `STATUS.md`, E10.12, E10.13, E11.03, E15.07
+- **Amends:** D-028
+
+**Decision.** The `cohortReady` flags in `PROJECT_STATE.json` mean **ready to
+send**. A cohort that is ranked, locked and founder-approved is not ready. A
+cohort is ready when every account in it can actually be contacted.
+
+**Decision-maker's words.** *"ready to send"*.
+
+**Effect, immediately.** All four flags stay `false`, and that is now correct
+rather than merely cautious. Cohorts 1 and 2 are ranked, locked and approved
+under D-028, and neither can be sent:
+
+- **No contact on any account is verified.** `contact_verified_on` is blank
+  across all 219, which is the rule in E10.08, not an omission.
+- **Seven Cohort 1 accounts sit in the 38–52 minute confirmation band** and need
+  a ring check before a send.
+- **Thirteen of the forty-three contactable accounts carry only a town-centroid
+  coordinate**, which decides the ring but cannot carry an E13.17 film render.
+- **Seven in-ring accounts are held on unconfirmed trading status** and need a
+  phone call. Six of six suspected closures put to verification were confirmed,
+  so this is not a formality.
+
+**Why this matters more than it looks.** `STATUS.md` renders one line —
+`Cohorts ready | none` — and it is read as a release signal. Setting it true on
+the strength of a completed research epic would have shown green on the one line
+that says outreach can begin, while no venue in the cohort had a verified
+contact. A high task-completion percentage never overrides a gate
+(`PROJECT.md` §13), and this is the same principle one level down.
+
+**What flips it.** Cohort 1 becomes ready when: every account has a verified
+contact in the CRM joined on `account_id`; the seven boundary accounts have a
+founder ring decision; the thirteen town-centroid coordinates are resolved to
+venue precision; and the seven unconfirmed-trading accounts are settled or
+replaced from the reserve. Those are E10.08 and E11 work, not E10 research.
+
+**Tooling note.** `project-control.mjs commercial` deliberately refuses to set
+structured fields, so these flags are set by a considered edit rather than a
+counter command. That refusal is correct and should stay.

@@ -230,7 +230,75 @@ Two further corrections, on the founder's instruction to take the recommendation
 | Runway | 18 months | **18 months** |
 | Default alive | true | **true** |
 
-### The thin cash is not the ramp, and no ramp can fix it
+### How this is funded, corrected 2026-08-03
+
+The opening balance is zero, and that is right. The company is mid-registration
+with no bank account yet. **The founder pays the running costs personally until
+the company earns enough to carry itself**, and from that point the company funds
+itself.
+
+The model had no way to represent that. A zero opening balance read as "no money
+exists", which produced a phantom €1,530 shortfall, `defaultAlive: false` and a
+recommendation to close a gap that was never open. That was a hole in the model,
+not a finding about the business. It was recorded as R-037 and **withdrawn the
+same day**.
+
+`financial-model.ts` now models founder funding explicitly: any month the company
+cannot cover, the founder tops it up to zero and the top-up is recorded.
+
+| Month | Costs | Founder in | Company cash |
+|---|---|---|---|
+| Jun '26 | €500 | €500 | €0 |
+| Jul '26 | €510 | €510 | €0 |
+| Aug '26 | €520 | €520 | €0 |
+| Sep '26 | €1,180 | — | €39,832 |
+
+Two new outputs replace the phantom, and both are rendered on `/hq/financial-model`:
+
+- **`founderCapitalEur` = €1,530.** What the founder is personally out of pocket.
+- **`founderFundingEndsAt` = Aug '26.** The month the company stops needing him.
+- `defaultAlive` is **true** and now means the company carries itself from its own
+  revenue. `runwayMonths` is **15**: the horizon minus the months he funded.
+
+Verified in the browser at `/hq/financial-model`: "€1.5k · Founder capital ·
+founder cash in, through Aug '26" and "15 mo · Runway · months the company
+carries itself".
+
+### The facility: wrong number, and counted as money it is not
+
+Two errors, both corrected by the founder on 2026-08-03.
+
+**The amount.** `FIN_META.facilityEur` read **€40,000** with a comment claiming it
+matched the loan pack. It did not. The pack asks for **€15,000** at 6% over 48
+months (≈ €352.28/mo) and decomposes its closing position from a €15,000
+drawdown. The pack was right and the model was wrong. Now €15,000.
+
+**The certainty.** The model booked the facility as cash arriving in September.
+The founder has not obtained it: *"I have not got it yet. I am just building the
+presentation. I may not even get the funding, we will see how it turns out."*
+A model whose headline cash depends on an unsecured loan is the kind of flattery
+this model exists to refuse. `facilitySecured: false` is now respected, and
+unsecured money contributes nothing to cash.
+
+**The result is the reassuring part.** The plan does not depend on the loan.
+
+| | founder capital | funded until | end cash |
+|---|---|---|---|
+| €40,000 facility (what the model claimed) | €1,530 | Aug '26 | €104,926 |
+| €15,000 facility, if it lands | €1,530 | Aug '26 | €79,926 |
+| **No facility, shipped as the base case** | **€1,698** | **Sept '26** | **€40,138** |
+
+€168 of founder money separates the loan landing from it not landing, because
+revenue starts covering costs from October either way. **The facility is a buffer,
+not a lifeline, and the plan must never be presented as depending on it.** Flip
+`facilitySecured` to true the day it is granted.
+
+One consequence recorded in the code: post-launch marketing at €800/month was
+commented "facility-funded". With no facility it comes out of revenue, roughly
+€12,000 across the horizon. The model shows it is affordable, and it is still the
+first line to cut if the venue ramp runs behind.
+
+### The earlier "thin cash" reading, and why it was wrong
 
 Month-by-month, the trough is at **index 2, August 2026, at €3,470, with zero
 revenue booked to that point.** It sits before launch, before the first founding

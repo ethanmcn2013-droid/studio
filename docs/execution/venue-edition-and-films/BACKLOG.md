@@ -4,9 +4,9 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T01:22:32.871Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T02:05:38.494Z · baseline **approved** (0.1.0)
 
-211 tasks across 15 epics · 119 on the imported critical path · 54 release-blocking · 188 unestimated.
+212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 188 unestimated.
 
 Legend: **CP** imported critical path · **RB** release-blocking · **SN** start-now · **FD** founder decision, only Ethan can answer it · **FC** Claude brings options, Ethan picks · spec ✓ when a task specification exists · **Evidence** is the count of recorded evidence references · **Target** is a deliberately set date, never a forecast · sign-off is the founder state.
 
@@ -37,7 +37,7 @@ Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 
 _Start now. Blocks contracts, portal language, films, pricing pages and outreach._
 
-Lane: `founder` · 9/12 done (75%) · 0 in flight · 0 blocked
+Lane: `founder` · 10/13 done (76.9%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -53,16 +53,17 @@ Lane: `founder` · 9/12 done (75%) · 0 in flight · 0 blocked
 | E02.10 | Select legally safe programme terminology, establish Founding Venue numbers 01/25 through 25/25, and define when numbers are assigned. | done | p0 | CP SN FD | claude_code | — | — | 2 | — | ✓ | approved |
 | E02.11 | Define when a founding place is reserved, when it expires, when it becomes locked, and when the programme automatically closes. | done | p0 | CP SN FD | claude_code | — | — | 1 | — | ✓ | approved |
 | E02.12 | Ratify the eligible-couple entitlement model, model costs at different venue volumes, and reconcile the new economics across all financial documents. | done | p0 | CP SN FD | claude_code | — | 2026-08-15 | 3 | — | ✓ | approved |
+| E02.13 | Implement the Founding Venue number as a stored, uniquely constrained field assigned on cleared payment. | done | p0 | CP RB SN | claude_code | E02.10 | — | 7 | — | ✓ | approved |
 
 ## E03 — Legal, privacy and account-lifecycle rules
 
 _Start now. Blocks live sales and live couple access._
 
-Lane: `founder` · 3/11 done (27.3%) · 0 in flight · 1 blocked
+Lane: `founder` · 3/11 done (27.3%) · 1 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E03.01 | Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. | blocked | p0 | CP SN FC | founder | — | — | — | Two blind derivations completed and agreed on 26 substantive points, but the reconciled role-map document was never written to disk and one of two adversarial reviewers returned UNSOUND. Two of its load-bearing factual premises were verified WRONG by the main session: the dietary-notes venue flow does not exist (R-017 corrected), and /p is deliberately search-indexable while the map assumes every published surface is token-bound (R-031). The derivations are sound reasoning on partly wrong facts. Needs a second pass on corrected premises before it can gate E03.04/05/06. | — | not_requested |
+| E03.01 | Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. | internal_review | p0 | CP SN FC | founder | — | — | 3 | — | — | not_requested |
 | E03.02 | Draft the annual Venue Edition agreement and commercial order form. | backlog | p0 | CP SN | founder | E02.01, E02.03 | — | — | — | — | not_requested |
 | E03.03 | Draft the Founding Venue schedule covering the €1,000 rate, continuity conditions, benefits and founding-place status. | backlog | p0 | CP SN | founder | E02.01, E02.10 | — | — | — | — | not_requested |
 | E03.04 | Draft the data-processing agreement, security schedule, subprocessor schedule and data-breach responsibilities. | backlog | p0 | CP SN | founder | E03.01 | — | — | — | — | not_requested |
@@ -79,15 +80,15 @@ Lane: `founder` · 3/11 done (27.3%) · 0 in flight · 1 blocked
 
 _Begins once E02 and E03 core decisions are stable. Blocks implementation and portal accuracy._
 
-Lane: `claude_code` · 11/12 done (91.7%) · 1 in flight · 0 blocked
+Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E04.01 | Define the data entities for venue, agreement, term, founding status, member, invitation, couple workspace and public artifact. | in_progress | p1 | CP | claude_code | — | — | 2 | — | ✓ | not_requested |
+| E04.01 | Define the data entities for venue, agreement, term, founding status, member, invitation, couple workspace and public artifact. | done | p1 | CP | claude_code | — | — | 2 | — | ✓ | approved |
 | E04.02 | Define venue member roles and permissions for owner, manager and viewer. | done | p1 | CP FC | claude_code | — | — | 2 | — | ✓ | approved |
 | E04.03 | Define invitation states from creation through sent, opened, redeemed, expired, revoked and replaced. | done | p1 | CP | claude_code | — | — | 5 | — | ✓ | approved |
 | E04.04 | Define couple workspace ownership, co-owner access, invited collaborators and account recovery. | done | p1 | CP FC | claude_code | — | — | 2 | — | ✓ | approved |
-| E04.05 | Define how venue name, logo, welcome message and “compliments of” attribution inherit into each sponsored workspace. | done | p1 | CP FC | claude_code | — | — | 2 | — | ✓ | approved |
+| E04.05 | Define how venue name, logo, welcome message and “compliments of” attribution inherit into each sponsored workspace. | done | p1 | CP FC | claude_code | — | — | 3 | — | ✓ | approved |
 | E04.06 | Implement venue-workspace unlinking without removing or exposing the couple’s private work. | done | p1 | CP | claude_code | — | — | 5 | — | ✓ | approved |
 | E04.07 | Create the lifecycle state machine from invitation to active planning, post-wedding access, Keepsake mode and deletion. | done | p1 | CP | claude_code | E03.08 | — | 6 | — | ✓ | approved |
 | E04.08 | Define the technical boundary between private planning data, public Timeline data and venue-visible aggregate data. | done | p1 | CP | claude_code | — | — | 2 | — | ✓ | approved |
@@ -211,24 +212,24 @@ Lane: `claude_code` · 4/12 done (33.3%) · 0 in flight · 0 blocked
 
 _Starts immediately in parallel. Does not wait for product completion._
 
-Lane: `claude_code` · 0/14 done (0%) · 14 in flight · 0 blocked
+Lane: `claude_code` · 14/14 done (100%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E10.01 | Define the public geographic term and exact boundary for the “Greater Limerick wedding market.” | in_progress | p1 | SN FD | claude_code | — | — | — | — | — | not_requested |
-| E10.02 | Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers. | in_progress | p1 | SN FD | claude_code | — | — | — | — | — | not_requested |
-| E10.03 | Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit. | in_progress | p1 | SN FC | claude_code | — | — | — | — | — | not_requested |
-| E10.04 | Build a master researched universe of at least 125 accounts, or formally document the available market shortfall. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.05 | Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.06 | Record accurate map coordinates, geographic cluster and drive-time ring for every account. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.07 | Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.08 | Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.09 | Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.10 | Review each venue’s website, brochure, social presence and digital customer experience. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.11 | Write one honest, venue-specific reason each account belongs in the founding outreach. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.12 | Rank and lock Cohort 1 containing the first 25 venues. | in_progress | p1 | SN | claude_code | E10.04, E10.05, E10.06, E10.07, E10.08, E10.09, E10.10, E10.11 | — | — | — | — | not_requested |
-| E10.13 | Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues. | in_progress | p1 | SN | claude_code | — | — | — | — | — | not_requested |
-| E10.14 | Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication. | in_progress | p1 | SN FC | claude_code | — | — | — | — | — | not_requested |
+| E10.01 | Define the public geographic term and exact boundary for the “Greater Limerick wedding market.” | done | p1 | SN FD | claude_code | — | — | 3 | — | — | approved |
+| E10.02 | Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers. | done | p1 | SN FD | claude_code | — | — | 3 | — | — | approved |
+| E10.03 | Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit. | done | p1 | SN FC | claude_code | — | — | 4 | — | — | approved |
+| E10.04 | Build a master researched universe of at least 125 accounts, or formally document the available market shortfall. | done | p1 | SN | claude_code | — | — | 5 | — | — | approved |
+| E10.05 | Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
+| E10.06 | Record accurate map coordinates, geographic cluster and drive-time ring for every account. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
+| E10.07 | Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
+| E10.08 | Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment. | done | p1 | SN | claude_code | — | — | 4 | — | — | approved |
+| E10.09 | Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
+| E10.10 | Review each venue’s website, brochure, social presence and digital customer experience. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
+| E10.11 | Write one honest, venue-specific reason each account belongs in the founding outreach. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
+| E10.12 | Rank and lock Cohort 1 containing the first 25 venues. | done | p1 | SN | claude_code | E10.04, E10.05, E10.06, E10.07, E10.08, E10.09, E10.10, E10.11 | — | 3 | — | — | approved |
+| E10.13 | Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
+| E10.14 | Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication. | done | p1 | SN FC | claude_code | — | — | 3 | — | — | approved |
 
 ## E11 — Sales operating system and founder-led outreach
 

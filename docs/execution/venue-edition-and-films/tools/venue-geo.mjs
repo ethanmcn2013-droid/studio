@@ -502,6 +502,12 @@ async function cmdGeocode(inPath, outPath) {
   let fromResearch = 0, fromNominatim = 0, kept = 0, townLevel = 0, unresolved = 0;
 
   for (const [i, v] of venues.entries()) {
+    // A coordinate a person set by hand is final. The earlier rule only skipped
+    // records whose confidence was exactly "verified", so a hand-corrected
+    // town-level coordinate was re-queried and silently replaced — in one case
+    // with a point 100 km away in the wrong county, undoing the very correction
+    // that had just been made.
+    if (v.override_source?.includes("coordinates")) { out.push({ ...v, coord_locked: true }); fromResearch++; continue; }
     if (v.latitude != null && v.longitude != null && v.coord_confidence === "verified") {
       out.push(v); fromResearch++; continue;
     }
@@ -561,7 +567,7 @@ async function cmdGeocode(inPath, outPath) {
   const ok = out.filter((v) => v.latitude != null).length;
   const disputed = out.filter((v) => v.coord_note?.includes("disagreed")).length;
   console.log(`Coordinates: ${ok}/${out.length}`);
-  console.log(`  already verified   ${fromResearch}`);
+  console.log(`  locked or verified ${fromResearch}  (human overrides are never re-queried)`);
   console.log(`  from the geocoder  ${fromNominatim}`);
   console.log(`  research kept      ${kept}  (geocoder could not confirm, coordinate preserved)`);
   console.log(`  town centroid only ${townLevel}  (usable for the ring, blocked for E13.17 film renders)`);

@@ -59,6 +59,19 @@ The `/hq` dashboard reads strategic content from `content/hq/<section>/*.md` (se
 
 A cross-repo programme (tasks product depth, collaboration, task detail, Projects/Settings, marketing engine, website hero, launch assets) is governed from `docs/execution/signal-studio/`. Before making changes in that programme's territory — in this repo or in tasks/roadmap — read, in order: `docs/execution/signal-studio/STATUS.md`, `SESSION_HANDOFF.md`, `DECISIONS.md`, and the relevant phase of `MASTER_PLAN.md`. Standalone video production (signal-motion) is out of that programme's scope.
 
+## Venue Edition and Films programme (VEF-2026, 2026-08-02)
+
+The venue commercialisation programme — 25 founding Greater Limerick venues at
+the €1,000 founding rate, two films, release target 1 September 2026 — is
+governed from `docs/execution/venue-edition-and-films/`. Before touching that
+programme's territory in this repo, `app` or `signal-motion`, read in order:
+`HANDOFF.md`, `STATUS.md`, `BASELINE_REVIEW.md`, then `PROJECT.md` and the
+relevant `DECISIONS.md` entries. `PROJECT_STATE.json` is canonical; `BACKLOG.md`,
+`STATUS.md` and `HANDOFF.md` are generated — never hand-edit status facts in
+them. No task is Done without explicit founder approval. The HQ rules above
+still apply: founder-gated work also gets an operator-todo, and released
+movement still gets a dispatch entry.
+
 ## Before Finishing
 
 Run the available checks. At minimum:
