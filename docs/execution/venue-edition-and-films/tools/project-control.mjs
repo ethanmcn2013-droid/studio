@@ -953,6 +953,22 @@ export function renderPacket(state, tasks, label, now) {
   return `${L.join("\n")}\n`;
 }
 
+// `approve-batch --review` is project-global: it sweeps every queued task, not
+// the calling session's. During a parallel wave that reaches other packages'
+// work, and an unintended sweep leaves exactly the same trace as an intended
+// one — which is why a session cannot tell them apart afterwards from the
+// record. So the sweep says what it is about to do, and a sweep crossing more
+// than one epic must be re-issued with --all-epics. Confirmation by re-issue
+// rather than by prompt, because these sessions run unattended.
+export function sweepScope(tasks, confirmed = false) {
+  const byEpic = new Map();
+  for (const t of [...tasks].sort((a, b) => (a.id < b.id ? -1 : 1))) {
+    byEpic.set(t.epic, [...(byEpic.get(t.epic) || []), t.id]);
+  }
+  const epics = [...byEpic.keys()].sort();
+  return { byEpic: new Map(epics.map((e) => [e, byEpic.get(e)])), epics, needsConfirmation: epics.length > 1 && !confirmed };
+}
+
 function resolvePacketTasks(state, args, flags) {
   if (flags.includes("--review")) return state.tasks.filter((t) => t.status === "founder_review");
   const out = [];
@@ -1067,6 +1083,7 @@ const HELP = `project-control.mjs — canonical state tool for VEF-2026
   packet <E04|IDs...> [--review]        Consolidated founder-review packet (D-024). --write saves it.
   approve <ID> "founder note"           FOUNDER ONLY. Records sign-off and moves to Done.
   approve-batch "note" <IDs...>         FOUNDER ONLY. Approves a whole package in one pass.
+                                        --review lists what it will sweep; spanning >1 epic needs --all-epics.
                                         --review targets everything in founder_review.
                                         Refuses the whole batch if any task is not approvable
                                         (--partial approves only the eligible ones).
@@ -1542,6 +1559,28 @@ function main(argv) {
       const ids = pos.slice(2);
       const tasks = has("review") ? state.tasks.filter((t) => t.status === "founder_review") : resolvePacketTasks(state, ids, []);
       if (!tasks.length) fail("No tasks matched. Nothing approved.");
+
+      // `--review` is project-global: it sweeps every queued task, not the
+      // calling session's. During a parallel wave that reaches other packages'
+      // work, and an unintended sweep leaves the same trace as an intended one.
+      // So show what is about to be approved, and when it spans more than one
+      // epic require the sweep to be re-issued with --all-epics. That is a
+      // confirmation that works without a prompt, which matters because these
+      // sessions run unattended.
+      if (has("review")) {
+        const scope = sweepScope(tasks, has("all-epics"));
+        console.log("--review sweeps every task in founder review, across the whole project:");
+        for (const [epic, ids] of scope.byEpic) console.log(`  ${epic}  ${ids.length} task(s): ${ids.join(", ")}`);
+        console.log("");
+        if (scope.needsConfirmation) {
+          console.error(`This spans ${scope.epics.length} epics (${scope.epics.join(", ")}), which usually means it reaches work another session prepared.`);
+          console.error("If that is what you want, re-run the same command with --all-epics.");
+          console.error('To approve one package instead, name its ids: approve-batch "note" E01.01 E01.02 ...');
+          console.error("Nothing was approved.");
+          releaseLock();
+          process.exit(1);
+        }
+      }
 
       const blocked = tasks.filter((t) => packetBlockers(t).length > 0);
       if (blocked.length && !has("partial")) {

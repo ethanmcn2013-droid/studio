@@ -172,9 +172,12 @@ function clusterDensityBonus(venues) {
  * eligibility filter, both ratified in D-012 — it is not a volume screen, and
  * `assertNoVolumeScreen` proves the difference holds.
  */
+/** A venue that has closed or been sold is not a prospect, whatever it scores. */
+export const NOT_A_PROSPECT = ["closed", "sold"];
+
 export function rank(venues, model) {
   const eligible = venues.filter(
-    (v) => ["15", "30", "45"].includes(v.drive_time_ring) && v.eligibility !== "out" && v.status_flag !== "closed",
+    (v) => ["15", "30", "45"].includes(v.drive_time_ring) && v.eligibility !== "out" && !NOT_A_PROSPECT.includes(v.status_flag),
   );
   const bonus = MODELS[model].clusterBonus ? clusterDensityBonus(eligible) : () => 0;
 
@@ -215,7 +218,7 @@ function stratify(scored) {
  */
 export function assertNoVolumeScreen(venues) {
   const failures = [];
-  const inRing = venues.filter((v) => ["15", "30", "45"].includes(v.drive_time_ring) && v.eligibility !== "out" && v.status_flag !== "closed");
+  const inRing = venues.filter((v) => ["15", "30", "45"].includes(v.drive_time_ring) && v.eligibility !== "out" && !NOT_A_PROSPECT.includes(v.status_flag));
   for (const model of Object.keys(MODELS)) {
     const ranked = rank(venues, model);
     if (ranked.length !== inRing.length) {
@@ -262,6 +265,7 @@ export function buildCohorts(venues, model, { size = COHORT_SIZE } = {}) {
 
   const contactable = ranked.filter((v) => v.status_flag === "trading" || v.status_flag == null);
   const unconfirmed = ranked.filter((v) => v.status_flag && v.status_flag !== "trading");
+  void NOT_A_PROSPECT; // rank() has already dropped closed and sold accounts.
 
   const cohorts = [];
   const deferredByOperator = [];

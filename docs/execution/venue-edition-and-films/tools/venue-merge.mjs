@@ -264,27 +264,45 @@ export function siteDomain(url) {
  * recorded as a review item rather than actioned.
  */
 export function matchStrength(a, b) {
-  // A researcher who read both pages beats any string comparison. Check the
-  // explicit hints first, in both directions, and let a "do not merge" veto.
-  for (const [x, y] of [[a, b], [b, a]]) {
+  /**
+   * Precedence matters, and the first version got it wrong.
+   *
+   * The hints were checked before everything else, so an *ambiguous* hint —
+   * "almost certainly a Bridebook data error for the same Ennis property" —
+   * returned "not the same" and blocked two records with an identical name and
+   * an identical domain from merging. The result was two clusters sharing one
+   * account ID, which is worse than either outcome the hint was weighing.
+   *
+   * So: an explicit "keep separate" still vetoes anything, because a researcher
+   * who read both pages knows something the strings do not. But an identical
+   * name or a shared website beats an ambiguous note, and only an ambiguous note
+   * with nothing else to go on sends the pair to review.
+   */
+  const hintFor = (x, y) => {
     const hint = x.possible_duplicate_of;
-    if (!hint || hint === "null") continue;
+    if (!hint || hint === "null") return null;
     const names = [y.venue_name, parentheticalOf(y.venue_name), ...(y.alternate_names || [])].filter(Boolean);
-    const hintsAtY = names.some((n) => nameKey(hint).includes(nameKey(n)) || nameKey(n).includes(nameKey(hint)));
-    if (!hintsAtY) continue;
-    const polarity = hintPolarity(hint);
-    if (polarity === "anti") return { same: false, confidence: 0, reason: `researcher says keep separate: "${hint}"`, vetoed: true };
-    if (polarity === "pro") return { same: true, confidence: 0.95, reason: `researcher identified the same property: "${hint}"` };
-    return { same: false, confidence: 0.8, reason: `researcher flagged a possible duplicate: "${hint}"` };
-  }
+    const pointsAtY = names.some((n) => nameKey(hint).includes(nameKey(n)) || nameKey(n).includes(nameKey(hint)));
+    return pointsAtY ? { hint, polarity: hintPolarity(hint) } : null;
+  };
+  const hints = [hintFor(a, b), hintFor(b, a)].filter(Boolean);
+
+  // 1. An explicit "keep separate" wins outright.
+  const veto = hints.find((h) => h.polarity === "anti");
+  if (veto) return { same: false, confidence: 0, reason: `researcher says keep separate: "${veto.hint}"`, vetoed: true };
 
   // Names, including anything a researcher parked in parentheses.
   const aNames = [a.venue_name, parentheticalOf(a.venue_name)].filter(Boolean);
   const bNames = [b.venue_name, parentheticalOf(b.venue_name)].filter(Boolean);
 
+  // 2. Identical name. Nothing ambiguous beats this.
   for (const an of aNames) for (const bn of bNames) {
     if (fullKey(an) === fullKey(bn)) return { same: true, confidence: 1, reason: "identical name" };
   }
+
+  // 3. A researcher who positively identified the same property.
+  const pro = hints.find((h) => h.polarity === "pro");
+  if (pro) return { same: true, confidence: 0.95, reason: `researcher identified the same property: "${pro.hint}"` };
 
   // Same website, same business. Checked before the name heuristics because it
   // beats all of them.
@@ -309,6 +327,10 @@ export function matchStrength(a, b) {
       ? { same: false, confidence: 0.6, reason: `same key "${ak}" but recorded in different towns — review` }
       : { same: true, confidence: 0.9, reason: `same distinctive name key "${ak}"` };
   }
+
+  // 4. An ambiguous note, with nothing stronger to go on, goes to review.
+  const unclear = hints.find((h) => h.polarity === "unclear");
+  if (unclear) return { same: false, confidence: 0.8, reason: `researcher flagged a possible duplicate: "${unclear.hint}"` };
 
   const overlap = Math.max(...aNames.flatMap((an) => bNames.map((bn) => tokenOverlap(an, bn))));
   if (overlap >= 0.75 && sameTown(a.location_text, b.location_text)) {
@@ -421,6 +443,18 @@ function cmdMerge(dir, outPath) {
 
   const idStats = assignIds(merged);
   const overrideStats = applyOverrides(merged);
+
+  // Two accounts sharing an ID is silent corruption of the CRM join key, and it
+  // is exactly what a fold that half-applied produces. Fail rather than write it.
+  const byId = new Map();
+  for (const v of merged) {
+    if (byId.has(v.account_id)) {
+      console.error(`REFUSED. Two accounts share ${v.account_id}: "${byId.get(v.account_id)}" and "${v.venue_name}".`);
+      console.error("account_id is the CRM join key and must be unique. Add a merge entry to overrides.json, or correct the one that is wrong.");
+      process.exit(1);
+    }
+    byId.set(v.account_id, v.venue_name);
+  }
 
   const groups = detectGroups(merged);
   const dedupedAway = all.length - merged.length;

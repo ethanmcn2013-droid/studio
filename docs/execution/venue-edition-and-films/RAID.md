@@ -463,7 +463,8 @@ wrong on the day. These three are the difference.
 - **Detail:** E01.08 requires the decision log to record every ratified commercial, legal, product, **design** and **film** decision. Auditing all twenty-four entries by domain: commercial four, legal four, product one reinforced by two others, **design zero**, film one (D-014, two clauses). The one candidate design decision, D-006 on surface naming, was resolved as a naming question rather than a design one. D-024 states the position plainly: "Where a design direction is genuinely open it runs `/lab`" — an acknowledgement that design decisions have not been made.
 - **The honest reading:** a log that records every *ratified* decision is correct to hold zero design entries if zero have been ratified. **The gap is in the programme, not in the ledger.** But UI freeze is 2026-08-20 and film lock 2026-08-28, and the tasks needing a design direction are exactly the ones the founder has to be in the room for.
 - **Resolution:** not a documentation fix. Either design directions get ratified before UI freeze, or the freeze moves through a change record.
-- **Status:** open · **Target:** before UI freeze, 2026-08-20 · **Last reviewed:** 2026-08-03
+- **Scoped 2026-08-03.** `DESIGN_DOCKET.md` breaks the forty open design tasks into **seven real choices**, four of which gate everything else: the Shared Timeline's visual form, the venue-branded welcome, the indigo-dot motion language and *Before the Day*'s narrative arc. The Timeline is first — it carries the longest dependency chain in the programme and `BASELINE_REVIEW.md` §9 found no candidate implementation for E06 at all. The founder is targeting Wednesday 2026-08-05, which is achievable by picking between built options rather than from a blank page.
+- **Status:** open, scoped · **Target:** founder aiming for 2026-08-05, hard deadline UI freeze 2026-08-20 · **Last reviewed:** 2026-08-03
 
 ---
 

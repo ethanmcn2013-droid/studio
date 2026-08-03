@@ -1,5 +1,5 @@
 {
-  "nextNumber": 222,
+  "nextNumber": 229,
   "byNameKey": {
     "slieve russell": "VEN-0001",
     "annacarriga": "VEN-0002",
@@ -215,7 +215,14 @@
     "dromcollogher castle": "VEN-0218",
     "galtee escape loughananna house": "VEN-0219",
     "shanbally house gardens": "VEN-0220",
-    "shouldice hall": "VEN-0221"
+    "shouldice hall": "VEN-0221",
+    "armada house": "VEN-0222",
+    "ballykilty manor ballykilty house": "VEN-0223",
+    "former shannon shamrock": "VEN-0224",
+    "kiltanon house": "VEN-0225",
+    "newhall house estate": "VEN-0226",
+    "savoy": "VEN-0227",
+    "slevoir house": "VEN-0228"
   },
   "retired": [
     {

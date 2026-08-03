@@ -16,7 +16,7 @@ import {
   ROOT, loadState, validate, derive, canonicalize, findCycles, daysBetween, addDays,
   renderBacklog, renderStatus, renderWeekly, TRANSITIONS, STATUSES, STATUS_CREDIT,
   EFFORT_SCALE, DECISION_CLASSES, ACTIVE_STATUSES, packetBlockers, renderPacket,
-  migrateSessions, migrateSchedule, FREEZES, missingEvidenceFiles,
+  migrateSessions, migrateSchedule, FREEZES, sweepScope, missingEvidenceFiles,
 } from "./project-control.mjs";
 
 const base = loadState();
@@ -642,6 +642,47 @@ test("every epic is covered by at least one release gate", () => {
     `Epics outside the gate system: [${uncovered.join(", ")}]. The six gates certify that the product works and ` +
     "the sale can be made. An uncovered epic is work no gate certifies at all. Put it in a gate, or raise a change " +
     "request and declare it here with the reason.");
+});
+
+// --- approve-batch --review scope guard ------------------------------------
+
+test("a single-epic sweep needs no confirmation", () => {
+  const tasks = [{ id: "E01.02", epic: "E01" }, { id: "E01.01", epic: "E01" }];
+  const scope = sweepScope(tasks);
+  assert.deepEqual(scope.epics, ["E01"]);
+  assert.equal(scope.needsConfirmation, false, "approving one package's own queue is the ordinary case");
+  assert.deepEqual(scope.byEpic.get("E01"), ["E01.01", "E01.02"], "ids are listed in order so the founder can read what is about to be approved");
+});
+
+test("a sweep crossing epics refuses until it is re-issued with --all-epics", () => {
+  const tasks = [
+    { id: "E01.01", epic: "E01" }, { id: "E09.01", epic: "E09" }, { id: "E09.02", epic: "E09" },
+  ];
+  const scope = sweepScope(tasks);
+  assert.deepEqual(scope.epics, ["E01", "E09"]);
+  assert.equal(scope.needsConfirmation, true, "reaching another package's work is the case worth confirming");
+  assert.equal(sweepScope(tasks, true).needsConfirmation, false, "--all-epics is the confirmation");
+});
+
+test("the sweep guard reproduces the real 00:52 incident", () => {
+  // Fourteen tasks were swept Done in one command: twelve from E01 and two from
+  // E09, prepared by two different sessions. The approval was genuine, but an
+  // unintended one would have left an identical trace. This is the shape the
+  // guard now surfaces before it happens rather than after.
+  const tasks = [
+    ...Array.from({ length: 12 }, (_, i) => ({ id: `E01.${String(i + 1).padStart(2, "0")}`, epic: "E01" })),
+    { id: "E09.01", epic: "E09" }, { id: "E09.02", epic: "E09" },
+  ];
+  const scope = sweepScope(tasks);
+  assert.equal(scope.needsConfirmation, true);
+  assert.equal(scope.byEpic.get("E01").length, 12);
+  assert.equal(scope.byEpic.get("E09").length, 2);
+});
+
+test("the confirmation flag is documented in the help text", () => {
+  const src = readFileSync(join(ROOT, "tools", "project-control.mjs"), "utf8");
+  const help = src.slice(src.indexOf("const HELP ="));
+  assert.match(help, /--all-epics/, "a guard nobody can discover is a guard nobody uses");
 });
 
 test("the two epics CR-002 brought in carry a criterion that names them", () => {

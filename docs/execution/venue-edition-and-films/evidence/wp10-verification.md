@@ -202,5 +202,47 @@ Both were corrected. `newFounding` runs 25 across indices 3 to 9; `newPaid` runs
 
 The middle column is what "25 founding venues" looks like with nothing else
 touched. It is €40k higher in year one and it cannot happen, because it sells
-venues before launch and at the wrong price. The shipped column is the honest
-one. The plan is still default-alive with €3,470 of headroom, which is thin.
+venues before launch and at the wrong price.
+
+### Final ramp, after the founder asked for realism
+
+Two further corrections, on the founder's instruction to take the recommendation:
+
+1. **Founding starts at one in September, not two.** Cohort 1 goes out on launch
+   day. A venue still has to reply, take a call, receive a proposal, sit the
+   14-day hold and clear a payment. October is the first realistic full month.
+   25 places now run Sep '26 to Apr '27.
+2. **The standard-rate ramp was cut from 52 venues to 21.** It previously ran
+   faster per month than the founding motion did, immediately after the discount,
+   the numbered place and the scarcity all went away, and with the 45-minute ring
+   already spent. That is a hockey stick with no mechanism under it. The
+   counter-argument is named in the code: by month 11 there are 25 live venues
+   and real referrals, and if those convert this line is too low.
+
+| | 25 founding, first pass | **25 founding, realism pass (shipped)** |
+|---|---|---|
+| Founding · paid venues | 25 · 52 | **25 · 21** |
+| Year 1 revenue | €36,496 | **€28,876** |
+| Horizon revenue | €106,012 | **€58,720** |
+| Blended ACV | €1,338 | **€1,228** |
+| LTV/CAC | 22.3 | **12.2** |
+| Lowest cash | €3,470 | **€3,470** |
+| Runway | 18 months | **18 months** |
+| Default alive | true | **true** |
+
+### The thin cash is not the ramp, and no ramp can fix it
+
+Month-by-month, the trough is at **index 2, August 2026, at €3,470, with zero
+revenue booked to that point.** It sits before launch, before the first founding
+payment and before the facility is drawn at index 3. It is three months of
+pre-launch burn (€500, €510, €520) against `startingCashEur`.
+
+`FIN_META.startingCashEur` is **5_000**, and the model labels it *"LIVE DATA: set
+to the real opening bank balance. Conservative placeholder."* It has never been
+set to the real number.
+
+**So the €3,470 is a placeholder minus three months of burn, not a finding about
+the venue programme.** Changing the ramp moves nothing: the figure is identical
+across every ramp variant above. The two things that would move it are the real
+opening balance, which only the founder knows, and `facilityDrawIndex`, which is
+a financing decision. Both are recorded in the packet as founder items.

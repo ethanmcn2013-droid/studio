@@ -57,6 +57,11 @@
       "reason": "One venue listed under three names across directories.",
       "decided_on": "2026-08-03"
     },
+    "Greenhills Hotel": {
+      "fold": ["Greenhills Hotel & Leisure Centre", "Greenhills Conference & Leisure Centre"],
+      "reason": "One Ennis Road property; the hotel uses both names interchangeably on its own site. In-ring, so a duplicate would waste an outreach slot.",
+      "decided_on": "2026-08-03"
+    },
     "The George Hotel Limerick": {
       "fold": ["The George Limerick Hotel"],
       "reason": "One Limerick city property under two word orders. Its weddings route to the Savoy, which stays a separate account in the same collection.",
@@ -92,6 +97,24 @@
       "eligibility": "out",
       "reason": "Has function capacity but markets no weddings. Fails the coordinator test.",
       "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "The George Hotel Limerick": {
+      "eligibility": "out",
+      "reason": "No wedding page, no function room, no events page. Its own collection's site routes weddings to the Savoy, which is a separate account. The directory listing quotes the Savoy's bedroom count and suite capacity, so it is sister-hotel data rather than a venue.",
+      "decided_by": "Claude Code, verified on the venue's own site",
+      "decided_on": "2026-08-03"
+    },
+    "Woodfield House Hotel": {
+      "eligibility": "out",
+      "reason": "The word wedding does not appear anywhere on its site, its events page reads 'no upcoming events', and the domain a directory sends couples to does not resolve. Fails the coordinator and calendar tests.",
+      "decided_by": "Claude Code, verified on the venue's own site",
+      "decided_on": "2026-08-03"
+    },
+    "Kilmurry Lodge Hotel": {
+      "eligibility": "borderline",
+      "reason": "Directories carry a 230 capacity, a one-wedding-a-day policy and a coordinator; none of it appears on the hotel's own site, where 'wedding' occurs once, as 'Wedding Day 2s' for the terrace. The conflict is recorded rather than resolved — this needs a phone call, not a judgement.",
+      "decided_by": "Claude Code, conflict recorded per WORKFLOWS section 8",
       "decided_on": "2026-08-03"
     },
     "Limerick Racecourse (Greenmount Park)": {
@@ -134,6 +157,16 @@
     "Charleville Park Hotel": {
       "group_or_operator": "Só Hotels",
       "reason": "Same group. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Limerick Strand Hotel": {
+      "group_or_operator": "MHL Hotel Collection",
+      "reason": "Fourteen-property collection, not an independent hotel. Note for a later pass: SHR appears on its booking flow and is booking software, not an owner — do not record it as the operator.",
+      "decided_on": "2026-08-03"
+    },
+    "Radisson Blu Hotel & Spa Limerick": {
+      "group_or_operator": "Inua Hospitality",
+      "reason": "Operated by Inua Hospitality under the Radisson brand, corroborated by its brochure being published on the group's own account. Two layers above the property, not locally operated.",
       "decided_on": "2026-08-03"
     }
   },

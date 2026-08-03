@@ -34,10 +34,10 @@
   },
   "session": {
     "lastClosed": {
-      "id": "wp03-cr002",
-      "closedAt": "2026-08-03T01:13:18.906Z",
-      "record": "sessions/2026-08-03--wp03-cr002.md",
-      "objective": "Action CR-002: bring E01 and E15 inside the release-gate system"
+      "id": "wp03-followups",
+      "closedAt": "2026-08-03T01:22:32.871Z",
+      "record": "sessions/2026-08-03--wp03-followups.md",
+      "objective": "Action the approve-batch sweep guard; scope the design directions for I-009"
     },
     "open": [
       {
@@ -14053,10 +14053,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T01:13:18.906Z",
-    "lastRenderedAt": "2026-08-03T01:13:18.906Z",
-    "lastUpdatedAt": "2026-08-03T01:13:18.906Z",
-    "lastUpdatedSession": "wp03-cr002",
+    "lastValidatedAt": "2026-08-03T01:22:32.871Z",
+    "lastRenderedAt": "2026-08-03T01:22:32.871Z",
+    "lastUpdatedAt": "2026-08-03T01:22:32.871Z",
+    "lastUpdatedSession": "wp03-followups",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"

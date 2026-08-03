@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T01:13:18.906Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T01:13:18.906Z · session `wp03-cr002`
+**Report generated:** 2026-08-03T01:22:32.871Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T01:22:32.871Z · session `wp03-followups`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -201,7 +201,7 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 ## Session
 
 **Open sessions:** 045404f1-wp02 (WP-02 — Greater Limerick venue universe and cohorts (E10.01-E10.14))
-**Last closed session:** wp03-cr002 (2026-08-03T01:13:18.906Z) → `sessions/2026-08-03--wp03-cr002.md`
+**Last closed session:** wp03-followups (2026-08-03T01:22:32.871Z) → `sessions/2026-08-03--wp03-followups.md`
 
 ## Next recommended project-management action
 
