@@ -1,0 +1,357 @@
+/* ═══════════════════════════════════════════════════════════════
+   Venues lab · variant A · "The Relay" — private CSS.
+
+   The page is built out of the existing .reveal-* grammar in
+   globals.css. These rules exist only for objects the house has no
+   shape for: the 17-row commercial ledger, the definition index that
+   carries the objection library, the price figure, the reserved film
+   frame, and the full-width rows that hold the ledger and the film at
+   relay width.
+
+   Nothing here invents a register. Every value is quoted from the
+   .reveal-* set it sits beside:
+     display    Geist 540, -0.052em, line-height 0.95, the exact clamp
+                from .reveal-relay-copy h3
+     furniture  var(--font-mono) 9-10px uppercase, 0.12-0.16em
+     body       14px / 1.62 / var(--ink-soft), from .reveal-relay-body
+     hairlines  var(--border) and var(--border-soft)
+     radius     14px, from .reveal-relay-preview
+     grounds    var(--paper), --paper-soft, --paper-deep. No new colour.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Relay chapter measure ────────────────────────────────────────
+   The one place the house grammar had to be adjusted rather than
+   used as-is, and the reason is in the copy, not the design.
+
+   On the homepage a chapter head is a single-word product wordmark,
+   so the 0.29fr column never wraps. Every heading on this page is a
+   four-to-six word question from the ladder, and the same column
+   breaks "What being one of twenty-five means" across five lines at
+   53px. The column ratio is widened here so those headings settle on
+   two or three lines, and the chapter stacks one breakpoint earlier
+   than the house stacks it, because at 768 the narrow column is
+   tighter than any display heading should sit. Same grammar, at a
+   measure this copy can live in. */
+.page :global(.reveal-relay-chapter) {
+  grid-template-columns: minmax(240px, 0.38fr) minmax(0, 1fr);
+}
+
+@media (max-width: 880px) {
+  .page :global(.reveal-relay-chapter) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page :global(.reveal-relay-copy) {
+    padding-top: 0;
+  }
+
+  .page :global(.reveal-relay-body) {
+    max-width: 48ch;
+  }
+}
+
+/* ── Full-width rows inside .reveal-relay ─────────────────────────
+   The ledger and the film are page-level objects, not illustrations
+   of one rung, so they get the full 1240 rather than the 1fr right
+   column. Border and padding are lifted verbatim from
+   .reveal-relay-chapter so the vertical rhythm never breaks. */
+.wideRow {
+  padding: clamp(64px, 9vw, 116px) 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.wideHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 20px;
+  margin: 0 0 clamp(26px, 3.6vw, 44px);
+}
+
+.wideTitle {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 1.05rem + 1.05vw, 2rem);
+  font-weight: 540;
+  letter-spacing: -0.042em;
+  line-height: 1.05;
+}
+
+.wideMeta {
+  color: var(--zinc-600);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── The definition index ─────────────────────────────────────────
+   Carries the objection library, the privacy triple and the FAQ. The
+   column ratio echoes .reveal-relay-chapter so a row inside the right
+   column still reads as part of the same grid. */
+.index {
+  display: grid;
+  margin: 0;
+}
+
+.indexRow {
+  display: grid;
+  grid-template-columns: minmax(148px, 0.28fr) minmax(0, 1fr);
+  gap: 6px clamp(16px, 2.6vw, 40px);
+  padding: 18px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.indexRow:first-child {
+  border-top-color: var(--border);
+}
+
+/* Mono term. Values copied from .reveal-relay-eyebrow. */
+.indexTerm {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* Sentence term, for the twelve questions. Mono uppercase would turn a
+   plain question into furniture; 540 Geist keeps it a question. */
+.indexTermPlain {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.indexDetail {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* The one tinted panel on the page. PRIVACY is three parts and they
+   travel together, so they are drawn as one object rather than three
+   rows a reader could take separately. Radius and ground are the
+   preview frame's own. */
+.indexGroup {
+  padding: clamp(18px, 2.4vw, 28px) clamp(18px, 2.4vw, 28px) 8px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--paper-soft);
+}
+
+.indexGroup .indexRow:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.indexAfter {
+  margin-top: clamp(26px, 3.4vw, 40px);
+}
+
+/* ── The price ────────────────────────────────────────────────────
+   The figure is set at exactly the size of a rung heading, so the
+   number rhymes with the seven headings instead of shouting over
+   them. Clamp, weight, tracking and line-height are quoted from
+   .reveal-relay-copy h3. */
+.priceFigure {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.35rem, 1.72rem + 2vw, 4.2rem);
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.052em;
+  line-height: 0.95;
+}
+
+.priceUnder {
+  max-width: 46ch;
+  margin: 16px 0 clamp(30px, 4vw, 46px);
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+/* ── The commercial ledger, 17 rows ───────────────────────────────
+   The densest object on the page and the one a forwarded business
+   partner actually reads. It uses the .reveal-relay-chapter column
+   ratio exactly, so the ledger reads as seventeen more chapters of
+   the same relay rather than as a table pasted in. */
+.ledger {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.ledgerRow {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.29fr) minmax(0, 1fr);
+  gap: 6px clamp(28px, 5vw, 72px);
+  align-items: baseline;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.ledgerTerm {
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.ledgerNum {
+  flex: none;
+  color: var(--zinc-600);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+}
+
+.ledgerDetail {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* ── The film slot ────────────────────────────────────────────────
+   Sits inside .reveal-relay-preview, so the chrome, radius and shadow
+   are the house's. Only the reserved 16:9 interior is local. */
+.filmFrame {
+  position: relative;
+  width: 100%;
+  background: var(--paper-deep);
+}
+
+.filmVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.filmEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.filmPlay {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.filmPlay > span {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid var(--ink-faint);
+}
+
+.filmPlaceholder {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.filmMeta {
+  margin: 0;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.filmNote {
+  max-width: 52ch;
+  margin: clamp(20px, 2.6vw, 28px) 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+/* ── Two product views in one chapter ─────────────────────────────
+   Rung 1 promises two things: a plan the couple can share, and a short
+   note in the morning. One frame each. */
+.previewStack {
+  display: grid;
+  min-width: 0;
+  gap: clamp(16px, 2.2vw, 24px);
+}
+
+/* Shared-component defect, reported rather than edited: SignalTheRead
+   hardcodes a venue name in .rd-stamp and exposes no prop to change it.
+   Canon for this page is Glenmara House, so the wrong stamp is removed
+   from the DOM here rather than shown or read aloud. The date and the
+   venue it carried are on .reveal-relay-source above. */
+.previewStack :global(.rd-stamp) {
+  display: none;
+}
+
+/* ── The close ────────────────────────────────────────────────── */
+.closeSupport {
+  max-width: 44ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+/* ── Responsive. Breakpoints match globals.css exactly. ────────── */
+@media (max-width: 880px) {
+  .ledgerRow {
+    grid-template-columns: minmax(160px, 0.3fr) minmax(0, 1fr);
+    gap: 6px clamp(20px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 640px) {
+  .indexRow,
+  .ledgerRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .indexGroup {
+    border-radius: 10px;
+  }
+
+  .filmPlay {
+    width: 44px;
+    height: 44px;
+  }
+}

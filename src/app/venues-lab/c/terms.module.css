@@ -1,0 +1,503 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Variant C · "The Terms" — private CSS.
+
+   THE RULE THIS FILE ANSWERS TO: the house grammar in globals.css is the
+   look. This module adds LAYOUT ONLY. Every type value below is copied
+   from a named .reveal-* rule and the source line is cited, so nothing
+   here invents a size, a weight, a tracking or a colour.
+
+   Why any of it exists: the house has no table, no index, and no
+   multi-column body grid. Those three shapes are the whole variant, so
+   they are the whole module.
+
+   Cited sources (src/app/globals.css):
+     L332 .reveal-relay-kicker      mono 10px / .15em / ink-faint
+     L363 .reveal-relay-source      the provenance strip
+     L383 .reveal-relay-chapter     grid .29fr/1fr, hairline-soft top rule
+     L404 .reveal-relay-number      mono 10px / .16em / zinc-600
+     L411 .reveal-relay-copy h3     clamp(2.35,1.72+2vw,4.2)rem / 540 / -.052em
+     L422 .reveal-relay-eyebrow     mono 10px / 560 / .12em / ink
+     L430 .reveal-relay-body        14px / 1.62 / ink-soft
+     L446 .reveal-relay-link        the ink link with the indigo arrow
+     L324 .reveal-relay-head        grid .34fr/1fr, gap clamp(30,7vw,100)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Bands ────────────────────────────────────────────────────────
+   System width (1080, the manifesto measure — DESIGN.md §4 container
+   set). Adjacent same-ground sections separate on a hairline, never on
+   whitespace (DESIGN.md §4), which is what .reveal-relay-chapter does. */
+.band {
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: clamp(72px, 10vw, 128px) 0;
+  border-top: 1px solid var(--hairline-soft);
+  scroll-margin-top: 72px; /* DESIGN.md §4, 56px sticky nav */
+}
+
+/* The relay band carries product chrome, so it keeps the relay measure
+   (1240) from .reveal-relay and only needs the anchor offset. */
+.relay,
+.anchor {
+  scroll-margin-top: 72px;
+}
+
+/* ── The index ────────────────────────────────────────────────────
+   Mirrors .reveal-relay-head's asymmetric grid exactly (L324) so the
+   contents block sits on the same column structure as every section
+   opener below it. */
+.index {
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: clamp(52px, 7vw, 84px) 0 clamp(16px, 3vw, 28px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr);
+  column-gap: clamp(30px, 7vw, 100px);
+  align-items: start;
+}
+
+.indexList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.indexList li + li .indexRow {
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.indexList li:first-child .indexRow {
+  border-top: 1px solid var(--hairline);
+}
+
+.indexRow {
+  min-height: 44px; /* --table-row-h */
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto 14px;
+  align-items: baseline;
+  column-gap: 14px;
+  padding: 13px 0;
+  text-decoration: none;
+}
+
+/* House classes are reused verbatim; only their stacking margins are
+   dropped, because both were written for a vertical copy column. */
+.indexRow :global(.reveal-relay-number),
+.indexRow :global(.reveal-relay-foot) {
+  margin: 0;
+}
+
+/* The one value not available from a house class: an index label has to
+   be readable prose at a glance, and every mono class in the set is 9px
+   or 10px uppercase. 15px/540 is --text-body at the display weight the
+   house uses for small ink labels (.reveal-relay-link, L446, is 12px/540). */
+.indexLabel {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 540;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+/* .reveal-relay-link's arrow: indigo, nudges on hover (L462). */
+.indexArrow {
+  color: var(--accent);
+  font-size: 12px;
+  line-height: 1;
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .indexRow:hover .indexArrow {
+    transform: translateY(2px);
+  }
+
+  .indexRow:hover .indexLabel {
+    color: var(--ink);
+  }
+}
+
+.indexRow:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── The rate ─────────────────────────────────────────────────────
+   Same asymmetric grid as .reveal-relay-head. */
+.rate {
+  display: grid;
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr);
+  column-gap: clamp(30px, 7vw, 100px);
+  align-items: start;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+/* 4px settles the 10px mono cap-height against the display numeral's,
+   which sits on a 0.95 line box. */
+.rateCol :global(.reveal-relay-eyebrow) {
+  margin: 4px 0 10px;
+}
+
+/* The display scale from .reveal-relay-copy h3 (L411), applied to a
+   paragraph because the price is not a heading. Tabular figures so
+   1,000 and 1,500 hold the same width down the page. */
+.price {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.35rem, 1.72rem + 2vw, 4.2rem);
+  font-weight: 540;
+  letter-spacing: -0.052em;
+  line-height: 0.95;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.rateLines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rateLines li {
+  margin: 0;
+  padding: 12px 0;
+  color: var(--ink);
+  font-size: 17px; /* --text-body-lg */
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.rateLines li + li {
+  border-top: 1px solid var(--hairline-soft);
+}
+
+/* The lede scale from .reveal-lede-v2 (L211), used where a statement has
+   to outrank body copy without becoming a heading. */
+.lede,
+.scale {
+  max-width: 62ch;
+  margin: clamp(32px, 4vw, 48px) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 0.91rem + 0.38vw, 1.25rem);
+  line-height: 1.58;
+  text-wrap: pretty;
+}
+
+/* Only the arithmetic sentence gets tabular figures; running prose does
+   not (DESIGN.md numeral rule). */
+.scale {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ── The schedule ─────────────────────────────────────────────────
+   The centrepiece. A real table with a row header per row. Hairlines,
+   no boxes, no zebra; the container rule is --hairline and the row
+   rules are --hairline-soft, which is exactly the weighting DESIGN.md
+   §4 specifies for rows inside an already-ruled block. */
+.scheduleWrap {
+  margin: clamp(28px, 4vw, 44px) -12px 0;
+}
+
+.schedule {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.schedule th,
+.schedule td {
+  vertical-align: baseline; /* the 10px mono label sits on the value's baseline */
+  padding: 15px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  overflow-wrap: break-word;
+}
+
+.schedule tr:first-child th,
+.schedule tr:first-child td {
+  border-top: 1px solid var(--hairline);
+}
+
+/* Row headers wear .reveal-relay-eyebrow (L422) verbatim; this only
+   drops its stacking margin and sets the column. */
+.schedule th {
+  width: 32%;
+  padding-left: 12px;
+  padding-right: clamp(20px, 4vw, 56px);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.schedule td {
+  padding-right: 12px;
+  color: var(--ink);
+  font-size: 15px; /* --text-body */
+  line-height: 1.62;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-wrap: pretty;
+}
+
+/* Seventeen rows is a long scan. The wash is the quietest ground in the
+   system (--paper-soft) and is hover-only, so it never reads as state. */
+@media (hover: hover) and (pointer: fine) {
+  .schedule tbody tr {
+    transition: background var(--motion-fast) var(--ease-out);
+  }
+
+  .schedule tbody tr:hover {
+    background: var(--paper-soft);
+  }
+}
+
+/* ── Column sets ──────────────────────────────────────────────────
+   Used by rung 4 (the three parts of privacy) and rung 5. */
+.cols3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 56px);
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: clamp(28px, 3.5vw, 44px);
+  border-top: 1px solid var(--hairline);
+}
+
+.cols3 :global(.reveal-relay-eyebrow) {
+  margin: 0;
+}
+
+.cols3 :global(.reveal-relay-body) {
+  max-width: 40ch;
+}
+
+/* Rung 5: label left, statement right, one row per statement. Same
+   proportions as .reveal-relay-chapter (L383) without its preview-scale
+   block padding. */
+.rows {
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.rowsItem {
+  display: grid;
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr);
+  column-gap: clamp(30px, 7vw, 100px);
+  align-items: baseline;
+  padding: clamp(22px, 3vw, 32px) 0;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.rowsItem:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+.rowsItem :global(.reveal-relay-eyebrow),
+.rowsItem :global(.reveal-relay-number) {
+  margin: 0;
+}
+
+.rowsItem p:last-child {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px; /* --text-body-lg */
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* ── Rung 6: the end state ────────────────────────────────────────
+   The largest running measure on the page apart from the manifesto. */
+.ending {
+  max-width: 66ch;
+  margin: clamp(40px, 5vw, 64px) 0 0;
+}
+
+.ending p {
+  margin: 0;
+  padding: clamp(22px, 3vw, 32px) 0;
+  color: var(--ink);
+  font-size: 19px; /* .reveal-manifesto-body, L1745 */
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.ending p + p {
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.ending p:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+/* ── The questions ────────────────────────────────────────────────
+   Twelve rows, all answers open. Same asymmetric grid as the section
+   openers, so the page has one column structure end to end. */
+.faq {
+  margin-top: clamp(8px, 2vw, 20px);
+}
+
+.faqRow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr);
+  column-gap: clamp(30px, 7vw, 100px);
+  align-items: start;
+  padding: clamp(26px, 3.5vw, 40px) 0;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.faqRow:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+.faqRow :global(.reveal-relay-number) {
+  margin: 0 0 10px;
+}
+
+.faqQ {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px; /* --text-body-lg at the house display weight */
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.faqA {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.62;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-wrap: pretty;
+}
+
+/* ── Signal preview · canon repair ────────────────────────────────
+   SignalTheRead hardcodes its dateline stamp (the-read.tsx L120-124):
+   a <time> and then the bare text "The Orchard". It is not reachable
+   from the `items` prop, so this component carries the same off-canon
+   name trap the brief flagged on TasksTheBoard. Venue canon is Glenmara
+   House, and any other venue name is a defect, so the stamp is
+   suppressed here rather than shipped.
+
+   The row is justify-content: space-between, so it closes cleanly onto
+   its "Today's Signal" kicker with no hole. The sample workspace is
+   still dated, once, by the .reveal-relay-source strip above the
+   chapters, which is where the house puts provenance anyway.
+
+   Scoped to this route. No shared file is touched. */
+.signalPreview :global(.rd-stamp) {
+  display: none;
+}
+
+/* ── The film slot ────────────────────────────────────────────────
+   Sits inside .reveal-relay-preview, so the chrome, radius and shadow
+   are the house's. This is only the reserved 16:9 field and its mark.
+   Deliberately empty: no file exists, and the founder will see it in
+   exactly this state. */
+.filmStage {
+  padding: clamp(14px, 2vw, 24px);
+}
+
+.filmPoster {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+
+.filmMark {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-faint);
+}
+
+.filmMark svg {
+  width: 15px;
+  height: 15px;
+}
+
+.filmText {
+  margin: 16px 0 0;
+  color: var(--ink);
+  font-size: 14px; /* .reveal-relay-body, L430 */
+  line-height: 1.62;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────*/
+@media (max-width: 880px) {
+  .index,
+  .rate,
+  .rowsItem,
+  .faqRow {
+    column-gap: clamp(24px, 5vw, 44px);
+  }
+
+  .cols3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .band,
+  .index {
+    width: min(100% - 32px, 1080px);
+  }
+
+  .band {
+    padding-block: 72px;
+  }
+
+  /* One column below 640, matching the .reveal-relay-head collapse. */
+  .index,
+  .rate,
+  .cols3,
+  .rowsItem,
+  .faqRow {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 16px;
+  }
+
+  .rate,
+  .rowsItem,
+  .faqRow {
+    row-gap: 14px;
+  }
+
+  .indexRow {
+    grid-template-columns: 30px minmax(0, 1fr) 14px;
+    row-gap: 4px;
+  }
+
+  /* The tag drops under the label rather than squeezing the label. */
+  .indexRow :global(.reveal-relay-foot) {
+    grid-column: 2;
+  }
+
+  .scheduleWrap {
+    margin-inline: 0;
+  }
+
+  .schedule th {
+    width: 40%;
+    padding-left: 0;
+    padding-right: 16px;
+  }
+
+  .schedule td {
+    padding-right: 0;
+  }
+
+  .faqA {
+    max-width: 58ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indexArrow,
+  .schedule tbody tr {
+    transition: none;
+  }
+}
