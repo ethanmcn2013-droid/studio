@@ -34,12 +34,27 @@
   },
   "session": {
     "lastClosed": {
-      "id": "eed55e9e-wp01d",
-      "closedAt": "2026-08-03T02:05:38.494Z",
-      "record": "sessions/2026-08-03--eed55e9e-wp01d.md",
-      "objective": "Close R-024 decision items; deploy decision escalated"
+      "id": "eed55e9e-e1204",
+      "closedAt": "2026-08-03T02:20:56.806Z",
+      "record": "sessions/2026-08-03--eed55e9e-e1204.md",
+      "objective": "E12.04: write and verify the venues page against the ratified commercial position, so the deploy can proceed"
     },
-    "open": []
+    "open": [
+      {
+        "id": "wp03-e0506-audit",
+        "objective": "E05/E06 audit against shipped implementation, per D-015 Q2",
+        "openedAt": "2026-08-03T02:15:36.021Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      },
+      {
+        "id": "eed55e9e-deploy",
+        "objective": "Approve and deploy E12.04; record the standing publication authorisation",
+        "openedAt": "2026-08-03T02:23:11.283Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      }
+    ]
   },
   "wip": {
     "primaryFocus": 1,
@@ -8985,6 +9000,12 @@
           "ref": "RAID.md I-011",
           "note": "The owner-operator conflict with D-012, raised for a founder decision",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:19:27.467Z",
+          "ref": "RAID.md I-012 (reissued from I-011)",
+          "note": "CORRECTION: the owner-operator conflict was filed as I-011 and that id was reassigned to another package when a concurrent session rewrote RAID.md. It is now I-012.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -9632,6 +9653,12 @@
           "ref": "RAID.md R-032",
           "note": "Pre-existing contact data found committed elsewhere in the workspace, reported for a founder decision, not remediated by this package",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:19:27.626Z",
+          "ref": "RAID.md R-039 (reissued from R-032)",
+          "note": "CORRECTION: the committed contact-data finding was filed as R-032 and that id was reassigned by a concurrent rewrite. It is now R-039.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -10140,6 +10167,12 @@
           "ref": "RAID.md R-031",
           "note": "The shortfall raised as a risk with costed options",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:19:27.778Z",
+          "ref": "RAID.md R-038 (reissued from R-031)",
+          "note": "CORRECTION: the market-shortfall risk was filed as R-031 and that id was reassigned by a concurrent rewrite. It is now R-038.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -10243,6 +10276,12 @@
           "at": "2026-08-03T01:31:13.434Z",
           "ref": "8 in-ring accounts held out of every cohort on unconfirmed trading status; 6 of 6 suspected closures independently confirmed",
           "note": "R-033 mitigated by process",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:19:27.922Z",
+          "ref": "7 in-ring accounts held on unconfirmed trading status (final figure)",
+          "note": "CORRECTION: an earlier evidence line said 8. The final build holds 7; the count moved when a confirmed duplicate was folded.",
           "addedBy": "claude_code"
         }
       ],
@@ -11649,13 +11688,13 @@
       "id": "E12.04",
       "epic": "E12",
       "title": "Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly.",
-      "status": "backlog",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
       "startNow": false,
-      "effortPoints": null,
-      "estimateStatus": "unestimated",
+      "effortPoints": 3,
+      "estimateStatus": "provisional",
       "executor": "claude_code",
       "approver": "founder",
       "dependencies": [
@@ -11664,21 +11703,51 @@
       ],
       "dependencyBasis": "D-009 downstream: the venues page must carry the founding rate.",
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "tasks/E12.04.md",
+      "acceptanceCriteria": [
+        "The founding lock is described as holding on continuous renewal, and the page contains no permanence wording anywhere.",
+        "The number is stated as 01/25 to 25/25, assigned on cleared payment and explicitly not on signature, with the fourteen-day hold stated.",
+        "Entitlement is every booked couple with no seat count anywhere on the page.",
+        "The couple access term is stated as eighteen months or three months past the wedding, whichever is later.",
+        "No banned programme term appears: partner, member, investor, exclusive, guaranteed, certified, or manufactured urgency.",
+        "Nothing on the page implies legal, solicitor or accountant approval.",
+        "Venue branding is described as the venue name only, including in the OpenGraph description.",
+        "Any capability not yet built is stated as not yet built.",
+        "Scarcity is a static true statement, never a countdown that can go stale.",
+        "Both prices appear, are stated as VAT-inclusive, and the founding rate is described as EUR 500 a year less."
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T02:18:40.797Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E12.04-venues-page-audit.md",
+          "note": "Claim-by-claim trace against D-009, D-010, D-014, D-016, D-020, D-021, D-027 and the programme mechanics. Zero hits across every forbidden-wording class.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:18:40.925Z",
+          "ref": "studio/src/app/venues/page.tsx",
+          "note": "The page carrying the ratified position, with the OpenGraph description corrected to the name-only wording.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T02:18:41.072Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/R-024-name-only-copy-register.md",
+          "note": "The branding correction applied to this page, in context with the other 28 surfaces.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. Audited against every ratified decision.",
+        "date": "2026-08-03"
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
-      "reviewAt": null,
-      "completedAt": null,
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
+      "completedAt": "2026-08-03",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -11693,6 +11762,34 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:18:41.206Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Audit complete, criteria and evidence recorded."
+        },
+        {
+          "at": "2026-08-03T02:18:41.323Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Session eed55e9e-e1204."
+        },
+        {
+          "at": "2026-08-03T02:18:41.448Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Verified against every ratified decision. Publication is the founder decision that remains — a price on a public surface is not Claude to publish."
+        },
+        {
+          "at": "2026-08-03T02:21:25.049Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Audited against every ratified decision."
         }
       ],
       "decisionClass": "execution",
@@ -14766,12 +14863,12 @@
   },
   "counts": {
     "byStatus": {
-      "backlog": 135,
+      "backlog": 134,
       "ready": 4,
       "in_progress": 0,
       "internal_review": 1,
       "founder_review": 0,
-      "done": 70,
+      "done": 71,
       "blocked": 0,
       "deferred": 2,
       "cancelled": 0
@@ -14779,25 +14876,25 @@
     "totals": {
       "tasks": 212,
       "active": 210,
-      "unestimated": 188,
+      "unestimated": 187,
       "criticalPath": 120,
       "releaseBlocking": 55,
       "dependencyEdges": 135
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 33.3,
-      "numerator": 70,
+      "value": 33.8,
+      "numerator": 71,
       "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T02:07:23.672Z",
-    "lastRenderedAt": "2026-08-03T02:05:38.494Z",
-    "lastUpdatedAt": "2026-08-03T02:05:38.494Z",
-    "lastUpdatedSession": "eed55e9e-wp01d",
+    "lastValidatedAt": "2026-08-03T02:23:11.283Z",
+    "lastRenderedAt": "2026-08-03T02:21:25.049Z",
+    "lastUpdatedAt": "2026-08-03T02:23:11.283Z",
+    "lastUpdatedSession": "eed55e9e-deploy",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"

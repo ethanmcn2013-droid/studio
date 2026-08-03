@@ -302,7 +302,7 @@ confirmed trading and therefore contactable**.
 
 **Cohort 1 fills to 25. Cohort 2 reaches 16. Cohort 3 reaches 2. Cohort 4 does
 not exist.** Twenty-five founding venues out of forty-three accounts needs roughly
-a 58% conversion rate on cold email. Recorded as R-031 with five costed options;
+a 58% conversion rate on cold email. Recorded as R-038 with five costed options;
 recommendation is to lock Cohorts 1 and 2 now, hold Cohort 3 as a contingent
 reserve, and decide the geography question on Cohort 1's measured conversion
 rather than on an assumption.
@@ -338,8 +338,8 @@ publication is `unknown` on all 219 accounts, which is correct rather than
 incomplete.
 
 Two conflicts recorded rather than reconciled: the strategy document's
-owner-operator rule against D-012's eligible types (I-011), and pre-existing
-personal contact data found committed elsewhere in the workspace (R-032), reported
+owner-operator rule against D-012's eligible types (I-012), and pre-existing
+personal contact data found committed elsewhere in the workspace (R-039), reported
 for a founder decision and deliberately not remediated by this package.
 
 Verification: 25/25 tests pass · coordinate audit clean at 0 wrong across 91
@@ -363,7 +363,7 @@ generated artefact · `validate` clean.
 `E10.13` Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues.
 `E10.14` Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication.
 
-Founder note: Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-031), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.
+Founder note: Founder approved 2026-08-03: 'all 14 tasks are founder approved', in the same instruction that approved the Convert ranking model and deferred the geography decision until Cohort 1 conversion data exists. Approved knowing that E10.04 returns a documented market shortfall rather than 125 accounts (43 contactable, R-038), and that E10.13 is partly delivered by design because Cohorts 3 and 4 do not exist inside the ratified ring.
 
 ## 2026-08-03 · D-028 · E10 approved — Convert model, geography deferred
 
@@ -379,12 +379,12 @@ market shortfall — **43 contactable accounts inside the ratified ring against 
 125-account target** — rather than the universe the backlog asked for, and E10.13
 is partly delivered because Cohorts 3 and 4 do not exist inside that ring.
 
-**R-031 stays open.** Deferring buys information, it does not resolve the
+**R-038 stays open.** Deferring buys information, it does not resolve the
 shortfall. Twenty-five founding venues from forty-three accounts still needs
 roughly a 58% conversion rate, and if Cohort 1 converts at an ordinary 10–15% the
 geography or the founding number has to move. Five costed options stand ready.
 
-**I-011 resolved as recommended:** D-012 governs, group-owned hotels stay
+**I-012 resolved as recommended:** D-012 governs, group-owned hotels stay
 eligible, and the owner-operator preference becomes a ranking weight rather than
 a filter — which is what `decision_access` already does. The 40-weddings
 threshold in `VENUE_EDITION_STRATEGY.md` is superseded by D-012's 20.
@@ -396,3 +396,48 @@ confirmation, and thirteen contactable accounts carry only a town-centroid
 coordinate. "Ready" on that line reads as ready to send, and nothing is. The flag
 needs its meaning settled before it is set either way; `project-control.mjs`
 deliberately refuses to set structured fields through the counter command.
+
+## 2026-08-03 · D-030 · the R-038 decision rule pre-committed, and the import tests fixed properly
+
+**The deferral now has a trigger, a pre-agreed response and a close date**, so it
+cannot quietly become drift. Recorded as **D-030**.
+
+Measured at the end of Cohort 1's four touches, on signed-and-paid: **10 or more**
+widens the ring to 60 minutes · **4 to 9** reduces the founding number to 15 and
+closes the offer, pre-authorised here so it does not need a fresh decision under
+time pressure · **3 or fewer** does **not** widen the ring, because at that point
+the constraint is the offer rather than the supply, and widening spends the last
+of a 43-account market on a pitch that has just failed.
+
+**The founding offer closes 12 weeks after Cohort 1's first send, or 31 December
+2026, whichever is earlier**, at whatever number is reached, and that number is
+published as closed. An unfilled founding cohort inverts the scarcity claim it
+exists to make: "fifteen founding venues, closed" is a stronger asset than
+"25 places, ten still available".
+
+Recorded once, because it reframes the target: **25 of 43 contactable accounts is
+a 58% share of every eligible wedding venue in the ring.** Fifteen is roughly 35%.
+
+**`project-control.test.mjs` fixed at the design level rather than by bumping a
+number.** Five tests were failing because they asserted the import's counts — 211
+tasks, 120 on the critical path, 155 execution-class — against the whole backlog,
+so the first legitimate scope addition (E02.13, under CR-003 / D-027) broke all
+five at once. Changing 211 to 212 would have destroyed the property being tested
+and turned an integrity assertion into a rubber stamp.
+
+Instead the two properties are now separated: the imported 211 are intact and
+byte-identical with their derived totals frozen, and **anything else must name
+the change request and the decision that created it**. Approved growth passes;
+silent growth fails. A new test asserts exactly that. 69/69 pass, and an
+adversarial run confirms all six failure modes are still caught — renaming an
+imported task, deleting one, adding a task with no CR, citing an unapproved CR,
+reclassifying a founder-only task, and quietly joining the critical path.
+
+**Honest edge, and it cost real work.** WP-02's four RAID entries — the market
+shortfall, the committed contact data, the closed-venue directories and the
+owner-operator conflict — were **destroyed by a concurrent session's rewrite of
+`RAID.md`**, and their ids were reassigned to another package's risks before
+anyone noticed. They are reissued as **R-038, R-039, R-040 and I-012**, and every
+reference in `DECISIONS.md`, `CHANGELOG.md`, `venue-universe/` and four tasks'
+evidence has been repointed. This is the second recorded instance of the failure
+in I-011 and the first one to lose four entries at once.

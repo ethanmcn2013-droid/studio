@@ -22,9 +22,9 @@ against the words of the task title, which is the only mechanism that existed.
 
 | Category | Entries |
 |---|---|
-| **commercial** | R-003, R-008, R-010, R-021, R-022, **R-031, R-033**, I-002, I-005, **I-011** |
+| **commercial** | R-003, R-008, R-010, R-021, R-022, **R-038, R-040**, I-002, I-005, **I-012** |
 | **product** | R-015, R-016, R-007 |
-| **privacy** | R-007, R-017, **R-032** |
+| **privacy** | R-007, R-017, **R-039** |
 | **delivery** | R-001, R-004, R-005, R-009, R-010 |
 | **founder-capacity** | R-006, A-006 |
 | **launch** | **R-023, R-024, R-025** — opened 2026-08-03. This row was empty |
@@ -714,3 +714,61 @@ sweep and require confirmation when it spans more than one.
   unrelated changes to become one deploy.
 - **Affects:** E12.04, E02.01, E15.10, the Commercial gate
 - **Status:** open · **Last reviewed:** 2026-08-03
+
+---
+
+## Reissued 2026-08-03 — WP-02 venue-universe entries, lost to a concurrent rewrite
+
+These four entries were written by the WP-02 session earlier on 2026-08-03 as
+R-031, R-032, R-033 and I-011, and were **destroyed by a concurrent session's
+rewrite of this file** before those IDs were reassigned to other content. They
+are restored here under **R-038, R-039, R-040 and I-012**, unchanged apart from
+the renumbering.
+
+This is the second recorded instance of the failure described in **I-011**
+(markdown registers losing entries under concurrent sessions) — the first cost
+one entry, this one cost four, and neither loss was noticed by the session that
+caused it. Every reference to the old IDs in `DECISIONS.md`, `CHANGELOG.md` and
+`venue-universe/` has been repointed.
+
+The commercial category carried no entry about whether the market the Founding
+25 is sold into actually contains enough venues. It was assumed. It was measured
+this session, and it does not.
+
+### R-038 — The ratified 45-minute ring does not contain 125 eligible venues
+- **Type:** commercial · **Probability:** certain (measured, not forecast) · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara — needs a founder decision
+- **Detail:** E10.04 asks for a universe of at least 125 accounts. Eight independent research sweeps plus a village-by-village pass found **roughly 55 to 60 eligible, trading wedding venues inside the ring ratified by D-012** — not 125. This is not a coverage failure: 39 of 61 villages checked returned no wedding venue at all, a dedicated socials-only pass found none, the barn segment is empty inside the ring, and Ireland's Blue Book has four eligible members in the whole catchment. The ring measured with two independent routing engines is also tighter than the programme assumed — Gort (51 min), Cashel (61), Mallow (58), the Glen of Aherlow (56) and Listowel (73) all fall outside it, removing four search areas the 125 target implicitly counted on.
+- **What it actually means:** the cohort model is not broken, but the arithmetic behind it changes. Twenty-five founding venues out of roughly 55 eligible accounts requires about a **45% conversion rate on cold email**. Cohorts 1 and 2 are real and buildable. **Cohorts 3 and 4 do not exist inside the ring**, and recording them as though they do would be fiction.
+- **Options, costed in `venue-universe/03-UNIVERSE.md` section 5:** widen the ring to 60 minutes (+22 accounts, changes ratified geography) · reduce the founding number · run smaller cohorts over more waves · widen eligibility (weakens the product story) · hold cohorts 3 and 4 contingent on Cohort 1's measured conversion.
+- **Recommendation:** lock Cohorts 1 and 2 from the ring now, define Cohort 3 as the 45-60 band held in reserve, and decide the geography question when Cohort 1's real conversion rate exists rather than now on an assumption.
+- **Affects:** E10.04, E10.12, E10.13, E10.14, E11.03, E13.17, E15.07, E15.15, D-012, D-017
+- **Status:** open, needs founder decision · **Review trigger:** Cohort 1 response data · **Last reviewed:** 2026-08-03
+
+### R-039 — Personal contact data is checked into the repository and into a production dump
+- **Type:** privacy · **Probability:** certain (found, not forecast) · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara — founder-gated, outside WP-02's scope to remediate
+- **Detail:** a read-only sweep of the workspace found named individuals' contact details committed as application source and as an unencrypted database dump. `studio/src/lib/hq/data.ts` carries contact name, job title, business email, phone and postal address with Eircode across roughly 50 venue rows, plus a similar block of school and student rows. `db-archive/2026-07-31/signal-studio.sql` carries the same fields as a production dump of 148 prospect rows. `studio/signal-growth/outbound/wedding-venue-list.md` carries personal names, emails and a third-party mobile number, harvested from testimonials and review sites rather than from the individuals — which also directly contradicts the house rule in `VENUE_TARGET_LEDGER.md` that contact details stay blank until independently verified. Two further task-database dumps carry user and sponsor email addresses.
+- **Why it matters here:** this is exactly the failure mode `private/README.md` and `venues.template.csv` were written to prevent, and it already exists elsewhere in the tree. WP-02's own output is clean and held clean by `venue-export.mjs` and its tests, but a data incident does not care which file it came from, and this is an Irish company holding EU personal data.
+- **Not remediated by this session, deliberately:** deleting data in another package's territory is destructive and out of scope. Reported for a founder decision.
+- **Suggested remediation:** decide the lawful basis and retention position for the existing rows; make the CRM the single store; strip the committed source file and the dumps; record it as an operator-todo, since only the founder can decide a data-retention policy.
+- **Affects:** `studio/src/lib/hq/data.ts`, `db-archive/2026-07-31/*.sql`, `studio/signal-growth/outbound/*`, E10.08, E10.14, the legal gate
+- **Status:** open, reported, not remediated · **Last reviewed:** 2026-08-03
+
+### R-040 — Wedding directories list venues that have closed or stopped taking bookings
+- **Type:** commercial · **Probability:** high · **Impact:** medium · **Severity:** medium
+- **Owner:** Claude Code
+- **Detail:** research found several venues inside the ring whose directory listings, and in some cases whose own live websites, do not match their trading position — a lakeside estate reported in receivership while its site still sells weddings, a hotel described in its own sale listing as not trading while a 2026 blog still recommends it, and a 500-capacity Ennis hotel that states on its own wedding page that it is not currently taking wedding bookings. Thirty-three accounts in the universe are flagged as not confirmed trading.
+- **Why it matters:** a personalised film sent to a venue that has closed is worse than no outreach at all. It is the most visible way for a founder-led programme to look careless, to an audience that talks to each other.
+- **Mitigation:** `status_flag` carries the position on every account and anything not `trading` is held out of outreach; re-verification is a step in the cohort-release procedure rather than a research task, so it happens at contact time, not at research time.
+- **Affects:** E10.04, E10.14, E11.03, E13.17, E15.07
+- **Status:** open, mitigated by process · **Last reviewed:** 2026-08-03
+
+### I-012 — The strategy document's owner-operator rule contradicts the ratified eligible types
+- **Type:** commercial · **Probability:** certain · **Impact:** medium · **Severity:** medium
+- **Owner:** Ethan McNamara — a genuine founder call
+- **Detail:** `studio/docs/strategy/VENUE_EDITION_STRATEGY.md` requires "an owner-operator who can sign alone" and sets a qualification threshold of roughly 40 weddings a year. D-012 ratifies eligible types that explicitly include "hotels with a real weddings operation" — many of which are group-owned and cannot sign alone — and sets the floor at roughly 20. The two cannot both hold. Applied strictly, the strategy document removes most of the Limerick city hotel supply, which carries a disproportionate share of the county's wedding volume, and removes a large part of the country-house segment where strategic fit is strongest.
+- **Position, per `WORKFLOWS.md` section 8:** recorded, not silently reconciled. On the volume floor, D-012 governs — it is the later ratified decision and `PROJECT.md` section 15 puts approved decisions above historical strategy documents, so no founder call is needed and the strategy document is simply stale. On owner-operator, a call is needed.
+- **Recommendation:** D-012 governs, group-owned hotels stay eligible, and the owner-operator preference becomes a ranking weight rather than a filter. That is already how `decision_access` scores in `venue-rank.mjs` — an owner-operated single property scores 5, a chain with central procurement scores 1. The insight in the strategy document is right; encoding it as an exclusion rather than a weight is what is wrong.
+- **Affects:** E10.02, E10.03, E10.12, `studio/docs/strategy/VENUE_EDITION_STRATEGY.md`
+- **Status:** open, needs founder decision · **Last reviewed:** 2026-08-03

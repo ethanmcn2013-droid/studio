@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T02:05:38.494Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T02:05:38.494Z · session `eed55e9e-wp01d`
+**Report generated:** 2026-08-03T02:21:25.049Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T02:21:25.049Z · session `wp03-e0506-audit`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,12 +19,12 @@
 
 ## Completion
 
-**Verified completion: 33.3%** — 70 of 210 tasks.
+**Verified completion: 33.8%** — 71 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 33.6% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 34.1% (estimate, not verified completion — status-credit model in REPORTING.md)
 
-**Unestimated active tasks:** 188 of 210.
+**Unestimated active tasks:** 187 of 210.
 
 A task counts as complete only when its acceptance criteria are met, evidence is recorded, verification passed, and the founder has explicitly approved it.
 
@@ -32,12 +32,12 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 
 | Status | Count |
 |---|---|
-| backlog | 135 |
+| backlog | 134 |
 | ready | 4 |
 | in_progress | 0 |
 | internal_review | 1 |
 | founder_review | 0 |
-| done | 70 |
+| done | 71 |
 | blocked | 0 |
 | deferred | 2 |
 | cancelled | 0 |
@@ -58,7 +58,7 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 0 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
-| E12 | Website, proposal and commercial asset system | 0/14 | 0% | 0 | 0 |
+| E12 | Website, proposal and commercial asset system | 1/14 | 7.1% | 0 | 0 |
 | E13 | Motion system and Limerick First invitation film | 0/18 | 0% | 0 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
@@ -125,6 +125,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 ## Completed since the last report
 
 - 2026-08-03 `E14.13` Decide the exact placement of the standard price, founding rate and final walkthrough CTA.
+- 2026-08-03 `E12.04` Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly.
 - 2026-08-03 `E11.15` Run a weekly conversion review covering cohort, channel, meeting quality, objections, proposals, wins and next-cohort changes.
 - 2026-08-03 `E11.14` Define founding-slot holds, proposal expiry, payment-to-lock procedure, close-lost reasons, referral asks and publicity consent.
 - 2026-08-03 `E11.13` Define the follow-up sequence, no-response sequence and respectful stopping rule.
@@ -133,7 +134,6 @@ Ratified in D-008. Moving one is change control, not an edit.
 - 2026-08-03 `E11.10` Write the live product walkthrough and demonstration sequence.
 - 2026-08-03 `E11.09` Write the discovery-call structure and qualification questions.
 - 2026-08-03 `E11.08` Build the booking flow and meeting-confirmation sequence.
-- 2026-08-03 `E11.07` Define how each private personalised film and landing page is delivered without sending large video attachments.
 
 ## Three highest-value next actions
 
@@ -185,8 +185,8 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** none
-**Last closed session:** eed55e9e-wp01d (2026-08-03T02:05:38.494Z) → `sessions/2026-08-03--eed55e9e-wp01d.md`
+**Open sessions:** wp03-e0506-audit (E05/E06 audit against shipped implementation, per D-015 Q2)
+**Last closed session:** eed55e9e-e1204 (2026-08-03T02:20:56.806Z) → `sessions/2026-08-03--eed55e9e-e1204.md`
 
 ## Next recommended project-management action
 

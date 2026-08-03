@@ -981,7 +981,7 @@ charter, deliberately, and that the charter is the destination.
 
 - **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
 - **Affects:** E10.03, E10.12, E10.13, E10.14, E11.03, E13.03, E13.17, E15.07, E15.15
-- **Answers:** R-031 (interim), I-011 · **Approves:** E10.01–E10.14, all fourteen
+- **Answers:** R-038 (interim), I-012 · **Approves:** E10.01–E10.14, all fourteen
 
 **Decision.**
 
@@ -1007,7 +1007,7 @@ charter, deliberately, and that the charter is the destination.
 Cohort 1 data, lets go with your recommendation … and all 14 tasks are founder
 approved."*
 
-**What this does not decide.** The shortfall itself stays open as **R-031**. The
+**What this does not decide.** The shortfall itself stays open as **R-038**. The
 measured position is 43 contactable accounts inside the ring against a
 twenty-five-venue target, which needs roughly a **58% conversion rate on cold
 email**. Deferring is a decision to buy information, not a resolution: if
@@ -1020,7 +1020,7 @@ the top twenty-five are the same under every option. Deciding now means deciding
 on an assumed conversion rate; deciding after Cohort 1 means deciding on a
 measured one, four to six weeks later, at no cost.
 
-**I-011 resolved as recommended.** D-012 governs: group-owned hotels stay
+**I-012 resolved as recommended.** D-012 governs: group-owned hotels stay
 eligible, and the owner-operator preference in
 `studio/docs/strategy/VENUE_EDITION_STRATEGY.md` becomes a ranking weight rather
 than a filter. It already is one — `decision_access` scores an owner-operated
@@ -1083,3 +1083,134 @@ replaced from the reserve. Those are E10.08 and E11 work, not E10 research.
 **Tooling note.** `project-control.mjs commercial` deliberately refuses to set
 structured fields, so these flags are set by a considered edit rather than a
 counter command. That refusal is correct and should stay.
+
+---
+
+## D-030 — The R-038 decision rule, pre-committed, and the founding-offer close date
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** E10.13, E10.14, E11.03, E11.15, E13.17, E15.07, E15.15, E15.17, D-012, D-017
+- **Pre-authorises:** a reduction of the founding number under branch B below
+- **Does not close:** R-038
+
+**Why this exists.** D-028 deferred the geography decision until Cohort 1
+conversion data exists. A deferral with no trigger and no pre-agreed response is
+not a decision, it is drift — and the moment the data arrives is the worst moment
+to start reasoning, because it arrives mid-campaign with places unfilled. So the
+rule is set now, before a single email is sent, while nobody is invested in a
+particular answer.
+
+### 1. The trigger
+
+**When Cohort 1's four touches are complete** — the film, two follow-ups and the
+final short note, per D-013's stopping rule — measure **signed and paid**, not
+replies, not meetings, not verbal yes. That is roughly six weeks after Cohort 1's
+first send.
+
+### 2. The branches
+
+| Signed and paid, of 25 | What happens |
+|---|---|
+| **10 or more** | The model works and the market is merely tight. **Widen the ring to 60 minutes** (option A in `venue-universe/03-UNIVERSE.md` §5). Cohort 2's sixteen plus the band's sixteen carries the programme to 25. |
+| **4 to 9** | The model works; the market is too small. **Reduce the founding number to 15** and close the offer. Pre-authorised here — see §4. |
+| **3 or fewer** | **Do not widen the ring.** |
+
+### 3. The branch that matters most is the third one
+
+At three or fewer, the instinct will be to go and find more venues. That is the
+wrong move and it is expensive, because the market is 43 accounts and **each one
+can only be contacted for the first time once**. Widening the ring at that point
+spends the last of the market on a pitch that has just been shown not to work.
+
+If Cohort 1 converts at three or fewer, the constraint is not supply. It is the
+offer, the film, the price or the channel. Fix that against the sixteen accounts
+in Cohort 2 — a real second attempt with a changed pitch — before any account
+outside the ring is touched.
+
+### 4. Reducing the founding number is pre-authorised
+
+The number of founding venues is on the change-control list (`WORKFLOWS.md` §5),
+so ordinarily branch B would stop the session and come back. This decision
+authorises it in advance, on this trigger and this data only.
+
+When it fires it still gets: a `CHANGELOG.md` entry naming which branch fired and
+the numbers it fired on, and an amendment to this decision recording the same.
+Pre-authorised is not unrecorded.
+
+**Downstream of a reduction, so it is not a surprise:** the public
+`01/25`–`25/25` numbering, the stored Founding Venue number built in E02.13, the
+Benefits Charter, the proposal page and E15.17's "close the founding offer" task
+all carry 25 today. Reducing to 15 is a copy and data change across those
+surfaces, not just a number in a spreadsheet.
+
+### 5. The founding offer closes on a date, not on a count
+
+**The founding offer closes 12 weeks after Cohort 1's first send, or on
+31 December 2026, whichever is earlier — at whatever number has been reached —
+and that number is then published as closed.**
+
+Twelve weeks is both cohorts run to D-013's full four touches, end to end.
+The December cap exists so that a slip in release readiness cannot push the
+founding programme into 2027 by inertia. Moving either is a one-line amendment;
+having no date at all is what must not happen.
+
+**The reasoning, which is the point.** The Founding 25 is a scarcity claim. An
+unfilled founding cohort inverts it: every empty place is public evidence that
+the venues who were asked said no. **"Fifteen founding venues, closed" is a
+stronger asset than "25 places, ten still available"** — the first is scarcity
+delivered, the second is scarcity claimed and missed. Closing on a date puts that
+outcome under Signal Studio's control rather than the market's.
+
+### 6. The number nobody had looked at
+
+Twenty-five founding venues out of 43 contactable accounts is a **58% share of
+every eligible wedding venue inside the ratified ring**. That is what the target
+asks for, independently of conversion rate, and it is a very high share for a
+first product in its first season. Fifteen would be roughly 35%.
+
+This is recorded because it reframes branch B. Reducing to 15 is not a retreat
+from 25; it is a correction of a target that was set before anyone had counted
+the market it applies to.
+
+**R-038 stays open** until a branch fires.
+
+---
+
+## D-028 — Standing authorisation: Claude publishes commercial surfaces once the position behind them is ratified
+
+- **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
+- **Affects:** E12 (all), E11, D-024, WORKFLOWS §5, PROJECT.md §16
+- **Amends:** the "irreversible or externally visible actions stop" rule in D-024
+
+**Decision.** Ethan: *"yes i would rather you just go ahead in future on this
+stuff."*
+
+Claude may publish a public commercial surface **without stopping for a separate
+publication approval**, provided all four hold:
+
+1. Every commercial claim on it traces to an **already-ratified** decision. The
+   surface presents a decision; it never makes one.
+2. The claims are **audited against those decisions and the audit is recorded**
+   as evidence before publishing, in the shape of
+   `evidence/E12.04-venues-page-audit.md`.
+3. The forbidden-wording searches pass with zero hits: permanence wording
+   (D-001 point 16, R-008), the banned programme terms in
+   `FOUNDING_25_PROGRAMME_MECHANICS.md` §1, any implication of legal or
+   accountant approval (D-016), and any branding claim beyond the venue's name
+   (D-027 point 3).
+4. Nothing on the surface claims a capability the product does not have (R-007).
+
+**What still stops.** A surface that would *introduce* a commercial position
+rather than present a ratified one. Any change to price, terms, entitlement, the
+Keepsake promise, geography, scope, the release date or a gate — those remain
+change-controlled and come back first. Sending to a venue is not publishing and
+is not covered.
+
+**Rationale.** The founder is the constraint (R-006). Asking him to approve the
+rendering of a decision he has already made spends his attention twice on the
+same judgement. The audit is what makes it safe: the gate moves from *may I
+publish* to *does every line trace to something you already decided*, which is a
+question Claude can answer and evidence.
+
+**What this does not relax.** No task reaches Done without explicit founder
+approval. This authorises publication, not sign-off.

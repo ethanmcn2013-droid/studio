@@ -4,9 +4,9 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T02:05:38.494Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T02:21:25.049Z · baseline **approved** (0.1.0)
 
-212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 188 unestimated.
+212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 187 unestimated.
 
 Legend: **CP** imported critical path · **RB** release-blocking · **SN** start-now · **FD** founder decision, only Ethan can answer it · **FC** Claude brings options, Ethan picks · spec ✓ when a task specification exists · **Evidence** is the count of recorded evidence references · **Target** is a deliberately set date, never a forecast · sign-off is the founder state.
 
@@ -217,19 +217,19 @@ Lane: `claude_code` · 14/14 done (100%) · 0 in flight · 0 blocked
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E10.01 | Define the public geographic term and exact boundary for the “Greater Limerick wedding market.” | done | p1 | SN FD | claude_code | — | — | 3 | — | — | approved |
-| E10.02 | Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers. | done | p1 | SN FD | claude_code | — | — | 3 | — | — | approved |
+| E10.02 | Define eligible venue types and exclude businesses that are not credible annual Venue Edition buyers. | done | p1 | SN FD | claude_code | — | — | 4 | — | — | approved |
 | E10.03 | Build the venue-ranking score using wedding focus, brand quality, likely booking volume, decision accessibility and strategic fit. | done | p1 | SN FC | claude_code | — | — | 4 | — | — | approved |
 | E10.04 | Build a master researched universe of at least 125 accounts, or formally document the available market shortfall. | done | p1 | SN | claude_code | — | — | 5 | — | — | approved |
 | E10.05 | Deduplicate venue groups, hotels with multiple properties, shared operators and renamed properties. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
 | E10.06 | Record accurate map coordinates, geographic cluster and drive-time ring for every account. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
 | E10.07 | Identify the likely buyer and secondary contact at each venue: owner, general manager, wedding manager, sales lead or events lead. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
-| E10.08 | Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment. | done | p1 | SN | claude_code | — | — | 4 | — | — | approved |
+| E10.08 | Verify direct emails, phone numbers, postal addresses, LinkedIn profiles and current employment. | done | p1 | SN | claude_code | — | — | 5 | — | — | approved |
 | E10.09 | Research each venue’s wedding proposition, package structure, likely annual volume and current couple-planning experience. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
 | E10.10 | Review each venue’s website, brochure, social presence and digital customer experience. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
 | E10.11 | Write one honest, venue-specific reason each account belongs in the founding outreach. | done | p1 | SN | claude_code | — | — | 2 | — | — | approved |
 | E10.12 | Rank and lock Cohort 1 containing the first 25 venues. | done | p1 | SN | claude_code | E10.04, E10.05, E10.06, E10.07, E10.08, E10.09, E10.10, E10.11 | — | 3 | — | — | approved |
-| E10.13 | Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues. | done | p1 | SN | claude_code | — | — | 3 | — | — | approved |
-| E10.14 | Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication. | done | p1 | SN FC | claude_code | — | — | 3 | — | — | approved |
+| E10.13 | Rank and lock Cohorts 2, 3 and 4, each containing the next 25 venues. | done | p1 | SN | claude_code | — | — | 4 | — | — | approved |
+| E10.14 | Maintain a reserve cohort, contact-verification dates, conflict flags and consent status for public naming or map publication. | done | p1 | SN FC | claude_code | — | — | 4 | — | — | approved |
 
 ## E11 — Sales operating system and founder-led outreach
 
@@ -259,14 +259,14 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 0/14 done (0%) · 0 in flight · 0 blocked
+Lane: `claude_code` · 1/14 done (7.1%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E12.01 | Build the public Venue Edition landing page around the sponsored couple experience. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
 | E12.02 | Build the private Founding 25 invitation page. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
 | E12.03 | Build a parameterised private proposal page for each venue. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
-| E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | backlog | p2 | — | claude_code | E02.01, E02.03 | — | — | — | — | not_requested |
+| E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | done | p2 | — | claude_code | E02.01, E02.03 | — | 3 | — | ✓ | approved |
 | E12.05 | Add the branded couple-experience preview. | backlog | p2 | — | claude_code | E05.12 | — | — | — | — | not_requested |
 | E12.06 | Add the Venue Portal trust-and-renewal preview. | backlog | p2 | — | claude_code | E07.18 | — | — | — | — | not_requested |
 | E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
