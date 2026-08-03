@@ -1,0 +1,45 @@
+# E09.12 — capture-copy freeze readiness
+
+Run 2026-08-03 from studio/ with: node scripts/check-capture-copy-freeze.mjs --readiness
+
+```
+[capture-copy-freeze] readiness
+  recorded          2026-08-03
+  copy freeze       2026-08-21 (D-008)
+  capture freeze    2026-08-22 (D-008)
+  frozen            false
+  surfaces          14   strings 332   blocked 11
+
+  The freeze cannot be pulled while these strings are on a capture surface:
+    ../app/src/server/demo/tasks-demo.ts  (beat 3, the Tasks board)
+      line 87  3ae817cd52c16d40  p8-special-category  [text withheld]
+    ../app/src/modules/notes/server/demo/notes-demo.ts  (beat 3, the Notes notebook)
+      line 63  61c131883101926e  p8-special-category  [text withheld]
+    ../app/src/modules/timeline/lib/roadmap/demo-data.ts  (beat 4, the Timeline)
+      line 201  9da98d53a4f51469  p8-special-category  [text withheld]
+    ../app/src/app/the-wedding/page.tsx  (the couple-facing demonstration page)
+      line 26  69e51fe01cbd56c1  p8-special-category  [text withheld]
+    ../app/src/lib/templates.generated.ts  (beat 2, what the workspace opens with)
+      line 108  ae354f0314f74bef  p8-special-category  [text withheld]
+    src/app/venues/page.tsx  (the page a venue reads before the call)
+      line 55  b18e28455f3ec7d6  p7-bare-term  [text withheld]
+      line 118  d430ad16863f3a30  d001-4-fourth-thing  [text withheld]
+      line 15  27e1f5af1c432b11  p7-bare-term  [text withheld]
+      line 467  01a65f2221852ebd  p6-unlimited-blocked  [text withheld]
+    src/lib/templates/wedding-planning-workspace/tasks.ts  (template source, tasks)
+      line 69  ae354f0314f74bef  p8-special-category  [text withheld]
+    src/lib/templates/wedding-planning-workspace/roadmap.ts  (template source, roadmap)
+      line 52  9da98d53a4f51469  p8-special-category  [text withheld]
+
+  Still required before the freeze can be declared:
+    1. Founder approval of E09.11. A freeze of unapproved copy freezes a draft.
+    2. The blocked strings above, each owned by a named task.
+    3. E09.11 OQ-5 to OQ-8 answered.
+    4. This manifest re-recorded on the day of the freeze, and frozen set to true.
+```
+
+## Verify, same run
+```
+[capture-copy-freeze] ok  ·  332 string(s) across 14 surface(s) match the recorded state; 11 still blocked by a prohibited claim (run --readiness)
+exit: 0
+```

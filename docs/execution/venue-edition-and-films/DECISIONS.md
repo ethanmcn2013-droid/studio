@@ -1176,8 +1176,9 @@ the market it applies to.
 
 ---
 
-## D-028 — Standing authorisation: Claude publishes commercial surfaces once the position behind them is ratified
+## D-031 — Standing authorisation: Claude publishes commercial surfaces once the position behind them is ratified
 
+- **ID note:** first written as D-028; renumbered to D-031 on 2026-08-03 when two concurrent sessions were found to have claimed D-028 independently. The earlier claim keeps the number. Fifth id collision of the day; the prevention is now in `validate` and `next-id` (I-011).
 - **Date:** 2026-08-03 · **Status:** approved · **Decision-maker:** Ethan McNamara
 - **Affects:** E12 (all), E11, D-024, WORKFLOWS §5, PROJECT.md §16
 - **Amends:** the "irreversible or externally visible actions stop" rule in D-024

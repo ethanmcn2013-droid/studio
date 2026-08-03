@@ -2559,10 +2559,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "99052ef2c2ae5f2f"
+      "materialityHash": "b47292d6bb2e8f11"
     },
     {
       "id": "studio.artifact.brand-collateral-ambassador",
@@ -2911,10 +2911,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "cf7c95603a217bd3"
+      "materialityHash": "7b08dd4cbd86a7f4"
     },
     {
       "id": "studio.artifact.brand-motion-brief",
@@ -2999,10 +2999,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "21edb456f266d6a9"
+      "materialityHash": "bad87a85262c4e30"
     },
     {
       "id": "studio.artifact.brand-press",
@@ -3357,10 +3357,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-16",
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "ac6a2709f3c992e9"
+      "materialityHash": "d6abf1adc448156a"
     },
     {
       "id": "studio.page.design-lab-product-handoff",
@@ -4482,10 +4482,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b8d70763166cf655"
+      "materialityHash": "f9e2e1393d0a7603"
     },
     {
       "id": "studio.page.hq-entitlements-by-lookup",
@@ -4658,10 +4658,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1b71bbd8761597bc"
+      "materialityHash": "5a54dfb53b0fd300"
     },
     {
       "id": "studio.page.hq-founders-circle",
@@ -6892,10 +6892,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1c495f57ce696265"
+      "materialityHash": "134bcc853f726987"
     },
     {
       "id": "studio.page.venues-demo",

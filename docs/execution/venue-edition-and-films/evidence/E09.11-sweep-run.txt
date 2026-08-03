@@ -1,0 +1,48 @@
+# E09.11 — venue-copy sweep run
+
+Run 2026-08-03 from studio/ with: node scripts/check-venue-edition-contract.mjs --copy-report
+Recorded verbatim. This file is the evidence for E09.11 section 12.
+
+```
+[venue-copy] swept 22 surface(s) against 15 rule(s) / 85 pattern(s); 25 hit(s), 4 suppressed as citations
+  [tracked] src/app/venues/page.tsx 8 hit(s), pinned 8, owner E12.04
+      p6-unlimited-blocked  line 469  "No seats"  |  booking gets the full suite. No seats. No per-couple maths.
+      p7-bare-term  line 15  "eighteen months"  |  "A venue stands behind its couples' planning, eighteen months of Signal Studio each, under the v
+      p7-bare-term  line 55  "18 months"  |  entitlement: "18 months",
+      p7-bare-term  line 61  "18 months"  |  entitlement: "18 months",
+      p7-bare-term  line 67  "18 months"  |  entitlement: "18 months",
+      p7-bare-term  line 73  "18 months"  |  entitlement: "18 months",
+      d027-name-only  line 176  "Co-branded"  |  {/* Co-branded workspace mock */}
+      d001-4-fourth-thing  line 118  "couple separately consents"  |  copy: "A calm record of invitations, activation state and entitlement validity. Private couple w
+  [tracked] docs/strategy/VENUE_FAQ_OBJECTIONS.md 2 hit(s), pinned 2, owner E09.11 section 10, superseded; needs a banner
+      d001-4-fourth-thing  line 31  "The venue sees what the couple chooses to share"  |  | Can we see the couple workspace? | The couple workspace is private by default. The venue sees 
+      saas-fluff  line 32  "seamless"  |  | Why annual instead of per couple? | The venue is not buying seats. It is backing the planning 
+  [tracked] docs/venue-portal/VENUE_FACING_CLAIMS.md 0 hit(s), pinned 0, 1 cited, owner E09.03 item 10
+  [tracked] docs/venue-portal/METRIC_DICTIONARY.md 5 hit(s), pinned 5, owner E09.03 item 10
+      p1-permanence  line 18  "Lifetime"  |  | First meaningful action | First qualifying product event after redemption for the sponsored ac
+      p5-numeric-entitlement  line 13  "allotment"  |  | Codes issued | Canonical code rows minted against the active term, including redeemed and revo
+      p5-numeric-entitlement  line 12  "allotted"  |  | Licences allotted | The active term's operator-approved `code_allotment`. | `sponsors`, `allot
+      p5-numeric-entitlement  line 15  "Codes remaining"  |  | Codes remaining | `max(0, licences_allotted - codes_issued)`. | Derived | Now | If reconciliat
+      p5-numeric-entitlement  line 12  "Licences allotted"  |  | Licences allotted | The active term's operator-approved `code_allotment`. | `sponsors`, `allot
+  [tracked] public/brand/collateral/venue/wedding-seed.md 4 hit(s), pinned 4, owner E09.08 / R-017. Delete or move out of public/, do not edit.
+      p8-special-category  line 19  "Dietary"  |  5. "Dietary: 3 coeliac, 2 vegan, 1 nut allergy (groom's side, table 9)."
+      p8-special-category  line 25  "Dietary"  |  - Dietary list to kitchen — Marie · Wed 14 Oct
+      p8-special-category  line 19  "allergy"  |  5. "Dietary: 3 coeliac, 2 vegan, 1 nut allergy (groom's side, table 9)."
+      p8-special-category  line 19  "coeliac"  |  5. "Dietary: 3 coeliac, 2 vegan, 1 nut allergy (groom's side, table 9)."
+  [tracked] signal-growth/outbound/venue-edition-outreach.md 0 hit(s), pinned 0, 2 cited, owner E11.05
+  [tracked] signal-growth/outbound/venue-edition-A1-staged.md 0 hit(s), pinned 0, 1 cited, owner E11.05
+  [tracked] src/lib/templates/wedding-planning-workspace/tasks.ts 1 hit(s), pinned 1, owner E03.04 / E05.03
+      p8-special-category  line 69  "dietary"  |  title: "Collect final dietary notes",
+  [tracked] src/lib/templates/wedding-planning-workspace/roadmap.ts 1 hit(s), pinned 1, owner E03.04 / E05.03
+      p8-special-category  line 52  "dietary"  |  "Venue has sent the couple's menu decisions to catering and is waiting for final dietary notes."
+  [tracked] ../app/src/app/the-wedding/page.tsx 1 hit(s), pinned 1, owner E05.03 / E06.01
+      p8-special-category  line 26  "dietary"  |  detail: "One reply to Glenmara House, including dietary notes.",
+  [tracked] ../app/src/lib/templates.generated.ts 1 hit(s), pinned 1, owner generated; fix the source in src/lib/templates/
+      p8-special-category  line 108  "dietary"  |  "title": "Collect final dietary notes",
+  [tracked] ../app/src/server/demo/tasks-demo.ts 1 hit(s), pinned 1, owner E05.03 / E06.01
+      p8-special-category  line 87  "dietary"  |  "Mara and Finn confirmed the tasting. The venue team needs the final dietary list before service
+  [tracked] ../app/src/modules/notes/server/demo/notes-demo.ts 1 hit(s), pinned 1, owner E05.03 / E06.01
+      p8-special-category  line 63  "dietary"  |  body: `${REVIEW_PRIMARY_PROJECT.name}'s menu tasting at Glenmara House is booked for 1 August. C
+[venue-edition-contract] ok  ·  [venue-copy] 22 surfaces, 25 tracked hit(s), all at their pinned counts
+exit: 0
+```
