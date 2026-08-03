@@ -51,11 +51,11 @@ keepsake* — one line in the footer, no logo, no badge — but the welcome is a
 different moment with a different answer available.
 
 - **Restrained:** the venue's name set in Signal Studio's own type, no logo anywhere, one line.
-- **Hosted:** the venue's logo and colour on the welcome only, then it disappears entirely once the couple is inside.
+- ~~**Hosted:** the venue's logo and colour on the welcome only, then it disappears entirely once the couple is inside.~~ **KILLED by D-027 point 3 (2026-08-03).** Launch branding is the venue's name only. There is no logo anywhere in the product and no venue-controlled colour. Do not mock this option.
 - **Ceremonial:** a full welcome moment that feels like opening a gift, then never seen again.
 
-E07.17 gives the venue branding *controls*, so the second question is how much
-latitude a venue gets and where the ceiling sits.
+~~E07.17 gives the venue branding *controls*, so the second question is how
+much latitude a venue gets and where the ceiling sits.~~ **Answered by D-027 point 3: at launch a venue gets no branding controls and the latitude is zero.** E07.17's title predates that decision; imported backlog titles are never rewritten, so the title stays and its scope narrows. The open question is only which of the two surviving options — Restrained or Ceremonial — the name-only welcome uses.
 
 **Gates:** E05.02, E05.12 (UI freeze), E07.17, E12.05, E14.11.
 
