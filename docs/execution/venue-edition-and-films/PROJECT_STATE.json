@@ -11365,6 +11365,12 @@
           "ref": "_wt-wp07/src/server/db/tenant.ts:14-18",
           "note": "OVERSTATED. The docstring claims 'Routing every workspace-scoped collection read through it gives ... a RUNTIME guard'. byWorkspace() has exactly 6 production call sites, all in src/server/db/queries.ts, against 239-247 governed reads. The two other files that mention the name (src/modules/signal/lib/data/source.ts, src/server/actions/project-overview.ts) do so as a local Map variable and a comment, not calls. The guard is real and throws; it covers roughly 2.5% of scoped reads. Not listed among",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T15:30:56.059Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/change-requests/CR-005.md",
+          "note": "CR-005: this task requires database row-level security and Turso/libSQL does not support it, so it cannot be satisfied as written. Records what was built instead (application scoping, a CI gate, a behavioural negative suite), the three options and a recommendation. Awaiting founder decision; baseline unchanged.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -22036,9 +22042,9 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T15:29:44.570Z",
-    "lastRenderedAt": "2026-08-03T15:29:44.570Z",
-    "lastUpdatedAt": "2026-08-03T15:29:44.570Z",
+    "lastValidatedAt": "2026-08-03T15:30:56.059Z",
+    "lastRenderedAt": "2026-08-03T15:30:56.059Z",
+    "lastUpdatedAt": "2026-08-03T15:30:56.059Z",
     "lastUpdatedSession": "wp13-commercial",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",

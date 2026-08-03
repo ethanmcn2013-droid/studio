@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T15:29:44.570Z · baseline **approved** (0.1.0)
+State as at 2026-08-03T15:30:56.059Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -177,7 +177,7 @@ Lane: `claude_code` · 0/12 done (0%) · 12 in flight · 0 blocked
 | E08.01 | Implement annual prepaid billing for standard and founding agreements. | founder_review | p1 | CP RB | claude_code | E03.08 | — | 13 | — | ✓ | requested |
 | E08.02 | Implement an immutable founding-rate flag and historical price record for each qualifying venue. | founder_review | p1 | CP RB | claude_code | E02.03 | — | 9 | — | ✓ | requested |
 | E08.03 | Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E08.04 | Complete multi-tenant data isolation and database row-level security for venues and couple workspaces. | founder_review | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | requested |
+| E08.04 | Complete multi-tenant data isolation and database row-level security for venues and couple workspaces. | founder_review | p1 | CP RB | claude_code | — | — | 13 | — | ✓ | requested |
 | E08.05 | Complete role-based authentication and authorisation across venue owners, managers, viewers and couples. | founder_review | p1 | CP RB | claude_code | — | — | 10 | — | ✓ | requested |
 | E08.06 | Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption. | founder_review | p1 | CP RB | claude_code | — | — | 15 | — | ✓ | requested |
 | E08.07 | Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
