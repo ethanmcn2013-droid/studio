@@ -12,7 +12,7 @@
 // regenerates the derived Markdown. Any validation failure exits non-zero and
 // leaves PROJECT_STATE.json untouched.
 
-import { readFileSync, writeFileSync, renameSync, existsSync, mkdirSync, unlinkSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, renameSync, existsSync, mkdirSync, unlinkSync, statSync, readdirSync } from "node:fs";
 import { dirname, join, resolve, isAbsolute } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -758,6 +758,65 @@ export function missingEvidenceFiles(t, root = ROOT) {
   return missing;
 }
 
+// ---------------------------------------------------------------------------
+// Register ids (I-011)
+//
+// PROJECT_STATE.json is protected by a cross-session lock. RAID.md,
+// DECISIONS.md and the change-request files are not, and on 2026-08-03 five
+// separate id collisions happened in a single day across four concurrent
+// sessions — plus one entry destroyed outright by a concurrent rewrite.
+//
+// Two fixes, because either alone is insufficient. `nextRegisterId` allocates
+// under the same lock every mutating command takes, so two sessions cannot pick
+// the same number. `registerProblems` fails the build if a duplicate appears
+// anyway, because a register can still be hand-edited and prevention that can
+// be bypassed needs a net under it.
+// ---------------------------------------------------------------------------
+
+export const REGISTERS = {
+  R: { file: "RAID.md", pattern: /^### (R-\d+)/gm, what: "risk" },
+  A: { file: "RAID.md", pattern: /^### (A-\d+)/gm, what: "assumption" },
+  I: { file: "RAID.md", pattern: /^### (I-\d+)/gm, what: "issue" },
+  DEP: { file: "RAID.md", pattern: /^### (DEP-\d+)/gm, what: "dependency" },
+  D: { file: "DECISIONS.md", pattern: /^## (D-\d+)/gm, what: "decision" },
+};
+
+export function readRegisterIds(prefix, root = ROOT) {
+  const reg = REGISTERS[prefix];
+  if (!reg) throw new Error(`Unknown register prefix "${prefix}". Known: ${Object.keys(REGISTERS).join(", ")}, CR.`);
+  const path = join(root, reg.file);
+  if (!existsSync(path)) return [];
+  return [...readFileSync(path, "utf8").matchAll(reg.pattern)].map((m) => m[1]);
+}
+
+export function readChangeRequestIds(root = ROOT) {
+  const dir = join(root, "evidence", "change-requests");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).map((f) => /^(CR-\d+)/.exec(f)?.[1]).filter(Boolean);
+}
+
+export function nextRegisterId(prefix, root = ROOT) {
+  const ids = prefix === "CR" ? readChangeRequestIds(root) : readRegisterIds(prefix, root);
+  const max = ids.reduce((m, id) => Math.max(m, Number(id.split("-")[1])), 0);
+  return `${prefix}-${String(max + 1).padStart(3, "0")}`;
+}
+
+// Every register, checked for duplicates. Gaps are fine — an id may be retired
+// or renumbered — but two entries sharing a number is always a defect, because
+// every cross-reference to it becomes ambiguous.
+export function registerProblems(root = ROOT) {
+  const problems = [];
+  const seen = (ids, label) => {
+    const dupes = [...new Set(ids.filter((x, i) => ids.indexOf(x) !== i))];
+    for (const d of dupes) {
+      problems.push(`${label}: duplicate id ${d}. Two entries share it, so every reference to ${d} is ambiguous. Renumber the later claimant above the current maximum (\`next-id\`), never into the next apparent gap.`);
+    }
+  };
+  for (const prefix of Object.keys(REGISTERS)) seen(readRegisterIds(prefix, root), REGISTERS[prefix].file);
+  seen(readChangeRequestIds(root), "evidence/change-requests");
+  return problems;
+}
+
 export function packetBlockers(t) {
   const problems = [];
   if (t.acceptanceCriteria.length === 0) problems.push("no acceptance criteria");
@@ -1058,7 +1117,8 @@ function historyPush(task, now, from, to, note, by = "claude_code") {
 
 const HELP = `project-control.mjs — canonical state tool for VEF-2026
 
-  validate                              Validate PROJECT_STATE.json. Non-zero exit on failure.
+  validate                              Validate PROJECT_STATE.json AND register ids. Non-zero exit on failure.
+  next-id <R|A|I|DEP|D|CR>              Allocate the next register id under the cross-session lock (I-011).
   render [--check]                      Regenerate BACKLOG.md and STATUS.md. --check fails on drift.
   briefing                              Session-opening briefing. Read-only.
   status [scope]                        overall|weekly|launch|commercial|films|blockers|founder-review|decisions|E07
@@ -1128,8 +1188,30 @@ function main(argv) {
   const sessionId = flag("id") || state.session.open[0]?.id || null;
 
   switch (cmd) {
+    case "next-id": {
+      // Allocated under the lock this command already holds, so two concurrent
+      // sessions cannot pick the same number (I-011).
+      const prefix = (pos[1] || "").toUpperCase();
+      if (!prefix || (!REGISTERS[prefix] && prefix !== "CR")) {
+        fail(`Usage: next-id <R|A|I|DEP|D|CR>\n  R/A/I/DEP -> RAID.md · D -> DECISIONS.md · CR -> evidence/change-requests/`);
+      }
+      const dupes = registerProblems();
+      if (dupes.length) {
+        console.error("Refusing to allocate: the register already contains a duplicate, so the maximum is not trustworthy.");
+        for (const d of dupes) console.error(`  - ${d}`);
+        releaseLock();
+        process.exit(1);
+      }
+      console.log(nextRegisterId(prefix));
+      return;
+    }
+
     case "validate": {
       const { errors, warnings } = validate(state);
+      // Register ids live in markdown, which the lock does not cover. Checked
+      // here so a collision fails the build instead of surviving to be found by
+      // hand three collisions later (I-011).
+      errors.push(...registerProblems());
       for (const w of warnings) console.log(`${WARN} ${w}`);
       if (errors.length) {
         console.error(`\nFAILED — ${errors.length} error(s):`);

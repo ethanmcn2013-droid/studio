@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T02:33:41.907Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T02:33:41.907Z · session `eed55e9e-deploy`
+**Report generated:** 2026-08-03T02:48:15.814Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T02:48:15.814Z · session `wp03-e0506-audit`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -22,7 +22,7 @@
 **Verified completion: 33.8%** — 71 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 34.1% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 37.3% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 187 of 210.
 
@@ -32,9 +32,9 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 
 | Status | Count |
 |---|---|
-| backlog | 134 |
-| ready | 4 |
-| in_progress | 0 |
+| backlog | 106 |
+| ready | 5 |
+| in_progress | 27 |
 | internal_review | 1 |
 | founder_review | 0 |
 | done | 71 |
@@ -53,13 +53,13 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 0/12 | 0% | 0 | 0 |
 | E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 0 | 0 |
-| E07 | Venue Portal, trust layer and renewal evidence | 0/18 | 0% | 0 | 0 |
+| E07 | Venue Portal, trust layer and renewal evidence | 0/18 | 0% | 17 | 0 |
 | E08 | Billing, security, reliability and release engineering | 0/12 | 0% | 0 | 0 |
-| E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 0 | 0 |
+| E09 | Measurement, demo data and copy system | 4/12 | 33.3% | 6 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
 | E12 | Website, proposal and commercial asset system | 1/14 | 7.1% | 0 | 0 |
-| E13 | Motion system and Limerick First invitation film | 0/18 | 0% | 0 | 0 |
+| E13 | Motion system and Limerick First invitation film | 0/18 | 0% | 4 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
 
@@ -106,8 +106,34 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 **Focus task:** none — No focus task. Baseline approval comes first.
 
-**In progress (0/3):**
-- None.
+**In progress (27/3):**
+- `E07.01` Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit. — claude_code
+- `E07.02` Redesign Overview so “Invite a couple” is the principal action. — claude_code
+- `E07.03` Complete account-standing, current-term, founding-status, renewal-date and support-status presentation. — claude_code
+- `E07.04` Ratify every adoption-funnel definition from invitation through meaningful first action and continued use. — claude_code
+- `E07.05` Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation. — claude_code
+- `E07.06` Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful. — claude_code
+- `E07.07` Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model. — claude_code
+- `E07.08` Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status. — claude_code
+- `E07.09` Complete access search, filters, pagination, stale-invitation alerts and masked-code handling. — claude_code
+- `E07.10` Complete the distribution kit with approved email wording, welcome link and printable welcome card. — claude_code
+- `E07.11` Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions. — claude_code
+- `E07.12` Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt. — claude_code
+- `E07.13` Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail. — claude_code
+- `E07.14` Complete monthly, access-term and renewal-report generation. — claude_code
+- `E07.15` Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions. — claude_code
+- `E07.16` Complete Account, organisation settings, members, roles, support history and reporting preferences. — claude_code
+- `E07.17` Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view. — claude_code
+- `E09.03` Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions. — claude_code
+- `E09.04` Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion. — claude_code
+- `E09.05` Join CRM, commercial, product and reporting data into one founder operating dashboard. — claude_code
+- `E09.07` Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal. — claude_code
+- `E09.08` Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used. — claude_code
+- `E09.11` Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy. — claude_code
+- `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings. — claude_code
+- `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata. — claude_code
+- `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data. — claude_code
+- `E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render. — claude_code
 
 **Internal review (1):**
 - `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder

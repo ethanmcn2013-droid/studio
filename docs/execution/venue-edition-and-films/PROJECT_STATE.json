@@ -87,7 +87,7 @@
         "active": true,
         "at": "2026-08-03T00:00:00.000Z",
         "wave": "Wave 2",
-        "reason": "Wave 2 runs three packages concurrently on 2026-08-03 under the founder standing instruction to execute Wave 2 to completion: WP-05 (E07 Venue Portal audit and completion, 18 tasks), WP-06 (E09 instrumentation, demo fixture and copy, 8 tasks) and WP-12 (E13.03, E13.04, E13.15, E13.16, map system and render pipeline, 4 tasks). Thirty tasks cannot share a project-wide cap of three In Progress. File ownership is disjoint by design: WP-05 owns studio/src/lib/account/**, studio/src/app/hq/account-review/** and docs/venue-portal/**; WP-06 owns app/src/**/analytics, app/src/server/demo/** and studio/scripts/**; WP-12 owns signal-motion/src/**. Each task keeps its own acceptance criteria, evidence and founder sign-off; the exception relaxes the concurrency cap and nothing else. Deactivate when Wave 2 closes."
+        "reason": "Wave 2 runs three packages concurrently on 2026-08-03 under the founder standing instruction to execute Wave 2 to completion: WP-05 (E07 Venue Portal audit and completion, 18 tasks), WP-06 (E09 instrumentation, demo fixture and copy, 8 tasks) and WP-12 (E13.03, E13.04, E13.15, E13.16, map system and render pipeline, 4 tasks). Thirty tasks cannot share a project-wide cap of three In Progress. File ownership is disjoint by design: WP-05 owns studio/src/lib/account/**, studio/src/app/hq/account-review/** and docs/venue-portal/**; WP-06 owns app/src/**/analytics, app/src/server/demo/** and studio/scripts/**; WP-12 owns signal-motion/src/**. Each task keeps its own acceptance criteria, evidence and founder sign-off; the exception relaxes the concurrency cap and nothing else. Deactivate when Wave 2 closes. BOUNDARY REFINED 2026-08-03 after reconnaissance: the handoff table split studio/src/lib/account/** between two packages, because the instrumentation half (ingest, rollup, sealing, retention) is E09 work and the projection half (live access, privacy, csv, fixtures) is E07 work. Applied boundary: WP-05 owns studio/src/lib/account/live/**, the studio/src/lib/account/*.ts leaf modules, studio/src/app/hq/account-review/**, studio/src/lib/hq/access.ts, studio/docs/venue-portal/** and studio/docs/account/**. WP-06 owns app/src/**, studio/src/lib/account/instrumentation/**, studio/src/app/api/cron/sponsored-use/**, studio/scripts/** and studio/src/lib/templates/**. WP-12 owns signal-motion/** and new venue-map tools under this directory tools/."
       }
     ]
   },
@@ -6735,7 +6735,7 @@
       "id": "E07.01",
       "epic": "E07",
       "title": "Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6758,8 +6758,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6771,6 +6771,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:09.111Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:09.236Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "founder_choice",
@@ -6780,7 +6794,7 @@
       "id": "E07.02",
       "epic": "E07",
       "title": "Redesign Overview so “Invite a couple” is the principal action.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6803,8 +6817,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6816,6 +6830,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:09.349Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:09.483Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -6825,7 +6853,7 @@
       "id": "E07.03",
       "epic": "E07",
       "title": "Complete account-standing, current-term, founding-status, renewal-date and support-status presentation.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6848,8 +6876,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6861,6 +6889,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:09.611Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:09.729Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -6870,7 +6912,7 @@
       "id": "E07.04",
       "epic": "E07",
       "title": "Ratify every adoption-funnel definition from invitation through meaningful first action and continued use.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6896,7 +6938,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6908,6 +6950,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:09.868Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:09.991Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "founder_only",
@@ -6917,7 +6973,7 @@
       "id": "E07.05",
       "epic": "E07",
       "title": "Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6940,8 +6996,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6953,6 +7009,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:10.118Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:10.239Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -6962,7 +7032,7 @@
       "id": "E07.06",
       "epic": "E07",
       "title": "Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -6985,8 +7055,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -6998,6 +7068,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:10.352Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:10.486Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7007,7 +7091,7 @@
       "id": "E07.07",
       "epic": "E07",
       "title": "Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7033,7 +7117,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7050,6 +7134,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:10.608Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:10.740Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "founder_only",
@@ -7059,7 +7157,7 @@
       "id": "E07.08",
       "epic": "E07",
       "title": "Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7085,7 +7183,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7097,6 +7195,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:10.864Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:10.978Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7106,7 +7218,7 @@
       "id": "E07.09",
       "epic": "E07",
       "title": "Complete access search, filters, pagination, stale-invitation alerts and masked-code handling.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7129,8 +7241,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7142,6 +7254,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:11.101Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:11.218Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7151,7 +7277,7 @@
       "id": "E07.10",
       "epic": "E07",
       "title": "Complete the distribution kit with approved email wording, welcome link and printable welcome card.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7174,8 +7300,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7187,6 +7313,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:11.336Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:11.463Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7196,7 +7336,7 @@
       "id": "E07.11",
       "epic": "E07",
       "title": "Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7219,8 +7359,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7232,6 +7372,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:11.610Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:11.727Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7241,7 +7395,7 @@
       "id": "E07.12",
       "epic": "E07",
       "title": "Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt.",
-      "status": "ready",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7264,8 +7418,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7289,6 +7443,13 @@
           "to": "ready",
           "by": "founder",
           "note": "Decision answered, recorded as D-011."
+        },
+        {
+          "at": "2026-08-03T02:47:49.445Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "founder_only",
@@ -7298,7 +7459,7 @@
       "id": "E07.13",
       "epic": "E07",
       "title": "Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7321,8 +7482,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7334,6 +7495,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:11.848Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:11.967Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7343,7 +7518,7 @@
       "id": "E07.14",
       "epic": "E07",
       "title": "Complete monthly, access-term and renewal-report generation.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7366,8 +7541,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7379,6 +7554,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:12.077Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:12.189Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7388,7 +7577,7 @@
       "id": "E07.15",
       "epic": "E07",
       "title": "Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7411,8 +7600,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7424,6 +7613,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:12.309Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:12.417Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7433,7 +7636,7 @@
       "id": "E07.16",
       "epic": "E07",
       "title": "Complete Account, organisation settings, members, roles, support history and reporting preferences.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7456,8 +7659,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7469,6 +7672,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:12.548Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:12.706Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7478,7 +7695,7 @@
       "id": "E07.17",
       "epic": "E07",
       "title": "Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7501,8 +7718,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -7514,6 +7731,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:12.819Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:12.949Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2, audit-first per D-015 Q2"
         }
       ],
       "decisionClass": "execution",
@@ -7523,7 +7754,7 @@
       "id": "E07.18",
       "epic": "E07",
       "title": "Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation.",
-      "status": "backlog",
+      "status": "ready",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7577,6 +7808,13 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:13.062Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-05 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8317,7 +8555,7 @@
       "id": "E09.03",
       "epic": "E09",
       "title": "Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8340,8 +8578,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8353,6 +8591,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:13.253Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:13.370Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8362,7 +8614,7 @@
       "id": "E09.04",
       "epic": "E09",
       "title": "Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8385,8 +8637,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8398,6 +8650,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:13.484Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:13.605Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8407,7 +8673,7 @@
       "id": "E09.05",
       "epic": "E09",
       "title": "Join CRM, commercial, product and reporting data into one founder operating dashboard.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8430,8 +8696,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8443,6 +8709,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:13.755Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:13.865Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8539,7 +8819,7 @@
       "id": "E09.07",
       "epic": "E09",
       "title": "Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8562,8 +8842,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8575,6 +8855,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:13.992Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:14.106Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8584,7 +8878,7 @@
       "id": "E09.08",
       "epic": "E09",
       "title": "Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used.",
-      "status": "ready",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8607,8 +8901,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8632,6 +8926,13 @@
           "to": "ready",
           "by": "founder",
           "note": "Decision answered, recorded as D-012."
+        },
+        {
+          "at": "2026-08-03T02:47:50.354Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2, instrumentation/fixture/copy"
         }
       ],
       "decisionClass": "founder_only",
@@ -8641,7 +8942,7 @@
       "id": "E09.09",
       "epic": "E09",
       "title": "Reconcile every sample invitation count, adoption metric, report number, date and product-reach value.",
-      "status": "backlog",
+      "status": "ready",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8680,6 +8981,13 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:14.218Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8771,7 +9079,7 @@
       "id": "E09.11",
       "epic": "E09",
       "title": "Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8797,7 +9105,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -8814,6 +9122,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:14.419Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:14.546Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -8823,7 +9145,7 @@
       "id": "E09.12",
       "epic": "E09",
       "title": "Freeze the capture copy and build a one-action demo reset that restores the canonical state.",
-      "status": "backlog",
+      "status": "ready",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -8865,6 +9187,13 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:14.692Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-06 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -12398,14 +12727,14 @@
       "id": "E13.03",
       "epic": "E13",
       "title": "Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p1",
       "releaseBlocking": false,
       "criticalPath": false,
       "startNow": true,
       "effortPoints": null,
       "estimateStatus": "unestimated",
-      "executor": "codex_motion",
+      "executor": "claude_code",
       "approver": "founder",
       "dependencies": [],
       "dependencyBasis": null,
@@ -12421,8 +12750,8 @@
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -12434,6 +12763,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:14.972Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:15.089Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -12443,7 +12786,7 @@
       "id": "E13.04",
       "epic": "E13",
       "title": "Build the data-driven map composition using verified venue coordinates and cohort metadata.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -12467,7 +12810,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -12479,6 +12822,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:15.206Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:15.328Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -12956,7 +13313,7 @@
       "id": "E13.15",
       "epic": "E13",
       "title": "Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -12980,7 +13337,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -12992,6 +13349,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:15.453Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:15.566Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -13001,7 +13372,7 @@
       "id": "E13.16",
       "epic": "E13",
       "title": "Generate unique tracked links, thumbnails and landing destinations for every personalised render.",
-      "status": "backlog",
+      "status": "in_progress",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -13025,7 +13396,7 @@
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
+      "startedAt": "2026-08-03",
       "reviewAt": null,
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
@@ -13037,6 +13408,20 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T02:48:15.693Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
+        },
+        {
+          "at": "2026-08-03T02:48:15.814Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "WP-12 Wave 2"
         }
       ],
       "decisionClass": "execution",
@@ -14885,9 +15270,9 @@
   },
   "counts": {
     "byStatus": {
-      "backlog": 134,
-      "ready": 4,
-      "in_progress": 0,
+      "backlog": 106,
+      "ready": 5,
+      "in_progress": 27,
       "internal_review": 1,
       "founder_review": 0,
       "done": 71,
@@ -14913,10 +15298,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T02:40:51.385Z",
-    "lastRenderedAt": "2026-08-03T02:33:41.907Z",
-    "lastUpdatedAt": "2026-08-03T02:33:41.907Z",
-    "lastUpdatedSession": "eed55e9e-deploy",
+    "lastValidatedAt": "2026-08-03T03:01:06.820Z",
+    "lastRenderedAt": "2026-08-03T02:48:15.814Z",
+    "lastUpdatedAt": "2026-08-03T02:48:15.814Z",
+    "lastUpdatedSession": "wp03-e0506-audit",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"
