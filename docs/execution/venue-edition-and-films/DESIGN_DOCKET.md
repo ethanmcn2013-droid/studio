@@ -21,8 +21,26 @@ feels safe, then you pick.
 **Why it is first.** D-001 point 13 calls it "the principal emotional and visual
 product artifact". It is the hero of *Before the Day* (E14.08). It is what a
 couple shares with their family, so it is the only surface a venue's customers
-see without logging in. And `BASELINE_REVIEW.md` §9 found **no candidate
-implementation for E06 at all** — this is a blank page, not a refinement.
+see without logging in.
+
+> **CORRECTION, 2026-08-03.** This section originally read "`BASELINE_REVIEW.md`
+> §9 found no candidate implementation for E06 at all, this is a blank page, not
+> a refinement." **That was false and it was my error.** §9's table lists tasks
+> where candidate evidence was found at import; E06 is absent from the table, and
+> I read absence from a document as absence from the codebase. It is not.
+>
+> What actually ships today: `app/src/modules/timeline/components/artifact/timeline-artifact.tsx`
+> at 684 lines with its own CSS module, a model with contract tests and a phone
+> preview; `app/src/modules/timeline/app/audience/` with the shared artifact,
+> an artifact studio and a viewer tracker; `app/src/components/published/wedding-theme.tsx`
+> at 312 lines; and `app/docs/TIMELINE_OWNER_ARTIFACT_CONTRACT.md`. It had a
+> design-review pass recently.
+>
+> **E06.10's own title says "refine the desktop editorial Timeline shown in the
+> Mara and Finn concept."** The backlog said it existed. I did not read it.
+>
+> Three redesign variants were commissioned on the false premise. This should
+> have been the audit D-015 Q2 mandates, and that audit is now running.
 
 **The choice.** D-001 point 15 gives the constraint, not the answer: shared
 public artifacts "should feel owned by the couple rather than like public

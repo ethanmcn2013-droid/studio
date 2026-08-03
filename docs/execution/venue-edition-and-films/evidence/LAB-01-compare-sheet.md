@@ -17,8 +17,27 @@ hard constraints grepped. The previews are the look.
 
 ## Brief 1 — the Shared Timeline
 
-The couple's public keepsake. The hero of *Before the Day*. No candidate
-implementation existed, so all three are from a blank page.
+> **CORRECTION, 2026-08-03. Do not pick from this brief.**
+>
+> This section originally read "no candidate implementation existed, so all three
+> are from a blank page." **That was false.** A substantial Shared Timeline ships
+> today: a 684-line artifact component with its own CSS module, model, contract
+> tests and phone preview, an audience layer with an artifact studio and viewer
+> tracker, a 312-line wedding theme, and a written owner-artifact contract. It
+> had a design-review pass recently.
+>
+> The claim came from reading E06's absence from `BASELINE_REVIEW.md` §9's
+> candidate-evidence table as absence from the codebase. It is an inference, it
+> was wrong, and it was repeated in four places before the founder caught it.
+> **E06.10's own title says "refine the desktop editorial Timeline shown in the
+> Mara and Finn concept."** The backlog said it existed.
+>
+> These three variants are therefore **provocations against a design that already
+> exists**, not a choice of direction. The correct step, which D-015 Q2 required
+> before any of this, is an audit of the shipped artifact against E06's twelve
+> tasks. That audit is running. Read its result before reading these.
+
+The couple's public keepsake. The hero of *Before the Day*.
 
 ### A · the intentional vertical scroll
 
