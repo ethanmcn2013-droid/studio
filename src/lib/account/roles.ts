@@ -21,13 +21,31 @@
 
 import type { AccountRole } from "./types";
 
-export type AccountCapability =
-  | "view_usage"
-  | "view_reports"
-  | "download_reports"
-  | "manage_members"
-  | "edit_reporting_preferences"
-  | "request_access";
+/**
+ * The canonical capability list, as a runtime value.
+ *
+ * This was a bare union type until 2026-08-03, and that is why
+ * `role-matrix.test.ts` could not do the job its own header claimed: a
+ * type cannot be enumerated at runtime, so the test kept a hand-written
+ * copy of the six capabilities and iterated that. A mutation probe added
+ * a capability literally named `view_couple_notes`, granted it to the
+ * owner role, and the test that exists to forbid exactly that reported
+ * green — because the new capability was not in the test's own copy.
+ *
+ * The list is the value now and the type is derived from it, so there is
+ * one place to add a capability and the guard sees every addition.
+ * Do not turn this back into a union.
+ */
+export const ACCOUNT_CAPABILITIES = [
+  "view_usage",
+  "view_reports",
+  "download_reports",
+  "manage_members",
+  "edit_reporting_preferences",
+  "request_access",
+] as const;
+
+export type AccountCapability = (typeof ACCOUNT_CAPABILITIES)[number];
 
 const ROLE_CAPABILITIES: Record<AccountRole, AccountCapability[]> = {
   owner: [
@@ -47,6 +65,14 @@ const ROLE_CAPABILITIES: Record<AccountRole, AccountCapability[]> = {
   ],
   viewer: ["view_usage", "view_reports"],
 };
+
+/**
+ * Every role, as a runtime value. `ROLE_CAPABILITIES` is typed
+ * `Record<AccountRole, …>`, so TypeScript already forces it to carry every
+ * role — which makes its keys the exhaustive list rather than a second
+ * copy that can drift.
+ */
+export const ACCOUNT_ROLES = Object.keys(ROLE_CAPABILITIES) as AccountRole[];
 
 export function roleCan(role: AccountRole, capability: AccountCapability) {
   return ROLE_CAPABILITIES[role].includes(capability);

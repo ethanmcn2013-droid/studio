@@ -198,4 +198,35 @@ describe("entitlement audit ledger, append-only enforcement", () => {
       client.close();
     }
   });
+
+  it("audit.ts does not claim an enforcement the schema does not deliver", () => {
+    // E08.08. The header of `src/lib/entitlements-db/audit.ts` used to say the
+    // physical append-only guarantee "is enforced by SQLite triggers from
+    // migrate-access.mjs". Every database built since the 2026-07-31 reset
+    // makes that false, and a comment stating a control that is not there is
+    // how a control stops being applied without anyone noticing. This test
+    // exists because the corrected wording is a claim about a real control and
+    // deserves to be held, not because comments normally need tests.
+    const source = fs.readFileSync(
+      path.join(import.meta.dirname, "..", "src", "lib", "entitlements-db", "audit.ts"),
+      "utf8",
+    );
+    assert.doesNotMatch(
+      source,
+      /is enforced by SQLite triggers from migrate-access\.mjs/,
+      "audit.ts must not re-state the retired claim that the ledger is " +
+        "physically append-only on every database",
+    );
+    assert.match(
+      source,
+      /nothing PREVENTS one unless/,
+      "audit.ts must say plainly that the hash chain detects and the triggers prevent",
+    );
+    for (const trigger of TRIGGERS) {
+      assert.ok(
+        source.includes(trigger.name),
+        `audit.ts must name ${trigger.name}, so a reader knows what to install`,
+      );
+    }
+  });
 });

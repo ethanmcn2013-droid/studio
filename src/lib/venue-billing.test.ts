@@ -11,6 +11,7 @@ import {
   foundingRateOnReturn,
   lapseConsequences,
   latestPriceAgreement,
+  planChangeRefusal,
   prepaymentRefusal,
   priceAgreementAt,
   proposedRenewalPolicy,
@@ -186,7 +187,9 @@ test("refuses the other plan's price, in both directions", () => {
     amountReceivedCents: 150_000,
   });
   assert.match(foundingAtStandard as string, /I-002/);
-  assert.match(foundingAtStandard as string, /EUR 1000.*EUR 1500/s);
+  // [\s\S]* rather than the /s dotAll flag: this tsconfig targets below es2018
+  // and /s is a typecheck error, which is how the checkpoint shipped red.
+  assert.match(foundingAtStandard as string, /EUR 1000[\s\S]*EUR 1500/);
 
   const standardAtFounding = prepaymentRefusal({
     ...base,
@@ -213,7 +216,7 @@ test("refuses a partial amount and a missing payment instant", () => {
       paidAtMs: TERM_START,
       termStartsAtMs: TERM_START,
     }) as string,
-    /EUR 1000.*EUR 500/s,
+    /EUR 1000[\s\S]*EUR 500/,
   );
   assert.match(
     prepaymentRefusal({
@@ -312,4 +315,65 @@ test("produces one operator action per state, and never claims automation", () =
     nowMs: TERM_END - 10 * DAY,
   });
   assert.match(notice.detail, /by hand/, "the notice is sent by a person, and the worklist says so");
+});
+
+/* ── The founding rate is immutable while the agreement renews ───────────── */
+
+test("a held founding lock cannot be renewed onto the standard plan", () => {
+  // The defect this closes: append-only rows protect the PAST. Without this
+  // check the NEXT term could be recorded as 'paid' at EUR 1,500 with every
+  // previous row intact, every amount matching its plan, and the EUR 1,000 lock
+  // ended without a lapse ever happening.
+  const refusal = planChangeRefusal({
+    priorPlan: "founding",
+    priorLock: "held",
+    nextPlan: "paid",
+  });
+  assert.ok(refusal, "a held founding lock was silently downgraded");
+  assert.match(refusal, /renews continuously without lapse/);
+  assert.match(refusal, /Record the lapse first/);
+});
+
+test("a renewal on the same plan is never refused", () => {
+  assert.equal(
+    planChangeRefusal({ priorPlan: "founding", priorLock: "held", nextPlan: "founding" }),
+    null,
+  );
+  assert.equal(
+    planChangeRefusal({ priorPlan: "paid", priorLock: "not_applicable", nextPlan: "paid" }),
+    null,
+  );
+});
+
+test("a first term is never refused, because there is no prior plan to change", () => {
+  for (const nextPlan of ["founding", "paid"]) {
+    assert.equal(
+      planChangeRefusal({ priorPlan: null, priorLock: "not_applicable", nextPlan }),
+      null,
+    );
+  }
+});
+
+test("moving a standard venue into the Founding 25 is refused as unsettled, not decided", () => {
+  const refusal = planChangeRefusal({
+    priorPlan: "paid",
+    priorLock: "not_applicable",
+    nextPlan: "founding",
+  });
+  assert.ok(refusal);
+  assert.match(refusal, /not a settled operation/);
+  assert.match(refusal, /founder decision/);
+  // It must not invent an answer in either direction.
+  assert.doesNotMatch(refusal, /is allowed|is permitted|automatically/i);
+});
+
+test("a lapsed founding venue's return is refused and points at the open question", () => {
+  const refusal = planChangeRefusal({
+    priorPlan: "founding",
+    priorLock: "broken_by_lapse",
+    nextPlan: "paid",
+  });
+  assert.ok(refusal);
+  assert.match(refusal, /has never been decided/);
+  assert.match(refusal, /foundingRateOnReturn/);
 });

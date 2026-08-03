@@ -33,7 +33,13 @@
 
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { roleCan, roleDenialReason, ROLE_OPTIONS } from "./roles";
+import {
+  roleCan,
+  roleDenialReason,
+  ROLE_OPTIONS,
+  ACCOUNT_CAPABILITIES,
+  ACCOUNT_ROLES,
+} from "./roles";
 import type { AccountCapability } from "./roles";
 import type { AccountRole } from "./types";
 
@@ -68,10 +74,57 @@ const ROLE_MATRIX: Record<AccountRole, Record<AccountCapability, boolean>> = {
   },
 };
 
-const ALL_ROLES = Object.keys(ROLE_MATRIX) as AccountRole[];
-const ALL_CAPABILITIES = Object.keys(
-  ROLE_MATRIX.owner,
-) as AccountCapability[];
+/**
+ * The lists come from the PRODUCTION module, never from ROLE_MATRIX above.
+ *
+ * This is the whole difference between a guard and a decoration. Until
+ * 2026-08-03 these two were `Object.keys(ROLE_MATRIX)`, so every test
+ * below iterated the test's own hand-written copy of the capability list.
+ * A mutation probe added a capability named `view_couple_notes` to
+ * `roles.ts`, granted it to the owner role, and "declares no capability
+ * that names couple content" passed green — the new capability simply was
+ * not in the list being iterated.
+ *
+ * Reading the production list means an addition to `roles.ts` is seen
+ * here whether or not anyone remembers to update ROLE_MATRIX, and the
+ * first test below fails until they do.
+ */
+const ALL_ROLES: AccountRole[] = ACCOUNT_ROLES;
+const ALL_CAPABILITIES: AccountCapability[] = [...ACCOUNT_CAPABILITIES];
+
+describe("the recorded matrix matches the shipped module", () => {
+  it("records every capability the module declares, and no extras", () => {
+    const recorded = Object.keys(ROLE_MATRIX.owner).sort();
+    assert.deepEqual(
+      recorded,
+      [...ALL_CAPABILITIES].sort(),
+      "ROLE_MATRIX and ACCOUNT_CAPABILITIES have diverged. A capability " +
+        "added to roles.ts without a deliberate row here is a permission " +
+        "nobody decided — fill in the cell for every role.",
+    );
+  });
+
+  it("records every role the module declares, and no extras", () => {
+    assert.deepEqual(
+      Object.keys(ROLE_MATRIX).sort(),
+      [...ALL_ROLES].sort(),
+      "ROLE_MATRIX and ACCOUNT_ROLES have diverged.",
+    );
+  });
+
+  it("fills in every cell of the rectangle", () => {
+    for (const role of ALL_ROLES) {
+      for (const capability of ALL_CAPABILITIES) {
+        assert.equal(
+          typeof ROLE_MATRIX[role]?.[capability],
+          "boolean",
+          `${role} × ${capability} has no recorded decision. A missing cell ` +
+            `reads as "allowed" to anyone skimming and as nothing to a test.`,
+        );
+      }
+    }
+  });
+});
 
 describe("venue capability matrix", () => {
   it("asserts every role × capability cell", () => {

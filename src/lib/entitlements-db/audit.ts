@@ -19,8 +19,26 @@ import {
  *
  * appendEvent MUST run inside the same libSQL transaction as the state
  * mutation it records (pass the tx), so a state change can never commit
- * without its signed line. The physical append-only guarantee (no
- * UPDATE/DELETE) is enforced by SQLite triggers from migrate-access.mjs.
+ * without its signed line.
+ *
+ * PHYSICAL APPEND-ONLY IS A PROPERTY OF THE DATABASE, NOT OF THIS FILE.
+ * This header used to state that no UPDATE or DELETE is possible because
+ * `migrate-access.mjs` installs SQLite triggers. That was true of the one
+ * database that script was run against by hand, and false everywhere else:
+ * the 2026-07-31 reset regenerated `drizzle-entitlements/0000_init.sql` from
+ * `schema.ts` with drizzle-kit, drizzle cannot express a trigger, and the
+ * baseline therefore creates `entitlement_events` as an ordinary table.
+ *
+ * What is true, per database:
+ *   - the hash chain always DETECTS an edit after the fact;
+ *   - nothing PREVENTS one unless `entitlement_events_no_update` and
+ *     `entitlement_events_no_delete` are installed on that database.
+ *
+ * Install them with `pnpm audit:triggers`; check with `pnpm
+ * audit:triggers:verify`, which exits non-zero when they are absent.
+ * `pnpm entitlements:integrity` reports their absence as a failing run, and
+ * `pnpm recovery:drill` proves they survive a restore, because a restore
+ * that replays rows and drops triggers looks completely correct (E08.08).
  */
 
 type Db = ReturnType<typeof entitlementsDb>;

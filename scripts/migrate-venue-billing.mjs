@@ -35,6 +35,12 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import { createClient } from "@libsql/client";
+import {
+  CREATE_VENUE_BILLING_TABLE,
+  VENUE_BILLING_INDEXES,
+  VENUE_BILLING_TABLE,
+  VENUE_BILLING_TRIGGERS,
+} from "./venue-billing-ddl.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const log = (...a) => console.log(...a);
@@ -59,60 +65,14 @@ function describeTarget(url) {
   }
 }
 
-const TABLE = "sponsor_price_agreements";
-
-const CREATE_TABLE = `CREATE TABLE ${TABLE} (
-  id text PRIMARY KEY NOT NULL,
-  sponsor_id text NOT NULL REFERENCES sponsors(id),
-  venue_plan text NOT NULL,
-  gross_amount_cents integer NOT NULL,
-  amount_received_cents integer NOT NULL,
-  vat_basis text NOT NULL DEFAULT 'inclusive',
-  vat_rate_basis_points integer,
-  net_amount_cents integer,
-  vat_amount_cents integer,
-  founding_locked integer NOT NULL DEFAULT 0,
-  price_basis text NOT NULL,
-  effective_from integer NOT NULL,
-  effective_to integer NOT NULL,
-  paid_at integer NOT NULL,
-  recorded_by text NOT NULL,
-  recorded_via text NOT NULL,
-  note text,
-  created_at integer NOT NULL DEFAULT (unixepoch() * 1000)
-)`;
-
-const INDEXES = [
-  {
-    name: "sponsor_price_agreements_sponsor_idx",
-    ddl: `CREATE INDEX IF NOT EXISTS sponsor_price_agreements_sponsor_idx ON ${TABLE} (sponsor_id, effective_from)`,
-  },
-  {
-    name: "sponsor_price_agreements_paid_idx",
-    ddl: `CREATE INDEX IF NOT EXISTS sponsor_price_agreements_paid_idx ON ${TABLE} (paid_at)`,
-  },
-  {
-    // The real guarantee against a double-recorded payment. A writer that
-    // checks first and inserts second is a race; this is not.
-    name: "sponsor_price_agreements_term_idx",
-    ddl: `CREATE UNIQUE INDEX IF NOT EXISTS sponsor_price_agreements_term_idx ON ${TABLE} (sponsor_id, effective_from)`,
-  },
-];
-
-const TRIGGERS = [
-  {
-    name: "sponsor_price_agreements_no_update",
-    ddl: `CREATE TRIGGER sponsor_price_agreements_no_update
-          BEFORE UPDATE ON ${TABLE}
-          BEGIN SELECT RAISE(ABORT, 'sponsor_price_agreements is append-only: a recorded term is never edited'); END`,
-  },
-  {
-    name: "sponsor_price_agreements_no_delete",
-    ddl: `CREATE TRIGGER sponsor_price_agreements_no_delete
-          BEFORE DELETE ON ${TABLE}
-          BEGIN SELECT RAISE(ABORT, 'sponsor_price_agreements is append-only: a recorded term is never deleted'); END`,
-  },
-];
+// The table, its indexes and its triggers are defined once in
+// scripts/venue-billing-ddl.mjs and read from there by this migration, by the
+// tests and by the schema-drift check. Three hand-kept copies of a money table
+// was the previous shape and it is how a column silently stops existing.
+const TABLE = VENUE_BILLING_TABLE;
+const CREATE_TABLE = CREATE_VENUE_BILLING_TABLE;
+const INDEXES = VENUE_BILLING_INDEXES;
+const TRIGGERS = VENUE_BILLING_TRIGGERS;
 
 async function tableExists(c, name) {
   const r = await c.execute({

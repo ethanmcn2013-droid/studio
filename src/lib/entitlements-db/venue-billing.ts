@@ -11,6 +11,7 @@ import {
   deriveVenueBillingState,
   foundingLockState,
   latestPriceAgreement,
+  planChangeRefusal,
   prepaymentRefusal,
   priceAgreementAt,
   proposedRenewalPolicy,
@@ -142,7 +143,13 @@ export async function recordAnnualPrepayment(
   }
 
   const [sponsor] = await db
-    .select({ id: sponsors.id, slug: sponsors.slug, venuePlan: sponsors.venuePlan })
+    .select({
+      id: sponsors.id,
+      slug: sponsors.slug,
+      venuePlan: sponsors.venuePlan,
+      paidAt: sponsors.paidAt,
+      termEndsAt: sponsors.termEndsAt,
+    })
     .from(sponsors)
     .where(key)
     .limit(1);
@@ -161,6 +168,30 @@ export async function recordAnnualPrepayment(
     termStartsAtMs,
   });
   if (refusal) return { state: "refused", reason: refusal };
+
+  // The founding rate is immutable while the agreement renews continuously
+  // (D-009 point 3). Append-only rows protect the past; this protects the next
+  // term. Without it a held EUR 1,000 lock could be renewed as a EUR 1,500
+  // standard term with every previous row intact and no lapse on record.
+  const priorHistory = await priceAgreementHistory(sponsor.id);
+  const prior = latestPriceAgreement(priorHistory);
+  if (prior) {
+    const priorBilling = deriveVenueBillingState({
+      venuePlan: prior.venuePlan,
+      paidAt: sponsor.paidAt,
+      termEndsAt: sponsor.termEndsAt,
+      nowMs: input.paidAtMs,
+    });
+    const planRefusal = planChangeRefusal({
+      priorPlan: prior.venuePlan,
+      priorLock: foundingLockState({
+        venuePlan: prior.venuePlan,
+        billingState: priorBilling.state,
+      }),
+      nextPlan: input.venuePlan,
+    });
+    if (planRefusal) return { state: "refused", reason: planRefusal };
+  }
 
   const termEndsAtMs = annualTermEndsAtMs(termStartsAtMs);
   // Gross comes from the plan, never from the caller. The caller's number is

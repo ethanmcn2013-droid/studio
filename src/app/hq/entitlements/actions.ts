@@ -1,6 +1,6 @@
 "use server";
 
-import { randomInt, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -22,6 +22,7 @@ import { systemActor } from "@/lib/entitlements-db/guard";
 import { GRANT_TIER_OPTIONS } from "@/lib/hq/access";
 import { getPerson } from "@/lib/hq/access";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
+import { generateInvitationCode } from "@/lib/invitation-code";
 import {
   DEFAULT_ALLOTMENT_MODE,
   isAllotmentMode,
@@ -212,12 +213,11 @@ export async function reconcileNowAction(): Promise<void> {
 // ── Mint venue codes (allotment-capped) ─────────────────────────────────
 export type MintResult = { ok: true; minted: number } | { error: string };
 
-const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"; // no ambiguous glyphs
-function genLicenseCode(): string {
-  const block = () =>
-    Array.from({ length: 4 }, () => CODE_ALPHABET[randomInt(CODE_ALPHABET.length)]).join("");
-  return `SIG-${block()}-${block()}`;
-}
+// E08.06. This used to mint `SIG-XXXX-XXXX`: eight characters, 31^8 ≈ 2^39.6.
+// Better than the issuance script's five, still not a number to rest a bearer
+// credential on. Both now mint through the one generator so they cannot drift
+// apart again, and the entropy floor is asserted in
+// src/lib/invitation-code.test.ts rather than restated here.
 
 export async function mintCodesAction(
   _prev: MintResult | null,
@@ -232,7 +232,7 @@ export async function mintCodesAction(
 
   try {
     const actor = await resolveHqOperatorActor();
-    const codes = Array.from({ length: count }, () => ({ code: genLicenseCode() }));
+    const codes = Array.from({ length: count }, () => ({ code: generateInvitationCode("SIG") }));
     const res = await mintLicenseCodes({
       sponsorId,
       codes,

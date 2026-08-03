@@ -6,6 +6,8 @@ import { after, before, describe, it } from "node:test";
 import { createClient, type Client } from "@libsql/client";
 
 import { annualTermEndsAtMs } from "@/lib/venue-billing";
+// Plain .mjs, shared with the migration script — that sharing is the point.
+import { venueBillingDdlStatements } from "../../../scripts/venue-billing-ddl.mjs";
 
 /**
  * The Venue Edition cash ledger against a real SQLite engine.
@@ -86,37 +88,12 @@ const DDL = [
      stripe_event_id text,
      created_at integer NOT NULL DEFAULT (unixepoch() * 1000)
    )`,
-  // The shape scripts/migrate-venue-billing.mjs creates. Kept identical on
-  // purpose: a test against a different table proves nothing about the one
-  // production runs on.
-  `CREATE TABLE sponsor_price_agreements (
-     id text PRIMARY KEY NOT NULL,
-     sponsor_id text NOT NULL REFERENCES sponsors(id),
-     venue_plan text NOT NULL,
-     gross_amount_cents integer NOT NULL,
-     amount_received_cents integer NOT NULL,
-     vat_basis text NOT NULL DEFAULT 'inclusive',
-     vat_rate_basis_points integer,
-     net_amount_cents integer,
-     vat_amount_cents integer,
-     founding_locked integer NOT NULL DEFAULT 0,
-     price_basis text NOT NULL,
-     effective_from integer NOT NULL,
-     effective_to integer NOT NULL,
-     paid_at integer NOT NULL,
-     recorded_by text NOT NULL,
-     recorded_via text NOT NULL,
-     note text,
-     created_at integer NOT NULL DEFAULT (unixepoch() * 1000)
-   )`,
-  `CREATE UNIQUE INDEX sponsor_price_agreements_term_idx
-     ON sponsor_price_agreements (sponsor_id, effective_from)`,
-  `CREATE TRIGGER sponsor_price_agreements_no_update
-     BEFORE UPDATE ON sponsor_price_agreements
-     BEGIN SELECT RAISE(ABORT, 'sponsor_price_agreements is append-only: a recorded term is never edited'); END`,
-  `CREATE TRIGGER sponsor_price_agreements_no_delete
-     BEFORE DELETE ON sponsor_price_agreements
-     BEGIN SELECT RAISE(ABORT, 'sponsor_price_agreements is append-only: a recorded term is never deleted'); END`,
+  // The ledger table, its indexes and its append-only triggers come from the
+  // module the migration itself executes. The previous version of this file
+  // carried its own copy with a comment promising it was "kept identical on
+  // purpose" — a promise nothing could check. These tests now run against the
+  // statements production gets.
+  ...venueBillingDdlStatements(),
 ];
 
 let client: Client;
@@ -377,6 +354,64 @@ describe("the historical price record", () => {
     assert.equal((await mod.currentPriceAgreement("v-founding"))?.amount.grossCents, 180_000);
   });
 
+  it("refuses to renew a held founding lock onto the standard plan", async () => {
+    // Its own venue on purpose: the tests above leave v-founding carrying a
+    // directly-inserted future standard term, which is exactly the fixture
+    // state that would make this test pass for the wrong reason.
+    await seedVenue({ id: "v-lock" });
+    const first = await mod.recordAnnualPrepayment({
+      sponsorId: "v-lock",
+      venuePlan: "founding",
+      amountReceivedCents: 100_000,
+      paidAtMs: TERM_START,
+      actor: operator,
+      recordedVia: "cli:mark-venue-paid",
+    });
+    assert.equal(first.state, "recorded");
+
+    // Year two is offered as a standard EUR 1,500 agreement: a correct amount
+    // for the plan named, which is all prepaymentRefusal checks. Without
+    // planChangeRefusal this writes, every historical row stays intact, and the
+    // EUR 1,000 lock ends with no lapse on record anywhere.
+    const before = await mod.priceAgreementHistory("v-lock");
+    const year2Start = annualTermEndsAtMs(TERM_START);
+    const attempt = await mod.recordAnnualPrepayment({
+      sponsorId: "v-lock",
+      venuePlan: "paid",
+      amountReceivedCents: 150_000,
+      paidAtMs: year2Start,
+      termStartsAtMs: year2Start,
+      actor: operator,
+      recordedVia: "cli:mark-venue-paid",
+    });
+    assert.equal(attempt.state, "refused", "a held founding lock was downgraded");
+    assert.match(
+      attempt.state === "refused" ? attempt.reason : "",
+      /renews continuously without lapse/,
+    );
+
+    // Nothing was written, and the venue still reads EUR 1,000.
+    const after = await mod.priceAgreementHistory("v-lock");
+    assert.equal(after.length, before.length, "a refused renewal still wrote a row");
+    assert.equal(
+      (await mod.priceOnDate("v-lock", TERM_START + DAY))?.amount.grossCents,
+      100_000,
+    );
+
+    // And the renewal on its own plan is still accepted, so the guard refuses
+    // the plan change rather than renewal itself.
+    const renewed = await mod.recordAnnualPrepayment({
+      sponsorId: "v-lock",
+      venuePlan: "founding",
+      amountReceivedCents: 100_000,
+      paidAtMs: year2Start,
+      termStartsAtMs: year2Start,
+      actor: operator,
+      recordedVia: "cli:mark-venue-paid",
+    });
+    assert.equal(renewed.state, "recorded");
+  });
+
   it("cannot be rewritten or deleted", async () => {
     await assert.rejects(
       client.execute(
@@ -468,7 +503,18 @@ describe("venueRenewalWorklist", () => {
     const slugs = worklist.map((v) => v.slug).sort();
     assert.ok(slugs.includes("v-founding"));
     assert.ok(slugs.includes("v-standard"));
-    assert.ok(!slugs.includes("v-noactor"), "an unpaid venue is still listed only if it is on a paying plan");
+
+    // A venue on a paying plan that has never paid is the operator's most
+    // important row, not one to hide: it is a signed founding agreement with no
+    // cleared payment, so it holds no founding number yet (D-009 point 6). An
+    // earlier version of this test asserted it was absent, which contradicted
+    // its own message and was the one red assertion in the checkpoint.
+    const unpaid = worklist.find((v) => v.slug === "v-noactor");
+    assert.ok(unpaid, "a founding venue awaiting its first payment must be on the worklist");
+    assert.equal(unpaid.billing.state, "never_paid");
+    assert.equal(unpaid.action.kind, "record_first_payment");
+    assert.equal(unpaid.foundingNumberLabel, null, "no cleared payment, no founding number");
+    assert.equal(unpaid.billing.lapsed, false, "never paying is not a lapse");
 
     const founding = worklist.find((v) => v.slug === "v-founding");
     assert.ok(founding);

@@ -428,6 +428,53 @@ export function prepaymentRefusal(input: {
   return null;
 }
 
+/**
+ * Refusal reason if this renewal would change the plan a venue is on, or null
+ * when the plan is unchanged or there is no prior term.
+ *
+ * **This is what makes the founding rate immutable in practice.** Everything
+ * else in this module protects the *history*: terms are append-only rows, so a
+ * past term cannot be rewritten. That is necessary and it is not sufficient.
+ * Without this check, a venue holding 07/25 at EUR 1,000 could have its NEXT
+ * term recorded as `paid` at EUR 1,500 — every past row intact, every amount
+ * matching its plan, `prepaymentRefusal` satisfied, and the founding lock quietly
+ * ended without a lapse ever happening. D-009 point 3 says the lock holds while
+ * the agreement renews continuously. A renewal that changes the plan is the one
+ * way to break that without a lapse, so it is refused here rather than trusted
+ * to the operator who typed the command.
+ *
+ * The two directions are refused for different reasons and the messages say so:
+ *
+ *   founding → paid   The lock is held. This is settled: the only thing that
+ *                     ends the lock is a lapse, and a lapse is derived from the
+ *                     term and the grace window, never declared by hand. Record
+ *                     the lapse first, then a new agreement is a new agreement.
+ *
+ *   paid → founding   **Not settled.** Whether a venue already on the standard
+ *                     rate can later be moved into the Founding 25 is not
+ *                     answered by D-009, which describes "the first 25 founding
+ *                     agreements" and assigns a number on cleared payment. It is
+ *                     refused rather than guessed, because guessing it either
+ *                     hands out a founding number that D-009 did not authorise
+ *                     or silently denies one Ethan intended.
+ */
+export function planChangeRefusal(input: {
+  priorPlan: string | null;
+  priorLock: FoundingLockState;
+  nextPlan: string;
+}): string | null {
+  if (input.priorPlan == null) return null;
+  if (input.priorPlan === input.nextPlan) return null;
+
+  if (input.priorPlan === "founding" && input.priorLock === "held") {
+    return `this venue holds the Founding 25 rate and the lock is held, so its renewal cannot be recorded as '${input.nextPlan}'. D-009 point 3: the lock holds while the agreement renews continuously without lapse, and a lapse is derived from the term and the grace window rather than declared. Record the lapse first if that is what happened.`;
+  }
+  if (input.priorPlan === "founding") {
+    return `this venue's founding agreement lapsed, and what a returning founding venue is offered has never been decided (see foundingRateOnReturn). Recording a '${input.nextPlan}' term here would decide it in code.`;
+  }
+  return `this venue is on the standard agreement and moving it to '${input.nextPlan}' is not a settled operation. D-009 describes the first 25 founding agreements and assigns a number on cleared payment; it does not say whether a standard venue can later join the Founding 25. That is a founder decision, not a recording step.`;
+}
+
 /* ── Renewal worklist ────────────────────────────────────────────────────── */
 
 /**
