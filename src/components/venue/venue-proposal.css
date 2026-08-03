@@ -1,0 +1,64 @@
+/**
+ * E12.09 — print rules for the one-page proposal.
+ *
+ * "One page" has to be true on paper, because the proposal is attached to the
+ * follow-up email as well as linked (E11.11 §2). A4 with 16mm margins is the
+ * only page size a venue in Ireland will print it on.
+ *
+ * Chrome is hidden two ways, deliberately, because one is not enough:
+ *   - Top-level page furniture (the HQ shell, the site nav) is hidden by the
+ *     `:has()` rule below, which only fires on a page that actually contains
+ *     a sheet. It cannot affect any other page in the app.
+ *   - Anything inside the sheet's own ancestor chain (the slot form) carries
+ *     Tailwind's `print:hidden` at the call site, where it is visible to the
+ *     person editing that component.
+ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  /* Only ever true on a page that renders a proposal. */
+  body:has(.venue-proposal-sheet) > *:not(:has(.venue-proposal-sheet)) {
+    display: none !important;
+  }
+
+  .venue-proposal-sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    /* 9.6pt body copy fits the twelve blocks on one A4 sheet with the
+       margins above. Measured, not guessed: see
+       evidence/E12.09-one-page-proposal.md §6. */
+    font-size: 9.6pt;
+    line-height: 1.42;
+  }
+
+  .venue-proposal-sheet h1 {
+    font-size: 16pt;
+    line-height: 1.15;
+  }
+
+  .venue-proposal-sheet h2,
+  .venue-proposal-sheet p {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .venue-proposal-sheet section,
+  .venue-proposal-sheet header,
+  .venue-proposal-sheet footer {
+    break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+  }
+}

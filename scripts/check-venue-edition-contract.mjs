@@ -47,6 +47,32 @@ const currentCommercialSources = [
   "signal-growth/outbound/venue-edition-A1-staged.md",
   "signal-growth/outbound/venue-edition-outreach.md",
   "src/app/venues/page.tsx",
+  // E12.07 and E12.08. Every new commercial route joins this list in the same
+  // change that creates it, or it ships unswept: retired pricing, the retired
+  // 15-venue cohort and all four permanence patterns go unchecked on it.
+  "src/app/venues/privacy/page.tsx",
+  "src/app/venues/questions/page.tsx",
+  // E12.05 and E12.06. Same rule, same reason. These two carry the couple-side
+  // preview and the venue-side record preview, so they are the two commercial
+  // routes most likely to acquire a term, a price or a permanence promise by
+  // accident while somebody is making a sentence warmer.
+  "src/app/venues/couple-preview/page.tsx",
+  "src/app/venues/what-you-see/page.tsx",
+  // E12.09. The proposal words are data, not a route, so the file that
+  // carries the price is the file that gets swept. The sheet component and
+  // the composer are swept too: a price can be typed into a placeholder or a
+  // caption as easily as into a paragraph.
+  "src/lib/venue-proposal.ts",
+  "src/components/venue/venue-proposal-sheet.tsx",
+  "src/app/hq/venue-proposal/composer.tsx",
+  // E12.02 and E12.03. The private per-venue page carries the whole offer in
+  // text, so it is the one surface where a retired price would be read by a
+  // venue at the moment it is deciding. Its words live in one module and the
+  // module is swept with the route.
+  "src/lib/venue-invitation/copy.ts",
+  "src/app/v/[token]/page.tsx",
+  "src/app/v/[token]/states.tsx",
+  "src/app/v/[token]/not-found.tsx",
   "src/components/hq/marketing-deck.tsx",
   "src/lib/comparison-pages.ts",
   "src/lib/hq/marketing.ts",
@@ -282,10 +308,33 @@ forbidText(
   "maxPrice",
   "structured data must not reintroduce the retired price specification",
 );
+/**
+ * E12.14, 2026-08-03. `priceSpecification` was banned outright as a proxy for
+ * "no price range", because the retired position expressed €1,500 to €4,000 as
+ * a specification with `minPrice` and `maxPrice`. Those four range fields are
+ * each banned above, by name, so the proxy was doing no work the direct rules
+ * were not already doing.
+ *
+ * It was also blocking D-021. Schema.org puts `valueAddedTaxIncluded` on
+ * PriceSpecification and nowhere else, so under the old rule the one price
+ * published on all forty-plus studio routes was the one price on the site that
+ * could not state it was VAT-inclusive. A structured-data offer is a published
+ * price and D-021 admits no exception for the ones only machines read.
+ *
+ * The proxy is replaced by two rules that are strictly tighter: AggregateOffer,
+ * which is the schema type that actually expresses a range, is now banned by
+ * name; and the VAT statement is now REQUIRED rather than merely permitted. A
+ * future edit that drops it fails this gate.
+ */
 forbidText(
   "src/app/layout.tsx",
-  "priceSpecification",
-  "Venue Edition structured data must remain one exact offer",
+  "AggregateOffer",
+  "Venue Edition structured data must remain one exact offer, never a range",
+);
+requireText(
+  "src/app/layout.tsx",
+  "valueAddedTaxIncluded: true",
+  "D-021: the published Venue Edition price must state that it includes VAT",
 );
 
 if (failures.length > 0) {

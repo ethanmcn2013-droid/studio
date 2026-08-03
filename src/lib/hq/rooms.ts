@@ -138,6 +138,23 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["sales kit", "demo script", "pricing"],
   },
   {
+    slug: "venue-proposal",
+    route: "/hq/venue-proposal",
+    name: "Venue proposal",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "Fill the six slots and print the one-page proposal a venue is sent after a walkthrough.",
+    aliases: [
+      "proposal",
+      "one pager",
+      "founding 25 proposal",
+      "send the price",
+      "order form covering page",
+    ],
+  },
+  {
     slug: "account-review",
     route: "/hq/account-review",
     name: "Account review",

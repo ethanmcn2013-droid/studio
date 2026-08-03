@@ -5,6 +5,12 @@ import {
   getHqPassword,
   HQ_ACCESS_COOKIE,
 } from "@/lib/hq/auth";
+import {
+  isVenueEditionCommercialPath,
+  isVenueInvitationPath,
+  NO_THIRD_PARTY_HEADER,
+  PRIVATE_INVITATION_HEADER,
+} from "@/lib/venue-invitation/paths";
 
 // ── Layer 0: /hq password gate ────────────────────────────────────────────
 // This gate is NOT Clerk, it is a simple shared-password gate for the
@@ -143,6 +149,33 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   // 2. Suite launcher redirect (M routes, authed, no escape hatch)
   const suiteResult = suiteRedirect(request);
   if (suiteResult) return suiteResult;
+
+  // 3. Third-party analytics carve-out (D-032 R8, E12.14).
+  //
+  // The root layout renders <GoogleTag /> in <head> on every route, and a
+  // server layout cannot read the pathname in the App Router. So the decision
+  // is made here, where the pathname exists, and travels as one boolean
+  // header. The pathname itself is deliberately not forwarded: the layout does
+  // not need it, and a header carrying the path of a private per-venue page is
+  // one more place that path gets logged.
+  //
+  // Fail-open, and stated plainly rather than discovered later: if this header
+  // is ever absent the layout renders the tag, which is today's behaviour on
+  // every route. It is never the other way round, so a proxy change can never
+  // silently take analytics off the whole site.
+  if (isVenueEditionCommercialPath(request.nextUrl.pathname)) {
+    const forwardedHeaders = new Headers(request.headers);
+    forwardedHeaders.set(NO_THIRD_PARTY_HEADER, "1");
+    // E13.16 section 3.1 (E12.02): the private per-venue page carries one
+    // action. The marketing navigation is nine, and one of them is the
+    // consumer pricing page, which carries a different set of numbers from the
+    // one the venue is reading. `/venues` is public and keeps its navigation,
+    // which is why this is a second header rather than the same one.
+    if (isVenueInvitationPath(request.nextUrl.pathname)) {
+      forwardedHeaders.set(PRIVATE_INVITATION_HEADER, "1");
+    }
+    return NextResponse.next({ request: { headers: forwardedHeaders } });
+  }
 
   return NextResponse.next();
 }

@@ -5,6 +5,10 @@ import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
 import { GoogleTag } from "@/components/analytics/google-tag";
+import {
+  NO_THIRD_PARTY_HEADER,
+  PRIVATE_INVITATION_HEADER,
+} from "@/lib/venue-invitation/paths";
 import { SITE_URL } from "@/lib/site-url";
 import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
 
@@ -108,9 +112,27 @@ const structuredData = [
         name: "Venue Edition",
         price: String(VENUE_EDITION_ANNUAL_PRICE_EUR),
         priceCurrency: "EUR",
+        // D-021 (E12.14): every published price states that it is inclusive of
+        // VAT at the prevailing rate. This offer is published on all 40-plus
+        // studio routes and no copy sweep reads structured data, so it was the
+        // one place the price travelled without that statement.
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: String(VENUE_EDITION_ANNUAL_PRICE_EUR),
+          priceCurrency: "EUR",
+          valueAddedTaxIncluded: true,
+          billingIncrement: 1,
+          unitCode: "ANN",
+        },
         availability: "https://schema.org/PreOrder",
         url: `${SITE_URL}/venues`,
       },
+      // The Founding 25 rate is deliberately NOT published as structured data.
+      // A price never travels without its conditions (E11.11 §3), and an Offer
+      // object cannot carry "for as long as the agreement renews continuously
+      // without lapse", "assigned when your payment clears" or "twenty-five
+      // places". A machine-readable €1,000 with none of that attached is the
+      // one form of the founding rate that cannot be corrected once quoted.
     ],
   },
 ];
@@ -127,6 +149,22 @@ export default async function RootLayout({
   const headersList = await headers();
   const isAuthedLauncher = headersList.get("x-signal-authed") === "1";
 
+  // D-032 R8 (E12.14): GA4 comes off the Venue Edition commercial surfaces.
+  // src/proxy.ts sets this header, because it is the only place in the App
+  // Router that knows the pathname at layout time. The predicate itself lives
+  // in one file, src/lib/venue-invitation/paths.ts, per E13.16 section 7.
+  //
+  // R-032, the site-wide consent position for every other public page, is a
+  // separate and open founder call. Nothing here decides it: every route this
+  // header does not name renders exactly what it rendered before.
+  const noThirdParty = headersList.get(NO_THIRD_PARTY_HEADER) === "1";
+
+  // E13.16 section 3.1 (E12.02): the private per-venue page carries one action,
+  // so it carries no marketing navigation. Set by src/proxy.ts on `/v/*` only.
+  // `/venues` is public and keeps its navigation.
+  const isPrivateInvitation =
+    headersList.get(PRIVATE_INVITATION_HEADER) === "1";
+
   return (
     <html
       lang="en"
@@ -140,8 +178,9 @@ export default async function RootLayout({
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
-        {/* Google tag (gtag.js) — production only, on every page. */}
-        <GoogleTag />
+        {/* Google tag (gtag.js), production only. Off on the Venue Edition
+            commercial surfaces (D-032 R8), on everywhere else, unchanged. */}
+        {!noThirdParty && <GoogleTag />}
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}
@@ -178,7 +217,7 @@ export default async function RootLayout({
         >
           Skip to content
         </a>
-        {!isAuthedLauncher && <SiteNav />}
+        {!isAuthedLauncher && !isPrivateInvitation && <SiteNav />}
         {children}
         <DevBanner />
       </body>

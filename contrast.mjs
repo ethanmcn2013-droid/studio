@@ -1,0 +1,21 @@
+import { chromium } from "@playwright/test";
+const B="http://127.0.0.1:3462";
+const browser=await chromium.launch();
+const ctx=await browser.newContext({viewport:{width:1280,height:800},colorScheme:"light"});
+const page=await ctx.newPage();
+await page.goto(B+"/venues",{waitUntil:"networkidle"});
+const out=await page.evaluate(()=>{
+  const cs=getComputedStyle(document.documentElement);
+  const names=["--ink","--ink-soft","--ink-quiet","--paper","--paper-deep","--bg","--bg-deep","--bg-elev","--accent","--border-soft"];
+  const tokens=Object.fromEntries(names.map(n=>[n,cs.getPropertyValue(n).trim()]));
+  const el=document.querySelector(".mb-3.uppercase");
+  const s=el?getComputedStyle(el):null;
+  const parse=(c)=>{const m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;const p=m[1].split(",").map(Number);return p.slice(0,3);};
+  const lum=(rgb)=>{const a=rgb.map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2];};
+  const ratio=(f,b)=>{const L1=lum(f),L2=lum(b);const hi=Math.max(L1,L2),lo=Math.min(L1,L2);return ((hi+0.05)/(lo+0.05)).toFixed(2);};
+  const bodyBg=parse(getComputedStyle(document.body).backgroundColor)||[255,255,255];
+  const fg=s?parse(s.color):null;
+  return {tokens, sampleColor:s?s.color:null, sampleFontSize:s?s.fontSize:null, sampleWeight:s?s.fontWeight:null, bodyBg, ratio: fg?ratio(fg,bodyBg):null};
+});
+console.log(JSON.stringify(out,null,2));
+await browser.close();
