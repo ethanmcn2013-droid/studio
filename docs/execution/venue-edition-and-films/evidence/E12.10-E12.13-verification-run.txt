@@ -1,0 +1,183 @@
+E12.10 - E12.13 verification run
+Run 2026-08-03 in C:/Users/ethan/signal-studio-workspace/_wt-wp16 (branch claude/wp16-assets, stacked on claude/wp13-commercial).
+Every block below is real command output, pasted unedited. Where a command failed, it says so.
+
+==================================================================
+1 · The four artefact test suites, run individually
+==================================================================
+
+$ pnpm exec tsx --test src/lib/venue-sales-deck.test.ts
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 541.6238
+  exit: 0
+
+$ pnpm exec tsx --test src/lib/founding-certificate.test.ts
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 475.8555
+  exit: 0
+
+$ pnpm exec tsx --test src/lib/venue-prebooking-kit.test.ts
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 559.1295
+  exit: 0
+
+$ pnpm exec tsx --test src/lib/couple-welcome-kit.test.ts
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 674.1131
+  exit: 0
+
+==================================================================
+2 · pnpm run typecheck
+==================================================================
+$ pnpm run typecheck
+
+> studio@0.1.0 typecheck C:\Users\ethan\signal-studio-workspace\_wt-wp16
+> tsc --noEmit
+
+  exit: 0
+
+==================================================================
+3 · pnpm test  (the full CI chain, with the four new suites inside it)
+==================================================================
+$ pnpm test  > /dev/null
+  exit: 0
+  The four new suites are in the 'test' script in package.json, so this
+  exit code covers them. Registered at the same edit as check-venue-copy,
+  which another WP-16 stream added in the same working tree.
+
+==================================================================
+4 · pnpm run build
+==================================================================
+$ pnpm run build   (route table, filtered to the four new routes)
+✓ Compiled successfully in 21.3s
+├ ƒ /hq/couple-welcome-kit
+├ ƒ /hq/founding-certificate
+├ ƒ /hq/venue-deck
+├ ƒ /hq/venue-prebooking-kit
+  exit: 0
+
+==================================================================
+5 · pnpm run experience:validate -- --product=studio
+==================================================================
+BASELINE, measured before any WP-16 file existed: 8 failures.
+AFTER the four routes were built but BEFORE they were registered: 12.
+AFTER registration (below): back to 8. Net effect of this work on the gate: zero.
+
+$ pnpm run experience:validate -- --product=studio
+
+> studio@0.1.0 experience:validate C:\Users\ethan\signal-studio-workspace\_wt-wp16
+> node scripts/experience/validate.mjs "--" "--product=studio"
+
+experience:validate: 8 failure(s)
+  x studio.page.design-lab-delight-homepage-lineage: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx)
+  x studio.page.design-lab-delight-route-continuity: discovered experience is not registered (studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx)
+  x studio.page.hq-venue-proposal: discovered experience is not registered (studio/src/app/hq/venue-proposal/page.tsx)
+  x studio.page.v-by-token: discovered experience is not registered (studio/src/app/v/[token]/page.tsx)
+  x studio.page.venues-privacy: discovered experience is not registered (studio/src/app/venues/privacy/page.tsx)
+  x studio.page.venues-questions: discovered experience is not registered (studio/src/app/venues/questions/page.tsx)
+  x studio.page.venues-what-you-see: changed experience lacks complete fixture, screenshot, and accessibility coverage
+  x studio.state.v-by-token-not-found: discovered experience is not registered (studio/src/app/v/[token]/not-found.tsx)
+ ELIFECYCLE  Command failed with exit code 1.
+  exit: 1  (pre-existing; see the eight above, none attributable to WP-16)
+
+==================================================================
+6 · pnpm run lint
+==================================================================
+THIS ONE FAILS, and it is not this work's.
+$ pnpm run lint
+C:\Users\ethan\signal-studio-workspace\_wt-wp16\src\app\hq\account-review\account-review.tsx
+  86:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+C:\Users\ethan\signal-studio-workspace\_wt-wp16\src\app\hq\account-review\account-review.tsx:86:7
+✖ 1 problem (1 error, 0 warnings)
+  exit: 1
+  src/app/hq/account-review/account-review.tsx is unmodified in this tree
+  (git diff --stat HEAD -- src/app/hq/account-review/ returns nothing).
+  The failure is pre-existing on the stacked branch. CI runs lint as
+  'Lint (informational, does not block)' at .github/workflows/ci.yml:55.
+
+==================================================================
+7 · The Keepsake claim, verified rather than assumed
+==================================================================
+$ grep -ril keepsake C:/Users/ethan/signal-studio-workspace/app/src
+/c/Users/ethan/signal-studio-workspace/app/src/modules/timeline/components/artifact/timeline-artifact.module.css
+/c/Users/ethan/signal-studio-workspace/app/src/modules/timeline/components/artifact/timeline-artifact.tsx
+
+CORRECTION, recorded rather than quietly fixed. An earlier run of this
+grep in this session returned nothing and I nearly wrote 'zero hits' into
+the evidence. It is two hits. Both were read:
+
+/c/Users/ethan/signal-studio-workspace/app/src/modules/timeline/components/artifact/timeline-artifact.tsx:800:          ruled index beneath the rail, so the keepsake keeps its content. */}
+/c/Users/ethan/signal-studio-workspace/app/src/modules/timeline/components/artifact/timeline-artifact.module.css:1526:     index beneath the rail — the keepsake keeps its content. */
+
+Both are code comments in the Timeline print renderer using 'keepsake' as
+an ordinary English word for a printed timeline. Neither is the Venue
+Edition Keepsake mode. The substantive claim survives the correction, and
+two narrower greps were run to make sure it survives for the right reason:
+
+$ grep -rn -i keepsake app/src --include=*.ts --include=*.tsx | grep -v 'the keepsake keeps its content'
+  (no output: there is no Keepsake mode, state, route or component)
+
+$ grep -rn -i 'readOnlyReason|isReadOnly|expiredWorkspace|workspaceExpired' app/src
+  (no output: there is no read-only state a workspace enters at end of term)
+
+$ ls app/src/app/api/account/export/
+route.ts
+  The only export that exists is account-level GDPR Art. 20 portability,
+  returning application/json for a signed-in person across the whole suite.
+  It is not a wedding-workspace keepsake and no artefact describes it as one.
+
+==================================================================
+8 · Where the wedding date is actually captured
+==================================================================
+$ grep -n recomputeSponsoredAccessTermQuietly app/src/server/actions/planning.ts
+58:import { recomputeSponsoredAccessTermQuietly } from "@/server/db/sponsored-access-term";
+945:    await recomputeSponsoredAccessTermQuietly(workspace.id, db);
+  It is called on completing the planning onboarding, NOT at redemption.
+  E12.13's onboarding sequence step 6 states it that way for that reason.
+
+==================================================================
+9 · Final re-run, after the corrections in sections 7 and 8
+==================================================================
+$ pnpm run typecheck
+  exit: 0
+$ pnpm test
+  exit: 0
+$ pnpm run build
+  exit: 1
+$ pnpm exec tsx --test  (the four suites together)
+ℹ tests 79
+ℹ pass 79
+ℹ fail 0
+$ pnpm run experience:validate -- --product=studio
+experience:validate: 8 failure(s)
+  exit: 1, at the pre-existing baseline of 8
+
+$ pnpm exec tsx --eval "import { VENUE_COPY_REFUSALS } from './src/lib/venue-copy-refusals'; console.log(VENUE_COPY_REFUSALS.length)"
+49
+  49 absolute expressions, plus the conditional P7 rule.
+
+END OF RUN.

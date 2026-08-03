@@ -339,6 +339,27 @@ recorded. File paths and line numbers are the verification, not the claim.
 - **Affects:** E03.08, E04.07, E04.09, E04.12, E06.11, E08.01, E15.03
 - **Status:** open · **Target:** before UI-freeze 2026-08-20 · **Last reviewed:** 2026-08-03
 
+- **PARTIALLY MITIGATED 2026-08-03 (Wave 4, WP-15). The arithmetic is fixed and proven. The risk stays OPEN.**
+  The shipped app path at `src/server/actions/comp.ts:215-217` computed a flat
+  `Date.now() + durationDays` multiply while the correct D-022 rule sat uncalled in studio.
+  It now applies `max(redemption + 548 days, wedding date + 90 days)`, and the term is
+  structurally incapable of moving earlier (`Math.max(current, recomputed)` behind a
+  compare-and-set). Concretely: a couple redeeming March 2027 for a September 2028 wedding
+  lost access on 2028-08-30, sixteen days before the wedding, and now keeps it to 2028-12-14.
+  The rule is a deliberate PORT rather than a shared module, guarded by a differential test
+  running both implementations over 792 cases. That test originally skipped itself when no
+  studio checkout was present, which made it a workstation guard and not a CI one, so an
+  absent checkout under `CI` is now a hard failure. Four mutations each turn the suite red.
+  Evidence: `evidence/R-015-access-term-correctness.md`. Branch `claude/wp15-term-correctness`.
+  **WHY IT IS NOT CLOSED, and this is wider than first recorded: no wedding date reaches the
+  rule in production at all.** Three independent blockers, not one — contextual onboarding is
+  flag-off in production; Venue Edition redemption deep-links past `/welcome`, so the couple
+  never sees the date question even with the flag on; and `primary_date` is write-once at
+  workspace creation. **Every sponsored couple therefore lands on the 548-day floor today.**
+  The fix is correct and inert until a wedding date is captured, and capturing one is the
+  remaining work. Also unresolved: `studio/scripts/issue-codes.ts:121-129` still refuses any
+  `venue_edition` duration other than exactly 548, which D-022 point 4 said to relax.
+
 ### R-016 — "Unlimited" is unrepresentable, and today's real entitlement is a form default
 - **Type:** product/commercial · **Probability:** certain · **Impact:** high · **Severity:** high
 - **Owner:** Claude Code

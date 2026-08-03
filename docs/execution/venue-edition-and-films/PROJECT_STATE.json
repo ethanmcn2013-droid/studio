@@ -39,7 +39,29 @@
       "record": "sessions/2026-08-03--wp13-commercial.md",
       "objective": "WP-13 · E12 commercial pages and asset system"
     },
-    "open": []
+    "open": [
+      {
+        "id": "wp14-timeline",
+        "objective": "WP-14 · E06 Shared Timeline and Keepsake, plus R-031 and R-032 implementation and the Timeline workspace blocker",
+        "openedAt": "2026-08-03T16:08:41.869Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      },
+      {
+        "id": "wp15-term",
+        "objective": "WP-15 · R-015 access-term correctness in the app redemption path",
+        "openedAt": "2026-08-03T16:08:42.007Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      },
+      {
+        "id": "wp16-assets",
+        "objective": "WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets",
+        "openedAt": "2026-08-03T16:08:42.121Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      }
+    ]
   },
   "wip": {
     "primaryFocus": 1,
@@ -69,6 +91,12 @@
         "reason": "Wave 3 runs three packages concurrently on 2026-08-03 under the founder standing instruction to execute Wave 3 to completion without stopping for approval mid-wave: WP-07 (E08 billing, security, reliability and release engineering, 12 tasks, plus the R-027 and R-028 suppression fixes), WP-08 (E05 couple planning experience, 9 tasks, audit-first per D-015 Q2) and WP-13 (E12 commercial pages and asset system, 9 tasks). Thirty tasks cannot share a project-wide cap of three In Progress. Isolation is by git worktree, not by directory convention: WP-07 owns _wt-wp07 (app, branch claude/wp07-engineering) and _wt-wp07s (studio, branch claude/wp07-engineering-studio); WP-08 owns _wt-wp08 (app, branch claude/wp08-couple); WP-13 owns _wt-wp13 (studio, branch claude/wp13-commercial). The shared app and studio checkouts are untouched - app carries 94 uncommitted files belonging to the motion lane and is 25 commits behind origin/main. PROJECT_STATE.json is a single shared file, so every state transition in this wave is applied serially by the orchestrating session and no build agent runs a project-control write command. Each task keeps its own acceptance criteria, evidence and founder sign-off; the exception relaxes the concurrency cap and nothing else. Deactivate when Wave 3 closes.",
         "deactivatedAt": "2026-08-03T00:00:00.000Z",
         "deactivationNote": "Wave 3 closed 2026-08-03. Thirty tasks touched: E05.01/.03-.10 (9), E08.01-.12 (12), E12.01/.02/.03/.05/.06/.07/.08/.09/.14 (9). 28 carry written acceptance criteria and recorded evidence and sit in Founder Review; ALL 28 ARE PARTIAL and none is Done. E12.05 and E12.14 are blocked rather than forced through: both depend, directly or via E12.05, on E05.12 which is founder-creative and outside Wave 3, and no dependency was waived because a waiver is the founder’s to give. Four packets: 2026-08-03--E05.md, --E08.md, --E12.md and the consolidated --WAVE3.md. Four branches pushed and none merged: claude/wp07-engineering, claude/wp07-engineering-studio, claude/wp08-couple (app), claude/wp13-commercial (studio). R-027 and R-028 are fixed pending approval. LIMITATION RECORDED: file ownership within a package was directory convention, not enforcement, so several agents shared one worktree per package and gate colour observed during the run is not trustworthy; every gate was re-run after the wave settled. Next wave should isolate per build group, not per package."
+      },
+      {
+        "active": true,
+        "at": "2026-08-03T00:00:00.000Z",
+        "wave": "Wave 4",
+        "reason": "Wave 4 runs three packages concurrently on 2026-08-03 under the founder standing instruction to run Wave 4 to completion in the same manner as Wave 3: WP-14 (E06 Shared Timeline and Keepsake, 11 tasks, plus R-031 and R-032 implementation and the Timeline-workspace production blocker), WP-15 (R-015 access-term correctness in the app redemption path) and WP-16 (R-042 sweep, the standing banned-term check, and E12.10-E12.13 commercial assets). Isolation is by git worktree and Wave 4 STACKS ON WAVE 3 rather than branching from main, because the Wave 3 branches are approved but unmerged: _wt-wp14 off claude/wp08-couple, _wt-wp15 off claude/wp07-engineering, _wt-wp16 off claude/wp13-commercial. PROJECT_STATE.json remains a single shared file, so every transition is applied serially by the orchestrating session and no build agent runs a project-control write command. Each task keeps its own criteria, evidence and founder sign-off."
       }
     ]
   },
@@ -22309,10 +22337,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T16:01:30.183Z",
+    "lastValidatedAt": "2026-08-03T16:08:42.367Z",
     "lastRenderedAt": "2026-08-03T16:01:30.037Z",
-    "lastUpdatedAt": "2026-08-03T16:01:25.214Z",
-    "lastUpdatedSession": "wp13-commercial",
+    "lastUpdatedAt": "2026-08-03T16:08:42.121Z",
+    "lastUpdatedSession": "wp16-assets",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"
