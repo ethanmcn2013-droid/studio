@@ -2,7 +2,7 @@
 
 **Status:** Founder Review · **Written:** 2026-08-03 · **Executor:** Claude Code
 **Ratified input:** D-012 (geography, eligibility), D-017 (cohorts), D-020 (no volume screen)
-**Risk raised:** R-031
+**Risk raised:** R-038
 
 E10.04 asks for a master researched universe of at least 125 accounts, **or a
 formal document of the market shortfall if it does not exist.**
@@ -258,7 +258,7 @@ property per operator per cohort and defers the second, and a test holds it.
 reported in receivership whose website still sells weddings, a hotel described in
 its own sale listing as not trading that a 2026 blog still recommends, and a
 500-capacity Ennis hotel stating on its own wedding page that it is not currently
-taking wedding bookings. All are held out of every cohort until checked (R-033).
+taking wedding bookings. All are held out of every cohort until checked (R-040).
 
 ## 7. Reproducing it
 

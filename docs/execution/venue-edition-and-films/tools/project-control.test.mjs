@@ -25,12 +25,50 @@ const task = (s, id) => s.tasks.find((t) => t.id === id);
 const errorsOf = (s) => validate(s).errors;
 const hasError = (s, fragment) => errorsOf(s).some((e) => e.includes(fragment));
 
+/**
+ * The imported set, and everything added since.
+ *
+ * These tests originally asserted the import's numbers against the WHOLE
+ * backlog — 211 tasks, 120 on the critical path, 155 execution-class. That
+ * conflates two different properties, and the first legitimate scope addition
+ * broke five tests at once: E02.13 was added under CR-003 and approved as D-027
+ * point 2, and every count moved by one.
+ *
+ * The tempting fix is to bump 211 to 212. That is the wrong fix. It destroys the
+ * property being tested — that nothing imported was lost or altered — and turns
+ * an integrity assertion into a rubber stamp that gets updated whenever anything
+ * changes, which is exactly the drift it exists to catch.
+ *
+ * So the two properties are now tested separately:
+ *
+ *   1. The imported 211 are intact, byte-identical, and their derived totals are
+ *      unchanged. These numbers must NEVER move.
+ *   2. Anything else in the backlog arrived through a change request and says so.
+ *      Approved growth passes; silent growth fails.
+ */
+const IMPORT_SOURCE = "master-backlog-2026-08-02";
+const IMPORTED_COUNT = 211;
+
+const imported = base.tasks.filter((t) => t.source === IMPORT_SOURCE);
+const addedSinceImport = base.tasks.filter((t) => t.source !== IMPORT_SOURCE);
+
+/** Totals over an arbitrary subset, computed here rather than through derive(). */
+const totalsOf = (tasks) => ({
+  tasks: tasks.length,
+  criticalPath: tasks.filter((t) => t.criticalPath).length,
+  releaseBlocking: tasks.filter((t) => t.releaseBlocking).length,
+  dependencyEdges: tasks.reduce((n, t) => n + (t.dependencies || []).length, 0),
+  founderOnly: tasks.filter((t) => t.decisionClass === "founder_only").length,
+  founderChoice: tasks.filter((t) => t.decisionClass === "founder_choice").length,
+  execution: tasks.filter((t) => t.decisionClass === "execution").length,
+});
+
 // --- Import fidelity ------------------------------------------------------
 
 test("the imported backlog is intact", () => {
   assert.equal(base.epics.length, 15, "15 epics were supplied");
-  assert.equal(base.tasks.length, 211, "211 tasks were supplied");
-  assert.equal(new Set(base.tasks.map((t) => t.id)).size, 211, "task ids are unique");
+  assert.equal(imported.length, IMPORTED_COUNT, `${IMPORTED_COUNT} tasks were supplied`);
+  assert.equal(new Set(base.tasks.map((t) => t.id)).size, base.tasks.length, "task ids are unique across the whole backlog");
   for (const t of base.tasks) {
     assert.ok(t.title && t.title.trim().length > 0, `${t.id} has a title`);
     assert.ok(t.id.startsWith(t.epic), `${t.id} sits under its epic`);
@@ -38,51 +76,101 @@ test("the imported backlog is intact", () => {
   }
 });
 
-test("every task title matches backlog.source.md character for character", () => {
+test("every imported task still exists and its title is byte-identical", () => {
   const src = readFileSync(join(ROOT, "backlog.source.md"), "utf8");
   const fromSource = new Map();
   for (const line of src.split(/\r?\n/)) {
     const m = /^\* (E\d{2}\.\d{2}) (.+?)\s*$/.exec(line);
     if (m) fromSource.set(m[1], m[2]);
   }
-  assert.equal(fromSource.size, 211);
-  for (const t of base.tasks) {
+  assert.equal(fromSource.size, IMPORTED_COUNT);
+
+  // Nothing imported was renamed...
+  for (const t of imported) {
     assert.equal(t.title, fromSource.get(t.id), `${t.id} title is unmodified`);
+  }
+  // ...and nothing imported was quietly dropped.
+  const present = new Set(base.tasks.map((t) => t.id));
+  for (const id of fromSource.keys()) {
+    assert.ok(present.has(id), `${id} was in the supplied backlog and is missing from state`);
   }
 });
 
+test("scope only ever grows through a recorded change request", () => {
+  // This is the test that replaces "the task count is exactly 211". Growth is
+  // allowed; unexplained growth is not. A task that appears with no change
+  // request behind it is scope arriving by accretion, which PROJECT.md section 10
+  // forbids and which a fixed total would only have caught by accident.
+  for (const t of addedSinceImport) {
+    assert.ok(
+      typeof t.source === "string" && /\bCR-\d{3}\b/.test(t.source),
+      `${t.id} is not from the master import, so its source must name the change request that created it. Got: ${JSON.stringify(t.source)}`,
+    );
+    assert.ok(
+      /\bD-\d{3}\b/.test(t.source),
+      `${t.id} names a change request but not the decision that approved it. A CR that was never approved is not scope.`,
+    );
+  }
+  // Recorded so the number moving is itself visible in a diff.
+  assert.equal(addedSinceImport.length, 1, "one task has been added since import: E02.13 under CR-003 / D-027");
+  assert.equal(base.tasks.length, IMPORTED_COUNT + addedSinceImport.length, "the backlog is the import plus its approved additions, and nothing else");
+});
+
 test("imported flags match the supplied statements, less documented changes", () => {
-  const d = derive(base);
+  // Asserted over the IMPORTED SET only. These three numbers describe what was
+  // supplied on 2026-08-02 and must never move again. A change request that adds
+  // a critical-path task changes the backlog's total, not the import's.
+  const t0 = totalsOf(imported);
+
   // 120 at import. E03.12 was removed from the path by CR-001 / D-023: the
   // external legal and accounting review is unschedulable at zero budget, so an
   // unreachable task was left gating the path. Any OTHER movement in this number
   // is silent drift and fails here.
-  assert.equal(d.totals.criticalPath, 119, "critical path: 120 at import, less E03.12 per D-023");
+  assert.equal(t0.criticalPath, 119, "critical path: 120 at import, less E03.12 per D-023");
   assert.equal(task(base, "E03.12").criticalPath, false, "E03.12 left the path by decision, not by accident");
   assert.equal(task(base, "E03.12").status, "deferred", "and is deferred, not cancelled — the title still says a solicitor should look at this");
-  assert.equal(d.totals.releaseBlocking, 54, "E05-E08 are the four Launch-blocking epics");
+  assert.equal(t0.releaseBlocking, 54, "E05-E08 are the four Launch-blocking epics");
   // 20 at import: the four critical blocking rules and nothing else. E01.07 built
   // the rest of the graph on 2026-08-03 — 134 edges across 52 tasks, every one
   // carrying a written basis in `dependencyBasis`, explained in DEPENDENCY_MAP.md.
   // Any movement from 134 that is not accompanied by an update here is silent
   // drift and fails.
-  assert.equal(d.totals.dependencyEdges, 134, "20 imported, plus E01.07's mapped graph");
+  assert.equal(t0.dependencyEdges, 134, "20 imported, plus E01.07's mapped graph");
+
+  // Every edge, on any task, still needs a written basis.
   const withBasis = base.tasks.filter((t) => (t.dependencies || []).length > 0);
   for (const t of withBasis) {
     assert.ok(t.dependencyBasis, `${t.id} has dependencies but no recorded basis. An unsourced edge is a guess that stops work.`);
   }
+
+  // And the live totals are the import plus the additions, with nothing
+  // unaccounted for. This is what catches a flag flipping on an imported task:
+  // the arithmetic stops balancing even though both subtotals look plausible.
+  const live = derive(base).totals;
+  const added = totalsOf(addedSinceImport);
+  assert.equal(live.criticalPath, t0.criticalPath + added.criticalPath, "critical-path total is the import plus approved additions");
+  assert.equal(live.releaseBlocking, t0.releaseBlocking + added.releaseBlocking, "release-blocking total is the import plus approved additions");
+  assert.equal(live.dependencyEdges, t0.dependencyEdges + added.dependencyEdges, "dependency edges are the import plus approved additions");
 });
 
 test("every task is classified by how it gets decided", () => {
-  const counts = { founder_only: 0, founder_choice: 0, execution: 0 };
+  // Every task in the backlog must be classified, including additions...
   for (const t of base.tasks) {
     assert.ok(DECISION_CLASSES.includes(t.decisionClass), `${t.id} has a decisionClass`);
-    counts[t.decisionClass]++;
   }
-  assert.equal(counts.founder_only, 39);
-  assert.equal(counts.founder_choice, 17);
-  assert.equal(counts.execution, 155);
-  assert.equal(counts.founder_only + counts.founder_choice + counts.execution, 211);
+  // ...and the import's own split is fixed. A task quietly reclassified from
+  // founder_only to execution would move work out of the founder's queue without
+  // a decision, which is the failure this guards.
+  const t0 = totalsOf(imported);
+  assert.equal(t0.founderOnly, 39);
+  assert.equal(t0.founderChoice, 17);
+  assert.equal(t0.execution, 155);
+  assert.equal(t0.founderOnly + t0.founderChoice + t0.execution, IMPORTED_COUNT);
+
+  // Additions are classified too, and counted separately so the split above
+  // stays a statement about the import.
+  const added = totalsOf(addedSinceImport);
+  assert.equal(added.founderOnly + added.founderChoice + added.execution, addedSinceImport.length);
 });
 
 test("a founder-only task carries either its open question or the decision that answered it", () => {
@@ -371,7 +459,10 @@ test("deferred and cancelled work leaves the denominator but not the record", ()
   task(s, "E05.01").status = "deferred";
   task(s, "E05.02").status = "cancelled";
   const d = derive(s);
-  assert.equal(d.totals.tasks, 211, "nothing is deleted");
+  // The point is that deferring deletes nothing, so this compares against the
+  // live count rather than a literal. Pinning it to the import's 211 made a
+  // statement about deletion fail whenever scope was legitimately added.
+  assert.equal(d.totals.tasks, base.tasks.length, "nothing is deleted");
   assert.equal(d.totals.active, before - 2, "both leave the active denominator");
 });
 

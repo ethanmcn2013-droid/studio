@@ -1,7 +1,7 @@
 # The cohorts — E10.12, E10.13, E10.14
 
 **Status:** Founder Review · **Written:** 2026-08-03 · **Executor:** Claude Code
-**Ratified input:** D-017 (25 at a time, sequential) · **Risk raised:** R-031, R-033
+**Ratified input:** D-017 (25 at a time, sequential) · **Risk raised:** R-038, R-040
 
 D-017 ratifies twenty-five founding places, twenty-five venues contacted per
 cohort, released sequentially until twenty-five have signed and paid.

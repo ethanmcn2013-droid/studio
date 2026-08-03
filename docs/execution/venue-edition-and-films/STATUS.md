@@ -4,14 +4,14 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T02:21:25.049Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T02:21:25.049Z · session `wp03-e0506-audit`
+**Report generated:** 2026-08-03T02:33:41.907Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-03T02:33:41.907Z · session `eed55e9e-deploy`
 **Release date:** 2026-09-01 · **29 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
 ## Health
 
-**AMBER** — Every founder decision from Rounds 1 and 2 is now answered, including FD-03. The legal gate is achievable again. Two exposures accepted by decision (R-021 no volume screen, R-022 VAT-inclusive under a permanent lock) and one live product defect: R-015, the ratified access-term grace rule is refused by shipped code, which today would cost a long-lead couple their workspace before their wedding. 161 of 211 tasks are executable without the founder.
+**AMBER** — E01, E04 and E10 are complete and founder-approved. 71 of 210 tasks Done (33.8%). R-015 and R-016 are fixed in code but INERT IN PRODUCTION until the venue-edition terms migration is applied — a P0 operator todo. The live commercial surfaces still carry the superseded position (I-002). Four verified privacy findings are open and unresolved: the suppression floor guards the population and not the count (R-027), the rate threshold has never run (R-028), /p is deliberately search-indexable while the privacy model assumes otherwise (R-031), and GA4 runs on public surfaces with no consent gate (R-032). E03 legal drafting is gated on the role map, which is in internal review with five critical findings open.
 
 **Current phase:** Phase 1 — Decide the business (closing) / Phase 2 — Build the product (opening)
 **Current release gate:** Commercial (not_started)
@@ -156,7 +156,7 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 | Founding target | 25 |
 | Founding places available | 25 |
 | Researched account universe | 219 |
-| Cohorts ready | none |
+| Cohorts ready | cohort1 |
 | Invitations issued | 0 |
 | Responses | 0 |
 | Qualified meetings | 0 |
@@ -185,8 +185,8 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** wp03-e0506-audit (E05/E06 audit against shipped implementation, per D-015 Q2)
-**Last closed session:** eed55e9e-e1204 (2026-08-03T02:20:56.806Z) → `sessions/2026-08-03--eed55e9e-e1204.md`
+**Open sessions:** wp03-e0506-audit (E05/E06 audit against shipped implementation, per D-015 Q2) · wp05-portal (WP-05 Venue Portal audit and completion (E07.01-E07.18)) · wp06-measurement (WP-06 instrumentation, demo fixture and copy (E09 remainder)) · wp12-mapsystem (WP-12 map system and render pipeline (E13.03,.04,.15,.16))
+**Last closed session:** eed55e9e-deploy (2026-08-03T02:33:41.907Z) → `sessions/2026-08-03--eed55e9e-deploy.md`
 
 ## Next recommended project-management action
 

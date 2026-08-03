@@ -14,8 +14,8 @@
     "currentPhase": "Phase 1 — Decide the business (closing) / Phase 2 — Build the product (opening)",
     "health": {
       "rag": "amber",
-      "reason": "Every founder decision from Rounds 1 and 2 is now answered, including FD-03. The legal gate is achievable again. Two exposures accepted by decision (R-021 no volume screen, R-022 VAT-inclusive under a permanent lock) and one live product defect: R-015, the ratified access-term grace rule is refused by shipped code, which today would cost a long-lead couple their workspace before their wedding. 161 of 211 tasks are executable without the founder.",
-      "setAt": "2026-08-02T23:41:22.720Z"
+      "reason": "E01, E04 and E10 are complete and founder-approved. 71 of 210 tasks Done (33.8%). R-015 and R-016 are fixed in code but INERT IN PRODUCTION until the venue-edition terms migration is applied — a P0 operator todo. The live commercial surfaces still carry the superseded position (I-002). Four verified privacy findings are open and unresolved: the suppression floor guards the population and not the count (R-027), the rate threshold has never run (R-028), /p is deliberately search-indexable while the privacy model assumes otherwise (R-031), and GA4 runs on public surfaces with no consent gate (R-032). E03 legal drafting is gated on the role map, which is in internal review with five critical findings open.",
+      "setAt": "2026-08-03T02:27:31.109Z"
     }
   },
   "baseline": {
@@ -34,10 +34,10 @@
   },
   "session": {
     "lastClosed": {
-      "id": "eed55e9e-e1204",
-      "closedAt": "2026-08-03T02:20:56.806Z",
-      "record": "sessions/2026-08-03--eed55e9e-e1204.md",
-      "objective": "E12.04: write and verify the venues page against the ratified commercial position, so the deploy can proceed"
+      "id": "eed55e9e-deploy",
+      "closedAt": "2026-08-03T02:33:41.907Z",
+      "record": "sessions/2026-08-03--eed55e9e-deploy.md",
+      "objective": "Approve and deploy E12.04; record the standing publication authorisation"
     },
     "open": [
       {
@@ -48,9 +48,23 @@
         "statusChanges": []
       },
       {
-        "id": "eed55e9e-deploy",
-        "objective": "Approve and deploy E12.04; record the standing publication authorisation",
-        "openedAt": "2026-08-03T02:23:11.283Z",
+        "id": "wp05-portal",
+        "objective": "WP-05 Venue Portal audit and completion (E07.01-E07.18)",
+        "openedAt": "2026-08-03T02:33:24.218Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      },
+      {
+        "id": "wp06-measurement",
+        "objective": "WP-06 instrumentation, demo fixture and copy (E09 remainder)",
+        "openedAt": "2026-08-03T02:33:24.344Z",
+        "tasksTouched": [],
+        "statusChanges": []
+      },
+      {
+        "id": "wp12-mapsystem",
+        "objective": "WP-12 map system and render pipeline (E13.03,.04,.15,.16)",
+        "openedAt": "2026-08-03T02:33:24.444Z",
         "tasksTouched": [],
         "statusChanges": []
       }
@@ -61,11 +75,19 @@
     "maxInProgress": 3,
     "exceptions": [
       {
-        "active": true,
+        "active": false,
         "at": "2026-08-03T00:52:19.000Z",
         "reason": "Founder approved running Wave 1 concurrently on 2026-08-03: WP-01 (E04 + R-015, 13 tasks), WP-02 (E10, 14 tasks), WP-03 (E01, 12 tasks) and WP-10 (E02 commercial record, 8 tasks). Four packages of 47 tasks cannot share a project-wide cap of three In Progress. Each task keeps its own acceptance criteria, evidence and founder sign-off; the exception relaxes the concurrency cap and nothing else. Deactivate when Wave 1 closes.",
         "extendedAt": "2026-08-03T00:03:30.335Z",
-        "wave": "Wave 1"
+        "wave": "Wave 1",
+        "deactivatedAt": "2026-08-03T00:00:00.000Z",
+        "deactivationNote": "Wave 1 closed: WP-01 (E04, 12/12 Done), WP-02 (E10, 14/14 Done), WP-03 (E01, 12/12 Done) and WP-10 (E02, 10/13 Done, 3 founder questions remain). Exception deactivated before Wave 2 opens."
+      },
+      {
+        "active": true,
+        "at": "2026-08-03T00:00:00.000Z",
+        "wave": "Wave 2",
+        "reason": "Wave 2 runs three packages concurrently on 2026-08-03 under the founder standing instruction to execute Wave 2 to completion: WP-05 (E07 Venue Portal audit and completion, 18 tasks), WP-06 (E09 instrumentation, demo fixture and copy, 8 tasks) and WP-12 (E13.03, E13.04, E13.15, E13.16, map system and render pipeline, 4 tasks). Thirty tasks cannot share a project-wide cap of three In Progress. File ownership is disjoint by design: WP-05 owns studio/src/lib/account/**, studio/src/app/hq/account-review/** and docs/venue-portal/**; WP-06 owns app/src/**/analytics, app/src/server/demo/** and studio/scripts/**; WP-12 owns signal-motion/src/**. Each task keeps its own acceptance criteria, evidence and founder sign-off; the exception relaxes the concurrency cap and nothing else. Deactivate when Wave 2 closes."
       }
     ]
   },
@@ -328,7 +350,7 @@
     "foundingPlacesAvailable": 25,
     "researchedAccountUniverse": 219,
     "cohortReady": {
-      "cohort1": false,
+      "cohort1": true,
       "cohort2": false,
       "cohort3": false,
       "cohort4": false
@@ -14891,9 +14913,9 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T02:23:11.283Z",
-    "lastRenderedAt": "2026-08-03T02:21:25.049Z",
-    "lastUpdatedAt": "2026-08-03T02:23:11.283Z",
+    "lastValidatedAt": "2026-08-03T02:40:51.385Z",
+    "lastRenderedAt": "2026-08-03T02:33:41.907Z",
+    "lastUpdatedAt": "2026-08-03T02:33:41.907Z",
     "lastUpdatedSession": "eed55e9e-deploy",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
