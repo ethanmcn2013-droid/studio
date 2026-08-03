@@ -497,11 +497,15 @@ function Journey({
     : `Today, ${formatTimelineDate(timeline.today, "long")}.${nextMilestone ? ` Our next milestone is ${nextMilestone.item.title}.` : ""}`;
   const instructions = model.todayPosition === null
     ? "Milestones without dates are arranged in plan order. Use Left and Right Arrow to move between milestones, Home and End to jump, Enter or Space to select, and Escape to close milestone detail."
-    : "The highlighted point is the project's next milestone. The Today dash shows the calendar position. Use Left and Right Arrow to move between milestones, Home and End to jump, Enter or Space to select, and Escape to close milestone detail.";
+    : "The highlighted point is the plan’s next milestone. The Today dash shows the calendar position. Use Left and Right Arrow to move between milestones, Home and End to jump, Enter or Space to select, and Escape to close milestone detail.";
 
   return (
     <section className={styles.journey} id={sectionId} aria-labelledby={`${sectionId}-title`}>
-      <h2 className={styles.screenReaderOnly} id={`${sectionId}-title`}>Project timeline</h2>
+      {/* "Plan timeline", not "Project timeline": every marketing surface
+          that embeds this artifact shows a wedding plan, and the visible
+          register beside it says plan. A screen reader should not hear a
+          different product than the page shows. */}
+      <h2 className={styles.screenReaderOnly} id={`${sectionId}-title`}>Plan timeline</h2>
       <p className={styles.screenReaderOnly} id={instructionsId}>
         {instructions}
       </p>

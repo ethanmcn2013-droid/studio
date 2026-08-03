@@ -229,10 +229,10 @@ const CSS = `
 .rd {
   --rd-rail: 132px;
   --rd-gutter: clamp(20px, 5vw, 72px);
-  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow — hero motion choreography */
+  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow - hero motion choreography */
 
   /* ── traffic light ──────────────────────────────────────────────────
-     Tones are the design system's status ramp — the same three colouring
+     Tones are the design system's status ramp - the same three colouring
      the Tasks board. Pure hue is only ever spent on marks (dots, spine,
      blooms); small text takes the ink-mixed tone, because raw red on paper
      is 3.76:1 and raw amber is 2.15:1, both failing small-text contrast. */
@@ -243,7 +243,7 @@ const CSS = `
   --rd-clear: var(--status-done);
   --rd-clear-ink: color-mix(in srgb, var(--status-done) 54%, var(--ink));
 
-  /* PORT NOTE 2026-07-28 — was min-height 100svh, right for a standalone
+  /* PORT NOTE 2026-07-28 - was min-height 100svh, right for a standalone
      gallery route that owned the viewport. As a hero it is one band with a
      page beneath it, so it sizes to its own content and keeps a floor that
      holds the fold without pushing the rest of the page away. */
@@ -332,7 +332,7 @@ const CSS = `
    cap broke it by accident and left the upper-right quadrant dead. */
 .rd-headline {
   margin: 0;
-  /* POLISH 2026-07-28 — the shared headline register: one clamp, 600,
+  /* POLISH 2026-07-28 - the shared headline register: one clamp, 600,
      -0.04em across all four product pages. */
   font-size: clamp(2.5rem, 1.2rem + 3.9vw, 4.4rem);
   font-weight: 600;
@@ -408,7 +408,7 @@ const CSS = `
 .rd-item[data-claim="next"] { --rd-tone: var(--rd-next); --rd-tone-ink: var(--rd-next-ink); --rd-bloom-r: 96px;  --rd-bloom: 8%; }
 
 /* Sourced light. The colour emanates from the marker as a radial bloom and
-   is gone before it reaches the copy — light with an origin, not a painted
+   is gone before it reaches the copy - light with an origin, not a painted
    panel. Geometry is anchored to the marker's position in the rail. */
 .rd-item::before {
   content: "";
@@ -528,7 +528,7 @@ const CSS = `
 }
 
 /* Provenance, not decoration. Ticks inked up from ghost 3px to a visible
-   6px — the row is the page's honesty and was whispering. */
+   6px - the row is the page's honesty and was whispering. */
 .rd-receipts {
   margin: 16px 0 0;
   display: flex;
@@ -591,7 +591,7 @@ const CSS = `
 }
 
 /* The row's tone reaches the button on hover only, as a border. A filled
-   red button would read as destructive — this action opens, it does not
+   red button would read as destructive - this action opens, it does not
    delete. */
 @media (hover: hover) and (pointer: fine) {
   .rd-button:hover {

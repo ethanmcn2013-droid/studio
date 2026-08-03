@@ -9,15 +9,26 @@
    answers, the reserved film frame, and the rank of twenty-five
    places.
 
-   THE SCALE, at 1440, largest to smallest:
+   THE SCALE, computed at a 1440 viewport (the clamp maxima sit higher
+   and are reached near 1650-1700), largest to smallest:
      h1                104px   .reveal-headline-v2 (house)
-     price figure      ~102px  .priceFigure
-     the two answers   ~77px   .answerLg  (what a venue can never see,
-                               and "Nobody yet.")
-     the ask           ~74px   .reveal-closing-sign (raised, house base)
-     rung answers      ~48px   .answer
+     price figure       95px   .priceFigure          (max 102)
+     relay head h2      74px   .reveal-relay-head h2 (house, max 80).
+                               The one display voice that is connective
+                               rather than ratified: it is the house
+                               relay grammar this page borrows whole,
+                               and restyling it would break the "same
+                               studio" read against the homepage.
+     the two answers    67px   .answerLg  (what a venue can never see,
+                               and "Nobody yet.")     (max 75)
+     the ask            63px   .reveal-closing-sign (raised, house base)
+     rung answers       48px   .answer
+     the access term    36px   .answerTerm — a 91-character contract
+                               sentence, one step under the spoken
+                               answers so it sets in two to three lines
+                               and rung 06 is not rung 05's shape again
      block titles       32px   .wideTitle
-     rung questions    ~25px   .rungQ  — navigation, set like navigation
+     rung questions     25px   .rungQ  — navigation, set like navigation
      reading           15-17px .indexDetail / .rungBody / .answerRest
      furniture         8.5-10px mono uppercase
    The questions used to be the loudest recurring voice on the page at
@@ -48,6 +59,13 @@
   scroll-margin-top: 84px;
 }
 
+/* The two block titles carry ids too (#va-ledger, #va-film). Nothing
+   on the page links to them today, but anything that ever does must
+   not land them behind the 56px sticky site nav. */
+.wideTitle {
+  scroll-margin-top: 84px;
+}
+
 /* ── Relay chapter measure ────────────────────────────────────────
    On the homepage a chapter head is a single-word product wordmark.
    Here it is a quiet question register, so the narrow column can sit
@@ -71,11 +89,29 @@
   }
 }
 
+/* ── The rung 02 numeral ──────────────────────────────────────────
+   Rung 02 breaks out of the relay into the manifesto grammar, and the
+   house manifesto eyebrow (11px, --ink-500, 0.14em, 28px drop) set its
+   numeral one register apart from the six siblings drawn by
+   .reveal-relay-number (10px, --zinc-600, 0.16em, 24px drop). The
+   seven-numeral spine is the ladder conceit, so this override redraws
+   the one stray numeral in the relay number register exactly. The
+   house class stays on the element for its reveal choreography. */
+.page .manifestoNum {
+  margin: 0 0 24px;
+  color: var(--zinc-600);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
 /* ── The question register ────────────────────────────────────────
    The seven ladder questions, set like the navigation they are: one
    quiet step above reading size, two full steps below every answer.
-   Overrides the house's display h3 (.reveal-relay-copy h3), which is
-   built for a one-word product wordmark, not a six-word question. */
+   The rungs are h2 elements (see STRUCTURE in page.tsx), so the
+   house's display rule for a chapter head (.reveal-relay-copy h3,
+   built for a one-word product wordmark) no longer reaches them and
+   this class authors the register completely. */
 .page .rungQ {
   max-width: 20ch;
   margin: 10px 0 0;
@@ -100,10 +136,17 @@
 }
 
 /* ── The contents ─────────────────────────────────────────────────
-   Seven rungs, seven anchors, in the left column of .reveal-relay-head
-   that the house grammar leaves empty. */
+   Seven rungs, seven anchors, in the wide column under the head's h2,
+   the slot where the house head sets its reading matter. The narrow
+   column keeps only the kicker, exactly as the homepage sets it. An
+   earlier build put the contents in the narrow column beside the
+   offer paragraph; between 641 and 880 the house keeps that column at
+   minmax(160px, 0.28fr), which squeezed seven two-line entries into a
+   160px gutter beside a ~55px h2. In the wide column the list rides
+   every breakpoint the house h2 rides, and no extra rule exists. */
 .contents {
-  grid-column: 1;
+  grid-column: 2;
+  max-width: 62ch;
   margin: clamp(24px, 3vw, 34px) 0 0;
 }
 
@@ -261,6 +304,42 @@
   text-wrap: balance;
 }
 
+/* The access term. A contract sentence, not a spoken answer: one step
+   under .answer so its 91 characters set in two to three lines, and
+   rung 06 stops repeating rung 05's exact composed shape. */
+.answerTerm {
+  max-width: 34ch;
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.45rem, 1rem + 1.4vw, 2.3rem);
+  font-weight: 540;
+  letter-spacing: -0.032em;
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
+/* The frame that names what a display answer is answering: the
+   speaker of the rung 02 triple, and the ratified question over the
+   rung 04 "No.". Reading register, ink, one glance up from the
+   display line it serves, because the page's biggest claims must not
+   hang their meaning on 10px mono furniture. */
+.answerFrame {
+  max-width: 40ch;
+  margin: clamp(22px, 2.8vw, 32px) 0 0;
+  color: var(--ink);
+  font-size: clamp(14px, 0.82rem + 0.16vw, 15.5px);
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+/* In rung 04 the frame opens its column, directly over the answer. */
+.answerFrame:first-child {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 .answerLg {
   max-width: 19ch;
   margin: clamp(26px, 3.4vw, 40px) 0;
@@ -286,6 +365,7 @@
 /* The house marker, quoted from .reveal-manifesto-h2 .em, because the
    statement is a <p> here rather than the section heading. */
 .answer :global(.em),
+.answerTerm :global(.em),
 .answerLg :global(.em) {
   padding: 0 0.06em;
   background: linear-gradient(transparent 60%, var(--reveal-accent-soft) 60%);
@@ -308,7 +388,8 @@
 /* ── Blocks that span a chapter ───────────────────────────────────
    The ledger belongs to rung 03 and the film belongs to rung 04, so
    each sits inside its own chapter and spans both columns. That keeps
-   the document outline at exactly seven h3 rungs. */
+   the document outline at exactly seven h2 rungs, each block title an
+   h3 inside its rung. */
 .spanBlock {
   grid-column: 1 / -1;
   margin-top: clamp(6px, 1vw, 14px);
@@ -342,39 +423,33 @@
   text-transform: uppercase;
 }
 
-/* ── The sticky price bar ─────────────────────────────────────────
+/* ── The sticky price row ─────────────────────────────────────────
    The ratified rule is that the price never travels without its
-   conditions. This bar makes the rule geometric: it rides sticky at
-   the top of the viewport for the whole of the ledger's scroll, so
-   there is no position from which a reader sees a condition without
-   the number, or the number without conditions under it. Top offset
-   is the site nav's 56px; z-index stays below the nav's 40. */
+   conditions, and the mechanism that enforces it is ledger row 01
+   itself. At rest it is simply the first row of the first group,
+   drawn by .ledgerRow like its sixteen siblings, so the arrival
+   viewport repeats nothing. Scrolled, it pins under the site nav and
+   the conditions pass beneath their own price. One object, both
+   jobs, correct with no animation support at all. Top offset is the
+   nav's 56px; z-index stays below the nav's 40 and above the group
+   labels it passes. The paper ground and the bottom hairline only
+   matter once it is stuck; at rest the bottom hairline reads as the
+   next row's top rule, which is exactly what it is standing in for. */
 .stickyBar {
   position: sticky;
   top: 56px;
   z-index: 5;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 14px;
-  padding: 13px 0;
   border-bottom: 1px solid var(--border);
   background: var(--paper);
 }
 
+/* The figure inside row 01's own sentence, sliced from the ratified
+   detail: ink and tabular against the row's --ink-soft, so the number
+   stays findable while the row travels, without a second register. */
 .stickyFigure {
   color: var(--ink);
-  font-size: clamp(19px, 1.05rem + 0.5vw, 24px);
   font-weight: 540;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.032em;
-  line-height: 1;
-}
-
-.stickyRest {
-  color: var(--ink-soft);
-  font-size: clamp(13.5px, 0.8rem + 0.2vw, 15px);
-  line-height: 1.5;
 }
 
 /* ── The commercial ledger, 17 rows in four groups ────────────────
@@ -483,6 +558,12 @@
   object-fit: cover;
 }
 
+/* The reserved state is the ratified placeholder line alone on the
+   deep ground. An earlier build added an inert play disc and a mono
+   1920x1080 format line; the disc was a control that could not act,
+   and the format spec's only audience was the studio. --ink-soft on
+   --paper-deep is 9.5:1; --ink-faint on the same ground was 4.40:1,
+   under the 4.5:1 floor. */
 .filmEmpty {
   position: absolute;
   inset: 0;
@@ -490,28 +571,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
   padding: 24px;
   text-align: center;
-}
-
-.filmPlay {
-  display: grid;
-  width: 56px;
-  height: 56px;
-  place-items: center;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--paper);
-}
-
-.filmPlay > span {
-  width: 0;
-  height: 0;
-  margin-left: 3px;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 11px solid var(--ink-faint);
 }
 
 .filmPlaceholder {
@@ -519,18 +580,6 @@
   color: var(--ink-soft);
   font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
   line-height: 1.6;
-}
-
-/* var(--ink-faint) on var(--paper-deep) computes to 4.40:1, under the
-   4.5:1 floor for text this size. --ink-soft on the same ground is
-   9.5:1. */
-.filmMeta {
-  margin: 0;
-  color: var(--ink-soft);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 /* ── The rank of twenty-five ──────────────────────────────────────
@@ -609,9 +658,15 @@
 /* ── The close ────────────────────────────────────────────────────
    One ask, and the sign above it is the sentence about the person it
    reaches. .reveal-closing-sign caps at 40px in the house; raised to
-   sit between the answers and the rung questions. */
+   sit between the answers and the rung questions. The house base
+   carries font-weight 600 for its 40px size; raised to 63px that made
+   the sign the darkest display line on the page, heavier at a smaller
+   size than the 67px/540 answers one step above it. 540 here keeps
+   the scale ladder's weight logic: same weight, smaller size, one
+   step quieter. */
 .page :global(.reveal-closing-sign) {
   font-size: clamp(1.9rem, 1.3rem + 2.9vw, 4.6rem);
+  font-weight: 540;
   letter-spacing: -0.046em;
   line-height: 1.02;
 }
@@ -623,16 +678,30 @@
    cannot fire. */
 :global([data-theme="dark"]) .wideMeta,
 :global([data-theme="dark"]) .ledgerNum,
+:global([data-theme="dark"]) .page .manifestoNum,
 :global([data-theme="dark"]) .page :global(.reveal-relay-number) {
   color: var(--ink-faint);
 }
 
 /* ── Authored motion ──────────────────────────────────────────────
-   Two moments, one idea: this page is a document in seven parts, so
-   things are drawn in order, left to right. The contents draws itself
-   rule by rule as the reader arrives at it; the rank draws its
-   baseline and then stands its twenty-five places up along it, one
-   after another.
+   Two drawing moments, one idea: this page is a document in seven
+   parts, so things are drawn in order, left to right. The contents
+   draws itself rule by rule as the reader arrives at it; the rank
+   draws its baseline and then stands its twenty-five places up along
+   it, one after another.
+
+   And one crossfade: the sticky price bar's text is verbatim ledger
+   row 01, so at rest, with the 95px figure directly above, the same
+   sentence showed three times in one arrival viewport. The bar now
+   fades in on a scroll-driven animation keyed to the price figure's
+   own view timeline, over exactly the scroll in which the figure
+   exits the top of the viewport. The geometry the bar exists for is
+   preserved at every position: while the figure is on screen the
+   figure itself is the number over the rows, and by the moment it has
+   gone the bar is at full opacity and riding. In browsers without
+   scroll-driven animations, and under prefers-reduced-motion, the
+   bar is simply always visible, which is the current shipped state
+   and the safe baseline.
 
    The rank's timeline is named on .rankColumn, the whole right-hand
    column of rung 07, which is several hundred pixels tall. Its entry
@@ -759,14 +828,19 @@
     height: 26px;
   }
 
-  .filmPlay {
-    width: 44px;
-    height: 44px;
+  /* The sticky price row must not tax a phone viewport: stacked like
+     an ordinary mobile row it pinned 115px of an 812px screen for the
+     whole ledger scroll. Term and detail sit side by side instead,
+     one size down, so the pinned row costs about half that. */
+  .stickyBar .ledgerRow {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px 0;
   }
 
-  .stickyBar {
-    gap: 4px 10px;
-    padding: 11px 0;
+  .stickyBar .ledgerDetail {
+    font-size: 13.5px;
+    line-height: 1.5;
   }
 
   /* Keeps the raised ask inside the house's own mobile band for

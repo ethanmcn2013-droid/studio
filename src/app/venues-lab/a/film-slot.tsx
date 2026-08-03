@@ -1,15 +1,6 @@
 import { FILM } from "@/lib/venue-copy";
 import styles from "./venue-a.module.css";
 
-/**
- * Connective furniture only. The rendered master format, written once.
- * No ratified claim is restated here; the film's own label, placeholder
- * and note all come from FILM in `src/lib/venue-copy.ts`.
- */
-const COPY = {
-  format: "16 : 9 · 1920 × 1080",
-} as const;
-
 type FilmSlotProps = {
   /** The rendered master. Absent today; the founder supplies the file later. */
   src?: string;
@@ -37,17 +28,22 @@ type FilmSlotProps = {
  * click to play, never autoplay, a `.vtt` track element wired and ready.
  *
  * No film file exists in the repo today, so the empty state is the state that
- * ships and the state that gets reviewed. It is drawn deliberately: the play
- * affordance is present so the frame reads as a film and not as a broken
- * image, but it is inert decoration inside a labelled region rather than a
- * control, because a button that cannot play anything is a lie about the
- * state of the work.
+ * ships and the state that gets reviewed. It is drawn deliberately, and it is
+ * quiet on purpose: the ratified placeholder line alone on the deep ground,
+ * with the frame's title, its Reserved mark and its ratified note beside it
+ * in page.tsx. An earlier build put an inert play disc here so the frame
+ * would read as a film; a disc that cannot play is a control that lies, and
+ * a sighted reader who clicks it learns nothing except that the page has a
+ * dead button. The rendered master format (16:9, 1920x1080) lives in the
+ * comment on FILM in venue-copy.ts, where its audience is: the only reader
+ * a production spec serves is the studio, not a venue owner or the partner
+ * the page was forwarded to.
  *
  * ACCESSIBILITY. The empty state is a `role="group"` carrying FILM.posterAlt,
  * not a `role="img"`. `role="img"` collapses its subtree, so a screen reader
- * announced the label and never reached either of the two visible strings
- * inside it, giving sighted and non-sighted readers different copy from the
- * same ratified constant.
+ * announced the label and never reached the visible placeholder line inside
+ * it, giving sighted and non-sighted readers different copy from the same
+ * ratified constant.
  */
 export function FilmSlot({ src, poster, captions }: FilmSlotProps) {
   return (
@@ -78,11 +74,7 @@ export function FilmSlot({ src, poster, captions }: FilmSlotProps) {
             role="group"
             aria-label={FILM.posterAlt}
           >
-            <span className={styles.filmPlay} aria-hidden="true">
-              <span />
-            </span>
             <p className={styles.filmPlaceholder}>{FILM.placeholder}</p>
-            <p className={styles.filmMeta}>{COPY.format}</p>
           </div>
         )}
       </div>

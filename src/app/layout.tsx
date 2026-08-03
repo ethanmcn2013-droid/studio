@@ -104,10 +104,15 @@ const structuredData = [
         url: `${SITE_URL}/waitlist`,
       },
       {
+        /* No price on this offer, deliberately. The ratified commercial
+           rule (E11.11) is that the number never travels without its
+           seventeen conditions, and structured data cannot carry them: a
+           search rich-result would surface a bare figure detached from
+           the founding rate, the VAT clause and the renewal lock the
+           /venues page states beside it. A surface that cannot carry the
+           conditions does not carry the number. */
         "@type": "Offer",
         name: "Venue Edition",
-        price: String(VENUE_EDITION_ANNUAL_PRICE_EUR),
-        priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
         url: `${SITE_URL}/venues`,
       },
