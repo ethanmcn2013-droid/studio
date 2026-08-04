@@ -63,7 +63,7 @@ export function SiteFooter() {
         <div className="col-span-2 lg:col-span-1">
           <Wordmark size="sm" animate={false} />
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
-            Four products, one system. Built for the work.
+            Notes. Tasks. Timeline. One clear system. Built for the work.
           </p>
           <p className="mt-4 text-[12px] text-ink-quiet">
             Made by Signal Studio.
@@ -109,7 +109,7 @@ export function SiteFooter() {
             { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
             { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
             { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
-            { href: PRODUCT_MARKETING_URLS.signal, label: "Signal" },
+            { href: "/features/daily-briefing", label: "Daily briefing" },
           ]}
         />
       </div>

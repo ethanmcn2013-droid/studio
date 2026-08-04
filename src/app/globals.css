@@ -536,7 +536,8 @@
   padding: clamp(18px, 2.6vw, 34px);
 }
 
-.reveal-relay-preview[data-product="signal"] .rd-embedded .rd-page {
+.reveal-relay-preview[data-product="signal"] .rd-embedded .rd-page,
+.reveal-relay-preview[data-product="home"] .rd-embedded .rd-page {
   padding: clamp(26px, 4vw, 48px);
 }
 
@@ -655,7 +656,8 @@
     padding: 12px 8px 18px;
   }
 
-  .reveal-relay-preview[data-product="signal"] .rd-embedded .rd-page {
+  .reveal-relay-preview[data-product="signal"] .rd-embedded .rd-page,
+.reveal-relay-preview[data-product="home"] .rd-embedded .rd-page {
     padding: 26px 18px 34px;
   }
 }

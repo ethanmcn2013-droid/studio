@@ -8,7 +8,7 @@ import { ReadingProgress } from "@/components/reading-progress";
 export const metadata: Metadata = {
   title: "Proof · Signal Studio",
   description:
-    "One scene, four products, end to end. A wedding planner sits down for a venue call. Forty-five minutes later, the work is in motion across Signal Notes, Tasks, Timeline, and Signal. This is that scene.",
+    "One scene, three products, end to end. A wedding planner sits down for a venue call. Forty-five minutes later, the work is in motion across Signal Notes, Tasks and Timeline, and the next morning's briefing names what needs attention. This is that scene.",
 };
 
 const LAYERS = [
@@ -16,6 +16,7 @@ const LAYERS = [
     n: "1",
     product: "Signal Notes",
     productHref: waitlistHref("notes", "proof_notes"),
+    cta: "Join the waitlist for Notes",
     role: "Capture clarity",
     when: "The venue call.",
     title: "The planner sits in a venue meeting. Everything lands in Notes.",
@@ -41,6 +42,7 @@ const LAYERS = [
     n: "2",
     product: "Signal Tasks",
     productHref: waitlistHref("tasks", "proof_tasks"),
+    cta: "Join the waitlist for Tasks",
     role: "Execution clarity",
     when: "After the meeting.",
     title: "Three notes become three tasks. The wedding workspace takes shape.",
@@ -64,6 +66,7 @@ const LAYERS = [
     n: "3",
     product: "Signal Timeline",
     productHref: waitlistHref("timeline", "proof_timeline"),
+    cta: "Join the waitlist for Timeline",
     role: "Direction clarity",
     when: "Same evening.",
     title: "One link goes to the couple. The plan is now public to them.",
@@ -85,13 +88,14 @@ const LAYERS = [
   },
   {
     n: "4",
-    product: "Signal",
-    productHref: waitlistHref("signal", "proof_signal"),
+    product: "Daily briefing",
+    productHref: "/features/daily-briefing",
+    cta: "See the daily briefing",
     role: "Attention clarity",
     when: "The next morning.",
     title: "At 6am, the briefing names what needs the planner's attention.",
     body: [
-      "Signal reads the state of the workspace overnight. Ten rules look for held-up work, overdue items, quiet projects, and concentration of work on one person. Three items per block. Always three. Silence is signal too.",
+      "Home reads the state of the workspace overnight. Ten rules look for held-up work, overdue items, quiet projects, and concentration of work on one person. Three items per block. Always three. Silence is signal too.",
       "Every sentence is drawn from a curated library written by hand. No LLM in the path. The briefing tells you what changed; it does not decide what you should do about it.",
     ],
     artefact: {
@@ -146,7 +150,7 @@ export default function ProofPage() {
           <Eyebrow accent>Proof</Eyebrow>
 
           <h1 className="h-section mb-6 max-w-[620px] text-balance text-ink">
-            One scene. Four products. End to end.
+            One scene. Three products. End to end.
           </h1>
 
           <p
@@ -155,8 +159,9 @@ export default function ProofPage() {
           >
             A wedding planner sits down for the first venue call.
             Forty-five minutes later, the work is in motion across
-            Signal Notes, Tasks, Timeline, and Signal. This page is
-            that scene, layer by layer.
+            Signal Notes, Tasks and Timeline, and the next morning the
+            briefing names what needs attention. This page is that scene,
+            layer by layer.
           </p>
 
           <p className="max-w-[58ch] text-[13.5px] leading-[1.65] text-ink-quiet">
@@ -252,7 +257,7 @@ export default function ProofPage() {
                   rel="noopener noreferrer"
                   className="text-[14px] text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
                 >
-                  Join the waitlist for {layer.product.replace("Signal ", "")}{" "}
+                  {layer.cta}{" "}
                   <span className="cta-arrow" aria-hidden>
                     →
                   </span>
@@ -266,7 +271,7 @@ export default function ProofPage() {
           <div className={PROSE_MAX}>
             <Eyebrow>The point</Eyebrow>
             <h2 className="mb-6 max-w-[620px] text-balance text-[28px] font-semibold leading-[1.2] tracking-[-0.025em] text-ink md:text-[36px]">
-              Not all-in-one. Four products, doing one job each, with the
+              Not all-in-one. Three products, doing one job each, with the
               boundaries between them written out loud.
             </h2>
             <p className="mb-4 max-w-[58ch] text-[15.5px] leading-[1.7] text-ink-soft">
@@ -277,9 +282,10 @@ export default function ProofPage() {
               so you do not have to.
             </p>
             <p className="mb-10 max-w-[58ch] text-[15.5px] leading-[1.7] text-ink-soft">
-              The suite is four small tools that already know how to talk to
+              The suite is three small tools that already know how to talk to
               each other. Notes promotes to Tasks. Tasks publishes to
-              Timeline. Tasks feeds Signal. The handoffs are the product.
+              Timeline. Tasks feeds your daily briefing. The handoffs are the
+              product.
             </p>
 
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-[14px] text-ink">

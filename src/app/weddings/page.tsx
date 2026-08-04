@@ -96,11 +96,14 @@ const ecosystemSteps = [
     cta: "Preview the shared update",
   },
   {
-    product: "Signal",
+    product: "Daily briefing",
     role: "Attention",
-    copy: "Surface the few things that need attention before they become problems.",
-    href: waitlistHref("wedding_signal"),
-    cta: "Join the waitlist for Signal",
+    copy: "Home starts the day with the few things that need attention: approaching dates, held-up work, and decisions waiting on you.",
+    href: withTracking("/features/daily-briefing", {
+      ...weddingTracking,
+      artifact: "wedding_daily_briefing",
+    }),
+    cta: "See the daily briefing",
   },
 ];
 
@@ -259,7 +262,7 @@ export default function WeddingsPage() {
           <div className="mx-auto w-full max-w-[1040px]">
             <div className="mb-8 max-w-2xl">
               <p className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet">
-                One workspace, four tools
+                One workspace, three tools and a daily briefing
               </p>
               <h2 className="text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
                 The handoff is the product.

@@ -22,7 +22,7 @@ export const FILM_META = {
   logline:
     "A venue coordinator runs a whole wedding through Signal Studio, a thought captured, turned into action, shown on a timeline, and surfaced as the one thing that needs attention, and it all resolves to the dot.",
   why:
-    "The venue wedge needs a 30-second film that makes the four-products-one-system idea felt, not explained. It doubles as the homepage loop and the top of the market-entry deck.",
+    "The venue wedge needs a 30-second film that makes the three-products-one-system idea felt, not explained. It doubles as the homepage loop and the top of the market-entry deck.",
   status: "scaffold" as const,
   statusLabel: "Scaffold + Remotion skeleton ready · per-scene UI + render pending",
   revisedOn: "2026-06-20",
@@ -53,13 +53,13 @@ export const FILM_META = {
   ] as Array<{ label: string; href: string; external: boolean }>,
 };
 
-/** The five-gesture motion alphabet, distilled from the brief. One per product, plus the dot. */
+/** The five-gesture motion alphabet, distilled from the brief. One per product, plus the briefing and the dot. */
 export const MOTION_GRAMMAR: Array<{ gesture: string; product: string; note: string }> = [
   { gesture: "The dot", product: "Signal Studio", note: "The hero. Everything opens and resolves here, one indigo dot, breathing." },
   { gesture: "The caret", product: "Notes", note: "A held thought awaiting input, the blink that becomes a capture." },
   { gesture: "The strikethrough", product: "Tasks", note: "Done, drawn across the word itself, the satisfying close." },
   { gesture: "Extrude + milestone", product: "Timeline", note: "A lane extends into the future; a diamond marks the date." },
-  { gesture: "The heartbeat", product: "Signal", note: "A single pulse, the one thing that needs a human now." },
+  { gesture: "The heartbeat", product: "Today's Signal", note: "A single pulse, the one thing that needs a human now. The briefing in Home." },
 ];
 
 export type Scene = {
@@ -101,7 +101,7 @@ export const STORYBOARD: Scene[] = [
   },
   {
     t: "0:17–0:22",
-    beat: "Signal surfaces the one thing due today, everything else falls quiet.",
+    beat: "Today's Signal surfaces the one thing due today, everything else falls quiet.",
     gesture: "The heartbeat",
     caption: "Surface what matters.",
     sound: "one pulse",
@@ -110,7 +110,7 @@ export const STORYBOARD: Scene[] = [
     t: "0:22–0:26",
     beat: "The four views collapse into one calm screen. The status meeting that never had to happen.",
     gesture: "The dot",
-    caption: "Four products, one system.",
+    caption: "Three products, one system.",
     sound: "the taps settle to silence",
   },
   {

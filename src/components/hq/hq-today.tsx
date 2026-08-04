@@ -47,7 +47,7 @@ export async function HqToday() {
       </h2>
 
       {data.products.length > 0 && (
-        <div className="hq-today-products" aria-label="four products">
+        <div className="hq-today-products" aria-label="products">
           {data.products.map((p) => (
             <div key={p.id} className="hq-today-product">
               <div className="hq-today-product-name">{p.title}</div>

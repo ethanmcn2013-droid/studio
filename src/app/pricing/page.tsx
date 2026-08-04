@@ -14,11 +14,11 @@ const EVENT_PRICE = formatEuroCents(requireVerifiedAmount("event"));
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `One subscription. Four kinds of clarity. Free forever for solo. ${PRO_MONTHLY_PRICE} a month for Pro. ${EVENT_PRICE} one-time for an event. ${STUDENT_PRICE} a year for students. Annual Pro terms are not open while they are being confirmed.`,
+  description: `One subscription. Every kind of clarity. Free forever for solo. ${PRO_MONTHLY_PRICE} a month for Pro. ${EVENT_PRICE} one-time for an event. ${STUDENT_PRICE} a year for students. Annual Pro terms are not open while they are being confirmed.`,
   openGraph: {
     title: "Pricing · Signal Studio",
     description:
-      "One subscription. Four kinds of clarity. No per-seat tax. No per-product tax.",
+      "One subscription. Every kind of clarity. No per-seat tax. No per-product tax.",
     type: "website",
   },
 };
@@ -66,7 +66,7 @@ const TIERS: Tier[] = [
     name: "Free",
     price: FREE_PRICE,
     cadence: "forever",
-    body: "One workspace. All four products. Three editing guests. No card needed.",
+    body: "One workspace. All three products and the daily briefing. Three editing guests. No card needed.",
     pills: [
       { label: "Workspaces", value: "One" },
       { label: "Guests", value: "Three" },
@@ -94,7 +94,7 @@ const TIERS: Tier[] = [
     price: PRO_MONTHLY_PRICE,
     cadence: "/ month",
     annual: "Annual prepay is not open while its terms are being confirmed.",
-    body: "All four products. Workspace and editing-member limits will be confirmed before purchase.",
+    body: "All three products and the daily briefing. Workspace and editing-member limits will be confirmed before purchase.",
     pills: [
       { label: "Workspaces", value: "Confirmed at access" },
       { label: "Editors", value: "Confirmed at access" },
@@ -143,15 +143,17 @@ const SUITE: InsideProduct[] = [
     status: "build",
     statusLabel: "In development",
   },
-  {
-    key: "signal",
-    word: "signal",
-    position: "Attention",
-    desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",
-    status: "build",
-    statusLabel: "In development",
-  },
 ];
+
+/**
+ * The daily briefing is an included system capability (Signal → Home
+ * consolidation, 2026-08-04) — presented as a band under the product
+ * grid, never as a fourth product card.
+ */
+const BRIEFING_BAND = {
+  heading: "And your daily signal — built into Home.",
+  body: "The daily briefing. What needs focus before it becomes a problem, drawn from Notes, Tasks and Timeline. Included with every plan, on every tier.",
+};
 
 const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[] = [
   {
@@ -168,7 +170,7 @@ const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[
     values: ["One", "Confirmed at access", "Confirmed at access", "One, event-shaped"],
   },
   {
-    label: "All four products",
+    label: "All three products + daily briefing",
     values: ["Yes", "Yes", "Yes", "Yes"],
   },
   {
@@ -211,7 +213,7 @@ const REFUSALS: { neg: string; pos: string }[] = [
   },
   {
     neg: "Not per product.",
-    pos: "The four work as one. Pay once. Use what you need, when you need it.",
+    pos: "The three work as one. Pay once. Use what you need, when you need it.",
   },
   {
     neg: "Not a trial that ends.",
@@ -233,8 +235,8 @@ const FAQ: { q: string; a: string }[] = [
     a: "Yes. One tap in the workspace settings. You keep the workspace through the end of the month, then it drops to Free.",
   },
   {
-    q: "What if I only ever use one of the four products?",
-    a: "Then you have the cleanest single product in its category, with three more sitting there in case you ever want them. That is still a good deal. We will not pressure you to use the rest.",
+    q: "What if I only ever use one of the three products?",
+    a: "Then you have the cleanest single product in its category, with two more sitting there in case you ever want them — and the daily briefing in Home either way. That is still a good deal. We will not pressure you to use the rest.",
   },
   {
     q: "Will the price move as the suite grows?",
@@ -245,8 +247,8 @@ const FAQ: { q: string; a: string }[] = [
     a: "Anytime. Up, down, sideways. No annual contracts on the Pro plan. Cancel and you keep access through the end of the current month.",
   },
   {
-    q: "Why one price for four products?",
-    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Timeline, and Signal, which is the exact translation tax Signal Studio exists to remove.",
+    q: "Why one price for three products?",
+    a: "Because the products are kinds of clarity, not tools to be metered. Pricing them separately would mean you have to translate between Notes, Tasks and Timeline, which is the exact translation tax Signal Studio exists to remove. The daily briefing in Home reads across all three — splitting it out would break the point.",
   },
 ];
 
@@ -559,7 +561,7 @@ export default async function PricingPage({
             className="h-title text-balance text-ink"
             style={{ maxWidth: "22ch", marginBottom: 12 }}
           >
-            Same four products. Four shapes of access.
+            Same three products. Four shapes of access.
           </h2>
           <p
             className="text-ink-soft"
@@ -570,8 +572,8 @@ export default async function PricingPage({
               marginBottom: 36,
             }}
           >
-            The tiers don&apos;t differ on which products you get. All four,
-            every plan. They differ on shape, who it&apos;s for, how long it
+            The tiers don&apos;t differ on which products you get. All three,
+            every plan, with the daily briefing in Home. They differ on shape, who it&apos;s for, how long it
             lasts, what
             stays when it ends.
           </p>
@@ -829,10 +831,10 @@ export default async function PricingPage({
             className="h-title text-balance text-ink"
             style={{ maxWidth: "20ch", marginBottom: 40 }}
           >
-            Four products. One subscription.
+            Three products. One subscription.
           </h2>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
             {SUITE.map((p, index) => (
               <div
                 key={p.key}
@@ -897,6 +899,22 @@ export default async function PricingPage({
               </div>
             ))}
           </div>
+
+          <div
+            className="mt-10 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between"
+            style={{ borderTop: "1px solid var(--border)", paddingTop: 24 }}
+          >
+            <p className="text-ink" style={{ fontSize: 17, fontWeight: 500, letterSpacing: "-0.01em" }}>
+              And your daily signal
+              <span style={{ color: "var(--accent)" }}>.</span>
+            </p>
+            <p className="text-ink-soft" style={{ fontSize: 15, lineHeight: 1.55, maxWidth: "52ch" }}>
+              {BRIEFING_BAND.body}{" "}
+              <a href="/features/daily-briefing" className="text-ink" style={{ textDecorationLine: "underline", textUnderlineOffset: 4 }}>
+                See the daily briefing
+              </a>
+            </p>
+          </div>
         </section>
 
         {/* ── 5 · Development state ─────────────────────────────── */}
@@ -925,9 +943,9 @@ export default async function PricingPage({
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
                 Signal Studio is one subscription. Today,{" "}
                 <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Timeline</strong>, and{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal</strong> are in development.
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong> and{" "}
+                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Timeline</strong> are in
+                development, with the daily briefing built into Home.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
                 Your price stays the same as the suite deepens. You pay for
@@ -969,7 +987,7 @@ export default async function PricingPage({
                     maxWidth: "52ch",
                   }}
                 >
-                  {EVENT_PRICE} one-time. 12 months of full access. All four
+                  {EVENT_PRICE} one-time. 12 months of full access. All three
                   products in a single event-shaped workspace. Post-window
                   access and retention terms are confirmed before purchase.
                 </p>
@@ -1160,7 +1178,7 @@ export default async function PricingPage({
               marginBottom: 48,
             }}
           >
-            One price. Four kinds of clarity. Built for everyone else.
+            One price. Every kind of clarity. Built for everyone else.
           </p>
           <div
             style={{

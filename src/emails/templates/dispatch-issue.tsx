@@ -49,10 +49,11 @@ export function DispatchIssueEmail({
         email address.
       </LeadText>
       <BodyText direction={d}>
-        Four products, one workspace: Tasks for the live work, Timeline for
+        Three products, one workspace: Tasks for the live work, Timeline for
         the plan other people can read, Notes for the thinking that is not
-        ready for the room, and Signal, a briefing instead of a dashboard.
-        Built for the 80% who do not work in tech.
+        ready for the room. Home is the front door, and it opens with the
+        daily briefing instead of a dashboard. Built for the 80% who do not
+        work in tech.
       </BodyText>
       <ProductFrame
         direction={d}
@@ -103,7 +104,7 @@ export function dispatchIssueText(data: DispatchIssueData): TextDoc {
     heading: data.headline,
     blocks: [
       { kind: "p", text: "Signal Studio opens in small batches, as each product and privacy gate is ready. The waitlist is how you hold a place, and it takes one email address." },
-      { kind: "p", text: "Four products, one workspace: Tasks for the live work, Timeline for the plan other people can read, Notes for the thinking that is not ready for the room, and Signal, a briefing instead of a dashboard. Built for the 80% who do not work in tech." },
+      { kind: "p", text: "Three products, one workspace: Tasks for the live work, Timeline for the plan other people can read, Notes for the thinking that is not ready for the room. Home is the front door, and it opens with the daily briefing instead of a dashboard. Built for the 80% who do not work in tech." },
       { kind: "action", label: "Join the waitlist", href: "https://signalstudio.ie/waitlist" },
       { kind: "p", story: 2, text: "The Brief. Signal\u2019s homepage now opens like a front page: the noise of a working week set in newsprint, and the briefing pulled out of it. Read it at signal.signalstudio.ie." },
       { kind: "p", story: 3, text: "Meet Dot. The design page introduces the dot that carries the brand, drawn frame by frame, awake through a working day. See it at signalstudio.ie/design." },

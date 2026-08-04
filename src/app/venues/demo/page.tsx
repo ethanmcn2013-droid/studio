@@ -7,7 +7,7 @@ import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
 export const metadata: Metadata = {
   title: "Venue Edition Demo · Signal Studio",
   description:
-    "One wedding Tuesday, shown across Signal Notes, Tasks, Timeline, and Signal. A venue-facing demo for the paid Venue Edition.",
+    "One wedding Tuesday, shown across Signal Notes, Tasks and Timeline, with the next morning's briefing. A venue-facing demo for the paid Venue Edition.",
   openGraph: {
     title: "Venue Edition Demo · Signal Studio",
     description:
@@ -98,13 +98,17 @@ const demoSteps = [
   },
   {
     time: "0:52",
-    product: "Signal",
+    product: "Daily briefing",
     role: "Attention",
     title: "The next morning is a short briefing, not a dashboard.",
     copy:
-      "The briefing names the few things that need attention before they become another thread in the coordinator inbox.",
-    href: waitlistHref("signal", "venue_demo_signal"),
-    cta: "Join Signal waitlist",
+      "Home names the few things that need attention before they become another thread in the coordinator inbox.",
+    href: withTracking("/features/daily-briefing", {
+      ...VENUE_SITE_TRACKING,
+      artifact: "venue_demo_daily_briefing",
+      touch: "venue_demo",
+    }),
+    cta: "See the daily briefing",
     venueEyebrow: "Morning briefing · three things, not thirty",
     label: "Morning briefing",
     lines: [
@@ -171,7 +175,7 @@ export default function VenueDemoPage() {
                 The walkthrough
               </p>
               <h2 className="text-[32px] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
-                Four product moments. One planning year made calmer.
+                Four moments. One planning year made calmer.
               </h2>
               <p className="mt-5 text-[15px] leading-[1.65] text-ink-soft">
                 The venue does not operate these layers. The venue backs the

@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "The dispatch · Signal Studio",
   description:
-    "What gets sent, not what accumulates. The Signal Studio suite dispatch: recent work across Notes, Tasks, Timeline, Signal, and the umbrella.",
+    "What gets sent, not what accumulates. The Signal Studio suite dispatch: recent work across Notes, Tasks, Timeline, the daily briefing in Home, and the umbrella.",
   alternates: {
     types: {
       "application/rss+xml": "/changelog.rss",
@@ -70,8 +70,9 @@ export default async function DispatchPage() {
             className="mb-4 max-w-[58ch] leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Recent work across the suite: Notes, Tasks, Timeline, Signal, and
-            the umbrella. Updated when something is worth saying out loud.
+            Recent work across the suite: Notes, Tasks, Timeline, the daily
+            briefing in Home, and the umbrella. Updated when something is
+            worth saying out loud.
           </p>
 
           <p
