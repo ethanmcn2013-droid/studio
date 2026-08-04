@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { COMPARISON_PAGES } from "@/lib/comparison-pages";
 import { SITE_URL } from "@/lib/site-url";
+import { isVenueInvitationPath } from "@/lib/venue-invitation/paths";
 
 const routes: Array<{
   path: string;
@@ -24,6 +25,8 @@ const routes: Array<{
   { path: "/teachers", priority: 0.8, changeFrequency: "monthly" },
   { path: "/students", priority: 0.8, changeFrequency: "monthly" },
   { path: "/venues/demo", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/venues/privacy", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/venues/questions", priority: 0.7, changeFrequency: "monthly" },
   { path: "/brand", priority: 0.6, changeFrequency: "monthly" },
   { path: "/principles", priority: 0.7, changeFrequency: "monthly" },
   { path: "/press", priority: 0.6, changeFrequency: "monthly" },
@@ -42,10 +45,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...routes, ...comparisonRoutes].map((route) => ({
-    url: `${SITE_URL}${route.path}`,
-    lastModified,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  // E13.16 acceptance criterion 11: `/v/` is disallowed in robots.ts and
+  // absent from the sitemap. Enforced here rather than trusted, so a future
+  // edit that adds a private route fails the build instead of publishing it.
+  // `sitemap.test.ts` asserts the same predicate against the rendered output.
+  return [...routes, ...comparisonRoutes]
+    .filter((route) => !isVenueInvitationPath(route.path || "/"))
+    .map((route) => ({
+      url: `${SITE_URL}${route.path}`,
+      lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    }));
 }

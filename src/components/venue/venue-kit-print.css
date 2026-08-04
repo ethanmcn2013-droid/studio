@@ -1,0 +1,66 @@
+/**
+ * E12.12 and E12.13 — print rules for the two handover kits.
+ *
+ * D-018: venue packs are digital, and anything printed is printed by the venue
+ * at its own cost. Signal Studio prints nothing. So these rules exist so the
+ * digital artefact prints correctly on a venue's own printer rather than
+ * because a print run is planned.
+ *
+ * Both kits are multi-page documents, so the rules are about where pages
+ * break, not about fitting one sheet. A channel block or a card that splits
+ * across a page break is the failure mode: half the sentences on one page and
+ * the never-list on the next is how a coordinator reads only the first half.
+ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  body:has(.venue-kit-sheet) > *:not(:has(.venue-kit-sheet)) {
+    display: none !important;
+  }
+
+  .venue-kit-sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  .venue-kit-sheet h1 {
+    font-size: 18pt;
+    line-height: 1.15;
+  }
+
+  .venue-kit-sheet h2 {
+    font-size: 12.5pt;
+    line-height: 1.2;
+  }
+
+  /* A block is one idea. It never splits. */
+  .venue-kit-block,
+  .venue-kit-card,
+  .venue-kit-sheet dl > div,
+  .venue-kit-sheet li {
+    break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* The couple's card is handed to a couple on its own, so it starts a page
+     and nothing from the venue-facing half shares it. */
+  .venue-kit-card {
+    break-before: page;
+    break-after: page;
+  }
+}

@@ -138,6 +138,85 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["sales kit", "demo script", "pricing"],
   },
   {
+    slug: "venue-proposal",
+    route: "/hq/venue-proposal",
+    name: "Venue proposal",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "Fill the six slots and print the one-page proposal a venue is sent after a walkthrough.",
+    aliases: [
+      "proposal",
+      "one pager",
+      "founding 25 proposal",
+      "send the price",
+      "order form covering page",
+    ],
+  },
+  {
+    slug: "venue-deck",
+    route: "/hq/venue-deck",
+    name: "Venue Edition deck",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "The seated conversation: twenty slides, every claim traced, price after the privacy boundary.",
+    aliases: [
+      "sales deck",
+      "venue deck",
+      "the slides",
+      "founding 25 deck",
+      "show a venue",
+    ],
+  },
+  {
+    slug: "venue-prebooking-kit",
+    route: "/hq/venue-prebooking-kit",
+    name: "Pre-booking venue kit",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "What a venue may say about the workspace in its own brochure, website, quote and show-around.",
+    aliases: [
+      "copy pack",
+      "what venues say",
+      "brochure wording",
+      "coordinator script",
+      "prohibited claims",
+    ],
+  },
+  {
+    slug: "founding-certificate",
+    route: "/hq/founding-certificate",
+    name: "Founding certificate",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "The 01/25 certificate, which cannot be produced before a payment clears.",
+    aliases: ["certificate", "founding number", "01/25", "the place"],
+  },
+  {
+    slug: "couple-welcome-kit",
+    route: "/hq/couple-welcome-kit",
+    name: "Couple welcome kit",
+    group: "sell",
+    kind: "artifact",
+    lifecycle: "active",
+    summary:
+      "The card, the email and the onboarding sequence a venue uses after a couple books.",
+    aliases: [
+      "welcome kit",
+      "couple email",
+      "after they book",
+      "onboarding sequence",
+      "welcome card",
+    ],
+  },
+  {
     slug: "account-review",
     route: "/hq/account-review",
     name: "Account review",
@@ -235,7 +314,7 @@ export const HQ_ROOMS: HqRoom[] = [
     kind: "artifact",
     lifecycle: "decided",
     summary: "Four retained market-entry directions, with the working deck selection marked.",
-    aliases: ["slide 30", "market entry slide", "proof mark", "founding partners"],
+    aliases: ["slide 30", "market entry slide", "proof mark", "founding 25"],
     parent: "assets",
   },
   {
@@ -340,11 +419,11 @@ export const HQ_ROOMS: HqRoom[] = [
   {
     slug: "partner-card",
     route: "/hq/partner-card",
-    name: "Partner card",
+    name: "Founding 25 card",
     group: "make",
     kind: "artifact",
     lifecycle: "decided",
-    summary: "Founding partner card; Indigo and Numeral shortlisted.",
+    summary: "Founding 25 card; Indigo and Numeral shortlisted.",
   },
   {
     slug: "email-lab",

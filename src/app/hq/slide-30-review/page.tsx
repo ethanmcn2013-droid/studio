@@ -39,7 +39,7 @@ const DIRECTIONS: ReviewDirection[] = [
         caption: "The brand colour treated as the honour itself, with the cohort number carrying the entire composition.",
       },
     ],
-    read: "The most declarative brand expression. It turns the full slide into the founding-partner object and keeps the invitation deliberately spare.",
+    read: "The most declarative brand expression. It turns the full slide into the Founding 25 object and keeps the invitation deliberately spare.",
     links: [{ label: "open full size", href: `${P}/option-02-indigo-edition.png` }],
   },
   {

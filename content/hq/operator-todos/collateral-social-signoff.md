@@ -20,7 +20,7 @@ date: 2026-07-01
    every image is deck-locked.
 2. The full bank (all nine beliefs, three numbers, three before/afters,
    every size) is at `/brand/collateral/social/index.html`.
-3. The S·4 partner format is structurally a SPECIMEN — it stays that way
+3. The S·4 founding venue format is structurally a SPECIMEN — it stays that way
    until a venue signs and signs the permission form.
 4. Install the banners: LinkedIn company page (1128×191), LinkedIn personal
    profile (1584×396), X header (1500×500) — files in the gallery.

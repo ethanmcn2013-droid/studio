@@ -1239,12 +1239,12 @@ export default function DesignPage() {
               <FlipCard
                 front={`${C}/identity/fp-card-preview.png`}
                 back={`${C}/explorations/fpx-indigo-back-preview.png`}
-                frontAlt="Founding Partner card, indigo, numbered one of twenty-five."
+                frontAlt="Founding 25 card, indigo, numbered one of twenty-five."
                 backAlt="paper reverse: Ethan McNamara, Founder, with signalstudio.ie, the Limerick contact line and the same-day promise."
                 width={748}
                 height={522}
               />
-              <SpecLine>the founding partner card · one of 25 · indigo</SpecLine>
+              <SpecLine>the Founding 25 card · one of 25 · indigo</SpecLine>
             </div>
             <div>
               <FlipCard

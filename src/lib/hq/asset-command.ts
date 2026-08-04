@@ -13,9 +13,9 @@
  * Honesty contract: this is the PLAN and the SYSTEM, not the finished assets.
  * Design/copy status fields below tell the truth about each asset today; the
  * audit reads from the live HQ inventory (operating-system.ts · HQ_ASSETS).
- * No partner, press, statistic, testimonial, or permission is invented here —
- * any "Founding Limerick Partner" example is a specimen placeholder until a
- * real partner is signed.
+ * No venue, press, statistic, testimonial, or permission is invented here —
+ * any "Founding Limerick Venue" example is a specimen placeholder until a
+ * real venue is signed.
  *
  * Source register: BRAND.md (voice, naming, visual register), the growth deck
  * (growth.signalstudio.ie), MARKETING_PLAN_6MO.md (Gate 0 = one paid premium
@@ -52,7 +52,7 @@ export const ACS_META = {
 export const EXECUTIVE_JUDGEMENT = [
   "The brand system, decks, financial pack, and product are well ahead of the sales-and-proof objects a venue actually touches. Signal Studio can describe itself beautifully to an investor and barely at all to a wedding coordinator across a table. That is the gap to close before 1 September.",
   "The bottleneck is not design capacity. It is the absence of a single keystone object, the venue one-pager, that locks the venue message and the print system that every other physical asset inherits. Build it first; extract the document shell and micro-label system from it rather than designing an abstract system in a vacuum.",
-  "The discipline that wins here is refusal. No merch, no flyers, no laminated anything, no fabricated proof. The numbered Founding Partner system is the highest-leverage proof engine in the bank, but it stays a specimen placeholder until a real venue signs. Build the machine now so it fires the day proof is real.",
+  "The discipline that wins here is refusal. No merch, no flyers, no laminated anything, no fabricated proof. The numbered Founding 25 system is the highest-leverage proof engine in the bank, but it stays a specimen placeholder until a real venue signs. Build the machine now so it fires the day proof is real.",
 ];
 
 // ── The director panel, operating lenses, not roleplay. One decisive line each. ──
@@ -71,7 +71,7 @@ export const PANEL: Director[] = [
   { name: "Drucker", lens: "Management · prioritisation · measurement", call: "Score every asset on revenue proximity, proof, and trust. Build only what scores; the rest is documented and deferred, not made." },
   { name: "Grove", lens: "Execution cadence · sequencing", call: "Sequence by dependency: keystone first, the objects that inherit it next, proof machinery armed but gated last. One asset at a time, finished before the next starts." },
   { name: "Buffett", lens: "Budget discipline · ROI · asset-to-revenue", call: "Spend the founder's scarcest hours on assets nearest a signed venue. Print only what a front desk will keep; everything else is a liability dressed as marketing." },
-  { name: "Specter", lens: "Legal · permission · claims · press risk", call: "No invented proof, ever. Named partners only with written permission; every Founding Partner example marked specimen until signed. A permission form ships before the social system does." },
+  { name: "Specter", lens: "Legal · permission · claims · press risk", call: "No invented proof, ever. Named venues only with written permission; every Founding 25 example marked specimen until signed. A permission form ships before the social system does." },
   { name: "Pixar", lens: "Story · emotional resonance · launch narrative", call: "The story is one wedding running calmly through four views. The one-pager and the film tell the same story in two media, keep them in lockstep." },
   { name: "Jensen", lens: "Technical feasibility · product truth · demo integrity", call: "Every screenshot must be a real screen with real-shaped data. No fake dashboards. The wedding workflow shown must be one a coordinator can actually run today." },
   { name: "Da Vinci", lens: "Notes, capture clarity", call: "Show capture as the calm first move: a wedding enquiry caught in three seconds. Notes is where the story starts on every asset." },
@@ -94,7 +94,7 @@ export const PANEL_CONSENSUS: ConsensusBlock[] = [
     label: "The minimum complete bank",
     points: [
       "Revenue spine: one-pager · founder card system · 10-slide venue deck · outreach + follow-up · demo script + objection sheet.",
-      "Proof spine: real product screenshots (the wedding workflow) · numbered Founding Partner system · social proof templates, all armed, gated on real proof.",
+      "Proof spine: real product screenshots (the wedding workflow) · numbered Founding 25 system · social proof templates, all armed, gated on real proof.",
       "Launch spine: press kit shell · launch-week kit · website hero update. Press releases only when real proof exists.",
     ],
   },
@@ -122,7 +122,7 @@ export type Status = "exists" | "partial" | "missing";
 export type Family =
   | "A · Core brand system"
   | "B · Venue sales kit"
-  | "C · Founding Partner kit"
+  | "C · Founding 25 kit"
   | "D · Press kit"
   | "E · Student ambassador kit"
   | "F · Social proof system"
@@ -173,11 +173,11 @@ export const TAXONOMY: Asset[] = [
   { id: "qr-cards", name: "Workspace QR cards", family: "B · Venue sales kit", audience: "Venue staff", purpose: "Calm route from physical object to a real workspace.", funnel: "Onboarding", revenue: "Medium", proof: "Low", brandRisk: "Medium", difficulty: "Low", required: false, dependency: "doc-shell · QR destination rules", owner: "Founder", format: "A6/A7 print", copy: "missing", design: "missing", score: 58, rationale: "Useful post-demo; not a pre-outreach blocker." },
   { id: "pricing-explainer", name: "Pricing / invoice explanation", family: "B · Venue sales kit", audience: "Venue decision-maker", purpose: "Make the fixed €1,500/yr ask legible and calm.", funnel: "Conversion", revenue: "High", proof: "Low", brandRisk: "Medium", difficulty: "Low", required: true, dependency: "venue-deck", owner: "Founder", format: "1pp + invoice template", copy: "partial", design: "missing", score: 76, rationale: "Removes the awkward money moment; closes the loop." },
 
-  // C · Founding Partner kit
-  { id: "fp-signing-card", name: "Numbered partner signing card", family: "C · Founding Partner kit", audience: "First signed venues", purpose: "The physical moment of becoming Founding Limerick Partner No. __.", funnel: "Proof", revenue: "Medium", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "permission-form", owner: "Founder", format: "Heavy card, numbered, desk-safe", copy: "partial", design: "missing", score: 80, rationale: "Specimen now; the proof engine the day a venue signs." },
-  { id: "fp-welcome", name: "Welcome letter + certificate / desk object", family: "C · Founding Partner kit", audience: "Signed venue", purpose: "Make the partnership feel earned and premium on the desk.", funnel: "Onboarding", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Medium", required: false, dependency: "fp-signing-card", owner: "Founder", format: "A4 letter + desk certificate", copy: "missing", design: "missing", score: 68, rationale: "High proof value; build with the first real signing." },
-  { id: "permission-form", name: "Permission form + approval language", family: "C · Founding Partner kit", audience: "Signed venue (legal)", purpose: "Written permission before any named use of a partner.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Low", required: true, dependency: "—", owner: "Founder / Legal", format: "1pp form + clause library", copy: "missing", design: "missing", score: 78, rationale: "Must exist before the social system can ever name a partner." },
-  { id: "fp-badge", name: "Partner mark / badge + web listing", family: "C · Founding Partner kit", audience: "Public / signed venues", purpose: "A restrained badge a venue can show; a web listing of real partners.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Medium", required: false, dependency: "permission-form", owner: "Brand", format: "SVG mark + web component", copy: "missing", design: "missing", score: 66, rationale: "Compounds proof; gated entirely on real, permissioned partners." },
+  // C · Founding 25 kit
+  { id: "fp-signing-card", name: "Numbered founding venue signing card", family: "C · Founding 25 kit", audience: "First signed venues", purpose: "The physical moment of becoming Founding Limerick Venue No. __.", funnel: "Proof", revenue: "Medium", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "permission-form", owner: "Founder", format: "Heavy card, numbered, desk-safe", copy: "partial", design: "missing", score: 80, rationale: "Specimen now; the proof engine the day a venue signs." },
+  { id: "fp-welcome", name: "Welcome letter + certificate / desk object", family: "C · Founding 25 kit", audience: "Signed venue", purpose: "Make the moment feel earned and premium on the desk.", funnel: "Onboarding", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Medium", required: false, dependency: "fp-signing-card", owner: "Founder", format: "A4 letter + desk certificate", copy: "missing", design: "missing", score: 68, rationale: "High proof value; build with the first real signing." },
+  { id: "permission-form", name: "Permission form + approval language", family: "C · Founding 25 kit", audience: "Signed venue (legal)", purpose: "Written permission before any named use of a venue.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Low", required: true, dependency: "—", owner: "Founder / Legal", format: "1pp form + clause library", copy: "missing", design: "missing", score: 78, rationale: "Must exist before the social system can ever name a venue." },
+  { id: "fp-badge", name: "Founding 25 mark / badge + web listing", family: "C · Founding 25 kit", audience: "Public / signed venues", purpose: "A restrained badge a venue can show; a web listing of real founding venues.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Medium", required: false, dependency: "permission-form", owner: "Brand", format: "SVG mark + web component", copy: "missing", design: "missing", score: 66, rationale: "Compounds proof; gated entirely on real, permissioned venues." },
 
   // D · Press kit
   { id: "press-shell", name: "Press kit shell (release + fact sheet + bio + media block)", family: "D · Press kit", audience: "Local + national press", purpose: "Everything a journalist needs, armed and ready to fire on real proof.", funnel: "Launch", revenue: "Low", proof: "Medium", brandRisk: "Medium", difficulty: "Medium", required: true, dependency: "screenshots · headshot", owner: "Founder", format: "Web press page + PDFs", copy: "exists", design: "partial", score: 72, rationale: "Shell shipped 2026-07-01 at /brand/press/, draft release, fact sheet, founder story, usage notes, kit zip. Photography (M·1) and screenshots (M·2) still operator/product-gated." },
@@ -190,8 +190,8 @@ export const TAXONOMY: Asset[] = [
   { id: "ambassador-brief", name: "Ambassador invitation + briefing + code/QR", family: "E · Student ambassador kit", audience: "Student ambassadors", purpose: "A small, real ambassador program, not influencer hype.", funnel: "Onboarding", revenue: "Medium", proof: "Medium", brandRisk: "Medium", difficulty: "Medium", required: false, dependency: "student-onepager", owner: "Founder", format: "Doc + QR card", copy: "exists", design: "exists", score: 48, rationale: "Kit shipped 2026-07-01 at /brand/collateral/ambassador/, K·0 letter, K·1 guide, four K·2 templates, K·3 QR card (specimen until destination confirmed), K·4 notebook spec." },
 
   // F · Social proof system
-  { id: "fp-post-system", name: "\"Founding Limerick Partner No. __\" post system", family: "F · Social proof system", audience: "LinkedIn / Instagram / web", purpose: "Numbered, restrained proof posts across LinkedIn, IG square, IG story, web card.", funnel: "Proof", revenue: "Medium", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "permission-form · fp-signing-card", owner: "Founder / Brand", format: "Template set + export rules + alt-text", copy: "exists", design: "exists", score: 81, rationale: "Shipped 2026-07-01 as part of the S·1–S·6 social system at /brand/collateral/social/, structurally specimen until the first real signing." },
-  { id: "social-permission", name: "Social permission workflow", family: "F · Social proof system", audience: "Internal", purpose: "The checklist that gates every named-partner post.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Low", required: true, dependency: "permission-form", owner: "Founder", format: "Workflow doc", copy: "missing", design: "missing", score: 70, rationale: "No post goes out without it; protects the whole position." },
+  { id: "fp-post-system", name: "\"Founding Limerick Venue No. __\" post system", family: "F · Social proof system", audience: "LinkedIn / Instagram / web", purpose: "Numbered, restrained proof posts across LinkedIn, IG square, IG story, web card.", funnel: "Proof", revenue: "Medium", proof: "High", brandRisk: "High", difficulty: "Medium", required: true, dependency: "permission-form · fp-signing-card", owner: "Founder / Brand", format: "Template set + export rules + alt-text", copy: "exists", design: "exists", score: 81, rationale: "Shipped 2026-07-01 as part of the S·1–S·6 social system at /brand/collateral/social/, structurally specimen until the first real signing." },
+  { id: "social-permission", name: "Social permission workflow", family: "F · Social proof system", audience: "Internal", purpose: "The checklist that gates every named-venue post.", funnel: "Proof", revenue: "Low", proof: "High", brandRisk: "High", difficulty: "Low", required: true, dependency: "permission-form", owner: "Founder", format: "Workflow doc", copy: "missing", design: "missing", score: 70, rationale: "No post goes out without it; protects the whole position." },
 
   // G · Local physical presence
   { id: "cafe-card", name: "Café card / A6 card", family: "G · Local physical presence", audience: "Limerick walk-by / café tables", purpose: "A quiet, permission-placed object that earns a glance, never a flyer.", funnel: "Awareness", revenue: "Low", proof: "Low", brandRisk: "Medium", difficulty: "Low", required: false, dependency: "founder-card (grammar)", owner: "Founder", format: "A6 print + placement rules", copy: "exists", design: "exists", score: 56, rationale: "Shipped 2026-07-01, campaign-line A6 at /brand/collateral/identity/; placement rules in print-notes. Placement-led, never dropped." },
@@ -249,15 +249,15 @@ export type FirstAsset = {
 };
 
 export const FIRST_TEN: FirstAsset[] = [
-  { order: 1, assetId: "venue-onepager", name: "Venue one-pager (A4)", type: "Revenue", whyNow: "It is the keystone, it locks the venue message and the print system every other physical object inherits.", riskRemoved: "Removes the risk of walking into a premium venue with nothing on-brand to leave behind.", dependents: "Document shell, micro-label system, venue deck, outreach email, leave-behind, partner pack.", excellent: "A coordinator grasps the offer in seven seconds, keeps it on the desk, and asks for a demo.", fails: "Reads like a SaaS flyer, needs explaining, or feels disposable on a premium front desk." },
+  { order: 1, assetId: "venue-onepager", name: "Venue one-pager (A4)", type: "Revenue", whyNow: "It is the keystone, it locks the venue message and the print system every other physical object inherits.", riskRemoved: "Removes the risk of walking into a premium venue with nothing on-brand to leave behind.", dependents: "Document shell, micro-label system, venue deck, outreach email, leave-behind, Founding 25 pack.", excellent: "A coordinator grasps the offer in seven seconds, keeps it on the desk, and asks for a demo.", fails: "Reads like a SaaS flyer, needs explaining, or feels disposable on a premium front desk." },
   { order: 2, assetId: "screenshots", name: "Product screenshots, wedding workflow", type: "Proof", whyNow: "Every visual asset needs real screens; nothing convincing can be made without them.", riskRemoved: "Removes the risk of faked or generic product imagery, the fastest way to lose a premium buyer's trust.", dependents: "One-pager, deck, press kit, demo film, device frames.", excellent: "Real screens, real-shaped wedding data, the Notes→Tasks→Timeline→Signal story legible at a glance.", fails: "Fabricated dashboards, lorem data, or screens a coordinator could not actually produce." },
   { order: 3, assetId: "founder-card", name: "Founder business card system", type: "Trust", whyNow: "The first object a venue holds; cheapest possible premium signal and it gates every in-person meeting.", riskRemoved: "Removes the credibility gap in the opening seconds of a face-to-face introduction.", dependents: "Café card, A6 card, the whole card grammar of the physical kit.", excellent: "Heavy uncoated stock, one earned indigo, document-like restraint, it feels like a respected company.", fails: "Glossy, busy, laminated, or indistinguishable from a generic startup card." },
   { order: 4, assetId: "outreach-seq", name: "Founder outreach + follow-up email", type: "Revenue", whyNow: "It is the actual revenue trigger; the copy mostly exists and only needs the gate and the attachment.", riskRemoved: "Removes the risk of the pipeline never starting, or starting with off-brand, spammy first contact.", dependents: "The entire CRM motion depends on this being ready and gated.", excellent: "Founder-signed, plainly written, one ask, the one-pager attached, no mass-blast energy.", fails: "Reads as outbound spam, over-claims, or goes out before the asset gate clears." },
   { order: 5, assetId: "demo-script", name: "Demo script + objection sheet", type: "Revenue", whyNow: "The founder's time is the scarcest input; a tight script turns interest into a booked pilot.", riskRemoved: "Removes the risk of an improvised demo that wanders or fails to handle the five real objections.", dependents: "The venue deck's narrative and the pricing conversation both lean on it.", excellent: "Seven-minute run, plain English, every objection answered in one calm sentence.", fails: "Feature-tour energy, jargon, or no answer to 'why not just use a spreadsheet'." },
   { order: 6, assetId: "venue-deck", name: "Venue pitch deck (10 slides)", type: "Revenue", whyNow: "The seated-conversation backbone; it inherits the one-pager message and frames the demo.", riskRemoved: "Removes the risk of a meandering meeting with no structure toward a pilot ask.", dependents: "Pricing explainer and the demo flow sit inside it.", excellent: "Ten restrained slides, one idea each, the wedding story carried by real screenshots.", fails: "Forty slides, feature grids, or three-adjective hero slides." },
   { order: 7, assetId: "pricing-explainer", name: "Pricing / invoice explanation", type: "Revenue", whyNow: "Closes the loop, makes the fixed €1,500/yr ask legible and calm so the money moment isn't awkward.", riskRemoved: "Removes the risk of a warm demo stalling at an unclear or apologetic price.", dependents: "The invoice template and the close itself.", excellent: "One page, one number, the value framed in the venue's own terms, no discount theatre.", fails: "Tiered-pricing complexity, hedging, or any 'launch offer' urgency." },
-  { order: 8, assetId: "permission-form", name: "Permission form + approval language", type: "Proof", whyNow: "It must exist before any named-partner asset can be made, it is the legal floor of the proof system.", riskRemoved: "Removes the legal and brand risk of naming or implying a partner without written permission.", dependents: "Numbered signing card, social proof system, partner web listing, press proof inserts.", excellent: "One clear page a venue signs without hesitation; a clause library for every use.", fails: "Legalese that scares a venue, or gaps that let an unpermissioned name slip out." },
-  { order: 9, assetId: "fp-post-system", name: "Founding Partner numbered system (card + post templates)", type: "Proof", whyNow: "The compounding proof engine; build the machine now so it fires the day a real venue signs.", riskRemoved: "Removes the risk of improvising proof under pressure and getting the specimen/real line wrong.", dependents: "LinkedIn, Instagram square + story, web card, press proof insert.", excellent: "Numbered, restrained, instantly recognisable; specimen versions clearly marked until real.", fails: "Celebratory hype, fabricated numbers, or a real-looking post before a partner is signed." },
+  { order: 8, assetId: "permission-form", name: "Permission form + approval language", type: "Proof", whyNow: "It must exist before any named-venue asset can be made, it is the legal floor of the proof system.", riskRemoved: "Removes the legal and brand risk of naming or implying a venue without written permission.", dependents: "Numbered signing card, social proof system, founding venue web listing, press proof inserts.", excellent: "One clear page a venue signs without hesitation; a clause library for every use.", fails: "Legalese that scares a venue, or gaps that let an unpermissioned name slip out." },
+  { order: 9, assetId: "fp-post-system", name: "Founding 25 numbered system (card + post templates)", type: "Proof", whyNow: "The compounding proof engine; build the machine now so it fires the day a real venue signs.", riskRemoved: "Removes the risk of improvising proof under pressure and getting the specimen/real line wrong.", dependents: "LinkedIn, Instagram square + story, web card, press proof insert.", excellent: "Numbered, restrained, instantly recognisable; specimen versions clearly marked until real.", fails: "Celebratory hype, fabricated numbers, or a real-looking post before a venue is signed." },
   { order: 10, assetId: "launch-kit", name: "Launch-week kit", type: "Press", whyNow: "It ties the bank into one coordinated, calm launch surface for the week itself.", riskRemoved: "Removes the risk of an uncoordinated or hyped launch that contradicts the positioning.", dependents: "Website hero update, FAQ, founder post, local press email.", excellent: "Quiet confidence across every surface; one story, no banners, no countdowns.", fails: "Urgency theatre, scattered messaging, or claims that outrun real proof." },
 ];
 
@@ -269,7 +269,7 @@ export const QUALITY_GATE: GateCheck[] = [
   { id: 1, name: "Brand restraint", question: "Is there exactly one earned indigo accent, no decorative noise, no unsanctioned gradient?", bar: "White / black / indigo only. One accent per object. Hairlines do the work shadows would." },
   { id: 2, name: "Premium front-desk", question: "Would a respected Limerick venue feel comfortable leaving this on its front desk?", bar: "Looks and reads like a premium, founder-led company, never a startup flyer." },
   { id: 3, name: "Non-technical clarity", question: "Can a wedding coordinator grasp it in seven seconds with no product vocabulary?", bar: "Plain English at ~7th-grade level. No PM, AI, or tech jargon. Outcome before mechanism." },
-  { id: 4, name: "Proof / claims", question: "Is every claim true, and is every named partner real and permissioned?", bar: "No invented proof, press, stats, or testimonials. Specimen examples clearly marked." },
+  { id: 4, name: "Proof / claims", question: "Is every claim true, and is every named venue real and permissioned?", bar: "No invented proof, press, stats, or testimonials. Specimen examples clearly marked." },
   { id: 5, name: "Permission", question: "Is there written permission for every name, logo, or quote used?", bar: "No named use without a signed permission form. Placement is permission-led only." },
   { id: 6, name: "Copy precision", question: "Is every word declarative, banned-word-free, and earning its place?", bar: "Verbs over nouns, no exclamation marks, no three-adjective trios. Cut anything that needs explaining." },
   { id: 7, name: "Accessibility", question: "Does it meet contrast, alt-text, and legibility minimums?", bar: "WCAG AA contrast, real alt text, type legible at intended size and distance." },
@@ -342,14 +342,14 @@ Three quiet proof lines (no metrics invented):
 , Share a timeline the couple can actually see. You look organised because you are.
 , Open it in the morning and see the one thing that needs you today.
 The ask: A short demo, on your desk, at your pace. No setup, no jargon, no contract to read.
-Footer block: hello@signalstudio.ie · signalstudio.ie · Limerick · [SPECIMEN: "Founding Limerick Partner programme, by invitation", include only as a specimen line, clearly not implying any real partner yet].
+Footer block: hello@signalstudio.ie · signalstudio.ie · Limerick · [SPECIMEN: "the Founding 25, by invitation", include only as a specimen line, clearly not implying any real venue yet].
 QR: links to a real venue workspace demo destination (confirm URL before print).
 
 7 · VISUAL HIERARCHY
 First: the headline. Second: the four-views idea (a single restrained diagram or four labelled lines, real screenshot crops if available, never faked). Third: the ask + how to reach the founder. The eye should land headline → what it is → what to do, in that order, in seven seconds.
 
 8 · LAYOUT REQUIREMENTS
-Establish the reusable document shell here: generous margins, a hairline rule under the eyebrow, mono micro-labels for each region, a single column with one calm diagram band. This one-pager defines the grid the deck, leave-behind, and partner pack will inherit. Leave deliberate whitespace, restraint is the message.
+Establish the reusable document shell here: generous margins, a hairline rule under the eyebrow, mono micro-labels for each region, a single column with one calm diagram band. This one-pager defines the grid the deck, leave-behind, and Founding 25 pack will inherit. Leave deliberate whitespace, restraint is the message.
 
 9 · BRAND RULES
 White paper (#ffffff / #fafafa recessed). Ink black for text. Exactly one earned indigo accent (#4f46e5), use it once, with intent. Geist Sans for everything, Geist Mono for the eyebrow and micro-labels. Hairlines, never shadows. No gradient. Feels like heavy uncoated stock.
@@ -364,7 +364,7 @@ A4 (210×297mm), single-sided. 3mm bleed, 10mm safe margin. CMYK-aware, print-re
 WCAG AA contrast for all text. Body type no smaller than 10pt at print size. The indigo accent must not be the only carrier of meaning. The screen PDF must be tagged with real alt text on any image.
 
 13 · VARIANTS REQUIRED
-(a) Print A4 (CMYK, bleed). (b) Screen PDF (RGB, email-sized). (c) A clearly-marked SPECIMEN variant where the Founding Partner line is visibly a placeholder, for internal review only.
+(a) Print A4 (CMYK, bleed). (b) Screen PDF (RGB, email-sized). (c) A clearly-marked SPECIMEN variant where the Founding 25 line is visibly a placeholder, for internal review only.
 
 14 · QUALITY BAR
 Must pass all ten checks of the Asset Quality Gate: brand restraint, premium front-desk, non-technical clarity, proof/claims, permission, copy precision, accessibility, print/export, reusability, founder sign-off. Do not return a draft that fails any one of them.
@@ -373,7 +373,7 @@ Must pass all ten checks of the Asset Quality Gate: brand restraint, premium fro
 venue-onepager-print.pdf (A4, CMYK, bleed) · venue-onepager-screen.pdf (RGB) · venue-onepager-specimen.pdf · the editable source · and a one-line note on what the founder should check before printing.
 
 16 · SELF-REVIEW CHECKLIST (run before returning)
-Would a premium venue keep this on its desk? Is there exactly one indigo accent? Can a coordinator grasp it in seven seconds? Is every claim true and every partner reference a clear specimen? Is there any banned word, gradient, or fake screen? Is it print-ready at A4 with bleed? Does it establish a document shell the next asset can inherit?
+Would a premium venue keep this on its desk? Is there exactly one indigo accent? Can a coordinator grasp it in seven seconds? Is every claim true and every venue reference a clear specimen? Is there any banned word, gradient, or fake screen? Is it print-ready at A4 with bleed? Does it establish a document shell the next asset can inherit?
 
 HOW TO JUDGE SUCCESS
 The one-pager succeeds if a busy wedding coordinator, reading it alone for under a minute, understands the offer, trusts the company, and wants the demo, and if the founder would be proud to see it sitting on the front desk of the best venue in Limerick.`,
@@ -447,35 +447,35 @@ The card succeeds if a premium venue owner, handed it across a table, reads the 
   },
   {
     id: "fp-social",
-    asset: "\"Founding Limerick Partner No. __\" social post system (LinkedIn · IG square · IG story · website card)",
+    asset: "\"Founding Limerick Venue No. __\" social post system (LinkedIn · IG square · IG story · website card)",
     intent:
-      "The compounding proof engine, numbered, restrained, recognisable; built so it is impossible to publish before a partner is real and permissioned.",
+      "The compounding proof engine, numbered, restrained, recognisable; built so it is impossible to publish before a venue is real and permissioned.",
     status: "ready",
     body: `1 · ASSET NAME
-Signal Studio, "Founding Limerick Partner No. __" social post system. A template set across LinkedIn, Instagram square, Instagram story, and a website card.
+Signal Studio, "Founding Limerick Venue No. __" social post system. A template set across LinkedIn, Instagram square, Instagram story, and a website card.
 
 2 · BUSINESS OBJECTIVE
-The compounding proof engine. Each real signed venue becomes a numbered, restrained, instantly recognisable announcement that builds credibility without hype. The system must make proof feel earned and premium, and must be impossible to use before a partner is real and has given written permission.
+The compounding proof engine. Each real signed venue becomes a numbered, restrained, instantly recognisable announcement that builds credibility without hype. The system must make proof feel earned and premium, and must be impossible to use before a venue is real and has given written permission.
 
 3 · AUDIENCE
 Other premium venues and coordinators watching quietly; the local Limerick business community; press. People who trust calm proof and distrust noise.
 
 4 · MOMENT OF USE
-Published when a venue signs and has given written permission, one post per partner, occasionally a milestone recap. Seen in a fast-scrolling feed; it must read in one second and reward a second look.
+Published when a venue signs and has given written permission, one post per venue, occasionally a milestone recap. Seen in a fast-scrolling feed; it must read in one second and reward a second look.
 
 5 · SOURCE CONTEXT
-Brand handbook: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent. Voice: declarative, plain, no exclamation. The number is the hero, Geist Mono, large, calm. Permission and specimen discipline are non-negotiable: no invented partners, ever.
+Brand handbook: white/black/indigo #4f46e5, Geist + Geist Mono, hairlines, one earned accent. Voice: declarative, plain, no exclamation. The number is the hero, Geist Mono, large, calm. Permission and specimen discipline are non-negotiable: no invented venues, ever.
 
-6 · REQUIRED COPY (template; bracketed fields filled per real, permissioned partner)
-Hero (mono): Founding Limerick Partner No. [01]
-Line 1: [Venue Name] is a Founding Limerick Partner of Signal Studio.
+6 · REQUIRED COPY (template; bracketed fields filled per real, permissioned venue)
+Hero (mono): Founding Limerick Venue No. [01]
+Line 1: [Venue Name] is one of the Founding 25.
 Line 2 (optional, plain): One of the first venues in Limerick running calm coordination, capture, run-sheet, shared timeline, and the day's one priority.
 Footer: signalstudio.ie · Limerick
-SPECIMEN RULE: until a real partner is signed and has signed the permission form, every export must carry a visible "SPECIMEN, not a real partner" mark and use a placeholder name like "[Venue Name]". Deliver both the specimen build and the clean template.
+SPECIMEN RULE: until a real venue is signed and has signed the permission form, every export must carry a visible "SPECIMEN, not a real venue" mark and use a placeholder name like "[Venue Name]". Deliver both the specimen build and the clean template.
 Do not add: metrics, quotes, logos, or any claim that is not in writing.
 
 7 · VISUAL HIERARCHY
-First: the number ("No. 01"). Second: the venue name. Third: the single supporting line and the site. The number and the partner's name carry the post; everything else recedes.
+First: the number ("No. 01"). Second: the venue name. Third: the single supporting line and the site. The number and the venue's name carry the post; everything else recedes.
 
 8 · LAYOUT REQUIREMENTS
 A calm card on paper white with one hairline frame and one indigo accent (the period, or a single dot beside the number). The number sits large in mono; the venue name in Geist Sans beneath. Generous margins. The same composition adapts across the four formats by re-flowing, not redesigning.
@@ -484,28 +484,28 @@ A calm card on paper white with one hairline frame and one indigo accent (the pe
 White background. Black text. One indigo accent only. Geist Mono for the number and micro-labels; Geist Sans for the venue name and line. Hairlines, no shadow, no gradient, no photo background. The Signal Studio wordmark appears once, small, as the signer.
 
 10 · WHAT TO AVOID
-No confetti, balloons, or emoji. No exclamation marks. No "thrilled / excited to announce". No fabricated logos or venue photos without permission. No metrics. No gradient or glow. No template that could be posted with a real-looking name before the partner is signed.
+No confetti, balloons, or emoji. No exclamation marks. No "thrilled / excited to announce". No fabricated logos or venue photos without permission. No metrics. No gradient or glow. No template that could be posted with a real-looking name before the venue is signed.
 
 11 · EXPORT SPECIFICATIONS (screen)
 LinkedIn: 1200×1200 (square reads best in-feed); also supply 1200×627 if used as a link image. Instagram square: 1080×1080. Instagram story: 1080×1920, text inside safe margins clear of top/bottom UI. Website card: a responsive component spec (16:9 + a compact variant), supplied as SVG. Export PNG for social, SVG for web. RGB / sRGB.
 
 12 · ACCESSIBILITY REQUIREMENTS
-WCAG AA contrast. Provide an alt-text template: "Signal Studio, Founding Limerick Partner number [01], [Venue Name]." Story text within the safe area. The accent is never the sole carrier of meaning.
+WCAG AA contrast. Provide an alt-text template: "Signal Studio, Founding Limerick Venue number [01], [Venue Name]." Story text within the safe area. The accent is never the sole carrier of meaning.
 
 13 · VARIANTS REQUIRED
 (a) LinkedIn 1200×1200. (b) Instagram square 1080×1080. (c) Instagram story 1080×1920. (d) Website card (SVG / responsive). (e) A clearly-marked SPECIMEN version of each, for internal review only.
 
 14 · QUALITY BAR
-Passes all ten checks of the Asset Quality Gate, with particular weight on proof/claims and permission. A draft that omits the specimen mark, or that could imply an unsigned partner, fails automatically.
+Passes all ten checks of the Asset Quality Gate, with particular weight on proof/claims and permission. A draft that omits the specimen mark, or that could imply an unsigned venue, fails automatically.
 
 15 · FINAL DELIVERABLES
 fp-no-__-linkedin.png · fp-no-__-ig-square.png · fp-no-__-ig-story.png · fp-card.svg (website) · the matching SPECIMEN exports · the editable source with the number and name as the only fields to change · and the alt-text + permission-gate note.
 
 16 · SELF-REVIEW CHECKLIST
-Is the number the hero, calm in mono? One indigo accent only? Any hype word, emoji, or exclamation? Is there a visible specimen mark on the review build? Could this be posted with a real name before the partner is signed (it must not)? Does every format share one composition? Alt text present?
+Is the number the hero, calm in mono? One indigo accent only? Any hype word, emoji, or exclamation? Is there a visible specimen mark on the review build? Could this be posted with a real name before the venue is signed (it must not)? Does every format share one composition? Alt text present?
 
 HOW TO JUDGE SUCCESS
-The system succeeds if a single numbered post makes a watching venue think "I want to be one of those", quietly, with no hype, and if it is structurally impossible to publish before a partner is real and has given written permission.`,
+The system succeeds if a single numbered post makes a watching venue think "I want to be one of those", quietly, with no hype, and if it is structurally impossible to publish before a venue is real and has given written permission.`,
   },
   {
     id: "email-sig",

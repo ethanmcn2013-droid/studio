@@ -2647,10 +2647,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "a07715f60f18a04b"
+      "materialityHash": "484854b5368d4855"
     },
     {
       "id": "studio.artifact.brand-collateral-identity-signature",
@@ -2735,10 +2735,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "11a545fdf83df3db"
+      "materialityHash": "5c70ec4ac0e33fef"
     },
     {
       "id": "studio.artifact.brand-collateral-venue",
@@ -2779,10 +2779,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "9383cedc12159b00"
+      "materialityHash": "e5b61d2664b9a95e"
     },
     {
       "id": "studio.artifact.brand-loader",
@@ -2912,9 +2912,9 @@
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
       "lastReviewedAt": "2026-08-03",
-      "approvedBaselineReference": null,
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "7b08dd4cbd86a7f4"
+      "materialityHash": "92d7cd6deb612d5c"
     },
     {
       "id": "studio.artifact.brand-motion-brief",
@@ -3000,9 +3000,9 @@
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
       "lastReviewedAt": "2026-08-03",
-      "approvedBaselineReference": null,
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "bad87a85262c4e30"
+      "materialityHash": "d7428774042ac14c"
     },
     {
       "id": "studio.artifact.brand-press",
@@ -3358,9 +3358,9 @@
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
       "lastReviewedAt": "2026-08-03",
-      "approvedBaselineReference": "experience/golden-set.json#/references/0",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "d6abf1adc448156a"
+      "materialityHash": "b862f139e63cbd38"
     },
     {
       "id": "studio.page.design-lab-product-handoff",
@@ -3545,6 +3545,50 @@
       "materialityHash": "b4ef514553447138"
     },
     {
+      "id": "studio.page.hq-account-review",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/account-review",
+      "source": "studio/src/app/hq/account-review/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the selected Account Brief Venue Edition system on deterministic fixtures.",
+      "primaryAction": "Inspect Overview, Access, Usage, Reports, Account, and sample downloads.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "partial",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "partial",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "5d25a55b2804431b"
+    },
+    {
       "id": "studio.page.hq-action-center",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -3627,10 +3671,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "8a6654e37a55d26d"
+      "materialityHash": "210c4c611c0f5dd5"
     },
     {
       "id": "studio.page.hq-assets",
@@ -4039,6 +4083,52 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "af7d8cad19c3f607"
+    },
+    {
+      "id": "studio.page.hq-couple-welcome-kit",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/couple-welcome-kit",
+      "source": "studio/src/app/hq/couple-welcome-kit/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "onboarding-and-authentication",
+      "primaryJob": "Understand and use hq · couple welcome kit.",
+      "primaryAction": "Complete the primary action on hq · couple welcome kit.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "loading",
+        "error",
+        "success",
+        "disabled",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "68313ecb07c50782"
     },
     {
       "id": "studio.page.hq-crm",
@@ -4708,6 +4798,50 @@
       "materialityHash": "fe4ef20a60084d12"
     },
     {
+      "id": "studio.page.hq-founding-certificate",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/founding-certificate",
+      "source": "studio/src/app/hq/founding-certificate/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "detail-or-record-view",
+      "primaryJob": "Understand and use hq · founding certificate.",
+      "primaryAction": "Complete the primary action on hq · founding certificate.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "047d299180451870"
+    },
+    {
       "id": "studio.page.hq-health",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -5374,10 +5508,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "efdf3e96b9cbd251"
+      "materialityHash": "86bb575b15b20e82"
     },
     {
       "id": "studio.page.hq-partners",
@@ -5739,10 +5873,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "22ea5e201e8b90cd"
+      "materialityHash": "9d065a8b2537471d"
     },
     {
       "id": "studio.page.hq-socials",
@@ -5877,6 +6011,50 @@
       "materialityHash": "ff91ce07b26b6c0a"
     },
     {
+      "id": "studio.page.hq-venue-deck",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/venue-deck",
+      "source": "studio/src/app/hq/venue-deck/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "detail-or-record-view",
+      "primaryJob": "Understand and use hq · venue deck.",
+      "primaryAction": "Complete the primary action on hq · venue deck.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "4cc6f3c6f2db60b9"
+    },
+    {
       "id": "studio.page.hq-venue-kit",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -5915,54 +6093,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-03",
+      "approvedBaselineReference": "docs/execution/venue-edition-and-films/evidence/R-042-founding-25-retirement.md",
       "intentionalExceptions": [],
-      "materialityHash": "6beb18e268e8c8bd"
-    },
-    {
-      "id": "studio.page.hq-account-review",
-      "product": "studio",
-      "experienceClass": "founder-operator",
-      "surfaceType": "page",
-      "route": "/hq/account-review",
-      "source": "studio/src/app/hq/account-review/page.tsx",
-      "parentJourney": "founder-operations",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Review the selected Account Brief Venue Edition system on deterministic fixtures.",
-      "primaryAction": "Inspect Overview, Access, Usage, Reports, Account, and sample downloads.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "5d25a55b2804431b"
+      "materialityHash": "677b500534db9c7a"
     },
     {
       "id": "studio.page.hq-venue-portal-review",
@@ -6007,6 +6141,50 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "304e6ce0f52ae66b"
+    },
+    {
+      "id": "studio.page.hq-venue-prebooking-kit",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/venue-prebooking-kit",
+      "source": "studio/src/app/hq/venue-prebooking-kit/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "detail-or-record-view",
+      "primaryJob": "Understand and use hq · venue prebooking kit.",
+      "primaryAction": "Complete the primary action on hq · venue prebooking kit.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "e0dfd2ee92a9101d"
     },
     {
       "id": "studio.page.hq-venues",
@@ -6898,6 +7076,50 @@
       "materialityHash": "134bcc853f726987"
     },
     {
+      "id": "studio.page.venues-couple-preview",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/couple-preview",
+      "source": "studio/src/app/venues/couple-preview/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Understand and use venues · couple preview.",
+      "primaryAction": "Complete the primary action on venues · couple preview.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "d812165a05a8a0b3"
+    },
+    {
       "id": "studio.page.venues-demo",
       "product": "studio",
       "experienceClass": "company-public",
@@ -6940,6 +7162,50 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "a5b3c92d53c4bac9"
+    },
+    {
+      "id": "studio.page.venues-what-you-see",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/what-you-see",
+      "source": "studio/src/app/venues/what-you-see/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use venues · what you see.",
+      "primaryAction": "Complete the primary action on venues · what you see.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "4abaf7958f611184"
     },
     {
       "id": "studio.page.waitlist",
@@ -11434,6 +11700,226 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.venues-privacy",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/privacy",
+      "source": "studio/src/app/venues/privacy/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand exactly what a venue sees and never sees.",
+      "primaryAction": "Read the privacy explanation and continue to the questions page.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "6e6c79d2ac9f3dd3"
+    },
+    {
+      "id": "studio.page.venues-questions",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/questions",
+      "source": "studio/src/app/venues/questions/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Get a straight answer to the questions venues ask.",
+      "primaryAction": "Ask a question that the page did not answer.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "d855ea369006c47f"
+    },
+    {
+      "id": "studio.page.hq-venue-proposal",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/venue-proposal",
+      "source": "studio/src/app/hq/venue-proposal/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Compose a parameterised proposal for one venue.",
+      "primaryAction": "Generate the proposal link for a named venue.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "4eef83fbb0f908d9"
+    },
+    {
+      "id": "studio.page.v-by-token",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/v/[token]",
+      "source": "studio/src/app/v/[token]/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Read the private proposal prepared for this venue.",
+      "primaryAction": "Start the conversation about the founding place.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "a8be4086039da62f"
+    },
+    {
+      "id": "studio.state.v-by-token-not-found",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "state",
+      "route": "/v/[token]",
+      "source": "studio/src/app/v/[token]/not-found.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand that a proposal link is not valid.",
+      "primaryAction": "Reach a person when a link has expired.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "310d412bb6a25bcf"
     }
   ]
 }

@@ -1,0 +1,50 @@
+/**
+ * E12.11 — print rules for the Founding Venue certificate.
+ *
+ * A4 portrait with wide margins, because the object is a record rather than a
+ * page of information and the whitespace is doing the work. It is one page and
+ * it will never be more than one page: the certificate makes one statement, so
+ * a second page would mean something has been added that does not belong.
+ *
+ * Chrome is hidden by the `:has()` rule, which only fires on a page that
+ * actually contains a certificate.
+ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 24mm;
+  }
+
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  body:has(.founding-certificate) > *:not(:has(.founding-certificate)) {
+    display: none !important;
+  }
+
+  .founding-certificate {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    break-inside: avoid;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  .founding-certificate-number {
+    font-size: 48pt;
+    line-height: 1;
+  }
+
+  .founding-certificate-terms {
+    font-size: 8.5pt;
+    line-height: 1.45;
+  }
+}

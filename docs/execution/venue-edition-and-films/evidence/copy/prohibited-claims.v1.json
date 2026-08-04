@@ -8,14 +8,15 @@
     "E09.02-metric-definitions.md section 8",
     "DECISIONS.md D-001, D-009, D-010, D-011, D-016, D-020, D-021, D-022, D-027"
   ],
-  "readBy": "studio/scripts/check-venue-edition-contract.mjs",
+  "readBy": "studio/scripts/check-venue-copy.mjs, registered in package.json 'test' and therefore blocking in .github/workflows/ci.yml and verify.yml",
   "renderedBy": "E09.11-venue-copy-pack.md section 4",
   "notes": [
     "This file is the single source. The pack renders it and the check enforces it, so the two cannot drift.",
     "A rule with claimOnly:true is skipped on a line that ends in a question mark. A question is not a claim, and a FAQ has to be able to ask the question it answers.",
     "A rule with copyOnly:true is skipped on a surface whose kind is 'code'. Identifiers, column names and MetricValue states are not front-facing copy.",
     "Surface scope 'blockquote' means only markdown blockquote lines are checked. In an evidence document the copy is what is inside the quote; the prose around it is the rule, and a rule has to be able to name the word it forbids.",
-    "Surface scope 'file' checks every line. Punctuation rules never run on scope 'file' because source code is full of exclamation marks and no-break-space arithmetic that are not copy."
+    "Surface scope 'file' checks every line. Punctuation rules never run on scope 'file' because source code is full of exclamation marks and no-break-space arithmetic that are not copy.",
+    "Corrected 2026-08-03 (R-042 / WP-16). Nothing read this file until that date. The readBy field named check-venue-edition-contract.mjs, which contains no reference to it and never did. The reader now exists and is named above, and the pinned counts are the first ones any machine has produced in this repository."
   ],
   "rules": [
     {
@@ -258,6 +259,24 @@
       "patterns": [
         "!"
       ]
+    },
+    {
+      "id": "d033-programme-terms",
+      "rule": "D-033 / R-042 / E12.04 banned programme terms",
+      "why": "D-033 retired \"founding partner\" on 2026-08-03. The programme is the Founding 25 and a member of it is a founding venue. Partner, member and investor each describe standing the agreement does not create; exclusive contradicts twenty-five venues competing in one region; certified is a claim nobody can hand over. Guaranteed and the permanence set (for life, forever, in perpetuity, lifetime) are already covered by p1-permanence and are deliberately not duplicated here.",
+      "substitute": "the Founding 25 for the programme, a founding venue for a member of it",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bpartner(?:s|ship|ships|ed|ing)?\\b",
+        "\\bmember(?:s|ship|ships)?\\b",
+        "\\binvestors?\\b",
+        "\\bexclusive(?:ly|ity)?\\b",
+        "\\bcertified\\b",
+        "\\bcertification\\b",
+        "\\baccredited\\b"
+      ],
+      "patternNote": "Deliberately bare rather than compound. R-042 was found nine months late precisely because nothing looked for the bare word, only for the phrase somebody had already thought of. Ordinary-English uses are handled by the exceptions array, which is per surface, per rule, carries a written reason and an exact expected count, and is reviewable in one place."
     }
   ],
   "citationNote": [
@@ -292,82 +311,70 @@
       "reason": "Sits under that document's own '## Prohibited' heading. It is the example of what may never be said."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "saas-fluff",
+      "contains": "<span class=\"banned-chip\">AI-powered</span>",
+      "reason": "The deck's own banned-word row. It renders the never-list as chips, so it has to be able to print the words it bans."
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "saas-fluff",
+      "contains": "<div class=\"vc-no\">AI-powered smart prioritization for teams!</div>",
+      "reason": "The wrong half of a voice-check pair. The vc-no column exists to show the sentence we do not write, next to the one we do."
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "“codes remaining”",
-      "reason": "The D-020 prohibition list naming the phrase it bans. Naming, not using."
+      "contains": "There is no seat count. Real activation is measured after launch.",
+      "reason": "The D-020 denial. The line exists to say the seat count does not exist."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "path": "public/brand/market-entry-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "“licences allotted”",
-      "reason": "Same D-020 prohibition list entry."
+      "contains": "for the first 25 founding venues), no per-seat maths",
+      "reason": "The same denial in the one-invoice row."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "path": "public/brand/pitch-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "“low allotment”",
-      "reason": "Same D-020 prohibition list entry."
+      "contains": "Venue name registered. No per-seat fees. No recurring admin.",
+      "reason": "A denial. The line says per-seat fees do not exist."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "path": "public/brand/pitch-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "any sentence containing “X of your 60”",
-      "reason": "Same D-020 prohibition list entry."
+      "contains": "No per-seat fee<br>Priority briefing",
+      "reason": "A denial in the pricing card. Note that the p6 hit on this same line is NOT exempted: 'Unlimited workspaces' still counts."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "path": "public/brand/pitch-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "any seat count, cap, or numeric pause shown beside the word unlimited",
-      "reason": "Same D-020 prohibition list entry."
+      "contains": "Why no per-seat pricing",
+      "reason": "The heading of the section arguing against per-seat pricing."
     },
     {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
-      "rule": "p2-legal",
-      "contains": "legally approved, reviewed by a solicitor, or verified by an",
-      "reason": "The D-016 prohibition paragraph naming what may never be claimed."
-    },
-    {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
-      "rule": "p1-permanence",
-      "contains": "Never “for life”",
-      "reason": "The D-009 point 3 / R-008 prohibition paragraph naming the banned wording."
-    },
-    {
-      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
-      "rule": "p1-permanence",
-      "contains": "never “forever”, never “lifetime”, never “guaranteed”",
-      "reason": "Same D-009 point 3 prohibition paragraph, second line."
-    },
-    {
-      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "path": "public/brand/pitch-deck-2026.html",
       "rule": "p5-numeric-entitlement",
-      "contains": "as prohibited by name.]",
-      "reason": "The D-020 retirement note citing E09.02 section 8 by the names it retires."
+      "contains": "Signal Studio deliberately refuses per-seat",
+      "reason": "The argument itself. It names the model in order to refuse it."
     },
     {
-      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
-      "rule": "p5-numeric-entitlement",
-      "contains": "~~Licences allotted~~",
-      "reason": "A struck-through, superseded table row. The record of what was retired, not a live metric."
+      "path": "src/app/design/page.tsx",
+      "rule": "saas-fluff",
+      "contains": "Strike on sight.",
+      "reason": "The /design page's own never-list. It prints the banned register so a reader can check against it."
     },
     {
-      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
-      "rule": "p5-numeric-entitlement",
-      "contains": "~~Codes remaining~~",
-      "reason": "A struck-through, superseded table row carrying the formula that must not be reimplemented."
+      "path": "public/brand/collateral/social/alt-text.txt",
+      "rule": "d033-programme-terms",
+      "contains": "\"Founding Limerick Partner\" and carry \"Glen House\" rather than the ratified",
+      "reason": "The pending-re-authoring note. It states what the four S.4 images still render, so it has to be able to name the retired term. Remove this citation when the images are re-authored and the note goes."
     },
     {
-      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
-      "rule": "p5-numeric-entitlement",
-      "contains": "Was the dictionary of record. Retitled and corrected here.",
-      "reason": "The version-history row recording that the allotment-era dictionary was superseded."
-    },
-    {
-      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
-      "rule": "p5-numeric-entitlement",
-      "contains": "the entitlement model is unlimited. There is no allotment,",
-      "reason": "The D-020 retirement note stating that no allotment exists."
+      "path": "public/brand/collateral/social/alt-text.txt",
+      "rule": "d033-programme-terms",
+      "contains": "s4-partner-sp01 on 2026-08-03; the artwork was not changed",
+      "reason": "The same note, recording the filename the four images were renamed from."
     }
   ],
   "surfaces": {
@@ -420,8 +427,8 @@
         "path": "docs/venue-portal/METRIC_DICTIONARY.md",
         "scope": "file",
         "kind": "copy",
-        "expected": 0,
-        "owner": "E09.03 item 10"
+        "expected": 6,
+        "owner": "E09.03 item 10. Pinned at 0 by E09.11 against a retirement banner and four struck-through rows that were never written in this tree. Re-derived at 6 by the first machine run, 2026-08-03, R-042 / WP-16."
       },
       {
         "path": "public/brand/collateral/venue/outreach-email.txt",
@@ -497,8 +504,8 @@
         "path": "../app/src/server/demo/tasks-demo.ts",
         "scope": "file",
         "kind": "copy",
-        "expected": 1,
-        "owner": "E05.03 / E06.01"
+        "expected": 2,
+        "owner": "E05.03 / E06.01. E09.11 section 13 defect 14 recorded one site at line 87; the first machine run found two, at lines 89 and 99."
       },
       {
         "path": "../app/src/modules/notes/server/demo/notes-demo.ts",
@@ -527,7 +534,119 @@
         "kind": "copy",
         "expected": 0,
         "owner": "E11.05 / E11.07"
+      },
+      {
+        "path": "public/brand/market-entry-deck-2026.html",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03. Pinned at zero after the D-033 sweep, so the term cannot come back quietly."
+      },
+      {
+        "path": "public/brand/pitch-deck-2026.html",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 3,
+        "owner": "E12.10 / brand. I-002 section C left the three public decks unfixed. These three are counted here rather than left uncounted; one of them is a permanence promise."
+      },
+      {
+        "path": "public/brand/collateral/identity/index.html",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03"
+      },
+      {
+        "path": "public/brand/collateral/identity/print-notes.txt",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03. Prepress instructions for the physical card."
+      },
+      {
+        "path": "public/brand/collateral/social/index.html",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03"
+      },
+      {
+        "path": "public/brand/collateral/social/alt-text.txt",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03. The rendered copy of the S-series images."
+      },
+      {
+        "path": "src/app/design/page.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "R-042 / WP-16, added 2026-08-03. Public route /design."
       }
     ]
-  }
+  },
+  "exceptionNote": [
+    "An exception is not a citation. A citation says the line forbids the word. An exception says the word is ordinary English here and means something other than the thing the rule bans.",
+    "This exists because a check that cannot express 'partner' meaning a spouse, or a university partner cohort, is a check that gets disabled inside a week. The bare pattern is the point; the exception is what makes the bare pattern survivable.",
+    "Every entry is per surface and per rule, names its line by a distinctive substring rather than a line number, carries a written reason, and declares an exact expected count.",
+    "An exception that suppresses a different number of hits than it declares FAILS the check, in both directions. Too many means it is reaching lines nobody reviewed it against; too few means the line moved and the entry is dead weight waiting to cover something else.",
+    "Known limitation, recorded rather than hidden: the brand collateral index pages are single-line HTML, so on those files a substring exemption is effectively file-wide for its rule. No exception is currently written against one, and the three of them are pinned at zero."
+  ],
+  "exceptions": [
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "d033-programme-terms",
+      "contains": "Ten partner cohorts averaging 100 paid students",
+      "expected": 1,
+      "reason": "The student channel. A partner cohort is a university or a society, not a Founding 25 venue.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "d033-programme-terms",
+      "contains": "Campus cells, qualified visits, and partner cohorts produce",
+      "expected": 1,
+      "reason": "The same student channel, in the economics summary. Not a venue.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "d033-programme-terms",
+      "contains": "The story for podcasts, panels, and partner rooms",
+      "expected": 1,
+      "reason": "Industry partner rooms at events. Describes where the founder deck is used, not a relationship the programme grants.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "d033-programme-terms",
+      "contains": "photography for the media kit and partner materials",
+      "expected": 1,
+      "reason": "Sits beside the media kit in a photography line. Press and peers, not a Founding 25 venue. Flagged as the least clear of the four and left because changing it would be a guess.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    },
+    {
+      "path": "public/brand/market-entry-deck-2026.html",
+      "rule": "p7-bare-term",
+      "contains": "12-18 months · 141 guests avg",
+      "expected": 1,
+      "reason": "How long an Irish couple spends planning a wedding. It is not the couple access term, so the D-010.2 grace rule does not belong on it.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    },
+    {
+      "path": "signal-growth/outbound/venue-edition-A1-staged.md",
+      "rule": "d033-programme-terms",
+      "contains": "An exclusive-use island reached by your own car ferry",
+      "expected": 1,
+      "reason": "Describes the venue's own product, an exclusive-use island, in a sentence written back to that venue. Nothing to do with territorial exclusivity in the Founding 25, which is separately forbidden.",
+      "recordedBy": "R-042 / WP-16",
+      "recordedOn": "2026-08-03"
+    }
+  ]
 }

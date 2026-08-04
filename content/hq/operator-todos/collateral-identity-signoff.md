@@ -14,7 +14,7 @@ date: 2026-07-01
 
 1. ~~Founder card~~ **DECIDED 2026-07-02:** Ink, Indigo and Duo run as a
    trio. Reverse updated: direct-line line removed, QR to the site added.
-   (Direct line moved to the partner card's reverse.)
+   (Direct line moved to the founding venue card's reverse.)
 2. ~~Partner card~~ **DECIDED 2026-07-02:** Indigo + Numeral shortlisted,
    founder-contact reverse — proof both on stock, touch decides.
 3. ~~Café card~~ **DECIDED 2026-07-02:** Campaign.

@@ -23,8 +23,15 @@ S.3 Before/After
   [owner] Signal Studio — before: a file named final underscore FINAL v9 use this one. After: one owner, one date, per task.
   [unread] Signal Studio — before: you have 47 unread messages. After: the one thing due today.
 
-S.4 The Partner
-  [sp01] Signal Studio — Founding Limerick Partner number four, venue name placeholder. Specimen, not a real partner.
+S.4 The founding venue
+  [sp01] Signal Studio — Founding Limerick Venue number four, venue name placeholder. Specimen, not a real venue.
+  PENDING RE-AUTHORING, 2026-08-03. The alt text above states the ratified wording
+  (D-033). The four s4-founding-sp01 images do not yet: their pixels still read
+  "Founding Limerick Partner" and carry "Glen House" rather than the ratified
+  demonstration venue Glenmara House (D-012). The files were renamed from
+  s4-partner-sp01 on 2026-08-03; the artwork was not changed, because there is no
+  generator for these and re-authoring them is a design job. Do not publish S.4
+  until the images are re-authored.
 
 S.5 Founder Note
   [quote01] Quote from Ethan McNamara, founder of Signal Studio — Most of the projects in this country never get called one. We built the software those projects deserve.
