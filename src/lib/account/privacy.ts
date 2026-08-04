@@ -1,4 +1,4 @@
-import type { AccountSnapshot, MetricValue } from "./types";
+import type { AccountSnapshot, MetricValue, RateValue } from "./types";
 
 const PROHIBITED_PATTERNS = [
   /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i,
@@ -23,6 +23,28 @@ export function assertMetricHasNoHiddenValue(metric: MetricValue): void {
   }
 }
 
+/**
+ * A withheld rate must not smuggle its numbers out. This is the same rule as
+ * `assertMetricHasNoHiddenValue`, applied to the shape that carries two.
+ */
+export function assertRateHasNoHiddenValue(rate: RateValue): void {
+  if (rate.state === "withheld" || rate.state === "unavailable") {
+    const carrier = rate as { numerator?: unknown; denominator?: unknown };
+    if (carrier.numerator != null || carrier.denominator != null) {
+      throw new Error(
+        `RateValue.${rate.state} must not carry a hidden numerator or denominator`,
+      );
+    }
+  }
+}
+
+export function walkRateValues(
+  snapshot: AccountSnapshot,
+  visit: (rate: RateValue, path: string) => void,
+): void {
+  visit(snapshot.adoption.continuedAfter30Days, "adoption.continuedAfter30Days");
+}
+
 export function walkMetricValues(
   snapshot: AccountSnapshot,
   visit: (metric: MetricValue, path: string) => void,
@@ -39,7 +61,6 @@ export function walkMetricValues(
       ["adoption.redeemed", snapshot.adoption.redeemed],
       ["adoption.firstUsefulAction", snapshot.adoption.firstUsefulAction],
       ["adoption.activeRecently", snapshot.adoption.activeRecently],
-      ["adoption.continuedAfter30Days", snapshot.adoption.continuedAfter30Days],
       ["adoption.daysWithSponsoredUse", snapshot.adoption.daysWithSponsoredUse],
     ] as const
   ).forEach(([path, metric]) => visit(metric, path));
@@ -55,6 +76,14 @@ export function assertSnapshotPrivacy(snapshot: AccountSnapshot): string[] {
   walkMetricValues(snapshot, (metric, path) => {
     try {
       assertMetricHasNoHiddenValue(metric);
+    } catch (error) {
+      errors.push(`${path}: ${(error as Error).message}`);
+    }
+  });
+
+  walkRateValues(snapshot, (rate, path) => {
+    try {
+      assertRateHasNoHiddenValue(rate);
     } catch (error) {
       errors.push(`${path}: ${(error as Error).message}`);
     }

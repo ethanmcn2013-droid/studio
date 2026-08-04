@@ -41,6 +41,7 @@ const currentCommercialSources = [
   "docs/strategy/VENUE_FULFILMENT_RUNBOOK.md",
   "docs/strategy/VENUE_GTM_EXECUTION_PLAN.md",
   "docs/strategy/VENUE_OUTREACH_SEQUENCE.md",
+  "docs/strategy/VENUE_RENEWAL_AND_LAPSE_RUNBOOK.md",
   "docs/strategy/VENUE_SALES_PACK.md",
   "docs/strategy/WEDDING_VENUE_OPERATING_MODEL.md",
   "signal-growth/assets/year-one-asset-library.md",
@@ -273,10 +274,22 @@ forbidText(
   "eurArg",
   "the operator CLI must not accept an arbitrary price",
 );
+// Until 2026-08-03 this required the literal line `const founding = plan ===
+// "founding";`, because the CLI wrote the five ledger columns itself and that
+// line was where the rate lock got set. The CLI no longer writes the ledger: it
+// records through recordAnnualPrepayment, which sets the lock, writes the
+// append-only term row, writes the audit line and assigns the founding number
+// on cleared payment. Requiring the deleted line would have forced the weaker
+// version back, so the requirement now names the mechanism instead.
 requireText(
   "scripts/mark-venue-paid.ts",
-  'const founding = plan === "founding";',
-  "the founding plan must always record the rate lock",
+  "recordAnnualPrepayment",
+  "the operator CLI must record through the one guarded writer, which sets the rate lock and keeps the term history",
+);
+requireText(
+  "scripts/mark-venue-paid.ts",
+  "assigned on cleared payment",
+  "the CLI must report the founding number it assigned, because assignment on cleared payment is D-009 point 6",
 );
 requireText(
   "scripts/mark-venue-paid.ts",

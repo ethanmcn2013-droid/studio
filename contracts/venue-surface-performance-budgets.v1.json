@@ -1,0 +1,85 @@
+{
+  "schema": "signal-performance-budgets-contract/1",
+  "version": 1,
+  "repo": "studio",
+  "setOn": "2026-08-03",
+  "setBy": "E08.10",
+  "imageRoot": "public",
+  "note": "Budgets for the venue portal — the Signal Studio Account surface at /hq/account-review (D-015 Q4: the Account is the Venue Portal, one surface, two names) — and for the venue-facing marketing and collateral pages in this repo. The couple workspace, public artifact and Timeline image budgets live in the app repo's copy of this contract. Every ceiling is a measured value from a real production build on the date stated, and may only be lowered. Raising one is a founder decision, not an edit.",
+  "measured": {
+    "shared_runtime": {
+      "unit": "KB gzip",
+      "budget": 170,
+      "ceiling": 169,
+      "surfaces": ["venue_portal", "venue_marketing"],
+      "what": "Client JS that every App Router route loads before any route-specific code: build-manifest rootMainFiles plus polyfillFiles.",
+      "budgetBasis": "contracts/launch-budgets.v1.json public.firstPartyJsGzipKb = 170, carried over unchanged rather than reinvented.",
+      "ceilingBasis": "Measured 168.4 KB gzip on the 2026-08-03 production build of branch claude/wp07-engineering-studio. The target is met with 1.6 KB of headroom, which is not headroom. The ceiling is set at 169 so any further growth fails immediately."
+    },
+    "total_client_js": {
+      "unit": "KB gzip",
+      "budget": 1360,
+      "ceiling": 1365,
+      "surfaces": ["venue_portal", "venue_marketing"],
+      "what": "Every client chunk emitted under .next/static/chunks, gzipped.",
+      "budgetBasis": "No prior target existed anywhere in either repository. Set equal to the measured baseline so the number can only ratchet down. Choosing a real target is a founder decision and is recorded as an open question on E08.10.",
+      "ceilingBasis": "Measured 1360.0 KB gzip on the 2026-08-03 production build."
+    },
+    "largest_chunk": {
+      "unit": "KB gzip",
+      "budget": 133,
+      "ceiling": 133,
+      "surfaces": ["venue_portal", "venue_marketing"],
+      "what": "The single heaviest emitted client chunk.",
+      "budgetBasis": "No prior target existed. Set equal to the measured baseline.",
+      "ceilingBasis": "Measured 132.5 KB gzip on the 2026-08-03 production build."
+    },
+    "repo_images": {
+      "unit": "KB",
+      "budget": 200,
+      "ceiling": 657,
+      "surfaces": ["venue_marketing"],
+      "what": "The heaviest raster image checked into the public directory, uncompressed on disk.",
+      "budgetBasis": "200 KB is the same no-regression rule used in the app repo. This repository does not meet it.",
+      "ceilingBasis": "Measured 656.2 KB on 2026-08-03: public/brand/collateral/venue/venue-deck-preview.png, across 378 repository images. THE TARGET IS BREACHED BY 456 KB, and the offending asset is venue-facing. Recorded, not hidden — see evidence/E08.10-performance-budgets.md."
+    }
+  },
+  "unmeasured": [
+    {
+      "id": "lcp_p75_ms",
+      "budget": 2500,
+      "reason": "No RUM provider is wired. Verified 2026-08-03: neither repository has @vercel/speed-insights, @vercel/analytics, a web-vitals dependency or a useReportWebVitals call, and no CI workflow runs Lighthouse.",
+      "budgetSource": "contracts/launch-budgets.v1.json public.lcpP75Ms"
+    },
+    {
+      "id": "inp_p75_ms",
+      "budget": 200,
+      "reason": "Same as lcp_p75_ms. INP additionally requires real user interaction and cannot be produced by a synthetic run at all.",
+      "budgetSource": "contracts/launch-budgets.v1.json public.inpP75Ms"
+    },
+    {
+      "id": "cls_p75",
+      "budget": 0.1,
+      "reason": "Same as lcp_p75_ms.",
+      "budgetSource": "contracts/launch-budgets.v1.json public.clsP75"
+    },
+    {
+      "id": "server_p75_ms",
+      "budget": 800,
+      "reason": "Requires production traffic. There is none: no founding venue has been contacted.",
+      "budgetSource": "contracts/launch-budgets.v1.json authenticated.serverP75Ms"
+    },
+    {
+      "id": "per_route_first_load_js",
+      "budget": null,
+      "reason": "Next 16 with Turbopack no longer prints the Size and First Load JS columns in the build route table, and emits no app-build-manifest.json. Per-route client weight cannot be derived from build output. shared_runtime is the measurable floor that every route pays.",
+      "budgetSource": null
+    },
+    {
+      "id": "queries_per_page",
+      "budget": 8,
+      "reason": "contracts/launch-budgets.v1.json sets 8 queries per page. Nothing counts queries per page in either repository: there is no query-count instrument, no server timing header and no test that asserts a query budget.",
+      "budgetSource": "contracts/launch-budgets.v1.json data.queriesPerPage"
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 "use client";
 
-import { coverageTone, formatMetricValue } from "@/lib/account/format";
+import {
+  coverageTone,
+  formatMetricValue,
+  formatRateValue,
+} from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
@@ -12,7 +16,6 @@ const JOURNEY = [
   ["Redeemed", "redeemed"],
   ["First useful action", "firstUsefulAction"],
   ["Active recently", "activeRecently"],
-  ["Continued after 30 days", "continuedAfter30Days"],
 ] as const;
 
 export function AccountBriefOverview({
@@ -66,6 +69,13 @@ export function AccountBriefOverview({
               <small>{label}</small>
             </li>
           ))}
+          <li>
+            <span>{String(JOURNEY.length + 1).padStart(2, "0")}</span>
+            <strong>
+              {formatRateValue(snapshot.adoption.continuedAfter30Days)}
+            </strong>
+            <small>Continued after 30 days</small>
+          </li>
         </ol>
       </section>
 

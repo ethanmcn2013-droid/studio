@@ -109,17 +109,62 @@ test("the eligible count takes the largest day, not the average", () => {
 });
 
 test("a trailing window counts active workspaces exactly from lifecycle", () => {
+  // Four active out of an eligible ten: clear of both edges, so it publishes.
   const value = activeRecently(
     inputs({
       lifecycle: [
         life({ workspaceIdHash: "w1", lastActionLocalDate: "2026-06-04" }),
         life({ workspaceIdHash: "w2", lastActionLocalDate: "2026-06-05" }),
-        life({ workspaceIdHash: "w3", lastActionLocalDate: "2026-05-20" }),
+        life({ workspaceIdHash: "w3", lastActionLocalDate: "2026-06-03" }),
+        life({ workspaceIdHash: "w4", lastActionLocalDate: "2026-06-02" }),
+        life({ workspaceIdHash: "w5", lastActionLocalDate: "2026-05-20" }),
       ],
     }),
   );
   assert.equal(value.state, "exact");
-  if (value.state === "exact") assert.equal(value.value, 2);
+  if (value.state === "exact") assert.equal(value.value, 4);
+});
+
+test("R-027: two active workspaces in a cohort of ten are withheld", () => {
+  // This is the shipped defect. It returned { state: "exact", value: 2 }.
+  const value = activeRecently(
+    inputs({
+      lifecycle: [
+        life({ workspaceIdHash: "w1", lastActionLocalDate: "2026-06-04" }),
+        life({ workspaceIdHash: "w2", lastActionLocalDate: "2026-06-05" }),
+      ],
+    }),
+  );
+  assert.equal(value.state, "withheld");
+});
+
+test("R-027: nine active workspaces in a cohort of ten are withheld too", () => {
+  const value = activeRecently(
+    inputs({
+      lifecycle: Array.from({ length: 9 }, (_, i) =>
+        life({ workspaceIdHash: "w" + i, lastActionLocalDate: "2026-06-04" }),
+      ),
+    }),
+  );
+  assert.equal(value.state, "withheld", "the one who did not act is identifiable");
+});
+
+test("R-027: a closed historical lower bound runs the same two-sided test", () => {
+  // This path never touched a threshold at all before the fix.
+  const small = activeRecently(
+    inputs({
+      window: { ...WINDOW, trailing: false },
+      rows: fullWindowRows({ activeWorkspaces: 2 }),
+    }),
+  );
+  assert.equal(small.state, "withheld");
+  const high = activeRecently(
+    inputs({
+      window: { ...WINDOW, trailing: false },
+      rows: fullWindowRows({ activeWorkspaces: 9 }),
+    }),
+  );
+  assert.equal(high.state, "withheld", "at least 9 of 10 names the tenth");
 });
 
 test("a closed historical period can only give a lower bound", () => {
@@ -134,12 +179,26 @@ test("first useful action counts workspaces whose first day falls inside the win
     inputs({
       lifecycle: [
         life({ workspaceIdHash: "w1", firstActionLocalDate: "2026-06-02" }),
-        life({ workspaceIdHash: "w2", firstActionLocalDate: "2026-05-30" }),
+        life({ workspaceIdHash: "w2", firstActionLocalDate: "2026-06-03" }),
+        life({ workspaceIdHash: "w3", firstActionLocalDate: "2026-06-04" }),
+        life({ workspaceIdHash: "w4", firstActionLocalDate: "2026-05-30" }),
       ],
     }),
   );
   assert.equal(value.state, "exact");
-  if (value.state === "exact") assert.equal(value.value, 1);
+  if (value.state === "exact") assert.equal(value.value, 3);
+});
+
+test("R-027: a single first useful action in a cohort of ten is withheld", () => {
+  const value = firstUsefulAction(
+    inputs({
+      lifecycle: [
+        life({ workspaceIdHash: "w1", firstActionLocalDate: "2026-06-02" }),
+        life({ workspaceIdHash: "w2", firstActionLocalDate: "2026-05-30" }),
+      ],
+    }),
+  );
+  assert.equal(value.state, "withheld");
 });
 
 test("an open day-30 cohort is unavailable, not a rate", () => {
@@ -166,11 +225,29 @@ test("a sealed cohort of five reports returned over eligible", () => {
     ),
   ];
   const value = continuedAfter30Days(inputs({ lifecycle }));
-  assert.equal(value.state, "exact");
-  if (value.state === "exact") {
-    assert.equal(value.value, 3);
+  assert.equal(value.state, "rate", "continuation is a rate, not a count");
+  if (value.state === "rate") {
+    assert.equal(value.numerator, 3);
     assert.equal(value.denominator, 5);
   }
+});
+
+test("R-028: continuation is a rate type, so it cannot be read as a count", () => {
+  const lifecycle = Array.from({ length: 6 }, (_, i) =>
+    life({
+      workspaceIdHash: "r" + i,
+      day30State: i < 4 ? "returned" : "not_returned",
+      day30SealedAt: 1,
+    }),
+  );
+  const value = continuedAfter30Days(inputs({ lifecycle }));
+  assert.equal(value.state, "rate");
+  // There is no `value` field to pick up and divide by something else.
+  assert.deepEqual(Object.keys(value).sort(), [
+    "denominator",
+    "numerator",
+    "state",
+  ]);
 });
 
 test("an unsealed or indeterminate row is excluded from both sides", () => {
@@ -182,8 +259,8 @@ test("an unsealed or indeterminate row is excluded from both sides", () => {
     life({ workspaceIdHash: "lost", day30State: "indeterminate", day30SealedAt: 1 }),
   ];
   const value = continuedAfter30Days(inputs({ lifecycle }));
-  assert.equal(value.state, "exact");
-  if (value.state === "exact") assert.equal(value.denominator, 5);
+  assert.equal(value.state, "rate");
+  if (value.state === "rate") assert.equal(value.denominator, 5);
 });
 
 test("an uninstrumented product is unavailable, never zero reach", () => {
@@ -205,13 +282,54 @@ test("a covered product reports reach from lifecycle on a trailing window", () =
       lifecycle: [
         life({ workspaceIdHash: "w1", productLastActionLocalDate: { tasks: "2026-06-04" } }),
         life({ workspaceIdHash: "w2", productLastActionLocalDate: { tasks: "2026-06-02" } }),
-        life({ workspaceIdHash: "w3", productLastActionLocalDate: { notes: "2026-06-03" } }),
+        life({ workspaceIdHash: "w3", productLastActionLocalDate: { tasks: "2026-06-02" } }),
+        life({ workspaceIdHash: "w4", productLastActionLocalDate: { tasks: "2026-06-01" } }),
+        life({ workspaceIdHash: "w5", productLastActionLocalDate: { notes: "2026-06-03" } }),
       ],
     }),
   );
   const tasks = reach.find((r) => r.product === "Tasks");
   assert.equal(tasks?.workspacesReached.state, "exact");
-  if (tasks?.workspacesReached.state === "exact") assert.equal(tasks.workspacesReached.value, 2);
+  if (tasks?.workspacesReached.state === "exact") assert.equal(tasks.workspacesReached.value, 4);
+});
+
+test("R-027: a product reached by two workspaces out of ten is withheld", () => {
+  const reach = productReach(
+    inputs({
+      lifecycle: [
+        life({ workspaceIdHash: "w1", productLastActionLocalDate: { tasks: "2026-06-04" } }),
+        life({ workspaceIdHash: "w2", productLastActionLocalDate: { tasks: "2026-06-02" } }),
+      ],
+    }),
+  );
+  for (const entry of reach) {
+    assert.equal(
+      entry.workspacesReached.state,
+      "withheld",
+      entry.product + " reached too few workspaces to describe",
+    );
+  }
+});
+
+test("R-027: a historical product lower bound runs the two-sided test", () => {
+  const rows = fullWindowRows({
+    perProduct: {
+      notes: { actions: 3, workspaces: 2 },
+      tasks: { actions: 6, workspaces: 4 },
+      timeline: { actions: 2, workspaces: 9 },
+      signal: { actions: 1, workspaces: 1 },
+    },
+  });
+  const reach = productReach(
+    inputs({ rows, window: { ...WINDOW, trailing: false } }),
+  );
+  const byProduct = Object.fromEntries(
+    reach.map((r) => [r.product, r.workspacesReached.state]),
+  );
+  assert.equal(byProduct.Notes, "withheld", "2 of 10");
+  assert.equal(byProduct.Signal, "withheld", "1 of 10");
+  assert.equal(byProduct.Timeline, "withheld", "9 of 10 names the tenth");
+  assert.equal(byProduct.Tasks, "lower_bound", "4 of 10 is clear of both edges");
 });
 
 test("every product reach is suppressed for a small group", () => {
@@ -248,6 +366,7 @@ test("no metric in any state ever renders as an exact zero for absent data", () 
     ...productReach(empty).map((r) => r.workspacesReached),
   ]) {
     assert.notEqual(value.state, "exact", "absent data must never present as exact");
+    assert.notEqual(value.state, "rate", "absent data must never present as a rate");
     assert.equal(value.state, "unavailable");
   }
 });

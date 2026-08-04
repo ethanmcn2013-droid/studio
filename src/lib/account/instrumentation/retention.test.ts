@@ -62,7 +62,8 @@ test("a closed cohort under five is withheld, not shown", () => {
   const cohort = Array.from({ length: 4 }, (_, i) => activation(`a${i}`, [30]));
   const result = computeRetention(cohort, "day30", LONG_AFTER);
   assert.equal(result.state, "withheld");
-  if (result.state === "withheld") assert.equal(result.eligible, 4);
+  // The withheld value no longer reports the size of the cohort it withheld.
+  assert.deepEqual(Object.keys(result).sort(), ["reason", "state"]);
 });
 
 test("five closed activations produce a rate with its denominator", () => {
@@ -74,11 +75,11 @@ test("five closed activations produce a rate with its denominator", () => {
     activation("a5", []),
   ];
   const result = computeRetention(cohort, "day30", LONG_AFTER);
-  assert.equal(result.state, "value");
-  if (result.state === "value") {
-    assert.equal(result.returned, 3);
-    assert.equal(result.eligible, 5);
-    assert.equal(result.rate, 0.6);
+  assert.equal(result.state, "rate");
+  if (result.state === "rate") {
+    assert.equal(result.numerator, 3);
+    assert.equal(result.denominator, 5);
+    assert.equal(result.numerator / result.denominator, 0.6);
   }
 });
 
@@ -97,23 +98,31 @@ test("only closed activations enter the denominator", () => {
     recent,
   ];
   const result = computeRetention(cohort, "day30", LONG_AFTER);
-  assert.equal(result.state, "value");
+  assert.equal(result.state, "rate");
   // The recent activation has not had its chance yet, so it must not dilute the rate.
-  if (result.state === "value") {
-    assert.equal(result.eligible, 5);
-    assert.equal(result.rate, 1);
+  if (result.state === "rate") {
+    assert.equal(result.denominator, 5);
+    assert.equal(result.numerator / result.denominator, 1);
   }
 });
 
 test("nobody returning is a real zero rate, not a withheld one", () => {
   const cohort = Array.from({ length: 6 }, (_, i) => activation(`a${i}`, []));
   const result = computeRetention(cohort, "day30", LONG_AFTER);
-  assert.equal(result.state, "value");
-  if (result.state === "value") {
-    assert.equal(result.returned, 0);
-    assert.equal(result.rate, 0);
-    assert.equal(result.eligible, 6);
+  assert.equal(result.state, "rate");
+  if (result.state === "rate") {
+    assert.equal(result.numerator, 0);
+    assert.equal(result.denominator, 6);
   }
+});
+
+test("R-028: retention returns the one shared rate type, floor included", () => {
+  // It used to carry a rate shape of its own. Two rate types is how one of
+  // them ends up without a floor, which is what R-028 was.
+  const four = Array.from({ length: 4 }, (_, i) => activation(`a${i}`, [30]));
+  assert.equal(computeRetention(four, "day30", LONG_AFTER).state, "withheld");
+  const five = Array.from({ length: 5 }, (_, i) => activation(`a${i}`, [30]));
+  assert.equal(computeRetention(five, "day30", LONG_AFTER).state, "rate");
 });
 
 test("an empty cohort is unavailable", () => {

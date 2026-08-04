@@ -8,7 +8,7 @@ Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.issued,exa
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,access.redeemed,exact,18,,codes,account-metrics.v2,
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.first_useful_action,exact,15,,workspaces,account-metrics.v2,
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.active_recently,exact,11,,workspaces,account-metrics.v2,
-Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.continued_after_30_days,exact,9,12,workspaces,account-metrics.v2,
+Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.continued_after_30_days,rate,9,12,workspaces,account-metrics.v2,
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,adoption.days_with_sponsored_use,exact,21,,days,account-metrics.v2,
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.notes,exact,8,,workspaces,account-metrics.v2,
 Glenmara House,venue,2026-06-25,2026-07-24,complete,2026-07-24,product_reach.tasks,exact,10,,workspaces,account-metrics.v2,

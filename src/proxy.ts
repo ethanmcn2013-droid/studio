@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import {
-  createHqAccessToken,
   getHqPassword,
   HQ_ACCESS_COOKIE,
+  verifyHqToken,
 } from "@/lib/hq/auth";
 import {
   isVenueEditionCommercialPath,
@@ -31,7 +31,10 @@ async function confidentialBrandGate(
   const password = getHqPassword();
   const accessCookie = request.cookies.get(HQ_ACCESS_COOKIE)?.value;
 
-  if (password && accessCookie === (await createHqAccessToken(password))) {
+  // E08.05: verifyHqToken, not string equality against a derived value.
+  // The v2 token carries its own issue time, so it is not a constant the
+  // gate can recompute and compare — and that is the point.
+  if (password && accessCookie && (await verifyHqToken(accessCookie))) {
     return NextResponse.next();
   }
 
@@ -52,7 +55,8 @@ async function hqGate(request: NextRequest): Promise<NextResponse | null> {
   const password = getHqPassword();
   const accessCookie = request.cookies.get(HQ_ACCESS_COOKIE)?.value;
 
-  if (password && accessCookie === (await createHqAccessToken(password))) {
+  // E08.05: see confidentialBrandGate. Same change, same reason.
+  if (password && accessCookie && (await verifyHqToken(accessCookie))) {
     return NextResponse.next();
   }
 

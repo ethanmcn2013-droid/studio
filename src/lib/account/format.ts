@@ -1,4 +1,4 @@
-import type { MetricValue } from "./types";
+import type { MetricValue, RateValue } from "./types";
 
 export function formatMetricValue(metric: MetricValue): string {
   switch (metric.state) {
@@ -41,34 +41,43 @@ export function metricNumericOrNull(metric: MetricValue): number | null {
   return null;
 }
 
-export function metricRateLabel(
-  numerator: MetricValue,
-  denominator: MetricValue,
-): string {
-  if (
-    numerator.state !== "exact" ||
-    denominator.state !== "exact" ||
-    denominator.value === 0
-  ) {
-    // A rate against an unlimited denominator has no meaning. Saying so beats
-    // printing a percentage of infinity or, worse, of zero.
-    if (numerator.state === "unlimited" || denominator.state === "unlimited") {
-      return "Not applicable";
-    }
-    if (numerator.state === "withheld" || denominator.state === "withheld") {
+/**
+ * The only way to render a rate.
+ *
+ * There is deliberately no function here that takes two metrics and divides
+ * them. That was R-028: `metricRateLabel(numerator, denominator)` accepted any
+ * two values from anywhere and printed a percentage with no floor, so a cohort
+ * of two rendered as "50%". A rate now arrives already suppressed or already
+ * publishable, and this function only decides how to say it.
+ */
+export function formatRateValue(rate: RateValue): string {
+  switch (rate.state) {
+    case "rate":
+      return `${Math.round((rate.numerator / rate.denominator) * 100)}%`;
+    case "withheld":
       return "Withheld";
-    }
-    if (
-      numerator.state === "unavailable" ||
-      denominator.state === "unavailable" ||
-      numerator.state === "lower_bound" ||
-      denominator.state === "lower_bound"
-    ) {
-      return "Not available";
-    }
-    return "Not available";
+    case "unavailable":
+      return "Unavailable";
   }
-  return `${Math.round((numerator.value / denominator.value) * 100)}%`;
+}
+
+export function formatRateAccessibleLabel(
+  rate: RateValue,
+  label: string,
+): string {
+  switch (rate.state) {
+    case "rate":
+      return `${label}: ${formatRateValue(rate)}, ${rate.numerator} of ${rate.denominator}`;
+    case "withheld":
+      return `${label}: withheld for small-group privacy protection`;
+    case "unavailable":
+      return `${label}: unavailable. ${rate.reason}`;
+  }
+}
+
+/** Numeric value for charts/exports — never invents zero for a withheld rate. */
+export function rateNumericOrNull(rate: RateValue): number | null {
+  return rate.state === "rate" ? rate.numerator / rate.denominator : null;
 }
 
 export function coverageTone(

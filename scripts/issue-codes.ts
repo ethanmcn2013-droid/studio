@@ -2,26 +2,21 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 config({ path: ".env" });
 
-import { randomBytes, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { createClient } from "@libsql/client";
 import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "../src/lib/venue-edition";
+import { generateInvitationCode } from "../src/lib/invitation-code";
 
 function fail(msg: string): never {
   console.error(msg);
   process.exit(1);
 }
 
-// Per-couple codes: short, unambiguous, easy to read aloud. No 0/O/1/I/L.
-const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-
-function generateCode(prefix: string, length = 5): string {
-  const bytes = randomBytes(length);
-  let suffix = "";
-  for (let i = 0; i < length; i++) {
-    suffix += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length];
-  }
-  return `${prefix.toUpperCase()}-${suffix}`;
-}
+// E08.06. The local five-character generator that used to live here is gone.
+// It produced 31^5 ≈ 2^24.8 of guessing surface behind a public venue slug,
+// and it drew characters with `randomBytes[i] % 31`, which favoured A-H.
+// `generateInvitationCode` is now the only mint, for this script and for the
+// HQ console, and it is tested in src/lib/invitation-code.test.ts.
 
 /**
  * Tier maps from Venue-Editions space → Tasks's entitlement-tier space.
@@ -162,7 +157,7 @@ async function main() {
   const rows = Array.from({ length: count }, () => ({
     id: randomUUID(),
     sponsorId: sponsor.id,
-    code: generateCode(prefix),
+    code: generateInvitationCode(prefix),
     sourceType: resolvedSource,
     tier: resolvedTier,
     durationDays,

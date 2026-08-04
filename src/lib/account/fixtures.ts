@@ -1,8 +1,10 @@
 import { EDITION_VOCABULARY } from "./vocabulary";
+import { presentRate } from "./instrumentation/suppression";
 import type {
   AccountSnapshot,
   CoverageState,
   MetricValue,
+  RateValue,
 } from "./types";
 
 const DEFINITION_VERSION = "account-metrics.v2";
@@ -21,6 +23,23 @@ const lowerBound = (value: number, denominator?: number): MetricValue =>
 const withheld: MetricValue = { state: "withheld", reason: "small_group" };
 
 const unavailable = (reason: string): MetricValue => ({
+  state: "unavailable",
+  reason,
+});
+
+const RATE_ABSENT_REASON = "No closed day-30 cohort for this period";
+
+/**
+ * Fixtures go through the projector's rule like everything else. A fixture
+ * cannot hand-write a rate that breaks the five-workspace floor, because
+ * `presentRate` is the only thing that can make one.
+ */
+const rate = (numerator: number, denominator: number): RateValue =>
+  presentRate(numerator, denominator, RATE_ABSENT_REASON);
+
+const rateWithheld: RateValue = { state: "withheld", reason: "small_group" };
+
+const rateUnavailable = (reason: string): RateValue => ({
   state: "unavailable",
   reason,
 });
@@ -168,7 +187,7 @@ export const VENUE_COMPLETE: AccountSnapshot = {
     redeemed: exact(18),
     firstUsefulAction: exact(15),
     activeRecently: exact(11),
-    continuedAfter30Days: exact(9, 12),
+    continuedAfter30Days: rate(9, 12),
     daysWithSponsoredUse: exact(21),
   },
   productReach: [
@@ -223,7 +242,7 @@ export const VENUE_COMPLETE: AccountSnapshot = {
     body: "This account shows aggregate sponsored use only. Private work is never included.",
     postureLabel: venueBase.privacyPosture,
     withheldRule:
-      "Behavioural values are withheld below three eligible sponsored workspaces.",
+      "Behavioural values are withheld when the group is too small to describe, and when a value would leave too few workspaces undescribed.",
     neverIncludes: [
       "names or emails of recipients",
       "notes, task text, or comments",
@@ -265,7 +284,7 @@ export const VENUE_PARTIAL: AccountSnapshot = {
     redeemed: exact(18),
     firstUsefulAction: lowerBound(13),
     activeRecently: lowerBound(9),
-    continuedAfter30Days: withheld,
+    continuedAfter30Days: rateWithheld,
     daysWithSponsoredUse: lowerBound(18),
   },
   productReach: [
@@ -302,7 +321,7 @@ export const VENUE_PARTIAL: AccountSnapshot = {
 };
 
 /**
- * Suppressed: fewer than three eligible workspaces.
+ * Suppressed: too few eligible workspaces to describe behaviour.
  * Access counts stay coherent with a small redeemed population —
  * never a large redeemed total with a tiny eligible cohort.
  */
@@ -408,7 +427,7 @@ export const VENUE_SUPPRESSED: AccountSnapshot = {
     redeemed: exact(2),
     firstUsefulAction: withheld,
     activeRecently: withheld,
-    continuedAfter30Days: withheld,
+    continuedAfter30Days: rateWithheld,
     daysWithSponsoredUse: withheld,
   },
   productReach: [
@@ -449,10 +468,10 @@ export const VENUE_SUPPRESSED: AccountSnapshot = {
   members: sharedMembers.slice(0, 2),
   privacyReceipt: {
     headline: "Prove the benefit without exposing the work.",
-    body: "Access totals remain visible. Behavioural use is withheld while fewer than three eligible sponsored workspaces exist.",
+    body: "Access totals remain visible. Behavioural use is withheld while the eligible group is too small to describe.",
     postureLabel: venueBase.privacyPosture,
     withheldRule:
-      "Behavioural values are withheld below three eligible sponsored workspaces.",
+      "Behavioural values are withheld when the group is too small to describe, and when a value would leave too few workspaces undescribed.",
     neverIncludes: [
       "names or emails of recipients",
       "notes, task text, or comments",
@@ -465,7 +484,7 @@ export const VENUE_SUPPRESSED: AccountSnapshot = {
     id: "send-remaining",
     label: "Send the remaining available access",
     detail:
-      "Four codes remain available. Behavioural reporting unlocks once three eligible workspaces exist.",
+      "Four codes remain available. Behavioural reporting begins once enough sponsored workspaces are active.",
     target: "access",
   },
   brandLines: sharedBrand,
@@ -498,7 +517,7 @@ export const VENUE_UNAVAILABLE: AccountSnapshot = {
     activeRecently: unavailable(
       "Sponsored-use instrumentation not yet available for this account",
     ),
-    continuedAfter30Days: unavailable(
+    continuedAfter30Days: rateUnavailable(
       "Sponsored-use instrumentation not yet available for this account",
     ),
     daysWithSponsoredUse: unavailable(

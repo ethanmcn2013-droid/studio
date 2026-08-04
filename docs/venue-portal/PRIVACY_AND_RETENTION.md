@@ -99,8 +99,17 @@ change updates that decision first.
 ## Small-group protection
 
 - Behavioural counts are withheld below 3 eligible sponsored workspaces.
+- **The behavioural floor is two-sided.** A count is also withheld when fewer
+  than 3 eligible workspaces fall outside it. A venue knows which couples it
+  invited, so "1 of 40" describes one identifiable couple and "39 of 40" names
+  the one who did not. Both are withheld. Recorded as R-027 and fixed in
+  `src/lib/account/instrumentation/suppression.ts`.
+- The withheld state never distinguishes "too low" from "too high". A surface
+  that renders "fewer than 3" has made the disclosure the floor prevents.
 - Rates, medians, and retention cohorts are withheld below 5 eligible
-  activations.
+  activations. A rate is a single value carrying its own numerator and
+  denominator (`RateValue`); nothing can assemble a percentage from two
+  separate metrics. Recorded as R-028.
 - Suppression applies to screen, CSV, PDF, API, email, and support view-as.
 - The response contains a suppression reason, never the hidden number.
 - Commercial access counts such as allotment and redemptions remain visible

@@ -23,7 +23,8 @@
  * would let one recipient with two workspaces read as two.
  */
 
-import { RATE_MIN_WORKSPACES } from "./suppression";
+import type { RateValue } from "../types";
+import { presentRate } from "./suppression";
 
 export const RETENTION_WINDOWS = {
   day7: { earliest: 5, latest: 9 },
@@ -43,10 +44,15 @@ export type ActivationUsage = {
   actionDays: readonly number[];
 };
 
-export type RetentionResult =
-  | { state: "value"; returned: number; eligible: number; rate: number }
-  | { state: "withheld"; eligible: number }
-  | { state: "unavailable"; reason: string };
+/**
+ * Retention is a rate, so it is the shared `RateValue` and not a shape of its
+ * own. Two rate types is how one of them ends up without a floor.
+ *
+ * The withheld variant no longer carries `eligible`. A withheld value that
+ * reports the size of the cohort it withheld is still telling the reader
+ * something about a group too small to describe.
+ */
+export type RetentionResult = RateValue;
 
 function wholeDaysBetween(from: number, to: number): number {
   return Math.floor((to - from) / DAY_MS);
@@ -83,22 +89,12 @@ export function computeRetention(
   horizon: RetentionHorizon,
   nowMs: number,
 ): RetentionResult {
+  const { latest } = RETENTION_WINDOWS[horizon];
+  const absentReason = `No sponsored recipient has reached day ${latest} yet`;
   const closed = activations.filter((a) => isCohortClosed(a, horizon, nowMs));
   if (closed.length === 0) {
-    const { latest } = RETENTION_WINDOWS[horizon];
-    return {
-      state: "unavailable",
-      reason: `No sponsored recipient has reached day ${latest} yet`,
-    };
-  }
-  if (closed.length < RATE_MIN_WORKSPACES) {
-    return { state: "withheld", eligible: closed.length };
+    return presentRate(null, null, absentReason);
   }
   const returned = closed.filter((a) => didReturnInWindow(a, horizon)).length;
-  return {
-    state: "value",
-    returned,
-    eligible: closed.length,
-    rate: returned / closed.length,
-  };
+  return presentRate(returned, closed.length, absentReason);
 }

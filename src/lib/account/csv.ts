@@ -1,4 +1,4 @@
-import type { AccountSnapshot, MetricValue } from "./types";
+import type { AccountSnapshot, MetricValue, RateValue } from "./types";
 
 type CsvRow = {
   account_name: string;
@@ -79,6 +79,41 @@ function metricFields(metric: MetricValue): Pick<
   }
 }
 
+/**
+ * A rate exports as one row carrying both its numbers.
+ *
+ * There is no path here that writes a numerator without its denominator, which
+ * is what stopped a spreadsheet becoming the place the floor was forgotten.
+ */
+function rateFields(rate: RateValue): Pick<
+  CsvRow,
+  "value_state" | "value" | "denominator" | "withheld_reason"
+> {
+  switch (rate.state) {
+    case "rate":
+      return {
+        value_state: "rate",
+        value: String(rate.numerator),
+        denominator: String(rate.denominator),
+        withheld_reason: "",
+      };
+    case "withheld":
+      return {
+        value_state: "withheld",
+        value: "",
+        denominator: "",
+        withheld_reason: rate.reason,
+      };
+    case "unavailable":
+      return {
+        value_state: "unavailable",
+        value: "",
+        denominator: "",
+        withheld_reason: rate.reason,
+      };
+  }
+}
+
 function row(
   snapshot: AccountSnapshot,
   metricKey: string,
@@ -96,6 +131,26 @@ function row(
     unit,
     definition_version: snapshot.definitionVersion,
     ...metricFields(metric),
+  };
+}
+
+function rateRow(
+  snapshot: AccountSnapshot,
+  metricKey: string,
+  rate: RateValue,
+  unit: string,
+): CsvRow {
+  return {
+    account_name: snapshot.account.name,
+    edition: snapshot.edition,
+    period_start: snapshot.coverage.periodStart,
+    period_end: snapshot.coverage.periodEnd,
+    coverage_state: snapshot.coverage.state,
+    data_through: snapshot.coverage.dataThrough,
+    metric_key: metricKey,
+    unit,
+    definition_version: snapshot.definitionVersion,
+    ...rateFields(rate),
   };
 }
 
@@ -117,7 +172,7 @@ export function snapshotToCsvRows(snapshot: AccountSnapshot): CsvRow[] {
       snapshot.adoption.activeRecently,
       "workspaces",
     ),
-    row(
+    rateRow(
       snapshot,
       "adoption.continued_after_30_days",
       snapshot.adoption.continuedAfter30Days,

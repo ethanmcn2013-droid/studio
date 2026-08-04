@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMetricValue } from "@/lib/account/format";
+import { formatMetricValue, formatRateValue } from "@/lib/account/format";
 import { getEditionProof } from "@/lib/account/fixtures";
 import { AccountIcon } from "../components/icons";
 import styles from "./edition-proof.module.css";
@@ -12,7 +12,6 @@ const JOURNEY = [
   ["Redeemed", "redeemed"],
   ["First useful action", "firstUsefulAction"],
   ["Active recently", "activeRecently"],
-  ["Continued after 30 days", "continuedAfter30Days"],
 ] as const;
 
 export function EditionProof({
@@ -61,6 +60,13 @@ export function EditionProof({
               <small>{label}</small>
             </li>
           ))}
+          <li>
+            <span>{String(JOURNEY.length + 1).padStart(2, "0")}</span>
+            <strong>
+              {formatRateValue(proof.adoption.continuedAfter30Days)}
+            </strong>
+            <small>Continued after 30 days</small>
+          </li>
         </ol>
       </section>
 

@@ -1,0 +1,93 @@
+{
+  "schema": "signal-journey-coverage/1",
+  "version": 1,
+  "repo": "studio",
+  "setOn": "2026-08-03",
+  "setBy": "E08.11",
+  "entryScripts": ["pretest", "test"],
+  "note": "The venue-side segments of the sponsored journey: a venue is invited, pays, is given its founding number, issues an invitation, and later reads what it is permitted to see. The couple-side segments — redemption, planning, publishing, tenant isolation — live in the app repository's copy of this manifest. Every segment is either covered by named test files that `pnpm test` actually runs, or declared uncovered with a reason and an owner. A named file that exists but is not run by `pnpm test` fails this check.",
+  "segments": [
+    {
+      "id": "commercial_terms_are_one_number",
+      "what": "EUR 1,500 standard and EUR 1,000 founding, both VAT-inclusive per D-021, resolve from one place and cannot drift from the machine contract.",
+      "coveredBy": [
+        "src/lib/venue-edition.test.ts",
+        "src/lib/commercial-terms.test.ts",
+        "src/lib/venue-money.test.ts"
+      ]
+    },
+    {
+      "id": "venue_pays_and_is_recorded",
+      "what": "A prepaid annual term is recorded with its window, the amount actually received and the plan it was charged under, and the founding price cannot be written against a standard plan or the reverse.",
+      "coveredBy": [
+        "src/lib/venue-billing.test.ts",
+        "src/lib/entitlements-db/venue-billing.test.ts",
+        "scripts/check-entitlements-integrity.test.mjs"
+      ],
+      "openRisk": "There is no payment capture path for a venue. Venue money does not touch Stripe. These tests cover the recording of a payment received out of band, not the taking of one."
+    },
+    {
+      "id": "founding_number_is_unique_and_earned",
+      "what": "Numbers 01/25 to 25/25 are assigned on cleared payment, are unique at the database index level, and are withdrawn rather than reused on reversal.",
+      "coveredBy": [
+        "src/lib/venue-founding-number.test.ts",
+        "src/lib/entitlements-db/founding-numbers.test.ts"
+      ]
+    },
+    {
+      "id": "venue_issues_invitation",
+      "what": "A venue with a current licence can mint a couple invitation, and the mint refuses what the commercial terms forbid.",
+      "coveredBy": [
+        "src/lib/entitlements-db/codes.test.ts",
+        "src/lib/entitlements-db/sponsorship-policy.test.ts",
+        "src/lib/venue-allotment.test.ts"
+      ]
+    },
+    {
+      "id": "couple_term_survives_everything",
+      "what": "D-022's term — max(redemption + 548 days, wedding date + 90 days) — is computed one way, extends on postponement and never shortens; and a lapsed venue licence stops new issuance only, leaving every redeemed couple's access untouched.",
+      "coveredBy": [
+        "src/lib/venue-lifecycle.test.ts",
+        "src/lib/venue-edition-term.vectors.test.ts"
+      ]
+    },
+    {
+      "id": "venue_sees_permitted_metrics_only",
+      "what": "Every venue-facing number passes a two-sided small-cell floor, every rate carries its own denominator and is withheld below five, and the live venue snapshot exposes no couple identity.",
+      "coveredBy": [
+        "src/lib/account/instrumentation/suppression.test.ts",
+        "src/lib/account/instrumentation/daily-metrics.test.ts",
+        "src/lib/account/live/project-venue-access.test.ts",
+        "src/lib/account/live/project-venue-usage.test.ts",
+        "src/lib/account/csv.test.ts"
+      ],
+      "openRisk": "R-029 is open: these floors are computed against a population the attribution join may be counting wrongly. The floor is correct; what it is a floor over is not yet settled."
+    },
+    {
+      "id": "hq_and_venue_roles",
+      "what": "The Signal HQ guard and the venue capability matrix behave as written.",
+      "coveredBy": [
+        "src/lib/hq/auth.test.ts",
+        "src/lib/hq/hq-authorization.test.mjs",
+        "src/lib/account/roles.test.ts"
+      ],
+      "openRisk": "R-043 is open and this is the least-built segment of the journey. There is no venue-authenticated route anywhere: the capability matrix governs a review fixture, sponsor_members has no implementation, and one shared password opens every Signal HQ room. Coverage here proves the code that exists, which is not the same as the control being in place."
+    },
+    {
+      "id": "renewal_and_lapse_are_operated",
+      "what": "A renewal falls due, a notice goes out before any charge, a failed payment moves the venue to a named state with a grace window, and lapse removes venue branding within 24 hours.",
+      "uncovered": {
+        "reason": "There is nothing to test. No invoice is generated, no renewal notice is sent — the renewal-upcoming and payment-failed email templates are written, registered and exercised by the render test, but studio has no sender at all — and no dunning or grace transition exists for a venue. The lifecycle invariant that lapse never shortens couple access IS covered, under couple_term_survives_everything; the mechanics around it are not built. A test here would be a test of an intention.",
+        "owner": "E08.03, Group A. Whether manual invoicing is the intended launch process for the Founding 25 is an open founder question."
+      }
+    },
+    {
+      "id": "browser_responsive_device",
+      "what": "The venue-facing surfaces driven through a real browser, at real breakpoints, on a real device profile.",
+      "uncovered": {
+        "reason": "No browser test covers the venue path. The Playwright work in this repository is the experience-quality capture pilot, which runs 14 surfaces for evidence capture and is not part of `pnpm test`. I-014 records that the capture plan cannot reach `complete` coverage for any surface, piloted or not, which is a structural gap in the Experience Quality OS rather than a chore anyone skipped.",
+        "owner": "founder decision, recorded on E08.11. Same call as the app repository's browser gap."
+      }
+    }
+  ]
+}

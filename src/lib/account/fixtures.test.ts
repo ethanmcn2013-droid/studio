@@ -8,7 +8,11 @@ import {
   VENUE_SUPPRESSED,
   VENUE_UNAVAILABLE,
 } from "./fixtures";
-import { formatMetricValue, metricNumericOrNull } from "./format";
+import {
+  formatMetricValue,
+  metricNumericOrNull,
+  rateNumericOrNull,
+} from "./format";
 import { assertSnapshotPrivacy, walkMetricValues } from "./privacy";
 
 describe("Signal Studio Account fixtures", () => {
@@ -30,7 +34,7 @@ describe("Signal Studio Account fixtures", () => {
       "9+",
     );
     assert.equal(
-      metricNumericOrNull(VENUE_PARTIAL.adoption.continuedAfter30Days),
+      rateNumericOrNull(VENUE_PARTIAL.adoption.continuedAfter30Days),
       null,
     );
   });
@@ -58,8 +62,9 @@ describe("Signal Studio Account fixtures", () => {
   });
 
   it("complete exposes comparable continuation with denominator", () => {
-    assert.equal(VENUE_COMPLETE.adoption.continuedAfter30Days.state, "exact");
-    if (VENUE_COMPLETE.adoption.continuedAfter30Days.state === "exact") {
+    assert.equal(VENUE_COMPLETE.adoption.continuedAfter30Days.state, "rate");
+    if (VENUE_COMPLETE.adoption.continuedAfter30Days.state === "rate") {
+      assert.equal(VENUE_COMPLETE.adoption.continuedAfter30Days.numerator, 9);
       assert.equal(
         VENUE_COMPLETE.adoption.continuedAfter30Days.denominator,
         12,

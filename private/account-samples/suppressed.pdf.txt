@@ -35,7 +35,7 @@ Recommended next action
 
 Send the remaining available access
 
-Four codes remain available. Behavioural reporting unlocks once three eligible workspaces exist.
+Four codes remain available. Behavioural reporting begins once enough sponsored workspaces are active.
 
 SAMPLE · DETERMINISTIC REVIEW DATA.
 
@@ -54,9 +54,9 @@ Withheld
 Privacy posture
 Aggregate sponsored use
 
-Access totals remain visible. Behavioural use is withheld while fewer than three eligible sponsored workspaces exist.
+Access totals remain visible. Behavioural use is withheld while the eligible group is too small to describe.
 
-Behavioural values are withheld below three eligible sponsored workspaces.
+Behavioural values are withheld when the group is too small to describe, and when a value would leave too few workspaces undescribed.
 
 names or emails of recipients
 notes, task text, or comments

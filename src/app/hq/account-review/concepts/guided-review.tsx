@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { coverageTone, formatMetricValue } from "@/lib/account/format";
+import {
+  coverageTone,
+  formatMetricValue,
+  formatRateValue,
+} from "@/lib/account/format";
 import type { AccountSnapshot } from "@/lib/account/types";
 import { AccountIcon } from "../components/icons";
 import { Metric } from "../components/metric";
@@ -91,7 +95,6 @@ export function GuidedReviewOverview({
                 ["Redeemed", snapshot.adoption.redeemed],
                 ["First useful action", snapshot.adoption.firstUsefulAction],
                 ["Active recently", snapshot.adoption.activeRecently],
-                ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
               ] as const
             ).map(([label, metric], index) => (
               <li key={label}>
@@ -102,6 +105,15 @@ export function GuidedReviewOverview({
                 </div>
               </li>
             ))}
+            <li>
+              <span>06</span>
+              <div>
+                <strong>
+                  {formatRateValue(snapshot.adoption.continuedAfter30Days)}
+                </strong>
+                <small>Continued after 30 days</small>
+              </div>
+            </li>
           </ol>
           <p className={styles.support}>
             Days with sponsored use:{" "}

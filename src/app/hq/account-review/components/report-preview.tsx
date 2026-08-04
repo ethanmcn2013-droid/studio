@@ -3,11 +3,11 @@
 import {
   coverageTone,
   formatMetricValue,
-  metricRateLabel,
+  formatRateValue,
 } from "@/lib/account/format";
 import type { AccountSnapshot, DesignConceptId } from "@/lib/account/types";
 import { AccountIcon } from "./icons";
-import { Metric } from "./metric";
+import { Metric, RateMetric } from "./metric";
 import styles from "./report-preview.module.css";
 
 export function ReportPreview({
@@ -23,17 +23,9 @@ export function ReportPreview({
 }) {
   if (!open) return null;
   const report = snapshot.reports[0];
-  const continuation =
-    snapshot.adoption.continuedAfter30Days.state === "exact" &&
-    snapshot.adoption.continuedAfter30Days.denominator
-      ? metricRateLabel(
-          snapshot.adoption.continuedAfter30Days,
-          {
-            state: "exact",
-            value: snapshot.adoption.continuedAfter30Days.denominator,
-          },
-        )
-      : formatMetricValue(snapshot.adoption.continuedAfter30Days);
+  // Was: a percentage assembled here from the metric plus a denominator lifted
+  // out of it. The rate now arrives whole and already suppressed (R-028).
+  const continuation = formatRateValue(snapshot.adoption.continuedAfter30Days);
 
   return (
     <aside
@@ -75,7 +67,6 @@ export function ReportPreview({
                 ["Redeemed", snapshot.adoption.redeemed],
                 ["First useful action", snapshot.adoption.firstUsefulAction],
                 ["Active recently", snapshot.adoption.activeRecently],
-                ["Continued after 30 days", snapshot.adoption.continuedAfter30Days],
               ] as const
             ).map(([label, metric]) => (
               <Metric
@@ -85,6 +76,11 @@ export function ReportPreview({
                 label={label}
               />
             ))}
+            <RateMetric
+              className={styles.metric}
+              rate={snapshot.adoption.continuedAfter30Days}
+              label="Continued after 30 days"
+            />
           </div>
 
           <div className={styles.reach}>

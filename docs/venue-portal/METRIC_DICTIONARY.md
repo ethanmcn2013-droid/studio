@@ -23,11 +23,11 @@ the venue timezone.
 
 | Metric | Definition | Source | Window | Privacy and quality rule | Required test |
 | --- | --- | --- | --- | --- | --- |
-| Active sponsored workspaces | Distinct sponsored activations with at least one meaningful action in the window. | Daily rollup | 7, 30, or 90 days | Suppress when fewer than 3 eligible sponsored workspaces. Never show names. | One workspace with ten actions counts once. Cross-sponsor activations never join. |
+| Active sponsored workspaces | Distinct sponsored activations with at least one meaningful action in the window. | Daily rollup | 7, 30, or 90 days | Two-sided suppression: withhold when fewer than 3 eligible sponsored workspaces, when the count is under 3, or when fewer than 3 fall outside it. Never show names. | One workspace with ten actions counts once. Cross-sponsor activations never join. |
 | Weekly active sponsored workspaces | Active sponsored workspaces grouped by venue-local ISO week. | Daily rollup | Last 12 complete weeks | Same suppression per point; incomplete week labelled partial. | Boundary actions land in the correct venue-local week. |
-| Venue active days | Distinct venue-local dates where at least one sponsored activation recorded a meaningful action. | Daily rollup | 30 or 90 days | Aggregate only; suppressed below 3 eligible workspaces. | Multiple modules on one date count one day. |
+| Venue active days | Distinct venue-local dates where at least one sponsored activation recorded a meaningful action. | Daily rollup | 30 or 90 days | Aggregate only; suppressed below 3 eligible workspaces. The unit is the day, so the two-sided rule does not apply. | Multiple modules on one date count one day. |
 | Meaningful actions | Count of idempotent qualifying committed actions. | Daily rollup | 7, 30, or 90 days | Aggregate only; never used as a productivity score. | Duplicate source event id and failed transaction do not increment. |
-| Module adoption | Distinct active sponsored workspaces with at least one qualifying action in Notes, Tasks, Timeline, or Signal. | Daily rollup | 30 or 90 days | A module point below 3 is suppressed. No cross-module content. | One activation can count in several modules, once per module. |
+| Module adoption | Distinct active sponsored workspaces with at least one qualifying action in Notes, Tasks, Timeline, or Signal. | Daily rollup | 30 or 90 days | A module point below 3, or within 3 of the eligible total, is suppressed. No cross-module content. | One activation can count in several modules, once per module. |
 | First-action conversion time | Median elapsed whole hours from redemption to first meaningful action for activations in the cohort. | Versioned cohort rollup | Redemption cohort month | At least 5 eligible activations. Exclude missing-coverage activations and show excluded count. | Clock skew and pre-redemption events are rejected. |
 
 ## Retention
