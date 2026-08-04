@@ -174,7 +174,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "A briefing, not a dashboard",
-        copy: "Signal reads the work and writes a short briefing. What is late, what is moving, and what deserves attention today.",
+        copy: "Home reads the work and writes a short daily briefing. What is late, what is moving, and what deserves attention today.",
       },
     ],
     primaryCta: {
@@ -182,8 +182,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/pricing",
     },
     secondaryCta: {
-      label: "Join the waitlist",
-      href: waitlistHref("signal"),
+      label: "See the daily briefing",
+      href: "/features/daily-briefing",
     },
   },
 ];

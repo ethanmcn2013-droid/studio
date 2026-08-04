@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for the 80% not in tech.",
   description:
-    "Project management for the 80% who don't work in tech. Four small tools · Signal Notes, Signal Tasks, Signal Timeline, Signal, that read as one system. Plain English. Built for the work, not the workflow.",
+    "Project management for the 80% who don't work in tech. Notes, Tasks, Timeline — one clear system that turns activity into a daily briefing. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Signal Studio · Project management for the 80% not in tech.",
     description:
-      "Four small tools. Plain English. Built for the work, not the workflow.",
+      "Notes. Tasks. Timeline. One clear system. Plain English. Built for the work, not the workflow.",
     type: "website",
   },
 };
@@ -85,7 +85,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks, Signal Timeline, and Signal read as one system.",
+      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks and Signal Timeline read as one system, with a daily briefing built into Home.",
     offers: [
       {
         "@type": "Offer",
@@ -162,7 +162,7 @@ export default async function RootLayout({
             shaves ~100-300ms from the first cross-domain navigation.
             Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
             for browsers that don't support preconnect. */}
-        {/* The four products are now one app at app.signalstudio.ie. */}
+        {/* The three products are one app at app.signalstudio.ie; Home carries the briefing. */}
         <link rel="preconnect" href="https://app.signalstudio.ie" />
         <link rel="dns-prefetch" href="https://app.signalstudio.ie" />
       </head>

@@ -4,7 +4,7 @@ import { LegalDocument } from "@/components/legal/legal-document";
 export const metadata: Metadata = {
   title: "Terms · Signal Studio",
   description:
-    "The agreement between you and Signal Studio when you use Signal Tasks, Timeline, Signal, or Notes.",
+    "The agreement between you and Signal Studio when you use Signal Notes, Signal Tasks or Signal Timeline.",
 };
 
 const SECTIONS = [
@@ -17,7 +17,7 @@ const SECTIONS = [
   {
     heading: "What Signal Studio is",
     body: [
-      "Signal Studio is a small suite of four products: Signal Notes, Signal Tasks, Signal Timeline, and Signal. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
+      "Signal Studio is a small suite of three products: Signal Notes, Signal Tasks and Signal Timeline. Each one is a separate web application. Each one stores the work you create and lets you share it with people you invite.",
       "The suite is operated by Ethan McNamara, a sole trader registered in Ireland.",
     ],
   },

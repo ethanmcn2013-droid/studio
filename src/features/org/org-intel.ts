@@ -68,7 +68,7 @@ export const COUNCILS: Council[] = [
     ],
     cadence: "Weekly",
     purpose:
-      "Per-product taste leads plus the horizontal UX, Taste, and Performance Directors. Holds the quality bar across all four products.",
+      "Per-product taste leads plus the horizontal UX, Taste, and Performance Directors. Holds the quality bar across all three products and the Home briefing.",
   },
   {
     id: "launch-council",
@@ -279,11 +279,11 @@ export const WORKFLOWS: { label: string; ownerId: string; detail: string }[] = [
 // ── Operating principles (memory/principles-log.md) ──────────────────────────
 
 export const PRINCIPLES: string[] = [
-  "Stay absurdly focused. Four products, one umbrella.",
+  "Stay absurdly focused. Three products, one umbrella.",
   "Elegance is restraint. Default to subtraction.",
   "Calm coordination, not enterprise bloat.",
   "Avoid feature sprawl. Taste holds the veto.",
-  "Four products, one system. Share state where it helps.",
+  "Three products, one system. Share state where it helps.",
   "Meetings happen because visibility is poor. Write first.",
   "Build for normal people, not just technical teams.",
   "Humans judge. Systems keep consistency.",
@@ -479,7 +479,7 @@ export const DISCOVERY_DIRECTORS: DiscoveryRole[] = [
     id: "data-infrastructure",
     name: "Director of Data & Infrastructure",
     shortName: "In discovery",
-    oneLine: "Owns the data platform and the plumbing under the four products.",
+    oneLine: "Owns the data platform and the plumbing under the three products and Home.",
   },
   {
     id: "community-advocacy",

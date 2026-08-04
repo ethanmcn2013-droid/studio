@@ -1,12 +1,13 @@
 "use client";
 
 /**
- * ProductPills, four pills at the top of the umbrella front door to jump
- * between products. One indigo dot marks the product in use; the dot glides
+ * ProductPills, three pills at the top of the umbrella front door to jump
+ * between products (Signal → Home consolidation, 2026-08-04: Signal left
+ * the product line). One indigo dot marks the product in use; the dot glides
  * to whichever pill is hovered/focused. Press moves it immediately, while
  * navigation remains native and is never delayed for the animation.
  *
- * Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+ * Product order: Notes → Tasks → Timeline.
  *
  * SAFETY (post-2026-05-18 SEV-0): fully scoped (`pp-*`), IN-FLOW only —
  * no position:fixed, no inset:0, no high z-index, no global @keyframes.
@@ -24,7 +25,6 @@ const PRODUCTS: Product[] = [
   { slug: "notes", label: "notes", href: PRODUCT_MARKETING_URLS.notes },
   { slug: "tasks", label: "tasks", href: PRODUCT_MARKETING_URLS.tasks },
   { slug: "timeline", label: "timeline", href: PRODUCT_MARKETING_URLS.timeline },
-  { slug: "signal", label: "signal", href: PRODUCT_MARKETING_URLS.signal },
 ];
 
 export function ProductPills({ current }: { current?: string }) {

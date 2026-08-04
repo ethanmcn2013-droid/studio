@@ -37,6 +37,13 @@ export const PRODUCT_APP_PATHS: Readonly<Record<ProductId, string>> =
     signal: "/app/signal",
   });
 
+/**
+ * Home — the authenticated front door (Signal → Home consolidation,
+ * 2026-08-04). Not a product: the daily briefing (Today's Signal) lives
+ * here, with the Full Briefing at /app/home/briefing.
+ */
+export const HOME_APP_URL = `${APP_ORIGIN}/app/home`;
+
 export const PRODUCT_APP_URLS: Readonly<Record<ProductId, string>> =
   Object.freeze({
     notes: `${APP_ORIGIN}${PRODUCT_APP_PATHS.notes}`,

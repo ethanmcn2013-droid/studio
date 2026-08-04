@@ -7,11 +7,11 @@ const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
 
 export const metadata: Metadata = {
   title: "Student Edition · Signal Studio",
-  description: `Keep each module clear and see the whole semester at once. Private Notes, Tasks and deadlines, a semester Timeline, and Signal across the complete workload. ${STUDENT_PRICE} a year; payment and verification are confirmed before access opens.`,
+  description: `Keep each module clear and see the whole semester at once. Private Notes, Tasks and deadlines, a semester Timeline, and a daily briefing across the complete workload. ${STUDENT_PRICE} a year; payment and verification are confirmed before access opens.`,
   openGraph: {
     title: "Student Edition · Signal Studio",
     description:
-      "One module per Workspace, grouped into a semester. Private academic Notes, Tasks and deadlines, a semester Timeline, and Signal across the complete workload.",
+      "One module per Workspace, grouped into a semester. Private academic Notes, Tasks and deadlines, a semester Timeline, and a daily briefing across the complete workload.",
     type: "website",
   },
 };
@@ -33,8 +33,8 @@ const FEATURES = [
     copy: "See the next piece of work inside each module without flattening the whole semester into one crowded board.",
   },
   {
-    name: "Signal across the semester",
-    copy: "Switch from one module to the complete workload. Signal returns at most three explainable matters that need attention.",
+    name: "A daily briefing across the semester",
+    copy: "Switch from one module to the complete workload. The briefing in Home returns at most three explainable matters that need attention.",
   },
 ] as const;
 
@@ -68,7 +68,8 @@ export default function StudentsPage() {
           >
             Create a semester, add your modules in one go, and work inside the
             one that needs attention now. Notes stay private. Tasks and fixed
-            dates stay connected. Signal can look across the complete workload.
+            dates stay connected. Your daily briefing looks across the complete
+            workload.
           </p>
 
           {/* Price card */}
@@ -97,9 +98,9 @@ export default function StudentsPage() {
               Verification terms confirmed before paid access
             </p>
             <p className="mt-4 max-w-[48ch] text-[14px] leading-[1.6] text-ink">
-              One annual membership. All four products. One Workspace per
-              module, with modules grouped into a semester. No ads. No data
-              selling.
+              One annual membership. Notes, Tasks and Timeline, with a daily
+              briefing built into Home. One Workspace per module, with modules
+              grouped into a semester. No ads. No data selling.
             </p>
             <a
               href={waitlistHref}

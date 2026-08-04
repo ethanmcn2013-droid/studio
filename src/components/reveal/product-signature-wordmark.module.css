@@ -94,7 +94,8 @@
   animation: timeline-milestone-settle 380ms var(--ease-out) 700ms both;
 }
 
-.wordmark[data-product="signal"][data-active="true"] .signalPulse {
+.wordmark[data-product="signal"][data-active="true"] .signalPulse,
+.wordmark[data-product="home"][data-active="true"] .signalPulse {
   animation: signal-heartbeat-settle 1.2s var(--ease-in-out) 100ms both;
 }
 

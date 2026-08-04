@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 export const metadata: Metadata = {
   title: "Signal Studio for teachers",
   description:
-    "One class per Workspace, grouped into a school year. Private Notes and Tasks, deliberately shared Class Timelines, and Signal across all classes.",
+    "One class per Workspace, grouped into a school year. Private Notes and Tasks, deliberately shared Class Timelines, and a daily briefing across all classes.",
 };
 
 const waitlistHref =
@@ -25,8 +25,8 @@ const PRINCIPLES = [
     copy: "Choose the milestone title, date and completion state in a preview. Private descriptions, attachments and Notes never appear.",
   },
   {
-    title: "Signal across every class",
-    copy: "Switch from one class to the school year. Signal returns no more than three explainable matters that need attention.",
+    title: "A daily briefing across every class",
+    copy: "Switch from one class to the school year. The briefing in Home returns no more than three explainable matters that need attention.",
   },
 ] as const;
 

@@ -6,7 +6,7 @@ import { MarketingDelightController } from "@/components/marketing/delight/marke
 export const metadata: Metadata = {
   title: "About · Signal Studio",
   description:
-    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Four products, one register, one job: show you what matters.",
+    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Three products, one register, one job: show you what matters.",
 };
 
 function waitlistHref(product: string): string {
@@ -51,10 +51,10 @@ export default function AboutPage() {
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Four products, one system. Notes catches ideas before they get
+                Three products, one system. Notes catches ideas before they get
                 lost. Tasks keeps the work moving. Timeline shows everyone
-                the plan. Signal tells you what changed and what needs you
-                today.
+                the plan. A daily briefing in Home tells you what changed and
+                what needs you today.
               </p>
 
               <p
@@ -75,7 +75,7 @@ export default function AboutPage() {
                   className="text-[11px] font-semibold uppercase"
                   style={{ color: "var(--ink-faint)", letterSpacing: "var(--tracking-eyebrow)" }}
                 >
-                  Products
+                  The suite
                 </div>
                 <div className="flex flex-col gap-3">
                   <a
@@ -121,11 +121,11 @@ export default function AboutPage() {
                     </span>
                   </a>
                   <a
-                    href={waitlistHref("signal")}
+                    href="/features/daily-briefing"
                     className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
                   >
                     <span className="text-[14px] font-medium text-ink transition-colors">
-                      Signal
+                      Daily briefing
                     </span>
                     <span
                       className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
@@ -245,14 +245,15 @@ export default function AboutPage() {
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
                 Notes are where the work starts. Tasks are what needs doing.
-                Timeline shows what is next. Signal shows what needs attention.
+                Timeline shows what is next. The daily briefing shows what
+                needs attention.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                Four products, one system, built so people can organise the work
+                Three products, one system, built so people can organise the work
                 in front of them without learning a new language first.
               </p>
 

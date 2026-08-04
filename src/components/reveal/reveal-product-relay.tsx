@@ -58,14 +58,14 @@ const CHAPTERS = [
     cta: "Explore Timeline",
   },
   {
-    key: "signal",
+    key: "home",
     number: "04",
-    title: "signal",
+    title: "home",
     eyebrow: "Know what needs you",
-    body: "Signal reads the change, the open risk, and the receipt. It returns the two things worth attention.",
-    foot: "Real change → sourced briefing",
-    href: PRODUCT_MARKETING_URLS.signal,
-    cta: "Explore Signal",
+    body: "Back at Home, the system has read the change, the open risk, and the receipt. Today's Signal starts your day with the two things worth attention.",
+    foot: "Real change → your daily signal",
+    href: "/features/daily-briefing",
+    cta: "See the daily briefing",
   },
 ] as const;
 
@@ -100,9 +100,9 @@ export function RevealProductRelay() {
         </h2>
         <p>
           Notes keeps the source private. Tasks gives it an owner. Timeline
-          publishes the confirmed milestone. Signal returns the open risk with
-          its receipt. These are the current product interfaces in one fixed
-          sample workspace.
+          publishes the confirmed milestone. Home returns the open risk with
+          its receipt as your daily signal. These are the current product
+          interfaces in one fixed sample workspace.
         </p>
       </header>
 

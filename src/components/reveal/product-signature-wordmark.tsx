@@ -4,12 +4,13 @@ import { useRef } from "react";
 import { useInView, useReducedMotion } from "motion/react";
 import styles from "./product-signature-wordmark.module.css";
 
-type SignatureProduct = "notes" | "tasks" | "timeline" | "signal";
+type SignatureProduct = "notes" | "tasks" | "timeline" | "signal" | "home";
 
 /**
- * The homepage's four product signatures, restored from the previous product
- * rows and refined to play once. Each mark describes its product: capture,
- * completion, a published line, and a briefing pulse.
+ * The homepage's signature wordmarks, restored from the previous product
+ * rows and refined to play once. Each mark describes its surface: capture,
+ * completion, a published line — and Home carries the briefing pulse,
+ * the signal settling where the day now starts (consolidation 2026-08).
  */
 export function ProductSignatureWordmark({
   product,
@@ -61,7 +62,7 @@ export function ProductSignatureWordmark({
         </span>
       ) : null}
 
-      {product === "signal" ? (
+      {product === "signal" || product === "home" ? (
         <span
           className={`${styles.mark} ${styles.signalPulse}`}
           aria-hidden="true"

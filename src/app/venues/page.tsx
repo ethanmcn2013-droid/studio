@@ -51,7 +51,7 @@ import styles from "./venue-a.module.css";
  * The venue landing page · "The Relay".
  *
  * The landing page's signature structure, the product relay, pointed at the
- * venue. On the homepage the relay follows one detail through four products.
+ * venue. On the homepage the relay follows one detail through the three products and Home.
  * Here it follows the venue's own argument down the seven rungs, and the real
  * product appears only where a rung is better shown than told.
  *
