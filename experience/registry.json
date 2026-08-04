@@ -7202,10 +7202,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-04",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "818c9db90d863298"
+      "materialityHash": "4abaf7958f611184"
     },
     {
       "id": "studio.page.waitlist",
@@ -11700,6 +11700,226 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.venues-privacy",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/privacy",
+      "source": "studio/src/app/venues/privacy/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand exactly what a venue sees and never sees.",
+      "primaryAction": "Read the privacy explanation and continue to the questions page.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "6e6c79d2ac9f3dd3"
+    },
+    {
+      "id": "studio.page.venues-questions",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/venues/questions",
+      "source": "studio/src/app/venues/questions/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Get a straight answer to the questions venues ask.",
+      "primaryAction": "Ask a question that the page did not answer.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "d855ea369006c47f"
+    },
+    {
+      "id": "studio.page.hq-venue-proposal",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/venue-proposal",
+      "source": "studio/src/app/hq/venue-proposal/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Compose a parameterised proposal for one venue.",
+      "primaryAction": "Generate the proposal link for a named venue.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "4eef83fbb0f908d9"
+    },
+    {
+      "id": "studio.page.v-by-token",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/v/[token]",
+      "source": "studio/src/app/v/[token]/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Read the private proposal prepared for this venue.",
+      "primaryAction": "Start the conversation about the founding place.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "a8be4086039da62f"
+    },
+    {
+      "id": "studio.state.v-by-token-not-found",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "state",
+      "route": "/v/[token]",
+      "source": "studio/src/app/v/[token]/not-found.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand that a proposal link is not valid.",
+      "primaryAction": "Reach a person when a link has expired.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "shipped",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "310d412bb6a25bcf"
     }
   ]
 }
