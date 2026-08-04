@@ -4,9 +4,9 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-04T08:58:43.816Z · baseline **approved** (0.1.0)
+State as at 2026-08-04T11:43:42.918Z · baseline **approved** (0.1.0)
 
-212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
+213 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 158 unestimated.
 
 Legend: **CP** imported critical path · **RB** release-blocking · **SN** start-now · **FD** founder decision, only Ethan can answer it · **FC** Claude brings options, Ethan picks · spec ✓ when a task specification exists · **Evidence** is the count of recorded evidence references · **Target** is a deliberately set date, never a forecast · sign-off is the founder state.
 
@@ -37,17 +37,17 @@ Lane: `claude_code` · 12/12 done (100%) · 0 in flight · 0 blocked
 
 _Start now. Blocks contracts, portal language, films, pricing pages and outreach._
 
-Lane: `founder` · 10/13 done (76.9%) · 0 in flight · 0 blocked
+Lane: `founder` · 10/13 done (76.9%) · 3 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E02.01 | Ratify the single standard offer at €1,500 annually prepaid and the first 25 founding agreements at €1,000 annually prepaid. | done | p0 | CP SN FD | claude_code | — | 2026-08-15 | 4 | — | ✓ | approved |
 | E02.02 | Ratify the exact price-reduction wording: “€500 founding saving,” “one-third founding rate” or “33.3% founding reduction.” | done | p0 | CP SN FD | claude_code | — | — | 2 | — | ✓ | approved |
 | E02.03 | Define precisely what the €1,000 founding-rate lock covers and state that it applies to the base annual Venue Edition agreement. | done | p0 | CP SN FD | claude_code | — | 2026-08-15 | 3 | — | ✓ | approved |
-| E02.04 | Define continuous-renewal requirements and what happens after a missed payment, cancellation, lapse or later reactivation. | backlog | p0 | CP SN FD | founder | E03.02 | — | — | — | — | not_requested |
+| E02.04 | Define continuous-renewal requirements and what happens after a missed payment, cancellation, lapse or later reactivation. | founder_review | p0 | CP SN FD | founder | E03.02 | — | 22 | — | ✓ | requested |
 | E02.05 | Define how the founding rate behaves after a venue sale, company acquisition, operator change, rebrand, merger or relocation. | done | p0 | CP SN FD | claude_code | — | — | 2 | — | ✓ | approved |
-| E02.06 | Exclude VAT, taxes, optional future add-ons, third-party charges and materially separate products from the locked base price. | backlog | p0 | CP SN FD | founder | E03.02 | — | — | — | — | not_requested |
-| E02.07 | Ratify annual prepayment, invoice timing, renewal dates, renewal notices, failed payments, cancellation and refund rules. | backlog | p0 | CP SN FD | founder | E03.02 | — | — | — | — | not_requested |
+| E02.06 | Exclude VAT, taxes, optional future add-ons, third-party charges and materially separate products from the locked base price. | founder_review | p0 | CP SN FD | founder | E03.02 | — | 20 | — | ✓ | requested |
+| E02.07 | Ratify annual prepayment, invoice timing, renewal dates, renewal notices, failed payments, cancellation and refund rules. | founder_review | p0 | CP SN FD | founder | E03.02 | — | 24 | — | ✓ | requested |
 | E02.08 | Create the Founding Venue Benefits Charter covering founder access, feedback, early access, priority support and recognition. | done | p0 | CP SN FC | claude_code | — | — | 1 | — | ✓ | approved |
 | E02.09 | Define the boundaries of founder access and product feedback so that the benefit does not become unlimited bespoke development. | done | p0 | CP SN FD | claude_code | — | — | 1 | — | ✓ | approved |
 | E02.10 | Select legally safe programme terminology, establish Founding Venue numbers 01/25 through 25/25, and define when numbers are assigned. | done | p0 | CP SN FD | claude_code | — | — | 2 | — | ✓ | approved |
@@ -59,21 +59,21 @@ Lane: `founder` · 10/13 done (76.9%) · 0 in flight · 0 blocked
 
 _Start now. Blocks live sales and live couple access._
 
-Lane: `founder` · 4/11 done (36.4%) · 0 in flight · 0 blocked
+Lane: `founder` · 4/11 done (36.4%) · 7 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E03.01 | Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. | done | p0 | CP SN FC | founder | — | — | 4 | — | — | approved |
-| E03.02 | Draft the annual Venue Edition agreement and commercial order form. | backlog | p0 | CP SN | founder | E02.01, E02.03 | — | — | — | — | not_requested |
-| E03.03 | Draft the Founding Venue schedule covering the €1,000 rate, continuity conditions, benefits and founding-place status. | backlog | p0 | CP SN | founder | E02.01, E02.10 | — | — | — | — | not_requested |
-| E03.04 | Draft the data-processing agreement, security schedule, subprocessor schedule and data-breach responsibilities. | backlog | p0 | CP SN | founder | E03.01 | — | — | — | — | not_requested |
-| E03.05 | Finalise the couple terms of service and couple-facing privacy notice. | backlog | p0 | CP SN | founder | E03.01 | — | — | — | — | not_requested |
-| E03.06 | Finalise public Timeline terms, viewer privacy language, analytics disclosure and cookie requirements. | backlog | p0 | CP SN | founder | E03.01 | — | — | — | — | not_requested |
+| E03.02 | Draft the annual Venue Edition agreement and commercial order form. | founder_review | p0 | CP SN | founder | E02.01, E02.03 | — | 18 | — | ✓ | requested |
+| E03.03 | Draft the Founding Venue schedule covering the €1,000 rate, continuity conditions, benefits and founding-place status. | founder_review | p0 | CP SN | founder | E02.01, E02.10 | — | 10 | — | ✓ | requested |
+| E03.04 | Draft the data-processing agreement, security schedule, subprocessor schedule and data-breach responsibilities. | founder_review | p0 | CP SN | founder | E03.01 | — | 12 | — | ✓ | requested |
+| E03.05 | Finalise the couple terms of service and couple-facing privacy notice. | founder_review | p0 | CP SN | founder | E03.01 | — | 21 | — | ✓ | requested |
+| E03.06 | Finalise public Timeline terms, viewer privacy language, analytics disclosure and cookie requirements. | founder_review | p0 | CP SN | founder | E03.01 | — | 8 | — | ✓ | requested |
 | E03.07 | Define rights and permissions for venue logos, venue photographs, couple photographs, film assets and public case-study material. | done | p0 | CP SN FD | founder | — | — | 1 | — | — | approved |
 | E03.08 | Define the active planning term relative to activation date, wedding date, postponement and post-wedding access. | done | p0 | CP SN FD | founder | — | — | 1 | — | — | approved |
 | E03.09 | Ratify the free Keepsake mode, read-only rules, storage boundary, export rights and deletion controls. | done | p0 | CP SN FD | founder | — | — | 1 | — | — | approved |
-| E03.10 | Define cancellation, postponement, venue change, venue non-renewal, couple separation, account ownership and venue-workspace unlinking. | backlog | p0 | CP SN FD | founder | E04.11 | — | — | — | — | not_requested |
-| E03.11 | Ratify data retention, deletion, service-discontinuation exports, legitimate-interest outreach, opt-outs and suppression-list requirements. | backlog | p0 | CP SN FD | founder | — | — | — | — | — | not_requested |
+| E03.10 | Define cancellation, postponement, venue change, venue non-renewal, couple separation, account ownership and venue-workspace unlinking. | founder_review | p0 | CP SN FD | founder | E04.11 | — | 14 | — | ✓ | requested |
+| E03.11 | Ratify data retention, deletion, service-discontinuation exports, legitimate-interest outreach, opt-outs and suppression-list requirements. | founder_review | p0 | CP SN FD | founder | — | — | 18 | — | ✓ | requested |
 | E03.12 | Obtain documented Irish legal and accounting review of the complete offer, founding promise, VAT treatment, privacy model and contracts. | deferred | p0 | SN FD | external | — | — | — | — | — | not_requested |
 
 ## E04 — Product architecture and workspace lifecycle
@@ -259,14 +259,14 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 14/14 done (100%) · 0 in flight · 0 blocked
+Lane: `claude_code` · 14/15 done (93.3%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E12.01 | Build the public Venue Edition landing page around the sponsored couple experience. | done | p2 | — | claude_code | — | — | 11 | — | ✓ | approved |
 | E12.02 | Build the private Founding 25 invitation page. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
 | E12.03 | Build a parameterised private proposal page for each venue. | done | p2 | — | claude_code | — | — | 6 | — | ✓ | approved |
-| E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | done | p2 | — | claude_code | E02.01, E02.03 | — | 3 | — | ✓ | approved |
+| E12.04 | Present the €1,500 standard price, €1,000 founding rate, founding conditions and annual prepayment clearly. | done | p2 | — | claude_code | E02.01, E02.03 | — | 4 | — | ✓ | approved |
 | E12.05 | Add the branded couple-experience preview. | done | p2 | — | claude_code | E05.12 | — | 17 | — | ✓ | approved |
 | E12.06 | Add the Venue Portal trust-and-renewal preview. | done | p2 | — | claude_code | E07.18 | — | 12 | — | ✓ | approved |
 | E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
@@ -277,6 +277,7 @@ Lane: `claude_code` · 14/14 done (100%) · 0 in flight · 0 blocked
 | E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | done | p2 | — | claude_code | — | — | 14 | — | ✓ | approved |
 | E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | done | p2 | — | claude_code | — | — | 13 | — | ✓ | approved |
 | E12.14 | Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page. | done | p1 | CP | claude_code | E12.04, E12.05, E12.06 | — | 14 | — | ✓ | approved |
+| E12.15 | Re-point or retire the /venues/demo walkthrough now the rebuilt landing page no longer links it. | backlog | p2 | — | claude_code | — | — | 1 | — | — | not_requested |
 
 ## E13 — Motion system and Limerick First invitation film
 
@@ -336,26 +337,26 @@ Lane: `codex_motion` · 1/18 done (5.6%) · 0 in flight · 0 blocked
 
 _Begins after all six release gates pass. Continues after launch until project closure._
 
-Lane: `founder` · 0/18 done (0%) · 0 in flight · 0 blocked
+Lane: `founder` · 0/18 done (0%) · 14 in flight · 4 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E15.01 | Run the formal launch go/no-go review against commercial, legal, product, data, creative and sales gates. | backlog | p1 | CP FD | founder | — | — | — | — | — | not_requested |
-| E15.02 | Complete a real production billing and founding-rate test. | backlog | p2 | — | founder | E08.01, E08.02 | — | — | — | — | not_requested |
-| E15.03 | Complete a real invitation, redemption, account creation and branded workspace test. | backlog | p2 | — | founder | E04.07, E04.09, E08.01 | — | — | — | — | not_requested |
-| E15.04 | Complete live Venue Portal, Usage, PDF, CSV and renewal-report tests. | backlog | p2 | — | founder | E07.14, E07.15 | — | — | — | — | not_requested |
-| E15.05 | Complete live shared Timeline, viewer-count, unpublish, export and Keepsake tests. | backlog | p2 | — | founder | E06.05, E06.11 | — | — | — | — | not_requested |
-| E15.06 | Confirm that contracts, privacy notices, analytics, support channels, monitoring and incident procedures are live. | backlog | p2 | — | founder | E03.02, E08.08 | 2026-08-30 | — | — | — | not_requested |
-| E15.07 | Release Cohort 1 and record every personalised touch and response. | backlog | p1 | CP | founder | E11.04, E13.17, E15.01, E15.02, E15.03, E15.04, E15.05, E15.06 | — | — | — | — | not_requested |
-| E15.08 | Monitor product, email, landing-page, booking, film and portal performance during the first release window. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.09 | Complete signed-venue handoff from sales into onboarding. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.10 | Collect venue branding, configure the account, invite venue members and approve the couple experience. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.11 | Train the venue and support it through its first real couple invitation and redemption. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.12 | Run seven-day and 30-day venue reviews covering adoption, friction, support and next action. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.13 | Operate the direct founder channel and structured founding-request intake without creating uncontrolled custom scope. | ready | p2 | FD | founder | — | — | — | — | — | not_requested |
-| E15.14 | Secure permissioned venue evidence, couple evidence, referrals and public map/name approval. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
-| E15.15 | Release Cohorts 2, 3, 4 and reserve accounts as necessary until 25 venues are signed and paid. | backlog | p1 | CP | founder | — | — | — | — | — | not_requested |
-| E15.16 | Maintain the authoritative founding-place counter, assign 01/25–25/25 numbers and publish only permissioned venue names. | backlog | p1 | CP | founder | E02.10, E02.11 | — | — | — | — | not_requested |
-| E15.17 | Close the founding offer at 25 paid agreements, switch all new commercial surfaces to €1,500 and prepare the first renewal cycle. | backlog | p1 | CP | founder | — | — | — | — | — | not_requested |
-| E15.18 | Complete the project postmortem, archive final assets, update the business plan and market-entry documents, and transfer ongoing work into operations. | backlog | p2 | — | founder | — | — | — | — | — | not_requested |
+| E15.01 | Run the formal launch go/no-go review against commercial, legal, product, data, creative and sales gates. | founder_review | p1 | CP FD | founder | — | — | 14 | — | ✓ | requested |
+| E15.02 | Complete a real production billing and founding-rate test. | blocked | p2 | — | founder | E08.01, E08.02 | — | 9 | Verifier corrected this to BLOCKED: it cannot be verified without a real venue, a cleared payment or a real couple. REFUTED. "Partial" is too generous and I would not let it stand. Everything WP-22 says it RAN, it really ran: I re-ran all of it and got the identical 742/742/0, the identical 21 integrity checks, and the identical three append-only tests, and I read the test bodies to confirm the append-only refusal is demonstrated against a real database rather than asserted. That half is CONFIRMED and it is good work. The problem is step 4, and step 4 is the hinge. It is recorded as PASS on the strength of an operator todo that says the exact opposite in the canonical tree: status open, P0, blocking, "founding_number and founding_number_assigned_at are absent from entitlements-prod", verified by direct query. WP-22 read a copy on its own branch that is thirteen hours stale and quoted from a block the file itself labels Superseded. So the one production-facing fact in the whole document is false, and i | ✓ | not_requested |
+| E15.03 | Complete a real invitation, redemption, account creation and branded workspace test. | blocked | p2 | — | founder | E04.07, E04.09, E08.01 | — | 6 | Verifier corrected this to BLOCKED: it cannot be verified without a real venue, a cleared payment or a real couple. DOWNGRADE from 'partial' to BLOCKED, and correct the document before it is put in front of the founder. What is genuinely true and should be kept: the access-term arithmetic is correct against D-022, it is covered by nine passing tests I re-ran myself, step 1 PASS is real, and step 2 FAIL is real and is a correctly-identified release blocker. The document's section 7 ('Not run, and why') is honest. Two of the claim's own findings — the unread entitlements.wedding_date column and the second untracked implementation in the dirty app tree — are both CONFIRMED by me independently, and volunteering them was right. Why 'partial' overstates it. 'Partial' implies the remaining steps are waiting on time, an account and a deployment. They are not. Three of the ten acceptance criteria (AC3, AC4, AC5) cannot be satisfied by any human following this script, before or after the branch deploys, because | ✓ | not_requested |
+| E15.04 | Complete live Venue Portal, Usage, PDF, CSV and renewal-report tests. | founder_review | p2 | — | founder | E07.14, E07.15 | — | 12 | — | ✓ | requested |
+| E15.05 | Complete live shared Timeline, viewer-count, unpublish, export and Keepsake tests. | founder_review | p2 | — | founder | E06.05, E06.11 | — | 15 | — | ✓ | requested |
+| E15.06 | Confirm that contracts, privacy notices, analytics, support channels, monitoring and incident procedures are live. | founder_review | p2 | — | founder | E03.02, E08.08 | 2026-08-30 | 18 | — | ✓ | requested |
+| E15.07 | Release Cohort 1 and record every personalised touch and response. | blocked | p1 | CP | founder | E11.04, E13.17, E15.01, E15.02, E15.03, E15.04, E15.05, E15.06 | — | 18 | Verification procedure written and evidenced, but it cannot run: it depends on E15.02 and E15.03 (both blocked on a real cleared payment and a real couple), on E13.17 (the 25 Cohort 1 film renders, Codex motion lane), and on E11.04 (the DMARC enforcement ramp). No dependency waived - each is a genuine real-world prerequisite, not a procedural one. | ✓ | not_requested |
+| E15.08 | Monitor product, email, landing-page, booking, film and portal performance during the first release window. | founder_review | p2 | — | founder | — | — | 8 | — | ✓ | requested |
+| E15.09 | Complete signed-venue handoff from sales into onboarding. | founder_review | p2 | — | founder | — | — | 10 | — | ✓ | requested |
+| E15.10 | Collect venue branding, configure the account, invite venue members and approve the couple experience. | founder_review | p2 | — | founder | — | — | 10 | — | ✓ | requested |
+| E15.11 | Train the venue and support it through its first real couple invitation and redemption. | founder_review | p2 | — | founder | — | — | 15 | — | ✓ | requested |
+| E15.12 | Run seven-day and 30-day venue reviews covering adoption, friction, support and next action. | founder_review | p2 | — | founder | — | — | 12 | — | ✓ | requested |
+| E15.13 | Operate the direct founder channel and structured founding-request intake without creating uncontrolled custom scope. | founder_review | p2 | FD | founder | — | — | 8 | — | ✓ | requested |
+| E15.14 | Secure permissioned venue evidence, couple evidence, referrals and public map/name approval. | founder_review | p2 | — | founder | — | — | 6 | — | ✓ | requested |
+| E15.15 | Release Cohorts 2, 3, 4 and reserve accounts as necessary until 25 venues are signed and paid. | founder_review | p1 | CP | founder | — | — | 7 | — | ✓ | requested |
+| E15.16 | Maintain the authoritative founding-place counter, assign 01/25–25/25 numbers and publish only permissioned venue names. | blocked | p1 | CP | founder | E02.10, E02.11 | — | 6 | Verifier corrected this to BLOCKED: it cannot be verified without a real venue, a cleared payment or a real couple. REFUTED — reject 'partial' and do not accept E15.16 into Founder Review. The engineering underneath is genuinely strong and I confirmed it: the assigner is idempotent, refuses before payment clears, refuses non-founding plans, never reissues a withdrawn number, and 37 tests across two suites pass on re-run. But the evidence document's step 1 reports the production schema as PASS by quoting a section of the operator todo that is explicitly headed 'Superseded', while that same todo is status: open and records founding_number as ABSENT from entitlements-prod by direct query. My own query confirms the todo, not the evidence. That makes four of the eight criteria refuted rather than untested, and turns step 6 from 'NOT RUN' into red: the integrity gate exits 127 against production today. Three fixes before this is re-submitted: (a) Ethan applies the second migration pass, then step 1 and step | ✓ | not_requested |
+| E15.17 | Close the founding offer at 25 paid agreements, switch all new commercial surfaces to €1,500 and prepare the first renewal cycle. | founder_review | p1 | CP | founder | — | — | 9 | — | ✓ | requested |
+| E15.18 | Complete the project postmortem, archive final assets, update the business plan and market-entry documents, and transfer ongoing work into operations. | founder_review | p2 | — | founder | — | — | 12 | — | ✓ | requested |
 

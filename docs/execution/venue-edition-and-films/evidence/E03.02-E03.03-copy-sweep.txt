@@ -1,0 +1,132 @@
+E03.02 / E03.03 — prohibited-claims sweep
+Run 2026-08-04 in C:/Users/ethan/signal-studio-workspace/_wt-wp17
+
+WHY THIS FILE EXISTS
+scripts/check-venue-copy.mjs sweeps only the 29 surfaces registered in
+evidence/copy/prohibited-claims.v1.json. The two E03 drafts are not registered,
+because registering them means editing a file owned by E09.11 and this work
+package touches only files named for its own task IDs. The rule engine was
+therefore run over both drafts separately, using the same contract file and the
+same matching semantics: patterns compiled case-insensitive with /gi, copyOnly
+rules run because the surface kind is copy, claimOnly rules skipped on a line
+ending in a question mark, p7-bare-term grace window of 200 characters measured
+across the whole file, punctuation rules skipped at file scope exactly as the
+real check skips them and reported separately. No exemptions were applied,
+because none are registered for these paths, so every hit is printed for
+classification by hand.
+
+Script: scratchpad/sweep-e03.mjs
+
+--------------------------------------------------------------------------
+RAW OUTPUT
+--------------------------------------------------------------------------
+
+=== studio/docs/execution/venue-edition-and-films/evidence/E03.02-annual-agreement-and-order-form.md
+hits (scope file, kind copy, no exemptions applied): 5
+  E03.02-annual-agreement-and-order-form.md:504 [p1-permanence] "for life"
+  E03.02-annual-agreement-and-order-form.md:504 [p1-permanence] "forever"
+  E03.02-annual-agreement-and-order-form.md:506 [p1-permanence] "guaranteed"
+  E03.02-annual-agreement-and-order-form.md:509 [d033-programme-terms] "certified"
+  E03.02-annual-agreement-and-order-form.md:606 [d033-programme-terms] "partnership"
+punctuation rules (em-dash, exclamation), reported separately: 5
+  E03.02-annual-agreement-and-order-form.md:1 [em-dash] "-- (U+2014)"
+  E03.02-annual-agreement-and-order-form.md:121 [em-dash] "-- (U+2014)"
+  E03.02-annual-agreement-and-order-form.md:143 [em-dash] "-- (U+2014)"
+  E03.02-annual-agreement-and-order-form.md:856 [em-dash] "-- (U+2014)"
+  E03.02-annual-agreement-and-order-form.md:915 [em-dash] "-- (U+2014)"
+
+=== studio/docs/execution/venue-edition-and-films/evidence/E03.03-founding-venue-schedule.md
+hits (scope file, kind copy, no exemptions applied): 0
+punctuation rules (em-dash, exclamation), reported separately: 2
+  E03.03-founding-venue-schedule.md:1 [em-dash] "-- (U+2014)"
+  E03.03-founding-venue-schedule.md:437 [em-dash] "-- (U+2014)"
+
+TOTAL non-punctuation hits: 5
+(Exclamation rule: zero hits in both files.)
+
+--------------------------------------------------------------------------
+CLASSIFICATION OF ALL FIVE HITS
+--------------------------------------------------------------------------
+
+Every one is a citation by the contract's own definition: "the line forbids the
+word. A prohibited-claims list has to be able to name what it prohibits."
+
+1. line 504, p1-permanence, "for life" and "forever"
+   Clause 12.3 item 1 of the agreement. The marketing-controls clause required
+   by R-020 tells the venue which words it may never use. Naming them is the
+   whole function of the clause, and acceptance criterion 8 requires the list.
+
+2. line 506, p1-permanence, "guaranteed"
+   Clause 12.3 item 2. Same reason.
+
+3. line 509, d033-programme-terms, "certified"
+   Clause 12.3 item 4, forbidding the venue from claiming the product is
+   certified. Same reason.
+
+4. line 606, d033-programme-terms, "partnership"
+   Clause 17.1: "It does not create a partnership, an agency or a joint
+   venture." The clause exists to deny the relationship the word describes.
+   D-033 and FOUNDING_25_PROGRAMME_MECHANICS section 1 ban the word because
+   partnership in Ireland is a legal relationship with shared liability, which
+   is precisely why the agreement has to say it is not one.
+
+Three further hits present on the first run were removed rather than exempted,
+because in each case the same meaning was available in plain words:
+  - "legally approved" in the draft block, reworded to "approved by a lawyer".
+  - "VAT-exclusive" in acceptance criterion 2, reworded to "puts VAT on top of
+    the price".
+  - "certification" in clause 13.5, reworded to "holds no certificate".
+E03.03 acceptance criterion 11 was likewise reworded to name the rule ids rather
+than list the banned words, which took that file from six hits to zero.
+
+--------------------------------------------------------------------------
+EM DASHES
+--------------------------------------------------------------------------
+
+Five in E03.02 and two in E03.03, all outside the operative contract text: the
+document title, two analysis section headers, the pasted output of
+check-venue-copy inside the verification block, and one quoted line of source
+code inside the self-check table. The em-dash rule is
+punctuation:true and the real check skips punctuation rules at file scope. No em
+dash appears anywhere in Document A, Document B or Schedule 1. Verified by
+reading each of the six lines.
+
+--------------------------------------------------------------------------
+WHAT E09.11's OWNER SHOULD DO IF THESE FILES ARE REGISTERED
+--------------------------------------------------------------------------
+
+Not done here, because prohibited-claims.v1.json belongs to E09.11 and this
+package only writes files named for its own task IDs. If the two drafts are
+added as swept surfaces, they need:
+
+  surfaces.tracked += {
+    "path": "docs/execution/venue-edition-and-films/evidence/E03.02-annual-agreement-and-order-form.md",
+    "scope": "file", "kind": "copy", "expected": 0, "owner": "E03.02"
+  }
+  surfaces.tracked += {
+    "path": "docs/execution/venue-edition-and-films/evidence/E03.03-founding-venue-schedule.md",
+    "scope": "file", "kind": "copy", "expected": 0, "owner": "E03.03"
+  }
+
+and four citations against the E03.02 path, each naming its line by a
+distinctive substring:
+
+  { rule: "p1-permanence",        contains: "the service lasts **forever**, is for life" }
+  { rule: "p1-permanence",        contains: "That anything about it is **guaranteed**" }
+  { rule: "d033-programme-terms", contains: "complies with the GDPR, is certified, is audited" }
+  { rule: "d033-programme-terms", contains: "does not create a partnership, an agency or a joint venture" }
+
+With those four citations registered, expected is 0 on both files.
+
+--------------------------------------------------------------------------
+THE REGISTERED SWEEP, UNCHANGED
+--------------------------------------------------------------------------
+
+$ pnpm test   (in _wt-wp17)
+  tests 56, pass 56, fail 0
+  [venue-copy] ok - 16 rules, 92 patterns, 29 surfaces swept (0 cross-repo, not
+  checked here), 30 pinned hit(s), 21 citation(s), 6 recorded exception(s).
+  EXIT=0
+
+Neither draft changes that result, because neither is a registered surface.
+That is stated rather than implied.
