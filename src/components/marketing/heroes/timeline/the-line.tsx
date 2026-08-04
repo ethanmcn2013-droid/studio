@@ -81,7 +81,7 @@ export function TimelineTheLine({
 const CSS = `
 .tlh {
   position: relative;
-  /* PORT NOTE 2026-07-28 — was min-height 100svh for a standalone gallery
+  /* PORT NOTE 2026-07-28 - was min-height 100svh for a standalone gallery
      route. As a hero it is one band above the rest of the page, so it sizes
      to the artifact and keeps only a floor. */
   min-height: clamp(600px, 78svh, 820px);
@@ -113,7 +113,7 @@ const CSS = `
 
 /* ── frame ───────────────────────────────────────────────────────────── */
 
-/* 2026-07-28 — widened from 1080px. Timeline is the one hero whose subject is
+/* 2026-07-28 - widened from 1080px. Timeline is the one hero whose subject is
    a document rather than a workspace: it should read as the shared plan
    actually open on screen, not as a screenshot of one sitting in a column.
    The artifact drives its own layout from container queries (widest above
