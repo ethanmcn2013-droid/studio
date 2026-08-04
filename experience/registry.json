@@ -3131,10 +3131,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "62bccd420385f20b"
+      "materialityHash": "9f4128e88d9d6f52"
     },
     {
       "id": "studio.page.accessibility",
@@ -3444,10 +3444,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "1f9bd1cc0750b823"
+      "materialityHash": "0ab04436cf8321ba"
     },
     {
       "id": "studio.page.hq",
@@ -5098,10 +5098,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "b20b4e5f95d76d1e"
+      "materialityHash": "60d1ade4f48b95c5"
     },
     {
       "id": "studio.page.hq-one-pagers-notes",
@@ -6230,10 +6230,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "7996d2e1b7df8e58"
+      "materialityHash": "945299f92811796f"
     },
     {
       "id": "studio.page.pricing",
@@ -6274,10 +6274,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "df279c999de24382"
+      "materialityHash": "4b3284b6adb4def2"
     },
     {
       "id": "studio.page.principles",
@@ -6406,10 +6406,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "9d8885654f9dd89f"
+      "materialityHash": "656397f2daf4415b"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6452,10 +6452,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "d2058ed057e0354a"
+      "materialityHash": "205fa4ca258cfd64"
     },
     {
       "id": "studio.page.root",
@@ -6554,8 +6554,8 @@
       "source": "studio/src/app/signal/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use signal.",
-      "primaryAction": "Complete the primary action on signal.",
+      "primaryJob": "Land on the daily-briefing story from a legacy /signal link without breaking.",
+      "primaryAction": "None — permanent redirect.",
       "roles": [
         "public"
       ],
@@ -6584,10 +6584,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "f9daffa65a4e7ba8"
+      "materialityHash": "856b4bc68707bf0f"
     },
     {
       "id": "studio.page.students",
@@ -6628,10 +6628,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "bf5b0a7a6d21ee60"
+      "materialityHash": "08643bcbe55b2464"
     },
     {
       "id": "studio.page.tasks",
@@ -6716,10 +6716,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "008fc30678dd76d6"
+      "materialityHash": "28238c4bb8bbcf68"
     },
     {
       "id": "studio.page.templates",
@@ -6804,10 +6804,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "b15d88ea68dd6d52"
+      "materialityHash": "69287b62dbab7d66"
     },
     {
       "id": "studio.page.timeline",
@@ -6893,9 +6893,9 @@
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
       "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/execution/venue-edition-and-films/evidence/E12.04-venues-page-rebuild-audit.md",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "363637132b6ade23"
+      "materialityHash": "c80f1710913e6b81"
     },
     {
       "id": "studio.page.venues-demo",
@@ -6936,10 +6936,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "a5b3c92d53c4bac9"
+      "materialityHash": "f3c74e60e222ea99"
     },
     {
       "id": "studio.page.waitlist",
@@ -7031,10 +7031,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "27a463ffd9d2fcdc"
+      "materialityHash": "9261d701479860f1"
     },
     {
       "id": "studio.page.work",
@@ -7075,10 +7075,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "739b6f13db0a6d2b"
+      "materialityHash": "3c668e17aa7b104b"
     },
     {
       "id": "studio.state.root-error",
@@ -7386,10 +7386,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
       "intentionalExceptions": [],
-      "materialityHash": "ffe3df5423a0fc38"
+      "materialityHash": "a049142ed14b663b"
     },
     {
       "id": "studio.surface.site-navigation",
@@ -11434,6 +11434,50 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.features-daily-briefing",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/features/daily-briefing",
+      "source": "studio/src/app/features/daily-briefing/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand the daily briefing built into Home and join the waitlist.",
+      "primaryAction": "Join the waitlist.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "intentionalExceptions": [],
+      "materialityHash": "ed1b54098fb4e8bf"
     }
   ]
 }
