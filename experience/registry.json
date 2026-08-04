@@ -6892,10 +6892,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
+      "lastReviewedAt": "2026-08-04",
+      "approvedBaselineReference": "studio/docs/execution/venue-edition-and-films/evidence/E12.04-venues-page-rebuild-audit.md",
       "intentionalExceptions": [],
-      "materialityHash": "1c495f57ce696265"
+      "materialityHash": "363637132b6ade23"
     },
     {
       "id": "studio.page.venues-demo",
