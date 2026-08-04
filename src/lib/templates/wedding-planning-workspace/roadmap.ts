@@ -8,6 +8,11 @@ import type { RoadmapSeed } from "../types";
  * the couple, venue, and suppliers can read in under a minute.
  */
 export const roadmap: RoadmapSeed = {
+  anchor: {
+    label: "The wedding day",
+    prompt: "When is the wedding?",
+    hint: "Every milestone below is placed relative to this day. You can move any of them afterwards.",
+  },
   projects: [
     {
       slug: "planning",
@@ -17,12 +22,18 @@ export const roadmap: RoadmapSeed = {
       accent: "#be185d",
     },
   ],
+  // Offsets are counted back from the wedding day and follow the real cadence
+  // of the work: the venue is booked the better part of a year out, layout is
+  // settled once the season is known, headcount and suppliers land in the last
+  // six weeks, and the final three items are the week itself. A couple who
+  // supplies the date gets a plan already shaped like their year.
   items: [
     {
       projectSlug: "planning",
       title: "Venue contract and deposit schedule",
       description: "Locked at booking. Final-week walkthrough date confirmed.",
       status: "shipped",
+      anchorOffsetDays: -300,
     },
     {
       projectSlug: "planning",
@@ -30,6 +41,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Venue, couple, and officiant have signed off on aisle direction, seating block, and signing-table placement.",
       status: "shipped",
+      anchorOffsetDays: -150,
     },
     {
       projectSlug: "planning",
@@ -37,6 +49,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Couple to confirm the final headcount before the venue locks table layout and catering quantities.",
       status: "in-flight",
+      anchorOffsetDays: -45,
     },
     {
       projectSlug: "planning",
@@ -44,6 +57,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Photographer, florist, and band arrival times are not all confirmed yet. This is the main planning risk.",
       status: "waiting",
+      anchorOffsetDays: -30,
     },
     {
       projectSlug: "planning",
@@ -51,6 +65,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Venue has sent the couple's menu decisions to catering and is waiting for final dietary notes.",
       status: "in-flight",
+      anchorOffsetDays: -25,
     },
     {
       projectSlug: "planning",
@@ -58,6 +73,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Venue, planner, and couple walk through room setup, ceremony flow, supplier access, and backup weather plan.",
       status: "next",
+      anchorOffsetDays: -6,
     },
     {
       projectSlug: "planning",
@@ -65,6 +81,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "One-page run of show with arrival windows, ceremony cue, meal service, and band start time. Goes to every supplier.",
       status: "next",
+      anchorOffsetDays: -4,
     },
     {
       projectSlug: "planning",
@@ -72,6 +89,7 @@ export const roadmap: RoadmapSeed = {
       description:
         "Indoor ceremony fallback + supplier coverage if outdoor ceremony moves inside. Venue holds the final call.",
       status: "next",
+      anchorOffsetDays: -2,
     },
   ],
 };

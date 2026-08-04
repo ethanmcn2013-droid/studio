@@ -7,7 +7,7 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
-## 2026-08-01 · S·160 · reads · what actually enforces the north star
+## 2026-08-04 · S·161 · reads · what actually enforces the north star
 
 **The three priorities were checked against the machinery that enforces them,
 and the machinery runs in the inverse order of the priorities.** Experience is
@@ -33,6 +33,46 @@ scores.
 Utility's instrument shipped in the app repo this cycle rather than here: the
 first-contact test, with an automated language half running in CI and an
 eight-step unaided walk for the human half.
+## 2026-08-03 · S·160 · ships · a couple can no longer lose the product before their wedding
+
+**Venue Edition's ratified access term is real in the code for the
+first time.** A couple's access now runs to eighteen months from
+redemption or three months past the wedding day, whichever is later.
+Until today the second half was unmintable: a constant pinned the term
+at 548 days and the mint threw on anything else, so a couple booking
+eighteen months out and redeeming on signing would have lost Signal
+Studio before the wedding it was bought for, in public, at the venue
+that gifted it. The wedding date is the workspace's own primary date,
+so nobody is asked for it twice, and a postponement extends access
+automatically. Access moves later; it never moves earlier.
+
+The fix spans both repositories, because the production redemption
+write lives in the app and a studio-only change would have passed every
+test while changing nothing a couple experiences. The rule is
+duplicated deliberately, with a golden-vector file and a parity check
+that fails the build when the two copies drift.
+
+Three other things the commercial position had already decided and the
+schema could not express. "Unlimited" is representable, so a venue sold
+"no seats, no per-couple maths" is no longer capped by an onboarding
+form default of ten that nobody chose. Fair use alerts and never
+blocks. The Founding Venue number is a stored field with a unique index
+behind it, assigned when payment clears and never on signature, which
+makes two venues holding 07/25 impossible rather than unlikely.
+
+Twenty-nine venue-facing surfaces were promising more branding than the
+product delivers. Launch branding is the venue's name, and only the
+name. The lender pack had been offering a venue's mark and welcome
+message on couple workspaces; neither exists. Corrected, along with the
+public decks and the venues page, each claim traced to the decision
+that authorises it.
+
+The honest edges. Nothing detects a cleared payment yet, so the first
+founding numbers need an operator until the billing work lands. Ten of
+the twenty-nine branding surfaces are still open, owned by other
+packages. And one defect this pass found and did not fix: deleting your
+account hard-deletes the shared workspace, including your partner's
+work, in a product whose unit is a couple.
 
 ## 2026-08-01 · S·159 · holds · the north star: experience, then design, then utility
 

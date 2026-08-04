@@ -8,6 +8,10 @@ This is the founder-led setup, run once per pilot venue, ~25 minutes. It is not 
 
 The rule under everything: **the venue does nothing. You build. They watch their name go on calm work.** That is the patronage thesis made physical.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Before the call (15 min prep, the day before)
@@ -46,7 +50,7 @@ Stop building at 15 minutes even if it is not "finished". A standing real worksp
 
 ### The close (2 min). No ask for the sale. One ask only.
 
-*"That's the whole thing on your side. You hand a couple a code, they get this, your name's on it, nothing for your team to run. Venue Edition is €1,500 a year, prepaid. If you're one of the first fifteen, that price is locked for as long as you stay. I don't need an answer now. I need to know: is this worth a real conversation with whoever signs?"*
+*"That's the whole thing on your side. You hand a couple a code, they get this, your name's on it, nothing for your team to run. Venue Edition is €1,500 a year, prepaid, VAT included. If you're one of the Founding 25, it's €1,000, five hundred less, for as long as you stay. I don't need an answer now. I need to know: is this worth a real conversation with whoever signs?"*
 
 Then stop talking. The proof was the 25 minutes, not the price.
 

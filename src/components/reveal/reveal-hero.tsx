@@ -31,14 +31,17 @@ export function RevealHero() {
           </Link>
         </div>
 
-        <p className="reveal-sequence" aria-label="Notes to Tasks to Timeline to Signal">
+        <p
+          className="reveal-sequence"
+          aria-label="Notes to Tasks to Timeline to your daily signal"
+        >
           <span>Notes</span>
           <span aria-hidden>→</span>
           <span>Tasks</span>
           <span aria-hidden>→</span>
           <span>Timeline</span>
           <span aria-hidden>→</span>
-          <span>Signal</span>
+          <span>your daily signal</span>
         </p>
       </div>
     </section>

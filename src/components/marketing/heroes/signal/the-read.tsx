@@ -1,5 +1,7 @@
 "use client";
 
+import { PRODUCT_APP_URLS } from "@/lib/product-urls";
+
 /**
  * Signal · The Read — the settled end frame.
  *
@@ -13,10 +15,9 @@
  *
  * What the panel changed (2026-07-28), and why:
  *
- *   1 · THE PING — the NOW marker broadcasts: a single ring leaves the dot
- *       every ~4s. The product is named Signal; this is the name made
- *       literal, and it is the only perpetual motion on the page. A page
- *       with one living pixel reads as an instrument; with none, a printout.
+ *   1 · THE PING — the NOW marker broadcasts twice on arrival, then settles.
+ *       The product is named Signal; this is the name made literal without
+ *       turning the briefing into an ambient alert.
  *   2 · SOURCED LIGHT — the rectangular row washes are gone. Each marker now
  *       carries a soft radial bloom, so the colour visibly emanates from the
  *       dot instead of arriving as a painted panel with edges.
@@ -48,6 +49,7 @@ const ITEMS = [
     why: "The venue team needs it before service notes lock for the 1 August tasting.",
     receipts: ["Notes + Tasks", "updated today"],
     action: "Open task",
+    href: PRODUCT_APP_URLS.tasks,
   },
   {
     ordinal: "02",
@@ -56,6 +58,7 @@ const ITEMS = [
     why: "The public timeline puts them on 8 August, directly after the tasting.",
     receipts: ["Timeline", "current share"],
     action: "Open timeline",
+    href: PRODUCT_APP_URLS.timeline,
   },
 ];
 
@@ -87,15 +90,35 @@ export type SignalReadItem = {
   why: string;
   receipts: string[];
   action: string;
+  href?: string;
 };
 
 export function SignalTheRead({
   embedded = false,
   items = ITEMS,
+  venue = "The Orchard",
+  embeddedHeadingLevel = 4,
 }: {
   embedded?: boolean;
   items?: SignalReadItem[];
+  /**
+   * The sample workspace's venue, shown in the dateline stamp. Defaults to the
+   * homepage relay fixture. Surfaces with their own canon pass their own name:
+   * hiding this with CSS still ships the wrong name in the HTML, the RSC
+   * payload and any link preview.
+   */
+  venue?: string;
+  /**
+   * The heading level the embedded frame's headline takes; item titles sit
+   * one level under it. The homepage embeds this inside an h3 chapter, so 4
+   * is the default. A page that stacks this beside another sample document
+   * with h2 headings of its own passes 2, so the briefing reads as a
+   * sibling sample rather than a subsection of its neighbour's outline.
+   */
+  embeddedHeadingLevel?: 2 | 3 | 4;
 } = {}) {
+  const EmbeddedHeadline = `h${embeddedHeadingLevel}` as "h2" | "h3" | "h4";
+  const EmbeddedItemTitle = `h${embeddedHeadingLevel + 1}` as "h3" | "h4" | "h5";
   return (
     <section
       className={`rd${embedded ? " rd-embedded" : ""}`}
@@ -116,16 +139,16 @@ export function SignalTheRead({
           <span className="rd-stamp">
             <time dateTime="2026-07-29T09:00">Wednesday, 09:00</time>
             <span aria-hidden="true">·</span>
-            The Orchard
+            {venue}
           </span>
         </div>
 
         <div className="rd-head">
           {embedded ? (
-            <h4 className="rd-headline">
+            <EmbeddedHeadline className="rd-headline">
               Two things genuinely
               <br className="rd-br" /> need you.
-            </h4>
+            </EmbeddedHeadline>
           ) : (
             <h1 className="rd-headline" id="rd-title">
               Two things genuinely
@@ -164,7 +187,9 @@ export function SignalTheRead({
 
               <div className="rd-body">
                 {embedded ? (
-                  <h5 className="rd-item-title">{item.title}</h5>
+                  <EmbeddedItemTitle className="rd-item-title">
+                    {item.title}
+                  </EmbeddedItemTitle>
                 ) : (
                   <h2 className="rd-item-title">{item.title}</h2>
                 )}
@@ -180,9 +205,17 @@ export function SignalTheRead({
               </div>
 
               <div className="rd-action">
-                <button className="rd-button" type="button">
-                  {item.action}
-                </button>
+                {embedded ? (
+                  <span className="rd-action-label">
+                    {item.claim === "now" ? "Task receipt" : "Timeline receipt"}
+                  </span>
+                ) : item.href ? (
+                  <a className="rd-button" href={item.href}>
+                    {item.action}
+                  </a>
+                ) : (
+                  <span className="rd-action-label">{item.action}</span>
+                )}
               </div>
             </li>
           ))}
@@ -209,10 +242,10 @@ const CSS = `
 .rd {
   --rd-rail: 132px;
   --rd-gutter: clamp(20px, 5vw, 72px);
-  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow — hero motion choreography */
+  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow - hero motion choreography */
 
   /* ── traffic light ──────────────────────────────────────────────────
-     Tones are the design system's status ramp — the same three colouring
+     Tones are the design system's status ramp - the same three colouring
      the Tasks board. Pure hue is only ever spent on marks (dots, spine,
      blooms); small text takes the ink-mixed tone, because raw red on paper
      is 3.76:1 and raw amber is 2.15:1, both failing small-text contrast. */
@@ -223,7 +256,7 @@ const CSS = `
   --rd-clear: var(--status-done);
   --rd-clear-ink: color-mix(in srgb, var(--status-done) 54%, var(--ink));
 
-  /* PORT NOTE 2026-07-28 — was min-height 100svh, right for a standalone
+  /* PORT NOTE 2026-07-28 - was min-height 100svh, right for a standalone
      gallery route that owned the viewport. As a hero it is one band with a
      page beneath it, so it sizes to its own content and keeps a floor that
      holds the fold without pushing the rest of the page away. */
@@ -251,10 +284,6 @@ const CSS = `
   animation: none;
 }
 
-.rd-embedded .rd-button {
-  min-height: 44px;
-}
-
 .rd-embedded .rd-ordinal,
 .rd-embedded .rd-receipt-label {
   color: var(--zinc-600);
@@ -279,7 +308,6 @@ const CSS = `
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  animation: rd-rise 620ms var(--rd-ease) 60ms both;
 }
 
 .rd-kicker {
@@ -317,13 +345,12 @@ const CSS = `
    cap broke it by accident and left the upper-right quadrant dead. */
 .rd-headline {
   margin: 0;
-  /* POLISH 2026-07-28 — the shared headline register: one clamp, 600,
+  /* POLISH 2026-07-28 - the shared headline register: one clamp, 600,
      -0.04em across all four product pages. */
   font-size: clamp(2.5rem, 1.2rem + 3.9vw, 4.4rem);
   font-weight: 600;
   line-height: 0.98;
   letter-spacing: -0.04em;
-  animation: rd-rise 700ms var(--rd-ease) 130ms both;
 }
 
 /* The filter made visible: thirteen taken in, two surfaced, sitting in the
@@ -335,7 +362,6 @@ const CSS = `
   align-items: flex-end;
   gap: 10px;
   padding-bottom: clamp(6px, 1vw, 12px);
-  animation: rd-rise 700ms var(--rd-ease) 190ms both;
 }
 
 .rd-bars {
@@ -351,7 +377,7 @@ const CSS = `
   border-radius: 1px;
   background: var(--ink-ghost);
   transform-origin: bottom;
-  animation: rd-bar 480ms var(--rd-ease) calc(340ms + var(--i) * 26ms) both;
+  animation: rd-bar 220ms var(--ease-out) calc(80ms + var(--i) * 8ms) both;
 }
 
 .rd-bars i[data-tone="now"] { background: var(--rd-now); }
@@ -395,7 +421,7 @@ const CSS = `
 .rd-item[data-claim="next"] { --rd-tone: var(--rd-next); --rd-tone-ink: var(--rd-next-ink); --rd-bloom-r: 96px;  --rd-bloom: 8%; }
 
 /* Sourced light. The colour emanates from the marker as a radial bloom and
-   is gone before it reaches the copy — light with an origin, not a painted
+   is gone before it reaches the copy - light with an origin, not a painted
    panel. Geometry is anchored to the marker's position in the rail. */
 .rd-item::before {
   content: "";
@@ -413,9 +439,6 @@ const CSS = `
   );
 }
 
-.rd-item:nth-child(1) { animation: rd-rise 700ms var(--rd-ease) 210ms both; }
-.rd-item:nth-child(2) { animation: rd-rise 700ms var(--rd-ease) 290ms both; }
-
 /* The handover. Dot-to-dot, red into amber, drawn once on arrival. Both
    ends are anchored by construction: top offsets from this item's marker,
    bottom reaches through the border into the next item's marker, whose
@@ -429,7 +452,7 @@ const CSS = `
   width: 1px;
   background: linear-gradient(to bottom, var(--rd-now), var(--rd-next));
   transform-origin: top;
-  animation: rd-draw 640ms var(--rd-ease) 560ms both;
+  animation: rd-draw 400ms var(--ease-in-out) 180ms both;
 }
 
 @keyframes rd-draw {
@@ -482,9 +505,7 @@ const CSS = `
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--rd-tone, transparent) 15%, transparent);
 }
 
-/* The ping. A ring leaves the NOW marker every ~4s: the product's name made
-   literal, and the only perpetual motion on the page. Next is present, not
-   urgent, so it does not broadcast. */
+/* Two rings establish NOW on arrival, then the briefing settles. */
 .rd-item[data-claim="now"] .rd-marker::after {
   content: "";
   position: absolute;
@@ -492,7 +513,7 @@ const CSS = `
   border-radius: 50%;
   border: 1px solid var(--rd-now);
   opacity: 0;
-  animation: rd-ping 3.8s cubic-bezier(0.22, 1, 0.36, 1) 1.6s infinite; /* ds-allow — bespoke long tail for the broadcast mark */
+  animation: rd-ping 1400ms var(--ease-out) 420ms 2;
 }
 
 @keyframes rd-ping {
@@ -520,7 +541,7 @@ const CSS = `
 }
 
 /* Provenance, not decoration. Ticks inked up from ghost 3px to a visible
-   6px — the row is the page's honesty and was whispering. */
+   6px - the row is the page's honesty and was whispering. */
 .rd-receipts {
   margin: 16px 0 0;
   display: flex;
@@ -560,6 +581,9 @@ const CSS = `
 }
 
 .rd-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   appearance: none;
   border: 1px solid var(--hairline);
   border-radius: 8px;
@@ -572,19 +596,25 @@ const CSS = `
   padding: 9px 16px;
   white-space: nowrap;
   cursor: pointer;
+  text-decoration: none;
   transition:
-    border-color 160ms var(--rd-ease),
-    background 160ms var(--rd-ease),
-    transform 160ms var(--rd-ease);
+    border-color var(--motion-fast) var(--ease-out),
+    background var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
 /* The row's tone reaches the button on hover only, as a border. A filled
-   red button would read as destructive — this action opens, it does not
+   red button would read as destructive - this action opens, it does not
    delete. */
-.rd-button:hover {
-  border-color: color-mix(in srgb, var(--rd-tone, var(--ink-ghost)) 55%, var(--hairline));
-  background: var(--paper-soft);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .rd-button:hover {
+    border-color: color-mix(in srgb, var(--rd-tone, var(--ink-ghost)) 55%, var(--hairline));
+    background: var(--paper-soft);
+  }
+}
+
+.rd-button:active {
+  transform: scale(0.98);
 }
 
 .rd-button:focus-visible {
@@ -601,9 +631,22 @@ const CSS = `
   color: var(--paper);
 }
 
-.rd-item[data-claim="now"] .rd-button:hover {
-  background: color-mix(in srgb, var(--ink) 88%, var(--paper));
-  border-color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .rd-item[data-claim="now"] .rd-button:hover {
+    background: color-mix(in srgb, var(--ink) 88%, var(--paper));
+    border-color: var(--ink);
+  }
+}
+
+.rd-action-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono, var(--font-geist-mono));
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* ── close ───────────────────────────────────────────────────────────── */
@@ -615,7 +658,6 @@ const CSS = `
   gap: 20px;
   flex-wrap: wrap;
   margin-top: clamp(24px, 3vw, 36px);
-  animation: rd-rise 700ms var(--rd-ease) 370ms both;
 }
 
 .rd-close-read {
@@ -657,11 +699,6 @@ const CSS = `
   color: var(--rd-clear-ink);
 }
 
-@keyframes rd-rise {
-  from { opacity: 0; transform: translateY(9px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* ── narrow ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 720px) {
@@ -698,16 +735,12 @@ const CSS = `
 
   .rd-action { padding-top: 4px; }
   .rd-button { width: 100%; }
+  .rd-action-label { min-height: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rd-dateline,
-  .rd-headline,
-  .rd-distill,
   .rd-bars i,
-  .rd-item,
-  .rd-item[data-claim="now"]:not(:last-child)::after,
-  .rd-close {
+  .rd-item[data-claim="now"]:not(:last-child)::after {
     animation: none;
   }
 

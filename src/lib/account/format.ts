@@ -10,6 +10,8 @@ export function formatMetricValue(metric: MetricValue): string {
       return "Withheld";
     case "unavailable":
       return "Unavailable";
+    case "unlimited":
+      return "Unlimited";
   }
 }
 
@@ -26,6 +28,8 @@ export function formatMetricAccessibleLabel(
       return `${label}: withheld for small-group privacy protection`;
     case "unavailable":
       return `${label}: unavailable. ${metric.reason}`;
+    case "unlimited":
+      return `${label}: unlimited. Every couple who books is covered`;
   }
 }
 
@@ -46,6 +50,11 @@ export function metricRateLabel(
     denominator.state !== "exact" ||
     denominator.value === 0
   ) {
+    // A rate against an unlimited denominator has no meaning. Saying so beats
+    // printing a percentage of infinity or, worse, of zero.
+    if (numerator.state === "unlimited" || denominator.state === "unlimited") {
+      return "Not applicable";
+    }
     if (numerator.state === "withheld" || denominator.state === "withheld") {
       return "Withheld";
     }

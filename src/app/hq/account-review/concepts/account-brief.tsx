@@ -84,7 +84,7 @@ export function AccountBriefOverview({
       <div className={styles.split}>
         <section aria-label="Product reach">
           <p className={styles.eyebrow}>Product reach</p>
-          <h2>Across Notes, Tasks, Timeline and Signal</h2>
+          <h2>Across Notes, Tasks, Timeline and the daily briefing</h2>
           <ul className={styles.reach}>
             {snapshot.productReach.map((row) => (
               <li key={row.product}>

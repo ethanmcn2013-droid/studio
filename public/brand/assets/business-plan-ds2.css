@@ -662,7 +662,7 @@
 #venue-offer .two-col { align-items:center!important; }
 #venue-offer .two-col > div:first-child { position: relative; }
 #venue-offer .two-col > div:first-child::before {
-  content: '€1,500';
+  content: '€1,000';
   display: block;
   font-family: var(--mono) !important;
   font-size: 68px !important;

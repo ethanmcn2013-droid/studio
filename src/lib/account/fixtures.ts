@@ -132,7 +132,7 @@ export const VENUE_COMPLETE: AccountSnapshot = {
   coverage: {
     state: "complete",
     label: "Reporting complete",
-    detail: "All four products. Data through 24 Jul 2026.",
+    detail: "All three products and the briefing. Data through 24 Jul 2026.",
     dataThrough: "2026-07-24",
     periodStart: "2026-06-25",
     periodEnd: "2026-07-24",

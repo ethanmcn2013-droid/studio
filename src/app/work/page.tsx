@@ -4,10 +4,10 @@ import { SiteFooter } from "@/components/landing/site-footer";
 export const metadata: Metadata = {
   title: "Work · Signal Studio",
   description:
-    "Four products for operational clarity: Notes, Tasks, Timeline, Signal.",
+    "Three products for operational clarity: Notes, Tasks and Timeline, with a daily briefing built into Home.",
 };
 
-type ProductSlug = "notes" | "tasks" | "timeline" | "signal";
+type ProductSlug = "notes" | "tasks" | "timeline";
 
 interface WorkItem {
   name: string;
@@ -17,9 +17,10 @@ interface WorkItem {
   href?: string;
 }
 
-// Workflow order: Notes captures, Tasks runs, Timeline shows, Signal
-// surfaces. Product names carry no "Signal" prefix, the house is Signal
-// Studio; the products are Notes, Tasks, Timeline, Signal.
+// Workflow order: Notes captures, Tasks runs, Timeline shows, and the
+// daily briefing in Home surfaces what needs attention. Product names
+// carry no "Signal" prefix, the house is Signal Studio; the products are
+// Notes, Tasks and Timeline.
 const items: WorkItem[] = [
   {
     name: "Notes",
@@ -43,14 +44,6 @@ const items: WorkItem[] = [
     year: "2026",
     status: "Private preview",
     href: waitlistHref("timeline"),
-  },
-  {
-    name: "Signal",
-    descriptor:
-      "Attention clarity through short briefings that surface what matters in the work.",
-    year: "2026",
-    status: "Private preview",
-    href: waitlistHref("signal"),
   },
 ];
 
@@ -84,8 +77,15 @@ export default function WorkPage() {
             className="mb-12 leading-[1.6] text-ink-soft"
             style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
           >
-            Four products, one system. Access is staged: join the waitlist
-            and we will open the right door when the next window is ready.
+            Notes. Tasks. Timeline. One clear system, with a{" "}
+            <a
+              href="/features/daily-briefing"
+              className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:decoration-accent"
+            >
+              daily briefing
+            </a>{" "}
+            built into Home. Access is staged: join the waitlist and we will
+            open the right door when the next window is ready.
           </p>
 
           <ol className="flex flex-col">

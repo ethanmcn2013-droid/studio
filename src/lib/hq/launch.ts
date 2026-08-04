@@ -72,7 +72,7 @@ export function getLaunchReadiness(
     {
       key: "csp-enforce",
       label: "CSP enforce-mode",
-      detail: "promote from report-only across all four products",
+      detail: "promote from report-only across all three products and Home",
       state: "pending",
       live: false,
       href: "/hq/health",

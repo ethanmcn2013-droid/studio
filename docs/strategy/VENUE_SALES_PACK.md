@@ -4,6 +4,10 @@ Status: founder-review draft - 2026-05-26
 Owner: founder
 Boundary: sales pack copy only. Final PDF design, graphics, motion, and video treatment remain founder-owned before outreach.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Purpose
@@ -49,7 +53,7 @@ Signal Studio gives each couple one calm place to plan, with your venue's name i
 2. Hand a code to each couple after booking.
 3. Nothing else to run.
 
-The couple never sees a price. They get eighteen months of Signal Studio because your venue backed their planning.
+The couple never sees a price. They get Signal Studio for eighteen months, or until three months after the wedding, whichever is later, because your venue backed their planning.
 
 ### Why It Matters
 
@@ -63,15 +67,14 @@ The couple never sees a price. They get eighteen months of Signal Studio because
 
 ### Pricing
 
-Venue Edition is prepaid annually.
+Venue Edition is prepaid annually, VAT-inclusive.
 
 | Venue shape | Annual fee |
 | --- | --- |
-| Every venue | EUR1,500 |
+| Standard | EUR1,500 |
+| Founding 25 (first 25 founding agreements) | EUR1,000 |
 
-Founding venues: the first fifteen venues lock EUR1,500/year for as long as they stay.
-
-This is not a discount that expires. It is the founding position.
+The Founding 25 pay five hundred euro a year less, for as long as the agreement keeps renewing without a lapse. That saving is the founding position: a concrete euro figure now, not a promise about year five.
 
 ### Close
 
@@ -131,7 +134,7 @@ Signal Studio does not make the venue more technical. It makes the planning year
 This block can sit in a sales pack, an internal venue memo, or a post-call follow-up.
 
 ```
-Each couple receives a private wedding planning workspace for eighteen months.
+Each couple receives a private wedding planning workspace for eighteen months, or until three months after the wedding if that is later.
 
 It includes:
 
@@ -173,7 +176,7 @@ Before this becomes a designed PDF, check:
 | --- | --- |
 | Audience | It speaks to venue owner/operator, not couples. |
 | Buyer/user split | The venue pays; the couple uses. This is never blurred. |
-| Price | EUR1,500/year, prepaid, is visible and plain. |
+| Price | EUR1,500/year standard, EUR1,000/year for the Founding 25, both prepaid and VAT-inclusive, is visible and plain. |
 | Mechanic | Venue pays, hands code, nothing to run. |
 | Proof | The four product layers are explained as one planning year, not four apps. |
 | Brand | Calm, specific, no hype, no "book a demo today" tone. |

@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Signal Studio, brand one-pager",
-  description: "Five products, one discipline. Print-ready one-pager.",
+  description: "Three products, one discipline. Print-ready one-pager.",
   robots: { index: false, follow: false },
 };
 
@@ -42,17 +42,17 @@ export default async function BrandOnePager() {
       <OPSection>Everything important. Nothing distracting.</OPSection>
 
       <OPPurpose>
-        Signal Studio is four products that read as one. Each solves one kind
+        Signal Studio is three products that read as one. Each solves one kind
         of clarity: Notes captures context before it&rsquo;s ready to share.
         Tasks organises action and ownership. Timeline communicates direction
-        to people outside the work. Signal surfaces what needs attention
-        before it becomes a problem. Together they are a system. Separately,
-        each one works.
+        to people outside the work. Home is the front door, where Today&rsquo;s
+        Signal surfaces what needs attention before it becomes a problem.
+        Together they are a system. Separately, each one works.
       </OPPurpose>
 
       <OPPull>
         The moat is not features. It is disciplined refusal sustained across
-        four products over time. Every banned word, every refused dashboard,
+        three products over time. Every banned word, every refused dashboard,
         every plain-English error message is the same decision made again.
         Incumbents can copy a feature. They cannot copy a discipline that has
         been held for two years.
@@ -63,7 +63,7 @@ export default async function BrandOnePager() {
           { k: "Signal Notes", v: "Capture context before it's ready for the room." },
           { k: "Signal Tasks", v: "Own the work. Know what's stuck. See who's on it." },
           { k: "Signal Timeline", v: "Share direction with people who aren't in the workspace." },
-          { k: "Signal", v: "Read what matters before it becomes a problem." },
+          { k: "Today's Signal", v: "The daily briefing in Home. Read what matters before it becomes a problem." },
         ]}
       />
 

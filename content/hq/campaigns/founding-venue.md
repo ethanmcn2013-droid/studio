@@ -17,7 +17,7 @@ Recruit venues that can create planning workspaces for couples.
 
 ## Offer
 
-Venue Editions — sponsored wedding planning workspaces, 18 months for every couple at the venue, co-branded eyebrow-only (no venue logo). Founding venue status. Mechanic: per-couple redemption codes minted via `pnpm issue:codes <slug> <n>`, claimed at signalstudio.ie/redeem/[code], auto-drop to Free at month 18 with one quiet prompt beforehand.
+Venue Editions — sponsored wedding planning workspaces, 18 months for every couple at the venue, name-only eyebrow (no venue logo). Founding venue status. Mechanic: per-couple redemption codes minted via `pnpm issue:codes <slug> <n>`, claimed at signalstudio.ie/redeem/[code], auto-drop to Free at month 18 with one quiet prompt beforehand.
 
 ## Current blocker
 

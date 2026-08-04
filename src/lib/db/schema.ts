@@ -69,8 +69,11 @@ export type NewEntitlement = typeof entitlements.$inferInsert;
  *  none    , legacy / not a venue / unclassified.
  *  pilot   , in-flight free pilot, not yet converted (e.g. Lamb's Hill
  *             pre-conversion). Counts as distribution, never as revenue.
- *  founding, paid at €1,500/yr with the founding-cohort lifetime lock.
- *  paid    , paid at the fixed €1,500/yr Venue Edition price.
+ *  founding, one of the Founding 25, paid at €1,000/yr and held at that
+ *             rate for as long as the agreement renews without a lapse.
+ *  paid    , paid at the standard €1,500/yr Venue Edition price.
+ *
+ * Both amounts are VAT-inclusive.
  *
  * Only `founding` and `paid` rows WITH a non-null `paidAt` are revenue.
  * "Cash in the door" is the honest metric, a signed-but-unpaid venue is
@@ -93,7 +96,7 @@ export const sponsors = sqliteTable(
     venuePlan: text("venue_plan").notNull().default("none"),
     /** Annual patronage, in cents. The exact cash amount received. */
     annualAmountCents: integer("annual_amount_cents"),
-    /** Founding cohort: €1,500/yr locked for life. Permanence, not a discount. */
+    /** One of the Founding 25: €1,000/yr, held while the agreement renews. */
     foundingLocked: integer("founding_locked"),
     /** Prepaid annual term window. */
     termStartsAt: integer("term_starts_at"),
@@ -195,7 +198,8 @@ export type ProspectStage = (typeof PROSPECT_STAGES)[number];
 /**
  * The four lead books. Each is a distinct outbound motion with its own
  * offer, buyer, and playbook (market-entry deck 2026–2028):
- *   venue   — Venue Edition, €1,500/yr prepaid, phone-first founder outreach
+ *   venue   — Venue Edition, €1,000/yr for the Founding 25 then €1,500/yr,
+ *             prepaid, phone-first founder outreach
  *   student — Student Edition €9.99/yr + €49 committee workspace, campus cells
  *   school  — School Edition, €1,500/school/yr, 60 staff, zero pupil data
  *   smb     — Workspace/Event tiers, inbound-only until the Phase 5 wedge call

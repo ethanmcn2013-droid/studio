@@ -11,7 +11,7 @@ const routes: Array<{
   { path: "/notes", priority: 0.9, changeFrequency: "monthly" },
   { path: "/tasks", priority: 0.9, changeFrequency: "monthly" },
   { path: "/timeline", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/signal", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/features/daily-briefing", priority: 0.9, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/waitlist", priority: 0.95, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },

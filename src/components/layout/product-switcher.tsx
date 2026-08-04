@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 
-type ProductSlug = "tasks" | "timeline" | "notes" | "signal";
+type ProductSlug = "tasks" | "timeline" | "notes";
 
 const PRODUCTS: {
   slug: ProductSlug;
@@ -11,20 +11,22 @@ const PRODUCTS: {
   tagline: string;
   url: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+  // The three products (Signal → Home consolidation, 2026-08-04).
+  // Signal left the product line; the daily-briefing story lives at
+  // /features/daily-briefing, linked below the product list.
   { slug: "notes", word: "notes", tagline: "Capture clarity", url: PRODUCT_MARKETING_URLS.notes },
   { slug: "tasks", word: "tasks", tagline: "Execution clarity", url: PRODUCT_MARKETING_URLS.tasks },
   { slug: "timeline", word: "timeline", tagline: "Direction clarity", url: PRODUCT_MARKETING_URLS.timeline },
-  { slug: "signal", word: "signal", tagline: "Attention clarity", url: PRODUCT_MARKETING_URLS.signal },
 ];
 
 const INDIGO = "#4f46e5";
 
 /**
  * Umbrella-side product switcher. Mirrors the SuiteLauncher contract
- * used inside each product (Tasks/Timeline/Signal/Notes), same
- * popover chrome, same product order, but the trigger here reads
- * "Products" because the user is on signalstudio.ie itself.
+ * used inside the app, same popover chrome, same product order, but the
+ * trigger here reads "Products" because the user is on signalstudio.ie
+ * itself. Three products; the daily briefing rides below as a system
+ * capability, never a fourth product.
  */
 export function ProductSwitcher() {
   const [open, setOpen] = useState(false);
@@ -90,7 +92,7 @@ export function ProductSwitcher() {
               Signal Studio
             </div>
             <div className="mt-0.5 text-[10.5px] text-ink-quiet">
-              Four products, one studio.
+              Notes. Tasks. Timeline. One clear system.
             </div>
           </div>
           <ul className="p-1">
@@ -129,6 +131,19 @@ export function ProductSwitcher() {
               </li>
             ))}
           </ul>
+          <div
+            className="border-t px-3.5 py-2.5"
+            style={{ borderTopColor: "color-mix(in srgb, var(--border-soft) 70%, transparent)" }}
+          >
+            <a
+              href="/features/daily-briefing"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between gap-3 rounded-md text-[11.5px] text-ink-quiet no-underline transition-colors hover:text-ink"
+            >
+              <span>Your daily signal, built into Home</span>
+              <span aria-hidden>→</span>
+            </a>
+          </div>
         </div>
       ) : null}
     </div>

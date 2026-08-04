@@ -1,7 +1,11 @@
 # Signal Studio · 6-Month Marketing Plan
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 **Date**: 2026-05-16
-**Status**: AMENDED 2026-07-11 — §1 Venue Edition fixed at €1,500 per venue/year; the prior €1.5–4k band is retired. Goal reframe remains recorded, but the fixed price makes the volume requirement materially higher. Execution is gated only on the pre-launch readiness items in §5.
+**Status**: AMENDED 2026-07-11 — §1 Venue Edition fixed at €1,500 per venue/year; the prior €1.5–4k band is retired. Goal reframe remains recorded, but the fixed price makes the volume requirement materially higher. Execution is gated only on the pre-launch readiness items in §5. RE-RATIFIED 2026-08-03: the €1,500 standard price is unchanged and now stated VAT-inclusive; the founding cohort is the Founding 25 (25 places, not 15), paying €1,000 per venue/year, VAT-inclusive, for as long as the agreement renews without lapse.
 **Built from**: parallel strategy + research + pm workstreams, brand-gated through `signal-brand-voice` / BRAND.md §3 / DESIGN.md §10.
 **Constraints honoured**: zero paid ads, free channels only, solo founder + AI agent factory, only fixed costs are Claude Code Max + Codex Pro + hosting.
 
@@ -11,9 +15,9 @@
 
 You asked for €/$500k in 6 months. Here is the truth, because a flattering plan is worthless:
 
-**At the current pricing, €500k in 6 months is not a marketing problem — it is an arithmetic one.** €12/mo and €79 one-time cannot produce €500k of cash in 26 weeks from a solo, zero-ad motion. The consumer SKUs contribute **≤€125k optimistically, ~€40–60k realistically**. The Venue Edition now contributes exactly **€1,500 for each venue closed**; the old complimentary model and variable price band are retired.
+**At the current pricing, €500k in 6 months is not a marketing problem — it is an arithmetic one.** €12/mo and €79 one-time cannot produce €500k of cash in 26 weeks from a solo, zero-ad motion. The consumer SKUs contribute **≤€125k optimistically, ~€40–60k realistically**. The Venue Edition now contributes **€1,500 per standard venue closed, €1,000 for each Founding 25 venue**; the old complimentary model and variable price band are retired.
 
-**€500k in 6 months remains outside the credible solo-founder case. The fixed-price stretch scenario is ~€235k; the standing €250k target needs additional venue volume or stronger consumer revenue.** Chasing the literal €500k in 6 months would force the exact salesy, high-volume, AI-slop tactics this brand exists to refuse. The fastest way to destroy Signal Studio is to hit a revenue number by abandoning the thing that makes it Signal Studio.
+**€500k in 6 months remains outside the credible solo-founder case. The fixed-price stretch scenario recomputes to ~€223k under the Founding 25 split (§2); the standing €250k target needs additional venue volume or stronger consumer revenue.** Chasing the literal €500k in 6 months would force the exact salesy, high-volume, AI-slop tactics this brand exists to refuse. The fastest way to destroy Signal Studio is to hit a revenue number by abandoning the thing that makes it Signal Studio.
 
 **So the plan reframes the goal, and the reframed goal is still ambitious:**
 
@@ -41,18 +45,18 @@ This is not pessimism. The engine below is the right engine. But a plan that lea
 
 ## 1 · The decision that gates everything — RATIFIED 2026-05-16
 
-Pricing is a locked decision area. The founder amended the Venue Edition on 2026-07-11: **€1,500 per venue/year, prepaid, with no size or multi-site band.** Recorded in `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md`.
+Pricing is a locked decision area. The founder re-ratified the Venue Edition on 2026-08-03: **€1,500 per venue/year standard, prepaid and VAT-inclusive, with no size or multi-site band; €1,000 per venue/year for the Founding 25 (the first 25 founding agreements) on the same terms.** Recorded in `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
 
 **Reverse "with our compliments." The Venue Edition becomes a paid annual tier.**
 
-- **Venue Edition — €1,500 per venue / year, prepaid annually.** One price for every venue. The venue pays Signal Studio to give every one of its couples an 18-month co-branded planning workspace.
+- **Venue Edition — €1,500 per venue / year, prepaid annually, VAT-inclusive.** The venue pays Signal Studio to give every one of its couples a sponsored planning workspace carrying the venue's name that runs 18 months from redemption or 3 months past the wedding date, whichever is later (548 days is the floor, not the ceiling).
 - Framed as **patronage, not enterprise SaaS**: "the venue stands behind the couple's planning." No seats, no per-user, no MSA jargon, no discount banners. A standard of hospitality, not a license. This wording passes BRAND.md §3.
-- **Founding-cohort price-lock** (not discount): the first ~15 venues lock €1,500 for life. The asset is permanence, not a markdown.
+- **Founding 25** (a real discount, not just a lock): the first 25 founding agreements pay €1,000 per venue/year, VAT-inclusive, €500 less than standard. The public line is "€500 a year less, for as long as you stay." The rate holds for as long as the agreement renews continuously without lapse. A concrete euro saving beats a promise about year five, and founding venues get both the saving and a rate that holds.
 - Secondary asks (also ratification-flagged): **Workspace annual prepay €120/yr** (stated plainly, no "SAVE 17%" theatre); **Event €79 one-time held as-is** (do not touch — it isn't the lever).
 
 **Why this is the whole plan:** a paid venue is negative-CAC distribution that *pays you* to seed 50–150 high-intent couples into the suite, recurring annually, and the restraint *is* the pitch to a taste-driven venue buyer. The price is ratified; Gate 0 is now whether one venue will settle a real invoice without a discount.
 
-> **Decision closed 2026-07-11:** Venue Edition is paid, annual, prepaid, and fixed at €1,500 per venue. Execution now depends on proof of demand, not another pricing decision.
+> **Decision re-ratified 2026-08-03:** Venue Edition is paid, annual, prepaid: €1,500 per venue standard, €1,000 per venue for the Founding 25, both VAT-inclusive. Execution now depends on proof of demand, not another pricing decision.
 
 ---
 
@@ -60,21 +64,23 @@ Pricing is a locked decision area. The founder amended the Venue Edition on 2026
 
 Three motions, in priority order. Everything else is ruled out (paid ads = constraint violation; volume outbound spam / AI-listicle SEO / discount theatre = brand violation).
 
-1. **Paid Venue Edition (annual, prepaid)** — the wedge and distribution engine. At the fixed €1,500 price, it is not assumed to carry 75–85% of six-month cash by itself.
-2. **Event €79 one-time at volume**, fed by sponsoring venues' couples beyond the sponsored allotment — the secondary layer.
+1. **Paid Venue Edition (annual, prepaid)** — the wedge and distribution engine. At €1,500 standard / €1,000 Founding 25, it is not assumed to carry 75–85% of six-month cash by itself.
+2. **Event €79 one-time at volume**, fed by couples outside the sponsoring venues (no code, self-serve) — the secondary layer.
 3. **Workspace €12/mo (+ €120/yr prepay)** — the compounding tail; small in-window, the year-2 annuity.
 
 > **These scenarios are downstream of Gate 0 (§0.5).** Until one premium venue has paid real money unprompted by a discount, read every row below as a hypothesis, not a forecast. The number that unlocks this table is "paid pilots ≥ 1", not any figure in it.
 
 ### Scenarios — cash collected, 6 months (EUR; "cash in the door", not bookings)
 
-| Scenario | Venues closed | Blended /yr | Venue cash | + Event | + Workspace | **6-mo total** |
-|---|---|---|---|---|---|---|
-| **Floor** | 25 | €1,500 | €37.5k | ~€20k | ~€20k | **~€78k** |
-| **Stretch-credible** | 60 | €1,500 | €90k | ~€95k | ~€50k | **~€235k** |
-| **Mathematical €500k path** | 240 | €1,500 | €360k | ~€100k | ~€40k | **~€500k** |
+Recomputed 2026-08-03 for the Founding 25 split. Assumption: the Founding 25 places fill first (the first 25 venues that close pay the €1,000 founding rate); every venue closed after that pays the €1,500 standard rate. Where a scenario closes fewer than 25 venues, all of them are founding-rate.
 
-The €500k path needs a non-salesperson solo founder to close ~240 paid B2B contracts in 26 weeks from zero pipeline — well beyond a solo sales motion. The AI factory compounds *prep*, not *closing*. **Plan to the Stretch-credible line (~€235k). Treat €500k as a mathematical boundary, not a forecast.**
+| Scenario | Venues closed | Venue price mix | Venue cash | + Event | + Workspace | **6-mo total** |
+|---|---|---|---|---|---|---|
+| **Floor** | 25 | 25 founding × €1,000 | €25.0k | ~€20k | ~€20k | **~€65k** |
+| **Stretch-credible** | 60 | 25 founding × €1,000 + 35 standard × €1,500 | €77.5k | ~€95k | ~€50k | **~€223k** |
+| **Mathematical €500k path** | 240 | 25 founding × €1,000 + 215 standard × €1,500 | €347.5k | ~€100k | ~€40k | **~€488k** |
+
+The €500k path needs a non-salesperson solo founder to close ~240 paid B2B contracts in 26 weeks from zero pipeline — well beyond a solo sales motion. The AI factory compounds *prep*, not *closing*. **Plan to the Stretch-credible line (~€223k). Treat €500k as a mathematical boundary, not a forecast: the Founding 25 split brings the mathematical path itself to ~€488k, not €500k.**
 
 The one variable worth testing hard in weeks 1–8: *how much does a genuinely bespoke, brand-faithful per-venue asset compress the B2B close?* If a taste-driven venue owner converts on a single call because the asset pre-sold, the fixed-price volume case becomes more credible. That compression is the real experiment.
 
@@ -180,7 +186,7 @@ Hit those five and €500k arrives months 9–15 with the voice intact. That is 
 
 ## 11 · Ratification queue
 
-1. ~~Paid Venue Edition tier~~ — **AMENDED 2026-07-11** to one fixed €1,500/yr price. The prior band is retired.
+1. ~~Paid Venue Edition tier~~ — **AMENDED 2026-07-11** to one fixed €1,500/yr price (prior band retired); **RE-AMENDED 2026-08-03** to the Founding 25 structure: €1,500/yr standard, €1,000/yr for the first 25 founding agreements, both VAT-inclusive.
 2. ~~Workspace €120/yr annual prepay~~ — **RATIFIED 2026-05-16**.
 3. ~~Goal reframe €250k/6mo · €500k/12mo · brand-integrity gating~~ — **ACCEPTED 2026-05-16**.
 4. ~~Video direction: restrained craft~~ — **CONFIRMED 2026-05-16**.

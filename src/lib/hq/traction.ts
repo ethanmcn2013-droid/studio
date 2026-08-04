@@ -125,7 +125,7 @@ export type TractionState =
       cashCollectedEur: number;
       /** Paid venues with cash in the door. The plan's #1 leading metric. */
       paidVenues: number;
-      /** Of those, founding cohort (€1,500 locked for life). */
+      /** Of those, the Founding 25 (€1,000, held on continuous renewal). */
       foundingVenues: number;
       /** Signed founding|paid but `paid_at` still null, pipeline, not money. */
       signedUnpaidVenues: number;

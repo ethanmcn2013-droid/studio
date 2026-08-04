@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { PRODUCT_APP_URLS } from "@/lib/product-urls";
+import { HOME_APP_URL, PRODUCT_APP_URLS } from "@/lib/product-urls";
 
 /**
  * SuiteSwitcher, canonical always-visible 4-product pill switcher.
@@ -43,13 +43,15 @@ const STUDIO_URL =
   process.env.NEXT_PUBLIC_STUDIO_URL ?? "https://signalstudio.ie";
 const INDIGO = "#4f46e5";
 
-type ProductSlug = "tasks" | "roadmap" | "notes" | "analytics";
+type ProductSlug = "home" | "tasks" | "roadmap" | "notes";
 
 const PRODUCTS: { slug: ProductSlug; word: string; appUrl: string }[] = [
+  // Home first (Signal → Home consolidation, 2026-08-04): the front
+  // door leads; Signal left the product line.
+  { slug: "home", word: "home", appUrl: HOME_APP_URL },
   { slug: "notes", word: "notes", appUrl: PRODUCT_APP_URLS.notes },
   { slug: "tasks", word: "tasks", appUrl: PRODUCT_APP_URLS.tasks },
   { slug: "roadmap", word: "timeline", appUrl: PRODUCT_APP_URLS.timeline },
-  { slug: "analytics", word: "signal", appUrl: PRODUCT_APP_URLS.signal },
 ];
 
 const PRODUCT_ORIGINS = [...new Set(PRODUCTS.map((product) => new URL(product.appUrl).origin))];

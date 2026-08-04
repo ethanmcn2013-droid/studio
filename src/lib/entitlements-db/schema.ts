@@ -108,6 +108,23 @@ export const entitlements = sqliteTable(
     emailHash: text("email_hash"),
     /** 1 when this row's Clerk id was stranded by an account merge, pending re-point. */
     clerkIdDead: integer("clerk_id_dead"),
+    /**
+     * R-015 · D-022. The couple's wedding day, as the UTC-midnight instant that
+     * starts it. Present only on sponsored wedding rows, and only once the
+     * couple has supplied a date.
+     *
+     * It exists so `expires_at` can carry the ratified term —
+     * `max(redemption + 548 days, wedding date + 90 days)` — instead of a flat
+     * 548 days that would strand a long-lead booking before its own wedding.
+     *
+     * This is a PROJECTION, not the source of truth. The couple owns the date
+     * in the Tasks workspace (`workspaces.primary_date`); this column is
+     * written at redemption and on recompute so the shared entitlement can be
+     * evaluated without reaching into product content. It is deliberately
+     * absent from `SPONSOR_DEFAULT_FIELDS`, so no venue reads it without the
+     * existing consent projection.
+     */
+    weddingDate: integer("wedding_date"),
     createdAt: integer("created_at")
       .notNull()
       .default(sql`(unixepoch() * 1000)`),
@@ -127,6 +144,7 @@ export const entitlements = sqliteTable(
     ),
     index("entitlements_batch_id_idx").on(table.batchId),
     index("entitlements_email_hash_idx").on(table.emailHash),
+    index("entitlements_wedding_date_idx").on(table.weddingDate),
     // The two partial UNIQUE dedup indexes (WHERE source_ref / stripe_subscription_id
     // IS NOT NULL) are created in the idempotent migration script, since drizzle's
     // partial-unique-index support is version-fragile and the real enforcement is
@@ -159,7 +177,47 @@ export const sponsors = sqliteTable("sponsors", {
   termStartsAt: integer("term_starts_at"),
   termEndsAt: integer("term_ends_at"),
   paidAt: integer("paid_at"),
+  /**
+   * E02.13 · D-009 point 6. The Founding Venue place, 1 to 25, rendered
+   * everywhere as `NN/25`.
+   *
+   * Assigned when the first payment CLEARS — never on signature, never on
+   * invoice. A UNIQUE index (partial, created in the migration script) makes
+   * two venues holding the same number impossible rather than unlikely.
+   *
+   * Never reused. A venue that lapses keeps its number historically and its
+   * place shows as closed rather than open, so this column stays populated on
+   * a lapsed row. The one exception is a payment reversal, which withdraws the
+   * number and returns the place to the pool.
+   */
+  foundingNumber: integer("founding_number"),
+  foundingNumberAssignedAt: integer("founding_number_assigned_at"),
+  /** The hard cap, meaningful ONLY when allotment_mode = 'limited'. Null there
+   *  still means "not mint-eligible" — the pre-R-016 contract, unchanged. */
   codeAllotment: integer("code_allotment"),
+  /**
+   * R-016 · D-020. 'limited' | 'unlimited'. Every existing row backfills to
+   * 'limited', so behaviour before and after the migration is identical until
+   * a venue is deliberately switched.
+   *
+   * 'unlimited' is the ratified Venue Edition entitlement: every couple who
+   * books, for as long as the licence is current. The mint stops consulting
+   * code_allotment entirely for these sponsors.
+   */
+  allotmentMode: text("allotment_mode").notNull().default("limited"),
+  /**
+   * D-020 point 4: collected AFTER signature as an onboarding field, never as
+   * a contract term. It sets the issuance ceiling. It never sets the price and
+   * it never changes at renewal.
+   */
+  annualWeddingCount: integer("annual_wedding_count"),
+  /**
+   * The fair-use monitoring threshold derived from annual_wedding_count.
+   * D-020 point 1: crossing it ALERTS Signal HQ and keeps issuing. Nothing in
+   * the mint path may ever refuse on this number, and it never appears in a
+   * document that also says unlimited.
+   */
+  fairUseCeiling: integer("fair_use_ceiling"),
   /* Maintained counter: the single runtime headroom source for the mint
      cap. Reconciled nightly against COUNT(license_codes) + SUM(allotment_ledger). */
   codesIssued: integer("codes_issued").notNull().default(0),

@@ -193,7 +193,7 @@ export function RevealEngine() {
 
           // Choreography pass (2026-05-20, flag #4): the prior 0.95s ride /
           // 0.18s stagger / back.out(0.7) timing still blew through the
-          // four products before the eye could resolve each wordmark, the
+          // three products before the eye could resolve each wordmark, the
           // overshoot bounce read as rushed at that duration. New cadence
           // is deliberately cinematic: each row gets a clear arrival beat,
           // a 0.3s breath, then its brand gesture punctuates. Total hero

@@ -78,7 +78,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "What the venue pays",
-        copy: "Every venue pays EUR1,500 a year, prepaid. The founding cohort locks that price for as long as it stays.",
+        copy: "Every venue pays EUR1,500 a year, prepaid. The first twenty-five founding venues pay EUR1,000, held for as long as they stay. Both prices include VAT at the prevailing rate.",
       },
     ],
     primaryCta: {
@@ -174,7 +174,7 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       },
       {
         title: "A briefing, not a dashboard",
-        copy: "Signal reads the work and writes a short briefing. What is late, what is moving, and what deserves attention today.",
+        copy: "Home reads the work and writes a short daily briefing. What is late, what is moving, and what deserves attention today.",
       },
     ],
     primaryCta: {
@@ -182,8 +182,8 @@ export const COMPARISON_PAGES: ComparisonPage[] = [
       href: "/pricing",
     },
     secondaryCta: {
-      label: "Join the waitlist",
-      href: waitlistHref("signal"),
+      label: "See the daily briefing",
+      href: "/features/daily-briefing",
     },
   },
 ];

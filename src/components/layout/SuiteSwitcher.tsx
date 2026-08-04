@@ -21,7 +21,7 @@
  * (D6: "Tasks SuiteChrome is the outlier causing 'signal studio.×3'").
  *
  * Panel anatomy:
- *   Header , "signal studio." + "Four products, one studio." tagline
+ *   Header , "signal studio." + "Notes. Tasks. Timeline. One clear system." tagline
  *   List   , 4 product rows: word·  / verb / tagline
  *   Footer , "Back to Signal Studio →" link → signalstudio.ie (same-tab)
  *
@@ -231,7 +231,7 @@ export function SuiteSwitcher({ currentProduct }: SuiteSwitcherProps) {
               <span style={{ color: INDIGO }}>.</span>
             </div>
             <div className="mt-0.5 text-[10.5px] text-ink-quiet">
-              Four products, one studio.
+              Notes. Tasks. Timeline. One clear system.
             </div>
           </div>
 

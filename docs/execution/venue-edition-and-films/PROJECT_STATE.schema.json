@@ -1,0 +1,348 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstudio.ie/schemas/vef-2026/project-state.v1.json",
+  "title": "VEF-2026 project state",
+  "description": "Canonical machine-readable register for the Venue Edition and Films project. This schema covers structure and enums. The rules that need cross-record reasoning — unique ids, dependency existence, dependency cycles, the Done contract, the WIP limit, gate waivers, contact-data leakage — are enforced in tools/project-control.mjs validate(), because JSON Schema cannot express them. Both must pass. No JSON Schema validator is installed in this repo; this file is the written contract and the reference for anyone adding one.",
+  "type": "object",
+  "required": ["schemaVersion", "project", "baseline", "focus", "session", "wip", "milestones", "releaseGates", "commercial", "films", "epics", "tasks", "references", "meta"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "founder", "timezone", "releaseDate", "completionCondition", "currentPhase", "health"],
+      "properties": {
+        "id": { "const": "VEF-2026" },
+        "name": { "type": "string", "minLength": 1 },
+        "company": { "type": "string" },
+        "founder": { "type": "string", "minLength": 1 },
+        "finalApprover": { "type": "string" },
+        "timezone": { "const": "Europe/Dublin" },
+        "controlRoot": { "type": "string" },
+        "releaseDate": { "$ref": "#/$defs/date" },
+        "releaseMilestoneName": { "type": "string" },
+        "completionCondition": { "type": "string", "minLength": 1 },
+        "currentPhase": { "type": "string" },
+        "health": {
+          "type": "object",
+          "required": ["rag", "reason"],
+          "properties": {
+            "rag": { "enum": ["green", "amber", "red"] },
+            "reason": { "type": "string", "minLength": 1, "description": "A RAG rating without a factual reason is not permitted." },
+            "setAt": { "$ref": "#/$defs/datetime" }
+          }
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["version", "state", "estimatesApproved", "progressMethodology"],
+      "properties": {
+        "version": { "type": "string" },
+        "state": { "enum": ["draft", "approved", "superseded"] },
+        "approvedBy": { "type": ["string", "null"] },
+        "approvedAt": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+        "estimatesApproved": { "type": "boolean" },
+        "progressMethodology": { "enum": ["provisional_task_count", "approved_effort_points"] },
+        "note": { "type": "string" }
+      }
+    },
+    "focus": {
+      "type": "object",
+      "required": ["taskId"],
+      "properties": {
+        "taskId": { "oneOf": [{ "$ref": "#/$defs/taskId" }, { "type": "null" }] },
+        "setAt": { "type": ["string", "null"] },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "session": {
+      "type": "object",
+      "description": "Work packages run in parallel sessions, so several may be open at once. `open` is the list; the legacy single `active` slot migrates into it transparently.",
+      "properties": {
+        "open": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "objective", "openedAt"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "objective": { "type": "string", "minLength": 1 },
+              "openedAt": { "$ref": "#/$defs/datetime" }
+            }
+          }
+        },
+        "lastClosed": { "type": ["object", "null"] }
+      }
+    },
+    "wip": {
+      "type": "object",
+      "required": ["primaryFocus", "maxInProgress"],
+      "properties": {
+        "primaryFocus": { "const": 1 },
+        "maxInProgress": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["active", "reason"],
+            "properties": {
+              "active": { "type": "boolean" },
+              "reason": { "type": "string", "minLength": 1 },
+              "at": { "$ref": "#/$defs/datetime" }
+            }
+          }
+        }
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status", "exitCriteria"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^M\\d+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "targetDate": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+          "status": { "enum": ["open", "met", "missed", "cancelled"] },
+          "exitCriteria": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
+    },
+    "releaseGates": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "owner", "status", "exitCriteria", "supportingEpics"],
+        "properties": {
+          "id": { "enum": ["commercial", "legal", "product", "data", "creative", "sales_readiness"] },
+          "name": { "type": "string" },
+          "owner": { "$ref": "#/$defs/executor" },
+          "status": { "$ref": "#/$defs/gateState" },
+          "exitCriteria": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "supportingEpics": { "type": "array", "items": { "$ref": "#/$defs/epicId" } },
+          "blockers": { "type": "array" },
+          "evidence": { "type": "array" },
+          "founderDecision": { "type": ["string", "null"] },
+          "passedAt": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+          "waiver": {
+            "oneOf": [
+              { "type": "null" },
+              {
+                "type": "object",
+                "required": ["note", "date", "by"],
+                "properties": { "note": { "type": "string", "minLength": 1 }, "date": { "$ref": "#/$defs/date" }, "by": { "const": "founder" } }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "commercial": {
+      "type": "object",
+      "description": "Counts only. Venue names, contact names, emails and phone numbers are forbidden here and in every generated report.",
+      "required": ["target", "invitationsIssued", "signedAgreements", "paidAgreements", "onboardedVenues"],
+      "properties": {
+        "target": {
+          "type": "object",
+          "required": ["foundingVenues", "standardAnnualEur", "foundingAnnualEur", "geography"],
+          "properties": {
+            "foundingVenues": { "const": 25 },
+            "standardAnnualEur": { "type": "integer", "minimum": 0 },
+            "foundingAnnualEur": { "type": "integer", "minimum": 0 },
+            "geography": { "type": "string" }
+          }
+        },
+        "foundingPlacesAvailable": { "type": "integer", "minimum": 0, "maximum": 25 },
+        "researchedAccountUniverse": { "$ref": "#/$defs/counter" },
+        "cohortReady": {
+          "type": "object",
+          "properties": {
+            "cohort1": { "type": "boolean" }, "cohort2": { "type": "boolean" },
+            "cohort3": { "type": "boolean" }, "cohort4": { "type": "boolean" }
+          }
+        },
+        "invitationsIssued": { "$ref": "#/$defs/counter" },
+        "responses": { "$ref": "#/$defs/counter" },
+        "qualifiedMeetings": { "$ref": "#/$defs/counter" },
+        "demonstrations": { "$ref": "#/$defs/counter" },
+        "proposals": { "$ref": "#/$defs/counter" },
+        "signedAgreements": { "$ref": "#/$defs/counter" },
+        "paidAgreements": { "$ref": "#/$defs/counter" },
+        "configuredVenueAccounts": { "$ref": "#/$defs/counter" },
+        "onboardedVenues": { "$ref": "#/$defs/counter" },
+        "firstCoupleInvitations": { "$ref": "#/$defs/counter" },
+        "firstCoupleActivations": { "$ref": "#/$defs/counter" }
+      }
+    },
+    "films": {
+      "type": "object",
+      "required": ["limerick_first", "before_the_day"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "epic", "lane", "stages"],
+        "properties": {
+          "name": { "type": "string" },
+          "epic": { "$ref": "#/$defs/epicId" },
+          "lane": { "$ref": "#/$defs/executor" },
+          "stages": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": { "enum": ["not_started", "in_progress", "complete"] }
+          }
+        }
+      }
+    },
+    "epics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "taskCount"],
+        "properties": {
+          "id": { "$ref": "#/$defs/epicId" },
+          "title": { "type": "string", "minLength": 1 },
+          "note": { "type": ["string", "null"] },
+          "gating": { "type": ["string", "null"] },
+          "executor": { "$ref": "#/$defs/executor" },
+          "taskCount": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/task" }
+    },
+    "references": { "type": "object" },
+    "counts": { "type": "object", "description": "Derived. Rewritten on every mutation; never hand-edited." },
+    "meta": {
+      "type": "object",
+      "required": ["lastUpdatedAt"],
+      "properties": {
+        "lastValidatedAt": { "type": ["string", "null"] },
+        "lastRenderedAt": { "type": ["string", "null"] },
+        "lastUpdatedAt": { "$ref": "#/$defs/datetime" },
+        "lastUpdatedSession": { "type": ["string", "null"] },
+        "importedAt": { "type": ["string", "null"] },
+        "importSource": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "$defs": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "datetime": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T[\\d:.]+Z$" },
+    "counter": { "type": "integer", "minimum": 0 },
+    "epicId": { "type": "string", "pattern": "^E\\d{2}$" },
+    "taskId": { "type": "string", "pattern": "^E\\d{2}\\.\\d{2}(\\.\\d+)*$", "description": "Split children extend the parent id, e.g. E05.05.1. Imported ids are never renumbered." },
+    "status": { "enum": ["backlog", "ready", "in_progress", "internal_review", "founder_review", "done", "blocked", "deferred", "cancelled"] },
+    "gateState": { "enum": ["not_started", "in_progress", "ready_for_review", "passed", "failed", "waived"] },
+    "executor": { "enum": ["claude_code", "codex_motion", "founder", "external", "unassigned"] },
+    "task": {
+      "type": "object",
+      "required": ["id", "epic", "title", "status", "priority", "releaseBlocking", "criticalPath", "estimateStatus", "executor", "approver", "dependencies", "blockedBy", "acceptanceCriteria", "evidence", "founderSignOff", "createdAt", "updatedAt", "source", "history"],
+      "properties": {
+        "id": { "$ref": "#/$defs/taskId" },
+        "epic": { "$ref": "#/$defs/epicId" },
+        "title": { "type": "string", "minLength": 1, "description": "The exact imported title. Changing it is a CHANGELOG event, never a silent edit." },
+        "status": { "$ref": "#/$defs/status" },
+        "priority": { "enum": ["p0", "p1", "p2", "p3"] },
+        "releaseBlocking": { "type": "boolean" },
+        "criticalPath": { "type": "boolean" },
+        "startNow": { "type": "boolean" },
+        "effortPoints": { "oneOf": [{ "enum": [1, 2, 3, 5, 8, 13] }, { "type": "null" }] },
+        "estimateStatus": { "enum": ["unestimated", "provisional", "approved"] },
+        "executor": { "$ref": "#/$defs/executor" },
+        "approver": { "const": "founder" },
+        "decisionClass": {
+          "enum": ["founder_only", "founder_choice", "execution"],
+          "description": "How the task gets decided. founder_only = only Ethan can answer it and it must carry decisionQuestion; founder_choice = Claude brings options, Ethan picks; execution = Claude or Codex does the work and Ethan approves the result. See DECISION_DOCKET.md."
+        },
+        "decisionQuestion": { "type": ["string", "null"], "description": "Required when decisionClass is founder_only: the question Ethan is actually being asked." },
+        "dependencies": { "type": "array", "items": { "$ref": "#/$defs/taskId" }, "uniqueItems": true },
+        "dependencyBasis": { "type": ["string", "null"], "description": "The verbatim rule the imported dependency came from." },
+        "blockedBy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["at", "reason"],
+            "properties": {
+              "at": { "$ref": "#/$defs/datetime" },
+              "reason": { "type": "string", "minLength": 1 },
+              "by": { "type": ["string", "null"] },
+              "clearedAt": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "specPath": { "type": ["string", "null"] },
+        "acceptanceCriteria": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["at", "ref"],
+            "properties": {
+              "at": { "$ref": "#/$defs/datetime" },
+              "ref": { "type": "string", "minLength": 1 },
+              "note": { "type": ["string", "null"] },
+              "addedBy": { "type": "string" }
+            }
+          }
+        },
+        "founderSignOff": {
+          "type": "object",
+          "required": ["state"],
+          "properties": {
+            "state": { "enum": ["not_requested", "requested", "approved", "rejected"] },
+            "note": { "type": ["string", "null"] },
+            "date": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] }
+          }
+        },
+        "createdAt": { "$ref": "#/$defs/date" },
+        "updatedAt": { "$ref": "#/$defs/date" },
+        "startedAt": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+        "reviewAt": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+        "completedAt": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+        "source": { "type": "string", "minLength": 1 },
+        "notes": { "type": "array" },
+        "history": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["at", "to", "by"],
+            "properties": {
+              "at": { "$ref": "#/$defs/datetime" },
+              "from": { "oneOf": [{ "$ref": "#/$defs/status" }, { "type": "null" }] },
+              "to": { "$ref": "#/$defs/status" },
+              "by": { "enum": ["import", "claude_code", "codex_motion", "founder", "external"] },
+              "note": { "type": ["string", "null"] }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "description": "Done requires explicit founder approval, evidence, acceptance criteria and a completion date. Enforced in validate().",
+          "if": { "properties": { "status": { "const": "done" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "founderSignOff": { "properties": { "state": { "const": "approved" } } },
+              "evidence": { "minItems": 1 },
+              "acceptanceCriteria": { "minItems": 1 },
+              "completedAt": { "$ref": "#/$defs/date" }
+            },
+            "required": ["completedAt"]
+          }
+        },
+        {
+          "description": "Blocked requires a recorded blocker.",
+          "if": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] },
+          "then": { "properties": { "blockedBy": { "minItems": 1 } } }
+        }
+      ]
+    }
+  }
+}
