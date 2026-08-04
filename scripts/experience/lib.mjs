@@ -352,12 +352,39 @@ function registeredSourceFile({ studioRoot, entry }) {
   return path.join(path.resolve(studioRoot, ".."), normalized.replaceAll("/", path.sep));
 }
 
+/**
+ * Routes that exist on disk but are deliberately outside the production
+ * experience registry.
+ *
+ * I-014 left the two `__design-lab/delight` routes unregistered and recorded that
+ * whether design-lab belongs in a production merge at all is a founder call, not
+ * a capture problem. Founder decision 2026-08-04: exclude them for now.
+ *
+ * This is an EXCLUSION, not a registration. These surfaces are not held to the
+ * experience bar and carry no evidence; they are simply not treated as product.
+ * Anything listed here stops being checked at all, which is why the list is short
+ * and every entry names the decision that put it there. It is deliberately a
+ * prefix list rather than a glob: a broad pattern here would silently drop real
+ * surfaces as the app grows.
+ */
+const DISCOVERY_EXCLUDED_PREFIXES = [
+  // Founder decision 2026-08-04 (I-014). Revisit if design-lab is ever promoted
+  // to a production surface.
+  "%5F%5Fdesign-lab/delight/",
+];
+
+function isDiscoveryExcluded(appRoot, file) {
+  const rel = path.relative(appRoot, file).split(path.sep).join("/");
+  return DISCOVERY_EXCLUDED_PREFIXES.some((prefix) => rel.startsWith(prefix));
+}
+
 export function discoverProduct({ workspaceRoot, studioRoot, product }) {
   const repoRoot = productRepoRoot({ workspaceRoot, studioRoot, product });
   const appRoot = path.join(repoRoot, "src", "app");
   if (!existsSync(appRoot)) return [];
   const entries = [];
   for (const file of walk(appRoot)) {
+    if (isDiscoveryExcluded(appRoot, file)) continue;
     const ext = path.extname(file);
     if (!PAGE_EXTENSIONS.has(ext)) continue;
     const basename = path.basename(file, ext);
