@@ -526,3 +526,21 @@ Founder note: Approved. Wave 3 approved in full, with the partial state of all 2
 `E12.14` Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.
 
 Founder note: Approved. Founder approved all Wave 3 packet work on 2026-08-03 and waived the E05.12 dependency that held these two, E05.12 being founder-creative and outside the wave. Both are PARTIAL and the recorded gaps are accepted, not closed: E12.05 carries three unmet criteria and E12.14 six, all retained in the task records as scheduled work. Ratified with D-033.
+
+## 2026-08-04 · Batch approved — 13 task(s)
+
+`E06.02` Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.
+`E06.03` Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.
+`E06.04` Complete milestone navigation and the transition from a Timeline point into its photograph and story.
+`E06.05` Implement private-link, password-protected and intentionally public sharing modes.
+`E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
+`E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
+`E06.09` Design and implement the intentional vertical mobile Timeline.
+`E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept.
+`E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
+`E12.10` Produce the detailed Venue Edition sales deck.
+`E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
+`E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
+`E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
+
+Founder note: Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.

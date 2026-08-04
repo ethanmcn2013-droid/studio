@@ -7828,7 +7828,7 @@
       "id": "E06.02",
       "epic": "E06",
       "title": "Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7926,15 +7926,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. All six acceptance criteria are met by CODE, not by a document describing an intention, and I reproduced every check myself including the fail-before mutation verbatim. The build agent's claims are accurate and, in two places, understated: it recorded freeze semantics as 'read, not proven' when a probe I wrote proves them behaviourally, and it recorded the image/story guard as 'verified by reading what it asserts' when both halves actually fire under mutation. It also reported two gates red that are now green. That is the honest direction to be wrong in. RECOMMEND: move to Founder Review and approve the two shipped states. Do NOT let the ticks read as four states. Before approval,",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -7965,6 +7965,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. All six acceptance criteria are met by CODE, not by a document describing an intention, and I reproduced every check myself including the fail-before mutation verbatim. The build agent's claims are accurate and, in two places, understated: it recorded freeze semantics as 'read, not proven' when a probe I wrote proves them behaviourally, and it recorded the image/story guard as 'verified by reading what it asserts' when both halves actually fire under mutation. It also reported two gates red that are now green. That is the honest direction to be wrong in. RECOMMEND: move to Founder Review and approve the two shipped states. Do NOT let the ticks read as four states. Before approval,"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -7974,7 +7981,7 @@
       "id": "E06.03",
       "epic": "E06",
       "title": "Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8058,15 +8065,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PUSH BACK. Do not approve, and do not treat the privacy half as finished. The claimed state ('partial') is directionally honest and every one of the five verification claims is TRUE as stated — I re-ran all of them. But the evidence doc's headline sentence, 'the privacy-critical half of E06.03 is built and tested', is REFUTED. The defect sits inside the part claimed complete. The single line that makes C4 true (copy everything from SOS verbatim, so no pixel is touched) is the same line that makes C1 and C7 false: it also copies every byte after the primary EOI. A phone photograph with an embedded secondary image keeps that image's GPS coordinates and capture time, and both defences miss it t",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8097,6 +8104,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 4 criterion/criteria NOT met — see the packet. Verifier: PUSH BACK. Do not approve, and do not treat the privacy half as finished. The claimed state ('partial') is directionally honest and every one of the five verification claims is TRUE as stated — I re-ran all of them. But the evidence doc's headline sentence, 'the privacy-critical half of E06.03 is built and tested', is REFUTED. The defect sits inside the part claimed complete. The single line that makes C4 true (copy everything from SOS verbatim, so no pixel is touched) is the same line that makes C1 and C7 false: it also copies every byte after the primary EOI. A phone photograph with an embedded secondary image keeps that image's GPS coordinates and capture time, and both defences miss it t"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -8106,7 +8120,7 @@
       "id": "E06.04",
       "epic": "E06",
       "title": "Complete milestone navigation and the transition from a Timeline point into its photograph and story.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8186,15 +8200,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — CONFIRMED AS PARTIAL, WITH DEFECTS THE SUBMISSION DID NOT DISCLOSE. DO NOT SIGN OFF. The builder's own label is right and the code claims survive adversarial checking. Criteria 1, 2, 3 and 4 are met by code I read and re-derived, not by a document describing an intention: ITEM_KEYS really is four keys with attachments and description on a throwing denylist, the keyboard contract really is intact and really was not rebuilt, and reduced motion is honoured in both the JS props and a CSS media block the evidence document does not even claim credit for. The decision not to build a transition into a frame that cannot exist is the correct call and the correct kind of restraint. Declaring ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8225,6 +8239,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: PARTIAL — CONFIRMED AS PARTIAL, WITH DEFECTS THE SUBMISSION DID NOT DISCLOSE. DO NOT SIGN OFF. The builder's own label is right and the code claims survive adversarial checking. Criteria 1, 2, 3 and 4 are met by code I read and re-derived, not by a document describing an intention: ITEM_KEYS really is four keys with attachments and description on a throwing denylist, the keyboard contract really is intact and really was not rebuilt, and reduced motion is honoured in both the JS props and a CSS media block the evidence document does not even claim credit for. The decision not to build a transition into a frame that cannot exist is the correct call and the correct kind of restraint. Declaring "
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -8234,7 +8255,7 @@
       "id": "E06.05",
       "epic": "E06",
       "title": "Implement private-link, password-protected and intentionally public sharing modes.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8364,15 +8385,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED as partial, REFUTED as ready. The build agent's self-report is honest — it named criteria 6 and 7 as unmet before I got there, it recorded the share_links plaintext-token qualification against its own interest, and it recorded the missing test as a gap rather than excusing it. Every evidence path exists, every command reproduces, the diff matches the claims exactly. That is the standard this programme has been trying to reach and this package reaches it. But do NOT put this in front of Ethan yet, for one reason: the change makes something worse. `Disallow: /p` without a trailing slash de-indexes /press, /principles and /privacy — three pages the sitemap declares — and puts /pricing",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8403,6 +8424,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 7 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED as partial, REFUTED as ready. The build agent's self-report is honest — it named criteria 6 and 7 as unmet before I got there, it recorded the share_links plaintext-token qualification against its own interest, and it recorded the missing test as a gap rather than excusing it. Every evidence path exists, every command reproduces, the diff matches the claims exactly. That is the standard this programme has been trying to reach and this package reaches it. But do NOT put this in front of Ethan yet, for one reason: the change makes something worse. `Disallow: /p` without a trailing slash de-indexes /press, /principles and /privacy — three pages the sitemap declares — and puts /pricing"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "founder_choice",
@@ -8412,7 +8440,7 @@
       "id": "E06.06",
       "epic": "E06",
       "title": "Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8505,15 +8533,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three defects, none of them a false green. Every evidence path exists, the claimed 11/11 reproduces on my own machine, the fail-before mutation reproduces and isolates exactly the two E06.06 assertions, the adjacent 34/34 reproduces, the new test file IS registered in package.json so it runs in CI, the control has a real production caller, and the location refusal holds under an independent grep of both schema files. The build agent's self-reported limits (source-text assertion for criterion 6, no Playwright click, no EXIF claim) are accurate and were not padding. The three defects are: a scope gap where the concealment controls reach /s but not /p, which D-033 ratified as th",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8544,6 +8572,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED, with three defects, none of them a false green. Every evidence path exists, the claimed 11/11 reproduces on my own machine, the fail-before mutation reproduces and isolates exactly the two E06.06 assertions, the adjacent 34/34 reproduces, the new test file IS registered in package.json so it runs in CI, the control has a real production caller, and the location refusal holds under an independent grep of both schema files. The build agent's self-reported limits (source-text assertion for criterion 6, no Playwright click, no EXIF claim) are accurate and were not padding. The three defects are: a scope gap where the concealment controls reach /s but not /p, which D-033 ratified as th"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -8553,7 +8588,7 @@
       "id": "E06.07",
       "epic": "E06",
       "title": "Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8647,15 +8682,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED PARTIAL. The build agent's own honest state is correct and I am not downgrading it. I re-ran every command and reproduced every number except the pnpm test assertion count; both fail-before mutations went red exactly as described and both files restored clean. Criteria 1, 2, 4, 6 and 8 are met by CODE, not by a document describing an intention. The privacy work is real: the D-033 defect at artifact-studio.tsx is genuinely gone, the floor is enforced at the value with a passing unit test, the analytics exclusion holds at all three layers, and I could not find a route to GA4 on any of the four couple-facing surfaces. Three things keep it partial, and the third is new. 1. Criterion 7 ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8686,6 +8721,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED PARTIAL. The build agent's own honest state is correct and I am not downgrading it. I re-ran every command and reproduced every number except the pnpm test assertion count; both fail-before mutations went red exactly as described and both files restored clean. Criteria 1, 2, 4, 6 and 8 are met by CODE, not by a document describing an intention. The privacy work is real: the D-033 defect at artifact-studio.tsx is genuinely gone, the floor is enforced at the value with a passing unit test, the analytics exclusion holds at all three layers, and I could not find a route to GA4 on any of the four couple-facing surfaces. Three things keep it partial, and the third is new. 1. Criterion 7 "
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -8782,7 +8824,7 @@
       "id": "E06.09",
       "epic": "E06",
       "title": "Design and implement the intentional vertical mobile Timeline.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -8882,15 +8924,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. The work is honest, precise and better than its claims in places — every line reference resolves, the prior red-and-unregistered state is exactly as reported, and the evidence document volunteers its own limits and two defects it did not fix. Criteria 1, 2, 3 and 6 are met by CODE. Criterion 7 is corroborated by an on-disk attestation I checked field by field, though worktree contention stopped me re-executing it. But criterion 8 is the task's own thesis and it does not hold: (a) design-quality.yml's paths filter omits src/modules/**, so the axe and overflow gate never fires on a change to the artifact itself — the exact defect class the task was written to close, one di",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -8921,6 +8963,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 8 criterion/criteria NOT met — see the packet. Verifier: REFUTED as complete. The work is honest, precise and better than its claims in places — every line reference resolves, the prior red-and-unregistered state is exactly as reported, and the evidence document volunteers its own limits and two defects it did not fix. Criteria 1, 2, 3 and 6 are met by CODE. Criterion 7 is corroborated by an on-disk attestation I checked field by field, though worktree contention stopped me re-executing it. But criterion 8 is the task's own thesis and it does not hold: (a) design-quality.yml's paths filter omits src/modules/**, so the axe and overflow gate never fires on a change to the artifact itself — the exact defect class the task was written to close, one di"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -8930,7 +8979,7 @@
       "id": "E06.10",
       "epic": "E06",
       "title": "Refine the desktop editorial Timeline shown in the Mara and Finn concept.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -9023,15 +9072,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED - partial, and the build agent's own 'partial' is the honest read. Five of seven criteria are fully met by code and reproduced by me; C3 is met on one owner surface and not the other; C7 is met in form but missed a high-severity contradiction sitting in the two files C3 is about. The three headline claims (13/13 contract, 128/128 experience with axe and overflow at four widths, ds:check clean) are all true and I reproduced them independently - the experience run even reproduced the build agent's canonical evidence hash. Do NOT put this to founder approval until R-WP14-01 is answered: the /app gate blocker recorded as fixed is fixed only at the layout, and both of this task's owner ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9062,6 +9111,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 3 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED - partial, and the build agent's own 'partial' is the honest read. Five of seven criteria are fully met by code and reproduced by me; C3 is met on one owner surface and not the other; C7 is met in form but missed a high-severity contradiction sitting in the two files C3 is about. The three headline claims (13/13 contract, 128/128 experience with axe and overflow at four widths, ds:check clean) are all true and I reproduced them independently - the experience run even reproduced the build agent's canonical evidence hash. Do NOT put this to founder approval until R-WP14-01 is answered: the /app gate blocker recorded as fixed is fixed only at the layout, and both of this task's owner "
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -9071,7 +9127,7 @@
       "id": "E06.11",
       "epic": "E06",
       "title": "Implement the post-wedding read-only Keepsake state and the agreed downloadable export.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -9165,15 +9221,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL — the build agent's own label is CORRECT, and the evidence document is the most honest one I have verified on this programme. I did not have to discover the headline gap; §C11 states it outright: 'isPermittedInKeepsake has ZERO production callers. The policy is declared and tested and enforces nothing.' That is true, I confirmed it independently, and a build agent that names its own worst finding earns a different reading than one that does not. What is genuinely CONFIRMED. Every evidence path exists. All three verification commands re-run by me and green, including the full pnpm test suite at exit 0 with the keepsake assertions visibly executing inside the chain — this is N",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -9204,6 +9260,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 11 criterion/criteria NOT met — see the packet. Verifier: VERDICT: PARTIAL — the build agent's own label is CORRECT, and the evidence document is the most honest one I have verified on this programme. I did not have to discover the headline gap; §C11 states it outright: 'isPermittedInKeepsake has ZERO production callers. The policy is declared and tested and enforces nothing.' That is true, I confirmed it independently, and a build agent that names its own worst finding earns a different reading than one that does not. What is genuinely CONFIRMED. Every evidence path exists. All three verification commands re-run by me and green, including the full pnpm test suite at exit 0 with the keepsake assertions visibly executing inside the chain — this is N"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "founder_choice",
@@ -19902,7 +19965,7 @@
       "id": "E12.10",
       "epic": "E12",
       "title": "Produce the detailed Venue Edition sales deck.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20008,15 +20071,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED — the 'partial' claim stands and is honest. Twelve of the fourteen criteria I verified myself, by re-running the commands rather than reading the record. Two are genuinely short: five of twenty slides show an evidence document rather than a ratified decision in the trace line, and the A4-landscape print rule has never been printed. The evidence document says both of those itself, which is the behaviour this programme has been trying to get. Do not move E12.10 past Founder Review on this evidence, and not because anything is wrong — because a twenty-slide sales deck that no human has looked at cannot be signed off from a test log. The route builds, the guard holds, the words are rig",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -20047,6 +20110,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED — the 'partial' claim stands and is honest. Twelve of the fourteen criteria I verified myself, by re-running the commands rather than reading the record. Two are genuinely short: five of twenty slides show an evidence document rather than a ratified decision in the trace line, and the A4-landscape print rule has never been printed. The evidence document says both of those itself, which is the behaviour this programme has been trying to get. Do not move E12.10 past Founder Review on this evidence, and not because anything is wrong — because a twenty-slide sales deck that no human has looked at cannot be signed off from a test log. The route builds, the guard holds, the words are rig"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -20056,7 +20126,7 @@
       "id": "E12.11",
       "epic": "E12",
       "title": "Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20206,15 +20276,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. The claim that E12.11 is partial is honest and correct, and it is understated in one direction and correctly stated in the other. All thirteen criteria are met and I re-ran the proof of each rather than reading it. The refusal-first design is real: the failure mode this task exists to remove — a blank number field somebody writes into by hand — has no code path, no render path, and is asserted absent in both directions. The reason it is partial, not complete, is that the defect it FOUND is the one it did not FIX: /hq/partner-card still tells the founder to write the number by hand at signing, on the physical object a venue keeps. Recommend Ethan approve the built artefact and answ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [],
       "history": [
@@ -20245,6 +20315,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. The claim that E12.11 is partial is honest and correct, and it is understated in one direction and correctly stated in the other. All thirteen criteria are met and I re-ran the proof of each rather than reading it. The refusal-first design is real: the failure mode this task exists to remove — a blank number field somebody writes into by hand — has no code path, no render path, and is asserted absent in both directions. The reason it is partial, not complete, is that the defect it FOUND is the one it did not FIX: /hq/partner-card still tells the founder to write the number by hand at signing, on the physical object a venue keeps. Recommend Ethan approve the built artefact and answ"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "founder_choice",
@@ -20254,7 +20331,7 @@
       "id": "E12.12",
       "epic": "E12",
       "title": "Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20372,15 +20449,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Hold at Founder Review; do not approve as-is. Thirteen of fourteen criteria are CONFIRMED by my own re-runs, and the work is unusually honest - it self-reports its lint failure, names the concurrent stream's diff so a reviewer does not misattribute it, and records defect C-2 against approved copy rather than quietly fixing it. But criterion 5 is its own stated criterion and it is not met in 6 of 10 blocks, and the test labelled with that criterion was written loosely enough to pass all ten. That is the same defect class the programme has already been burned by twice (R-028, a threshold enforced only in a test; E09.11 section 12.5, a check that passed over the thing it ",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -20420,6 +20497,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Hold at Founder Review; do not approve as-is. Thirteen of fourteen criteria are CONFIRMED by my own re-runs, and the work is unusually honest - it self-reports its lint failure, names the concurrent stream's diff so a reviewer does not misattribute it, and records defect C-2 against approved copy rather than quietly fixing it. But criterion 5 is its own stated criterion and it is not met in 6 of 10 blocks, and the test labelled with that criterion was written loosely enough to pass all ten. That is the same defect class the programme has already been burned by twice (R-028, a threshold enforced only in a test; E09.11 section 12.5, a check that passed over the thing it "
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -20429,7 +20513,7 @@
       "id": "E12.13",
       "epic": "E12",
       "title": "Produce the post-booking couple welcome kit, approved email wording and printable welcome object.",
-      "status": "founder_review",
+      "status": "done",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20545,15 +20629,15 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "requested",
-        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: Move E12.13 to Founder Review, not Done. The build is real and the verification claims survive independent re-execution — I re-ran every one and none was overstated; the module's self-correction on the Keepsake grep and its refusal to describe the wedding-date capture as happening at redemption are the marks of evidence written honestly. Two things to fix before sign-off, both small: (1) the card is labelled A5 and the print stylesheet emits A4 — either set `@page { size: A5 }` for the card page or change the label to A4; (2) either soften the comment at couple-welcome-kit.ts:226 to 'a file, a route or the decision it was read against', or add the file each of the five non-file evidence fiel",
-        "date": null
+        "state": "approved",
+        "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
       "reviewAt": "2026-08-03",
-      "completedAt": null,
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -20589,6 +20673,13 @@
           "to": "founder_review",
           "by": "claude_code",
           "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: Move E12.13 to Founder Review, not Done. The build is real and the verification claims survive independent re-execution — I re-ran every one and none was overstated; the module's self-correction on the Keepsake grep and its refusal to describe the wedding-date capture as happening at redemption are the marks of evidence written honestly. Two things to fix before sign-off, both small: (1) the card is labelled A5 and the print stylesheet emits A4 — either set `@page { size: A5 }` for the card page or change the label to A4; (2) either soften the comment at couple-welcome-kit.ts:226 to 'a file, a route or the decision it was read against', or add the file each of the five non-file evidence fiel"
+        },
+        {
+          "at": "2026-08-04T08:32:43.488Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed."
         }
       ],
       "decisionClass": "execution",
@@ -23922,8 +24013,8 @@
       "ready": 2,
       "in_progress": 0,
       "internal_review": 1,
-      "founder_review": 13,
-      "done": 131,
+      "founder_review": 0,
+      "done": 144,
       "blocked": 2,
       "deferred": 2,
       "cancelled": 0
@@ -23938,17 +24029,17 @@
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 62.4,
-      "numerator": 131,
+      "value": 68.6,
+      "numerator": 144,
       "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-04T08:24:22.683Z",
-    "lastRenderedAt": "2026-08-04T08:24:22.683Z",
-    "lastUpdatedAt": "2026-08-04T08:24:22.683Z",
+    "lastValidatedAt": "2026-08-04T08:37:09.720Z",
+    "lastRenderedAt": "2026-08-04T08:37:09.461Z",
+    "lastUpdatedAt": "2026-08-04T08:32:43.488Z",
     "lastUpdatedSession": "wp16-assets",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",

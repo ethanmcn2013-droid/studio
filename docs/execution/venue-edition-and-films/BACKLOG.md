@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-04T08:24:22.683Z · baseline **approved** (0.1.0)
+State as at 2026-08-04T08:32:43.488Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -122,21 +122,21 @@ Lane: `claude_code` · 9/12 done (75%) · 0 in flight · 0 blocked
 
 _Launch-blocking and central to the main film._
 
-Lane: `claude_code` · 1/12 done (8.3%) · 9 in flight · 2 blocked
+Lane: `claude_code` · 10/12 done (83.3%) · 0 in flight · 2 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E06.01 | Define the public artifact content model and what can never be published from the private workspace. | blocked | p1 | CP RB | claude_code | E03.01, E03.06 | — | 14 | Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural. | ✓ | not_requested |
-| E06.02 | Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. | founder_review | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | requested |
-| E06.03 | Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E06.04 | Complete milestone navigation and the transition from a Timeline point into its photograph and story. | founder_review | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | requested |
-| E06.05 | Implement private-link, password-protected and intentionally public sharing modes. | founder_review | p1 | CP RB FC | claude_code | — | — | 17 | — | ✓ | requested |
-| E06.06 | Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
-| E06.07 | Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
+| E06.02 | Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. | done | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | approved |
+| E06.03 | Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E06.04 | Complete milestone navigation and the transition from a Timeline point into its photograph and story. | done | p1 | CP RB | claude_code | — | — | 9 | — | ✓ | approved |
+| E06.05 | Implement private-link, password-protected and intentionally public sharing modes. | done | p1 | CP RB FC | claude_code | — | — | 17 | — | ✓ | approved |
+| E06.06 | Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
+| E06.07 | Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
 | E06.08 | Define restrained venue attribution and Signal Studio attribution across shared artifacts. | done | p1 | CP RB FD | claude_code | — | — | 1 | — | — | approved |
-| E06.09 | Design and implement the intentional vertical mobile Timeline. | founder_review | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | requested |
-| E06.10 | Refine the desktop editorial Timeline shown in the Mara and Finn concept. | founder_review | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | requested |
-| E06.11 | Implement the post-wedding read-only Keepsake state and the agreed downloadable export. | founder_review | p1 | CP RB FC | claude_code | E03.08, E03.09 | — | 10 | — | ✓ | requested |
+| E06.09 | Design and implement the intentional vertical mobile Timeline. | done | p1 | CP RB | claude_code | — | — | 12 | — | ✓ | approved |
+| E06.10 | Refine the desktop editorial Timeline shown in the Mara and Finn concept. | done | p1 | CP RB | claude_code | — | — | 11 | — | ✓ | approved |
+| E06.11 | Implement the post-wedding read-only Keepsake state and the agreed downloadable export. | done | p1 | CP RB FC | claude_code | E03.08, E03.09 | — | 10 | — | ✓ | approved |
 | E06.12 | Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA. | blocked | p1 | CP RB | claude_code | E06.01, E06.02, E06.03, E06.04, E06.05, E06.06, E06.07, E06.08, E06.09, E06.10, E06.11 | 2026-08-20 | 16 | Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map. | ✓ | not_requested |
 
 ## E07 — Venue Portal, trust layer and renewal evidence
@@ -259,7 +259,7 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 10/14 done (71.4%) · 4 in flight · 0 blocked
+Lane: `claude_code` · 14/14 done (100%) · 0 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -272,10 +272,10 @@ Lane: `claude_code` · 10/14 done (71.4%) · 4 in flight · 0 blocked
 | E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
 | E12.08 | Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. | done | p2 | — | claude_code | E02.12 | — | 14 | — | ✓ | approved |
 | E12.09 | Produce the concise one-page commercial proposal. | done | p2 | — | claude_code | — | — | 12 | — | ✓ | approved |
-| E12.10 | Produce the detailed Venue Edition sales deck. | founder_review | p2 | — | claude_code | — | — | 12 | — | ✓ | requested |
-| E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | founder_review | p2 | FC | claude_code | E02.01, E02.10 | — | 19 | — | ✓ | requested |
-| E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | founder_review | p2 | — | claude_code | — | — | 14 | — | ✓ | requested |
-| E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | founder_review | p2 | — | claude_code | — | — | 13 | — | ✓ | requested |
+| E12.10 | Produce the detailed Venue Edition sales deck. | done | p2 | — | claude_code | — | — | 12 | — | ✓ | approved |
+| E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | done | p2 | FC | claude_code | E02.01, E02.10 | — | 19 | — | ✓ | approved |
+| E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | done | p2 | — | claude_code | — | — | 14 | — | ✓ | approved |
+| E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | done | p2 | — | claude_code | — | — | 13 | — | ✓ | approved |
 | E12.14 | Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page. | done | p1 | CP | claude_code | E12.04, E12.05, E12.06 | — | 14 | — | ✓ | approved |
 
 ## E13 — Motion system and Limerick First invitation film

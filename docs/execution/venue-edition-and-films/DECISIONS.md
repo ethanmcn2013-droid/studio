@@ -1364,3 +1364,51 @@ sentence is that isolation is enforced in the application and verified by tests.
 **Residual risk, recorded:** any future direct-database access path — an analytics
 reader, an ops script, a BI tool — sits outside the control and must be assessed
 separately.
+
+---
+
+## D-034 — Wave 4 approved in full, and the four follow-ups taken at recommendation
+
+**Date:** 2026-08-04 · **Decided by:** Ethan McNamara · **Status:** ratified
+
+Wave 4's 13 Founder Review tasks approved in full, at Claude's recommendation and
+against the consolidated packet's own advice not to bulk-approve, with the partial
+state of all 13 stated plainly. Verified completion 62.4% to 68.6% (144/210).
+
+**Approving a partial task accepts the recorded gap. It does not close it.** Every
+unmet criterion stays in the task record; the four residual risks stay open in RAID.
+
+### 1. Sentry on couple-facing surfaces — decided: remove
+
+`instrumentation-client.ts` excluded only `/s`, so `/p`, `/share` and `/embed` still
+initialised Sentry. **Removing GA4 did not satisfy D-033 Option A**, because Sentry is
+a third party. It now gates on `isAnalyticsExcludedPath`, the same predicate GA4 uses,
+so the two cannot drift. Transactions are suppressed as well as errors: `beforeSend`
+sees only error events, and on these surfaces the transaction URL is itself the
+disclosure. R-032's headline defect is closed.
+
+### 2. The physical Founding 25 card — decided: reprint before the first signing
+
+The 85×55 card is handed to a venue **at the moment of signature**. A card carrying
+"founding partner", a term retired precisely because it implies standing D-009 does
+not grant, is worst exactly there. Twenty-five cards is a trivial reprint against the
+cost of the first venue asking what "partner" entitles them to. Prepress copy is
+corrected; **placing the reprint order is a founder action.**
+
+### 3. The Wave 3 experience regressions — closed
+
+WP-13 shipped five venue surfaces unregistered, taking
+`experience:validate --product=studio` from I-014's recorded 3 failures to 8. All five
+are registered with coverage recorded honestly as `none`, hashes baselined with the
+tool's own `hashFile`, and `venues/what-you-see` re-baselined after the `opened` →
+`redeemed` correction. **Now 2 failures, both the `__design-lab/delight` routes that
+I-014 records as a founder call.** No `intentionalExceptions` entry was created.
+
+### 4. E06.01 and E06.12 — deliberately left blocked
+
+Both depend on **E03.01** (the role map, still in internal review) and **E03.06**.
+E06.01 is "the public artifact content model and what can never be published", which
+is the question the role map exists to answer. Approving it would ratify a content
+model whose privacy foundation is unsettled, so the dependency was **not** waived even
+under a general instruction to finish the wave. R-031 and R-032 being decided closes
+two of E03.01's five criticals; the other three remain founder work.

@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-04T08:24:22.683Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-04T08:24:22.683Z · session `wp16-assets`
+**Report generated:** 2026-08-04T08:37:09.461Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-04T08:32:43.488Z · session `wp16-assets`
 **Release date:** 2026-09-01 · **28 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,10 +19,10 @@
 
 ## Completion
 
-**Verified completion: 62.4%** — 131 of 210 tasks.
+**Verified completion: 68.6%** — 144 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 67.9% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 68.9% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -36,8 +36,8 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | ready | 2 |
 | in_progress | 0 |
 | internal_review | 1 |
-| founder_review | 13 |
-| done | 131 |
+| founder_review | 0 |
+| done | 144 |
 | blocked | 2 |
 | deferred | 2 |
 | cancelled | 0 |
@@ -52,13 +52,13 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 1 | 0 |
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 9/12 | 75% | 0 | 0 |
-| E06 | Shared Timeline and Keepsake artifact | 1/12 | 8.3% | 9 | 2 |
+| E06 | Shared Timeline and Keepsake artifact | 10/12 | 83.3% | 0 | 2 |
 | E07 | Venue Portal, trust layer and renewal evidence | 18/18 | 100% | 0 | 0 |
 | E08 | Billing, security, reliability and release engineering | 12/12 | 100% | 0 | 0 |
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
-| E12 | Website, proposal and commercial asset system | 10/14 | 71.4% | 4 | 0 |
+| E12 | Website, proposal and commercial asset system | 14/14 | 100% | 0 | 0 |
 | E13 | Motion system and Limerick First invitation film | 4/18 | 22.2% | 0 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
@@ -112,20 +112,8 @@ Ratified in D-008. Moving one is change control, not an edit.
 **Internal review (1):**
 - `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
 
-**Awaiting founder review (13):**
-- `E06.02` Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. — claude_code
-- `E06.03` Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. — claude_code
-- `E06.04` Complete milestone navigation and the transition from a Timeline point into its photograph and story. — claude_code
-- `E06.05` Implement private-link, password-protected and intentionally public sharing modes. — claude_code
-- `E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information. — claude_code
-- `E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour. — claude_code
-- `E06.09` Design and implement the intentional vertical mobile Timeline. — claude_code
-- `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept. — claude_code
-- `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export. — claude_code
-- `E12.10` Produce the detailed Venue Edition sales deck. — claude_code
-- `E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. — claude_code
-- `E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. — claude_code
-- `E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object. — claude_code
+**Awaiting founder review (0):**
+- None.
 
 **Blocked (2):**
 - `E06.01` Define the public artifact content model and what can never be published from the private workspace.
@@ -135,32 +123,20 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Founder decisions required
 
-1. Approve or reject `E06.02` — Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.
-2. Approve or reject `E06.03` — Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.
-3. Approve or reject `E06.04` — Complete milestone navigation and the transition from a Timeline point into its photograph and story.
-4. Approve or reject `E06.05` — Implement private-link, password-protected and intentionally public sharing modes.
-5. Approve or reject `E06.06` — Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
-6. Approve or reject `E06.07` — Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
-7. Approve or reject `E06.09` — Design and implement the intentional vertical mobile Timeline.
-8. Approve or reject `E06.10` — Refine the desktop editorial Timeline shown in the Mara and Finn concept.
-9. Approve or reject `E06.11` — Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
-10. Approve or reject `E12.10` — Produce the detailed Venue Edition sales deck.
-11. Approve or reject `E12.11` — Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
-12. Approve or reject `E12.12` — Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
-13. Approve or reject `E12.13` — Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
+- None.
 
 ## Completed since the last report
 
-- 2026-08-03 `E14.13` Decide the exact placement of the standard price, founding rate and final walkthrough CTA.
-- 2026-08-03 `E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render.
-- 2026-08-03 `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
-- 2026-08-03 `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata.
-- 2026-08-03 `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
-- 2026-08-03 `E12.14` Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page.
-- 2026-08-03 `E12.09` Produce the concise one-page commercial proposal.
-- 2026-08-03 `E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
-- 2026-08-03 `E12.07` Add the privacy explanation covering exactly what the venue sees and never sees.
-- 2026-08-03 `E12.06` Add the Venue Portal trust-and-renewal preview.
+- 2026-08-04 `E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
+- 2026-08-04 `E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
+- 2026-08-04 `E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
+- 2026-08-04 `E12.10` Produce the detailed Venue Edition sales deck.
+- 2026-08-04 `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
+- 2026-08-04 `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept.
+- 2026-08-04 `E06.09` Design and implement the intentional vertical mobile Timeline.
+- 2026-08-04 `E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
+- 2026-08-04 `E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
+- 2026-08-04 `E06.05` Implement private-link, password-protected and intentionally public sharing modes.
 
 ## Three highest-value next actions
 
@@ -170,7 +146,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 ## Critical-path condition
 
-87/120 critical-path tasks complete. 2 blocked: E06.01, E06.12
+96/120 critical-path tasks complete. 2 blocked: E06.01, E06.12
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 
