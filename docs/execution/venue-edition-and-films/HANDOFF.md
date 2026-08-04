@@ -3,11 +3,11 @@
 <!-- GENERATED FILE — DO NOT EDIT -->
 > **Written by `project-control.mjs session close`. Replaced each session; the append-only history lives in `sessions/`.**
 
-**Latest completed session:** wp13-commercial (closed 2026-08-03T15:29:44.570Z) → `sessions/2026-08-03--wp13-commercial.md`
-**Objective was:** WP-13 · E12 commercial pages and asset system
+**Latest completed session:** wp16-assets (closed 2026-08-04T08:24:22.683Z) → `sessions/2026-08-04--wp16-assets.md`
+**Objective was:** WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets
 
-**Release:** 2026-09-01 · 29 days remaining · baseline **approved** · health **AMBER**
-**Verified completion:** 48.1% (101/210 tasks, provisional_task_count)
+**Release:** 2026-09-01 · 28 days remaining · baseline **approved** · health **AMBER**
+**Verified completion:** 62.4% (131/210 tasks, provisional_task_count)
 
 ## Current focus task
 
@@ -15,474 +15,216 @@ None. No focus task. Baseline approval comes first.
 
 ## What changed
 
-WP-13 complete. Nine E12 tasks with criteria modelled on E12.04's; seven in Founder Review as PARTIAL or documented-only, two BLOCKED. E12.02 and E12.03 were claimed complete and corrected down by their verifiers. E12.05 and E12.14 are blocked, not forced: both depend directly or via E12.05 on E05.12, which is founder-creative and outside Wave 3, and no dependency was waived because a waiver is the founder's. New surfaces: public Venue Edition landing, private Founding 25 invitation, parameterised proposal, couple-experience and Venue Portal previews, privacy explanation, venue FAQ. A ratified-position defect was caught and fixed: the FAQ stated EUR 1,000 as VAT-inclusive and left EUR 1,500 bare. R-042 was NOT swept - recommendation prepared and the register's scope corrected from 5 occurrences across 2 files to 11 across 7 plus two routes and four social assets, the worst being print instructions for the physical card presented at signing. Nothing merged: design-quality is red under I-014 and there is no merge over it. Branch claude/wp13-commercial pushed.
+WP-16 complete. R-042 retired: 'founding partner' replaced by the Founding 25 across a scope far wider than the register recorded - 43 occurrences in 18 files, not 11 in 7, including eleven in asset-command.ts (one a union type member) and venue-legible alt text, all missed by the brief. Route URLs deliberately unmoved per the room registry's own rule. THE DURABLE FINDING: prohibited-claims.v1.json was read by nothing; its own readBy field named a script containing no reference to it, and E09.11 section 12's account of a second validation stage describes work absent from the repository. A reader now runs inside a script already blocking in both CI workflows. Four E12 artefacts in Founder Review as PARTIAL; both claimed complete were corrected down. The venue sales kit already existed and was WRONG rather than missing, live under public/, selling a retired price and framing the lock as permanence. Nothing merged: design-quality red under I-014. Open founder call: the physical card's printed stock still carries the retired term.
 
-- `E05.01` → founder_review
-- `E05.03` → founder_review
-- `E05.04` → founder_review
-- `E05.05` → founder_review
-- `E05.06` → founder_review
-- `E05.07` → founder_review
-- `E05.08` → founder_review
-- `E05.09` → founder_review
-- `E05.10` → founder_review
-- `E08.01` → founder_review
-- `E08.02` → founder_review
-- `E08.03` → founder_review
-- `E08.04` → founder_review
-- `E08.05` → founder_review
-- `E08.06` → founder_review
-- `E08.07` → founder_review
-- `E08.08` → founder_review
-- `E08.09` → founder_review
-- `E08.10` → founder_review
-- `E08.11` → founder_review
-- `E08.12` → founder_review
-- `E12.01` → founder_review
-- `E12.02` → founder_review
-- `E12.03` → founder_review
-- `E12.05` → blocked
-- `E12.06` → founder_review
-- `E12.07` → founder_review
-- `E12.08` → founder_review
-- `E12.09` → founder_review
-- `E12.14` → blocked
+- `E06.01` → blocked
+- `E06.02` → founder_review
+- `E06.03` → founder_review
+- `E06.04` → founder_review
+- `E06.05` → founder_review
+- `E06.06` → founder_review
+- `E06.07` → founder_review
+- `E06.09` → founder_review
+- `E06.10` → founder_review
+- `E06.11` → founder_review
+- `E06.12` → blocked
+- `E12.10` → founder_review
+- `E12.11` → founder_review
+- `E12.12` → founder_review
+- `E12.13` → founder_review
 
 ## Verification performed
 
-- `E05.01` studio/docs/execution/venue-edition-and-films/evidence/E05.01-couple-journey-map.md
-- `E05.01` src/app/sign-up/[[...sign-up]]/page.tsx:33-34,72-73
-- `E05.01` src/app/welcome/page.tsx:58 with src/server/db/venue-welcome.ts:39-55
-- `E05.01` src/server/actions/comp.ts:215-217
-- `E05.01` studio/src/lib/entitlements-db/codes.ts:29-34,252-267,285
-- `E05.01` studio/scripts/issue-codes.ts:121-129
-- `E05.01` src/app/app/layout.tsx:11,16 with src/server/require-app-access.ts:21-34 and src/server/app-access.ts:29-62
-- `E05.01` src/modules/timeline/server/actions/workspaces.ts:93
-- `E05.01` src/modules/timeline/server/sync/tasks-milestone-source.ts:120-141 and src/modules/signal/lib/briefing/tasks-db-source.ts:114
-- `E05.01` src/components/app/settings/sections/billing.tsx:90-104
-- `E05.01` src/server/db/membership.ts:95-115 with src/components/app/settings/sections/members.tsx:96
-- `E05.01` src/server/db/schema.ts:308 with src/components/welcome/contextual-onboarding.tsx:383 and src/lib/planning/flags.ts:33
-- `E05.01` studio/docs/execution/venue-edition-and-films/tasks/E05.01.md
-- `E05.01` _wt-wp08/src/server/actions/comp.ts:215-217
-- `E05.01` _wt-wp08/src/server/db/ensure-user.ts:108-109
-- `E05.01` _wt-wp08/src/app/app/layout.tsx:11,16 + src/server/require-app-access.ts:21-34 + src/server/app-access.ts:29-62 + src/components/app/tasks-runtime-shell.tsx:67
-- `E05.01` studio/src/lib/entitlements-db/codes.ts:29-34,252-267,285 + studio/src/lib/venue-edition.ts:100-121 + studio/scripts/issue-codes.ts:121-129
-- `E05.01` _wt-wp08/src/app/api/internal/partner-stats/route.ts
-- `E05.01` _wt-wp08/src/server/planning/queries.ts:225-245
-- `E05.01` _wt-wp08/src/lib/account/instrumentation/event-schema.ts:7,64-79
-- `E05.01` studio/src/lib/hq/product-analytics.ts:93,103-199 + studio/src/server/today/aggregate.ts:80,274-300
-- `E05.01` _wt-wp08/src/server/venue-never-a-collaborator.test.ts
-- `E05.01` _wt-wp08/src/lib/wedding-template-contract.test.ts
-- `E05.01` _wt-wp08/src/components/app/settings/sections/billing.tsx:93,94,97,98,175
-- `E05.01` studio/scripts/partner-digest.ts:16-20,60-103
-- `E05.01` _wt-wp08 git diff src/app/invite/[token]/page.tsx
-- `E05.01` studio/docs/execution/venue-edition-and-films/evidence/E05-production-blocker-app-gate.md
-- `E05.03` studio/docs/execution/venue-edition-and-films/evidence/E05.03-wedding-template-audit.md
-- `E05.03` scripts/sync-templates.ts:20
-- `E05.03` src/lib/templates.generated.ts:1 vs scripts/sync-templates.ts:62
-- `E05.03` _wt-wp08/src/lib/template-anchor.ts
-- `E05.03` _wt-wp08/src/server/db/apply-template.ts
-- `E05.03` _wt-wp08/src/lib/wedding-template-contract.test.ts
-- `E05.03` src/lib/templates.generated.ts:108
-- `E05.03` src/server/suite-navigation-contract.test.mjs:464,495
-- `E05.03` studio/src/lib/templates/wedding-planning-workspace/meta.ts:15
-- `E05.03` studio/src/lib/templates/wedding-planning-workspace/notes.ts:9-14 with scripts/sync-templates.ts:51-58
-- `E05.03` _wt-wp08/src/server/db/schema.ts
-- `E05.03` evidence/E05.03-wedding-template-audit.md
-- `E05.03` _wt-wp08/src/lib/templates.generated.ts
-- `E05.03` _wt-wp08/src/app/welcome/page.tsx:73
-- `E05.03` _wt-wp08/src/app/welcome/page.tsx:60-61
-- `E05.03` _wt-wp08/src/app/welcome/plan/page.tsx
-- `E05.03` _wt-wp08/src/server/actions/comp.ts:259
-- `E05.03` _wt-wp08/src/server/db/apply-template.ts:43-49,77-81
-- `E05.03` _wt-wp08/src/server/suite-navigation-contract.test.mjs:464,495
-- `E05.03` _wt-wp08/package.json
-- `E05.03` _wt-wp08/scripts/sync-templates.ts:20,57-62
-- `E05.03` _wt-wp08/src/modules/timeline/server/sync/tasks-milestone-source.ts:133
-- `E05.03` _wt-wp08/src/modules/timeline/lib/templates.generated.ts
-- `E05.04` evidence/E05.04-wedding-notes-and-voice-capture.md
-- `E05.04` src/modules/notes/app/notebook/hooks.ts:177
-- `E05.04` src/modules/notes/app/page.tsx:50-51
-- `E05.04` src/server/db/ensure-user.ts:79-99 with src/server/actions/comp.ts:259-264
-- `E05.04` src/app/api/internal/workspace-personalization/route.ts:98
-- `E05.04` _wt-wp08/src/modules/notes/lib/notes-copy.ts
-- `E05.04` _wt-wp08/src/modules/notes/lib/notes-copy.test.ts
-- `E05.04` grep -rni 'speech|dictat|microphone' src/app/privacy/page.tsx src/app/terms docs
-- `E05.04` _wt-wp08/src/modules/notes/app/notebook/hooks.ts
-- `E05.04` _wt-wp08/src/modules/notes/lib/notes-copy.ts:268
-- `E05.04` _wt-wp08/src/lib/public-task.ts:11
-- `E05.04` _wt-wp08/src/modules/notes/app/Notebook.tsx:1144,1278,1300-1310
-- `E05.04` _wt-wp08/experience/feature-tests/notes-hybrid.spec.ts:88,152,168,170,172,175,254,259,262,307,309,312,315
-- `E05.04` _wt-wp08/src/app/api/internal/workspace-personalization/route.ts:75-82
-- `E05.04` _wt-wp08/package.json
-- `E05.05` evidence/E05.05-notes-to-tasks-language.md
-- `E05.05` _wt-wp08/src/modules/notes/lib/notes-copy.ts
-- `E05.05` _wt-wp08/src/modules/notes/lib/notes-copy.test.ts
-- `E05.05` _wt-wp08/src/modules/notes/app/hybrid/HybridNotebook.tsx
-- `E05.05` package.json
-- `E05.05` _wt-wp08/src/modules/notes/app/Notebook.tsx
-- `E05.05` _wt-wp08/package.json
-- `E05.05` _wt-wp08/src/modules/notes/app/page.tsx:87-111,169 and src/app/api/internal/workspace-personalization/route.ts:78,90,98
-- `E05.05` _wt-wp08/src/modules/notes/server/notes-cross-product-assertion.ts:64-65, 98-99
-- `E05.06` evidence/E05.06-wedding-tasks-experience.md
-- `E05.06` _wt-wp08/src/components/app/detail-panel/field-rows.tsx
-- `E05.06` _wt-wp08/src/lib/members.ts:1-6
-- `E05.06` _wt-wp08/src/components/hybrid/options/a/board-view.tsx:241
-- `E05.06` _wt-wp08/src/components/hybrid/shared/task-inspector.tsx:108
-- `E05.06` _wt-wp08/src/server/db/schema.ts:308-309
-- `E05.06` _wt-wp08/src/components/welcome/contextual-onboarding.tsx:383
-- `E05.06` _wt-wp08/src/app/welcome/page.tsx:69-85
-- `E05.06` _wt-wp08/src/server/actions/comp.ts
-- `E05.06` _wt-wp08/src/components/app/settings/sections/workspace.tsx
-- `E05.06` _wt-wp08/src/lib/tasks/anchor-due.ts
-- `E05.06` _wt-wp08/src/lib/tasks/anchor-due.test.ts
-- `E05.06` _wt-wp08/src/components/app/detail-panel/assignee-roster-contract.test.mjs
-- `E05.06` _wt-wp08/src/lib/domain-context.tsx
-- `E05.06` _wt-wp08/src/lib/template-anchor.ts
-- `E05.06` _wt-wp08/src/components/hybrid/fixtures.test.ts:83
-- `E05.06` _wt-wp08 — all 20 claimed evidence paths
-- `E05.06` pnpm test in C:/Users/ethan/signal-studio-workspace/_wt-wp08
-- `E05.06` node --import tsx --test src/lib/tasks/anchor-due.test.ts
-- `E05.06` node --test src/components/app/detail-panel/assignee-roster-contract.test.mjs
-- `E05.06` FAIL-BEFORE, re-run independently by me
-- `E05.06` pnpm typecheck
-- `E05.06` pnpm ds:check
-- `E05.06` npx eslint on all nine changed files
-- `E05.06` _wt-wp08/package.json (git diff)
-- `E05.06` _wt-wp08/src/components/app/task-detail/metadata-rail.tsx:114-128
-- `E05.06` _wt-wp08 repo-wide grep for tag-setting controls
-- `E05.06` _wt-wp08/src/lib/domain-context.tsx:171 useTagDefs()
-- `E05.06` _wt-wp08/src/app/app/your-work/page.tsx:13 and your-work-view.tsx:562-563,627,631
-- `E05.06` _wt-wp08 grep for `primary_date/s*=` across src/
-- `E05.06` _wt-wp08/src/components/app/detail-panel/field-rows.tsx nameFor()
-- `E05.06` _wt-wp08 git status / git diff --stat
-- `E05.06` PRIVACY BOUNDARY — checked, clean
-- `E05.06` PROGRAMME FAILURE MODES — checked, clean
-- `E05.06` _wt-wp08 grep -c 'hybrid/fixtures.test.ts' package.json → 0
-- `E05.07` evidence/E05.07-task-detail-experience.md
-- `E05.07` _wt-wp08/src/server/db/schema.ts:479-516
-- `E05.07` _wt-wp08/src/server/actions/attachments.ts:35-44
-- `E05.07` _wt-wp08/src/server/actions/attachments.ts:182-235
-- `E05.07` _wt-wp08/src/app/api/attachments/[id]/route.ts
-- `E05.07` _wt-wp08/src/server/db/schema.ts:73-83
-- `E05.07` _wt-wp08/src/components/app/detail-panel/subtasks-section.tsx
-- `E05.07` _wt-wp08/src/components/app/detail-panel/conversation-feed.tsx
-- `E05.07` _wt-wp08/src/components/app/task-detail/task-detail.tsx
-- `E05.07` _wt-wp08/src/lib/templates.generated.ts
-- `E05.07` _wt-wp08/src/server/db/schema.ts:99-110
-- `E05.07` _wt-wp08/src/lib/public-task.ts
-- `E05.07` _wt-wp08/src/lib/public-task.test.ts:33
-- `E05.07` _wt-wp08/src/app/api/internal/partner-stats/route.ts:25-28
-- `E05.07` _wt-wp08/src/components/app/detail-panel/assignee-roster-contract.test.mjs
-- `E05.07` _wt-wp08/src/server/actions/comments.ts:38-50
-- `E05.07` _wt-wp08/src/components/ui/mention-field.tsx:204
-- `E05.07` _wt-wp08/src/server/db/schema.ts:181-183
-- `E05.07` _wt-wp08/src/server/db/notifications.ts:22-56
-- `E05.07` evidence/E05.07-task-detail-experience.md:114-116
-- `E05.07` _wt-wp08/src/lib/public-task.ts + src/server/db/queries.ts:218,744-745
-- `E05.07` _wt-wp08/src/app/api/internal/partner-stats/route.ts:33-56
-- `E05.07` _wt-wp08/src/server/db/queries.ts:103,136,331,831
-- `E05.07` _wt-wp08/src/app/api/attachments/[id]/route.ts:34-35,67-70
-- `E05.07` git status --porcelain in C:/Users/ethan/signal-studio-workspace/_wt-wp08
-- `E05.08` _wt-wp08/src/modules/timeline/server/unpublished-timeline-boundary.test.ts
-- `E05.08` app/src/modules/timeline/server/audience-timeline.ts:755
-- `E05.08` app/src/modules/timeline/server/audience-timeline.ts:759-769
-- `E05.08` app/src/modules/timeline/server/audience-timeline.ts:587-595
-- `E05.08` app/src/modules/timeline/server/sync/tasks-milestone-source.ts:135
-- `E05.08` app/src/server/db/apply-template.ts:74-81
-- `E05.08` app/src/lib/templates.generated.ts (wedding-planning-workspace)
-- `E05.08` app/src/app/api/internal/partner-stats/route.ts
-- `E05.08` app/src/modules/timeline/server/actions/workspaces.ts:93
-- `E05.08` app/src/modules/timeline/server/audience-timeline.ts:49
-- `E05.08` studio/docs/execution/venue-edition-and-films/evidence/E05.08-timeline-planning-boundary.md
-- `E05.08` _wt-wp08/src/modules/timeline/server/audience-timeline.ts:755
-- `E05.08` _wt-wp08/src/modules/timeline/server/audience-timeline.ts:759-769
-- `E05.08` _wt-wp08/src/modules/timeline/server/audience-timeline.ts:587-595
-- `E05.08` MY OWN MUTATION A — delete the publish-gate term at :755
-- `E05.08` MY OWN MUTATION B — leak sourceRelation into the emitted DTO item (independent, not the builder's mutation)
-- `E05.08` _wt-wp08/src/lib/templates.generated.ts (wedding-planning-workspace, lines 15-175)
-- `E05.08` _wt-wp08/src/server/db/apply-template.ts
-- `E05.08` _wt-wp08/src/modules/timeline/server/actions/workspaces.ts:422,616,653
-- `E05.08` _wt-wp08/src/lib/account/instrumentation/emitter.ts:100-101 and sink.ts:23-36
-- `E05.08` _wt-wp08/src/modules/timeline/server/actions/workspaces.ts:93
-- `E05.08` Repo-wide grep for timelinePublications|timelinePublicationItems|audienceShares (7 files)
-- `E05.08` _wt-wp08/src/app/s/[token]/page.tsx:29
-- `E05.08` evidence/E05.08-timeline-planning-boundary.md
-- `E05.08` tasks/E05.08.md
-- `E05.08` RECURRING FAILURE-MODE SWEEP over both E05.08 documents
-- `E05.09` _wt-wp08/src/modules/signal/lib/briefing/wedding-briefing-selectivity.test.ts
-- `E05.09` app/src/modules/signal/lib/briefing/build.ts:19,80-93,185,196
-- `E05.09` app/src/modules/signal/lib/planning-periods/scope.ts:105-111
-- `E05.09` app/src/modules/signal/lib/briefing/tasks-db-source.ts:126-128
-- `E05.09` app/src/lib/template-anchor.ts:50-58
-- `E05.09` app/src/server/actions/comp.ts:259
-- `E05.09` app/src/lib/templates.generated.ts (wedding-planning-workspace)
-- `E05.09` studio/docs/execution/venue-edition-and-films/evidence/E05.09-wedding-briefing-selectivity.md
-- `E05.09` _wt-wp08 — all 8 claimed evidence paths checked individually
-- `E05.09` node --import tsx --import ./src/test/register-server-only.mjs --test src/modules/signal/lib/briefing/wedding-briefing-selectivity.test.ts
-- `E05.09` Independent probe of src/lib/templates.generated.ts (my own script, not the agent's)
-- `E05.09` Independent probe feeding the real template through buildBriefing at NOW=2026-08-03T09:00Z
-- `E05.09` studio/src/lib/templates/wedding-planning-workspace/tasks.ts (canonical source)
-- `E05.09` _wt-wp08 git status --short
-- `E05.09` grep -c wedding-briefing-selectivity _wt-wp08/package.json -> 0; siblings anchor-due/template-anchor/wedding-template-contract/notes-copy/assignee-roster all -> 1
-- `E05.09` src/modules/signal/lib/planning-periods/scope.ts:105-111 and src/modules/signal/lib/briefing/tasks-db-source.ts:126-128
-- `E05.09` src/server/db/ensure-user.ts:108-110 and src/modules/signal/lib/briefing/tasks-db-source.ts:78-93
-- `E05.09` src/server/actions/comp.ts:259 plus grep for primary_date across comp.ts
-- `E05.09` pnpm ds:check and pnpm typecheck in _wt-wp08
-- `E05.09` node --import tsx --import ./src/test/register-server-only.mjs --test over six Signal briefing suites (triggers, build, signal-build-for-user, tasks-db-source, voice, calendar-time)
-- `E05.09` Failure-mode sweep: grep -niE '18 month|eighteen month|seat|forever|for life|in perpetuity|permanen|dietary|allerg|guaranteed' over the E05.09 evidence doc and the new test file
-- `E05.09` src/modules/signal/lib/analytics/ledger-adapters.ts:107 with voice.ts:96-112
-- `E05.10` _wt-wp08/src/server/venue-never-a-collaborator.test.ts
-- `E05.10` app/src/app/invite/[token]/page.tsx
-- `E05.10` app/src/server/db/schema.ts:467,933
-- `E05.10` app/src/server/actions/settings.ts:348-349,585
-- `E05.10` app/src/server/planning/queries.ts:225-245
-- `E05.10` app/src/server/db/membership.ts:105-114
-- `E05.10` app/src/server/actions/comp.ts:235-244
-- `E05.10` app/src/modules/notes/server/actions/notes.ts:257 and app/src/modules/timeline/server/db/timeline-queries.ts:167
-- `E05.10` studio/docs/execution/venue-edition-and-films/evidence/E05.10-collaborator-access-matrix.md
-- `E05.10` app/src/server/email.ts:79-82
-- `E05.10` app/src/server/require-app-access.ts:31-33 with app/src/app/app/layout.tsx:16 and app/src/app/invite/[token]/accept-button.tsx:24,26
-- `E05.10` app/src/app/api/internal/partner-stats/route.ts
-- `E05.10` app/src/server/db/schema.ts:467 and :933
-- `E05.10` app/src/server/actions/settings.ts:349, :584-585
-- `E05.10` app/src/server/db/membership.ts:105-112
-- `E05.10` package.json (test script)
-- `E08.01` _wt-wp07s/src/lib/venue-money.ts
-- `E08.01` _wt-wp07s/src/lib/entitlements-db/venue-billing.ts
-- `E08.01` _wt-wp07s/scripts/mark-venue-paid.ts
-- `E08.01` _wt-wp07s/src/lib/venue-money.test.ts
-- `E08.01` _wt-wp07s/docs/strategy/VENUE_RENEWAL_AND_LAPSE_RUNBOOK.md
-- `E08.01` _wt-wp07s/scripts/check-venue-edition-contract.mjs
-- `E08.01` evidence/E08-venue-billing-and-renewal.md
-- `E08.01` _wt-wp07s/src/lib/entitlements-db/venues.ts
-- `E08.01` _wt-wp07s/src/app/hq/entitlements/actions.ts
-- `E08.01` _wt-wp07s/src/lib/entitlements-db/founding-numbers.ts
-- `E08.01` _wt-wp07s/src/app/venues/page.tsx
-- `E08.01` _wt-wp07s/src/lib/venue-edition.ts
-- `E08.01` _wt-wp07s/scripts/venue-billing-ddl.mjs
-- `E08.02` _wt-wp07s/src/lib/venue-billing.ts
-- `E08.02` _wt-wp07s/src/lib/entitlements-db/venue-billing.test.ts
-- `E08.02` _wt-wp07s/scripts/venue-billing-ddl.mjs
-- `E08.02` _wt-wp07s/scripts/venue-billing-ddl.test.mjs
-- `E08.02` _wt-wp07s/scripts/migrate-venue-billing.mjs
-- `E08.02` _wt-wp07s/src/lib/entitlements-db/founding-numbers.ts
-- `E08.02` _wt-wp07s/src/lib/entitlements-db/venue-billing.ts
-- `E08.02` _wt-wp07s/scripts/mark-venue-paid.ts
-- `E08.02` _wt-wp07s/drizzle-entitlements/0000_init.sql
-- `E08.03` _wt-wp07s/src/lib/venue-billing.ts
-- `E08.03` _wt-wp07s/src/lib/entitlements-db/venue-billing.ts
-- `E08.03` _wt-wp07s/src/lib/entitlements-db/venue-billing.test.ts
-- `E08.03` _wt-wp07s/src/lib/venue-billing.test.ts
-- `E08.03` _wt-wp07s/docs/strategy/VENUE_RENEWAL_AND_LAPSE_RUNBOOK.md
-- `E08.03` _wt-wp07s/src/lib/venue-lifecycle.ts
-- `E08.03` _wt-wp07s/scripts/check-venue-edition-contract.mjs
-- `E08.03` _wt-wp07s/package.json
-- `E08.03` _wt-wp07/src/server/stripe.ts
-- `E08.04` _wt-wp07/src/server/tenant-scope-rules.mjs
-- `E08.04` _wt-wp07/src/server/tenant-scope-rules.test.mjs
-- `E08.04` _wt-wp07/src/server/cross-tenant-negative.test.ts
-- `E08.04` _wt-wp07/src/server/tenant-scope.test.mjs
-- `E08.04` _wt-wp07/src/server/db/tenant.ts
-- `E08.04` _wt-wp07/package.json
-- `E08.04` evidence/E08.04-E08.05-tenancy-and-access-control.md
-- `E08.04` tasks/E08.04.md
-- `E08.04` _wt-wp07/src/server/db/daily-digest.ts:90-104
-- `E08.04` _wt-wp07/src/app/app/inbox/page.tsx:82
-- `E08.04` _wt-wp07/src/server/tenant-scope-rules.mjs:58-89
-- `E08.04` _wt-wp07/src/server/db/tenant.ts:14-18
-- `E08.05` _wt-wp07s/src/lib/account/roles.ts
-- `E08.05` _wt-wp07s/src/lib/account/role-matrix.test.ts
-- `E08.05` _wt-wp07s/package.json
-- `E08.05` _wt-wp07s/src/lib/hq/auth.ts
-- `E08.05` _wt-wp07s/src/lib/hq/auth.test.ts
-- `E08.05` _wt-wp07s/src/lib/hq/hq-authorization.test.mjs
-- `E08.05` evidence/E08.04-E08.05-tenancy-and-access-control.md
-- `E08.05` tasks/E08.05.md
-- `E08.05` _wt-wp07s/src/app/hq/account-review/actions.ts
-- `E08.05` _wt-wp07s/src/app/hq/account-review/account-review.tsx
-- `E08.06` evidence/E08.06-invitation-and-share-token-security.md
-- `E08.06` _wt-wp07s/src/lib/invitation-code.ts
-- `E08.06` _wt-wp07/src/lib/comp-code.ts
-- `E08.06` _wt-wp07/src/server/invitation-code-security.test.ts
-- `E08.06` _wt-wp07/src/server/share-token-security.test.ts
-- `E08.06` _wt-wp07/src/server/db/share-link-resolver.ts
-- `E08.06` _wt-wp07/src/server/actions/comp.ts
-- `E08.06` _wt-wp07/src/server/share-revocation-contract.test.mjs
-- `E08.06` _wt-wp07s/scripts/issue-codes.ts
-- `E08.06` tasks/E08.06.md
-- `E08.06` _wt-wp07s/src/app/hq/entitlements/actions.ts
-- `E08.06` _wt-wp07/src/server/db/queries.ts
-- `E08.06` _wt-wp07/drizzle/0027_share_link_token_hash.sql
-- `E08.06` _wt-wp07/src/server/actions/share.ts
-- `E08.06` _wt-wp07/src/lib/ratelimit.ts
-- `E08.07` evidence/E08.07-attachment-upload-security.md
-- `E08.07` _wt-wp07/src/lib/upload-validation.ts
-- `E08.07` _wt-wp07/src/server/attachment-upload-security.test.ts
-- `E08.07` _wt-wp07/src/server/storage.ts
-- `E08.07` _wt-wp07/src/app/api/attachments/[id]/route.ts
-- `E08.07` studio/content/hq/operator-todos/premium-blob-storage.md
-- `E08.07` _wt-wp07/node_modules/.pnpm/@vercel+blob@2.6.1/node_modules/@vercel/blob/dist/index.d.ts
-- `E08.07` _wt-wp07/src/server/actions/attachments.ts
-- `E08.07` upload-path completeness check (my own, not the builder's)
-- `E08.08` _wt-wp07/src/server/operational-log.ts
-- `E08.08` _wt-wp07/src/server/operational-log-contract.test.mjs
-- `E08.08` _wt-wp07/src/app/api/csp-report/route.ts
-- `E08.08` _wt-wp07/src/server/email.ts
-- `E08.08` _wt-wp07s/scripts/apply-audit-ledger-triggers.test.mjs
-- `E08.08` _wt-wp07s/src/lib/entitlements-db/audit.ts
-- `E08.08` _wt-wp07/src/instrumentation.ts
-- `E08.08` _wt-wp07/src/server/db/schema.ts
-- `E08.08` studio/docs/execution/venue-edition-and-films/evidence/E08.08-E08.09-observability-and-continuity.md
-- `E08.08` _wt-wp07s/scripts/apply-audit-ledger-triggers.mjs
-- `E08.08` evidence/E08.08-E08.09-observability-and-continuity.md
-- `E08.09` _wt-wp07/scripts/db/restore-verify.mjs
-- `E08.09` _wt-wp07s/scripts/recovery-drill.mjs
-- `E08.09` _wt-wp07s/scripts/recovery-drill.test.mjs
-- `E08.09` _wt-wp07s/scripts/check-entitlements-integrity.test.mjs
-- `E08.09` _wt-wp07/scripts/db/backup-all.mjs
-- `E08.09` _wt-wp07/scripts/db/integrity-check.test.mjs
-- `E08.09` _wt-wp07/.gitignore
-- `E08.09` _wt-wp07s/docs/RECOVERY.md
-- `E08.09` _wt-wp07/scripts/db/backup.mjs
-- `E08.09` _wt-wp07/scripts/db/integrity-check.mjs
-- `E08.09` _wt-wp07s/scripts/check-entitlements-integrity.mjs
-- `E08.10` _wt-wp07/scripts/check-performance-budgets.mjs
-- `E08.10` _wt-wp07/contracts/venue-surface-performance-budgets.v1.json
-- `E08.10` _wt-wp07s/contracts/venue-surface-performance-budgets.v1.json
-- `E08.10` _wt-wp07s/scripts/measure-performance-baseline.mjs
-- `E08.10` _wt-wp07/.github/workflows/verify.yml
-- `E08.10` evidence/E08.10-performance-budgets.md
-- `E08.10` _wt-wp07s/scripts/check-performance-budgets.mjs
-- `E08.10` _wt-wp07s/.github/workflows/verify.yml
-- `E08.10` tasks/E08.10.md
-- `E08.11` _wt-wp07/scripts/check-journey-coverage.mjs
-- `E08.11` _wt-wp07/contracts/sponsored-journey-coverage.v1.json
-- `E08.11` _wt-wp07s/contracts/sponsored-journey-coverage.v1.json
-- `E08.11` _wt-wp07/src/app/api/internal/partner-stats/partner-stats-boundary.test.mjs
-- `E08.11` _wt-wp07/src/server/share-token-security.test.ts
-- `E08.11` evidence/E08.11-sponsored-journey-test-coverage.md
-- `E08.11` _wt-wp07/.github/workflows/verify.yml
-- `E08.11` _wt-wp07s/.github/workflows/verify.yml
-- `E08.11` _wt-wp07/src/app/api/internal/partner-stats/route.ts
-- `E08.11` C:/Users/ethan/AppData/Local/Temp/.../scratchpad/studio-test.log
-- `E08.11` C:/Users/ethan/AppData/Local/Temp/.../scratchpad/mut/
-- `E08.12` evidence/E08.12-security-and-production-readiness.md
-- `E08.12` evidence/E08.12-release-checklist.md
-- `E08.12` evidence/E08.12-rollback-procedure.md
-- `E08.12` evidence/E08.12-incident-response-runbook.md
-- `E08.12` _wt-wp07/drizzle/0027_share_link_token_hash.sql
-- `E08.12` _wt-wp07/src/lib/ratelimit.ts
-- `E08.12` _wt-wp07/next.config.ts
-- `E08.12` BRANCH-STATE CHECK (my own, not claimed by the build agent)
-- `E08.12` CONTROL-HAS-A-PRODUCTION-CALLER CHECK (my own)
-- `E08.12` BANNED-CLAIMS SWEEP (my own regex, all four docs plus the task spec)
-- `E12.01` evidence/E12.01-public-landing-audit.md
-- `E12.01` tasks/E12.01.md
-- `E12.01` _wt-wp13/src/app/venues/page.tsx
-- `E12.01` _wt-wp13/src/lib/venue-invitation/copy.ts
-- `E12.01` scratchpad/p7check.mjs — independent reimplementation of copy/prohibited-claims.v1.json against src/app/venues/page.tsx
-- `E12.01` evidence/E09.11-copy-system.md §13
-- `E12.01` evidence/E09.11-copy-system.md §5.1a
-- `E12.01` _wt-wp13 — banned-term sweep over src/app/venues/page.tsx
-- `E12.01` _wt-wp13/src/app/venues/page.tsx lines 101,102,106,468-481,495-513,599-600
-- `E12.01` _wt-wp13 — R-031 privacy check
-- `E12.01` _wt-wp13/src/lib/venue-allotment.ts, src/lib/entitlements-db/codes.ts:180, src/lib/account/live/project-venue-access.ts:48,143,195
-- `E12.02` evidence/E12.02-03-private-venue-page.md
-- `E12.02` evidence/E12.02-03-verification-run.txt
-- `E12.02` _wt-wp13/src/app/v/[token]/page.tsx
-- `E12.02` _wt-wp13/src/lib/venue-invitation/links.ts
-- `E12.02` _wt-wp13/src/lib/venue-invitation/event.ts
-- `E12.02` _wt-wp13/src/lib/venue-invitation/copy.ts
-- `E12.02` _wt-wp13/src/lib/venue-invitation/paths.ts
-- `E12.02` _wt-wp13/src/app/v/[token]/states.tsx
-- `E12.02` _wt-wp13/src/app/v/[token]/not-found.tsx
-- `E12.02` _wt-wp13/src/lib/venue-invitation/paths.test.ts
-- `E12.03` evidence/E12.02-03-private-venue-page.md
-- `E12.03` evidence/E12.02-03-verification-run.txt
-- `E12.03` _wt-wp13/src/app/v/[token]/states.tsx
-- `E12.03` _wt-wp13/src/lib/venue-invitation/links.test.ts
-- `E12.03` _wt-wp13/src/lib/venue-invitation/copy.ts
-- `E12.03` _wt-wp13/src/lib/account/instrumentation/suppression.ts
-- `E12.05` _wt-wp13/src/app/venues/couple-preview/page.tsx
-- `E12.05` evidence/E12.05-couple-experience-preview.md
-- `E12.05` studio/src/app/redeem/[code]/page.tsx:314-317
-- `E12.05` app/src/components/welcome/venue-welcome-card.tsx
-- `E12.05` app/src/components/settings/plan/plan-view.tsx:77-81
-- `E12.05` app/src/server/db/venue-welcome.ts
-- `E12.05` studio/src/app/venues/page.tsx:180-189
-- `E12.05` _wt-wp13/experience/registry.json
-- `E12.05` _wt-wp13/scripts/check-venue-edition-contract.mjs:55-60
-- `E12.05` app/src/app/sign-up/[[...sign-up]]/page.tsx:47-61
-- `E12.05` app/src/components/welcome/venue-welcome-card.tsx:54,66
-- `E12.05` app/src/components/settings/plan/plan-view.tsx:75-84
-- `E12.05` app/src/server/db/venue-welcome.ts:15-19
-- `E12.05` _wt-wp13/src/app/venues/page.tsx:187
-- `E12.05` _wt-wp13/src/lib/venue-invitation/paths.ts:32-35,79-84
-- `E12.05` evidence/copy/prohibited-claims.v1.json
-- `E12.05` app/src (Keepsake absence)
-- `E12.06` _wt-wp13/src/app/venues/what-you-see/page.tsx
-- `E12.06` evidence/E12.06-venue-record-preview.md
-- `E12.06` studio/docs/execution/venue-edition-and-films/DECISIONS.md D-032 point 1
-- `E12.06` studio/docs/execution/venue-edition-and-films/evidence/E07.16-venue-identity-lab.md
-- `E12.06` project-control.mjs task E07.16 (read-only)
-- `E12.06` studio/src/lib/account/instrumentation/suppression.ts:33-41
-- `E12.06` studio/src/lib/account/format.ts:44-71
-- `E12.06` _wt-wp13/experience/registry.json
-- `E12.06` _wt-wp13/src/lib/account/instrumentation/suppression.ts:33-40
-- `E12.06` _wt-wp13/src/lib/redeem/lookup.ts + src/lib/entitlements-db/schema.ts:387-428 + src/lib/entitlements-db/codes.ts
-- `E12.06` _wt-wp13/scripts/check-venue-edition-contract.mjs
-- `E12.06` evidence/copy/prohibited-claims.v1.json
-- `E12.07` _wt-wp13/src/app/venues/privacy/page.tsx
-- `E12.07` studio/docs/execution/venue-edition-and-films/evidence/E12.07-venue-privacy-page.md
-- `E12.07` studio/docs/execution/venue-edition-and-films/evidence/E12.07-E12.08-verification-run.txt
-- `E12.07` _wt-wp13/src/app/sitemap.ts
-- `E12.07` _wt-wp13/scripts/check-venue-edition-contract.mjs
-- `E12.07` evidence/E12.07-venue-privacy-page.md
-- `E12.07` evidence/E12.07-E12.08-verification-run.txt
-- `E12.07` _wt-wp13/src/lib/account/types.ts:18
-- `E12.07` _wt-wp13/src/lib/account/live/project-venue-access.ts:82
-- `E12.07` app/src/lib/public-task.ts
-- `E12.08` _wt-wp13/src/app/venues/questions/page.tsx
-- `E12.08` studio/docs/execution/venue-edition-and-films/evidence/E12.08-venue-faq-page.md
-- `E12.08` studio/docs/execution/venue-edition-and-films/evidence/E12.07-E12.08-verification-run.txt
-- `E12.08` _wt-wp13/src/app/sitemap.ts
-- `E12.08` _wt-wp13/scripts/check-venue-edition-contract.mjs
-- `E12.08` evidence/E12.08-venue-faq-page.md
-- `E12.08` evidence/E12.07-E12.08-verification-run.txt
-- `E12.08` app (whole repo)
-- `E12.08` _wt-wp13/src/app/venues/couple-preview/page.tsx:336
-- `E12.08` app/src/lib/venue-edition-term.ts:61 and app/src/server/db/sponsored-access-term.ts:112
-- `E12.08` app/src/app/api/account/export/route.ts
-- `E12.08` _wt-wp13/src/app/venues/page.tsx:479
-- `E12.08` evidence/E09.11-copy-system.md §10.2
-- `E12.08` evidence/E09.10-copy-hierarchy.md §6 Answer 1
-- `E12.09` studio/docs/execution/venue-edition-and-films/evidence/E12.09-one-page-proposal.md
-- `E12.09` _wt-wp13/src/lib/venue-proposal.ts
-- `E12.09` _wt-wp13/src/lib/venue-proposal.test.ts
-- `E12.09` _wt-wp13/src/components/venue/venue-proposal-sheet.tsx
-- `E12.09` _wt-wp13/src/components/venue/venue-proposal.css
-- `E12.09` _wt-wp13/src/app/hq/venue-proposal/page.tsx
-- `E12.09` studio/docs/execution/venue-edition-and-films/evidence/E12.09-E12.14-verification-run.txt
-- `E12.09` _wt-wp13/src/app/hq/venue-proposal/composer.tsx
-- `E12.09` evidence/E12.09-one-page-proposal.md
-- `E12.09` evidence/E12.09-E12.14-verification-run.txt
-- `E12.09` _wt-wp13/src/lib/account/instrumentation/suppression.ts
-- `E12.09` _wt-wp13/src/lib/venue-invitation/paths.ts
-- `E12.14` studio/docs/execution/venue-edition-and-films/evidence/E12.14-commercial-qa-sweep.md
-- `E12.14` studio/docs/execution/venue-edition-and-films/evidence/E12.09-E12.14-verification-run.txt
-- `E12.14` _wt-wp13/src/app/venues/privacy/page.tsx
-- `E12.14` _wt-wp13/src/app/venues/questions/page.tsx
-- `E12.14` _wt-wp13/src/app/v/[token]/states.tsx
-- `E12.14` _wt-wp13/src/components/venue/venue-proposal-sheet.tsx
-- `E12.14` _wt-wp13/src/lib/venue-proposal.ts
-- `E12.14` _wt-wp13/src/lib/account/instrumentation/suppression.ts
-- `E12.14` _wt-wp13/src/lib/account/format.ts
-- `E12.14` _wt-wp13/src/proxy.ts
-- `E12.14` _wt-wp13/src/app/layout.tsx
-- `E12.14` _wt-wp13/src/components/landing/site-footer.tsx
-- `E12.14` _wt-wp13/src/app/robots.ts
-- `E12.14` _wt-wp13/src/app/sitemap.ts
+- `E06.01` studio/docs/execution/venue-edition-and-films/evidence/E06.01-public-artifact-content-model.md
+- `E06.01` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:76-103
+- `E06.01` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:178-187
+- `E06.01` _wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:193-199
+- `E06.01` _wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts
+- `E06.01` _wt-wp14/package.json:36
+- `E06.01` _wt-wp14/src/lib/public-task.test.ts
+- `E06.01` evidence/E06.01-public-artifact-content-model.md
+- `E06.01` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:178-190
+- `E06.01` _wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:190-199
+- `E06.01` _wt-wp14/src/lib/public-task.ts:8-21
+- `E06.01` _wt-wp14/src/server/db/queries.ts:184-227
+- `E06.01` _wt-wp14/src/app/p/[slug]/page.tsx:27-58
+- `E06.01` _wt-wp14/src/components/published/wedding-theme.tsx:44
+- `E06.02` studio/docs/execution/venue-edition-and-films/evidence/E06.02-milestone-visibility-states.md
+- `E06.02` _wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts
+- `E06.02` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:159
+- `E06.02` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:221
+- `E06.02` _wt-wp14/src/modules/timeline/server/db/timeline-queries.ts:77-99
+- `E06.02` _wt-wp14/drizzle-timeline/
+- `E06.02` evidence/E06.02-milestone-visibility-states.md
+- `E06.02` tasks/E06.02.md
+- `E06.02` _wt-wp14/package.json
+- `E06.02` _wt-wp14/src/modules/timeline/app/plan/[projectSlug]/_components/curation-surface.tsx:245
+- `E06.02` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:56
+- `E06.02` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:797-809
+- `E06.03` _wt-wp14/src/lib/image/metadata.ts
+- `E06.03` _wt-wp14/src/lib/image/policy.ts
+- `E06.03` _wt-wp14/src/lib/image/metadata.test.ts
+- `E06.03` studio/docs/execution/venue-edition-and-films/evidence/E06.03-photograph-boundary.md
+- `E06.03` _wt-wp14/src/server/actions/attachments.ts:36
+- `E06.03` studio/docs/execution/venue-edition-and-films/evidence/infrastructure-blob-and-email-auth-2026-08-03.md
+- `E06.03` _wt-wp14/package.json
+- `E06.03` evidence/E06.03-photograph-boundary.md
+- `E06.03` evidence/infrastructure-blob-and-email-auth-2026-08-03.md
+- `E06.04` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:320
+- `E06.04` _wt-wp14/src/modules/timeline/lib/audience-timeline.ts:56
+- `E06.04` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:56
+- `E06.04` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:434
+- `E06.04` evidence/E06.04-milestone-navigation.md
+- `E06.04` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:442
+- `E06.04` _wt-wp14/src/lib/public-analytics-boundary.ts:16
+- `E06.04` _wt-wp14/src/modules/timeline/lib/viewer-count.ts
+- `E06.04` _wt-wp14/src/app/robots.ts:29
+- `E06.05` _wt-wp14/src/app/robots.ts
+- `E06.05` _wt-wp14/src/components/app/settings/sections/workspace.tsx
+- `E06.05` _wt-wp14/src/components/app/share/share-button.tsx
+- `E06.05` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:447
+- `E06.05` _wt-wp14/src/server/db/schema.ts:737-767
+- `E06.05` evidence/E06.05-sharing-modes.md
+- `E06.05` _wt-wp14/src/app/robots.ts:28
+- `E06.05` _wt-wp14/src/components/app/settings/sections/workspace.tsx:614-645
+- `E06.05` _wt-wp14/src/components/app/share/share-button.tsx:385-393
+- `E06.05` _wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx
+- `E06.05` _wt-wp14/src/modules/timeline/server/db/timeline-schema.ts:563-577
+- `E06.05` _wt-wp14/src/server/db/schema.ts:737 and src/server/db/queries.ts:720
+- `E06.05` _wt-wp14/src/app/p/[slug]/page.tsx
+- `E06.05` _wt-wp14/src/app/sitemap.ts:19,21,32,34
+- `E06.05` _wt-wp14/src/components/analytics/google-tag.tsx:28-29 and src/lib/public-analytics-boundary.ts
+- `E06.05` _wt-wp14/src/app/embed/[slug]/page.tsx and scripts/check-frame-headers.mjs
+- `E06.05` tasks/E06.05.md:127-135
+- `E06.06` studio/docs/execution/venue-edition-and-films/evidence/E06.06-conceal-dates-and-details.md
+- `E06.06` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:650
+- `E06.06` _wt-wp14/src/modules/timeline/server/actions/audience-timeline.ts:363
+- `E06.06` _wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx
+- `E06.06` _wt-wp14/src/modules/timeline/server/couple-artifact-boundary.test.ts
+- `E06.06` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:599
+- `E06.06` _wt-wp14/src/app/s/[token]/page.tsx:23-36
+- `E06.06` _wt-wp14/src/modules/timeline/server/db/timeline-schema.ts
+- `E06.06` _wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx:390-437
+- `E06.06` _wt-wp14/src/app/robots.ts:29
+- `E06.06` _wt-wp14/src/components/published/wedding-theme.tsx:125-133
+- `E06.07` _wt-wp14/src/modules/timeline/lib/viewer-count.ts
+- `E06.07` _wt-wp14/src/modules/timeline/lib/viewer-count.test.ts
+- `E06.07` _wt-wp14/src/modules/timeline/app/audience/artifact-studio.tsx
+- `E06.07` _wt-wp14/src/modules/timeline/app/audience/audience-manager.tsx
+- `E06.07` _wt-wp14/src/lib/public-analytics-boundary.ts
+- `E06.07` _wt-wp14/src/components/analytics/google-tag.tsx
+- `E06.07` _wt-wp14/next.config.ts
+- `E06.07` _wt-wp14/src/server/public-surface-analytics-contract.test.mjs
+- `E06.07` evidence/E06.07-aggregate-viewer-counts.md
+- `E06.07` _wt-wp14/src/modules/timeline/server/qualified-view-store.ts
+- `E06.07` _wt-wp14/src/server/db/schema.ts
+- `E06.09` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:967-1145
+- `E06.09` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:12-13
+- `E06.09` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact-contract.test.mjs
+- `E06.09` studio/docs/execution/venue-edition-and-films/evidence/E06.09-E06.10-timeline-layouts.md
+- `E06.09` _wt-wp14/experience/browser-contract.json
+- `E06.09` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css
+- `E06.09` _wt-wp14/package.json:36
+- `E06.09` _wt-wp14/.github/workflows/design-quality.yml:5-44
+- `E06.09` _wt-wp14/experience/output/evidence-attestation.json
+- `E06.09` _wt-wp14/experience/tests/critical-experiences.spec.ts:124-146,373-374
+- `E06.09` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx
+- `E06.09` _wt-wp14 git diff
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:622
+- `E06.10` _wt-wp14/src/modules/timeline/app/plan/[projectSlug]/page.tsx:295
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:70
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:279-281
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:320-324
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.module.css:375
+- `E06.10` _wt-wp14/package.json
+- `E06.10` _wt-wp14/src/modules/timeline/components/artifact/timeline-artifact.tsx:56-60
+- `E06.10` _wt-wp14/experience/output/evidence-attestation.json
+- `E06.10` _wt-wp14/src/app/app/timeline/audience/[publicationId]/page.tsx:13
+- `E06.10` _wt-wp14/src/app/p/[slug]/page.tsx:21-58
+- `E06.11` _wt-wp14/src/lib/keepsake/lifecycle.ts
+- `E06.11` _wt-wp14/src/lib/keepsake/export.ts
+- `E06.11` _wt-wp14/src/lib/keepsake/keepsake.test.ts
+- `E06.11` studio/docs/execution/venue-edition-and-films/evidence/E06.11-keepsake.md
+- `E06.11` _wt-wp14/src/ds/tokens.css:48-67
+- `E06.11` _wt-wp14/package.json:36
+- `E06.11` evidence/E06.11-keepsake.md
+- `E06.11` _wt-wp14 (git)
+- `E06.11` _wt-wp14/src/components/app/settings/sections/billing.tsx:109
+- `E06.11` _wt-wp14/src/components/redeem/redeem-result-card.tsx:89
+- `E06.12` _wt-wp14/src/server/actions/settings.ts
+- `E06.12` _wt-wp14/src/server/published-surface-revalidation.test.mjs
+- `E06.12` _wt-wp14/src/app/p/[slug]/page.tsx:21-58
+- `E06.12` _wt-wp14/src/app/s/[token]/not-found.tsx
+- `E06.12` studio/docs/execution/venue-edition-and-films/evidence/E06.12-shared-timeline-qa.md
+- `E06.12` _wt-wp14/experience/playwright.config.ts
+- `E06.12` _wt-wp14/experience/tests/critical-experiences.spec.ts:308-315
+- `E06.12` _wt-wp14/experience/critical-fixtures.json
+- `E06.12` _wt-wp14/src/app/embed/[slug]/page.tsx
+- `E06.12` _wt-wp14/src/modules/timeline/server/audience-timeline.ts:565-597
+- `E06.12` _wt-wp14/experience/output/evidence-attestation.json
+- `E06.12` _wt-wp14/experience/evidence-runs/tasks-playwright-5501ae463b99182192baa7cc-1bce2067f1691fd8.json
+- `E06.12` _wt-wp14/src/lib/public-analytics-boundary.ts + src/components/analytics/google-tag.tsx:29
+- `E06.12` _wt-wp14/src/modules/timeline/lib/viewer-count.ts
+- `E06.12` _wt-wp14/src/app/robots.ts
+- `E06.12` _wt-wp14/src/lib/domains.ts:366-369
+- `E12.10` _wt-wp16/src/lib/venue-sales-deck.ts
+- `E12.10` _wt-wp16/src/lib/venue-sales-deck.test.ts
+- `E12.10` _wt-wp16/src/app/hq/venue-deck/page.tsx
+- `E12.10` public/brand/collateral/venue/venue-deck-screen.pdf via /hq/venue-kit:20
+- `E12.10` evidence/E12.10-E12.13-verification-run.txt sections 1, 4, 9
+- `E12.10` _wt-wp16/src/components/venue/venue-sales-deck.css
+- `E12.10` _wt-wp16/public/brand/collateral/venue/venue-deck-screen.pdf
+- `E12.10` deck probe run in C:/Users/ethan/signal-studio-workspace/_wt-wp16 (tsx over the built deck)
+- `E12.10` _wt-wp16/scripts/check-venue-copy.mjs
+- `E12.10` _wt-wp16/src/lib/hq/rooms.ts:158 and experience/registry.json:6014
+- `E12.10` _wt-wp16/package.json
+- `E12.10` app/src (Keepsake and export claims, verified against the app repo)
+- `E12.11` _wt-wp16/src/lib/founding-certificate.ts
+- `E12.11` _wt-wp16/src/lib/founding-certificate.test.ts
+- `E12.11` src/app/hq/partner-card/page.tsx (defect C-1)
+- `E12.11` _wt-wp16/src/components/venue/founding-certificate-sheet.tsx
+- `E12.11` evidence/E12.10-E12.13-verification-run.txt sections 1, 9
+- `E12.11` _wt-wp16/src/app/hq/partner-card/page.tsx
+- `E12.11` VERIFIER RE-RUN: pnpm exec tsx --test src/lib/founding-certificate.test.ts
+- `E12.11` VERIFIER RE-RUN: pnpm run typecheck
+- `E12.11` VERIFIER RE-RUN: pnpm test
+- `E12.11` VERIFIER RE-RUN: pnpm run build
+- `E12.11` VERIFIER RE-RUN: pnpm run experience:validate -- --product=studio
+- `E12.11` VERIFIER RE-RUN: pnpm run lint
+- `E12.11` VERIFIER BANNED-TERM SWEEP over E12.11's touched files
+- `E12.11` VERIFIER BANNED-TERM SWEEP over the whole of public/brand and src/app
+- `E12.11` VERIFIER PLANTED-VIOLATION TEST 1 — the standing repository check
+- `E12.11` VERIFIER PLANTED-VIOLATION TEST 2 — the certificate's own test
+- `E12.11` RATIFIED-CLAIM CHECK against the certificate's actual strings
+- `E12.11` UNBUILT-CAPABILITY CHECK on E12.11's artefact
+- `E12.11` GIT DIFF CHECK
+- `E12.12` _wt-wp16/src/lib/venue-prebooking-kit.ts
+- `E12.12` _wt-wp16/src/lib/venue-prebooking-kit.test.ts
+- `E12.12` evidence/E09.11-venue-copy-pack.md section 1, third sentence (defect C-2)
+- `E12.12` _wt-wp16/src/lib/venue-copy-refusals.ts
+- `E12.12` evidence/E12.10-E12.13-verification-run.txt sections 1, 9
+- `E12.12` BANNED-TERM SWEEP I ran myself over public/brand and src/app (all .html/.tsx/.ts/.txt/.md/.json/.css)
+- `E12.12` _wt-wp16/public/brand/collateral/social/alt-text.txt lines 26-33
+- `E12.12` _wt-wp16/scripts/check-venue-copy.mjs and package.json
+- `E12.12` MY RE-RUNS: pnpm exec tsx --test src/lib/venue-prebooking-kit.test.ts -> 16/16, exit 0. pnpm run typecheck -> exit 0. pnpm test -> exit 0 (38 tests in the final suite, 0 fail). pnpm run build -> exit 0, 'Compiled successfully in 14.7s', 51/51 static pages, and the route table carries 'f /hq/venue-prebooking-kit'. pnpm run experience:validate -- --product=studio -> exit 1, 8 failures.
+- `E12.12` pnpm run lint -> EXIT 1 (I ran it; the claimed verification omitted it, the evidence document does not)
+- `E12.12` _wt-wp16/experience/registry.json and src/lib/hq/rooms.ts:175-176
+- `E12.12` THE KEEPSAKE CHECK (the prompt's highest-value item): git -C app grep -n -i -E 'keepsake|one-click export' -- src
+- `E12.12` THE CRITERION-5 MEASUREMENT: I ran a throwaway probe importing the module and testing block.text.includes(PREBOOKING_PRIVACY_SENTENCE) per block, then deleted it
+- `E12.12` git status and git diff in _wt-wp16
+- `E12.13` _wt-wp16/src/lib/couple-welcome-kit.ts
+- `E12.13` _wt-wp16/src/lib/couple-welcome-kit.test.ts
+- `E12.13` KEEPSAKE VERIFICATION, and a correction to my own first reading
+- `E12.13` app/src/server/actions/planning.ts:945 recomputeSponsoredAccessTermQuietly
+- `E12.13` evidence/E12.10-E12.13-verification-run.txt sections 1, 7, 8, 9
+- `E12.13` PLANTED-VIOLATION TEST — the check is real, not decorative
+- `E12.13` _wt-wp16/package.json:13
+- `E12.13` app/src/components/welcome/venue-welcome-card.tsx:66
+- `E12.13` KEEPSAKE — I re-ran the greps rather than trusting the correction
+- `E12.13` app/src/server/actions/planning.ts:945 and app/src/server/db/sponsored-access-term.ts
+- `E12.13` evidence/E12.10-E12.13-verification-run.txt
+- `E12.13` _wt-wp16/src/lib/hq/rooms.ts and experience/registry.json:4088
+- `E12.13` _wt-wp16/src/components/venue/venue-kit-print.css
 
 ## Unresolved
 
@@ -492,39 +234,24 @@ WP-13 complete. Nine E12 tasks with criteria modelled on E12.04's; seven in Foun
 
 ## Blockers
 
-- `E12.05` Built, verified and evidenced in Wave 3, but it cannot enter Founder Review: it depends on E05.12, the world-class design-system review and visual-regression baselines, which is FOUNDER-CREATIVE and was deliberately excluded from Wave 3. The tool refuses the transition and a dependency waiver would be inventing founder consent, so it is recorded as blocked instead. Unblock by taking E05.12 to founder review, or by an explicit founder waiver recorded with --waive-deps.
-- `E12.14` Built, verified and evidenced in Wave 3, but blocked behind the same chain as E12.05: E12.14 depends on E12.05, which depends on E05.12 (founder-creative, excluded from Wave 3). No dependency was waived because a waiver is the founder's to give. Unblock by clearing E05.12 then E12.05, or by an explicit founder waiver.
+- `E06.01` Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural.
+- `E06.12` Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map.
 
 ## Founder review required
 
-- `E05.01` Map the complete couple journey from venue invitation through first useful action, active planning, wedding day and Keepsake mode.
-- `E05.03` Build the default wedding workspace template with restrained milestones, decisions, tasks and example Notes.
-- `E05.04` Complete the wedding-specific Notes experience, including voice capture, manual capture and high-signal structured output.
-- `E05.05` Complete the Notes-to-Tasks promotion flow using ordinary wedding-planning language.
-- `E05.06` Complete the wedding Tasks experience for ownership, due dates, status, tags, priorities and clear next actions.
-- `E05.07` Complete the task-detail experience for comments, attachments, subtasks, decisions and private collaboration.
-- `E05.08` Complete the authenticated Timeline planning experience and its relationship with tasks and milestones.
-- `E05.09` Complete the wedding-specific Signal briefing showing only what needs the couple’s attention today.
-- `E05.10` Complete spouse, planner, family-member and collaborator invitations with appropriate role boundaries.
-- `E08.01` Implement annual prepaid billing for standard and founding agreements.
-- `E08.02` Implement an immutable founding-rate flag and historical price record for each qualifying venue.
-- `E08.03` Implement renewal invoices, renewal reminders, failed-payment handling, grace periods and lapse behaviour.
-- `E08.04` Complete multi-tenant data isolation and database row-level security for venues and couple workspaces.
-- `E08.05` Complete role-based authentication and authorisation across venue owners, managers, viewers and couples.
-- `E08.06` Secure invitation tokens against guessing, reuse, unintended forwarding, replay and duplicate redemption.
-- `E08.07` Secure photograph and attachment uploads with file validation, malware controls, size limits and private storage.
-- `E08.08` Complete audit logging, operational logging, error monitoring and alert escalation.
-- `E08.09` Complete backups, restore testing, disaster-recovery procedures and data-integrity verification.
-- `E08.10` Set and test performance budgets across portal, couple workspace, Timeline images and public artifact.
-- `E08.11` Complete unit, integration, end-to-end, browser, responsive and device test coverage for the entire sponsored journey.
-- `E08.12` Complete security review, production-readiness review, release checklist, rollback process and incident-response runbook.
-- `E12.01` Build the public Venue Edition landing page around the sponsored couple experience.
-- `E12.02` Build the private Founding 25 invitation page.
-- `E12.03` Build a parameterised private proposal page for each venue.
-- `E12.06` Add the Venue Portal trust-and-renewal preview.
-- `E12.07` Add the privacy explanation covering exactly what the venue sees and never sees.
-- `E12.08` Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ.
-- `E12.09` Produce the concise one-page commercial proposal.
+- `E06.02` Add per-milestone visibility controls for private, title-and-date, image and short-story publication states.
+- `E06.03` Complete milestone photograph upload, crop, compression, orientation, alt text and deletion.
+- `E06.04` Complete milestone navigation and the transition from a Timeline point into its photograph and story.
+- `E06.05` Implement private-link, password-protected and intentionally public sharing modes.
+- `E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
+- `E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
+- `E06.09` Design and implement the intentional vertical mobile Timeline.
+- `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept.
+- `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
+- `E12.10` Produce the detailed Venue Edition sales deck.
+- `E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
+- `E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
+- `E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
 
 ## Exact next action
 

@@ -34,34 +34,12 @@
   },
   "session": {
     "lastClosed": {
-      "id": "wp13-commercial",
-      "closedAt": "2026-08-03T15:29:44.570Z",
-      "record": "sessions/2026-08-03--wp13-commercial.md",
-      "objective": "WP-13 · E12 commercial pages and asset system"
+      "id": "wp16-assets",
+      "closedAt": "2026-08-04T08:24:22.683Z",
+      "record": "sessions/2026-08-04--wp16-assets.md",
+      "objective": "WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets"
     },
-    "open": [
-      {
-        "id": "wp14-timeline",
-        "objective": "WP-14 · E06 Shared Timeline and Keepsake, plus R-031 and R-032 implementation and the Timeline workspace blocker",
-        "openedAt": "2026-08-03T16:08:41.869Z",
-        "tasksTouched": [],
-        "statusChanges": []
-      },
-      {
-        "id": "wp15-term",
-        "objective": "WP-15 · R-015 access-term correctness in the app redemption path",
-        "openedAt": "2026-08-03T16:08:42.007Z",
-        "tasksTouched": [],
-        "statusChanges": []
-      },
-      {
-        "id": "wp16-assets",
-        "objective": "WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets",
-        "openedAt": "2026-08-03T16:08:42.121Z",
-        "tasksTouched": [],
-        "statusChanges": []
-      }
-    ]
+    "open": []
   },
   "wip": {
     "primaryFocus": 1,
@@ -93,10 +71,12 @@
         "deactivationNote": "Wave 3 closed 2026-08-03. Thirty tasks touched: E05.01/.03-.10 (9), E08.01-.12 (12), E12.01/.02/.03/.05/.06/.07/.08/.09/.14 (9). 28 carry written acceptance criteria and recorded evidence and sit in Founder Review; ALL 28 ARE PARTIAL and none is Done. E12.05 and E12.14 are blocked rather than forced through: both depend, directly or via E12.05, on E05.12 which is founder-creative and outside Wave 3, and no dependency was waived because a waiver is the founder’s to give. Four packets: 2026-08-03--E05.md, --E08.md, --E12.md and the consolidated --WAVE3.md. Four branches pushed and none merged: claude/wp07-engineering, claude/wp07-engineering-studio, claude/wp08-couple (app), claude/wp13-commercial (studio). R-027 and R-028 are fixed pending approval. LIMITATION RECORDED: file ownership within a package was directory convention, not enforcement, so several agents shared one worktree per package and gate colour observed during the run is not trustworthy; every gate was re-run after the wave settled. Next wave should isolate per build group, not per package."
       },
       {
-        "active": true,
+        "active": false,
         "at": "2026-08-03T00:00:00.000Z",
         "wave": "Wave 4",
-        "reason": "Wave 4 runs three packages concurrently on 2026-08-03 under the founder standing instruction to run Wave 4 to completion in the same manner as Wave 3: WP-14 (E06 Shared Timeline and Keepsake, 11 tasks, plus R-031 and R-032 implementation and the Timeline-workspace production blocker), WP-15 (R-015 access-term correctness in the app redemption path) and WP-16 (R-042 sweep, the standing banned-term check, and E12.10-E12.13 commercial assets). Isolation is by git worktree and Wave 4 STACKS ON WAVE 3 rather than branching from main, because the Wave 3 branches are approved but unmerged: _wt-wp14 off claude/wp08-couple, _wt-wp15 off claude/wp07-engineering, _wt-wp16 off claude/wp13-commercial. PROJECT_STATE.json remains a single shared file, so every transition is applied serially by the orchestrating session and no build agent runs a project-control write command. Each task keeps its own criteria, evidence and founder sign-off."
+        "reason": "Wave 4 runs three packages concurrently on 2026-08-03 under the founder standing instruction to run Wave 4 to completion in the same manner as Wave 3: WP-14 (E06 Shared Timeline and Keepsake, 11 tasks, plus R-031 and R-032 implementation and the Timeline-workspace production blocker), WP-15 (R-015 access-term correctness in the app redemption path) and WP-16 (R-042 sweep, the standing banned-term check, and E12.10-E12.13 commercial assets). Isolation is by git worktree and Wave 4 STACKS ON WAVE 3 rather than branching from main, because the Wave 3 branches are approved but unmerged: _wt-wp14 off claude/wp08-couple, _wt-wp15 off claude/wp07-engineering, _wt-wp16 off claude/wp13-commercial. PROJECT_STATE.json remains a single shared file, so every transition is applied serially by the orchestrating session and no build agent runs a project-control write command. Each task keeps its own criteria, evidence and founder sign-off.",
+        "deactivatedAt": "2026-08-04T00:00:00.000Z",
+        "deactivationNote": "Wave 4 closed 2026-08-04. Thirteen E06/E12 tasks plus four cross-cutting items. 13 in Founder Review as PARTIAL; E06.01 and E06.12 BLOCKED on E03.01 and E03.06, both founder-lane legal and privacy tasks, and no dependency was waived. BLOCKER-2 CLOSED and independently verified: a couple can now get a Timeline workspace, pinned by a registered test. R-015, R-031, R-032 and R-042 all PARTIALLY mitigated and deliberately left open, each with the residual recorded in RAID. Four branches pushed, none merged: claude/wp14-timeline, claude/wp15-term-correctness, claude/wp16-assets, plus the Wave 3 stack they build on. THREE FINDINGS THE WAVE EXISTS FOR: R-031 was reported built and was not, citing a file that never existed - caught by the adversarial verifier AND by the evidence-path validator; prohibited-claims.v1.json was read by nothing while E09.11 section 12 described a validation stage absent from the repository; and Sentry still initialises on couple-facing public routes, so D-033 Option A is not satisfied by removing GA4 alone. LIMITATION REPEATED FROM WAVE 3 AND STILL UNFIXED: build groups within a package share one worktree, so gate colour observed during a run is not trustworthy; a verifier watched the suite go red-to-green as a sibling file changed underneath. Next wave must isolate per build group."
       }
     ]
   },
@@ -19922,7 +19902,7 @@
       "id": "E12.10",
       "epic": "E12",
       "title": "Produce the detailed Venue Edition sales deck.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -19934,20 +19914,108 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "tasks/E12.10.md",
+      "acceptanceCriteria": [
+        "The deck exists as a rendered artefact at a gated route, not a document describing one, and prints one slide per A4 landscape page",
+        "No ratified sentence is restated; every price, term and promise is imported from src/lib/venue-invitation/copy.ts",
+        "Every price statement carries 'including VAT at the prevailing rate', proved over rendered prose rather than source",
+        "Every slide traces to at least one ratified decision, and the trace is visible on the slide",
+        "Price appears after the privacy boundary, the launch-scope sentence and the couple's access term, enforced by test",
+        "The launch-scope sentence appears verbatim, as its own slide",
+        "The survival sentence appears unprompted",
+        "A slide states what is not built, naming the Keepsake, adoption figures and the absence of a venue login",
+        "No prohibited claim, banned programme term, em dash or exclamation mark, in the filled deck or the unfilled one",
+        "The deck ends on exactly one ask and it is the walkthrough",
+        "No numeric entitlement, no seat language, no places-left figure",
+        "An unfilled deck says so rather than looking prepared",
+        "Registered in the HQ room registry and the experience registry, adding no new experience:validate failure",
+        "The test is registered in package.json so CI runs it"
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:59:39.853Z",
+          "ref": "_wt-wp16/src/lib/venue-sales-deck.ts",
+          "note": "Twenty slides as data. Imports COMMERCIAL_SUMMARY_ROWS, COUPLE_TERM_SENTENCE, ENTITLEMENT_SENTENCE, FOUNDING_MEANING, OFFER_PARAGRAPH, PRICE_FORMS, PRIVACY_BLOCK, SCALE_SENTENCE, STANDARD_RATE_SENTENCE, SURVIVAL_SENTENCE, TEAM_ASK_SENTENCE from venue-invitation/copy.ts. No second copy of any price.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:39.971Z",
+          "ref": "_wt-wp16/src/lib/venue-sales-deck.test.ts",
+          "note": "21 assertions, all pass. Includes the ladder ordering test (price index > what-you-never-see, how-long and at-launch), the VAT test over rendered prose, and the sweep run against both the filled and the unfilled deck.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.096Z",
+          "ref": "_wt-wp16/src/app/hq/venue-deck/page.tsx",
+          "note": "Gated route, ?venue= fills the one slot, robots noindex on its own account. Present in the build route table as dynamic.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.226Z",
+          "ref": "public/brand/collateral/venue/venue-deck-screen.pdf via /hq/venue-kit:20",
+          "note": "AUDIT FINDING. The only pre-existing venue deck. Its own caption reads 'the demo → €1,500 → ... → the pilot ask'. Wrong on the founding price, the retired programme term and an ask the ratified offer does not contain. Recorded as defect C-3, not deleted.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.364Z",
+          "ref": "evidence/E12.10-E12.13-verification-run.txt sections 1, 4, 9",
+          "note": "pnpm exec tsx --test src/lib/venue-sales-deck.test.ts: 21 tests, 21 pass, exit 0. pnpm run build: exit 0 with /hq/venue-deck in the table (after two exit-1 attempts caused by a concurrent session holding the next build lock, recorded rather than re-run quietly).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.479Z",
+          "ref": "_wt-wp16/src/components/venue/venue-sales-deck.css",
+          "note": "EXISTS. @media print carries @page { size: A4 landscape; margin: 12mm } and .venue-deck-slide { break-after: page; break-inside: avoid }, with :last-child exempt. The rule is correct as written. It has never been printed or measured, so the print half of criterion 1 is asserted, not proved.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.597Z",
+          "ref": "_wt-wp16/public/brand/collateral/venue/venue-deck-screen.pdf",
+          "note": "EXISTS, 210,525 bytes. I read the linking caption myself at src/app/hq/venue-kit/page.tsx:20. It currently reads 'Cover -> the 19,898 problem -> four views -> the couple -> the team -> the demo -> €1,500 -> the Founding 25 -> the standard -> the pilot ask.' The audit finding is real and is recorded as defect C-3. See risksFound for what the fix left behind.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.716Z",
+          "ref": "deck probe run in C:/Users/ethan/signal-studio-workspace/_wt-wp16 (tsx over the built deck)",
+          "note": "MY OWN MEASUREMENT, not the builder's. slides: 20. em-dash present: false. exclamation present: false. price lines: 4, and all four carry 'including VAT at the prevailing rate' verbatim (€1,000 founding x2, €1,500 standard x2). bare 18-month lines: 0 — the access term always travels as '18 months from when they open it, or 3 months past the wedding, whichever is later'. Criteria 3 and 9 CONFIRMED.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.843Z",
+          "ref": "_wt-wp16/scripts/check-venue-copy.mjs",
+          "note": "EXISTS, registered in the package.json 'test' chain. I ran it: exit 0, '16 rules, 92 patterns, 29 surfaces swept'. I then enumerated its 29 surfaces from prohibited-claims.v1.json: NOT ONE of them is a WP-16 artefact. venue-sales-deck.ts, venue-sales-deck.tsx and hq/venue-deck/page.tsx are all outside it. See risksFound R1.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:40.960Z",
+          "ref": "_wt-wp16/src/lib/hq/rooms.ts:158 and experience/registry.json:6014",
+          "note": "Both registrations present and read directly. I re-ran pnpm exec tsx --test src/lib/hq/rooms.test.ts: 6 pass, exit 0. I re-ran pnpm run experience:validate -- --product=studio: exit 1 with 8 failures. I checked all 8 by name — two __design-lab/delight routes, hq-venue-proposal, v/[token], v/[token] not-found, venues-privacy, venues-questions, venues-what-you-see. None is a WP-16 route. Criterion 13 CONFIRMED: this work adds zero failures.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:41.078Z",
+          "ref": "_wt-wp16/package.json",
+          "note": "git diff confirms 'src/lib/venue-sales-deck.test.ts' was added to the 'test' script, and 'node scripts/check-venue-copy.mjs' added to the chain. I ran pnpm test end to end: exit 0. Criterion 14 CONFIRMED.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:41.188Z",
+          "ref": "app/src (Keepsake and export claims, verified against the app repo)",
+          "note": "Slide 18 says the Keepsake is not built, adoption figures are not built, and there is no venue login. I checked each. grep -rni keepsake app/src returns exactly one hit, a code comment in timeline-artifact.tsx:800 using the ordinary English word — so there is genuinely no Keepsake mode, route or component. app/src/app/api/account/export/route.ts EXISTS, so the deck's 'what exists today is an account-level export' is true. R-043 independently confirms there is no venue-authenticated route. Criter",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED — the 'partial' claim stands and is honest. Twelve of the fourteen criteria I verified myself, by re-running the commands rather than reading the record. Two are genuinely short: five of twenty slides show an evidence document rather than a ratified decision in the trace line, and the A4-landscape print rule has never been printed. The evidence document says both of those itself, which is the behaviour this programme has been trying to get. Do not move E12.10 past Founder Review on this evidence, and not because anything is wrong — because a twenty-slide sales deck that no human has looked at cannot be signed off from a test log. The route builds, the guard holds, the words are rig",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -19958,6 +20026,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:59:39.609Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:39.736Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:41.301Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 2 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED — the 'partial' claim stands and is honest. Twelve of the fourteen criteria I verified myself, by re-running the commands rather than reading the record. Two are genuinely short: five of twenty slides show an evidence document rather than a ratified decision in the trace line, and the A4-landscape print rule has never been printed. The evidence document says both of those itself, which is the behaviour this programme has been trying to get. Do not move E12.10 past Founder Review on this evidence, and not because anything is wrong — because a twenty-slide sales deck that no human has looked at cannot be signed off from a test log. The route builds, the guard holds, the words are rig"
         }
       ],
       "decisionClass": "execution",
@@ -19967,7 +20056,7 @@
       "id": "E12.11",
       "epic": "E12",
       "title": "Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -19982,20 +20071,149 @@
       ],
       "dependencyBasis": "D-009 downstream: the certificate becomes 01/25 to 25/25 at the ratified rate.",
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "tasks/E12.11.md",
+      "acceptanceCriteria": [
+        "A certificate cannot be produced without a cleared payment date, and the refusal says a number is assigned on cleared payment and never on signature",
+        "A certificate cannot be produced for a venue not on the founding plan",
+        "A certificate cannot be produced without a valid number in 01 to 25, refused in both directions",
+        "No refused state renders a blank number, a number shape, or any field a number could be written into",
+        "The number renders zero-padded as NN/25",
+        "The record block carries the date the payment cleared and no signature date",
+        "The rate never appears without the VAT wording, and the lock condition and change-of-control rule appear in the same block",
+        "No permanence word appears anywhere on the artefact",
+        "The certificate states that it is not the agreement and does not grant access on its own",
+        "No prohibited claim, retired programme term, em dash or exclamation mark, on the certificate or in any refusal reason",
+        "Nothing implies review, accreditation, approval, verification or an award",
+        "Registered in both registries, adding no new experience:validate failure",
+        "The test is registered in package.json so CI runs it"
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:59:43.403Z",
+          "ref": "_wt-wp16/src/lib/founding-certificate.ts",
+          "note": "buildFoundingCertificate returns {state:'refused', reason} for empty input, missing cleared-payment date, non-founding plan, and any number outside 01-25. It delegates to foundingNumberRefusal in venue-founding-number.ts (E02.13) rather than restating the rules. There is no code path producing a blank number.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:43.537Z",
+          "ref": "_wt-wp16/src/lib/founding-certificate.test.ts",
+          "note": "19 assertions, all pass. Includes 'there is no code path that renders a blank number' (asserts the refused prose contains neither '__' nor '/25'), a nine-word permanence ban, and the sweep run over every refusal reason as well as the issued certificate.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:43.679Z",
+          "ref": "src/app/hq/partner-card/page.tsx (defect C-1)",
+          "note": "AUDIT FINDING, recorded not fixed. The existing physical exploration states 'the number is still written by hand, in front of the venue, at signing' and 'the number field stays blank until a real venue signs'. Both are assignment at signature, which D-009.6 forbids. A concurrent WP-16 stream corrected that page's programme wording on the same day; the assignment-event defect is a different thing and is untouched by that sweep.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:43.818Z",
+          "ref": "_wt-wp16/src/components/venue/founding-certificate-sheet.tsx",
+          "note": "Renders the refusal with a visual treatment rather than an empty frame, because a blank number field is the failure mode this task exists to remove.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:43.943Z",
+          "ref": "evidence/E12.10-E12.13-verification-run.txt sections 1, 9",
+          "note": "pnpm exec tsx --test src/lib/founding-certificate.test.ts: 19 tests, 19 pass, exit 0.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.076Z",
+          "ref": "_wt-wp16/src/app/hq/partner-card/page.tsx",
+          "note": "DEFECT C-1 CONFIRMED AND STILL PRESENT. Line 82: 'the number field stays blank until a real venue signs.' Line 84: 'The number is still written by hand, in front of the venue, at signing.' Line 25: 'The number on the front is still written by hand at signing.' All three are assignment at signature, which D-009.6 forbids. The evidence entry's account is exactly accurate: the concurrent stream DID correct the programme wording (title is now 'The Founding 25 Card', eyebrow 'Signal HQ · The Founding",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.208Z",
+          "ref": "VERIFIER RE-RUN: pnpm exec tsx --test src/lib/founding-certificate.test.ts",
+          "note": "19 tests, 19 pass, 0 fail, exit 0. Claim confirmed exactly.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.345Z",
+          "ref": "VERIFIER RE-RUN: pnpm run typecheck",
+          "note": "tsc --noEmit, exit 0. Claim confirmed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.464Z",
+          "ref": "VERIFIER RE-RUN: pnpm test",
+          "note": "exit 0. Full suite green. I confirmed by reading the diff of package.json that `src/lib/founding-certificate.test.ts` and `node scripts/check-venue-copy.mjs` are both registered inside the `test` script, so CI runs them. Criterion 13 confirmed.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.591Z",
+          "ref": "VERIFIER RE-RUN: pnpm run build",
+          "note": "exit 0. I then read .next/server/app-paths-manifest.json directly: \"/hq/founding-certificate/page\" is present. Note the build leaves a stale .next/lock that blocks the next build with 'Another next build process is already running'; I removed it. The evidence file already records the same lock trap at its section on attempts 1-3.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.719Z",
+          "ref": "VERIFIER RE-RUN: pnpm run experience:validate -- --product=studio",
+          "note": "exit 1, 8 failures. I read all eight: two __design-lab/delight routes, hq-venue-proposal, v/[token], v/[token] not-found, venues-privacy, venues-questions, venues-what-you-see. `studio.page.hq-founding-certificate` is NOT among them. The route IS registered — src/lib/hq/rooms.ts:192-193 and experience/registry.json:4801-4806. Criterion 12 confirmed: both registries, zero new failures.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.843Z",
+          "ref": "VERIFIER RE-RUN: pnpm run lint",
+          "note": "exit 1. ONE error: src/app/hq/account-review/account-review.tsx:86 react-hooks/set-state-in-effect. NOT attributable to E12.11 — that file is unmodified in git status, last touched by commit 90908f3, and `git diff 16df762 -- src/app/hq/account-review/` is empty, so it is inherited from the stacked WP-13 base. The evidence document discloses this failure honestly rather than omitting it.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:44.982Z",
+          "ref": "VERIFIER BANNED-TERM SWEEP over E12.11's touched files",
+          "note": "I wrote and ran my own sweep (19 rules: partner, member, investor, exclusive, guaranteed, certified, for life, forever, in perpetuity, lifetime, countdown, plus/ex VAT, seat count, allotment, GDPR compliant, solicitor, accountant). 10 hits total across founding-certificate.ts, .test.ts, the sheet, the CSS, the route and venue-copy-refusals.ts. EVERY ONE is the ban list existing rather than a use: three in the ban-list definition comment, three in the regex array itself, three quoting the permane",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.109Z",
+          "ref": "VERIFIER BANNED-TERM SWEEP over the whole of public/brand and src/app",
+          "note": "148 raw hits, NONE introduced by E12.11. 'founding partner' now survives in ZERO venue-facing HTML or TSX — the market-entry deck and src/app/design/page.tsx are clean, which is R-042's two headline surfaces cleared. Surviving occurrences are CHANGELOG.md, docs/content-truth-audit.md, the RAID entry, the prohibited-claims JSON defining the ban, and the test asserting absence. The remaining src/app 'partner' hits are unrelated (school design-partner pilot, partnership conversations, a 'Northline ",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.235Z",
+          "ref": "VERIFIER PLANTED-VIOLATION TEST 1 — the standing repository check",
+          "note": "I appended `The founding partner variant, locked in for life, guaranteed.` to public/brand/market-entry-deck-2026.html (pinned at 0) and ran `node scripts/check-venue-copy.mjs`. IT FAILED, exit 1, naming all three: [p1-permanence] \"for life\", [p1-permanence] \"guaranteed\", [d033-programme-terms] \"partner\". I restored the file and re-ran: exit 0. The check is real, it catches the retired term, and it is registered in `pnpm test` which is a blocking CI step.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.365Z",
+          "ref": "VERIFIER PLANTED-VIOLATION TEST 2 — the certificate's own test",
+          "note": "I replaced the lock-condition line in TERMS_LINES with `Your founding partner rate is locked in for life, guaranteed forever.` and re-ran the suite. IT FAILED, exit 1, 4 of 19 tests red: the VAT/lock test, the permanence test, the sweep test, and the Founding-25-naming test. I restored the file and re-ran: 19/19, exit 0. Confirmed: this suite does not pass on a planted violation.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.493Z",
+          "ref": "RATIFIED-CLAIM CHECK against the certificate's actual strings",
+          "note": "Both prices VAT-INCLUSIVE and in one string: 'The founding rate is €1,000 a year, prepaid, including VAT at the prevailing rate. The standard rate is €1,500 a year on the same basis.' Lock on CONTINUOUS RENEWAL: 'holds for as long as the agreement renews continuously without lapse.' Change of control present in the same block. 01/25 on CLEARED PAYMENT: the statement reads 'assigned when the first payment cleared', the record label is 'Payment cleared', the refusal reads 'never on signature'. NO ",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.619Z",
+          "ref": "UNBUILT-CAPABILITY CHECK on E12.11's artefact",
+          "note": "The certificate promises nothing the product does not have. It makes exactly one claim of fact (a place was assigned when payment cleared), states the rate with its conditions, and says outright 'This certificate records an event. It is not the agreement, and it does not grant access on its own.' The number is backed by real code, not a document: `pnpm test` ran assignFoundingNumber's 38 assertions green, including 'refuses before the payment clears', 'refuses a venue that is not on the founding",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:45.749Z",
+          "ref": "GIT DIFF CHECK",
+          "note": "The diff matches the claims. E12.11 ships five new untracked files (founding-certificate.ts, .test.ts, founding-certificate-sheet.tsx, founding-certificate.css, app/hq/founding-certificate/page.tsx) plus registry edits in src/lib/hq/rooms.ts and experience/registry.json and the test registration in package.json. Nothing outside the declared column. C:/Users/ethan/signal-studio-workspace/studio was not touched by me and no project-control.mjs write command was run. My two planted violations were ",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. The claim that E12.11 is partial is honest and correct, and it is understated in one direction and correctly stated in the other. All thirteen criteria are met and I re-ran the proof of each rather than reading it. The refusal-first design is real: the failure mode this task exists to remove — a blank number field somebody writes into by hand — has no code path, no render path, and is asserted absent in both directions. The reason it is partial, not complete, is that the defect it FOUND is the one it did not FIX: /hq/partner-card still tells the founder to write the number by hand at signing, on the physical object a venue keeps. Recommend Ethan approve the built artefact and answ",
         "date": null
       },
       "createdAt": "2026-08-02",
       "updatedAt": "2026-08-03",
-      "startedAt": null,
-      "reviewAt": null,
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [],
@@ -20006,6 +20224,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:59:43.172Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:43.285Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:45.882Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: CONFIRMED. The claim that E12.11 is partial is honest and correct, and it is understated in one direction and correctly stated in the other. All thirteen criteria are met and I re-ran the proof of each rather than reading it. The refusal-first design is real: the failure mode this task exists to remove — a blank number field somebody writes into by hand — has no code path, no render path, and is asserted absent in both directions. The reason it is partial, not complete, is that the defect it FOUND is the one it did not FIX: /hq/partner-card still tells the founder to write the number by hand at signing, on the physical object a venue keeps. Recommend Ethan approve the built artefact and answ"
         }
       ],
       "decisionClass": "founder_choice",
@@ -20015,7 +20254,7 @@
       "id": "E12.12",
       "epic": "E12",
       "title": "Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20027,20 +20266,120 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "tasks/E12.12.md",
+      "acceptanceCriteria": [
+        "Five channels exist covering brochure, website, written proposal, show-around conversation and wedding fair, each with three lengths",
+        "Every channel states its moment of use and the one rule that makes it different, and carries a never-list of at least three items",
+        "No couple-facing block carries a figure, a currency, a value word, 'free', 'complimentary' or 'sponsored'",
+        "Every channel states what it costs the couple, using the permitted phrasing",
+        "The privacy sentence appears in the short and full block of every channel, unchanged from the copy pack",
+        "No couple-facing block claims a Keepsake, a one-click export, a download or a read-only mode",
+        "The one after-the-wedding claim is true today and makes no claim about the end of the term",
+        "Nothing states or implies a venue can see, receive or check a couple's plan",
+        "Nothing implies a venue's logo, colour or own words reach a couple",
+        "The team notes carry the launch-scope sentence verbatim",
+        "The kit points at the one prohibited-claims list rather than reprinting it",
+        "No prohibited claim, retired term, em dash or exclamation mark in any block; the never-lists are still held to the retired term and to punctuation",
+        "Registered in both registries, adding no new experience:validate failure",
+        "The test is registered in package.json so CI runs it"
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:59:48.140Z",
+          "ref": "_wt-wp16/src/lib/venue-prebooking-kit.ts",
+          "note": "Five channels, three lengths each, a per-channel never-list, KIT_TEAM_NOTES carrying the launch-scope sentence verbatim, and MARKETING_UNDERTAKING as R-020's mitigation in plain words. PROHIBITED_SHEET points at E09.11-venue-copy-pack.md section 4 and prohibited-claims.v1.json rather than reprinting either.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.254Z",
+          "ref": "_wt-wp16/src/lib/venue-prebooking-kit.test.ts",
+          "note": "16 assertions, all pass. The couple-facing sweep refuses currency, 'free', 'complimentary', 'worth', 'sponsored', 'discount', and separately refuses 'export', 'download', 'read-only', 'keepsake' and 'archive'.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.372Z",
+          "ref": "evidence/E09.11-venue-copy-pack.md section 1, third sentence (defect C-2)",
+          "note": "AUDIT FINDING, recorded not fixed. The approved pack tells a venue to say today: 'After the wedding it stays open, read-only, and they can download everything in one click.' E09.11 section 7 sets the rule that forbids it, and none of it is built. This is R-020's exact shape: an approved sentence, repeated by a venue, folding into the venue's own contract with the couple. Replacement supplied and used in this kit.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.500Z",
+          "ref": "_wt-wp16/src/lib/venue-copy-refusals.ts",
+          "note": "The refusal set once, 49 absolute expressions plus the conditional P7 bare-term rule, shared by all four artefacts. Counted at runtime, not by eye. The neverHere lists are excluded structurally rather than by a citation heuristic, because a heuristic of that kind once suppressed two real defects on the live venues page (E09.11 section 12.5).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.622Z",
+          "ref": "evidence/E12.10-E12.13-verification-run.txt sections 1, 9",
+          "note": "pnpm exec tsx --test src/lib/venue-prebooking-kit.test.ts: 16 tests, 16 pass, exit 0.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.738Z",
+          "ref": "BANNED-TERM SWEEP I ran myself over public/brand and src/app (all .html/.tsx/.ts/.txt/.md/.json/.css)",
+          "note": "'founding partner': ZERO hits. D-033's retirement holds across both trees for the compound term. Residual single-word hits are all other contexts and none is a Founding 25 programme term: partner 19 (school design-partner pilot, motion brief, lender-pack cohorts, 'Partnership conversations' on /contact, internal HQ route names), investor 7 (all internal HQ, meaning actual lenders), seat 20 (includes the known pre-existing venues/page.tsx:469 'No seats', pinned defect owned by E12.04), 'ex VAT' 1",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.845Z",
+          "ref": "_wt-wp16/public/brand/collateral/social/alt-text.txt lines 26-33",
+          "note": "ONE SURVIVING OCCURRENCE, disclosed not hidden, and NOT E12.12's. The four s4-founding-sp01 PNGs were renamed from s4-partner-sp01 but their PIXELS still read 'Founding Limerick Partner' and 'Glen House' rather than Glenmara House. The file says so and says 'Do not publish S.4 until the images are re-authored.' Belongs to the concurrent WP-16 R-042 stream, not this task. It does not refute E12.12, which never claimed the repository-wide sweep.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:48.957Z",
+          "ref": "_wt-wp16/scripts/check-venue-copy.mjs and package.json",
+          "note": "REGISTERED AND IT WORKS. package.json 'test' runs it fifth in the chain, and .github/workflows/ci.yml:53 runs 'pnpm test'. I ran it: exit 0, 16 rules, 92 patterns, 29 surfaces, 30 pinned hits, 21 citations, 6 exceptions. I then PLANTED '> Your founding partner place is guaranteed forever.' into the enforced surface E09.11-venue-copy-pack.md: exit 1, 3 hits reported (p1-permanence forever, p1-permanence guaranteed, d033-programme-terms partner), pinned at 0, owner named. Restored; re-run exit 0 w",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.076Z",
+          "ref": "MY RE-RUNS: pnpm exec tsx --test src/lib/venue-prebooking-kit.test.ts -> 16/16, exit 0. pnpm run typecheck -> exit 0. pnpm test -> exit 0 (38 tests in the final suite, 0 fail). pnpm run build -> exit 0, 'Compiled successfully in 14.7s', 51/51 static pages, and the route table carries 'f /hq/venue-prebooking-kit'. pnpm run experience:validate -- --product=studio -> exit 1, 8 failures.",
+          "note": "Every claimed command reproduces exactly. The 8 experience failures are: two __design-lab/delight routes, hq-venue-proposal, v/[token], v/[token] not-found, venues-privacy, venues-questions (all unregistered discoveries from the stacked WP-13 base) and venues-what-you-see (changed coverage). NONE names venue-prebooking-kit. E12.12 adds no new failure.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.192Z",
+          "ref": "pnpm run lint -> EXIT 1 (I ran it; the claimed verification omitted it, the evidence document does not)",
+          "note": "One error: src/app/hq/account-review/account-review.tsx:86 react-hooks/set-state-in-effect. That file is not in git status and is untouched by WP-16, so the failure is pre-existing on the stacked branch. The evidence document section 7.2 states this correctly and notes CI runs lint as informational and non-blocking. Reported because it is red.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.301Z",
+          "ref": "_wt-wp16/experience/registry.json and src/lib/hq/rooms.ts:175-176",
+          "note": "Registered in BOTH. registry.json carries studio.page.hq-venue-prebooking-kit -> /hq/venue-prebooking-kit -> studio/src/app/hq/venue-prebooking-kit/page.tsx. rooms.ts carries slug venue-prebooking-kit, group 'sell', kind 'artifact', lifecycle 'active'.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.424Z",
+          "ref": "THE KEEPSAKE CHECK (the prompt's highest-value item): git -C app grep -n -i -E 'keepsake|one-click export' -- src",
+          "note": "CONFIRMS THE FINDING. Only two hits in the whole of app/src, both CSS/JSX comments in timeline-artifact about a visual 'keepsake' metaphor. There is no Keepsake mode, route, state or export. The kit correctly claims none of it: I verified venuePrebookingCoupleFacingProse() contains no 'export', 'download', 'read-only', 'keepsake', 'archive' or 'one-click'. The companion welcome kit (E12.13, src/lib/couple-welcome-kit.ts) records the same verification in its header at lines 22-31 and its ONBOARDI",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.546Z",
+          "ref": "THE CRITERION-5 MEASUREMENT: I ran a throwaway probe importing the module and testing block.text.includes(PREBOOKING_PRIVACY_SENTENCE) per block, then deleted it",
+          "note": "brochure short TRUE, brochure full TRUE, website short FALSE, website full FALSE, proposal short FALSE, proposal full FALSE, show-around short TRUE, show-around full TRUE, wedding-fair short FALSE, wedding-fair full FALSE. Website and proposal reword the connector; wedding-fair omits 'We can see that you opened it' altogether. The task spec at tasks/E12.12.md criterion 5 says 'unchanged from the copy pack', and its Inputs section says the pack is 'the source of the privacy sentence used unchange",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:49.668Z",
+          "ref": "git status and git diff in _wt-wp16",
+          "note": "THE DIFF MATCHES THE CLAIMS. package.json adds check-venue-copy.mjs to the test chain, adds the four new test files including venue-prebooking-kit.test.ts, and adds a check:venue-copy script. registry.json adds four new route entries plus ten R-042 re-baselines belonging to the concurrent stream, exactly as section 7.1 of the evidence document discloses. The E12.12 artefacts are untracked new files. WORKING TREE LEFT AS FOUND: 50 status entries before and after, kit SHA256 identical to backup, c",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Hold at Founder Review; do not approve as-is. Thirteen of fourteen criteria are CONFIRMED by my own re-runs, and the work is unusually honest - it self-reports its lint failure, names the concurrent stream's diff so a reviewer does not misattribute it, and records defect C-2 against approved copy rather than quietly fixing it. But criterion 5 is its own stated criterion and it is not met in 6 of 10 blocks, and the test labelled with that criterion was written loosely enough to pass all ten. That is the same defect class the programme has already been burned by twice (R-028, a threshold enforced only in a test; E09.11 section 12.5, a check that passed over the thing it ",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [
@@ -20060,6 +20399,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:59:47.920Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:48.031Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:49.788Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: REFUTED as 'complete'. Hold at Founder Review; do not approve as-is. Thirteen of fourteen criteria are CONFIRMED by my own re-runs, and the work is unusually honest - it self-reports its lint failure, names the concurrent stream's diff so a reviewer does not misattribute it, and records defect C-2 against approved copy rather than quietly fixing it. But criterion 5 is its own stated criterion and it is not met in 6 of 10 blocks, and the test labelled with that criterion was written loosely enough to pass all ten. That is the same defect class the programme has already been burned by twice (R-028, a threshold enforced only in a test; E09.11 section 12.5, a check that passed over the thing it "
         }
       ],
       "decisionClass": "execution",
@@ -20069,7 +20429,7 @@
       "id": "E12.13",
       "epic": "E12",
       "title": "Produce the post-booking couple welcome kit, approved email wording and printable welcome object.",
-      "status": "backlog",
+      "status": "founder_review",
       "priority": "p2",
       "releaseBlocking": false,
       "criticalPath": false,
@@ -20081,20 +20441,118 @@
       "dependencies": [],
       "dependencyBasis": null,
       "blockedBy": [],
-      "specPath": null,
-      "acceptanceCriteria": [],
-      "evidence": [],
+      "specPath": "tasks/E12.13.md",
+      "acceptanceCriteria": [
+        "The kit produces a print-ready welcome card, email wording and an onboarding sequence from one module, with four slots and an explicit missing-slot state",
+        "No couple-facing string carries a figure, currency, value word, 'free', 'complimentary', 'sponsored' or 'gift'",
+        "The only cost statement to a couple is that there is nothing to pay",
+        "The card names the venue exactly once, as 'Compliments of <venue>', matching the product's own first-open string",
+        "The email names the venue exactly once, in the sign-off",
+        "Nothing carries a venue logo, colour, mark or venue-written message",
+        "No couple-facing string promises a Keepsake, an export, a download, an archive or a read-only mode",
+        "The one after-the-wedding claim is true today and does not describe the end of the term",
+        "Both the card and the email carry the privacy sentence",
+        "Nothing suggests the venue can be shown the plan through a setting",
+        "The email carries no tracked link, image or button, and one subject",
+        "Every onboarding step names an actor, a state of built, by hand or not built, and the file or route the claim came from",
+        "The sequence marks issuing and adoption evidence as done by hand, and states there is no login for the venue's team",
+        "The last step is marked not built and its evidence names the Keepsake",
+        "The editing rules forbid a coordinator adding a term, a value or a leaflet",
+        "No prohibited claim, retired term, em dash or exclamation mark, in the filled kit, the unfilled kit, or the venue-facing half",
+        "Registered in both registries, adding no new experience:validate failure",
+        "The test is registered in package.json so CI runs it"
+      ],
+      "evidence": [
+        {
+          "at": "2026-08-03T21:59:52.565Z",
+          "ref": "_wt-wp16/src/lib/couple-welcome-kit.ts",
+          "note": "Card, email and an eight-step sequence from one module, four slots, explicit missing-slot reporting. The card's attribution is 'Compliments of <venue>', which is the exact string the product already shows on first open, so paper and screen agree.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:52.699Z",
+          "ref": "_wt-wp16/src/lib/couple-welcome-kit.test.ts",
+          "note": "23 assertions, all pass. Includes a venue-name-appears-exactly-once test on the card and again on the email, a price sweep over all couple-facing prose, and refusals for keepsake/export/download/read-only/archive.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:52.817Z",
+          "ref": "KEEPSAKE VERIFICATION, and a correction to my own first reading",
+          "note": "grep -rn -i keepsake app/src returns TWO hits, not zero as my first grep in this session reported. Both are code comments in modules/timeline/components/artifact/timeline-artifact.tsx:800 and its stylesheet at :1526, using 'keepsake' as an ordinary English word for a printed timeline. Neither is the Venue Edition Keepsake. Two narrower checks confirm the substantive claim: no Keepsake mode/state/route/component exists, and grep for readOnlyReason|isReadOnly|expiredWorkspace|workspaceExpired retu",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:52.967Z",
+          "ref": "app/src/server/actions/planning.ts:945 recomputeSponsoredAccessTermQuietly",
+          "note": "CORRECTS A NATURAL ASSUMPTION. D-022 point 1 says capture the wedding date at redemption. The code does not: the recompute fires on completing the planning onboarding inside the product. The behaviour is right because the rule only moves access later, but a kit that told a venue the date is asked for at the code page would describe a flow that does not exist. Step 6 of the sequence says so.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.103Z",
+          "ref": "evidence/E12.10-E12.13-verification-run.txt sections 1, 7, 8, 9",
+          "note": "pnpm exec tsx --test src/lib/couple-welcome-kit.test.ts: 23 tests, 23 pass, exit 0. Sections 7 and 8 carry the Keepsake greps and the wedding-date trace verbatim.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.219Z",
+          "ref": "PLANTED-VIOLATION TEST — the check is real, not decorative",
+          "note": "I edited couple-welcome-kit.ts to replace the after-the-wedding line with 'It is yours forever, and your founding partner venue guaranteed it.' The suite went to pass 20 / fail 3, exit 1, failing on the couple sweep, the unfilled-kit sweep and the after-the-wedding test. File restored byte-for-byte from backup; re-run returned 23/23 pass. I separately planted 'A founding partner card, guaranteed for life.' into public/brand/collateral/social/alt-text.txt and `node scripts/check-venue-copy.mjs` e",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.328Z",
+          "ref": "_wt-wp16/package.json:13",
+          "note": "CONFIRMED registered in CI. The `test` script diff adds both `node scripts/check-venue-copy.mjs` and `src/lib/couple-welcome-kit.test.ts`. I ran `pnpm test` end to end: exit 0.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.448Z",
+          "ref": "app/src/components/welcome/venue-welcome-card.tsx:66",
+          "note": "INDEPENDENTLY CONFIRMS THE HARDEST CLAIM. The product's own first-open string is `Compliments of {sponsorName}`. The printed card and the screen say the same four words. This was the one claim most likely to be asserted rather than checked, and it holds.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.585Z",
+          "ref": "KEEPSAKE — I re-ran the greps rather than trusting the correction",
+          "note": "`grep -rn -i keepsake app/src` returns exactly two hits, both code comments in the Timeline print renderer (timeline-artifact.tsx:800, timeline-artifact.module.css:1526) using 'keepsake' as ordinary English. `find app/src -iname '*keepsake*'` returns nothing. `grep -rnE 'readOnlyReason|isReadOnly|expiredWorkspace|workspaceExpired' app/src` returns nothing. The only export route is app/src/app/api/account/export/route.ts. The evidence document records its own first wrong reading rather than repla",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.720Z",
+          "ref": "app/src/server/actions/planning.ts:945 and app/src/server/db/sponsored-access-term.ts",
+          "note": "EXIST. recomputeSponsoredAccessTermQuietly is imported at :58 and called at :945 on completing planning onboarding, not at redemption — the kit's step 6 describes it correctly. I went one step further than the evidence did: planning.ts:875 refuses a wedding_season period without a primaryDate, so the built path always has a date, which is what makes the card's 'It does not switch off the day after the wedding' true rather than conditional.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.836Z",
+          "ref": "evidence/E12.10-E12.13-verification-run.txt",
+          "note": "EXISTS in the canonical VEF evidence directory (not in the worktree). Sections 1, 7, 8 and 9 read verbatim. Every number in it matches what I got on my own re-run, including the 8-failure experience:validate baseline and the build that went red twice on a concurrent next-build lock before passing.",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:53.946Z",
+          "ref": "_wt-wp16/src/lib/hq/rooms.ts and experience/registry.json:4088",
+          "note": "BOTH REGISTRIES CONFIRMED. rooms.ts gains a `couple-welcome-kit` room; registry.json carries `studio.page.hq-couple-welcome-kit` with route /hq/couple-welcome-kit. `pnpm run experience:validate -- --product=studio` returns 8 failures and none of them names any of the four new WP-16 routes — all 8 are on committed, pre-existing sources (two __design-lab routes, hq-venue-proposal, v/[token], venues/privacy, venues/questions, venues/what-you-see).",
+          "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-03T21:59:54.057Z",
+          "ref": "_wt-wp16/src/components/venue/venue-kit-print.css",
+          "note": "DEFECT. The sheet heading and the module comment both say the card is 'A5, one side'. The print stylesheet sets `@page { size: A4 }` for the whole document, and the A5 heading itself is `print:hidden`. A venue printing from the browser gets the card alone on an A4 sheet. Small, but it is the one place the artefact does not do what it says.",
+          "addedBy": "claude_code"
+        }
+      ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
+        "state": "requested",
+        "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: Move E12.13 to Founder Review, not Done. The build is real and the verification claims survive independent re-execution — I re-ran every one and none was overstated; the module's self-correction on the Keepsake grep and its refusal to describe the wedding-date capture as happening at redemption are the marks of evidence written honestly. Two things to fix before sign-off, both small: (1) the card is labelled A5 and the print stylesheet emits A4 — either set `@page { size: A5 }` for the card page or change the label to A4; (2) either soften the comment at couple-welcome-kit.ts:226 to 'a file, a route or the decision it was read against', or add the file each of the five non-file evidence fiel",
         "date": null
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-02",
-      "startedAt": null,
-      "reviewAt": null,
+      "updatedAt": "2026-08-03",
+      "startedAt": "2026-08-03",
+      "reviewAt": "2026-08-03",
       "completedAt": null,
       "source": "master-backlog-2026-08-02",
       "notes": [
@@ -20110,6 +20568,27 @@
           "to": "backlog",
           "by": "import",
           "note": "Imported from master backlog."
+        },
+        {
+          "at": "2026-08-03T21:59:52.305Z",
+          "from": "backlog",
+          "to": "ready",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:52.435Z",
+          "from": "ready",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "Wave 3 execution, audit-first per D-015 Q2."
+        },
+        {
+          "at": "2026-08-03T21:59:54.174Z",
+          "from": "in_progress",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 3 delivery. Verified state: PARTIAL (adversarially verified; the verifier's read overrides the build agent's self-assessment). 1 criterion/criteria NOT met — see the packet. Verifier: Move E12.13 to Founder Review, not Done. The build is real and the verification claims survive independent re-execution — I re-ran every one and none was overstated; the module's self-correction on the Keepsake grep and its refusal to describe the wedding-date capture as happening at redemption are the marks of evidence written honestly. Two things to fix before sign-off, both small: (1) the card is labelled A5 and the print stylesheet emits A4 — either set `@page { size: A5 }` for the card page or change the label to A4; (2) either soften the comment at couple-welcome-kit.ts:226 to 'a file, a route or the decision it was read against', or add the file each of the five non-file evidence fiel"
         }
       ],
       "decisionClass": "execution",
@@ -23439,11 +23918,11 @@
   },
   "counts": {
     "byStatus": {
-      "backlog": 65,
+      "backlog": 61,
       "ready": 2,
       "in_progress": 0,
       "internal_review": 1,
-      "founder_review": 9,
+      "founder_review": 13,
       "done": 131,
       "blocked": 2,
       "deferred": 2,
@@ -23467,10 +23946,10 @@
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-03T21:58:27.803Z",
-    "lastRenderedAt": "2026-08-03T21:58:27.803Z",
-    "lastUpdatedAt": "2026-08-03T21:58:27.803Z",
-    "lastUpdatedSession": "wp14-timeline",
+    "lastValidatedAt": "2026-08-04T08:24:22.683Z",
+    "lastRenderedAt": "2026-08-04T08:24:22.683Z",
+    "lastUpdatedAt": "2026-08-04T08:24:22.683Z",
+    "lastUpdatedSession": "wp16-assets",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",
     "decisionsClassifiedAt": "2026-08-02T22:00:00Z"

@@ -906,6 +906,32 @@ this session, and it does not.
 - **Affects:** E02.08, E02.10, E09.10, E12.10, E12.12 — and, per the corrected scope, E12.04's banned-term list and the `/hq` room registry
 - **Status:** open, scope corrected and recommendation prepared · **Last reviewed:** 2026-08-03
 
+- **RETIRED 2026-08-03 per D-033 (Wave 4, WP-16). Scope was far wider than this entry recorded.**
+  Re-derived independently: **43 occurrences across 18 tracked files**, not the 11 across 7 the
+  Wave 3 brief carried, and more once bare "Partner" is counted. The deck holds **six** not
+  four (the media-plan trio at :4234/:4236/:4268 was missed). `src/lib/hq/asset-command.ts`
+  holds **eleven** and was missed entirely; `:125 "C · Founding Partner kit"` is a **union type
+  member**, so a typed rename rather than a string swap. `public/brand/collateral/social/
+  alt-text.txt:26-27` carries "Founding Limerick Partner number four" in **alt text**, which is
+  venue-legible and was also missed.
+  Deliberately NOT swept: CHANGELOG.md, RAID.md and the evidence files, which are the historical
+  record; the `.biz-card.partner` CSS class; and the student campus cohorts, which are a
+  different programme. Route URLs were not moved - the room registry's own rule is that a route
+  is permanent and only labels rename.
+  **THE DURABLE HALF, AND IT IS THE FINDING THAT MATTERS:** `evidence/copy/prohibited-claims.v1.json`
+  was **read by nothing**. Its own `readBy` field named `scripts/check-venue-edition-contract.mjs`,
+  and that 346-line script contained no reference to it, no `[venue-copy]` stage and no
+  `--copy-report` flag. **E09.11 §12.2's claim that a second validation stage was added, and its
+  entire §12.3 before/after table, describe work that was not in the repository.** Two published
+  numbers were also wrong: the file tracks **22** surfaces, not the 37 my own R-042 brief claimed
+  to have verified, and the pinned hit sum is **20**, not E09.11 §12.3's 25.
+  A reader now runs inside `check-venue-edition-contract.mjs`, which was already the 5th command
+  in `pnpm test` and blocking in both `ci.yml` and `verify.yml`, so it needed no new CI wiring.
+  **Open:** the physical 85x55 card at `collateral/identity/print-notes.txt` carries the retired
+  term in prepress instructions. Existing printed stock is unchanged and **reprint versus
+  run-down is a founder call that has not been made.**
+  Evidence: `evidence/R-042-founding-25-retirement.md`. Branch `claude/wp16-assets`.
+
 ---
 
 ## Opened 2026-08-03 by Wave 2 (WP-05, WP-06, WP-12) · verified in shipped code

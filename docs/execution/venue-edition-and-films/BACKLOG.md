@@ -4,7 +4,7 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-State as at 2026-08-03T21:58:27.803Z · baseline **approved** (0.1.0)
+State as at 2026-08-04T08:24:22.683Z · baseline **approved** (0.1.0)
 
 212 tasks across 15 epics · 120 on the imported critical path · 55 release-blocking · 157 unestimated.
 
@@ -259,7 +259,7 @@ Lane: `founder` · 13/14 done (92.9%) · 0 in flight · 0 blocked
 
 _Final versions depend on E02, E03, E09 and the product UI lock._
 
-Lane: `claude_code` · 10/14 done (71.4%) · 0 in flight · 0 blocked
+Lane: `claude_code` · 10/14 done (71.4%) · 4 in flight · 0 blocked
 
 | ID | Title | Status | Pri | Flags | Executor | Depends on | Target | Evidence | Blocker | Spec | Sign-off |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -272,10 +272,10 @@ Lane: `claude_code` · 10/14 done (71.4%) · 0 in flight · 0 blocked
 | E12.07 | Add the privacy explanation covering exactly what the venue sees and never sees. | done | p2 | — | claude_code | — | — | 10 | — | ✓ | approved |
 | E12.08 | Add the complete commercial, product, support, entitlement, Keepsake and renewal FAQ. | done | p2 | — | claude_code | E02.12 | — | 14 | — | ✓ | approved |
 | E12.09 | Produce the concise one-page commercial proposal. | done | p2 | — | claude_code | — | — | 12 | — | ✓ | approved |
-| E12.10 | Produce the detailed Venue Edition sales deck. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
-| E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | backlog | p2 | FC | claude_code | E02.01, E02.10 | — | — | — | — | not_requested |
-| E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
-| E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | backlog | p2 | — | claude_code | — | — | — | — | — | not_requested |
+| E12.10 | Produce the detailed Venue Edition sales deck. | founder_review | p2 | — | claude_code | — | — | 12 | — | ✓ | requested |
+| E12.11 | Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. | founder_review | p2 | FC | claude_code | E02.01, E02.10 | — | 19 | — | ✓ | requested |
+| E12.12 | Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. | founder_review | p2 | — | claude_code | — | — | 14 | — | ✓ | requested |
+| E12.13 | Produce the post-booking couple welcome kit, approved email wording and printable welcome object. | founder_review | p2 | — | claude_code | — | — | 13 | — | ✓ | requested |
 | E12.14 | Complete analytics, conversion, responsive, accessibility, performance, copy and visual QA across every commercial page. | done | p1 | CP | claude_code | E12.04, E12.05, E12.06 | — | 14 | — | ✓ | approved |
 
 ## E13 — Motion system and Limerick First invitation film

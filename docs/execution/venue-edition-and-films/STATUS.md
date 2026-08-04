@@ -4,9 +4,9 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-03T21:58:27.803Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-03T21:58:27.803Z · session `wp14-timeline`
-**Release date:** 2026-09-01 · **29 days remaining**
+**Report generated:** 2026-08-04T08:24:22.683Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-04T08:24:22.683Z · session `wp16-assets`
+**Release date:** 2026-09-01 · **28 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
 ## Health
@@ -22,7 +22,7 @@
 **Verified completion: 62.4%** — 131 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 66.3% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 67.9% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -32,11 +32,11 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 
 | Status | Count |
 |---|---|
-| backlog | 65 |
+| backlog | 61 |
 | ready | 2 |
 | in_progress | 0 |
 | internal_review | 1 |
-| founder_review | 9 |
+| founder_review | 13 |
 | done | 131 |
 | blocked | 2 |
 | deferred | 2 |
@@ -58,7 +58,7 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
 | E10 | Greater Limerick venue universe and outreach cohorts | 14/14 | 100% | 0 | 0 |
 | E11 | Sales operating system and founder-led outreach | 13/14 | 92.9% | 0 | 0 |
-| E12 | Website, proposal and commercial asset system | 10/14 | 71.4% | 0 | 0 |
+| E12 | Website, proposal and commercial asset system | 10/14 | 71.4% | 4 | 0 |
 | E13 | Motion system and Limerick First invitation film | 4/18 | 22.2% | 0 | 0 |
 | E14 | Before the Day Venue Edition film | 1/18 | 5.6% | 0 | 0 |
 | E15 | Release, venue onboarding and completion of the Founding 25 | 0/18 | 0% | 0 | 0 |
@@ -95,12 +95,12 @@ Ratified in D-008. Moving one is change control, not an edit.
 
 | Freeze | Date | Days left | What stops changing |
 |---|---|---|---|
-| Offer freeze | 2026-08-15 | 12 | Price, founding terms, entitlement and the founding-place mechanics stop changing. After this a change needs a change request. |
-| UI freeze | 2026-08-20 | 17 | Couple experience, Timeline and Account surfaces stop changing visually. Bug fixes only. |
-| Copy freeze | 2026-08-21 | 18 | Every venue-facing and couple-facing string is final, including the commercial pages. |
-| Capture freeze | 2026-08-22 | 19 | Product footage for Before the Day is captured against a locked build. Nothing filmed after this is re-shot. |
-| Film lock | 2026-08-28 | 25 | Both films are locked: no further edit, no further render, QA complete. |
-| Release candidate | 2026-08-30 | 27 | The build that goes live on 1 September exists and is the one being verified. |
+| Offer freeze | 2026-08-15 | 11 | Price, founding terms, entitlement and the founding-place mechanics stop changing. After this a change needs a change request. |
+| UI freeze | 2026-08-20 | 16 | Couple experience, Timeline and Account surfaces stop changing visually. Bug fixes only. |
+| Copy freeze | 2026-08-21 | 17 | Every venue-facing and couple-facing string is final, including the commercial pages. |
+| Capture freeze | 2026-08-22 | 18 | Product footage for Before the Day is captured against a locked build. Nothing filmed after this is re-shot. |
+| Film lock | 2026-08-28 | 24 | Both films are locked: no further edit, no further render, QA complete. |
+| Release candidate | 2026-08-30 | 26 | The build that goes live on 1 September exists and is the one being verified. |
 
 ## Current work
 
@@ -112,7 +112,7 @@ Ratified in D-008. Moving one is change control, not an edit.
 **Internal review (1):**
 - `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
 
-**Awaiting founder review (9):**
+**Awaiting founder review (13):**
 - `E06.02` Add per-milestone visibility controls for private, title-and-date, image and short-story publication states. — claude_code
 - `E06.03` Complete milestone photograph upload, crop, compression, orientation, alt text and deletion. — claude_code
 - `E06.04` Complete milestone navigation and the transition from a Timeline point into its photograph and story. — claude_code
@@ -122,6 +122,10 @@ Ratified in D-008. Moving one is change control, not an edit.
 - `E06.09` Design and implement the intentional vertical mobile Timeline. — claude_code
 - `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept. — claude_code
 - `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export. — claude_code
+- `E12.10` Produce the detailed Venue Edition sales deck. — claude_code
+- `E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate. — claude_code
+- `E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations. — claude_code
+- `E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object. — claude_code
 
 **Blocked (2):**
 - `E06.01` Define the public artifact content model and what can never be published from the private workspace.
@@ -140,6 +144,10 @@ Ratified in D-008. Moving one is change control, not an edit.
 7. Approve or reject `E06.09` — Design and implement the intentional vertical mobile Timeline.
 8. Approve or reject `E06.10` — Refine the desktop editorial Timeline shown in the Mara and Finn concept.
 9. Approve or reject `E06.11` — Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
+10. Approve or reject `E12.10` — Produce the detailed Venue Edition sales deck.
+11. Approve or reject `E12.11` — Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
+12. Approve or reject `E12.12` — Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
+13. Approve or reject `E12.13` — Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
 
 ## Completed since the last report
 
@@ -204,8 +212,8 @@ Tracked separately from backlog completion. Sending 25 invitations is not the ou
 
 ## Session
 
-**Open sessions:** wp14-timeline (WP-14 · E06 Shared Timeline and Keepsake, plus R-031 and R-032 implementation and the Timeline workspace blocker) · wp15-term (WP-15 · R-015 access-term correctness in the app redemption path) · wp16-assets (WP-16 · R-042 sweep, standing banned-term check, and E12.10-E12.13 commercial assets)
-**Last closed session:** wp13-commercial (2026-08-03T15:29:44.570Z) → `sessions/2026-08-03--wp13-commercial.md`
+**Open sessions:** none
+**Last closed session:** wp16-assets (2026-08-04T08:24:22.683Z) → `sessions/2026-08-04--wp16-assets.md`
 
 ## Next recommended project-management action
 
