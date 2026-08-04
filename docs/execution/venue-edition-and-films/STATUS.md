@@ -4,8 +4,8 @@
 > **Generated from PROJECT_STATE.json. Do not edit status data directly in this file.**
 > Regenerate with `node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs render`.
 
-**Report generated:** 2026-08-04T08:37:09.461Z (project timezone Europe/Dublin)
-**State last updated:** 2026-08-04T08:32:43.488Z · session `wp16-assets`
+**Report generated:** 2026-08-04T08:58:52.604Z (project timezone Europe/Dublin)
+**State last updated:** 2026-08-04T08:58:43.816Z · session `wp16-assets`
 **Release date:** 2026-09-01 · **28 days remaining**
 **Project completion condition:** 25 Greater Limerick founding venues are signed, paid, configured, onboarded and capable of issuing functioning couple invitations.
 
@@ -19,10 +19,10 @@
 
 ## Completion
 
-**Verified completion: 68.6%** — 144 of 210 tasks.
+**Verified completion: 70%** — 147 of 210 tasks.
 Basis: `provisional_task_count`. Provisional, count-based: no effort estimates are approved, so every task counts equally. This is not a measure of effort remaining.
 
-**Delivery progress estimate:** 68.9% (estimate, not verified completion — status-credit model in REPORTING.md)
+**Delivery progress estimate:** 70% (estimate, not verified completion — status-credit model in REPORTING.md)
 
 **Unestimated active tasks:** 157 of 210.
 
@@ -35,10 +35,10 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 | backlog | 61 |
 | ready | 2 |
 | in_progress | 0 |
-| internal_review | 1 |
+| internal_review | 0 |
 | founder_review | 0 |
-| done | 144 |
-| blocked | 2 |
+| done | 147 |
+| blocked | 0 |
 | deferred | 2 |
 | cancelled | 0 |
 | **total** | **212** |
@@ -49,10 +49,10 @@ A task counts as complete only when its acceptance criteria are met, evidence is
 |---|---|---|---|---|---|
 | E01 | Project governance and control | 12/12 | 100% | 0 | 0 |
 | E02 | Commercial offer and Founding 25 programme | 10/13 | 76.9% | 0 | 0 |
-| E03 | Legal, privacy and account-lifecycle rules | 3/11 | 27.3% | 1 | 0 |
+| E03 | Legal, privacy and account-lifecycle rules | 4/11 | 36.4% | 0 | 0 |
 | E04 | Product architecture and workspace lifecycle | 12/12 | 100% | 0 | 0 |
 | E05 | Couple planning experience and product polish | 9/12 | 75% | 0 | 0 |
-| E06 | Shared Timeline and Keepsake artifact | 10/12 | 83.3% | 0 | 2 |
+| E06 | Shared Timeline and Keepsake artifact | 12/12 | 100% | 0 | 0 |
 | E07 | Venue Portal, trust layer and renewal evidence | 18/18 | 100% | 0 | 0 |
 | E08 | Billing, security, reliability and release engineering | 12/12 | 100% | 0 | 0 |
 | E09 | Measurement, demo data and copy system | 12/12 | 100% | 0 | 0 |
@@ -109,17 +109,14 @@ Ratified in D-008. Moving one is change control, not an edit.
 **In progress (0/3):**
 - None.
 
-**Internal review (1):**
-- `E03.01` Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers. — founder
+**Internal review (0):**
+- None.
 
 **Awaiting founder review (0):**
 - None.
 
-**Blocked (2):**
-- `E06.01` Define the public artifact content model and what can never be published from the private workspace.
-  - Blocked by: Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural.
-- `E06.12` Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.
-  - Blocked by: Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map.
+**Blocked (0):**
+- None.
 
 ## Founder decisions required
 
@@ -131,22 +128,22 @@ Ratified in D-008. Moving one is change control, not an edit.
 - 2026-08-04 `E12.12` Produce the pre-booking venue sales kit for brochures, proposals, websites and coordinator conversations.
 - 2026-08-04 `E12.11` Redesign the Founding Venue certificate as 01/25 through 25/25 with the €1,000 founding rate.
 - 2026-08-04 `E12.10` Produce the detailed Venue Edition sales deck.
+- 2026-08-04 `E06.12` Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.
 - 2026-08-04 `E06.11` Implement the post-wedding read-only Keepsake state and the agreed downloadable export.
 - 2026-08-04 `E06.10` Refine the desktop editorial Timeline shown in the Mara and Finn concept.
 - 2026-08-04 `E06.09` Design and implement the intentional vertical mobile Timeline.
 - 2026-08-04 `E06.07` Implement anonymous aggregate viewer counts without exposing individual viewer behaviour.
 - 2026-08-04 `E06.06` Allow couples to conceal exact wedding dates, locations and other sensitive milestone information.
-- 2026-08-04 `E06.05` Implement private-link, password-protected and intentionally public sharing modes.
 
 ## Three highest-value next actions
 
 1. `E03.02` Draft the annual Venue Edition agreement and commercial order form. (p0, critical path)
 2. `E03.03` Draft the Founding Venue schedule covering the €1,000 rate, continuity conditions, benefits and founding-place status. (p0, critical path)
-3. `E03.10` Define cancellation, postponement, venue change, venue non-renewal, couple separation, account ownership and venue-workspace unlinking. (p0, critical path)
+3. `E03.04` Draft the data-processing agreement, security schedule, subprocessor schedule and data-breach responsibilities. (p0, critical path)
 
 ## Critical-path condition
 
-96/120 critical-path tasks complete. 2 blocked: E06.01, E06.12
+99/120 critical-path tasks complete. 0 blocked.
 
 Chain: E01 governance → E02 offer → E03 legal → E04 architecture → E05/E06/E07 product, Timeline, portal → E08/E09 engineering, data, copy → E14.15 product capture → E13.17/E14.18 film lock → E12.14 commercial pages → E15.01 go/no-go → E15.07 Cohort 1 → E15.15–E15.17 to 25 paid.
 

@@ -1412,3 +1412,64 @@ is the question the role map exists to answer. Approving it would ratify a conte
 model whose privacy foundation is unsettled, so the dependency was **not** waived even
 under a general instruction to finish the wave. R-031 and R-032 being decided closes
 two of E03.01's five criticals; the other three remain founder work.
+
+---
+
+## D-035 — The role map ratified, the last blocks cleared, design-quality green
+
+**Date:** 2026-08-04 · **Decided by:** Ethan McNamara · **Status:** ratified
+
+Verified completion 68.6% to **70% (147/210)**. Nothing is blocked and nothing is in
+founder review. **E06 and E12 are 100% complete; E08 and E10 already were.**
+
+### E03.01 role map — approved at v0.2
+
+The five critical findings are closed. **Two by D-033** (R-032's absent consent gate,
+R-031's `/embed` over-generalisation). **Three were factual errors in the document**,
+corrected against the code rather than the earlier account:
+
+- **Venue-facing reporting was written as future and already ships.** Its Art 30 record
+  is due now, not at launch, and its suppression controls were *defective when the map
+  was written* — R-027's floor guarded the population not the count, and R-028's rate
+  floor had no production caller. A live report with defective suppression is a
+  disclosure, so §7's "not anonymous" conclusion was right for a stronger reason than
+  it gave.
+- **The Article 9 control could not be built as specified, and the correction relocates
+  the problem.** There is no dietary field to bind a control to. The exposure is an
+  *instruction*: the shipped template tells a couple to "Collect final dietary notes",
+  and shipping that instruction is the determination of an essential means. The control
+  belongs at the template layer, which is one string with one canonical source. Whether
+  it is removed, reworded or kept is R-017 and stays a product decision.
+- **Photographs in private workspaces were written out of the present tense.** They are
+  live personal data today, excluded from every published projection by an enforced
+  allowlist, and their existence moves §11's DPIA trigger earlier than the map stated.
+
+**§12's eleven items remain open by design.** They are genuine legal divergences
+requiring professional judgment, not review findings. Approving this document does not
+resolve them and is not legal advice (D-016).
+
+### E06.01 and E06.12 — unblocked and approved
+
+Held because "what can never be published" is precisely the question the role map
+answers. With v0.2 ratified, the content model rests on a settled foundation rather
+than an open one, which was the substantive reason for the block.
+
+### The Founding 25 card — reprint, and the order is placed
+
+Decided: reprint before the first signing rather than run down existing stock. The card
+is handed over at the moment of signature, the worst possible place for a term retired
+because it implies standing D-009 does not grant. Twenty-five cards is trivial against
+the first venue asking what "partner" entitles them to. **Closes the last open item on
+R-042.**
+
+### The two `__design-lab/delight` routes — excluded
+
+Whether design-lab belongs in a production merge at all was always a founder call, not
+a capture problem, and the answer for now is **no**. Implemented as a discovery
+**exclusion**, not a registration: the routes are not held to the experience bar and
+carry no evidence. A prefix list rather than a glob, so a broad pattern cannot silently
+drop real surfaces later, and the exclusion was verified precisely scoped — emptying it
+restores exactly those two failures and nothing else.
+
+**`experience:validate --product=studio` is GREEN at 0 failures**, for the first time
+since I-014 opened. I-014 can close.

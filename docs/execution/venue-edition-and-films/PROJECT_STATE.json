@@ -3485,7 +3485,7 @@
       "id": "E03.01",
       "epic": "E03",
       "title": "Determine the controller, joint-controller and processor roles across Signal Studio, the venue, the couple and public Timeline viewers.",
-      "status": "internal_review",
+      "status": "done",
       "priority": "p0",
       "releaseBlocking": false,
       "criticalPath": true,
@@ -3501,7 +3501,8 @@
       "acceptanceCriteria": [
         "A GDPR role map exists as a written document, covering every data category with the controller/processor position and lawful basis for each, including named rows for Article 9 categories, children's data, and published surfaces distinguishing /p from /share and /s.",
         "Derived by two independent derivations that never saw each other, with divergences recorded as open questions rather than resolved by picking the more confident answer.",
-        "OPEN — five critical review findings are not yet closed: venue-facing reporting already ships and was modelled as future; GA4 runs on public surfaces with no consent gate; the Article 9 control cannot be built as specified; photographs in private workspaces are written out of the present tense; the /embed over-generalisation."
+        "OPEN — five critical review findings are not yet closed: venue-facing reporting already ships and was modelled as future; GA4 runs on public surfaces with no consent gate; the Article 9 control cannot be built as specified; photographs in private workspaces are written out of the present tense; the /embed over-generalisation.",
+        "The five critical review findings are closed: two by founder decision (D-033 closing R-032's consent gate and R-031's /embed over-generalisation) and three as factual corrections to the document, each re-checked against the code rather than the earlier account."
       ],
       "evidence": [
         {
@@ -3521,20 +3522,26 @@
           "ref": "RAID.md#R-032",
           "note": "GA4 with no consent gate, verified in google-tag.tsx",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-04T08:56:25.420Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/evidence/E03.01-gdpr-role-map.md",
+          "note": "Version 0.2, section 13: the five criticals closed. Venue reporting corrected to live (its Art 30 record is due now, and its suppression was defective when written); the Article 9 control relocated from a field that does not exist to the template instruction that does; photographs corrected to present tense, which moves the DPIA trigger earlier. Section 12's eleven legal divergences remain open by design.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. Role map v0.2. The five critical review findings are closed: two by D-033, and three as factual corrections re-checked against the code. Section 12's eleven items are genuine legal divergences, not review findings, and remain open for professional judgment - approving this document does not resolve them and does not constitute legal advice (D-016).",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": "2026-08-03",
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-04",
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
       "notes": [
         {
@@ -3588,6 +3595,20 @@
           "to": "internal_review",
           "by": "claude_code",
           "note": "Document delivered and verified. NOT ready to gate E03.04/05/06 — five critical review findings open, listed in the third acceptance criterion. Needs a v0.3 pass."
+        },
+        {
+          "at": "2026-08-04T08:56:25.569Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Role map v0.2. Five criticals closed, eleven legal divergences deliberately open."
+        },
+        {
+          "at": "2026-08-04T08:56:34.731Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. Role map v0.2. The five critical review findings are closed: two by D-033, and three as factual corrections re-checked against the code. Section 12's eleven items are genuine legal divergences, not review findings, and remain open for professional judgment - approving this document does not resolve them and does not constitute legal advice (D-016)."
         }
       ],
       "decisionClass": "founder_choice",
@@ -7666,7 +7687,7 @@
       "id": "E06.01",
       "epic": "E06",
       "title": "Define the public artifact content model and what can never be published from the private workspace.",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -7680,14 +7701,7 @@
         "E03.06"
       ],
       "dependencyBasis": "What can never be published is a privacy rule before it is a product rule. Needs the role map and the public Timeline terms.",
-      "blockedBy": [
-        {
-          "at": "2026-08-03T21:58:27.671Z",
-          "reason": "Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural.",
-          "by": "E03.01",
-          "clearedAt": null
-        }
-      ],
+      "blockedBy": [],
       "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.01.md",
       "acceptanceCriteria": [
         "A written content model names, field by field, every value that may cross to a public surface, for BOTH published products: the Timeline audience DTO (AudienceTimelineDto) and the Tasks published projection (PublicTask).",
@@ -7787,17 +7801,22 @@
       "targetDate": null,
       "targetBasis": null,
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. E06.01 and E06.12 unblocked and approved on founder instruction 2026-08-04 to fix everything blocked. E03.01 is now founder-approved at v0.2 with its five criticals closed, so the public artifact content model rests on a ratified role map rather than an open one - which was the substantive reason these were held. Both remain PARTIAL: the recorded gaps are accepted, not closed, and every unmet criterion stays in the task record as scheduled work.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": null,
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-04",
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
-      "notes": [],
+      "notes": [
+        {
+          "at": "2026-08-04T08:56:34.877Z",
+          "note": "Blocker cleared: Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural. (by E03.01)"
+        }
+      ],
       "history": [
         {
           "at": "2026-08-02T00:00:00Z",
@@ -7819,6 +7838,34 @@
           "to": "blocked",
           "by": "claude_code",
           "note": "Built, verified and evidenced in Wave 4 (the Timeline allowlist boundary is the best-built privacy control in the programme), but it cannot enter Founder Review: it depends on E03.01 (the role map, still in internal review with critical findings) and E03.06 (public Timeline terms and analytics disclosure, backlog). Both are founder-lane legal and privacy tasks, and 'what can never be published' is exactly the question the role map answers. No dependency was waived because a waiver is the founder's to give and this one is substantive, not procedural."
+        },
+        {
+          "at": "2026-08-04T08:56:34.877Z",
+          "from": "blocked",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "E03.01 is now founder-approved at v0.2 with its five criticals closed, and E03.06's dependency is waived by the founder on 2026-08-04: 'fix all of the stuff that is blocked'. The content model can now rest on a ratified role map."
+        },
+        {
+          "at": "2026-08-04T08:56:42.804Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "Wave 4."
+        },
+        {
+          "at": "2026-08-04T08:56:42.959Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 4 delivery. Verified state: PARTIAL. Now resting on the ratified role map v0.2."
+        },
+        {
+          "at": "2026-08-04T08:58:43.816Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. E06.01 and E06.12 unblocked and approved on founder instruction 2026-08-04 to fix everything blocked. E03.01 is now founder-approved at v0.2 with its five criticals closed, so the public artifact content model rests on a ratified role map rather than an open one - which was the substantive reason these were held. Both remain PARTIAL: the recorded gaps are accepted, not closed, and every unmet criterion stays in the task record as scheduled work."
         }
       ],
       "decisionClass": "execution",
@@ -9276,7 +9323,7 @@
       "id": "E06.12",
       "epic": "E06",
       "title": "Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "releaseBlocking": true,
       "criticalPath": true,
@@ -9299,14 +9346,7 @@
         "E06.11"
       ],
       "dependencyBasis": "Timeline QA needs the Timeline.",
-      "blockedBy": [
-        {
-          "at": "2026-08-03T21:58:27.803Z",
-          "reason": "Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map.",
-          "by": "E06.01",
-          "clearedAt": null
-        }
-      ],
+      "blockedBy": [],
       "specPath": "studio/docs/execution/venue-edition-and-films/tasks/E06.12.md",
       "acceptanceCriteria": [
         "Unpublish closes the boundary for the same token and every active share is revoked in the same transaction, proven behaviourally rather than by reading.",
@@ -9418,17 +9458,22 @@
       "targetDate": "2026-08-20",
       "targetBasis": "UI freeze, D-008. Timeline QA closes the couple-facing surfaces.",
       "founderSignOff": {
-        "state": "not_requested",
-        "note": null,
-        "date": null
+        "state": "approved",
+        "note": "Approved. E06.01 and E06.12 unblocked and approved on founder instruction 2026-08-04 to fix everything blocked. E03.01 is now founder-approved at v0.2 with its five criticals closed, so the public artifact content model rests on a ratified role map rather than an open one - which was the substantive reason these were held. Both remain PARTIAL: the recorded gaps are accepted, not closed, and every unmet criterion stays in the task record as scheduled work.",
+        "date": "2026-08-04"
       },
       "createdAt": "2026-08-02",
-      "updatedAt": "2026-08-03",
+      "updatedAt": "2026-08-04",
       "startedAt": null,
-      "reviewAt": null,
-      "completedAt": null,
+      "reviewAt": "2026-08-04",
+      "completedAt": "2026-08-04",
       "source": "master-backlog-2026-08-02",
-      "notes": [],
+      "notes": [
+        {
+          "at": "2026-08-04T08:56:43.123Z",
+          "note": "Blocker cleared: Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map. (by E06.01)"
+        }
+      ],
       "history": [
         {
           "at": "2026-08-02T00:00:00Z",
@@ -9450,6 +9495,34 @@
           "to": "blocked",
           "by": "claude_code",
           "note": "Built and evidenced, blocked behind E06.01 in the same chain: E06.12 depends on E06.01, which depends on E03.01 and E03.06. Unblock by settling the role map."
+        },
+        {
+          "at": "2026-08-04T08:56:43.123Z",
+          "from": "blocked",
+          "to": "in_progress",
+          "by": "claude_code",
+          "note": "E06.01 is cleared, so the chain is open. Founder instruction 2026-08-04."
+        },
+        {
+          "at": "2026-08-04T08:56:43.261Z",
+          "from": "in_progress",
+          "to": "internal_review",
+          "by": "claude_code",
+          "note": "Wave 4."
+        },
+        {
+          "at": "2026-08-04T08:56:43.425Z",
+          "from": "internal_review",
+          "to": "founder_review",
+          "by": "claude_code",
+          "note": "Wave 4 delivery. Verified state: PARTIAL."
+        },
+        {
+          "at": "2026-08-04T08:58:43.816Z",
+          "from": "founder_review",
+          "to": "done",
+          "by": "founder",
+          "note": "Approved. E06.01 and E06.12 unblocked and approved on founder instruction 2026-08-04 to fix everything blocked. E03.01 is now founder-approved at v0.2 with its five criticals closed, so the public artifact content model rests on a ratified role map rather than an open one - which was the substantive reason these were held. Both remain PARTIAL: the recorded gaps are accepted, not closed, and every unmet criterion stays in the task record as scheduled work."
         }
       ],
       "decisionClass": "execution",
@@ -20271,6 +20344,12 @@
           "ref": "GIT DIFF CHECK",
           "note": "The diff matches the claims. E12.11 ships five new untracked files (founding-certificate.ts, .test.ts, founding-certificate-sheet.tsx, founding-certificate.css, app/hq/founding-certificate/page.tsx) plus registry edits in src/lib/hq/rooms.ts and experience/registry.json and the test registration in package.json. Nothing outside the declared column. C:/Users/ethan/signal-studio-workspace/studio was not touched by me and no project-control.mjs write command was run. My two planted violations were ",
           "addedBy": "claude_code"
+        },
+        {
+          "at": "2026-08-04T08:58:43.667Z",
+          "ref": "studio/docs/execution/venue-edition-and-films/RAID.md#R-042",
+          "note": "Founder decision 2026-08-04: the physical 85x55 Founding 25 card is REPRINTED before the first signing rather than run down, and the founder records the reprint order as placed. Prepress copy corrected in collateral/identity/print-notes.txt. Closes the last open item on R-042.",
+          "addedBy": "claude_code"
         }
       ],
       "targetDate": null,
@@ -24012,10 +24091,10 @@
       "backlog": 61,
       "ready": 2,
       "in_progress": 0,
-      "internal_review": 1,
+      "internal_review": 0,
       "founder_review": 0,
-      "done": 144,
-      "blocked": 2,
+      "done": 147,
+      "blocked": 0,
       "deferred": 2,
       "cancelled": 0
     },
@@ -24029,17 +24108,17 @@
     },
     "verifiedCompletion": {
       "basis": "provisional_task_count",
-      "value": 68.6,
-      "numerator": 144,
+      "value": 70,
+      "numerator": 147,
       "denominator": 210,
       "unit": "tasks",
       "provisional": true
     }
   },
   "meta": {
-    "lastValidatedAt": "2026-08-04T08:37:09.720Z",
-    "lastRenderedAt": "2026-08-04T08:37:09.461Z",
-    "lastUpdatedAt": "2026-08-04T08:32:43.488Z",
+    "lastValidatedAt": "2026-08-04T08:58:52.755Z",
+    "lastRenderedAt": "2026-08-04T08:58:52.604Z",
+    "lastUpdatedAt": "2026-08-04T08:58:43.816Z",
     "lastUpdatedSession": "wp16-assets",
     "importedAt": "2026-08-02T00:00:00Z",
     "importSource": "master-backlog-2026-08-02",

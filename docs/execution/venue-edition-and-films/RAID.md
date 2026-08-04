@@ -927,9 +927,9 @@ this session, and it does not.
   to have verified, and the pinned hit sum is **20**, not E09.11 §12.3's 25.
   A reader now runs inside `check-venue-edition-contract.mjs`, which was already the 5th command
   in `pnpm test` and blocking in both `ci.yml` and `verify.yml`, so it needed no new CI wiring.
-  **Open:** the physical 85x55 card at `collateral/identity/print-notes.txt` carries the retired
+  **CLOSED 2026-08-04:** the physical 85x55 card at `collateral/identity/print-notes.txt` carries the retired
   term in prepress instructions. Existing printed stock is unchanged and **reprint versus
-  run-down is a founder call that has not been made.**
+  run-down was decided by the founder on 2026-08-04: **REPRINT before the first signing.** The card is handed over at the moment of signature, which is the worst place for a term retired because it implies standing D-009 does not grant, and twenty-five cards is a trivial cost against the first venue asking what "partner" entitles them to. Prepress copy corrected; **the reprint order is placed and recorded done by the founder.**
   Evidence: `evidence/R-042-founding-25-retirement.md`. Branch `claude/wp16-assets`.
 
 ---

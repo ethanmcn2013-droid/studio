@@ -544,3 +544,10 @@ Founder note: Approved. Founder approved all Wave 3 packet work on 2026-08-03 an
 `E12.13` Produce the post-booking couple welcome kit, approved email wording and printable welcome object.
 
 Founder note: Approved. Wave 4 approved in full at Claude's recommendation, with the partial state of all 13 tasks stated plainly in the consolidated packet and understood: approving a partial task accepts the recorded gap, it does not close it. Every unmet criterion stays in the task record as scheduled work, and the four residual risks (R-015 inert until a wedding date is captured, R-031 opt-in unstored, R-032 Sentry outstanding, R-042 printed stock) remain open in RAID rather than reading as closed.
+
+## 2026-08-04 · Batch approved — 2 task(s)
+
+`E06.01` Define the public artifact content model and what can never be published from the private workspace.
+`E06.12` Complete unpublish, delete, broken-link, performance, accessibility, social-preview and cross-browser QA.
+
+Founder note: Approved. E06.01 and E06.12 unblocked and approved on founder instruction 2026-08-04 to fix everything blocked. E03.01 is now founder-approved at v0.2 with its five criticals closed, so the public artifact content model rests on a ratified role map rather than an open one - which was the substantive reason these were held. Both remain PARTIAL: the recorded gaps are accepted, not closed, and every unmet criterion stays in the task record as scheduled work.
