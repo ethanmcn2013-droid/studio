@@ -26,7 +26,7 @@ import type { SignalReadItem } from "@/components/marketing/heroes/signal/the-re
 export const VENUE_TIMELINE_FIXTURE: AudienceTimelineDto = {
   version: 1,
   audienceKind: "couple",
-  publicationId: "venues-lab-a-wedding",
+  publicationId: "venues-wedding",
   label: "Mara and Finn",
   ownerDisplayLabel: "Mara",
   primaryDate: { label: "The wedding", date: "2026-09-12" },

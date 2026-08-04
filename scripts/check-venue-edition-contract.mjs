@@ -257,10 +257,27 @@ requireText(
   "venueEditionAnnualAmountCents(plan)",
   "the cash ledger must take the amount from the plan, not one shared constant",
 );
+/* DECISION POINT, recorded rather than silently reconciled. This check
+   used to REQUIRE `price: String(VENUE_EDITION_ANNUAL_PRICE_EUR)` in the
+   layout's structured data: one exact offer, guarding against the retired
+   price range coming back. The 2026-08-04 venue-page panel applied the
+   ratified commercial rule (E11.11: a price never travels without its
+   seventeen conditions, and a surface that cannot carry them does not
+   carry the number) to structured data, where a search rich-result would
+   surface the figure bare and at the standard rate on the very page that
+   states the founding offer. The invariant now runs the other way, with
+   equal strictness: the Venue Edition offer must remain in structured
+   data, and must carry no price at all. Reverting is one swap of these
+   two checks; the founder ratifies whichever stands at merge. */
 requireText(
   "src/app/layout.tsx",
+  'name: "Venue Edition"',
+  "the Venue Edition offer stays in structured data",
+);
+forbidText(
+  "src/app/layout.tsx",
   "price: String(VENUE_EDITION_ANNUAL_PRICE_EUR)",
-  "structured data must expose one exact offer",
+  "the venue price never travels without its conditions; structured data cannot carry them (E11.11)",
 );
 forbidText(
   "src/app/layout.tsx",

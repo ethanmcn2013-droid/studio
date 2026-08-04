@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 export const alt = "Signal Studio, Project Management for the 80% not in tech";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -12,6 +10,17 @@ export const contentType = "image/png";
  * Warm-stone backdrop (#fafaf7) with the umbrella wordmark centered.
  * Indigo dot (#4f46e5) at the baseline, the brand. Same construction
  * as every other wordmark in the suite, scaled up.
+ *
+ * Runs the default Node runtime, like /icon and /apple-icon: the edge
+ * sandbox does not serve on the Windows dev machine, so an edge export
+ * here leaves the route unverifiable locally.
+ *
+ * Satori lays out flex only — a display: "inline-block" anywhere in the
+ * tree crashes the renderer with an empty reply. And the mark must set
+ * on one line: at 280px "signal studio" is ~1520px wide in the 1200px
+ * frame, wrapping to two clipped lines with the dot off canvas. 170px
+ * sets it at ~78% of the width; the dot and its offsets scale by the
+ * same factor.
  *
  * Antique gold retired 2026-05-11 per the new brand guide (D01 —
  * Refined Indigo Dot).
@@ -35,7 +44,7 @@ export default async function OGImage() {
             display: "flex",
             alignItems: "baseline",
             fontWeight: 500,
-            fontSize: 280,
+            fontSize: 170,
             letterSpacing: "-0.04em",
             color: "#111111",
           }}
@@ -43,13 +52,13 @@ export default async function OGImage() {
           signal studio
           <span
             style={{
-              width: 44,
-              height: 44,
+              width: 27,
+              height: 27,
               borderRadius: 999,
               background: "#4f46e5",
-              marginLeft: 14,
-              marginBottom: 18,
-              display: "inline-block",
+              marginLeft: 9,
+              marginBottom: 11,
+              display: "flex",
             }}
           />
         </div>
