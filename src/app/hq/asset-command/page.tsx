@@ -110,7 +110,7 @@ export default async function AssetCommandPage() {
           />
           <AuditCard
             title="Required for proof"
-            body="Real wedding-workflow screenshots, the numbered Founding Partner system, the permission form. The proof machinery is unbuilt and must stay gated."
+            body="Real wedding-workflow screenshots, the numbered Founding 25 system, the permission form. The proof machinery is unbuilt and must stay gated."
           />
           <AuditCard
             title="Required for press"

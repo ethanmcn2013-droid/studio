@@ -91,7 +91,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/hq/design-rooms": "Lab",
   "/hq/cards": "Card room",
   "/hq/cafe-card": "Café card",
-  "/hq/partner-card": "Partner card",
+  "/hq/partner-card": "Founding 25 card",
   "/hq/poster": "Poster",
   "/hq/slide-30-review": "Slide 30",
   "/hq/product-hero-design-motion": "Product heroes",

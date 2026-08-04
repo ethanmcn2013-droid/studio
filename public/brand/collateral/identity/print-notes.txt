@@ -11,7 +11,7 @@ founder-card-front-print.pdf / founder-card-back-print.pdf
   Stock: 350-400gsm uncoated, duplex. founder-card-front-light-print.pdf
   is the paper-front alternate, kept for comparison.
 fp-card-print.pdf
-  The Founding Partner variant - solid indigo (PMS 2726C is the closest
+  The Founding 25 variant - solid indigo (PMS 2726C is the closest
   spot match to #4f46e5 if offset), numbered at print or by hand, never
   reprinted. Presented at signing only.
 cafe-card-print.pdf          A6 dark - permission placement only.

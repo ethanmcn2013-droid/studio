@@ -119,7 +119,7 @@ Some will not. That is fine. The couples who do use it will have a materially ca
 
 **"Why prepay?"**
 
-Because the product is not subscription-first — it is relationship-first. Prepaying is the signal that tells Signal Studio this venue is serious and that Signal Studio should treat them as a founding partner, not a trial account. It also means the venue's team is never chased for a monthly payment and the couple is never asked to enter a card. The annual prepay is the mechanism that makes the couple's experience seamless — not from the couple's perspective (they never see a price) but from the venue's. One payment, one year, nothing to manage.
+Because the product is not subscription-first — it is relationship-first. Prepaying is the signal that tells Signal Studio this venue is serious and that Signal Studio should treat them as a founding venue, not a trial account. It also means the venue's team is never chased for a monthly payment and the couple is never asked to enter a card. The annual prepay is the mechanism that makes the couple's experience seamless — not from the couple's perspective (they never see a price) but from the venue's. One payment, one year, nothing to manage.
 
 **"Is this just for weddings?"**
 

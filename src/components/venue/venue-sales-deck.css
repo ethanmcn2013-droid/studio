@@ -1,0 +1,80 @@
+/**
+ * E12.10 — print rules for the Venue Edition sales deck.
+ *
+ * The deck is shown on a screen in a room. It prints because a venue
+ * occasionally asks for the slides afterwards, and a screenshot of a browser
+ * is not an answer. One slide per page, landscape, so the printed artefact and
+ * the shown artefact are the same object.
+ *
+ * Chrome is hidden by the same two mechanisms E12.09 uses, for the same
+ * reason: the `:has()` rule only fires on a page that actually contains a
+ * deck, so it cannot affect any other page in the app, and anything inside the
+ * deck's own ancestor chain carries `print:hidden` at the call site where the
+ * person editing it can see it.
+ */
+
+.venue-deck-slide {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 720px) {
+  /* A 16:9 box at phone width is 200px tall and unreadable. Below the
+     breakpoint the slide becomes a document block and keeps its order. */
+  .venue-deck-slide {
+    aspect-ratio: auto;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  /* Only ever true on a page that renders a deck. */
+  body:has(.venue-deck) > *:not(:has(.venue-deck)) {
+    display: none !important;
+  }
+
+  .venue-deck {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .venue-deck-slide {
+    aspect-ratio: auto;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    break-after: page;
+    break-inside: avoid;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .venue-deck-slide:last-child {
+    break-after: auto;
+  }
+
+  .venue-deck-slide h2 {
+    font-size: 22pt;
+    line-height: 1.1;
+  }
+
+  .venue-deck-table {
+    font-size: 8.5pt;
+    line-height: 1.35;
+  }
+}

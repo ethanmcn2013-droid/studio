@@ -9,7 +9,7 @@ import { useState } from "react";
  * The interaction never steals a state the reader explicitly selected.
  *
  * `back` is optional; `backFace` lets a card carry a live-typeset
- * reverse instead of an image (the Founding Partner card's reverse is
+ * reverse instead of an image (the Founding 25 card's reverse is
  * set in code: the founder's address and the same-day promise).
  *
  * Reduced motion: the face changes instantly.

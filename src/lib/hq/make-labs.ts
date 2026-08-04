@@ -205,7 +205,7 @@ export const MAKE_LABS: Lab[] = [
   },
   {
     id: "room-partner-card",
-    name: "The Founding Partner Card",
+    name: "The Founding 25 Card",
     category: "decision",
     state: "SHORTLIST",
     href: "/hq/partner-card",

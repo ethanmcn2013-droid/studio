@@ -339,7 +339,7 @@ export const HQ_ASSETS: HqAsset[] = [
   },
   {
     id: "partner-card-room",
-    title: "The Partner Card, chosen: Indigo + Numeral",
+    title: "The Founding 25 card, chosen: Indigo + Numeral",
     group: "brand",
     audience: ["founder"],
     state: "ready",
@@ -407,7 +407,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/brand/collateral/venue/index.html",
     source: "public/brand/collateral/venue",
     action: "Open the set",
-    note: "The keystone A4 one-pager and the A5 leave-behind, print-ready with bleed and crop marks. Partner line is a marked specimen; screenshot finishing pass waits on a real wedding workspace. Founder sign-off gates printing.",
+    note: "The keystone A4 one-pager and the A5 leave-behind, print-ready with bleed and crop marks. The founding venue line is a marked specimen; screenshot finishing pass waits on a real wedding workspace. Founder sign-off gates printing.",
   },
   {
     id: "collateral-ambassador",
@@ -443,7 +443,7 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/brand/collateral/social/index.html",
     source: "public/brand/collateral/social",
     action: "Open the gallery",
-    note: "Six post formats with deck-locked specimen copy across IG and LinkedIn sizes, quiet-demo end cards, LinkedIn and X banners, and alt text for every image. Partner format is a marked specimen; nothing posts without founder approval.",
+    note: "Six post formats with deck-locked specimen copy across IG and LinkedIn sizes, quiet-demo end cards, LinkedIn and X banners, and alt text for every image. The founding venue format is a marked specimen; nothing posts without founder approval.",
   },
   {
     id: "collateral-identity",

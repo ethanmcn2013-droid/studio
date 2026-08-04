@@ -1,6 +1,6 @@
 ---
 id: collateral-venue-signoff
-title: Sign off the venue set — QR destination, partner line, print run
+title: Sign off the venue set — QR destination, founding venue line, print run
 status: open
 priority: P0
 blocking: true
@@ -18,7 +18,7 @@ date: 2026-07-01
 2. **QR destination:** both objects currently point to signalstudio.ie
    (real). If you want a dedicated venue-demo URL instead, decide it and
    the set re-renders in minutes.
-3. **Partner line:** "Founding Limerick Partner programme — by invitation"
+3. **Founding venue line:** "the Founding 25 — by invitation"
    is a marked SPECIMEN. Approve the wording for when the programme opens,
    or cut the line for the first print run.
 4. **Screenshots:** v1 uses typographic four-view rows. To run the
