@@ -41,7 +41,7 @@ export const HQ_NAV: HqNavGroup[] = [
   {
     label: "Knowledge",
     items: [
-      { href: "/hq/assets", icon: "library", label: "Library", hint: "Brand + sales asset library" },
+      { href: "/hq/assets", icon: "library", label: "Library", hint: "Brand + sales asset library", owns: ["/hq/asset-curator"] },
       { href: "/hq/vault", icon: "vault", label: "Vault", hint: "Every document the business runs on" },
       { href: "/hq/atlas", icon: "atlas", label: "Atlas", hint: "The systems map", owns: ["/hq/atlas-map"] },
       { href: "/hq/decks", icon: "decks", label: "Decks", hint: "Pitch, market entry, loan pack, plan, one-pagers", owns: ["/hq/deck", "/hq/market-entry", "/hq/loan-pack", "/hq/plan", "/hq/one-pagers"] },
@@ -109,6 +109,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/hq/incorporation": "Incorporation",
   "/hq/one-pagers": "One-pagers",
   "/hq/assets": "Library",
+  "/hq/asset-curator": "Asset curator",
   "/hq/vault": "Vault",
   "/hq/atlas": "Atlas",
   "/hq/atlas-map": "Operating map",
