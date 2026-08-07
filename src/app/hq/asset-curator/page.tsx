@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { HqPageHeader } from "@/components/hq/hq-page-header";
 import { AssetCurator } from "@/components/hq/asset-curator";
 import { requireHqAccess } from "@/lib/hq/access-guard";
-import { CURATOR_ASSETS, CURATOR_CATEGORIES } from "@/lib/hq/asset-curator-data";
+import {
+  CURATOR_ASSETS,
+  CURATOR_CATEGORIES,
+  DEFAULT_PREFERRED_ASSET_IDS,
+} from "@/lib/hq/asset-curator-data";
 
 export const dynamic = "force-dynamic";
 
@@ -20,10 +24,10 @@ export default async function AssetCuratorPage() {
       <HqPageHeader
         slug="asset-curator"
         title="Lock the visual canon."
-        standfirst="Review every retained direction once, mark what belongs to Signal Studio, and export the exact reference set for future work."
+        standfirst="Your chosen canon is separated from the review queue. Browse every retained visual and Remotion hook, refine the set, then export an exact reference brief for future work."
         meta={
           <span className="hq-page-head-note">
-            {CURATOR_ASSETS.length} directions · {CURATOR_CATEGORIES.length} collections · saved on this device
+            {CURATOR_ASSETS.length} directions · {DEFAULT_PREFERRED_ASSET_IDS.length} preferred · {CURATOR_CATEGORIES.length} collections
           </span>
         }
       />

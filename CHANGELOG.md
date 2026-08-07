@@ -7,6 +7,21 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-08 · S·162 · tightens · the visual canon is no longer mixed with the maybe pile
+
+**The founder's 107 chosen references now open as the Asset Curator's durable
+brand canon, separate from every direction still awaiting a decision.** The
+exported shortlist has become the built-in starting state rather than a file
+that only one browser knows about, while later changes remain saved on the
+device and can still be exported as JSON.
+
+The curator also reaches the full sixty-piece Signal Motion social-hook
+library for the first time. Each Remotion direction has a stable R-001–R-060
+number, collection provenance, closing line, animated review board, and link
+back to its source composition. Preferred and still-to-review are now two
+deliberate workspaces, so future work can take the approved set as instruction
+without accidentally treating the unchosen archive as brand guidance.
+
 ## 2026-08-07 · S·161 · ships · the work can now teach the next piece of work
 
 **Signal HQ now turns more than two hundred retained visual directions into
