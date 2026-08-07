@@ -57,6 +57,20 @@ export default async function AssetsPage() {
         }
       />
 
+      <section className="hqx-banner" data-tone="accent" aria-label="Asset curator">
+        <span className="hqx-banner-mark" />
+        <div className="hqx-banner-body">
+          <span className="hqx-banner-kicker">Visual canon</span>
+          <span className="hqx-banner-text">
+            Review 212 retained directions, mark the ones that belong to Signal Studio,
+            and export the reference set for future creation.
+          </span>
+        </div>
+        <Link href="/hq/asset-curator" className="hqx-btn hqx-btn--ghost">
+          Open curator →
+        </Link>
+      </section>
+
       <section className="hq-asset-index" aria-label="asset groups">
         {GROUPS.map((group) => {
           const assets = HQ_ASSETS.filter((asset) => asset.group === group.key);
