@@ -7,6 +7,21 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-07 · S·161 · ships · the work can now teach the next piece of work
+
+**Signal HQ now turns more than two hundred retained visual directions into
+one reviewable reference set.** The Asset Curator groups the Hundred, social
+system, venue material, identity work, explorations, motion, decks, and press
+previews behind permanent short IDs. The founder can mark each direction
+preferred or not for Signal Studio, leave a note about the principle worth
+carrying forward, and return without losing the review on that device.
+
+The preferred set exports as both a copy-ready brief and structured JSON, so
+future Claude and Codex sessions can receive exact references instead of a
+vague instruction to match the brand. Alternate sizes and print PDFs remain
+available in the asset bank, but the review avoids counting the same design
+three times merely because it was exported for three platforms.
+
 ## 2026-08-03 · S·160 · ships · a couple can no longer lose the product before their wedding
 
 **Venue Edition's ratified access term is real in the code for the
