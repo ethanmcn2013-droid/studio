@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CURATOR_ASSETS,
   CURATOR_CATEGORIES,
+  DEFAULT_PREFERRED_ASSET_IDS,
   type CuratorAsset,
   type CuratorCategory,
 } from "@/lib/hq/asset-curator-data";
@@ -13,15 +14,19 @@ type Verdict = "preferred" | "rejected";
 type StoredReview = { verdict?: Verdict; note?: string };
 type ReviewMap = Record<string, StoredReview>;
 type StatusFilter = "all" | "unreviewed" | Verdict;
+type CollectionView = "preferred" | "remaining";
 
-const STORAGE_KEY = "signal-hq.asset-curator.v1";
+const STORAGE_KEY = "signal-hq.asset-curator.v2";
+const DEFAULT_REVIEWS: ReviewMap = Object.fromEntries(
+  DEFAULT_PREFERRED_ASSET_IDS.map((id) => [id, { verdict: "preferred" as const }]),
+);
 
 function readReviews(): ReviewMap {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as ReviewMap) : {};
+    return raw ? (JSON.parse(raw) as ReviewMap) : DEFAULT_REVIEWS;
   } catch {
-    return {};
+    return DEFAULT_REVIEWS;
   }
 }
 
@@ -47,6 +52,7 @@ function useReviews() {
 
 export function AssetCurator() {
   const { reviews, setReviews, ready } = useReviews();
+  const [collectionView, setCollectionView] = useState<CollectionView>("preferred");
   const [category, setCategory] = useState<CuratorCategory | "all">("all");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [query, setQuery] = useState("");
@@ -64,19 +70,28 @@ export function AssetCurator() {
     [reviews],
   );
   const rejectedCount = reviewedCount - preferred.length;
+  const remainingCount = CURATOR_ASSETS.length - preferred.length;
+
+  const selectCollectionView = (next: CollectionView) => {
+    setCollectionView(next);
+    setStatus("all");
+    setActiveId(null);
+  };
 
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
     return CURATOR_ASSETS.filter((asset) => {
       if (category !== "all" && asset.category !== category) return false;
       const verdict = reviews[asset.id]?.verdict;
+      if (collectionView === "preferred" && verdict !== "preferred") return false;
+      if (collectionView === "remaining" && verdict === "preferred") return false;
       if (status === "unreviewed" && verdict) return false;
       if (status === "preferred" && verdict !== "preferred") return false;
       if (status === "rejected" && verdict !== "rejected") return false;
       if (needle && !`${asset.id} ${asset.title} ${asset.source}`.toLowerCase().includes(needle)) return false;
       return true;
     });
-  }, [category, query, reviews, status]);
+  }, [category, collectionView, query, reviews, status]);
 
   const activeIndex = activeId ? visible.findIndex((asset) => asset.id === activeId) : -1;
   const activeAsset = activeIndex >= 0 ? visible[activeIndex] : null;
@@ -168,13 +183,13 @@ export function AssetCurator() {
           <span style={{ width: `${(reviewedCount / CURATOR_ASSETS.length) * 100}%` }} />
         </div>
         <div className={styles.metrics}>
-          <button type="button" onClick={() => setStatus("preferred")}>
+          <button type="button" onClick={() => selectCollectionView("preferred")}>
             <strong>{preferred.length}</strong><span>preferred</span>
           </button>
-          <button type="button" onClick={() => setStatus("rejected")}>
+          <button type="button" onClick={() => { selectCollectionView("remaining"); setStatus("rejected"); }}>
             <strong>{rejectedCount}</strong><span>not for us</span>
           </button>
-          <button type="button" onClick={() => setStatus("unreviewed")}>
+          <button type="button" onClick={() => { selectCollectionView("remaining"); setStatus("unreviewed"); }}>
             <strong>{CURATOR_ASSETS.length - reviewedCount}</strong><span>unreviewed</span>
           </button>
         </div>
@@ -185,6 +200,27 @@ export function AssetCurator() {
           disabled={preferred.length === 0}
         >
           Open preferred list <span>{preferred.length}</span>
+        </button>
+      </section>
+
+      <section className={styles.collectionSwitch} aria-label="Preferred or still to review">
+        <button
+          type="button"
+          data-active={collectionView === "preferred" || undefined}
+          onClick={() => selectCollectionView("preferred")}
+        >
+          <span>Brand canon</span>
+          <strong>Preferred</strong>
+          <em>{preferred.length} selected references</em>
+        </button>
+        <button
+          type="button"
+          data-active={collectionView === "remaining" || undefined}
+          onClick={() => selectCollectionView("remaining")}
+        >
+          <span>Review queue</span>
+          <strong>Still to review</strong>
+          <em>{remainingCount} assets not chosen</em>
         </button>
       </section>
 
@@ -211,17 +247,18 @@ export function AssetCurator() {
             />
             {query ? <button type="button" onClick={() => setQuery("")} aria-label="Clear search">×</button> : null}
           </label>
-          <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)} aria-label="Review state">
-            <option value="all">Every review state</option>
-            <option value="unreviewed">Unreviewed</option>
-            <option value="preferred">Preferred</option>
-            <option value="rejected">Not for us</option>
-          </select>
+          {collectionView === "remaining" ? (
+            <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)} aria-label="Review state">
+              <option value="all">All not chosen</option>
+              <option value="unreviewed">Still to decide</option>
+              <option value="rejected">Not for us</option>
+            </select>
+          ) : <span className={styles.lockedFilter}>Preferred references only</span>}
         </div>
       </section>
 
       <div className={styles.resultLine}>
-        <span>{visible.length} {visible.length === 1 ? "direction" : "directions"}</span>
+        <span>{visible.length} {visible.length === 1 ? "direction" : "directions"} · {collectionView === "preferred" ? "preferred" : "not chosen"}</span>
         {(category !== "all" || status !== "all" || query) ? (
           <button type="button" onClick={() => { setCategory("all"); setStatus("all"); setQuery(""); }}>Clear filters</button>
         ) : null}
@@ -288,8 +325,7 @@ function AssetCard({ asset, review, onOpen, onVerdict }: {
   return (
     <article className={styles.card} data-verdict={review?.verdict}>
       <button type="button" className={styles.imageButton} onClick={onOpen} aria-label={`Open ${asset.id}, ${asset.title}`}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={asset.src} alt={asset.title} loading="lazy" />
+        <AssetVisual asset={asset} compact />
         <span className={styles.expand} aria-hidden="true">↗</span>
       </button>
       <div className={styles.cardBody}>
@@ -329,8 +365,7 @@ function Lightbox({ asset, review, index, total, onClose, onMove, onReview }: {
         </header>
         <div className={styles.lightboxStage}>
           <button type="button" className={styles.previous} onClick={() => onMove(-1)} aria-label="Previous direction">←</button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={asset.src} alt={asset.title} />
+          <AssetVisual asset={asset} />
           <button type="button" className={styles.next} onClick={() => onMove(1)} aria-label="Next direction">→</button>
         </div>
         <footer className={styles.lightboxFooter}>
@@ -352,7 +387,7 @@ function Lightbox({ asset, review, index, total, onClose, onMove, onReview }: {
           </label>
           <div className={styles.sourceLine}>
             <span>{asset.source}</span>
-            <a href={asset.src} target="_blank" rel="noreferrer">Open original ↗</a>
+            {asset.sourceHref || asset.src ? <a href={asset.sourceHref ?? asset.src} target="_blank" rel="noreferrer">Open source ↗</a> : null}
           </div>
         </footer>
       </section>
@@ -383,8 +418,7 @@ function Shortlist({ assets, reviews, text, onClose, onCopy, onDownload, onRemov
         <div className={styles.shortlistBody}>
           {assets.map((asset) => (
             <article key={asset.id} className={styles.shortlistRow}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset.src} alt="" />
+              <AssetVisual asset={asset} compact />
               <div><strong>{asset.id}</strong><span>{asset.title}</span>{reviews[asset.id]?.note ? <p>{reviews[asset.id].note}</p> : null}</div>
               <button type="button" onClick={() => onRemove(asset.id)} aria-label={`Remove ${asset.id} from preferred list`}>×</button>
             </article>
@@ -397,6 +431,32 @@ function Shortlist({ assets, reviews, text, onClose, onCopy, onDownload, onRemov
       </aside>
     </div>
   );
+}
+
+function AssetVisual({ asset, compact = false }: { asset: CuratorAsset; compact?: boolean }) {
+  if (asset.motionPreview) {
+    return (
+      <div className={styles.motionPreview} data-compact={compact || undefined}>
+        <div className={styles.motionTopline}>
+          <span>Remotion hook</span>
+          <span>{asset.motionPreview.number} / 60</span>
+        </div>
+        <div className={styles.motionField} aria-hidden="true">
+          <i /><i /><i /><i />
+          <b />
+        </div>
+        <div className={styles.motionCopy}>
+          <strong>{asset.title}</strong>
+          <span>{asset.motionPreview.closing}</span>
+        </div>
+        <small>Collection {asset.motionPreview.collection} · 4:5</small>
+      </div>
+    );
+  }
+  return asset.src ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={asset.src} alt={asset.title} loading={compact ? "lazy" : undefined} />
+  ) : null;
 }
 
 function buildShortlistText(assets: CuratorAsset[], reviews: ReviewMap) {
