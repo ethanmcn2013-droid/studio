@@ -16,7 +16,7 @@ type ReviewMap = Record<string, StoredReview>;
 type StatusFilter = "all" | "unreviewed" | Verdict;
 type CollectionView = "preferred" | "remaining";
 
-const STORAGE_KEY = "signal-hq.asset-curator.v2";
+const STORAGE_KEY = "signal-hq.asset-curator.v3";
 const DEFAULT_REVIEWS: ReviewMap = Object.fromEntries(
   DEFAULT_PREFERRED_ASSET_IDS.map((id) => [id, { verdict: "preferred" as const }]),
 );
