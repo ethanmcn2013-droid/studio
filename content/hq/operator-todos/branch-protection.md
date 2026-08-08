@@ -9,14 +9,15 @@ phase: Repository governance
 why: The two production repositories are public and can be protected after their existing CI failures are repaired; private support repositories still need a paid-plan or visibility decision.
 href: /hq/experience-quality
 date: 2026-08-08
-cleared: 2026-08-08 — Founder chose to keep support repositories private with procedural enforcement; public-repository CI and protection remain agent-owned.
+cleared: 2026-08-08 — Founder kept support repositories private with procedural enforcement; app and studio main now require PRs, verified checks, linear history, resolved conversations, and block force-push/deletion.
 ---
 
 ## Current topology
 
 `app` and `studio` are the only production repositories and are public. Their
-`main` branches currently have no protection, and both have pre-existing red CI
-jobs; the agent queue owns repairing those jobs and enabling appropriate rules.
+`main` branches are protected with the green verified checks appropriate to
+each repository. Studio's separate experience-registry debt remains explicit
+in the agent queue and is not allowed to weaken those rules.
 
 The private support repositories are `signal-motion`, `signal-directors`,
 `signal-design-system`, `signal-review`, and `collateral`. GitHub will not

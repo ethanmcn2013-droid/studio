@@ -7,9 +7,10 @@ the bundled defaults. No email or test email is authorized.
 
 ## Ready without another product decision
 
-1. Repair the pre-existing red CI jobs in `app` and `studio`, then protect the
-   public production `main` branches with verified checks and safe solo-founder
-   pull-request rules.
+1. Repair Studio's ten pre-existing experience-registry/fixture gaps. Its raw
+   design-token drift gate is fixed and both public production `main` branches
+   are now protected; do not weaken the required green checks to mask the
+   remaining separate design-quality debt.
 2. Apply the guarded Venue Edition 18-month migration: take backups, prove the
    pinned 23-code digest in dry run, apply, retain receipts, and prove a no-op
    rerun.
@@ -58,6 +59,8 @@ the bundled defaults. No email or test email is authorized.
    fail-closed 50-row two-person threshold.
 8. Enabled and saved Clerk Restricted mode in the production instance. No
    invitation or email was sent.
+9. Protected `app/main` and `studio/main`: pull requests, strict verified
+   checks, linear history, resolved conversations, and no force-push/deletion.
 
 ## Requires provider/account access from Ethan
 
