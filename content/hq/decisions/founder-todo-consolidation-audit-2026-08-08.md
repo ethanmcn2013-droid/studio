@@ -14,11 +14,15 @@ judgment, account ownership, legal authority, or payment. Engineering,
 migrations, smoke tests, evidence gathering, and routine provider operations
 belong in the agent execution queue.
 
-Every one of the 91 ledger entries was rescanned against the current two-repo
-topology, current source, GitHub state, Vercel projects/environments, migration
-receipts, and live public routes. The audit changes the ledger from **59 open / 32
-done** to **28 open / 63 cleared**. The residual list is evenly split: **14 quick
-wins** and **14 longer calls**.
+Every one of the original 91 ledger entries was rescanned against the current
+two-repo topology, current source, GitHub state, Vercel projects/environments,
+migration receipts, and live public routes. The initial audit changed the
+ledger from **59 open / 32 done** to **28 open / 63 cleared**.
+
+Ethan then approved every recommended default. The implementation pass closed
+13 more entries and added one new, genuinely founder-only legal acceptance for
+PostHog. The current 92-entry ledger is therefore **16 open / 76 cleared**:
+**4 quick manual actions** and **12 involved founder calls**.
 
 No email was sent or test-sent during this audit.
 
@@ -75,16 +79,13 @@ they are operational or engineering work; the exact work is retained in
 
 ## Remaining quick wins
 
-AI budget; private-repo protection stance; PostHog approval; Clerk restricted
-mode; auth/billing delight scope; HQ identity defaults; Supabase deferral;
-in-app themes; Resend domain verification; Upstash approval; npm trusted
-publishing; Project/Season vocabulary; proof order; Studio preview-bypass
-revocation.
+Accept PostHog's marketplace legal terms; confirm the Resend sender domain;
+authorize npm trusted publishing for `signal-ds` 2.1.0; and send the physical
+card-trio proof order.
 
 ## Remaining longer calls
 
-Ambassador, identity, press, and venue collateral reviews; GDPR/legal
-paperwork; product-hero review; launch go/no-go; the consolidated commercial
-policy pack; Google sign-in safety matrix; legal publication; Irish company
-registration; credential rotation; VAT/OSS/Stripe Tax; and Sentry account
-authorization.
+Ambassador, identity, press, and venue collateral reviews; GDPR/data-controller
+paperwork; the product-hero direction choice; Google sign-in safety review;
+legal publication; Irish company registration; credential rotation;
+VAT/OSS/Stripe Tax; and Sentry account authorization.

@@ -32,19 +32,32 @@ the bundled defaults. No email or test email is authorized.
    periods.
 10. Re-audit current routes and delete or redirect only dead consolidated-app
     surfaces; do not reuse the obsolete five-repo deletion list.
+11. Enforce the ratified AI limits: EUR 25/month, 50/80/100 percent alerts,
+    and EUR 0.25/user/day. Do not use an email alert channel.
+12. Finish PostHog provisioning immediately after the founder accepts the
+    marketplace legal terms; use Cloud EU, cookieless consent-gated events,
+    and no session replay.
+13. Update checkout gates and public copy to consume the now-ratified
+    commercial contract; do not expose Student until eligibility enforcement
+    is live.
 
-## Runs after a quick founder answer
+## Completed after the bundled founder approval
 
-11. Provision and verify one EU Upstash store if approved.
-12. Provision PostHog Cloud EU and wire the consent-gated, no-replay event set
-    if approved.
-13. Revoke the Studio preview bypass and remove dead link plumbing if approved.
-14. Update the product vocabulary map if Ethan changes either `Open project` or
-    the default planning-period noun `Season`.
-15. Keep the Supabase migration parked with a written trigger, or create a
-    separate migration programme if Ethan rejects deferral.
-16. Update commercial configuration, checkout gates, public copy, and tests
-    after the eight commercial answers are ratified.
+1. Provisioned `signal-app-rate-limit-eu` in `fra1` on the free plan with
+   automatic upgrades disabled; connected app Production and Preview and
+   proved `PING=PONG`.
+2. Revoked `UMBRELLA_PREVIEW_BYPASS`, removed its code path, and restored
+   Vercel-login protection for the parked preview.
+3. Kept Supabase parked behind explicit cost/limit, SSO, or Postgres-only
+   review triggers.
+4. Ratified the shipped `Open project` and `Season` vocabulary.
+5. Encoded all eight commercial answers in the canonical v2 contract.
+6. Made 1 September a readiness review and changed both launch modules to
+   remain closed unless an explicit environment override is deployed.
+7. Configured Ethan as the named Studio HQ operator and retained the
+   fail-closed 50-row two-person threshold.
+8. Enabled and saved Clerk Restricted mode in the production instance. No
+   invitation or email was sent.
 
 ## Requires provider/account access from Ethan
 

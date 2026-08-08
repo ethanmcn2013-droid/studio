@@ -1,7 +1,7 @@
 ---
 id: hq-per-operator-identity
 title: Approve moving HQ to per-operator identity so the audit ledger is real.
-status: open
+status: done
 priority: P0
 effort: quick
 blocking: true
@@ -9,6 +9,7 @@ phase: Phase 1
 why: With a single shared HQ password the audit log can only ever say "someone with the cookie", so it is theatre.
 href: /hq
 date: 2026-07-09
+cleared: 2026-08-08 — Founder approved the solo-founder interim; Studio production now names Ethan in SIGNAL_HQ_OPERATOR and SIGNAL_HQ_OPERATORS with the fail-closed 50-row two-person threshold retained.
 ---
 
 ## Why

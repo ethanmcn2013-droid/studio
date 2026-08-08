@@ -1,7 +1,7 @@
 ---
 id: ratify-project-vocabulary
 title: Ratify the Project vocabulary changes an agent shipped on your behalf
-status: open
+status: done
 priority: P1
 effort: quick
 blocking: false
@@ -9,6 +9,7 @@ phase: Board truth programme
 why: Two brand decisions were made and shipped inside T·114 that are yours to ratify, not an agent's.
 href: /hq
 date: 2026-07-30
+cleared: 2026-08-08 — Founder ratified `Open project` and `Season`.
 ---
 
 # Ratify the Project vocabulary changes

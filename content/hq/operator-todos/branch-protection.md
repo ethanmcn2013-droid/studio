@@ -1,7 +1,7 @@
 ---
 id: branch-protection
 title: Decide protection policy for the private support repositories
-status: open
+status: done
 priority: P2
 effort: quick
 blocking: false
@@ -9,6 +9,7 @@ phase: Repository governance
 why: The two production repositories are public and can be protected after their existing CI failures are repaired; private support repositories still need a paid-plan or visibility decision.
 href: /hq/experience-quality
 date: 2026-08-08
+cleared: 2026-08-08 — Founder chose to keep support repositories private with procedural enforcement; public-repository CI and protection remain agent-owned.
 ---
 
 ## Current topology

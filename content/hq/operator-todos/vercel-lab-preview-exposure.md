@@ -1,7 +1,7 @@
 ---
 id: vercel-lab-preview-exposure
 title: Revoke or retain the Studio preview-bypass secret
-status: open
+status: done
 priority: P2
 effort: quick
 blocking: false
@@ -9,6 +9,7 @@ phase: Preview security
 why: The roadmap and analytics projects were deleted, leaving one project-wide Studio bypass that is no longer needed for the old lab gallery.
 href: /hq/design-rooms
 date: 2026-08-08
+cleared: 2026-08-08 — Removed UMBRELLA_PREVIEW_BYPASS from Studio production and removed the gallery bypass plumbing; protected previews now require Vercel login.
 ---
 
 ## Decision

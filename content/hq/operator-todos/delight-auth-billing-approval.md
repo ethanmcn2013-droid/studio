@@ -1,7 +1,7 @@
 ---
 id: delight-auth-billing-approval
 title: Decide whether the Delight Layer may touch sign-in and checkout
-status: open
+status: done
 priority: P2
 effort: quick
 blocking: false
@@ -9,6 +9,7 @@ phase: Delight Layer
 why: Phases 4 and 5 are the only unbuilt parts of the Delight Layer, and both are held closed because they change authentication and payment.
 href: /hq/action-center
 date: 2026-07-27
+cleared: 2026-08-08 — Founder deliberately kept both authentication and checkout Delight phases closed.
 ---
 
 The Delight Layer shipped Phases 1, 2, 3 and 6 across Tasks and Studio. Two

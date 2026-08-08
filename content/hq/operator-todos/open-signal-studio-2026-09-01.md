@@ -1,7 +1,7 @@
 ---
 id: open-signal-studio-2026-09-01
 title: Make the launch go/no-go call
-status: open
+status: done
 priority: P0
 effort: involved
 blocking: true
@@ -10,6 +10,7 @@ why: Opening account creation and paid access is a founder decision after legal,
 href: /hq/action-center
 date: 2026-08-08
 due: 2026-09-01
+cleared: 2026-08-08 — Founder chose a readiness review, not an automatic opening; launch code now defaults closed until an explicit environment override and deploy.
 ---
 
 ## Current position

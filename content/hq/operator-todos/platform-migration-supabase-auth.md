@@ -1,7 +1,7 @@
 ---
 id: platform-migration-supabase-auth
 title: Decide whether to defer the Supabase platform migration
-status: open
+status: done
 priority: P2
 effort: quick
 blocking: false
@@ -9,6 +9,7 @@ phase: Platform foundation
 why: Consolidation removed most of the vendor-fragmentation argument; a Clerk/Turso replacement now needs a real cost, scale, SSO, or data-model trigger.
 href: /hq/decisions
 date: 2026-08-08
+cleared: 2026-08-08 — Founder approved deferral; review only on a documented cost/limit, SSO, or Postgres-only trigger.
 ---
 
 ## Recommendation

@@ -1,7 +1,7 @@
 ---
 id: planning-period-commercial-ratification
 title: Ratify the remaining commercial policy pack
-status: open
+status: done
 priority: P0
 effort: involved
 blocking: true
@@ -9,6 +9,7 @@ phase: Commercial release
 why: The current typed contract has eight genuine founder choices left; resolved Venue Edition terms and retired offers have been removed from this gate.
 href: /hq/access
 date: 2026-08-08
+cleared: 2026-08-08 — Founder ratified all eight recommended defaults; the canonical commercial contract now encodes them.
 ---
 
 ## Current truth

@@ -136,8 +136,11 @@ for (const match of dateline.matchAll(/\b(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSD
 if (contract.broadLaunchDate !== null) {
   failures.push("commercial contract must not invent a broad launch date");
 }
-if (contract.plans.pro.annualAmountCents !== null) {
-  failures.push("commercial contract must keep Pro annual unresolved until ratified");
+if (contract.plans.pro.annualAmountCents !== 12000) {
+  failures.push("commercial contract must keep the ratified Pro annual price at EUR 120");
+}
+if (contract.unresolved.length !== 0) {
+  failures.push("commercial contract must not retain choices ratified on 2026-08-08");
 }
 
 if (failures.length) {
