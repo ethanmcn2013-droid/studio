@@ -1,7 +1,8 @@
 ---
 id: premium-invite-access-policy
 title: Policy notice — accepted workspace invites now grant app access during closed beta
-status: open
+status: done
+cleared: "2026-08-08 - this was an awareness notice, not an outstanding founder action; D-018 is shipped"
 priority: P1
 blocking: false
 phase: Premium Programme Phase 2

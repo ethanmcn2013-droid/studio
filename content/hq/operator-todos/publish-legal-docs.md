@@ -3,6 +3,7 @@ id: publish-legal-docs
 title: Publish Privacy Policy, ToS, cookie/consent notice, sub-processor list
 status: open
 priority: P0
+effort: involved
 blocking: true
 phase: Phase 1
 why: Shipping an Irish/EU SaaS without accurate legal docs is a DPC/GDPR exposure; /privacy /terms /security are already public routes.

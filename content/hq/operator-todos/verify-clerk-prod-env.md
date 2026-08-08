@@ -1,9 +1,10 @@
 ---
 id: verify-clerk-prod-env
 title: Confirm Clerk production keys and closed access on the unified app
-status: open
+status: done
+cleared: "2026-08-08 - production Clerk keys exist, demo/review mode is absent, and all canonical signed-out routes redirect to /sign-in"
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
 why: Missing Clerk keys or a production review/demo mode can weaken access across all four canonical product routes.
 href: /hq/access

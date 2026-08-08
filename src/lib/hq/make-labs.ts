@@ -40,11 +40,6 @@ export type Lab = {
    *  production) by scripts/hq-redesign/lab-thumbs-external.mjs, so the main
    *  same-origin capture script skips them. */
   thumbSource?: "external";
-  /** Names a server env var holding a Vercel protection-bypass secret. When set,
-   *  the gallery appends it to href so a protected preview opens without a login.
-   *  The secret lives only in the Vercel env and the rendered (gated) HQ page —
-   *  never in this file. See resolveLabHref(). */
-  bypassEnv?: string;
 };
 
 export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb: string }> = [
@@ -386,22 +381,15 @@ export const MAKE_LABS: Lab[] = [
     state: "PARKED",
     href: "https://studio-git-direction-c-daily-signal-ethanmcn2013-1730s-projects.vercel.app/",
     external: true,
-    bypassEnv: "UMBRELLA_PREVIEW_BYPASS",
     where: "studio · direction-c-daily-signal",
     note: "An experiment where the umbrella site is itself a daily briefing, compiled each morning. Parked as a Studio homepage direction.",
     hasThumb: true,
   },
 ];
 
-/** Resolve a lab's link. For a protected preview whose bypassEnv secret is
- *  present at render time, append the Vercel protection-bypass query so the
- *  card opens without a Vercel login. Server-only: the secret is read from
- *  process.env and rendered into the (gated) HQ page, never committed. */
+/** Resolve a lab's link. Protected previews deliberately require Vercel login. */
 export function resolveLabHref(lab: Lab): string {
-  const secret = lab.bypassEnv ? process.env[lab.bypassEnv] : undefined;
-  if (!secret) return lab.href;
-  const sep = lab.href.includes("?") ? "&" : "?";
-  return `${lab.href}${sep}x-vercel-protection-bypass=${secret}&x-vercel-set-bypass-cookie=true`;
+  return lab.href;
 }
 
 /** Thumbnail public path for a lab (background-image; poster shows if absent). */

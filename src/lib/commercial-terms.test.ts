@@ -32,11 +32,17 @@ test("exports only verified consumer prices as usable amounts", () => {
   );
 });
 
-test("keeps unresolved commercial choices explicit", () => {
-  assert.equal(COMMERCIAL_TERMS.plans.pro.annualAmountCents, null);
-  assert.equal(COMMERCIAL_TERMS.plans.pro.workspaceLimit, null);
-  assert.equal(COMMERCIAL_TERMS.plans.student.workspaceLimit, null);
+test("encodes the founder-ratified commercial policy pack", () => {
+  assert.equal(COMMERCIAL_TERMS.plans.pro.annualAmountCents, 12000);
+  assert.equal(COMMERCIAL_TERMS.plans.pro.workspaceLimitBasis, "unlimited");
+  assert.equal(COMMERCIAL_TERMS.plans.student.workspaceLimit, 3);
+  assert.equal(COMMERCIAL_TERMS.plans.event.postWindow, "read_only");
+  assert.equal(COMMERCIAL_TERMS.plans.event.refundAccess, "revoked");
+  assert.equal(COMMERCIAL_TERMS.schools.availability, "manual_quote_pilot");
+  assert.equal(COMMERCIAL_TERMS.trialPolicy.openPaidFeatureTrial, false);
   assert.equal(COMMERCIAL_TERMS.broadLaunchDate, null);
+  assert.equal(COMMERCIAL_TERMS.broadLaunchPolicy, "manual_go_no_go_only");
+  assert.deepEqual(COMMERCIAL_TERMS.unresolved, []);
 });
 
 /**
@@ -98,9 +104,10 @@ test("states entitlement as unlimited and never as a count", () => {
     COMMERCIAL_TERMS.plans.venue.redeemedWorkspaceSurvivesLicenceEnd,
     true,
   );
-  assert.ok(
-    !COMMERCIAL_TERMS.unresolved.includes("venue_activation_allowance"),
-    "the allowance is ratified by D-020 and must not still read as unresolved",
+  assert.equal(
+    COMMERCIAL_TERMS.unresolved.length,
+    0,
+    "the ratified contract must not retain unresolved commercial choices",
   );
 });
 

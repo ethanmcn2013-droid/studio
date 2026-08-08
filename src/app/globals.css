@@ -8685,6 +8685,16 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
   color: var(--ink-quiet);
 }
 .hq-optodo-count[data-clear="true"] { color: #16a34a; }
+.hq-optodo-group { margin-top: 18px; }
+.hq-optodo-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.hq-optodo-group-head h3 { margin: 0; font-size: 13px; font-weight: 650; color: var(--ink); }
+.hq-optodo-group-head span,
+.hq-optodo-archive > summary { font-family: var(--font-mono-stack); font-size: 10px; letter-spacing: 0.05em; color: var(--ink-ghost); }
+.hq-optodo-group > p { margin: 2px 0 8px; font-size: 12px; line-height: 1.45; color: var(--ink-quiet); }
+.hq-optodo-archive { margin-top: 18px; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+.hq-optodo-archive > summary { cursor: pointer; list-style: none; }
+.hq-optodo-archive > summary::-webkit-details-marker { display: none; }
+.hq-optodo-archive[open] > summary { margin-bottom: 8px; }
 .hq-optodo-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .hq-optodo-row { border-top: 1px solid var(--border-soft); }
 .hq-optodo-row:first-child { border-top: 0; }
@@ -8716,6 +8726,7 @@ a.hq-statusdot-pop-action:hover { color: var(--accent); }
 .hq-optodo-tag--prio[data-priority="P1"] { color: var(--ink-quiet); }
 .hq-optodo-tag--prio[data-priority="P2"] { color: var(--ink-ghost); }
 .hq-optodo-tag--block { color: #b45309; border-color: rgba(180, 83, 9, 0.3); }
+.hq-optodo-tag--effort { color: var(--ink-quiet); }
 .hq-optodo-tag--phase { color: var(--ink-ghost); }
 .hq-optodo-body { padding: 2px 0 14px 30px; }
 .hq-optodo-steps {

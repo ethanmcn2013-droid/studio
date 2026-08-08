@@ -1,9 +1,10 @@
 ---
 id: provide-turso-platform-token
 title: Create a Turso Platform API token so the reset can create the new databases
-status: open
+status: done
+cleared: "2026-08-08 - the reset completed: new databases were created, data imported, and legacy stores retired"
 priority: P0
-blocking: true
+blocking: false
 phase: Stack reset
 why: Phases 2–6 of the data-layer reset (create the 11 new databases, import, drop the 13 old ones) cannot run without it — no Turso CLI is installed and only per-database tokens exist on this machine.
 href: /hq

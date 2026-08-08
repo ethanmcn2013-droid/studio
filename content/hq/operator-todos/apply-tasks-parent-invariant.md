@@ -1,9 +1,10 @@
 ---
 id: apply-tasks-parent-invariant
 title: Apply the Tasks parent-workspace invariant after backup and dry run
-status: open
+status: done
+cleared: "2026-08-08 - both parent-workspace triggers are in the reset baseline and production migration receipts are current"
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
 why: Runtime guards now protect the boundary, but production needs a database invariant after legacy rows are audited.
 href: /hq/platform-readiness

@@ -1,9 +1,10 @@
 ---
 id: venues-page-founding-25-copy
 title: Ship the approved /venues copy for the Founding 25
-status: open
+status: done
+cleared: "2026-08-08 - live /venues publishes the Founding 25, EUR 1000 founding rate, EUR 1500 standard rate, and 18-month terms"
 priority: P0
-blocking: true
+blocking: false
 phase: VEF-2026 · Commercial gate
 why: The copy is approved. The live page still publishes the retired offer until it ships, and it cannot ship alone because it depends on WP-01's uncommitted price constant.
 href: /venues

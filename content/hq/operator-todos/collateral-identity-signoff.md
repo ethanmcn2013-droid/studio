@@ -3,6 +3,7 @@ id: collateral-identity-signoff
 title: Sign off the identity & stationery set before any print run
 status: open
 priority: P1
+effort: involved
 blocking: false
 phase: Collateral Phase 1
 why: Quality-gate check 10 — nothing is printed or sent without an explicit founder yes.
