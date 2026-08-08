@@ -365,7 +365,7 @@ function Lightbox({ asset, review, index, total, onClose, onMove, onReview }: {
         </header>
         <div className={styles.lightboxStage}>
           <button type="button" className={styles.previous} onClick={() => onMove(-1)} aria-label="Previous direction">←</button>
-          <AssetVisual asset={asset} />
+          <AssetVisual asset={asset} preview />
           <button type="button" className={styles.next} onClick={() => onMove(1)} aria-label="Next direction">→</button>
         </div>
         <footer className={styles.lightboxFooter}>
@@ -433,24 +433,10 @@ function Shortlist({ assets, reviews, text, onClose, onCopy, onDownload, onRemov
   );
 }
 
-function AssetVisual({ asset, compact = false }: { asset: CuratorAsset; compact?: boolean }) {
-  if (asset.motionPreview) {
+function AssetVisual({ asset, compact = false, preview = false }: { asset: CuratorAsset; compact?: boolean; preview?: boolean }) {
+  if (preview && asset.videoSrc) {
     return (
-      <div className={styles.motionPreview} data-compact={compact || undefined}>
-        <div className={styles.motionTopline}>
-          <span>Remotion hook</span>
-          <span>{asset.motionPreview.number} / 60</span>
-        </div>
-        <div className={styles.motionField} aria-hidden="true">
-          <i /><i /><i /><i />
-          <b />
-        </div>
-        <div className={styles.motionCopy}>
-          <strong>{asset.title}</strong>
-          <span>{asset.motionPreview.closing}</span>
-        </div>
-        <small>Collection {asset.motionPreview.collection} · 4:5</small>
-      </div>
+      <video src={asset.videoSrc} poster={asset.src} controls autoPlay muted loop playsInline aria-label={`${asset.title} animation`} />
     );
   }
   return asset.src ? (

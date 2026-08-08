@@ -13,6 +13,7 @@ export type CuratorAsset = {
   category: CuratorCategory;
   title: string;
   src?: string;
+  videoSrc?: string;
   source: string;
   sourceHref?: string;
   motionPreview?: {
@@ -350,6 +351,8 @@ const remotionHooks: CuratorAsset[] = remotionHookDefinitions.map(
       id: `R-${number.padStart(3, "0")}`,
       category: "remotion-hooks",
       title,
+      src: `/brand/assets/remotion-hooks/r-${number.padStart(3, "0")}.png`,
+      videoSrc: `/brand/assets/remotion-hooks/r-${number.padStart(3, "0")}.mp4`,
       source: `signal-motion/${folder} · ${branch}`,
       sourceHref: `https://github.com/ethanmcn2013-droid/signal-motion/tree/${branch}/src/compositions/${folder}`,
       motionPreview: { number, closing, collection },
