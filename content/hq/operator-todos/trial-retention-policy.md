@@ -1,7 +1,8 @@
 ---
 id: trial-retention-policy
 title: Decide trial / comp-code abuse policy and data-retention windows
-status: open
+status: done
+cleared: "2026-08-08 - abuse policy moved to the commercial decision pack and retention moved to the GDPR lifecycle task"
 priority: P1
 blocking: false
 phase: Phase 5

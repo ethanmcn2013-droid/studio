@@ -1,9 +1,10 @@
 ---
 id: premium-task-detail-review
 title: Review the task-detail lab and accept or redirect the direction
-status: open
+status: done
+cleared: "2026-08-08 - the accepted task-detail direction shipped to production and T132 completed the focus-window pass"
 priority: P1
-blocking: true
+blocking: false
 phase: Premium Programme Phase 3
 why: The new task-detail experience (resizable panel + focus mode over one composition) is built as a lab and judged strong by the lead against the current form-like panel. Per the lab-parity standard the production port waits for your side-by-side acceptance.
 href: /hq/decisions

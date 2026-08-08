@@ -2,7 +2,8 @@
 id: premium-inapp-themes
 title: Decide whether the Tasks product app may offer user-selected dark and premium themes
 status: open
-priority: P3
+priority: P2
+effort: quick
 blocking: false
 phase: Premium Programme Phase 4
 why: The light-lock (2026-07) bans dark on Signal Studio marketing and HQ surfaces. Whether the signed-in product app may offer an opt-in dark or premium theme is a separate product decision (DECISIONS D-013). Phase 4 builds the token plumbing either way; dark stays unexposed behind preference until you sign off here.

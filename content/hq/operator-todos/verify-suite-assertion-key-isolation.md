@@ -1,9 +1,10 @@
 ---
 id: verify-suite-assertion-key-isolation
 title: Provision isolated assertion keys and replay storage for cross-product calls
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; secret isolation and durable replay protection are app security engineering"
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
 why: Signed assertions remove body impersonation, but one shared HMAC secret still leaves a fleet-wide blast radius and JTI replay is not persisted.
 href: /hq/platform-readiness

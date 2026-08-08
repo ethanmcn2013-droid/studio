@@ -3,6 +3,7 @@ id: delight-auth-billing-approval
 title: Decide whether the Delight Layer may touch sign-in and checkout
 status: open
 priority: P2
+effort: quick
 blocking: false
 phase: Delight Layer
 why: Phases 4 and 5 are the only unbuilt parts of the Delight Layer, and both are held closed because they change authentication and payment.

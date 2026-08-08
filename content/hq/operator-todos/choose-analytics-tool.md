@@ -1,17 +1,19 @@
 ---
 id: choose-analytics-tool
-title: Choose a product-analytics tool (PostHog recommended)
+title: Approve PostHog and create the production project
 status: open
 priority: P1
+effort: quick
 blocking: false
-phase: Phase 4
-why: Launching blind on activation/retention/segment data — eng needs a sink before wiring events.
+phase: Product analytics
+why: PostHog is already the coded and disclosed sink, but the consolidated app has no production project key.
 href: /hq/reporting
-date: 2026-06-23
+date: 2026-08-08
 ---
 
-## Steps
+## Decision and action
 
-1. Pick the tool (PostHog self-host or cloud recommended).
-2. Approve the consent-gated tracking plan.
-3. Provision the project + keys so eng can wire emit points from `recordActivity` / `emitTasksChanged`.
+Approve PostHog Cloud EU with cookieless, consent-gated events and no session
+replay (recommended), or explicitly choose a different sink. If approved,
+create the project; the agent can then wire the project key, verify the narrow
+activation/retention event contract, and keep replay disabled.

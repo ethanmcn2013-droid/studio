@@ -1,7 +1,8 @@
 ---
 id: page-deletion-signoff
 title: Sign off the page-deletion audit (orphaned routes across the suite)
-status: open
+status: done
+cleared: "2026-08-08 - the old multi-repo route inventory was superseded by the consolidated URL contract; residual hygiene is engineering work"
 priority: P2
 blocking: false
 phase: P1 punch-list

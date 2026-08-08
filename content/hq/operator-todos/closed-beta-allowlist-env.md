@@ -1,7 +1,8 @@
 ---
 id: closed-beta-allowlist-env
 title: Set SIGNAL_ALLOWLIST env on the four product Vercel projects
-status: open
+status: done
+cleared: "2026-08-08 - SIGNAL_ALLOWLIST exists on the single consolidated app Production environment"
 priority: P0
 blocking: false
 phase: Phase 1

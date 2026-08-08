@@ -1,9 +1,10 @@
 ---
 id: staging-turso-db
 title: Repair Signal Preview database access and provider tokens
-status: open
+status: done
+cleared: "2026-08-08 - superseded by the consolidated app Preview database set; the retired Signal project no longer exists"
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
 why: Dedicated Preview databases exist, but Signal's saved credentials are rejected and its provider tokens are write-capable, so live verification cannot proceed safely.
 href: /hq/health

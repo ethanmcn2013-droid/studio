@@ -3,6 +3,7 @@ id: hq-per-operator-identity
 title: Approve moving HQ to per-operator identity so the audit ledger is real.
 status: open
 priority: P0
+effort: quick
 blocking: true
 phase: Phase 1
 why: With a single shared HQ password the audit log can only ever say "someone with the cookie", so it is theatre.

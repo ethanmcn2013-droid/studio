@@ -3,6 +3,7 @@ id: ratify-project-vocabulary
 title: Ratify the Project vocabulary changes an agent shipped on your behalf
 status: open
 priority: P1
+effort: quick
 blocking: false
 phase: Board truth programme
 why: Two brand decisions were made and shipped inside T·114 that are yours to ratify, not an agent's.

@@ -3,6 +3,7 @@ id: ai-spend-budget
 title: Set an AI spend budget + alert (Anthropic / AI Gateway)
 status: open
 priority: P0
+effort: quick
 blocking: true
 phase: Phase 1
 why: streamText in tasks has no cost ceiling — a single actor can drive unbounded Anthropic spend.

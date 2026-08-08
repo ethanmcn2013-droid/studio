@@ -3,6 +3,7 @@ id: collateral-press-signoff
 title: Approve the press kit drafts, confirm venue pricing, book the photography
 status: open
 priority: P1
+effort: involved
 blocking: true
 phase: Collateral Phase 3
 why: The deck's rollout locks the media kit complete in July, before any outreach — the drafts and the shoot are the only open items.
