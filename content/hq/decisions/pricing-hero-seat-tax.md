@@ -1,29 +1,29 @@
 ---
 id: pricing-hero-seat-tax
-title: Lead pricing with the no-seat-tax promise.
+title: Lead pricing with a truthful plan decision.
 category: Brand
-date: 2026-07-08
+date: 2026-08-09
 status: Active
-reviewDate: 2026-08-08
+reviewDate: 2026-09-09
 relatedObjects: [Pricing, Unified pricing, Brand handbook]
 ---
 
 ## Decision
 
-Set the pricing hero to "One price. No seat tax." with the subline "Use what you need. Invite who you need. The price does not move."
+Set the pricing hero to "Choose the shape. Keep the whole suite." Follow it with a use-case selector that explains Free, Student, Pro, and Event Workspace before asking for a waitlist commitment. Every plan includes Notes, Tasks, Timeline, and the daily briefing.
 
 ## Reason
 
-The prior line, "One price. All the clarity you need.", was clean but too generic. Pricing-page readers need the commercial refusal first: Signal Studio does not punish collaboration or split the suite into product taxes.
+"One price" and "No seat tax" described a simpler commercial model than the four ratified plan shapes and differentiated editing-member terms support. The public page must distinguish plan prices and carry the selected plan into the waitlist.
 
 ## Alternatives considered
 
-Keep the clarity-led line. Lead with "One workspace. One price." Lead with "No seat tax. No product tax."
+Keep the no-seat-tax promise. Hide unresolved limits until checkout. Present all plans as equal cards without a recommendation path.
 
 ## Risks
 
-"No seat tax" is sharper than standard pricing copy. That is the point, but it relies on the subline to explain the promise.
+The selector adds an interaction to a previously static page. It must preserve keyboard use, visible focus, unique CTA names, 320px reflow, and plan continuity at the waitlist destination.
 
 ## Notes
 
-This keeps the pricing page in the house voice: plain, direct, and against the normal SaaS pricing game.
+Do not restore universal seat, retention, renewal, or price-lock promises. State only the plan-specific facts in the ratified commercial contract and repeat them before purchase.

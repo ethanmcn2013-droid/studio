@@ -2,1207 +2,262 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
-import {
-  formatEuroCents,
-  requireVerifiedAmount,
-} from "@/lib/commercial-terms";
+import { formatEuroCents, requireVerifiedAmount } from "@/lib/commercial-terms";
+import { PlanPicker, type PricingPlan } from "./plan-picker";
 
 const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
 const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
-const PRO_MONTHLY_PRICE = formatEuroCents(requireVerifiedAmount("pro"));
+const PRO_PRICE = formatEuroCents(requireVerifiedAmount("pro"));
 const EVENT_PRICE = formatEuroCents(requireVerifiedAmount("event"));
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `One subscription. Every kind of clarity. Free forever for solo. ${PRO_MONTHLY_PRICE} a month for Pro. ${EVENT_PRICE} one-time for an event. ${STUDENT_PRICE} a year for students. Annual Pro terms are not open while they are being confirmed.`,
+  description: `Four clear access shapes, one complete suite. Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or ${EVENT_PRICE} one-time for an event.`,
   openGraph: {
     title: "Pricing · Signal Studio",
-    description:
-      "One subscription. Every kind of clarity. No per-seat tax. No per-product tax.",
+    description: "Choose the shape that matches the work. Every plan includes Notes, Tasks, Timeline and the daily briefing in Home.",
     type: "website",
   },
 };
 
-/* ── Type ─────────────────────────────────────────────────────────── */
-
-type Tier = {
-  name: string;
-  recommended?: boolean;
-  price: string;
-  cadence: string;
-  /** Plainly-stated annual prepay. No "SAVE %" theatre, the number is the number. */
-  annual?: string;
-  annualHref?: string;
-  body: string;
-  pills?: { label: string; value: string }[];
-  cta: string;
-  href: string;
-};
-
-type InsideProduct = {
-  // key is the internal CSS/animation hook (globals.css .pricing-mark[data-key=…]);
-  // it stays on the original gesture identity. Only `word` carries the rename.
-  key: "tasks" | "timeline" | "notes" | "signal";
-  word: string;
-  position: string;
-  desc: string;
-  status: "shipped" | "build" | "design";
-  statusLabel: string;
-};
-
-/* ── Static content ───────────────────────────────────────────────── */
-
-/* Access is staged. Every tier CTA routes through the public waitlist,
- * not a live checkout, until operator-controlled product and privacy gates
- * pass. The
- * checkout wiring (Tasks-owned /api/checkout, entitlements mirror) is
- * reconnected when access opens. */
 function waitlistHref(artifact: string, plan: string): string {
   return `/waitlist?source=pricing&campaign=pre_access_waitlist&artifact=${artifact}&plan=${plan}&touch=site`;
 }
 
-const TIERS: Tier[] = [
+const PLANS: readonly PricingPlan[] = [
   {
+    id: "free",
+    useCase: "Just me",
     name: "Free",
     price: FREE_PRICE,
     cadence: "forever",
-    body: "One workspace. All three products and the daily briefing. Three editing guests. No card needed.",
-    pills: [
-      { label: "Workspaces", value: "One" },
-      { label: "Guests", value: "Three" },
-      { label: "Window", value: "Forever" },
+    summary: "Start one workspace with the whole suite. No card and no trial countdown.",
+    facts: [
+      { label: "Workspace", value: "One" },
+      { label: "Editing guests", value: "Three" },
+      { label: "Access window", value: "Forever" },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Free waitlist",
     href: waitlistHref("pricing_free", "free"),
   },
   {
+    id: "student",
+    useCase: "I study",
     name: "Student",
     price: STUDENT_PRICE,
-    cadence: "/ year · verification confirmed before access",
-    body: "The full suite at a student price. Verification and payment details will be confirmed before paid access opens.",
-    pills: [
-      { label: "Workspaces", value: "Confirmed at access" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "Yearly" },
+    cadence: "per year",
+    summary: "The complete suite at a student price. Three workspaces, three editing guests, and verified student status with annual re-verification.",
+    facts: [
+      { label: "Eligibility", value: "Student verification" },
+      { label: "Workspaces", value: "Three" },
+      { label: "Editing guests", value: "Three" },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Student waitlist",
     href: waitlistHref("pricing_student", "student"),
   },
   {
+    id: "pro",
+    useCase: "Ongoing work",
     name: "Pro",
+    price: PRO_PRICE,
+    cadence: "per month",
     recommended: true,
-    price: PRO_MONTHLY_PRICE,
-    cadence: "/ month",
-    annual: "Annual prepay is not open while its terms are being confirmed.",
-    body: "All three products and the daily briefing. Workspace and editing-member limits will be confirmed before purchase.",
-    pills: [
-      { label: "Workspaces", value: "Confirmed at access" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "Monthly" },
+    summary: "For work that keeps moving. Unlimited workspaces, with a verified monthly price and a €120 annual option when purchase opens.",
+    facts: [
+      { label: "Best for", value: "Crews and ongoing projects" },
+      { label: "Workspaces", value: "Unlimited" },
+      { label: "Billing", value: "€12 monthly · €120 yearly" },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Pro waitlist",
     href: waitlistHref("pricing_pro", "pro"),
   },
   {
+    id: "event",
+    useCase: "One event",
     name: "Event",
     price: EVENT_PRICE,
     cadence: "one-time · 12 months",
-    body: "One workspace for one event. Wedding, launch, move, conference. Post-window access and retention terms are confirmed before purchase.",
-    pills: [
-      { label: "Workspaces", value: "One" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "12 months" },
+    summary: "One workspace for one wedding, launch, move or conference. It stays active for 12 months, then becomes read-only.",
+    facts: [
+      { label: "Workspace", value: "One event" },
+      { label: "After 12 months", value: "Read-only" },
+      { label: "Access window", value: "12 months" },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Event waitlist",
     href: waitlistHref("pricing_event", "event"),
   },
 ];
 
-const SUITE: InsideProduct[] = [
-  {
-    key: "notes",
-    word: "notes",
-    position: "Context",
-    desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
-    status: "build",
-    statusLabel: "In development",
-  },
-  {
-    key: "tasks",
-    word: "tasks",
-    position: "Execution",
-    desc: "Run the work. Plain-language workspace for weddings, freelance, students, trades.",
-    status: "build",
-    statusLabel: "In development",
-  },
-  {
-    key: "timeline",
-    word: "timeline",
-    position: "Direction",
-    desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
-    status: "build",
-    statusLabel: "In development",
-  },
-];
+const COMPARE_ROWS = [
+  { label: "Best for", values: ["Starting solo", "Students", "Ongoing work", "One event"] },
+  { label: "Workspaces", values: ["One", "Three", "Unlimited", "One event"] },
+  { label: "Editing guests", values: ["Three", "Three", "See terms before purchase", "See terms before purchase"] },
+  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or €120 / year`, `${EVENT_PRICE} one-time`] },
+  { label: "Access", values: ["Does not expire", "Annual re-verification", "While subscribed", "12 months, then read-only"] },
+] as const;
 
-/**
- * The daily briefing is an included system capability (Signal → Home
- * consolidation, 2026-08-04) — presented as a band under the product
- * grid, never as a fourth product card.
- */
-const BRIEFING_BAND = {
-  heading: "And your daily signal — built into Home.",
-  body: "The daily briefing. What needs focus before it becomes a problem, drawn from Notes, Tasks and Timeline. Included with every plan, on every tier.",
-};
+const FAQ = [
+  {
+    q: "What is included in every plan?",
+    a: "Notes, Tasks, Timeline and the daily briefing in Home. Plans change the access shape, not which product you are allowed to use.",
+  },
+  {
+    q: "Do I pay for every person who can view a Timeline?",
+    a: "No. A link-only Timeline viewer does not become a workspace editor and does not gain workspace access. Editing-member terms are shown separately before purchase.",
+  },
+  {
+    q: "Why is Event one-time?",
+    a: `A wedding, launch, move or conference has a fixed planning window. ${EVENT_PRICE} covers one event workspace for 12 months; afterward it becomes read-only.`,
+  },
+  {
+    q: "Can I choose annual Pro?",
+    a: "Yes when paid access opens: €12 per month or €120 per year. Joining the waitlist does not select a billing cadence or charge you.",
+  },
+  {
+    q: "Am I charged when I join the waitlist?",
+    a: "No. Access is opening in small batches. The waitlist records the plan you chose; price, limits and terms are shown again before any purchase.",
+  },
+] as const;
 
-const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[] = [
-  {
-    label: "Who it's for",
-    values: [
-      "Solo, just starting",
-      "Student, verification terms confirmed before access",
-      "Crews running ongoing work",
-      "One wedding, launch, move, conference",
-    ],
-  },
-  {
-    label: "Workspaces",
-    values: ["One", "Confirmed at access", "Confirmed at access", "One, event-shaped"],
-  },
-  {
-    label: "All three products + daily briefing",
-    values: ["Yes", "Yes", "Yes", "Yes"],
-  },
-  {
-    label: "Editing guests",
-    values: [
-      "Three",
-      "Confirmed at access",
-      "Confirmed at access",
-      "Confirmed at access",
-    ],
-  },
-  {
-    label: "Price",
-    values: [
-      FREE_PRICE,
-      `${STUDENT_PRICE} / year`,
-      `${PRO_MONTHLY_PRICE} / month`,
-      `${EVENT_PRICE} one-time`,
-    ],
-  },
-  {
-    label: "Window",
-    values: ["Forever", "Yearly", "Monthly, cancel anytime", "12 months"],
-  },
-  {
-    label: "After the window",
-    values: [
-      "—",
-      "Renewal terms confirmed before access",
-      "Drops to Free",
-      "Post-window terms confirmed before purchase",
-    ],
-  },
-];
-
-const REFUSALS: { neg: string; pos: string }[] = [
-  {
-    neg: "No hidden seat assumptions.",
-    pos: "Editing-member limits and link-only viewers are stated separately before purchase.",
-  },
-  {
-    neg: "Not per product.",
-    pos: "The three work as one. Pay once. Use what you need, when you need it.",
-  },
-  {
-    neg: "Not a trial that ends.",
-    pos: "The free tier is free forever. No fourteen-day countdown. No verify-to-continue.",
-  },
-];
-
-const FAQ: { q: string; a: string }[] = [
-  {
-    q: "Why a one-time price for events?",
-    a: `Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. ${EVENT_PRICE} captures the value while you need it. The active window is 12 months; post-window retention wording is being confirmed before purchase.`,
-  },
-  {
-    q: "Do I have to pay per person?",
-    a: "Current paid-plan editor limits are being reconciled with enforcement before checkout opens. Link-only Audience Timeline viewers are separate from editing members and do not gain Workspace access.",
-  },
-  {
-    q: "Can I cancel?",
-    a: "Yes. One tap in the workspace settings. You keep the workspace through the end of the month, then it drops to Free.",
-  },
-  {
-    q: "What if I only ever use one of the three products?",
-    a: "Then you have the cleanest single product in its category, with two more sitting there in case you ever want them — and the daily briefing in Home either way. That is still a good deal. We will not pressure you to use the rest.",
-  },
-  {
-    q: "Will the price move as the suite grows?",
-    a: "No. The suite is in development. As each product deepens, your price stays where it is. You pay for Signal Studio, not for a feature count, and we honor that by holding the price steady.",
-  },
-  {
-    q: "Can I switch tiers?",
-    a: "Anytime. Up, down, sideways. No annual contracts on the Pro plan. Cancel and you keep access through the end of the current month.",
-  },
-  {
-    q: "Why one price for three products?",
-    a: "Because the products are kinds of clarity, not tools to be metered. Pricing them separately would mean you have to translate between Notes, Tasks and Timeline, which is the exact translation tax Signal Studio exists to remove. The daily briefing in Home reads across all three — splitting it out would break the point.",
-  },
-];
-
-/* ── Helpers ──────────────────────────────────────────────────────── */
-
-function eyebrowStyle(): React.CSSProperties {
-  return {
-    fontFamily: "var(--font-mono)",
-    fontSize: 11,
-    color: "var(--ink-quiet)",
-    letterSpacing: "var(--tracking-eyebrow)",
-    textTransform: "uppercase",
-    fontWeight: 600,
-  };
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.13em] text-accent">{children}</p>;
 }
 
-function statusPipColor(s: InsideProduct["status"]): string {
-  // Tokenized in globals.css. The non-shipped branch is a defensive fallback
-  // for the "build"/"design" states the type allows, kept (not deleted) so a
-  // product moving off "shipped" still renders a pip.
-  return s === "shipped" ? "var(--status-live)" : "var(--status-building)";
-}
-
-/* ── Page ─────────────────────────────────────────────────────────── */
-
-export default async function PricingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ status?: string; upgrade?: string }>;
-}) {
-  const params = await searchParams;
-  const checkoutOffline = params.status === "checkout-offline";
-
+export default function PricingPage() {
   return (
     <>
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+      <main className="flex flex-1 flex-col" id="main" tabIndex={-1}>
         <MarketingDelightController />
-        {checkoutOffline ? (
-          <div
-            role="status"
-            className="mx-auto w-full max-w-[1180px] px-6 pt-6"
-            style={{ marginTop: 16 }}
-          >
-            <div
-              style={{
-                background: "var(--bg-deep)",
-                border: "1px solid var(--border-soft)",
-                borderRadius: 12,
-                padding: "14px 18px",
-                fontSize: 13.5,
-                color: "var(--ink-soft)",
-              }}
-            >
-              <strong style={{ color: "var(--ink)" }}>
-                Checkout is temporarily offline.
-              </strong>{" "}
-              Pro and Event purchases will resume when resolved. Free and
-              Student access remain available, start there, or email{" "}
-              <a
-                href="mailto:hello@signalstudio.ie"
-                style={{ color: "var(--ink)" }}
-              >
-                hello@signalstudio.ie
-              </a>{" "}
-              and we&apos;ll grant access manually.
-            </div>
-          </div>
-        ) : null}
 
-        {/* ── 1 · Frame ─────────────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 pt-16 pb-20 md:pt-24 md:pb-24">
-          <div className="mb-6" style={eyebrowStyle()}>
-            Signal Studio · Pricing
-          </div>
-          <h1
-            className="h-display max-w-[22ch] text-balance text-ink"
-            style={{ marginBottom: 24 }}
-          >
-            One price. No seat tax.
+        <section className="mx-auto w-full max-w-[1120px] px-5 pb-12 pt-14 sm:px-6 md:pb-16 md:pt-24">
+          <Eyebrow>Pricing</Eyebrow>
+          <h1 className="mt-5 max-w-[18ch] text-balance text-[clamp(2.8rem,2rem+4vw,6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-ink">
+            Choose the shape. Keep the whole suite.
           </h1>
-          <p
-            className="max-w-[56ch] text-ink-soft"
-            style={{ fontSize: 19, lineHeight: 1.55 }}
-          >
-            Use what you need. Invite who you need. The price does not move.
+          <p className="mt-6 max-w-[62ch] text-[clamp(1.05rem,0.98rem+0.35vw,1.25rem)] leading-8 text-ink-soft">
+            Every plan includes Notes, Tasks, Timeline and the daily briefing in Home. Access opens in small batches, and the price, limits and renewal terms are repeated before you commit.
           </p>
-        </section>
-
-        {/* ── 2 · Tier grid ─────────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-          <div className="mb-4" style={eyebrowStyle()}>
-            Plans
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "20ch", marginBottom: 32 }}
-          >
-            Pick the one that matches how you work.
-          </h2>
-
-          <div
-            className="text-ink-quiet"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 11,
-              letterSpacing: "var(--tracking-eyebrow)",
-              textTransform: "uppercase",
-              marginBottom: 20,
-            }}
-          >
-            Monthly billing
-          </div>
-
-          <p
-            className="md:hidden text-ink-quiet"
-            style={{
-              fontSize: 14,
-              lineHeight: 1.5,
-              marginBottom: 18,
-              maxWidth: "44ch",
-            }}
-          >
-            Planning one event? The {EVENT_PRICE} Event tier is the last card below.
-          </p>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-            data-delight="pricing-plans"
-            data-delight-once
-            style={{
-              border: "1px solid var(--border)",
-              background: "var(--bg-elev)",
-            }}
-          >
-            {TIERS.map((t, i) => (
-              <div
-                key={t.name}
-                className={`flex flex-col md:min-h-[360px] ${i === 1 ? "order-2 md:order-none" : i === 2 ? "order-1 md:order-none" : i === 3 ? "order-3 md:order-none" : ""}`}
-                style={{
-                  padding: "36px 28px 32px",
-                  borderRight:
-                    i < TIERS.length - 1
-                      ? "1px solid var(--border-soft)"
-                      : "none",
-                  borderBottom:
-                    i < TIERS.length - 1
-                      ? "1px solid var(--border-soft)"
-                      : "none",
-                  background: "transparent",
-                  outline: t.recommended ? "1.5px solid var(--accent)" : "none",
-                  outlineOffset: t.recommended ? "-1.5px" : undefined,
-                  position: "relative",
-                }}
-              >
-                {/* Anchor row, only filled for recommended; renders only at md+ where horizontal alignment matters. */}
-                <div className="hidden md:block md:h-[26px] md:mb-[6px]">
-                  {t.recommended ? (
-                    <span
-                      className="inline-flex items-center"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: 10,
-                        letterSpacing: "var(--tracking-eyebrow)",
-                        textTransform: "uppercase",
-                        color: "var(--ink-quiet)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      <span className="pricing-anchor-dot" aria-hidden />
-                      For ongoing work
-                    </span>
-                  ) : null}
-                </div>
-
-                <div
-                  className="text-ink"
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 600,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {t.name}
-                </div>
-
-                <div
-                  className="text-ink"
-                  style={{
-                    marginTop: 22,
-                    fontSize: "clamp(2.25rem, 1.6rem + 1.8vw, 3.25rem)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.045em",
-                    lineHeight: 1,
-                  }}
-                >
-                  {t.price}
-                </div>
-
-                <div
-                  style={{
-                    marginTop: 8,
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 12,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  {t.cadence}
-                </div>
-
-                {t.annual ? (
-                  <div
-                    style={{
-                      marginTop: 6,
-                      fontSize: 13,
-                      color: "var(--ink-soft)",
-                    }}
-                  >
-                    {t.annualHref ? (
-                      <Link
-                        href={t.annualHref}
-                        className="pricing-annual-link"
-                        style={{
-                          color: "var(--ink-soft)",
-                          borderBottom: "1px solid var(--border)",
-                          paddingBottom: 1,
-                        }}
-                      >
-                        {t.annual}
-                      </Link>
-                    ) : (
-                      t.annual
-                    )}
-                  </div>
-                ) : null}
-
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 22,
-                    fontSize: 15,
-                    lineHeight: 1.55,
-                    flex: 1,
-                  }}
-                >
-                  {t.body}
-                </p>
-
-                {t.pills ? (
-                  <div
-                    className="md:hidden flex flex-wrap gap-x-5 gap-y-2"
-                    style={{
-                      marginTop: 18,
-                      marginBottom: 22,
-                      borderTop: "1px solid var(--border-soft)",
-                      paddingTop: 14,
-                    }}
-                    aria-label="Plan at a glance"
-                  >
-                    {t.pills.map((pill) => (
-                      <div key={pill.label} className="flex flex-col">
-                        <span
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            color: "var(--ink-soft)",
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            fontWeight: 600,
-                          }}
-                        >
-                          {pill.label}
-                        </span>
-                        <span
-                          className="text-ink"
-                          style={{ fontSize: 14, fontWeight: 500, marginTop: 2 }}
-                        >
-                          {pill.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-
-                <Link
-                  href={t.href}
-                  className="pricing-tier-cta"
-                  data-recommended={t.recommended ? "true" : undefined}
-                >
-                  {t.cta}{" "}
-                  <span className="cta-arrow" aria-hidden>
-                    →
-                  </span>
-                </Link>
-              </div>
-            ))}
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink-quiet" role="list" aria-label="Pricing commitments">
+            <span role="listitem">No charge on the waitlist</span>
+            <span role="listitem">No product add-ons</span>
+            <span role="listitem">Terms repeated before purchase</span>
           </div>
         </section>
 
-        {/* ── 3.5 · Side-by-side compare ────────────────────────── */}
-        <section
-          className="mx-auto w-full max-w-[1180px] px-6 pb-20 md:pb-24"
-          data-delight="pricing-compare"
-          data-delight-once
-        >
-          <div className="mb-4" style={eyebrowStyle()}>
-            Side by side
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "22ch", marginBottom: 12 }}
-          >
-            Same three products. Four shapes of access.
-          </h2>
-          <p
-            className="text-ink-soft"
-            style={{
-              fontSize: 17,
-              lineHeight: 1.55,
-              maxWidth: "58ch",
-              marginBottom: 36,
-            }}
-          >
-            The tiers don&apos;t differ on which products you get. All three,
-            every plan, with the daily briefing in Home. They differ on shape, who it&apos;s for, how long it
-            lasts, what
-            stays when it ends.
-          </p>
-
-          <div
-            className="hidden md:block"
-            style={{
-              border: "1px solid var(--border)",
-              background: "var(--bg-elev)",
-              overflowX: "auto",
-            }}
-          >
-            <table
-              style={{
-                width: "100%",
-                minWidth: 760,
-                borderCollapse: "collapse",
-                textAlign: "left",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    style={{
-                      padding: "22px 24px",
-                      borderBottom: "1px solid var(--border-soft)",
-                      fontWeight: 400,
-                      width: "22%",
-                    }}
-                    aria-label="Dimension"
-                  />
-                  {TIERS.map((t) => (
-                    <th
-                      key={t.name}
-                      scope="col"
-                      style={{
-                        padding: "22px 24px",
-                        borderBottom: "1px solid var(--border-soft)",
-                        borderTop: t.recommended
-                          ? "2px solid var(--accent)"
-                          : "2px solid transparent",
-                        color: "var(--ink)",
-                        background: t.recommended
-                          ? "color-mix(in srgb, var(--accent-soft) 50%, var(--bg-elev))"
-                          : "transparent",
-                        verticalAlign: "bottom",
-                      }}
-                    >
-                      {t.recommended ? (
-                        <div
-                          className="inline-flex items-center"
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            color: "var(--ink-soft)",
-                            fontWeight: 600,
-                            marginBottom: 8,
-                          }}
-                        >
-                          <span className="pricing-anchor-dot" aria-hidden />
-                          For ongoing work
-                        </div>
-                      ) : null}
-                      <div
-                        style={{
-                          fontSize: 17,
-                          fontWeight: 600,
-                          letterSpacing: "-0.015em",
-                        }}
-                      >
-                        {t.name}
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARE_ROWS.map((row, ri) => {
-                  const isLast = ri === COMPARE_ROWS.length - 1;
-                  return (
-                    <tr key={row.label}>
-                      <th
-                        scope="row"
-                        style={{
-                          padding: "18px 24px",
-                          borderBottom: isLast
-                            ? "none"
-                            : "1px solid var(--border-soft)",
-                          fontFamily: "var(--font-mono)",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "var(--ink-quiet)",
-                          letterSpacing: "var(--tracking-eyebrow)",
-                          textTransform: "uppercase",
-                          verticalAlign: "top",
-                          textAlign: "left",
-                        }}
-                      >
-                        {row.label}
-                      </th>
-                      {row.values.map((v, ci) => {
-                        const tier = TIERS[ci];
-                        return (
-                          <td
-                            key={ci}
-                            style={{
-                              padding: "18px 24px",
-                              borderBottom: isLast
-                                ? "none"
-                                : "1px solid var(--border-soft)",
-                              fontSize: 15,
-                              lineHeight: 1.5,
-                              color: tier.recommended ? "var(--ink)" : "var(--ink-soft)",
-                              background: tier.recommended
-                                ? "color-mix(in srgb, var(--accent-soft) 30%, var(--bg-elev))"
-                                : "transparent",
-                              verticalAlign: "top",
-                            }}
-                          >
-                            {v}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Mobile compare, stacked per-tier blocks, md:hidden */}
-          <div className="grid grid-cols-1 gap-4 md:hidden">
-            {TIERS.map((t, ti) => (
-              <div
-                key={t.name}
-                className={ti === 1 ? "order-2" : ti === 2 ? "order-1" : ti === 3 ? "order-3" : ""}
-                style={{
-                  border: t.recommended ? "1.5px solid var(--accent)" : "1px solid var(--border)",
-                  background: t.recommended
-                    ? "color-mix(in srgb, var(--accent-soft) 20%, var(--bg-elev))"
-                    : "var(--bg-elev)",
-                }}
-              >
-                {/* Tier header */}
-                <div
-                  style={{
-                    padding: "18px 20px 14px",
-                    borderBottom: "1px solid var(--border-soft)",
-                  }}
-                >
-                  {t.recommended ? (
-                    <div
-                      className="inline-flex items-center"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: 10,
-                        letterSpacing: "var(--tracking-eyebrow)",
-                        textTransform: "uppercase",
-                        color: "var(--ink-soft)",
-                        fontWeight: 600,
-                        marginBottom: 6,
-                      }}
-                    >
-                      <span className="pricing-anchor-dot" aria-hidden />
-                      For ongoing work
-                    </div>
-                  ) : null}
-                  <div
-                    style={{
-                      fontSize: 17,
-                      fontWeight: 600,
-                      letterSpacing: "-0.015em",
-                      color: "var(--ink)",
-                    }}
-                  >
-                    {t.name}
-                  </div>
-                </div>
-
-                {/* Rows */}
-                <dl style={{ margin: 0 }}>
-                  {COMPARE_ROWS.map((row, ri) => {
-                    const isLast = ri === COMPARE_ROWS.length - 1;
-                    return (
-                      <div
-                        key={row.label}
-                        className="flex items-start justify-between"
-                        style={{
-                          padding: "13px 20px",
-                          borderBottom: isLast ? "none" : "1px solid var(--border-soft)",
-                          gap: 16,
-                        }}
-                      >
-                        <dt
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            fontWeight: 600,
-                            color: "var(--ink-quiet)",
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            flexShrink: 0,
-                            paddingTop: 2,
-                          }}
-                        >
-                          {row.label}
-                        </dt>
-                        <dd
-                          style={{
-                            fontSize: 14,
-                            lineHeight: 1.5,
-                            color: "var(--ink-soft)",
-                            margin: 0,
-                            textAlign: "right",
-                          }}
-                        >
-                          {row.values[ti]}
-                        </dd>
-                      </div>
-                    );
-                  })}
-                </dl>
-              </div>
-            ))}
-          </div>
-
-          <p
-            className="text-ink-quiet"
-            style={{
-              marginTop: 20,
-              fontSize: 13,
-              lineHeight: 1.55,
-            }}
-          >
-            All tiers include every product, and every plan can read every
-            briefing in the app. Two things that come to you instead, the
-            morning briefing by email, and a forward-to address that turns mail
-            into notes, are part of the Pro tier. Nothing you make is
-            ever locked away by plan.
-          </p>
-        </section>
-
-        {/* ── 4 · What's inside ─────────────────────────────────── */}
-        <section
-          className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24"
-          data-delight="pricing-suite"
-          data-delight-once
-        >
-          <div className="mb-4" style={eyebrowStyle()}>
-            What&apos;s in Signal Studio
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "20ch", marginBottom: 40 }}
-          >
-            Three products. One subscription.
-          </h2>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
-            {SUITE.map((p, index) => (
-              <div
-                key={p.key}
-                data-delight-suite-card
-                data-delight-index={index}
-                style={{
-                  borderTop: "1px solid var(--border)",
-                  paddingTop: 24,
-                }}
-              >
-                <div className="flex items-baseline" style={{ gap: 12, marginBottom: 14 }}>
-                  <span
-                    className="pricing-mark small"
-                    data-key={p.key}
-                    style={{ fontSize: 20 }}
-                  >
-                    <span className="word">{p.word}</span>
-                    <span className="dot" aria-hidden />
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: 10,
-                      color: "var(--ink-quiet)",
-                      letterSpacing: "var(--tracking-eyebrow)",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {p.position}
-                  </span>
-                </div>
-                <p
-                  className="text-ink-soft"
-                  style={{ fontSize: 15, lineHeight: 1.55 }}
-                >
-                  {p.desc}
-                </p>
-                <div
-                  className="flex items-center"
-                  style={{
-                    marginTop: 18,
-                    gap: 8,
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  <span
-                    aria-hidden
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: statusPipColor(p.status),
-                      display: "inline-block",
-                    }}
-                  />
-                  {p.statusLabel}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="mt-10 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between"
-            style={{ borderTop: "1px solid var(--border)", paddingTop: 24 }}
-          >
-            <p className="text-ink" style={{ fontSize: 17, fontWeight: 500, letterSpacing: "-0.01em" }}>
-              And your daily signal
-              <span style={{ color: "var(--accent)" }}>.</span>
-            </p>
-            <p className="text-ink-soft" style={{ fontSize: 15, lineHeight: 1.55, maxWidth: "52ch" }}>
-              {BRIEFING_BAND.body}{" "}
-              <a href="/features/daily-briefing" className="text-ink" style={{ textDecorationLine: "underline", textUnderlineOffset: 4 }}>
-                See the daily briefing
-              </a>
-            </p>
-          </div>
-        </section>
-
-        {/* ── 5 · Development state ─────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-deep)",
-            borderTop: "1px solid var(--border-soft)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div
-              className="mb-6"
-              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
-            >
-              Development state
+        <section className="border-y border-border-soft bg-[var(--paper-soft)]">
+          <div className="mx-auto w-full max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
+            <div className="max-w-[680px]">
+              <Eyebrow>1 · Match the work</Eyebrow>
+              <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
+                What are you planning?
+              </h2>
+              <p className="mt-3 text-[15px] leading-7 text-ink-soft">Choose a use case. The plan, price and known limits update in one place.</p>
             </div>
-            <div
-              className="text-ink-soft"
-              style={{
-                maxWidth: "62ch",
-                borderLeft: "2px solid var(--accent)",
-                paddingLeft: 28,
-              }}
-            >
-              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Signal Studio is one subscription. Today,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong> and{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Timeline</strong> are in
-                development, with the daily briefing built into Home.
-              </p>
-              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Your price stays the same as the suite deepens. You pay for
-                Signal Studio, not for a product count.
-              </p>
-              <p style={{ fontSize: 17, lineHeight: 1.6 }}>
-                We will not call a product live on this page until the product
-                behind it is ready.
+            <div className="mt-8">
+              <PlanPicker plans={PLANS} />
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20" data-delight="pricing-suite" data-delight-once>
+          <Eyebrow>2 · What stays the same</Eyebrow>
+          <div className="mt-4 grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-start">
+            <div>
+              <h2 className="max-w-[14ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
+                Three products. One continuous handoff.
+              </h2>
+              <p className="mt-4 max-w-[48ch] text-[15px] leading-7 text-ink-soft">
+                Plans do not lock away product capability. Notes captures the thought, Tasks carries the action, Timeline shares the direction, and Home reads across all three.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* ── 6 · Event lane ────────────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-elev)",
-            borderBottom: "1px solid var(--border)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div className="mb-6" style={eyebrowStyle()}>
-              Planning one event?
-            </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:gap-16 md:items-end">
-              <div>
-                <h2
-                  className="h-title text-balance text-ink"
-                  style={{ maxWidth: "22ch" }}
-                >
-                  Signal Studio for one wedding, one launch, one move.
-                </h2>
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 20,
-                    fontSize: 17,
-                    lineHeight: 1.6,
-                    maxWidth: "52ch",
-                  }}
-                >
-                  {EVENT_PRICE} one-time. 12 months of full access. All three
-                  products in a single event-shaped workspace. Post-window
-                  access and retention terms are confirmed before purchase.
-                </p>
-              </div>
-              <div className="flex flex-col md:items-end" style={{ gap: 18 }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "var(--tracking-eyebrow)",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
-                >
-                  Event lane
-                </span>
-                <span
-                  className="text-ink"
-                  style={{
-                    fontSize: "clamp(2.5rem, 1.8rem + 2vw, 3.75rem)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.045em",
-                    lineHeight: 1,
-                  }}
-                >
-                  {EVENT_PRICE}
-                </span>
-                <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
-                  <Link
-                    href="/weddings"
-                    className="pricing-event-link pricing-event-link-primary"
-                    style={{
-                      color: "var(--accent)",
-                      fontSize: 15,
-                      fontWeight: 500,
-                    }}
-                  >
-                    Plan an event{" "}
-                    <span className="cta-arrow" aria-hidden>
-                      →
-                    </span>
-                  </Link>
-                  <Link
-                    href="/weddings"
-                    className="pricing-event-link pricing-event-link-secondary"
-                    style={{
-                      color: "var(--ink-quiet)",
-                      fontSize: 13,
-                    }}
-                  >
-                    See how it works for weddings ↗
-                  </Link>
-                </div>
-              </div>
-            </div>
-            {/* Venue Editions surface, quiet line, no CTA, no link.
-                The couples this is for arrive via their venue, not
-                via this page. The line exists for the small set of
-                couples who looked here first. */}
-            <p
-              className="text-ink-quiet"
-              style={{
-                marginTop: 36,
-                fontSize: 15,
-                lineHeight: 1.55,
-              }}
-            >
-              Planning a wedding? Ask your venue. If they sent you a code, use
-              that link instead.
-            </p>
-          </div>
-        </section>
-
-        {/* Venue patronage moved off /pricing → it lives on its own page
-            (/venues, the Founding Venue Programme). Venues are a different
-            audience and motion from the four self-serve tiers; keeping the
-            consumer pricing page about the consumer tiers. A quiet pointer
-            for the rare couple who lands here first stays in the Event lane
-            above ("Planning a wedding? Ask your venue."). */}
-
-        {/* ── 7 · What this isn't ───────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-          <div className="mb-4" style={eyebrowStyle()}>
-            What this isn&apos;t
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "24ch", marginBottom: 40 }}
-          >
-            Three things Signal Studio refuses to do.
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {REFUSALS.map((r, i) => (
-              <div
-                key={r.neg}
-                style={{
-                  padding: i === 0 ? "0 28px 0 0" : "0 28px",
-                  borderLeft:
-                    i > 0 ? "1px solid var(--border-soft)" : "none",
-                }}
-              >
-                <div
-                  className="text-ink"
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 500,
-                    letterSpacing: "-0.02em",
-                    marginBottom: 12,
-                  }}
-                >
-                  {r.neg}
-                </div>
-                <p
-                  className="text-ink-soft"
-                  style={{ fontSize: 15, lineHeight: 1.55 }}
-                >
-                  {r.pos}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 8 · FAQ ───────────────────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-deep)",
-            borderTop: "1px solid var(--border-soft)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div
-              className="mb-4"
-              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
-            >
-              Questions
-            </div>
-            <h2
-              className="h-title text-balance text-ink"
-              style={{ maxWidth: "24ch", marginBottom: 48 }}
-            >
-              The honest answers, in plain English.
-            </h2>
-
-            <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2">
-              {FAQ.map((f) => (
-                <div key={f.q}>
-                  <div
-                    className="text-ink"
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 500,
-                      letterSpacing: "-0.02em",
-                      marginBottom: 10,
-                    }}
-                  >
-                    {f.q}
-                  </div>
-                  <p
-                    className="text-ink-soft"
-                    style={{ fontSize: 15, lineHeight: 1.6 }}
-                  >
-                    {f.a}
-                  </p>
-                </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                ["notes", "Notes", "Capture", "Private by default. You choose exactly what becomes work."],
+                ["tasks", "Tasks", "Execute", "Run the work in plain language, with dates, owners and receipts."],
+                ["timeline", "Timeline", "Direct", "Publish a frozen link-only copy after you review it."],
+              ].map(([key, name, role, body]) => (
+                <article className="pricing-mark min-w-0 rounded-xl border border-border-soft bg-white p-4" data-key={key} key={key}>
+                  <span className="dot" aria-hidden="true" />
+                  <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-faint">{role}</p>
+                  <h3 className="mt-1 text-[17px] font-semibold text-ink">{name}</h3>
+                  <p className="mt-2 text-[13px] leading-6 text-ink-soft">{body}</p>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── 9 · Quiet close ───────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 pt-24 pb-24 md:pt-28 md:pb-28">
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "14ch", marginBottom: 28 }}
-          >
-            Everything important. Nothing distracting.
-          </h2>
-          <p
-            className="text-ink-soft"
-            style={{
-              maxWidth: "48ch",
-              fontSize: 19,
-              lineHeight: 1.55,
-              marginBottom: 48,
-            }}
-          >
-            One price. Every kind of clarity. Built for everyone else.
-          </p>
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 13,
-              letterSpacing: "0.04em",
-              color: "var(--ink-quiet)",
-            }}
-          >
-            <a
-              href="mailto:hello@signalstudio.ie"
-              className="pricing-email-link"
-              style={{
-                color: "var(--ink-soft)",
-                borderBottom: "1px solid var(--ink-300)",
-                paddingBottom: 1,
-              }}
-            >
-              hello@signalstudio.ie
-            </a>
-            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
-            Limerick
-            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
-            2026
+        <section className="border-y border-border-soft bg-white">
+          <div className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20">
+            <Eyebrow>3 · Compare only what changes</Eyebrow>
+            <h2 className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
+              The decision, without the fine-print maze.
+            </h2>
+
+            <div className="mt-8 hidden overflow-x-auto md:block">
+              <table className="w-full table-fixed border-collapse text-left text-[13px] leading-5">
+                <caption className="sr-only">Signal Studio plan comparison</caption>
+                <thead>
+                  <tr className="border-b border-border-soft">
+                    <th className="w-[18%] px-3 py-3" scope="col"><span className="sr-only">Dimension</span></th>
+                    {PLANS.map((plan) => <th className="px-3 py-3 text-[14px] font-semibold text-ink" key={plan.id} scope="col">{plan.name}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_ROWS.map((row) => (
+                    <tr className="border-b border-border-soft align-top" key={row.label}>
+                      <th className="px-3 py-4 font-medium text-ink" scope="row">{row.label}</th>
+                      {row.values.map((value, index) => <td className="[overflow-wrap:anywhere] px-3 py-4 text-ink-soft" key={PLANS[index].id}>{value}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-7 grid gap-4 md:hidden">
+              {PLANS.map((plan, planIndex) => (
+                <section className="min-w-0 rounded-xl border border-border-soft bg-[var(--paper-soft)] p-4" key={plan.id} aria-labelledby={`mobile-plan-${plan.id}`}>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="text-[17px] font-semibold text-ink" id={`mobile-plan-${plan.id}`}>{plan.name}</h3>
+                    <span className="font-mono text-[12px] text-ink-soft">{plan.price}</span>
+                  </div>
+                  <dl className="mt-3 divide-y divide-border-soft">
+                    {COMPARE_ROWS.map((row) => (
+                      <div className="grid min-w-0 grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-3 py-2.5" key={row.label}>
+                        <dt className="text-[12px] font-medium text-ink">{row.label}</dt>
+                        <dd className="min-w-0 [overflow-wrap:anywhere] text-[12px] leading-5 text-ink-soft">{row.values[planIndex]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <Link className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-ink px-4 text-[13px] font-semibold text-ink no-underline" href={plan.href}>{plan.cta}</Link>
+                </section>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[860px] px-5 py-14 sm:px-6 md:py-20">
+          <Eyebrow>Before you choose</Eyebrow>
+          <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">Straight answers.</h2>
+          <div className="mt-7 divide-y divide-border-soft border-y border-border-soft">
+            {FAQ.map((item) => (
+              <details className="group py-1" key={item.q}>
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-[15px] font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                  {item.q}<span aria-hidden="true" className="text-ink-faint transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="max-w-[68ch] pb-5 text-[14px] leading-7 text-ink-soft">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-t border-border-soft bg-[var(--paper-soft)]">
+          <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-6 px-5 py-14 sm:px-6 md:flex-row md:items-end md:justify-between md:py-20">
+            <div>
+              <Eyebrow>Access opens in small batches</Eyebrow>
+              <h2 className="mt-3 max-w-[17ch] text-balance text-[clamp(2rem,1.6rem+1.6vw,3.4rem)] font-semibold tracking-[-0.05em] text-ink">Pick the plan that fits now. Change it before access.</h2>
+            </div>
+            <Link className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[14px] font-semibold text-white no-underline" href="#main">Choose a plan above</Link>
           </div>
         </section>
       </main>

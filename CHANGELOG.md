@@ -8,6 +8,21 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-09 · S·164 · tightens · pricing asks one truthful question first
+
+**Pricing now recommends a plan from the visitor's use case, keeps the whole
+suite in every answer, and carries the named choice into the waitlist.** The
+page no longer promises one price, unlimited invitations, or fixed commercial
+terms while four plan shapes and editor limits remain visible. A semantic
+desktop comparison and compact mobile plan facts replace the eleven-thousand-
+pixel serial decision path.
+
+The public story is shorter and more exact. About now moves from belief to
+operating proof to invitation; the landing page removes a duplicate manifesto
+act; and its Mara and Finn object uses the same dates, milestones, states, and
+owner-review boundary as the product fixture. Home remains the front door and
+daily briefing, not a fourth product.
+
 ## 2026-08-09 · S·163 · tightens · the control plane agrees on what Signal Studio is
 
 **The brand, HQ, infrastructure map, and experience registry now tell one

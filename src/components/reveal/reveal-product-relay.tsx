@@ -11,17 +11,17 @@ const RELAY_SIGNAL_ITEMS: SignalReadItem[] = [
   {
     ordinal: "01",
     claim: "now",
-    title: "The side room hold still needs confirmation.",
-    why: "Mara approved the request in Notes. The venue reply is still open in Tasks.",
+    title: "The final dietary list still needs confirmation.",
+    why: "Mara and Finn confirmed the tasting in Notes. The follow-up is still open in Tasks.",
     receipts: ["Notes + Tasks", "updated today"],
     action: "Open task",
   },
   {
     ordinal: "02",
     claim: "next",
-    title: "The public plan changes after confirmation.",
-    why: "Once confirmed, the shared Timeline publishes the side room milestone for 30 July.",
-    receipts: ["Timeline", "current share"],
+    title: "The shared plan changes only after review.",
+    why: "The frozen Timeline shows Menu tasting at The Orchard for 1 August. Source changes wait for the owner.",
+    receipts: ["Timeline", "frozen copy"],
     action: "Open timeline",
   },
 ];
@@ -32,7 +32,7 @@ const CHAPTERS = [
     number: "01",
     title: "notes",
     eyebrow: "Catch the source",
-    body: "A venue detail lands in a private note. Only the exact line Mara approves crosses into work.",
+    body: "A private note records the confirmed tasting. Only the exact line approved for action crosses into work.",
     foot: "Private note → approved extract",
     href: PRODUCT_MARKETING_URLS.notes,
     cta: "Explore Notes",
@@ -52,8 +52,8 @@ const CHAPTERS = [
     number: "03",
     title: "timeline",
     eyebrow: "Publish the right part",
-    body: "When the venue confirms, the authorised milestone joins the public plan. The private work stays private.",
-    foot: "Confirmed task → public milestone",
+    body: "The owner reviews the copied milestone before a published link changes. The private work stays private.",
+    foot: "Confirmed task → reviewed milestone",
     href: PRODUCT_MARKETING_URLS.timeline,
     cta: "Explore Timeline",
   },
@@ -106,13 +106,13 @@ export function RevealProductRelay() {
         </p>
       </header>
 
-      <div className="reveal-relay-source" aria-label="Sample workspace context">
+      <div className="reveal-relay-source" aria-label="Sample workspace context" role="group">
         <span>Sample workspace</span>
         <strong>Mara and Finn</strong>
         <span aria-hidden>·</span>
         <span>The Orchard</span>
         <span aria-hidden>·</span>
-        <time dateTime="2026-07-30">30 July</time>
+        <time dateTime="2026-07-16">16 July</time>
       </div>
 
       <div className="reveal-relay-chapters">

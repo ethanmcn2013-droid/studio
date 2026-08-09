@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience-capture/1",
-  "capturedAt": "2026-07-16T00:33:00.868Z",
+  "capturedAt": "2026-08-09T04:24:02.625Z",
   "approvedBy": null,
   "determinism": {
     "locale": "en-GB",
@@ -11,185 +11,13 @@
     "settleMilliseconds": 1200
   },
   "summary": {
-    "captures": 56,
-    "passing": 56,
+    "captures": 64,
+    "passing": 64,
     "requiringReview": 0,
-    "visualChanges": 0,
-    "missingBaselines": 16
+    "visualChanges": 4,
+    "missingBaselines": 24
   },
   "results": [
-    {
-      "experienceId": "studio.page.root",
-      "product": "studio",
-      "state": "default",
-      "breakpoint": "mobile",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "url": "https://signalstudio.ie/",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
-      "baselineScreenshot": "baselines/studio-page-root/default/mobile.png",
-      "diffScreenshot": null,
-      "candidateHash": "1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377",
-      "visual": {
-        "state": "approved",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 494,
-          "domContentLoaded": 418
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "authentication": null,
-      "pass": true,
-      "approvedBy": "Ethan McNamara",
-      "approvedAt": "2026-07-16T00:34:30.807Z",
-      "approvedCandidateHash": "1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377"
-    },
-    {
-      "experienceId": "studio.page.root",
-      "product": "studio",
-      "state": "default",
-      "breakpoint": "tablet",
-      "viewport": {
-        "width": 768,
-        "height": 1024
-      },
-      "url": "https://signalstudio.ie/",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
-      "baselineScreenshot": "baselines/studio-page-root/default/tablet.png",
-      "diffScreenshot": null,
-      "candidateHash": "ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10",
-      "visual": {
-        "state": "approved",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 419,
-          "domContentLoaded": 288
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "authentication": null,
-      "pass": true,
-      "approvedBy": "Ethan McNamara",
-      "approvedAt": "2026-07-16T00:34:30.807Z",
-      "approvedCandidateHash": "ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10"
-    },
-    {
-      "experienceId": "studio.page.root",
-      "product": "studio",
-      "state": "default",
-      "breakpoint": "desktop",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "url": "https://signalstudio.ie/",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
-      "baselineScreenshot": "baselines/studio-page-root/default/desktop.png",
-      "diffScreenshot": null,
-      "candidateHash": "69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc",
-      "visual": {
-        "state": "approved",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 403,
-          "domContentLoaded": 338
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "authentication": null,
-      "pass": true,
-      "approvedBy": "Ethan McNamara",
-      "approvedAt": "2026-07-16T00:34:30.807Z",
-      "approvedCandidateHash": "69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc"
-    },
-    {
-      "experienceId": "studio.page.root",
-      "product": "studio",
-      "state": "default",
-      "breakpoint": "wide",
-      "viewport": {
-        "width": 1440,
-        "height": 960
-      },
-      "url": "https://signalstudio.ie/",
-      "status": 200,
-      "navigationError": null,
-      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
-      "baselineScreenshot": "baselines/studio-page-root/default/wide.png",
-      "diffScreenshot": null,
-      "candidateHash": "d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe",
-      "visual": {
-        "state": "approved",
-        "changedPixels": null,
-        "ratio": null
-      },
-      "accessibility": {
-        "violations": 0,
-        "blocking": 0,
-        "ruleIds": [],
-        "details": []
-      },
-      "runtime": {
-        "overflowPixels": 0,
-        "focusTarget": "a",
-        "navigation": {
-          "duration": 367,
-          "domContentLoaded": 366
-        },
-        "consoleErrors": [],
-        "pageErrors": []
-      },
-      "authentication": null,
-      "pass": true,
-      "approvedBy": "Ethan McNamara",
-      "approvedAt": "2026-07-16T00:34:30.807Z",
-      "approvedCandidateHash": "d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe"
-    },
     {
       "experienceId": "studio.page.design",
       "product": "studio",
@@ -2456,6 +2284,498 @@
         "fixture": "signal-hq-founder-operator",
         "authenticated": true
       },
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3352/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/mobile.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/mobile.png",
+      "diffScreenshot": "diffs/studio-page-root/default/mobile.png",
+      "candidateHash": "08fa550402a7b6272c5921a303c5b05332c3ce73ca21be51cd27e1faff847d95",
+      "visual": {
+        "state": "changed",
+        "changedPixels": 37462,
+        "ratio": 0.11381091262607851
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 498,
+          "domContentLoaded": 455
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "1d4f0bcc7b5c7d2fd316fc8ae868289927ef5a8c8287a2bcacf54b21970d1377"
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3352/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/tablet.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/tablet.png",
+      "diffScreenshot": "diffs/studio-page-root/default/tablet.png",
+      "candidateHash": "3eb2eb8d32338b3290989abcb7607b9c4bd884abae94bd5edae4ac7ed650237c",
+      "visual": {
+        "state": "changed",
+        "changedPixels": 81338,
+        "ratio": 0.10342661539713542
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 458,
+          "domContentLoaded": 80
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "ebd960daa64b61ea4504944c499e243708e91acb898ea267850ca563f2b24c10"
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3352/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/desktop.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/desktop.png",
+      "diffScreenshot": "diffs/studio-page-root/default/desktop.png",
+      "candidateHash": "817b7e2122afb1db8974088c934e63de7ab32ed48c2c6b3edd0213c13034223c",
+      "visual": {
+        "state": "changed",
+        "changedPixels": 104759,
+        "ratio": 0.09093663194444444
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 268,
+          "domContentLoaded": 67
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "69b2d4818e9e6f09d1a5c348924235cf15cdd3871be8efd96f9323b0911847bc"
+    },
+    {
+      "experienceId": "studio.page.root",
+      "product": "studio",
+      "state": "default",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:3352/",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-root/default/wide.png",
+      "baselineScreenshot": "baselines/studio-page-root/default/wide.png",
+      "diffScreenshot": "diffs/studio-page-root/default/wide.png",
+      "candidateHash": "537456d0f9cd3e0d2643f0552e0bb9b4f9ffbf64dc0e637ec0a28b02b056bb63",
+      "visual": {
+        "state": "changed",
+        "changedPixels": 118311,
+        "ratio": 0.0855837673611111
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 275,
+          "domContentLoaded": 266
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true,
+      "approvedBy": "Ethan McNamara",
+      "approvedAt": "2026-07-16T00:34:30.807Z",
+      "approvedCandidateHash": "d92f72ddd12e6bd3bcc2a5bc1451e8e48e03c000ab0e3286758cb41a81539ffe"
+    },
+    {
+      "experienceId": "studio.page.about",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3352/about",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-about/long-content/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "6b810ed46801a86823f0caa1af6ceaf743cacd1aefb529a4412f7d5ed6046074",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 153,
+          "domContentLoaded": 110
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.about",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3352/about",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-about/long-content/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "76f913d4788bd0784f61dc8742f26cbf2eb957aef4be4594779b0e3a827330bb",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 140,
+          "domContentLoaded": 131
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.about",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3352/about",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-about/long-content/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "9d071b7d154cacf98738e6ec4b5878c9eee2e919f292450095d63f3b7e3fb323",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 139,
+          "domContentLoaded": 49
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.about",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:3352/about",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-about/long-content/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "630571f8781215c3a3f9ff89f2b70f3cb604cc88c92694dd3c67ff43bf879e10",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 142,
+          "domContentLoaded": 97
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.pricing",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3352/pricing",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-pricing/long-content/mobile.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "5699794445b8b5dfd0ee1c596cbd8d8874e8a82c9531a6ab55c4fc0528f9ed60",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 159,
+          "domContentLoaded": 116
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.pricing",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3352/pricing",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-pricing/long-content/tablet.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "cb428ac55c8ff4f7d8c4eb7703ba8be00a87e8a7b0180071f4c004b5e096cffd",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 148,
+          "domContentLoaded": 107
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.pricing",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3352/pricing",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-pricing/long-content/desktop.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "c9d59ba16414c461d61bc6a3f52e45cb86d8036e9c08b3b82e837b8ebf39e19a",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 159,
+          "domContentLoaded": 149
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
+      "pass": true
+    },
+    {
+      "experienceId": "studio.page.pricing",
+      "product": "studio",
+      "state": "long-content",
+      "breakpoint": "wide",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "url": "http://127.0.0.1:3352/pricing",
+      "status": 200,
+      "navigationError": null,
+      "candidateScreenshot": "screenshots/studio-page-pricing/long-content/wide.png",
+      "baselineScreenshot": null,
+      "diffScreenshot": null,
+      "candidateHash": "ebc35a71489447f2f53ba3f801be8e4cc7c01f735d2fe3bb7a1b7df04829061a",
+      "visual": {
+        "state": "missing",
+        "changedPixels": null,
+        "ratio": null
+      },
+      "accessibility": {
+        "violations": 0,
+        "blocking": 0,
+        "ruleIds": [],
+        "details": []
+      },
+      "runtime": {
+        "overflowPixels": 0,
+        "focusTarget": "a",
+        "navigation": {
+          "duration": 166,
+          "domContentLoaded": 63
+        },
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "authentication": null,
       "pass": true
     }
   ]

@@ -3,11 +3,27 @@
   "experiences": {
     "studio.page.root": {
       "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
+    },
+    "studio.page.about": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
+    },
+    "studio.page.pricing": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
     },
     "studio.page.design": {
       "auditStatus": "baseline-captured",
