@@ -1,13 +1,18 @@
 ---
 id: unified-app-url-and-naming-contract
-title: One app, four products, two canonical origins
-status: Active
+title: Historical URL contract, amended by three products and Home
+status: Superseded
 date: 2026-07-25
 owner: founder
 area: product architecture
 ---
 
 ## Decision
+
+**Superseded on 2026-08-04 by `three-products-home`.** The two-origin and
+one-application decisions remain; the four-product lineup and `/app/signal`
+destination below are historical provenance. Current routes are defined in
+that decision and the App URL/naming contract.
 
 Signal Studio is one application with four products in this order:
 

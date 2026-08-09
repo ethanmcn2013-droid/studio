@@ -4,7 +4,13 @@ Read this before any change. Canonical contract for every agent in this repo. Wo
 
 ## What this is
 
-Studio is **signalstudio.ie** — the marketing site for the suite (Signal Notes, Signal Tasks, Signal Timeline, Signal) — plus **Signal HQ** at `/hq`, a private, password-gated founder dashboard for product, launch, growth, campaigns, decisions, risks, and next actions. Not public, not linked from nav, stays `noindex`.
+Studio is **signalstudio.ie** — the marketing site for the three-product suite
+(Signal Notes, Signal Tasks, Signal Timeline) and the daily-briefing capability
+inside authenticated Home — plus **Signal HQ** at `/hq`, a private,
+password-gated founder dashboard for product, launch, growth, campaigns,
+decisions, risks, and next actions. Home is the app front door, not a fourth
+product; Signal is the company and the outcome, not a product label. HQ is not
+public, is not linked from navigation, and stays `noindex`.
 
 ## Commands
 
@@ -51,8 +57,8 @@ Shipped, operator-visible work gets a `CHANGELOG.md` entry: `## YYYY-MM-DD · X�
 
 ## North star (set 2026-08 · operator re-derives ~every six months)
 
-Three priorities govern everything front-facing — the four product
-modules and this marketing surface alike — in this order:
+Three priorities govern everything front-facing — the three products,
+authenticated Home, and this marketing surface alike — in this order:
 
 1. **Experience.** Using the product should feel considered end to end,
    and in the right moments delightful. Delight is deliberate: in the

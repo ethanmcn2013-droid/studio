@@ -5,7 +5,6 @@ const MARKETING_ROUTES = [
   "/notes",
   "/tasks",
   "/timeline",
-  "/signal",
   "/pricing",
   "/about",
 ] as const;
@@ -166,7 +165,6 @@ test.describe("public marketing delight contract", () => {
       "pricing-caret",
       "pricing-pulse",
       "pricing-sweep",
-      "pricing-tick",
     ]);
     expect(
       marks.every((mark) => !mark.iterations.includes("infinite")),
@@ -249,7 +247,7 @@ test.describe("public marketing delight contract", () => {
     ).toBe("opacity");
   });
 
-  test("all six pages remain contained at the mobile viewport", async ({
+  test("all current pages remain contained at the mobile viewport", async ({
     page,
   }) => {
     test.slow();
@@ -277,7 +275,7 @@ test.describe("public marketing delight contract", () => {
     await expect(page.locator("#mobile-nav-panel")).toBeHidden();
   });
 
-  test("all six pages have no serious accessibility violations", async ({
+  test("all current pages have no serious accessibility violations", async ({
     page,
   }) => {
     test.slow();
@@ -294,8 +292,7 @@ test.describe("public marketing delight contract", () => {
       if (
         route === "/notes" ||
         route === "/tasks" ||
-        route === "/timeline" ||
-        route === "/signal"
+        route === "/timeline"
       ) {
         // Product heroes are accepted, self-contained systems with their own
         // contract. This release changes the shell, switcher, handoff, close
