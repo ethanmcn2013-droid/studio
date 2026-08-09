@@ -192,7 +192,7 @@ test.describe("public marketing delight contract", () => {
 
     const signature = founder.locator(".about-founder-signature");
     const names = await signature.evaluate((element) => ({
-      rule: getComputedStyle(element, "::before").animationName,
+      signature: getComputedStyle(element).animationName,
       dot: getComputedStyle(
         element.querySelector<HTMLElement>(".about-founder-dot")!,
       ).animationName,
@@ -201,9 +201,9 @@ test.describe("public marketing delight contract", () => {
       ).animationName,
     }));
     expect(names).toEqual({
-      rule: "about-signature-rule",
-      dot: "about-signature-dot",
-      identity: "about-signature-identity",
+      signature: "none",
+      dot: "none",
+      identity: "none",
     });
   });
 

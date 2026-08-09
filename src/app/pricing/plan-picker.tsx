@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export type PricingPlan = Readonly<{
-  id: "free" | "student" | "pro" | "event";
+  id: "free" | "student" | "pro" | "enterprise";
   useCase: string;
   name: string;
   price: string;
@@ -93,7 +93,7 @@ export function PlanPicker({ plans }: { plans: readonly PricingPlan[] }) {
               {selected.cta}
             </Link>
             <span className="mt-2 text-center text-[11px] leading-4 text-ink-faint md:text-right">
-              Waitlist only. No charge today.
+              {selected.id === "enterprise" ? "A person will reply." : "Waitlist only. No charge today."}
             </span>
           </div>
         </div>

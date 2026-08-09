@@ -21,16 +21,17 @@ describe("Wave 3 public interface contracts", () => {
     assert.doesNotMatch(tasks, /tags: \["mara-finn"\]/);
   });
 
-  it("keeps Home subordinate to the three-product suite", () => {
+  it("keeps the public story to the three-product suite", () => {
     const about = source("src", "app", "about", "page.tsx");
     const footer = source("src", "components", "landing", "site-footer.tsx");
     const hero = source("src", "components", "reveal", "reveal-hero.tsx");
-    const manifesto = source("src", "components", "reveal", "reveal-manifesto.tsx");
+    const relay = source("src", "components", "reveal", "reveal-product-relay.tsx");
+    const closing = source("src", "components", "reveal", "reveal-closing.tsx");
     const layout = source("src", "app", "layout.tsx");
     const manifest = source("src", "app", "manifest.ts");
-    assert.match(about, /Inside Home/);
-    assert.match(about, /not a fourth product/);
-    assert.doesNotMatch(`${hero}\n${manifesto}\n${layout}`, /80%/);
+    assert.doesNotMatch(`${about}\n${hero}\n${relay}\n${layout}`, /daily briefing|daily signal|Inside Home/i);
+    assert.doesNotMatch(relay, /key: "home"|number: "04"/);
+    assert.match(closing, /the 80%/);
     assert.match(manifest, /Three products read as one system/);
     assert.doesNotMatch(manifest, /Four small tools/);
     const suite = footer.slice(footer.indexOf('heading="Suite"'));

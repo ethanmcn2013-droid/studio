@@ -23,7 +23,7 @@ export function RevealWeddingWedge() {
           ·
         </span>
         <span className="reveal-wedge-line">
-          Notes, Tasks, Timeline, and the daily briefing are in private preview.
+          Notes, Tasks and Timeline are in private preview.
         </span>
         <Link href="/weddings" className="reveal-wedge-link">
           See it for weddings

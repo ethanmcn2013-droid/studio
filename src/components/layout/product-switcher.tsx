@@ -131,19 +131,6 @@ export function ProductSwitcher() {
               </li>
             ))}
           </ul>
-          <div
-            className="border-t px-3.5 py-2.5"
-            style={{ borderTopColor: "color-mix(in srgb, var(--border-soft) 70%, transparent)" }}
-          >
-            <a
-              href="/features/daily-briefing"
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between gap-3 rounded-md text-[11.5px] text-ink-quiet no-underline transition-colors hover:text-ink"
-            >
-              <span>Your daily signal, built into Home</span>
-              <span aria-hidden>→</span>
-            </a>
-          </div>
         </div>
       ) : null}
     </div>

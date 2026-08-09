@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Signal Studio · Project management for people outside tech.",
   description:
-    "Project management for people outside tech. Notes, Tasks and Timeline form one clear system, with a daily briefing in Home. Plain English. Built for the work, not the workflow.",
+    "Project management for people outside tech. Notes, Tasks and Timeline form one clear system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
@@ -85,7 +85,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for people outside tech. Signal Notes, Signal Tasks and Signal Timeline read as one system, with a daily briefing built into Home.",
+      "Project management for people outside tech. Signal Notes, Signal Tasks and Signal Timeline read as one clear system.",
     offers: [
       {
         "@type": "Offer",
@@ -97,11 +97,9 @@ const structuredData = [
       },
       {
         "@type": "Offer",
-        name: "Event",
-        price: "89",
-        priceCurrency: "EUR",
+        name: "Enterprise",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/waitlist`,
+        url: `${SITE_URL}/contact?subject=enterprise`,
       },
       {
         /* No price on this offer, deliberately. The ratified commercial
@@ -162,7 +160,7 @@ export default async function RootLayout({
             shaves ~100-300ms from the first cross-domain navigation.
             Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
             for browsers that don't support preconnect. */}
-        {/* The three products are one app at app.signalstudio.ie; Home carries the briefing. */}
+        {/* The three products are one app at app.signalstudio.ie. */}
         <link rel="preconnect" href="https://app.signalstudio.ie" />
         <link rel="dns-prefetch" href="https://app.signalstudio.ie" />
       </head>

@@ -9,11 +9,10 @@ const PRICING = getConsumerPricingPresentation();
 const FREE_PRICE = PRICING.plans.free.price;
 const STUDENT_PRICE = PRICING.plans.student.price;
 const PRO_PRICE = PRICING.plans.pro.price;
-const EVENT_PRICE = PRICING.plans.event.price;
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `Compare four clear access shapes for Signal Studio: Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or ${EVENT_PRICE} one-time for an event.`,
+  description: `Compare four clear access shapes for Signal Studio: Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or Enterprise with a conversation first.`,
   openGraph: {
     title: "Pricing · Signal Studio",
     description: "Choose the access shape that matches the work. Exact limits and terms are repeated before purchase.",
@@ -63,7 +62,7 @@ const PLANS: readonly PricingPlan[] = [
     price: PRO_PRICE,
     cadence: "per month",
     recommended: true,
-    summary: "For work that keeps moving. Unlimited workspaces, with a verified monthly price and a €120 annual option when purchase opens.",
+    summary: `For work that keeps moving. Unlimited workspaces, with ${PRO_PRICE} monthly or ${PRICING.plans.pro.annualPrice} annually when purchase opens.`,
     facts: [
       { label: "Best for", value: "Crews and ongoing projects" },
       { label: "Workspaces", value: PRICING.plans.pro.workspaceLimit },
@@ -73,28 +72,28 @@ const PLANS: readonly PricingPlan[] = [
     href: waitlistHref("pricing_pro", "pro"),
   },
   {
-    id: "event",
-    useCase: "One event",
-    name: PRICING.plans.event.name,
-    price: EVENT_PRICE,
-    cadence: "one-time · 12 months",
-    summary: "One workspace for one wedding, launch, move or conference. It stays active for 12 months, then becomes read-only.",
+    id: "enterprise",
+    useCase: "Larger teams",
+    name: "Enterprise",
+    price: "Let’s talk",
+    cadence: "scope and terms agreed with you",
+    summary: "For organisations that need a considered rollout, a larger editing group, or terms shaped around how the team works.",
     facts: [
-      { label: "Workspace", value: PRICING.plans.event.workspaceLimit },
-      { label: "After 12 months", value: "Read-only" },
-      { label: "Access window", value: PRICING.plans.event.access },
+      { label: "Fit", value: "Organisations and larger teams" },
+      { label: "Scope", value: "Agreed together" },
+      { label: "Next step", value: "Conversation with Signal Studio" },
     ],
-    cta: "Join the Event waitlist",
-    href: waitlistHref("pricing_event", "event"),
+    cta: "Contact our sales team",
+    href: "/contact?subject=enterprise&source=pricing&campaign=enterprise&artifact=pricing_enterprise&touch=site",
   },
 ];
 
 const COMPARE_ROWS = [
-  { label: "Best for", values: ["Starting solo", "Students", "Ongoing work", "One event"] },
-  { label: "Workspaces", values: [PRICING.plans.free.workspaceLimit, PRICING.plans.student.workspaceLimit, PRICING.plans.pro.workspaceLimit, PRICING.plans.event.workspaceLimit] },
-  { label: "Editing guests", values: [PRICING.plans.free.editingGuestLimit, PRICING.plans.student.editingGuestLimit, PRICING.plans.pro.editingGuestLimit, PRICING.plans.event.editingGuestLimit] },
-  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or ${PRICING.plans.pro.annualPrice} / year`, `${EVENT_PRICE} one-time`] },
-  { label: "Access", values: [PRICING.plans.free.access, PRICING.plans.student.access, PRICING.plans.pro.access, PRICING.plans.event.access] },
+  { label: "Best for", values: ["Starting solo", "Students", "Ongoing work", "Organisations and larger teams"] },
+  { label: "Workspaces", values: [PRICING.plans.free.workspaceLimit, PRICING.plans.student.workspaceLimit, PRICING.plans.pro.workspaceLimit, "Scoped together"] },
+  { label: "Editing guests", values: [PRICING.plans.free.editingGuestLimit, PRICING.plans.student.editingGuestLimit, PRICING.plans.pro.editingGuestLimit, "Scoped together"] },
+  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or ${PRICING.plans.pro.annualPrice} / year`, "Contact sales"] },
+  { label: "Access", values: [PRICING.plans.free.access, PRICING.plans.student.access, PRICING.plans.pro.access, "Contracted terms"] },
 ] as const;
 
 const FAQ = [
@@ -107,8 +106,8 @@ const FAQ = [
     a: "No. A link-only Timeline viewer does not become a workspace editor and does not gain workspace access. Editing-member terms are shown separately before purchase.",
   },
   {
-    q: "Why is Event one-time?",
-    a: `A wedding, launch, move or conference has a fixed planning window. ${EVENT_PRICE} covers one event workspace for 12 months; afterward it becomes read-only.`,
+    q: "When should I speak to the Enterprise team?",
+    a: "Choose Enterprise when a larger editing group, a considered rollout, or organisation-specific terms matter. We will understand the shape of the work before proposing anything.",
   },
   {
     q: "Can I choose annual Pro?",
@@ -132,12 +131,8 @@ export default function PricingPage() {
 
         <section className="mx-auto w-full max-w-[1120px] px-5 pb-12 pt-14 sm:px-6 md:pb-16 md:pt-24">
           <Eyebrow>Pricing</Eyebrow>
-          <h1 className="mt-5 max-w-[18ch] text-balance text-[clamp(2.8rem,2rem+4vw,6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-ink">
-            Choose the shape. Keep one clear system.
-          </h1>
-          <p className="mt-6 max-w-[62ch] text-[clamp(1.05rem,0.98rem+0.35vw,1.25rem)] leading-8 text-ink-soft">
-            Compare the price and known limits for each access shape. {PRICING.availability} The selected terms are repeated before you commit.
-          </p>
+          <h1 className="mt-5 max-w-[18ch] text-balance text-[clamp(2.8rem,2rem+4vw,6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-ink">Choose the shape. Keep one clear system.</h1>
+          <p className="mt-6 max-w-[62ch] text-[clamp(1.05rem,.98rem+.35vw,1.25rem)] leading-8 text-ink-soft">Compare the price and known limits for each access shape. {PRICING.availability} The selected terms are repeated before you commit.</p>
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink-quiet" role="list" aria-label="Pricing commitments">
             <span role="listitem">No charge on the waitlist</span>
             <span role="listitem">{PRICING.vatStatement}</span>
@@ -147,29 +142,19 @@ export default function PricingPage() {
 
         <section className="border-y border-border-soft bg-[var(--paper-soft)]">
           <div className="mx-auto w-full max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
-            <div className="max-w-[680px]">
-              <Eyebrow>1 · Match the work</Eyebrow>
-              <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
-                What are you planning?
-              </h2>
-              <p className="mt-3 text-[15px] leading-7 text-ink-soft">Choose a use case. The plan, price and known limits update in one place.</p>
-            </div>
-            <div className="mt-8">
-              <PlanPicker plans={PLANS} />
-            </div>
+            <Eyebrow>1 · Match the work</Eyebrow>
+            <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">What are you planning?</h2>
+            <p className="mt-3 text-[15px] leading-7 text-ink-soft">Choose a use case. The plan, price and known limits update in one place.</p>
+            <div className="mt-8"><PlanPicker plans={PLANS} /></div>
           </div>
         </section>
 
         <section className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20" data-delight="pricing-suite" data-delight-once>
-          <Eyebrow>2 · What stays the same</Eyebrow>
-          <div className="mt-4 grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-start">
+          <Eyebrow>2 · One system at every level</Eyebrow>
+          <div className="mt-4 grid gap-8 md:grid-cols-[.8fr_1.2fr] md:items-start">
             <div>
-              <h2 className="max-w-[14ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
-                Three products. One continuous handoff.
-              </h2>
-              <p className="mt-4 max-w-[48ch] text-[15px] leading-7 text-ink-soft">
-                Notes captures the thought, Tasks carries the action, Timeline shares the direction, and Home reads across all three. Exact plan entitlements are shown in the terms before purchase.
-              </p>
+              <h2 className="max-w-[14ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">Three products. One continuous handoff.</h2>
+              <p className="mt-4 max-w-[48ch] text-[15px] leading-7 text-ink-soft">Notes captures the thought, Tasks carries the action, and Timeline shares the direction. Exact plan entitlements are shown in the terms before purchase.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {[
@@ -177,9 +162,9 @@ export default function PricingPage() {
                 ["tasks", "Tasks", "Execute", "Run the work in plain language, with dates, owners and receipts."],
                 ["timeline", "Timeline", "Direct", "Publish a frozen link-only copy after you review it."],
               ].map(([key, name, role, body]) => (
-                <article className="pricing-mark min-w-0 rounded-xl border border-border-soft bg-white p-4" data-key={key} key={key}>
+                <article className="pricing-mark min-w-0 border-t-2 border-ink bg-white p-4" data-key={key} key={key}>
                   <span className="dot" aria-hidden="true" />
-                  <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-faint">{role}</p>
+                  <p className="mt-5 text-[11px] font-semibold uppercase tracking-[.1em] text-ink-faint">{role}</p>
                   <h3 className="mt-1 text-[17px] font-semibold text-ink">{name}</h3>
                   <p className="mt-2 text-[13px] leading-6 text-ink-soft">{body}</p>
                 </article>
@@ -191,46 +176,53 @@ export default function PricingPage() {
         <section className="border-y border-border-soft bg-white">
           <div className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20">
             <Eyebrow>3 · Compare only what changes</Eyebrow>
-            <h2 className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">
-              The decision, without the fine-print maze.
-            </h2>
+            <h2 className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">The decision, without the fine-print maze.</h2>
 
-            <div className="mt-8 hidden overflow-x-auto md:block">
+            <div className="mt-9 hidden overflow-hidden rounded-2xl border border-border-soft md:block">
               <table className="w-full table-fixed border-collapse text-left text-[13px] leading-5">
                 <caption className="sr-only">Signal Studio plan comparison</caption>
                 <thead>
-                  <tr className="border-b border-border-soft">
-                    <th className="w-[18%] px-3 py-3" scope="col"><span className="sr-only">Dimension</span></th>
-                    {PLANS.map((plan) => <th className="px-3 py-3 text-[14px] font-semibold text-ink" key={plan.id} scope="col">{plan.name}</th>)}
+                  <tr className="border-b border-border-soft bg-[var(--paper-soft)]">
+                    <th className="w-[18%] px-4 py-5 text-[11px] font-semibold uppercase tracking-[.1em] text-ink-faint" scope="col">What changes</th>
+                    {PLANS.map((plan) => (
+                      <th className={`px-4 py-5 ${plan.id === "pro" ? "bg-[var(--accent-soft)]" : ""}`} key={plan.id} scope="col">
+                        <span className="block text-[15px] font-semibold text-ink">{plan.name}</span>
+                        <span className="mt-1 block font-mono text-[11px] font-normal text-ink-soft">{plan.price}</span>
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
                   {COMPARE_ROWS.map((row) => (
-                    <tr className="border-b border-border-soft align-top" key={row.label}>
-                      <th className="px-3 py-4 font-medium text-ink" scope="row">{row.label}</th>
-                      {row.values.map((value, index) => <td className="[overflow-wrap:anywhere] px-3 py-4 text-ink-soft" key={PLANS[index].id}>{value}</td>)}
+                    <tr className="border-b border-border-soft align-top last:border-b-0" key={row.label}>
+                      <th className="px-4 py-5 font-semibold text-ink" scope="row">{row.label}</th>
+                      {row.values.map((value, index) => <td className={`[overflow-wrap:anywhere] px-4 py-5 text-ink-soft ${PLANS[index].id === "pro" ? "bg-[var(--accent-soft)]/40" : ""}`} key={PLANS[index].id}>{value}</td>)}
                     </tr>
                   ))}
+                  <tr>
+                    <th className="px-4 py-5 text-ink" scope="row">Next step</th>
+                    {PLANS.map((plan) => <td className={`px-4 py-5 ${plan.id === "pro" ? "bg-[var(--accent-soft)]/40" : ""}`} key={plan.id}><Link className="font-semibold text-ink underline decoration-border-soft underline-offset-4 hover:decoration-ink" href={plan.href}>{plan.cta}</Link></td>)}
+                  </tr>
                 </tbody>
               </table>
             </div>
 
             <div className="mt-7 grid gap-4 md:hidden">
               {PLANS.map((plan, planIndex) => (
-                <section className="min-w-0 rounded-xl border border-border-soft bg-[var(--paper-soft)] p-4" key={plan.id} aria-labelledby={`mobile-plan-${plan.id}`}>
+                <section className={`min-w-0 border-t-2 p-5 ${plan.id === "pro" ? "border-accent bg-[var(--accent-soft)]" : "border-ink bg-[var(--paper-soft)]"}`} key={plan.id} aria-labelledby={`mobile-plan-${plan.id}`}>
                   <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="text-[17px] font-semibold text-ink" id={`mobile-plan-${plan.id}`}>{plan.name}</h3>
+                    <h3 className="text-[18px] font-semibold text-ink" id={`mobile-plan-${plan.id}`}>{plan.name}</h3>
                     <span className="font-mono text-[12px] text-ink-soft">{plan.price}</span>
                   </div>
-                  <dl className="mt-3 divide-y divide-border-soft">
+                  <dl className="mt-4 divide-y divide-border-soft border-y border-border-soft">
                     {COMPARE_ROWS.map((row) => (
-                      <div className="grid min-w-0 grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-3 py-2.5" key={row.label}>
+                      <div className="grid min-w-0 grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] gap-3 py-3" key={row.label}>
                         <dt className="text-[12px] font-medium text-ink">{row.label}</dt>
                         <dd className="min-w-0 [overflow-wrap:anywhere] text-[12px] leading-5 text-ink-soft">{row.values[planIndex]}</dd>
                       </div>
                     ))}
                   </dl>
-                  <Link className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-ink px-4 text-[13px] font-semibold text-ink no-underline" href={plan.href}>{plan.cta}</Link>
+                  <Link className={`mt-5 inline-flex min-h-12 w-full items-center justify-center px-4 text-[13px] font-semibold no-underline ${plan.id === "pro" ? "bg-accent text-white" : "border border-ink text-ink"}`} href={plan.href}>{plan.cta}</Link>
                 </section>
               ))}
             </div>
@@ -243,9 +235,7 @@ export default function PricingPage() {
           <div className="mt-7 divide-y divide-border-soft border-y border-border-soft">
             {FAQ.map((item) => (
               <details className="group py-1" key={item.q}>
-                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-[15px] font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-                  {item.q}<span aria-hidden="true" className="text-ink-faint transition-transform group-open:rotate-45">+</span>
-                </summary>
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-[15px] font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{item.q}<span aria-hidden className="text-ink-faint transition-transform group-open:rotate-45">+</span></summary>
                 <p className="max-w-[68ch] pb-5 text-[14px] leading-7 text-ink-soft">{item.a}</p>
               </details>
             ))}
@@ -254,10 +244,7 @@ export default function PricingPage() {
 
         <section className="border-t border-border-soft bg-[var(--paper-soft)]">
           <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-6 px-5 py-14 sm:px-6 md:flex-row md:items-end md:justify-between md:py-20">
-            <div>
-              <Eyebrow>Access opens in small batches</Eyebrow>
-              <h2 className="mt-3 max-w-[17ch] text-balance text-[clamp(2rem,1.6rem+1.6vw,3.4rem)] font-semibold tracking-[-0.05em] text-ink">Pick the plan that fits now. Change it before access.</h2>
-            </div>
+            <div><Eyebrow>Access opens in small batches</Eyebrow><h2 className="mt-3 max-w-[17ch] text-balance text-[clamp(2rem,1.6rem+1.6vw,3.4rem)] font-semibold tracking-[-0.05em] text-ink">Pick the plan that fits now. Change it before access.</h2></div>
             <Link className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[14px] font-semibold text-white no-underline" href="#main">Choose a plan above</Link>
           </div>
         </section>

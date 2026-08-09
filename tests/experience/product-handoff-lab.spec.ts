@@ -299,12 +299,12 @@ test("homepage emphasis and product signatures match the founder direction", asy
   expect(colours.accent).not.toBe(colours.ink);
 
   const signatures = page.locator("[data-product-signature]");
-  await expect(signatures).toHaveCount(4);
+  await expect(signatures).toHaveCount(3);
   await expect(
     signatures.evaluateAll((elements) =>
       elements.map((element) => element.getAttribute("data-product")),
     ),
-  ).resolves.toEqual(["notes", "tasks", "timeline", "home"]);
+  ).resolves.toEqual(["notes", "tasks", "timeline"]);
   await signatures.first().scrollIntoViewIfNeeded();
   await expect(signatures.first()).toHaveAttribute("data-active", "true");
 });
