@@ -7535,7 +7535,7 @@
       "source": "studio/src/components/layout/products-mega-panel.tsx",
       "parentJourney": "suite-navigation",
       "archetype": "application-shell-and-navigation",
-      "primaryJob": "Understand the four product roles before switching.",
+      "primaryJob": "Understand the three product roles before switching.",
       "primaryAction": "Open a product.",
       "roles": [
         "public"
@@ -7558,17 +7558,17 @@
       "designOwner": "product-taste-design-integrity",
       "engineeringOwner": "engineering-systems-architecture",
       "implementationStatus": "legacy",
-      "auditStatus": "registered",
+      "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "a049142ed14b663b"
+      "materialityHash": "1922e7c34b596f93"
     },
     {
       "id": "studio.surface.site-navigation",

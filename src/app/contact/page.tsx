@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 const SUBJECT_EYEBROWS: Record<string, string> = {
   weddings: "Wedding planning enquiry",
   "founding-venue": "Founding Venue Programme",
-  enterprise: "Enterprise enquiry",
 };
 
 /**
