@@ -32,9 +32,8 @@ export function ProductSignatureWordmark({
       data-product-signature=""
       data-active={active ? "true" : undefined}
       data-product={product}
-      aria-label={product}
     >
-      <span className={styles.word} aria-hidden="true">
+      <span className={styles.word}>
         {product}
       </span>
 

@@ -1,4 +1,4 @@
-export type LaneId = "todo" | "doing" | "review" | "done";
+export type LaneId = "todo" | "doing" | "review" | "waiting" | "done";
 
 export type Priority = "p0" | "p1" | "p2" | "p3";
 
@@ -167,24 +167,31 @@ export const LANES: Record<
   // are further overridable per workspace via the column config `system` map.
   todo: {
     id: "todo",
-    name: "Blocked",
+    name: "Queued",
     ink: "var(--lane-todo-ink)",
     bg: "var(--lane-todo)",
     dot: "var(--lane-todo-dot)",
   },
   doing: {
     id: "doing",
-    name: "In Progress",
+    name: "In progress",
     ink: "var(--lane-doing-ink)",
     bg: "var(--lane-doing)",
     dot: "var(--lane-doing-dot)",
   },
   review: {
     id: "review",
-    name: "Reviewing",
+    name: "Review",
     ink: "var(--lane-review-ink)",
     bg: "var(--lane-review)",
     dot: "var(--lane-review-dot)",
+  },
+  waiting: {
+    id: "waiting",
+    name: "Waiting",
+    ink: "var(--ink-soft)",
+    bg: "var(--paper-soft)",
+    dot: "var(--ink-faint)",
   },
   done: {
     id: "done",
@@ -195,7 +202,7 @@ export const LANES: Record<
   },
 };
 
-export const LANE_ORDER: LaneId[] = ["todo", "doing", "review", "done"];
+export const LANE_ORDER: LaneId[] = ["todo", "doing", "review", "waiting", "done"];
 
 export type Task = {
   id: string;
