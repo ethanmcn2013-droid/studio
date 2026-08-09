@@ -13,7 +13,7 @@ export function RevealHero() {
         </h1>
 
         <p className="reveal-lede-v2">
-          Notes, tasks, timelines, and the signal that matters. One calm
+          Notes, Tasks, Timeline, and a daily signal in Home. One calm
           system for people with work to manage, not software to manage.
         </p>
 

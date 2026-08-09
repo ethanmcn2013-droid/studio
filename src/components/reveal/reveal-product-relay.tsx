@@ -63,7 +63,7 @@ const CHAPTERS = [
     title: "home",
     eyebrow: "Know what needs you",
     body: "Back at Home, the system has read the change, the open risk, and the receipt. Today's Signal starts your day with the two things worth attention.",
-    foot: "Real change → your daily signal",
+    foot: "Real change → daily briefing in Home",
     href: "/features/daily-briefing",
     cta: "See the daily briefing",
   },
@@ -101,8 +101,8 @@ export function RevealProductRelay() {
         <p>
           Notes keeps the source private. Tasks gives it an owner. Timeline
           publishes the confirmed milestone. Home returns the open risk with
-          its receipt as your daily signal. These are the current product
-          interfaces in one fixed sample workspace.
+          its receipt in the daily briefing. These are static private-preview
+          samples in one fixed workspace, not live customer data.
         </p>
       </header>
 
@@ -144,9 +144,15 @@ export function RevealProductRelay() {
             <div
               className="reveal-relay-preview"
               data-product={chapter.key}
+              role="img"
+              aria-label={`${chapter.title} static private-preview sample. ${chapter.body}`}
             >
-              <p className="reveal-relay-sample">Sample product view</p>
-              <ProductPreview product={chapter.key} />
+              <p className="reveal-relay-sample" aria-hidden="true">
+                Static private-preview sample
+              </p>
+              <div className="reveal-relay-artifact" aria-hidden="true" inert>
+                <ProductPreview product={chapter.key} />
+              </div>
             </div>
           </article>
         ))}
