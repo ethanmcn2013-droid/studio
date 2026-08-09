@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
@@ -32,6 +33,21 @@ export default function AboutPage() {
           <h1 className="h-section mb-10 max-w-[620px] text-balance text-ink">
             For the 80% who don&rsquo;t work in tech.
           </h1>
+
+          <div className="mb-12 flex flex-wrap gap-3">
+            <Link
+              href="/#system"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              See the system at work
+            </Link>
+            <Link
+              href="/waitlist?source=about&campaign=pre_access_waitlist&artifact=about_primary&touch=site"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-ink px-5 text-[14px] font-semibold text-ink no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              Join the waitlist
+            </Link>
+          </div>
 
           {/* Two-column layout */}
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr] md:gap-16">
@@ -142,9 +158,33 @@ export default function AboutPage() {
                 className="text-[12.5px] leading-[1.6] text-ink-faint"
                 style={{ letterSpacing: "0.005em" }}
               >
-                Boring on purpose. Built slowly, in Limerick. Everything
-                important, nothing distracting.
+                Built slowly in Limerick. Quiet by default, precise when it matters.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[900px] px-6 pb-20" aria-labelledby="about-evidence-heading">
+          <div className="border-y border-border-soft py-10">
+            <div className="max-w-[620px]">
+              <div className="text-[11px] font-semibold uppercase text-accent" style={{ letterSpacing: "var(--tracking-eyebrow)" }}>The operating proof</div>
+              <h2 className="mt-3 text-balance text-[clamp(1.6rem,1.35rem+1vw,2.4rem)] font-semibold tracking-[-0.035em] text-ink" id="about-evidence-heading">
+                The boundary is part of the product.
+              </h2>
+            </div>
+            <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl bg-[var(--paper-soft)] p-4">
+                <strong className="text-[14px] text-ink">Private capture</strong>
+                <p className="mt-2 text-[13px] leading-6 text-ink-soft">A note stays private until you choose the exact wording that becomes a task.</p>
+              </div>
+              <div className="rounded-xl bg-[var(--paper-soft)] p-4">
+                <strong className="text-[14px] text-ink">Receipted handoff</strong>
+                <p className="mt-2 text-[13px] leading-6 text-ink-soft">Notes and Tasks keep reciprocal provenance, so the source and action never drift apart.</p>
+              </div>
+              <div className="rounded-xl bg-[var(--paper-soft)] p-4">
+                <strong className="text-[14px] text-ink">Reviewed sharing</strong>
+                <p className="mt-2 text-[13px] leading-6 text-ink-soft">Timeline publishes a frozen link-only copy after you review what viewers can see.</p>
+              </div>
             </div>
           </div>
         </section>

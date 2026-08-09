@@ -317,7 +317,7 @@
 .reveal-relay {
   width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
-  padding: clamp(88px, 11vw, 144px) 0 0;
+  padding: clamp(72px, 8vw, 104px) 0 0;
   scroll-margin-top: 72px;
 }
 
@@ -384,7 +384,7 @@
   display: grid;
   grid-template-columns: minmax(190px, 0.29fr) minmax(0, 1fr);
   gap: clamp(28px, 5vw, 72px);
-  padding: clamp(64px, 9vw, 116px) 0;
+  padding: clamp(56px, 7vw, 92px) 0;
   border-top: 1px solid var(--border-soft);
 }
 
@@ -620,7 +620,7 @@
   }
 
   .reveal-relay {
-    padding-top: 84px;
+    padding-top: 60px;
   }
 
   .reveal-relay-head,
@@ -639,7 +639,7 @@
   }
 
   .reveal-relay-chapter {
-    padding-block: 66px;
+    padding-block: 48px;
   }
 
   .reveal-relay-copy {
