@@ -90,14 +90,14 @@ export default function AboutPage() {
         <section className="mx-auto w-full max-w-[1120px] px-6 py-24 md:py-32" data-delight="about-founder" data-delight-once aria-labelledby="founder-note-heading">
           <div className="border-t-2 border-ink pt-6">
             <div className="grid gap-12 md:grid-cols-[0.72fr_1.28fr] md:gap-20">
-              <aside className="md:sticky md:top-24 md:self-start">
+              <aside className="about-founder-signature md:sticky md:top-24 md:self-start">
                 <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">Founder note · 01</p>
                 <blockquote className="mt-8 max-w-[11ch] text-balance text-[clamp(2rem,1.5rem+2vw,3.8rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-ink">
                   “Real work should not need translating.”
                 </blockquote>
                 <div className="mt-10 flex items-center gap-3 border-t border-border-soft pt-5">
-                  <span aria-hidden className="h-2 w-2 rounded-full bg-accent" />
-                  <div>
+                  <span aria-hidden className="about-founder-dot h-2 w-2 rounded-full bg-accent" />
+                  <div className="about-founder-identity">
                     <p className="text-[14px] font-medium text-ink">Ethan McNamara</p>
                     <p className="text-[12px] text-ink-faint">Founder, Signal Studio · Limerick</p>
                   </div>
