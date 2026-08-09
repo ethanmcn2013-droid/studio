@@ -5,14 +5,15 @@ import { TasksTheBoard } from "@/components/marketing/heroes/tasks/hero";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
 import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 import { ProductSignatureWordmark } from "./product-signature-wordmark";
 
 const RELAY_SIGNAL_ITEMS: SignalReadItem[] = [
   {
     ordinal: "01",
     claim: "now",
-    title: "The final dietary list still needs confirmation.",
-    why: "Mara and Finn confirmed the tasting in Notes. The follow-up is still open in Tasks.",
+    title: REVIEW_SUITE_PRESENTATION.journey.openRisk,
+    why: `${REVIEW_SUITE_PRESENTATION.project.name} confirmed the tasting in Notes. The follow-up is still open in Tasks.`,
     receipts: ["Notes + Tasks", "updated today"],
     action: "Open task",
   },
@@ -20,7 +21,7 @@ const RELAY_SIGNAL_ITEMS: SignalReadItem[] = [
     ordinal: "02",
     claim: "next",
     title: "The shared plan changes only after review.",
-    why: "The frozen Timeline shows Menu tasting at The Orchard for 1 August. Source changes wait for the owner.",
+    why: `The frozen Timeline shows ${REVIEW_SUITE_PRESENTATION.journey.task} for 1 August. Source changes wait for the owner.`,
     receipts: ["Timeline", "frozen copy"],
     action: "Open timeline",
   },
@@ -62,7 +63,7 @@ const CHAPTERS = [
     number: "04",
     title: "home",
     eyebrow: "Know what needs you",
-    body: "Back at Home, the system has read the change, the open risk, and the receipt. Today's Signal starts your day with the two things worth attention.",
+    body: "Back at Home, the daily briefing brings together the change, the open risk, and its source receipt. Today's Signal starts with the two things worth attention.",
     foot: "Real change → daily briefing in Home",
     href: "/features/daily-briefing",
     cta: "See the daily briefing",
@@ -94,9 +95,9 @@ export function RevealProductRelay() {
   return (
     <section className="reveal-relay" id="system" aria-labelledby="relay-title">
       <header className="reveal-relay-head">
-        <p className="reveal-relay-kicker">One line, through the studio</p>
-        <h2 id="relay-title">
-          Follow one detail from a private note to a daily briefing.
+        <p className="reveal-relay-kicker">One thread, through the studio</p>
+        <h2 id="relay-title" tabIndex={-1}>
+          Follow one wedding thread from a private note to a daily briefing.
         </h2>
         <p>
           Notes keeps the source private. Tasks gives it an owner. Timeline
@@ -108,11 +109,11 @@ export function RevealProductRelay() {
 
       <div className="reveal-relay-source" aria-label="Sample workspace context" role="group">
         <span>Sample workspace</span>
-        <strong>Mara and Finn</strong>
+        <strong>{REVIEW_SUITE_PRESENTATION.project.name}</strong>
         <span aria-hidden>·</span>
-        <span>The Orchard</span>
+        <span>{REVIEW_SUITE_PRESENTATION.workspace.name}</span>
         <span aria-hidden>·</span>
-        <time dateTime="2026-07-16">16 July</time>
+        <time dateTime={REVIEW_SUITE_PRESENTATION.reviewToday}>16 July</time>
       </div>
 
       <div className="reveal-relay-chapters">

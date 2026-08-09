@@ -62,10 +62,10 @@ function makeId() {
  *
  * The board reads faster, the surface comes back to a hero-sized height, and
  * every lane stays whole with no scrolling. The four ids the scripted scene
- * drives (t-101 carried across lanes, t-201 and t-202 edited, t-303
+ * drives (t-101 carried across lanes, t-201 and t-202 edited, t-302
  * completed) are all retained; only unreferenced filler is dropped.
  */
-const HERO_OMITTED_TASKS = new Set(["t-104", "t-105", "t-204", "t-404"]);
+const HERO_OMITTED_TASKS = new Set(["t-104", "t-105", "t-204"]);
 
 function heroSeed(domain: DomainId) {
   return buildDomainSeed(domain, SEED_TASKS).filter(
@@ -477,7 +477,7 @@ export function CinematicDemo({
       await waitFor(900);
 
       // Move another (alex pushes a review item to done with celebration)
-      const reviewToDone = "t-303";
+      const reviewToDone = "t-302";
       await moveCursorToCard("alex", reviewToDone);
       pickUp("alex", reviewToDone);
       await waitFor(200);
@@ -500,7 +500,7 @@ export function CinematicDemo({
           triggerCelebration(hr.left - sr.left + 60, hr.top - sr.top + 18);
         }
         {
-          const t = currentStateRef.current?.tasks.find((x) => x.id === "t-303");
+          const t = currentStateRef.current?.tasks.find((x) => x.id === "t-302");
           pushActivity("alex", "completed", shorten(t?.title ?? "this task"));
         }
         // Tick burndown

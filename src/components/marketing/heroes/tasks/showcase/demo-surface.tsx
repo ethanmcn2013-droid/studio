@@ -795,7 +795,7 @@ function BoardBody({ task }: { task: Task }) {
               title={`${PRIORITY_LABEL[task.priority].label} priority`}
             >
               <span className={shared.priorityDot} />
-              {task.priority.toUpperCase()}
+              {PRIORITY_LABEL[task.priority].label}
             </span>
           ) : null}
         </div>

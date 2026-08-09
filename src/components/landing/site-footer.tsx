@@ -105,11 +105,9 @@ export function SiteFooter() {
         <FooterCol
           heading="Suite"
           links={[
-            { href: "/", label: "Signal Studio" },
             { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
             { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
             { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
-            { href: "/features/daily-briefing", label: "Daily briefing" },
           ]}
         />
       </div>

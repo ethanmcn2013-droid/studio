@@ -29,8 +29,13 @@ function requireText(file, text, reason) {
 
 requireText(
   "src/app/pricing/page.tsx",
-  'requireVerifiedAmount("event")',
-  "current Event price must consume the canonical verified amount",
+  "getConsumerPricingPresentation",
+  "current pricing must consume the canonical customer-facing contract adapter",
+);
+requireText(
+  "src/lib/commercial-terms.ts",
+  "event.amountCents",
+  "the pricing adapter must derive the Event amount from the canonical contract",
 );
 requireText(
   "src/app/students/page.tsx",

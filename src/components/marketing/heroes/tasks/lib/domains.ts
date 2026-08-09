@@ -1,5 +1,6 @@
 import type { LaneId, Priority, Task, UserId } from "@/components/marketing/heroes/tasks/lib/data";
 import { TASKS_PUBLIC_DOMAIN } from "@/components/marketing/heroes/tasks/lib/product-urls";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 
 export type DomainId =
   | "marketing"
@@ -367,10 +368,10 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
     id: "wedding",
     label: "Wedding planner",
     description: "venues · vendors · vows · run-of-show",
-    workspaceTitle: "The Orchard · Mara & Finn",
-    workspaceCrumb: "The Orchard",
+    workspaceTitle: REVIEW_SUITE_PRESENTATION.workspace.name,
+    workspaceCrumb: REVIEW_SUITE_PRESENTATION.project.name,
     workspaceUrl: `the-orchard`,
-    demoCommentText: "Mara confirmed the side room request. Waiting on the venue reply.",
+    demoCommentText: "The final dietary list is still open before the tasting.",
     emptyStateHeadline: "This is where the day comes together.",
     emptyStateBody:
       "Vendors, run-of-show, RSVPs, the small things. Every detail in one place, finally.",
@@ -383,7 +384,7 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
       // still to do; the done lane reads as things that happened.
       "t-101": {
         title: "Confirm marquee sides with the hire company",
-        tags: ["mara-finn"],
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
         assignees: ["demo-user"],
       },
       "t-102": {
@@ -392,25 +393,25 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
         assignees: ["demo-user"],
       },
       "t-103": { title: "Send midweek rate to the June 2027 enquiry", tags: ["enquiry"], assignees: ["demo-user"] },
-      "t-104": { title: "Confirm the final dietary list", tags: ["mara-finn"], assignees: ["demo-user"] },
+      "t-104": { title: "Confirm the final dietary list", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
       "t-105": {
         title: "Confirm supplier access from eight on Saturday",
         tags: ["operations"],
         assignees: ["demo-user"],
       },
       "t-201": {
-        title: "Build the Saturday run-sheet",
-        tags: ["mara-finn"],
+        title: REVIEW_SUITE_PRESENTATION.journey.task,
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
         assignees: ["demo-user"],
       },
       "t-202": {
-        title: "Order tonic and the good olives",
+        title: "Build the Saturday run-sheet",
         tags: ["bar"],
         assignees: ["demo-user"],
       },
       "t-203": {
-        title: "Confirm the side room hold with the venue",
-        tags: ["mara-finn"],
+        title: "Order tonic and the good olives",
+        tags: ["bar"],
         assignees: ["demo-user"],
       },
       "t-204": {
@@ -420,7 +421,7 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
       },
       "t-301": {
         title: "Approve the final seating plan",
-        tags: ["mara-finn"],
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
         assignees: ["demo-user"],
       },
       "t-302": {
@@ -428,11 +429,11 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
         tags: ["venue"],
         assignees: ["demo-user"],
       },
-      "t-303": { title: "Send registrar paperwork two weeks before the date", tags: ["mara-finn"], assignees: ["demo-user"] },
-      "t-401": { title: "The Orchard reserved", tags: ["mara-finn"], assignees: ["demo-user"] },
-      "t-402": { title: "Deposit invoice settled", tags: ["mara-finn"], assignees: ["demo-user"] },
-      "t-403": { title: "Menu tasting at The Orchard", tags: ["mara-finn"], assignees: ["demo-user"] },
-      "t-404": { title: "Sunday late checkout cleared", tags: ["mara-finn"], assignees: ["demo-user"] },
+      "t-303": { title: "Open day, nine couples through", tags: ["venue"], assignees: ["demo-user"] },
+      "t-401": { title: "Deposit invoice settled, Mara & Finn", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
+      "t-402": { title: "Clear Sunday 11am late checkout with housekeeping", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
+      "t-403": { title: "Chase linen order, now shipping Tuesday", tags: ["venue"], assignees: ["demo-user"] },
+      "t-404": { title: "Send registrar paperwork two weeks before the date", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
     },
     commentBodies: [
       "Mara confirmed the request. Waiting on the venue reply.",
@@ -442,7 +443,7 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
       "County Marquee Hire can hold the sides until Thursday.",
       "The tonic delivery is booked for Friday morning.",
       "The photographer wants a 30 minute walk-through.",
-      "Mara and Finn approved the room plan.",
+      "Mara & Finn approved the room plan.",
     ],
   },
 };

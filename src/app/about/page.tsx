@@ -7,7 +7,7 @@ import { MarketingDelightController } from "@/components/marketing/delight/marke
 export const metadata: Metadata = {
   title: "About · Signal Studio",
   description:
-    "Signal Studio builds operational clarity software for the 80% of the world that doesn't work in tech. Three products, one register, one job: show you what matters.",
+    "Signal Studio builds calm work software for people outside tech. Notes, Tasks and Timeline form one clear system, with a daily briefing in Home.",
 };
 
 function waitlistHref(product: string): string {
@@ -31,19 +31,19 @@ export default function AboutPage() {
 
           {/* Page H1 */}
           <h1 className="h-section mb-10 max-w-[620px] text-balance text-ink">
-            For the 80% who don&rsquo;t work in tech.
+            Built for people who run the work.
           </h1>
 
           <div className="mb-12 flex flex-wrap gap-3">
             <Link
               href="/#system"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               See the system at work
             </Link>
             <Link
               href="/waitlist?source=about&campaign=pre_access_waitlist&artifact=about_primary&touch=site"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-ink px-5 text-[14px] font-semibold text-ink no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-ink px-5 text-[14px] font-semibold text-ink no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               Join the waitlist
             </Link>
@@ -68,18 +68,18 @@ export default function AboutPage() {
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
                 Three products, one system. Notes catches ideas before they get
-                lost. Tasks keeps the work moving. Timeline shows everyone
-                the plan. A daily briefing in Home tells you what changed and
-                what needs you today.
+                lost. Tasks keeps the work moving. Timeline lets you publish a
+                reviewed view of the plan. A daily briefing in Home tells you
+                what changed and what needs you today.
               </p>
 
               <p
                 className="mt-5 leading-[1.7] text-ink-soft"
                 style={{ fontSize: "clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem)" }}
               >
-                No sprints. No dashboards to babysit. No new vocabulary. If
-                software needs a training course, it has already failed
-                you.
+                No sprints. No dashboards to babysit. Start with the words you
+                already use for the work. If software needs a training course,
+                it has already failed you.
               </p>
             </div>
 
@@ -93,13 +93,15 @@ export default function AboutPage() {
                 >
                   The suite
                 </div>
-                <div className="flex flex-col gap-3">
+                <ol className="flex list-none flex-col gap-3 p-0">
+                  <li>
                   <a
                     href={waitlistHref("notes")}
-                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group grid min-h-[64px] grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-border-soft py-3 no-underline"
                   >
+                    <span className="font-mono text-[11px] text-ink-faint">01</span>
                     <span className="text-[14px] font-medium text-ink transition-colors">
-                      Notes
+                      Notes <small className="ml-2 font-normal text-ink-faint">Capture</small>
                     </span>
                     <span
                       className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
@@ -108,12 +110,15 @@ export default function AboutPage() {
                       &rarr;
                     </span>
                   </a>
+                  </li>
+                  <li>
                   <a
                     href={waitlistHref("tasks")}
-                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group grid min-h-[64px] grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-border-soft py-3 no-underline"
                   >
+                    <span className="font-mono text-[11px] text-ink-faint">02</span>
                     <span className="text-[14px] font-medium text-ink transition-colors">
-                      Tasks
+                      Tasks <small className="ml-2 font-normal text-ink-faint">Execute</small>
                     </span>
                     <span
                       className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
@@ -122,12 +127,15 @@ export default function AboutPage() {
                       &rarr;
                     </span>
                   </a>
+                  </li>
+                  <li>
                   <a
                     href={waitlistHref("timeline")}
-                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
+                    className="about-product-link group grid min-h-[64px] grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-border-soft py-3 no-underline"
                   >
+                    <span className="font-mono text-[11px] text-ink-faint">03</span>
                     <span className="text-[14px] font-medium text-ink transition-colors">
-                      Timeline
+                      Timeline <small className="ml-2 font-normal text-ink-faint">Direct</small>
                     </span>
                     <span
                       className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
@@ -136,21 +144,16 @@ export default function AboutPage() {
                       &rarr;
                     </span>
                   </a>
-                  <a
-                    href="/features/daily-briefing"
-                    className="about-product-link group flex min-h-[56px] items-center justify-between border-b border-border-soft py-3 no-underline"
-                  >
-                    <span className="text-[14px] font-medium text-ink transition-colors">
-                      Daily briefing
-                    </span>
-                    <span
-                      className="about-product-arrow text-[12.5px] text-ink-faint transition-colors"
-                      aria-hidden
-                    >
-                      &rarr;
-                    </span>
-                  </a>
-                </div>
+                  </li>
+                </ol>
+                <Link
+                  href="/features/daily-briefing"
+                  className="mt-4 block rounded-lg bg-[var(--paper-soft)] p-4 no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-faint">Inside Home</span>
+                  <strong className="mt-1 block text-[14px] text-ink">Your daily briefing</strong>
+                  <span className="mt-1 block text-[12.5px] leading-5 text-ink-soft">The front door reads across the three products. It is not a fourth product.</span>
+                </Link>
               </div>
 
               {/* Quiet closing note */}
@@ -178,7 +181,7 @@ export default function AboutPage() {
                 <p className="mt-2 text-[13px] leading-6 text-ink-soft">A note stays private until you choose the exact wording that becomes a task.</p>
               </div>
               <div className="rounded-xl bg-[var(--paper-soft)] p-4">
-                <strong className="text-[14px] text-ink">Receipted handoff</strong>
+                <strong className="text-[14px] text-ink">Traceable handoff</strong>
                 <p className="mt-2 text-[13px] leading-6 text-ink-soft">Notes and Tasks keep reciprocal provenance, so the source and action never drift apart.</p>
               </div>
               <div className="rounded-xl bg-[var(--paper-soft)] p-4">
