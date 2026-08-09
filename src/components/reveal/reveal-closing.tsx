@@ -16,7 +16,7 @@ export function RevealClosing() {
     <section className="reveal-closing">
       <div className="reveal-closing-rule" aria-hidden />
       <p className="reveal-closing-sign">
-        Built for <span className="em">everyone else</span>.
+        Built for <span className="em">the 80%</span>.
       </p>
 
       <div className="reveal-closing-cta">

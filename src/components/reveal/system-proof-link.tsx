@@ -41,11 +41,27 @@ export function SystemProofLink({
 
     let timer = window.setTimeout(finish, 520);
     const onScrollEnd = () => finish();
+    const cancel = () => {
+      window.scrollTo({ top: window.scrollY, behavior: "auto" });
+      cleanupRef.current?.();
+      cleanupRef.current = null;
+    };
+    const onNavigationKey = (keyEvent: KeyboardEvent) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(keyEvent.key)) cancel();
+    };
     window.addEventListener("scrollend", onScrollEnd, { once: true });
+    window.addEventListener("wheel", cancel, { passive: true, once: true });
+    window.addEventListener("touchstart", cancel, { passive: true, once: true });
+    window.addEventListener("pointerdown", cancel, { passive: true, once: true });
+    window.addEventListener("keydown", onNavigationKey);
     cleanupRef.current = () => {
       window.clearTimeout(timer);
       timer = 0;
       window.removeEventListener("scrollend", onScrollEnd);
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("pointerdown", cancel);
+      window.removeEventListener("keydown", onNavigationKey);
     };
   }
 

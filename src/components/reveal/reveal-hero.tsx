@@ -14,8 +14,8 @@ export function RevealHero() {
         </h1>
 
         <p className="reveal-lede-v2">
-          Notes, Tasks, Timeline, and a daily signal in Home. One calm
-          system for people with work to manage, not software to manage.
+          Notes, Tasks and Timeline. One calm system for people with work to
+          manage, not software to manage.
         </p>
 
         <div className="reveal-hero-actions">
@@ -38,8 +38,6 @@ export function RevealHero() {
           <span>Tasks</span>
           <span aria-hidden>→</span>
           <span>Timeline</span>
-          <span aria-hidden>→</span>
-          <span>your daily signal</span>
         </p>
       </div>
     </section>

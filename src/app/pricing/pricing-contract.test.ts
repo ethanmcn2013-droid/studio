@@ -15,14 +15,17 @@ const presentation = readFileSync(
 );
 
 describe("Wave 2 public truth contract", () => {
-  it("renders the four ratified plan shapes without the retired universal promise", () => {
+  it("renders the four public access shapes without the retired universal promise", () => {
     assert.match(pricing, /getConsumerPricingPresentation/);
     assert.doesNotMatch(pricing, /One price|No seat tax|Invite who you need|price does not move/i);
     assert.doesNotMatch(pricing, /Forever|Does not expire|No product add-ons|lock away product capability/i);
     assert.match(pricing, /PRICING\.vatStatement/);
-    for (const plan of ["Free", "Student", "Pro", "Event"]) {
+    for (const plan of ["Free", "Student", "Pro"]) {
       assert.match(pricing, new RegExp(`Join the ${plan} waitlist`));
     }
+    assert.match(pricing, /name: "Enterprise"/);
+    assert.match(pricing, /Contact our sales team/);
+    assert.doesNotMatch(pricing, /Join the Event waitlist|pricing_event/);
   });
 
   it("keeps the landing story to hero, product proof, wedge, and invitation", () => {
