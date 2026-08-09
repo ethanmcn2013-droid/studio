@@ -285,11 +285,11 @@ test("homepage emphasis and product signatures match the founder direction", asy
 
   const headline = page.getByRole("heading", {
     level: 1,
-    name: "Project management for the 80% not in tech.",
+    name: "Project management for people outside tech.",
   });
   await expect(headline).toBeVisible();
   const accent = headline.locator(".reveal-headline-accent");
-  await expect(accent).toHaveText("not");
+  await expect(accent).toHaveText("outside");
   const colours = await headline.evaluate((element) => ({
     ink: getComputedStyle(element).color,
     accent: getComputedStyle(
