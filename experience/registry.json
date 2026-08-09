@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience/1",
-  "generatedAt": "2026-07-29",
+  "generatedAt": "2026-08-08",
   "breakpoints": {
     "mobile": {
       "width": 390,
@@ -2562,7 +2562,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "99052ef2c2ae5f2f"
+      "materialityHash": "b47292d6bb2e8f11"
     },
     {
       "id": "studio.artifact.brand-collateral-ambassador",
@@ -2914,7 +2914,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "cf7c95603a217bd3"
+      "materialityHash": "7b08dd4cbd86a7f4"
     },
     {
       "id": "studio.artifact.brand-motion-brief",
@@ -3002,7 +3002,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "21edb456f266d6a9"
+      "materialityHash": "bad87a85262c4e30"
     },
     {
       "id": "studio.artifact.brand-press",
@@ -3131,8 +3131,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "9f4128e88d9d6f52"
     },
@@ -3360,7 +3360,95 @@
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "ac6a2709f3c992e9"
+      "materialityHash": "d6abf1adc448156a"
+    },
+    {
+      "id": "studio.page.design-lab-delight-homepage-lineage",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/delight/homepage-lineage",
+      "source": "studio/src/app/%5F%5Fdesign-lab/delight/homepage-lineage/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the homepage delight lineage without presenting the lab as a production route.",
+      "primaryAction": "Compare the documented states and return to the production homepage.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-08",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "819d0633a72f72ca"
+    },
+    {
+      "id": "studio.page.design-lab-delight-route-continuity",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/delight/route-continuity",
+      "source": "studio/src/app/%5F%5Fdesign-lab/delight/route-continuity/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review route-continuity delight studies without presenting the lab as a production route.",
+      "primaryAction": "Compare the documented route states and return to the production journey.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-08",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "69e1b5a0e46864b3"
     },
     {
       "id": "studio.page.design-lab-product-handoff",
@@ -3403,7 +3491,7 @@
       "lastReviewedAt": "2026-07-28",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "eb740bf5ea9343b2"
+      "materialityHash": "7ba80bcdcf659f10"
     },
     {
       "id": "studio.page.dispatch",
@@ -3444,10 +3532,54 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "0ab04436cf8321ba"
+    },
+    {
+      "id": "studio.page.features-daily-briefing",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/features/daily-briefing",
+      "source": "studio/src/app/features/daily-briefing/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use features · daily briefing.",
+      "primaryAction": "Complete the primary action on features · daily briefing.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "ed1b54098fb4e8bf"
     },
     {
       "id": "studio.page.hq",
@@ -3545,6 +3677,50 @@
       "materialityHash": "b4ef514553447138"
     },
     {
+      "id": "studio.page.hq-account-review",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/account-review",
+      "source": "studio/src/app/hq/account-review/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "settings-and-administration",
+      "primaryJob": "Understand and use hq · account review.",
+      "primaryAction": "Complete the primary action on hq · account review.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "5d25a55b2804431b"
+    },
+    {
       "id": "studio.page.hq-action-center",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -3633,6 +3809,53 @@
       "materialityHash": "8a6654e37a55d26d"
     },
     {
+      "id": "studio.page.hq-asset-curator",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/asset-curator",
+      "source": "studio/src/app/hq/asset-curator/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review and curate brand assets inside the private founder workspace.",
+      "primaryAction": "Inspect an asset and record the curation decision.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "empty",
+        "populated",
+        "error",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-08",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "bccf5bff16244991"
+    },
+    {
       "id": "studio.page.hq-assets",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -3674,7 +3897,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d0ddf5f557ad2ba4"
+      "materialityHash": "348539335ae787da"
     },
     {
       "id": "studio.page.hq-atlas",
@@ -4485,7 +4708,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b8d70763166cf655"
+      "materialityHash": "f9e2e1393d0a7603"
     },
     {
       "id": "studio.page.hq-entitlements-by-lookup",
@@ -4661,7 +4884,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1b71bbd8761597bc"
+      "materialityHash": "5a54dfb53b0fd300"
     },
     {
       "id": "studio.page.hq-founders-circle",
@@ -5098,8 +5321,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "60d1ade4f48b95c5"
     },
@@ -5921,50 +6144,6 @@
       "materialityHash": "6beb18e268e8c8bd"
     },
     {
-      "id": "studio.page.hq-account-review",
-      "product": "studio",
-      "experienceClass": "founder-operator",
-      "surfaceType": "page",
-      "route": "/hq/account-review",
-      "source": "studio/src/app/hq/account-review/page.tsx",
-      "parentJourney": "founder-operations",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Review the selected Account Brief Venue Edition system on deterministic fixtures.",
-      "primaryAction": "Inspect Overview, Access, Usage, Reports, Account, and sample downloads.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "5d25a55b2804431b"
-    },
-    {
       "id": "studio.page.hq-venue-portal-review",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -5973,8 +6152,8 @@
       "source": "studio/src/app/hq/venue-portal-review/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Redirect legacy Venue Portal review links to Account review.",
-      "primaryAction": "Follow the redirect to /hq/account-review.",
+      "primaryJob": "Understand and use hq · venue portal review.",
+      "primaryAction": "Complete the primary action on hq · venue portal review.",
       "roles": [
         "founder"
       ],
@@ -6230,8 +6409,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "945299f92811796f"
     },
@@ -6274,8 +6453,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "4b3284b6adb4def2"
     },
@@ -6406,8 +6585,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "656397f2daf4415b"
     },
@@ -6452,8 +6631,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "205fa4ca258cfd64"
     },
@@ -6554,8 +6733,8 @@
       "source": "studio/src/app/signal/page.tsx",
       "parentJourney": "public-discovery-and-proof",
       "archetype": "public-information-and-proof",
-      "primaryJob": "Land on the daily-briefing story from a legacy /signal link without breaking.",
-      "primaryAction": "None — permanent redirect.",
+      "primaryJob": "Understand and use signal.",
+      "primaryAction": "Complete the primary action on signal.",
       "roles": [
         "public"
       ],
@@ -6584,8 +6763,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "856b4bc68707bf0f"
     },
@@ -6628,8 +6807,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "08643bcbe55b2464"
     },
@@ -6716,8 +6895,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "28238c4bb8bbcf68"
     },
@@ -6804,8 +6983,8 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": "2026-07-15",
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "69287b62dbab7d66"
     },
@@ -6892,8 +7071,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "c80f1710913e6b81"
     },
@@ -6936,8 +7115,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "f3c74e60e222ea99"
     },
@@ -7031,8 +7210,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "9261d701479860f1"
     },
@@ -7075,8 +7254,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "3c668e17aa7b104b"
     },
@@ -7386,8 +7565,8 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "a049142ed14b663b"
     },
@@ -11434,50 +11613,6 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
-    },
-    {
-      "id": "studio.page.features-daily-briefing",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/features/daily-briefing",
-      "source": "studio/src/app/features/daily-briefing/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand the daily briefing built into Home and join the waitlist.",
-      "primaryAction": "Join the waitlist.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "live",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": "2026-08-04",
-      "approvedBaselineReference": "studio/docs/consolidation/signal-home-2026-08-04.md",
-      "intentionalExceptions": [],
-      "materialityHash": "ed1b54098fb4e8bf"
     }
   ]
 }

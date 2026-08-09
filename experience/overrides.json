@@ -35,6 +35,42 @@
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-07-28"
     },
+    "studio.page.design-lab-delight-homepage-lineage": {
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the homepage delight lineage without presenting the lab as a production route.",
+      "primaryAction": "Compare the documented states and return to the production homepage.",
+      "roles": ["founder"],
+      "requiredStates": ["default", "long-content", "reduced-motion", "keyboard-only"],
+      "reviewTier": "supporting",
+      "implementationStatus": "preview",
+      "auditStatus": "registered",
+      "lastReviewedAt": "2026-08-08"
+    },
+    "studio.page.design-lab-delight-route-continuity": {
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review route-continuity delight studies without presenting the lab as a production route.",
+      "primaryAction": "Compare the documented route states and return to the production journey.",
+      "roles": ["founder"],
+      "requiredStates": ["default", "long-content", "reduced-motion", "keyboard-only"],
+      "reviewTier": "supporting",
+      "implementationStatus": "preview",
+      "auditStatus": "registered",
+      "lastReviewedAt": "2026-08-08"
+    },
+    "studio.page.hq-asset-curator": {
+      "parentJourney": "founder-operations",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review and curate brand assets inside the private founder workspace.",
+      "primaryAction": "Inspect an asset and record the curation decision.",
+      "roles": ["founder"],
+      "requiredStates": ["default", "empty", "populated", "error", "long-content", "reduced-motion", "keyboard-only"],
+      "reviewTier": "core",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "lastReviewedAt": "2026-08-08"
+    },
     "studio.page.privacy": {
       "auditStatus": "baseline-captured",
       "screenshotCoverage": "partial",

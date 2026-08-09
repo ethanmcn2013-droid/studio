@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-ux-assurance-report/1",
-  "generatedAt": "2026-07-15T21:04:11.782Z",
+  "generatedAt": "2026-08-08T23:35:59.648Z",
   "modes": [
     {
       "id": "product-clarity",
@@ -73,73 +73,14 @@
   "policy": "Specialists emit evidence and findings. They never manufacture a score from lint counts or claim subjective quality without rendered review evidence.",
   "captureAvailable": true,
   "coverage": {
-    "experiences": 242,
-    "automatedComplete": 0,
-    "screenshotsComplete": 0,
-    "accessibilityComplete": 0,
-    "fixturesComplete": 0
+    "experiences": 257,
+    "automatedComplete": 1,
+    "screenshotsComplete": 1,
+    "accessibilityComplete": 1,
+    "fixturesComplete": 1
   },
-  "observations": [
-    {
-      "id": "ux-auto-studio-page-privacy-mobile-slow-navigation",
-      "experienceId": "studio.page.privacy",
-      "product": "studio",
-      "state": "long-content",
-      "breakpoint": "mobile",
-      "specialist": "performance",
-      "rule": "slow-navigation",
-      "severity": "medium",
-      "dimension": "performance-and-perceived-speed",
-      "evidence": [
-        "Navigation duration 4273ms"
-      ],
-      "recommendation": "Profile the navigation and preserve a meaningful loading state while reducing the measured duration.",
-      "deterministic": true
-    }
-  ],
+  "observations": [],
   "subjectiveReviewQueue": [
-    {
-      "experienceId": "tasks.page.roadmap",
-      "status": "human-review-required",
-      "dimensions": [
-        "purpose-and-task-clarity",
-        "information-architecture",
-        "visual-hierarchy",
-        "typography-and-content",
-        "layout-and-composition",
-        "brand-distinction-and-craft",
-        "implementation-fidelity"
-      ],
-      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
-    },
-    {
-      "experienceId": "timeline.page.the-wedding",
-      "status": "human-review-required",
-      "dimensions": [
-        "purpose-and-task-clarity",
-        "information-architecture",
-        "visual-hierarchy",
-        "typography-and-content",
-        "layout-and-composition",
-        "brand-distinction-and-craft",
-        "implementation-fidelity"
-      ],
-      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
-    },
-    {
-      "experienceId": "signal.page.demo",
-      "status": "human-review-required",
-      "dimensions": [
-        "purpose-and-task-clarity",
-        "information-architecture",
-        "visual-hierarchy",
-        "typography-and-content",
-        "layout-and-composition",
-        "brand-distinction-and-craft",
-        "implementation-fidelity"
-      ],
-      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
-    },
     {
       "experienceId": "studio.page.root",
       "status": "human-review-required",
@@ -211,7 +152,119 @@
       "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
     },
     {
+      "experienceId": "timeline.page.the-wedding",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "signal.page.demo",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
       "experienceId": "notes.page.wedding-planning",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "tasks.page.roadmap",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "tasks.page.app-board",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "timeline.page.app",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "signal.page.app-onboarding",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "notes.page.app",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.hq-experience-quality",
       "status": "human-review-required",
       "dimensions": [
         "purpose-and-task-clarity",

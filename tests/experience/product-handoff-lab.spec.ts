@@ -4,6 +4,7 @@ import { expect, test } from "@playwright/test";
 const LAB_PATH = "/__design-lab/product-handoff";
 const OPTIONS = ["a", "b", "c"] as const;
 const PRODUCTS = ["notes", "tasks", "timeline", "signal"] as const;
+const PRODUCTION_PRODUCTS = ["notes", "tasks", "timeline"] as const;
 const FRAMES = [0, 0.5, 1] as const;
 const VIEWPORTS = [
   { name: "mobile", width: 390, height: 844 },
@@ -42,7 +43,7 @@ const PRODUCT_TEXT = {
 const NEXT_HREF = {
   notes: "/tasks",
   tasks: "/timeline",
-  timeline: "/signal",
+  timeline: null,
   signal: null,
 } as const;
 
@@ -109,7 +110,7 @@ for (const viewport of VIEWPORTS) {
       await expect(preview).toContainText(PRODUCT_TEXT[product][3]);
       await expect(page.getByLabel("Animation progress")).toHaveValue("1");
 
-      if (product === "signal") {
+      if (!NEXT_HREF[product]) {
         await expect(preview.getByText(/Open task/i)).toHaveCount(0);
         await expect(preview.getByRole("link", { name: /Next:/ })).toHaveCount(
           0,
@@ -178,7 +179,7 @@ for (const viewport of VIEWPORTS) {
   }) => {
     await page.setViewportSize(viewport);
 
-    for (const product of PRODUCTS) {
+    for (const product of PRODUCTION_PRODUCTS) {
       const response = await page.goto(`/${product}`);
       expect(response?.status()).toBe(200);
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
@@ -254,7 +255,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "light" });
 
-    for (const product of PRODUCTS) {
+    for (const product of PRODUCTION_PRODUCTS) {
       await page.goto(`/${product}`);
       const handoff = page.locator("[data-product-handoff]");
       await expect(handoff).toHaveAttribute("data-reduced", "true");
@@ -303,18 +304,18 @@ test("homepage emphasis and product signatures match the founder direction", asy
     signatures.evaluateAll((elements) =>
       elements.map((element) => element.getAttribute("data-product")),
     ),
-  ).resolves.toEqual(["notes", "tasks", "timeline", "signal"]);
+  ).resolves.toEqual(["notes", "tasks", "timeline", "home"]);
   await signatures.first().scrollIntoViewIfNeeded();
   await expect(signatures.first()).toHaveAttribute("data-active", "true");
 });
 
-test("the four production Handoffs have no serious accessibility violations", async ({
+test("the three production Handoffs have no serious accessibility violations", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "light" });
 
-  for (const product of PRODUCTS) {
+  for (const product of PRODUCTION_PRODUCTS) {
     await page.goto(`/${product}`);
     const result = await new AxeBuilder({ page })
       .include("[data-product-handoff]")

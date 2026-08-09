@@ -5,7 +5,6 @@ const MARKETING_ROUTES = [
   "/notes",
   "/tasks",
   "/timeline",
-  "/signal",
   "/pricing",
   "/about",
 ] as const;
@@ -166,7 +165,6 @@ test.describe("public marketing delight contract", () => {
       "pricing-caret",
       "pricing-pulse",
       "pricing-sweep",
-      "pricing-tick",
     ]);
     expect(
       marks.every((mark) => !mark.iterations.includes("infinite")),
@@ -294,8 +292,7 @@ test.describe("public marketing delight contract", () => {
       if (
         route === "/notes" ||
         route === "/tasks" ||
-        route === "/timeline" ||
-        route === "/signal"
+        route === "/timeline"
       ) {
         // Product heroes are accepted, self-contained systems with their own
         // contract. This release changes the shell, switcher, handoff, close

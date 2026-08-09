@@ -7,17 +7,25 @@
 - Approval source: [Founder authorization receipt](../../content/hq/decisions/experience-quality-founder-authorization-2026-07-15.md)
 - Approval task: [Approve the Signal Experience Standard](../../content/hq/operator-todos/approve-signal-experience-standard.md)
 
-The Signal Experience Standard is the suite-wide quality contract for four customer products (Notes, Tasks, Timeline, and Signal) inside one application, the Studio company and brand surface, and the private founder-operator tools in Signal HQ and Signal Review. Signal HQ is the internal control plane. Signal Review is its manual-review instrument. Neither is a customer-facing product. The standard governs complete experiences: a route or triggered surface, for a defined role, in a defined state, at a defined breakpoint. A component, screenshot, test, or aggregate score cannot be called Studio grade on its own.
+The Signal Experience Standard is the suite-wide quality contract for three
+customer products (Notes, Tasks, and Timeline), authenticated Home and its
+briefing capability, the Studio company and brand surface, and the private
+founder-operator tools in Signal HQ and Signal Review. Home is a front door,
+not a fourth product. Signal HQ is the internal control plane. Signal Review
+is its manual-review instrument. Neither is a customer-facing product. The
+standard governs complete experiences: a route or triggered surface, for a
+defined role, in a defined state, at a defined breakpoint. A component,
+screenshot, test, or aggregate score cannot be called Studio grade on its own.
 
 ## 2026-07-26 product-release overlay
 
-The four authenticated products are currently subject to the stricter
+The three authenticated products and their journey into Home are currently subject to the stricter
 [Signal Studio 9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
 For that programme, every required state-by-breakpoint cell must score at least
 `50/52`, with no dimension below `3`. Scores may not be averaged across cells
 or products. The general `3.5` mean below remains the baseline standard for
 other governed surfaces; it is not sufficient to promote Notes, Tasks,
-Timeline, or Signal through the current product-quality release.
+Timeline, or the authenticated Home journey through the current product-quality release.
 
 ## Authority
 

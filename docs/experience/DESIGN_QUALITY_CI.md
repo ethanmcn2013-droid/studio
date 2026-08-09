@@ -2,12 +2,12 @@
 
 Design Quality CI is a fail-closed evidence pipeline. It protects the registry and known-debt ratchet today; rendered product capture and strict visual no-regression require explicit execution and enforcement.
 
-The current four-product release uses the stricter
+The current three-product plus authenticated-Home release uses the stricter
 [50/52 product gate](./SUITE_95_PRODUCT_RELEASE_GATE.md). The Studio audit
 command still validates the general 3.5 mean and does not yet enforce 50/52.
 Until executable enforcement lands and is verified, a green Studio
 `design:quality` result cannot by itself promote Notes, Tasks, Timeline, or
-Signal.
+the cross-suite journey into Home.
 
 Sources: [`package.json`](../../package.json), [`design-quality.yml`](../../.github/workflows/design-quality.yml), [`playwright.config.ts`](../../playwright.config.ts), [`experience/conformance.json`](../../experience/conformance.json), and [`scripts/experience/`](../../scripts/experience/).
 

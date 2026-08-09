@@ -1,11 +1,30 @@
 ﻿# signal studio. — the dispatch
 
-The umbrella dispatch. The four products keep their own; this one
+The umbrella dispatch. The three products and Home keep their own product
+receipts; this one
 carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 (entry shape — `ships / tightens / cuts / holds / reads`) · Â§6.6
 (operating vocabulary — pass · step · update · fix · re-do · push ·
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
+
+## 2026-08-09 · S·163 · tightens · the control plane agrees on what Signal Studio is
+
+**The brand, HQ, infrastructure map, and experience registry now tell one
+current story: Notes, Tasks, and Timeline are the products; Home is the front
+door; the briefing lives inside it.** The active HQ decision supersedes the old
+four-product and `/app/signal` records without deleting their provenance. The
+brand handbook and 9.5 experience standard carry the same amendment, and the
+infrastructure map names the actual `app` and `studio` production projects.
+
+Studio's ten Design Quality registry failures are reconciled explicitly. Seven
+changed sources retain their honest `none` or `partial` coverage; two delight
+labs are registered as previews; `/hq/asset-curator` is registered as a private
+founder surface. The materiality receipt records every old and current hash and
+states the boundary plainly: registration is not visual or accessibility
+certification. A shared machine-readable Wave 9.5 receipt schema now binds
+commits, PRs, checks, deployments, live routes, evidence, council scores, and
+the next-wave decision.
 
 ## 2026-08-08 · S·162 · tightens · the visual canon is no longer mixed with the maybe pile
 

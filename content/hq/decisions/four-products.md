@@ -1,16 +1,19 @@
 ---
 id: four-products
-title: Keep all four products as one ecosystem.
+title: Historical four-product ecosystem decision
 category: Product
 date: 2026-05-10
-status: Active
+status: Superseded
 reviewDate: 2026-06-10
 relatedObjects: [Signal Tasks, Signal Timeline, Signal, Signal Notes]
 ---
 
 ## Decision
 
-Keep all four products as one ecosystem.
+Superseded on 2026-08-04 by `three-products-home`. The ecosystem remains one
+application, but the current product line is Notes, Tasks, and Timeline. Home
+is the authenticated front door and contains the daily signal and Full
+Briefing; Signal is not a fourth product.
 
 ## Reason
 

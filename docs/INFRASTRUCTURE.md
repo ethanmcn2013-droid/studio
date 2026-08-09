@@ -1,6 +1,6 @@
 # Signal Studio · infrastructure map
 
-Canonical as of the 2026-07-31 data-layer reset. If reality and this file
+Canonical as of the 2026-08-09 Wave 0 deployment rebaseline. If reality and this file
 disagree, fix one of them in the same change. App-side deploy detail lives
 in the app repo's `DEPLOY.md`.
 
@@ -8,12 +8,12 @@ in the app repo's `DEPLOY.md`.
 
 | Layer | Account | Holds |
 |---|---|---|
-| Vercel | team `ethanmcn2013-1730s-projects` (Hobby) | Projects `studio`, `tasks` (production), `signal-docs-hub` (CI-published decks), `signal-business-plan`, `signal-growth-plan` (doc sites), `ethanmcnamara`, `transactions-mirror` (personal) |
+| Vercel | team `ethanmcn2013-1730s-projects` (Hobby) | Production projects `studio` and `app`; document/personal projects remain separate and are outside the suite release loop |
 | Turso | `ethan387` (Free, group `default`) | The 11 databases below |
 | Clerk | app “Signal Studio” | Auth for the unified app only; studio hosts the GDPR webhook receiver |
 | Stripe | (founder dashboard) | Billing for the unified app; 5 prices, 1 env var each |
 | Resend | domain `signalstudio.ie` | Transactional email from the app |
-| GitHub | org `ethanmcn2013-droid` | Operating repos: `studio`, `tasks`, `signal-motion`, `signal-directors`, `signal-design-system`, `signal-review`, `collateral`. Legacy product repos are archived |
+| GitHub | org `ethanmcn2013-droid` | Production repos: `studio`, `app`; supporting repos include `signal-motion`, `signal-directors`, `signal-design-system`, `signal-review`, and `collateral`. Legacy product repos are archived |
 | Google Workspace | `signalstudio.ie` MX | Mailbox email (separate from Resend sending) |
 | GA4 | property `G-YHBS152PJK` | Client-side analytics on both apps, no secret |
 
@@ -24,10 +24,10 @@ Preview siblings are independent databases too, never branches.
 
 | Database | Owner (writes) | Readers | Schema baseline |
 |---|---|---|---|
-| `tasks-prod` / `tasks-preview` | app (`tasks` repo) | studio Today API (read-only token) | `tasks/drizzle` receipt-ledger, baseline 0014 + forwards |
-| `notes-prod` / `notes-preview` | app · Notes module | studio Today API | `tasks/drizzle-notes/0000` |
-| `timeline-prod` / `timeline-preview` | app · Timeline module | studio Today API | `tasks/drizzle-timeline/0000` |
-| `signal-prod` / `signal-preview` | app · Signal module (briefing + preferences) | studio Today API | `tasks/drizzle-signal/0000` |
+| `tasks-prod` / `tasks-preview` | app repo · Tasks product | studio Today API (read-only token) | `app/drizzle` receipt-ledger, baseline 0014 + forwards |
+| `notes-prod` / `notes-preview` | app repo · Notes product | studio Today API | `app/drizzle-notes/0000` |
+| `timeline-prod` / `timeline-preview` | app repo · Timeline product | studio Today API | `app/drizzle-timeline/0000` |
+| `signal-prod` / `signal-preview` | app repo · Home briefing capability and preferences (legacy database name) | studio Today API | `app/drizzle-signal/0000` |
 | `entitlements-prod` / `entitlements-preview` | app (Stripe webhook) + studio scripts | every product (read) | `studio/drizzle-entitlements/0000` |
 | `studio-prod` (no preview, by design) | studio | — | `studio/drizzle/0000` |
 
@@ -52,7 +52,7 @@ value. Rules:
 | studio | `/api/cron/sponsored-use` | daily 06:20 UTC | `CRON_SECRET` |
 | app | `/api/cron/digest?send=1` | daily 09:00 UTC | `CRON_SECRET` |
 | app → studio | `/api/internal/cron-ping` | after app crons | `STUDIO_CRON_PING_SECRET` = studio's `CRON_PING_SECRET` (one value, two names — rotate together) |
-| tasks repo CI | `db-migration-drift` workflow | daily 07:00 UTC | Actions secrets `TASKS_DATABASE_URL` / `TASKS_AUTH_TOKEN` |
+| app repo CI | `db-migration-drift` workflow | daily 07:00 UTC | Actions secrets `TASKS_DATABASE_URL` / `TASKS_AUTH_TOKEN` |
 
 ## Webhooks
 
