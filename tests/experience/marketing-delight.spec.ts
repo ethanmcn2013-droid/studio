@@ -247,7 +247,7 @@ test.describe("public marketing delight contract", () => {
     ).toBe("opacity");
   });
 
-  test("all six pages remain contained at the mobile viewport", async ({
+  test("all current pages remain contained at the mobile viewport", async ({
     page,
   }) => {
     test.slow();
@@ -275,7 +275,7 @@ test.describe("public marketing delight contract", () => {
     await expect(page.locator("#mobile-nav-panel")).toBeHidden();
   });
 
-  test("all six pages have no serious accessibility violations", async ({
+  test("all current pages have no serious accessibility violations", async ({
     page,
   }) => {
     test.slow();
