@@ -9,16 +9,17 @@ const fixture = readFileSync(
   path.join(process.cwd(), "src", "components", "marketing", "heroes", "timeline", "fixture.ts"),
   "utf8",
 );
+const presentation = readFileSync(
+  path.join(process.cwd(), "src", "lib", "review-suite-presentation.ts"),
+  "utf8",
+);
 
 describe("Wave 2 public truth contract", () => {
   it("renders the four ratified plan shapes without the retired universal promise", () => {
-    for (const plan of ["free", "student", "pro", "event"]) {
-      assert.match(pricing, new RegExp(`requireVerifiedAmount\\("${plan}"\\)`));
-    }
-    for (const phrase of ["€120", "Unlimited", "12 months, then read-only"]) {
-      assert.ok(pricing.includes(phrase));
-    }
+    assert.match(pricing, /getConsumerPricingPresentation/);
     assert.doesNotMatch(pricing, /One price|No seat tax|Invite who you need|price does not move/i);
+    assert.doesNotMatch(pricing, /Forever|Does not expire|No product add-ons|lock away product capability/i);
+    assert.match(pricing, /PRICING\.vatStatement/);
     for (const plan of ["Free", "Student", "Pro", "Event"]) {
       assert.match(pricing, new RegExp(`Join the ${plan} waitlist`));
     }
@@ -33,7 +34,9 @@ describe("Wave 2 public truth contract", () => {
 
   it("pins the public Mara and Finn proof to the canonical fixture date", () => {
     assert.match(fixture, /2026-10-03/);
-    assert.match(fixture, /2026-07-16/);
-    assert.match(fixture, /Shared by Mara & Finn/);
+    assert.match(fixture, /REVIEW_SUITE_PRESENTATION\.reviewToday/);
+    assert.match(fixture, /REVIEW_SUITE_PRESENTATION\.project\.name/);
+    assert.match(presentation, /name: "Mara & Finn"/);
+    assert.match(presentation, /reviewToday: "2026-07-16"/);
   });
 });

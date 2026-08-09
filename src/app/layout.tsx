@@ -32,15 +32,15 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Project management for the 80% not in tech.",
+  title: "Signal Studio · Project management for people outside tech.",
   description:
-    "Project management for the 80% who don't work in tech. Notes, Tasks, Timeline — one clear system that turns activity into a daily briefing. Plain English. Built for the work, not the workflow.",
+    "Project management for people outside tech. Notes, Tasks and Timeline form one clear system, with a daily briefing in Home. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
   manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Signal Studio · Project management for the 80% not in tech.",
+    title: "Signal Studio · Project management for people outside tech.",
     description:
       "Notes. Tasks. Timeline. One clear system. Plain English. Built for the work, not the workflow.",
     type: "website",
@@ -85,7 +85,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks and Signal Timeline read as one system, with a daily briefing built into Home.",
+      "Project management for people outside tech. Signal Notes, Signal Tasks and Signal Timeline read as one system, with a daily briefing built into Home.",
     offers: [
       {
         "@type": "Offer",

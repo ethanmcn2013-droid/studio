@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   COMMERCIAL_TERMS,
   formatEuroCents,
+  getConsumerPricingPresentation,
   requireVerifiedAmount,
 } from "./commercial-terms";
 import {
@@ -43,6 +44,15 @@ test("encodes the founder-ratified commercial policy pack", () => {
   assert.equal(COMMERCIAL_TERMS.broadLaunchDate, null);
   assert.equal(COMMERCIAL_TERMS.broadLaunchPolicy, "manual_go_no_go_only");
   assert.deepEqual(COMMERCIAL_TERMS.unresolved, []);
+});
+
+test("presents public consumer terms without converting cadence into permanence", () => {
+  const pricing = getConsumerPricingPresentation();
+  assert.equal(pricing.plans.free.access, "No recurring charge");
+  assert.equal(pricing.plans.pro.editingGuestLimit, "See terms before purchase");
+  assert.equal(pricing.plans.event.editingGuestLimit, "See terms before purchase");
+  assert.equal(pricing.vatStatement, "All prices are inclusive of VAT at the prevailing rate.");
+  assert.doesNotMatch(JSON.stringify(pricing), /forever|does not expire|lifetime/i);
 });
 
 /**

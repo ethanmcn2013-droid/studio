@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SystemProofLink } from "./system-proof-link";
 
 export function RevealHero() {
   return (
@@ -8,8 +9,8 @@ export function RevealHero() {
     >
       <div className="reveal-hero-v2-inner">
         <h1 id="home-title" className="reveal-headline-v2">
-          Project management for the 80%{" "}
-          <span className="reveal-headline-accent">not</span> in tech.
+          Project management for people{" "}
+          <span className="reveal-headline-accent">outside</span> tech.
         </h1>
 
         <p className="reveal-lede-v2">
@@ -18,10 +19,10 @@ export function RevealHero() {
         </p>
 
         <div className="reveal-hero-actions">
-          <a className="reveal-action reveal-action-primary" href="#system">
+          <SystemProofLink className="reveal-action reveal-action-primary">
             See the system at work
             <span aria-hidden>↓</span>
-          </a>
+          </SystemProofLink>
           <Link
             className="reveal-action reveal-action-secondary"
             href="/waitlist?source=home_hero&campaign=pre_access_waitlist&artifact=hero_cta&touch=site"

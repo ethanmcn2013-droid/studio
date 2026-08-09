@@ -2,20 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
-import { formatEuroCents, requireVerifiedAmount } from "@/lib/commercial-terms";
+import { getConsumerPricingPresentation } from "@/lib/commercial-terms";
 import { PlanPicker, type PricingPlan } from "./plan-picker";
 
-const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
-const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
-const PRO_PRICE = formatEuroCents(requireVerifiedAmount("pro"));
-const EVENT_PRICE = formatEuroCents(requireVerifiedAmount("event"));
+const PRICING = getConsumerPricingPresentation();
+const FREE_PRICE = PRICING.plans.free.price;
+const STUDENT_PRICE = PRICING.plans.student.price;
+const PRO_PRICE = PRICING.plans.pro.price;
+const EVENT_PRICE = PRICING.plans.event.price;
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `Four clear access shapes, one complete suite. Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or ${EVENT_PRICE} one-time for an event.`,
+  description: `Compare four clear access shapes for Signal Studio: Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or ${EVENT_PRICE} one-time for an event.`,
   openGraph: {
     title: "Pricing · Signal Studio",
-    description: "Choose the shape that matches the work. Every plan includes Notes, Tasks, Timeline and the daily briefing in Home.",
+    description: "Choose the access shape that matches the work. Exact limits and terms are repeated before purchase.",
     type: "website",
   },
 };
@@ -28,14 +29,14 @@ const PLANS: readonly PricingPlan[] = [
   {
     id: "free",
     useCase: "Just me",
-    name: "Free",
+    name: PRICING.plans.free.name,
     price: FREE_PRICE,
-    cadence: "forever",
-    summary: "Start one workspace with the whole suite. No card and no trial countdown.",
+    cadence: "no recurring charge",
+    summary: "Start with one workspace. No card and no trial countdown.",
     facts: [
-      { label: "Workspace", value: "One" },
-      { label: "Editing guests", value: "Three" },
-      { label: "Access window", value: "Forever" },
+      { label: "Workspace", value: PRICING.plans.free.workspaceLimit },
+      { label: "Editing guests", value: PRICING.plans.free.editingGuestLimit },
+      { label: "Billing", value: PRICING.plans.free.access },
     ],
     cta: "Join the Free waitlist",
     href: waitlistHref("pricing_free", "free"),
@@ -43,14 +44,14 @@ const PLANS: readonly PricingPlan[] = [
   {
     id: "student",
     useCase: "I study",
-    name: "Student",
+    name: PRICING.plans.student.name,
     price: STUDENT_PRICE,
     cadence: "per year",
-    summary: "The complete suite at a student price. Three workspaces, three editing guests, and verified student status with annual re-verification.",
+    summary: "A student access shape with three workspaces, three editing guests, and annual re-verification.",
     facts: [
       { label: "Eligibility", value: "Student verification" },
-      { label: "Workspaces", value: "Three" },
-      { label: "Editing guests", value: "Three" },
+      { label: "Workspaces", value: PRICING.plans.student.workspaceLimit },
+      { label: "Editing guests", value: PRICING.plans.student.editingGuestLimit },
     ],
     cta: "Join the Student waitlist",
     href: waitlistHref("pricing_student", "student"),
@@ -58,15 +59,15 @@ const PLANS: readonly PricingPlan[] = [
   {
     id: "pro",
     useCase: "Ongoing work",
-    name: "Pro",
+    name: PRICING.plans.pro.name,
     price: PRO_PRICE,
     cadence: "per month",
     recommended: true,
     summary: "For work that keeps moving. Unlimited workspaces, with a verified monthly price and a €120 annual option when purchase opens.",
     facts: [
       { label: "Best for", value: "Crews and ongoing projects" },
-      { label: "Workspaces", value: "Unlimited" },
-      { label: "Billing", value: "€12 monthly · €120 yearly" },
+      { label: "Workspaces", value: PRICING.plans.pro.workspaceLimit },
+      { label: "Billing", value: `${PRO_PRICE} monthly · ${PRICING.plans.pro.annualPrice} yearly` },
     ],
     cta: "Join the Pro waitlist",
     href: waitlistHref("pricing_pro", "pro"),
@@ -74,14 +75,14 @@ const PLANS: readonly PricingPlan[] = [
   {
     id: "event",
     useCase: "One event",
-    name: "Event",
+    name: PRICING.plans.event.name,
     price: EVENT_PRICE,
     cadence: "one-time · 12 months",
     summary: "One workspace for one wedding, launch, move or conference. It stays active for 12 months, then becomes read-only.",
     facts: [
-      { label: "Workspace", value: "One event" },
+      { label: "Workspace", value: PRICING.plans.event.workspaceLimit },
       { label: "After 12 months", value: "Read-only" },
-      { label: "Access window", value: "12 months" },
+      { label: "Access window", value: PRICING.plans.event.access },
     ],
     cta: "Join the Event waitlist",
     href: waitlistHref("pricing_event", "event"),
@@ -90,16 +91,16 @@ const PLANS: readonly PricingPlan[] = [
 
 const COMPARE_ROWS = [
   { label: "Best for", values: ["Starting solo", "Students", "Ongoing work", "One event"] },
-  { label: "Workspaces", values: ["One", "Three", "Unlimited", "One event"] },
-  { label: "Editing guests", values: ["Three", "Three", "See terms before purchase", "See terms before purchase"] },
-  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or €120 / year`, `${EVENT_PRICE} one-time`] },
-  { label: "Access", values: ["Does not expire", "Annual re-verification", "While subscribed", "12 months, then read-only"] },
+  { label: "Workspaces", values: [PRICING.plans.free.workspaceLimit, PRICING.plans.student.workspaceLimit, PRICING.plans.pro.workspaceLimit, PRICING.plans.event.workspaceLimit] },
+  { label: "Editing guests", values: [PRICING.plans.free.editingGuestLimit, PRICING.plans.student.editingGuestLimit, PRICING.plans.pro.editingGuestLimit, PRICING.plans.event.editingGuestLimit] },
+  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or ${PRICING.plans.pro.annualPrice} / year`, `${EVENT_PRICE} one-time`] },
+  { label: "Access", values: [PRICING.plans.free.access, PRICING.plans.student.access, PRICING.plans.pro.access, PRICING.plans.event.access] },
 ] as const;
 
 const FAQ = [
   {
-    q: "What is included in every plan?",
-    a: "Notes, Tasks, Timeline and the daily briefing in Home. Plans change the access shape, not which product you are allowed to use.",
+    q: "What will I see before purchase?",
+    a: "The selected price, workspace limit, editing-member limit, renewal or access window, VAT wording and full terms. Joining the waitlist does not charge you.",
   },
   {
     q: "Do I pay for every person who can view a Timeline?",
@@ -111,7 +112,7 @@ const FAQ = [
   },
   {
     q: "Can I choose annual Pro?",
-    a: "Yes when paid access opens: €12 per month or €120 per year. Joining the waitlist does not select a billing cadence or charge you.",
+    a: `Yes when paid access opens: ${PRO_PRICE} per month or ${PRICING.plans.pro.annualPrice} per year. Joining the waitlist does not select a billing cadence or charge you.`,
   },
   {
     q: "Am I charged when I join the waitlist?",
@@ -132,14 +133,14 @@ export default function PricingPage() {
         <section className="mx-auto w-full max-w-[1120px] px-5 pb-12 pt-14 sm:px-6 md:pb-16 md:pt-24">
           <Eyebrow>Pricing</Eyebrow>
           <h1 className="mt-5 max-w-[18ch] text-balance text-[clamp(2.8rem,2rem+4vw,6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-ink">
-            Choose the shape. Keep the whole suite.
+            Choose the shape. Keep one clear system.
           </h1>
           <p className="mt-6 max-w-[62ch] text-[clamp(1.05rem,0.98rem+0.35vw,1.25rem)] leading-8 text-ink-soft">
-            Every plan includes Notes, Tasks, Timeline and the daily briefing in Home. Access opens in small batches, and the price, limits and renewal terms are repeated before you commit.
+            Compare the price and known limits for each access shape. {PRICING.availability} The selected terms are repeated before you commit.
           </p>
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink-quiet" role="list" aria-label="Pricing commitments">
             <span role="listitem">No charge on the waitlist</span>
-            <span role="listitem">No product add-ons</span>
+            <span role="listitem">{PRICING.vatStatement}</span>
             <span role="listitem">Terms repeated before purchase</span>
           </div>
         </section>
@@ -167,7 +168,7 @@ export default function PricingPage() {
                 Three products. One continuous handoff.
               </h2>
               <p className="mt-4 max-w-[48ch] text-[15px] leading-7 text-ink-soft">
-                Plans do not lock away product capability. Notes captures the thought, Tasks carries the action, Timeline shares the direction, and Home reads across all three.
+                Notes captures the thought, Tasks carries the action, Timeline shares the direction, and Home reads across all three. Exact plan entitlements are shown in the terms before purchase.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">

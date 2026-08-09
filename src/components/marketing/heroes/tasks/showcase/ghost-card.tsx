@@ -58,7 +58,7 @@ export function GhostCard({
                     : "var(--ink-quiet)",
               }}
             >
-              {task.priority.toUpperCase()}
+              {PRIORITY_LABEL[task.priority].label}
             </span>
             <AvatarStack users={task.assignees} size={16} />
           </div>

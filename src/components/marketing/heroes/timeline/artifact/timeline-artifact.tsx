@@ -8,6 +8,7 @@ import {
   useState,
   type CSSProperties,
   type KeyboardEvent,
+  type RefObject,
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { AudienceTimelineDto } from "../audience-timeline";
@@ -72,6 +73,45 @@ function useArtifactReducedMotion(): boolean {
   const hydrated = useHydrated();
   const prefersReducedMotion = useReducedMotion();
   return hydrated && Boolean(prefersReducedMotion);
+}
+
+/**
+ * Initial marketing proof is server-rendered in its settled state. Normal
+ * choreography is armed only once the hydrated artifact actually enters the
+ * viewport; reduced-motion visitors never enter an animated intermediate
+ * state during hydration.
+ */
+function useArtifactChoreography(
+  ref: RefObject<HTMLElement | null>,
+): Readonly<{ reduceMotion: boolean; motionReady: boolean }> {
+  const hydrated = useHydrated();
+  const prefersReducedMotion = useReducedMotion();
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    if (!hydrated || prefersReducedMotion) return;
+    const node = ref.current;
+    if (!node) return;
+    if (!("IntersectionObserver" in window)) {
+      const timer = globalThis.setTimeout(() => setInView(true), 0);
+      return () => globalThis.clearTimeout(timer);
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setInView(true);
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hydrated, prefersReducedMotion, ref]);
+
+  return {
+    reduceMotion: hydrated && Boolean(prefersReducedMotion),
+    motionReady: hydrated && !prefersReducedMotion && inView,
+  };
 }
 
 export type TimelineArtifactProps = Readonly<{
@@ -392,7 +432,9 @@ function Journey({
   model: TimelineArtifactModel;
   idPrefix: string;
 }) {
-  const reduceMotion = useArtifactReducedMotion();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { reduceMotion, motionReady } = useArtifactChoreography(sectionRef);
+  const settledWithoutChoreography = reduceMotion || !motionReady;
   const [selectedId, setSelectedId] = useState(model.defaultSelectedId);
   const [focusIndex, setFocusIndex] = useState(() => Math.max(
     0,
@@ -500,7 +542,13 @@ function Journey({
     : "The highlighted point is the plan’s next milestone. The Today dash shows the calendar position. Use Left and Right Arrow to move between milestones, Home and End to jump, Enter or Space to select, and Escape to close milestone detail.";
 
   return (
-    <section className={styles.journey} id={sectionId} aria-labelledby={`${sectionId}-title`}>
+    <section
+      className={styles.journey}
+      data-motion-ready={motionReady ? "true" : undefined}
+      id={sectionId}
+      aria-labelledby={`${sectionId}-title`}
+      ref={sectionRef}
+    >
       {/* "Plan timeline", not "Project timeline": every marketing surface
           that embeds this artifact shows a wedding plan, and the visible
           register beside it says plan. A screen reader should not hear a
@@ -530,22 +578,24 @@ function Journey({
               <span className={styles.baseRail} aria-hidden="true" />
               <motion.span
                 className={styles.completedRail}
-                initial={reduceMotion ? false : { scaleX: 0 }}
+                key={`rail-x-${motionReady}`}
+                initial={settledWithoutChoreography ? false : { scaleX: 0 }}
                 animate={{ scaleX: todayFraction }}
                 transition={{
-                  duration: reduceMotion ? 0 : RAIL_DRAW_S * todayFraction + 0.12,
-                  delay: reduceMotion ? 0 : RAIL_START_S,
+                  duration: settledWithoutChoreography ? 0 : RAIL_DRAW_S * todayFraction + 0.12,
+                  delay: settledWithoutChoreography ? 0 : RAIL_START_S,
                   ease: RAIL_EASE,
                 }}
                 aria-hidden="true"
               />
               <motion.span
                 className={styles.completedRailVertical}
-                initial={reduceMotion ? false : { scaleY: 0 }}
+                key={`rail-y-${motionReady}`}
+                initial={settledWithoutChoreography ? false : { scaleY: 0 }}
                 animate={{ scaleY: todayFraction }}
                 transition={{
-                  duration: reduceMotion ? 0 : RAIL_DRAW_S * todayFraction + 0.12,
-                  delay: reduceMotion ? 0 : RAIL_START_S,
+                  duration: settledWithoutChoreography ? 0 : RAIL_DRAW_S * todayFraction + 0.12,
+                  delay: settledWithoutChoreography ? 0 : RAIL_START_S,
                   ease: RAIL_EASE,
                 }}
                 aria-hidden="true"
@@ -559,12 +609,13 @@ function Journey({
                 style={todayStyle}
                 role="img"
                 aria-label={todayLabel}
-                initial={reduceMotion ? false : { opacity: 0, y: -8 }}
+                key={`today-${motionReady}`}
+                initial={settledWithoutChoreography ? false : { opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: reduceMotion ? 0 : 0.34,
+                  duration: settledWithoutChoreography ? 0 : 0.34,
                   // Lands just after the ink rail arrives beneath it.
-                  delay: reduceMotion
+                  delay: settledWithoutChoreography
                     ? 0
                     : RAIL_START_S + todayFraction * RAIL_DRAW_S + 0.1,
                   ease: METRIC_EASE,
@@ -620,11 +671,12 @@ function Journey({
                             all at once. */}
                         <motion.span
                           className={styles.point}
-                          initial={reduceMotion ? false : { opacity: 0, scale: 0.5 }}
+                          key={`${point.item.publicId}-${motionReady}`}
+                          initial={settledWithoutChoreography ? false : { opacity: 0, scale: 0.5 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{
-                            duration: reduceMotion ? 0 : 0.46,
-                            delay: reduceMotion
+                            duration: settledWithoutChoreography ? 0 : 0.46,
+                            delay: settledWithoutChoreography
                               ? 0
                               : RAIL_START_S + alongRail(point.position) * RAIL_DRAW_S,
                             ease: POINT_EASE,

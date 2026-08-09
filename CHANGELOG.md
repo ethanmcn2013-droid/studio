@@ -8,6 +8,23 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-09 · S·165 · tightens · one public story now carries every promise
+
+**Pricing now renders availability, prices, limits, billing, and VAT wording
+from the ratified commercial contract without turning an internal cadence into
+a permanence promise.** Free says no recurring charge, unknown editing limits
+stay unknown, and every selected term is repeated before purchase. The page no
+longer claims product add-ons or capability rules that the contract does not
+encode.
+
+The landing proof now imports one versioned Mara & Finn presentation across
+Notes, Tasks, Timeline, and Home. Its task count, names, states, priorities,
+dates, and open risk agree with the authenticated review fixture; raw slugs and
+P-codes are gone. Timeline proof waits until it enters the viewport, reduced
+motion is settled from first paint, and the hero hands both scroll position and
+keyboard focus to the proof. About presents three products, with the daily
+briefing clearly inside Home rather than beside them.
+
 ## 2026-08-09 · S·164 · tightens · pricing asks one truthful question first
 
 **Pricing now recommends a plan from the visitor's use case, keeps the whole

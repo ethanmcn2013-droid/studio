@@ -1,4 +1,5 @@
 import type { AudienceTimelineDto } from "@/components/marketing/heroes/timeline/audience-timeline";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 
 /**
  * Public half of the deterministic Mara & Finn review fixture.
@@ -11,11 +12,11 @@ export const TIMELINE_HERO_FIXTURE: AudienceTimelineDto = {
   version: 1,
   audienceKind: "couple",
   publicationId: "demo-audience-publication",
-  label: "Mara & Finn",
-  ownerDisplayLabel: "Shared by Mara & Finn",
+  label: REVIEW_SUITE_PRESENTATION.project.name,
+  ownerDisplayLabel: `Shared by ${REVIEW_SUITE_PRESENTATION.project.name}`,
   primaryDate: { label: "Wedding day", date: "2026-10-03" },
-  lastUpdatedAt: "2026-07-15T18:30:00.000Z",
-  today: "2026-07-16",
+  lastUpdatedAt: REVIEW_SUITE_PRESENTATION.lastUpdatedAt,
+  today: REVIEW_SUITE_PRESENTATION.reviewToday,
   sections: [
     {
       state: "covered",
@@ -29,7 +30,7 @@ export const TIMELINE_HERO_FIXTURE: AudienceTimelineDto = {
       state: "now",
       label: "Now",
       items: [
-        { publicId: "demo-audience-item-menu", title: "Menu tasting at The Orchard", date: "2026-08-01", state: "now" },
+        { publicId: "demo-audience-item-menu", title: REVIEW_SUITE_PRESENTATION.journey.task, date: REVIEW_SUITE_PRESENTATION.journey.milestoneDate, state: "now" },
       ],
     },
     {

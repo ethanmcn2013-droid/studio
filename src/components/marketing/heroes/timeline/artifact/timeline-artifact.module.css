@@ -380,7 +380,13 @@ button.timeLens:focus-visible .metricAlternate {
      a structural line can never be left at scaleX(0) by a stalled JS
      animation. Timings mirror RAIL_START_S / RAIL_DRAW_S / RAIL_EASE in the
      component; keep the two in step. */
-  animation: timeline-rail-draw 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both; /* ds-allow — bespoke rail-draw curve */
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .journey[data-motion-ready="true"] .baseRail {
+    animation: timeline-rail-draw 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both; /* ds-allow — bespoke rail-draw curve */
+  }
 }
 
 @keyframes timeline-rail-draw {
