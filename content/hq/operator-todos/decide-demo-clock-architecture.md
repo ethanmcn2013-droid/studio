@@ -4,6 +4,7 @@ title: Decide how the demo workspace tells the time
 status: open
 priority: P1
 blocking: false
+effort: quick
 phase: Phase 2
 why: The review clock is pinned to 16 July and drifts a day further behind reality every day; Timeline's whole proposition is a countdown, and in the demo the countdown is wrong.
 href: /hq

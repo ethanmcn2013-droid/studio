@@ -4,6 +4,7 @@ title: Clear the 2026-08-12 session-close leftovers on the dev machine
 status: open
 priority: P2
 blocking: false
+effort: quick
 phase: Phase 2
 why: Two emptied worktree directories hold Windows file locks until the next reboot, and two prepared task chips sit unstarted; five minutes of clicking finishes the tidy-up the session could not.
 href: /hq

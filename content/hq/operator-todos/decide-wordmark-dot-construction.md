@@ -4,6 +4,7 @@ title: Name one authority for the wordmark dot
 status: open
 priority: P2
 blocking: false
+effort: quick
 phase: Phase 2
 why: Five recorded constructions disagree, so no builder can conform the app chrome without picking a side; the wave-6 builder investigating correctly refused to guess.
 href: /design

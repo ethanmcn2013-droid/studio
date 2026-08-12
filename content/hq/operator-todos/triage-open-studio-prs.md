@@ -4,6 +4,7 @@ title: Triage the eight pre-session studio PRs still open
 status: open
 priority: P1
 blocking: false
+effort: quick
 phase: Phase 2
 why: Eight PRs from before the 2026-08-12 session sit open against a main that has since cut the estate to eighteen pages; at least one targets a page that no longer exists, and every stale PR is a merge hazard for the next session.
 href: https://github.com/ethanmcn2013-droid/studio/pulls

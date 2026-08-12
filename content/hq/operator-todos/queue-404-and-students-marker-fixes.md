@@ -4,6 +4,7 @@ title: Approve the next design pass — the shared 404 page and the /students to
 status: open
 priority: P2
 blocking: false
+effort: quick
 phase: Phase 2
 why: Two confirmed visual defects from the closing review are recorded but unfixed; both are re-composition work, deliberately not rushed into the session close.
 href: /students

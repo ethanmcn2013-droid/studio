@@ -4,6 +4,7 @@ title: Decide whether the privacy policy gains an explicit no-sale line
 status: open
 priority: P1
 blocking: false
+effort: involved
 phase: Phase 2
 why: /students had to drop "no data is sold" because the binding policy never says it; until the policy carries the line, no marketing surface may make the claim.
 href: /privacy
