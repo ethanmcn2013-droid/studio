@@ -13,7 +13,7 @@ date: 2026-08-12
 
 ## Why this is yours and not an agent's
 
-The fix (app dispatch T·144, risk `app-access-gate-divergence`) is verified by
+The fix (app dispatch T·145, risk `app-access-gate-divergence`) is verified by
 running both access gates in production mode against a real database with a real
 `workspace_members` row, and by a source-level guard across the whole /app tree.
 That proves the gates agree and admit the right identities.

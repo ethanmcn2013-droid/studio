@@ -11,7 +11,7 @@ reviewDate: 2026-09-15
 
 ## Mitigation
 
-Opened and mitigated 2026-08-12 (app dispatch T·144). The signed-in app has two
+Opened and mitigated 2026-08-12 (app dispatch T·145, app PR #130). The signed-in app has two
 access checks. `requireAppAccess()` reads the closed-beta allowlist and nothing
 else. `requireAppAccessTasks()` reads the allowlist first and then falls back to
 a `workspace_members` row, which is the D-018 grant-on-accept rule: an owner
