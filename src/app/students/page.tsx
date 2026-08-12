@@ -111,7 +111,7 @@ const LADDER = [
 ] as const;
 
 const COPY = {
-  eyebrowHero: "Student Edition · Staged access",
+  eyebrowHero: "Student Edition · Waitlist only",
   heroJumpToTerms: "What it costs, and every condition on it",
 
   relayKicker: "Six parts, in order",
@@ -127,7 +127,7 @@ const COPY = {
 
   stackLabel: "One semester",
 
-  eyebrow1: "Three Workspaces, one semester",
+  eyebrow1: "Three workspaces, one semester",
   foot1: "Three modules → one line",
 
   eyebrow2: "The week that decides the grade",
@@ -196,11 +196,11 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
     rows: [
       [
         "How it is billed",
-        `Once a ${STUDENT_PLAN.cadence}. There is no monthly cadence on this plan.`,
+        `Once a ${STUDENT_PLAN.cadence}. You cannot pay monthly.`,
       ],
       [
         "What is included",
-        `${PRICING.plans.student.workspaceLimit} Workspaces and ${STUDENT_GUESTS} editing guests.`,
+        `${PRICING.plans.student.workspaceLimit} workspaces and ${STUDENT_GUESTS} editing guests.`,
       ],
       [
         "Trials",
@@ -214,10 +214,10 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
     label: "Who it is for",
     base: 4,
     rows: [
-      ["Who qualifies", "Verified student status, and nothing else."],
+      ["Who qualifies", "You have to be a student, and I check. Nothing else counts."],
       [
         "How long that lasts",
-        "One year. Student status is checked again every year.",
+        "One year. I check again every year that you are still a student.",
       ],
       [
         "When it can be bought",
@@ -243,7 +243,7 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
       ],
       [
         "The state of this plan",
-        "The price and the terms are ratified. The verification they depend on is not built yet.",
+        "The price and the terms are settled. The check they depend on is not built yet.",
       ],
     ],
   },
@@ -257,7 +257,7 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
       ],
       [
         "If you run a society",
-        "There is no society price. A society Workspace is not part of the current offer, and the one that used to be advertised is retired.",
+        "There is no society price. A society workspace is not part of the current offer, and the one that used to be advertised is retired.",
       ],
       [
         "If you are a school",
@@ -272,7 +272,7 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
 ];
 
 const SOCIETY_NOTES = [
-  "A society or an event stays separate from academic module Workspaces.",
+  "A society or an event stays separate from academic module workspaces.",
   "Officer handover and long-term ownership need an explicit policy.",
   "Editing-member limits and viewer access are stated separately.",
   "No society price and no referral incentive is promised.",
@@ -301,7 +301,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Student Edition · Signal Studio",
     description:
-      "One module per Workspace, grouped into a semester. Private Notes, Tasks with dates, a semester Timeline, and a morning briefing across the whole workload.",
+      "One module per workspace, grouped into a semester. Private Notes, Tasks with dates, a semester Timeline, and a morning briefing across the whole workload.",
     type: "website",
   },
 };
@@ -427,7 +427,7 @@ export default function StudentsPage() {
               <h2 className={styles.rungQ}>{LADDER[0]}</h2>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow1}</p>
               <p className={styles.rungBody}>
-                Each module gets a Workspace of its own: its notes, its tasks,
+                Each module gets a workspace of its own: its notes, its tasks,
                 its dates. The semester holds them together, so moving between
                 modules never means moving between tools.
               </p>
@@ -485,8 +485,8 @@ export default function StudentsPage() {
 
               <dl className={styles.index}>
                 <IndexRow
-                  term="What a Workspace holds"
-                  detail="Private Notes, Tasks with dates and owners, and a Timeline for the module. One module, one Workspace, so nothing bleeds between them."
+                  term="What a workspace holds"
+                  detail="Private Notes, Tasks with dates and owners, and a Timeline for the module. One module, one workspace, so nothing bleeds between them."
                 />
                 <IndexRow
                   term="How many you get"
@@ -566,7 +566,7 @@ export default function StudentsPage() {
               <dl className={`${styles.index} ${styles.indexAfter}`}>
                 <IndexRow
                   term="Where the thinking goes"
-                  detail="Notes. Reading, lecture scraps and half-formed arguments, all private. Only the extract you choose becomes a Task or a milestone."
+                  detail="Notes. Reading, lecture scraps and half-formed arguments, all private. Only the extract you choose becomes a task or a milestone."
                 />
                 <IndexRow
                   term="Where the dates go"
@@ -645,8 +645,8 @@ export default function StudentsPage() {
           </p>
           <p className={`${styles.answerLg} reveal`}>
             {accent(
-              "Only the extract you choose becomes a task or a milestone.",
-              "you choose",
+              "Nothing leaves your notes unless you move it.",
+              "unless you move it",
               "em",
             )}
           </p>
@@ -674,7 +674,7 @@ export default function StudentsPage() {
             />
             <IndexRow
               term="Who can invite"
-              detail="The Workspace owner or an admin. Nobody else can add a person to your Workspace."
+              detail="The workspace owner or an admin. Nobody else can add a person to your workspace."
             />
           </dl>
 
@@ -711,9 +711,9 @@ export default function StudentsPage() {
               <h2 className={styles.rungQ}>{LADDER[5]}</h2>
               <p className="reveal-relay-eyebrow">{COPY.eyebrow6}</p>
               <p className={styles.rungBody}>
-                The price and the terms are ratified. The student verification
-                that gates them is not built yet, so nothing here can be bought
-                today and the waitlist is the whole of the offer.
+                The price is set and the terms are final. I have not built the
+                student check yet, so I cannot take your money today. The
+                waitlist is the whole of the offer.
               </p>
               <p className="reveal-relay-foot">{COPY.foot6}</p>
             </div>
@@ -728,7 +728,7 @@ export default function StudentsPage() {
                       {STUDENT_PLAN.publicName}
                     </h3>
                     <p className={styles.priceCardSummary}>
-                      One membership for the whole academic year.{" "}
+                      One membership, once a year.{" "}
                       {PRICING.plans.student.workspaceLimit} Workspaces, private
                       Notes, Tasks with dates, a Timeline for each module, and a
                       morning briefing across the lot.
@@ -840,7 +840,7 @@ export default function StudentsPage() {
                 <CommitteeDisclosure summary={COPY.societySummary}>
                   <div className={styles.asidePanel}>
                     <p className={styles.asideTitle}>
-                      A society Workspace is not priced
+                      A society workspace is not priced
                     </p>
                     <p className={styles.asideBody}>
                       It is not part of the current offer. Ownership at
@@ -861,10 +861,6 @@ export default function StudentsPage() {
                 charge you. Before paid access opens, Signal Studio states the
                 student verification standard, the payment step and the renewal
                 terms plainly, on this page.
-              </p>
-              <p className={styles.noteMeta}>
-                Design-partner access · dates and participating institutions are
-                confirmed before invitations are sent
               </p>
             </section>
           </article>
