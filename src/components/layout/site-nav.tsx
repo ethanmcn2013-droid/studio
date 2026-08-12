@@ -87,11 +87,15 @@ export function SiteNav() {
             ref={productsTriggerRef}
             type="button"
             aria-expanded={productsOpen}
-            aria-controls="products-mega-panel"
-            onClick={() => setProductsOpen((o) => !o)}
+            aria-controls={productsOpen ? "products-mega-panel" : undefined}
+            onClick={() => {
+              setMobileOpen(false);
+              setProductsOpen((open) => !open);
+            }}
             onKeyDown={(event) => {
               if (event.key !== "ArrowDown") return;
               event.preventDefault();
+              setMobileOpen(false);
               setProductsOpen(true);
               window.requestAnimationFrame(() => {
                 window.requestAnimationFrame(() => {
@@ -153,6 +157,7 @@ export function SiteNav() {
           </Link>
           <Link
             href="/about"
+            aria-current={pathname === "/about" ? "page" : undefined}
             className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
@@ -164,9 +169,12 @@ export function SiteNav() {
             ref={triggerRef}
             type="button"
             aria-expanded={mobileOpen}
-            aria-controls="mobile-nav-panel"
+            aria-controls={mobileOpen ? "mobile-nav-panel" : undefined}
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => setMobileOpen((o) => !o)}
+            onClick={() => {
+              setProductsOpen(false);
+              setMobileOpen((open) => !open);
+            }}
             className="marketing-nav-action inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors sm:hidden"
           >
             {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
@@ -205,7 +213,7 @@ export function SiteNav() {
             ref={panelRef}
             role="region"
             aria-label="Mobile navigation"
-            className="sm:hidden"
+            className="absolute left-0 right-0 top-full sm:hidden"
             initial={
               reducedMotion ? { opacity: 1 } : { opacity: 0, y: -6 }
             }
@@ -228,6 +236,7 @@ export function SiteNav() {
                   <li key={href}>
                     <Link
                       href={href}
+                      aria-current={pathname === href ? "page" : undefined}
                       className="marketing-nav-action flex min-h-[44px] items-center border-b text-[14px] text-ink-quiet transition-colors"
                       style={{
                         borderColor: "var(--border-soft)",
@@ -244,6 +253,22 @@ export function SiteNav() {
           </motion.div>
         ) : null}
       </AnimatePresence>
+
+      <noscript>
+        <nav
+          aria-label="Site navigation without JavaScript"
+          className="mx-auto flex min-h-14 w-full max-w-[1240px] flex-wrap items-center gap-x-6 border-t border-border-soft px-6 py-2 text-[13px] text-ink-quiet"
+        >
+          <Link href="/notes" className="inline-flex min-h-11 items-center">Notes</Link>
+          <Link href="/tasks" className="inline-flex min-h-11 items-center">Tasks</Link>
+          <Link href="/timeline" className="inline-flex min-h-11 items-center">Timeline</Link>
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link key={href} href={href} className="inline-flex min-h-11 items-center">
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </noscript>
     </header>
   );
 }
