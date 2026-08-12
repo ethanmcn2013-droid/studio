@@ -576,7 +576,7 @@ export default function StudentsPage() {
                 />
                 <IndexRow
                   term="What it will not do"
-                  detail="No red dots. No buzzing. One briefing in the morning, and then it leaves you alone."
+                  detail="It will not chase you all day. The briefing comes once in the morning, and you choose anything else you want to hear about."
                 />
               </dl>
             </div>
