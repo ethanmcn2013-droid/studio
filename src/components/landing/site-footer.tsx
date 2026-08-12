@@ -51,12 +51,16 @@ const SOCIALS = [
   },
 ] as const;
 
-export function SiteFooter() {
+export function SiteFooter({ compact = false }: { compact?: boolean }) {
   const year = new Date().getFullYear();
+
+  if (compact) {
+    return <CompactFooter year={year} />;
+  }
 
   return (
     <footer
-      className="mt-20 w-full border-t border-hairline-soft pb-8 pt-10 md:mt-32 md:pb-10 md:pt-16"
+      className="site-footer mt-20 w-full border-t border-hairline-soft pb-8 pt-10 md:mt-32 md:pb-10 md:pt-16"
       style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
     >
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-x-6 gap-y-9 px-5 sm:px-6 lg:grid-cols-[1.35fr_repeat(4,1fr)] lg:gap-10">
@@ -100,6 +104,7 @@ export function SiteFooter() {
             { href: "/weddings", label: "Weddings" },
             { href: "/teachers", label: "Teachers" },
             { href: "/students", label: "Students" },
+            { href: "/features/daily-briefing", label: "Daily briefing" },
           ]}
         />
         <FooterCol
@@ -109,7 +114,6 @@ export function SiteFooter() {
             { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
             { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
             { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
-            { href: "/features/daily-briefing", label: "Daily briefing" },
           ]}
         />
       </div>
@@ -119,6 +123,55 @@ export function SiteFooter() {
         <span>Clarity, not configuration.</span>
       </div>
       <LegalLinks />
+    </footer>
+  );
+}
+
+function CompactFooter({ year }: { year: number }) {
+  const suiteLinks = [
+    { href: PRODUCT_MARKETING_URLS.notes, label: "Notes" },
+    { href: PRODUCT_MARKETING_URLS.tasks, label: "Tasks" },
+    { href: PRODUCT_MARKETING_URLS.timeline, label: "Timeline" },
+  ];
+
+  return (
+    <footer
+      className="site-footer mt-14 w-full border-t border-hairline-soft pb-8 pt-9 md:mt-24 md:pb-10 md:pt-12"
+      style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}
+    >
+      <div className="mx-auto flex w-full max-w-[874px] flex-col gap-6 px-6 md:flex-row md:items-end md:justify-between md:gap-8">
+        <div>
+          <Wordmark size="sm" animate={false} />
+          <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
+            Notes. Tasks. Timeline. One clear system. Built for the work.
+          </p>
+        </div>
+        <nav aria-label="Suite">
+          <ul className="grid grid-cols-3 gap-x-4 text-[13.5px] text-ink-soft md:flex md:flex-wrap md:gap-x-5 md:gap-y-1">
+            {suiteLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="marketing-footer-action inline-flex min-h-11 items-center transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <div className="mx-auto mt-7 flex w-full max-w-[874px] flex-col items-start justify-between gap-1 border-t border-hairline-soft px-6 pt-4 text-[12px] text-ink-soft md:mt-10 md:flex-row md:items-center md:gap-2 md:pt-5">
+        <span>&copy; {year} Signal Studio. Made by Signal Studio.</span>
+        <Link
+          href="/contact"
+          className="marketing-footer-action inline-flex min-h-11 items-center transition-colors"
+        >
+          Contact
+        </Link>
+      </div>
+      <LegalLinks compact />
     </footer>
   );
 }
@@ -191,7 +244,7 @@ function FooterCol({
   );
 }
 
-function LegalLinks() {
+function LegalLinks({ compact = false }: { compact?: boolean }) {
   const links = [
     { href: "/privacy", label: "Privacy" },
     { href: "/privacy#your-rights", label: "GDPR" },
@@ -203,19 +256,27 @@ function LegalLinks() {
   return (
     <nav
       aria-label="Legal"
-      className="mx-auto mt-3 flex w-full max-w-[1240px] flex-wrap items-center gap-x-1 gap-y-0 px-3 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-quiet sm:mt-4 sm:px-6 sm:text-[12px]"
+      className={`mx-auto mt-3 w-full ${
+        compact ? "max-w-[874px]" : "max-w-[1240px]"
+      } ${
+        compact
+          ? "grid grid-cols-2 gap-x-4 gap-y-0 px-6 text-[12px] text-ink-soft sm:flex sm:flex-wrap sm:items-center sm:gap-x-1"
+          : "flex flex-wrap items-center gap-x-1 gap-y-0 px-4 text-[11px] text-ink-quiet sm:px-6 sm:text-[12px]"
+      } font-mono uppercase tracking-[0.06em] sm:mt-4`}
       style={{ letterSpacing: "0.08em" }}
     >
       {links.map((link, index) => (
         <span key={link.href} className="inline-flex items-center">
-          {index > 0 && (
+          {!compact && index > 0 && (
             <span aria-hidden className="px-1 opacity-50">
               &middot;
             </span>
           )}
           <Link
             href={link.href}
-            className="marketing-footer-action inline-flex min-h-[28px] items-center px-2 py-1 transition-colors sm:min-h-[32px]"
+            className={`marketing-footer-action inline-flex items-center px-2 py-1 transition-colors ${
+              compact ? "min-h-11" : "min-h-[28px] sm:min-h-[32px]"
+            }`}
           >
             {link.label}
           </Link>

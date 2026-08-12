@@ -27,6 +27,9 @@ const PANEL_CSS = `
   left: 0;
   right: 0;
   z-index: 50;
+  max-height: calc(100dvh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: #ffffff;
   border-bottom: 1px solid rgba(17,17,17,0.08);
   box-shadow: 0 20px 48px -16px rgba(17,17,17,0.10), 0 4px 12px -4px rgba(17,17,17,0.05);
@@ -50,7 +53,7 @@ const PANEL_CSS = `
   line-height: 1;
 }
 
-/* 4-column grid */
+/* Three-product grid */
 .mpanel-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -137,9 +140,6 @@ const PANEL_CSS = `
   0%,49% { opacity: 1; }
   50%,100% { opacity: 0; }
 }
-.mpanel-card[data-slug="notes"] .mnotes-cursor {
-  animation: mnotes-caret 760ms steps(1,end) 140ms 2;
-}
 
 /* tasks · pulse, staggered across 3 dots */
 .mtasks-dot { transform-box: fill-box; transform-origin: center; }
@@ -153,17 +153,12 @@ const PANEL_CSS = `
   40%         { transform: scale(1.14); }
   50%         { transform: scale(1); }
 }
-.mpanel-card[data-slug="tasks"] .mtasks-dot {
-  animation: mtasks-pulse 1.1s var(--ease-out) 180ms 1 both;
-}
-.mpanel-card[data-slug="tasks"] .mtasks-dot-2 { animation-delay: 230ms; }
-.mpanel-card[data-slug="tasks"] .mtasks-dot-3 { animation-delay: 280ms; }
 
 /* roadmap · sweep */
 .mroadmap-dot {
   transform-box: fill-box;
   transform-origin: center;
-  transform: translateX(36px);
+  transform: translateX(0);
 }
 @keyframes mroadmap-sweep {
   0%   { transform: translateX(0);    opacity: 1; }
@@ -173,28 +168,8 @@ const PANEL_CSS = `
   78%  { transform: translateX(0);    opacity: 1; }
   100% { transform: translateX(0);    opacity: 1; }
 }
-.mpanel-card[data-slug="timeline"] .mroadmap-dot {
-  animation: mroadmap-sweep 1.4s var(--ease-in-out) 220ms 1 both;
-}
 
 /* analytics · tick */
-@keyframes mbar1 {
-  0%  { transform: scaleY(0.55); } 25% { transform: scaleY(0.85); }
-  50% { transform: scaleY(0.35); } 75% { transform: scaleY(1.00); }
-}
-@keyframes mbar2 {
-  0%  { transform: scaleY(0.90); } 25% { transform: scaleY(0.45); }
-  50% { transform: scaleY(1.00); } 75% { transform: scaleY(0.60); }
-}
-@keyframes mbar3 {
-  0%  { transform: scaleY(0.40); } 25% { transform: scaleY(0.75); }
-  50% { transform: scaleY(0.55); } 75% { transform: scaleY(0.25); }
-}
-@keyframes mbar4 {
-  0%  { transform: scaleY(1.00); } 25% { transform: scaleY(0.55); }
-  50% { transform: scaleY(0.80); } 75% { transform: scaleY(0.40); }
-}
-
 /* Footer row, quiet link to the design system */
 .mpanel-foot {
   display: flex;
@@ -217,6 +192,21 @@ const PANEL_CSS = `
     background: rgba(79,70,229,0.05);
     border-color: rgba(79,70,229,0.18);
   }
+
+  .mpanel-card[data-slug="notes"]:hover .mnotes-cursor {
+    animation: mnotes-caret 600ms steps(1,end) 1;
+  }
+
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot {
+    animation: mtasks-pulse 520ms var(--ease-out) 1 both;
+  }
+
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot-2 { animation-delay: 50ms; }
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot-3 { animation-delay: 100ms; }
+
+  .mpanel-card[data-slug="timeline"]:hover .mroadmap-dot {
+    animation: mroadmap-sweep 680ms var(--ease-in-out) 1 both;
+  }
 }
 
 /* Mobile, 2×2 grid */
@@ -234,7 +224,10 @@ const PANEL_CSS = `
       border-color 160ms var(--ease-out);
   }
   .mpanel-card:active { transform: none; }
-  .mnotes-cursor, .mtasks-dot, .mroadmap-dot,   .mnotes-cursor { opacity: 1; }
+  .mnotes-cursor, .mtasks-dot, .mroadmap-dot {
+    animation: none !important;
+    opacity: 1;
+  }
   .mroadmap-dot  { transform: none; }
   }
 `;
