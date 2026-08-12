@@ -48,7 +48,10 @@ const currentCommercialSources = [
   "signal-growth/outbound/venue-edition-outreach.md",
   "src/app/venues/page.tsx",
   "src/components/hq/marketing-deck.tsx",
-  "src/lib/comparison-pages.ts",
+  // src/lib/comparison-pages.ts was a commercial source until the
+  // 2026-08-12 estate consolidation cut the five /compare pages. The
+  // surface is gone, so there is no copy left here to hold to the
+  // ratified position.
   "src/lib/hq/marketing.ts",
 ];
 

@@ -8,6 +8,31 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-12 · S·166 · cuts · the public estate is one domain and nineteen pages
+
+**Twelve public pages left the umbrella, and every one of them now lands a
+visitor on the page that took over its job.** Proof, Work, iOS, Teachers,
+Weddings, the venue demo, Templates and the five comparison pages are gone;
+each redirects in a single hop to Venues, About, Home, Students or Tasks. The
+three design-lab routes that were serving a public 200 return 404 now — both
+operator todos behind them were closed weeks ago, so what remained was review
+scaffolding on the open web.
+
+The sitemap stopped advertising work it could not honour. It listed `/brand`,
+which had 308'd to `/design` for weeks; it listed six pages that no longer
+exist. Nineteen entries remain and every one returns 200.
+
+Contact stayed. The plan had it folded into About, but it builds a
+subject-prefilled, tracked mailto rather than a bare one, and it is the
+Founding 25 call-to-action on the venues page — cutting it twenty days out
+from release would have cost more than it saved.
+
+Honest edges: the wedding wedge on the homepage now points venues at the
+Venue Edition, so there is no couple-facing public page until E12.01 lands.
+The thirteen Tasks template pages still serve on the app domain; that half of
+the consolidation is a separate pass. The handoff-lab contract script fails,
+as it did before this change — a pre-existing break, untouched here.
+
 ## 2026-08-09 · S·165 · tightens · one public story now carries every promise
 
 **Pricing now renders availability, prices, limits, billing, and VAT wording

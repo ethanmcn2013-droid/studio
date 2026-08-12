@@ -31,7 +31,6 @@ export type VenueTarget = {
   links: {
     source: string;
     venuePage: string;
-    demo: string;
     contact: string;
   };
 };
@@ -128,7 +127,6 @@ function links(slug: string, source: string) {
   return {
     source,
     venuePage: trackedUrl("/venues", slug, "venue_page"),
-    demo: trackedUrl("/venues/demo", slug, "venue_demo"),
     contact: contactUrl(slug),
   };
 }

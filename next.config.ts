@@ -161,6 +161,50 @@ const nextConfig: NextConfig = {
         destination: "https://signalstudio.ie/signal",
         permanent: true,
       },
+      // ── Estate consolidation (2026-08-12) ─────────────────────────────
+      // The public estate collapses to one domain and eighteen indexed
+      // pages. These rules MUST stay below the retired-domain block above:
+      // redirects are first-match-wins, so an unscoped rule placed earlier
+      // would catch notes/timeline/signal hosts and chain through them.
+      // Every source below is an exact path, so functional siblings
+      // (/venues, /embed/[slug]) are untouched.
+      { source: "/proof", destination: "/venues", permanent: true },
+      { source: "/work", destination: "/about", permanent: true },
+      { source: "/ios", destination: "/", permanent: true },
+      { source: "/teachers", destination: "/students", permanent: true },
+      // The wedding self-serve surface folds into the venue motion. It
+      // carried the superseded flat access-term copy; its replacement is
+      // chartered as E12.01.
+      { source: "/weddings", destination: "/venues", permanent: true },
+      // Query strings survive the hop, so the per-venue tracked demo links
+      // already sent in outreach keep resolving.
+      { source: "/venues/demo", destination: "/venues", permanent: true },
+      { source: "/templates", destination: "/tasks", permanent: true },
+      {
+        source: "/compare/aisle-planner-alternative-ireland",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/wedding-planning-workspace-for-venues",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/notion-alternative-wedding-planners",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/trello-alternative-builders",
+        destination: "/tasks",
+        permanent: true,
+      },
+      {
+        source: "/compare/project-management-students-no-sprints",
+        destination: "/students",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

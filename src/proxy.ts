@@ -61,20 +61,19 @@ async function hqGate(request: NextRequest): Promise<NextResponse | null> {
 // / itself is handled via a rewrite + x-signal-authed header so page.tsx
 // can choose the launcher variant without a redirect loop.
 //
-// Categories (per Layer 0 allowlist in review2/LAYER0_ROUTE_ALLOWLIST.md):
+// Categories (this Set and the matcher below ARE the allowlist — the
+// review2/LAYER0_ROUTE_ALLOWLIST.md this once cited has never existed in
+// the repo; corrected 2026-08-12 so nobody hunts for it again):
 //   M = Marketing  → authed: redirect to suite launcher at /
 //   C = Content    → never redirected (/brand and assets)
 //   X = Excluded   → never touched (/hq, /api, og, sitemap, robots)
 
 const MARKETING_PATHS = new Set([
   "/",
-  "/work",
-  "/proof",
   "/about",
   "/pricing",
   "/contact",
   "/dispatch",
-  "/method",
   "/notes",
   "/tasks",
   "/timeline",
@@ -154,13 +153,10 @@ export const config = {
     "/hq/:path*",
     // Marketing routes (M) that trigger the suite redirect
     "/",
-    "/work",
-    "/proof",
     "/about",
     "/pricing",
     "/contact",
     "/dispatch",
-    "/method",
     "/notes",
     "/tasks",
     "/timeline",
