@@ -2501,69 +2501,10 @@ body::after { content: none; }
   }
 }
 
-/* About stays editorial. Product rows carry direction; the founder signature
-   is the page's single expressive acknowledgement. */
-.about-product-link {
-  transition:
-    border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
-    transform var(--marketing-motion-press) var(--marketing-ease-out);
-}
-
-.about-product-arrow {
-  display: inline-block;
-  transition:
-    color var(--marketing-motion-fast) var(--marketing-ease-hover),
-    transform var(--marketing-motion-fast) var(--marketing-ease-out);
-}
-
-.about-product-link:focus-visible {
-  border-color: var(--accent);
-}
-
-.about-product-link:focus-visible .about-product-arrow {
-  color: var(--ink-quiet);
-  transform: translateX(4px);
-}
-
-.about-product-link:active {
-  transform: translateY(1px) scale(.99);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .about-product-link:hover {
-    border-color: var(--accent);
-  }
-
-  .about-product-link:hover .about-product-arrow {
-    color: var(--ink-quiet);
-    transform: translateX(4px);
-  }
-}
-
-.about-founder-signature {
-  position: relative;
-}
-
-.about-founder-signature::before {
-  position: absolute;
-  inset: 0 0 auto;
-  height: 1px;
-  background: var(--border-soft);
-  content: "";
-  transform: scaleX(1);
-  transform-origin: left center;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .pricing-anchor-dot { animation: none !important; }
   [data-delight="pricing-plans"][data-delight-visible="true"] > div,
-  [data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark .dot,
-  [data-delight="about-founder"][data-delight-visible="true"]
-    .about-founder-signature::before,
-  [data-delight="about-founder"][data-delight-visible="true"]
-    .about-founder-dot,
-  [data-delight="about-founder"][data-delight-visible="true"]
-    .about-founder-identity {
+  [data-delight="pricing-suite"][data-delight-visible="true"] .pricing-mark .dot {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -2571,9 +2512,7 @@ body::after { content: none; }
 
   .pricing-annual-link,
   .pricing-event-link,
-  .pricing-email-link,
-  .about-product-link,
-  .about-product-arrow {
+  .pricing-email-link {
     transition:
       color var(--marketing-motion-fast) var(--marketing-ease-hover),
       border-color var(--marketing-motion-fast) var(--marketing-ease-hover),
@@ -2582,10 +2521,7 @@ body::after { content: none; }
 
   .pricing-annual-link:active,
   .pricing-event-link:active,
-  .pricing-email-link:active,
-  .about-product-link:active,
-  .about-product-link:hover .about-product-arrow,
-  .about-product-link:focus-visible .about-product-arrow {
+  .pricing-email-link:active {
     transform: none;
   }
 }
