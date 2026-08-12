@@ -8,30 +8,45 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
-## 2026-08-12 · S·166 · cuts · the public estate is one domain and nineteen pages
+## 2026-08-12 · S·166 · cuts · the public estate is one domain and eighteen pages
 
-**Twelve public pages left the umbrella, and every one of them now lands a
+**Thirteen public pages left the umbrella, and every one of them now lands a
 visitor on the page that took over its job.** Proof, Work, iOS, Teachers,
-Weddings, the venue demo, Templates and the five comparison pages are gone;
-each redirects in a single hop to Venues, About, Home, Students or Tasks. The
-three design-lab routes that were serving a public 200 return 404 now — both
+Weddings, Contact, the venue demo, Templates and the five comparison pages are
+gone; each redirects in a single hop to Venues, About, Home, Students or Tasks.
+The three design-lab routes that were serving a public 200 return 404 now. Both
 operator todos behind them were closed weeks ago, so what remained was review
 scaffolding on the open web.
 
 The sitemap stopped advertising work it could not honour. It listed `/brand`,
 which had 308'd to `/design` for weeks; it listed six pages that no longer
-exist. Nineteen entries remain and every one returns 200.
+exist. Eighteen entries remain and every one returns 200.
 
-Contact stayed. The plan had it folded into About, but it builds a
-subject-prefilled, tracked mailto rather than a bare one, and it is the
-Founding 25 call-to-action on the venues page — cutting it twenty days out
-from release would have cost more than it saved.
+Contact was kept back once, then folded as approved. The first pass through
+this cut argued that its subject-prefilled, tracked mailto and its place as the
+Founding 25 call-to-action made it worth twenty more days. That was a decision
+already taken and it was taken the other way. Contact is now an anchored
+section on About, carrying the same machinery, and every route into it points
+straight there rather than through the redirect. The venues call-to-action, the
+outreach links, the pricing enterprise step and the footer all changed in the
+same pass, so the conversion path never rides a hop.
+
+Two legal corrections landed with the cut. The privacy policy now names
+Anthropic, says which AI actions send what and only after you confirm them,
+says the device does the speech recognition and we never receive the audio,
+names the analytics processor, and commits in writing that nothing you write
+trains a model. The terms say the same thing about your content. The Google
+analytics tag left every page: it had been running with no consent gate while
+the policy promised no trackers that need one. The policy claim is true as of
+today, which is the direction that decision was resolved.
 
 Honest edges: the wedding wedge on the homepage now points venues at the
 Venue Edition, so there is no couple-facing public page until E12.01 lands.
 The thirteen Tasks template pages still serve on the app domain; that half of
-the consolidation is a separate pass. The handoff-lab contract script fails,
-as it did before this change — a pre-existing break, untouched here.
+the consolidation is a separate pass. The venue conversation guide's demo
+walkthrough is marked stale rather than rewritten, because its four
+destinations have no live replacement yet. The handoff-lab contract script
+fails, as it did before this change, a pre-existing break untouched here.
 
 ## 2026-08-09 · S·165 · tightens · one public story now carries every promise
 
