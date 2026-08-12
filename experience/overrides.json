@@ -107,11 +107,11 @@
     },
     "studio.surface.site-navigation": {
       "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-12"
     },
     "tasks.page.roadmap": {
       "auditStatus": "baseline-captured",

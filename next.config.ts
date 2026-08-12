@@ -175,7 +175,7 @@ const nextConfig: NextConfig = {
       // D5. Contact is now an anchored section on /about, machinery intact.
       // The Founding 25 CTA points straight at /about#contact, so no
       // conversion path rides this hop; it exists for links already sent.
-      { source: "/contact", destination: "/about", permanent: true },
+      { source: "/contact", destination: "/about#contact", permanent: true },
       // The wedding self-serve surface folds into the venue motion. It
       // carried the superseded flat access-term copy; its replacement is
       // chartered as E12.01.

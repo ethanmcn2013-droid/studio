@@ -7073,14 +7073,14 @@
       "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "663c77c1b6baf129"
+      "materialityHash": "c92333047b3ad75d"
     },
     {
       "id": "tasks.page.about",
