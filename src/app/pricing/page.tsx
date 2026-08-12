@@ -84,7 +84,7 @@ const PLANS: readonly PricingPlan[] = [
       { label: "Next step", value: "Conversation with Signal Studio" },
     ],
     cta: "Contact our sales team",
-    href: "/contact?subject=enterprise&source=pricing&campaign=enterprise&artifact=pricing_enterprise&touch=site",
+    href: "/about?subject=enterprise&source=pricing&campaign=enterprise&artifact=pricing_enterprise&touch=site#contact",
   },
 ];
 

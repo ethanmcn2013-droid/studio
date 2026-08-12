@@ -3,10 +3,15 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
+import {
+  formatTrackingRef,
+  normalizeTrackingParams,
+  type TrackingParamKey,
+} from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "About · Signal Studio",
-  description: "Signal Studio builds calm work software for people outside tech. Notes, Tasks and Timeline form one clear system.",
+  description: "Signal Studio builds calm work software for people outside tech. Notes, Tasks and Timeline form one clear system. Write to a person at hello@signalstudio.ie.",
 };
 
 function waitlistHref(product: string): string {
@@ -19,7 +24,82 @@ const PRODUCTS = [
   ["03", "Timeline", "Direct", "timeline"],
 ] as const;
 
-export default function AboutPage() {
+const SUBJECT_EYEBROWS: Record<string, string> = {
+  weddings: "Wedding planning enquiry",
+  "founding-venue": "Founding Venue Programme",
+};
+
+/**
+ * The contact fold, anchored at #contact.
+ *
+ * Decision D5 of the 2026-08-12 estate consolidation: /contact folds into
+ * /about and the standalone page 308s here. The machinery came with it
+ * whole, because the Founding 25 conversion path runs through it. A known
+ * subject prefills the email so the next step is obvious (a bare mailto is
+ * a soft dead-end on mobile and webmail), and any inbound attribution from
+ * an outreach link rides into a quiet Ref footer so the founder can
+ * attribute the reply and log it in the /hq Outbound CRM.
+ *
+ * Still a person writing to a person. No form. No CRM.
+ */
+function buildMailto(
+  subject: string | undefined,
+  eyebrow: string | undefined,
+  attr: Partial<Record<TrackingParamKey, string | undefined>>,
+): string {
+  const base = "mailto:hello@signalstudio.ie";
+  const ref = formatTrackingRef(attr);
+  if (!subject && !ref) return base;
+
+  const venueName = attr.venue && attr.venue !== "unknown" ? attr.venue : undefined;
+  const subjectLabel = eyebrow ?? "Signal Studio enquiry";
+  const subjectLine = venueName ? `${subjectLabel}, ${venueName}` : subjectLabel;
+
+  const body =
+    subject === "founding-venue"
+      ? [
+          "Hi Ethan,",
+          "",
+          "[A line about your venue and what made you write.]",
+          "",
+          "A good time to talk would be:",
+          ...(ref ? ["", "—", `Ref: ${ref}`] : []),
+        ].join("\n")
+      : ref
+        ? ["Hi Ethan,", "", "", "—", `Ref: ${ref}`].join("\n")
+      : "";
+
+  const qs = new URLSearchParams({ subject: subjectLine });
+  if (body) qs.set("body", body);
+  return `${base}?${qs.toString()}`;
+}
+
+export default async function AboutPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    subject?: string;
+    source?: string;
+    campaign?: string;
+    audience?: string;
+    artifact?: string;
+    touch?: string;
+    venue?: string;
+  }>;
+}) {
+  const params = await searchParams;
+  const contactEyebrow = params.subject ? SUBJECT_EYEBROWS[params.subject] : undefined;
+  const tracking = normalizeTrackingParams({
+    source: params.source,
+    campaign: params.campaign,
+    audience: params.audience,
+    artifact: params.artifact,
+    touch: params.touch,
+    venue: params.venue,
+  });
+  const trackingRef = formatTrackingRef(tracking);
+  const mailtoHref = buildMailto(params.subject, contactEyebrow, tracking);
+
   return (
     <>
       <ReadingProgress />
@@ -119,6 +199,66 @@ export default function AboutPage() {
                 <p className="text-[17px] leading-8 text-ink">Notes are where the work starts. Tasks are what needs doing. Timeline shows what is next. Three products, one system, built so people can organise the work in front of them without learning a new language first.</p>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          className="scroll-mt-[72px] border-t border-border-soft bg-[var(--paper-soft)]"
+          aria-labelledby="about-contact-heading"
+        >
+          <div className="mx-auto w-full max-w-[980px] px-6 py-14 md:py-20">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent">Contact</p>
+
+            {contactEyebrow ? (
+              <p className="mt-3 text-[13px] font-medium text-ink-quiet" style={{ letterSpacing: "0.01em" }}>
+                {contactEyebrow}
+              </p>
+            ) : null}
+
+            <h2 id="about-contact-heading" className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.5rem+1.1vw,2.8rem)] font-semibold tracking-[-0.045em] text-ink">Write to a person, not a form.</h2>
+
+            <p className="mt-6 max-w-[58ch] text-[clamp(.98rem,.92rem+.25vw,1.08rem)] leading-[1.75] text-ink-soft">Everything sent here is read by me, usually within a day or two. No form, no CRM, no autoresponder pretending to be a person.</p>
+
+            <div className="mt-9 grid border-y border-border-soft sm:grid-cols-2">
+              <div className="border-b border-border-soft py-6 sm:border-b-0 sm:border-r sm:pr-5">
+                <div className="mb-3 font-mono text-[10.5px] font-semibold uppercase text-ink-quiet" style={{ letterSpacing: "var(--tracking-eyebrow)" }}>
+                  Best for
+                </div>
+                <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-soft">
+                  <li>Product questions.</li>
+                  <li>Private-preview access.</li>
+                  <li>Thoughtful critique.</li>
+                  <li>Partnership conversations.</li>
+                </ul>
+              </div>
+              <div className="py-6 sm:pl-5">
+                <div className="mb-3 font-mono text-[10.5px] font-semibold uppercase text-ink-quiet" style={{ letterSpacing: "var(--tracking-eyebrow)" }}>
+                  Probably not for
+                </div>
+                <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-faint">
+                  <li>Press and analyst outreach.</li>
+                  <li>Sales and vendor pitches.</li>
+                  <li>Recruiting.</li>
+                  <li>Anything routed through a CRM.</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-10 text-[clamp(.98rem,.92rem+.25vw,1.08rem)] leading-[1.75] text-ink-soft">
+              <a
+                href={mailtoHref}
+                className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+              >
+                hello@signalstudio.ie
+              </a>
+            </p>
+
+            {trackingRef ? (
+              <p className="mt-5 max-w-[62ch] font-mono text-[11px] leading-[1.8] text-ink-faint">
+                Ref preserved: {trackingRef}
+              </p>
+            ) : null}
           </div>
         </section>
       </main>

@@ -3,9 +3,9 @@ import { SITE_URL } from "@/lib/site-url";
 
 /**
  * The indexed public estate. Estate consolidation (2026-08-12) collapsed
- * every public surface onto this one domain: nine primary pages carrying
- * the commercial argument, and the background pages that must exist and
- * be findable without competing for attention.
+ * every public surface onto this one domain: ten primary pages carrying
+ * the commercial argument, and the eight background pages that must exist
+ * and be findable without competing for attention. Eighteen in total.
  *
  * Two standing rules for this file:
  * 1. Never list a path that redirects. `/brand` sat here for weeks while
@@ -29,10 +29,9 @@ const routes: Array<{
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
   { path: "/waitlist", priority: 0.95, changeFrequency: "monthly" },
   { path: "/students", priority: 0.8, changeFrequency: "monthly" },
+  // Contact folded into /about as an anchored section (D5), so the
+  // subject-prefilled tracked mailto lives at /about#contact.
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
-  // Contact survives the consolidation: it is the Founding 25 CTA target
-  // and builds a subject-prefilled, tracked mailto rather than a bare one.
-  { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
 
   // Background — must exist and be findable, not compete for attention.
   { path: "/design", priority: 0.6, changeFrequency: "monthly" },

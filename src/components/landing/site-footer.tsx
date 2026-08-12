@@ -86,7 +86,7 @@ export function SiteFooter() {
             { href: "/about", label: "About" },
             { href: "/principles", label: "Principles" },
             { href: "/press", label: "Press" },
-            { href: "/contact", label: "Contact" },
+            { href: "/about#contact", label: "Contact" },
           ]}
         />
         <FooterCol

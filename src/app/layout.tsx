@@ -99,7 +99,7 @@ const structuredData = [
         "@type": "Offer",
         name: "Enterprise",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/contact?subject=enterprise`,
+        url: `${SITE_URL}/about?subject=enterprise#contact`,
       },
       {
         /* No price on this offer, deliberately. The ratified commercial

@@ -7,8 +7,9 @@
  * keyframes), then the line settles in under it. No check, no toast,
  * no exclamation mark: the dot is the acknowledgement.
  *
- * Standalone and unwired by design. /contact has no form ("No form.
- * No CRM.", a deliberate brand stance, not an omission). This is the
+ * Standalone and unwired by design. The contact fold on /about has no
+ * form ("No form. No CRM.", a deliberate brand stance, not an
+ * omission; the section moved there under D5 on 2026-08-12). This is the
  * motion deliverable for P9, ready the moment a contact-success
  * surface ever exists: render <ContactConfirm /> when a submission
  * succeeds and it plays once.
