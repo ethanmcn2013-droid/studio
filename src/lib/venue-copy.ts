@@ -237,7 +237,14 @@ export const GEOGRAPHY = "Limerick and the surrounding counties.";
  * Never "Get started", "Sign up", "Start your free trial".
  */
 export const CTA = "Ask me a question";
-export const CTA_HREF = "/contact?subject=founding-venue";
+/**
+ * D5, estate consolidation 2026-08-12. Contact is an anchored section on
+ * /about now. This href points at the destination directly and never at
+ * the /contact 308: the Founding 25 conversion path does not ride a
+ * redirect. Query params come before the fragment so the subject prefill
+ * still reaches the server.
+ */
+export const CTA_HREF = "/about?subject=founding-venue#contact";
 export const CTA_SUPPORT =
   "It goes to me, not a form. No deck, no demo gate.";
 

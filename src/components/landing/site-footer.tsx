@@ -76,9 +76,8 @@ export function SiteFooter() {
           links={[
             { href: "/waitlist", label: "Waitlist" },
             { href: "/pricing", label: "Pricing" },
-            { href: "/work", label: "Work" },
-            { href: "/proof", label: "Proof" },
-            { href: "/templates", label: "Templates" },
+            { href: "/venues", label: "Venues" },
+            { href: "/students", label: "Students" },
           ]}
         />
         <FooterCol
@@ -87,7 +86,7 @@ export function SiteFooter() {
             { href: "/about", label: "About" },
             { href: "/principles", label: "Principles" },
             { href: "/press", label: "Press" },
-            { href: "/contact", label: "Contact" },
+            { href: "/about#contact", label: "Contact" },
           ]}
         />
         <FooterCol
@@ -95,11 +94,6 @@ export function SiteFooter() {
           links={[
             { href: "/dispatch", label: "Dispatch" },
             { href: "/design", label: "Design" },
-            { href: "/ios", label: "iOS app" },
-            { href: "/venues", label: "Venues" },
-            { href: "/weddings", label: "Weddings" },
-            { href: "/teachers", label: "Teachers" },
-            { href: "/students", label: "Students" },
           ]}
         />
         <FooterCol

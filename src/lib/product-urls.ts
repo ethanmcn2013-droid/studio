@@ -75,9 +75,6 @@ export const TIMELINE_PUBLIC_ORIGIN =
   process.env.NEXT_PUBLIC_TIMELINE_PUBLIC_URL ??
   LEGACY_PRODUCT_ORIGINS.timeline;
 
-export const IOS_APP_URL =
-  process.env.NEXT_PUBLIC_IOS_APP_URL ?? `${STUDIO_ORIGIN}/ios`;
-
 /** Marketing deep link, pre-selects onboarding segment after sign-up. */
 export function tasksSignUpUrl(useCase?: string | null): string {
   const base = `${APP_ORIGIN}/sign-up`;

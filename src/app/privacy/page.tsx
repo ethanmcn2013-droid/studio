@@ -20,9 +20,18 @@ const SECTIONS = [
     ],
   },
   {
+    heading: "AI actions",
+    body: [
+      "A few places in the products offer an AI action you can choose to run: drafting a reply, summarising a thread, separating a dictated note into its parts, reading text out of a photo you attached. Nothing runs on its own. Nothing runs in the background.",
+      "When you run one, the specific text or resized image shown in the review step is sent to Anthropic to answer that single request, and nothing is sent before you confirm it. If you never run an AI action, nothing you write ever reaches a model.",
+      "Voice dictation uses the speech recognition service built into your browser or device, not one of ours. That service may process the microphone audio outside Signal Studio, under its provider's terms rather than ours. Signal Studio receives the transcribed text and never receives or retains the audio.",
+    ],
+  },
+  {
     heading: "What we don't collect",
     body: [
       "No third-party advertising trackers. No fingerprinting. No session replay. No marketing pixels. No behavioural profiling.",
+      "Nothing you write is used to train a model, ours or anyone else's. Notes, tasks, timeline items and dictated text are not training data. The AI actions above run against Anthropic's commercial API, which does not use API inputs or outputs to train models.",
       "We use Vercel Analytics for anonymous traffic counts (which pages got visited, from which country, on which device class). It does not set cookies and it does not see your account.",
       "Product-learning events use counts, enums and booleans. We do not send Note or Task text, class/module/couple names, pasted values, pupil data or public-link tokens. Audience Timelines do not carry third-party behavioural tracking.",
     ],
@@ -31,6 +40,7 @@ const SECTIONS = [
     heading: "Where data lives",
     body: [
       "Account records: Clerk (United States). Workspace and product data: Turso (managed libSQL, primarily Frankfurt). Error reports: Sentry (United States, with personal data scrubbed before send). Static hosting and serverless functions: Vercel (United States and edge regions).",
+      "Product-event counts: PostHog EU cloud (European Union). AI actions: Anthropic (United States), per request, for that request only.",
       "Outbound mail (briefing emails and operator notifications) is sent through Resend.",
       "Our subprocessors are listed below. We will update this list before adding a new one.",
     ],
@@ -41,6 +51,8 @@ const SECTIONS = [
       "Clerk, authentication.",
       "Turso, application database.",
       "Vercel, hosting, edge functions, anonymous analytics.",
+      "PostHog (EU cloud), product analytics. Events are sent from our servers and keyed to your account identifier. No PostHog script runs in your browser and no PostHog cookie is set.",
+      "Anthropic, the model behind the AI actions. It receives only what you confirmed for that action, only when you run one.",
       "Sentry, error monitoring (PII scrubbed at the SDK before transmission).",
       "Resend, outbound email delivery.",
       "Stripe, payments for paid plans, when applicable. Stripe stores card details; we never see them.",
@@ -51,6 +63,7 @@ const SECTIONS = [
     heading: "Cookies",
     body: [
       "We set cookies for sign-in sessions and first-party product preferences such as the active Workspace. No marketing cookies. No third-party trackers that need consent banners.",
+      "Analytics run server-side, so they set no cookie at all. There is no analytics tag on any page of this site.",
     ],
   },
   {
@@ -66,6 +79,7 @@ const SECTIONS = [
     body: [
       "We keep your data while your account is active. When you close the account, we delete it within sixty days. Backups age out inside ninety days.",
       "Billing records and tax records are retained for as long as Irish tax law requires.",
+      "AI actions keep nothing on our side beyond the result you asked for and the record that a request was made.",
     ],
   },
   {
@@ -95,7 +109,7 @@ export default function PrivacyPage() {
           what we hold, who else touches it, and how to take it back.
         </>
       }
-      updated="2026-07-12"
+      updated="2026-08-12"
       sections={SECTIONS}
       footnote={
         <>

@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
-import { GoogleTag } from "@/components/analytics/google-tag";
 import { SITE_URL } from "@/lib/site-url";
 import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
 
@@ -99,7 +98,7 @@ const structuredData = [
         "@type": "Offer",
         name: "Enterprise",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/contact?subject=enterprise`,
+        url: `${SITE_URL}/about?subject=enterprise#contact`,
       },
       {
         /* No price on this offer, deliberately. The ratified commercial
@@ -143,8 +142,10 @@ export default async function RootLayout({
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
-        {/* Google tag (gtag.js) — production only, on every page. */}
-        <GoogleTag />
+        {/* No analytics tag. GA4 was removed on 2026-08-12 under decision D2:
+            it ran on every public page with no consent gate while the privacy
+            policy claimed cookieless analytics only. Traffic counts come from
+            Vercel Analytics, which sets no cookie. See docs/ANALYTICS.md. */}
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}

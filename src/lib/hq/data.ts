@@ -2888,7 +2888,7 @@ export const seedHqData: HqData = {
       dueDate: "2026-05-14",
       status: "Done",
       relatedObject: "Shared roadmap update",
-      notes: "`/wedding-planning/update` routes viewers to the self-serve `/weddings` page. Venue-led proof uses `/venues/demo` and the no-CTA couple artifact at Roadmap `/the-wedding`.",
+      notes: "`/wedding-planning/update` routes viewers to the self-serve `/weddings` page. Venue-led proof uses `/venues/demo` and the no-CTA couple artifact at Roadmap `/the-wedding`. Superseded 2026-08-12: the estate consolidation cut `/weddings` and `/venues/demo`, both of which now redirect to `/venues`. The record above is kept as written because the action is Done; the live destination is `/venues`.",
     },
     {
       id: "collaboration-loop-spec",

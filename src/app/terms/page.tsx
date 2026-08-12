@@ -39,7 +39,8 @@ const SECTIONS = [
   {
     heading: "Your content",
     body: [
-      "You keep ownership of everything you put into a Signal Studio product. We do not claim a licence to your content beyond what is necessary to operate the service for you (storing it, displaying it back to you, transmitting it to people you share it with).",
+      "You keep ownership of everything you put into a Signal Studio product. We do not claim a licence to your content beyond what is necessary to operate the service for you (storing it, displaying it back to you, transmitting it to people you share it with, and passing what you confirm to our AI provider when you choose to run an AI action).",
+      "We do not use your content to train models, and our AI provider does not use it to train theirs. The privacy policy names that provider and says exactly what leaves the product when you run an action.",
       "Public timelines, shared updates, and other public surfaces are visible to anyone with the link. You choose what to make public. We don't index public surfaces for our own benefit beyond making them work.",
       "If a school, venue, or another organisation sponsors your access, it pays for or administers the entitlement. It does not own your Workspace and does not gain access to private Notes, Tasks or unpublished Timeline material. Any optional metadata you share with a sponsor is covered by a separate, revocable consent.",
       "Promoting an item to a public Timeline creates a separate public version from the fields you select. Later private edits do not become public automatically.",
@@ -120,7 +121,7 @@ export default function TermsPage() {
           to.
         </>
       }
-      updated="2026-07-12"
+      updated="2026-08-12"
       sections={SECTIONS}
     />
   );
