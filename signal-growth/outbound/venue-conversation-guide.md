@@ -11,7 +11,7 @@ Voice register from `BRAND.md` §3: declarative, warm, factual, plain. No "disco
 ## Before the call (Ethan's prep, 10 minutes)
 
 1. Re-read this venue's entry in `wedding-venue-list.md` — the reason-this-venue sentence and the source.
-2. Open `signalstudio.ie/weddings` and confirm the demo loads cleanly on the device Ethan will share-screen from.
+2. Open `signalstudio.ie/venues` and confirm it loads cleanly on the device Ethan will share-screen from. (Was `signalstudio.ie/weddings` until 2026-08-12; that page was cut under decision D4 and now redirects here.)
 3. Have one specific question ready that names something from the venue's own site or recent feature — proves attention, not a template.
 4. Block 45 minutes on calendar (30 min target + 15 min buffer for the conversation running over).
 
@@ -56,7 +56,16 @@ Don't interrupt with "so we built Signal because…". Just listen. One follow-up
 
 ### Part 2 · Walk the workspace (15 minutes)
 
-Share screen. Open the live wedding workspace at `tasks.signalstudio.ie/templates/wedding-planning-workspace` and walk it the same way every time:
+Share screen. Open the live wedding workspace and walk it the same way every time:
+
+> **Stale as of 2026-08-12.** The four URLs below predate the estate
+> consolidation. `tasks.signalstudio.ie/templates/wedding-planning-workspace`
+> is gone twice over: the template routes were cut and the tasks host is
+> retired in favour of `app.signalstudio.ie`. The notes, roadmap and analytics
+> hosts named below all redirect to marketing pages now, not to workspaces.
+> Do not walk this section from the script until the four demo destinations
+> are re-sourced against the live app. Part 1 and Part 3 are unaffected.
+
 
 1. **The notebook entry** — open `notes.signalstudio.ie/wedding-planning/`. "This is the venue meeting note. Real prose, no auto-detect. The next move is approving extracts into the workspace."
 2. **The workspace** — the 18 tasks across Venue / Suppliers / Guest list / Final week / Decisions / Risks. "This is what couples and the coordinator both see. Same workspace, different views."
