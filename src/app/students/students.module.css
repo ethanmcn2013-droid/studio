@@ -10,7 +10,6 @@
 
    THE SCALE, computed at a 1440 viewport, largest to smallest:
      h1                104px  .reveal-headline-v2 (house)
-     price figure       95px  .priceFigure         (max 102)
      the two answers    67px  .answerLg (what a paper actually is,
                               and what only you can choose)
      relay head h2      65px  .reveal-relay-head h2 (max 74, capped
@@ -18,6 +17,11 @@
                               reasoning as /venues: the head only
                               introduces what the answers state)
      the sign           63px  .reveal-closing-sign (raised)
+     the price          50px  .priceCardFigure — one carrier, inside
+                              the card that carries the ask. Rung 06
+                              used to open with a 95px bare figure as
+                              well, which stated the same €9.99 at
+                              display scale twice in one viewport.
      rung answers       48px  .answer
      block titles       32px  .wideTitle
      rung questions     25px  .rungQ — navigation, set like navigation
@@ -456,20 +460,10 @@
   background: var(--accent);
 }
 
-/* ── The price ────────────────────────────────────────────────────
-   The one number the page exists to state, set one step under the h1
-   and above everything else. */
-.priceFigure {
-  margin: 0 0 clamp(24px, 3.2vw, 40px);
-  color: var(--ink);
-  font-size: clamp(3.1rem, 2rem + 4.4vw, 6.4rem);
-  font-weight: 540;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.052em;
-  line-height: 0.95;
-}
-
 /* ── The price card ───────────────────────────────────────────────
+   The one number the page exists to state lives here and nowhere else
+   at display scale.
+
    The /pricing tier card, at that card's own grade: the plan name and
    its summary on the left, the number and the ask on the right, the
    three facts that decide the purchase in a row beneath. The one
@@ -579,15 +573,24 @@
   font-size: 12px;
 }
 
+/* The support line under the ask. Two lines, and the break is
+   authored rather than left to a measure: at 24ch the wrap fell inside
+   the negation ("waitlist only · no" / "charge today"), which reads for
+   a beat as the opposite of what it says. Each half of the pair is its
+   own block, so the only place the line can break is the separator. */
 .priceCardNote {
   margin: 10px 0 0;
-  max-width: 24ch;
   color: var(--ink-faint);
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.1em;
   line-height: 1.6;
   text-transform: uppercase;
+}
+
+.priceCardNoteLine {
+  display: block;
+  white-space: nowrap;
 }
 
 @media (min-width: 720px) {
@@ -859,6 +862,15 @@
   line-height: 1.02;
 }
 
+/* The accented phrase in the sign, held on one line. The house paints
+   the mark as a background band on an inline span, so a phrase that
+   straddles a line break paints as two unequal bars with the sentence's
+   full stop stranded outside the second one. The phrase is two words
+   and its own terminal period, and it cannot break. */
+.signAccent {
+  white-space: nowrap;
+}
+
 /* ── Dark theme ───────────────────────────────────────────────────
    --zinc-600 is defined in :root and never remapped by the dark block
    in src/ds/tokens.css, so it computes to 2.48:1 on the dark paper.
@@ -987,14 +999,6 @@
 
   .stackRow {
     gap: 10px;
-  }
-
-  /* The scale ladder's law is h1 first, price second, at every width.
-     The price clamp's floor outran the h1's at phone widths, the one
-     place a lower rung outranked a higher one. Capped under the h1's
-     own mobile floor. */
-  .priceFigure {
-    font-size: clamp(2.35rem, 11.2vw, 2.9rem);
   }
 
   /* The sticky price row must not tax a phone viewport: stacked like

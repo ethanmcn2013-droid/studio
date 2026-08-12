@@ -40,6 +40,7 @@
     },
     "student": {
       "publicName": "Student",
+      "programmeName": "Student Edition",
       "amountCents": 999,
       "cadence": "year",
       "workspaceLimit": 3,

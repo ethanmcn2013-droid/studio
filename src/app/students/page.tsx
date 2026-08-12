@@ -45,6 +45,14 @@ import styles from "./students.module.css";
  * only: section labels, the frame that tells a reader whose voice a sentence
  * is in, and the mono furniture.
  *
+ * THE PROGRAMME NAME IS A RATIFIED VALUE TOO. "Student Edition" is
+ * `plans.student.programmeName`, the same shape the venue plan uses for
+ * `founding.programmeName`, and it is read once into STUDENT_PROGRAMME and
+ * rendered in the four places the page names the programme: the hero eyebrow,
+ * the metadata title, the OG title and the closing address strip. The plan's
+ * own `publicName`, "Student", stays where it belongs, on the price card,
+ * because that is the name of the thing a reader buys.
+ *
  * THE PRICE NEVER TRAVELS WITHOUT ITS CONDITIONS, GEOMETRICALLY. The same
  * rule /venues makes physical: the price sentence is ledger row 01 and it
  * rides a sticky bar pinned above the ledger for the whole of its scroll, so
@@ -53,11 +61,20 @@ import styles from "./students.module.css";
  * conditions matter more than usual, because the plan cannot currently be
  * bought at all.
  *
+ * AND IT IS STATED AT DISPLAY SCALE ONCE. The carrier is the price card,
+ * because the card is the object a student can act on: the figure, the
+ * cadence, the ask and the support line are one thing, and rung 06's two index
+ * rows sit directly under it. The number appears twice more on the page, at
+ * reading size, in the "Across a year" row and in the ledger's own price row,
+ * which is the honest state for a sticky condition bar.
+ *
  * THREE WORKSPACES, NOT FOUR. The page this replaces named four modules
  * (Psychology, Law, Marketing, Statistics) as the sample semester while the
  * ratified plan carries a three-Workspace limit. The limit is now stated in
  * the ledger, in the price card, in rung 01, and the sample semester in
  * `fixtures.ts` runs on three modules so the picture and the plan agree.
+ * Most semesters are bigger than three modules, and rung 01 says so in its
+ * own index rather than leaving a reader to find the ceiling after paying.
  *
  * THE STRUCK PRICE. The €100/yr graduate rate that the retired app page
  * carried is gone and does not appear anywhere on this surface, per the
@@ -71,6 +88,14 @@ const GUESTS = COMMERCIAL_TERMS.guestSemantics;
 const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
 const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
 const VAT_CLAUSE = COMMERCIAL_TERMS.vat.publicStatement;
+
+/**
+ * The programme name, from the contract. "Student Edition" is what the
+ * acquisition programme is called; "Student" is what the plan is called and
+ * what the price card renders. Both are ratified values in
+ * `contracts/commercial-terms.v2.json`, so neither is typed on this page.
+ */
+const STUDENT_PROGRAMME = PRICING.plans.student.programmeName;
 
 const STUDENT_WORKSPACES = PRICING.plans.student.workspaceLimit.toLowerCase();
 const STUDENT_GUESTS = PRICING.plans.student.editingGuestLimit.toLowerCase();
@@ -111,7 +136,7 @@ const LADDER = [
 ] as const;
 
 const COPY = {
-  eyebrowHero: "Student Edition · Waitlist only",
+  eyebrowHero: `${STUDENT_PROGRAMME} · Waitlist only`,
   heroJumpToTerms: "What it costs, and every condition on it",
 
   relayKicker: "Six parts, in order",
@@ -124,6 +149,11 @@ const COPY = {
   sourceDateLabel: "21 October",
   sourceDate: "2026-10-21",
   sampleView: "Sample product view",
+
+  /* What the embedded artifact IS, for anyone who cannot see it. The
+     component's default names the wedding fixture it ships with, and this
+     page supplies its own semester fixture, so it supplies its own name. */
+  artifactLabel: "Signal Timeline sample semester plan",
 
   stackLabel: "One semester",
 
@@ -159,7 +189,7 @@ const COPY = {
   societySummary: "Running a committee or a society?",
 
   closingName: "Ethan McNamara",
-  closingProgramme: "Student Edition",
+  closingProgramme: STUDENT_PROGRAMME,
   closingPlace: "Limerick, 2026",
 } as const;
 
@@ -296,10 +326,10 @@ function accent(source: string, word: string, className: string): ReactNode {
 }
 
 export const metadata: Metadata = {
-  title: "Student Edition · Signal Studio",
+  title: `${STUDENT_PROGRAMME} · Signal Studio`,
   description: `Every module clear and the whole semester in one view. ${PRICING.plans.student.workspaceLimit} Workspaces, private Notes, Tasks with dates, a semester Timeline and a morning briefing across the lot. ${STUDENT_PRICE} a year for verified students. Waitlist only, and nothing is charged today.`,
   openGraph: {
-    title: "Student Edition · Signal Studio",
+    title: `${STUDENT_PROGRAMME} · Signal Studio`,
     description:
       "One module per workspace, grouped into a semester. Private Notes, Tasks with dates, a semester Timeline, and a morning briefing across the whole workload.",
     type: "website",
@@ -368,7 +398,11 @@ export default function StudentsPage() {
 
               <div className="reveal-relay-preview" data-product="timeline">
                 <p className="reveal-relay-sample">{COPY.sampleView}</p>
-                <TimelineTheLine embedded timeline={SEMESTER_TIMELINE_FIXTURE} />
+                <TimelineTheLine
+                  embedded
+                  timeline={SEMESTER_TIMELINE_FIXTURE}
+                  label={COPY.artifactLabel}
+                />
               </div>
 
               {/* The embedded view's motion primitives serve their initial
@@ -491,6 +525,15 @@ export default function StudentsPage() {
                 <IndexRow
                   term="How many you get"
                   detail={`${PRICING.plans.student.workspaceLimit} Workspaces and ${STUDENT_GUESTS} editing guests. That is the size of a study group.`}
+                />
+                {/* The page's founding premise is three module Workspaces,
+                    because that is the ratified plan limit, and most semesters
+                    are bigger than that. Said plainly here rather than left
+                    for a reader to discover after they have paid. Both counts
+                    are composed from the contract. */}
+                <IndexRow
+                  term="If you take more modules"
+                  detail={`Most semesters run to more than ${STUDENT_WORKSPACES} modules. ${PRICING.plans.student.workspaceLimit} is what the plan carries, so a Workspace goes to each module with graded work in it and the lighter ones share one.`}
                 />
                 <IndexRow
                   term="Where everything else goes"
@@ -679,9 +722,17 @@ export default function StudentsPage() {
           </dl>
 
           <dl className={`${styles.index} ${styles.indexAfter}`}>
+            {/* Only what the binding document says. The privacy policy's
+                "What we don't collect" section rules out advertising trackers,
+                fingerprinting, session replay, marketing pixels, behavioural
+                profiling and model training on anything you write. It makes no
+                representation about selling data, so this row no longer makes
+                one either: the next row tells the reader the policy is the
+                binding text, and a summary cannot promise more than the
+                document it summarises. */}
             <IndexRow
               term="How this is paid for"
-              detail="By the price on this page. There are no ads on Signal Studio and no data is sold."
+              detail="By the price on this page. No ads, no behavioural profiling, and nothing you write is used to train a model."
             />
             <IndexRow
               term="Where the full version is"
@@ -718,9 +769,15 @@ export default function StudentsPage() {
               <p className="reveal-relay-foot">{COPY.foot6}</p>
             </div>
 
+            {/* ONE CARRIER FOR THE NUMBER. The rung used to open with a bare
+                95px figure and then repeat the price inside the card a few
+                lines under it, which put the same €9.99 at display scale twice
+                in one viewport. The card is the carrier: it is the object a
+                student can act on, so it holds the figure, the cadence and the
+                ask together, and the two index rows sit directly under it
+                rather than orphaned between two statements of the same
+                number. */}
             <div className="reveal">
-              <p className={styles.priceFigure}>{STUDENT_PRICE}</p>
-
               <article className={styles.priceCard} aria-labelledby="st-plan">
                 <div className={styles.priceCardInner}>
                   <div>
@@ -763,8 +820,19 @@ export default function StudentsPage() {
                       Join the student waitlist
                       <span aria-hidden>→</span>
                     </Link>
+                    {/* Two lines, and the break is authored. Left to a
+                        max-width the line broke inside the negation, as
+                        "waitlist only · no" over "charge today", which reads
+                        for a beat as the opposite of what it says. Each half
+                        of the pair is its own line, so the break can only
+                        fall on the separator. */}
                     <span className={styles.priceCardNote}>
-                      Waitlist only · no charge today
+                      <span className={styles.priceCardNoteLine}>
+                        Waitlist only ·
+                      </span>{" "}
+                      <span className={styles.priceCardNoteLine}>
+                        no charge today
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -871,11 +939,18 @@ export default function StudentsPage() {
             deadline it does not have. ───────────────────────────────── */}
         <section className="reveal-closing reveal" aria-labelledby="st-ask">
           <div className="reveal-closing-rule" aria-hidden />
+          {/* The accent is narrow on purpose. Across a centred three-line
+              sign, "when verification goes live" straddled the line break and
+              painted as a stub on one line and a bar on the next, with the
+              full stop outside the mark. The marked phrase is now two words
+              and carries its own terminal period, and .signAccent forbids it
+              breaking, so the mark closes the sentence as one object at every
+              width. */}
           <h2 id="st-ask" className="reveal-closing-sign">
             {accent(
               "No date. No charge today. You’ll hear from me when verification goes live.",
-              "when verification goes live",
-              "em",
+              "goes live.",
+              `em ${styles.signAccent}`,
             )}
           </h2>
 
