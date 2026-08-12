@@ -65,6 +65,14 @@ export function getConsumerPricingPresentation() {
       }),
       student: Object.freeze({
         name: student.publicName,
+        /**
+         * The name the acquisition programme is published under, which is not
+         * the plan's own name: the price card says "Student" because that is
+         * what a reader buys, and the page says "Student Edition" because that
+         * is what the programme is called. Both come from the contract, the
+         * same way the venue plan carries `founding.programmeName`.
+         */
+        programmeName: student.programmeName,
         price: formatEuroCents(student.amountCents),
         workspaceLimit: countLabel(student.workspaceLimit),
         editingGuestLimit: countLabel(student.editingGuestLimit),
