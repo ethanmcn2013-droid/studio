@@ -8,6 +8,31 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-12 · S·167 · ships · the student page argues its own semester
+
+**/students is rebuilt from a flat column to the house treatment: the
+semester itself open in the hero, six chapters in the order a semester
+arrives, and a thirteen-row terms ledger whose price stays pinned above its
+own conditions.** The artifact in the hero is the app's real Timeline on a
+frozen three-module fixture, and it now introduces itself to assistive
+technology as what it is, a sample semester plan, rather than borrowing the
+wedding hero's name.
+
+Every number, limit and availability clause on the page is read from the
+ratified commercial terms rather than typed, and the page now claims only
+what those terms and the privacy policy actually back. The price appears at
+display scale once. The programme name, Student Edition, became a ratified
+contract value instead of a phrase invented on the page. And the one promise
+the product could not keep — that it would never notify anyone of anything —
+is replaced by the true sentence: the briefing comes once in the morning,
+and anything else is the reader's own choice.
+
+A seven-seat review graded the rebuild and its fixes were measured one by
+one; the page ships at a high standard without claiming the 9.5 gate it has
+not passed. What remains structural — the long middle without an object,
+chapters sharing one silhouette — is recorded for the next pass rather than
+rushed.
+
 ## 2026-08-12 · S·166 · cuts · the public estate is one domain and eighteen pages
 
 **Thirteen public pages left the umbrella, and every one of them now lands a
