@@ -6001,10 +6001,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "8bf97852165414e8"
+      "materialityHash": "f7ad19274d0e541a"
     },
     {
       "id": "studio.page.hq-waitlist",
@@ -6228,10 +6228,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "ca8c3f1605254850"
+      "materialityHash": "21cf54fb47cdd338"
     },
     {
       "id": "studio.page.privacy",
@@ -6272,10 +6272,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "34bd129dcfa8e519"
+      "materialityHash": "2b72e964ac67778c"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6582,10 +6582,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "69287b62dbab7d66"
+      "materialityHash": "da89a7b679f321d5"
     },
     {
       "id": "studio.page.timeline",
