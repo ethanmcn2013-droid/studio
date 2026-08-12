@@ -6494,10 +6494,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "08643bcbe55b2464"
+      "materialityHash": "b530064faedcced3"
     },
     {
       "id": "studio.page.tasks",

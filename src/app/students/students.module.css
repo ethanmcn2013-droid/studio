@@ -1,0 +1,1020 @@
+/* ═══════════════════════════════════════════════════════════════
+   The student landing page · "The Semester" — private CSS.
+
+   Built out of the existing .reveal-* grammar in globals.css, the
+   same way /venues is. These rules exist only for objects the house
+   has no shape for: the six-part contents, the module stack, the
+   definition index that carries the answers, the display register,
+   the price card, and the grouped commercial ledger with its sticky
+   price row.
+
+   THE SCALE, computed at a 1440 viewport, largest to smallest:
+     h1                104px  .reveal-headline-v2 (house)
+     price figure       95px  .priceFigure         (max 102)
+     the two answers    67px  .answerLg (what a paper actually is,
+                              and what only you can choose)
+     relay head h2      65px  .reveal-relay-head h2 (max 74, capped
+                              one step under the answers, same
+                              reasoning as /venues: the head only
+                              introduces what the answers state)
+     the sign           63px  .reveal-closing-sign (raised)
+     rung answers       48px  .answer
+     block titles       32px  .wideTitle
+     rung questions     25px  .rungQ — navigation, set like navigation
+     reading           15-17px .indexDetail / .rungBody / .answerRest
+     furniture         8.5-10px mono uppercase
+
+   Every value is quoted from the .reveal-* set it sits beside:
+     display    Geist 540, -0.032 to -0.052em, lh 0.95-1.08
+     furniture  var(--font-mono) 8.5-10px uppercase, 0.12-0.16em
+     reading    clamp(15px, 0.88rem + 0.26vw, 17px)
+     hairlines  var(--border) and var(--border-soft)
+     radius     14px, from .reveal-relay-preview
+     grounds    var(--paper), --paper-soft. No new colour.
+
+   MOTION. Two authored keyframes, both scroll-driven on named view
+   timelines, both inside @supports + prefers-reduced-motion:
+   no-preference, so the static page is the baseline and the drawing
+   is the enhancement. Nothing is withheld from a reader whose
+   browser or settings decline it.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Anchor landing for the six rungs. The site header is sticky at
+   56px; .reveal-relay already reserves 72px for itself. */
+.rung {
+  scroll-margin-top: 84px;
+}
+
+.wideTitle {
+  scroll-margin-top: 84px;
+}
+
+/* ── Relay chapter measure ────────────────────────────────────────
+   The narrow column carries a question register rather than a
+   one-word product wordmark, so it needs the wider minimum /venues
+   proved. Every term/detail object on the page pins to this ratio,
+   so the ledger's first column starts where a rung's body starts. */
+.page :global(.reveal-relay-chapter) {
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
+}
+
+@media (max-width: 880px) {
+  .page :global(.reveal-relay-chapter) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page :global(.reveal-relay-copy) {
+    padding-top: 0;
+  }
+}
+
+/* ── The hero's product view ──────────────────────────────────────
+   The house hero is a headline, a lede and its actions. This page
+   adds one object under them: the semester, open. It sits inside
+   .reveal-hero-v2-inner, so it inherits the hero's own 1120px measure
+   and the frame's left edge lands exactly on the h1's, and it is the
+   only thing on the page that is shown rather than said.
+
+   The house hero holds a viewport-height floor because on the
+   homepage the first screen is a headline and two links, and without
+   the floor it reads as a strip. Here the first screen carries a
+   product view several hundred pixels tall, so the floor only forces
+   dead air under the artifact, and on a phone it pushed the frame
+   most of a screen below the fold. Removed for this page, with the
+   house's own bottom padding kept. */
+.page :global(.reveal-hero.reveal-hero-v2) {
+  min-height: auto;
+}
+
+.heroStage {
+  margin: clamp(36px, 4.6vw, 64px) 0 0;
+}
+
+/* The provenance strip is the house's own relay source rule, borrowed
+   for the hero. It ships with a top hairline and no bottom gap,
+   because in the relay the frame it labels sits in the next grid
+   track; here it sits directly under it. */
+.heroStage :global(.reveal-relay-source) {
+  margin-bottom: 12px;
+}
+
+/* ── The rung 05 to rung 06 seam ──────────────────────────────────
+   Rung 05 breaks out into the manifesto grammar, and the house never
+   resumes a relay after its manifesto: the manifesto's exit padding
+   stacked on the resuming relay's head padding would put the page's
+   largest gap mid-argument, before the price. The manifesto keeps
+   its full house entrance and takes the chapter seam's own clamp on
+   exit; the resumed relay contributes nothing. Same fix as /venues,
+   same reason. */
+.page .rung:global(.reveal-manifesto) {
+  /* The house manifesto rides a 1080px container against the relay's
+     1240px, which would jog the six-numeral spine sideways at rung 05
+     and back again at rung 06. The numerals are the ladder, so rung
+     05 takes the relay's container and the spine runs straight. */
+  width: min(1240px, calc(100% - 40px));
+  padding-bottom: clamp(64px, 9vw, 116px);
+}
+
+.page .relayResume {
+  padding-top: 0;
+}
+
+/* The one stray numeral, redrawn in the relay number register so the
+   six-numeral spine keeps one voice where rung 05 leaves the grid. */
+.page .manifestoNum {
+  margin: 0 0 24px;
+  color: var(--zinc-600);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+/* The relay head, one step under the answers. */
+.page :global(.reveal-relay-head) h2 {
+  font-size: clamp(2.2rem, 1.35rem + 3vw, 4.6rem);
+}
+
+/* ── The question register ────────────────────────────────────────
+   Six questions, set like the navigation they are. The rungs are h2
+   elements, so the house's display rule for a chapter head
+   (.reveal-relay-copy h3) no longer reaches them and this class
+   authors the register completely. */
+.page .rungQ {
+  max-width: 20ch;
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 1.02rem + 0.62vw, 1.55rem);
+  font-weight: 540;
+  letter-spacing: -0.022em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.rungBody {
+  max-width: 38ch;
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* ── The contents ─────────────────────────────────────────────────
+   Six rungs, six anchors, in the wide column under the head's h2,
+   the slot where the house head sets its reading matter. */
+.contents {
+  grid-column: 2;
+  max-width: 62ch;
+  margin: clamp(24px, 3vw, 34px) 0 0;
+}
+
+.contentsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contentsItem {
+  position: relative;
+}
+
+.contentsItem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--border-soft);
+  transform-origin: left;
+}
+
+.contentsItem:first-child::before {
+  background: var(--border);
+}
+
+.contentsLink {
+  min-height: 44px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.contentsNum {
+  flex: none;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.16em;
+  transition: color var(--motion-fast) var(--ease-out);
+}
+
+.contentsText {
+  font-size: 15px;
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.4;
+  text-wrap: pretty;
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contentsLink:hover .contentsNum {
+    color: var(--accent);
+  }
+
+  .contentsLink:hover .contentsText {
+    transform: translateX(2px);
+  }
+}
+
+.contentsLink:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── The definition index ─────────────────────────────────────────
+   Terms in sentence-case Geist rather than mono caps, because every
+   one is a question a student actually asks, and all-caps turns a
+   question into furniture.
+
+   align-content: start is load-bearing: .reveal-relay-chapter
+   stretches its children, and without it a two-row list beside a
+   tall neighbour distributes slack into its own rows and reads as a
+   rule with a missing answer under it. */
+.index {
+  display: grid;
+  align-content: start;
+  margin: 0;
+}
+
+.indexRow {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.34fr) minmax(0, 1fr);
+  gap: 7px clamp(20px, 3vw, 48px);
+  padding: 20px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.indexRow:first-child {
+  border-top-color: var(--border);
+}
+
+.indexTerm {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(14px, 0.82rem + 0.16vw, 15.5px);
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+.indexDetail {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* The one tinted panel on the page. The four access answers travel
+   together, so they are drawn as one object rather than four rows a
+   reader could take separately. */
+.indexGroup {
+  padding: clamp(18px, 2.4vw, 28px) clamp(18px, 2.4vw, 28px) 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--paper-soft);
+}
+
+.indexGroup .indexRow:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.indexAfter {
+  margin-top: clamp(26px, 3.4vw, 40px);
+}
+
+/* ── The answer registers ─────────────────────────────────────────
+   The display type on this page belongs to the answers. Two sizes:
+   .answer for a rung's lead answer, and .answerLg for the two
+   sentences the page is really about, what a paper actually is and
+   what only the student chooses. */
+.answer {
+  max-width: 26ch;
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.7rem, 1.05rem + 2.2vw, 3rem);
+  font-weight: 540;
+  letter-spacing: -0.042em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.answerLg {
+  max-width: 19ch;
+  margin: clamp(26px, 3.4vw, 40px) 0;
+  color: var(--ink);
+  font-size: clamp(2.3rem, 1.4rem + 3.1vw, 4.7rem);
+  font-weight: 540;
+  letter-spacing: -0.048em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+/* The frame that names what a display answer is answering. Reading
+   register, ink, one glance up from the line it serves. */
+.answerFrame {
+  max-width: 40ch;
+  margin: clamp(22px, 2.8vw, 32px) 0 0;
+  color: var(--ink);
+  font-size: clamp(14px, 0.82rem + 0.16vw, 15.5px);
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+.answerFrame:first-child {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* The continuation of a lead answer, at reading size on the same
+   left edge. */
+.answerRest {
+  max-width: 52ch;
+  margin: clamp(16px, 2vw, 24px) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* The house marker, quoted from .reveal-manifesto-h2 .em. */
+.answer :global(.em),
+.answerLg :global(.em) {
+  padding: 0 0.06em;
+  background: linear-gradient(transparent 60%, var(--reveal-accent-soft) 60%);
+}
+
+/* ── The module stack ─────────────────────────────────────────────
+   Three module rails standing over one semester rail. Each mark is a
+   piece of work; the semester rail carries all of them. The object
+   states rung 01's sentence in geometry, and the sentence beside it
+   states the whole of the object in words, so it is hidden from
+   assistive technology rather than given a label that repeats. */
+.stack {
+  /* One fixed label track, not an auto one. Each row is its own grid
+     container, so an auto track sizes to that row's own label and the
+     four rails started at four different x positions, up to 16px
+     apart: a stack whose rails do not stack. The track is set once
+     here, wide enough for the longest label at the one size the labels
+     are ever set in. */
+  --stack-label: 88px;
+
+  margin: 0 0 clamp(30px, 3.8vw, 46px);
+}
+
+.stackRow {
+  display: grid;
+  grid-template-columns: var(--stack-label) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 11px 0;
+}
+
+.stackLabel {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stackRail {
+  position: relative;
+  height: 13px;
+}
+
+.stackRail::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  left: 0;
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
+}
+
+.stackMark {
+  position: absolute;
+  bottom: 3px;
+  left: var(--p);
+  width: 1px;
+  height: 7px;
+  background: var(--ink-faint);
+  transform-origin: bottom;
+}
+
+/* The semester rail: the same object one step louder, because it is
+   the one the page is selling. Ink rule, taller marks, and the mark
+   set is the union of the three above it. */
+.stackTotal {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.stackTotal .stackLabel {
+  color: var(--ink);
+  font-weight: 560;
+}
+
+.stackTotal .stackRail {
+  height: 18px;
+}
+
+.stackTotal .stackRail::after {
+  bottom: 8px;
+  background: var(--ink);
+}
+
+.stackTotal .stackMark {
+  bottom: 4px;
+  height: 11px;
+  background: var(--accent);
+}
+
+/* ── The price ────────────────────────────────────────────────────
+   The one number the page exists to state, set one step under the h1
+   and above everything else. */
+.priceFigure {
+  margin: 0 0 clamp(24px, 3.2vw, 40px);
+  color: var(--ink);
+  font-size: clamp(3.1rem, 2rem + 4.4vw, 6.4rem);
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.052em;
+  line-height: 0.95;
+}
+
+/* ── The price card ───────────────────────────────────────────────
+   The /pricing tier card, at that card's own grade: the plan name and
+   its summary on the left, the number and the ask on the right, the
+   three facts that decide the purchase in a row beneath. The one
+   difference is that this page sells a single plan, so there is no
+   picker above it and the card is the resting state, not a selection.
+   Ratios, radius, shadow and the mono support line are quoted from
+   plan-picker.tsx. */
+.priceCard {
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--paper);
+  box-shadow: 0 24px 60px -44px rgba(15, 23, 42, 0.45); /* ds-allow — quoted from plan-picker.tsx */
+}
+
+.priceCardInner {
+  display: grid;
+  gap: clamp(24px, 3vw, 34px);
+  padding: clamp(22px, 3vw, 34px);
+}
+
+@media (min-width: 720px) {
+  .priceCardInner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+}
+
+.priceCardName {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.6rem, 1.25rem + 1vw, 2.2rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.priceCardSummary {
+  max-width: 52ch;
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.priceCardFacts {
+  display: grid;
+  gap: 10px;
+  margin: clamp(20px, 2.4vw, 26px) 0 0;
+}
+
+@media (min-width: 560px) {
+  .priceCardFacts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.priceCardFact {
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--paper-soft);
+}
+
+.priceCardFact dt {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.priceCardFact dd {
+  margin: 5px 0 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.priceCardAsk {
+  display: flex;
+  min-width: 190px;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .priceCardAsk {
+    align-items: flex-end;
+  }
+}
+
+.priceCardFigure {
+  color: var(--ink);
+  font-size: clamp(2.2rem, 1.8rem + 1.5vw, 3.2rem);
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.priceCardCadence {
+  margin: 6px 0 0;
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.priceCardNote {
+  margin: 10px 0 0;
+  max-width: 24ch;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+@media (min-width: 720px) {
+  .priceCardNote {
+    text-align: right;
+  }
+}
+
+.priceCta {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(18px, 2.2vw, 24px);
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 560;
+  text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .priceCta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.priceCta:active {
+  transform: scale(0.98);
+}
+
+.priceCta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Blocks that span a chapter ───────────────────────────────────
+   The ledger belongs to rung 06, so it sits inside that chapter and
+   spans both columns. That keeps the document outline at exactly six
+   h2 rungs, each block title an h3 inside its rung. */
+.spanBlock {
+  grid-column: 1 / -1;
+  margin-top: clamp(6px, 1vw, 14px);
+  padding-top: clamp(32px, 4vw, 52px);
+  border-top: 1px solid var(--border);
+}
+
+.wideHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 20px;
+  margin: 0 0 clamp(20px, 2.8vw, 32px);
+}
+
+.wideTitle {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 1.05rem + 1.05vw, 2rem);
+  font-weight: 540;
+  letter-spacing: -0.042em;
+  line-height: 1.05;
+}
+
+.wideMeta {
+  color: var(--zinc-600);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── The sticky price row ─────────────────────────────────────────
+   The price never travels without its conditions, made physical: row
+   01 is the price sentence, and it pins under the site nav for the
+   whole of the ledger's scroll, so there is no scroll position from
+   which a reader can see a condition without the number or the
+   number without conditions under it. The dl itself carries the
+   sticky position, because a sticky element travels only within its
+   parent and a wrapper exactly one row tall would give it zero
+   travel. Top offset is the nav's 56px; z-index stays below the
+   nav's 40 and above the group labels it passes. Deliberately
+   unanimated: a row that is invisible while on screen is worse than
+   a number that appears twice. */
+.stickyBar {
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
+
+.stickyFigure {
+  color: var(--ink);
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── The commercial ledger ────────────────────────────────────────
+   Every condition on the number, grouped so it can be scanned as
+   well as read: the rate, who it is for, what is not settled yet,
+   and the offers around it. Row numbers stay absolute, because the
+   count in the chapter foot is a promise about how many there are
+   and the numbering is the proof of it. */
+.ledgerGroup {
+  padding-top: clamp(24px, 3.2vw, 38px);
+}
+
+.groupLabel {
+  margin: 0 0 6px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ledger {
+  display: grid;
+  margin: 0;
+}
+
+.ledgerRow {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
+  gap: 7px clamp(28px, 5vw, 72px);
+  padding: 18px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.ledgerRow:first-child {
+  border-top-color: var(--border);
+}
+
+.ledgerTerm {
+  display: grid;
+  grid-template-columns: 2.6em minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(14px, 0.82rem + 0.16vw, 15.5px);
+  font-weight: 540;
+  letter-spacing: -0.012em;
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+.ledgerNum {
+  color: var(--zinc-600);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+}
+
+.ledgerDetail {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+/* ── The society disclosure and the verification note ─────────────
+   Both are deliberately quiet. The society offer does not exist, and
+   the verification standard is not published, so neither gets a
+   display line: they get a panel a reader can open and a plain note
+   under the ledger. */
+.aside {
+  margin-top: clamp(26px, 3.4vw, 40px);
+}
+
+.asidePanel {
+  padding: clamp(18px, 2.4vw, 26px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--paper-soft);
+}
+
+.asideTitle {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(14px, 0.82rem + 0.16vw, 15.5px);
+  font-weight: 560;
+  letter-spacing: -0.012em;
+  line-height: 1.42;
+}
+
+.asideBody {
+  max-width: 56ch;
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.asideList {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 9px;
+}
+
+.asideList li {
+  position: relative;
+  max-width: 56ch;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.asideList li::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.note {
+  max-width: 62ch;
+  margin: clamp(26px, 3.4vw, 40px) 0 0;
+  padding-top: clamp(18px, 2.2vw, 24px);
+  border-top: 1px solid var(--border-soft);
+  color: var(--ink-soft);
+  font-size: clamp(15px, 0.88rem + 0.26vw, 17px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.noteMeta {
+  margin: 14px 0 0;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+/* ── The close ────────────────────────────────────────────────────
+   One ask, and the sign above it is the sentence about what happens
+   next. .reveal-closing-sign caps at 40px in the house; raised to sit
+   between the answers and the rung questions, at 540 rather than the
+   house's 600 so the weight logic of the scale holds: same weight,
+   smaller size, one step quieter. Terminal capped one step under the
+   relay head, so the order answers, head, sign holds at every width. */
+.page :global(.reveal-closing-sign) {
+  font-size: clamp(1.9rem, 1.3rem + 2.9vw, 4.2rem);
+  font-weight: 540;
+  letter-spacing: -0.046em;
+  line-height: 1.02;
+}
+
+/* ── Dark theme ───────────────────────────────────────────────────
+   --zinc-600 is defined in :root and never remapped by the dark block
+   in src/ds/tokens.css, so it computes to 2.48:1 on the dark paper.
+   No product sets data-theme=dark on this surface before launch;
+   remapped so the trap cannot fire. */
+:global([data-theme="dark"]) .wideMeta,
+:global([data-theme="dark"]) .ledgerNum,
+:global([data-theme="dark"]) .page .manifestoNum,
+:global([data-theme="dark"]) .page :global(.reveal-relay-number) {
+  color: var(--ink-faint);
+}
+
+/* ── Authored motion ──────────────────────────────────────────────
+   Two drawing moments, one idea: this page is a semester in six
+   parts, so things are drawn in order, left to right. The contents
+   draws itself rule by rule as the reader arrives at it; the module
+   stack draws its rails and then stands each piece of work up along
+   them. The static state is the finished state. */
+@keyframes st-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes st-rise-y {
+  from {
+    opacity: 0;
+    transform: scaleY(0.06);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes st-row-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .contentsList {
+      view-timeline-name: --st-contents;
+    }
+
+    .contentsItem::before {
+      animation: st-draw-x var(--motion-slow) var(--ease-out) both;
+      animation-timeline: --st-contents;
+      animation-range: entry calc(4% + var(--i) * 3.4%) entry
+        calc(30% + var(--i) * 3.4%);
+    }
+
+    .contentsLink {
+      animation: st-row-in var(--motion-slow) var(--ease-out) both;
+      animation-timeline: --st-contents;
+      animation-range: entry calc(9% + var(--i) * 3.4%) entry
+        calc(35% + var(--i) * 3.4%);
+    }
+
+    /* The timeline is named on the whole stack, not on a single 13px
+       rail, so the draw plays across real scroll instead of finishing
+       inside a rail's own height at the bottom edge of the viewport. */
+    .stack {
+      view-timeline-name: --st-stack;
+    }
+
+    .stackRail::after {
+      animation: st-draw-x var(--motion-slow) var(--ease-out) both;
+      animation-timeline: --st-stack;
+      animation-range: entry calc(4% + var(--row) * 6%) entry
+        calc(26% + var(--row) * 6%);
+    }
+
+    .stackMark {
+      animation: st-rise-y var(--motion-slow) var(--ease-out) both;
+      animation-timeline: --st-stack;
+      animation-range: entry calc(12% + var(--row) * 6% + var(--i) * 2%) entry
+        calc(32% + var(--row) * 6% + var(--i) * 2%);
+    }
+  }
+}
+
+/* ── Responsive. Breakpoints match globals.css exactly. ────────── */
+@media (max-width: 880px) {
+  .ledgerRow {
+    grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+    gap: 7px clamp(20px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 640px) {
+  /* The house chapter seam narrows to 66px each side at this width;
+     the manifesto's exit follows it, same as at every other width. */
+  .page .rung:global(.reveal-manifesto) {
+    padding-bottom: 66px;
+  }
+
+  .contents {
+    grid-column: 1;
+  }
+
+  .indexRow,
+  .ledgerRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .indexGroup,
+  .asidePanel,
+  .priceCard {
+    border-radius: 10px;
+  }
+
+  .stackRow {
+    gap: 10px;
+  }
+
+  /* The scale ladder's law is h1 first, price second, at every width.
+     The price clamp's floor outran the h1's at phone widths, the one
+     place a lower rung outranked a higher one. Capped under the h1's
+     own mobile floor. */
+  .priceFigure {
+    font-size: clamp(2.35rem, 11.2vw, 2.9rem);
+  }
+
+  /* The sticky price row must not tax a phone viewport: stacked like
+     an ordinary mobile row it would pin well over a hundred pixels
+     for the whole ledger scroll. Term and detail sit side by side
+     instead, one size down. */
+  .stickyBar .ledgerRow {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .stickyBar .ledgerDetail {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  /* Keeps the raised sign inside the house's own mobile band for
+     .reveal-closing-sign. */
+  .page :global(.reveal-closing-sign) {
+    font-size: clamp(26px, 6.6vw, 40px);
+  }
+}
