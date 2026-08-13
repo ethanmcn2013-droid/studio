@@ -3131,7 +3131,7 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-08-09",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "4f5f3ef630ef8086"
@@ -6184,10 +6184,10 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-08-09",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "251827c5db9ba47e"
+      "materialityHash": "1651da728db4b885"
     },
     {
       "id": "studio.page.principles",

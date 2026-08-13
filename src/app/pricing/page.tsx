@@ -1,22 +1,57 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
-import { getConsumerPricingPresentation } from "@/lib/commercial-terms";
-import { PlanPicker, type PricingPlan } from "./plan-picker";
+import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
+import { ProductSignatureWordmark } from "@/components/reveal/product-signature-wordmark";
+import {
+  COMMERCIAL_TERMS,
+  formatEuroCents,
+  getConsumerPricingPresentation,
+} from "@/lib/commercial-terms";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
+import {
+  PlanPicker,
+  type PricingComparisonKey,
+  type PricingPlan,
+} from "./plan-picker";
+import {
+  PricingClosing,
+  PricingSelectionProvider,
+} from "./pricing-selection";
+import styles from "./pricing.module.css";
 
 const PRICING = getConsumerPricingPresentation();
 const FREE_PRICE = PRICING.plans.free.price;
 const STUDENT_PRICE = PRICING.plans.student.price;
 const PRO_PRICE = PRICING.plans.pro.price;
+const PRO_ANNUAL_PRICE = PRICING.plans.pro.annualPrice;
+const PRO_ANNUAL_SAVING = formatEuroCents(
+  COMMERCIAL_TERMS.plans.pro.monthlyAmountCents * 12 -
+    COMMERCIAL_TERMS.plans.pro.annualAmountCents,
+);
+const PRO_EDITING_LIMIT =
+  PRICING.plans.pro.editingGuestLimit === "See terms before purchase"
+    ? "Limit not yet published"
+    : PRICING.plans.pro.editingGuestLimit;
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `Compare four clear access shapes for Signal Studio: Free, ${STUDENT_PRICE} yearly for students, ${PRO_PRICE} monthly for ongoing work, or Enterprise with a conversation first.`,
+  description: `Start free, pay ${STUDENT_PRICE} yearly while studying, choose Pro from ${PRO_PRICE} monthly, or shape Enterprise terms with Ethan.`,
+  alternates: {
+    canonical: "/pricing",
+  },
   openGraph: {
     title: "Pricing · Signal Studio",
-    description: "Choose the access shape that matches the work. Exact limits and terms are repeated before purchase.",
+    description:
+      "Free, Student, Pro and Enterprise. Compare the price, limits and access terms without a feature maze.",
     type: "website",
+    url: "/pricing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing · Signal Studio",
+    description:
+      "Free, Student, Pro and Enterprise. One clear comparison.",
   },
 };
 
@@ -27,229 +62,427 @@ function waitlistHref(artifact: string, plan: string): string {
 const PLANS: readonly PricingPlan[] = [
   {
     id: "free",
-    useCase: "Just me",
+    useCase: "Starting solo",
     name: PRICING.plans.free.name,
     price: FREE_PRICE,
     cadence: "no recurring charge",
-    summary: "Start with one workspace. No card and no trial countdown.",
+    fit: "One workspace and 3 editing guests for a real project.",
+    summary: "One workspace for putting Signal Studio to work on a real project.",
     facts: [
-      { label: "Workspace", value: PRICING.plans.free.workspaceLimit },
-      { label: "Editing guests", value: PRICING.plans.free.editingGuestLimit },
-      { label: "Billing", value: PRICING.plans.free.access },
+      { label: "Workspaces", value: PRICING.plans.free.workspaceLimit },
+      {
+        label: "Editing guests",
+        value: PRICING.plans.free.editingGuestLimit,
+      },
+      { label: "Access", value: PRICING.plans.free.access },
     ],
     cta: "Join the Free waitlist",
     href: waitlistHref("pricing_free", "free"),
+    microcopy: "No card or charge today.",
+    mobileSummary: "1 workspace · 3 editing guests",
+    comparison: {
+      bestFor: "Starting solo",
+      workspaces: PRICING.plans.free.workspaceLimit,
+      editingGuests: PRICING.plans.free.editingGuestLimit,
+      price: FREE_PRICE,
+      access: PRICING.plans.free.access,
+    },
   },
   {
     id: "student",
-    useCase: "I study",
+    useCase: "For study",
     name: PRICING.plans.student.name,
     price: STUDENT_PRICE,
     cadence: "per year",
-    summary: "A student access shape with three workspaces, three editing guests, and annual re-verification.",
+    fit: "Three workspaces and 3 editing guests, reviewed each year.",
+    summary:
+      "Keep study work separate across three workspaces, with student status reviewed each year.",
     facts: [
       { label: "Eligibility", value: "Student verification" },
-      { label: "Workspaces", value: PRICING.plans.student.workspaceLimit },
-      { label: "Editing guests", value: PRICING.plans.student.editingGuestLimit },
+      {
+        label: "Workspaces",
+        value: PRICING.plans.student.workspaceLimit,
+      },
+      {
+        label: "Editing guests",
+        value: PRICING.plans.student.editingGuestLimit,
+      },
     ],
     cta: "Join the Student waitlist",
     href: waitlistHref("pricing_student", "student"),
+    microcopy:
+      "Student status and payment terms are confirmed before access.",
+    mobileSummary: "3 workspaces · 3 editing guests",
+    comparison: {
+      bestFor: "Verified students",
+      workspaces: PRICING.plans.student.workspaceLimit,
+      editingGuests: PRICING.plans.student.editingGuestLimit,
+      price: `${STUDENT_PRICE} per year`,
+      access: PRICING.plans.student.access,
+    },
   },
   {
     id: "pro",
     useCase: "Ongoing work",
     name: PRICING.plans.pro.name,
     price: PRO_PRICE,
-    cadence: "per month",
-    recommended: true,
-    summary: `For work that keeps moving. Unlimited workspaces, with ${PRO_PRICE} monthly or ${PRICING.plans.pro.annualPrice} annually when purchase opens.`,
+    cadence: `per month · ${PRO_ANNUAL_PRICE}/year saves ${PRO_ANNUAL_SAVING}`,
+    fit: "Unlimited workspaces. Editing limit not yet published.",
+    summary: "Unlimited workspaces for work that keeps moving across projects.",
     facts: [
-      { label: "Best for", value: "Crews and ongoing projects" },
       { label: "Workspaces", value: PRICING.plans.pro.workspaceLimit },
-      { label: "Billing", value: `${PRO_PRICE} monthly · ${PRICING.plans.pro.annualPrice} yearly` },
+      {
+        label: "Billing",
+        value: `${PRO_PRICE} monthly or ${PRO_ANNUAL_PRICE} yearly. Save ${PRO_ANNUAL_SAVING}.`,
+      },
+      {
+        label: "Editing guests",
+        value: PRO_EDITING_LIMIT,
+      },
     ],
     cta: "Join the Pro waitlist",
     href: waitlistHref("pricing_pro", "pro"),
+    microcopy: "Editing limit and purchase terms are confirmed before access.",
+    mobileSummary: "Unlimited workspaces · Editing limit unpublished",
+    comparison: {
+      bestFor: "Ongoing work",
+      workspaces: PRICING.plans.pro.workspaceLimit,
+      editingGuests: PRO_EDITING_LIMIT,
+      price: `${PRO_PRICE} monthly or ${PRO_ANNUAL_PRICE} yearly. Save ${PRO_ANNUAL_SAVING}.`,
+      access: PRICING.plans.pro.access,
+    },
   },
   {
     id: "enterprise",
-    useCase: "Larger teams",
+    useCase: "For organisations",
     name: "Enterprise",
     price: "Let’s talk",
-    cadence: "scope and terms agreed with you",
-    summary: "For organisations that need a considered rollout, a larger editing group, or terms shaped around how the team works.",
+    cadence: "scope before price",
+    fit: "A considered start, shaped around how the work runs.",
+    summary:
+      "For organisations that need a considered start, a larger editing group, or terms shaped around the work.",
     facts: [
-      { label: "Fit", value: "Organisations and larger teams" },
-      { label: "Scope", value: "Agreed together" },
-      { label: "Next step", value: "Conversation with Signal Studio" },
+      { label: "Working group", value: "Understood together" },
+      { label: "Start", value: "Conversation with Ethan" },
+      { label: "Terms", value: "Written before purchase" },
     ],
-    cta: "Contact our sales team",
+    cta: "Discuss Enterprise",
     href: "/about?subject=enterprise&source=pricing&campaign=enterprise&artifact=pricing_enterprise&touch=site#contact",
+    microcopy: "Your note goes to Ethan, Signal Studio’s founder.",
+    mobileSummary: "Scope and editing group agreed together",
+    comparison: {
+      bestFor: "Organisations",
+      workspaces: "Scoped together",
+      editingGuests: "Scoped together",
+      price: "Agreed together",
+      access: "Agreed terms",
+    },
   },
 ];
 
-const COMPARE_ROWS = [
-  { label: "Best for", values: ["Starting solo", "Students", "Ongoing work", "Organisations and larger teams"] },
-  { label: "Workspaces", values: [PRICING.plans.free.workspaceLimit, PRICING.plans.student.workspaceLimit, PRICING.plans.pro.workspaceLimit, "Scoped together"] },
-  { label: "Editing guests", values: [PRICING.plans.free.editingGuestLimit, PRICING.plans.student.editingGuestLimit, PRICING.plans.pro.editingGuestLimit, "Scoped together"] },
-  { label: "Price", values: [FREE_PRICE, `${STUDENT_PRICE} / year`, `${PRO_PRICE} / month or ${PRICING.plans.pro.annualPrice} / year`, "Contact sales"] },
-  { label: "Access", values: [PRICING.plans.free.access, PRICING.plans.student.access, PRICING.plans.pro.access, "Contracted terms"] },
+const COMPARISON_ROWS: readonly Readonly<{
+  key: PricingComparisonKey;
+  label: string;
+}>[] = [
+  { key: "bestFor", label: "Best for" },
+  { key: "workspaces", label: "Workspaces" },
+  { key: "editingGuests", label: "Editing guests" },
+  { key: "price", label: "Price" },
+  { key: "access", label: "Access" },
+];
+
+const PROOF_STEPS = [
+  {
+    id: "notes",
+    product: "notes" as const,
+    state: "Captured privately",
+    label: "Working note",
+    title: "Menu tasting",
+    body: REVIEW_SUITE_PRESENTATION.journey.note,
+    meta: "Private by default",
+  },
+  {
+    id: "tasks",
+    product: "tasks" as const,
+    state: "Approved into work",
+    label: REVIEW_SUITE_PRESENTATION.journey.taskState,
+    title: REVIEW_SUITE_PRESENTATION.journey.task,
+    body: REVIEW_SUITE_PRESENTATION.journey.openRisk,
+    meta: `${REVIEW_SUITE_PRESENTATION.journey.taskPriority} priority`,
+  },
+  {
+    id: "timeline",
+    product: "timeline" as const,
+    state: "Published after review",
+    label: "Current milestone",
+    title: REVIEW_SUITE_PRESENTATION.journey.task,
+    body: "1 August 2026 at The Orchard.",
+    meta: "Link-only copy",
+  },
 ] as const;
+
+const PUBLISHED_TIMELINE = HOMEPAGE_RELAY_TIMELINE_FIXTURE;
 
 const FAQ = [
   {
-    q: "What will I see before purchase?",
-    a: "The selected price, workspace limit, editing-member limit, renewal or access window, VAT wording and full terms. Joining the waitlist does not charge you.",
+    question: "Does joining the waitlist cost anything?",
+    answer:
+      "No. Joining records the plan you came from. It does not take a payment or lock your choice.",
   },
   {
-    q: "Do I pay for every person who can view a Timeline?",
-    a: "No. A link-only Timeline viewer does not become a workspace editor and does not gain workspace access. Editing-member terms are shown separately before purchase.",
+    question: "What counts as an editing guest?",
+    answer:
+      "The limit applies to people invited into the workspace. Someone who only opens a published Timeline link is not a workspace editor.",
   },
   {
-    q: "When should I speak to the Enterprise team?",
-    a: "Choose Enterprise when a larger editing group, a considered rollout, or organisation-specific terms matter. We will understand the shape of the work before proposing anything.",
+    question: "How does Student verification work?",
+    answer:
+      "Student access starts after eligibility checks are in place. Status is checked again each year. The process is shown before purchase.",
   },
   {
-    q: "Can I choose annual Pro?",
-    a: `Yes when paid access opens: ${PRO_PRICE} per month or ${PRICING.plans.pro.annualPrice} per year. Joining the waitlist does not select a billing cadence or charge you.`,
+    question: "Can I pay for Pro annually?",
+    answer: `Yes when paid access opens. Pro is ${PRO_PRICE} per month or ${PRO_ANNUAL_PRICE} per year, saving ${PRO_ANNUAL_SAVING}. The waitlist does not select a billing cadence.`,
   },
   {
-    q: "Am I charged when I join the waitlist?",
-    a: "No. Access is opening in small batches. The waitlist records the plan you chose; price, limits and terms are shown again before any purchase.",
+    question: "When should I choose Enterprise?",
+    answer:
+      "Choose Enterprise when the working group, the way access begins, or the terms need to be shaped around your organisation. Ethan replies directly.",
+  },
+  {
+    question: "What happens when I renew, cancel or change plan?",
+    answer:
+      "Paid renewal, cancellation and plan-change terms are not yet published. They will be shown before purchase. Joining the waitlist starts none of them.",
   },
 ] as const;
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.13em] text-accent">{children}</p>;
-}
 
 export default function PricingPage() {
   return (
     <>
-      <main className="flex flex-1 flex-col" id="main" tabIndex={-1}>
+      <main className={styles.page} id="main" tabIndex={-1}>
         <MarketingDelightController />
+        <header className={`${styles.hero} ${styles.shell}`}>
+          <p className={styles.eyebrow}>Pricing</p>
+          <h1>
+            <span>One clear system.</span>
+            <span>Four ways in.</span>
+          </h1>
+          <p className={styles.heroLede}>
+            Start free, pay less while studying, move to Pro for ongoing work,
+            or shape an Enterprise start with Ethan.
+          </p>
+        </header>
 
-        <section className="mx-auto w-full max-w-[1120px] px-5 pb-12 pt-14 sm:px-6 md:pb-16 md:pt-24">
-          <Eyebrow>Pricing</Eyebrow>
-          <h1 className="mt-5 max-w-[18ch] text-balance text-[clamp(2.8rem,2rem+4vw,6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-ink">Choose the shape. Keep one clear system.</h1>
-          <p className="mt-6 max-w-[62ch] text-[clamp(1.05rem,.98rem+.35vw,1.25rem)] leading-8 text-ink-soft">Compare the price and known limits for each access shape. {PRICING.availability} The selected terms are repeated before you commit.</p>
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink-quiet" role="list" aria-label="Pricing commitments">
-            <span role="listitem">No charge on the waitlist</span>
-            <span role="listitem">{PRICING.vatStatement}</span>
-            <span role="listitem">Terms repeated before purchase</span>
-          </div>
+        <section
+          aria-label="Pricing commitments"
+          className={styles.commitmentBand}
+        >
+          <ul className={styles.shell}>
+            <li>
+              <strong>No charge</strong>
+              <span>on the waitlist</span>
+            </li>
+            <li>
+              <strong>VAT included</strong>
+              <span>at the prevailing rate</span>
+            </li>
+            <li>
+              <strong>Terms repeated</strong>
+              <span>before purchase</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="border-y border-border-soft bg-[var(--paper-soft)]">
-          <div className="mx-auto w-full max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
-            <Eyebrow>1 · Match the work</Eyebrow>
-            <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">What are you planning?</h2>
-            <p className="mt-3 text-[15px] leading-7 text-ink-soft">Choose a use case. The plan, price and known limits update in one place.</p>
-            <div className="mt-8"><PlanPicker plans={PLANS} /></div>
-          </div>
-        </section>
-
-        <section className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20" data-delight="pricing-suite" data-delight-once>
-          <Eyebrow>2 · One system at every level</Eyebrow>
-          <div className="mt-4 grid gap-8 md:grid-cols-[.8fr_1.2fr] md:items-start">
-            <div>
-              <h2 className="max-w-[14ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">Three products. One continuous handoff.</h2>
-              <p className="mt-4 max-w-[48ch] text-[15px] leading-7 text-ink-soft">Notes captures the thought, Tasks carries the action, and Timeline shares the direction. Exact plan entitlements are shown in the terms before purchase.</p>
+        <PricingSelectionProvider>
+          <section
+            aria-labelledby="plans-title"
+            className={`${styles.plansSection} ${styles.shell}`}
+            id="plans"
+          >
+            <div className={styles.sectionHeader}>
+            <h2 id="plans-title">Choose by the work in front of you.</h2>
+            <p>
+              Compare the price, workspace limit and the terms settled today.
+              Anything unresolved is named plainly.
+            </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                ["notes", "Notes", "Capture", "Private by default. You choose exactly what becomes work."],
-                ["tasks", "Tasks", "Execute", "Run the work in plain language, with dates, owners and receipts."],
-                ["timeline", "Timeline", "Direct", "Publish a frozen link-only copy after you review it."],
-              ].map(([key, name, role, body]) => (
-                <article className="pricing-mark min-w-0 border-t-2 border-ink bg-white p-4" data-key={key} key={key}>
-                  <span className="dot" aria-hidden="true" />
-                  <p className="mt-5 text-[11px] font-semibold uppercase tracking-[.1em] text-ink-faint">{role}</p>
-                  <h3 className="mt-1 text-[17px] font-semibold text-ink">{name}</h3>
-                  <p className="mt-2 text-[13px] leading-6 text-ink-soft">{body}</p>
-                </article>
-              ))}
-            </div>
+
+            <PlanPicker plans={PLANS} />
+
+            <p className={styles.vatLine}>{PRICING.vatStatement}</p>
+          </section>
+
+        <section
+          aria-labelledby="comparison-title"
+          className={`${styles.comparisonSection} ${styles.shell}`}
+        >
+          <div className={styles.sectionHeader}>
+            <h2 id="comparison-title">Only what changes.</h2>
+            <p>
+              No feature maze. These are the commercial differences confirmed
+              today.
+            </p>
           </div>
-        </section>
 
-        <section className="border-y border-border-soft bg-white">
-          <div className="mx-auto w-full max-w-[1120px] px-5 py-14 sm:px-6 md:py-20">
-            <Eyebrow>3 · Compare only what changes</Eyebrow>
-            <h2 className="mt-3 max-w-[18ch] text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">The decision, without the fine-print maze.</h2>
-
-            <div className="mt-9 hidden overflow-hidden rounded-2xl border border-border-soft md:block">
-              <table className="w-full table-fixed border-collapse text-left text-[13px] leading-5">
-                <caption className="sr-only">Signal Studio plan comparison</caption>
-                <thead>
-                  <tr className="border-b border-border-soft bg-[var(--paper-soft)]">
-                    <th className="w-[18%] px-4 py-5 text-[11px] font-semibold uppercase tracking-[.1em] text-ink-faint" scope="col">What changes</th>
-                    {PLANS.map((plan) => (
-                      <th className={`px-4 py-5 ${plan.id === "pro" ? "bg-[var(--accent-soft)]" : ""}`} key={plan.id} scope="col">
-                        <span className="block text-[15px] font-semibold text-ink">{plan.name}</span>
-                        <span className="mt-1 block font-mono text-[11px] font-normal text-ink-soft">{plan.price}</span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARE_ROWS.map((row) => (
-                    <tr className="border-b border-border-soft align-top last:border-b-0" key={row.label}>
-                      <th className="px-4 py-5 font-semibold text-ink" scope="row">{row.label}</th>
-                      {row.values.map((value, index) => <td className={`[overflow-wrap:anywhere] px-4 py-5 text-ink-soft ${PLANS[index].id === "pro" ? "bg-[var(--accent-soft)]/40" : ""}`} key={PLANS[index].id}>{value}</td>)}
-                    </tr>
+          <div className={styles.desktopComparison}>
+            <table>
+              <caption className="sr-only">
+                Signal Studio plan comparison
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">What changes</th>
+                  {PLANS.map((plan) => (
+                    <th key={plan.id} scope="col">
+                      <span>{plan.name}</span>
+                      <strong>{plan.price}</strong>
+                    </th>
                   ))}
-                  <tr>
-                    <th className="px-4 py-5 text-ink" scope="row">Next step</th>
-                    {PLANS.map((plan) => <td className={`px-4 py-5 ${plan.id === "pro" ? "bg-[var(--accent-soft)]/40" : ""}`} key={plan.id}><Link className="font-semibold text-ink underline decoration-border-soft underline-offset-4 hover:decoration-ink" href={plan.href}>{plan.cta}</Link></td>)}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-7 grid gap-4 md:hidden">
-              {PLANS.map((plan, planIndex) => (
-                <section className={`min-w-0 border-t-2 p-5 ${plan.id === "pro" ? "border-accent bg-[var(--accent-soft)]" : "border-ink bg-[var(--paper-soft)]"}`} key={plan.id} aria-labelledby={`mobile-plan-${plan.id}`}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="text-[18px] font-semibold text-ink" id={`mobile-plan-${plan.id}`}>{plan.name}</h3>
-                    <span className="font-mono text-[12px] text-ink-soft">{plan.price}</span>
-                  </div>
-                  <dl className="mt-4 divide-y divide-border-soft border-y border-border-soft">
-                    {COMPARE_ROWS.map((row) => (
-                      <div className="grid min-w-0 grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] gap-3 py-3" key={row.label}>
-                        <dt className="text-[12px] font-medium text-ink">{row.label}</dt>
-                        <dd className="min-w-0 [overflow-wrap:anywhere] text-[12px] leading-5 text-ink-soft">{row.values[planIndex]}</dd>
-                      </div>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map((row) => (
+                  <tr key={row.key}>
+                    <th scope="row">{row.label}</th>
+                    {PLANS.map((plan) => (
+                      <td key={plan.id}>{plan.comparison[row.key]}</td>
                     ))}
-                  </dl>
-                  <Link className={`mt-5 inline-flex min-h-12 w-full items-center justify-center px-4 text-[13px] font-semibold no-underline ${plan.id === "pro" ? "bg-accent text-white" : "border border-ink text-ink"}`} href={plan.href}>{plan.cta}</Link>
-                </section>
-              ))}
-            </div>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </section>
 
-        <section className="mx-auto w-full max-w-[860px] px-5 py-14 sm:px-6 md:py-20">
-          <Eyebrow>Before you choose</Eyebrow>
-          <h2 className="mt-3 text-balance text-[clamp(1.8rem,1.45rem+1.4vw,3rem)] font-semibold tracking-[-0.045em] text-ink">Straight answers.</h2>
-          <div className="mt-7 divide-y divide-border-soft border-y border-border-soft">
-            {FAQ.map((item) => (
-              <details className="group py-1" key={item.q}>
-                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-[15px] font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{item.q}<span aria-hidden className="text-ink-faint transition-transform group-open:rotate-45">+</span></summary>
-                <p className="max-w-[68ch] pb-5 text-[14px] leading-7 text-ink-soft">{item.a}</p>
+          <div className={styles.mobileComparison}>
+            {PLANS.map((plan) => (
+              <details key={plan.id} name="pricing-comparison">
+                <summary>
+                  <span className={styles.mobileComparisonPlan}>
+                    <strong>{plan.name}</strong>
+                    <span>{plan.mobileSummary}</span>
+                  </span>
+                  <span className={styles.mobileComparisonMeta}>
+                    <strong>{plan.price}</strong>
+                    <span className={styles.mobileComparisonState}>
+                      <span className={styles.comparisonClosed}>View</span>
+                      <span className={styles.comparisonOpen}>Open</span>
+                      <span aria-hidden="true" className={styles.disclosureChevron} />
+                    </span>
+                  </span>
+                </summary>
+                <dl>
+                  {COMPARISON_ROWS.map((row) => (
+                    <div key={row.key}>
+                      <dt>{row.label}</dt>
+                      <dd>{plan.comparison[row.key]}</dd>
+                    </div>
+                  ))}
+                </dl>
               </details>
             ))}
           </div>
         </section>
 
-        <section className="border-t border-border-soft bg-[var(--paper-soft)]">
-          <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-6 px-5 py-14 sm:px-6 md:flex-row md:items-end md:justify-between md:py-20">
-            <div><Eyebrow>Access opens in small batches</Eyebrow><h2 className="mt-3 max-w-[17ch] text-balance text-[clamp(2rem,1.6rem+1.6vw,3.4rem)] font-semibold tracking-[-0.05em] text-ink">Pick the plan that fits now. Change it before access.</h2></div>
-            <Link className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[14px] font-semibold text-white no-underline" href="#main">Choose a plan above</Link>
+        <section
+          aria-labelledby="proof-title"
+          className={styles.proofSection}
+        >
+          <div className={styles.shell}>
+            <div className={styles.sectionHeader}>
+              <h2 id="proof-title">The same work, without starting again.</h2>
+              <p>
+                One verified line of work moves from a private note to an
+                approved task and a published Timeline. It is fixed product
+                evidence, not live customer data.
+              </p>
+            </div>
+
+            <figure
+              className={styles.signalProof}
+              data-delight="pricing-proof"
+              data-delight-once
+            >
+              <ol
+                aria-label="A first-party product handoff from Notes to Tasks to Timeline"
+                className={styles.proofSteps}
+              >
+                {PROOF_STEPS.map((step) => (
+                  <li key={step.id}>
+                    <span className={styles.proofNode} aria-hidden="true" />
+                    <div className={styles.proofStepHead}>
+                      <ProductSignatureWordmark
+                        product={step.product}
+                        staticPresentation
+                        suppressMark={step.product === "tasks"}
+                      />
+                      <span>{step.state}</span>
+                    </div>
+                    <div className={styles.proofReceipt}>
+                      <p className={styles.proofObjectLabel}>{step.label}</p>
+                      <h3>{step.title}</h3>
+                      <p>{step.body}</p>
+                      <span>{step.meta}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className={styles.timelineReceipt}>
+                <div className={styles.timelineReceiptHeader}>
+                  <div>
+                    <span>Published Timeline</span>
+                    <strong>{PUBLISHED_TIMELINE.label}</strong>
+                  </div>
+                  <span>{PUBLISHED_TIMELINE.ownerDisplayLabel}</span>
+                </div>
+                <div className={styles.timelineTrack} aria-hidden="true">
+                  <span />
+                  <span className={styles.timelineCurrent} />
+                  <span />
+                </div>
+                <div className={styles.timelineLabels}>
+                  <span>The Orchard reserved</span>
+                  <strong>Menu tasting · 1 Aug</strong>
+                  <span>Wedding day · 3 Oct</span>
+                </div>
+              </div>
+
+              <figcaption>
+                Deterministic product fixture. Mara &amp; Finn. The Orchard,
+                events. No controls, no invented fields.
+              </figcaption>
+            </figure>
           </div>
         </section>
+
+        <section
+          aria-labelledby="answers-title"
+          className={`${styles.answersSection} ${styles.shell}`}
+        >
+          <div className={styles.sectionHeader}>
+            <h2 id="answers-title">Straight answers.</h2>
+          </div>
+
+          <div className={styles.answers}>
+            {FAQ.map((item) => (
+              <details key={item.question}>
+                <summary>
+                  <span>{item.question}</span>
+                  <span aria-hidden="true" className={styles.answerMark}>
+                    +
+                  </span>
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+          <PricingClosing plans={PLANS} />
+        </PricingSelectionProvider>
       </main>
-      <SiteFooter />
+      <div className={styles.pricingFooter}>
+        <SiteFooter />
+      </div>
     </>
   );
 }

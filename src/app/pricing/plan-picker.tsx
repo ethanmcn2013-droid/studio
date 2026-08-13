@@ -1,103 +1,178 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, type KeyboardEvent } from "react";
+import styles from "./pricing.module.css";
+import {
+  usePricingSelection,
+  type PricingPlanId,
+} from "./pricing-selection";
+
+export type { PricingPlanId } from "./pricing-selection";
+
+export type PricingComparisonKey =
+  | "bestFor"
+  | "workspaces"
+  | "editingGuests"
+  | "price"
+  | "access";
 
 export type PricingPlan = Readonly<{
-  id: "free" | "student" | "pro" | "enterprise";
+  id: PricingPlanId;
   useCase: string;
   name: string;
   price: string;
   cadence: string;
+  fit: string;
   summary: string;
   facts: readonly Readonly<{ label: string; value: string }>[];
   cta: string;
   href: string;
-  recommended?: boolean;
+  microcopy: string;
+  mobileSummary: string;
+  comparison: Readonly<Record<PricingComparisonKey, string>>;
 }>;
 
+function nextIndexForKey(
+  key: string,
+  currentIndex: number,
+  planCount: number,
+): number | null {
+  if (key === "Home") return 0;
+  if (key === "End") return planCount - 1;
+  if (key === "ArrowDown" || key === "ArrowRight") {
+    return (currentIndex + 1) % planCount;
+  }
+  if (key === "ArrowUp" || key === "ArrowLeft") {
+    return (currentIndex - 1 + planCount) % planCount;
+  }
+  return null;
+}
+
 export function PlanPicker({ plans }: { plans: readonly PricingPlan[] }) {
-  const [selectedId, setSelectedId] = useState<PricingPlan["id"]>("pro");
-  const selected = plans.find((plan) => plan.id === selectedId) ?? plans[0];
+  const { selectedId, selectPlan } = usePricingSelection();
+  const buttons = useRef<Array<HTMLButtonElement | null>>([]);
+
+  function selectFromKeyboard(
+    event: KeyboardEvent<HTMLButtonElement>,
+    currentIndex: number,
+  ) {
+    const nextIndex = nextIndexForKey(event.key, currentIndex, plans.length);
+    if (nextIndex === null) return;
+
+    event.preventDefault();
+    selectPlan(plans[nextIndex].id, buttons.current[nextIndex]);
+    buttons.current[nextIndex]?.focus();
+  }
 
   return (
-    <div>
-      <div
-        className="grid grid-cols-2 gap-2 md:grid-cols-4"
-        data-delight="pricing-plans"
-        data-delight-once
-        role="group"
-        aria-label="Choose what you are planning"
-      >
-        {plans.map((plan) => {
-          const active = plan.id === selected.id;
+    <div className={styles.ledger} data-pricing-ledger="">
+      <div className={styles.ledgerHeader} aria-hidden="true">
+        <span>Best for</span>
+        <span>Plan</span>
+        <span>Fit</span>
+        <span>Price</span>
+        <span>Choose</span>
+      </div>
+
+      <div role="group" aria-label="Choose a Signal Studio plan">
+        {plans.map((plan, index) => {
+          const active = plan.id === selectedId;
+          const panelId = `pricing-plan-${plan.id}-details`;
+          const buttonId = `pricing-plan-${plan.id}`;
+
           return (
-            <div key={plan.id}>
+            <div
+              className={styles.planEntry}
+              data-selected={active ? "true" : undefined}
+              key={plan.id}
+            >
               <button
+                aria-controls={active ? panelId : undefined}
+                aria-expanded={active}
+                className={styles.planRow}
+                id={buttonId}
+                onClick={(event) => selectPlan(plan.id, event.currentTarget)}
+                onKeyDown={(event) => selectFromKeyboard(event, index)}
+                ref={(element) => {
+                  buttons.current[index] = element;
+                }}
                 type="button"
-                aria-pressed={active}
-                className={`group flex min-h-[86px] w-full flex-col justify-between rounded-xl border p-3 text-left transition-[border-color,background-color,transform] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-[104px] md:p-4 ${
-                  active
-                    ? "border-accent bg-[var(--accent-soft)] text-ink"
-                    : "border-border-soft bg-white text-ink-soft hover:-translate-y-0.5 hover:border-[var(--ink-ghost)]"
-                }`}
-                onClick={() => setSelectedId(plan.id)}
               >
-                <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
-                  {plan.useCase}
+                <span className={styles.planUseCase}>{plan.useCase}</span>
+                <strong className={styles.planName}>{plan.name}</strong>
+                <span className={styles.planFit}>{plan.fit}</span>
+                <span className={styles.planPrice}>
+                  <strong>{plan.price}</strong>
+                  <span>{plan.cadence}</span>
                 </span>
-                <span className="mt-3 flex w-full items-end justify-between gap-2">
-                  <strong className="text-[15px] font-semibold text-ink">{plan.name}</strong>
-                  <span className="font-mono text-[12px] text-ink-soft">{plan.price}</span>
+                <span className={styles.planRowAction}>
+                  <span>{active ? "Selected" : "View details"}</span>
+                  <span aria-hidden="true" className={styles.planChevron} />
                 </span>
               </button>
+
+              {active ? (
+                <section
+                  aria-labelledby={buttonId}
+                  className={styles.planPanel}
+                  data-pricing-panel=""
+                  id={panelId}
+                  role="region"
+                >
+                  <div className={styles.planPanelCopy}>
+                    <p className={styles.planPanelLabel}>{plan.name}</p>
+                    <h3>{plan.summary}</h3>
+                  </div>
+
+                  <dl className={styles.planFacts}>
+                    {plan.facts.map((fact) => (
+                      <div key={fact.label}>
+                        <dt>{fact.label}</dt>
+                        <dd>{fact.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <div className={styles.planDecision}>
+                    <div className={styles.planPanelPrice}>
+                      <strong>{plan.price}</strong>
+                      <span>{plan.cadence}</span>
+                    </div>
+                    <Link
+                      className={styles.planCta}
+                      href={plan.href}
+                      prefetch={false}
+                    >
+                      {plan.cta}
+                    </Link>
+                    <p>{plan.microcopy}</p>
+                  </div>
+                </section>
+              ) : null}
             </div>
           );
         })}
       </div>
 
-      <article
-        className="mt-5 overflow-hidden rounded-2xl border border-border-soft bg-white shadow-[0_24px_60px_-44px_rgba(15,23,42,0.45)]"
-        aria-live="polite"
-        aria-labelledby={`selected-${selected.id}`}
-      >
-        <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:p-8">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-[clamp(1.6rem,1.25rem+1vw,2.2rem)] font-semibold tracking-[-0.035em] text-ink" id={`selected-${selected.id}`}>
-                {selected.name}
-              </h3>
-              {selected.recommended ? (
-                <span className="rounded-full bg-accent px-2.5 py-1 text-[11px] font-semibold text-white">
-                  Best for ongoing work
-                </span>
-              ) : null}
-            </div>
-            <p className="mt-3 max-w-[58ch] text-[15px] leading-7 text-ink-soft">{selected.summary}</p>
-            <dl className="mt-6 grid gap-3 sm:grid-cols-3">
-              {selected.facts.map((fact) => (
-                <div className="min-w-0 rounded-lg bg-[var(--paper-soft)] p-3" key={fact.label}>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-faint">{fact.label}</dt>
-                  <dd className="mt-1 [overflow-wrap:anywhere] text-[13px] leading-5 text-ink">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div className="flex min-w-[190px] flex-col md:items-end">
-            <span className="text-[clamp(2.2rem,1.8rem+1.5vw,3.2rem)] font-semibold tracking-[-0.055em] text-ink">{selected.price}</span>
-            <span className="mt-1 text-[12px] text-ink-quiet">{selected.cadence}</span>
-            <Link
-              className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:w-auto"
-              href={selected.href}
-            >
-              {selected.cta}
-            </Link>
-            <span className="mt-2 text-center text-[11px] leading-4 text-ink-faint md:text-right">
-              {selected.id === "enterprise" ? "A person will reply." : "Waitlist only. No charge today."}
-            </span>
-          </div>
+      <p className={styles.ledgerHint}>Your choice is not final.</p>
+
+      <noscript>
+        <div className={styles.noScriptPlans}>
+          <p>Plan details and next steps</p>
+          <ul>
+            {plans.map((plan) => (
+              <li key={plan.id}>
+                <strong>{plan.name}</strong>
+                <span>{plan.summary}</span>
+                <Link href={plan.href} prefetch={false}>
+                  {plan.cta}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-      </article>
+      </noscript>
     </div>
   );
 }

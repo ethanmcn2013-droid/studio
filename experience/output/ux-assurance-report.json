@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-ux-assurance-report/1",
-  "generatedAt": "2026-08-08T23:35:59.648Z",
+  "generatedAt": "2026-08-13T01:14:36.534Z",
   "modes": [
     {
       "id": "product-clarity",
@@ -73,28 +73,14 @@
   "policy": "Specialists emit evidence and findings. They never manufacture a score from lint counts or claim subjective quality without rendered review evidence.",
   "captureAvailable": true,
   "coverage": {
-    "experiences": 257,
-    "automatedComplete": 1,
-    "screenshotsComplete": 1,
-    "accessibilityComplete": 1,
-    "fixturesComplete": 1
+    "experiences": 245,
+    "automatedComplete": 5,
+    "screenshotsComplete": 5,
+    "accessibilityComplete": 5,
+    "fixturesComplete": 5
   },
   "observations": [],
   "subjectiveReviewQueue": [
-    {
-      "experienceId": "studio.page.root",
-      "status": "human-review-required",
-      "dimensions": [
-        "purpose-and-task-clarity",
-        "information-architecture",
-        "visual-hierarchy",
-        "typography-and-content",
-        "layout-and-composition",
-        "brand-distinction-and-craft",
-        "implementation-fidelity"
-      ],
-      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
-    },
     {
       "experienceId": "studio.page.design",
       "status": "human-review-required",
@@ -265,6 +251,48 @@
     },
     {
       "experienceId": "studio.page.hq-experience-quality",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.root",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.about",
+      "status": "human-review-required",
+      "dimensions": [
+        "purpose-and-task-clarity",
+        "information-architecture",
+        "visual-hierarchy",
+        "typography-and-content",
+        "layout-and-composition",
+        "brand-distinction-and-craft",
+        "implementation-fidelity"
+      ],
+      "instruction": "Review the rendered baseline and candidate. Record 0-4 scores with concrete evidence; no score is inferred from automated checks."
+    },
+    {
+      "experienceId": "studio.page.pricing",
       "status": "human-review-required",
       "dimensions": [
         "purpose-and-task-clarity",

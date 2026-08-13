@@ -71,13 +71,15 @@ async function hqGate(request: NextRequest): Promise<NextResponse | null> {
 const MARKETING_PATHS = new Set([
   "/",
   "/about",
-  "/pricing",
   "/dispatch",
   "/notes",
   "/tasks",
   "/timeline",
   "/signal",
 ]);
+
+// Pricing is deliberately absent from MARKETING_PATHS. Signed-in people still
+// need the public comparison when they are choosing or changing access.
 
 // Clerk's shared-session cookie name (set by the shared prod Clerk instance
 // across *.signalstudio.ie). Studio has no Clerk SDK, we read the raw cookie.

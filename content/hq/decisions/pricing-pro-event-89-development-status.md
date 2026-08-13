@@ -3,12 +3,14 @@ id: pricing-pro-event-89-development-status
 title: Public pricing uses Pro, €89 Event, and development status.
 category: Pricing
 date: 2026-07-08
-status: Active
+status: Superseded
 reviewDate: 2026-08-08
 relatedObjects: [Pricing page, Pro, Event, Product status labels]
 ---
 
 ## Decision
+
+Superseded on 2026-08-12 by `pricing-public-ladder-2026-08-12`.
 
 The public pricing page names the paid ongoing plan Pro, prices Event at €89 one-time, and labels the four products In development until launch status is true.
 

@@ -1,13 +1,13 @@
 ---
 id: pricing
 title: Pricing readiness
-score: 78
+score: 82
 weight: 5
 status: Needs attention
-blockers: ["Shared entitlements layer across Tasks + Timeline not yet built — single Stripe price ID + shared Turso entitlements table needed so one umbrella checkout unlocks both apps. Until then, new Pro-tier signups effectively pause (acceptable: private preview, no live conversion to disrupt)."]
-nextAction: Architect the shared entitlements layer; design grandfather migration for existing Tasks subscribers (price-lock at current rate, no forced upgrade); wire one Stripe product/price that both Tasks + Timeline entitlement gates check.
+blockers: ["Paid access remains closed until the shared entitlement, company, tax, Stripe, legal, recovery and observability gates pass. Enterprise scope, Pro editing-guest limits and Student verification mechanics are not yet ratified for purchase."]
+nextAction: Keep Free, Student and Pro waitlist-first and Enterprise conversation-first. Ratify unresolved commercial terms before opening checkout, then verify one shared entitlement path across Notes, Tasks and Timeline.
 ---
 
 ## Notes
 
-Unified Signal Studio pricing shipped 2026-05-12: signalstudio.ie/pricing (Free / Pro €12mo / Event €89 one-time / Student €9.99/year). Per-product /pricing routes on Tasks + Timeline + Signal all retired and 308-redirect to umbrella; in-product Pricing links across all three repos repointed to the umbrella URL. Public Pro still maps to the internal `workspace` entitlement while the shared billing layer is in development.
+The public pricing ladder is Free, Student, Pro and Enterprise. Free, Student and Pro show only ratified prices and limits and remain waitlist-first; Enterprise is an unpriced founder-led conversation. Event remains a verified internal commercial term but is not part of the umbrella public ladder. Per-product pricing routes remain retired in favour of the umbrella. Public Pro still maps to the internal `workspace` entitlement while the shared billing layer is in development.

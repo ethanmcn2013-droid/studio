@@ -1,22 +1,22 @@
 # Signal design quality report
 
-Generated: 2026-08-08T23:35:58.664Z
+Generated: 2026-08-13T01:14:35.090Z
 Status: **baseline-held**
 Readiness: **not-certified**
 
 ## Inventory
 
-- 257 registered experiences
-- 1249 required state variants
-- 1028 required breakpoint variants
-- 4996 required state/breakpoint audit cells
+- 245 registered experiences
+- 1196 required state variants
+- 980 required breakpoint variants
+- 4784 required state/breakpoint audit cells
 - 0 evidence-proven Studio-grade experiences (0 registry assertions)
 - 139 customer-product experiences across Tasks, Timeline, Signal, and Notes
-- 50 company-public Studio experiences
+- 38 company-public Studio experiences
 - 68 founder-operator experiences across Signal HQ and Signal Review
-- 14/1249 required state variants have rendered pilot evidence
-- 56/1028 required breakpoint variants have rendered pilot evidence
-- 56/56 rendered pilot captures pass deterministic accessibility/runtime gates
+- 16/1196 required state variants have rendered pilot evidence
+- 64/980 required breakpoint variants have rendered pilot evidence
+- 64/64 rendered pilot captures pass deterministic accessibility/runtime gates
 - 6/6 governed repositories pass design-system conformance
 
 ## Experience classes
@@ -26,7 +26,7 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 | Experience class | Experiences | Critical | Passing | Open findings | Release blocking |
 |---|---:|---:|---:|---:|---:|
 | customer-product | 139 | 56 | 0 | 0 | 0 |
-| company-public | 50 | 9 | 0 | 0 | 0 |
+| company-public | 38 | 9 | 0 | 0 | 0 |
 | founder-operator | 68 | 9 | 0 | 0 | 0 |
 
 ## Source systems
@@ -36,26 +36,26 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 | notes | 20 | 11 | 0 | 0 | 0 |
 | signal | 31 | 14 | 0 | 0 | 0 |
 | signal-review | 4 | 4 | 0 | 0 | 0 |
-| studio | 114 | 14 | 0 | 0 | 0 |
+| studio | 102 | 14 | 0 | 0 | 0 |
 | tasks | 59 | 20 | 0 | 0 | 0 |
 | timeline | 29 | 11 | 0 | 0 | 0 |
 
 ## Gate
 
 - Structural errors: 0
-- Passing audit cells: 20/4996
-- Missing audit cells: 4976
+- Passing audit cells: 20/4784
+- Missing audit cells: 4764
 - Duplicate audit cells: 0
 - False passing assertions: 0
 - Unbaselined high-risk findings: 0
 - Capture regressions requiring review: 0
-- Missing founder-approved visual baselines: 16
+- Missing founder-approved visual baselines: 24
 - Open findings: 0 (0 release-blocking, 0 high)
 - Experiences under remediation: 0
-- Experiences not yet reviewed since registration/material change: 228
+- Experiences not yet reviewed since registration/material change: 214
 - Expired exceptions: 0
 - Golden set: approved
-- Certification blocker: 20/4996 required state/breakpoint audit cells pass
-- Certification blocker: 16 visual baselines await approval
+- Certification blocker: 20/4784 required state/breakpoint audit cells pass
+- Certification blocker: 24 visual baselines await approval
 
 A passing inventory count is not a launch claim. A surface is Studio grade only after all 13 scores, rendered evidence, deterministic checks, and hard blockers pass.

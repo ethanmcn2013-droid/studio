@@ -63,7 +63,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Pricing",
         short_name: "Pricing",
         url: "/pricing",
-        description: "Workspace, Event, Student, one page.",
+        description: "Free, Student, Pro and Enterprise, one clear comparison.",
       },
       {
         name: "Timeline",
