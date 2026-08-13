@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const MARKETING_ROUTES = [
   "/notes",
@@ -8,22 +8,6 @@ const MARKETING_ROUTES = [
   "/pricing",
   "/about",
 ] as const;
-
-async function pricingAnimations(page: Page) {
-  return page.evaluate(() =>
-    Array.from(
-      document.querySelectorAll<HTMLElement>(
-        ".pricing-anchor-dot, .pricing-mark .dot, [data-delight='pricing-plans'] > div",
-      ),
-    ).map((element) => {
-      const style = getComputedStyle(element);
-      return {
-        name: style.animationName,
-        iterations: style.animationIterationCount,
-      };
-    }),
-  );
-}
 
 test.describe("public marketing delight contract", () => {
   test.describe.configure({ mode: "serial", timeout: 60_000 });
@@ -120,55 +104,40 @@ test.describe("public marketing delight contract", () => {
     await expect(panel).toBeHidden();
   });
 
-  test("Pricing uses finite, one-shot attention cues", async ({ page }) => {
+  test("Pricing uses finite state motion and keeps the decision legible", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/pricing");
 
-    expect(
-      (await pricingAnimations(page)).every(
-        (animation) => !animation.iterations.includes("infinite"),
-      ),
-    ).toBe(true);
-
-    const plans = page.locator("[data-delight='pricing-plans']");
-    await plans.scrollIntoViewIfNeeded();
-    await expect(plans).toHaveAttribute("data-delight-visible", "true");
-
-    const planCards = await plans.locator(":scope > div").evaluateAll((cards) =>
-      cards.map((card) => {
-        const style = getComputedStyle(card);
-        return {
-          name: style.animationName,
-          iterations: style.animationIterationCount,
-        };
-      }),
+    const ledger = page.locator("[data-pricing-ledger]");
+    await ledger.scrollIntoViewIfNeeded();
+    await expect(page.locator("#pricing-plan-pro")).toHaveAttribute(
+      "aria-expanded",
+      "true",
     );
-    expect(planCards.every((card) => card.name === "pricing-plan-settle")).toBe(
-      true,
+    await expect(page.locator("[data-pricing-panel]")).toContainText(
+      "Unlimited workspaces",
     );
-    expect(planCards.every((card) => card.iterations === "1")).toBe(true);
 
-    const suite = page.locator("[data-delight='pricing-suite']");
-    await suite.scrollIntoViewIfNeeded();
-    await expect(suite).toHaveAttribute("data-delight-visible", "true");
+    await page.locator("#pricing-plan-free").click();
+    const panel = page.locator("[data-pricing-panel]");
+    await expect(panel).toContainText("One workspace");
 
-    const marks = await suite.locator(".pricing-mark .dot").evaluateAll((dots) =>
-      dots.map((dot) => {
-        const style = getComputedStyle(dot);
-        return {
-          name: style.animationName,
-          iterations: style.animationIterationCount,
-        };
-      }),
+    const motion = await panel.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        name: style.animationName,
+        iterations: style.animationIterationCount,
+      };
+    });
+    expect(motion.name).toMatch(/(?:^|__)plan-panel-arrive$/);
+    expect(motion.iterations).toBe("1");
+
+    const infinite = await ledger.locator("*").evaluateAll((elements) =>
+      elements.filter((element) =>
+        getComputedStyle(element).animationIterationCount.includes("infinite"),
+      ).length,
     );
-    expect(marks.map((mark) => mark.name)).toEqual([
-      "pricing-caret",
-      "pricing-pulse",
-      "pricing-sweep",
-    ]);
-    expect(
-      marks.every((mark) => !mark.iterations.includes("infinite")),
-    ).toBe(true);
+    expect(infinite).toBe(0);
   });
 
   test("About presents one semantic founder note and acknowledges authorship once", async ({
@@ -246,14 +215,21 @@ test.describe("public marketing delight contract", () => {
     await page.setViewportSize({ width: 1280, height: 720 });
 
     await page.goto("/pricing");
-    const plans = page.locator("[data-delight='pricing-plans']");
-    await plans.scrollIntoViewIfNeeded();
-    await expect(plans).toHaveAttribute("data-delight-visible", "true");
+    const ledger = page.locator("[data-pricing-ledger]");
+    await ledger.scrollIntoViewIfNeeded();
+    await page.locator("#pricing-plan-free").click();
+    const pricingPanel = page.locator("[data-pricing-panel]");
+    await expect(pricingPanel).toContainText("One workspace");
     expect(
-      (await pricingAnimations(page)).every(
-        (animation) => animation.name === "none",
-      ),
-    ).toBe(true);
+      await pricingPanel.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+          animation: style.animationName,
+          opacity: style.opacity,
+          transform: style.transform,
+        };
+      }),
+    ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
     const reveal = page.locator("[data-delight='founders-note-products']");

@@ -182,7 +182,7 @@ function SocialLinks() {
           rel="noopener noreferrer"
           title={title}
           aria-label={title}
-          className="marketing-footer-action inline-flex h-10 w-10 items-center justify-center transition-colors"
+          className="marketing-footer-action inline-flex h-11 w-11 items-center justify-center transition-colors"
         >
           {svg}
         </a>
@@ -214,7 +214,7 @@ function FooterCol({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="marketing-footer-action inline-flex min-h-[28px] items-center transition-colors sm:min-h-[32px]"
+                className="marketing-footer-action inline-flex min-h-11 items-center transition-colors"
               >
                 {link.label}
                 <span aria-hidden className="footer-external-arrow ml-1 text-[11px] text-ink-faint">
@@ -224,7 +224,7 @@ function FooterCol({
             ) : (
               <Link
                 href={link.href}
-                className="marketing-footer-action inline-flex min-h-[28px] items-center transition-colors sm:min-h-[32px]"
+                className="marketing-footer-action inline-flex min-h-11 items-center transition-colors"
               >
                 {link.label}
               </Link>
@@ -267,7 +267,7 @@ function LegalLinks({ compact = false }: { compact?: boolean }) {
           <Link
             href={link.href}
             className={`marketing-footer-action inline-flex items-center px-2 py-1 transition-colors ${
-              compact ? "min-h-11" : "min-h-[28px] sm:min-h-[32px]"
+              compact ? "min-h-11" : "min-h-11"
             }`}
           >
             {link.label}

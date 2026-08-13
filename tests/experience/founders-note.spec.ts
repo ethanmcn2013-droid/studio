@@ -239,7 +239,9 @@ test.describe("Founder’s Note production evidence", () => {
     expect(mailto.protocol).toBe("mailto:");
     expect(mailto.pathname).toBe("hello@signalstudio.ie");
     expect(mailto.searchParams.get("subject")).toBe("Enterprise enquiry");
-    expect(mailto.searchParams.get("body")).toContain("pricing_enterprise");
+    const body = mailto.searchParams.get("body") ?? "";
+    expect(body).toContain("Pricing enquiry");
+    expect(body).not.toMatch(/source=|campaign=|artifact=|touch=|pricing_enterprise/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
     expect(errors).toEqual([]);
   });

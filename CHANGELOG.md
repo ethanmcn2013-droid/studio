@@ -32,6 +32,26 @@ one; the page ships at a high standard without claiming the 9.5 gate it has
 not passed. What remains structural — the long middle without an object,
 chapters sharing one silhouette — is recorded for the next pass rather than
 rushed.
+## 2026-08-12 · S·167 · ships · pricing is one clear decision ledger
+
+**Free, Student, Pro and Enterprise now read as four choices inside one ruled
+ledger, with one choice open at a time and only the commercial facts that are
+settled.** The page derives every published consumer price and limit from the
+ratified contract. Enterprise stays unpriced and founder-led. Event remains in
+the commercial model without appearing as a fifth public plan.
+
+The page now shows what the price is buying through the same reviewed Notes to
+Tasks to Timeline proof used elsewhere in the public story. The comparison
+shows only what changes. On smaller screens it becomes four compact disclosure
+rows instead of repeating the plans as cards. Keyboard selection, reduced
+motion, forced colours and 320px reflow are covered directly.
+
+The conversion seams changed with the page. A selected Free, Student or Pro
+plan is named on arrival at the waitlist, while its plan-coded artifact remains
+the stored attribution. Enterprise reaches Ethan through the preserved About
+contact path. Signed-in readers can now open Pricing instead of being sent
+back to the launcher. Joining still takes no payment, and no unresolved Pro,
+Student or Enterprise term has been turned into a promise.
 
 ## 2026-08-12 · S·166 · cuts · the public estate is one domain and eighteen pages
 

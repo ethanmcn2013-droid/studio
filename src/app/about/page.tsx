@@ -57,12 +57,39 @@ function buildMailto(
           "A good time to talk would be:",
           ...(ref ? ["", "—", `Ref: ${ref}`] : []),
         ].join("\n")
+      : subject === "enterprise"
+        ? [
+            "Hi Ethan,",
+            "",
+            "Organisation and working group:",
+            "",
+            "The work we want to manage:",
+            "",
+            "When we would like to begin:",
+            "",
+            "Pricing enquiry",
+            ...(ref ? ["", "—", `Ref: ${ref}`] : []),
+          ].join("\n")
       : ref
         ? ["Hi Ethan,", "", "", "—", `Ref: ${ref}`].join("\n")
         : "";
 
+  const customerBody =
+    subject === "enterprise"
+      ? [
+          "Hi Ethan,",
+          "",
+          "Organisation and working group:",
+          "",
+          "The work we want to manage:",
+          "",
+          "When we would like to begin:",
+          "",
+          "Pricing enquiry",
+        ].join("\n")
+      : body;
   const query = new URLSearchParams({ subject: subjectLine });
-  if (body) query.set("body", body);
+  if (customerBody) query.set("body", customerBody);
   return `${base}?${query.toString()}`;
 }
 
@@ -91,6 +118,7 @@ export default async function AboutPage({
   });
   const trackingRef = formatTrackingRef(tracking);
   const mailtoHref = buildMailto(params.subject, contactEyebrow, tracking);
+  const isEnterpriseContact = params.subject === "enterprise";
 
   return (
     <>
@@ -351,7 +379,7 @@ export default async function AboutPage({
 
         <section
           id="contact"
-          className="scroll-mt-[72px] border-t border-border-soft bg-[var(--paper-soft)]"
+          className="scroll-mt-4 border-t border-border-soft bg-[var(--paper-soft)]"
           aria-labelledby="about-contact-heading"
         >
           <div className="mx-auto w-full max-w-[980px] px-6 py-14 md:py-20">
@@ -376,19 +404,37 @@ export default async function AboutPage({
               Everything sent here is read by me, usually within a day or two. No form, no CRM,
               no autoresponder pretending to be a person.
             </p>
+            {isEnterpriseContact ? (
+              <a
+                href={mailtoHref}
+                className="mt-8 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-5 text-[14px] font-semibold text-white no-underline transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                Email Ethan about Enterprise
+              </a>
+            ) : null}
             <div className="mt-9 grid border-y border-border-soft sm:grid-cols-2">
               <div className="border-b border-border-soft py-6 sm:border-b-0 sm:border-r sm:pr-5">
                 <div
                   className="mb-3 font-mono text-[10.5px] font-semibold uppercase text-ink-quiet"
                   style={{ letterSpacing: "var(--tracking-eyebrow)" }}
                 >
-                  Best for
+                  {isEnterpriseContact ? "Helpful to include" : "Best for"}
                 </div>
                 <ul className="space-y-2 text-[14.5px] leading-[1.6] text-ink-soft">
-                  <li>Product questions.</li>
-                  <li>Private-preview access.</li>
-                  <li>Thoughtful critique.</li>
-                  <li>Partnership conversations.</li>
+                  {isEnterpriseContact ? (
+                    <>
+                      <li>Your working group.</li>
+                      <li>The work you want to manage.</li>
+                      <li>When you would like to begin.</li>
+                    </>
+                  ) : (
+                    <>
+                      <li>Product questions.</li>
+                      <li>Private-preview access.</li>
+                      <li>Thoughtful critique.</li>
+                      <li>Partnership conversations.</li>
+                    </>
+                  )}
                 </ul>
               </div>
               <div className="py-6 sm:pl-5">
@@ -409,12 +455,12 @@ export default async function AboutPage({
             <p className="mt-10 text-[clamp(.98rem,.92rem+.25vw,1.08rem)] leading-[1.75] text-ink-soft">
               <a
                 href={mailtoHref}
-                className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+                className="inline-flex min-h-11 items-center text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
               >
                 hello@signalstudio.ie
               </a>
             </p>
-            {trackingRef ? (
+            {trackingRef && !isEnterpriseContact ? (
               <p className="mt-5 max-w-[62ch] font-mono text-[11px] leading-[1.8] text-ink-faint">
                 Ref preserved: {trackingRef}
               </p>

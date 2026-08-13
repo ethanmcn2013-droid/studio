@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
 import { SITE_URL } from "@/lib/site-url";
-import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
+import { COMMERCIAL_TERMS } from "@/lib/commercial-terms";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,11 +88,27 @@ const structuredData = [
     offers: [
       {
         "@type": "Offer",
-        name: "Workspace",
-        price: "12",
+        name: "Free",
+        price: String(COMMERCIAL_TERMS.plans.free.amountCents / 100),
         priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/waitlist`,
+        url: `${SITE_URL}/pricing#plans`,
+      },
+      {
+        "@type": "Offer",
+        name: "Student",
+        price: String(COMMERCIAL_TERMS.plans.student.amountCents / 100),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/PreOrder",
+        url: `${SITE_URL}/pricing#plans`,
+      },
+      {
+        "@type": "Offer",
+        name: "Pro",
+        price: String(COMMERCIAL_TERMS.plans.pro.monthlyAmountCents / 100),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/PreOrder",
+        url: `${SITE_URL}/pricing#plans`,
       },
       {
         "@type": "Offer",
@@ -101,13 +117,10 @@ const structuredData = [
         url: `${SITE_URL}/about?subject=enterprise#contact`,
       },
       {
-        /* No price on this offer, deliberately. The ratified commercial
-           rule (E11.11) is that the number never travels without its
-           seventeen conditions, and structured data cannot carry them: a
-           search rich-result would surface a bare figure detached from
-           the founding rate, the VAT clause and the renewal lock the
-           /venues page states beside it. A surface that cannot carry the
-           conditions does not carry the number. */
+        /* Venue Edition remains a separate commercial surface, not a fifth
+           consumer pricing plan. Its price is deliberately omitted here:
+           search structured data cannot carry the conditions presented next
+           to that price on /venues. */
         "@type": "Offer",
         name: "Venue Edition",
         availability: "https://schema.org/PreOrder",
@@ -178,7 +191,7 @@ export default async function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-bg-elevated"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-bg-elevated"
         >
           Skip to content
         </a>

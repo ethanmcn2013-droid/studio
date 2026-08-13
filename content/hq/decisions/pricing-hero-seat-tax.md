@@ -3,12 +3,14 @@ id: pricing-hero-seat-tax
 title: Lead pricing with a truthful plan decision.
 category: Brand
 date: 2026-08-09
-status: Active
+status: Superseded
 reviewDate: 2026-09-09
 relatedObjects: [Pricing, Unified pricing, Brand handbook]
 ---
 
 ## Decision
+
+Superseded on 2026-08-12 by `pricing-public-ladder-2026-08-12`.
 
 Set the pricing hero to "Choose the shape. Keep the whole suite." Follow it with a use-case selector that explains Free, Student, Pro, and Event Workspace before asking for a waitlist commitment. Every plan includes Notes, Tasks, Timeline, and the daily briefing.
 

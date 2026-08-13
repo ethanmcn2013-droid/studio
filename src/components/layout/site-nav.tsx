@@ -76,12 +76,17 @@ export function SiteNav() {
         transition: "border-color var(--motion-base) var(--ease-out)",
       }}
     >
-      <div className="mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between px-6">
-        <Link href="/" className="wordmark-hover flex min-h-11 items-center" aria-label="Signal Studio, home">
+      <div className="mx-auto flex h-[56px] w-full max-w-[1240px] items-center justify-between px-4 sm:h-14 sm:px-6">
+        <Link
+          href="/"
+          prefetch={false}
+          className="wordmark-hover flex min-h-[44px] items-center sm:min-h-11"
+          aria-label="Signal Studio, home"
+        >
           <Wordmark size="sm" animate={false} intro={intro} />
         </Link>
 
-        <nav aria-label="Site navigation" className="flex items-center gap-4 sm:gap-5">
+        <nav aria-label="Site navigation" className="flex items-center gap-2 sm:gap-5">
           {/* Products trigger, opens the full-width mega-panel */}
           <button
             ref={productsTriggerRef}
@@ -107,7 +112,7 @@ export function SiteNav() {
                 });
               });
             }}
-            className="marketing-nav-action inline-flex min-h-11 items-center gap-1 text-[13px] transition-colors"
+            className="marketing-nav-action inline-flex min-h-[44px] items-center gap-1 text-[13px] transition-colors sm:min-h-11"
             style={{
               letterSpacing: "0.01em",
               color: productsOpen ? "var(--ink)" : "var(--ink-quiet)",
@@ -143,14 +148,16 @@ export function SiteNav() {
           {/* Desktop links, hidden below sm */}
           <Link
             href="/design"
-            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
+            aria-current={pathname === "/design" ? "page" : undefined}
+            className="marketing-nav-action hidden min-h-11 min-w-11 items-center justify-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Design
           </Link>
           <Link
             href="/pricing"
-            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
+            aria-current={pathname === "/pricing" ? "page" : undefined}
+            className="marketing-nav-action hidden min-h-11 min-w-11 items-center justify-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             Pricing
@@ -158,7 +165,7 @@ export function SiteNav() {
           <Link
             href="/about"
             aria-current={pathname === "/about" ? "page" : undefined}
-            className="marketing-nav-action hidden min-h-11 items-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
+            className="marketing-nav-action hidden min-h-11 min-w-11 items-center justify-center text-[13px] text-ink-quiet transition-colors sm:inline-flex"
             style={{ letterSpacing: "0.01em" }}
           >
             About
@@ -175,7 +182,7 @@ export function SiteNav() {
               setProductsOpen(false);
               setMobileOpen((open) => !open);
             }}
-            className="marketing-nav-action inline-flex h-11 w-11 items-center justify-center text-ink-quiet transition-colors sm:hidden"
+            className="marketing-nav-action inline-flex h-[44px] w-[44px] items-center justify-center text-ink-quiet transition-colors sm:hidden"
           >
             {/* Hairline hamburger / close, reduced to two strokes for calm aesthetic */}
             <svg
