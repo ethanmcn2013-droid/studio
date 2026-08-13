@@ -73,7 +73,19 @@ test.describe("Founder’s Note production evidence", () => {
       const products = page.locator("[data-founders-note-product]");
       await expect(products).toHaveCount(3);
       await expect(products.locator("dt")).toHaveText(["Notes", "Tasks", "Timeline"]);
+      await expect(products.locator("dt a")).toHaveCount(3);
+      expect(
+        await products.locator("dt a").evaluateAll((anchors) =>
+          anchors.every((anchor) => Boolean(anchor.getAttribute("href"))),
+        ),
+      ).toBe(true);
       await expect(page.locator("[class*='productMark']")).toHaveCount(3);
+      expect(await page.locator("[class~='undefined']").count()).toBe(0);
+      expect(
+        await page.locator("[data-founders-note-prose] section").evaluateAll((sections) =>
+          sections.map((section) => section.querySelector("h1, h2, h3")?.textContent ?? null),
+        ),
+      ).toEqual([null, "Two barriers", "The workarounds", "The standard"]);
       await expect(page.getByRole("article")).not.toContainText("Daily briefing");
       await expect(page.locator("[role='group'][aria-label='Author']")).toContainText(
         "Ethan McNamara",

@@ -7,6 +7,7 @@ import {
   normalizeTrackingParams,
   type TrackingParamKey,
 } from "@/lib/tracking";
+import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 import styles from "./founders-note.module.css";
 
 export const metadata: Metadata = {
@@ -208,7 +209,7 @@ export default async function AboutPage({
               </section>
 
               <section
-                className={`${styles.section} ${styles.workaroundsSection}`}
+                className={styles.section}
                 data-delight="founders-note-turn"
                 data-delight-once
               >
@@ -274,7 +275,9 @@ export default async function AboutPage({
                         <path className={styles.markAccent} d="M77 34v16" />
                       </svg>
                     </span>
-                    <span>Notes</span>
+                    <a className={styles.productLink} href={PRODUCT_MARKETING_URLS.notes}>
+                      Notes
+                    </a>
                   </dt>
                   <dd>Keeps ideas, decisions and context together while they take shape.</dd>
                 </div>
@@ -288,7 +291,9 @@ export default async function AboutPage({
                         <path d="M20 8h96M20 26h74M20 44h84" />
                       </svg>
                     </span>
-                    <span>Tasks</span>
+                    <a className={styles.productLink} href={PRODUCT_MARKETING_URLS.tasks}>
+                      Tasks
+                    </a>
                   </dt>
                   <dd>Makes clear what needs to happen next.</dd>
                 </div>
@@ -300,7 +305,9 @@ export default async function AboutPage({
                         <circle className={styles.markAccentFill} cx="78" cy="26" r="5" />
                       </svg>
                     </span>
-                    <span>Timeline</span>
+                    <a className={styles.productLink} href={PRODUCT_MARKETING_URLS.timeline}>
+                      Timeline
+                    </a>
                   </dt>
                   <dd>Shows how the work fits together and where it is going.</dd>
                 </div>
