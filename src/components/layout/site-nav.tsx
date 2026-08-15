@@ -62,6 +62,19 @@ export function SiteNav() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [productsOpen]);
 
+  // Keep the page fixed while an overlay menu is open. Without this, the
+  // underlying About copy can scroll and peek beneath the panel on short
+  // mobile viewports, which reads as a broken section boundary.
+  useEffect(() => {
+    if (!mobileOpen && !productsOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen, productsOpen]);
+
   if (pathname?.startsWith("/hq")) {
     return null;
   }
