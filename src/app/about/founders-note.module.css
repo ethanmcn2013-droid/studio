@@ -138,6 +138,13 @@
   margin: 0 auto;
 }
 
+/* Keep the hand-off into the product chapter intentional at every breakpoint.
+   The final prose section owns the transition space; the reveal should not
+   inherit a second, unbounded gap from its own outer margin. */
+.preReveal .section:last-child {
+  margin-bottom: 48px;
+}
+
 .thread,
 .threadContinuation {
   position: relative;
@@ -886,6 +893,10 @@
   .storyGrid {
     display: block;
     width: calc(100% - 48px);
+  }
+
+  .preReveal .section:last-child {
+    margin-bottom: 28px;
   }
 
   .thread,

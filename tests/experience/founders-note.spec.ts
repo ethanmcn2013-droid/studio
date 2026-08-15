@@ -44,8 +44,12 @@ test.describe("Founder’s Note production evidence", () => {
         const titleElement = document.querySelector<HTMLElement>("h1")!;
         const prose = document.querySelector<HTMLElement>("[data-founders-note-prose]")!;
         const thread = document.querySelector<HTMLElement>("[data-founder-thread]")!;
+        const preRevealSection = document.querySelector<HTMLElement>(
+          "[data-founders-note-pre-reveal] section:last-of-type",
+        )!;
         const titleStyle = getComputedStyle(titleElement);
         const proseStyle = getComputedStyle(prose);
+        const preRevealStyle = getComputedStyle(preRevealSection);
         return {
           overflow: root.scrollWidth - window.innerWidth,
           titleSize: Number.parseFloat(titleStyle.fontSize),
@@ -55,6 +59,7 @@ test.describe("Founder’s Note production evidence", () => {
           proseLeft: prose.getBoundingClientRect().left,
           proseRight: prose.getBoundingClientRect().right,
           threadDisplay: getComputedStyle(thread).display,
+          preRevealMarginBottom: Number.parseFloat(preRevealStyle.marginBottom),
         };
       });
 
@@ -64,6 +69,8 @@ test.describe("Founder’s Note production evidence", () => {
       expect(geometry.bodySize).toBe(viewport.bodySize);
       expect(geometry.proseWidth).toBeLessThanOrEqual(681);
       expect(geometry.threadDisplay).not.toBe("none");
+
+      expect(geometry.preRevealMarginBottom).toBe(viewport.width <= 767 ? 28 : 48);
 
       if (viewport.width <= 430) {
         expect(geometry.proseLeft).toBeGreaterThanOrEqual(19.5);
@@ -167,6 +174,7 @@ test.describe("Founder’s Note production evidence", () => {
     await productsButton.click();
     await expect(productsButton).toHaveAttribute("aria-controls", "products-mega-panel");
     await expect(page.locator("#products-mega-panel")).toBeVisible();
+    await expect.poll(() => page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
     const keyboardMotion = await page.evaluate(() =>
       [".mnotes-cursor", ".mtasks-dot", ".mroadmap-dot"].map(
         (selector) => getComputedStyle(document.querySelector<SVGElement>(selector)!).animationName,
@@ -176,6 +184,9 @@ test.describe("Founder’s Note production evidence", () => {
     await page.keyboard.press("Escape");
     await expect(productsButton).toBeFocused();
     await expect(productsButton).not.toHaveAttribute("aria-controls");
+    await expect
+      .poll(() => page.evaluate(() => getComputedStyle(document.body).overflow))
+      .not.toBe("hidden");
 
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload({ waitUntil: "networkidle" });
@@ -185,8 +196,12 @@ test.describe("Founder’s Note production evidence", () => {
     const mobileCloseButton = page.getByRole("button", { name: "Close navigation" });
     await expect(mobileCloseButton).toHaveAttribute("aria-controls", "mobile-nav-panel");
     await expect(page.locator("#mobile-nav-panel")).toBeVisible();
+    await expect.poll(() => page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
     await page.keyboard.press("Escape");
     await expect(page.getByRole("button", { name: "Open navigation" })).toBeFocused();
+    await expect
+      .poll(() => page.evaluate(() => getComputedStyle(document.body).overflow))
+      .not.toBe("hidden");
 
     await productsButton.click();
     const productsPanel = page.locator("#products-mega-panel");

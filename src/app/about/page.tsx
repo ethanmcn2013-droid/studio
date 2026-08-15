@@ -150,7 +150,10 @@ export default async function AboutPage({
             </div>
           </header>
 
-          <div className={styles.storyGrid}>
+          <div
+            className={`${styles.storyGrid} ${styles.preReveal}`}
+            data-founders-note-pre-reveal
+          >
             <div className={styles.thread} aria-hidden data-founder-thread />
             <div className={styles.prose} data-founders-note-prose>
               <section
