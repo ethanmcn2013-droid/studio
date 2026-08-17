@@ -4,11 +4,18 @@ title: The 9.5 quality gate cannot certify, and once could not even report
 category: Product
 severity: High
 likelihood: Certain
-status: Mitigated — reporting honestly; certification still unreachable
+status: Needs attention
 owner: Ethan
 date: 2026-08-17
 relatedObjects: [app docs/wave/DECISIONS.md D-024, app docs/wave/DECISIONS.md D-029, app docs/wave/DECISIONS.md D-032, quality-council-ci-semantics, quality-gate-does-not-narrow, rule-on-95-gate-scope]
 ---
+
+## Status, precisely
+
+`Needs attention` is the nearest declared value and it understates half the picture.
+The **reporting** failure is fixed and verified. The **certification** failure is
+untouched and cannot be fixed by engineering. Read the status as "one half resolved,
+one half open", not as a single dial.
 
 ## The risk
 

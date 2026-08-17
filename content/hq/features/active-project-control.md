@@ -3,7 +3,7 @@ id: active-project-control
 title: Active Project control — the project you are in, in the permanent chrome
 product: Signal Studio (suite-wide)
 category: Foundation
-status: Built behind flag
+status: Built
 priority: High
 effort: Large
 impact: High
@@ -45,7 +45,9 @@ change it. Timeline had its own switcher with different behaviour. Home had none
 
 ## Status
 
-Built, tested and merged behind `SIGNAL_ACTIVE_PROJECT_V3_ENABLED`, which is off. Four
+**Built, not shipped** — the collection's status set has no value for "behind a
+flag", and extending a frozen set for one record is not worth it. The distinction is
+here instead: built, tested and merged behind `SIGNAL_ACTIVE_PROJECT_V3_ENABLED`, which is off. Four
 lanes shipped across 17 August: the guarded transition, the runtime boundary move, the
 consolidated project service, and the chrome itself.
 
