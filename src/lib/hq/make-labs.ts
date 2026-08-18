@@ -53,6 +53,40 @@ export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb:
 
 export const MAKE_LABS: Lab[] = [
   // ── Hero labs · the interactive showrooms (live preview branches) ───
+  // ── The Tasks redesign vault (2026-08) ──────────────────────────────
+  // Self-hosted under public/hq/labs/ so the record outlives any external
+  // link: the interactive board, the eleven-round panel log, the session
+  // report and the design master itself.
+  {
+    id: "tasks-studio-floor",
+    name: "Tasks · Studio Floor",
+    category: "decision",
+    state: "SHIPPED",
+    href: "/hq/labs/tasks-studio-floor/board.html",
+    where: "app · shipped 18 Aug 2026 · 11 panel rounds",
+    note: "The board that shipped. Ink, Indigo and White only; status by ink density, never hue. Add a task, tick one and watch it fly, filter by couple, undo anything.",
+    hasThumb: false,
+  },
+  {
+    id: "tasks-studio-floor-rounds",
+    name: "Tasks · the eleven rounds",
+    category: "decision",
+    state: "DECIDED",
+    href: "/hq/labs/tasks-studio-floor/rounds.html",
+    where: "350 findings · 243 confirmed and fixed",
+    note: "Seven independent seats a round, every finding adversarially verified before it counted. The lowest seat moved 6.3 to 8.1 against a 9.5 bar, and the bar was never lowered to pass.",
+    hasThumb: false,
+  },
+  {
+    id: "tasks-studio-floor-record",
+    name: "Tasks · session record",
+    category: "decision",
+    state: "DECIDED",
+    href: "/hq/labs/tasks-studio-floor/record.html",
+    where: "18 Aug 2026",
+    note: "What was built, what it scored, and the honest distance to 9.5 in days. Read this one first.",
+    hasThumb: false,
+  },
   {
     id: "showroom-notes",
     name: "Notes · hero showroom",
