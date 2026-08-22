@@ -80,6 +80,10 @@ const PLANS: readonly PricingPlan[] = [
     href: waitlistHref("pricing_free", "free"),
     microcopy: "No card or charge today.",
     mobileSummary: "1 workspace · 3 editing guests",
+    window: {
+      kind: "forever",
+      caption: "No recurring charge.",
+    },
     comparison: {
       bestFor: "Starting solo",
       workspaces: PRICING.plans.free.workspaceLimit,
@@ -113,6 +117,10 @@ const PLANS: readonly PricingPlan[] = [
     microcopy:
       "Student status and payment terms are confirmed before access.",
     mobileSummary: "3 workspaces · 3 editing guests",
+    window: {
+      kind: "yearly",
+      caption: "Reviewed each year.",
+    },
     comparison: {
       bestFor: "Verified students",
       workspaces: PRICING.plans.student.workspaceLimit,
@@ -144,6 +152,10 @@ const PLANS: readonly PricingPlan[] = [
     href: waitlistHref("pricing_pro", "pro"),
     microcopy: "Editing limit and purchase terms are confirmed before access.",
     mobileSummary: "Unlimited workspaces · Editing limit unpublished",
+    window: {
+      kind: "monthly",
+      caption: "Renews monthly, or take the year at the saving.",
+    },
     comparison: {
       bestFor: "Ongoing work",
       workspaces: PRICING.plans.pro.workspaceLimit,

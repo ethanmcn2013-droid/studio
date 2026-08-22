@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, type KeyboardEvent } from "react";
+import { useRef, type CSSProperties, type KeyboardEvent } from "react";
 import styles from "./pricing.module.css";
 import {
   usePricingSelection,
@@ -26,6 +26,10 @@ export type PricingPlan = Readonly<{
   fit: string;
   summary: string;
   facts: readonly Readonly<{ label: string; value: string }>[];
+  window?: {
+    kind: "forever" | "yearly" | "monthly";
+    caption: string;
+  };
   cta: string;
   href: string;
   microcopy: string;
@@ -133,6 +137,32 @@ export function PlanPicker({ plans }: { plans: readonly PricingPlan[] }) {
                       </div>
                     ))}
                   </dl>
+
+                  {plan.window ? (
+                    <div
+                      className={styles.windowRail}
+                      aria-hidden="true"
+                      data-window-kind={plan.window.kind}
+                    >
+                      <span className={styles.windowTrack}>
+                        {Array.from(
+                          {
+                            length:
+                              plan.window.kind === "forever" ? 1 : 12,
+                          },
+                          (_, cell) => (
+                            <span
+                              key={cell}
+                              style={{ "--cell": cell } as CSSProperties}
+                            />
+                          ),
+                        )}
+                      </span>
+                      <p className={styles.windowCaption}>
+                        {plan.window.caption}
+                      </p>
+                    </div>
+                  ) : null}
 
                   <div className={styles.planDecision}>
                     <div className={styles.planPanelPrice}>
