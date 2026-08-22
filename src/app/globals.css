@@ -1,15 +1,16 @@
 @import "tailwindcss";
-@import "../ds/tokens.css";
-@import "../ds/tailwind.css";
+@import "signal-ds/tokens.css";
+@import "signal-ds/tailwind.css";
 @import "../features/atlas/atlas.css";
 @import "../features/org/org-chart.css";
 
 /* ────────────────────────────────────────────────────────────
    Signal Design System 2.0 (Wave 2, 2026-07-02)
-   System tokens live in the vendored src/ds/tokens.css — never
-   here. This :root is repo-local only: legacy aliases on the
-   burn-down path + Studio-specific semantics. ds-check enforces
-   the split. Studio's identity is the indigo dot + broadcast.
+   System tokens live in signal-ds/tokens.css (npm package,
+   tokens-first pivot 2026-08-22; was the vendored src/ds copy) —
+   never here. This :root is repo-local only: legacy aliases on the
+   burn-down path + Studio-specific semantics. Studio's identity is
+   the indigo dot + broadcast.
    ──────────────────────────────────────────────────────────── */
 :root {
   /* ── Studio status pips (page semantics, not system states) ── */
