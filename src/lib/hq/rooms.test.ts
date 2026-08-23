@@ -37,6 +37,7 @@ const DECLARED_STATUSES: Record<string, string[]> = {
   "collaborator-first-view": ["Draft", "Needs design"],
   content: ["Idea", "Script"],
   decisions: ["Active", "Reversed", "decided", "Archived", "Superseded"],
+  "design-reviews": [],
   demos: [],
   "ecosystem-flows": ["Not started", "Partly working", "Planned"],
   features: ["Built", "Idea", "In Progress", "Shipping", "Shipped"],

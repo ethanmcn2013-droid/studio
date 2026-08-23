@@ -8,6 +8,34 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-23 · S·168 · tightens · About clears its verdict gate, five seats unanimous at the bar
+
+**The About page now holds 9.5 or better from five independent blind
+reviewers — and it argues the company in six movements: claim,
+translation, system, founder, refusals, record.**
+
+The redesign replaces the founder-note layout with a page that argues:
+the locked claim about who productivity tools are built for, a
+translation table that turns real industry phrases into plain English
+row by row on arrival, the three products each owning one kind of
+clarity, the founder's letter with the three questions that became
+them, five refusals with their whys, and the record. The verdict gate
+then surfaced real defects, each fixed and re-gated: the language
+toggle's thumb assumed equal halves the buttons did not have (now a
+1fr/1fr grid, so the thumb is always truthful), hovering the pressed
+toggle repainted its label invisible, keyboard users got no
+product-row affordance and no translation when a jump skipped the
+scroll observer, and the noscript and reduced-motion fallbacks each
+leaked one state. The page gained its missing link-preview card, the
+hero's coordinates became words a human reads, and the stylesheet now
+declares the type scale it actually ships. Evidence: typecheck,
+build and test suites green; captures at four widths; verdicts in
+content/hq/design-reviews/about-page-redesign-2026-08/gate-record.md.
+
+Honest edges: the hero claim keeps its passive construction as a
+deliberate register exception; /about server-renders on demand with
+the rest of the site until the edge-runtime config changes.
+
 ## 2026-08-12 · S·167 · ships · the student page argues its own semester
 
 **/students is rebuilt from a flat column to the house treatment: the
