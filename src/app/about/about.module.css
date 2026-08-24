@@ -285,7 +285,8 @@
   line-height: 1.6;
   transition:
     opacity var(--motion-slow) var(--ease-out),
-    transform var(--motion-slow) var(--ease-out);
+    transform var(--motion-slow) var(--ease-out),
+    color var(--motion-slow) var(--ease-out);
 }
 
 /* per-class specifics continue the shared block above */
@@ -332,7 +333,10 @@
 }
 
 .tTable[data-lang="english"] .tIndustry {
-  opacity: 0.32;
+  /* De-emphasis without opacity: a flat AA-compliant grey keeps the
+     struck-through jargon legible to low-vision readers while reading
+     as "retired" next to the active plain-English column. */
+  color: rgb(255 255 255 / 50%);
   text-decoration-color: color-mix(in srgb, currentColor 70%, transparent);
 }
 

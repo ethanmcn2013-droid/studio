@@ -125,13 +125,11 @@ export function TranslationSection() {
             <span className={styles.tNum} aria-hidden>
               {String(index + 1).padStart(2, "0")}
             </span>
-            <p className={styles.tIndustry} aria-hidden={lang === "english"}>
-              {row.industry}
-            </p>
+            <p className={styles.tIndustry}>{row.industry}</p>
             <span className={styles.tArrow} aria-hidden>
               →
             </span>
-            <p className={styles.tEnglish} aria-hidden={lang === "industry"}>
+            <p className={styles.tEnglish}>
               <span className={styles.tDot} aria-hidden />
               {row.english}
             </p>
