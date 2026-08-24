@@ -23,14 +23,24 @@ import type { AudienceTimelineDto } from "./audience-timeline";
 export function TimelineTheLine({
   embedded = false,
   timeline = TIMELINE_HERO_FIXTURE,
+  label = "Signal Timeline public wedding plan",
 }: {
   embedded?: boolean;
   timeline?: AudienceTimelineDto;
+  /**
+   * What this artifact IS, for anyone who cannot see it. It used to be
+   * hard-coded to the wedding fixture, so an embedding page that passed its
+   * own `timeline` still announced itself to assistive technology as a
+   * wedding plan — the one thing the page shows introduced as another
+   * product's content. A page that supplies its own fixture supplies its own
+   * name; the default stays with the wedding hero that owns it.
+   */
+  label?: string;
 } = {}) {
   return (
     <section
       className={`tlh${embedded ? " tlh-embedded" : ""}`}
-      aria-label={embedded ? "Signal Timeline public wedding plan" : undefined}
+      aria-label={embedded ? label : undefined}
     >
       <div className="tlh-frame">
         {!embedded ? <div className="tlh-folio">

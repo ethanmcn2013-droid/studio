@@ -42,11 +42,14 @@ assert.match(page, /href="\/waitlist"/);
 assert.match(page, />Join the waitlist</);
 
 // ── The handoff walks the suite and exits at the waitlist ──────────────────
-// notes → tasks → timeline → signal → waitlist. The ring is the section's
-// whole argument, so the contract pins every link in it.
+// Notes → Tasks → Timeline is the current product sequence. Home owns the
+// briefing front door; the private lab retains Signal only as provenance.
 assert.match(handoffData, /nextHref: "\/tasks"/);
 assert.match(handoffData, /nextHref: "\/timeline"/);
-assert.match(handoffData, /nextHref: "\/signal"/);
+assert.match(
+  handoffData,
+  /timeline:\s*\{[\s\S]*?caption:\s*"Timeline → Home"[\s\S]*?nextHref:\s*null/,
+);
 assert.match(handoffData, /signal:\s*\{[\s\S]*?nextHref:\s*null/);
 // Scroll drives the selected scene directly; reduced motion settles instantly.
 assert.match(handoff, /LivingArtifact/);
@@ -92,5 +95,5 @@ assert.match(footer, /grid-cols-2/);
 assert.match(footer, /lg:grid-cols-\[1\.35fr_repeat\(4,1fr\)\]/);
 
 console.log(
-  "[product-marketing-contract] ok (hero + handoff ring + waitlist close, four heroes wired, compact mobile footer)",
+  "[product-marketing-contract] ok (three-product handoff + Home close, legacy Signal hero retained, compact mobile footer)",
 );

@@ -3,6 +3,7 @@ id: register-ltd-ireland
 title: Register the Irish Ltd — the upstream gate for Stripe, VAT/OSS, and paid launch.
 status: open
 priority: P0
+effort: involved
 blocking: true
 phase: Phase 4
 why: Until the company is a registered Irish Ltd, there is no business Stripe account, no VAT/OSS registration, and no legal way to take a paid euro.

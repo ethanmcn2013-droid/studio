@@ -1,30 +1,13 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const MARKETING_ROUTES = [
   "/notes",
   "/tasks",
   "/timeline",
-  "/signal",
   "/pricing",
   "/about",
 ] as const;
-
-async function pricingAnimations(page: Page) {
-  return page.evaluate(() =>
-    Array.from(
-      document.querySelectorAll<HTMLElement>(
-        ".pricing-anchor-dot, .pricing-mark .dot, [data-delight='pricing-plans'] > div",
-      ),
-    ).map((element) => {
-      const style = getComputedStyle(element);
-      return {
-        name: style.animationName,
-        iterations: style.animationIterationCount,
-      };
-    }),
-  );
-}
 
 test.describe("public marketing delight contract", () => {
   test.describe.configure({ mode: "serial", timeout: 60_000 });
@@ -103,7 +86,7 @@ test.describe("public marketing delight contract", () => {
         };
       }),
     );
-    expect(gestures.every((gesture) => gesture.name !== "none")).toBe(true);
+    expect(gestures.every((gesture) => gesture.name === "none")).toBe(true);
     expect(
       gestures.every((gesture) => !gesture.iterations.includes("infinite")),
     ).toBe(true);
@@ -121,92 +104,108 @@ test.describe("public marketing delight contract", () => {
     await expect(panel).toBeHidden();
   });
 
-  test("Pricing uses finite, one-shot attention cues", async ({ page }) => {
+  test("Pricing uses finite state motion and keeps the decision legible", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/pricing");
 
-    expect(
-      (await pricingAnimations(page)).every(
-        (animation) => !animation.iterations.includes("infinite"),
-      ),
-    ).toBe(true);
-
-    const plans = page.locator("[data-delight='pricing-plans']");
-    await plans.scrollIntoViewIfNeeded();
-    await expect(plans).toHaveAttribute("data-delight-visible", "true");
-
-    const planCards = await plans.locator(":scope > div").evaluateAll((cards) =>
-      cards.map((card) => {
-        const style = getComputedStyle(card);
-        return {
-          name: style.animationName,
-          iterations: style.animationIterationCount,
-        };
-      }),
+    const ledger = page.locator("[data-pricing-ledger]");
+    await ledger.scrollIntoViewIfNeeded();
+    await expect(page.locator("#pricing-plan-pro")).toHaveAttribute(
+      "aria-expanded",
+      "true",
     );
-    expect(planCards.every((card) => card.name === "pricing-plan-settle")).toBe(
-      true,
+    await expect(page.locator("[data-pricing-panel]")).toContainText(
+      "Unlimited workspaces",
     );
-    expect(planCards.every((card) => card.iterations === "1")).toBe(true);
 
-    const suite = page.locator("[data-delight='pricing-suite']");
-    await suite.scrollIntoViewIfNeeded();
-    await expect(suite).toHaveAttribute("data-delight-visible", "true");
+    await page.locator("#pricing-plan-free").click();
+    const panel = page.locator("[data-pricing-panel]");
+    await expect(panel).toContainText("One workspace");
 
-    const marks = await suite.locator(".pricing-mark .dot").evaluateAll((dots) =>
-      dots.map((dot) => {
-        const style = getComputedStyle(dot);
-        return {
-          name: style.animationName,
-          iterations: style.animationIterationCount,
-        };
-      }),
+    const motion = await panel.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        name: style.animationName,
+        iterations: style.animationIterationCount,
+      };
+    });
+    expect(motion.name).toMatch(/(?:^|__)plan-panel-arrive$/);
+    expect(motion.iterations).toBe("1");
+
+    const infinite = await ledger.locator("*").evaluateAll((elements) =>
+      elements.filter((element) =>
+        getComputedStyle(element).animationIterationCount.includes("infinite"),
+      ).length,
     );
-    expect(marks.map((mark) => mark.name)).toEqual([
-      "pricing-caret",
-      "pricing-pulse",
-      "pricing-sweep",
-      "pricing-tick",
-    ]);
-    expect(
-      marks.every((mark) => !mark.iterations.includes("infinite")),
-    ).toBe(true);
+    expect(infinite).toBe(0);
   });
 
-  test("About keeps the essay still and acknowledges authorship once", async ({
+  test("About presents one semantic founder note and acknowledges authorship once", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/about");
 
-    const firstProduct = page.locator(".about-product-link").first();
-    const arrow = firstProduct.locator(".about-product-arrow");
-    await firstProduct.hover();
-    await expect
-      .poll(() =>
-        arrow.evaluate((element) => getComputedStyle(element).transform),
-      )
-      .not.toBe("none");
+    const article = page.getByRole("article");
+    await expect(article).toBeVisible();
+    await expect(
+      article.getByRole("heading", {
+        level: 1,
+        name: "Project management software was built by tech companies, for tech companies.",
+      }),
+    ).toBeVisible();
+    await expect(
+      article.getByRole("heading", {
+        level: 2,
+        name: "That became three products.",
+      }),
+    ).toBeVisible();
+
+    const products = article.locator("[data-founders-note-product]");
+    await expect(products).toHaveCount(3);
+    await expect(products.locator("dt")).toHaveText(["Notes", "Tasks", "Timeline"]);
+    await expect(article).not.toContainText("Daily briefing");
+
+    const reveal = page.locator("[data-delight='founders-note-products']");
+    await reveal.scrollIntoViewIfNeeded();
+    await expect(reveal).toHaveAttribute("data-delight-visible", "true");
+    const revealMotion = await page.locator("[class*='productMark']").evaluateAll((elements) =>
+      elements.map((element) => {
+        const style = getComputedStyle(element);
+        return {
+          name: style.animationName,
+          iterations: style.animationIterationCount,
+          duration: style.animationDuration,
+          delay: style.animationDelay,
+        };
+      }),
+    );
+    expect(revealMotion).toHaveLength(3);
+    expect(revealMotion.every((motion) => motion.name !== "none")).toBe(true);
+    expect(revealMotion.every((motion) => motion.iterations === "1")).toBe(true);
+    expect(revealMotion.map((motion) => motion.delay)).toEqual(["0s", "0.06s", "0.12s"]);
+    expect(revealMotion.every((motion) => motion.duration === "0.3s")).toBe(true);
 
     const founder = page.locator("[data-delight='about-founder']");
     await founder.scrollIntoViewIfNeeded();
     await expect(founder).toHaveAttribute("data-delight-visible", "true");
 
-    const signature = founder.locator(".about-founder-signature");
-    const names = await signature.evaluate((element) => ({
-      rule: getComputedStyle(element, "::before").animationName,
+    const names = await founder.evaluate((element) => ({
+      rule: getComputedStyle(
+        element.querySelector<HTMLElement>("[data-founder-rule]")!,
+        "::after",
+      ).animationName,
       dot: getComputedStyle(
-        element.querySelector<HTMLElement>(".about-founder-dot")!,
+        element.querySelector<HTMLElement>("[data-founder-dot]")!,
+        "::after",
       ).animationName,
       identity: getComputedStyle(
-        element.querySelector<HTMLElement>(".about-founder-identity")!,
+        element.querySelector<HTMLElement>("[data-founder-identity]")!,
       ).animationName,
     }));
-    expect(names).toEqual({
-      rule: "about-signature-rule",
-      dot: "about-signature-dot",
-      identity: "about-signature-identity",
-    });
+    expect(names.rule).not.toBe("none");
+    expect(names.dot).not.toBe("none");
+    expect(names.identity).toBe("none");
   });
 
   test("reduced motion preserves state and removes authored travel", async ({
@@ -216,29 +215,46 @@ test.describe("public marketing delight contract", () => {
     await page.setViewportSize({ width: 1280, height: 720 });
 
     await page.goto("/pricing");
-    const plans = page.locator("[data-delight='pricing-plans']");
-    await plans.scrollIntoViewIfNeeded();
-    await expect(plans).toHaveAttribute("data-delight-visible", "true");
+    const ledger = page.locator("[data-pricing-ledger]");
+    await ledger.scrollIntoViewIfNeeded();
+    await page.locator("#pricing-plan-free").click();
+    const pricingPanel = page.locator("[data-pricing-panel]");
+    await expect(pricingPanel).toContainText("One workspace");
     expect(
-      (await pricingAnimations(page)).every(
-        (animation) => animation.name === "none",
-      ),
-    ).toBe(true);
+      await pricingPanel.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+          animation: style.animationName,
+          opacity: style.opacity,
+          transform: style.transform,
+        };
+      }),
+    ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
+    const reveal = page.locator("[data-delight='founders-note-products']");
+    await reveal.scrollIntoViewIfNeeded();
+    await expect(reveal).toHaveAttribute("data-delight-visible", "true");
     const founder = page.locator("[data-delight='about-founder']");
     await founder.scrollIntoViewIfNeeded();
     await expect(founder).toHaveAttribute("data-delight-visible", "true");
-    const reducedNames = await founder.evaluate((element) => ({
+    const reducedNames = await page.evaluate(() => ({
+      rows: Array.from(
+        document.querySelectorAll<HTMLElement>("[data-founders-note-product]"),
+        (element) => getComputedStyle(element).animationName,
+      ),
       rule: getComputedStyle(
-        element.querySelector<HTMLElement>(".about-founder-signature")!,
-        "::before",
+        document.querySelector<HTMLElement>("[data-founder-rule]")!,
       ).animationName,
       dot: getComputedStyle(
-        element.querySelector<HTMLElement>(".about-founder-dot")!,
+        document.querySelector<HTMLElement>("[data-founder-dot]")!,
       ).animationName,
     }));
-    expect(reducedNames).toEqual({ rule: "none", dot: "none" });
+    expect(reducedNames).toEqual({
+      rows: ["none", "none", "none"],
+      rule: "none",
+      dot: "none",
+    });
 
     await page.goto("/notes");
     await expect(page.locator(".pp-dot")).toHaveClass(/pp-dot-ready/);
@@ -249,7 +265,7 @@ test.describe("public marketing delight contract", () => {
     ).toBe("opacity");
   });
 
-  test("all six pages remain contained at the mobile viewport", async ({
+  test("all current pages remain contained at the mobile viewport", async ({
     page,
   }) => {
     test.slow();
@@ -277,7 +293,7 @@ test.describe("public marketing delight contract", () => {
     await expect(page.locator("#mobile-nav-panel")).toBeHidden();
   });
 
-  test("all six pages have no serious accessibility violations", async ({
+  test("all current pages have no serious accessibility violations", async ({
     page,
   }) => {
     test.slow();
@@ -294,8 +310,7 @@ test.describe("public marketing delight contract", () => {
       if (
         route === "/notes" ||
         route === "/tasks" ||
-        route === "/timeline" ||
-        route === "/signal"
+        route === "/timeline"
       ) {
         // Product heroes are accepted, self-contained systems with their own
         // contract. This release changes the shell, switcher, handoff, close

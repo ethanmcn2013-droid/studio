@@ -25,6 +25,7 @@ import { readHqSection } from "./markdown";
 
 export type OperatorTodoStatus = "open" | "done";
 export type OperatorTodoPriority = "P0" | "P1" | "P2";
+export type OperatorTodoEffort = "quick" | "involved";
 
 export type OperatorTodo = {
   id: string;
@@ -33,6 +34,8 @@ export type OperatorTodo = {
   why: string;
   status: OperatorTodoStatus;
   priority: OperatorTodoPriority;
+  /** Founder effort: a short decision/dashboard action or a longer review/process. */
+  effort: OperatorTodoEffort;
   /** True when downstream engineering work is blocked until this lands. */
   blocking: boolean;
   /** Which phase of the hardening plan this belongs to (free text). */
@@ -50,6 +53,8 @@ export type OperatorTodoBoard = {
   openCount: number;
   doneCount: number;
   blockingCount: number;
+  quickCount: number;
+  involvedCount: number;
   total: number;
 };
 
@@ -57,6 +62,11 @@ const PRIORITY_RANK: Record<OperatorTodoPriority, number> = {
   P0: 0,
   P1: 1,
   P2: 2,
+};
+
+const EFFORT_RANK: Record<OperatorTodoEffort, number> = {
+  quick: 0,
+  involved: 1,
 };
 
 function normalizeStatus(raw: unknown): OperatorTodoStatus {
@@ -70,6 +80,12 @@ function normalizePriority(raw: unknown): OperatorTodoPriority {
 
 function normalizeBlocking(raw: unknown): boolean {
   return raw === true || String(raw ?? "").toLowerCase() === "true";
+}
+
+function normalizeEffort(raw: unknown): OperatorTodoEffort {
+  return String(raw ?? "involved").toLowerCase() === "quick"
+    ? "quick"
+    : "involved";
 }
 
 /**
@@ -89,6 +105,7 @@ export async function getOperatorTodos(): Promise<OperatorTodoBoard> {
       why: String(e.fm.why ?? ""),
       status: normalizeStatus(e.fm.status),
       priority: normalizePriority(e.fm.priority),
+      effort: normalizeEffort(e.fm.effort),
       blocking: normalizeBlocking(e.fm.blocking),
       phase: e.fm.phase !== undefined ? String(e.fm.phase) : undefined,
       href: e.fm.href !== undefined ? String(e.fm.href) : undefined,
@@ -100,6 +117,10 @@ export async function getOperatorTodos(): Promise<OperatorTodoBoard> {
   todos.sort((a, b) => {
     // Done sinks.
     if (a.status !== b.status) return a.status === "done" ? 1 : -1;
+    // Put the low-hanging fruit first inside the open ledger.
+    if (a.status === "open" && EFFORT_RANK[a.effort] !== EFFORT_RANK[b.effort]) {
+      return EFFORT_RANK[a.effort] - EFFORT_RANK[b.effort];
+    }
     // Priority tier.
     if (PRIORITY_RANK[a.priority] !== PRIORITY_RANK[b.priority]) {
       return PRIORITY_RANK[a.priority] - PRIORITY_RANK[b.priority];
@@ -115,6 +136,8 @@ export async function getOperatorTodos(): Promise<OperatorTodoBoard> {
     openCount: openTodos.length,
     doneCount: todos.length - openTodos.length,
     blockingCount: openTodos.filter((t) => t.blocking).length,
+    quickCount: openTodos.filter((t) => t.effort === "quick").length,
+    involvedCount: openTodos.filter((t) => t.effort === "involved").length,
     total: todos.length,
   };
 }

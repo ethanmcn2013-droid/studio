@@ -1,7 +1,8 @@
 ---
 id: tasks-interaction-prerequisites
 title: Complete the remaining Tasks interaction prerequisites (Codex or Claude can do this; schedule for a later cycle)
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; Schedule is fixed and remaining tag-editor work belongs to the app engineering backlog"
 priority: P1
 blocking: false
 phase: Tasks delight follow-up

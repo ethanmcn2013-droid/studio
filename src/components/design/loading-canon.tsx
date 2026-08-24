@@ -48,7 +48,13 @@ const PRODUCTS = [
   { name: "signal", gesture: "tick" },
 ] as const;
 
-export function LoadingCanon() {
+export function LoadingCanon({
+  autoAdvance = true,
+  singleRun = false,
+}: {
+  autoAdvance?: boolean;
+  singleRun?: boolean;
+} = {}) {
   const [active, setActive] = useState(0);
   const [seq, setSeq] = useState(0);
   const [inView, setInView] = useState(false);
@@ -81,13 +87,13 @@ export function LoadingCanon() {
   // The reel: hold the current moment, then advance. Paused offscreen
   // and under reduced motion.
   useEffect(() => {
-    if (!inView || reduced || paused) return;
+    if (!autoAdvance || !inView || reduced || paused) return;
     const t = setTimeout(() => {
       setActive((a) => (a + 1) % MOMENTS.length);
       setSeq((s) => s + 1);
     }, MOMENTS[active].hold);
     return () => clearTimeout(t);
-  }, [active, seq, inView, paused, reduced]);
+  }, [active, seq, autoAdvance, inView, paused, reduced]);
 
   const jump = (i: number) => {
     setPaused(false);
@@ -158,6 +164,7 @@ export function LoadingCanon() {
           className="dsn-dot-stage ldc-stage"
           data-rm={reduced || undefined}
           data-paused={paused || undefined}
+          data-single-run={singleRun || undefined}
         >
           <i className="dsn-dot-corner dsn-dot-corner--tl" aria-hidden />
           <i className="dsn-dot-corner dsn-dot-corner--tr" aria-hidden />

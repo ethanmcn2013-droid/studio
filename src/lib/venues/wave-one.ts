@@ -31,7 +31,6 @@ export type VenueTarget = {
   links: {
     source: string;
     venuePage: string;
-    demo: string;
     contact: string;
   };
 };
@@ -121,14 +120,16 @@ function contactUrl(venue: string) {
     venue,
   });
 
-  return `${BASE_URL}/contact?${params.toString()}`;
+  // D5. Contact is an anchored section on /about. Params before the
+  // fragment, so the tracked link still prefills the subject server-side
+  // and the browser still lands on the section.
+  return `${BASE_URL}/about?${params.toString()}#contact`;
 }
 
 function links(slug: string, source: string) {
   return {
     source,
     venuePage: trackedUrl("/venues", slug, "venue_page"),
-    demo: trackedUrl("/venues/demo", slug, "venue_demo"),
     contact: contactUrl(slug),
   };
 }

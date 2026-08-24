@@ -1,7 +1,8 @@
 ---
 id: venue-contact-data-retention
 title: Decide the lawful basis and retention position for venue contact data already in the repo
-status: open
+status: done
+cleared: "2026-08-08 - duplicate policy question consolidated into gdpr-data-lifecycle"
 priority: P0
 blocking: false
 phase: Phase 2

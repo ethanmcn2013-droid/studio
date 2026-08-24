@@ -2,11 +2,13 @@
 
 Every audit scores exactly 13 dimensions from 0 through 4. Scores are integers. The overall score is the arithmetic mean rounded to two decimals; weighting is not permitted.
 
-## Active four-product release threshold
+## Active three-product and Home release threshold
 
 The general Studio-grade threshold remains every dimension at least `3` and a
-mean of at least `3.5`. Notes, Tasks, Timeline, and Signal are currently under
-the stricter [9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
+mean of at least `3.5`. Notes, Tasks, and Timeline are currently under the
+stricter [9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md). Home
+and the Full Briefing are governed as the authenticated front door and journey
+destination, not as a fourth product.
 For every required state-by-breakpoint cell:
 
 - all 13 dimensions must be present;

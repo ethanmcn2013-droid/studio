@@ -3,6 +3,7 @@ id: collateral-ambassador-signoff
 title: Approve the ambassador kit, decide the QR destination, order a notebook sample
 status: open
 priority: P2
+effort: involved
 blocking: false
 phase: Collateral Phase 4
 why: Nine kits assemble in August and must be in hand before societies week — the QR destination and the notebook are the two decisions only the founder can make.

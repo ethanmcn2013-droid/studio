@@ -1,13 +1,15 @@
 ---
 id: closed-beta-clerk-restricted
-title: Set Clerk sign-up mode to Restricted (invite-only) for the suite
-status: open
+title: Confirm the unified Clerk app remains invite-only
+status: done
 priority: P0
+effort: quick
 blocking: false
 phase: Phase 1
 why: closes public account creation at the source — half of the closed-beta gate. The code /app allowlist is the other half and is already live.
 href: /hq/health
 date: 2026-07-04
+cleared: 2026-08-08 — Clerk production Restricted mode was enabled and saved; no invitation or email was sent.
 ---
 
 ## Context
@@ -27,7 +29,7 @@ Clerk half — only the operator can flip it.
 3. Grant access by sending a Clerk **invitation** (Users -> Invitations) to each
    beta email. The invite email links them into the sign-up flow with a ticket;
    non-invited visitors hitting `/sign-up` get Clerk's restricted state.
-4. If the suite uses more than one Clerk instance (one per product), repeat for
-   each. If it is a single shared instance, once is enough.
-5. Keep the person's email in sync with `SIGNAL_ALLOWLIST` (see the sibling
+4. There is now one consolidated Clerk application; do not repeat this across
+   retired product projects.
+5. Keep the person's email in sync with `SIGNAL_ALLOWLIST` (see the archived sibling
    to-do) so they clear both halves of the gate.

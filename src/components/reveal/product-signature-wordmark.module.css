@@ -173,6 +173,33 @@
   }
 }
 
+.wordmark[data-static="true"] .notesCaret,
+.wordmark[data-static="true"] .tasksStrike,
+.wordmark[data-static="true"] .timelineTrack,
+.wordmark[data-static="true"] .timelineMilestone,
+.wordmark[data-static="true"] .signalPulse {
+  animation: none;
+}
+
+.wordmark[data-static="true"] .notesCaret,
+.wordmark[data-static="true"] .tasksStrike,
+.wordmark[data-static="true"] .timelineTrack,
+.wordmark[data-static="true"] .timelineMilestone {
+  opacity: 1;
+}
+
+.wordmark[data-static="true"] .tasksStrike {
+  transform: scaleX(1);
+}
+
+.wordmark[data-static="true"] .timelineTrack {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.wordmark[data-static="true"] .timelineMilestone {
+  transform: translate(-50%, -50%) scale(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wordmark[data-active="true"] .notesCaret,
   .wordmark[data-active="true"] .tasksStrike,

@@ -1,7 +1,8 @@
 ---
 id: apply-sponsor-requests-migration
 title: Apply the sponsor_requests migration on signal-entitlements
-status: open
+status: done
+cleared: "2026-08-08 - superseded by the 2026-07-31 reset baseline and successful production migration workflow"
 priority: P1
 blocking: false
 phase: Account V2

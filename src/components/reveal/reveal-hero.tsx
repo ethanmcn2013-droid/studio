@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SystemProofLink } from "./system-proof-link";
 
 export function RevealHero() {
   return (
@@ -8,20 +9,20 @@ export function RevealHero() {
     >
       <div className="reveal-hero-v2-inner">
         <h1 id="home-title" className="reveal-headline-v2">
-          Project management for the 80%{" "}
-          <span className="reveal-headline-accent">not</span> in tech.
+          Project management for people{" "}
+          <span className="reveal-headline-accent">outside</span> tech.
         </h1>
 
         <p className="reveal-lede-v2">
-          Notes, tasks, timelines, and the signal that matters. One calm
-          system for people with work to manage, not software to manage.
+          Notes, Tasks and Timeline. One calm system for people with work to
+          manage, not software to manage.
         </p>
 
         <div className="reveal-hero-actions">
-          <a className="reveal-action reveal-action-primary" href="#system">
+          <SystemProofLink className="reveal-action reveal-action-primary">
             See the system at work
             <span aria-hidden>↓</span>
-          </a>
+          </SystemProofLink>
           <Link
             className="reveal-action reveal-action-secondary"
             href="/waitlist?source=home_hero&campaign=pre_access_waitlist&artifact=hero_cta&touch=site"
@@ -31,17 +32,12 @@ export function RevealHero() {
           </Link>
         </div>
 
-        <p
-          className="reveal-sequence"
-          aria-label="Notes to Tasks to Timeline to your daily signal"
-        >
+        <p className="reveal-sequence">
           <span>Notes</span>
           <span aria-hidden>→</span>
           <span>Tasks</span>
           <span aria-hidden>→</span>
           <span>Timeline</span>
-          <span aria-hidden>→</span>
-          <span>your daily signal</span>
         </p>
       </div>
     </section>

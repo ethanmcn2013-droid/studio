@@ -6,7 +6,7 @@ status: Selected
 startDate: 2026-05-12
 endDate: 2026-06-21
 progress: 12
-relatedLandingPage: /weddings
+relatedLandingPage: /venues
 relatedMetric: New workspace creators
 assetsNeeded: [collaboration demo script, shared briefing mock, invite email, source-tracking notes]
 ---
@@ -30,3 +30,7 @@ Map the invite-to-activation path for venues and couples.
 ## Related content
 
 How a shared workspace keeps everyone clear
+
+## Landing page
+
+Superseded 2026-08-12. This campaign was written against /weddings, which was cut in the public estate consolidation under decision D4 and now redirects to /venues. The record of what it originally pointed at stays here; the working link is /venues. The wedding-facing replacement surface is chartered as E12.01 and does not exist yet, so any asset built from this campaign must be re-read against /venues before it is sent.

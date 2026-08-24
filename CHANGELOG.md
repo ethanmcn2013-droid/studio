@@ -1,11 +1,147 @@
 ﻿# signal studio. — the dispatch
 
-The umbrella dispatch. The four products keep their own; this one
+The umbrella dispatch. The three products and Home keep their own product
+receipts; this one
 carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 (entry shape — `ships / tightens / cuts / holds / reads`) · Â§6.6
 (operating vocabulary — pass · step · update · fix · re-do · push ·
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
+
+## 2026-08-12 · S·167 · ships · the student page argues its own semester
+
+**/students is rebuilt from a flat column to the house treatment: the
+semester itself open in the hero, six chapters in the order a semester
+arrives, and a thirteen-row terms ledger whose price stays pinned above its
+own conditions.** The artifact in the hero is the app's real Timeline on a
+frozen three-module fixture, and it now introduces itself to assistive
+technology as what it is, a sample semester plan, rather than borrowing the
+wedding hero's name.
+
+Every number, limit and availability clause on the page is read from the
+ratified commercial terms rather than typed, and the page now claims only
+what those terms and the privacy policy actually back. The price appears at
+display scale once. The programme name, Student Edition, became a ratified
+contract value instead of a phrase invented on the page. And the one promise
+the product could not keep — that it would never notify anyone of anything —
+is replaced by the true sentence: the briefing comes once in the morning,
+and anything else is the reader's own choice.
+
+A seven-seat review graded the rebuild and its fixes were measured one by
+one; the page ships at a high standard without claiming the 9.5 gate it has
+not passed. What remains structural — the long middle without an object,
+chapters sharing one silhouette — is recorded for the next pass rather than
+rushed.
+## 2026-08-12 · S·167 · ships · pricing is one clear decision ledger
+
+**Free, Student, Pro and Enterprise now read as four choices inside one ruled
+ledger, with one choice open at a time and only the commercial facts that are
+settled.** The page derives every published consumer price and limit from the
+ratified contract. Enterprise stays unpriced and founder-led. Event remains in
+the commercial model without appearing as a fifth public plan.
+
+The page now shows what the price is buying through the same reviewed Notes to
+Tasks to Timeline proof used elsewhere in the public story. The comparison
+shows only what changes. On smaller screens it becomes four compact disclosure
+rows instead of repeating the plans as cards. Keyboard selection, reduced
+motion, forced colours and 320px reflow are covered directly.
+
+The conversion seams changed with the page. A selected Free, Student or Pro
+plan is named on arrival at the waitlist, while its plan-coded artifact remains
+the stored attribution. Enterprise reaches Ethan through the preserved About
+contact path. Signed-in readers can now open Pricing instead of being sent
+back to the launcher. Joining still takes no payment, and no unresolved Pro,
+Student or Enterprise term has been turned into a promise.
+
+## 2026-08-12 · S·166 · cuts · the public estate is one domain and eighteen pages
+
+**Thirteen public pages left the umbrella, and every one of them now lands a
+visitor on the page that took over its job.** Proof, Work, iOS, Teachers,
+Weddings, Contact, the venue demo, Templates and the five comparison pages are
+gone; each redirects in a single hop to Venues, About, Home, Students or Tasks.
+The three design-lab routes that were serving a public 200 return 404 now. Both
+operator todos behind them were closed weeks ago, so what remained was review
+scaffolding on the open web.
+
+The sitemap stopped advertising work it could not honour. It listed `/brand`,
+which had 308'd to `/design` for weeks; it listed six pages that no longer
+exist. Eighteen entries remain and every one returns 200.
+
+Contact was kept back once, then folded as approved. The first pass through
+this cut argued that its subject-prefilled, tracked mailto and its place as the
+Founding 25 call-to-action made it worth twenty more days. That was a decision
+already taken and it was taken the other way. Contact is now an anchored
+section on About, carrying the same machinery, and every route into it points
+straight there rather than through the redirect. The venues call-to-action, the
+outreach links, the pricing enterprise step and the footer all changed in the
+same pass, so the conversion path never rides a hop.
+
+Two legal corrections landed with the cut. The privacy policy now names
+Anthropic, says which AI actions send what and only after you confirm them,
+says the device does the speech recognition and we never receive the audio,
+names the analytics processor, and commits in writing that nothing you write
+trains a model. The terms say the same thing about your content. The Google
+analytics tag left every page: it had been running with no consent gate while
+the policy promised no trackers that need one. The policy claim is true as of
+today, which is the direction that decision was resolved.
+
+Honest edges: the wedding wedge on the homepage now points venues at the
+Venue Edition, so there is no couple-facing public page until E12.01 lands.
+The thirteen Tasks template pages still serve on the app domain; that half of
+the consolidation is a separate pass. The venue conversation guide's demo
+walkthrough is marked stale rather than rewritten, because its four
+destinations have no live replacement yet. The handoff-lab contract script
+fails, as it did before this change, a pre-existing break untouched here.
+
+## 2026-08-09 · S·165 · tightens · one public story now carries every promise
+
+**Pricing now renders availability, prices, limits, billing, and VAT wording
+from the ratified commercial contract without turning an internal cadence into
+a permanence promise.** Free says no recurring charge, unknown editing limits
+stay unknown, and every selected term is repeated before purchase. The page no
+longer claims product add-ons or capability rules that the contract does not
+encode.
+
+The landing proof now imports one versioned Mara & Finn presentation across
+Notes, Tasks, Timeline, and Home. Its task count, names, states, priorities,
+dates, and open risk agree with the authenticated review fixture; raw slugs and
+P-codes are gone. Timeline proof waits until it enters the viewport, reduced
+motion is settled from first paint, and the hero hands both scroll position and
+keyboard focus to the proof. About presents three products, with the daily
+briefing clearly inside Home rather than beside them.
+
+## 2026-08-09 · S·164 · tightens · pricing asks one truthful question first
+
+**Pricing now recommends a plan from the visitor's use case, keeps the whole
+suite in every answer, and carries the named choice into the waitlist.** The
+page no longer promises one price, unlimited invitations, or fixed commercial
+terms while four plan shapes and editor limits remain visible. A semantic
+desktop comparison and compact mobile plan facts replace the eleven-thousand-
+pixel serial decision path.
+
+The public story is shorter and more exact. About now moves from belief to
+operating proof to invitation; the landing page removes a duplicate manifesto
+act; and its Mara and Finn object uses the same dates, milestones, states, and
+owner-review boundary as the product fixture. Home remains the front door and
+daily briefing, not a fourth product.
+
+## 2026-08-09 · S·163 · tightens · the control plane agrees on what Signal Studio is
+
+**The brand, HQ, infrastructure map, and experience registry now tell one
+current story: Notes, Tasks, and Timeline are the products; Home is the front
+door; the briefing lives inside it.** The active HQ decision supersedes the old
+four-product and `/app/signal` records without deleting their provenance. The
+brand handbook and 9.5 experience standard carry the same amendment, and the
+infrastructure map names the actual `app` and `studio` production projects.
+
+Studio's ten Design Quality registry failures are reconciled explicitly. Seven
+changed sources retain their honest `none` or `partial` coverage; two delight
+labs are registered as previews; `/hq/asset-curator` is registered as a private
+founder surface. The materiality receipt records every old and current hash and
+states the boundary plainly: registration is not visual or accessibility
+certification. A shared machine-readable Wave 9.5 receipt schema now binds
+commits, PRs, checks, deployments, live routes, evidence, council scores, and
+the next-wave decision.
 
 ## 2026-08-08 · S·162 · tightens · the visual canon is no longer mixed with the maybe pile
 

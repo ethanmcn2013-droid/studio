@@ -4,9 +4,8 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/site-nav";
 import { DevBanner } from "@/components/dev-banner";
-import { GoogleTag } from "@/components/analytics/google-tag";
 import { SITE_URL } from "@/lib/site-url";
-import { VENUE_EDITION_ANNUAL_PRICE_EUR } from "@/lib/venue-edition";
+import { COMMERCIAL_TERMS } from "@/lib/commercial-terms";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,15 +31,15 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Signal Studio · Project management for the 80% not in tech.",
+  title: "Signal Studio · Project management for people outside tech.",
   description:
-    "Project management for the 80% who don't work in tech. Notes, Tasks, Timeline — one clear system that turns activity into a daily briefing. Plain English. Built for the work, not the workflow.",
+    "Project management for people outside tech. Notes, Tasks and Timeline form one clear system. Plain English. Built for the work, not the workflow.",
   metadataBase: new URL(
     SITE_URL
   ),
   manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Signal Studio · Project management for the 80% not in tech.",
+    title: "Signal Studio · Project management for people outside tech.",
     description:
       "Notes. Tasks. Timeline. One clear system. Plain English. Built for the work, not the workflow.",
     type: "website",
@@ -85,32 +84,43 @@ const structuredData = [
     operatingSystem: "Web",
     url: SITE_URL,
     description:
-      "Project management for the 80% who don't work in tech. Signal Notes, Signal Tasks and Signal Timeline read as one system, with a daily briefing built into Home.",
+      "Project management for people outside tech. Signal Notes, Signal Tasks and Signal Timeline read as one clear system.",
     offers: [
       {
         "@type": "Offer",
-        name: "Workspace",
-        price: "12",
+        name: "Free",
+        price: String(COMMERCIAL_TERMS.plans.free.amountCents / 100),
         priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/waitlist`,
+        url: `${SITE_URL}/pricing#plans`,
       },
       {
         "@type": "Offer",
-        name: "Event",
-        price: "89",
+        name: "Student",
+        price: String(COMMERCIAL_TERMS.plans.student.amountCents / 100),
         priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
-        url: `${SITE_URL}/waitlist`,
+        url: `${SITE_URL}/pricing#plans`,
       },
       {
-        /* No price on this offer, deliberately. The ratified commercial
-           rule (E11.11) is that the number never travels without its
-           seventeen conditions, and structured data cannot carry them: a
-           search rich-result would surface a bare figure detached from
-           the founding rate, the VAT clause and the renewal lock the
-           /venues page states beside it. A surface that cannot carry the
-           conditions does not carry the number. */
+        "@type": "Offer",
+        name: "Pro",
+        price: String(COMMERCIAL_TERMS.plans.pro.monthlyAmountCents / 100),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/PreOrder",
+        url: `${SITE_URL}/pricing#plans`,
+      },
+      {
+        "@type": "Offer",
+        name: "Enterprise",
+        availability: "https://schema.org/PreOrder",
+        url: `${SITE_URL}/about?subject=enterprise#contact`,
+      },
+      {
+        /* Venue Edition remains a separate commercial surface, not a fifth
+           consumer pricing plan. Its price is deliberately omitted here:
+           search structured data cannot carry the conditions presented next
+           to that price on /venues. */
         "@type": "Offer",
         name: "Venue Edition",
         availability: "https://schema.org/PreOrder",
@@ -145,8 +155,10 @@ export default async function RootLayout({
       style={{ background: "#fff", colorScheme: "light" }}
     >
       <head>
-        {/* Google tag (gtag.js) — production only, on every page. */}
-        <GoogleTag />
+        {/* No analytics tag. GA4 was removed on 2026-08-12 under decision D2:
+            it ran on every public page with no consent gate while the privacy
+            policy claimed cookieless analytics only. Traffic counts come from
+            Vercel Analytics, which sets no cookie. See docs/ANALYTICS.md. */}
         {/* D4, belt-and-braces inline style: fires synchronously before the
             linked stylesheet resolves, preventing any grey flash on the
             document body. One-liner; only background is set here. */}
@@ -162,7 +174,7 @@ export default async function RootLayout({
             shaves ~100-300ms from the first cross-domain navigation.
             Use preconnect (establishes TCP+TLS) + dns-prefetch fallback
             for browsers that don't support preconnect. */}
-        {/* The three products are one app at app.signalstudio.ie; Home carries the briefing. */}
+        {/* The three products are one app at app.signalstudio.ie. */}
         <link rel="preconnect" href="https://app.signalstudio.ie" />
         <link rel="dns-prefetch" href="https://app.signalstudio.ie" />
       </head>
@@ -179,7 +191,7 @@ export default async function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-bg-elevated"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-bg-elevated"
         >
           Skip to content
         </a>

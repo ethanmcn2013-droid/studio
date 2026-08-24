@@ -3,12 +3,14 @@ id: unified-pricing
 title: Converge on a single Signal Studio price covering all four products.
 category: Pricing
 date: 2026-05-12
-status: Active
+status: Superseded
 reviewDate: 2026-08-12
 relatedObjects: [Signal Studio, Signal Tasks, Signal Timeline, Signal, Signal Notes]
 ---
 
 ## Decision
+
+Superseded on 2026-08-12 by `pricing-public-ladder-2026-08-12`.
 
 Converge on a single Signal Studio price covering all four products.
 

@@ -476,9 +476,6 @@ function VenueCard({ venue }: { venue: VenueTarget }) {
           <a href={venue.links.venuePage} target="_blank" rel="noreferrer" style={linkStyle}>
             tracked page
           </a>
-          <a href={venue.links.demo} target="_blank" rel="noreferrer" style={linkStyle}>
-            demo
-          </a>
           <a href={venue.links.contact} target="_blank" rel="noreferrer" style={linkStyle}>
             contact path
           </a>

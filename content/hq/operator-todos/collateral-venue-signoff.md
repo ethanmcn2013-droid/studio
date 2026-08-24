@@ -3,6 +3,7 @@ id: collateral-venue-signoff
 title: Sign off the venue set — QR destination, partner line, print run
 status: open
 priority: P0
+effort: involved
 blocking: true
 phase: Collateral Phase 5
 why: The one-pager is the revenue keystone — outreach starts when this object is approved and printed.

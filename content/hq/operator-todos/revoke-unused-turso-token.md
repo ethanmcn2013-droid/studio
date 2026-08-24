@@ -1,7 +1,8 @@
 ---
 id: revoke-unused-turso-token
 title: Revoke the signal-tasks Turso token created on 2026-07-30 and delete the local .env.local
-status: open
+status: done
+cleared: "2026-08-08 - duplicate credential action consolidated into rotate-keys-post-reset"
 priority: P0
 blocking: false
 phase: Board truth programme

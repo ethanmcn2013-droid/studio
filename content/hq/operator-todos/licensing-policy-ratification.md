@@ -1,9 +1,10 @@
 ---
 id: licensing-policy-ratification
 title: Ratify the licensing policy calls (comp, venue, student, chargeback, Event, redemption ownership).
-status: open
+status: done
+cleared: "2026-08-08 - resolved venue terms are in commercial-terms.v2; genuine residual choices are consolidated into planning-period-commercial-ratification"
 priority: P1
-blocking: true
+blocking: false
 phase: Phase 1
 why: These are policy decisions only the founder can make, and several gate how the access rows and flows are built.
 href: /hq

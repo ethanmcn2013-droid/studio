@@ -14,8 +14,12 @@ type SignatureProduct = "notes" | "tasks" | "timeline" | "signal" | "home";
  */
 export function ProductSignatureWordmark({
   product,
+  staticPresentation = false,
+  suppressMark = false,
 }: {
   product: SignatureProduct;
+  staticPresentation?: boolean;
+  suppressMark?: boolean;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -23,7 +27,7 @@ export function ProductSignatureWordmark({
     once: true,
     margin: "-12% 0px",
   });
-  const active = Boolean(prefersReducedMotion || inView);
+  const active = staticPresentation || Boolean(prefersReducedMotion || inView);
 
   return (
     <span
@@ -31,28 +35,28 @@ export function ProductSignatureWordmark({
       className={styles.wordmark}
       data-product-signature=""
       data-active={active ? "true" : undefined}
+      data-static={staticPresentation ? "true" : undefined}
       data-product={product}
-      aria-label={product}
     >
-      <span className={styles.word} aria-hidden="true">
+      <span className={styles.word}>
         {product}
       </span>
 
-      {product === "notes" ? (
+      {product === "notes" && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.notesCaret}`}
           aria-hidden="true"
         />
       ) : null}
 
-      {product === "tasks" ? (
+      {product === "tasks" && !suppressMark ? (
         <span
           className={`${styles.signature} ${styles.tasksStrike}`}
           aria-hidden="true"
         />
       ) : null}
 
-      {product === "timeline" ? (
+      {product === "timeline" && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.timelineOrigin}`}
           aria-hidden="true"
@@ -62,7 +66,7 @@ export function ProductSignatureWordmark({
         </span>
       ) : null}
 
-      {product === "signal" || product === "home" ? (
+      {(product === "signal" || product === "home") && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.signalPulse}`}
           aria-hidden="true"

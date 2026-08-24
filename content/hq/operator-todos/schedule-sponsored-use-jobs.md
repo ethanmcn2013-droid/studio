@@ -1,7 +1,8 @@
 ---
 id: schedule-sponsored-use-jobs
 title: Set CRON_SECRET so the sponsored-use job can run
-status: open
+status: done
+cleared: "2026-08-08 - CRON_SECRET exists in the Studio Production environment and the scheduled route remains configured"
 priority: P2
 blocking: false
 why: The nightly job is written and scheduled, but it answers 401 until the shared cron secret exists, and the day-30 sealing cadence it protects is unforgiving once missed.
