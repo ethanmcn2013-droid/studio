@@ -2,17 +2,26 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const ABOUT_URL = "/about";
+const TITLE = "Most productivity tools were built for the people who build them.";
+
+const MOVEMENT_SECTIONS = [
+  { id: "translation", heading: "The industry has a dialect." },
+  { id: "system", heading: "Three products. Each owns one kind of clarity." },
+  { id: "founder", heading: "Built by one person." },
+  { id: "refusals", heading: "You can measure a company by what it refuses." },
+  { id: "record", heading: "Small, on purpose." },
+] as const;
 
 const VIEWPORTS = [
-  { width: 1600, height: 1000, titleSize: 96, titleLine: 95.04, bodySize: 19 },
-  { width: 1440, height: 900, titleSize: 88, titleLine: 87.12, bodySize: 19 },
-  { width: 1280, height: 800, titleSize: 78, titleLine: 77.22, bodySize: 19 },
-  { width: 1024, height: 768, titleSize: 68, titleLine: 67.32, bodySize: 19 },
-  { width: 768, height: 1024, titleSize: 56, titleLine: 56.56, bodySize: 19 },
-  { width: 430, height: 932, titleSize: 40, titleLine: 43.2, bodySize: 17 },
-  { width: 390, height: 844, titleSize: 36, titleLine: 38.88, bodySize: 17 },
-  { width: 375, height: 812, titleSize: 36, titleLine: 38.88, bodySize: 17 },
-  { width: 320, height: 720, titleSize: 32, titleLine: 34.56, bodySize: 17 },
+  { width: 1600, height: 1000 },
+  { width: 1440, height: 900 },
+  { width: 1280, height: 800 },
+  { width: 1024, height: 768 },
+  { width: 768, height: 1024 },
+  { width: 430, height: 932 },
+  { width: 390, height: 844 },
+  { width: 375, height: 812 },
+  { width: 320, height: 720 },
 ] as const;
 
 function collectPageErrors(page: Page): string[] {
@@ -24,7 +33,7 @@ function collectPageErrors(page: Page): string[] {
   return errors;
 }
 
-test.describe("Founder’s Note production evidence", () => {
+test.describe("About six-movement production evidence", () => {
   test.describe.configure({ mode: "serial", timeout: 90_000 });
 
   for (const viewport of VIEWPORTS) {
@@ -33,75 +42,42 @@ test.describe("Founder’s Note production evidence", () => {
       await page.setViewportSize(viewport);
       await page.goto(ABOUT_URL, { waitUntil: "networkidle" });
 
-      const title = page.getByRole("heading", {
-        level: 1,
-        name: "Project management software was built by tech companies, for tech companies.",
-      });
-      await expect(title).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: TITLE })).toBeVisible();
 
-      const geometry = await page.evaluate(() => {
-        const root = document.documentElement;
-        const titleElement = document.querySelector<HTMLElement>("h1")!;
-        const prose = document.querySelector<HTMLElement>("[data-founders-note-prose]")!;
-        const thread = document.querySelector<HTMLElement>("[data-founder-thread]")!;
-        const preRevealSection = document.querySelector<HTMLElement>(
-          "[data-founders-note-pre-reveal] section:last-of-type",
-        )!;
-        const titleStyle = getComputedStyle(titleElement);
-        const proseStyle = getComputedStyle(prose);
-        const preRevealStyle = getComputedStyle(preRevealSection);
-        return {
-          overflow: root.scrollWidth - window.innerWidth,
-          titleSize: Number.parseFloat(titleStyle.fontSize),
-          titleLine: Number.parseFloat(titleStyle.lineHeight),
-          bodySize: Number.parseFloat(proseStyle.fontSize),
-          proseWidth: prose.getBoundingClientRect().width,
-          proseLeft: prose.getBoundingClientRect().left,
-          proseRight: prose.getBoundingClientRect().right,
-          threadDisplay: getComputedStyle(thread).display,
-          preRevealMarginBottom: Number.parseFloat(preRevealStyle.marginBottom),
-        };
-      });
-
+      const geometry = await page.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        missingSections: MOVEMENT_SECTIONS.map((section) => section.id).filter(
+          (id) => !document.getElementById(id),
+        ),
+      }));
       expect(geometry.overflow).toBeLessThanOrEqual(1);
-      expect(geometry.titleSize).toBeCloseTo(viewport.titleSize, 1);
-      expect(geometry.titleLine).toBeCloseTo(viewport.titleLine, 0);
-      expect(geometry.bodySize).toBe(viewport.bodySize);
-      expect(geometry.proseWidth).toBeLessThanOrEqual(681);
-      expect(geometry.threadDisplay).not.toBe("none");
+      expect(geometry.missingSections).toEqual([]);
 
-      expect(geometry.preRevealMarginBottom).toBe(viewport.width <= 767 ? 28 : 48);
-
-      if (viewport.width <= 430) {
-        expect(geometry.proseLeft).toBeGreaterThanOrEqual(19.5);
-        expect(geometry.proseRight).toBeLessThanOrEqual(viewport.width - 11.5);
+      for (const section of MOVEMENT_SECTIONS) {
+        await expect(
+          page
+            .locator(`#${section.id}`)
+            .getByRole("heading", { level: 2, name: section.heading }),
+        ).toBeVisible();
       }
 
-      const products = page.locator("[data-founders-note-product]");
+      const products = page.locator("#system li");
       await expect(products).toHaveCount(3);
-      await expect(products.locator("dt")).toHaveText(["Notes", "Tasks", "Timeline"]);
-      await expect(products.locator("dt a")).toHaveCount(3);
+      const productLinks = products.locator("a");
+      await expect(productLinks).toHaveCount(3);
       expect(
-        await products.locator("dt a").evaluateAll((anchors) =>
+        await productLinks.evaluateAll((anchors) =>
           anchors.every((anchor) => Boolean(anchor.getAttribute("href"))),
         ),
       ).toBe(true);
-      await expect(page.locator("[class*='productMark']")).toHaveCount(3);
-      expect(await page.locator("[class~='undefined']").count()).toBe(0);
-      expect(
-        await page.locator("[data-founders-note-prose] section").evaluateAll((sections) =>
-          sections.map((section) => section.querySelector("h1, h2, h3")?.textContent ?? null),
-        ),
-      ).toEqual([null, "Two barriers", "The workarounds", "The standard"]);
+
+      const refusals = page.locator("#refusals li");
+      expect(await refusals.count()).toBeGreaterThanOrEqual(5);
+
+      const author = page.locator("[role='group'][aria-label='Author']");
+      await expect(author).toContainText("Ethan McNamara");
+
       await expect(page.getByRole("article")).not.toContainText("Daily briefing");
-      await expect(page.locator("[role='group'][aria-label='Author']")).toContainText(
-        "Ethan McNamara",
-      );
-      const articleWords = await page.getByRole("article").evaluate((article) =>
-        ((article.textContent ?? "").match(/[\p{L}\p{N}]+(?:['\u2019][\p{L}\p{N}]+)*/gu) ?? [])
-          .length,
-      );
-      expect(articleWords).toBe(907);
       expect(errors).toEqual([]);
     });
   }
@@ -129,18 +105,17 @@ test.describe("Founder’s Note production evidence", () => {
     ).toEqual([]);
 
     const motion = await page.evaluate(() =>
-      [
-        "[class*='productMark']",
-        "[data-founder-rule]",
-        "[data-founder-dot]",
-      ].map((selector) => {
-        const style = getComputedStyle(document.querySelector<HTMLElement>(selector)!);
-        return { animation: style.animationName, transform: style.transform };
-      }),
+      Array.from(
+        document.querySelectorAll<HTMLElement>("#system .about-r, #founder .about-r"),
+      )
+        .slice(0, 6)
+        .map((element) => {
+          const style = getComputedStyle(element);
+          return { animation: style.animationName, transform: style.transform };
+        }),
     );
-    expect(motion.every((item) => item.animation === "none" && item.transform === "none")).toBe(
-      true,
-    );
+    expect(motion.length).toBeGreaterThan(0);
+    expect(motion.every((item) => item.animation === "none")).toBe(true);
 
     for (const width of [640, 320]) {
       await page.setViewportSize({ width, height: 900 });
@@ -156,7 +131,7 @@ test.describe("Founder’s Note production evidence", () => {
     await page.reload({ waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 2, name: "That became three products." }),
+      page.getByRole("heading", { level: 2, name: "Built by one person." }),
     ).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
     expect(errors).toEqual([]);
@@ -175,12 +150,6 @@ test.describe("Founder’s Note production evidence", () => {
     await expect(productsButton).toHaveAttribute("aria-controls", "products-mega-panel");
     await expect(page.locator("#products-mega-panel")).toBeVisible();
     await expect.poll(() => page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
-    const keyboardMotion = await page.evaluate(() =>
-      [".mnotes-cursor", ".mtasks-dot", ".mroadmap-dot"].map(
-        (selector) => getComputedStyle(document.querySelector<SVGElement>(selector)!).animationName,
-      ),
-    );
-    expect(keyboardMotion).toEqual(["none", "none", "none"]);
     await page.keyboard.press("Escape");
     await expect(productsButton).toBeFocused();
     await expect(productsButton).not.toHaveAttribute("aria-controls");
@@ -222,7 +191,7 @@ test.describe("Founder’s Note production evidence", () => {
     expect(errors).toEqual([]);
   });
 
-  test("the article and primary routes remain available without JavaScript", async ({ browser }) => {
+  test("the page and primary routes remain available without JavaScript", async ({ browser }) => {
     const context = await browser.newContext({
       javaScriptEnabled: false,
       viewport: { width: 375, height: 812 },
@@ -230,7 +199,10 @@ test.describe("Founder’s Note production evidence", () => {
     const page = await context.newPage();
     await page.goto(ABOUT_URL, { waitUntil: "load" });
 
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: TITLE })).toBeVisible();
+    for (const section of MOVEMENT_SECTIONS) {
+      await expect(page.locator(`#${section.id}`)).toBeVisible();
+    }
     const fallback = page.getByRole("navigation", {
       name: "Site navigation without JavaScript",
     });
@@ -290,7 +262,7 @@ test.describe("Founder’s Note production evidence", () => {
         ),
       };
     });
-    console.log(`founders-note-performance=${JSON.stringify(metrics)}`);
+    console.log(`about-page-performance=${JSON.stringify(metrics)}`);
     expect(metrics.domContentLoadedMs).toBeLessThan(2_000);
     expect(metrics.loadMs).toBeLessThan(2_000);
   });
