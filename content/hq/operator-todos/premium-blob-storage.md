@@ -1,9 +1,10 @@
 ---
 id: premium-blob-storage
 title: Provision Vercel Blob on the tasks project for durable task-file uploads
-status: open
+status: done
+cleared: "2026-08-08 - duplicate of migrate-attachments-blob; durable Blob storage is provisioned and wired"
 priority: P1
-blocking: true
+blocking: false
 phase: Premium Programme Phase 1
 why: Attachment bytes currently write to local disk on Vercel (.data/uploads), which does not survive redeploys. Phase 1 moves uploads to Vercel Blob behind the existing storage seam; the store and its token are founder-provisioned infrastructure.
 href: /hq/decisions

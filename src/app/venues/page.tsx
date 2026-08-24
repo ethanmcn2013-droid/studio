@@ -1,627 +1,815 @@
+import type { CSSProperties, ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import { SiteFooter } from "@/components/landing/site-footer";
-import { ReadingProgress } from "@/components/reading-progress";
-import { TIMELINE_PUBLIC_ORIGIN } from "@/lib/product-urls";
-import { VENUE_SITE_TRACKING, withTracking } from "@/lib/tracking";
+import { SignalTheRead } from "@/components/marketing/heroes/signal/the-read";
+import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
+
+import {
+  ACCESS_TERM,
+  ACCESS_TERM_LONG,
+  BRANDING,
+  CAN_WE_SEE,
+  COLLABORATION,
+  COMMERCIAL_SUMMARY,
+  COORDINATOR,
+  CTA,
+  CTA_HREF,
+  CTA_SUPPORT,
+  ENTITLEMENT,
+  FAQ,
+  FILM,
+  FOUNDING_NUMBER,
+  FOUNDING_RATE,
+  GEOGRAPHY,
+  HOW_IT_REACHES_YOU,
+  KEEPSAKE,
+  LADDER,
+  NO_NAMES,
+  NOT_TECHNICAL,
+  OFFER_LINE,
+  PER_WEDDING_SCALE,
+  PLAIN_THREE,
+  POSTPONEMENT,
+  PRICE_FOUNDING,
+  PRIVACY,
+  ROADMAP,
+  SURVIVAL,
+  TEAM_ASK,
+  VAT_ANSWER,
+  WHAT_COUPLES_GET,
+  WHO_ELSE,
+  WHY_NOT_CHARGE_COUPLES,
+} from "@/lib/venue-copy";
+
+import { FilmSlot } from "./film-slot";
+import { VENUE_SIGNAL_ITEMS, VENUE_TIMELINE_FIXTURE } from "./fixtures";
+import styles from "./venue-a.module.css";
+
+/**
+ * The venue landing page · "The Relay".
+ *
+ * The landing page's signature structure, the product relay, pointed at the
+ * venue. On the homepage the relay follows one detail through the three products and Home.
+ * Here it follows the venue's own argument down the seven rungs, and the real
+ * product appears only where a rung is better shown than told.
+ *
+ * THE HIERARCHY IS THE ANSWERS'. The seven ladder questions are navigation,
+ * and they are set like navigation: a quiet 19-25px register beside the rung
+ * number. The display type on this page belongs to the ratified answers, one
+ * per rung, because the person this page is written for reads answers, not
+ * furniture. In order: two live product views, the sentence that settles what
+ * a venue can and cannot see, the price, the word "No.", the words "One
+ * action.", the full access term, and "Nobody yet." over twenty-five open
+ * places. Every one of those is an imported constant, and where a lead
+ * sentence is lifted into display type the remainder is sliced from the same
+ * constant, never retyped.
+ *
+ * THE PRICE NEVER TRAVELS WITHOUT ITS CONDITIONS, GEOMETRICALLY. The ratified
+ * rule is that a surface carrying the number carries all seventeen rows. This
+ * page makes that physical: the price sentence rides a sticky bar that stays
+ * pinned above the ledger for the whole of its scroll, so there is no scroll
+ * position from which a reader can see a condition without the number, or the
+ * number without conditions under it.
+ *
+ * COPY. Every claim, price, term and answer is imported from
+ * `src/lib/venue-copy.ts`. The strings in COPY below are connective only:
+ * section labels, the frame that tells a cold reader whose voice a sentence
+ * is in, and the mono furniture. No sentence here restates a ratified claim.
+ *
+ * STRUCTURE. Exactly seven h2 rungs, in ladder order, each with an id the
+ * contents in the relay head can reach. The rungs sit at h2, not h3, because
+ * the embedded timeline sample ships two h2s of its own, both deliberate
+ * house decisions inside timeline-artifact.tsx: the visible document header
+ * that carries the couple's names, and a screen-reader-only "Plan timeline"
+ * section heading. With the rungs at the same level, the samples read as
+ * two small sibling documents after rung 01 — the plan, then the briefing,
+ * which takes embeddedHeadingLevel 2 for exactly this reason — and neither
+ * can own rungs 02 through 07 in a heading-list navigation. Demoting the
+ * timeline's pair would mean editing the shared artifact every marketing
+ * surface embeds, and flattening the samples for assistive technology would
+ * take rung 01's display answer away from exactly the readers heading
+ * navigation serves.
+ * The block titles inside a rung (the ledger, the film) are h3 under it. The
+ * 17-row ledger lives inside rung 03 because it is the price's conditions;
+ * the reserved film frame lives inside rung 04 because the film is what a
+ * couple opens and what you see.
+ *
+ * THE FAQ OF RECORD. Twelve questions are ratified; ten of their answers were
+ * already set on this page word for word. The two that are not are kept, each
+ * in the rung that raises its question, so all twelve are answered without a
+ * 523-word repeat block. Reversible in one commit.
+ *
+ * NOT INSTRUMENTED. There is no page-view recorder in this repo; rather than
+ * invent an API the page ships without instrumentation and the gap is
+ * reported.
+ */
+const COPY = {
+  relayKicker: "Seven questions, in order",
+  relayHeading: "Everything a venue asks, in the order they ask it.",
+
+  contentsLabel: "The seven questions this page answers, in order",
+
+  heroJumpToTerms: "What it costs, and every condition on it",
+
+  sourceLabel: "Sample workspace",
+  sourceCouple: "Mara and Finn",
+  sourceVenue: "Glenmara House",
+  sourceDateLabel: "29 July",
+  sourceDate: "2026-07-29",
+
+  sampleView: "Sample product view",
+
+  eyebrow1: "What lands with the couple",
+  foot1: "A booking → their wedding workspace",
+
+  /* PLAIN_THREE is documented in venue-copy.ts as "the three sentences a
+     venue says to a couple", so its "we" is the venue and its "they" is the
+     couple. Nothing else on the page uses that pair: everywhere else the
+     venue is "you" and the founder is "I". Without this frame a partner
+     reading the display line cold parses "We can see that they opened it" as
+     Signal Studio watching the venue, the opposite of what the rung says.
+     The frame therefore renders at reading size directly over the triple,
+     not inside the 10px mono eyebrow: the page's biggest emotional claim
+     must not hang its speaker on the page's smallest label. The eyebrow
+     carries the bare numeral, the same grammar as every other chapter,
+     and .manifestoNum redraws it in the relay number register (10px,
+     --zinc-600, 0.16em, 24px drop) so the seven-numeral spine keeps one
+     voice even where rung 02 breaks out of the relay grid. */
+  manifestoEyebrow: "02",
+  manifestoFrame: "What a venue says to a couple",
+
+  eyebrow3: "The number, and its conditions",
+  foot3: "One number → seventeen conditions",
+  scaleTerm: "Across a year",
+  vatTerm: "Is VAT on top",
+
+  ledgerTitle: "The terms, in full",
+  ledgerCount: "17 rows",
+  ledgerGroups: [
+    "The rate",
+    "The couple’s workspace",
+    "If it ends",
+    "Your place, and theirs",
+  ],
+
+  eyebrow4: "Both halves, together",
+  foot4: "What you see → what you never see",
+  noNamesTerm: "Can we see who has not opened it",
+  postponementTerm: "Does a date change show up",
+  showUsTerm: "If a couple wants to show you something",
+
+  filmMeta: "Reserved",
+
+  eyebrow5: "One action, after they book",
+  foot5: "One invitation → nothing to run",
+  coordinatorTerm: "If it lands on the coordinator",
+  notTechnicalTerm: "If nobody here is technical",
+  reachesTerm: "How it reaches you",
+
+  eyebrow6: "The term, and what outlives it",
+  foot6: "The wedding → Keepsake",
+  keepsakeTerm: "After the wedding",
+  survivalTerm: "If your agreement ends",
+
+  /* Not "One of twenty-five": that restated the rung's own h2 word for
+     word, the only eyebrow that advanced nothing, at the page's emotional
+     peak. This one does what its siblings do and names the rung's two
+     objects: the rank of places, and the question "Nobody yet." answers. */
+  eyebrow7: "The places, and who holds them",
+  foot7: "Payment cleared → your number",
+  roadmapTerm: "Where your requests go",
+  notUsedTerm: "If your couples do not use it",
+  whereTerm: "Where",
+
+  closingName: "Ethan McNamara",
+  closingProgramme: "The Founding 25",
+  closingPlace: "Limerick, 2026",
+} as const;
+
+/**
+ * The two ratified FAQ answers that say something no other sentence on this
+ * page says. Looked up by question rather than by index, so a reorder of FAQ
+ * cannot silently move an answer under the wrong term.
+ */
+const FAQ_BY_QUESTION = new Map(FAQ.map((entry) => [entry.q, entry.a]));
+const SHOW_US_ANSWER = FAQ_BY_QUESTION.get(
+  "What if a couple wants to show us something?",
+);
+const NOT_USED_ANSWER = FAQ_BY_QUESTION.get(
+  "What if our couples just don't use it?",
+);
+
+/**
+ * The ratified question whose answer opens "No." Rung 04's heading is a
+ * statement, not a question, so without this frame the "No." is a one-beat
+ * non-sequitur for a cold reader. Guarded like the two answers above: if the
+ * question is ever reworded upstream, the frame disappears rather than
+ * shipping a caption the FAQ of record no longer contains.
+ */
+const WORKSPACE_QUESTION = "Can we see the couple's workspace?";
+const WORKSPACE_QUESTION_ON_RECORD = FAQ_BY_QUESTION.has(WORKSPACE_QUESTION);
+
+/**
+ * The ledger, grouped so it can be scanned as well as read. Row numbers stay
+ * absolute, 01 through 17, because the rule is "all seventeen rows" and the
+ * numbering is the proof of it. The slice boundaries follow the content:
+ * rows 1-8 are the rate and what holds it, 9-12 are the couple's own
+ * entitlement, 13-14 are the two ways it can end, 15-17 are the founding
+ * place and the one row about the couple's side of the price.
+ *
+ * Row 01 is not in the first group's slice because it is rendered
+ * separately, as the sticky row that pins the price over its sixteen
+ * conditions. PRICE_ROW is the ratified pair itself; the figure span is
+ * sliced from the row's own detail so the rendered text is provably the
+ * constant, and if the detail ever stops opening with the figure the whole
+ * sentence renders in the rest slot untouched.
+ */
+const PRICE_ROW = COMMERCIAL_SUMMARY[0];
+const PRICE_ROW_FIGURE = PRICE_ROW[1].startsWith(PRICE_FOUNDING)
+  ? PRICE_ROW[1].slice(0, PRICE_FOUNDING.length)
+  : "";
+const PRICE_ROW_REST = PRICE_ROW[1].slice(PRICE_ROW_FIGURE.length);
+
+const LEDGER_GROUPS = [
+  { label: COPY.ledgerGroups[0], rows: COMMERCIAL_SUMMARY.slice(1, 8), base: 1 },
+  { label: COPY.ledgerGroups[1], rows: COMMERCIAL_SUMMARY.slice(8, 12), base: 8 },
+  { label: COPY.ledgerGroups[2], rows: COMMERCIAL_SUMMARY.slice(12, 14), base: 12 },
+  { label: COPY.ledgerGroups[3], rows: COMMERCIAL_SUMMARY.slice(14, 17), base: 14 },
+] as const;
+
+/** The postponement clause, sliced from the long form of the same term. */
+const ACCESS_TERM_REST = ACCESS_TERM_LONG.startsWith(ACCESS_TERM)
+  ? ACCESS_TERM_LONG.slice(ACCESS_TERM.length).trim()
+  : "";
+
+/** The twenty-five places. The first, and every fifth, is a major tick. */
+const RANK = Array.from({ length: 25 }, (_, index) => index);
+const RANK_SCALE = [1, 5, 10, 15, 20, 25];
+
+/**
+ * Split a ratified string after its first sentence, so a lead can be set in
+ * display type and the remainder at reading size without retyping either.
+ */
+function splitLead(source: string): { lead: string; rest: string } {
+  const at = source.indexOf(". ");
+  if (at < 0) return { lead: source, rest: "" };
+  return { lead: source.slice(0, at + 1), rest: source.slice(at + 2) };
+}
+
+/**
+ * Word-internal straight apostrophes become the typographic U+2019 at render.
+ * A glyph substitution, never an edit: wording, spacing and punctuation
+ * structure are untouched, and a quote mark can never match the pattern
+ * because it does not sit between two letters. The embedded product views
+ * already set U+2019, so without this the page serves both glyphs within one
+ * scroll. The verbatim-bound strings are unaffected in shape: the privacy
+ * launch sentence and all seventeen commercial rows contain no apostrophe.
+ */
+function typeset(source: string): string {
+  return source.replace(/(\p{L})'(\p{L})/gu, "$1’$2");
+}
+
+const TEAM_ASK_SPLIT = splitLead(TEAM_ASK);
+const WHO_ELSE_SPLIT = splitLead(WHO_ELSE);
+const CAN_WE_SEE_SPLIT = splitLead(CAN_WE_SEE);
+
+/**
+ * Wrap one exact substring of a ratified string in an accent span. The slices
+ * are taken from `source` itself, never retyped, and a substring that is not
+ * found returns the untouched string rather than silently dropping copy.
+ */
+function accent(source: string, word: string, className: string): ReactNode {
+  const at = source.indexOf(word);
+  if (at < 0) return source;
+  return (
+    <>
+      {source.slice(0, at)}
+      <span className={className}>{word}</span>
+      {source.slice(at + word.length)}
+    </>
+  );
+}
 
 export const metadata: Metadata = {
   title: "The Founding 25 · Signal Studio",
-  description:
-    "Stand behind every couple's planning. The Venue Edition is €1,500 a year, prepaid, the venue's name in a quiet line, nothing for the team to run. The first twenty-five venues pay €1,000, held for as long as they stay.",
+  description: OFFER_LINE,
   openGraph: {
     title: "The Founding 25 · Signal Studio",
-    description:
-      "A venue stands behind its couples' planning, eighteen months of Signal Studio each, under the venue name, paid once a year. Patronage, not software.",
+    description: OFFER_LINE,
     type: "website",
   },
 };
 
-const examplePlanHref = withTracking(
-  `${TIMELINE_PUBLIC_ORIGIN}/the-wedding`,
-  { ...VENUE_SITE_TRACKING, artifact: "example_plan" },
-);
-const demoHref = withTracking("/venues/demo", {
-  ...VENUE_SITE_TRACKING,
-  artifact: "venue_demo",
-});
-const venueWaitlistHref = withTracking("/waitlist?useCase=venues", {
-  ...VENUE_SITE_TRACKING,
-  artifact: "venue_waitlist",
-});
-
-/**
- * Founding Venue Programme, rebuilt 2026-05-26 (S·68).
- * Audience: warm leads who have already had an outreach conversation.
- * Job: prove the product is real, show the venue-name moment inline,
- * explain the activation register (coming for founding venues), state the
- * price plainly, and make the ask feel low-stakes.
- *
- * No fabricated product screenshot (DESIGN.md §8), the mocks use
- * fictional venue and activation references throughout.
- */
-
-// ── Coordinator wireframe mock data ─────────────────────────────
-type ActivationState = "activated" | "invited" | "redeemed";
-
-const activationRows: Array<{
-  reference: string;
-  entitlement: string;
-  state: ActivationState;
-  privacy: string;
-}> = [
-  {
-    reference: "GM-0241",
-    entitlement: "18 months",
-    state: "activated",
-    privacy: "Private",
-  },
-  {
-    reference: "GM-0242",
-    entitlement: "18 months",
-    state: "redeemed",
-    privacy: "Private",
-  },
-  {
-    reference: "GM-0243",
-    entitlement: "18 months",
-    state: "invited",
-    privacy: "Private",
-  },
-  {
-    reference: "GM-0244",
-    entitlement: "18 months",
-    state: "activated",
-    privacy: "Private",
-  },
-];
-
-// ── Section data ─────────────────────────────────────────────────
-const coupleExperience = [
-  {
-    title: "One clear place",
-    copy: "Notes, decisions, tasks, and a plan anyone can forward, instead of a spreadsheet and a thread.",
-  },
-  {
-    title: "Eighteen months, at least",
-    copy: "The venue prepays the year. Each couple gets eighteen months, or three months past the wedding, whichever is later. A long engagement never runs out before the day.",
-  },
-  {
-    title: "Your name on it, quietly",
-    copy: "When a couple opens their workspace, they see your venue's name at the top. Their plan stays the thing in focus.",
-  },
-  {
-    title: "Nothing to learn",
-    copy: "Plain English throughout. No training, no manual. They open it, and it is clear.",
-  },
-];
-
-const foundingPerks = [
-  {
-    title: "€500 a year less",
-    copy: "€1,000 a year instead of €1,500, for as long as you stay. The rate holds while the agreement keeps renewing. Not an introductory price that climbs.",
-  },
-  {
-    title: "A number that means something",
-    copy: "Twenty-five places, 01/25 to 25/25. Your number is assigned when your payment clears, not when you sign. It is the one step nobody can walk back.",
-  },
-  {
-    title: "A short conversation, once a year",
-    copy: "Thirty minutes with Ethan on what the planning year looks like from your side, plus an email address that reaches him. Not a standing meeting.",
-  },
-  {
-    title: "First look at what is next",
-    copy: "Founding venues see new work before anyone else, and can say what should change while it still can. Your requests are written down and shape the roadmap. Nothing gets built for one venue.",
-  },
-  {
-    title: "The activation register, first",
-    copy: "A calm record of invitations, activation state and entitlement validity. Private couple work never appears unless the couple separately consents to a specific field.",
-  },
-];
-
-const mechanicLines = [
-  "You pay once a year. Every couple you book gets the full suite for eighteen months, or three months past the wedding, whichever is later.",
-  "When access opens, each couple gets a code and a clear first step.",
-  "After a couple accepts sponsored access, the interface can acknowledge your venue while their plan remains private.",
-  "Nothing for your team to run.",
-];
-
-// ── Page ─────────────────────────────────────────────────────────
-export default function VenuesPage() {
+export default function VenuesLabA() {
   return (
     <>
-      <ReadingProgress />
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
-
-        {/* ── Hero ── */}
-        <section className="border-b border-border-soft px-6 pb-16 pt-14 md:pb-20 md:pt-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <p
-              className="mb-5 text-[11px] font-semibold uppercase text-ink-quiet"
-              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-            >
-              The Founding 25
-            </p>
-            <h1 className="max-w-3xl text-[clamp(2rem,1.4rem+3.2vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
-              Stand behind every couple who plans with you.
+      <main id="main" tabIndex={-1} className={styles.page}>
+        {/* ── Hero · .reveal-hero .reveal-hero-v2 ────────────────── */}
+        <section
+          className="reveal-hero reveal-hero-v2"
+          aria-labelledby="va-title"
+        >
+          <div className="reveal-hero-v2-inner">
+            <h1 id="va-title" className="reveal-headline-v2">
+              {accent(OFFER_LINE, "private", "reveal-headline-accent")}
             </h1>
-            <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              Signal Studio gives every couple a clear place to plan their
-              wedding. The Venue Edition puts your name on it, paid once a
-              year, nothing for your team to run.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href={venueWaitlistHref}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
-              >
-                Join the venue waitlist
-              </Link>
-              <Link
-                href={demoHref}
-                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
-              >
-                Watch one wedding Tuesday &rarr;
-              </Link>
+
+            <p className="reveal-lede-v2">{ENTITLEMENT}</p>
+
+            {/* Navigation, not a second ask. The one call to action lives in
+                the close, after the ladder has earned it. This anchor exists
+                because a partner reading the page cold needs a route to the
+                number without six screens of scroll. It lands on rung 03
+                itself, not on the ledger head: the promise is "what it costs,
+                and every condition on it", so the reader arrives on the
+                number with the seventeen rows under it, instead of past the
+                number with the ledger title behind the sticky site nav. */}
+            <div className="reveal-hero-actions">
               <a
-                href={examplePlanHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
+                className="reveal-action reveal-action-secondary"
+                href="#va-rung-3"
               >
-                See what the couple opens &rarr;
+                {COPY.heroJumpToTerms}
+                <span aria-hidden>↓</span>
               </a>
             </div>
-
-            {/* Co-branded workspace mock */}
-            <div className="mt-12 overflow-hidden rounded-[10px] border border-border-soft bg-bg-elev shadow-2">
-
-              {/* Venue identity bar: the venue name, one quiet line. Never a logo (D-027 point 3). */}
-              <div className="flex items-center gap-2.5 border-b border-border-soft bg-bg px-4 py-2.5">
-                <span
-                  aria-hidden
-                  className="h-2 w-2 flex-shrink-0 rounded-full"
-                  style={{ background: "var(--accent)" }}
-                />
-                <span className="text-[11px] font-medium text-ink-soft">
-                  Sponsored by Glenmara Estate
-                </span>
-              </div>
-
-              {/* Workspace header */}
-              <div className="flex flex-col gap-3 border-b border-border-soft px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-[18px] font-semibold tracking-[-0.025em] text-ink">
-                    Aoife &amp; Ciarán
-                  </p>
-                  <p className="mt-0.5 text-[12px] text-ink-quiet">
-                    Wedding planning workspace
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span
-                    className="rounded-full px-2.5 py-1 text-[11px] font-semibold"
-                    style={{ background: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" }}
-                  >
-                    8 of 12 complete
-                  </span>
-                  <span
-                    className="text-[12px] font-medium"
-                    style={{ color: "var(--flight)" }}
-                  >
-                    28 days to event
-                  </span>
-                </div>
-              </div>
-
-              {/* Status body */}
-              <div className="grid gap-0 md:grid-cols-[1.35fr_0.65fr]">
-                <div className="border-b border-border-soft p-5 md:border-b-0 md:border-r">
-                  <p className="mb-2 text-[10px] font-semibold uppercase text-ink-quiet">
-                    Current state
-                  </p>
-                  <p className="text-[26px] font-semibold tracking-[-0.03em] text-ink">
-                    Eight of twelve planned milestones are complete.
-                  </p>
-                  <p className="mt-3 max-w-sm text-[13px] leading-[1.6] text-ink-soft">
-                    The planning window and completed milestones are shown
-                    separately. Signal Studio does not invent an on-track score.
-                  </p>
-                </div>
-                <div className="p-5">
-                  <p className="mb-3 text-[10px] font-semibold uppercase text-ink-quiet">
-                    Next clear step
-                  </p>
-                  <p className="text-[14px] font-medium text-ink">
-                    Final guest count to catering
-                  </p>
-                  <p
-                    className="mt-1.5 text-[12px] font-medium"
-                    style={{ color: "var(--flight)" }}
-                  >
-                    Due in 3 days
-                  </p>
-                </div>
-              </div>
-
-              {/* Timeline columns */}
-              <div className="grid border-t border-border-soft md:grid-cols-3">
-                {[
-                  ["Now", "Final guest count", "Table plan draft"],
-                  ["Next week", "Supplier walkthrough", "Menu confirmation"],
-                  ["Final week", "Venue walkthrough", "Seating plan live"],
-                ].map(([title, first, second]) => (
-                  <div
-                    key={title}
-                    className="min-h-[140px] border-b border-border-soft p-5 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
-                  >
-                    <p className="text-[13px] font-semibold text-ink">{title}</p>
-                    <div className="mt-4 space-y-3">
-                      <MockLine label={first} />
-                      <MockLine label={second} muted />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* ── The mechanic ── */}
-        <section className="border-b border-border-soft px-6 py-14 md:py-16">
-          <div className="mx-auto grid w-full max-w-[1040px] gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-            <div>
-              <p
-                className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-                style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-              >
-                How it works
-              </p>
-              <h2 className="text-[clamp(1.35rem,1.1rem+1.2vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                Four lines. The whole operation.
-              </h2>
-            </div>
-            <ol className="space-y-5">
-              {mechanicLines.map((line, i) => (
-                <li key={i} className="grid grid-cols-[auto_1fr] gap-4">
-                  <span className="mt-0.5 text-[11px] font-semibold tabular-nums text-ink-quiet">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[16px] leading-[1.6] text-ink-soft">
-                    {line}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+        {/* ── Relay, part one · .reveal-relay ────────────────────── */}
+        <section className="reveal-relay" aria-labelledby="va-relay-title">
+          <header className="reveal-relay-head">
+            <p className="reveal-relay-kicker">{COPY.relayKicker}</p>
+            <h2 id="va-relay-title">{COPY.relayHeading}</h2>
 
-        {/* ── What couples experience ── */}
-        <section className="border-b border-border-soft px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-              <div>
-                <p
-                  className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  What your couples get
-                </p>
-                <h2 className="text-[clamp(1.35rem,1.1rem+1.2vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                  What your patronage gives them.
-                </h2>
-              </div>
-              <p className="self-end text-[15px] leading-[1.65] text-ink-soft">
-                The couple never sees a price. The venue pays so they never
-                have to think about it.{" "}
-                <a
-                  href={examplePlanHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ink underline decoration-border-soft underline-offset-[3px] transition-colors hover:decoration-accent"
-                >
-                  See an example plan &rarr;
-                </a>
-              </p>
-            </div>
-            <div className="border-t border-border-soft">
-              {coupleExperience.map((item) => (
-                <div
-                  key={item.title}
-                  className="grid gap-2 border-b border-border-soft py-6 md:grid-cols-[0.9fr_1.1fr] md:gap-10"
-                >
-                  <h3 className="text-[15px] font-medium text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="text-[14px] leading-[1.6] text-ink-soft">
-                    {item.copy}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Venue activation register, wireframe ── */}
-        <section className="border-b border-border-soft bg-bg-deep px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-              <div>
-                <p
-                  className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  Activation administration
-                </p>
-                <h2 className="text-[clamp(1.35rem,1.1rem+1.2vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-                  See every activation. Never the private plan.
-                </h2>
-              </div>
-              <p className="self-end text-[15px] leading-[1.65] text-ink-soft">
-                An activation register is in development. It is limited to
-                invitation, entitlement and activation state. A couple&rsquo;s
-                Notes, Tasks and unpublished Timeline remain inaccessible.
-              </p>
-            </div>
-
-            {/* Wireframe mock */}
-            <div className="relative overflow-hidden rounded-[10px] border border-dashed border-border-soft">
-
-              {/* Concept badge */}
-              <div className="absolute right-4 top-4 z-10">
-                <span
-                  className="rounded-full border border-border-soft bg-bg px-2.5 py-1 text-[10px] font-semibold uppercase text-ink-quiet"
-                  style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                >
-                  Concept
-                </span>
-              </div>
-
-              {/* Header bar */}
-              <div className="flex items-center justify-between border-b border-dashed border-border-soft bg-bg px-5 py-3.5 opacity-70">
-                <div className="flex items-center gap-2.5">
-                  <span
-                    aria-hidden
-                    className="h-2 w-2 flex-shrink-0 rounded-full"
-                    style={{ background: "var(--accent)" }}
-                  />
-                  <span className="text-[13px] font-semibold text-ink">
-                    Sponsored activations · Glenmara Estate
-                  </span>
-                </div>
-                <span className="hidden text-[12px] text-ink-quiet sm:block">
-                  4 issued · 3 activated
-                </span>
-              </div>
-
-              {/* Column headers, desktop only */}
-              <div
-                className="hidden border-b border-dashed border-border-soft px-5 py-2.5 opacity-60 md:grid"
-                style={{
-                  gridTemplateColumns: "2fr 1.2fr 1.4fr 1fr",
-                }}
-              >
-                {["Reference", "Entitlement", "Activation", "Content"].map((h) => (
-                  <span
-                    key={h}
-                    className="text-[10px] font-semibold uppercase text-ink-quiet"
-                    style={{ letterSpacing: "var(--tracking-eyebrow)" }}
+            {/* The contents, in the slot where the house head sets its
+                reading matter, under the h2. OFFER_PARAGRAPH used to sit
+                here, but it restated the hero's lede and repeated a 24-word
+                clause of WHAT_COUPLES_GET verbatim one scroll later, so the
+                head now holds the one thing only it can say: the order.
+                These are the only links on the page that are not the ask,
+                and each one lands on its rung. */}
+            <nav className={styles.contents} aria-label={COPY.contentsLabel}>
+              <ol className={styles.contentsList}>
+                {LADDER.map((rung, index) => (
+                  <li
+                    className={styles.contentsItem}
+                    key={rung}
+                    style={{ "--i": index } as CSSProperties}
                   >
-                    {h}
-                  </span>
-                ))}
-              </div>
-
-              {/* Rows */}
-              <div className="divide-y divide-dashed divide-border-soft opacity-65">
-                {activationRows.map((row) => {
-                  const s = activationStateMap[row.state];
-                  return (
-                    <div
-                      key={row.reference}
-                      className="grid grid-cols-[1fr_auto] items-center gap-x-4 px-5 py-4 md:grid-cols-[2fr_1.2fr_1.4fr_1fr] md:gap-0"
+                    <a
+                      className={styles.contentsLink}
+                      href={`#va-rung-${index + 1}`}
                     >
-                      <span className="text-[14px] font-medium text-ink">
-                        {row.reference}
+                      <span className={styles.contentsNum}>
+                        {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span className="hidden text-[13px] text-ink-soft md:block">
-                        {row.entitlement}
-                      </span>
-                      <span
-                        className="inline-flex h-fit items-center rounded-full border border-border-soft px-2.5 py-1 text-[11px] font-semibold"
-                        style={{ background: s.bg, color: s.color }}
-                      >
-                        {s.label}
-                      </span>
-                      <span className="hidden text-[12px] text-ink-quiet md:block">
-                        {row.privacy}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+                      <span className={styles.contentsText}>{rung}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </header>
+
+          <div
+            className="reveal-relay-source"
+            /* role="group" makes the aria-label valid: a label on a plain
+               div is ARIA-prohibited (axe aria-prohibited-attr). The
+               homepage's own relay carries the byte-identical pattern
+               without the role; flagged there, fixed here. */
+            role="group"
+            aria-label="Sample workspace context"
+          >
+            <span>{COPY.sourceLabel}</span>
+            <strong>{COPY.sourceCouple}</strong>
+            <span aria-hidden>·</span>
+            <span>{COPY.sourceVenue}</span>
+            <span aria-hidden>·</span>
+            <time dateTime={COPY.sourceDate}>{COPY.sourceDateLabel}</time>
+          </div>
+
+          {/* Rung 01 · what their couples get. The one rung whose answer is
+              better shown than said: the display object is the product
+              itself, twice, and the words stay at reading size beside it. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-1"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">01</p>
+              <h2 className={styles.rungQ}>{LADDER[0]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow1}</p>
+              <p className={styles.rungBody}>{WHAT_COUPLES_GET}</p>
+              <p className="reveal-relay-foot">{COPY.foot1}</p>
             </div>
 
-            <p className="mt-4 text-[13px] text-ink-quiet">
-              Couple names, dates and work are absent by default. A separate,
-              field-level consent receipt is required before any optional
-              metadata can appear.
-            </p>
-          </div>
-        </section>
+            <div className={styles.previewStack}>
+              <div className="reveal-relay-preview" data-product="timeline">
+                <p className="reveal-relay-sample">{COPY.sampleView}</p>
+                <TimelineTheLine embedded timeline={VENUE_TIMELINE_FIXTURE} />
+              </div>
 
-        {/* ── Pricing ── */}
-        <section className="border-b border-border-soft px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <p
-              className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-            >
-              The Venue Edition
-            </p>
-            <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              Paid once a year. The couple never sees a price.
-            </h2>
-            <div className="mt-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
-              <div>
-                <p className="text-[16px] leading-[1.65] text-ink-soft">
-                  €1,500 per venue, per year, prepaid. Every couple with a
-                  booking gets the full suite. No seats. No per-couple maths.
-                  The venue pays so the couple never has to think about it.
-                </p>
-                <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
-                  The first twenty-five venues pay €1,000. That is €500 a
-                  year less, for as long as you stay. The rate holds while
-                  the agreement keeps renewing, and there is no clause that
-                  expires it into a higher number.
-                </p>
-                <p className="mt-5 text-[16px] leading-[1.65] text-ink-soft">
-                  Both prices include VAT at the prevailing rate. The number
-                  you see is the number you pay.
-                </p>
+              <div className="reveal-relay-preview" data-product="signal">
+                <p className="reveal-relay-sample">{COPY.sampleView}</p>
+                {/* Heading level 2, so the briefing is its own sample
+                    document beside the timeline's, not a subsection of
+                    the timeline's screen-reader outline. */}
+                <SignalTheRead
+                  embedded
+                  embeddedHeadingLevel={2}
+                  items={VENUE_SIGNAL_ITEMS}
+                  venue={COPY.sourceVenue}
+                />
               </div>
-              <div className="flex flex-col gap-6 border-t border-border-soft pt-7 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-                <div className="flex flex-col gap-2">
-                  <span
-                    className="text-[11px] font-semibold uppercase"
-                    style={{
-                      letterSpacing: "var(--tracking-eyebrow)",
-                      color: "var(--accent)",
-                    }}
-                  >
-                    The Founding 25
-                  </span>
-                  <span className="text-[clamp(2rem,1.6rem+1.6vw,3rem)] font-semibold leading-none tracking-[-0.045em] text-ink">
-                    €1,000
-                  </span>
-                  <span className="text-[13px] leading-[1.5] text-ink-quiet">
-                    per venue, per year · prepaid · VAT included
-                  </span>
-                </div>
-                <div className="flex flex-col gap-2 border-t border-border-soft pt-6">
-                  <span
-                    className="text-[11px] font-semibold uppercase text-ink-quiet"
-                    style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-                  >
-                    After the twenty-five
-                  </span>
-                  <span className="text-[22px] font-semibold leading-none tracking-[-0.03em] text-ink-soft">
-                    €1,500
-                  </span>
-                  <span className="text-[13px] leading-[1.5] text-ink-quiet">
-                    per venue, per year · prepaid · VAT included
-                  </span>
-                </div>
-              </div>
+
+              {/* The embedded views' motion primitives serve their initial
+                  state as inline opacity and transform. With scripting
+                  disabled that state would be final and the timeline card's
+                  header copy would never appear. Scoped to the preview
+                  frames; nothing the page itself authors hides behind
+                  script. The :not() guard excludes decimal opacities: the
+                  timeline's decorative metric sweep ships at opacity:0.32,
+                  which the bare substring "opacity:0" also matches, and
+                  rescuing it to full opacity un-designed it in no-JS. */}
+              <noscript>
+                <style>{`.reveal-relay-preview [style*="opacity:0"]:not([style*="opacity:0."]){opacity:1 !important;transform:none !important}`}</style>
+              </noscript>
             </div>
-          </div>
+          </article>
         </section>
 
-        {/* ── What founding means ── */}
-        <section className="border-b border-border-soft px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <p
-              className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-            >
-              What founding means
-            </p>
-            <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              Twenty-five places. You shape what gets built.
-            </h2>
-            <div className="mt-10 border-t border-border-soft">
-              {foundingPerks.map((item) => (
-                <div
-                  key={item.title}
-                  className="grid gap-2 border-b border-border-soft py-6 md:grid-cols-[0.9fr_1.1fr] md:gap-10"
-                >
-                  <h3 className="text-[15px] font-medium text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="text-[14px] leading-[1.6] text-ink-soft">
-                    {item.copy}
-                  </p>
+        {/* ── Rung 02 · whose it is · .reveal-manifesto ───────────
+            Trust is won here, and it comes before price, so it breaks out
+            of the relay and takes the page's biggest statement: the middle
+            of the three sentences a venue says to a couple, the one that
+            settles the whole question. */}
+        <section
+          className={`reveal-manifesto reveal ${styles.rung}`}
+          id="va-rung-2"
+          aria-labelledby="va-whose"
+        >
+          <div className={`reveal-manifesto-eyebrow ${styles.manifestoNum}`}>
+            {COPY.manifestoEyebrow}
+          </div>
+
+          <h2 id="va-whose" className={styles.rungQ}>
+            {LADDER[1]}
+          </h2>
+
+          {/* The speaker, at reading size over the whole triple, adjacent
+              enough that a display-skim reader who lands on the 67px line
+              catches it one glance up. */}
+          <p className={styles.answerFrame}>{COPY.manifestoFrame}</p>
+
+          <p className="reveal-manifesto-body">{PLAIN_THREE[0]}</p>
+          <p className={`${styles.answerLg} reveal`}>
+            {accent(PLAIN_THREE[1], "cannot", "em")}
+          </p>
+          <p className="reveal-manifesto-body">{PLAIN_THREE[2]}</p>
+
+          {/* WHY_NOT_CHARGE_COUPLES is founder voice, venue as "you". It
+              used to render as a fourth paragraph under the frame above,
+              inside the triple's "we/us" register, so a cold reader hit
+              "something you gave them" mid-paragraph and had to re-derive
+              the speaker. It lives in the index instead: every index row
+              on the page is the founder answering a venue's question, so
+              the object's own grammar carries the voice change, and the
+              question the sentence answers is finally on the page. The
+              term is the constant's own name in venue-copy.ts ("Why the
+              couple never pays. Objection A2."), not a new claim. */}
+          <dl className={`${styles.index} ${styles.indexAfter}`}>
+            <IndexRow
+              term="Why the couple never pays"
+              detail={WHY_NOT_CHARGE_COUPLES}
+            />
+            <IndexRow term="Whose name goes on it" detail={BRANDING} />
+            <IndexRow
+              term="Who else the couple can bring in"
+              detail={COLLABORATION}
+            />
+          </dl>
+        </section>
+
+        {/* ── Relay, part two · .reveal-relay. relayResume drops the
+            head padding the house reserves for a relay's own head,
+            which part two does not have: without it the rung 02 to
+            rung 03 seam was the page's largest gap. ──────────────── */}
+        <div className={`reveal-relay ${styles.relayResume}`}>
+          {/* Rung 03 · what it costs. The number is the rung's display
+              answer, and it never travels without its conditions: the
+              sticky bar carries the ratified price sentence over the whole
+              of the ledger's scroll. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-3"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">03</p>
+              <h2 className={styles.rungQ}>{LADDER[2]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow3}</p>
+              <p className={styles.rungBody}>{FOUNDING_RATE.difference}</p>
+              <p className="reveal-relay-foot">{COPY.foot3}</p>
+            </div>
+
+            <div className="reveal">
+              <p className={styles.priceFigure}>{PRICE_FOUNDING}</p>
+
+              <dl className={styles.index}>
+                <IndexRow term={COPY.scaleTerm} detail={PER_WEDDING_SCALE} />
+                <IndexRow term={COPY.vatTerm} detail={VAT_ANSWER} />
+              </dl>
+            </div>
+
+            <section className={styles.spanBlock} aria-labelledby="va-ledger">
+              <div className={styles.wideHead}>
+                <h3 className={styles.wideTitle} id="va-ledger">
+                  {COPY.ledgerTitle}
+                </h3>
+                <span className={styles.wideMeta}>{COPY.ledgerCount}</span>
+              </div>
+
+              {/* The rule, made physical: while any of the seventeen rows
+                  is on screen, so is the number and its VAT clause. The
+                  mechanism IS ledger row 01, rendered as a direct child of
+                  the block that spans all four groups: a sticky element
+                  travels only within its parent, so nesting the row inside
+                  the first group would let the price scroll away after row
+                  08. Standing above the groups it reads, at rest, as the
+                  row that governs all of them; scrolled, it pins under the
+                  site nav and the sixteen conditions pass beneath their
+                  own price. One object, both jobs, and it needs no
+                  animation support to be correct. Deliberately
+                  unanimated: an earlier fade timed to the price
+                  figure's exit left this row invisible while on
+                  screen, and the decision of record, written up in the
+                  module's "Authored motion" note, is that the number
+                  repeating between the display figure and the ledger's
+                  own first row is the honest state. */}
+              {/* The dl itself carries the sticky position: a sticky element
+                  travels only within its parent, and a wrapper exactly one
+                  row tall would give it zero travel. As a direct child of
+                  the spanBlock, its travel is the whole ledger. */}
+              <dl className={`${styles.ledger} ${styles.stickyBar}`}>
+                <div className={styles.ledgerRow}>
+                  <dt className={styles.ledgerTerm}>
+                    <span className={styles.ledgerNum} aria-hidden>
+                      01
+                    </span>
+                    <span>{PRICE_ROW[0]}</span>
+                  </dt>
+                  <dd className={styles.ledgerDetail}>
+                    <span className={styles.stickyFigure}>
+                      {PRICE_ROW_FIGURE}
+                    </span>
+                    {PRICE_ROW_REST}
+                  </dd>
+                </div>
+              </dl>
+
+              {LEDGER_GROUPS.map((group) => (
+                <div className={styles.ledgerGroup} key={group.label}>
+                  <p className={styles.groupLabel}>{group.label}</p>
+                  <dl className={styles.ledger}>
+                    {group.rows.map(([term, detail], index) => (
+                      <div className={styles.ledgerRow} key={term}>
+                        <dt className={styles.ledgerTerm}>
+                          <span className={styles.ledgerNum} aria-hidden>
+                            {String(group.base + index + 1).padStart(2, "0")}
+                          </span>
+                          <span>{term}</span>
+                        </dt>
+                        <dd className={styles.ledgerDetail}>{detail}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
+            </section>
+          </article>
 
-        {/* ── The rhythm ── */}
-        <section className="border-b border-border-soft px-6 py-16 md:py-20">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <p
-              className="mb-3 text-[11px] font-semibold uppercase text-ink-quiet"
-              style={{ letterSpacing: "var(--tracking-eyebrow)" }}
-            >
-              The rhythm
-            </p>
-            <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              Light by design. We come to you, not the other way around.
-            </h2>
-            <ol className="mt-10 max-w-2xl space-y-6">
-              {[
-                {
-                  label: "Start.",
-                  copy: "Once the year is settled, we send the codes and a short note you can pass to couples. Your coordinator gets one walkthrough, then it runs itself.",
-                },
-                {
-                  label: "A soft window, about two weeks.",
-                  copy: "Couples redeem and start planning. We watch quietly and stay out of the way unless you need us.",
-                },
-                {
-                  label: "One short review.",
-                  copy: "A brief conversation about what worked and what did not. No recurring meetings, no reporting.",
-                },
-              ].map((item, i) => (
-                <li key={i} className="grid grid-cols-[auto_1fr] gap-4">
-                  <span className="text-[11px] font-semibold tabular-nums text-ink-quiet">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[15px] leading-[1.6] text-ink-soft">
-                    <span className="font-medium text-ink">{item.label} </span>
-                    {item.copy}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* ── Closing CTA ── */}
-        <section className="px-6 py-16 md:py-24">
-          <div className="mx-auto w-full max-w-[1040px]">
-            <h2 className="max-w-3xl text-[clamp(1.5rem,1.2rem+1.5vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
-              We are taking twenty-five founding venues.
-            </h2>
-            <p className="mt-5 max-w-2xl text-[17px] leading-[1.65] text-ink-soft">
-              No deck, no demo gate. A short conversation about whether this
-              fits. Places are held for fourteen days and assigned when
-              payment clears, so nobody is left wondering where they stand.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href={venueWaitlistHref}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
-              >
-                Join the venue waitlist
-              </Link>
-              <Link
-                href={demoHref}
-                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
-              >
-                Watch the venue demo &rarr;
-              </Link>
-              <a
-                href={examplePlanHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] text-ink-soft underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-ink hover:decoration-accent"
-              >
-                See what the couple opens first &rarr;
-              </a>
+          {/* Rung 04 · what you see, and what you never see. The display
+              answer is the refusal itself. The film sits here because what
+              it shows is exactly this rung's sentence: what a couple opens,
+              and what you see. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-4"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">04</p>
+              <h2 className={styles.rungQ}>{LADDER[3]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow4}</p>
+              <p className="reveal-relay-foot">{COPY.foot4}</p>
             </div>
+
+            <div>
+              {/* The rung's heading is a statement, so the ratified question
+                  from the FAQ of record supplies the "Can we see" that the
+                  "No." answers. Rung 07 pulls the same opening and the rank
+                  visual supplies its question; here the question itself
+                  does. */}
+              {WORKSPACE_QUESTION_ON_RECORD ? (
+                <p className={styles.answerFrame}>
+                  {typeset(WORKSPACE_QUESTION)}
+                </p>
+              ) : null}
+              {/* The display answer is the word "No.", one beat, the same
+                  splitLead treatment as "One action." and "Nobody yet.":
+                  the full 96-character sentence at the 48px register ran
+                  four display lines in the page's densest chapter and the
+                  refusal lost its snap. The remainder, including the
+                  "You cannot", continues at reading size on the same left
+                  edge; the .em marker stays with rung 02's display
+                  "cannot", the page's one highlighted word per screen. */}
+              <p className={`${styles.answer} reveal`}>
+                {CAN_WE_SEE_SPLIT.lead}
+              </p>
+              <p className={styles.answerRest}>{CAN_WE_SEE_SPLIT.rest}</p>
+
+              {/* Three parts, one object, because they travel together. */}
+              <dl className={`${styles.index} ${styles.indexGroup}`}>
+                <IndexRow term={PRIVACY.seeLabel} detail={PRIVACY.see} />
+                <IndexRow term={PRIVACY.neverLabel} detail={PRIVACY.never} />
+                <IndexRow term={PRIVACY.launchLabel} detail={PRIVACY.launch} />
+              </dl>
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.noNamesTerm} detail={NO_NAMES} />
+                <IndexRow term={COPY.showUsTerm} detail={SHOW_US_ANSWER} />
+                <IndexRow term={COPY.postponementTerm} detail={POSTPONEMENT} />
+              </dl>
+            </div>
+
+            <section className={styles.spanBlock} aria-labelledby="va-film">
+              <div className={styles.mediaGrid}>
+                <div className={styles.mediaHead}>
+                  <div className={styles.wideHead}>
+                    <h3 className={styles.wideTitle} id="va-film">
+                      {FILM.label}
+                    </h3>
+                    <span className={styles.wideMeta}>{COPY.filmMeta}</span>
+                  </div>
+                  <p className={styles.filmNote}>{FILM.note}</p>
+                </div>
+
+                <FilmSlot />
+              </div>
+            </section>
+          </article>
+
+          {/* Rung 05 · what it asks of your team. No product view and no
+              large object: there is nothing for the team to run, and the
+              quietest rung on the page is the proof of the sentence. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-5"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">05</p>
+              <h2 className={styles.rungQ}>{LADDER[4]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow5}</p>
+              <p className="reveal-relay-foot">{COPY.foot5}</p>
+            </div>
+
+            <div>
+              <p className={`${styles.answer} reveal`}>{TEAM_ASK_SPLIT.lead}</p>
+              <p className={styles.answerRest}>{TEAM_ASK_SPLIT.rest}</p>
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.coordinatorTerm} detail={COORDINATOR} />
+                <IndexRow term={COPY.notTechnicalTerm} detail={NOT_TECHNICAL} />
+                <IndexRow term={COPY.reachesTerm} detail={HOW_IT_REACHES_YOU} />
+              </dl>
+            </div>
+          </article>
+
+          {/* Rung 06 · what happens at the end. The display answer is the
+              term itself, in full, because the bare figure is the one thing
+              this page must never say. It is set one step under the spoken
+              answers, in its own register: a 91-character contract sentence
+              at the 48px register ran four display lines and gave rungs 05
+              and 06 the same composed shape twice in a row. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-6"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">06</p>
+              <h2 className={styles.rungQ}>{LADDER[5]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow6}</p>
+              <p className="reveal-relay-foot">{COPY.foot6}</p>
+            </div>
+
+            <div>
+              <p className={`${styles.answerTerm} reveal`}>
+                {accent(ACCESS_TERM, "whichever is later", "em")}
+              </p>
+              {ACCESS_TERM_REST ? (
+                <p className={styles.answerRest}>{ACCESS_TERM_REST}</p>
+              ) : null}
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.keepsakeTerm} detail={KEEPSAKE} />
+                <IndexRow term={COPY.survivalTerm} detail={SURVIVAL} />
+              </dl>
+            </div>
+          </article>
+
+          {/* Rung 07 · what being one of twenty-five means. The rank is the
+              page's one authored object: twenty-five places drawn as a
+              measure, every one of them open, standing directly over the
+              two words that admit why. */}
+          <article
+            className={`reveal-relay-chapter ${styles.rung}`}
+            id="va-rung-7"
+          >
+            <div className="reveal-relay-copy reveal">
+              <p className="reveal-relay-number">07</p>
+              <h2 className={styles.rungQ}>{LADDER[6]}</h2>
+              <p className="reveal-relay-eyebrow">{COPY.eyebrow7}</p>
+              <p className={styles.rungBody}>{FOUNDING_NUMBER}</p>
+              <p className="reveal-relay-foot">{COPY.foot7}</p>
+            </div>
+
+            <div className={styles.rankColumn}>
+              <div className={styles.rank} aria-hidden>
+                <div className={styles.rankTicks}>
+                  {RANK.map((index) => (
+                    <span
+                      className={styles.rankTick}
+                      data-major={
+                        index === 0 || (index + 1) % 5 === 0 ? "" : undefined
+                      }
+                      key={index}
+                      style={{ "--i": index } as CSSProperties}
+                    />
+                  ))}
+                </div>
+                <div className={styles.rankScale}>
+                  {RANK_SCALE.map((place) => (
+                    <span key={place} style={{ "--n": place } as CSSProperties}>
+                      {String(place).padStart(2, "0")}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <p className={`${styles.answerLg} reveal`}>
+                {WHO_ELSE_SPLIT.lead}
+              </p>
+              <p className={styles.answerRest}>{WHO_ELSE_SPLIT.rest}</p>
+
+              <dl className={`${styles.index} ${styles.indexAfter}`}>
+                <IndexRow term={COPY.roadmapTerm} detail={ROADMAP} />
+                <IndexRow term={COPY.notUsedTerm} detail={NOT_USED_ANSWER} />
+                <IndexRow term={COPY.whereTerm} detail={GEOGRAPHY} />
+              </dl>
+            </div>
+          </article>
+        </div>
+
+        {/* ── The ask · .reveal-closing. One for the whole page, and the
+            page ends on the person it reaches, not on a deadline. The
+            14-day hold is stated once, in ledger row 15, where it belongs
+            among the other conditions. ─────────────────────────────── */}
+        <section className="reveal-closing reveal" aria-labelledby="va-ask">
+          <div className="reveal-closing-rule" aria-hidden />
+          <h2 id="va-ask" className="reveal-closing-sign">
+            {accent(CTA_SUPPORT, "to me", "em")}
+          </h2>
+
+          <div className="reveal-closing-cta">
+            <Link className="reveal-cta reveal-cta-primary" href={CTA_HREF}>
+              {CTA}
+              <span className="cta-arrow" aria-hidden>
+                {" "}
+                →
+              </span>
+            </Link>
           </div>
+
+          {/* The page's whole trust register hangs on a first person:
+              "extendable by me, personally", "neither can I", "I will
+              tell you the true number", and the sign directly above,
+              "It goes to me, not a form". The address strip resolves
+              that person by name, where a letter would sign, so the
+              forwarded partner and the coordinator can place the "me"
+              without clicking through. Attribution furniture, not a
+              new claim. */}
+          <p className="reveal-closing-addr">
+            <span>{COPY.closingName}</span>
+            <span className="sep" aria-hidden>
+              ·
+            </span>
+            <span>{COPY.closingProgramme}</span>
+            <span className="sep" aria-hidden>
+              ·
+            </span>
+            <span>{COPY.closingPlace}</span>
+          </p>
         </section>
       </main>
       <SiteFooter />
@@ -629,48 +817,20 @@ export default function VenuesPage() {
   );
 }
 
-// ── Helper components ────────────────────────────────────────────
-
-function MockLine({
-  label,
-  muted = false,
-}: {
-  label: string;
-  muted?: boolean;
-}) {
+/**
+ * One term and its answer.
+ *
+ * `detail` is optional because the two answers lifted out of the FAQ are
+ * looked up by their ratified question string. A row whose answer cannot be
+ * found renders nothing rather than an empty rule, so a rename upstream can
+ * never ship a term with no answer under it.
+ */
+function IndexRow({ term, detail }: { term: string; detail?: string }) {
+  if (!detail) return null;
   return (
-    <div className="flex items-center gap-3">
-      <span
-        aria-hidden
-        className="h-2 w-2 flex-shrink-0 rounded-full"
-        style={{ background: muted ? "var(--ink-300)" : "var(--accent)" }}
-      />
-      <span
-        className={
-          muted
-            ? "text-[13px] text-ink-quiet"
-            : "text-[13px] font-medium text-ink"
-        }
-      >
-        {label}
-      </span>
+    <div className={styles.indexRow}>
+      <dt className={styles.indexTerm}>{typeset(term)}</dt>
+      <dd className={styles.indexDetail}>{typeset(detail)}</dd>
     </div>
   );
 }
-
-const activationStateMap: Record<
-  ActivationState,
-  { label: string; bg: string; color: string }
-> = {
-  activated: { label: "Activated", bg: "var(--pill-ontrack-bg)", color: "var(--pill-ontrack-ink)" },
-  redeemed: {
-    label: "Redeemed",
-    bg: "var(--pill-attention-bg)",
-    color: "var(--pill-attention-ink)",
-  },
-  invited: {
-    label: "Invited",
-    bg: "transparent",
-    color: "var(--ink-quiet)",
-  },
-};

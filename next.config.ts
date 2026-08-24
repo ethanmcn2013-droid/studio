@@ -26,18 +26,18 @@ const isDev = process.env.NODE_ENV === "development";
 const clerkHosts =
   "https://*.signalstudio.ie https://*.clerk.accounts.dev https://*.clerk.com https://clerk-telemetry.com";
 const turnstile = "https://challenges.cloudflare.com";
-// Google Analytics 4 (gtag.js) — see src/components/analytics/google-tag.tsx.
-const googleTag = "https://www.googletagmanager.com";
-const googleAnalytics =
-  "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com";
+// No Google Analytics hosts here. GA4 was removed on 2026-08-12 under
+// decision D2, and the CSP allowlist went with it: an allowlist that
+// outlives its script is a re-entry point, not documentation. See
+// docs/ANALYTICS.md for the decision and what measurement remains.
 
 const csp = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile} ${googleTag}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com ${clerkHosts} ${turnstile}`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https:`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts} ${googleTag} ${googleAnalytics}`,
+  `connect-src 'self' https://va.vercel-scripts.com ${clerkHosts}`,
   `frame-src 'self' ${turnstile}`,
   `worker-src 'self' blob:`,
   `frame-ancestors 'none'`,
@@ -159,6 +159,54 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "analytics.signalstudio.ie" }],
         destination: "https://signalstudio.ie/signal",
+        permanent: true,
+      },
+      // ── Estate consolidation (2026-08-12) ─────────────────────────────
+      // The public estate collapses to one domain and eighteen indexed
+      // pages. These rules MUST stay below the retired-domain block above:
+      // redirects are first-match-wins, so an unscoped rule placed earlier
+      // would catch notes/timeline/signal hosts and chain through them.
+      // Every source below is an exact path, so functional siblings
+      // (/venues, /embed/[slug]) are untouched.
+      { source: "/proof", destination: "/venues", permanent: true },
+      { source: "/work", destination: "/about", permanent: true },
+      { source: "/ios", destination: "/", permanent: true },
+      { source: "/teachers", destination: "/students", permanent: true },
+      // D5. Contact is now an anchored section on /about, machinery intact.
+      // The Founding 25 CTA points straight at /about#contact, so no
+      // conversion path rides this hop; it exists for links already sent.
+      { source: "/contact", destination: "/about#contact", permanent: true },
+      // The wedding self-serve surface folds into the venue motion. It
+      // carried the superseded flat access-term copy; its replacement is
+      // chartered as E12.01.
+      { source: "/weddings", destination: "/venues", permanent: true },
+      // Query strings survive the hop, so the per-venue tracked demo links
+      // already sent in outreach keep resolving.
+      { source: "/venues/demo", destination: "/venues", permanent: true },
+      { source: "/templates", destination: "/tasks", permanent: true },
+      {
+        source: "/compare/aisle-planner-alternative-ireland",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/wedding-planning-workspace-for-venues",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/notion-alternative-wedding-planners",
+        destination: "/venues",
+        permanent: true,
+      },
+      {
+        source: "/compare/trello-alternative-builders",
+        destination: "/tasks",
+        permanent: true,
+      },
+      {
+        source: "/compare/project-management-students-no-sprints",
+        destination: "/students",
         permanent: true,
       },
     ];

@@ -1,1194 +1,500 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { MarketingDelightController } from "@/components/marketing/delight/marketing-delight-controller";
+import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
+import { ProductSignatureWordmark } from "@/components/reveal/product-signature-wordmark";
 import {
+  COMMERCIAL_TERMS,
   formatEuroCents,
-  requireVerifiedAmount,
+  getConsumerPricingPresentation,
 } from "@/lib/commercial-terms";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
+import {
+  PlanPicker,
+  type PricingComparisonKey,
+  type PricingPlan,
+} from "./plan-picker";
+import {
+  PricingClosing,
+  PricingSelectionProvider,
+} from "./pricing-selection";
+import styles from "./pricing.module.css";
 
-const FREE_PRICE = formatEuroCents(requireVerifiedAmount("free"));
-const STUDENT_PRICE = formatEuroCents(requireVerifiedAmount("student"));
-const PRO_MONTHLY_PRICE = formatEuroCents(requireVerifiedAmount("pro"));
-const EVENT_PRICE = formatEuroCents(requireVerifiedAmount("event"));
+const PRICING = getConsumerPricingPresentation();
+const FREE_PRICE = PRICING.plans.free.price;
+const STUDENT_PRICE = PRICING.plans.student.price;
+const PRO_PRICE = PRICING.plans.pro.price;
+const PRO_ANNUAL_PRICE = PRICING.plans.pro.annualPrice;
+const PRO_ANNUAL_SAVING = formatEuroCents(
+  COMMERCIAL_TERMS.plans.pro.monthlyAmountCents * 12 -
+    COMMERCIAL_TERMS.plans.pro.annualAmountCents,
+);
+const PRO_EDITING_LIMIT =
+  PRICING.plans.pro.editingGuestLimit === "See terms before purchase"
+    ? "Limit not yet published"
+    : PRICING.plans.pro.editingGuestLimit;
 
 export const metadata: Metadata = {
   title: "Pricing · Signal Studio",
-  description: `One subscription. Four kinds of clarity. Free forever for solo. ${PRO_MONTHLY_PRICE} a month for Pro. ${EVENT_PRICE} one-time for an event. ${STUDENT_PRICE} a year for students. Annual Pro terms are not open while they are being confirmed.`,
+  description: `Start free, pay ${STUDENT_PRICE} yearly while studying, choose Pro from ${PRO_PRICE} monthly, or shape Enterprise terms with Ethan.`,
+  alternates: {
+    canonical: "/pricing",
+  },
   openGraph: {
     title: "Pricing · Signal Studio",
     description:
-      "One subscription. Four kinds of clarity. No per-seat tax. No per-product tax.",
+      "Free, Student, Pro and Enterprise. Compare the price, limits and access terms without a feature maze.",
     type: "website",
+    url: "/pricing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing · Signal Studio",
+    description:
+      "Free, Student, Pro and Enterprise. One clear comparison.",
   },
 };
 
-/* ── Type ─────────────────────────────────────────────────────────── */
-
-type Tier = {
-  name: string;
-  recommended?: boolean;
-  price: string;
-  cadence: string;
-  /** Plainly-stated annual prepay. No "SAVE %" theatre, the number is the number. */
-  annual?: string;
-  annualHref?: string;
-  body: string;
-  pills?: { label: string; value: string }[];
-  cta: string;
-  href: string;
-};
-
-type InsideProduct = {
-  // key is the internal CSS/animation hook (globals.css .pricing-mark[data-key=…]);
-  // it stays on the original gesture identity. Only `word` carries the rename.
-  key: "tasks" | "timeline" | "notes" | "signal";
-  word: string;
-  position: string;
-  desc: string;
-  status: "shipped" | "build" | "design";
-  statusLabel: string;
-};
-
-/* ── Static content ───────────────────────────────────────────────── */
-
-/* Access is staged. Every tier CTA routes through the public waitlist,
- * not a live checkout, until operator-controlled product and privacy gates
- * pass. The
- * checkout wiring (Tasks-owned /api/checkout, entitlements mirror) is
- * reconnected when access opens. */
 function waitlistHref(artifact: string, plan: string): string {
   return `/waitlist?source=pricing&campaign=pre_access_waitlist&artifact=${artifact}&plan=${plan}&touch=site`;
 }
 
-const TIERS: Tier[] = [
+const PLANS: readonly PricingPlan[] = [
   {
-    name: "Free",
+    id: "free",
+    useCase: "Starting solo",
+    name: PRICING.plans.free.name,
     price: FREE_PRICE,
-    cadence: "forever",
-    body: "One workspace. All four products. Three editing guests. No card needed.",
-    pills: [
-      { label: "Workspaces", value: "One" },
-      { label: "Guests", value: "Three" },
-      { label: "Window", value: "Forever" },
+    cadence: "no recurring charge",
+    fit: "One workspace and 3 editing guests for a real project.",
+    summary: "One workspace for putting Signal Studio to work on a real project.",
+    facts: [
+      { label: "Workspaces", value: PRICING.plans.free.workspaceLimit },
+      {
+        label: "Editing guests",
+        value: PRICING.plans.free.editingGuestLimit,
+      },
+      { label: "Access", value: PRICING.plans.free.access },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Free waitlist",
     href: waitlistHref("pricing_free", "free"),
+    microcopy: "No card or charge today.",
+    mobileSummary: "1 workspace · 3 editing guests",
+    window: {
+      kind: "forever",
+      caption: "No recurring charge.",
+    },
+    comparison: {
+      bestFor: "Starting solo",
+      workspaces: PRICING.plans.free.workspaceLimit,
+      editingGuests: PRICING.plans.free.editingGuestLimit,
+      price: FREE_PRICE,
+      access: PRICING.plans.free.access,
+    },
   },
   {
-    name: "Student",
+    id: "student",
+    useCase: "For study",
+    name: PRICING.plans.student.name,
     price: STUDENT_PRICE,
-    cadence: "/ year · verification confirmed before access",
-    body: "The full suite at a student price. Verification and payment details will be confirmed before paid access opens.",
-    pills: [
-      { label: "Workspaces", value: "Confirmed at access" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "Yearly" },
+    cadence: "per year",
+    fit: "Three workspaces and 3 editing guests, reviewed each year.",
+    summary:
+      "Keep study work separate across three workspaces, with student status reviewed each year.",
+    facts: [
+      { label: "Eligibility", value: "Student verification" },
+      {
+        label: "Workspaces",
+        value: PRICING.plans.student.workspaceLimit,
+      },
+      {
+        label: "Editing guests",
+        value: PRICING.plans.student.editingGuestLimit,
+      },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Student waitlist",
     href: waitlistHref("pricing_student", "student"),
+    microcopy:
+      "Student status and payment terms are confirmed before access.",
+    mobileSummary: "3 workspaces · 3 editing guests",
+    window: {
+      kind: "yearly",
+      caption: "Reviewed each year.",
+    },
+    comparison: {
+      bestFor: "Verified students",
+      workspaces: PRICING.plans.student.workspaceLimit,
+      editingGuests: PRICING.plans.student.editingGuestLimit,
+      price: `${STUDENT_PRICE} per year`,
+      access: PRICING.plans.student.access,
+    },
   },
   {
-    name: "Pro",
-    recommended: true,
-    price: PRO_MONTHLY_PRICE,
-    cadence: "/ month",
-    annual: "Annual prepay is not open while its terms are being confirmed.",
-    body: "All four products. Workspace and editing-member limits will be confirmed before purchase.",
-    pills: [
-      { label: "Workspaces", value: "Confirmed at access" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "Monthly" },
+    id: "pro",
+    useCase: "Ongoing work",
+    name: PRICING.plans.pro.name,
+    price: PRO_PRICE,
+    cadence: `per month · ${PRO_ANNUAL_PRICE}/year saves ${PRO_ANNUAL_SAVING}`,
+    fit: "Unlimited workspaces. Editing limit not yet published.",
+    summary: "Unlimited workspaces for work that keeps moving across projects.",
+    facts: [
+      { label: "Workspaces", value: PRICING.plans.pro.workspaceLimit },
+      {
+        label: "Billing",
+        value: `${PRO_PRICE} monthly or ${PRO_ANNUAL_PRICE} yearly. Save ${PRO_ANNUAL_SAVING}.`,
+      },
+      {
+        label: "Editing guests",
+        value: PRO_EDITING_LIMIT,
+      },
     ],
-    cta: "Join the waitlist",
+    cta: "Join the Pro waitlist",
     href: waitlistHref("pricing_pro", "pro"),
+    microcopy: "Editing limit and purchase terms are confirmed before access.",
+    mobileSummary: "Unlimited workspaces · Editing limit unpublished",
+    window: {
+      kind: "monthly",
+      caption: "Renews monthly, or take the year at the saving.",
+    },
+    comparison: {
+      bestFor: "Ongoing work",
+      workspaces: PRICING.plans.pro.workspaceLimit,
+      editingGuests: PRO_EDITING_LIMIT,
+      price: `${PRO_PRICE} monthly or ${PRO_ANNUAL_PRICE} yearly. Save ${PRO_ANNUAL_SAVING}.`,
+      access: PRICING.plans.pro.access,
+    },
   },
   {
-    name: "Event",
-    price: EVENT_PRICE,
-    cadence: "one-time · 12 months",
-    body: "One workspace for one event. Wedding, launch, move, conference. Post-window access and retention terms are confirmed before purchase.",
-    pills: [
-      { label: "Workspaces", value: "One" },
-      { label: "Editors", value: "Confirmed at access" },
-      { label: "Window", value: "12 months" },
+    id: "enterprise",
+    useCase: "For organisations",
+    name: "Enterprise",
+    price: "Let’s talk",
+    cadence: "scope before price",
+    fit: "A considered start, shaped around how the work runs.",
+    summary:
+      "For organisations that need a considered start, a larger editing group, or terms shaped around the work.",
+    facts: [
+      { label: "Working group", value: "Understood together" },
+      { label: "Start", value: "Conversation with Ethan" },
+      { label: "Terms", value: "Written before purchase" },
     ],
-    cta: "Join the waitlist",
-    href: waitlistHref("pricing_event", "event"),
+    cta: "Discuss Enterprise",
+    href: "/about?subject=enterprise&source=pricing&campaign=enterprise&artifact=pricing_enterprise&touch=site#contact",
+    microcopy: "Your note goes to Ethan, Signal Studio’s founder.",
+    mobileSummary: "Scope and editing group agreed together",
+    comparison: {
+      bestFor: "Organisations",
+      workspaces: "Scoped together",
+      editingGuests: "Scoped together",
+      price: "Agreed together",
+      access: "Agreed terms",
+    },
   },
 ];
 
-const SUITE: InsideProduct[] = [
-  {
-    key: "notes",
-    word: "notes",
-    position: "Context",
-    desc: "Capture what was said. Promote a note into a task in one tap. Never auto-detected.",
-    status: "build",
-    statusLabel: "In development",
-  },
-  {
-    key: "tasks",
-    word: "tasks",
-    position: "Execution",
-    desc: "Run the work. Plain-language workspace for weddings, freelance, students, trades.",
-    status: "build",
-    statusLabel: "In development",
-  },
-  {
-    key: "timeline",
-    word: "timeline",
-    position: "Direction",
-    desc: "Show where the work is going. A public page anyone can open. No account, no jargon.",
-    status: "build",
-    statusLabel: "In development",
-  },
-  {
-    key: "signal",
-    word: "signal",
-    position: "Attention",
-    desc: "The daily briefing. What needs focus before it becomes a problem. Three things, plain English.",
-    status: "build",
-    statusLabel: "In development",
-  },
+const COMPARISON_ROWS: readonly Readonly<{
+  key: PricingComparisonKey;
+  label: string;
+}>[] = [
+  { key: "bestFor", label: "Best for" },
+  { key: "workspaces", label: "Workspaces" },
+  { key: "editingGuests", label: "Editing guests" },
+  { key: "price", label: "Price" },
+  { key: "access", label: "Access" },
 ];
 
-const COMPARE_ROWS: { label: string; values: [string, string, string, string] }[] = [
+const PROOF_STEPS = [
   {
-    label: "Who it's for",
-    values: [
-      "Solo, just starting",
-      "Student, verification terms confirmed before access",
-      "Crews running ongoing work",
-      "One wedding, launch, move, conference",
-    ],
+    id: "notes",
+    product: "notes" as const,
+    state: "Captured privately",
+    label: "Working note",
+    title: "Menu tasting",
+    body: REVIEW_SUITE_PRESENTATION.journey.note,
+    meta: "Private by default",
   },
   {
-    label: "Workspaces",
-    values: ["One", "Confirmed at access", "Confirmed at access", "One, event-shaped"],
+    id: "tasks",
+    product: "tasks" as const,
+    state: "Approved into work",
+    label: REVIEW_SUITE_PRESENTATION.journey.taskState,
+    title: REVIEW_SUITE_PRESENTATION.journey.task,
+    body: REVIEW_SUITE_PRESENTATION.journey.openRisk,
+    meta: `${REVIEW_SUITE_PRESENTATION.journey.taskPriority} priority`,
   },
   {
-    label: "All four products",
-    values: ["Yes", "Yes", "Yes", "Yes"],
+    id: "timeline",
+    product: "timeline" as const,
+    state: "Published after review",
+    label: "Current milestone",
+    title: REVIEW_SUITE_PRESENTATION.journey.task,
+    body: "1 August 2026 at The Orchard.",
+    meta: "Link-only copy",
   },
-  {
-    label: "Editing guests",
-    values: [
-      "Three",
-      "Confirmed at access",
-      "Confirmed at access",
-      "Confirmed at access",
-    ],
-  },
-  {
-    label: "Price",
-    values: [
-      FREE_PRICE,
-      `${STUDENT_PRICE} / year`,
-      `${PRO_MONTHLY_PRICE} / month`,
-      `${EVENT_PRICE} one-time`,
-    ],
-  },
-  {
-    label: "Window",
-    values: ["Forever", "Yearly", "Monthly, cancel anytime", "12 months"],
-  },
-  {
-    label: "After the window",
-    values: [
-      "—",
-      "Renewal terms confirmed before access",
-      "Drops to Free",
-      "Post-window terms confirmed before purchase",
-    ],
-  },
-];
+] as const;
 
-const REFUSALS: { neg: string; pos: string }[] = [
-  {
-    neg: "No hidden seat assumptions.",
-    pos: "Editing-member limits and link-only viewers are stated separately before purchase.",
-  },
-  {
-    neg: "Not per product.",
-    pos: "The four work as one. Pay once. Use what you need, when you need it.",
-  },
-  {
-    neg: "Not a trial that ends.",
-    pos: "The free tier is free forever. No fourteen-day countdown. No verify-to-continue.",
-  },
-];
+const PUBLISHED_TIMELINE = HOMEPAGE_RELAY_TIMELINE_FIXTURE;
 
-const FAQ: { q: string; a: string }[] = [
+const FAQ = [
   {
-    q: "Why a one-time price for events?",
-    a: `Because weddings, launches, and moves are events, not subscriptions. You plan once, intensely, for a fixed window. A monthly bill that renews past the event would be the wrong shape. ${EVENT_PRICE} captures the value while you need it. The active window is 12 months; post-window retention wording is being confirmed before purchase.`,
+    question: "Does joining the waitlist cost anything?",
+    answer:
+      "No. Joining records the plan you came from. It does not take a payment or lock your choice.",
   },
   {
-    q: "Do I have to pay per person?",
-    a: "Current paid-plan editor limits are being reconciled with enforcement before checkout opens. Link-only Audience Timeline viewers are separate from editing members and do not gain Workspace access.",
+    question: "What counts as an editing guest?",
+    answer:
+      "The limit applies to people invited into the workspace. Someone who only opens a published Timeline link is not a workspace editor.",
   },
   {
-    q: "Can I cancel?",
-    a: "Yes. One tap in the workspace settings. You keep the workspace through the end of the month, then it drops to Free.",
+    question: "How does Student verification work?",
+    answer:
+      "Student access starts after eligibility checks are in place. Status is checked again each year. The process is shown before purchase.",
   },
   {
-    q: "What if I only ever use one of the four products?",
-    a: "Then you have the cleanest single product in its category, with three more sitting there in case you ever want them. That is still a good deal. We will not pressure you to use the rest.",
+    question: "Can I pay for Pro annually?",
+    answer: `Yes when paid access opens. Pro is ${PRO_PRICE} per month or ${PRO_ANNUAL_PRICE} per year, saving ${PRO_ANNUAL_SAVING}. The waitlist does not select a billing cadence.`,
   },
   {
-    q: "Will the price move as the suite grows?",
-    a: "No. The suite is in development. As each product deepens, your price stays where it is. You pay for Signal Studio, not for a feature count, and we honor that by holding the price steady.",
+    question: "When should I choose Enterprise?",
+    answer:
+      "Choose Enterprise when the working group, the way access begins, or the terms need to be shaped around your organisation. Ethan replies directly.",
   },
   {
-    q: "Can I switch tiers?",
-    a: "Anytime. Up, down, sideways. No annual contracts on the Pro plan. Cancel and you keep access through the end of the current month.",
+    question: "What happens when I renew, cancel or change plan?",
+    answer:
+      "Paid renewal, cancellation and plan-change terms are not yet published. They will be shown before purchase. Joining the waitlist starts none of them.",
   },
-  {
-    q: "Why one price for four products?",
-    a: "Because the four products are four kinds of clarity, not four tools. Pricing them separately would mean you have to translate between Notes, Tasks, Timeline, and Signal, which is the exact translation tax Signal Studio exists to remove.",
-  },
-];
+] as const;
 
-/* ── Helpers ──────────────────────────────────────────────────────── */
-
-function eyebrowStyle(): React.CSSProperties {
-  return {
-    fontFamily: "var(--font-mono)",
-    fontSize: 11,
-    color: "var(--ink-quiet)",
-    letterSpacing: "var(--tracking-eyebrow)",
-    textTransform: "uppercase",
-    fontWeight: 600,
-  };
-}
-
-function statusPipColor(s: InsideProduct["status"]): string {
-  // Tokenized in globals.css. The non-shipped branch is a defensive fallback
-  // for the "build"/"design" states the type allows, kept (not deleted) so a
-  // product moving off "shipped" still renders a pip.
-  return s === "shipped" ? "var(--status-live)" : "var(--status-building)";
-}
-
-/* ── Page ─────────────────────────────────────────────────────────── */
-
-export default async function PricingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ status?: string; upgrade?: string }>;
-}) {
-  const params = await searchParams;
-  const checkoutOffline = params.status === "checkout-offline";
-
+export default function PricingPage() {
   return (
     <>
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+      <main className={styles.page} id="main" tabIndex={-1}>
         <MarketingDelightController />
-        {checkoutOffline ? (
-          <div
-            role="status"
-            className="mx-auto w-full max-w-[1180px] px-6 pt-6"
-            style={{ marginTop: 16 }}
-          >
-            <div
-              style={{
-                background: "var(--bg-deep)",
-                border: "1px solid var(--border-soft)",
-                borderRadius: 12,
-                padding: "14px 18px",
-                fontSize: 13.5,
-                color: "var(--ink-soft)",
-              }}
-            >
-              <strong style={{ color: "var(--ink)" }}>
-                Checkout is temporarily offline.
-              </strong>{" "}
-              Pro and Event purchases will resume when resolved. Free and
-              Student access remain available, start there, or email{" "}
-              <a
-                href="mailto:hello@signalstudio.ie"
-                style={{ color: "var(--ink)" }}
-              >
-                hello@signalstudio.ie
-              </a>{" "}
-              and we&apos;ll grant access manually.
-            </div>
-          </div>
-        ) : null}
-
-        {/* ── 1 · Frame ─────────────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 pt-16 pb-20 md:pt-24 md:pb-24">
-          <div className="mb-6" style={eyebrowStyle()}>
-            Signal Studio · Pricing
-          </div>
-          <h1
-            className="h-display max-w-[22ch] text-balance text-ink"
-            style={{ marginBottom: 24 }}
-          >
-            One price. No seat tax.
+        <header className={`${styles.hero} ${styles.shell}`}>
+          <p className={styles.eyebrow}>Pricing</p>
+          <h1>
+            <span>One clear system.</span>
+            <span>Four ways in.</span>
           </h1>
-          <p
-            className="max-w-[56ch] text-ink-soft"
-            style={{ fontSize: 19, lineHeight: 1.55 }}
-          >
-            Use what you need. Invite who you need. The price does not move.
+          <p className={styles.heroLede}>
+            Start free, pay less while studying, move to Pro for ongoing work,
+            or shape an Enterprise start with Ethan.
           </p>
-        </section>
+        </header>
 
-        {/* ── 2 · Tier grid ─────────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-          <div className="mb-4" style={eyebrowStyle()}>
-            Plans
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "20ch", marginBottom: 32 }}
-          >
-            Pick the one that matches how you work.
-          </h2>
-
-          <div
-            className="text-ink-quiet"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 11,
-              letterSpacing: "var(--tracking-eyebrow)",
-              textTransform: "uppercase",
-              marginBottom: 20,
-            }}
-          >
-            Monthly billing
-          </div>
-
-          <p
-            className="md:hidden text-ink-quiet"
-            style={{
-              fontSize: 14,
-              lineHeight: 1.5,
-              marginBottom: 18,
-              maxWidth: "44ch",
-            }}
-          >
-            Planning one event? The {EVENT_PRICE} Event tier is the last card below.
-          </p>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-            data-delight="pricing-plans"
-            data-delight-once
-            style={{
-              border: "1px solid var(--border)",
-              background: "var(--bg-elev)",
-            }}
-          >
-            {TIERS.map((t, i) => (
-              <div
-                key={t.name}
-                className={`flex flex-col md:min-h-[360px] ${i === 1 ? "order-2 md:order-none" : i === 2 ? "order-1 md:order-none" : i === 3 ? "order-3 md:order-none" : ""}`}
-                style={{
-                  padding: "36px 28px 32px",
-                  borderRight:
-                    i < TIERS.length - 1
-                      ? "1px solid var(--border-soft)"
-                      : "none",
-                  borderBottom:
-                    i < TIERS.length - 1
-                      ? "1px solid var(--border-soft)"
-                      : "none",
-                  background: "transparent",
-                  outline: t.recommended ? "1.5px solid var(--accent)" : "none",
-                  outlineOffset: t.recommended ? "-1.5px" : undefined,
-                  position: "relative",
-                }}
-              >
-                {/* Anchor row, only filled for recommended; renders only at md+ where horizontal alignment matters. */}
-                <div className="hidden md:block md:h-[26px] md:mb-[6px]">
-                  {t.recommended ? (
-                    <span
-                      className="inline-flex items-center"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: 10,
-                        letterSpacing: "var(--tracking-eyebrow)",
-                        textTransform: "uppercase",
-                        color: "var(--ink-quiet)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      <span className="pricing-anchor-dot" aria-hidden />
-                      For ongoing work
-                    </span>
-                  ) : null}
-                </div>
-
-                <div
-                  className="text-ink"
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 600,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {t.name}
-                </div>
-
-                <div
-                  className="text-ink"
-                  style={{
-                    marginTop: 22,
-                    fontSize: "clamp(2.25rem, 1.6rem + 1.8vw, 3.25rem)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.045em",
-                    lineHeight: 1,
-                  }}
-                >
-                  {t.price}
-                </div>
-
-                <div
-                  style={{
-                    marginTop: 8,
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 12,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  {t.cadence}
-                </div>
-
-                {t.annual ? (
-                  <div
-                    style={{
-                      marginTop: 6,
-                      fontSize: 13,
-                      color: "var(--ink-soft)",
-                    }}
-                  >
-                    {t.annualHref ? (
-                      <Link
-                        href={t.annualHref}
-                        className="pricing-annual-link"
-                        style={{
-                          color: "var(--ink-soft)",
-                          borderBottom: "1px solid var(--border)",
-                          paddingBottom: 1,
-                        }}
-                      >
-                        {t.annual}
-                      </Link>
-                    ) : (
-                      t.annual
-                    )}
-                  </div>
-                ) : null}
-
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 22,
-                    fontSize: 15,
-                    lineHeight: 1.55,
-                    flex: 1,
-                  }}
-                >
-                  {t.body}
-                </p>
-
-                {t.pills ? (
-                  <div
-                    className="md:hidden flex flex-wrap gap-x-5 gap-y-2"
-                    style={{
-                      marginTop: 18,
-                      marginBottom: 22,
-                      borderTop: "1px solid var(--border-soft)",
-                      paddingTop: 14,
-                    }}
-                    aria-label="Plan at a glance"
-                  >
-                    {t.pills.map((pill) => (
-                      <div key={pill.label} className="flex flex-col">
-                        <span
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            color: "var(--ink-soft)",
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            fontWeight: 600,
-                          }}
-                        >
-                          {pill.label}
-                        </span>
-                        <span
-                          className="text-ink"
-                          style={{ fontSize: 14, fontWeight: 500, marginTop: 2 }}
-                        >
-                          {pill.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-
-                <Link
-                  href={t.href}
-                  className="pricing-tier-cta"
-                  data-recommended={t.recommended ? "true" : undefined}
-                >
-                  {t.cta}{" "}
-                  <span className="cta-arrow" aria-hidden>
-                    →
-                  </span>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 3.5 · Side-by-side compare ────────────────────────── */}
         <section
-          className="mx-auto w-full max-w-[1180px] px-6 pb-20 md:pb-24"
-          data-delight="pricing-compare"
-          data-delight-once
+          aria-label="Pricing commitments"
+          className={styles.commitmentBand}
         >
-          <div className="mb-4" style={eyebrowStyle()}>
-            Side by side
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "22ch", marginBottom: 12 }}
-          >
-            Same four products. Four shapes of access.
-          </h2>
-          <p
-            className="text-ink-soft"
-            style={{
-              fontSize: 17,
-              lineHeight: 1.55,
-              maxWidth: "58ch",
-              marginBottom: 36,
-            }}
-          >
-            The tiers don&apos;t differ on which products you get. All four,
-            every plan. They differ on shape, who it&apos;s for, how long it
-            lasts, what
-            stays when it ends.
-          </p>
+          <ul className={styles.shell}>
+            <li>
+              <strong>No charge</strong>
+              <span>on the waitlist</span>
+            </li>
+            <li>
+              <strong>VAT included</strong>
+              <span>at the prevailing rate</span>
+            </li>
+            <li>
+              <strong>Terms repeated</strong>
+              <span>before purchase</span>
+            </li>
+          </ul>
+        </section>
 
-          <div
-            className="hidden md:block"
-            style={{
-              border: "1px solid var(--border)",
-              background: "var(--bg-elev)",
-              overflowX: "auto",
-            }}
+        <PricingSelectionProvider>
+          <section
+            aria-labelledby="plans-title"
+            className={`${styles.plansSection} ${styles.shell}`}
+            id="plans"
           >
-            <table
-              style={{
-                width: "100%",
-                minWidth: 760,
-                borderCollapse: "collapse",
-                textAlign: "left",
-              }}
-            >
+            <div className={styles.sectionHeader}>
+            <h2 id="plans-title">Choose by the work in front of you.</h2>
+            <p>
+              Compare the price, workspace limit and the terms settled today.
+              Anything unresolved is named plainly.
+            </p>
+            </div>
+
+            <PlanPicker plans={PLANS} />
+
+            <p className={styles.vatLine}>{PRICING.vatStatement}</p>
+          </section>
+
+        <section
+          aria-labelledby="comparison-title"
+          className={`${styles.comparisonSection} ${styles.shell}`}
+        >
+          <div className={styles.sectionHeader}>
+            <h2 id="comparison-title">Only what changes.</h2>
+            <p>
+              No feature maze. These are the commercial differences confirmed
+              today.
+            </p>
+          </div>
+
+          <div className={styles.desktopComparison}>
+            <table>
+              <caption className="sr-only">
+                Signal Studio plan comparison
+              </caption>
               <thead>
                 <tr>
-                  <th
-                    style={{
-                      padding: "22px 24px",
-                      borderBottom: "1px solid var(--border-soft)",
-                      fontWeight: 400,
-                      width: "22%",
-                    }}
-                    aria-label="Dimension"
-                  />
-                  {TIERS.map((t) => (
-                    <th
-                      key={t.name}
-                      scope="col"
-                      style={{
-                        padding: "22px 24px",
-                        borderBottom: "1px solid var(--border-soft)",
-                        borderTop: t.recommended
-                          ? "2px solid var(--accent)"
-                          : "2px solid transparent",
-                        color: "var(--ink)",
-                        background: t.recommended
-                          ? "color-mix(in srgb, var(--accent-soft) 50%, var(--bg-elev))"
-                          : "transparent",
-                        verticalAlign: "bottom",
-                      }}
-                    >
-                      {t.recommended ? (
-                        <div
-                          className="inline-flex items-center"
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            color: "var(--ink-soft)",
-                            fontWeight: 600,
-                            marginBottom: 8,
-                          }}
-                        >
-                          <span className="pricing-anchor-dot" aria-hidden />
-                          For ongoing work
-                        </div>
-                      ) : null}
-                      <div
-                        style={{
-                          fontSize: 17,
-                          fontWeight: 600,
-                          letterSpacing: "-0.015em",
-                        }}
-                      >
-                        {t.name}
-                      </div>
+                  <th scope="col">What changes</th>
+                  {PLANS.map((plan) => (
+                    <th key={plan.id} scope="col">
+                      <span>{plan.name}</span>
+                      <strong>{plan.price}</strong>
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {COMPARE_ROWS.map((row, ri) => {
-                  const isLast = ri === COMPARE_ROWS.length - 1;
-                  return (
-                    <tr key={row.label}>
-                      <th
-                        scope="row"
-                        style={{
-                          padding: "18px 24px",
-                          borderBottom: isLast
-                            ? "none"
-                            : "1px solid var(--border-soft)",
-                          fontFamily: "var(--font-mono)",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "var(--ink-quiet)",
-                          letterSpacing: "var(--tracking-eyebrow)",
-                          textTransform: "uppercase",
-                          verticalAlign: "top",
-                          textAlign: "left",
-                        }}
-                      >
-                        {row.label}
-                      </th>
-                      {row.values.map((v, ci) => {
-                        const tier = TIERS[ci];
-                        return (
-                          <td
-                            key={ci}
-                            style={{
-                              padding: "18px 24px",
-                              borderBottom: isLast
-                                ? "none"
-                                : "1px solid var(--border-soft)",
-                              fontSize: 15,
-                              lineHeight: 1.5,
-                              color: tier.recommended ? "var(--ink)" : "var(--ink-soft)",
-                              background: tier.recommended
-                                ? "color-mix(in srgb, var(--accent-soft) 30%, var(--bg-elev))"
-                                : "transparent",
-                              verticalAlign: "top",
-                            }}
-                          >
-                            {v}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
+                {COMPARISON_ROWS.map((row) => (
+                  <tr key={row.key}>
+                    <th scope="row">{row.label}</th>
+                    {PLANS.map((plan) => (
+                      <td key={plan.id}>{plan.comparison[row.key]}</td>
+                    ))}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
-          {/* Mobile compare, stacked per-tier blocks, md:hidden */}
-          <div className="grid grid-cols-1 gap-4 md:hidden">
-            {TIERS.map((t, ti) => (
-              <div
-                key={t.name}
-                className={ti === 1 ? "order-2" : ti === 2 ? "order-1" : ti === 3 ? "order-3" : ""}
-                style={{
-                  border: t.recommended ? "1.5px solid var(--accent)" : "1px solid var(--border)",
-                  background: t.recommended
-                    ? "color-mix(in srgb, var(--accent-soft) 20%, var(--bg-elev))"
-                    : "var(--bg-elev)",
-                }}
-              >
-                {/* Tier header */}
-                <div
-                  style={{
-                    padding: "18px 20px 14px",
-                    borderBottom: "1px solid var(--border-soft)",
-                  }}
-                >
-                  {t.recommended ? (
-                    <div
-                      className="inline-flex items-center"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: 10,
-                        letterSpacing: "var(--tracking-eyebrow)",
-                        textTransform: "uppercase",
-                        color: "var(--ink-soft)",
-                        fontWeight: 600,
-                        marginBottom: 6,
-                      }}
-                    >
-                      <span className="pricing-anchor-dot" aria-hidden />
-                      For ongoing work
-                    </div>
-                  ) : null}
-                  <div
-                    style={{
-                      fontSize: 17,
-                      fontWeight: 600,
-                      letterSpacing: "-0.015em",
-                      color: "var(--ink)",
-                    }}
-                  >
-                    {t.name}
-                  </div>
-                </div>
-
-                {/* Rows */}
-                <dl style={{ margin: 0 }}>
-                  {COMPARE_ROWS.map((row, ri) => {
-                    const isLast = ri === COMPARE_ROWS.length - 1;
-                    return (
-                      <div
-                        key={row.label}
-                        className="flex items-start justify-between"
-                        style={{
-                          padding: "13px 20px",
-                          borderBottom: isLast ? "none" : "1px solid var(--border-soft)",
-                          gap: 16,
-                        }}
-                      >
-                        <dt
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: 10,
-                            fontWeight: 600,
-                            color: "var(--ink-quiet)",
-                            letterSpacing: "var(--tracking-eyebrow)",
-                            textTransform: "uppercase",
-                            flexShrink: 0,
-                            paddingTop: 2,
-                          }}
-                        >
-                          {row.label}
-                        </dt>
-                        <dd
-                          style={{
-                            fontSize: 14,
-                            lineHeight: 1.5,
-                            color: "var(--ink-soft)",
-                            margin: 0,
-                            textAlign: "right",
-                          }}
-                        >
-                          {row.values[ti]}
-                        </dd>
-                      </div>
-                    );
-                  })}
-                </dl>
-              </div>
-            ))}
-          </div>
-
-          <p
-            className="text-ink-quiet"
-            style={{
-              marginTop: 20,
-              fontSize: 13,
-              lineHeight: 1.55,
-            }}
-          >
-            All tiers include every product, and every plan can read every
-            briefing in the app. Two things that come to you instead, the
-            morning briefing by email, and a forward-to address that turns mail
-            into notes, are part of the Pro tier. Nothing you make is
-            ever locked away by plan.
-          </p>
-        </section>
-
-        {/* ── 4 · What's inside ─────────────────────────────────── */}
-        <section
-          className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24"
-          data-delight="pricing-suite"
-          data-delight-once
-        >
-          <div className="mb-4" style={eyebrowStyle()}>
-            What&apos;s in Signal Studio
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "20ch", marginBottom: 40 }}
-          >
-            Four products. One subscription.
-          </h2>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
-            {SUITE.map((p, index) => (
-              <div
-                key={p.key}
-                data-delight-suite-card
-                data-delight-index={index}
-                style={{
-                  borderTop: "1px solid var(--border)",
-                  paddingTop: 24,
-                }}
-              >
-                <div className="flex items-baseline" style={{ gap: 12, marginBottom: 14 }}>
-                  <span
-                    className="pricing-mark small"
-                    data-key={p.key}
-                    style={{ fontSize: 20 }}
-                  >
-                    <span className="word">{p.word}</span>
-                    <span className="dot" aria-hidden />
+          <div className={styles.mobileComparison}>
+            {PLANS.map((plan) => (
+              <details key={plan.id} name="pricing-comparison">
+                <summary>
+                  <span className={styles.mobileComparisonPlan}>
+                    <strong>{plan.name}</strong>
+                    <span>{plan.mobileSummary}</span>
                   </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: 10,
-                      color: "var(--ink-quiet)",
-                      letterSpacing: "var(--tracking-eyebrow)",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {p.position}
-                  </span>
-                </div>
-                <p
-                  className="text-ink-soft"
-                  style={{ fontSize: 15, lineHeight: 1.55 }}
-                >
-                  {p.desc}
-                </p>
-                <div
-                  className="flex items-center"
-                  style={{
-                    marginTop: 18,
-                    gap: 8,
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  <span
-                    aria-hidden
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: statusPipColor(p.status),
-                      display: "inline-block",
-                    }}
-                  />
-                  {p.statusLabel}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 5 · Development state ─────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-deep)",
-            borderTop: "1px solid var(--border-soft)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div
-              className="mb-6"
-              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
-            >
-              Development state
-            </div>
-            <div
-              className="text-ink-soft"
-              style={{
-                maxWidth: "62ch",
-                borderLeft: "2px solid var(--accent)",
-                paddingLeft: 28,
-              }}
-            >
-              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Signal Studio is one subscription. Today,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Notes</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Tasks</strong>,{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal Timeline</strong>, and{" "}
-                <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Signal</strong> are in development.
-              </p>
-              <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 18 }}>
-                Your price stays the same as the suite deepens. You pay for
-                Signal Studio, not for a product count.
-              </p>
-              <p style={{ fontSize: 17, lineHeight: 1.6 }}>
-                We will not call a product live on this page until the product
-                behind it is ready.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 6 · Event lane ────────────────────────────────────── */}
-        <section
-          style={{
-            background: "var(--bg-elev)",
-            borderBottom: "1px solid var(--border)",
-          }}
-        >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div className="mb-6" style={eyebrowStyle()}>
-              Planning one event?
-            </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:gap-16 md:items-end">
-              <div>
-                <h2
-                  className="h-title text-balance text-ink"
-                  style={{ maxWidth: "22ch" }}
-                >
-                  Signal Studio for one wedding, one launch, one move.
-                </h2>
-                <p
-                  className="text-ink-soft"
-                  style={{
-                    marginTop: 20,
-                    fontSize: 17,
-                    lineHeight: 1.6,
-                    maxWidth: "52ch",
-                  }}
-                >
-                  {EVENT_PRICE} one-time. 12 months of full access. All four
-                  products in a single event-shaped workspace. Post-window
-                  access and retention terms are confirmed before purchase.
-                </p>
-              </div>
-              <div className="flex flex-col md:items-end" style={{ gap: 18 }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--ink-quiet)",
-                    letterSpacing: "var(--tracking-eyebrow)",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
-                >
-                  Event lane
-                </span>
-                <span
-                  className="text-ink"
-                  style={{
-                    fontSize: "clamp(2.5rem, 1.8rem + 2vw, 3.75rem)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.045em",
-                    lineHeight: 1,
-                  }}
-                >
-                  {EVENT_PRICE}
-                </span>
-                <div className="flex flex-col md:items-end" style={{ gap: 6 }}>
-                  <Link
-                    href="/weddings"
-                    className="pricing-event-link pricing-event-link-primary"
-                    style={{
-                      color: "var(--accent)",
-                      fontSize: 15,
-                      fontWeight: 500,
-                    }}
-                  >
-                    Plan an event{" "}
-                    <span className="cta-arrow" aria-hidden>
-                      →
+                  <span className={styles.mobileComparisonMeta}>
+                    <strong>{plan.price}</strong>
+                    <span className={styles.mobileComparisonState}>
+                      <span className={styles.comparisonClosed}>View</span>
+                      <span className={styles.comparisonOpen}>Open</span>
+                      <span aria-hidden="true" className={styles.disclosureChevron} />
                     </span>
-                  </Link>
-                  <Link
-                    href="/weddings"
-                    className="pricing-event-link pricing-event-link-secondary"
-                    style={{
-                      color: "var(--ink-quiet)",
-                      fontSize: 13,
-                    }}
-                  >
-                    See how it works for weddings ↗
-                  </Link>
-                </div>
-              </div>
-            </div>
-            {/* Venue Editions surface, quiet line, no CTA, no link.
-                The couples this is for arrive via their venue, not
-                via this page. The line exists for the small set of
-                couples who looked here first. */}
-            <p
-              className="text-ink-quiet"
-              style={{
-                marginTop: 36,
-                fontSize: 15,
-                lineHeight: 1.55,
-              }}
-            >
-              Planning a wedding? Ask your venue. If they sent you a code, use
-              that link instead.
-            </p>
-          </div>
-        </section>
-
-        {/* Venue patronage moved off /pricing → it lives on its own page
-            (/venues, the Founding Venue Programme). Venues are a different
-            audience and motion from the four self-serve tiers; keeping the
-            consumer pricing page about the consumer tiers. A quiet pointer
-            for the rare couple who lands here first stays in the Event lane
-            above ("Planning a wedding? Ask your venue."). */}
-
-        {/* ── 7 · What this isn't ───────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-          <div className="mb-4" style={eyebrowStyle()}>
-            What this isn&apos;t
-          </div>
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "24ch", marginBottom: 40 }}
-          >
-            Three things Signal Studio refuses to do.
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {REFUSALS.map((r, i) => (
-              <div
-                key={r.neg}
-                style={{
-                  padding: i === 0 ? "0 28px 0 0" : "0 28px",
-                  borderLeft:
-                    i > 0 ? "1px solid var(--border-soft)" : "none",
-                }}
-              >
-                <div
-                  className="text-ink"
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 500,
-                    letterSpacing: "-0.02em",
-                    marginBottom: 12,
-                  }}
-                >
-                  {r.neg}
-                </div>
-                <p
-                  className="text-ink-soft"
-                  style={{ fontSize: 15, lineHeight: 1.55 }}
-                >
-                  {r.pos}
-                </p>
-              </div>
+                  </span>
+                </summary>
+                <dl>
+                  {COMPARISON_ROWS.map((row) => (
+                    <div key={row.key}>
+                      <dt>{row.label}</dt>
+                      <dd>{plan.comparison[row.key]}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
             ))}
           </div>
         </section>
 
-        {/* ── 8 · FAQ ───────────────────────────────────────────── */}
         <section
-          style={{
-            background: "var(--bg-deep)",
-            borderTop: "1px solid var(--border-soft)",
-            borderBottom: "1px solid var(--border-soft)",
-          }}
+          aria-labelledby="proof-title"
+          className={styles.proofSection}
         >
-          <div className="mx-auto w-full max-w-[1180px] px-6 py-20 md:py-24">
-            <div
-              className="mb-4"
-              style={{ ...eyebrowStyle(), color: "var(--ink-soft)" }}
-            >
-              Questions
+          <div className={styles.shell}>
+            <div className={styles.sectionHeader}>
+              <h2 id="proof-title">The same work, without starting again.</h2>
+              <p>
+                One verified line of work moves from a private note to an
+                approved task and a published Timeline. It is fixed product
+                evidence, not live customer data.
+              </p>
             </div>
-            <h2
-              className="h-title text-balance text-ink"
-              style={{ maxWidth: "24ch", marginBottom: 48 }}
-            >
-              The honest answers, in plain English.
-            </h2>
 
-            <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2">
-              {FAQ.map((f) => (
-                <div key={f.q}>
-                  <div
-                    className="text-ink"
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 500,
-                      letterSpacing: "-0.02em",
-                      marginBottom: 10,
-                    }}
-                  >
-                    {f.q}
+            <figure
+              className={styles.signalProof}
+              data-delight="pricing-proof"
+              data-delight-once
+            >
+              <ol
+                aria-label="A first-party product handoff from Notes to Tasks to Timeline"
+                className={styles.proofSteps}
+              >
+                {PROOF_STEPS.map((step) => (
+                  <li key={step.id}>
+                    <span className={styles.proofNode} aria-hidden="true" />
+                    <div className={styles.proofStepHead}>
+                      <ProductSignatureWordmark
+                        product={step.product}
+                        staticPresentation
+                        suppressMark={step.product === "tasks"}
+                      />
+                      <span>{step.state}</span>
+                    </div>
+                    <div className={styles.proofReceipt}>
+                      <p className={styles.proofObjectLabel}>{step.label}</p>
+                      <h3>{step.title}</h3>
+                      <p>{step.body}</p>
+                      <span>{step.meta}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className={styles.timelineReceipt}>
+                <div className={styles.timelineReceiptHeader}>
+                  <div>
+                    <span>Published Timeline</span>
+                    <strong>{PUBLISHED_TIMELINE.label}</strong>
                   </div>
-                  <p
-                    className="text-ink-soft"
-                    style={{ fontSize: 15, lineHeight: 1.6 }}
-                  >
-                    {f.a}
-                  </p>
+                  <span>{PUBLISHED_TIMELINE.ownerDisplayLabel}</span>
                 </div>
-              ))}
-            </div>
+                <div className={styles.timelineTrack} aria-hidden="true">
+                  <span />
+                  <span className={styles.timelineCurrent} />
+                  <span />
+                </div>
+                <div className={styles.timelineLabels}>
+                  <span>The Orchard reserved</span>
+                  <strong>Menu tasting · 1 Aug</strong>
+                  <span>Wedding day · 3 Oct</span>
+                </div>
+              </div>
+
+              <figcaption>
+                Deterministic product fixture. Mara &amp; Finn. The Orchard,
+                events. No controls, no invented fields.
+              </figcaption>
+            </figure>
           </div>
         </section>
 
-        {/* ── 9 · Quiet close ───────────────────────────────────── */}
-        <section className="mx-auto w-full max-w-[1180px] px-6 pt-24 pb-24 md:pt-28 md:pb-28">
-          <h2
-            className="h-title text-balance text-ink"
-            style={{ maxWidth: "14ch", marginBottom: 28 }}
-          >
-            Everything important. Nothing distracting.
-          </h2>
-          <p
-            className="text-ink-soft"
-            style={{
-              maxWidth: "48ch",
-              fontSize: 19,
-              lineHeight: 1.55,
-              marginBottom: 48,
-            }}
-          >
-            One price. Four kinds of clarity. Built for everyone else.
-          </p>
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 13,
-              letterSpacing: "0.04em",
-              color: "var(--ink-quiet)",
-            }}
-          >
-            <a
-              href="mailto:hello@signalstudio.ie"
-              className="pricing-email-link"
-              style={{
-                color: "var(--ink-soft)",
-                borderBottom: "1px solid var(--ink-300)",
-                paddingBottom: 1,
-              }}
-            >
-              hello@signalstudio.ie
-            </a>
-            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
-            Limerick
-            <span style={{ margin: "0 10px", color: "var(--accent)" }}>·</span>
-            2026
+        <section
+          aria-labelledby="answers-title"
+          className={`${styles.answersSection} ${styles.shell}`}
+        >
+          <div className={styles.sectionHeader}>
+            <h2 id="answers-title">Straight answers.</h2>
+          </div>
+
+          <div className={styles.answers}>
+            {FAQ.map((item) => (
+              <details key={item.question}>
+                <summary>
+                  <span>{item.question}</span>
+                  <span aria-hidden="true" className={styles.answerMark}>
+                    +
+                  </span>
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
           </div>
         </section>
+
+          <PricingClosing plans={PLANS} />
+        </PricingSelectionProvider>
       </main>
-      <SiteFooter />
+      <div className={styles.pricingFooter}>
+        <SiteFooter />
+      </div>
     </>
   );
 }

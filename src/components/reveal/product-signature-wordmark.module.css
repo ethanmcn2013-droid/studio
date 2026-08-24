@@ -94,7 +94,8 @@
   animation: timeline-milestone-settle 380ms var(--ease-out) 700ms both;
 }
 
-.wordmark[data-product="signal"][data-active="true"] .signalPulse {
+.wordmark[data-product="signal"][data-active="true"] .signalPulse,
+.wordmark[data-product="home"][data-active="true"] .signalPulse {
   animation: signal-heartbeat-settle 1.2s var(--ease-in-out) 100ms both;
 }
 
@@ -170,6 +171,33 @@
   24% {
     transform: translateY(-0.04em) scale(1.35);
   }
+}
+
+.wordmark[data-static="true"] .notesCaret,
+.wordmark[data-static="true"] .tasksStrike,
+.wordmark[data-static="true"] .timelineTrack,
+.wordmark[data-static="true"] .timelineMilestone,
+.wordmark[data-static="true"] .signalPulse {
+  animation: none;
+}
+
+.wordmark[data-static="true"] .notesCaret,
+.wordmark[data-static="true"] .tasksStrike,
+.wordmark[data-static="true"] .timelineTrack,
+.wordmark[data-static="true"] .timelineMilestone {
+  opacity: 1;
+}
+
+.wordmark[data-static="true"] .tasksStrike {
+  transform: scaleX(1);
+}
+
+.wordmark[data-static="true"] .timelineTrack {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.wordmark[data-static="true"] .timelineMilestone {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {

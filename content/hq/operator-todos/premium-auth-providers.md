@@ -3,6 +3,7 @@ id: premium-auth-providers
 title: Finish production social sign-in verification and brand alignment
 status: open
 priority: P1
+effort: involved
 blocking: false
 phase: Premium Programme Phase 2
 why: Google and the production domain configuration are in place; the independent-account safety matrix remains founder-only. GitHub and Apple intentionally stay separate and disabled.

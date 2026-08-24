@@ -7,13 +7,12 @@ import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
 const INDIGO = "#4f46e5";
 const INK = "#111111";
 
-type ProductSlug = "notes" | "tasks" | "timeline" | "signal";
+type ProductSlug = "notes" | "tasks" | "timeline";
 
 const PRODUCTS = [
   { slug: "notes"    as ProductSlug, name: "notes",    tagline: "Capture clarity",   description: "A quiet surface to think before you act.", url: PRODUCT_MARKETING_URLS.notes },
   { slug: "tasks"    as ProductSlug, name: "tasks",    tagline: "Execution clarity", description: "Track what matters without the noise.",    url: PRODUCT_MARKETING_URLS.tasks },
   { slug: "timeline" as ProductSlug, name: "timeline", tagline: "Direction clarity", description: "Show the plan. Keep everyone aligned.",    url: PRODUCT_MARKETING_URLS.timeline },
-  { slug: "signal"   as ProductSlug, name: "signal",   tagline: "Attention clarity", description: "Surface what needs attention, with receipts.", url: PRODUCT_MARKETING_URLS.signal },
 ] as const;
 
 /* ── Embedded stylesheet ──────────────────────────────────────────
@@ -28,6 +27,9 @@ const PANEL_CSS = `
   left: 0;
   right: 0;
   z-index: 50;
+  max-height: calc(100dvh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: #ffffff;
   border-bottom: 1px solid rgba(17,17,17,0.08);
   box-shadow: 0 20px 48px -16px rgba(17,17,17,0.10), 0 4px 12px -4px rgba(17,17,17,0.05);
@@ -51,10 +53,10 @@ const PANEL_CSS = `
   line-height: 1;
 }
 
-/* 4-column grid */
+/* Three-product grid */
 .mpanel-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
@@ -138,10 +140,6 @@ const PANEL_CSS = `
   0%,49% { opacity: 1; }
   50%,100% { opacity: 0; }
 }
-.mpanel-card[data-slug="notes"] .mnotes-cursor {
-  animation: mnotes-caret 760ms steps(1,end) 140ms 2;
-}
-
 /* tasks · pulse, staggered across 3 dots */
 .mtasks-dot { transform-box: fill-box; transform-origin: center; }
 .mtasks-dot-1,
@@ -154,17 +152,11 @@ const PANEL_CSS = `
   40%         { transform: scale(1.14); }
   50%         { transform: scale(1); }
 }
-.mpanel-card[data-slug="tasks"] .mtasks-dot {
-  animation: mtasks-pulse 1.1s var(--ease-out) 180ms 1 both;
-}
-.mpanel-card[data-slug="tasks"] .mtasks-dot-2 { animation-delay: 230ms; }
-.mpanel-card[data-slug="tasks"] .mtasks-dot-3 { animation-delay: 280ms; }
-
 /* roadmap · sweep */
 .mroadmap-dot {
   transform-box: fill-box;
   transform-origin: center;
-  transform: translateX(36px);
+  transform: translateX(0);
 }
 @keyframes mroadmap-sweep {
   0%   { transform: translateX(0);    opacity: 1; }
@@ -174,45 +166,6 @@ const PANEL_CSS = `
   78%  { transform: translateX(0);    opacity: 1; }
   100% { transform: translateX(0);    opacity: 1; }
 }
-.mpanel-card[data-slug="timeline"] .mroadmap-dot {
-  animation: mroadmap-sweep 1.4s var(--ease-in-out) 220ms 1 both;
-}
-
-/* analytics · tick */
-.manalytics-bar { transform-box: fill-box; transform-origin: bottom; }
-.manalytics-bar-1 { transform: scaleY(0.72); }
-.manalytics-bar-2 { transform: scaleY(0.46); }
-.manalytics-bar-3 { transform: scaleY(0.88); }
-.manalytics-bar-4 { transform: scaleY(0.62); }
-@keyframes mbar1 {
-  0%  { transform: scaleY(0.55); } 25% { transform: scaleY(0.85); }
-  50% { transform: scaleY(0.35); } 75% { transform: scaleY(1.00); }
-}
-@keyframes mbar2 {
-  0%  { transform: scaleY(0.90); } 25% { transform: scaleY(0.45); }
-  50% { transform: scaleY(1.00); } 75% { transform: scaleY(0.60); }
-}
-@keyframes mbar3 {
-  0%  { transform: scaleY(0.40); } 25% { transform: scaleY(0.75); }
-  50% { transform: scaleY(0.55); } 75% { transform: scaleY(0.25); }
-}
-@keyframes mbar4 {
-  0%  { transform: scaleY(1.00); } 25% { transform: scaleY(0.55); }
-  50% { transform: scaleY(0.80); } 75% { transform: scaleY(0.40); }
-}
-.mpanel-card[data-slug="signal"] .manalytics-bar-1 {
-  animation: mbar1 1.1s steps(4,end) 260ms 1 both;
-}
-.mpanel-card[data-slug="signal"] .manalytics-bar-2 {
-  animation: mbar2 1.1s steps(4,end) 285ms 1 both;
-}
-.mpanel-card[data-slug="signal"] .manalytics-bar-3 {
-  animation: mbar3 1.1s steps(4,end) 310ms 1 both;
-}
-.mpanel-card[data-slug="signal"] .manalytics-bar-4 {
-  animation: mbar4 1.1s steps(4,end) 335ms 1 both;
-}
-
 /* Footer row, quiet link to the design system */
 .mpanel-foot {
   display: flex;
@@ -235,11 +188,26 @@ const PANEL_CSS = `
     background: rgba(79,70,229,0.05);
     border-color: rgba(79,70,229,0.18);
   }
+
+  .mpanel-card[data-slug="notes"]:hover .mnotes-cursor {
+    animation: mnotes-caret 600ms steps(1,end) 1;
+  }
+
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot {
+    animation: mtasks-pulse 520ms var(--ease-out) 1 both;
+  }
+
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot-2 { animation-delay: 50ms; }
+  .mpanel-card[data-slug="tasks"]:hover .mtasks-dot-3 { animation-delay: 100ms; }
+
+  .mpanel-card[data-slug="timeline"]:hover .mroadmap-dot {
+    animation: mroadmap-sweep 680ms var(--ease-in-out) 1 both;
+  }
 }
 
 /* Mobile, 2×2 grid */
 @media (max-width: 640px) {
-  .mpanel-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .mpanel-grid { grid-template-columns: 1fr; gap: 10px; }
   .mpanel-inner { padding: 20px 16px 24px; }
   .mpanel-stage { height: 56px; }
 }
@@ -252,11 +220,12 @@ const PANEL_CSS = `
       border-color 160ms var(--ease-out);
   }
   .mpanel-card:active { transform: none; }
-  .mnotes-cursor, .mtasks-dot, .mroadmap-dot, .manalytics-bar { animation: none !important; }
-  .mnotes-cursor { opacity: 1; }
+  .mnotes-cursor, .mtasks-dot, .mroadmap-dot {
+    animation: none !important;
+    opacity: 1;
+  }
   .mroadmap-dot  { transform: none; }
-  .manalytics-bar { transform: scaleY(0.7); }
-}
+  }
 `;
 
 /* ── Per-product gesture visuals ─────────────────────────────── */
@@ -299,23 +268,10 @@ function RoadmapVisual() {
   );
 }
 
-function AnalyticsVisual() {
-  return (
-    <svg width="88" height="52" viewBox="0 0 88 52" fill="none" aria-hidden>
-      <rect x="0" y="48" width="88" height="1" rx="0.5" fill={INK} opacity="0.07" />
-      <rect x="6"  y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-1" />
-      <rect x="27" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-2" />
-      <rect x="48" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-3" />
-      <rect x="69" y="8" width="14" height="40" rx="2" fill={INDIGO} opacity="0.9" className="manalytics-bar manalytics-bar-4" />
-    </svg>
-  );
-}
-
 const VISUAL_MAP: Record<ProductSlug, () => React.ReactElement> = {
   notes:    NotesVisual,
   tasks:    TasksVisual,
   timeline: RoadmapVisual,
-  signal:   AnalyticsVisual,
 };
 
 /* ── Component ───────────────────────────────────────────────── */
@@ -365,7 +321,7 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
         }}
       >
         <div className="mpanel-inner">
-          <p className="mpanel-label">Four products, one studio.</p>
+          <p className="mpanel-label">Notes. Tasks. Timeline. One clear system.</p>
 
           <div className="mpanel-grid">
             {PRODUCTS.map((product, i) => {
@@ -411,7 +367,7 @@ export function ProductsMegaPanel({ open, onClose, triggerRef }: Props) {
           </div>
 
           <a href="/design" onClick={onClose} className="mpanel-foot">
-            <span>One system behind all four, see the design</span>
+            <span>One system behind all three, see the design</span>
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.4"
               strokeLinecap="round" strokeLinejoin="round" aria-hidden>

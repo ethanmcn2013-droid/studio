@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 
 /**
  * Notes hero lab direction: Before It Leaves.
@@ -28,7 +29,7 @@ const STREAM = [
     state: "private",
   },
   {
-    title: "Venue can open the side room after six",
+    title: "Menu tasting booked for 1 August at The Orchard",
     detail: "caught just now",
     state: "source",
   },
@@ -158,7 +159,7 @@ export function NotesBeforeItLeaves({
                   Maeve&rsquo;s case study angle: the refund week
                 </span>
                 <span className="bil-incoming bil-incoming-three" aria-hidden>
-                  Venue can open the side room after six
+                  Menu tasting booked for 1 August at The Orchard
                 </span>
               </div>
               <p className="bil-capture-hint">
@@ -231,7 +232,7 @@ export function NotesBeforeItLeaves({
               <span className="bil-task-box" aria-hidden />
               <span className="bil-task-copy">
                 <span className="bil-task-title">
-                  Ask the venue to hold the side room after six
+                  {REVIEW_SUITE_PRESENTATION.journey.task}
                 </span>
                 <span className="bil-task-detail">from a note · open</span>
               </span>

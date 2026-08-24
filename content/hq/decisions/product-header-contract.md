@@ -16,7 +16,10 @@ Products may customize the content slot, page links, and material register when 
 
 ## Reason
 
-Signal Studio is four products, one system. Users should feel the surface hold still as they move from Notes to Tasks to Timeline to Signal. The product should change. The operating chrome should not.
+Signal Studio is three products and one authenticated Home, held by one system.
+Users should feel the surface hold still as they move from Notes to Tasks to
+Timeline and back through Home. The product should change. The operating
+chrome should not.
 
 The review panel converged on the same rule from brand, design, and engineering: continuity belongs in the sticky header; product meaning belongs in the hero, the product surface, and the canonical product gesture.
 
@@ -32,7 +35,12 @@ As of 2026-07-04, the public product header is a single shared component, `src/c
 
 As of 2026-07-06, the contract also fixes the nav *content*, not just the shell. The prior rule shared the shell but still let each product choose its own primary nav links, and they diverged badly: Signal ran Signal · Ten rules · Refusals · Pricing · About · Design; Tasks ran Demo · Anatomy · App · Pricing · Design; Timeline ran Pricing · About · Demo · Dispatch · Design; Notes ran nothing. Geometry and byte-seal held the frame identical while the words inside it drifted four ways — which is why "this keeps happening." The marketing header nav is now **exactly `Pricing · Design`, both umbrella links** (`signalstudio.ie/pricing`, `signalstudio.ie/design`). The product wordmark is home; everything else (Ten rules, Refusals, About, Demo, Anatomy, App, Dispatch) stays reachable from the footer and the page body where it earns the place, not the primary header. This supersedes the 2026-07-02 line "product-specific nav links may collapse into a menu" — there are no product-specific primary nav links anymore. `scripts/check-chrome-contract.mjs` now asserts the nav label set is exactly `[Pricing, Design]` for every product wrapper, so nav content can no longer drift, only be changed here on purpose.
 
-As of 2026-07-17, the **authed app surface** graduates from the marketing shell to the **Studio Bar** (founder direction, Tasks dispatch T·94; promoted from the Option B design lab). The app chrome is a 48px neutral-charcoal bar plus a 60px product rail forming one L-shaped Signal Studio frame around the white canvas. Bar grid, aligned to the shell below it: 60px Signal Studio mark cell over the rail; 248px workspace-switcher cell over the sidebar; scope capsule (planning period › workspace, the one off-white element); universal "Search, jump or create…" command field on Cmd/Ctrl+K; reserved restrained Signal-pulse slot (never a generic notification bell); contextual create; account. The rail carries the four products in the canonical tile geometry with the current product lit indigo. Product-local navigation, view controls, filters, progress, and milestones stay out of the bar. Tasks ships it first; the other three products migrate to the same bar, and this section is the contract they copy. The marketing header contract above is unchanged. The tasks repo's `scripts/check-chrome-contract.mjs` now asserts the Studio Bar geometry (48px, charcoal token, z-40, grid cells, pulse slot) in place of the app-chrome SuiteHeader rule; SuiteSwitcher remains the rule only for products that have not yet migrated.
+As of 2026-08-04, the **authed app surface** uses the Studio Bar over a
+three-product rail plus Home. Notes, Tasks, and Timeline are the product
+destinations. Home owns orientation and the briefing. The historical
+four-product geometry below remains provenance for how the shell was built,
+not the current navigation contract. Product-local navigation, view controls,
+filters, progress, and milestones stay out of the bar.
 
 ### Consolidation amendment · 2026-07-26
 

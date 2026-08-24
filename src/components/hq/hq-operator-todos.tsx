@@ -17,7 +17,7 @@ import type { OperatorTodo, OperatorTodoBoard } from "@/lib/hq/operator-todos";
  * Server component, the page loads the board and hands it in.
  */
 export function HqOperatorTodos({ board }: { board: OperatorTodoBoard }) {
-  const { todos, openCount, doneCount, blockingCount } = board;
+  const { todos, openCount, doneCount, blockingCount, quickCount, involvedCount } = board;
 
   if (todos.length === 0) return null;
 
@@ -29,22 +29,64 @@ export function HqOperatorTodos({ board }: { board: OperatorTodoBoard }) {
           What only you can unblock
         </h2>
         <p className="hq-optodo-sub">
-          Every founder-gated task across Signal Studio lands here. The agent
-          logs the blocker; you have full visibility on what you are holding.
+          Only actions that genuinely need the founder live here. Engineering,
+          migrations, and routine operator work sit in the agent execution queue.
         </p>
         <span className="hq-optodo-count" data-clear={openCount === 0 ? "true" : undefined}>
           {openCount} open
+          {openCount > 0 ? ` · ${quickCount} quick · ${involvedCount} involved` : ""}
           {blockingCount > 0 ? ` · ${blockingCount} blocking` : ""}
           {doneCount > 0 ? ` · ${doneCount} done` : ""}
         </span>
       </div>
 
+      <OperatorTodoGroup
+        title="Quick wins"
+        note="A short decision, approval, or dashboard action."
+        todos={todos.filter((todo) => todo.status === "open" && todo.effort === "quick")}
+      />
+      <OperatorTodoGroup
+        title="Longer calls"
+        note="Needs a considered review, external process, or purchase."
+        todos={todos.filter((todo) => todo.status === "open" && todo.effort === "involved")}
+      />
+      {doneCount > 0 ? (
+        <details className="hq-optodo-archive">
+          <summary>Cleared · {doneCount}</summary>
+          <ul className="hq-optodo-list" role="list">
+            {todos.filter((todo) => todo.status === "done").map((todo) => (
+              <OperatorTodoRow key={todo.id} todo={todo} />
+            ))}
+          </ul>
+        </details>
+      ) : null}
+    </section>
+  );
+}
+
+function OperatorTodoGroup({
+  title,
+  note,
+  todos,
+}: {
+  title: string;
+  note: string;
+  todos: OperatorTodo[];
+}) {
+  if (todos.length === 0) return null;
+  return (
+    <div className="hq-optodo-group">
+      <div className="hq-optodo-group-head">
+        <h3>{title}</h3>
+        <span>{todos.length}</span>
+      </div>
+      <p>{note}</p>
       <ul className="hq-optodo-list" role="list">
         {todos.map((todo) => (
           <OperatorTodoRow key={todo.id} todo={todo} />
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 
@@ -65,6 +107,9 @@ function OperatorTodoRow({ todo }: { todo: OperatorTodo }) {
             <span className="hq-optodo-tag hq-optodo-tag--prio" data-priority={todo.priority}>
               {todo.priority}
             </span>
+            {!done ? (
+              <span className="hq-optodo-tag hq-optodo-tag--effort">{todo.effort}</span>
+            ) : null}
             {todo.blocking && !done ? (
               <span className="hq-optodo-tag hq-optodo-tag--block">blocking</span>
             ) : null}

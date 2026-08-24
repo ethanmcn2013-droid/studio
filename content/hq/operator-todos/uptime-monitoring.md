@@ -1,7 +1,8 @@
 ---
 id: uptime-monitoring
 title: Set up external uptime monitoring per domain
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; monitor setup and smoke verification remain in the agent execution queue"
 priority: P1
 blocking: false
 phase: Phase 2

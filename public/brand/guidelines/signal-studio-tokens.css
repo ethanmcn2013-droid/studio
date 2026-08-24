@@ -1,0 +1,18 @@
+:root {
+  --signal-paper: #ffffff;
+  --signal-paper-soft: #fafafa;
+  --signal-paper-deep: #f4f4f5;
+  --signal-ink: #111111;
+  --signal-ink-soft: #3f3f46;
+  --signal-ink-faint: #71717a;
+  --signal-ink-ghost: #d4d4d8;
+  --signal-indigo: #4f46e5;
+  --signal-indigo-hover: #4338ca;
+  --signal-indigo-tint: #eef2ff;
+  --signal-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --signal-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --signal-motion-instant: 80ms;
+  --signal-motion-fast: 140ms;
+  --signal-motion-base: 220ms;
+  --signal-motion-slow: 400ms;
+}

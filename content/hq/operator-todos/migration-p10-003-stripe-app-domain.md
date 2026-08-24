@@ -1,7 +1,8 @@
 ---
 id: migration-p10-003-stripe-app-domain
 title: Add app.signalstudio.ie to Stripe checkout allowed URLs
-status: open
+status: done
+cleared: "2026-08-08 - Stripe has no global checkout allowlist for this; app code supplies app.signalstudio.ie success and cancel URLs per session"
 priority: P2
 blocking: false
 phase: Consolidation Phase 10

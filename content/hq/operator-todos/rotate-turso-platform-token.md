@@ -1,7 +1,8 @@
 ---
 id: rotate-turso-platform-token
 title: Rotate the Turso Platform API token used for the database rename
-status: open
+status: done
+cleared: "2026-08-08 - duplicate credential action consolidated into rotate-keys-post-reset"
 priority: P1
 blocking: false
 phase: Post-consolidation cleanup

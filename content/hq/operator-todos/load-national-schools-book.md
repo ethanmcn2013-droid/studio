@@ -1,9 +1,10 @@
 ---
 id: load-national-schools-book
 title: Load the national schools book (4,722 schools) into production Turso
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; production import is an authenticated operator execution, not founder judgment"
 priority: P1
-blocking: true
+blocking: false
 phase: Schools outreach
 why: The schools book is built and merged in code, but the 4,722 school rows only reach the /hq/crm schools book once the import route runs against prod Turso.
 href: /hq/crm?book=school

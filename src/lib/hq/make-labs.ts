@@ -40,11 +40,6 @@ export type Lab = {
    *  production) by scripts/hq-redesign/lab-thumbs-external.mjs, so the main
    *  same-origin capture script skips them. */
   thumbSource?: "external";
-  /** Names a server env var holding a Vercel protection-bypass secret. When set,
-   *  the gallery appends it to href so a protected preview opens without a login.
-   *  The secret lives only in the Vercel env and the rendered (gated) HQ page —
-   *  never in this file. See resolveLabHref(). */
-  bypassEnv?: string;
 };
 
 export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb: string }> = [
@@ -58,6 +53,40 @@ export const MAKE_SECTIONS: Array<{ category: LabCategory; label: string; blurb:
 
 export const MAKE_LABS: Lab[] = [
   // ── Hero labs · the interactive showrooms (live preview branches) ───
+  // ── The Tasks redesign vault (2026-08) ──────────────────────────────
+  // Self-hosted under public/hq/labs/ so the record outlives any external
+  // link: the interactive board, the eleven-round panel log, the session
+  // report and the design master itself.
+  {
+    id: "tasks-studio-floor",
+    name: "Tasks · Studio Floor",
+    category: "decision",
+    state: "SHIPPED",
+    href: "/hq/labs/tasks-studio-floor/board.html",
+    where: "app · shipped 18 Aug 2026 · 11 panel rounds",
+    note: "The board that shipped. Ink, Indigo and White only; status by ink density, never hue. Add a task, tick one and watch it fly, filter by couple, undo anything.",
+    hasThumb: false,
+  },
+  {
+    id: "tasks-studio-floor-rounds",
+    name: "Tasks · the eleven rounds",
+    category: "decision",
+    state: "DECIDED",
+    href: "/hq/labs/tasks-studio-floor/rounds.html",
+    where: "350 findings · 243 confirmed and fixed",
+    note: "Seven independent seats a round, every finding adversarially verified before it counted. The lowest seat moved 6.3 to 8.1 against a 9.5 bar, and the bar was never lowered to pass.",
+    hasThumb: false,
+  },
+  {
+    id: "tasks-studio-floor-record",
+    name: "Tasks · session record",
+    category: "decision",
+    state: "DECIDED",
+    href: "/hq/labs/tasks-studio-floor/record.html",
+    where: "18 Aug 2026",
+    note: "What was built, what it scored, and the honest distance to 9.5 in days. Read this one first.",
+    hasThumb: false,
+  },
   {
     id: "showroom-notes",
     name: "Notes · hero showroom",
@@ -386,22 +415,15 @@ export const MAKE_LABS: Lab[] = [
     state: "PARKED",
     href: "https://studio-git-direction-c-daily-signal-ethanmcn2013-1730s-projects.vercel.app/",
     external: true,
-    bypassEnv: "UMBRELLA_PREVIEW_BYPASS",
     where: "studio · direction-c-daily-signal",
     note: "An experiment where the umbrella site is itself a daily briefing, compiled each morning. Parked as a Studio homepage direction.",
     hasThumb: true,
   },
 ];
 
-/** Resolve a lab's link. For a protected preview whose bypassEnv secret is
- *  present at render time, append the Vercel protection-bypass query so the
- *  card opens without a Vercel login. Server-only: the secret is read from
- *  process.env and rendered into the (gated) HQ page, never committed. */
+/** Resolve a lab's link. Protected previews deliberately require Vercel login. */
 export function resolveLabHref(lab: Lab): string {
-  const secret = lab.bypassEnv ? process.env[lab.bypassEnv] : undefined;
-  if (!secret) return lab.href;
-  const sep = lab.href.includes("?") ? "&" : "?";
-  return `${lab.href}${sep}x-vercel-protection-bypass=${secret}&x-vercel-set-bypass-cookie=true`;
+  return lab.href;
 }
 
 /** Thumbnail public path for a lab (background-image; poster shows if absent). */

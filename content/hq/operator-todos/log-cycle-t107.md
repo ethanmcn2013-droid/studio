@@ -1,7 +1,8 @@
 ---
 id: log-cycle-t107
 title: Run log-cycle for Tasks dispatch T·107 (Timeline world-class pass)
-status: open
+status: done
+cleared: "2026-08-08 - log-cycle was deliberately retired in the data-layer reset"
 priority: P2
 blocking: false
 phase: Phase 1

@@ -1,9 +1,10 @@
 ---
 id: seed-wedding-workspace
 title: Enter the wedding seed into a real workspace, then shoot the six screenshots
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; workspace seeding and screenshots remain in the agent execution queue"
 priority: P1
-blocking: true
+blocking: false
 phase: Collateral · Screenshots
 why: "Real screens, never faked" — the seed unblocks the one-pager finishing pass, press kit M·2, and the demo film.
 href: /brand/collateral/venue/wedding-seed.md

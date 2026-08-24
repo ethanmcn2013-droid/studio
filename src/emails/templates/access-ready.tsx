@@ -34,10 +34,11 @@ export function AccessReadyEmail({
         starting with one workspace on the Free plan. No card needed.
       </LeadText>
       <BodyText direction={direction}>
-        Four products share that workspace. Tasks holds the live work.
+        Three products share that workspace. Tasks holds the live work.
         Timeline is the plan other people can read. Notes keeps your thinking
-        private until you decide otherwise. Signal reads your week and tells
-        you the few things that need attention.
+        private until you decide otherwise. Home is the front door, and it
+        opens with Today&rsquo;s Signal: the daily briefing that reads your
+        week and tells you the few things that need attention.
       </BodyText>
       <ProductFrame
         direction={direction}
@@ -70,7 +71,7 @@ export function accessReadyText(data: AccessReadyData): TextDoc {
     heading: "Signal Studio is open for you.",
     blocks: [
       { kind: "p", text: `${greeting} place on the waitlist came up today. Your account is ready, starting with one workspace on the Free plan. No card needed.` },
-      { kind: "p", text: "Four products share that workspace. Tasks holds the live work. Timeline is the plan other people can read. Notes keeps your thinking private until you decide otherwise. Signal reads your week and tells you the few things that need attention." },
+      { kind: "p", text: "Three products share that workspace. Tasks holds the live work. Timeline is the plan other people can read. Notes keeps your thinking private until you decide otherwise. Home is the front door, and it opens with Today’s Signal: the daily briefing that reads your week and tells you the few things that need attention." },
       { kind: "action", label: "Open your workspace", href: data.workspaceProduct },
       { kind: "quiet", text: "Start with the thing you are planning right now. The rest of the suite is there when you reach for it." },
     ],

@@ -1,30 +1,11 @@
 import Link from "next/link";
 import { NotesBeforeItLeaves } from "@/components/marketing/heroes/notes/before-it-leaves";
-import { SignalTheRead, type SignalReadItem } from "@/components/marketing/heroes/signal/the-read";
 import { TasksTheBoard } from "@/components/marketing/heroes/tasks/hero";
 import { HOMEPAGE_RELAY_TIMELINE_FIXTURE } from "@/components/marketing/heroes/timeline/fixture";
 import { TimelineTheLine } from "@/components/marketing/heroes/timeline/the-line";
 import { PRODUCT_MARKETING_URLS } from "@/lib/product-urls";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 import { ProductSignatureWordmark } from "./product-signature-wordmark";
-
-const RELAY_SIGNAL_ITEMS: SignalReadItem[] = [
-  {
-    ordinal: "01",
-    claim: "now",
-    title: "The side room hold still needs confirmation.",
-    why: "Mara approved the request in Notes. The venue reply is still open in Tasks.",
-    receipts: ["Notes + Tasks", "updated today"],
-    action: "Open task",
-  },
-  {
-    ordinal: "02",
-    claim: "next",
-    title: "The public plan changes after confirmation.",
-    why: "Once confirmed, the shared Timeline publishes the side room milestone for 30 July.",
-    receipts: ["Timeline", "current share"],
-    action: "Open timeline",
-  },
-];
 
 const CHAPTERS = [
   {
@@ -32,8 +13,8 @@ const CHAPTERS = [
     number: "01",
     title: "notes",
     eyebrow: "Catch the source",
-    body: "A venue detail lands in a private note. Only the exact line Mara approves crosses into work.",
-    foot: "Private note → approved extract",
+    body: "A private note records the confirmed tasting. Only the exact line approved for action crosses into work.",
+    foot: "Private note -> approved extract",
     href: PRODUCT_MARKETING_URLS.notes,
     cta: "Explore Notes",
   },
@@ -43,7 +24,7 @@ const CHAPTERS = [
     title: "tasks",
     eyebrow: "Make the commitment",
     body: "The approved line arrives as a real task in the wedding workspace, with an owner and a visible state.",
-    foot: "Approved extract → assigned task",
+    foot: "Approved extract -> assigned task",
     href: PRODUCT_MARKETING_URLS.tasks,
     cta: "Explore Tasks",
   },
@@ -52,101 +33,66 @@ const CHAPTERS = [
     number: "03",
     title: "timeline",
     eyebrow: "Publish the right part",
-    body: "When the venue confirms, the authorised milestone joins the public plan. The private work stays private.",
-    foot: "Confirmed task → public milestone",
+    body: "The owner reviews the copied milestone before a published link changes. The private work stays private.",
+    foot: "Confirmed task -> reviewed milestone",
     href: PRODUCT_MARKETING_URLS.timeline,
     cta: "Explore Timeline",
-  },
-  {
-    key: "signal",
-    number: "04",
-    title: "signal",
-    eyebrow: "Know what needs you",
-    body: "Signal reads the change, the open risk, and the receipt. It returns the two things worth attention.",
-    foot: "Real change → sourced briefing",
-    href: PRODUCT_MARKETING_URLS.signal,
-    cta: "Explore Signal",
   },
 ] as const;
 
 function ProductPreview({ product }: { product: (typeof CHAPTERS)[number]["key"] }) {
-  if (product === "notes") {
-    return <NotesBeforeItLeaves embedded />;
-  }
-
-  if (product === "tasks") {
-    return <TasksTheBoard embedded />;
-  }
-
-  if (product === "timeline") {
-    return (
-      <TimelineTheLine
-        embedded
-        timeline={HOMEPAGE_RELAY_TIMELINE_FIXTURE}
-      />
-    );
-  }
-
-  return <SignalTheRead embedded items={RELAY_SIGNAL_ITEMS} />;
+  if (product === "notes") return <NotesBeforeItLeaves embedded />;
+  if (product === "tasks") return <TasksTheBoard embedded />;
+  return <TimelineTheLine embedded timeline={HOMEPAGE_RELAY_TIMELINE_FIXTURE} />;
 }
 
 export function RevealProductRelay() {
   return (
     <section className="reveal-relay" id="system" aria-labelledby="relay-title">
       <header className="reveal-relay-head">
-        <p className="reveal-relay-kicker">One line, through the studio</p>
-        <h2 id="relay-title">
-          Follow one detail from a private note to a daily briefing.
+        <p className="reveal-relay-kicker">One thread, through the studio</p>
+        <h2 id="relay-title" tabIndex={-1}>
+          Follow one wedding thread from a private note to a published plan.
         </h2>
         <p>
           Notes keeps the source private. Tasks gives it an owner. Timeline
-          publishes the confirmed milestone. Signal returns the open risk with
-          its receipt. These are the current product interfaces in one fixed
-          sample workspace.
+          publishes the confirmed milestone. These are static private-preview
+          samples in one fixed workspace, not live customer data.
         </p>
       </header>
 
-      <div className="reveal-relay-source" aria-label="Sample workspace context">
+      <div className="reveal-relay-source" aria-label="Sample workspace context" role="group">
         <span>Sample workspace</span>
-        <strong>Mara and Finn</strong>
+        <strong>{REVIEW_SUITE_PRESENTATION.project.name}</strong>
         <span aria-hidden>·</span>
-        <span>The Orchard</span>
+        <span>{REVIEW_SUITE_PRESENTATION.workspace.name}</span>
         <span aria-hidden>·</span>
-        <time dateTime="2026-07-30">30 July</time>
+        <time dateTime={REVIEW_SUITE_PRESENTATION.reviewToday}>16 July</time>
       </div>
 
       <div className="reveal-relay-chapters">
         {CHAPTERS.map((chapter) => (
-          <article
-            className="reveal-relay-chapter"
-            data-product={chapter.key}
-            key={chapter.key}
-          >
+          <article className="reveal-relay-chapter" data-product={chapter.key} key={chapter.key}>
             <div className="reveal-relay-copy">
-              <p
-                className="reveal-relay-number"
-                style={{ color: "var(--zinc-600)" }}
-              >
-                {chapter.number}
-              </p>
-              <h3>
-                <ProductSignatureWordmark product={chapter.key} />
-              </h3>
+              <p className="reveal-relay-number" style={{ color: "var(--zinc-600)" }}>{chapter.number}</p>
+              <h3><ProductSignatureWordmark product={chapter.key} /></h3>
               <p className="reveal-relay-eyebrow">{chapter.eyebrow}</p>
               <p className="reveal-relay-body">{chapter.body}</p>
               <p className="reveal-relay-foot">{chapter.foot}</p>
               <Link href={chapter.href} className="reveal-relay-link">
-                {chapter.cta}
-                <span aria-hidden>↗</span>
+                {chapter.cta}<span aria-hidden>↗</span>
               </Link>
             </div>
-
             <div
               className="reveal-relay-preview"
               data-product={chapter.key}
+              role="img"
+              aria-label={`${chapter.title} static private-preview sample. ${chapter.body}`}
             >
-              <p className="reveal-relay-sample">Sample product view</p>
-              <ProductPreview product={chapter.key} />
+              <p className="reveal-relay-sample" aria-hidden="true">Static private-preview sample</p>
+              <div className="reveal-relay-artifact" aria-hidden="true" inert>
+                <ProductPreview product={chapter.key} />
+              </div>
             </div>
           </article>
         ))}

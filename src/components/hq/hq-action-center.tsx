@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { ActionCenter, ActionItem, ActionPriority } from "@/lib/hq/action-center";
+import type { ActionCenter, ActionEffort, ActionItem, ActionPriority } from "@/lib/hq/action-center";
 import { PRIORITY_LABEL } from "@/lib/hq/action-center";
 
 const FILTERS: Array<{ key: "all" | ActionPriority; label: string }> = [
@@ -11,6 +11,12 @@ const FILTERS: Array<{ key: "all" | ActionPriority; label: string }> = [
   { key: "due", label: "Due now" },
   { key: "stale", label: "Stale" },
   { key: "queued", label: "Queued" },
+];
+
+const EFFORT_FILTERS: Array<{ key: "all" | Exclude<ActionEffort, "none">; label: string }> = [
+  { key: "all", label: "All effort" },
+  { key: "quick", label: "Quick wins" },
+  { key: "involved", label: "Longer calls" },
 ];
 
 function Row({ item }: { item: ActionItem }) {
@@ -43,6 +49,7 @@ function Row({ item }: { item: ActionItem }) {
 
 export function HqActionCenter({ data }: { data: ActionCenter }) {
   const [filter, setFilter] = useState<"all" | ActionPriority>("all");
+  const [effort, setEffort] = useState<"all" | Exclude<ActionEffort, "none">>("all");
   const [workspace, setWorkspace] = useState<string>("all");
   const [showAll, setShowAll] = useState(false);
 
@@ -53,9 +60,12 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
 
   const filtered = useMemo(() => {
     return data.items.filter(
-      (i) => (filter === "all" || i.priority === filter) && (workspace === "all" || i.workspace === workspace),
+      (i) =>
+        (filter === "all" || i.priority === filter) &&
+        (effort === "all" || i.effort === effort) &&
+        (workspace === "all" || i.workspace === workspace),
     );
-  }, [data.items, filter, workspace]);
+  }, [data.items, effort, filter, workspace]);
 
   const COLLAPSE_AT = 6;
   const visible = showAll ? filtered : filtered.slice(0, COLLAPSE_AT);
@@ -112,6 +122,27 @@ export function HqActionCenter({ data }: { data: ActionCenter }) {
                   onClick={() => { setFilter(f.key); setShowAll(false); }}
                 >
                   {f.label}
+                  <span className="hqx-seg-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="hqx-segmented" role="tablist" aria-label="Filter founder tasks by effort">
+            {EFFORT_FILTERS.map((option) => {
+              const count = option.key === "all"
+                ? data.items.length
+                : data.items.filter((item) => item.effort === option.key).length;
+              return (
+                <button
+                  key={option.key}
+                  type="button"
+                  role="tab"
+                  aria-selected={effort === option.key}
+                  className="hqx-segmented-btn"
+                  data-active={effort === option.key || undefined}
+                  onClick={() => { setEffort(option.key); setShowAll(false); }}
+                >
+                  {option.label}
                   <span className="hqx-seg-count">{count}</span>
                 </button>
               );

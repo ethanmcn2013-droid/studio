@@ -1,7 +1,8 @@
 ---
 id: eu-regions-dpas
 title: Set Turso + Upstash regions to EU; gather DPAs
-status: open
+status: done
+cleared: "2026-08-08 - data-region and DPA decisions consolidated into gdpr-data-lifecycle"
 priority: P1
 blocking: false
 phase: Phase 5

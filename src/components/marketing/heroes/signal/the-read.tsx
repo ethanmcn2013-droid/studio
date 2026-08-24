@@ -96,10 +96,29 @@ export type SignalReadItem = {
 export function SignalTheRead({
   embedded = false,
   items = ITEMS,
+  venue = "The Orchard",
+  embeddedHeadingLevel = 4,
 }: {
   embedded?: boolean;
   items?: SignalReadItem[];
+  /**
+   * The sample workspace's venue, shown in the dateline stamp. Defaults to the
+   * homepage relay fixture. Surfaces with their own canon pass their own name:
+   * hiding this with CSS still ships the wrong name in the HTML, the RSC
+   * payload and any link preview.
+   */
+  venue?: string;
+  /**
+   * The heading level the embedded frame's headline takes; item titles sit
+   * one level under it. The homepage embeds this inside an h3 chapter, so 4
+   * is the default. A page that stacks this beside another sample document
+   * with h2 headings of its own passes 2, so the briefing reads as a
+   * sibling sample rather than a subsection of its neighbour's outline.
+   */
+  embeddedHeadingLevel?: 2 | 3 | 4;
 } = {}) {
+  const EmbeddedHeadline = `h${embeddedHeadingLevel}` as "h2" | "h3" | "h4";
+  const EmbeddedItemTitle = `h${embeddedHeadingLevel + 1}` as "h3" | "h4" | "h5";
   return (
     <section
       className={`rd${embedded ? " rd-embedded" : ""}`}
@@ -120,16 +139,16 @@ export function SignalTheRead({
           <span className="rd-stamp">
             <time dateTime="2026-07-29T09:00">Wednesday, 09:00</time>
             <span aria-hidden="true">·</span>
-            The Orchard
+            {venue}
           </span>
         </div>
 
         <div className="rd-head">
           {embedded ? (
-            <h4 className="rd-headline">
+            <EmbeddedHeadline className="rd-headline">
               Two things genuinely
               <br className="rd-br" /> need you.
-            </h4>
+            </EmbeddedHeadline>
           ) : (
             <h1 className="rd-headline" id="rd-title">
               Two things genuinely
@@ -168,7 +187,9 @@ export function SignalTheRead({
 
               <div className="rd-body">
                 {embedded ? (
-                  <h5 className="rd-item-title">{item.title}</h5>
+                  <EmbeddedItemTitle className="rd-item-title">
+                    {item.title}
+                  </EmbeddedItemTitle>
                 ) : (
                   <h2 className="rd-item-title">{item.title}</h2>
                 )}
@@ -221,10 +242,10 @@ const CSS = `
 .rd {
   --rd-rail: 132px;
   --rd-gutter: clamp(20px, 5vw, 72px);
-  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow — hero motion choreography */
+  --rd-ease: cubic-bezier(0.16, 1, 0.3, 1); /* ds-allow - hero motion choreography */
 
   /* ── traffic light ──────────────────────────────────────────────────
-     Tones are the design system's status ramp — the same three colouring
+     Tones are the design system's status ramp - the same three colouring
      the Tasks board. Pure hue is only ever spent on marks (dots, spine,
      blooms); small text takes the ink-mixed tone, because raw red on paper
      is 3.76:1 and raw amber is 2.15:1, both failing small-text contrast. */
@@ -235,7 +256,7 @@ const CSS = `
   --rd-clear: var(--status-done);
   --rd-clear-ink: color-mix(in srgb, var(--status-done) 54%, var(--ink));
 
-  /* PORT NOTE 2026-07-28 — was min-height 100svh, right for a standalone
+  /* PORT NOTE 2026-07-28 - was min-height 100svh, right for a standalone
      gallery route that owned the viewport. As a hero it is one band with a
      page beneath it, so it sizes to its own content and keeps a floor that
      holds the fold without pushing the rest of the page away. */
@@ -324,7 +345,7 @@ const CSS = `
    cap broke it by accident and left the upper-right quadrant dead. */
 .rd-headline {
   margin: 0;
-  /* POLISH 2026-07-28 — the shared headline register: one clamp, 600,
+  /* POLISH 2026-07-28 - the shared headline register: one clamp, 600,
      -0.04em across all four product pages. */
   font-size: clamp(2.5rem, 1.2rem + 3.9vw, 4.4rem);
   font-weight: 600;
@@ -400,7 +421,7 @@ const CSS = `
 .rd-item[data-claim="next"] { --rd-tone: var(--rd-next); --rd-tone-ink: var(--rd-next-ink); --rd-bloom-r: 96px;  --rd-bloom: 8%; }
 
 /* Sourced light. The colour emanates from the marker as a radial bloom and
-   is gone before it reaches the copy — light with an origin, not a painted
+   is gone before it reaches the copy - light with an origin, not a painted
    panel. Geometry is anchored to the marker's position in the rail. */
 .rd-item::before {
   content: "";
@@ -520,7 +541,7 @@ const CSS = `
 }
 
 /* Provenance, not decoration. Ticks inked up from ghost 3px to a visible
-   6px — the row is the page's honesty and was whispering. */
+   6px - the row is the page's honesty and was whispering. */
 .rd-receipts {
   margin: 16px 0 0;
   display: flex;
@@ -583,7 +604,7 @@ const CSS = `
 }
 
 /* The row's tone reaches the button on hover only, as a border. A filled
-   red button would read as destructive — this action opens, it does not
+   red button would read as destructive - this action opens, it does not
    delete. */
 @media (hover: hover) and (pointer: fine) {
   .rd-button:hover {

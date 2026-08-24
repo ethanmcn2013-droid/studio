@@ -2,14 +2,14 @@
 
 “Studio grade” is a release claim backed by complete evidence. It is not a synonym for implemented, registered, green CI, visually attractive, or approved by an agent.
 
-## Active four-product promotion rule
+## Active three-product and Home promotion rule
 
 The general per-audit gate below remains the baseline for governed Studio and
-founder-operator surfaces. Notes, Tasks, Timeline, and Signal are currently
-subject to the stricter
+founder-operator surfaces. Notes, Tasks, Timeline, and the cross-suite journey
+into authenticated Home are currently subject to the stricter
 [9.5 product release gate](./SUITE_95_PRODUCT_RELEASE_GATE.md).
 
-For those four products, every required state-by-breakpoint audit must total at
+For those three products, every required state-by-breakpoint audit must total at
 least `50/52`, with no dimension below `3`. Products, states, and viewports are
 never averaged together. A missing or stale cell fails closed. The existing
 machine audit still enforces the general `3.5` mean, so a machine green is

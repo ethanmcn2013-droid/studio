@@ -25,7 +25,9 @@ export default defineConfig({
       SIGNAL_ACCESS_MODE: "review",
       NEXT_PUBLIC_SIGNAL_ACCESS_MODE: "review",
     },
-    url: `${baseURL}/__design-lab/product-handoff?progress=0`,
+    // The readiness probe must be a page that exists: the design-lab pages
+    // left with the estate cut, so the homepage answers for boot.
+    url: `${baseURL}/`,
     reuseExistingServer: true,
     timeout: 120_000,
   },

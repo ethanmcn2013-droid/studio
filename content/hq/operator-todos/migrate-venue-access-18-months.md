@@ -1,9 +1,10 @@
 ---
 id: migrate-venue-access-18-months
 title: Apply the Venue Edition 18-month access migration
-status: open
+status: done
+cleared: "2026-08-08 - founder task removed; guarded production migration remains in the agent execution queue"
 priority: P0
-blocking: true
+blocking: false
 phase: Venue Edition fixed-price correction
 why: Existing 365-day couple codes and redeemed entitlements do not yet match the ratified 18-month promise.
 href: /hq/entitlements

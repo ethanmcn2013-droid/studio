@@ -3,6 +3,7 @@ id: stripe-tax-eu-vat
 title: Register for EU VAT + OSS and turn on Stripe Tax (starts the moment the Ltd is registered).
 status: open
 priority: P0
+effort: involved
 blocking: true
 phase: Phase 6
 why: Selling EUR-priced access to EU consumers and venues without VAT is a legal breach at the first sale; it can only begin once the Ltd exists.

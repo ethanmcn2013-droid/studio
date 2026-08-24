@@ -3,6 +3,7 @@ id: product-hero-lab-selection
 title: Choose the Notes, Tasks, and Timeline hero directions
 status: open
 priority: P1
+effort: involved
 blocking: false
 phase: Product hero review
 why: the three product labs are review-only; no candidate reaches a product homepage without the operator's choice.

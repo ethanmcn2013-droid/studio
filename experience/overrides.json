@@ -3,11 +3,35 @@
   "experiences": {
     "studio.page.root": {
       "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
+    },
+    "studio.page.about": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
+    },
+    "studio.page.pricing": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-12"
+    },
+    "studio.surface.products-mega-panel": {
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-09"
     },
     "studio.page.design": {
       "auditStatus": "baseline-captured",
@@ -19,21 +43,27 @@
       "auditScore": 3.54,
       "approvedBaselineReference": "experience/golden-set.json#/references/0"
     },
-    "studio.page.design-lab-product-handoff": {
-      "parentJourney": "experience-review",
+    "studio.page.hq-asset-curator": {
+      "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
-      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
-      "roles": ["founder"],
-      "requiredStates": ["default", "reduced-motion", "keyboard-only"],
+      "primaryJob": "Review and curate brand assets inside the private founder workspace.",
+      "primaryAction": "Inspect an asset and record the curation decision.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "empty",
+        "populated",
+        "error",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
       "reviewTier": "core",
-      "implementationStatus": "preview",
-      "auditStatus": "baseline-captured",
-      "screenshotCoverage": "complete",
-      "accessibilityCoverage": "complete",
-      "fixtureCoverage": "complete",
-      "automatedTestCoverage": "complete",
-      "lastReviewedAt": "2026-07-28"
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "lastReviewedAt": "2026-08-08"
     },
     "studio.page.privacy": {
       "auditStatus": "baseline-captured",
@@ -77,11 +107,11 @@
     },
     "studio.surface.site-navigation": {
       "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-08-12"
     },
     "tasks.page.roadmap": {
       "auditStatus": "baseline-captured",
@@ -208,6 +238,28 @@
       "accessibilityCoverage": "partial",
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/1"
+    },
+    "studio.page.design-lab-brand-guidelines": {
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "reviewTier": "core",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-07-28"
     }
   }
 }

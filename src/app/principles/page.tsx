@@ -154,7 +154,7 @@ export default function PrinciplesPage() {
 
             <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-[14px] text-ink">
               <Link
-                href="/proof"
+                href="/"
                 className="underline decoration-border-soft underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
               >
                 See the suite in motion

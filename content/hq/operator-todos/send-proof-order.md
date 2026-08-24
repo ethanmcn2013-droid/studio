@@ -3,6 +3,7 @@ id: send-proof-order
 title: Send the card-trio proof order to a printer
 status: open
 priority: P1
+effort: quick
 blocking: false
 phase: Collateral · Print
 why: The trio is decided and packaged — only choosing a printer and paying can happen off-platform.

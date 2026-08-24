@@ -1,7 +1,8 @@
 ---
 id: confirm-board-truth-t114-t118
 title: Eyeball the Tasks board after T·114 to T·118 and confirm the brief behaves
-status: open
+status: done
+cleared: "2026-08-08 - superseded by the verified T121-T132 production programme and consolidated-app QA"
 priority: P2
 blocking: false
 phase: Board truth programme

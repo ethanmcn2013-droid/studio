@@ -23,14 +23,24 @@ import type { AudienceTimelineDto } from "./audience-timeline";
 export function TimelineTheLine({
   embedded = false,
   timeline = TIMELINE_HERO_FIXTURE,
+  label = "Signal Timeline public wedding plan",
 }: {
   embedded?: boolean;
   timeline?: AudienceTimelineDto;
+  /**
+   * What this artifact IS, for anyone who cannot see it. It used to be
+   * hard-coded to the wedding fixture, so an embedding page that passed its
+   * own `timeline` still announced itself to assistive technology as a
+   * wedding plan — the one thing the page shows introduced as another
+   * product's content. A page that supplies its own fixture supplies its own
+   * name; the default stays with the wedding hero that owns it.
+   */
+  label?: string;
 } = {}) {
   return (
     <section
       className={`tlh${embedded ? " tlh-embedded" : ""}`}
-      aria-label={embedded ? "Signal Timeline public wedding plan" : undefined}
+      aria-label={embedded ? label : undefined}
     >
       <div className="tlh-frame">
         {!embedded ? <div className="tlh-folio">
@@ -81,7 +91,7 @@ export function TimelineTheLine({
 const CSS = `
 .tlh {
   position: relative;
-  /* PORT NOTE 2026-07-28 — was min-height 100svh for a standalone gallery
+  /* PORT NOTE 2026-07-28 - was min-height 100svh for a standalone gallery
      route. As a hero it is one band above the rest of the page, so it sizes
      to the artifact and keeps only a floor. */
   min-height: clamp(600px, 78svh, 820px);
@@ -113,7 +123,7 @@ const CSS = `
 
 /* ── frame ───────────────────────────────────────────────────────────── */
 
-/* 2026-07-28 — widened from 1080px. Timeline is the one hero whose subject is
+/* 2026-07-28 - widened from 1080px. Timeline is the one hero whose subject is
    a document rather than a workspace: it should read as the shared plan
    actually open on screen, not as a screenshot of one sitting in a column.
    The artifact drives its own layout from container queries (widest above
