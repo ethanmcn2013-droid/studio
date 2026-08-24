@@ -238,6 +238,28 @@
       "accessibilityCoverage": "partial",
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/1"
+    },
+    "studio.page.design-lab-brand-guidelines": {
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "reviewTier": "core",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-07-28"
     }
   }
 }

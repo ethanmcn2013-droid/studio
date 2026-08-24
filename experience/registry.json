@@ -7256,7 +7256,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "c92333047b3ad75d"
+      "materialityHash": "823611d9eaee6f5e"
     },
     {
       "id": "tasks.page.about",
@@ -11256,6 +11256,49 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.design-lab-brand-guidelines",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/brand-guidelines",
+      "source": "studio/src/app/%5F%5Fdesign-lab/brand-guidelines/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "41daf3feb8d73a32"
     }
   ]
 }
