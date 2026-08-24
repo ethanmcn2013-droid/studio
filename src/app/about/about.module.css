@@ -28,7 +28,7 @@
 .canvasDark {
   --x-ink-hi: var(--paper);
   --x-ink-mid: rgb(255 255 255 / 68%);
-  --x-ink-low: rgb(255 255 255 / 44%);
+  --x-ink-low: rgb(255 255 255 / 46%);
   --x-ink-faint: rgb(255 255 255 / 26%);
   --x-line: rgb(255 255 255 / 12%);
   --x-accent-text: color-mix(in srgb, var(--accent) 58%, var(--paper));
