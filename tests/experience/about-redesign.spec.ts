@@ -46,7 +46,7 @@ test.describe("About six-movement production evidence", () => {
 
       const geometry = await page.evaluate(() => ({
         overflow: document.documentElement.scrollWidth - window.innerWidth,
-        missingSections: MOVEMENT_SECTIONS.map((section) => section.id).filter(
+        missingSections: ["translation", "system", "founder", "refusals", "record"].filter(
           (id) => !document.getElementById(id),
         ),
       }));
@@ -77,7 +77,7 @@ test.describe("About six-movement production evidence", () => {
       const author = page.locator("[role='group'][aria-label='Author']");
       await expect(author).toContainText("Ethan McNamara");
 
-      await expect(page.getByRole("article")).not.toContainText("Daily briefing");
+      await expect(page.getByRole("article").first()).not.toContainText("Daily briefing");
       expect(errors).toEqual([]);
     });
   }

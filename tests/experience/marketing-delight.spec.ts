@@ -146,7 +146,7 @@ test.describe("public marketing delight contract", () => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/about");
 
-    const article = page.getByRole("article");
+    const article = page.getByRole("article").first();
     await expect(article).toBeVisible();
     await expect(
       article.getByRole("heading", {
