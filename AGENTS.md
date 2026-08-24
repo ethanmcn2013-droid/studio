@@ -34,6 +34,7 @@ The sources, by section:
 | a cross-product flow                                               | `content/hq/ecosystem-flows/<id>.md`                 |
 | collaboration loop, shared objects, access roles, first view, shareable artifacts | `content/hq/<section>/<id>.md`        |
 | launch readiness scorecard                                         | `content/hq/launch-readiness/<id>.md`                |
+| design audits, evidence dossiers, and retained review captures     | `content/hq/design-reviews/<id>/`                    |
 | segments, content, demos, templates, pilots, growth workflow       | `content/hq/<section>/<id>.md`                       |
 | a documented system (cron, DB, hook, cross-repo writer, etc.)      | `content/atlas/<slug>.md` — and bump `lastVerified`  |
 | voice, naming, banned words, visual register                       | `BRAND.md`                                           |

@@ -140,72 +140,46 @@ test.describe("public marketing delight contract", () => {
     expect(infinite).toBe(0);
   });
 
-  test("About presents one semantic founder note and acknowledges authorship once", async ({
+  test("About presents one semantic page, six movements, and acknowledges arrival once", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/about");
 
-    const article = page.getByRole("article");
-    await expect(article).toBeVisible();
+    const main = page.locator("#main");
+    await expect(main).toBeVisible();
     await expect(
-      article.getByRole("heading", {
+      main.getByRole("heading", {
         level: 1,
-        name: "Project management software was built by tech companies, for tech companies.",
-      }),
-    ).toBeVisible();
-    await expect(
-      article.getByRole("heading", {
-        level: 2,
-        name: "That became three products.",
+        name: "Most productivity tools were built for the people who build them.",
       }),
     ).toBeVisible();
 
-    const products = article.locator("[data-founders-note-product]");
+    const movements = [
+      ["translation", "The industry has a dialect."],
+      ["system", "Three products. Each owns one kind of clarity."],
+      ["founder", "Built by one person."],
+      ["refusals", "You can measure a company by what it refuses."],
+      ["record", "Small, on purpose."],
+    ] as const;
+    for (const [id, heading] of movements) {
+      await expect(
+        main.locator(`#${id}`).getByRole("heading", { level: 2, name: heading }),
+      ).toBeVisible();
+    }
+    await expect(page.locator("#main")).not.toContainText("Daily briefing");
+
+    const products = page.locator("#system li");
     await expect(products).toHaveCount(3);
-    await expect(products.locator("dt")).toHaveText(["Notes", "Tasks", "Timeline"]);
-    await expect(article).not.toContainText("Daily briefing");
+    expect(
+      await products
+        .locator("a")
+        .evaluateAll((anchors) => anchors.every((anchor) => Boolean(anchor.getAttribute("href")))),
+    ).toBe(true);
 
-    const reveal = page.locator("[data-delight='founders-note-products']");
+    const reveal = main.locator("[data-delight-once]").first();
     await reveal.scrollIntoViewIfNeeded();
     await expect(reveal).toHaveAttribute("data-delight-visible", "true");
-    const revealMotion = await page.locator("[class*='productMark']").evaluateAll((elements) =>
-      elements.map((element) => {
-        const style = getComputedStyle(element);
-        return {
-          name: style.animationName,
-          iterations: style.animationIterationCount,
-          duration: style.animationDuration,
-          delay: style.animationDelay,
-        };
-      }),
-    );
-    expect(revealMotion).toHaveLength(3);
-    expect(revealMotion.every((motion) => motion.name !== "none")).toBe(true);
-    expect(revealMotion.every((motion) => motion.iterations === "1")).toBe(true);
-    expect(revealMotion.map((motion) => motion.delay)).toEqual(["0s", "0.06s", "0.12s"]);
-    expect(revealMotion.every((motion) => motion.duration === "0.3s")).toBe(true);
-
-    const founder = page.locator("[data-delight='about-founder']");
-    await founder.scrollIntoViewIfNeeded();
-    await expect(founder).toHaveAttribute("data-delight-visible", "true");
-
-    const names = await founder.evaluate((element) => ({
-      rule: getComputedStyle(
-        element.querySelector<HTMLElement>("[data-founder-rule]")!,
-        "::after",
-      ).animationName,
-      dot: getComputedStyle(
-        element.querySelector<HTMLElement>("[data-founder-dot]")!,
-        "::after",
-      ).animationName,
-      identity: getComputedStyle(
-        element.querySelector<HTMLElement>("[data-founder-identity]")!,
-      ).animationName,
-    }));
-    expect(names.rule).not.toBe("none");
-    expect(names.dot).not.toBe("none");
-    expect(names.identity).toBe("none");
   });
 
   test("reduced motion preserves state and removes authored travel", async ({
@@ -232,29 +206,26 @@ test.describe("public marketing delight contract", () => {
     ).toEqual({ animation: "none", opacity: "1", transform: "none" });
 
     await page.goto("/about");
-    const reveal = page.locator("[data-delight='founders-note-products']");
-    await reveal.scrollIntoViewIfNeeded();
-    await expect(reveal).toHaveAttribute("data-delight-visible", "true");
-    const founder = page.locator("[data-delight='about-founder']");
-    await founder.scrollIntoViewIfNeeded();
-    await expect(founder).toHaveAttribute("data-delight-visible", "true");
+    const aboutReveal = page.locator("#system [data-delight-once]").first();
+    await aboutReveal.scrollIntoViewIfNeeded();
+    await expect(aboutReveal).toHaveAttribute("data-delight-visible", "true");
     const reducedNames = await page.evaluate(() => ({
       rows: Array.from(
-        document.querySelectorAll<HTMLElement>("[data-founders-note-product]"),
+        document.querySelectorAll<HTMLElement>("#system li .about-r"),
         (element) => getComputedStyle(element).animationName,
       ),
-      rule: getComputedStyle(
-        document.querySelector<HTMLElement>("[data-founder-rule]")!,
-      ).animationName,
+      travel: Array.from(
+        document.querySelectorAll<HTMLElement>("#system .about-r"),
+        (element) => getComputedStyle(element).transform,
+      ).every((transform) => transform === "none"),
       dot: getComputedStyle(
-        document.querySelector<HTMLElement>("[data-founder-dot]")!,
+        document.querySelector<HTMLElement>("[class*='closingDot']")!,
+        "::after",
       ).animationName,
     }));
-    expect(reducedNames).toEqual({
-      rows: ["none", "none", "none"],
-      rule: "none",
-      dot: "none",
-    });
+    expect(reducedNames.rows.every((name) => name === "none")).toBe(true);
+    expect(reducedNames.travel).toBe(true);
+    expect(reducedNames.dot).toBe("none");
 
     await page.goto("/notes");
     await expect(page.locator(".pp-dot")).toHaveClass(/pp-dot-ready/);

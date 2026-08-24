@@ -3307,10 +3307,10 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-08-12",
+      "lastReviewedAt": "2026-08-23",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "4f5f3ef630ef8086"
+      "materialityHash": "c43e5b80157c62c5"
     },
     {
       "id": "studio.page.accessibility",
