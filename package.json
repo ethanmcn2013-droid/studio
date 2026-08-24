@@ -73,7 +73,8 @@
     "motion": "^12.38.0",
     "next": "16.2.5",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "signal-ds": "^2.1.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

@@ -8,6 +8,20 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-08-22 · S·168 · tightens · the design system's contract now says what the suite actually uses
+
+**`signal-ds` pivots to a tokens-first contract, and studio's tokens come
+from the npm package instead of a vendored copy.** The elevation record
+(`signal-review/elevation/ds-foundation-2026-08-22`) showed three repos
+consuming the design system's tokens and zero consuming its sixteen React
+primitives; the package now publishes exactly what is load-bearing — tokens,
+the Tailwind theme, the drift gate, the docs — with the primitives frozen as
+reference. Studio imports `signal-ds/tokens.css` and `signal-ds/tailwind.css`
+from `^2.1.0`, deletes its vendored `src/ds/` copies, and records the
+decision at `content/hq/decisions/ds-tokens-first-pivot-2026-08-22.md`.
+App and signal-motion land matching swaps; one founder-gated step remains,
+logged as `publish-signal-ds-2-2`. Zero visual change by construction.
+
 ## 2026-08-12 · S·167 · ships · the student page argues its own semester
 
 **/students is rebuilt from a flat column to the house treatment: the
