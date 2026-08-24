@@ -2559,7 +2559,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "b47292d6bb2e8f11"
@@ -2911,7 +2911,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "7b08dd4cbd86a7f4"
@@ -2999,7 +2999,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "bad87a85262c4e30"
@@ -3439,7 +3439,7 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-16",
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
       "materialityHash": "d6abf1adc448156a"
@@ -4656,7 +4656,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "f9e2e1393d0a7603"
@@ -4832,7 +4832,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "5a54dfb53b0fd300"
@@ -6846,7 +6846,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "c80f1710913e6b81"

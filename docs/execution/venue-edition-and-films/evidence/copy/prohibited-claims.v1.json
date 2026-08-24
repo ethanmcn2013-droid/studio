@@ -1,0 +1,533 @@
+{
+  "version": "prohibited-claims.v1",
+  "prepared": "2026-08-03",
+  "task": "E09.11",
+  "authority": [
+    "E09.10-copy-hierarchy.md section 2 (master never-list) and section 5 (P1-P15)",
+    "E09.01-event-taxonomy.md section 4.1 and section 6",
+    "E09.02-metric-definitions.md section 8",
+    "DECISIONS.md D-001, D-009, D-010, D-011, D-016, D-020, D-021, D-022, D-027"
+  ],
+  "readBy": "studio/scripts/check-venue-edition-contract.mjs",
+  "renderedBy": "E09.11-venue-copy-pack.md section 4",
+  "notes": [
+    "This file is the single source. The pack renders it and the check enforces it, so the two cannot drift.",
+    "A rule with claimOnly:true is skipped on a line that ends in a question mark. A question is not a claim, and a FAQ has to be able to ask the question it answers.",
+    "A rule with copyOnly:true is skipped on a surface whose kind is 'code'. Identifiers, column names and MetricValue states are not front-facing copy.",
+    "Surface scope 'blockquote' means only markdown blockquote lines are checked. In an evidence document the copy is what is inside the quote; the prose around it is the rule, and a rule has to be able to name the word it forbids.",
+    "Surface scope 'file' checks every line. Punctuation rules never run on scope 'file' because source code is full of exclamation marks and no-break-space arithmetic that are not copy."
+  ],
+  "rules": [
+    {
+      "id": "p1-permanence",
+      "rule": "P1",
+      "why": "D-001.16 forbids an unconditional promise that the service or a hosted artifact will exist. The trap already caught this programme once (R-008, D-021).",
+      "substitute": "for as long as you stay / for as long as the agreement renews continuously without lapse / read-only, for as long as the service exists",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bfor life\\b",
+        "\\bforever\\b",
+        "\\blifetime\\b",
+        "\\bin perpetuity\\b",
+        "\\bnever expires?\\b",
+        "\\bperpetual\\b",
+        "\\bguaranteed\\b",
+        "\\bwe(?:'ll| will) always be here\\b",
+        "\\bunlimited storage\\b"
+      ]
+    },
+    {
+      "id": "p2-legal",
+      "rule": "P2",
+      "why": "D-016. No solicitor and no accountant reviewed anything on this programme, and nothing may imply otherwise.",
+      "substitute": "E09.10 section 6 Answer 2, verbatim",
+      "claimOnly": true,
+      "copyOnly": true,
+      "patterns": [
+        "\\bsolicitor[- ]approved\\b",
+        "\\blegally approved\\b",
+        "\\blegally reviewed\\b",
+        "\\bour legal team\\b",
+        "\\bcounsel has confirmed\\b",
+        "\\breviewed by (?:our )?(?:lawyers|legal|advisors|advisers)\\b",
+        "\\baccountant[- ]verified\\b",
+        "\\bprofessionally drafted\\b"
+      ]
+    },
+    {
+      "id": "p3-gdpr",
+      "rule": "P3",
+      "why": "Compliance is a continuing obligation and a contested judgement, not a state a company can assert about itself.",
+      "substitute": "Name the artifact, then E09.10 section 6 Answer 1.",
+      "claimOnly": true,
+      "copyOnly": true,
+      "patterns": [
+        "\\b(?:is|are|we are|fully|100%|totally)\\s+GDPR[- ]compliant\\b",
+        "\\bGDPR[- ]certified\\b",
+        "\\bfully compliant\\b",
+        "\\bDPC[- ]approved\\b",
+        "\\bbank[- ]grade\\b",
+        "\\bmilitary[- ]grade\\b",
+        "\\b100% secure\\b",
+        "\\byour data is safe with us\\b",
+        "\\bend[- ]to[- ]end encrypted\\b",
+        "\\byour data never leaves\\b"
+      ]
+    },
+    {
+      "id": "p5-numeric-entitlement",
+      "rule": "P5",
+      "why": "D-020. There is no allotment in the commercial terms and nothing to reconcile. E09.01 section 4.1 retires these names permanently.",
+      "substitute": "Every couple who books their wedding with you gets a workspace, for as long as your licence is current.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\ballotment\\b",
+        "\\ballotted\\b",
+        "\\bcodes remaining\\b",
+        "\\blicen[cs]es allotted\\b",
+        "\\bseat count\\b",
+        "\\bper[- ]seat\\b",
+        "\\bof your 60\\b"
+      ]
+    },
+    {
+      "id": "p6-unlimited-blocked",
+      "rule": "P6",
+      "why": "E09.10 section 5 P6 blocks 'unlimited' and 'no seats' in shipped copy until R-016's code changes land. Its stated basis is now stale and the residual defect is different from the one it names. Recorded as OQ-6 in E09.11 section 14; the gate is not lifted by this file.",
+      "substitute": "The P5 sentence, which is true today and does not use the word.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bno seats\\b",
+        "\\bunlimited couples\\b",
+        "\\bunlimited workspaces\\b"
+      ]
+    },
+    {
+      "id": "p7-bare-term",
+      "rule": "P7",
+      "why": "D-010.2 and D-022. The bare figure describes a product we deliberately do not ship, and the failure it hides is a couple losing access before their own wedding at the venue that gifted it.",
+      "substitute": "18 months from when the couple opens it, or 3 months past the wedding, whichever is later.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "kind": "bare-term",
+      "patterns": [
+        "\\b(?:18|eighteen)[- ]months?\\b"
+      ],
+      "graceWithin": 200,
+      "gracePattern": "(?:3|three) months past|whichever is later|at least"
+    },
+    {
+      "id": "p8-special-category",
+      "rule": "P8",
+      "why": "R-017. Dietary and allergy data reveals health and routinely reveals religious belief; accessibility requirements reveal disability. Entered by the couple about guests who never agreed to anything.",
+      "substitute": "with the choices confirmed",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bdietary\\b",
+        "\\ballerg(?:y|ies|en)\\b",
+        "\\bcoeliac\\b",
+        "\\bceliac\\b",
+        "\\bfood intolerance\\b",
+        "\\baccessibility requirements?\\b"
+      ]
+    },
+    {
+      "id": "p12-vat",
+      "rule": "P12",
+      "why": "D-021. Both prices are VAT-inclusive in every agreement, order form, invoice and page.",
+      "substitute": "including VAT at the prevailing rate",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\+\\s*VAT\\b",
+        "\\bex(?:cl)?\\.?\\s*VAT\\b",
+        "\\bplus VAT\\b",
+        "\\bfrom €\\s?1[,.]?000\\b",
+        "\\b€\\s?8[0-9] a month\\b"
+      ]
+    },
+    {
+      "id": "p13-urgency",
+      "rule": "P13",
+      "why": "The place is held 14 days, once, extendable by the founder personally. That is a fact, stated once, plainly.",
+      "substitute": "Your place is held for 14 days.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bact now\\b",
+        "\\blimited time\\b",
+        "\\bwhile places last\\b",
+        "\\bdon'?t miss out\\b",
+        "\\bonly \\d+ (?:places?|spots?) left\\b",
+        "\\bexpires soon\\b"
+      ]
+    },
+    {
+      "id": "d027-name-only",
+      "rule": "D-027.3",
+      "why": "Venue branding at launch is the venue's name only. No logo, no venue-written welcome message, no venue-controlled colour or theme in the couple's workspace.",
+      "substitute": "The venue's name, one quiet line. Not a logo wall.",
+      "claimOnly": false,
+      "copyOnly": false,
+      "patterns": [
+        "\\bco[- ]branded\\b",
+        "\\bcobranded\\b",
+        "\\bvenue[- ]branded\\b",
+        "\\bbranding controls?\\b",
+        "\\byour (?:logo|mark) (?:appears|on|in)\\b",
+        "\\bvenue[- ]written\\b",
+        "\\bwelcome message\\b"
+      ]
+    },
+    {
+      "id": "d001-4-fourth-thing",
+      "rule": "D-001.4",
+      "why": "The venue-visible list is exactly invitation administration, activation evidence and aggregate adoption evidence. A fourth thing named in copy is a copy defect and probably a product defect.",
+      "substitute": "E09.11 section 5.1, verbatim.",
+      "claimOnly": true,
+      "copyOnly": true,
+      "patterns": [
+        "\\bthe venue sees what the couple chooses to share\\b",
+        "\\bcouple separately consents\\b",
+        "\\breporting on your couples\\b",
+        "\\bengagement metrics\\b",
+        "\\byour couples'? (?:activity|progress|usage)\\b"
+      ]
+    },
+    {
+      "id": "saas-fluff",
+      "rule": "E09.10 section 2 / BRAND.md section 3",
+      "why": "The master never-list, plus the whole of BRAND.md section 3.",
+      "substitute": "Say the concrete thing.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bseamless(?:ly)?\\b",
+        "\\beffortless(?:ly)?\\b",
+        "\\bturnkey\\b",
+        "\\bwhite[- ]label\\b",
+        "\\brevolutionis[ez]\\b",
+        "\\bbest[- ]in[- ]class\\b",
+        "\\bworld[- ]class\\b",
+        "\\bcutting[- ]edge\\b",
+        "\\bsupercharge\\b",
+        "\\bunleash\\b",
+        "\\bpowered by Signal Studio\\b",
+        "\\bAI[- ]powered\\b"
+      ]
+    },
+    {
+      "id": "p9-per-couple",
+      "rule": "P9",
+      "why": "Aggregate is the product, not a presentation choice. There is no biggest user, no per-couple row, no ranking, no leaderboard.",
+      "substitute": "Not enough activity to report yet.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "patterns": [
+        "\\bleaderboard\\b",
+        "\\btop couples?\\b",
+        "\\bmost active couple\\b",
+        "\\b(?:see|shows?|tells?|know|find out)\\s+(?:you\\s+)?who is behind\\b"
+      ],
+      "patternNote": "The last pattern is claim-shaped on purpose. 'no ranking and no list of who is behind' is the approved negation from E11.11 section 2, and a bare 'who is behind' pattern flags the sentence that exists to promise the opposite."
+    },
+    {
+      "id": "em-dash",
+      "rule": "BRAND.md section 3",
+      "why": "Banned in all front-facing copy. Comma, colon or full stop. Title separators use a middot.",
+      "substitute": ", or . or ·",
+      "claimOnly": false,
+      "copyOnly": true,
+      "punctuation": true,
+      "patterns": [
+        "\\u2014"
+      ]
+    },
+    {
+      "id": "exclamation",
+      "rule": "BRAND.md section 3",
+      "why": "No exclamation marks. Anywhere. Confidence does not shout.",
+      "substitute": "A full stop.",
+      "claimOnly": false,
+      "copyOnly": true,
+      "punctuation": true,
+      "patterns": [
+        "!"
+      ]
+    }
+  ],
+  "citationNote": [
+    "A line that forbids a word is not a line that uses it, and a voice guard listing the banned register has to be able to list it.",
+    "Every exemption is explicit. There is no heuristic. The first version of this guard was a heuristic (a quoted match on a line carrying a prohibition word) and it suppressed two REAL defects on the live venues page, because ordinary copy is full of 'no' and 'not'.",
+    "Each entry names its line by a distinctive substring, never by a line number. Reword the line and the exemption stops matching and the hit comes back, which is the correct failure direction.",
+    "The check prints the citation count per surface on every run, so an exemption cannot be quiet."
+  ],
+  "citations": [
+    {
+      "path": "signal-growth/outbound/venue-edition-outreach.md",
+      "rule": "p13-urgency",
+      "contains": "never \"limited spots, act now.\"",
+      "reason": "The send-discipline section forbids the phrase. It is naming it, not using it."
+    },
+    {
+      "path": "signal-growth/outbound/venue-edition-outreach.md",
+      "rule": "saas-fluff",
+      "contains": "No \"AI\", \"intelligent\", \"automatically\", \"seamless\"",
+      "reason": "The voice guard lists the banned register so an operator can check against it before a send."
+    },
+    {
+      "path": "signal-growth/outbound/venue-edition-A1-staged.md",
+      "rule": "saas-fluff",
+      "contains": "no \"seamless/leverage/robust/stakeholder/sprint/MVP\"",
+      "reason": "The staged voice check lists the banned register."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p9-per-couple",
+      "contains": "Your most active couple is",
+      "reason": "Sits under that document's own '## Prohibited' heading. It is the example of what may never be said."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "“codes remaining”",
+      "reason": "The D-020 prohibition list naming the phrase it bans. Naming, not using."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "“licences allotted”",
+      "reason": "Same D-020 prohibition list entry."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "“low allotment”",
+      "reason": "Same D-020 prohibition list entry."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "any sentence containing “X of your 60”",
+      "reason": "Same D-020 prohibition list entry."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "any seat count, cap, or numeric pause shown beside the word unlimited",
+      "reason": "Same D-020 prohibition list entry."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p2-legal",
+      "contains": "legally approved, reviewed by a solicitor, or verified by an",
+      "reason": "The D-016 prohibition paragraph naming what may never be claimed."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p1-permanence",
+      "contains": "Never “for life”",
+      "reason": "The D-009 point 3 / R-008 prohibition paragraph naming the banned wording."
+    },
+    {
+      "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+      "rule": "p1-permanence",
+      "contains": "never “forever”, never “lifetime”, never “guaranteed”",
+      "reason": "Same D-009 point 3 prohibition paragraph, second line."
+    },
+    {
+      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "as prohibited by name.]",
+      "reason": "The D-020 retirement note citing E09.02 section 8 by the names it retires."
+    },
+    {
+      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "~~Licences allotted~~",
+      "reason": "A struck-through, superseded table row. The record of what was retired, not a live metric."
+    },
+    {
+      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "~~Codes remaining~~",
+      "reason": "A struck-through, superseded table row carrying the formula that must not be reimplemented."
+    },
+    {
+      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "Was the dictionary of record. Retitled and corrected here.",
+      "reason": "The version-history row recording that the allotment-era dictionary was superseded."
+    },
+    {
+      "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+      "rule": "p5-numeric-entitlement",
+      "contains": "the entitlement model is unlimited. There is no allotment,",
+      "reason": "The D-020 retirement note stating that no allotment exists."
+    }
+  ],
+  "surfaces": {
+    "enforced": [
+      {
+        "path": "docs/execution/venue-edition-and-films/evidence/E09.11-copy-system.md",
+        "scope": "blockquote",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E09.11 / WP-06"
+      },
+      {
+        "path": "docs/execution/venue-edition-and-films/evidence/E09.11-venue-copy-pack.md",
+        "scope": "blockquote",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E09.11 / WP-06"
+      }
+    ],
+    "tracked": [
+      {
+        "path": "src/app/venues/page.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 8,
+        "owner": "E12.04"
+      },
+      {
+        "path": "src/components/hq/marketing-deck.tsx",
+        "scope": "file",
+        "kind": "code",
+        "expected": 0,
+        "owner": "E12.04"
+      },
+      {
+        "path": "docs/strategy/VENUE_FAQ_OBJECTIONS.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 2,
+        "owner": "E09.11 section 10, superseded; needs a banner"
+      },
+      {
+        "path": "docs/venue-portal/VENUE_FACING_CLAIMS.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E09.03 item 10"
+      },
+      {
+        "path": "docs/venue-portal/METRIC_DICTIONARY.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E09.03 item 10"
+      },
+      {
+        "path": "public/brand/collateral/venue/outreach-email.txt",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E11.05"
+      },
+      {
+        "path": "public/brand/collateral/venue/index.html",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E12.07"
+      },
+      {
+        "path": "public/brand/collateral/venue/wedding-seed.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 4,
+        "owner": "E09.08 / R-017. Delete or move out of public/, do not edit."
+      },
+      {
+        "path": "signal-growth/outbound/venue-edition-outreach.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E11.05"
+      },
+      {
+        "path": "signal-growth/outbound/venue-edition-A1-staged.md",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E11.05"
+      },
+      {
+        "path": "src/lib/templates/wedding-planning-workspace/tasks.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "E03.04 / E05.03"
+      },
+      {
+        "path": "src/lib/templates/wedding-planning-workspace/roadmap.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "E03.04 / E05.03"
+      },
+      {
+        "path": "src/lib/account/fixtures.ts",
+        "scope": "file",
+        "kind": "code",
+        "expected": 0,
+        "owner": "WP-05 / E09.09"
+      },
+      {
+        "path": "../app/src/app/the-wedding/page.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "E05.03 / E06.01"
+      },
+      {
+        "path": "../app/src/lib/templates.generated.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "generated; fix the source in src/lib/templates/"
+      },
+      {
+        "path": "../app/src/server/demo/tasks-demo.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "E05.03 / E06.01"
+      },
+      {
+        "path": "../app/src/modules/notes/server/demo/notes-demo.ts",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 1,
+        "owner": "E05.03 / E06.01"
+      },
+      {
+        "path": "../app/src/components/welcome/venue-welcome-card.tsx",
+        "scope": "file",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E04"
+      },
+      {
+        "path": "docs/execution/venue-edition-and-films/evidence/E11.11-12-proposal-and-objections.md",
+        "scope": "blockquote",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E11.11 / E11.12"
+      },
+      {
+        "path": "docs/execution/venue-edition-and-films/evidence/E11.05-07-outreach-email.md",
+        "scope": "blockquote",
+        "kind": "copy",
+        "expected": 0,
+        "owner": "E11.05 / E11.07"
+      }
+    ]
+  }
+}

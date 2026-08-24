@@ -1,0 +1,96 @@
+# E09.12 — the reset, run twice and diffed
+
+Run 2026-08-03 from app/. The data gate's wording is "the same command
+produces the same state every time", so this is the command run twice and
+the result diffed, not a description of it.
+
+## Run A — ambient clock, TZ=UTC
+```
+demo reset receipt
+version: demo-reset.v1
+story: Glenmara House · Mara and Finn (D-012 point 1)
+wedding date: 2026-10-03
+clock anchor: 2026-07-16T08:00:00.000Z
+
+regenerated:
+  sync-templates: five template parts to four generated destinations
+
+verified surfaces:
+  clock            suite              e69ee779bfb6ae80
+  review-fixture   suite              e6d9f2e7167fa2c3
+  tasks-board      Signal Tasks       b350937ef5f113d3
+  notes            Signal Notes       f1231e129df1bc44
+  timeline         Signal Timeline    a85e1594e0463213
+  signal           Signal             307d55de4ce0942a
+  seed-rows        Signal Tasks       eaed086d43739e49
+
+not reached by this command:
+  venue-portal                 Venue Portal (studio)
+  signal-analytics-fixture     Signal
+  timeline-second-wedding      Signal Timeline
+
+state: sha256:2897779e9267e65f (1947 lines)
+
+demo-reset: clean - the demonstration matches its pinned baseline.
+exit: 0
+```
+
+## Run B — wall clock shifted +400 days, TZ=Pacific/Kiritimati
+```
+demo reset receipt
+version: demo-reset.v1
+story: Glenmara House · Mara and Finn (D-012 point 1)
+wedding date: 2026-10-03
+clock anchor: 2026-07-16T08:00:00.000Z
+
+regenerated:
+  sync-templates: five template parts to four generated destinations
+
+verified surfaces:
+  clock            suite              e69ee779bfb6ae80
+  review-fixture   suite              e6d9f2e7167fa2c3
+  tasks-board      Signal Tasks       b350937ef5f113d3
+  notes            Signal Notes       f1231e129df1bc44
+  timeline         Signal Timeline    a85e1594e0463213
+  signal           Signal             307d55de4ce0942a
+  seed-rows        Signal Tasks       eaed086d43739e49
+
+not reached by this command:
+  venue-portal                 Venue Portal (studio)
+  signal-analytics-fixture     Signal
+  timeline-second-wedding      Signal Timeline
+
+state: sha256:2897779e9267e65f (1947 lines)
+
+demo-reset: clean - the demonstration matches its pinned baseline.
+exit: 0
+```
+
+## diff A B
+```
+(no output: the two runs are byte-identical)
+```
+
+## Negative control 1 — the verify step can fail
+```
+demo-reset:self-test: pass - an edited fixture is detected and the surface is named
+```
+
+## Negative control 2 — a real fixture edit, on disk
+
+One value changed in `src/lib/review-suite-fixture.ts`:
+`name: "Glenmara House, events"` became `name: "Glenmara Hous3, events"`.
+The file was restored immediately afterwards and the reset re-run clean.
+```
+drift run exit: 1
+demo-reset: the demonstration has drifted from its pinned baseline.
+  review-fixture (suite): e6d9f2e7167fa2c3 -> a8a1981cf10efb1a
+  tasks-board (Signal Tasks): b350937ef5f113d3 -> 06216912ae826177
+  timeline (Signal Timeline): a85e1594e0463213 -> 8ed9f801e4dc5000
+  signal (Signal): 307d55de4ce0942a -> 0c45131412243571
+```
+
+One edit moved four surfaces. That is the one-story consolidation working:
+Tasks, Timeline and Signal all derive their venue name from the review
+fixture rather than restating it, so there is one place to change and the
+reset proves it.

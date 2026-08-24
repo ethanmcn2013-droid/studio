@@ -3,11 +3,11 @@
 <!-- GENERATED FILE — DO NOT EDIT -->
 > **Written by `project-control.mjs session close`. Replaced each session; the append-only history lives in `sessions/`.**
 
-**Latest completed session:** eed55e9e-wp01d (closed 2026-08-03T02:05:38.494Z) → `sessions/2026-08-03--eed55e9e-wp01d.md`
-**Objective was:** Close R-024 decision items; deploy decision escalated
+**Latest completed session:** wp03-e0506-audit (closed 2026-08-03T05:25:22.122Z) → `sessions/2026-08-03--wp03-e0506-audit.md`
+**Objective was:** E05/E06 audit against shipped implementation, per D-015 Q2
 
 **Release:** 2026-09-01 · 29 days remaining · baseline **approved** · health **AMBER**
-**Verified completion:** 33.3% (70/210 tasks, provisional_task_count)
+**Verified completion:** 33.8% (71/210 tasks, provisional_task_count)
 
 ## Current focus task
 
@@ -15,19 +15,417 @@ None. No focus task. Baseline approval comes first.
 
 ## What changed
 
-Closed the two R-024 decision items on the founder's instruction to use my own recommendation. The venue-written-content commitment in VENUE_EXAMPLE_ROADMAP is restated rather than withdrawn: the panel's constraint was that the seed is real rather than generated from nothing, which is met by provenance, not by who types it, so it now reads as founder-written from the venue's own facts gathered in the setup ritual, and states explicitly that there is no venue-authoring surface. The Hosted design option in DESIGN_DOCKET is killed and struck through, since it proposed the venue's logo and colour on the welcome, which D-027 point 3 forecloses; two options survive for the name-only welcome. E07.17's branding-controls line is answered rather than rewritten, because imported backlog titles are never rewritten. DID NOT DEPLOY, and this is the finding of the session. The founder authorised deploying seven approved branding-copy corrections. Those corrections are interleaved in the same four files as an uncommitted rewrite publishing the EUR 1,000 founding rate, the Founding 25 programme and the 01/25 numbering, and E12.04, the task that owns the venues page, is still in backlog with no spec, no review and no approval. Deploying today would therefore publish a new public price on an unapproved task, which is a change-control item reaching a public surface, and the two changes cannot be separated cleanly. Opened as R-025 and put back to the founder as one decision: publish both together knowingly, or hold the corrections until E12.04 is written and approved. Recommended holding. Also recorded: 120 files from four sessions are uncommitted on a feature branch five commits off main, which is what allowed two unrelated changes to become one deploy. Verified: 7 contract checks, typecheck clean, 443 tests, no drift.
+CLOSED BY THE WAVE 2 ORCHESTRATOR, NOT BY THE SESSION THAT OPENED IT. Opened 2026-08-03T02:15:36Z for an E05/E06 audit and abandoned without closing: tasksTouched is empty, statusChanges is empty, and no E05 or E06 task moved (E06.08 was already Done before it opened). It was holding HANDOFF.md, which is the first file every session is told to read, unwritten across three Wave 2 closes. Nothing is claimed as delivered here. E05 and E06 remain wholly unaudited and are Wave 3 and Wave 4 work (WP-08 and WP-09).
 
-- No task state changed.
+- `E07.01` → founder_review
+- `E07.02` → founder_review
+- `E07.03` → founder_review
+- `E07.04` → founder_review
+- `E07.05` → founder_review
+- `E07.06` → founder_review
+- `E07.07` → founder_review
+- `E07.08` → founder_review
+- `E07.09` → founder_review
+- `E07.10` → founder_review
+- `E07.11` → founder_review
+- `E07.12` → founder_review
+- `E07.13` → founder_review
+- `E07.14` → founder_review
+- `E07.15` → founder_review
+- `E07.16` → founder_review
+- `E07.17` → founder_review
+- `E07.18` → founder_review
+- `E09.03` → founder_review
+- `E09.04` → founder_review
+- `E09.05` → founder_review
+- `E09.07` → founder_review
+- `E09.08` → founder_review
+- `E09.09` → founder_review
+- `E09.11` → founder_review
+- `E09.12` → founder_review
+- `E12.04` → done
+- `E13.03` → founder_review
+- `E13.04` → founder_review
+- `E13.15` → founder_review
+- `E13.16` → founder_review
 
 ## Verification performed
 
-- None this session.
+- `E07.01` studio/docs/venue-portal/PRODUCT_CONTRACT.md:23-31
+- `E07.01` studio/docs/account/PRODUCT_CONTRACT.md:27
+- `E07.01` studio/docs/account/VOCABULARY.md:14,22
+- `E07.01` studio/src/lib/account/vocabulary.ts:10
+- `E07.01` studio/docs/venue-portal/PRODUCT_CONTRACT.md:98-106 vs studio/docs/account/PRODUCT_CONTRACT.md:41-45 vs studio/src/lib/account/types.ts:10-14
+- `E07.01` studio/docs/architecture/ADR-007-venue-portal-phase-a.md:3,98-103
+- `E07.01` studio/docs/venue-portal/PRODUCT_CONTRACT.md:111-124 and ADR-007:41-45
+- `E07.01` browser check, http://localhost:3000/hq/account-review, 2026-08-03
+- `E07.01` studio/src/app/hq/account-review/account-review.tsx (tab set) and studio/src/lib/account/types.ts:10-14, :25-37
+- `E07.01` node ~/.claude/skills/brand-voice/voice-check.mjs studio/docs/venue-portal studio/docs/account
+- `E07.01` git status --porcelain studio/docs/venue-portal studio/docs/account
+- `E07.02` browser check, Overview tab, #account-main interactive elements, 2026-08-03
+- `E07.02` browser check, Overview heading order, 2026-08-03
+- `E07.02` studio/src/app/hq/account-review/concepts/account-brief.tsx:78 + account-review.tsx:348
+- `E07.02` studio/src/app/hq/account-review/concepts/account-brief.tsx:10,57
+- `E07.02` studio/src/lib/account/live/project-venue-access.ts:187
+- `E07.02` npx tsx --test on a throwaway probe of projectVenueAccessSnapshot, 2026-08-03 (file removed, read-only phase)
+- `E07.02` studio/src/lib/account/format.ts:11-14 and studio/src/lib/account/live/project-venue-access.ts:199-200,210
+- `E07.02` studio/src/app/hq/account-review/panels/access-panel.tsx:34-38,141-181
+- `E07.03` studio/src/lib/entitlements-db/schema.ts:180-194
+- `E07.03` studio/src/lib/venue-founding-number.ts:32-58
+- `E07.03` package.json:13
+- `E07.03` studio/src/lib/account/live/project-venue-access.ts:39-51 and studio/src/lib/account/types.ts:39-55
+- `E07.03` studio/src/lib/account/live/load-venue-access.ts:59-62,76-88
+- `E07.03` studio/src/app/hq/account-review/panels/account-panel.tsx:10-23,151-159
+- `E07.03` studio/src/lib/account/types.ts:48-55 and studio/src/lib/account/live/project-venue-access.ts:125-140,257-264
+- `E07.03` browser check, Account tab, 2026-08-03
+- `E07.03` grep for logo|brandMeta|welcome message across the account surface and its docs, 2026-08-03
+- `E07.04` studio/docs/execution/venue-edition-and-films/evidence/E09.02-metric-definitions.md:416-483
+- `E07.04` studio/docs/execution/venue-edition-and-films/evidence/E09.02-metric-definitions.md:56-66 vs :333-336
+- `E07.04` studio/src/lib/account/instrumentation/event-schema.ts:17-33
+- `E07.04` studio/docs/venue-portal/METRIC_DICTIONARY.md (venue-metrics.v1 header, Access and activation table)
+- `E07.04` studio/docs/planning-period-analytics.md:36
+- `E07.04` studio/src/lib/account/instrumentation/coverage.ts:110-112, :157, :171, :176
+- `E07.05` studio/src/lib/account/live/project-venue-access.ts:147-175
+- `E07.05` studio/src/lib/account/live/project-venue-access.ts:187 with :168-174
+- `E07.05` studio/src/lib/venue-allotment.ts:55-59
+- `E07.05` studio/src/lib/account/live/load-venue-access.ts:68-75
+- `E07.05` studio/src/lib/account/fixtures.ts:235-240 rendered at http://localhost:3000/hq/account-review Overview tab
+- `E07.05` studio/src/lib/account/instrumentation/daily-metrics.ts:175 vs suppression.ts:14 and retention.ts:26
+- `E07.05` npx tsx --test over six studio/src/lib/account suites — 56 pass, 0 fail
+- `E07.06` http://localhost:3000/hq/account-review — Overview and Usage tabs, browser check
+- `E07.06` studio/src/lib/account/fixtures.ts:174-192 vs docs/venue-portal/VENUE_FACING_CLAIMS.md:11 and WIREFRAMES.md:31,71-74
+- `E07.06` studio/src/lib/account/format.ts:5-6 and :22-24 vs report-preview.tsx:27-36
+- `E07.06` studio/src/lib/account/types.ts:101-109 with a zero-hit grep for timelineCreat/timelineShar across studio/src
+- `E07.06` studio/src/lib/account/privacy.ts:40-48 enforced at load-venue-access.ts:96-102, 56 tests passing
+- `E07.07` studio/src/lib/account/live/project-venue-access.ts:187,190,168-174,210
+- `E07.07` studio/src/lib/venue-allotment.ts:55-59
+- `E07.07` studio/src/lib/entitlements-db/codes.ts:179-183, 63-103
+- `E07.07` studio/src/lib/account/csv.ts:70-79
+- `E07.07` studio/scripts/migrate-venue-edition-terms.mjs:229-235,281
+- `E07.07` studio/docs/venue-portal/WIREFRAMES.md:22,58
+- `E07.07` studio/docs/execution/venue-edition-and-films/evidence/gates/commercial.json item 5 and item 11
+- `E07.07` studio/src/app/hq/entitlements/OnboardVenueForm.tsx:33
+- `E07.07` Fail-before run, pre-fix `?? 0` coercion restored: 'ℹ tests 16 / ℹ pass 10 / ℹ fail 6' with AssertionErrors — allotted actual 'exact' expected 'unavailable'; nextAction actual 'request-more'; attention item actual false expected true.
+- `E07.07` Post-fix run of src/lib/account/live/project-venue-access.test.ts: 'ℹ tests 16 / ℹ pass 16 / ℹ fail 0'.
+- `E07.07` Probe via npx tsx against projectVenueAccessSnapshot with {allotmentMode:'limited', codeAllotment:null, codesIssued:0}: allotted/available both unavailable; nextAction 'confirm-access-record'; attention 'access-record-missing'; remainingAllotment on the same input = null; CSV rows show value_state=unavailable with blank value cells.
+- `E07.07` private/account-samples/unlimited.csv lines 5-6: 'Glenmara House,venue,…,access.allotted,unlimited,,,codes,account-metrics.v2,' and the same for access.available.
+- `E07.07` private/account-samples/unrecorded.csv lines 5-6: value_state=unavailable, blank value, withheld_reason='Signal HQ Access holds no issuing record for this venue'; lines 7-8 keep access.issued=3 and access.redeemed=1 as exact.
+- `E07.07` `ls -la private/account-samples` after generation: the four pre-existing artefacts still carry their Jul 27 15:26 timestamps; only unlimited.* and unrecorded.* are new.
+- `E07.07` C:/Users/ethan/AppData/Local/Temp/claude/C--Users-ethan-signal-studio-workspace/9b00cbfc-8d47-4963-b57f-a7b4fd24073e/scratchpad/sweep.mjs run against git HEAD and against the working tree
+- `E07.07` studio/docs/venue-portal/phase-a-wireframes.html
+- `E07.07` studio/scripts/check-venue-edition-contract.mjs --copy-report, and its contract at studio/docs/execution/venue-edition-and-films/evidence/copy/prohibited-claims.v1.json
+- `E07.07` Blockquote-scope simulation using the sweep's own rules from prohibited-claims.v1.json applied to only the '>' lines of all 16 markdown files
+- `E07.07` studio/src/lib/account/csv.ts (the `unlimited` case of metricFields)
+- `E07.08` studio/src/app/hq/account-review/actions.ts:1-56
+- `E07.08` studio/src/lib/entitlements-db/schema.ts:254-263, 289-298
+- `E07.08` studio/src/lib/entitlements-db/index.ts:31
+- `E07.08` studio/src/app/hq/account-review/panels/access-panel.tsx:33, 179, 248, 254-261
+- `E07.08` studio/src/lib/account/live/load-venue-access.ts:68-78
+- `E07.08` studio/src/lib/account/privacy.ts:52 and load-venue-access.ts:96
+- `E07.08` studio/src/app/hq/account-review/actions.ts:33-55
+- `E07.08` Fail-before run with the inline five-column select restored: 'ℹ tests 14 / ℹ pass 11 / ℹ fail 3', including 'The input did not match the regular expression /\.select\(LIVE_ACCESS_CODE_COLUMNS\)/'. After restore: 14/14 pass.
+- `E07.08` npx tsx --import ./src/test/register-server-only.mjs --test src/lib/account/invitations/store.test.ts → tests 21, pass 21, fail 0
+- `E07.08` Browser, localhost:3007 live mode, audit ledger query: three rows — grant/invitation.mark_sent, revoke/invitation.revoke, export/invitation.reveal_link — all actor_id=wp05-verify, all chained (prev_hash and row_hash present), after_json carrying masked codes; SELECT COUNT(*) WHERE after_json LIKE '%SIG-%' returned 0.
+- `E07.08` Browser: clicking 'Mark as sent' on SI-••••-HB returned the notice 'Recorded as sent. Signal Studio sent nothing; this is your note that you passed it on.' and the row moved to 'With the couple' with sent date 2026-08-03.
+- `E07.08` Browser: 'Withdraw' on SI-••••-ZP opened a dialog reading 'Type REVOKE to confirm.'; confirm button disabled with 'revoke', enabled with 'REVOKE'; after confirming, the row read 'Withdrawn' with only 'Get link' remaining.
+- `E07.08` store.test.ts 'stamps revoked_at when the revoke creates the activation row itself' — a bug I found in the browser, not in the tests, because every earlier test revoked a row that already existed.
+- `E07.09` studio/src/lib/account/live/project-venue-access.ts:223-226
+- `E07.09` studio/src/app/hq/account-review/panels/access-panel.tsx:216
+- `E07.09` studio/src/lib/account/fixtures.ts:82,160,161,238,378,400,401
+- `E07.09` studio/src/lib/account/live/project-venue-access.ts:202-217
+- `E07.09` studio/src/lib/account/live/mask-code.ts:5-11 and project-venue-access.ts:230
+- `E07.09` studio/src/lib/account/live/project-venue-access.test.ts:138
+- `E07.09` studio/src/app/hq/account-review/panels/access-panel.tsx:194-215, 233-273
+- `E07.09` store.test.ts 'pages over the full set and reports the true total': 45 seeded codes → page 0 returns 40 rows with total 45, page 1 returns the 5 the old slice(0,40) dropped, and the two pages do not overlap.
+- `E07.09` store.test.ts 'search runs over every row, not only the current page': searching '44' finds SIG-MANY-0044, the oldest row, which sorts onto page 2.
+- `E07.09` Browser fixture mode: stale alert '1 invitation has been with a couple for over 14 days with nothing back'; row detail 'Waiting 21 days.' computed from issuedOn 2026-07-03 against the fixture's dataThrough 2026-07-24.
+- `E07.09` lifecycle.test.ts 'an invitation sent with no send date is unknown staleness, never fresh and never zero' asserts sentAt stays null and the verdict carries no daysSinceSent property at all.
+- `E07.10` studio/src/app/hq/account-review/panels/access-panel.tsx:141-181
+- `E07.10` studio/src/app/hq/account-review/panels/access-panel.tsx:33
+- `E07.10` studio/src/lib/redeem/lookup.ts:44-46 with studio/src/app/redeem/[code]/page.tsx:195-207
+- `E07.10` studio/src/app/hq/account-review/panels/access-panel.tsx:161
+- `E07.10` Browser check, http://localhost:3000/hq/account-review Overview tab, 2026-08-03
+- `E07.10` Browser live run, kit sheet: link https://signalstudio.ie/redeem/SIG-WN2C-6FHB, subject 'Your wedding planning workspace, from Glenmara House', body as generated, iframe srcdoc 2407 chars, controls [Copy link, Copy subject and wording, Copy card text, Print welcome card].
+- `E07.10` npx tsx --test src/lib/account/invitations/lifecycle.test.ts src/lib/account/invitations/copy.test.ts → tests 35, pass 35, fail 0
+- `E07.10` Rendered welcome card delivered to the founder as welcome-card.html.
+- `E07.11` studio/src/lib/account/types.ts:101-115
+- `E07.11` studio/src/lib/account/instrumentation/sealing.ts:23
+- `E07.11` studio/src/lib/account/format.ts:3-16 with components/metric.tsx:20-22
+- `E07.11` studio/src/lib/account/live/project-venue-access.ts:268-270
+- `E07.11` Browser check, http://localhost:3000/hq/account-review Usage tab, 2026-08-03
+- `E07.11` npx tsx --test over the eight studio/src/lib/account suites — 71 pass, 0 fail
+- `E07.12` studio/src/lib/account/instrumentation/daily-metrics.ts:175
+- `E07.12` studio/src/lib/account/instrumentation/suppression.ts:34-72 with suppression.test.ts:14-75
+- `E07.12` studio/src/lib/account/privacy.ts:12-24 invoked at live/load-venue-access.ts:96
+- `E07.12` studio/src/lib/account/csv.ts:56-68
+- `E07.12` studio/src/lib/account/fixtures.ts:225-226
+- `E07.12` studio/docs/execution/venue-edition-and-films/evidence/E09.02-metric-definitions.md:42 and :4
+- `E07.12` Mutation run with RATE_MIN_WORKSPACES temporarily set to 6. Pre-fix daily-metrics: 'ℹ pass 19 / ℹ fail 2' — the rate-boundary test and the source-contract test both fail. Fixed daily-metrics, same mutated constant: those two pass and instead the two legacy tests that hard-code 'five' fail.
+- `E07.12` Repo grep after the change: `grep -n "BEHAVIOURAL_MIN_WORKSPACES\|RATE_MIN_WORKSPACES\|< 5\|< 3" src/lib/account/instrumentation/daily-metrics.ts` returns nothing but the (now removed) import line.
+- `E07.12` `diff suppression.ORIG.ts src/lib/account/instrumentation/suppression.ts` → identical.
+- `E07.12` git diff studio/docs/venue-portal/PRIVACY_AND_RETENTION.md filtered to threshold patterns
+- `E07.13` Browser check, http://localhost:3000/hq/account-review Overview tab, 2026-08-03
+- `E07.13` studio/src/app/hq/account-review/panels/usage-panel.tsx:141-158
+- `E07.13` studio/src/lib/account/live/project-venue-access.ts:219-221 and :108-123
+- `E07.13` studio/src/lib/account/privacy.ts:73-84
+- `E07.13` studio/docs/venue-portal/PRIVACY_AND_RETENTION.md:39 against DECISIONS.md D-011 point 1
+- `E07.14` studio/src/app/hq/account-review/panels/reports-panel.tsx:30,147-155,170
+- `E07.14` Browser check 2026-08-03, http://localhost:3000/hq/account-review, Reports tab, HQ cookie signal_hq_access derived per verify-hq.mjs:62-63
+- `E07.14` grep -rn 'freezeReport|readFrozenReport|sealCandidate|assessCadence|sponsorReportSnapshots' over studio/src and studio/scripts
+- `E07.14` studio/src/lib/account/instrumentation/freeze.ts:90-128
+- `E07.14` studio/src/lib/account/live/project-venue-access.ts:242,271-273,313-325
+- `E07.14` studio/src/lib/account/pdf-html.ts:33 and studio/docs/venue-portal/METRIC_DICTIONARY.md:12,15
+- `E07.14` npx tsx --test on csv/fixtures/samples/freeze/sealing test files, 2026-08-03: 40 tests, 40 pass, 0 fail
+- `E07.15` curl -s -o /dev/null -w '%{http_code}' --cookie signal_hq_access=... 'http://localhost:3000/hq/account-review/download?fixture=complete&format=pdf' → 404 'Sample not generated. Run npm run account:samples.'
+- `E07.15` curl '...?source=live&venue=glenmara-house&format=pdf' → 404 'Unknown live format.'
+- `E07.15` curl '...?source=live&venue=glenmara-house&format=csv' → 404 body containing the full SQL SELECT column list and bound params
+- `E07.15` studio/src/lib/account/csv.ts:70-79 with studio/docs/account/PRODUCT_CONTRACT.md:34-37
+- `E07.15` grep -c unlimited studio/private/account-samples/*.csv → 0 for all four, and csv.test.ts:8-27 covering only withheld and unavailable
+- `E07.15` studio/src/lib/entitlements-db/schema.ts:673,889-891 and studio/drizzle-entitlements/0000_init.sql:190
+- `E07.15` studio/docs/venue-portal/METRIC_DICTIONARY.md:3,12,15
+- `E07.15` studio/src/lib/account/csv.ts:9,31,94 and studio/private/account-samples/complete.csv line 4; studio/src/lib/account/pdf-html.ts:147,170
+- `E07.15` studio/src/lib/account/csv.ts:35-79
+- `E07.15` private/account-samples/unlimited.pdf.txt lines 12-13 read 'Unlimited' then 'Allotted'.
+- `E07.16` studio/src/lib/hq/auth.ts:15-25
+- `E07.16` studio/src/lib/hq/access-guard.ts:7-12
+- `E07.16` studio/src/lib/account/live/project-venue-access.ts:326
+- `E07.16` studio/src/app/hq/account-review/panels/account-panel.tsx:10-23,82-87,121-123,151-159
+- `E07.16` studio/src/app/hq/account-review/account-review.tsx:60,251-265
+- `E07.16` studio/src/app/hq/account-review/actions.ts:22-27,33-55
+- `E07.16` studio/src/lib/entitlements-db/schema.ts:641-642
+- `E07.16` studio/docs/venue-portal/ROLES_AND_PERMISSIONS.md:37-48
+- `E07.16` studio/src/lib/account/roles.ts:11-28,35-54
+- `E07.16` studio/src/lib/hq/auth.ts:3,15-25 + studio/src/proxy.ts:13,38-57
+- `E07.16` studio/package.json dependencies (11 packages, none @clerk/*) + studio/src/proxy.ts:84-87,110-112
+- `E07.16` studio/src/emails/templates/ (17 templates) with no Resend client; app/src/server/email.ts holds the only mailer
+- `E07.16` app/src/app/api/webhooks/clerk/route.ts:98
+- `E07.16` studio/docs/account/LIVE_HQ_PREVIEW.md:3,5,49
+- `E07.16` studio/src/lib/account/invitations/lifecycle.ts (617 lines) + store.ts (638 lines) + copy.ts (304 lines) + actions.ts:95-101
+- `E07.16` studio/src/app/hq/account-review/account-review.tsx:246-254
+- `E07.16` studio/src/lib/account/live/project-venue-access.ts:183-191,237-246
+- `E07.16` studio/src/app/hq/account-review/download/route.ts:48,67
+- `E07.16` studio/src/app/venues/page.tsx:126,361,560,566 + DECISIONS.md D-020 venue-facing sentence
+- `E07.16` studio/docs/execution/venue-edition-and-films/evidence/gates/product.json item 11
+- `E07.16` grep for sponsor_members across studio: 6 documentation hits, 0 source files
+- `E07.17` app/src/components/welcome/venue-welcome-card.tsx:66
+- `E07.17` studio/src/lib/entitlements-db/schema.ts:120-127,147
+- `E07.17` studio/src/lib/entitlements-db/sponsorship-policy.ts:13-29,37-41,44-53
+- `E07.17` studio/src/lib/entitlements-db/sponsorship-policy.ts:245
+- `E07.17` studio/src/lib/redeem/lookup.ts:33-40,88
+- `E07.17` studio/src/app/hq/account-review/account-review.tsx:314-328
+- `E07.17` studio/src/lib/account/live/project-venue-access.ts:301-311
+- `E07.18` Browser check, http://localhost:3000/hq/account-review at 375x812, 768x1024, 1280x900
+- `E07.18` Browser check, computed-style sweep of every text node on the Account tab
+- `E07.18` Browser check, Data select switched to 'Live access (HQ)' with the query failing
+- `E07.18` studio/src/app/hq/account-review/account-review.tsx:78-79,266-270
+- `E07.18` Executed: projectVenueAccessSnapshot with codeAllotment null, allotmentMode limited
+- `E07.18` find studio/src/app -name 'loading.tsx' -o -name 'error.tsx' -o -name 'not-found.tsx'
+- `E07.18` node studio/scripts/check-loading-contract.mjs → '[loading-contract] ok (studio)'
+- `E07.18` studio/src/lib/entitlements-db/audit.ts:53-55,82; venues.ts:182
+- `E07.18` grep for assertSnapshotPrivacy and scanTextForPrivacyLeaks across studio/src
+- `E07.18` studio/src/app/hq/account-review/download/route.ts:17,39,51
+- `E07.18` `npx eslint src/lib/account src/app/hq/account-review/download` → exit 0. `npx eslint src/lib/account src/app/hq/account-review` → 1 error, react-hooks/set-state-in-effect at account-review.tsx:86, a file this package did not touch.
+- `E07.18` Browser live run: venue picker options were 'glenmara-house|Venue 07/25' and 'rivermill-hall|Venue db8e6e'; a page-text check for the non-selected venue's name returned false.
+- `E07.18` Dev-server log: '[account-review listLiveVenueOptions] failed: ... no such column: "founding_number"' appears server-side only, while the page rendered the fixed string 'Live venues could not be reached.'
+- `E09.03` app/src/lib/account/instrumentation/sink.ts:21-24,36
+- `E09.03` studio/src/app/api/cron/sponsored-use/route.ts:52-58
+- `E09.03` studio/src/lib/account/instrumentation/rollup.ts (whole file) + grep for importers
+- `E09.03` grep -n SPONSOR_USAGE app/src/env.ts app/.env.example studio/src/env.ts studio/.env.example -> 0 matches
+- `E09.03` npx tsx --test (studio instrumentation, 5 files) -> 56 pass, 0 fail
+- `E09.03` npx tsx --test (app instrumentation, 3 files) -> 35 pass; node --test src/server/instrumentation-call-site-contract.test.mjs -> 17 pass
+- `E09.03` studio/src/lib/venue-edition.ts:100-120 + entitlements-db/codes.ts:383,498,595-672 + schema.ts:127
+- `E09.03` studio/drizzle-entitlements/0000_init.sql — grep -c wedding -> 0
+- `E09.03` app/src/modules/timeline/server/actions/workspaces.ts:640-658
+- `E09.03` app/src/server/actions/tasks.ts:98,124 + app/src/server/auth.ts:111-120 vs notes.ts:1258 / workspaces.ts:617 / signal-ledger-actions.ts:84
+- `E09.03` app/src/server/instrumentation-call-site-contract.test.mjs:48-51
+- `E09.03` studio/src/lib/account/types.ts:57-70
+- `E09.03` studio/src/lib/entitlements-db/schema.ts:673,750-752,794,888-890
+- `E09.03` studio/src/lib/account/instrumentation/daily-metrics.ts — 8 exports, 0 occurrences of published/shared
+- `E09.03` studio/docs/venue-portal/METRIC_DICTIONARY.md:1-6
+- `E09.03` Mutation proof: patched runNightlyMaintenance to call store.sweepExpiredEvents before the repair step, ran `npx tsx --test src/lib/account/instrumentation/nightly.test.ts`
+- `E09.03` C:/Users/ethan/signal-studio-workspace/studio/scripts/check-entitlements-migrations.mjs, first run
+- `E09.03` Same script, second run
+- `E09.03` Same script, final run: 'applied 0000_init (58 statements)', 'applied 0001_account_metrics_v2_and_drift_closure (96 statements)', 16 ok, 'entitlements migration set applies cleanly and asserts out.'
+- `E09.03` `grep -c 'wedding_date|allotment_mode' studio/drizzle-entitlements/0000_init.sql` returns 0, while schema.ts:127 declares weddingDate, schema.ts:207 declares allotmentMode, codes.ts writes weddingDate and venue-allotment.ts:46 reads `s.allotmentMode === "unlimited"`
+- `E09.03` `grep -n 'venue-metrics.v1' studio/drizzle-entitlements/0000_init.sql` returns lines 190 and 226
+- `E09.03` app/src/server/db/schema.ts:171 comment on users.clerkId ('Null for legacy seeded users until they're claimed via webhook') plus app/src/server/auth.ts:111-120 returning row.id from a lookup on users.clerk_id, and DEV_FALLBACK_USER = 'david'
+- `E09.03` `node scripts/check-sponsored-use-instrumentation-contract.mjs` — 24 checks, 'sponsored-use instrumentation contract holds.'
+- `E09.03` studio `pnpm test`: 16 + 440 + 38 = 494 node:test assertions, 0 fail, plus 10 check scripts green. `npx tsc --noEmit` clean. eslint clean on all seven new or rewritten studio files.
+- `E09.03` app suite run segment by segment: 24 commands green, 829 node:test assertions, 0 fail. `npx tsc --noEmit --incremental false` clean. `tsx scripts/sync-templates.ts --check` reports clean, 2 templates, all 4 parts in sync.
+- `E09.03` `npx pnpm test` in app fails with ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY before running anything
+- `E09.04` studio/src/lib/tracking.ts:1-70
+- `E09.04` grep for normalizeTrackingParams/formatTrackingRef consumers across studio/src
+- `E09.04` find studio/src/app -ipath "*film*" -> studio/src/app/hq/demo-film/page.tsx only
+- `E09.04` studio/src/lib/db/schema.ts:187-195 and studio/src/lib/hq/crm-utils.ts:211-217
+- `E09.04` studio/src/lib/db/schema.ts:218-270
+- `E09.04` studio/src/lib/hq/traction.ts:8,15-26,124-134,198-202
+- `E09.04` studio/src/components/analytics/google-tag.tsx:7,14-16,21-35 and studio/src/app/layout.tsx:143-144
+- `E09.04` app/src/lib/bare-artifact-path.ts:2 vs the existence of app/src/app/embed
+- `E09.04` studio/docs/execution/venue-edition-and-films/evidence/E09.04-outreach-measurement.md
+- `E09.04` studio/src/app/waitlist/actions.ts:36-37 with studio/src/lib/db/schema.ts:328
+- `E09.04` studio/src/components/analytics/google-tag.tsx with studio/src/app/layout.tsx:144 and studio/src/app/robots.ts:9
+- `E09.04` find studio/src/app -ipath '*film*' -o -ipath '*venue*'
+- `E09.05` studio/src/app/hq/blueprint/page.tsx:20-26,52-53
+- `E09.05` studio/src/lib/hq/blueprint.ts:18-36
+- `E09.05` grep -rn PROJECT_STATE studio/src app/src -> 0 matches
+- `E09.05` node project-control.mjs status
+- `E09.05` studio/src/lib/hq/crm-utils.ts:211-217 + studio/src/lib/db/schema.ts:218-270
+- `E09.05` studio/src/lib/hq/traction.ts:15-26,124-134,198-202
+- `E09.05` ls studio/src/app/hq -> ~45 route directories
+- `E09.05` studio/src/components/hq/hq-marketing.tsx:665 + studio/src/lib/partners/stats.ts:20-23
+- `E09.05` studio/src/lib/hq/vef-state.ts
+- `E09.05` studio/src/lib/hq/vef-state.test.ts
+- `E09.05` studio/src/app/hq/blueprint/page.tsx section 09 rendered at http://localhost:3000/hq/blueprint
+- `E09.05` scratchpad/shots/a-header-gates.png, d-reconciliation-full.png, e-metrics.png
+- `E09.05` studio/src/lib/hq/blueprint.ts VEF_STAGE_MAP and resolveCrmStageCoverage
+- `E09.05` node studio/docs/execution/venue-edition-and-films/tools/project-control.mjs validate
+- `E09.07` app/src/server/demo/tasks-demo.ts:38
+- `E09.07` app/src/modules/signal/lib/briefing/mock-source.ts:134,188
+- `E09.07` app/src/lib/calendar-frame.ts:73 · app/src/lib/review-suite-fixture.ts:58,59 · app/src/modules/notes/server/demo/notes-demo.ts:35
+- `E09.07` Command: node --import tsx --test src/modules/timeline/lib/owner-artifact.test.ts (run in app/) — 5 pass, 0 fail
+- `E09.07` Command: node --import tsx --test src/lib/calendar-frame.test.ts (run in app/) — 7 pass, 0 fail
+- `E09.07` studio/src/lib/account/fixtures.ts:118 vs app/src/lib/review-suite-fixture.ts:17-18
+- `E09.07` studio/public/brand/collateral/venue/wedding-seed.md:9-11,19
+- `E09.07` ls studio/src/app (no account or portal route) · studio/src/app/hq/account-review/account-review.tsx:77
+- `E09.07` project-control.mjs task E09.06 — status done, founder approved 2026-08-03, criterion 'Glenmara House, Mara and Finn'
+- `E09.07` app's real test command: `pnpm test` (pretest runs test:truth). Final run exit code 0. Aggregate across all 52 suites: tests=829 pass=829 fail=0.
+- `E09.07` Baseline before any change, same command: tests=800 pass=799 fail=1. The single failure was a file-level exit-code failure in src/modules/timeline/server/qualified-view-store.test.ts whose three individual tests all passed, and which passes in isolation. It did not reproduce on either post-change run.
+- `E09.07` Regression-detection proof: temporarily restored `const now = () => Date.now()` in tasks-demo.ts and ran the determinism check. Output: 'the demo state is NOT deterministic … first divergence at line 244 … - pass 1: "updatedAt": "Date(2026-08-03T02:26:55.322Z)" / + pass 2: "updatedAt": "Date(2027-09-07T02:26:55.786Z)"'. Restored the fix; check returns clean, exit 0.
+- `E09.07` `node scripts/experience/demo-determinism.mjs --self-test` → 'pass - a wall-clock read in the demo state is detected and located'. Wired into the test chain alongside the check itself.
+- `E09.07` `node scripts/experience/demo-determinism.mjs` → 'clean - two runs under different clocks and time zones produced identical state (sha256:2897779e9267e65f, 1947 lines)'.
+- `E09.07` `node --import tsx --import ./scripts/experience/server-only-shim.mjs --test scripts/experience/demo-clock-drift.test.ts` → 9 tests, 9 pass, 0 fail.
+- `E09.07` `npx tsx scripts/sync-templates.ts` followed by `git diff --stat src/modules/timeline/lib/templates.generated.ts` → empty diff. Then `--check` → 'clean - 2 template(s), all 4 parts in sync (meta + tasks, roadmap, notes, analytics)'.
+- `E09.07` `node scripts/ds/ds-check.mjs` → 'ds-check: clean — no drift.' after adding hex-to-rgb accent tokenisation to the generator. An intermediate run without it failed with 'raw hex count 2 exceeds grandfathered 0'.
+- `E09.07` `node scripts/check-module-boundaries.mjs` → '[module-boundaries] ok'. An earlier placement of the drift test at src/lib/demo-clock.test.ts produced three rule-2 failures; the test was moved to scripts/ rather than the gate being relaxed.
+- `E09.07` `npx tsc --noEmit --incremental false` reports errors only in src/env.test.ts, which is untracked (git status '??') and belongs to a concurrent session. A separate tsconfig run over the four changed/new scripts (which the app tsconfig excludes) reports zero errors after fixing one ConstructorParameters<typeof Date> literal-type issue.
+- `E09.07` `npx eslint` over all 13 changed and new source files → no output.
+- `E09.07` Baseline established in a detached git worktree at HEAD: `node scripts/experience/validate.mjs` → 'clean - 80 Tasks experiences'; `node scripts/experience/critical-fixtures.mjs` → already stale at HEAD. Worktree removed and pruned afterwards.
+- `E09.07` Final name sweep: grep -rn 'The Orchard|the-orchard|theorchard' across app/src, app/scripts, app/experience, app/DEMO_MODE.md and studio/src/lib/templates returns one hit, the explanatory comment at review-suite-fixture.ts:17.
+- `E09.07` R-017 sweep: grep -niE 'dietary|allergy|coeliac|vegan|nut |health|accessib' over both new generated files returns nothing. The seven pre-existing free-text echoes are enumerated and unchanged in substance.
+- `E09.08` DECISIONS.md D-012 point 2
+- `E09.08` studio/docs/execution/venue-edition-and-films/RAID.md:246-254 (R-011)
+- `E09.08` studio/docs/execution/venue-edition-and-films/evidence/gates/data.json, criterion 11
+- `E09.08` find studio/public -type f (jpg|jpeg|png|webp|avif) → 378 files; find app/public → 0; find signal-motion/public → 0
+- `E09.08` find . -iname "*PROVENANCE*" → signal-motion/public/fonts/PROVENANCE.md only
+- `E09.08` studio/public/brand/collateral/social/alt-text.txt, S.4 entry
+- `E09.08` grep -n image refs in studio/src/app/venues/page.tsx and weddings/page.tsx → no matches
+- `E09.08` studio/docs/execution/venue-edition-and-films/evidence/E09.08-demonstration-imagery.md
+- `E09.08` studio/src/lib/demonstration-imagery/register.json + registry.ts
+- `E09.08` studio/scripts/check-demonstration-imagery.ts — `npx tsx scripts/check-demonstration-imagery.ts` exits 0, reporting 10 surfaces / 19 shots (0 declare a face) / 0 assets / 2 acknowledged real rasters / 0 failures
+- `E09.08` Negative test: a malformed asset entry produced 14 distinct failures and exit 1 — unknown key, empty reviewedBy, empty generator.model, empty prompt, empty rightsPosition, missing file, R-011 face on film-before-the-day, surface-policy on venue-account, and E09.10 hits for 'lifetime', 'seamless', an exclamation mark, 'forever' and an em dash
+- `E09.08` Audit enumeration: 378 rasters in studio/public, 0 in app/public, 0 in signal-motion; 8 of 378 carry any embedded metadata; 0 of 531 asset paths and 0 of 629 alt/caption/aria strings contain any of the 219 real venue names
+- `E09.08` studio/public/brand/assets/ethan-founder-color-20260715.jpg and ethan-headshot.jpg are byte-identical, sha256 cf8b9bc2903b1ee4b317f65454f756e30270bf9bd11516c1bfde157dac4a21fe, 1179x1745, EXIF Software=Picasa DateTimeOriginal=2026:06:10 16:43:49, referenced only from public/brand/business-loan-pack-2026.html:3073 and :3106
+- `E09.08` studio/public/brand/assets/merchants/ holds ten third-party marks (apple, booking, irish-rail, netflix, one4all, ryanair, shamrock/Aer Lingus, starbucks, three, uber) plus two source sheets, with no licence recorded anywhere; referenced only by public/brand/assets/transactions/merchants.js, which no page loads
+- `E09.08` collateral/dist/social/alt-text.txt:26-27 carries 'Partner' three times ('S.4 The Partner', 'Founding Limerick Partner number four') and the file carries 24 em dashes; the reference sweep found no consumer
+- `E09.09` Command: node --import tsx --test src/lib/account/fixtures.test.ts (run in studio/) — 9 pass, 0 fail
+- `E09.09` studio/src/lib/account/fixtures.ts:147-148 and studio/src/lib/account/live/project-venue-access.ts:190
+- `E09.09` studio/src/app/hq/account-review/panels/access-panel.tsx:122,127,137 · studio/src/lib/account/pdf-html.ts:33 · studio/src/lib/account/csv.ts:104
+- `E09.09` studio/src/lib/account/fixtures.ts:172
+- `E09.09` studio/src/lib/account/fixtures.ts:135,141-142 vs E09.01 §3.5
+- `E09.09` studio/src/app/venues/page.tsx:47-77
+- `E09.09` project-control.mjs task E09.09 — dependencies unmet: E09.07
+- `E09.09` studio/scripts/check-demo-number-reconciliation.mjs — exits 1 with 41 findings: RETIRED 21, UNDEFINED 1, MISSING 2, DRIFT 13, UNWIRED 4, UNKNOWN 0 across 17 surfaces and 54 claim keys
+- `E09.09` studio/docs/execution/venue-edition-and-films/evidence/E09.09-reconciliation-run.txt
+- `E09.09` DRIFT story.venue-name: 'Glenmara Estate' at studio/src/app/venues/page.tsx:187 and 'Glen House' at studio/public/brand/collateral/venue/wedding-seed.md:10, against D-012.1 'Glenmara House'
+- `E09.09` DRIFT story.wedding-date: '2026-09-12' at app/src/lib/calendar-frame.ts:88 and studio/src/components/marketing/heroes/timeline/fixture.ts:18, against DEMO_WEDDING_DATE 2026-10-03
+- `E09.09` DRIFT prose.code-prefix: 'GM' at studio/src/app/venues/page.tsx:54,60,66,72 versus 'GH' at studio/docs/venue-portal/WIREFRAMES.md:88-91
+- `E09.09` RETIRED E09.10 P7: 'entitlement: "18 months"' with no grace clause at studio/src/app/venues/page.tsx:55, :61, :67 and :73
+- `E09.11` studio/src/app/venues/page.tsx:15,55,61,67,73,86
+- `E09.11` studio/src/app/venues/page.tsx:469 with studio/src/app/hq/entitlements/OnboardVenueForm.tsx:33
+- `E09.11` studio/src/app/venues/page.tsx:117-118
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.10-copy-hierarchy.md:5
+- `E09.11` studio/docs/strategy/VENUE_FAQ_OBJECTIONS.md:32
+- `E09.11` studio/docs/execution/venue-edition-and-films/RAID.md:378-384
+- `E09.11` node scripts/check-venue-edition-contract.mjs → '[venue-edition-contract] ok', exit 0
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E11.09-10-discovery-and-demo.md:856
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.11-sweep-run.txt
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.11-copy-system.md section 2
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.11-copy-system.md section 6
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.11-copy-system.md section 12.5
+- `E09.11` studio/docs/execution/venue-edition-and-films/evidence/E09.11-venue-copy-pack.md
+- `E09.11` studio/scripts/check-venue-edition-contract.mjs (the [venue-copy] stage)
+- `E09.12` node project-control.mjs task E02.01 / E02.03 / E02.12 / E03.09
+- `E09.12` app/src/server/demo/tasks-demo.ts:38 and :198
+- `E09.12` app/scripts/seed-wedding.ts:32-36
+- `E09.12` app/src/server/suite-navigation-contract.test.mjs:428
+- `E09.12` studio/src/app/venues/page.tsx:187,389 vs app/src/lib/review-suite-fixture.ts:17 vs studio/src/lib/account/fixtures.ts
+- `E09.12` app/src/lib/calendar-frame.ts:74 · review-suite-fixture.ts reviewToday and lastUpdatedAt · notes-demo.ts:35 · mock-source.ts:134,188
+- `E09.12` app/package.json:48 and listing of app/scripts/
+- `E09.12` studio/src/lib/account/instrumentation/freeze.ts and studio/scripts/check-venue-edition-contract.mjs
+- `E09.12` studio/docs/execution/venue-edition-and-films/evidence/E09.12-reset-determinism-run.txt
+- `E09.12` studio/docs/execution/venue-edition-and-films/evidence/E09.12-freeze-readiness-run.txt
+- `E09.12` studio/docs/execution/venue-edition-and-films/evidence/copy/capture-copy-manifest.v1.json
+- `E09.12` studio/docs/execution/venue-edition-and-films/evidence/E09.12-freeze-and-reset.md section 3.4
+- `E09.12` Verification run, both repositories
+- `E10.02` RAID.md I-012 (reissued from I-011)
+- `E10.08` RAID.md R-039 (reissued from R-032)
+- `E10.13` RAID.md R-038 (reissued from R-031)
+- `E10.14` 7 in-ring accounts held on unconfirmed trading status (final figure)
+- `E12.04` studio/docs/execution/venue-edition-and-films/evidence/E12.04-venues-page-audit.md
+- `E12.04` studio/src/app/venues/page.tsx
+- `E12.04` studio/docs/execution/venue-edition-and-films/evidence/R-024-name-only-copy-register.md
+- `E13.03` signal-motion/src/system/geo/projection.ts
+- `E13.03` signal-motion/src/system/geo/limerick-geometry.ts
+- `E13.03` signal-motion/src/system/geo/geo-spec.ts
+- `E13.03` signal-motion/src/tests/limerick-geometry.test.ts
+- `E13.03` signal-motion/docs/video-production/LIMERICK-MAP-GEOMETRY.md
+- `E13.03` corepack pnpm verify (signal-motion) — tests 71 pass 71 fail 0; Motion source check OK · 71 production files; Composition contract OK; 24 compositions listed
+- `E13.03` RING_FIT_KM_PER_MINUTE = 0.8326843115484087; rings 12.490 / 24.981 / 37.471 km; R-squared uncentred 0.9803, centred 0.8590; RMS residual 5.495 km
+- `E13.03` RING_BAND_DISAGREEMENTS = ["Tipperary town", "Mallow, Co. Cork"], locked in geo-spec.ts
+- `E13.03` studio/public/brand/assets/deck-v2/limerick-45-minute-decision-map.svg — contains r="92", r="180", r="265" and the strings "SCHEMATIC" and "NOT FOR ROUTING"
+- `E13.03` studio/docs/execution/venue-edition-and-films/venue-universe/05-COHORTS.md:119-126
+- `E13.03` signal-motion/src/system/geo/ (peer lane, untracked)
+- `E13.03` Independent recomputation (node, from the 16-town table only): k=0.8326843115484087, radii 12.490/24.981/37.471, R2 0.9803/0.8590, Tipperary +0.433 km, Mallow +8.118 km
+- `E13.04` studio/docs/execution/venue-edition-and-films/tools/venue-map-export.mjs
+- `E13.04` studio/docs/execution/venue-edition-and-films/private/map-payload.json
+- `E13.04` signal-motion/src/fixtures/schemas/limerick-map.ts
+- `E13.04` signal-motion/src/fixtures/limerick-map-v1/data.ts
+- `E13.04` signal-motion/src/tests/limerick-map-fixture.test.ts
+- `E13.04` studio git commit 05974d1 (feat/homepage-reduction-relay, 2026-08-03 04:22:40)
+- `E13.04` signal-motion/src/compositions/limerick-first-map/mapSpec.ts
+- `E13.04` signal-motion/src/compositions/limerick-first-map/schema.ts
+- `E13.04` signal-motion/src/tests/limerick-map-timeline.test.ts
+- `E13.04` corepack pnpm verify (signal-motion)
+- `E13.04` corepack pnpm exec remotion compositions src/index.ts
+- `E13.04` signal-motion/out/stills/limerick-first-map/wide-360.png
+- `E13.04` signal-motion/out/stills/limerick-first-map/tall-360.png
+- `E13.04` signal-motion/out/stills/limerick-first-map/reduced-0.png
+- `E13.04` signal-motion/out/stills/limerick-first-map/animatic-330.png
+- `E13.04` signal-motion/out/stills/limerick-first-map/longname-360.png
+- `E13.04` signal-motion/out/stills/limerick-first-map/wide-55.png and wide-175.png
+- `E13.04` Negative test on scripts/check-motion-source.mts
+- `E13.04` signal-motion/src/tests/period-timeline.test.ts (one assertion changed)
+- `E13.04` C:/Users/ethan/signal-studio-workspace/signal-motion/src/compositions/limerick-first-map/LimerickFirstMap.tsx:84-137
+- `E13.04` C:/Users/ethan/AppData/Local/Temp/claude/C--Users-ethan-signal-studio-workspace/9b00cbfc-8d47-4963-b57f-a7b4fd24073e/scratchpad/verify.log
+- `E13.04` C:/Users/ethan/signal-studio-workspace/signal-motion/out/stills/verify-limerick-16x9-f400.png
+- `E13.04` C:/Users/ethan/signal-studio-workspace/signal-motion/out/stills/verify-f060-water.png
+- `E13.04` C:/Users/ethan/signal-studio-workspace/signal-motion/src/compositions/limerick-first-map/mapSpec.ts (limerickMapRecipientPlate, the `coversDot` predicate)
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/scripts/limerick-first-render.mts
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/src/render/limerick-first-plan.ts
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/src/tests/limerick-first-plan.test.ts
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/out/limerick-first/1/render-index.json
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/out/limerick-first/1/signal-motion__limerick-map-v1__pin-609931a194c1__limerickfirstmap-16x9__invitation-16x9-v1__r001__f0360.png
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/out/limerick-first/1/signal-motion__limerick-map-v1__pin-3d73e958f172__limerickfirstmap-16x9__invitation-16x9-v1__r001__f0360.png
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/render-props/limerick-map-v1.recipients.json
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/docs/video-production/RENDER-AND-HANDOFF.md
+- `E13.15` C:/Users/ethan/signal-studio-workspace/signal-motion/out/limerick-first/1/
+- `E13.16` studio/docs/execution/venue-edition-and-films/tools/venue-map-links.mjs
+- `E13.16` studio/docs/execution/venue-edition-and-films/tools/venue-map-links.test.mjs
+- `E13.16` studio/docs/execution/venue-edition-and-films/evidence/E13.16-link-and-destination-contract.md
+- `E13.16` studio/docs/execution/venue-edition-and-films/private/film-links-cohort-1.json
+- `E13.16` signal-motion/src/render/poster.ts
+- `E13.16` signal-motion/scripts/venue-film-poster.mts
+- `E13.16` signal-motion/src/tests/render-poster.test.ts
+- `E13.16` signal-motion/out/limerick-first/1/signal-motion__limerick-map-v1__pin-78864023a9a4__limerickfirstmap-16x9__review-16x9-v1__r001__f0360.jpeg
+- `E13.16` studio/src/app/layout.tsx:144
+- `E13.16` studio/src/app/robots.ts
+- `E13.16` studio git ls-tree -r HEAD | grep venue-map -> docs/execution/venue-edition-and-films/tools/venue-map-export.mjs
 
 ## Unresolved
 
 - Tasks in progress: none
 - Internal review: E03.01
-- Unestimated active tasks: 188
+- Unestimated active tasks: 157
 
 ## Blockers
 
@@ -35,7 +433,36 @@ Closed the two R-024 decision items on the founder's instruction to use my own r
 
 ## Founder review required
 
-- No task awaiting approval.
+- `E07.01` Lock the portal information architecture and the primary buyer job of administering and proving the sponsored benefit.
+- `E07.02` Redesign Overview so “Invite a couple” is the principal action.
+- `E07.03` Complete account-standing, current-term, founding-status, renewal-date and support-status presentation.
+- `E07.04` Ratify every adoption-funnel definition from invitation through meaningful first action and continued use.
+- `E07.05` Implement an evidence-backed next-action system for stale invitations, low redemption, incomplete setup and renewal preparation.
+- `E07.06` Replace product-centric metrics with understandable customer outcomes while retaining detailed product reach where useful.
+- `E07.07` Replace the old 40/80 allotment language with the final eligible-booking or fair-use entitlement model.
+- `E07.08` Complete invitation creation, copying, sending, resending, revoking, replacing, expiring and redemption status.
+- `E07.09` Complete access search, filters, pagination, stale-invitation alerts and masked-code handling.
+- `E07.10` Complete the distribution kit with approved email wording, welcome link and printable welcome card.
+- `E07.11` Complete Usage with first useful action, recent use, continued use, product reach and measurement definitions.
+- `E07.12` Implement the ratified small-cohort suppression rule and the “Use, without surveillance” privacy receipt.
+- `E07.13` Refine lifecycle visualisation and ensure it does not imply surveillance or expose private behavioural detail.
+- `E07.14` Complete monthly, access-term and renewal-report generation.
+- `E07.15` Complete reconciled PDF and CSV exports with data-through dates, completeness states and definition versions.
+- `E07.16` Complete Account, organisation settings, members, roles, support history and reporting preferences.
+- `E07.17` Add the live branded couple-experience preview, branding controls and appropriate upcoming wedding-date view.
+- `E07.18` Complete portal permissions, audit history, empty/loading/error states, responsive design, accessibility and end-to-end data reconciliation.
+- `E09.03` Instrument invitation, activation, meaningful-use, public-sharing and Keepsake transitions.
+- `E09.04` Instrument personalised-film views, landing-page visits, booking actions, meetings, proposals and paid conversion.
+- `E09.05` Join CRM, commercial, product and reporting data into one founder operating dashboard.
+- `E09.07` Build a deterministic Glenmara House and Mara-and-Finn demonstration fixture across all four products and the portal.
+- `E09.08` Source and license all demonstration photographs and confirm that no unapproved real venue or couple material is used.
+- `E09.09` Reconcile every sample invitation count, adoption metric, report number, date and product-reach value.
+- `E09.11` Finalise offer, founding-rate, privacy, collaboration, Keepsake, CTA, objection and FAQ copy.
+- `E09.12` Freeze the capture copy and build a one-action demo reset that restores the canonical state.
+- `E13.03` Build the stylised Greater Limerick map geometry, River Shannon path and 15-, 30- and 45-minute rings.
+- `E13.04` Build the data-driven map composition using verified venue coordinates and cohort metadata.
+- `E13.15` Build the parameterised rendering pipeline using venue name, coordinates, cohort and private CTA data.
+- `E13.16` Generate unique tracked links, thumbnails and landing destinations for every personalised render.
 
 ## Exact next action
 
