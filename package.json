@@ -30,6 +30,7 @@
     "check:advisors": "tsx scripts/check-advisors-sync.ts",
     "metrics:smoke": "node scripts/blueprint-metrics-smoke.mjs",
     "render:brand-assets": "node scripts/render-brand-assets.mjs",
+    "build:brand-kit": "node scripts/build-brand-guidelines-kit.mjs",
     "check:brand-assets": "node scripts/check-brand-assets.mjs",
     "remediation:check": "node scripts/check-remediation-program.mjs",
     "identity:check": "node scripts/check-identity-joins.mjs",
@@ -72,7 +73,8 @@
     "motion": "^12.38.0",
     "next": "16.2.5",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "signal-ds": "^2.1.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

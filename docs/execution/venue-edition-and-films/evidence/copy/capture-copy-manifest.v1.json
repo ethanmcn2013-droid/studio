@@ -1,0 +1,2154 @@
+{
+  "version": "capture-copy-manifest.v1",
+  "task": "E09.12",
+  "recorded": "2026-08-03",
+  "frozen": false,
+  "freezeDate": "2026-08-22",
+  "copyFreezeDate": "2026-08-21",
+  "freezeNote": "frozen:false means this is a recorded state, not a declared freeze. Today is 2026-08-03; the copy freeze is 2026-08-21 and the capture freeze is 2026-08-22, and neither is a founder approval this file can give itself. Drift is already detected: the check fails on any change to a recorded string whether frozen is true or false. Setting it to true changes the wording of the failure, not whether there is one.",
+  "blockedNote": "A string with blockedBy has its text withheld on purpose. Copying a P8 dietary line into an evidence file to prove it is a P8 dietary line is the failure it names. The hash still pins it, so a change is still detected.",
+  "totals": {
+    "surfaces": 14,
+    "strings": 332,
+    "blocked": 11
+  },
+  "surfaces": [
+    {
+      "path": "../app/src/lib/review-suite-fixture.ts",
+      "beat": "the story: venue, couple, milestones",
+      "fileHash": "b73276b0a55d0d07",
+      "stringCount": 12,
+      "strings": [
+        {
+          "h": "d0f9037835d7f85d",
+          "n": 60,
+          "line": 45,
+          "t": "A spring wedding moving from venue decisions into suppliers."
+        },
+        {
+          "h": "c174494eaa29196c",
+          "n": 13,
+          "line": 50,
+          "t": "Aisling & Tom"
+        },
+        {
+          "h": "11c972fb47def79b",
+          "n": 56,
+          "line": 51,
+          "t": "An autumn wedding at the start of its planning timeline."
+        },
+        {
+          "h": "38f261745ce0bb15",
+          "n": 24,
+          "line": 135,
+          "t": "Choose the evening music"
+        },
+        {
+          "h": "273f9ef114fd49fe",
+          "n": 20,
+          "line": 163,
+          "t": "City hotel shortlist"
+        },
+        {
+          "h": "ffd1e05234fa0ee6",
+          "n": 19,
+          "line": 128,
+          "t": "Final dress fitting"
+        },
+        {
+          "h": "d07ada60c3904e5f",
+          "n": 19,
+          "line": 142,
+          "t": "Final guest numbers"
+        },
+        {
+          "h": "31246d8429f13608",
+          "n": 23,
+          "line": 107,
+          "t": "Glenmara House reserved"
+        },
+        {
+          "h": "22c2d4dc68614e2c",
+          "n": 22,
+          "line": 29,
+          "t": "Glenmara House, events"
+        },
+        {
+          "h": "1ac69d03250ea0c6",
+          "n": 30,
+          "line": 114,
+          "t": "Menu tasting at Glenmara House"
+        },
+        {
+          "h": "193d916ea913e974",
+          "n": 20,
+          "line": 121,
+          "t": "Send the invitations"
+        },
+        {
+          "h": "b83c43b693532bca",
+          "n": 64,
+          "line": 39,
+          "t": "What is settled, what comes next, and what the couple can share."
+        }
+      ]
+    },
+    {
+      "path": "../app/src/lib/demo-clock.ts",
+      "beat": "the story: anchor and wedding date",
+      "fileHash": "9a9a7d1f8e129d10",
+      "stringCount": 14,
+      "strings": [
+        {
+          "h": "b622e1d8421eca69",
+          "n": 66,
+          "line": 228,
+          "t": "A second, older demonstration wedding (slug wedding-planning) that"
+        },
+        {
+          "h": "47558efeff3a5ff3",
+          "n": 69,
+          "line": 187,
+          "t": "Its eight scenarios exist to exercise stale, partial, unavailable and"
+        },
+        {
+          "h": "7cbfa5aa29150cad",
+          "n": 61,
+          "line": 221,
+          "t": "Provider-coverage conformance fixture on a separate synthetic"
+        },
+        {
+          "h": "5ce8ee7a989b8f6b",
+          "n": 67,
+          "line": 186,
+          "t": "Provider-coverage conformance fixture, not the demonstration story."
+        },
+        {
+          "h": "1ca2a5412276c382",
+          "n": 68,
+          "line": 191,
+          "t": "capture surface, so restoring it is not part of the reset. Its clock"
+        },
+        {
+          "h": "9ac18bf039634874",
+          "n": 66,
+          "line": 190,
+          "t": "different synthetic identity (ws-signal-fixture). It is never on a"
+        },
+        {
+          "h": "bd3c92437c9eba34",
+          "n": 66,
+          "line": 230,
+          "t": "getDemoSharedUpdateDataset. Recorded for a founder call on whether"
+        },
+        {
+          "h": "6482fd55fe0a1a8b",
+          "n": 63,
+          "line": 222,
+          "t": "identity (ws-signal-fixture). Not the wedding story, never on a"
+        },
+        {
+          "h": "55e71802d98b679d",
+          "n": 70,
+          "line": 189,
+          "t": "in projects named Launch, Venue rollout and Private client, owned by a"
+        },
+        {
+          "h": "ed76165d1b5d929e",
+          "n": 69,
+          "line": 192,
+          "t": "is registered here so the inventory is complete and so it cannot move"
+        },
+        {
+          "h": "560f0ebba7474c8d",
+          "n": 65,
+          "line": 231,
+          "t": "it is deleted or folded into the one story; not silently renamed."
+        },
+        {
+          "h": "bb2ebb779b84d42e",
+          "n": 67,
+          "line": 229,
+          "t": "predates the one-story determination and is still reachable through"
+        },
+        {
+          "h": "e58ce8f2449d3395",
+          "n": 68,
+          "line": 188,
+          "t": "unauthorized coverage states; its records are engineering work items"
+        },
+        {
+          "h": "7e30c29d23ac76ca",
+          "n": 28,
+          "line": 193,
+          "t": "without a deliberate change."
+        }
+      ]
+    },
+    {
+      "path": "../app/src/server/demo/tasks-demo.ts",
+      "beat": "beat 3, the Tasks board",
+      "fileHash": "872943e31f1c39f6",
+      "stringCount": 18,
+      "strings": [
+        {
+          "h": "0f08b556f2a474a3",
+          "n": 68,
+          "line": 162,
+          "t": "Add Northlight (photography) and County Marquee. Drop the lapsed DJ."
+        },
+        {
+          "h": "3cb32b916d30b0c1",
+          "n": 30,
+          "line": 151,
+          "t": "Approve the final seating plan"
+        },
+        {
+          "h": "19fa9ca80585f983",
+          "n": 28,
+          "line": 121,
+          "t": "Build the Saturday run-sheet"
+        },
+        {
+          "h": "80b55cd66d485a98",
+          "n": 77,
+          "line": 122,
+          "t": "Ceremony 2pm orchard, drinks terrace, dinner 5:30. Share with the floor team."
+        },
+        {
+          "h": "d1519a2773f7d7c4",
+          "n": 43,
+          "line": 73,
+          "t": "Confirm marquee sides with the hire company"
+        },
+        {
+          "h": "910df33adb36157f",
+          "n": 19,
+          "line": 80,
+          "t": "County Marquee Hire"
+        },
+        {
+          "h": "c86782b2ceb89847",
+          "n": 36,
+          "line": 180,
+          "t": "Deposit invoice settled, Mara + Finn"
+        },
+        {
+          "h": "ce0efab443664edd",
+          "n": 91,
+          "line": 75,
+          "t": "Mara + Finn, Saturday. Terrace plan if dry, marquee if not, they need the call by Thursday."
+        },
+        {
+          "h": "3ae817cd52c16d40",
+          "n": 113,
+          "line": 87,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "613add931934667e",
+          "n": 30,
+          "line": 171,
+          "t": "Open day, nine couples through"
+        },
+        {
+          "h": "eedb9508b4e88a99",
+          "n": 29,
+          "line": 136,
+          "t": "Order tonic + the good olives"
+        },
+        {
+          "h": "cae336c691691b1a",
+          "n": 50,
+          "line": 100,
+          "t": "Reprint the faded welcome sign before the open day"
+        },
+        {
+          "h": "740793b2384b5a10",
+          "n": 49,
+          "line": 109,
+          "t": "Send midweek rate to the June 2027 walk-in couple"
+        },
+        {
+          "h": "f8bec84e5d53c00c",
+          "n": 39,
+          "line": 161,
+          "t": "Sign off the recommended-suppliers list"
+        },
+        {
+          "h": "ff6721d3e588179f",
+          "n": 73,
+          "line": 172,
+          "t": "Three asked for dates. Tea urn was the hero. Repeat the format in spring."
+        },
+        {
+          "h": "27ca9b3b254a509a",
+          "n": 69,
+          "line": 152,
+          "t": "Top table moved away from the speakers, check sightlines to the arch."
+        },
+        {
+          "h": "e07d95a0076a7f66",
+          "n": 56,
+          "line": 137,
+          "t": "Two extra cases of tonic; last olive delivery was short."
+        },
+        {
+          "h": "3801a2943fe8d144",
+          "n": 59,
+          "line": 110,
+          "t": "~80 guests, budget-conscious. Follow up Friday if no reply."
+        }
+      ]
+    },
+    {
+      "path": "../app/src/modules/notes/server/demo/notes-demo.ts",
+      "beat": "beat 3, the Notes notebook",
+      "fileHash": "5fbe4c8ad2ed0153",
+      "stringCount": 21,
+      "strings": [
+        {
+          "h": "029170f860bace99",
+          "n": 120,
+          "line": 87,
+          "t": "Bar restock: tonic running low, order two extra cases before the weekend. Also the good olives, last delivery was short."
+        },
+        {
+          "h": "6bc9c690f1e2ce29",
+          "n": 39,
+          "line": 154,
+          "t": "Chase linen order, now shipping Tuesday"
+        },
+        {
+          "h": "af1516f559400d48",
+          "n": 49,
+          "line": 146,
+          "t": "Clear Sunday 11am late checkout with housekeeping"
+        },
+        {
+          "h": "614e64ff9f36d4f8",
+          "n": 55,
+          "line": 58,
+          "t": "Confirm marquee sides with hire company before Thursday"
+        },
+        {
+          "h": "03ba5abf2324369e",
+          "n": 128,
+          "line": 76,
+          "t": "Course reading for Thursday: chapters 4–5 on cash-flow forecasting. Bring the worked example, the lecturer always opens with it."
+        },
+        {
+          "h": "7e82c97764a7e77c",
+          "n": 135,
+          "line": 110,
+          "t": "Heating: orchard room takes ~40 min to warm in October. Switch on before guests arrive, not when. Note for the winter brochure couples."
+        },
+        {
+          "h": "215c3df00c13fa95",
+          "n": 138,
+          "line": 70,
+          "t": "Idea for the studio newsletter: short piece on “what a calm Saturday actually looks like behind the bar”. People love the backstage angle."
+        },
+        {
+          "h": "79c467cbb1b9b0eb",
+          "n": 109,
+          "line": 152,
+          "t": "Linen supplier rang, the order now ships Tuesday, not Friday. Fine for Saturday, but tight if anything slips."
+        },
+        {
+          "h": "0ea507df2e7080c8",
+          "n": 137,
+          "line": 144,
+          "t": "Mara asked about a late checkout for the bridal suite, Sunday 11am instead of 9. Said yes in principle, just needs to clear housekeeping."
+        },
+        {
+          "h": "fb7f7c5c39b0792e",
+          "n": 43,
+          "line": 89,
+          "t": "Order 2 cases tonic + olives before weekend"
+        },
+        {
+          "h": "17693b2709d2c965",
+          "n": 154,
+          "line": 94,
+          "t": "Photographer recommendation from the Hendersons: Aoife @ northlight. Natural light, doesn’t herd people. Keep her card for the recommended-suppliers list."
+        },
+        {
+          "h": "0bb99d9e1a94677c",
+          "n": 930,
+          "line": 118,
+          "t": "Post-event debrief for Mara and Finn. The orchard ceremony moved inside at 13:20 when the rain line reached the west gate, so the team reset eighty-four chairs in eighteen minutes and kept the terrace drinks plan intact. What worked: Aoife held family photographs until the room settled; the bar moved one person to the entrance before guests arrived; the florist reused the aisle foliage around the fireplace without needing another decision. What to change next time: keep a printed wet-weather sequence in the duty folder, confirm who owns the accessibility route before opening the side doors, and label the supplier crate for the extraordinarily long North Coast Botanical Installations and Seasonal Hire Company name so it does not disappear into general storage. Follow up with Mara on Thursday, send the revised room-turn checklist to the Saturday team, and keep this note as the source for the winter brochure case study."
+        },
+        {
+          "h": "bcc2110fa408108a",
+          "n": 136,
+          "line": 104,
+          "t": "Quote from today that I want to keep: “we don’t want a big production, we just want it to feel like us.” That’s the whole pitch, really."
+        },
+        {
+          "h": "b19006414404f0bc",
+          "n": 49,
+          "line": 78,
+          "t": "Read cash-flow chapters 4–5 before Thursday class"
+        },
+        {
+          "h": "b306f0ff6b65268c",
+          "n": 112,
+          "line": 160,
+          "t": "Registrar confirmed she can do 2pm but wants the final paperwork a fortnight out. Don't leave it late this time."
+        },
+        {
+          "h": "3f8ed86df968debb",
+          "n": 155,
+          "line": 56,
+          "t": "Saturday wedding, Mara + Finn. Ceremony 2pm in the orchard, drinks on the terrace if it stays dry. Confirm marquee sides with the hire company by Thursday."
+        },
+        {
+          "h": "6bfffe74ec2d0df4",
+          "n": 50,
+          "line": 162,
+          "t": "Send registrar paperwork two weeks before the date"
+        },
+        {
+          "h": "dac4586e6701fc16",
+          "n": 140,
+          "line": 99,
+          "t": "Small thing but it matters: the welcome sign by the gate is faded. Reprint before the open day, first impression is the whole car-park walk."
+        },
+        {
+          "h": "f905f52facc24e30",
+          "n": 138,
+          "line": 82,
+          "t": "Walk-in couple this morning, June 2027, ~80 guests, budget-conscious but lovely. Sent them the midweek rate. Follow up Friday if no reply."
+        },
+        {
+          "h": "ea85648088abf02b",
+          "n": 77,
+          "line": 120,
+          "t": "Write the wet-weather room-turn checklist and share it with the Saturday team"
+        },
+        {
+          "h": "61c131883101926e",
+          "n": 137,
+          "line": 63,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        }
+      ]
+    },
+    {
+      "path": "../app/src/modules/timeline/lib/roadmap/demo-data.ts",
+      "beat": "beat 4, the Timeline",
+      "fileHash": "fc4b25ecbfaf8372",
+      "stringCount": 17,
+      "strings": [
+        {
+          "h": "ec0e1d66953af3bc",
+          "n": 73,
+          "line": 62,
+          "t": "A curated milestone from the authorised Glenmara House wedding workspace."
+        },
+        {
+          "h": "ac928aa54e6b8b56",
+          "n": 94,
+          "line": 146,
+          "t": "A planning update for a venue, couple, and suppliers who need the next steps in plain English."
+        },
+        {
+          "h": "7c274a30c43c02c2",
+          "n": 27,
+          "line": 221,
+          "t": "Ceremony room layout agreed"
+        },
+        {
+          "h": "11cc8387482cc75d",
+          "n": 27,
+          "line": 177,
+          "t": "Confirm final guest numbers"
+        },
+        {
+          "h": "66969348e8081e2f",
+          "n": 98,
+          "line": 179,
+          "t": "Couple to confirm the final headcount before the venue locks table layout and catering quantities."
+        },
+        {
+          "h": "3534a8db6b7a74cd",
+          "n": 21,
+          "line": 144,
+          "t": "Harbour House wedding"
+        },
+        {
+          "h": "cc4c7e023eb85f17",
+          "n": 35,
+          "line": 199,
+          "t": "Menu tasting notes sent to catering"
+        },
+        {
+          "h": "0b97d758bf2407c3",
+          "n": 85,
+          "line": 235,
+          "t": "Not relying on an outdoor-only reception. The weather backup is now the default plan."
+        },
+        {
+          "h": "34ec75c7ec5a607f",
+          "n": 69,
+          "line": 21,
+          "t": "One venue workspace for the weddings being planned at Glenmara House."
+        },
+        {
+          "h": "839efc1494e2029f",
+          "n": 24,
+          "line": 233,
+          "t": "Outdoor drinks reception"
+        },
+        {
+          "h": "73ccd7f3016df556",
+          "n": 104,
+          "line": 190,
+          "t": "Photographer, florist, and band arrival times are not all confirmed yet. This is the main planning risk."
+        },
+        {
+          "h": "823232fd72a4f17a",
+          "n": 40,
+          "line": 188,
+          "t": "Supplier arrival times need confirmation"
+        },
+        {
+          "h": "20771216d62e7697",
+          "n": 94,
+          "line": 223,
+          "t": "The couple and venue agreed the ceremony layout, aisle placement, and reserved family seating."
+        },
+        {
+          "h": "9da98d53a4f51469",
+          "n": 94,
+          "line": 201,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "bb278125e6fe0577",
+          "n": 108,
+          "line": 212,
+          "t": "Venue, planner, and couple walk through room setup, ceremony flow, supplier access, and backup weather plan."
+        },
+        {
+          "h": "5aaafb481a498132",
+          "n": 73,
+          "line": 164,
+          "t": "What is decided, what is moving, and what needs attention before the day."
+        },
+        {
+          "h": "9ddebc71d7b1609c",
+          "n": 104,
+          "line": 308,
+          "t": "task.projectSlug === projectSlug && task.id === taskId, ) ?? null ); } function makeDemoTask( task: Pick"
+        }
+      ]
+    },
+    {
+      "path": "../app/src/modules/signal/lib/briefing/mock-source.ts",
+      "beat": "beat 3, the Signal briefing",
+      "fileHash": "f4563e7e4cb0626c",
+      "stringCount": 13,
+      "strings": [
+        {
+          "h": "3cb32b916d30b0c1",
+          "n": 30,
+          "line": 59,
+          "t": "Approve the final seating plan"
+        },
+        {
+          "h": "19fa9ca80585f983",
+          "n": 28,
+          "line": 70,
+          "t": "Build the Saturday run-sheet"
+        },
+        {
+          "h": "d1519a2773f7d7c4",
+          "n": 43,
+          "line": 34,
+          "t": "Confirm marquee sides with the hire company"
+        },
+        {
+          "h": "c86782b2ceb89847",
+          "n": 36,
+          "line": 115,
+          "t": "Deposit invoice settled, Mara + Finn"
+        },
+        {
+          "h": "631c96e70f6253a4",
+          "n": 22,
+          "line": 152,
+          "t": "Mock paper preparation"
+        },
+        {
+          "h": "613add931934667e",
+          "n": 30,
+          "line": 104,
+          "t": "Open day, nine couples through"
+        },
+        {
+          "h": "3499c8cac7b6d4d9",
+          "n": 20,
+          "line": 176,
+          "t": "Order fieldwork maps"
+        },
+        {
+          "h": "eedb9508b4e88a99",
+          "n": 29,
+          "line": 81,
+          "t": "Order tonic + the good olives"
+        },
+        {
+          "h": "740793b2384b5a10",
+          "n": 49,
+          "line": 92,
+          "t": "Send midweek rate to the June 2027 walk-in couple"
+        },
+        {
+          "h": "bfe96dd825bc8994",
+          "n": 24,
+          "line": 171,
+          "t": "Tasks · 5th Year History"
+        },
+        {
+          "h": "07883f47457cdaa7",
+          "n": 26,
+          "line": 159,
+          "t": "Tasks · 6th Year Geography"
+        },
+        {
+          "h": "93626e3c59dc7f45",
+          "n": 29,
+          "line": 183,
+          "t": "Tasks · Leaving Cert Politics"
+        },
+        {
+          "h": "eaa8307e2191beea",
+          "n": 24,
+          "line": 21,
+          "t": "Tasks · {} · Mara & Finn"
+        }
+      ]
+    },
+    {
+      "path": "../app/src/app/the-wedding/page.tsx",
+      "beat": "the couple-facing demonstration page",
+      "fileHash": "c475f960caf7dacc",
+      "stringCount": 20,
+      "strings": [
+        {
+          "h": "20d077a9c4067af4",
+          "n": 29,
+          "line": 84,
+          "t": "A plan kept by Glenmara House"
+        },
+        {
+          "h": "f318a2b5e96f3b47",
+          "n": 106,
+          "line": 8,
+          "t": "A public Signal Timeline example showing the useful shape of a wedding plan without exposing private work."
+        },
+        {
+          "h": "d73e7c81217eda87",
+          "n": 44,
+          "line": 33,
+          "t": "Booked work that is close enough to prepare."
+        },
+        {
+          "h": "4e77842c77e3e687",
+          "n": 35,
+          "line": 58,
+          "t": "Ceremony at 14:00. Dinner at 17:30."
+        },
+        {
+          "h": "22c8fdd94f206ea5",
+          "n": 28,
+          "line": 20,
+          "t": "Confirm the ceremony outline"
+        },
+        {
+          "h": "2082636d420fcb31",
+          "n": 17,
+          "line": 41,
+          "t": "Final guest count"
+        },
+        {
+          "h": "04cf57913a757b61",
+          "n": 25,
+          "line": 143,
+          "t": "Made with Signal Timeline"
+        },
+        {
+          "h": "56883a8304beb6cd",
+          "n": 48,
+          "line": 53,
+          "t": "One calm run-through with the venue coordinator."
+        },
+        {
+          "h": "022dfac7a2668e12",
+          "n": 113,
+          "line": 90,
+          "t": "One readable view of what is settled, what comes next, and what can wait. The couple chose every item shown here."
+        },
+        {
+          "h": "69e51fe01cbd56c1",
+          "n": 53,
+          "line": 26,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "4141657909628921",
+          "n": 44,
+          "line": 37,
+          "t": "Photographer, flowers, music, and transport."
+        },
+        {
+          "h": "00d871da91eb6010",
+          "n": 61,
+          "line": 139,
+          "t": "Published deliberately. Private notes and tasks stay private."
+        },
+        {
+          "h": "a5fd4bbdeff9ab26",
+          "n": 44,
+          "line": 21,
+          "t": "Readings, music, and the people taking part."
+        },
+        {
+          "h": "2a45dd56ad526774",
+          "n": 27,
+          "line": 25,
+          "t": "Send the final menu choices"
+        },
+        {
+          "h": "cedd341d6e2eaa39",
+          "n": 46,
+          "line": 17,
+          "t": "The decisions that make the next month easier."
+        },
+        {
+          "h": "0c6c57db4823d878",
+          "n": 48,
+          "line": 42,
+          "t": "The number the venue needs for rooms and dinner."
+        },
+        {
+          "h": "cc4009f4ea967c3e",
+          "n": 49,
+          "line": 49,
+          "t": "The shape of the day, held without false urgency."
+        },
+        {
+          "h": "ef7c9233560b7919",
+          "n": 20,
+          "line": 52,
+          "t": "Walk through the day"
+        },
+        {
+          "h": "32cafc736debb748",
+          "n": 35,
+          "line": 6,
+          "t": "Your wedding plan · Signal Timeline"
+        },
+        {
+          "h": "f7ec91412b874581",
+          "n": 18,
+          "line": 87,
+          "t": "Your wedding plan."
+        }
+      ]
+    },
+    {
+      "path": "../app/src/components/welcome/venue-welcome-card.tsx",
+      "beat": "beat 2, the couple opens it",
+      "fileHash": "6ff7caea620bb045",
+      "stringCount": 2,
+      "strings": [
+        {
+          "h": "d963bed55c703e78",
+          "n": 17,
+          "line": 65,
+          "t": "Compliments of {}"
+        },
+        {
+          "h": "b55d2a209de46f4d",
+          "n": 108,
+          "line": 68,
+          "t": "Your wedding workspace is ready. Plan without the noise, every view is the same items, all in plain English."
+        }
+      ]
+    },
+    {
+      "path": "../app/src/lib/templates.generated.ts",
+      "beat": "beat 2, what the workspace opens with",
+      "fileHash": "d9bee21ed467695f",
+      "stringCount": 40,
+      "strings": [
+        {
+          "h": "49207de46702f1d7",
+          "n": 40,
+          "line": 202,
+          "t": "Approve supplier invoices for this month"
+        },
+        {
+          "h": "293f744185f49a89",
+          "n": 33,
+          "line": 63,
+          "t": "Book final-week venue walkthrough"
+        },
+        {
+          "h": "95593062bbf6c083",
+          "n": 28,
+          "line": 100,
+          "t": "Build supplier contact sheet"
+        },
+        {
+          "h": "55e92a2ecd248efd",
+          "n": 28,
+          "line": 159,
+          "t": "Capture decisions still open"
+        },
+        {
+          "h": "30bfdaadb4aa06a7",
+          "n": 38,
+          "line": 26,
+          "t": "Ceremony room layout agreed with venue"
+        },
+        {
+          "h": "ae354f0314f74bef",
+          "n": 27,
+          "line": 108,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "d8b9e583ae7441ce",
+          "n": 32,
+          "line": 326,
+          "t": "Confirm cover for owner days off"
+        },
+        {
+          "h": "0970a1402cccebf4",
+          "n": 31,
+          "line": 117,
+          "t": "Confirm family photo list owner"
+        },
+        {
+          "h": "11cc8387482cc75d",
+          "n": 27,
+          "line": 35,
+          "t": "Confirm final guest numbers"
+        },
+        {
+          "h": "d02791d45d22aacf",
+          "n": 30,
+          "line": 44,
+          "t": "Confirm supplier arrival times"
+        },
+        {
+          "h": "ae0455993b81e49c",
+          "n": 27,
+          "line": 91,
+          "t": "Confirm weather backup plan"
+        },
+        {
+          "h": "eeba40672453441f",
+          "n": 35,
+          "line": 167,
+          "t": "Create post-wedding collection list"
+        },
+        {
+          "h": "27e7a2e3c3784f09",
+          "n": 40,
+          "line": 284,
+          "t": "Email the accountant the month's summary"
+        },
+        {
+          "h": "250fb0424b313509",
+          "n": 28,
+          "line": 135,
+          "t": "List final supplier payments"
+        },
+        {
+          "h": "1f277ca1735c20f2",
+          "n": 115,
+          "line": 179,
+          "t": "Month-end close, payroll, suppliers, marketing, staff one-to-ones, a cadence that holds a small operation together."
+        },
+        {
+          "h": "57eb7be2b8205a7b",
+          "n": 47,
+          "line": 184,
+          "t": "Month-end revenue close, all takings reconciled"
+        },
+        {
+          "h": "6084ae4d5764e6e5",
+          "n": 23,
+          "line": 178,
+          "t": "Monthly business rhythm"
+        },
+        {
+          "h": "9043ed1f2eb597fd",
+          "n": 33,
+          "line": 231,
+          "t": "Pay the bills due before the 28th"
+        },
+        {
+          "h": "b8a0be166cf8eb2b",
+          "n": 24,
+          "line": 193,
+          "t": "Payroll run for the team"
+        },
+        {
+          "h": "f442a54e55bacfc4",
+          "n": 47,
+          "line": 308,
+          "t": "Plan the staff training session for the quarter"
+        },
+        {
+          "h": "83a41194184ac212",
+          "n": 32,
+          "line": 143,
+          "t": "Prepare wedding morning kit list"
+        },
+        {
+          "h": "cf840cd71416ea63",
+          "n": 54,
+          "line": 300,
+          "t": "Refresh the menu / window display / waiting-room board"
+        },
+        {
+          "h": "06ec57a977b58735",
+          "n": 46,
+          "line": 258,
+          "t": "Renewal coming up, review terms before signing"
+        },
+        {
+          "h": "f383e7b47af8c789",
+          "n": 32,
+          "line": 221,
+          "t": "Reorder the supplies running low"
+        },
+        {
+          "h": "46b724fd9b56803b",
+          "n": 36,
+          "line": 82,
+          "t": "Review ceremony order with officiant"
+        },
+        {
+          "h": "0e5a2ea8c406d46f",
+          "n": 42,
+          "line": 317,
+          "t": "Review last month's reviews and complaints"
+        },
+        {
+          "h": "773b03063f0c5c85",
+          "n": 31,
+          "line": 73,
+          "t": "Review seating chart with venue"
+        },
+        {
+          "h": "748ebbafc02334b3",
+          "n": 30,
+          "line": 240,
+          "t": "Review the rota for next month"
+        },
+        {
+          "h": "86fe68d9a9dfa82a",
+          "n": 37,
+          "line": 292,
+          "t": "Schedule next month's marketing posts"
+        },
+        {
+          "h": "92d3369bf4b535b9",
+          "n": 33,
+          "line": 212,
+          "t": "Send marketing post for the month"
+        },
+        {
+          "h": "d76a6058493fa13b",
+          "n": 31,
+          "line": 54,
+          "t": "Send menu decisions to catering"
+        },
+        {
+          "h": "d8cc26afb4af2557",
+          "n": 42,
+          "line": 126,
+          "t": "Share draft day-of timeline with suppliers"
+        },
+        {
+          "h": "61a899dfd5656b71",
+          "n": 31,
+          "line": 267,
+          "t": "Staff one-to-ones for the month"
+        },
+        {
+          "h": "091d91ea1df8fb29",
+          "n": 75,
+          "line": 12,
+          "t": "The venue, supplier, guest, decision, and final-week work in one calm list."
+        },
+        {
+          "h": "113fe3c2ebb4ceec",
+          "n": 43,
+          "line": 275,
+          "t": "Update the till float and weekly cash limit"
+        },
+        {
+          "h": "d29e0bab4006a286",
+          "n": 44,
+          "line": 17,
+          "t": "Venue contract and deposit schedule recorded"
+        },
+        {
+          "h": "f1bcdff8dcf76935",
+          "n": 43,
+          "line": 249,
+          "t": "Walk the floor with the front-of-house lead"
+        },
+        {
+          "h": "d23aa672cb38c881",
+          "n": 26,
+          "line": 11,
+          "t": "Wedding planning workspace"
+        },
+        {
+          "h": "18dbb29368764a24",
+          "n": 46,
+          "line": 151,
+          "t": "Write one-page update for couple and suppliers"
+        },
+        {
+          "h": "dc0093c1bda423de",
+          "n": 45,
+          "line": 335,
+          "t": "Write the one-line update for the staff group"
+        }
+      ]
+    },
+    {
+      "path": "src/app/venues/page.tsx",
+      "beat": "the page a venue reads before the call",
+      "fileHash": "134bcc853f726987",
+      "stringCount": 77,
+      "strings": [
+        {
+          "h": "06da39d29e5626b6",
+          "n": 37,
+          "line": 657,
+          "t": "); } const activationStateMap: Record"
+        },
+        {
+          "h": "20c20b78d043af1d",
+          "n": 41,
+          "line": 628,
+          "t": "); } function MockLine({}: {}) { return ("
+        },
+        {
+          "h": "b18e28455f3ec7d6",
+          "n": 9,
+          "line": 55,
+          "blockedBy": [
+            "p7-bare-term"
+          ],
+          "t": null
+        },
+        {
+          "h": "3c28299f7ad22ab8",
+          "n": 16,
+          "line": 211,
+          "t": "28 days to event"
+        },
+        {
+          "h": "1f4aa4f3b3425d71",
+          "n": 19,
+          "line": 401,
+          "t": "2fr 1.2fr 1.4fr 1fr"
+        },
+        {
+          "h": "804e78a1eea3fc9a",
+          "n": 22,
+          "line": 392,
+          "t": "4 issued · 3 activated"
+        },
+        {
+          "h": "5353edc8772b6d3c",
+          "n": 16,
+          "line": 205,
+          "t": "8 of 12 complete"
+        },
+        {
+          "h": "bb3ec7ba2c2aa4b5",
+          "n": 93,
+          "line": 574,
+          "t": "A brief conversation about what worked and what did not. No recurring meetings, no reporting."
+        },
+        {
+          "h": "d430ad16863f3a30",
+          "n": 165,
+          "line": 118,
+          "blockedBy": [
+            "d001-4-fourth-thing"
+          ],
+          "t": null
+        },
+        {
+          "h": "3388399a40f97346",
+          "n": 29,
+          "line": 105,
+          "t": "A number that means something"
+        },
+        {
+          "h": "2926536c31dd880f",
+          "n": 33,
+          "line": 109,
+          "t": "A short conversation, once a year"
+        },
+        {
+          "h": "e98af184060f910d",
+          "n": 31,
+          "line": 569,
+          "t": "A soft window, about two weeks."
+        },
+        {
+          "h": "27e1f5af1c432b11",
+          "n": 148,
+          "line": 15,
+          "blockedBy": [
+            "p7-bare-term"
+          ],
+          "t": null
+        },
+        {
+          "h": "1c6d54b93d2808e6",
+          "n": 115,
+          "line": 125,
+          "t": "After a couple accepts sponsored access, the interface can acknowledge your venue while their plan remains private."
+        },
+        {
+          "h": "736a64d0a5e35996",
+          "n": 21,
+          "line": 505,
+          "t": "After the twenty-five"
+        },
+        {
+          "h": "b139b6bc5144b3cc",
+          "n": 173,
+          "line": 360,
+          "t": "An activation register is in development. It is limited to invitation, entitlement and activation state. A couples Notes, Tasks and unpublished Timeline remain inaccessible."
+        },
+        {
+          "h": "7987be42934e4da8",
+          "n": 89,
+          "line": 478,
+          "t": "Both prices include VAT at the prevailing rate. The number you see is the number you pay."
+        },
+        {
+          "h": "0b573b09c16ac121",
+          "n": 144,
+          "line": 445,
+          "t": "Couple names, dates and work are absent by default. A separate, field-level consent receipt is required before any optional metadata can appear."
+        },
+        {
+          "h": "6ae2e842b6a57191",
+          "n": 95,
+          "line": 570,
+          "t": "Couples redeem and start planning. We watch quietly and stay out of the way unless you need us."
+        },
+        {
+          "h": "d5ecbf807e96243a",
+          "n": 13,
+          "line": 241,
+          "t": "Due in 3 days"
+        },
+        {
+          "h": "e6a77ea65c689b4a",
+          "n": 48,
+          "line": 223,
+          "t": "Eight of twelve planned milestones are complete."
+        },
+        {
+          "h": "4c53ed0d7bdd84c4",
+          "n": 25,
+          "line": 86,
+          "t": "Eighteen months, at least"
+        },
+        {
+          "h": "2082636d420fcb31",
+          "n": 17,
+          "line": 250,
+          "t": "Final guest count"
+        },
+        {
+          "h": "d4d25dc64bfa29a3",
+          "n": 29,
+          "line": 235,
+          "t": "Final guest count to catering"
+        },
+        {
+          "h": "2e21061e56000b04",
+          "n": 26,
+          "line": 113,
+          "t": "First look at what is next"
+        },
+        {
+          "h": "0e0277d52ce6f6b9",
+          "n": 187,
+          "line": 114,
+          "t": "Founding venues see new work before anyone else, and can say what should change while it still can. Your requests are written down and shape the roadmap. Nothing gets built for one venue."
+        },
+        {
+          "h": "83eee54c3d03c4c5",
+          "n": 32,
+          "line": 280,
+          "t": "Four lines. The whole operation."
+        },
+        {
+          "h": "9c870aa6e5e93270",
+          "n": 12,
+          "line": 277,
+          "t": "How it works"
+        },
+        {
+          "h": "7bd0430f1f042a49",
+          "n": 23,
+          "line": 157,
+          "t": "Join the venue waitlist"
+        },
+        {
+          "h": "bfe296bb4e03ed7b",
+          "n": 58,
+          "line": 559,
+          "t": "Light by design. We come to you, not the other way around."
+        },
+        {
+          "h": "d96dab97ad0db1d4",
+          "n": 15,
+          "line": 232,
+          "t": "Next clear step"
+        },
+        {
+          "h": "dffdf7f9d9214054",
+          "n": 182,
+          "line": 597,
+          "t": "No deck, no demo gate. A short conversation about whether this fits. Places are held for fourteen days and assigned when payment clears, so nobody is left wondering where they stand."
+        },
+        {
+          "h": "8484ee4d3fdd9c97",
+          "n": 94,
+          "line": 83,
+          "t": "Notes, decisions, tasks, and a plan anyone can forward, instead of a spreadsheet and a thread."
+        },
+        {
+          "h": "e52975ccfc896a85",
+          "n": 29,
+          "line": 126,
+          "t": "Nothing for your team to run."
+        },
+        {
+          "h": "36b783dd486be3b8",
+          "n": 16,
+          "line": 94,
+          "t": "Nothing to learn"
+        },
+        {
+          "h": "4de1a6eedf997338",
+          "n": 145,
+          "line": 566,
+          "t": "Once the year is settled, we send the codes and a short note you can pass to couples. Your coordinator gets one walkthrough, then it runs itself."
+        },
+        {
+          "h": "4a0552a311f0de26",
+          "n": 15,
+          "line": 82,
+          "t": "One clear place"
+        },
+        {
+          "h": "6a42c4ac5e52844d",
+          "n": 17,
+          "line": 573,
+          "t": "One short review."
+        },
+        {
+          "h": "9e70a80e93b0a19f",
+          "n": 48,
+          "line": 462,
+          "t": "Paid once a year. The couple never sees a price."
+        },
+        {
+          "h": "135cab01bca0c327",
+          "n": 80,
+          "line": 95,
+          "t": "Plain English throughout. No training, no manual. They open it, and it is clear."
+        },
+        {
+          "h": "7983163dcf347a34",
+          "n": 17,
+          "line": 252,
+          "t": "Seating plan live"
+        },
+        {
+          "h": "9ca44b6448ef85de",
+          "n": 19,
+          "line": 322,
+          "t": "See an example plan"
+        },
+        {
+          "h": "a73221cb95c18bd5",
+          "n": 45,
+          "line": 356,
+          "t": "See every activation. Never the private plan."
+        },
+        {
+          "h": "3370711b4d7dee68",
+          "n": 25,
+          "line": 171,
+          "t": "See what the couple opens"
+        },
+        {
+          "h": "46b48aa255550b77",
+          "n": 31,
+          "line": 620,
+          "t": "See what the couple opens first"
+        },
+        {
+          "h": "1696103a2cc13fb9",
+          "n": 157,
+          "line": 148,
+          "t": "Signal Studio gives every couple a clear place to plan their wedding. The Venue Edition puts your name on it, paid once a year, nothing for your team to run."
+        },
+        {
+          "h": "f4e3fb055b27929b",
+          "n": 39,
+          "line": 388,
+          "t": "Sponsored activations · Glenmara Estate"
+        },
+        {
+          "h": "ee9ddb5f56dfbf4c",
+          "n": 28,
+          "line": 186,
+          "t": "Sponsored by Glenmara Estate"
+        },
+        {
+          "h": "3053b89d88901e60",
+          "n": 45,
+          "line": 145,
+          "t": "Stand behind every couple who plans with you."
+        },
+        {
+          "h": "182ed2738f3061fa",
+          "n": 217,
+          "line": 11,
+          "t": "Stand behind every couple's planning. The Venue Edition is €1,500 a year, prepaid, the venue's name in a quiet line, nothing for the team to run. The first twenty-five venues pay €1,000, held for as long as they stay."
+        },
+        {
+          "h": "89b6c595fce727e8",
+          "n": 16,
+          "line": 250,
+          "t": "Table plan draft"
+        },
+        {
+          "h": "fa37c8a8837ba1c8",
+          "n": 15,
+          "line": 142,
+          "t": "The Founding 25"
+        },
+        {
+          "h": "bd5d94379becda10",
+          "n": 31,
+          "line": 9,
+          "t": "The Founding 25 · Signal Studio"
+        },
+        {
+          "h": "ecd75fad1cb20400",
+          "n": 17,
+          "line": 459,
+          "t": "The Venue Edition"
+        },
+        {
+          "h": "0a8679d7c014985d",
+          "n": 30,
+          "line": 117,
+          "t": "The activation register, first"
+        },
+        {
+          "h": "cd4093a47ccedd34",
+          "n": 203,
+          "line": 472,
+          "t": "The first twenty-five venues pay €1,000. That is €500 a year less, for as long as you stay. The rate holds while the agreement keeps renewing, and there is no clause that expires it into a higher number."
+        },
+        {
+          "h": "5c14e8b3c3d4ae4e",
+          "n": 115,
+          "line": 226,
+          "t": "The planning window and completed milestones are shown separately. Signal Studio does not invent an on-track score."
+        },
+        {
+          "h": "31cfc0111d07049e",
+          "n": 164,
+          "line": 87,
+          "t": "The venue prepays the year. Each couple gets eighteen months, or three months past the wedding, whichever is later. A long engagement never runs out before the day."
+        },
+        {
+          "h": "528e18763050b329",
+          "n": 142,
+          "line": 110,
+          "t": "Thirty minutes with Ethan on what the planning year looks like from your side, plus an email address that reaches him. Not a standing meeting."
+        },
+        {
+          "h": "99cf1eaeb4d7f4e3",
+          "n": 145,
+          "line": 106,
+          "t": "Twenty-five places, 01/25 to 25/25. Your number is assigned when your payment clears, not when you sign. It is the one step nobody can walk back."
+        },
+        {
+          "h": "2c6762963c20be3a",
+          "n": 46,
+          "line": 529,
+          "t": "Twenty-five places. You shape what gets built."
+        },
+        {
+          "h": "86ea682b7d963288",
+          "n": 25,
+          "line": 163,
+          "t": "Watch one wedding Tuesday"
+        },
+        {
+          "h": "a67cd7e5b6975028",
+          "n": 20,
+          "line": 612,
+          "t": "Watch the venue demo"
+        },
+        {
+          "h": "608b568ad305e977",
+          "n": 42,
+          "line": 594,
+          "t": "We are taking twenty-five founding venues."
+        },
+        {
+          "h": "d23aa672cb38c881",
+          "n": 26,
+          "line": 197,
+          "t": "Wedding planning workspace"
+        },
+        {
+          "h": "42e72dcd34599db5",
+          "n": 19,
+          "line": 526,
+          "t": "What founding means"
+        },
+        {
+          "h": "2bee2c46a417f206",
+          "n": 21,
+          "line": 307,
+          "t": "What your couples get"
+        },
+        {
+          "h": "cd49285a510cdf98",
+          "n": 31,
+          "line": 310,
+          "t": "What your patronage gives them."
+        },
+        {
+          "h": "0db34233fa2f5364",
+          "n": 112,
+          "line": 91,
+          "t": "When a couple opens their workspace, they see your venue's name at the top. Their plan stays the thing in focus."
+        },
+        {
+          "h": "4e327993b305f9ad",
+          "n": 66,
+          "line": 124,
+          "t": "When access opens, each couple gets a code and a clear first step."
+        },
+        {
+          "h": "2d634788959b5ed6",
+          "n": 137,
+          "line": 123,
+          "t": "You pay once a year. Every couple you book gets the full suite for eighteen months, or three months past the wedding, whichever is later."
+        },
+        {
+          "h": "e8a3bd7f1f1d2a3e",
+          "n": 24,
+          "line": 90,
+          "t": "Your name on it, quietly"
+        },
+        {
+          "h": "73b5b804025a9cb4",
+          "n": 44,
+          "line": 497,
+          "t": "per venue, per year · prepaid · VAT included"
+        },
+        {
+          "h": "522ab19d269e73df",
+          "n": 51,
+          "line": 417,
+          "t": "{ const s = activationStateMap[row.state]; return ("
+        },
+        {
+          "h": "a55b40a5c4199db3",
+          "n": 147,
+          "line": 102,
+          "t": "€1,000 a year instead of €1,500, for as long as you stay. The rate holds while the agreement keeps renewing. Not an introductory price that climbs."
+        },
+        {
+          "h": "01a65f2221852ebd",
+          "n": 174,
+          "line": 467,
+          "blockedBy": [
+            "p6-unlimited-blocked"
+          ],
+          "t": null
+        },
+        {
+          "h": "85b8e47108522349",
+          "n": 16,
+          "line": 101,
+          "t": "€500 a year less"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/wedding-planning-workspace/tasks.ts",
+      "beat": "template source, tasks",
+      "fileHash": "abc9af2cd6029c25",
+      "stringCount": 18,
+      "strings": [
+        {
+          "h": "293f744185f49a89",
+          "n": 33,
+          "line": 38,
+          "t": "Book final-week venue walkthrough"
+        },
+        {
+          "h": "95593062bbf6c083",
+          "n": 28,
+          "line": 63,
+          "t": "Build supplier contact sheet"
+        },
+        {
+          "h": "55e92a2ecd248efd",
+          "n": 28,
+          "line": 105,
+          "t": "Capture decisions still open"
+        },
+        {
+          "h": "30bfdaadb4aa06a7",
+          "n": 38,
+          "line": 11,
+          "t": "Ceremony room layout agreed with venue"
+        },
+        {
+          "h": "ae354f0314f74bef",
+          "n": 27,
+          "line": 69,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "0970a1402cccebf4",
+          "n": 31,
+          "line": 75,
+          "t": "Confirm family photo list owner"
+        },
+        {
+          "h": "11cc8387482cc75d",
+          "n": 27,
+          "line": 17,
+          "t": "Confirm final guest numbers"
+        },
+        {
+          "h": "d02791d45d22aacf",
+          "n": 30,
+          "line": 24,
+          "t": "Confirm supplier arrival times"
+        },
+        {
+          "h": "ae0455993b81e49c",
+          "n": 27,
+          "line": 57,
+          "t": "Confirm weather backup plan"
+        },
+        {
+          "h": "eeba40672453441f",
+          "n": 35,
+          "line": 111,
+          "t": "Create post-wedding collection list"
+        },
+        {
+          "h": "250fb0424b313509",
+          "n": 28,
+          "line": 87,
+          "t": "List final supplier payments"
+        },
+        {
+          "h": "83a41194184ac212",
+          "n": 32,
+          "line": 93,
+          "t": "Prepare wedding morning kit list"
+        },
+        {
+          "h": "46b724fd9b56803b",
+          "n": 36,
+          "line": 51,
+          "t": "Review ceremony order with officiant"
+        },
+        {
+          "h": "773b03063f0c5c85",
+          "n": 31,
+          "line": 45,
+          "t": "Review seating chart with venue"
+        },
+        {
+          "h": "d76a6058493fa13b",
+          "n": 31,
+          "line": 31,
+          "t": "Send menu decisions to catering"
+        },
+        {
+          "h": "d8cc26afb4af2557",
+          "n": 42,
+          "line": 81,
+          "t": "Share draft day-of timeline with suppliers"
+        },
+        {
+          "h": "d29e0bab4006a286",
+          "n": 44,
+          "line": 5,
+          "t": "Venue contract and deposit schedule recorded"
+        },
+        {
+          "h": "18dbb29368764a24",
+          "n": 46,
+          "line": 99,
+          "t": "Write one-page update for couple and suppliers"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/wedding-planning-workspace/roadmap.ts",
+      "beat": "template source, roadmap",
+      "fileHash": "890027d8e238df8a",
+      "stringCount": 16,
+      "strings": [
+        {
+          "h": "7c274a30c43c02c2",
+          "n": 27,
+          "line": 29,
+          "t": "Ceremony room layout agreed"
+        },
+        {
+          "h": "11cc8387482cc75d",
+          "n": 27,
+          "line": 36,
+          "t": "Confirm final guest numbers"
+        },
+        {
+          "h": "66969348e8081e2f",
+          "n": 98,
+          "line": 38,
+          "t": "Couple to confirm the final headcount before the venue locks table layout and catering quantities."
+        },
+        {
+          "h": "b6de4a851c348f55",
+          "n": 37,
+          "line": 64,
+          "t": "Day-of timeline shared with suppliers"
+        },
+        {
+          "h": "e306d53ca3e7f8e4",
+          "n": 106,
+          "line": 73,
+          "t": "Indoor ceremony fallback + supplier coverage if outdoor ceremony moves inside. Venue holds the final call."
+        },
+        {
+          "h": "dcfad78dd441a53d",
+          "n": 57,
+          "line": 24,
+          "t": "Locked at booking. Final-week walkthrough date confirmed."
+        },
+        {
+          "h": "3078fe8df84fe705",
+          "n": 31,
+          "line": 50,
+          "t": "Menu decisions sent to catering"
+        },
+        {
+          "h": "e05209c9d1e6ddae",
+          "n": 115,
+          "line": 66,
+          "t": "One-page run of show with arrival windows, ceremony cue, meal service, and band start time. Goes to every supplier."
+        },
+        {
+          "h": "73ccd7f3016df556",
+          "n": 104,
+          "line": 45,
+          "t": "Photographer, florist, and band arrival times are not all confirmed yet. This is the main planning risk."
+        },
+        {
+          "h": "823232fd72a4f17a",
+          "n": 40,
+          "line": 43,
+          "t": "Supplier arrival times need confirmation"
+        },
+        {
+          "h": "28cc9d9d03fa5371",
+          "n": 35,
+          "line": 23,
+          "t": "Venue contract and deposit schedule"
+        },
+        {
+          "h": "9da98d53a4f51469",
+          "n": 94,
+          "line": 52,
+          "blockedBy": [
+            "p8-special-category"
+          ],
+          "t": null
+        },
+        {
+          "h": "50b2e716e3217de0",
+          "n": 108,
+          "line": 31,
+          "t": "Venue, couple, and officiant have signed off on aisle direction, seating block, and signing-table placement."
+        },
+        {
+          "h": "bb278125e6fe0577",
+          "n": 108,
+          "line": 59,
+          "t": "Venue, planner, and couple walk through room setup, ceremony flow, supplier access, and backup weather plan."
+        },
+        {
+          "h": "04838bd70427b31e",
+          "n": 29,
+          "line": 71,
+          "t": "Weather backup plan confirmed"
+        },
+        {
+          "h": "5aaafb481a498132",
+          "n": 73,
+          "line": 16,
+          "t": "What is decided, what is moving, and what needs attention before the day."
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/wedding-planning-workspace/notes.ts",
+      "beat": "template source, notes",
+      "fileHash": "57e3e57c8e4808f1",
+      "stringCount": 2,
+      "strings": [
+        {
+          "h": "1d00c60de387ac62",
+          "n": 136,
+          "line": 12,
+          "t": "Decisions taken, questions still open, follow-up owed. Capture the room as you find it, layout, plug points, parking, who needs to know."
+        },
+        {
+          "h": "a08e14e64241547d",
+          "n": 16,
+          "line": 11,
+          "t": "Venue site visit"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/account/fixtures.ts",
+      "beat": "beat 5, the venue's own account",
+      "fileHash": "53f469e2681fc594",
+      "stringCount": 62,
+      "strings": [
+        {
+          "h": "cd7de077df5a7875",
+          "n": 32,
+          "line": 161,
+          "t": "1 masked code awaits redemption."
+        },
+        {
+          "h": "33c05f31fa707cb1",
+          "n": 65,
+          "line": 238,
+          "t": "14 codes are ready. One issued code has waited more than 14 days."
+        },
+        {
+          "h": "4d02bdcacee5ce05",
+          "n": 19,
+          "line": 125,
+          "t": "2026/27 access term"
+        },
+        {
+          "h": "907e7963413fc902",
+          "n": 49,
+          "line": 251,
+          "t": "27 of 30 days. Signal was unavailable for 3 days."
+        },
+        {
+          "h": "af987a96d57e0143",
+          "n": 81,
+          "line": 859,
+          "t": "A value Account does not hold is shown as unavailable. It is never shown as zero."
+        },
+        {
+          "h": "c2f0d9792b2a9c28",
+          "n": 77,
+          "line": 542,
+          "t": "Access totals are exact. Behavioural evidence is unavailable for this window."
+        },
+        {
+          "h": "573587df0b84cb41",
+          "n": 21,
+          "line": 153,
+          "t": "Access totals checked"
+        },
+        {
+          "h": "c91f072ce414ba95",
+          "n": 85,
+          "line": 299,
+          "t": "Access totals remain exact. Behavioural rates stay unavailable until coverage closes."
+        },
+        {
+          "h": "1db1d81169ef0ae4",
+          "n": 117,
+          "line": 452,
+          "t": "Access totals remain visible. Behavioural use is withheld while fewer than three eligible sponsored workspaces exist."
+        },
+        {
+          "h": "43ed02d68ddf1a2f",
+          "n": 41,
+          "line": 74,
+          "t": "Activated through the venue welcome link."
+        },
+        {
+          "h": "d3ad942f733eedf5",
+          "n": 51,
+          "line": 33,
+          "t": "Aggregate use only. Private work is never included."
+        },
+        {
+          "h": "a7c4a19d927e5044",
+          "n": 44,
+          "line": 135,
+          "t": "All four products. Data through 24 Jul 2026."
+        },
+        {
+          "h": "f52e1a08d00e21be",
+          "n": 74,
+          "line": 226,
+          "t": "Behavioural values are withheld below three eligible sponsored workspaces."
+        },
+        {
+          "h": "55927dd7f518382a",
+          "n": 54,
+          "line": 540,
+          "t": "Confirm access distribution while reporting catches up"
+        },
+        {
+          "h": "e7b0b197b3d0c8de",
+          "n": 49,
+          "line": 870,
+          "t": "Confirm this account's access in Signal HQ Access"
+        },
+        {
+          "h": "977935e1cdb374f6",
+          "n": 28,
+          "line": 626,
+          "t": "Delivered · not yet redeemed"
+        },
+        {
+          "h": "b0efffb5c069209a",
+          "n": 113,
+          "line": 704,
+          "t": "Every couple who books with you is covered while your licence is current. Delivery still happens outside Account."
+        },
+        {
+          "h": "a6ca545b5b2da0a5",
+          "n": 20,
+          "line": 572,
+          "t": "Founding access term"
+        },
+        {
+          "h": "e70f8695f60d38cd",
+          "n": 96,
+          "line": 468,
+          "t": "Four codes remain available. Behavioural reporting unlocks once three eligible workspaces exist."
+        },
+        {
+          "h": "797bf1f5304b2941",
+          "n": 65,
+          "line": 943,
+          "t": "Institution and programme aggregates only. No student drill-down."
+        },
+        {
+          "h": "0a9a3db134bcd0d9",
+          "n": 40,
+          "line": 702,
+          "t": "Issue access for your next booked couple"
+        },
+        {
+          "h": "0a562d3b532aa338",
+          "n": 101,
+          "line": 856,
+          "t": "Issued and redeemed totals remain visible. Everything Account cannot measure is shown as unavailable."
+        },
+        {
+          "h": "f5f6578dc906fff7",
+          "n": 24,
+          "line": 199,
+          "t": "July 2026 account review"
+        },
+        {
+          "h": "76a4464c0e23c34d",
+          "n": 24,
+          "line": 210,
+          "t": "June 2026 account review"
+        },
+        {
+          "h": "f8f03fb441b8b4ae",
+          "n": 12,
+          "line": 139,
+          "t": "Last 30 days"
+        },
+        {
+          "h": "539e3e7a54681b37",
+          "n": 47,
+          "line": 275,
+          "t": "Lower bound while Signal coverage is incomplete"
+        },
+        {
+          "h": "5b301593a7b3929f",
+          "n": 37,
+          "line": 764,
+          "t": "Minted rows match the issued counter."
+        },
+        {
+          "h": "fb4ecaceb52ce2c3",
+          "n": 40,
+          "line": 781,
+          "t": "Minted · delivery not tracked in Account"
+        },
+        {
+          "h": "6d9972249d8996ac",
+          "n": 26,
+          "line": 292,
+          "t": "Module coverage incomplete"
+        },
+        {
+          "h": "2a25add3bea68ad0",
+          "n": 32,
+          "line": 795,
+          "t": "No issuing record for this venue"
+        },
+        {
+          "h": "a8e3a29161bbb2a5",
+          "n": 79,
+          "line": 482,
+          "t": "No reliable sponsored-use coverage for this window. Access totals remain exact."
+        },
+        {
+          "h": "f26109fa230b5d08",
+          "n": 92,
+          "line": 746,
+          "t": "No reliable sponsored-use coverage for this window. Issued and redeemed totals remain exact."
+        },
+        {
+          "h": "ca407a7bcca41f33",
+          "n": 61,
+          "line": 944,
+          "t": "Organisation aggregates only. Private work is never included."
+        },
+        {
+          "h": "f59d2c5d3fe12b08",
+          "n": 44,
+          "line": 222,
+          "t": "Prove the benefit without exposing the work."
+        },
+        {
+          "h": "f509844ac82f3413",
+          "n": 35,
+          "line": 178,
+          "t": "Reached through committed note work"
+        },
+        {
+          "h": "4f1be1af32995f21",
+          "n": 35,
+          "line": 183,
+          "t": "Reached through committed task work"
+        },
+        {
+          "h": "c1c1ce2d4da6f1ee",
+          "n": 37,
+          "line": 188,
+          "t": "Reached through curated timeline work"
+        },
+        {
+          "h": "cb0049a1da36ee77",
+          "n": 45,
+          "line": 193,
+          "t": "Reached through deliberately opened briefings"
+        },
+        {
+          "h": "1d977fa7d9e0fa8d",
+          "n": 47,
+          "line": 90,
+          "t": "Ready for an authorised account member to send."
+        },
+        {
+          "h": "9fe61cbd61426457",
+          "n": 45,
+          "line": 154,
+          "t": "Reconciled 24 Jul at 06:12 · no action needed"
+        },
+        {
+          "h": "b46c202067fc8f57",
+          "n": 40,
+          "line": 297,
+          "t": "Review reporting coverage before renewal"
+        },
+        {
+          "h": "1e3782727f4fbfb7",
+          "n": 38,
+          "line": 106,
+          "t": "Revoked by Signal HQ Access on 28 Jun."
+        },
+        {
+          "h": "a4dc4d05b226262b",
+          "n": 29,
+          "line": 237,
+          "t": "Send an available access code"
+        },
+        {
+          "h": "a8a6bdcf6543166c",
+          "n": 35,
+          "line": 466,
+          "t": "Send the remaining available access"
+        },
+        {
+          "h": "d27bbddd7f061374",
+          "n": 47,
+          "line": 160,
+          "t": "Sent more than 14 days ago and not yet redeemed"
+        },
+        {
+          "h": "6d58e95862efe52a",
+          "n": 48,
+          "line": 82,
+          "t": "Sent more than 14 days ago and not yet redeemed."
+        },
+        {
+          "h": "4d356674eb720018",
+          "n": 130,
+          "line": 797,
+          "t": "Signal HQ Access has nothing recorded for this account, so Account cannot report what it may issue. Record it in Signal HQ Access."
+        },
+        {
+          "h": "fcb9a7f1b41ca6fd",
+          "n": 55,
+          "line": 719,
+          "t": "Signal HQ Access holds no issuing record for this venue"
+        },
+        {
+          "h": "0cbb091eed14247a",
+          "n": 141,
+          "line": 872,
+          "t": "Signal HQ Access holds no issuing record for this venue, so Account has nothing to report here. Missing configuration is never shown as zero."
+        },
+        {
+          "h": "be69eb3f1ddb5aaa",
+          "n": 56,
+          "line": 290,
+          "t": "Signal module coverage missing for 3 days in this window"
+        },
+        {
+          "h": "30050cf0ea429bc0",
+          "n": 30,
+          "line": 332,
+          "t": "Small-group privacy protection"
+        },
+        {
+          "h": "f9b12449f60155f0",
+          "n": 64,
+          "line": 496,
+          "t": "Sponsored-use instrumentation not yet available for this account"
+        },
+        {
+          "h": "8da7b5f4f769cbd2",
+          "n": 20,
+          "line": 31,
+          "t": "The benefit, in use."
+        },
+        {
+          "h": "ad9bb5a344a929d8",
+          "n": 80,
+          "line": 223,
+          "t": "This account shows aggregate sponsored use only. Private work is never included."
+        },
+        {
+          "h": "387f85339723e2f1",
+          "n": 31,
+          "line": 230,
+          "t": "Timeline content or attachments"
+        },
+        {
+          "h": "29289e779aba667b",
+          "n": 67,
+          "line": 334,
+          "t": "Two eligible sponsored workspaces. Behavioural values are withheld."
+        },
+        {
+          "h": "cdc8a198f461a114",
+          "n": 26,
+          "line": 32,
+          "t": "Use, without surveillance."
+        },
+        {
+          "h": "e2f5aa5b30db0bd1",
+          "n": 45,
+          "line": 418,
+          "t": "Withheld under small-group privacy protection"
+        },
+        {
+          "h": "055bd9800cb0a906",
+          "n": 29,
+          "line": 228,
+          "t": "names or emails of recipients"
+        },
+        {
+          "h": "1dd2aa4d7b88660a",
+          "n": 29,
+          "line": 229,
+          "t": "notes, task text, or comments"
+        },
+        {
+          "h": "4b01a1ceb4551a9c",
+          "n": 24,
+          "line": 231,
+          "t": "private membership lists"
+        },
+        {
+          "h": "cdca531554906dea",
+          "n": 17,
+          "line": 949,
+          "t": "{} account review"
+        }
+      ]
+    }
+  ]
+}

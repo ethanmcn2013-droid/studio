@@ -41,6 +41,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      signal-ds:
+        specifier: ^2.1.0
+        version: 2.1.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@axe-core/playwright':
         specifier: ^4.12.1
@@ -3263,6 +3266,13 @@ packages:
   side-channel@1.1.0:
     resolution: {integrity: sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==}
     engines: {node: '>= 0.4'}
+
+  signal-ds@2.1.0:
+    resolution: {integrity: sha512-+XHHrimLs3IJFObrEnyMEyfmCgc4wsfjjiepsmi8u0OXChGI/Tp5oWv3WrGYl52BzpcHnJiSsoYw0wHl9eZKKQ==}
+    hasBin: true
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -6534,6 +6544,11 @@ snapshots:
       side-channel-list: 1.0.1
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  signal-ds@2.1.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   source-map-js@1.2.1: {}
 

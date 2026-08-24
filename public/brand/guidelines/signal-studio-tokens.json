@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "color": {
+    "paper": "#FFFFFF",
+    "paperSoft": "#FAFAFA",
+    "paperDeep": "#F4F4F5",
+    "ink": "#111111",
+    "inkSoft": "#3F3F46",
+    "inkFaint": "#71717A",
+    "inkGhost": "#D4D4D8",
+    "indigo": "#4F46E5",
+    "indigoHover": "#4338CA",
+    "indigoTint": "#EEF2FF"
+  },
+  "type": {
+    "sans": "Geist",
+    "mono": "Geist Mono",
+    "weights": [400, 500, 600]
+  },
+  "motion": {
+    "durationsMs": [80, 140, 220, 400],
+    "easeOut": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "easeInOut": "cubic-bezier(0.77, 0, 0.175, 1)"
+  }
+}
