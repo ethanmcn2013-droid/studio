@@ -72,31 +72,9 @@ function heroSeed(domain: DomainId) {
     (task) => !HERO_OMITTED_TASKS.has(task.id),
   );
 }
-export function CinematicDemo({
-  domain = "wedding",
-  homepageEmbedded = false,
-  paused = false,
-  staticFrame = false,
-}: {
-  domain?: DomainId;
-  homepageEmbedded?: boolean;
-  paused?: boolean;
-  staticFrame?: boolean;
-} = {}) {
+function initialDemoState(domain: DomainId): DemoState {
   const pack = DOMAINS[domain];
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const surfaceRef = useRef<HTMLDivElement | null>(null);
-  const cardRefs = useRef(new Map<string, HTMLDivElement>());
-  const mounted = useHydrated();
-  const prefersReducedMotion = useReducedMotion();
-  const isStatic =
-    staticFrame || (mounted && Boolean(prefersReducedMotion));
-  const pausedRef = useRef(paused);
-  const resumeWaitersRef = useRef(new Set<() => void>());
-  const aliveRef = useRef(true);
-  const currentStateRef = useRef<DemoState | null>(null);
-
-  const [state, setState] = useState<DemoState>(() => ({
+  return {
     view: "board",
     tasks: heroSeed(domain),
     // commentBodies[1] (not [0]) so the static teammate note differs
@@ -128,18 +106,98 @@ export function CinematicDemo({
     completedFlash: null,
     scene: "boot",
     filterByAssignee: null,
-  }));
+  };
+}
+
+type CinematicDemoProps = {
+  domain?: DomainId;
+  homepageEmbedded?: boolean;
+  paused?: boolean;
+  staticFrame?: boolean;
+};
+
+export function CinematicDemo({
+  domain = "wedding",
+  homepageEmbedded = false,
+  paused = false,
+  staticFrame = false,
+}: CinematicDemoProps = {}) {
+  const [runKey, setRunKey] = useState(0);
+
+  return (
+    <CinematicDemoRun
+      key={runKey}
+      domain={domain}
+      homepageEmbedded={homepageEmbedded}
+      paused={paused}
+      staticFrame={staticFrame}
+      onReplay={() => setRunKey((value) => value + 1)}
+    />
+  );
+}
+
+function CinematicDemoRun({
+  domain = "wedding",
+  homepageEmbedded = false,
+  paused: externallyPaused = false,
+  staticFrame = false,
+  onReplay,
+}: CinematicDemoProps & { onReplay: () => void }) {
+  const pack = DOMAINS[domain];
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const surfaceRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef(new Map<string, HTMLDivElement>());
+  const mounted = useHydrated();
+  const [manualPaused, setManualPaused] = useState(false);
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
+  const reducedMode = mounted && Boolean(prefersReducedMotion);
+  const isStatic = staticFrame || reducedMode;
+  const demoPaused =
+    externallyPaused || manualPaused || !inView || !pageVisible;
+  const demoActive = mounted && !reducedMode && !staticFrame && !demoPaused;
+  const pausedRef = useRef(demoPaused);
+  const resumeWaitersRef = useRef(new Set<() => void>());
+  const aliveRef = useRef(true);
+  const currentStateRef = useRef<DemoState | null>(null);
+
+  const [state, setState] = useState<DemoState>(() => initialDemoState(domain));
 
   const [celebration, setCelebration] = useState<{
     visible: boolean;
     origin: { x: number; y: number } | null;
   }>({ visible: false, origin: null });
 
+  useEffect(() => {
+    if (staticFrame) return;
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(Boolean(entry?.isIntersecting)),
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [staticFrame]);
+
+  useEffect(() => {
+    if (staticFrame) return;
+    const sync = () => setPageVisible(document.visibilityState === "visible");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, [staticFrame]);
+
   const releaseResumeWaiters = useCallback(() => {
     const waiters = [...resumeWaitersRef.current];
     resumeWaitersRef.current.clear();
     waiters.forEach((release) => release());
   }, []);
+
+  const replay = () => {
+    onReplay();
+  };
 
   const waitUntilResumed = useCallback(async () => {
     if (!pausedRef.current || !aliveRef.current) return;
@@ -330,7 +388,7 @@ export function CinematicDemo({
     // frame (all 4 lanes visible, tasks in place), no frozen mid-animation,
     // no timing loops. The scene runner only starts for users who have not
     // opted out of motion.
-    if (!mounted || prefersReducedMotion || staticFrame) return;
+    if (!mounted || reducedMode || staticFrame) return;
     aliveRef.current = true;
 
     const run = async () => {
@@ -415,36 +473,11 @@ export function CinematicDemo({
       }
     };
 
-    /**
-     * The room breathes. Sets `scene: "settle"` and gently drifts each
-     * cursor toward a nearby random point so the demo reads alive
-     * rather than dead. No state mutations to tasks, overlays, or
-     * activity feed, those keep their last value visible.
-     */
+    /** Settle without ambient cursor drift. Presence moves only when a
+     * scripted action explains who is doing what. */
     const sceneSettle = async (durationMs = 1600) => {
       setState((s) => ({ ...s, scene: "settle" }));
-      let remaining = durationMs;
-      const driftEvery = 700;
-      while (remaining > 0 && aliveRef.current) {
-        // Drift each visible cursor to a small offset relative to its
-        // current position. Spring physics handle the easing.
-        setState((s) => {
-          const next = { ...s.cursors };
-          (Object.keys(next) as UserId[]).forEach((id) => {
-            const c = next[id];
-            if (!c.visible) return;
-            next[id] = {
-              ...c,
-              x: c.x + (Math.random() - 0.5) * 60,
-              y: c.y + (Math.random() - 0.5) * 32,
-            };
-          });
-          return { ...s, cursors: next };
-        });
-        const step = Math.min(driftEvery, remaining);
-        await waitFor(step);
-        remaining -= step;
-      }
+      await waitFor(durationMs);
     };
 
     const sceneCarry = async () => {
@@ -705,7 +738,7 @@ export function CinematicDemo({
   }, [
     mounted,
     pack.demoCommentText,
-    prefersReducedMotion,
+    reducedMode,
     staticFrame,
     moveCursor,
     moveCursorToCard,
@@ -721,9 +754,9 @@ export function CinematicDemo({
   ]);
 
   useEffect(() => {
-    pausedRef.current = paused;
-    if (!paused) releaseResumeWaiters();
-  }, [paused, releaseResumeWaiters]);
+    pausedRef.current = demoPaused;
+    if (!demoPaused) releaseResumeWaiters();
+  }, [demoPaused, releaseResumeWaiters]);
 
   // Mirror state into a ref so scene functions (running outside React's
   // render path inside the run() async loop) can read fresh values
@@ -731,16 +764,6 @@ export function CinematicDemo({
   useEffect(() => {
     currentStateRef.current = state;
   }, [state]);
-
-  // Hover parallax (subtle depth shift on mouse position)
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const r = containerRef.current?.getBoundingClientRect();
-    if (!r) return;
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    setParallax({ x: px * 8, y: py * 6 });
-  };
 
   const pickedTask = useMemo(
     () =>
@@ -755,7 +778,7 @@ export function CinematicDemo({
       ref={containerRef}
       className="relative w-full"
       data-cinematic-demo-playback={
-        isStatic ? "static" : paused ? "paused" : "playing"
+        isStatic ? "static" : demoPaused ? "paused" : "playing"
       }
       data-cinematic-demo-snapshot={[
         state.scene,
@@ -767,7 +790,6 @@ export function CinematicDemo({
         state.pickedTaskId ?? "",
         state.dependencyHighlight?.join(",") ?? "",
       ].join("|")}
-      onMouseMove={handleMouseMove}
     >
       {/* Floating depth shadow removed (review 04): the board's own perspective
           elevation carries the lift; the extra bottom blob read as heavy. */}
@@ -912,23 +934,40 @@ export function CinematicDemo({
 
         {/* Status bar */}
         <div className="flex items-center justify-between border-t border-line-soft bg-white px-4 py-1.5 text-[10.5px] text-ink-quiet">
-          <span className="flex items-center gap-1.5">
-            <span
-              className={`block h-1.5 w-1.5 rounded-full bg-brand${isStatic || paused ? "" : " animate-pulse"}`}
-            />
-            Demo
+          <span aria-live="polite" className="flex items-center gap-1.5">
+            <span className="block h-1.5 w-1.5 rounded-full bg-brand" />
+            {staticFrame
+              ? "Sample board"
+              : reducedMode
+                ? "Motion reduced"
+                : demoActive
+                  ? "Demo playing"
+                  : "Demo paused"}
           </span>
-          <span aria-hidden data-debug-scene={state.scene} />
+          <span className="flex items-center gap-1.5">
+            {!staticFrame && !reducedMode ? (
+              <>
+                <button
+                  type="button"
+                  aria-pressed={manualPaused}
+                  className="min-h-8 rounded-full border border-line px-3 text-[10px] font-medium text-ink-soft transition-[border-color,color,transform] duration-[120ms] ease-[var(--marketing-ease-out)] hover:border-ink-faint hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[.98] motion-reduce:transition-none"
+                  onClick={() => setManualPaused((value) => !value)}
+                >
+                  {manualPaused ? "Resume" : "Pause"}
+                </button>
+                <button
+                  type="button"
+                  className="min-h-8 rounded-full border border-line px-3 text-[10px] font-medium text-ink-soft transition-[border-color,color,transform] duration-[120ms] ease-[var(--marketing-ease-out)] hover:border-ink-faint hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[.98] motion-reduce:transition-none"
+                  onClick={replay}
+                >
+                  Replay
+                </button>
+              </>
+            ) : null}
+            <span aria-hidden data-debug-scene={state.scene} />
+          </span>
         </div>
       </motion.div>
-
-      {/* GALLERY EDIT 2026-07-27 — the Pause control and the line "Runs
-          itself. Click anything to join in." are gone. Both were instructions
-          about the demo rather than the product, sitting below the frame where
-          the eye exits, and the second one told the viewer the thing they were
-          watching was a toy. The board runs itself either way; it does not
-          need to say so. `paused` and its runner gate stay in place, so a
-          control can be reinstated without touching the scene code. */}
     </div>
   );
 }

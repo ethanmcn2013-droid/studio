@@ -1,23 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 /**
- * A printed card that shows its reverse: hover (or click, or Enter) turns
- * the card over briefly, then it settles back to the front on its own.
- * One-shot with a hold, not a hover-held state, so the gesture reads as
- * "picking the card up to look at the back" rather than a UI toggle.
+ * A printed card that shows its reverse. Fine-pointer hover previews it;
+ * click, Enter, or Space pins the chosen face; Escape returns to the front.
+ * The interaction never steals a state the reader explicitly selected.
  *
  * `back` is optional; `backFace` lets a card carry a live-typeset
  * reverse instead of an image (the Founding Partner card's reverse is
  * set in code: the founder's address and the same-day promise).
  *
- * Reduced motion: the turn is instant (no rotation travels), same hold.
+ * Reduced motion: the face changes instantly.
  */
-
-const FLIP_MS = 640;
-const HOLD_MS = 1150;
 
 export function FlipCard({
   front,
@@ -36,29 +32,12 @@ export function FlipCard({
   width: number;
   height: number;
 }) {
-  const [flipped, setFlipped] = useState(false);
-  const busy = useRef(false);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  useEffect(() => {
-    const pending = timers.current;
-    return () => pending.forEach(clearTimeout);
-  }, []);
-
-  const turn = () => {
-    if (busy.current) return;
-    busy.current = true;
-    setFlipped(true);
-    timers.current.push(
-      setTimeout(() => {
-        setFlipped(false);
-        timers.current.push(
-          setTimeout(() => {
-            busy.current = false;
-          }, FLIP_MS),
-        );
-      }, FLIP_MS + HOLD_MS),
-    );
+  const [locked, setLocked] = useState(false);
+  const [previewing, setPreviewing] = useState(false);
+  const flipped = locked || previewing;
+  const toggle = () => {
+    setPreviewing(false);
+    setLocked((value) => !value);
   };
 
   return (
@@ -67,20 +46,31 @@ export function FlipCard({
       data-flipped={flipped}
       role="button"
       tabIndex={0}
-      aria-label={`${frontAlt} Turn the card to see the reverse: ${backAlt}`}
+      aria-pressed={locked}
+      aria-label={
+        locked
+          ? `${backAlt} Reverse shown. Activate to return to ${frontAlt}`
+          : `${frontAlt} Activate to keep the reverse visible: ${backAlt}`
+      }
       onPointerEnter={(e) => {
-        if (e.pointerType === "mouse") turn();
+        if (e.pointerType === "mouse" && !locked) setPreviewing(true);
       }}
-      onClick={turn}
+      onPointerLeave={(e) => {
+        if (e.pointerType === "mouse") setPreviewing(false);
+      }}
+      onClick={toggle}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          turn();
+          toggle();
+        } else if (e.key === "Escape" && locked) {
+          e.preventDefault();
+          setLocked(false);
         }
       }}
     >
       <div className="dsn-flip-inner">
-        <div className="dsn-flip-face dsn-flip-front">
+        <div className="dsn-flip-face dsn-flip-front" aria-hidden={flipped}>
           <Image
             src={front}
             alt={frontAlt}
@@ -90,7 +80,7 @@ export function FlipCard({
             className="h-auto w-full"
           />
         </div>
-        <div className="dsn-flip-face dsn-flip-back" aria-hidden>
+        <div className="dsn-flip-face dsn-flip-back" aria-hidden={!flipped}>
           {back ? (
             <Image
               src={back}
