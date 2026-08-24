@@ -22,9 +22,9 @@ const center: AtlasObject = {
   type: "company",
   name: "Signal Studio",
   description:
-    "Four calm products that share one workspace, one design system, and one operating discipline.",
+    "Three calm products that share one workspace, one design system, and one operating discipline.",
   purpose:
-    "The umbrella. One account and one brand across Tasks, Timeline, Signal, and Notes.",
+    "The umbrella. One account and one brand across Tasks, Timeline, Notes, and the daily briefing in Home.",
   why: "A suite is defensible where a single tool is not. The pieces reinforce each other.",
   owner: "Ethan",
   health: "healthy",
@@ -46,7 +46,7 @@ const domains: AtlasObject[] = [
     id: "product",
     type: "domain",
     name: "Product System",
-    description: "The four products as one system: Tasks, Timeline, Signal, and Notes.",
+    description: "Three products as one system: Tasks, Timeline, and Notes, with the daily briefing in Home.",
     purpose:
       "What the customer actually uses. Execution, direction, attention, and context, sharing one workspace.",
     why: "The product is the proof. Everything else exists to make it good and get it used.",
@@ -63,8 +63,8 @@ const domains: AtlasObject[] = [
     links: [
       { label: "Tasks", href: "https://tasks.signalstudio.ie", hint: "live" },
       { label: "Timeline", href: "https://timeline.signalstudio.ie", hint: "live" },
-      { label: "Signal", href: "https://signal.signalstudio.ie", hint: "live" },
       { label: "Notes", href: "https://notes.signalstudio.ie", hint: "live" },
+      { label: "Today's Signal", href: "https://app.signalstudio.ie/app/home/briefing", hint: "live" },
       { label: "Reporting", href: "/hq/reporting", hint: "internal" },
     ],
     evidence: ["content/hq/products/*.md", "content/hq/ecosystem-flows/*.md"],
@@ -74,7 +74,7 @@ const domains: AtlasObject[] = [
     type: "domain",
     name: "Design System",
     description: "One design language: ink on paper, one indigo, hairlines, Geist, calm motion.",
-    purpose: "The rules that make four products feel like one, and make simple look intentional.",
+    purpose: "The rules that make three products and Home feel like one, and make simple look intentional.",
     why: "Restraint is the brand. Consistency is what a serious company looks like up close.",
     owner: "Ethan",
     health: "healthy",
@@ -133,7 +133,7 @@ const domains: AtlasObject[] = [
     lensPriority: { ai: 3, engineering: 1, investor: 1 },
     links: [
       { label: "Directors", href: "/hq/org", hint: "internal" },
-      { label: "Signal briefing", href: "https://signal.signalstudio.ie", hint: "live" },
+      { label: "Today's Signal briefing", href: "https://app.signalstudio.ie/app/home/briefing", hint: "live" },
     ],
     evidence: ["content/hq/operator-todos/ai-spend-budget.md", "signal-directors repo"],
   },
@@ -266,7 +266,7 @@ const lenses: AtlasLensConfig[] = [
   {
     id: "product",
     label: "Product",
-    tagline: "The four products, their features, and how they connect.",
+    tagline: "The three products, their features, and how they connect.",
     emphasis: ["product", "design", "engineering"],
   },
   {

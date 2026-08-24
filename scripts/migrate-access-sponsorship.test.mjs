@@ -20,10 +20,10 @@ function runMigration(databaseUrl) {
     encoding: "utf8",
     env: {
       ...process.env,
-      TURSO_STUDIO_DATABASE_URL: "",
-      TURSO_STUDIO_AUTH_TOKEN: "",
-      TURSO_ENTITLEMENTS_DATABASE_URL: databaseUrl,
-      TURSO_ENTITLEMENTS_AUTH_TOKEN: "",
+      STUDIO_DATABASE_URL: "",
+      STUDIO_AUTH_TOKEN: "",
+      ENTITLEMENTS_DATABASE_URL: databaseUrl,
+      ENTITLEMENTS_AUTH_TOKEN: "",
     },
   });
   assert.equal(
@@ -40,10 +40,10 @@ function runMigrationRaw(databaseUrl) {
     encoding: "utf8",
     env: {
       ...process.env,
-      TURSO_STUDIO_DATABASE_URL: "",
-      TURSO_STUDIO_AUTH_TOKEN: "",
-      TURSO_ENTITLEMENTS_DATABASE_URL: databaseUrl,
-      TURSO_ENTITLEMENTS_AUTH_TOKEN: "",
+      STUDIO_DATABASE_URL: "",
+      STUDIO_AUTH_TOKEN: "",
+      ENTITLEMENTS_DATABASE_URL: databaseUrl,
+      ENTITLEMENTS_AUTH_TOKEN: "",
     },
   });
 }

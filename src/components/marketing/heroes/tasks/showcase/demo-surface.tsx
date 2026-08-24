@@ -68,7 +68,7 @@ export function DemoSurface({
 
   // Live per-lane counts for the board chrome's count chips.
   const laneCounts = useMemo(() => {
-    const counts = { todo: 0, doing: 0, review: 0, done: 0 } as Record<
+    const counts = { todo: 0, doing: 0, review: 0, waiting: 0, done: 0 } as Record<
       LaneId,
       number
     >;
@@ -182,9 +182,6 @@ function BoardChrome({ laneCounts }: { laneCounts: Record<LaneId, number> }) {
               <h2>{LANES[laneId].name}</h2>
               <LaneCount value={laneCounts[laneId]} />
             </div>
-            <span className={a.wipCount}>
-              WIP {laneCounts[laneId]}/{WIP_CAP[laneId]}
-            </span>
           </header>
 
           {/* Cards are painted by the floating layer above, so the lane body
@@ -210,15 +207,8 @@ const LANE_TONE: Record<LaneId, string> = {
   todo: "var(--status-blocked)",
   doing: "var(--accent)",
   review: "var(--status-flight)",
+  waiting: "var(--ink-faint)",
   done: "var(--status-done)",
-};
-
-/** The board shows a work-in-progress budget per lane, as the product does. */
-const WIP_CAP: Record<LaneId, number> = {
-  todo: 6,
-  doing: 5,
-  review: 4,
-  done: 12,
 };
 
 /** The lane's live count: the digit flips over when a card lands. */
@@ -805,7 +795,7 @@ function BoardBody({ task }: { task: Task }) {
               title={`${PRIORITY_LABEL[task.priority].label} priority`}
             >
               <span className={shared.priorityDot} />
-              {task.priority.toUpperCase()}
+              {PRIORITY_LABEL[task.priority].label}
             </span>
           ) : null}
         </div>
@@ -962,10 +952,10 @@ function CommentThread({
               {USERS[typingUser as keyof typeof USERS].name}
             </span>
             <span className="ml-1 text-ink-quiet">is typing…</span>
-            <div className="mt-1 inline-flex gap-1">
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:0ms]" />
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:160ms]" />
-              <span className="block h-1 w-1 animate-pulse rounded-full bg-ink-quiet [animation-delay:320ms]" />
+            <div aria-hidden="true" className="mt-1 inline-flex gap-1">
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet opacity-40" />
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet opacity-65" />
+              <span className="block h-1 w-1 rounded-full bg-ink-quiet" />
             </div>
           </div>
         </div>

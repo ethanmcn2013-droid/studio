@@ -1,5 +1,9 @@
 # Shipped state — the reality anchor
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 This file is the source for current public product, access and commercial claims. A reachable deployment is not the same as general availability. A merged implementation is not the same as a provider-verified production journey.
 
 ## State vocabulary
@@ -90,15 +94,15 @@ promotion proof.
 
 ## Verified commercial facts
 
-The machine-readable current contract is contracts/commercial-terms.v1.json. Only verified values below may be used as current numbers.
+The machine-readable current contract is contracts/commercial-terms.v2.json, which supersedes v1 and carries the 2026-08-03 Founding 25 figures. Only verified values below may be used as current numbers.
 
 | Offer | Verified fact | Important unresolved point |
 | --- | --- | --- |
 | Free | €0; does not expire; one Workspace; three editing guests beyond the owner. | Editing guests and link-only audience viewers must remain separate concepts. |
-| Student | €9.99 per year is the ratified public price. | Verification, payment implementation and Workspace limit are not ratified. Joining the waitlist does not activate or charge an account. |
-| Pro | €12 per month; internal entitlement key remains workspace. | Annual price is unresolved between €100 and €120. Workspace and editor limits are unresolved. Do not open annual checkout. |
-| Event | €89 one-time; 12-month active window. | The legal/retention meaning of read afterward must be confirmed before purchase. |
-| Venue Edition | €1,500 per venue per year, prepaid; first fifteen founding venues retain that price; each sponsored couple receives 18 months, operationally represented as 548 days. | Activation allowance and calendar-month versus fixed-day semantics remain unresolved. |
+| Student | €9.99 per year; three Workspaces; three editing guests; verified student status with annual re-verification. | Joining the waitlist does not verify, activate or charge an account. |
+| Pro | €12 per month or €120 per year; unlimited Workspaces; internal entitlement key remains workspace. | Editing-member terms must be shown separately from link-only viewers before purchase. |
+| Event | €89 one-time; one event Workspace; 12-month active window, then read-only. | Refunds revoke access; the full term must be repeated before purchase. |
+| Venue Edition | €1,500 per venue per year, prepaid, VAT-inclusive. The Founding 25 (first 25 founding agreements) pay €1,000 per venue per year on the same terms, holding for as long as the agreement renews continuously without lapse. Each sponsored couple's access runs to the later of 18 months (548 days) from redemption or 3 months (90 days) past the wedding date; 548 days is the floor, not the ceiling. Entitlement is every couple with a signed booking, unlimited, with no seat count in the commercial terms. | Re-ratified 2026-08-03 (`content/hq/decisions/venue-edition-founding-25-2026-08-03.md`); activation allowance and calendar-month semantics are now resolved per `contracts/commercial-terms.v2.json`. This row was not independently re-verified against production surfaces (the public `/venues` page, the Access onboarding writer) as part of this pass; the file's last production verification predates this decision (2026-07-27). |
 
 Committee Workspace at €49 is not an authorized offer. No school price or seat limit exists. Do not invent either for the design-partner pilot.
 

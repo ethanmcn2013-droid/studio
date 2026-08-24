@@ -89,9 +89,9 @@ const CSS = `
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: color-mix(in srgb, var(--ink, #14110b) 78%, transparent);
-  background: color-mix(in srgb, var(--bg, #fff) 86%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ink, #14110b) 12%, transparent);
+  color: #24211b;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(20, 17, 11, 0.18);
   box-shadow: 0 6px 24px rgba(20, 17, 11, 0.10), 0 1px 2px rgba(20, 17, 11, 0.05);
   backdrop-filter: blur(10px) saturate(1.1);
   -webkit-backdrop-filter: blur(10px) saturate(1.1);
@@ -121,7 +121,7 @@ const CSS = `
   padding: 2px 4px;
   margin-left: 2px;
   border-radius: 6px;
-  color: color-mix(in srgb, var(--ink, #14110b) 45%, transparent);
+  color: #59554d;
   transition: color 160ms ease, background 160ms ease;
 }
 .signal-devbanner__close:hover {
@@ -129,8 +129,8 @@ const CSS = `
   background: color-mix(in srgb, var(--ink, #14110b) 7%, transparent);
 }
 @keyframes signal-devbanner-in {
-  from { opacity: 0; transform: translate(-50%, 8px); }
-  to   { opacity: 1; transform: translate(-50%, 0); }
+  from { transform: translate(-50%, 8px); }
+  to   { transform: translate(-50%, 0); }
 }
 @keyframes signal-devbanner-pulse {
   0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent, #b8923a) 55%, transparent); }

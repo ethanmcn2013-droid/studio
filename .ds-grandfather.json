@@ -99,8 +99,16 @@
     "hex": 0,
     "ease": 1
   },
+  "src/app/venues/opengraph-image.tsx": {
+    "hex": 3,
+    "ease": 0
+  },
   "src/components/atlas/atlas-mermaid.tsx": {
     "hex": 14,
+    "ease": 0
+  },
+  "src/components/design-lab/delight/prototype-picker.tsx": {
+    "hex": 1,
     "ease": 0
   },
   "src/components/dev-banner.tsx": {

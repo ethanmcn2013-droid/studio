@@ -143,6 +143,34 @@ function artifactDensity(count: number): TimelineArtifactDensity {
   return "standard";
 }
 
+/**
+ * Map a raw calendar percentage through the same distortion the points
+ * received (parity with the product model, Tasks dispatch T·107): the Today
+ * dash must interpolate between each dated point's adjusted position or the
+ * hero demonstrates math the product no longer has.
+ */
+function mapThroughPointDistortion(
+  rawValue: number,
+  anchors: ReadonlyArray<{ raw: number; adjusted: number }>,
+  edge: number,
+): number {
+  const sorted = [...anchors].sort((left, right) => left.raw - right.raw);
+  const full = [
+    { raw: 0, adjusted: edge },
+    ...sorted,
+    { raw: 100, adjusted: 100 - edge },
+  ];
+  for (let index = 1; index < full.length; index += 1) {
+    const lower = full[index - 1];
+    const upper = full[index];
+    if (rawValue > upper.raw) continue;
+    if (upper.raw === lower.raw) return upper.adjusted;
+    const ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
+    return clampPercent(lower.adjusted + ratio * (upper.adjusted - lower.adjusted));
+  }
+  return clampPercent(100 - edge);
+}
+
 function calendarPositions(
   items: readonly AudienceTimelineItemDto[],
   today: string,
@@ -179,9 +207,22 @@ function calendarPositions(
       : ((day - axisStart) / (axisEnd - axisStart)) * 100),
   );
   const safePointPositions = collisionSafePositions(rawPointPositions);
+  const edge = Math.min(6, Math.max(3, 36 / rawPointPositions.length));
+  const datedAnchors = itemDays.flatMap((day, index) =>
+    day === null
+      ? []
+      : [{
+          raw: ((day - axisStart) / (axisEnd - axisStart)) * 100,
+          adjusted: safePointPositions[index],
+        }],
+  );
   const todayPosition = todayDay === null
     ? null
-    : clampPercent(4 + (((todayDay - axisStart) / (axisEnd - axisStart)) * 92));
+    : mapThroughPointDistortion(
+        ((todayDay - axisStart) / (axisEnd - axisStart)) * 100,
+        datedAnchors,
+        edge,
+      );
 
   return { pointPositions: safePointPositions, todayPosition };
 }

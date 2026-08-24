@@ -4,6 +4,10 @@ Status: founder-review draft - 2026-05-26
 Owner: founder
 Companion docs: `ENTITLEMENTS_OPS.md`, `VENUE_EDITION_EMAIL_TEMPLATE.md`, `VENUE_SETUP_RITUAL.md`
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## Purpose
@@ -23,7 +27,7 @@ The venue pays once a year, receives codes, gives each couple a code, and has no
 | 1. Qualified yes | Founder | Confirm signer, annual price, start date, venue name as it should appear. |
 | 2. Payment | Founder | Invoice settled before any live couple codes are issued. |
 | 3. Sponsor setup | Signal Studio | Venue sponsor record exists; slug confirmed. |
-| 4. Code issue | Signal Studio | Wedding-tier, Venue Edition codes issued for 548 days (18 months). |
+| 4. Code issue | Signal Studio | Wedding-tier, Venue Edition codes issued for a 548-day floor (18 months); extended to 3 months past the wedding date where that falls later. |
 | 5. Operator handoff | Founder | Venue receives plain-text couple email template and CSV/list of codes. |
 | 6. Coordinator walkthrough | Founder | 25-minute setup ritual or 30-minute couple-view walkthrough. |
 | 7. Soft redemption window | Venue + Signal Studio | Venue sends first small batch to couples; Signal watches redemption. |
@@ -51,7 +55,7 @@ Complete before a venue is allowed to buy.
 
 | Step | Detail |
 | --- | --- |
-| Confirm plan | EUR1,500 per venue/year, prepaid. Founding cohort locks that price for life. |
+| Confirm plan | EUR1,500 per venue/year, prepaid, VAT-inclusive. If the venue is one of the Founding 25 (first 25 founding agreements), EUR1,000 per venue/year on the same terms, holding for as long as the agreement renews without lapse. |
 | Invoice | Send invoice for annual prepaid amount. |
 | Wait | Do not issue live codes until paid. |
 | Create sponsor | Use existing sponsor setup path. Slug should be short and stable, e.g. `tankardstown`, `rathsallagh`. |
@@ -66,7 +70,7 @@ Complete before a venue is allowed to buy.
 Reference from `ENTITLEMENTS_OPS.md`:
 
 ```bash
-cd ~/Projects/personal/studio
+cd studio
 pnpm issue:codes <sponsor-slug> <count> venue_edition wedding 548
 ```
 
@@ -77,6 +81,8 @@ pnpm issue:codes lambs-hill 10 venue_edition wedding 548
 ```
 
 This dual-writes to Studio sponsor audit and Tasks runtime comp codes.
+
+548 days (18 months) is the floor. Couple access runs to the later of 18 months from redemption or 3 months past the wedding date. If the wedding date falls more than 548 days out, extend that couple's code manually so the access window covers 3 months past the wedding.
 
 ---
 
@@ -102,7 +108,7 @@ Expected path:
 
 1. Couple receives the venue note.
 2. Couple opens `https://signalstudio.ie/redeem/[CODE]`.
-3. Studio shows the co-branded landing.
+3. Studio shows the redemption landing carrying the venue's name.
 4. CTA routes to `tasks.signalstudio.ie/redeem/[CODE]`.
 5. Couple signs in or creates account.
 6. Tasks redeems code.

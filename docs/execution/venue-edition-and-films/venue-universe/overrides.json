@@ -1,0 +1,284 @@
+{
+  "_comment": [
+    "Durable human decisions about individual accounts, keyed by venue name.",
+    "",
+    "The merge, geocode and routing passes are all regenerable from the research",
+    "sweeps, and re-running them must not quietly discard a judgement someone",
+    "made. Anything decided by a person rather than computed lives here and is",
+    "reapplied after every rebuild.",
+    "",
+    "Each entry says who decided, when, and why. An override without a reason is",
+    "indistinguishable from a mistake."
+  ],
+  "_merge_comment": [
+    "Pairs the matcher surfaced for review and a human then decided. Each entry",
+    "folds the listed names into the first one. The matcher stays conservative on",
+    "purpose — a false merge deletes a real prospect and nobody notices — so these",
+    "are the cases where a person looked and confirmed.",
+    "",
+    "Pairs deliberately NOT merged, and why:",
+    "  The Savoy / The George Limerick — one collection, two real properties.",
+    "    Two accounts with one buyer. Handled by the group rule, not by merging.",
+    "  Listowel Arms / The Cliff House — same, and both outside the ring anyway.",
+    "  Hotel Doolin / Doolin Inn — shared ownership unconfirmed; outside the ring.",
+    "  Bunratty Castle Hotel / Bunratty Manor Hotel — different businesses, one village.",
+    "  Dromoland Castle / The Rine — different venues on one estate."
+  ],
+  "merge": {
+    "Temple Gate Hotel": {
+      "fold": [
+        "The Temple Gate Hotel, Miltown Malbay"
+      ],
+      "reason": "One Ennis property. The Miltown Malbay listing is a directory data error.",
+      "decided_on": "2026-08-03"
+    },
+    "Great National Ballykisteen Hotel & Golf Resort": {
+      "fold": [
+        "Great National Ballykisteen Golf Hotel",
+        "Ballykisteen Hotel & Golf Resort"
+      ],
+      "reason": "One property at Limerick Junction under three directory names. In-ring, so a duplicate here would waste an outreach slot.",
+      "decided_on": "2026-08-03"
+    },
+    "Springfield Castle": {
+      "fold": [
+        "Dromcollogher Castle"
+      ],
+      "reason": "Same property; Dromcollogher Castle is the name a rental agency lists it under.",
+      "decided_on": "2026-08-03"
+    },
+    "Dundrum House Hotel": {
+      "fold": [
+        "Dundrum House Hotel, Golf & Leisure Resort"
+      ],
+      "reason": "One property, longer directory name. Trading status separately unresolved.",
+      "decided_on": "2026-08-03"
+    },
+    "Cloghan Castle": {
+      "fold": [
+        "Cloughan Castle"
+      ],
+      "reason": "Alternate spelling used by weddingsonline and by the venue's own domain.",
+      "decided_on": "2026-08-03"
+    },
+    "Slieve Aughty Centre": {
+      "fold": [
+        "Slieve Aughty Centre (The Three Towers Eco House)",
+        "Slieve Aughty Centre (The Three Towers Eco Weddings)",
+        "The Three Towers at Slieve Aughty Centre"
+      ],
+      "reason": "One venue listed under three names across directories.",
+      "decided_on": "2026-08-03"
+    },
+    "Greenhills Hotel": {
+      "fold": [
+        "Greenhills Hotel & Leisure Centre",
+        "Greenhills Conference & Leisure Centre"
+      ],
+      "reason": "One Ennis Road property; the hotel uses both names interchangeably on its own site. In-ring, so a duplicate would waste an outreach slot.",
+      "decided_on": "2026-08-03"
+    },
+    "The George Hotel Limerick": {
+      "fold": [
+        "The George Limerick Hotel"
+      ],
+      "reason": "One Limerick city property under two word orders. Its weddings route to the Savoy, which stays a separate account in the same collection.",
+      "decided_on": "2026-08-03"
+    },
+    "Lahinch Coast Hotel & Suites": {
+      "fold": [
+        "Lahinch Coast Hotel and Suites"
+      ],
+      "reason": "Same property; ampersand versus the word.",
+      "decided_on": "2026-08-03"
+    }
+  },
+  "eligibility": {
+    "The Thatched Cottage": {
+      "eligibility": "out",
+      "reason": "Restaurant and bar with a banquet room. D-012 excludes restaurants and pubs explicitly.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "St. John's Church, Knockainey": {
+      "eligibility": "out",
+      "reason": "Ceremony venue only, no reception. Cannot sponsor a couple experience.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "The Bedford Townhouse & Café": {
+      "eligibility": "out",
+      "reason": "Twenty-four guests and no wedding marketing of its own. Fails the coordinator and calendar tests.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "Ballyneety Golf Club": {
+      "eligibility": "out",
+      "reason": "Has function capacity but markets no weddings. Fails the coordinator test.",
+      "decided_by": "Claude Code, E10.02 rule",
+      "decided_on": "2026-08-03"
+    },
+    "The George Hotel Limerick": {
+      "eligibility": "out",
+      "reason": "No wedding page, no function room, no events page. Its own collection's site routes weddings to the Savoy, which is a separate account. The directory listing quotes the Savoy's bedroom count and suite capacity, so it is sister-hotel data rather than a venue.",
+      "decided_by": "Claude Code, verified on the venue's own site",
+      "decided_on": "2026-08-03"
+    },
+    "Woodfield House Hotel": {
+      "eligibility": "out",
+      "reason": "The word wedding does not appear anywhere on its site, its events page reads 'no upcoming events', and the domain a directory sends couples to does not resolve. Fails the coordinator and calendar tests.",
+      "decided_by": "Claude Code, verified on the venue's own site",
+      "decided_on": "2026-08-03"
+    },
+    "The Savoy Collection (Limerick city hotels)": {
+      "eligibility": "out",
+      "reason": "Not a venue. A research sweep recorded the collection itself as an account alongside its member hotels, which are already in the universe separately.",
+      "decided_by": "Claude Code",
+      "decided_on": "2026-08-03"
+    },
+    "Kilmurry Lodge Hotel": {
+      "eligibility": "borderline",
+      "reason": "Directories carry a 230 capacity, a one-wedding-a-day policy and a coordinator; none of it appears on the hotel's own site, where 'wedding' occurs once, as 'Wedding Day 2s' for the terrace. The conflict is recorded rather than resolved — this needs a phone call, not a judgement.",
+      "decided_by": "Claude Code, conflict recorded per WORKFLOWS section 8",
+      "decided_on": "2026-08-03"
+    },
+    "Limerick Racecourse (Greenmount Park)": {
+      "eligibility": "borderline",
+      "reason": "Markets wedding packages with real banqueting capacity, but a racecourse is not one of the six D-012 types. Founder call.",
+      "decided_by": "Claude Code, E10.02 rule — escalated",
+      "decided_on": "2026-08-03"
+    },
+    "Thomond Park Stadium": {
+      "eligibility": "borderline",
+      "reason": "Five wedding suites and a civil-ceremony licence is a real weddings operation, but a stadium is not one of the six D-012 types. Founder call.",
+      "decided_by": "Claude Code, E10.02 rule — escalated",
+      "decided_on": "2026-08-03"
+    },
+    "Cratloe Woods House": {
+      "eligibility": "out",
+      "reason": "Not a wedding venue. The claim traces aggregator to aggregator and never reaches a first-party source; the historic-houses database records it as a private home, its domain does not resolve, it appears on no wedding directory, and a local heritage piece says it was once open to the public in the past tense.",
+      "decided_by": "Claude Code, verified 2026-08-03",
+      "decided_on": "2026-08-03"
+    }
+  },
+  "_groups_comment": [
+    "Ownership the research recorded as independent and a closer look showed is not.",
+    "",
+    "This matters twice. It drops decision_access, because the decision moves up to",
+    "group level. And it triggers the one-property-per-operator cohort rule, without",
+    "which one buyer receives three personalised films in the same week — the exact",
+    "impression a personalised film exists to avoid.",
+    "",
+    "It also cuts the other way, and the packet says so: one group conversation",
+    "could land three founding venues at once."
+  ],
+  "groups": {
+    "Castle Oaks House Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Six-property group with unified booking and, per the group's own site, wedding services coordinated jointly across locations. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Castletroy Park Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Same group. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Charleville Park Hotel": {
+      "group_or_operator": "Só Hotels",
+      "reason": "Same group. Recorded as independent by the first pass.",
+      "decided_on": "2026-08-03"
+    },
+    "Limerick Strand Hotel": {
+      "group_or_operator": "MHL Hotel Collection",
+      "reason": "Fourteen-property collection, not an independent hotel. Note for a later pass: SHR appears on its booking flow and is booking software, not an owner — do not record it as the operator.",
+      "decided_on": "2026-08-03"
+    },
+    "Radisson Blu Hotel & Spa Limerick": {
+      "group_or_operator": "Inua Hospitality",
+      "reason": "Operated by Inua Hospitality under the Radisson brand, corroborated by its brochure being published on the group's own account. Two layers above the property, not locally operated.",
+      "decided_on": "2026-08-03"
+    }
+  },
+  "coordinates": {
+    "Limerick Strand Hotel": {
+      "latitude": 52.66624,
+      "longitude": -8.63207,
+      "coord_confidence": "verified",
+      "coord_precision": "venue",
+      "coord_source": "https://nominatim.openstreetmap.org/ (The Strand Hotel, Ennis Road)",
+      "reason": "Listed on OpenStreetMap as The Strand Hotel, so the venue name alone would not resolve.",
+      "decided_on": "2026-08-03"
+    },
+    "Cahermoyle House": {
+      "latitude": 52.49444,
+      "longitude": -9.06306,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Ardagh, Co. Limerick)",
+      "reason": "Venue would not resolve; Ardagh centroid used. Ring-usable, NOT film-usable.",
+      "decided_on": "2026-08-03"
+    },
+    "Smithstown Castle": {
+      "latitude": 52.98384,
+      "longitude": -9.29522,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Kilshanny, Co. Clare)",
+      "reason": "Caught by venue-coord-audit. The geocoder matched the name to Smithstown Industrial Estate in Shannon — right county, right first word, wrong side of it — and the venue entered Cohort 1 at 26.8 minutes. It is at Kilshanny in west Clare, well over an hour out. Kilshanny centroid used; the account routes out of the ring.",
+      "decided_on": "2026-08-03"
+    },
+    "Treacys Oakwood Hotel (Oak Wood Arms)": {
+      "latitude": 52.71289,
+      "longitude": -8.87382,
+      "coord_confidence": "verified",
+      "coord_precision": "venue",
+      "coord_source": "https://nominatim.openstreetmap.org/ (The Oakwood Arms, Shannon)",
+      "reason": "Caught by venue-coord-audit sitting on Smithstown Industrial Estate. The drive time was about right because the estate is in Shannon, but the point was not the hotel — which matters for E13.17's film render even where it does not change the ring.",
+      "decided_on": "2026-08-03"
+    },
+    "Lisheen Castle": {
+      "latitude": 52.73183,
+      "longitude": -7.69187,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Moyne, Thurles, Co. Tipperary)",
+      "reason": "Caught by venue-coord-audit resolving into County Cork, roughly 100 km from the recorded address at Moyne, Thurles. Moyne centroid used. Outside the ring either way.",
+      "decided_on": "2026-08-03"
+    },
+    "The Black Castle (Tullaun Castle)": {
+      "latitude": 52.86194,
+      "longitude": -8.19667,
+      "coord_confidence": "town_only",
+      "coord_precision": "town",
+      "coord_source": "https://nominatim.openstreetmap.org/ (Nenagh, Co. Tipperary)",
+      "reason": "Venue would not resolve; Nenagh centroid used. Ring-usable, NOT film-usable.",
+      "decided_on": "2026-08-03"
+    }
+  },
+  "ring": {
+    "Fota Island Clubhouse": {
+      "drive_time_ring": "out",
+      "reason": "Cork, no coordinate and no town recorded. Far outside the ring on county alone."
+    },
+    "Inish Beg Estate": {
+      "drive_time_ring": "out",
+      "reason": "West Cork. Far outside the ring on county alone."
+    },
+    "The Galmont Hotel & Spa": {
+      "drive_time_ring": "out",
+      "reason": "Galway city. Far outside the ring on county alone."
+    },
+    "The Brehon Hotel & Spa": {
+      "drive_time_ring": "out",
+      "reason": "Killarney. Far outside the ring on county alone."
+    },
+    "The Killarney Park Hotel": {
+      "drive_time_ring": "out",
+      "reason": "Killarney. Far outside the ring on county alone."
+    },
+    "The Manor West Hotel": {
+      "drive_time_ring": "out",
+      "reason": "Tralee. Far outside the ring on county alone."
+    }
+  }
+}

@@ -37,6 +37,13 @@ export const PRODUCT_APP_PATHS: Readonly<Record<ProductId, string>> =
     signal: "/app/signal",
   });
 
+/**
+ * Home — the authenticated front door (Signal → Home consolidation,
+ * 2026-08-04). Not a product: the daily briefing (Today's Signal) lives
+ * here, with the Full Briefing at /app/home/briefing.
+ */
+export const HOME_APP_URL = `${APP_ORIGIN}/app/home`;
+
 export const PRODUCT_APP_URLS: Readonly<Record<ProductId, string>> =
   Object.freeze({
     notes: `${APP_ORIGIN}${PRODUCT_APP_PATHS.notes}`,
@@ -67,9 +74,6 @@ export const TIMELINE_PUBLIC_ORIGIN =
   process.env.NEXT_PUBLIC_TIMELINE_SITE_URL ??
   process.env.NEXT_PUBLIC_TIMELINE_PUBLIC_URL ??
   LEGACY_PRODUCT_ORIGINS.timeline;
-
-export const IOS_APP_URL =
-  process.env.NEXT_PUBLIC_IOS_APP_URL ?? `${STUDIO_ORIGIN}/ios`;
 
 /** Marketing deep link, pre-selects onboarding segment after sign-up. */
 export function tasksSignUpUrl(useCase?: string | null): string {

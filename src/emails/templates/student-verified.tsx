@@ -48,7 +48,7 @@ export function StudentVerifiedEmail({
       </BodyText>
       <PrimaryAction
         direction={direction}
-        href="https://tasks.signalstudio.ie"
+        href="https://app.signalstudio.ie"
         label="Open your workspace"
       />
     </EmailShell>
@@ -71,7 +71,7 @@ export function studentVerifiedText(data: StudentVerifiedData): TextDoc {
         ["Valid until", data.validUntil],
       ] },
       { kind: "p", text: `Around ${data.validUntil} we will ask you to confirm you are still studying. One check a year, nothing in between.` },
-      { kind: "action", label: "Open your workspace", href: "https://tasks.signalstudio.ie" },
+      { kind: "action", label: "Open your workspace", href: "https://app.signalstudio.ie" },
     ],
     footerNote: "You received this because a student verification finished for this address.",
   };

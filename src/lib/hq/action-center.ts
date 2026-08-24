@@ -12,11 +12,13 @@ import { resolveHqLocation } from "@/lib/hq/hq-nav";
 
 export type ActionPriority = "critical" | "due" | "stale" | "queued";
 export type ActionKind = "blocker" | "decision" | "risk" | "follow-up" | "task";
+export type ActionEffort = "quick" | "involved" | "none";
 
 export type ActionItem = {
   id: string;
   priority: ActionPriority;
   kind: ActionKind;
+  effort: ActionEffort;
   title: string;
   why: string;
   owner: string;
@@ -56,10 +58,13 @@ function fromTodo(todo: OperatorTodo): ActionItem {
     id: `todo:${todo.id}`,
     priority,
     kind: todo.blocking ? "blocker" : "task",
+    effort: todo.effort,
     title: todo.title,
     why: todo.why,
     owner: "Founder",
-    meta: todo.blocking ? "Blocking downstream work" : todo.phase,
+    meta: todo.blocking
+      ? `${todo.effort === "quick" ? "Quick win" : "Longer call"} · Blocking downstream work`
+      : `${todo.effort === "quick" ? "Quick win" : "Longer call"}${todo.phase ? ` · ${todo.phase}` : ""}`,
     workspace: workspaceFor(todo.href),
     href: todo.href,
     source: "Operator to-do",
@@ -75,6 +80,7 @@ function fromInbox(item: InboxItem): ActionItem {
     id: `inbox:${item.id}`,
     priority,
     kind,
+    effort: "none",
     title: item.title,
     why: item.detail,
     owner: item.source === "prospect" ? "Founder" : "Operator",

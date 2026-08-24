@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { RevealHero } from "@/components/reveal/reveal-hero";
-import { RevealManifesto } from "@/components/reveal/reveal-manifesto";
 import { RevealWeddingWedge } from "@/components/reveal/reveal-wedding-wedge";
 import { SuiteSwitcher } from "@/components/layout/suite-switcher-pills";
 import { RevealProductRelay } from "@/components/reveal/reveal-product-relay";
@@ -43,7 +42,6 @@ export default async function Home() {
     <>
       <main id="main" tabIndex={-1}>
         <RevealHero />
-        <RevealManifesto />
         <RevealProductRelay />
         <RevealWeddingWedge />
         <RevealClosing />

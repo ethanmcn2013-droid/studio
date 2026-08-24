@@ -37,6 +37,12 @@ const FIXTURE_OPTIONS: Array<{ value: VenueFixtureKey; label: string }> = [
 type SurfaceMode = "venue" | "education" | "organisation";
 type DataSource = "fixture" | "live";
 
+type LiveSnapshotResult = {
+  slug: string;
+  snapshot: AccountSnapshot | null;
+  error: string | null;
+};
+
 type OpenRequestRow = {
   id: string;
   sponsorName: string;
@@ -62,9 +68,7 @@ export function AccountReview({
   const [surface, setSurface] = useState<SurfaceMode>("venue");
   const [dataSource, setDataSource] = useState<DataSource>("fixture");
   const [liveSlug, setLiveSlug] = useState(liveVenues[0]?.slug ?? "");
-  const [liveSnapshot, setLiveSnapshot] = useState<AccountSnapshot | null>(null);
-  const [liveError, setLiveError] = useState<string | null>(null);
-  const [liveLoading, setLiveLoading] = useState(false);
+  const [liveResult, setLiveResult] = useState<LiveSnapshotResult | null>(null);
   const [controlsOpen, setControlsOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const didMountTabs = useRef(false);
@@ -74,6 +78,12 @@ export function AccountReview({
   const venueId = useId();
   const roleId = useId();
 
+  const currentLiveResult =
+    dataSource === "live" && liveResult?.slug === liveSlug ? liveResult : null;
+  const liveSnapshot = currentLiveResult?.snapshot ?? null;
+  const liveError = currentLiveResult?.error ?? null;
+  const liveLoading =
+    dataSource === "live" && Boolean(liveSlug) && liveResult?.slug !== liveSlug;
   const fixtureSnapshot = getVenueFixture(fixtureKey);
   const snapshot =
     dataSource === "live" && liveSnapshot ? liveSnapshot : fixtureSnapshot;
@@ -82,29 +92,20 @@ export function AccountReview({
     liveVenues.find((venue) => venue.slug === liveSlug)?.id ?? null;
 
   useEffect(() => {
-    if (dataSource !== "live" || !liveSlug) {
-      setLiveSnapshot(null);
-      setLiveError(null);
-      setLiveLoading(false);
-      return;
-    }
+    if (dataSource !== "live" || !liveSlug || liveResult?.slug === liveSlug) return;
     let cancelled = false;
-    setLiveLoading(true);
-    setLiveError(null);
     void loadLiveVenueSnapshotAction(liveSlug).then((result) => {
       if (cancelled) return;
-      setLiveLoading(false);
       if (!result.ok) {
-        setLiveSnapshot(null);
-        setLiveError(result.error);
+        setLiveResult({ slug: liveSlug, snapshot: null, error: result.error });
         return;
       }
-      setLiveSnapshot(result.snapshot);
+      setLiveResult({ slug: liveSlug, snapshot: result.snapshot, error: null });
     });
     return () => {
       cancelled = true;
     };
-  }, [dataSource, liveSlug]);
+  }, [dataSource, liveResult?.slug, liveSlug]);
 
   useEffect(() => {
     if (!didMountTabs.current) {

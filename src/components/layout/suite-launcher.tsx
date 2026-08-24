@@ -13,7 +13,7 @@
 
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
-import { PRODUCT_APP_URLS } from "@/lib/product-urls";
+import { HOME_APP_URL, PRODUCT_APP_URLS } from "@/lib/product-urls";
 
 // App entries per Layer 0 allowlist (LAYER0_ROUTE_ALLOWLIST.md)
 const PRODUCTS: {
@@ -23,7 +23,15 @@ const PRODUCTS: {
   url: string;
   description: string;
 }[] = [
-  // Product order (operator-directed 2026-05-18): Notes → Tasks → Timeline → Signal
+  // Home first (Signal → Home consolidation, 2026-08-04). The grid
+  // keeps four cells: the front door plus the three products.
+  {
+    slug: "home",
+    word: "home",
+    label: "Start with what needs you",
+    url: HOME_APP_URL,
+    description: "Your daily signal",
+  },
   {
     slug: "notes",
     word: "notes",
@@ -44,13 +52,6 @@ const PRODUCTS: {
     label: "Open the timeline",
     url: PRODUCT_APP_URLS.timeline,
     description: "Direction clarity",
-  },
-  {
-    slug: "signal",
-    word: "signal",
-    label: "Open the briefing",
-    url: PRODUCT_APP_URLS.signal,
-    description: "Attention clarity",
   },
 ];
 

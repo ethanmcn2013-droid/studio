@@ -36,6 +36,7 @@ export async function listLiveVenueOptions(): Promise<
         name: s.name,
         paid: isPaidVenue(s),
         allotment: s.codeAllotment,
+        allotmentMode: s.allotmentMode,
       })),
     };
   } catch (error) {
@@ -85,6 +86,7 @@ export async function loadVenueAccessSnapshot(
         termStartsAt: sponsor.termStartsAt,
         termEndsAt: sponsor.termEndsAt,
         codeAllotment: sponsor.codeAllotment,
+        allotmentMode: sponsor.allotmentMode,
         codesIssued: sponsor.codesIssued,
       },
       codes: codeRows,

@@ -1,9 +1,10 @@
 ---
 id: migrate-attachments-blob
 title: Provision Vercel Blob for Tasks attachments (local FS is ephemeral)
-status: open
+status: done
+cleared: "2026-08-08 - the active signal-attachments-eu Blob store is linked to app and the production token is configured"
 priority: P0
-blocking: true
+blocking: false
 phase: Phase 1
 why: Tasks writes uploaded files to the local filesystem (.data/uploads) — ephemeral and per-instance on Vercel serverless, so uploads vanish or 404 on the next request. The feature is broken in prod.
 href: /hq/health

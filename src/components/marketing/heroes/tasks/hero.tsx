@@ -42,8 +42,8 @@ export function TasksTheBoard({
         </p>
 
         <p className="mt-7 inline-flex items-center gap-2 text-[12.5px] text-ink-faint">
-          <span className="block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
-          Demo is live
+          <span className="block h-1.5 w-1.5 rounded-full bg-brand" />
+          Demo workspace
         </p>
       </div> : null}
 
@@ -65,10 +65,10 @@ export function TasksTheBoard({
             role={embedded ? "region" : undefined}
             aria-label={embedded ? "Scrollable Signal Tasks board" : undefined}
             tabIndex={embedded ? 0 : undefined}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, transform: "translateY(8px)" }}
+            animate={{ opacity: 1, transform: "translateY(0)" }}
+            exit={{ opacity: 0, transform: "translateY(-4px)" }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             className="demo-fit mx-auto"
           >
             <div className="demo-fit-inner">

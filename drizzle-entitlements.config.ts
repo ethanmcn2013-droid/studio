@@ -16,7 +16,7 @@ export default {
   out: "./drizzle-entitlements",
   dialect: "turso",
   dbCredentials: {
-    url: process.env.TURSO_ENTITLEMENTS_DATABASE_URL ?? "",
-    authToken: process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN,
+    url: process.env.ENTITLEMENTS_DATABASE_URL ?? "",
+    authToken: process.env.ENTITLEMENTS_AUTH_TOKEN,
   },
 } satisfies Config;

@@ -7,14 +7,20 @@
 
 ---
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 > ## ⚠ AMENDED 2026-07-11 — one price
 >
 > This plan was written for a **free** model ("with our compliments"). On
 > 2026-07-11 the founder fixed the **paid Venue Edition** at
-> **€1,500 per venue / year, prepaid**. One price applies to every venue;
-> the founding cohort locks it for life. The venue **pays Signal Studio**
+> **€1,500 per venue / year, prepaid, VAT-inclusive**. The Founding 25 (the
+> first 25 founding agreements) pay **€1,000 per venue / year** on the same
+> terms, €500 less, holding for as long as the agreement renews continuously
+> without lapse. The venue **pays Signal Studio**
 > for the sponsorship. The canonical decision is
-> `content/hq/decisions/venue-edition-fixed-price-2026-07-11.md`
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`
 > — read it first; where it and this doc disagree, the decision wins.
 >
 > **What changed:** the money only. The venue pays instead of receiving
@@ -24,12 +30,12 @@
 > `signalstudio.ie/pricing` and `signalstudio.ie/venues`.
 >
 > **What did NOT change (still load-bearing below):** the mechanic —
-> per-couple codes, co-branded eyebrow only (no venue logo), 18-month
+> per-couple codes, name-only eyebrow (no venue logo), 18-month
 > couple duration, auto-drop to Free at month 18, sponsor-aware welcome.
 > "With our compliments" survives ONLY as the founder-issued
 > family/friends comp track, never as the venue model. Lamb's Hill, in
-> flight as a free pilot, is honoured at the founding €1,500 lock if it
-> converts.
+> flight as a free pilot, is honoured at the founding €1,000 rate if it
+> converts, holding for as long as the agreement renews without lapse.
 
 ---
 
@@ -70,7 +76,7 @@ Operational benefit to the venue is the lead. Marketing co-branding is a side be
 | Handoff artifact (venue #2+) | Printed card in welcome pack — commission after venue #1 pilot validates |
 | Code shape | **Per-couple** codes, not generic. Bulk-issued via CLI script in batches of 10 |
 | Public surfacing on /pricing | One quiet line below the Event tier: *"Planning a wedding? Ask your venue."* — 15px, `var(--ink-quiet)`, no CTA |
-| License duration (Venue Editions, weddings) | 18 months from redemption, auto-drop to Free at month 18 with one quiet prompt beforehand |
+| License duration (Venue Editions, weddings) | 18 months (548 days) from redemption, or 3 months past the wedding date, whichever is later. 548 days is the floor, not the whole answer. Auto-drop to Free at that date, with one quiet prompt beforehand |
 | Expiry behaviour | No grandfathering. One honest message: *"Your venue's gift ends in 30 days. Stay free or upgrade."* |
 
 ## 5 · Voice and copy register
@@ -136,7 +142,7 @@ Acceptance: code in prod redeems through `lookupRedemption()` to the correct vie
 
 **Reconciled scope after 8.3a/8.3b discovery (2026-05-13):** the originally-planned signed-handoff bridge was abandoned mid-cycle when grep across Tasks revealed a pre-existing redemption system (comp_codes table + /redeem/[code] route + redeemCompCodeAction + workspace-scoped entitlements + Stripe-wired grantEntitlement). The reconciliation: studio's /redeem/[code] stays as the co-branded landing; studio's sponsors + license_codes tables stay as the source-of-truth for sponsor audit; the CTA redirects to tasks.signalstudio.ie/redeem/[code] which runs Tasks's existing redemption flow; issue-codes.ts dual-writes to both studio's license_codes (audit) and Tasks's comp_codes (runtime) so codes work end-to-end through the existing path.
 
-Ships across studio + `~/Projects/personal/tasks`:
+Ships across studio + `tasks`:
 - **Redemption-completion bridge.** When the `/redeem/[code]` CTA fires, atomically: insert an `entitlements` row (using `license_codes.source_type` + `tier` + `duration_days` to compute the entitlement shape), update `license_codes.status` to `redeemed` (with `redeemed_by_user_id` + `redeemed_at`), insert a `redemptions` audit row. Likely shape: studio renders /redeem/, hands a signed token to Tasks's sign-up flow, Tasks consumes the token after Clerk auth completes and writes the entitlement via shared Turso token.
 - **"Already on a paid plan" error state** wires here — only reachable when an authenticated user attempts redemption.
 - Tasks reads `getEntitlement(userId)` on first session. If source is `venue_edition` + tier is wedding, **skip the `/welcome` picker entirely** — auto-create the wedding workspace.
@@ -225,4 +231,4 @@ Acceptance: Ethan dispenses both flavours from CLI in under 30 seconds each. Bot
 - `BRAND.md` §6 — page-level conventions (footer, changelog, "What this isn't")
 - `analytics/docs/PRODUCT.md` — entitlements-aware briefing scope (Cycle 8.7+ candidate)
 - `roadmap/CHANGELOG.md`, `tasks/CHANGELOG.md` — per-product launch notes routing to umbrella `signalstudio.ie/changelog` per locked convention (BRAND.md §6)
-- `~/Projects/personal/studio/.claude/state/phase.md` — cycle status of record
+- `studio/.claude/state/phase.md` — cycle status of record

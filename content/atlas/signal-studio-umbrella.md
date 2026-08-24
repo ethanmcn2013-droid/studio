@@ -3,7 +3,7 @@ title: Signal Studio — the umbrella
 slug: signal-studio-umbrella
 lens: Products
 owner: Ethan
-lastVerified: 2026-07-11
+lastVerified: 2026-07-31
 links: [five-products-as-a-system, pricing-and-entitlements, brand-enforcement, plan-cycle]
 tags: [signalstudio.ie, BRAND.md, /brand, wordmark, umbrella, refusal list, four products]
 references: [BRAND.md, src/app/brand/, src/app/pricing/, src/components/brand/wordmark.tsx, src/components/landing/]
@@ -40,16 +40,16 @@ The umbrella also owns the **refusal list**: features and surfaces the suite exp
 
 ## WHO
 
-Ethan owns the umbrella outright. The studio repo (~/Projects/personal/studio) is the codebase. BRAND.md is the handbook. The umbrella has no separate employees, no separate board, no separate decisions — it's the same operator wearing a brand hat instead of a product hat.
+Ethan owns the umbrella outright. The studio repo (studio) is the codebase. BRAND.md is the handbook. The umbrella has no separate employees, no separate board, no separate decisions — it's the same operator wearing a brand hat instead of a product hat.
 
 ## WHERE
 
 - `signalstudio.ie` — the umbrella's public site. Hosts `/pricing`, `/brand`, `/about`, `/changelog`, `/press`, `/principles`, `/proof`, `/work`, `/weddings` (audience-specific landing), `/method`, `/security`, `/contact`.
 - `signalstudio.ie/brand` — the public brand asset hub: wordmark anatomy, motion catalogue, palette, type scale, voice rules, 19 downloadable SVGs (house wordmark + four product wordmarks + lockups + square marks), plain-text email signatures.
 - `signalstudio.ie/hq` — the private operating dashboard. Password-gated. The atlas you're reading lives here at `/hq/atlas`.
-- `~/Projects/personal/studio/BRAND.md` — the handbook (see [[brand-enforcement]] for the catch-net details).
-- `~/Projects/personal/studio/src/components/brand/wordmark.tsx` — the canonical `<Wordmark>` component with five variants and five gestures (signal broadcast 2.6s, tasks pulse 2.6s, timeline sweep 5.4s, signal tick 3.6s, notes caret 1.1s).
-- `~/Projects/personal/studio/src/app/pricing/` — the unified pricing surface every product 308s to (see [[pricing-and-entitlements]]).
+- `studio/BRAND.md` — the handbook (see [[brand-enforcement]] for the catch-net details).
+- `studio/src/components/brand/wordmark.tsx` — the canonical `<Wordmark>` component with five variants and five gestures (signal broadcast 2.6s, tasks pulse 2.6s, timeline sweep 5.4s, signal tick 3.6s, notes caret 1.1s).
+- `studio/src/app/pricing/` — the unified pricing surface every product 308s to (see [[pricing-and-entitlements]]).
 
 ## HOW
 

@@ -157,9 +157,10 @@ export const DECK: Slide[] = [
       <>
         <Lead>
           At €12 a month and €89 one-time, a solo, zero-ad motion produces
-          ≤€125k optimistically. The Venue Edition now adds exactly €1,500
-          for each venue closed; the old complimentary model adds nothing.
-          A plan that flattered you would have hidden that.
+          ≤€125k optimistically. The Venue Edition adds €1,000 for each of
+          the first twenty-five venues closed and €1,500 for every venue
+          after them; the old complimentary model adds nothing. A plan that
+          flattered you would have hidden that.
         </Lead>
         <Note>So the goal was reframed. It is still ambitious.</Note>
       </>
@@ -196,8 +197,8 @@ export const DECK: Slide[] = [
         </Lead>
         <Defs
           items={[
-            ["Venue Edition", "€1,500 per venue, per year, prepaid"],
-            ["Founding lock", "first ~15 venues hold that price for life"],
+            ["Venue Edition", "€1,500 per venue, per year, prepaid, VAT included"],
+            ["The Founding 25", "the first 25 venues pay €1,000, held while the agreement keeps renewing"],
             ["Pro", "€120 a year, annual prepay"],
             ["Event", "€89 one-time"],
           ]}

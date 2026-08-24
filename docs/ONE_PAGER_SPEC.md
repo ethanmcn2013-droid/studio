@@ -2,7 +2,7 @@
 ## One-pagers, Brand one-pager, Marketing deck export, Shared print system
 
 **Written to:** `~/Desktop/SIGNAL_ONEPAGER_SPEC.md`
-**Reason:** `~/Projects/personal/_wt-hq-pdf-export/docs/` does not exist yet.
+**Reason:** `_wt-hq-pdf-export/docs/` does not exist yet.
 **Date:** 2026-05-16
 **Status:** Spec-complete. Awaiting engineer implementation.
 

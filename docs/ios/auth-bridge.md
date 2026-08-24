@@ -83,9 +83,9 @@ Run this audit in each of the four product repos:
 ```bash
 for repo in tasks roadmap analytics notes; do
   echo "=== $repo — direct cookie reads in API routes ==="
-  grep -rn "cookies()" ~/Projects/personal/$repo/src/app/api/ 2>/dev/null
+  grep -rn "cookies()" $repo/src/app/api/ 2>/dev/null
   echo "=== $repo — middleware short-circuits on missing cookie ==="
-  grep -rn "__session\|__clerk_db_jwt" ~/Projects/personal/$repo/src/ 2>/dev/null
+  grep -rn "__session\|__clerk_db_jwt" $repo/src/ 2>/dev/null
 done
 ```
 

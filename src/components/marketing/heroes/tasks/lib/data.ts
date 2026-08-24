@@ -1,4 +1,4 @@
-export type LaneId = "todo" | "doing" | "review" | "done";
+export type LaneId = "todo" | "doing" | "review" | "waiting" | "done";
 
 export type Priority = "p0" | "p1" | "p2" | "p3";
 
@@ -167,24 +167,31 @@ export const LANES: Record<
   // are further overridable per workspace via the column config `system` map.
   todo: {
     id: "todo",
-    name: "Blocked",
+    name: "Queued",
     ink: "var(--lane-todo-ink)",
     bg: "var(--lane-todo)",
     dot: "var(--lane-todo-dot)",
   },
   doing: {
     id: "doing",
-    name: "In Progress",
+    name: "In progress",
     ink: "var(--lane-doing-ink)",
     bg: "var(--lane-doing)",
     dot: "var(--lane-doing-dot)",
   },
   review: {
     id: "review",
-    name: "Reviewing",
+    name: "Review",
     ink: "var(--lane-review-ink)",
     bg: "var(--lane-review)",
     dot: "var(--lane-review-dot)",
+  },
+  waiting: {
+    id: "waiting",
+    name: "Waiting",
+    ink: "var(--ink-soft)",
+    bg: "var(--paper-soft)",
+    dot: "var(--ink-faint)",
   },
   done: {
     id: "done",
@@ -195,7 +202,7 @@ export const LANES: Record<
   },
 };
 
-export const LANE_ORDER: LaneId[] = ["todo", "doing", "review", "done"];
+export const LANE_ORDER: LaneId[] = ["todo", "doing", "review", "waiting", "done"];
 
 export type Task = {
   id: string;
@@ -330,7 +337,6 @@ const _seedTaskInputs: Omit<
     lane: "todo",
     priority: "p1",
     assignees: ["chloe"],
-    due: "Fri",
     estimate: 6,
     tags: ["growth"],
     startDay: 1,
@@ -389,7 +395,7 @@ const _seedTaskInputs: Omit<
     lane: "doing",
     priority: "p1",
     assignees: ["chloe"],
-    due: "Today",
+    due: "1 Aug",
     estimate: 1,
     tags: ["meeting"],
     startDay: 0,
@@ -399,9 +405,9 @@ const _seedTaskInputs: Omit<
     id: "t-202",
     title: "Launch demo video, final cut",
     lane: "doing",
-    priority: "p0",
+    priority: "p1",
     assignees: ["david"],
-    due: "Tomorrow",
+    due: "Today",
     estimate: 8,
     tags: ["launch"],
     idleDays: 4,
@@ -415,6 +421,7 @@ const _seedTaskInputs: Omit<
     lane: "doing",
     priority: "p2",
     assignees: ["marcus"],
+    due: "14 Jul",
     estimate: 5,
     tags: ["ops"],
     startDay: 2,
@@ -449,7 +456,7 @@ const _seedTaskInputs: Omit<
     id: "t-302",
     title: "Marketing campaign · banner set",
     lane: "review",
-    priority: "p1",
+    priority: "p3",
     assignees: ["ada"],
     estimate: 6,
     tags: ["marketing"],
@@ -459,7 +466,7 @@ const _seedTaskInputs: Omit<
   {
     id: "t-303",
     title: "Latest features · customer email",
-    lane: "review",
+    lane: "done",
     priority: "p2",
     assignees: ["chloe", "ada"],
     estimate: 3,
@@ -473,7 +480,7 @@ const _seedTaskInputs: Omit<
     id: "t-401",
     title: "Project onboarding deck",
     lane: "done",
-    priority: "p2",
+    priority: "p1",
     assignees: ["alex"],
     estimate: 4,
     tags: ["onboarding"],
@@ -484,7 +491,7 @@ const _seedTaskInputs: Omit<
     id: "t-402",
     title: "Finalize launch timeline",
     lane: "done",
-    priority: "p1",
+    priority: "p2",
     assignees: ["david"],
     estimate: 3,
     tags: ["launch"],
@@ -495,7 +502,7 @@ const _seedTaskInputs: Omit<
     id: "t-403",
     title: "All-hands alignment",
     lane: "done",
-    priority: "p3",
+    priority: "p2",
     assignees: ["marcus"],
     estimate: 1,
     tags: ["meeting"],

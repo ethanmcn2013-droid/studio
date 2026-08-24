@@ -1,11 +1,12 @@
 ---
 id: publish-signal-ds-2-1
-title: Authenticate npm and publish signal-ds 2.1.0
+title: Authorize npm trusted publishing for signal-ds 2.1.0
 status: open
-priority: P1
-blocking: true
+priority: P2
+effort: quick
+blocking: false
 phase: Experience Quality OS release
-why: Publishing a public npm package requires the founder's npm credentials and 2FA approval, which are intentionally unavailable to the repository and this operator session.
+why: The two production repos remain safe on verified vendored copies; npm 2.1.0 is optional until the next controlled dependency migration.
 href: /hq
 date: 2026-07-15
 action: "Sign in to npm once and authorize the signal-design-system release workflow, or complete npm login so Codex can publish 2.1.0."

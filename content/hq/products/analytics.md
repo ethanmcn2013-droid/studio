@@ -1,10 +1,10 @@
 ---
 id: analytics
-title: Signal
+title: Today's Signal
 layer: Attention
 status: Private preview
 currentAsOf: 2026-07-26
-canonicalRoute: https://app.signalstudio.ie/app/signal
+canonicalRoute: https://app.signalstudio.ie/app/home/briefing
 archetype: Quiet Briefing Ledger
 maturity: not-scored
 uxPolish: not-scored
@@ -12,9 +12,9 @@ integrationScore: not-scored
 launchReadiness: not-scored
 qualityGate: not-certified
 scoreBasis: current-route-council-evidence-required
-majorFeatures: ["Canonical unified route: https://app.signalstudio.ie/app/signal","Quiet Briefing Ledger: a finite, briefing-first reading experience rather than a second dashboard","Source-backed attention items with project provenance and a clear reason each item matters","Quiet-day silence and progressive evidence depth subordinate to the briefing"]
-blockers: ["No current authenticated state-by-viewport council ledger proves the 50/52 release threshold for the consolidated Signal route.","The canonical Quiet Briefing Ledger, source provenance, quiet-day behavior, and normal, empty, loading, and error states are not yet fully certified on the unified route.","Executable Studio quality tooling still enforces the legacy general mean, not the active 50/52 per-cell product gate."]
-nextActions: ["Finish and verify the Quiet Briefing Ledger as the default unified Signal renderer, with no duplicate dashboard, feed, or legacy briefing route.","Prove source freshness, project provenance, reason disclosure, finite reading order, useful-feedback behavior, and honest quiet-day handling.","Capture required states at 360px, 768px, and 1440px and repeat council review until every required cell reaches 50/52."]
+majorFeatures: ["Canonical unified route: https://app.signalstudio.ie/app/home/briefing (Full Briefing inside Home; Today's Signal on /app/home)","Quiet Briefing Ledger: a finite, briefing-first reading experience rather than a second dashboard","Source-backed attention items with project provenance and a clear reason each item matters","Quiet-day silence and progressive evidence depth subordinate to the briefing"]
+blockers: ["No current authenticated state-by-viewport council ledger proves the 50/52 release threshold for the briefing route inside Home.","The canonical Quiet Briefing Ledger, source provenance, quiet-day behavior, and normal, empty, loading, and error states are not yet fully certified on the Home briefing route.","Executable Studio quality tooling still enforces the legacy general mean, not the active 50/52 per-cell product gate."]
+nextActions: ["Finish and verify the Quiet Briefing Ledger as the default Full Briefing renderer inside Home, with no duplicate dashboard, feed, or legacy briefing route.","Prove source freshness, project provenance, reason disclosure, finite reading order, useful-feedback behavior, and honest quiet-day handling.","Capture required states at 360px, 768px, and 1440px and repeat council review until every required cell reaches 50/52."]
 ---
 
 ## Role
@@ -22,6 +22,13 @@ nextActions: ["Finish and verify the Quiet Briefing Ledger as the default unifie
 What needs focus before it becomes a problem.
 
 ## Notes
+
+> **2026-08-04 Home consolidation.** Signal left the product line, not
+> the product. This capability now ships inside **Home**: Today's Signal
+> (`/app/home`) is the concise daily read; the Full Briefing lives at
+> `/app/home/briefing`; legacy `/app/signal*` permanently redirects. It
+> is no longer presented anywhere as a fourth standalone product; this
+> record keeps the id `analytics` as provenance.
 
 > **2026-07-26 consolidation note.** Current authority is the single Signal Studio app at `https://app.signalstudio.ie/app/signal`, using the Quiet Briefing Ledger archetype. The dated entries below are retained as provenance from the former standalone implementation; they do not certify the current unified route, launch readiness, retired hosts, or retired interfaces.
 

@@ -73,10 +73,10 @@ log(
     : "=== migrate-account-requests APPLY ===",
 );
 
-const url = process.env.TURSO_ENTITLEMENTS_DATABASE_URL;
-const token = process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN;
+const url = process.env.ENTITLEMENTS_DATABASE_URL;
+const token = process.env.ENTITLEMENTS_AUTH_TOKEN;
 if (!url) {
-  log("SKIP — TURSO_ENTITLEMENTS_DATABASE_URL not set");
+  log("SKIP — ENTITLEMENTS_DATABASE_URL not set");
   process.exit(0);
 }
 

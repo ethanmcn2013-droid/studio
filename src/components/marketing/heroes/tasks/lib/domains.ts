@@ -1,5 +1,6 @@
 import type { LaneId, Priority, Task, UserId } from "@/components/marketing/heroes/tasks/lib/data";
 import { TASKS_PUBLIC_DOMAIN } from "@/components/marketing/heroes/tasks/lib/product-urls";
+import { REVIEW_SUITE_PRESENTATION } from "@/lib/review-suite-presentation";
 
 export type DomainId =
   | "marketing"
@@ -36,7 +37,7 @@ export type DomainPack = {
   /** Per-task overlays keyed by canonical task id. */
   tasks: Record<
     string,
-    Pick<Task, "title"> & Partial<Pick<Task, "tags">>
+    Pick<Task, "title"> & Partial<Pick<Task, "tags" | "assignees">>
   >;
   /** Optional per-domain dependency graph. Replaces canonical
    *  `blockedBy` for the listed task ids. The freelance dev domain
@@ -367,10 +368,10 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
     id: "wedding",
     label: "Wedding planner",
     description: "venues · vendors · vows · run-of-show",
-    workspaceTitle: "Hartwell Wedding · 6.14.26",
-    workspaceCrumb: "Weddings",
-    workspaceUrl: `hartwell-wedding`,
-    demoCommentText: "Florals confirmed, peonies and garden roses.",
+    workspaceTitle: REVIEW_SUITE_PRESENTATION.workspace.name,
+    workspaceCrumb: REVIEW_SUITE_PRESENTATION.project.name,
+    workspaceUrl: `the-orchard`,
+    demoCommentText: "The final dietary list is still open before the tasting.",
     emptyStateHeadline: "This is where the day comes together.",
     emptyStateBody:
       "Vendors, run-of-show, RSVPs, the small things. Every detail in one place, finally.",
@@ -382,58 +383,67 @@ export const DOMAINS: Record<DomainId, DomainPack> = {
       // product's own board shows them unadorned. Open lanes read as things
       // still to do; the done lane reads as things that happened.
       "t-101": {
-        title: "Ask the venue to hold the side room after six",
-        tags: ["venue"],
+        title: "Confirm marquee sides with the hire company",
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
+        assignees: ["demo-user"],
       },
       "t-102": {
-        title: "Send save-the-dates to 200 guests",
-        tags: ["invites"],
+        title: "Reprint the faded welcome sign before the open day",
+        tags: ["venue"],
+        assignees: ["demo-user"],
       },
-      "t-103": { title: "Walk the venue one last time", tags: ["venue"] },
-      "t-104": { title: "Choose the floral arrangements", tags: ["florals"] },
+      "t-103": { title: "Send midweek rate to the June 2027 enquiry", tags: ["enquiry"], assignees: ["demo-user"] },
+      "t-104": { title: "Confirm the final dietary list", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
       "t-105": {
-        title: "Book guest transport for the welcome night",
-        tags: ["logistics"],
+        title: "Confirm supplier access from eight on Saturday",
+        tags: ["operations"],
+        assignees: ["demo-user"],
       },
       "t-201": {
-        title: "Sync photo and video with the vendors",
-        tags: ["vendors"],
+        title: REVIEW_SUITE_PRESENTATION.journey.task,
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
+        assignees: ["demo-user"],
       },
       "t-202": {
-        title: "Write the run of show for the day",
-        tags: ["planning"],
+        title: "Build the Saturday run-sheet",
+        tags: ["bar"],
+        assignees: ["demo-user"],
       },
       "t-203": {
-        title: "Chase the outstanding RSVPs",
-        tags: ["guests"],
+        title: "Order tonic and the good olives",
+        tags: ["bar"],
+        assignees: ["demo-user"],
       },
       "t-204": {
-        title: "Book the hair and nails trial",
-        tags: ["bride"],
+        title: "Share the floor-team briefing",
+        tags: ["operations"],
+        assignees: ["demo-user"],
       },
       "t-301": {
-        title: "Approve the DJ playlist",
-        tags: ["music"],
+        title: "Approve the final seating plan",
+        tags: [REVIEW_SUITE_PRESENTATION.project.name],
+        assignees: ["demo-user"],
       },
       "t-302": {
-        title: "Sign off the ceremony script",
-        tags: ["ceremony"],
+        title: "Sign off the recommended-suppliers list",
+        tags: ["venue"],
+        assignees: ["demo-user"],
       },
-      "t-303": { title: "Pack the welcome bags", tags: ["favors"] },
-      "t-401": { title: "Venue contract signed", tags: ["contract"] },
-      "t-402": { title: "Engagement shoot wrapped", tags: ["photo"] },
-      "t-403": { title: "Tasting at Mariposa done", tags: ["catering"] },
-      "t-404": { title: "Marriage licence filed", tags: ["legal"] },
+      "t-303": { title: "Open day, nine couples through", tags: ["venue"], assignees: ["demo-user"] },
+      "t-401": { title: "Deposit invoice settled, Mara & Finn", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
+      "t-402": { title: "Clear Sunday 11am late checkout with housekeeping", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
+      "t-403": { title: "Chase linen order, now shipping Tuesday", tags: ["venue"], assignees: ["demo-user"] },
+      "t-404": { title: "Send registrar paperwork two weeks before the date", tags: [REVIEW_SUITE_PRESENTATION.project.name], assignees: ["demo-user"] },
     },
     commentBodies: [
-      "Florals confirmed, peonies and garden roses.",
-      "RSVPs at 89%, on pace.",
-      "Mariposa locked in. Tasting was 10/10.",
-      "DJ pulled the playlist together, sending now.",
-      "Hair and nails booked for the morning of.",
-      "Sent 4 vendor reminders this morning.",
-      "Photographer wants a 30min walkthrough Thursday.",
-      "Hartwells loved the welcome bag mockup.",
+      "Mara confirmed the request. Waiting on the venue reply.",
+      "The final dietary list is due before service notes are locked.",
+      "The tasting is booked for 1 August at The Orchard.",
+      "The floor team has the first run-sheet draft.",
+      "County Marquee Hire can hold the sides until Thursday.",
+      "The tonic delivery is booked for Friday morning.",
+      "The photographer wants a 30 minute walk-through.",
+      "Mara & Finn approved the room plan.",
     ],
   },
 };
@@ -471,6 +481,7 @@ export function applyDomainOverlay(
       ...t,
       title: overlay?.title ?? t.title,
       tags: overlay?.tags ?? t.tags,
+      assignees: overlay?.assignees ?? t.assignees,
       blockedBy: packBlockers ?? t.blockedBy,
     };
   });

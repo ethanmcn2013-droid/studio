@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1778628371572,
-      "tag": "0000_init_entitlements",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1778629203541,
-      "tag": "0001_init_sponsors_license_codes_redemptions",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1778683279699,
-      "tag": "0002_init_cron_runs",
+      "when": 1785485631861,
+      "tag": "0000_init",
       "breakpoints": true
     }
   ]

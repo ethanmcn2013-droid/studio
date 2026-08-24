@@ -134,8 +134,14 @@ if (!isStudio) {
     mustContain(
       launcher.file,
       launcher.source,
-      "Four products, one system.",
-      "new dropdown copy replaces the old generic panel",
+      'slug: "home"',
+      "Home leads the launcher (Signal → Home consolidation, 2026-08-04)",
+    );
+    mustNotContain(
+      launcher.file,
+      launcher.source,
+      'slug: "signal"',
+      "Signal left the product line — it must not return as a launcher entry",
     );
     mustContain(
       launcher.file,

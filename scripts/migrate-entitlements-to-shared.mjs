@@ -6,8 +6,8 @@
  *
  *   node scripts/migrate-entitlements-to-shared.mjs
  *
- * Reads:  TURSO_STUDIO_DATABASE_URL + TURSO_STUDIO_AUTH_TOKEN
- * Writes: TURSO_ENTITLEMENTS_DATABASE_URL + TURSO_ENTITLEMENTS_AUTH_TOKEN
+ * Reads:  STUDIO_DATABASE_URL + STUDIO_AUTH_TOKEN
+ * Writes: ENTITLEMENTS_DATABASE_URL + ENTITLEMENTS_AUTH_TOKEN
  *
  * Tables migrated: sponsors, license_codes, entitlements, redemptions.
  */
@@ -21,13 +21,13 @@ config({ path: resolve(here, "../.env.local") });
 config({ path: resolve(here, "../.env") });
 
 const src = createClient({
-  url: process.env.TURSO_STUDIO_DATABASE_URL,
-  authToken: process.env.TURSO_STUDIO_AUTH_TOKEN,
+  url: process.env.STUDIO_DATABASE_URL,
+  authToken: process.env.STUDIO_AUTH_TOKEN,
 });
 
 const dest = createClient({
-  url: process.env.TURSO_ENTITLEMENTS_DATABASE_URL,
-  authToken: process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN,
+  url: process.env.ENTITLEMENTS_DATABASE_URL,
+  authToken: process.env.ENTITLEMENTS_AUTH_TOKEN,
 });
 
 async function migrate(table, columns) {
@@ -107,8 +107,8 @@ const SCHEMAS = {
 };
 
 console.log("Migrating studio → signal-entitlements");
-console.log("src:", process.env.TURSO_STUDIO_DATABASE_URL);
-console.log("dest:", process.env.TURSO_ENTITLEMENTS_DATABASE_URL);
+console.log("src:", process.env.STUDIO_DATABASE_URL);
+console.log("dest:", process.env.ENTITLEMENTS_DATABASE_URL);
 console.log();
 
 await migrate("sponsors", SCHEMAS.sponsors);

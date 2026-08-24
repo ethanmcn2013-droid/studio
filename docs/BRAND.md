@@ -22,10 +22,10 @@ Signal Studio is the umbrella. Four products live under it.
 
 | Product | Position | Domain | Repo | Status |
 |---|---|---|---|---|
-| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `~/Projects/personal/tasks` | Private preview |
-| Signal Timeline | Direction clarity | timeline.signalstudio.ie | `~/Projects/personal/roadmap` | Private preview |
-| Signal | Attention clarity | signal.signalstudio.ie | `~/Projects/personal/analytics` | Private preview · product committed |
-| Signal Notes | Capture clarity | notes.signalstudio.ie | `~/Projects/personal/notes` | Private build · product definition locked · full v1 pending |
+| Signal Tasks | Execution clarity | tasks.signalstudio.ie | `tasks` | Private preview |
+| Signal Timeline | Direction clarity | timeline.signalstudio.ie | `roadmap` | Private preview |
+| Signal | Attention clarity | signal.signalstudio.ie | `analytics` | Private preview · product committed |
+| Signal Notes | Capture clarity | notes.signalstudio.ie | `notes` | Private build · product definition locked · full v1 pending |
 
 **Umbrella domain:** signalstudio.ie · **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
 
@@ -217,7 +217,7 @@ The H1 is the umbrella headline on every product. The eyebrow + sub do the diffe
 
 ### CTA verbs
 Standardize on `Open the [product]` for the primary hero CTA:
-- Tasks: `Open the workspace`
+- Tasks: `Open the project`
 - Timeline: `Open the timeline`
 - Signal: `Open the briefing`
 - Notes (planned): `Open the notebook`

@@ -4,17 +4,22 @@ import { useRef } from "react";
 import { useInView, useReducedMotion } from "motion/react";
 import styles from "./product-signature-wordmark.module.css";
 
-type SignatureProduct = "notes" | "tasks" | "timeline" | "signal";
+type SignatureProduct = "notes" | "tasks" | "timeline" | "signal" | "home";
 
 /**
- * The homepage's four product signatures, restored from the previous product
- * rows and refined to play once. Each mark describes its product: capture,
- * completion, a published line, and a briefing pulse.
+ * The homepage's signature wordmarks, restored from the previous product
+ * rows and refined to play once. Each mark describes its surface: capture,
+ * completion, a published line — and Home carries the briefing pulse,
+ * the signal settling where the day now starts (consolidation 2026-08).
  */
 export function ProductSignatureWordmark({
   product,
+  staticPresentation = false,
+  suppressMark = false,
 }: {
   product: SignatureProduct;
+  staticPresentation?: boolean;
+  suppressMark?: boolean;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -22,7 +27,7 @@ export function ProductSignatureWordmark({
     once: true,
     margin: "-12% 0px",
   });
-  const active = Boolean(prefersReducedMotion || inView);
+  const active = staticPresentation || Boolean(prefersReducedMotion || inView);
 
   return (
     <span
@@ -30,28 +35,28 @@ export function ProductSignatureWordmark({
       className={styles.wordmark}
       data-product-signature=""
       data-active={active ? "true" : undefined}
+      data-static={staticPresentation ? "true" : undefined}
       data-product={product}
-      aria-label={product}
     >
-      <span className={styles.word} aria-hidden="true">
+      <span className={styles.word}>
         {product}
       </span>
 
-      {product === "notes" ? (
+      {product === "notes" && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.notesCaret}`}
           aria-hidden="true"
         />
       ) : null}
 
-      {product === "tasks" ? (
+      {product === "tasks" && !suppressMark ? (
         <span
           className={`${styles.signature} ${styles.tasksStrike}`}
           aria-hidden="true"
         />
       ) : null}
 
-      {product === "timeline" ? (
+      {product === "timeline" && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.timelineOrigin}`}
           aria-hidden="true"
@@ -61,7 +66,7 @@ export function ProductSignatureWordmark({
         </span>
       ) : null}
 
-      {product === "signal" ? (
+      {(product === "signal" || product === "home") && !suppressMark ? (
         <span
           className={`${styles.mark} ${styles.signalPulse}`}
           aria-hidden="true"

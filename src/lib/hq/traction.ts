@@ -125,7 +125,7 @@ export type TractionState =
       cashCollectedEur: number;
       /** Paid venues with cash in the door. The plan's #1 leading metric. */
       paidVenues: number;
-      /** Of those, founding cohort (€1,500 locked for life). */
+      /** Of those, the Founding 25 (€1,000, held on continuous renewal). */
       foundingVenues: number;
       /** Signed founding|paid but `paid_at` still null, pipeline, not money. */
       signedUnpaidVenues: number;
@@ -269,7 +269,7 @@ export async function getTraction(): Promise<TractionState> {
     return {
       available: false,
       reason:
-        err instanceof Error && /TURSO_STUDIO/.test(err.message)
+        err instanceof Error && /STUDIO_DATABASE_URL/.test(err.message)
           ? "Studio Turso not configured on this host."
           : "Studio Turso unreachable, traction cannot be read.",
     };

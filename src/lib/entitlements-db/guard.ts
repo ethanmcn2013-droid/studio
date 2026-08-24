@@ -167,7 +167,10 @@ export type AnomalyKind =
   | "bulk_cap"
   | "drift"
   | "unknown_tier"
-  | "invalid_terms";
+  | "invalid_terms"
+  /** D-020 point 1: an unlimited sponsor crossed its fair-use ceiling. This
+   *  ALERTS and the issuance proceeds. Nothing may ever refuse on it. */
+  | "fair_use";
 export type AnomalySignal = { kind: AnomalyKind; actorId?: string; detail: string };
 type AnomalyListener = (s: AnomalySignal) => void;
 

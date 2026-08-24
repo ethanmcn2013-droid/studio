@@ -28,7 +28,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Signal Studio",
     short_name: "Studio",
     description:
-      "Project management for the 80% not in tech. Four small tools that read as one system.",
+      "Project management for people outside tech. Three products read as one system, with a daily briefing in Home.",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -63,7 +63,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Pricing",
         short_name: "Pricing",
         url: "/pricing",
-        description: "Workspace, Event, Student, one page.",
+        description: "Free, Student, Pro and Enterprise, one clear comparison.",
       },
       {
         name: "Timeline",

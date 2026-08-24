@@ -26,7 +26,15 @@ export type MetricValue =
   | { state: "exact"; value: number; denominator?: number }
   | { state: "lower_bound"; value: number; denominator?: number }
   | { state: "withheld"; reason: "small_group" }
-  | { state: "unavailable"; reason: string };
+  | { state: "unavailable"; reason: string }
+  /**
+   * There is no number, and that is the answer — not a suppression and not a
+   * gap in the data. Venue Edition entitlement is every couple who books
+   * (D-020), so a sponsored venue's allotment and headroom have no count to
+   * show. Rendering them as 0, or as "Unavailable", would both be lies about a
+   * venue that was sold "no seats, no per-couple maths".
+   */
+  | { state: "unlimited" };
 
 export type AccountIdentity = {
   accountId: string;

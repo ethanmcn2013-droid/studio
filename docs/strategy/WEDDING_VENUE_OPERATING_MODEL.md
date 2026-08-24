@@ -4,6 +4,10 @@ Status: active operating model - 2026-05-26
 Owner: founder
 Supersedes: scattered wedding/venue routing decisions across product pages, growth docs, and campaign notes.
 
+> **Amended 2026-08-03.** Commercial figures updated to the Founding 25: €1,500 standard,
+> €1,000 for the first 25 founding agreements, both VAT-inclusive. Source:
+> `content/hq/decisions/venue-edition-founding-25-2026-08-03.md`.
+
 ---
 
 ## The sentence
@@ -21,7 +25,7 @@ If a public page, sales note, demo, template, or product example does not suppor
 The paid Venue Edition is the business spine.
 
 - A venue pays once a year.
-- Every couple the venue sends gets eighteen months of Signal Studio.
+- Every couple the venue sends gets Signal Studio for eighteen months, or until three months after the wedding, whichever is later.
 - The venue name appears quietly on the workspace.
 - The couple never sees a price.
 - The venue does not run software. It hands over a code.
@@ -52,7 +56,7 @@ The venue buyer page.
 - Job: earn a venue conversation.
 - Allowed CTA: talk to us about your venue.
 - Allowed proof links: `/venues/demo`, `roadmap.signalstudio.ie/the-wedding`.
-- Pricing: `EUR1,500 per venue/year, prepaid`; founding venues lock that price for life.
+- Pricing: `EUR1,500 per venue/year, prepaid, VAT-inclusive`; the Founding 25 pay `EUR1,000 per venue/year` on the same terms, holding for as long as the agreement renews without lapse.
 - Must not route a venue buyer into self-serve wedding pricing as the primary path.
 
 ### `signalstudio.ie/venues/demo`

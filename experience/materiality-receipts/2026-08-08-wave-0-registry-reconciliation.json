@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "signal-experience-materiality-receipt/1",
+  "id": "studio-wave-0-registry-reconciliation-2026-08-08",
+  "reviewedAt": "2026-08-08",
+  "reviewedBy": "Codex Wave 0 control-plane review",
+  "scope": "studio",
+  "decision": "accept-current-source-hashes-without-claiming-visual-certification",
+  "evidence": "experience/materiality-receipts/2026-08-08-wave-0-registry-reconciliation.md",
+  "changedExperiences": [
+    { "id": "studio.artifact.brand-business-loan-pack-2026", "previousHash": "99052ef2c2ae5f2f", "currentHash": "b47292d6bb2e8f11" },
+    { "id": "studio.artifact.brand-market-entry-deck-2026", "previousHash": "cf7c95603a217bd3", "currentHash": "7b08dd4cbd86a7f4" },
+    { "id": "studio.artifact.brand-pitch-deck-2026", "previousHash": "21edb456f266d6a9", "currentHash": "bad87a85262c4e30" },
+    { "id": "studio.page.design", "previousHash": "ac6a2709f3c992e9", "currentHash": "d6abf1adc448156a" },
+    { "id": "studio.page.design-lab-product-handoff", "previousHash": "eb740bf5ea9343b2", "currentHash": "7ba80bcdcf659f10" },
+    { "id": "studio.page.hq-assets", "previousHash": "d0ddf5f557ad2ba4", "currentHash": "348539335ae787da" },
+    { "id": "studio.page.hq-entitlements", "previousHash": "b8d70763166cf655", "currentHash": "f9e2e1393d0a7603" },
+    { "id": "studio.page.hq-financial-model", "previousHash": "1b71bbd8761597bc", "currentHash": "5a54dfb53b0fd300" }
+  ],
+  "newExperiences": [
+    "studio.page.design-lab-delight-homepage-lineage",
+    "studio.page.design-lab-delight-route-continuity",
+    "studio.page.hq-asset-curator"
+  ],
+  "refreshedDerivedMetadata": [
+    "studio.page.about",
+    "studio.page.dispatch",
+    "studio.page.features-daily-briefing",
+    "studio.page.hq-account-review",
+    "studio.page.hq-one-pagers-brand",
+    "studio.page.hq-venue-portal-review",
+    "studio.page.press",
+    "studio.page.pricing",
+    "studio.page.proof",
+    "studio.page.redeem-by-code",
+    "studio.page.signal",
+    "studio.page.students",
+    "studio.page.teachers",
+    "studio.page.terms",
+    "studio.page.venues",
+    "studio.page.venues-demo",
+    "studio.page.weddings",
+    "studio.page.work",
+    "studio.surface.products-mega-panel"
+  ],
+  "coverageBoundary": "Existing coverage values are preserved. Registration is not visual, accessibility, or production certification."
+}

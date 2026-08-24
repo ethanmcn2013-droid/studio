@@ -36,12 +36,12 @@ function need(name) {
 }
 
 const studio = createClient({
-  url: need("TURSO_STUDIO_DATABASE_URL"),
-  authToken: process.env.TURSO_STUDIO_AUTH_TOKEN,
+  url: need("STUDIO_DATABASE_URL"),
+  authToken: process.env.STUDIO_AUTH_TOKEN,
 });
 const shared = createClient({
-  url: need("TURSO_ENTITLEMENTS_DATABASE_URL"),
-  authToken: process.env.TURSO_ENTITLEMENTS_AUTH_TOKEN,
+  url: need("ENTITLEMENTS_DATABASE_URL"),
+  authToken: process.env.ENTITLEMENTS_AUTH_TOKEN,
 });
 
 console.log(DRY ? "=== backfill DRY RUN ===" : "=== backfill APPLY ===");

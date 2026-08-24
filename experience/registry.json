@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-experience/1",
-  "generatedAt": "2026-07-28",
+  "generatedAt": "2026-08-08",
   "breakpoints": {
     "mobile": {
       "width": 390,
@@ -2562,7 +2562,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "99052ef2c2ae5f2f"
+      "materialityHash": "b47292d6bb2e8f11"
     },
     {
       "id": "studio.artifact.brand-collateral-ambassador",
@@ -2914,7 +2914,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "cf7c95603a217bd3"
+      "materialityHash": "7b08dd4cbd86a7f4"
     },
     {
       "id": "studio.artifact.brand-motion-brief",
@@ -3002,7 +3002,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "21edb456f266d6a9"
+      "materialityHash": "bad87a85262c4e30"
     },
     {
       "id": "studio.artifact.brand-press",
@@ -3093,6 +3093,182 @@
       "materialityHash": "b795c0df1d975359"
     },
     {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-board",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/board",
+      "source": "studio/public/hq/labs/tasks-studio-floor/board.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · board.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · board.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "25e0b2ee548159df"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-floor",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/floor",
+      "source": "studio/public/hq/labs/tasks-studio-floor/floor.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · floor.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · floor.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "c1844ba4ba8443fd"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-record",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/record",
+      "source": "studio/public/hq/labs/tasks-studio-floor/record.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · record.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · record.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "80f51b7b5c4d5bdd"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-rounds",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/rounds",
+      "source": "studio/public/hq/labs/tasks-studio-floor/rounds.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · rounds.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · rounds.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "e6d2f697172a987a"
+    },
+    {
       "id": "studio.page.about",
       "product": "studio",
       "experienceClass": "company-public",
@@ -3124,17 +3300,17 @@
       "designOwner": "product-taste-design-integrity",
       "engineeringOwner": "engineering-systems-architecture",
       "implementationStatus": "legacy",
-      "auditStatus": "registered",
+      "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "0a3d79cbfbe52849"
+      "materialityHash": "4f5f3ef630ef8086"
     },
     {
       "id": "studio.page.accessibility",
@@ -3225,100 +3401,6 @@
       "materialityHash": "c1e7df656e0f3162"
     },
     {
-      "id": "studio.page.compare-by-slug",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/compare/[slug]",
-      "source": "studio/src/app/compare/[slug]/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "detail-or-record-view",
-      "primaryJob": "Understand and use compare · selected record.",
-      "primaryAction": "Complete the primary action on compare · selected record.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "f1a27e775165e91b"
-    },
-    {
-      "id": "studio.page.contact",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/contact",
-      "source": "studio/src/app/contact/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "create-and-edit-form",
-      "primaryJob": "Understand and use contact.",
-      "primaryAction": "Complete the primary action on contact.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "loading",
-        "error",
-        "success",
-        "disabled",
-        "saved",
-        "unsaved",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "core",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "81f84f68b5ac55db"
-    },
-    {
       "id": "studio.page.design",
       "product": "studio",
       "experienceClass": "company-public",
@@ -3360,93 +3442,7 @@
       "lastReviewedAt": "2026-07-16",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
-      "materialityHash": "ac6a2709f3c992e9"
-    },
-    {
-      "id": "studio.page.design-lab-brand-guidelines",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/__design-lab/brand-guidelines",
-      "source": "studio/src/app/%5F%5Fdesign-lab/brand-guidelines/page.tsx",
-      "parentJourney": "experience-review",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
-      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "core",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "baseline-captured",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "complete",
-      "screenshotCoverage": "complete",
-      "accessibilityCoverage": "complete",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-07-28",
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "41daf3feb8d73a32"
-    },
-    {
-      "id": "studio.page.design-lab-product-handoff",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/__design-lab/product-handoff",
-      "source": "studio/src/app/%5F%5Fdesign-lab/product-handoff/page.tsx",
-      "parentJourney": "experience-review",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
-      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "core",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "baseline-captured",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "complete",
-      "screenshotCoverage": "complete",
-      "accessibilityCoverage": "complete",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-07-28",
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "eb740bf5ea9343b2"
+      "materialityHash": "d6abf1adc448156a"
     },
     {
       "id": "studio.page.dispatch",
@@ -3490,7 +3486,51 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1f9bd1cc0750b823"
+      "materialityHash": "0ab04436cf8321ba"
+    },
+    {
+      "id": "studio.page.features-daily-briefing",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/features/daily-briefing",
+      "source": "studio/src/app/features/daily-briefing/page.tsx",
+      "parentJourney": "public-discovery-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use features · daily briefing.",
+      "primaryAction": "Complete the primary action on features · daily briefing.",
+      "roles": [
+        "public"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "ed1b54098fb4e8bf"
     },
     {
       "id": "studio.page.hq",
@@ -3588,6 +3628,50 @@
       "materialityHash": "b4ef514553447138"
     },
     {
+      "id": "studio.page.hq-account-review",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/account-review",
+      "source": "studio/src/app/hq/account-review/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "settings-and-administration",
+      "primaryJob": "Understand and use hq · account review.",
+      "primaryAction": "Complete the primary action on hq · account review.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "5d25a55b2804431b"
+    },
+    {
       "id": "studio.page.hq-action-center",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -3676,6 +3760,53 @@
       "materialityHash": "8a6654e37a55d26d"
     },
     {
+      "id": "studio.page.hq-asset-curator",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/asset-curator",
+      "source": "studio/src/app/hq/asset-curator/page.tsx",
+      "parentJourney": "founder-operations",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review and curate brand assets inside the private founder workspace.",
+      "primaryAction": "Inspect an asset and record the curation decision.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "empty",
+        "populated",
+        "error",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "live",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": "2026-08-08",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "bccf5bff16244991"
+    },
+    {
       "id": "studio.page.hq-assets",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -3717,7 +3848,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d0ddf5f557ad2ba4"
+      "materialityHash": "348539335ae787da"
     },
     {
       "id": "studio.page.hq-atlas",
@@ -4528,7 +4659,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b8d70763166cf655"
+      "materialityHash": "f9e2e1393d0a7603"
     },
     {
       "id": "studio.page.hq-entitlements-by-lookup",
@@ -4704,7 +4835,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1b71bbd8761597bc"
+      "materialityHash": "5a54dfb53b0fd300"
     },
     {
       "id": "studio.page.hq-founders-circle",
@@ -5144,7 +5275,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b20b4e5f95d76d1e"
+      "materialityHash": "60d1ade4f48b95c5"
     },
     {
       "id": "studio.page.hq-one-pagers-notes",
@@ -5964,50 +6095,6 @@
       "materialityHash": "6beb18e268e8c8bd"
     },
     {
-      "id": "studio.page.hq-account-review",
-      "product": "studio",
-      "experienceClass": "founder-operator",
-      "surfaceType": "page",
-      "route": "/hq/account-review",
-      "source": "studio/src/app/hq/account-review/page.tsx",
-      "parentJourney": "founder-operations",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Review the selected Account Brief Venue Edition system on deterministic fixtures.",
-      "primaryAction": "Inspect Overview, Access, Usage, Reports, Account, and sample downloads.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "5d25a55b2804431b"
-    },
-    {
       "id": "studio.page.hq-venue-portal-review",
       "product": "studio",
       "experienceClass": "founder-operator",
@@ -6016,8 +6103,8 @@
       "source": "studio/src/app/hq/venue-portal-review/page.tsx",
       "parentJourney": "founder-operations",
       "archetype": "review-and-approval-workspace",
-      "primaryJob": "Redirect legacy Venue Portal review links to Account review.",
-      "primaryAction": "Follow the redirect to /hq/account-review.",
+      "primaryJob": "Understand and use hq · venue portal review.",
+      "primaryAction": "Complete the primary action on hq · venue portal review.",
       "roles": [
         "founder"
       ],
@@ -6090,10 +6177,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "8bf97852165414e8"
+      "materialityHash": "f7ad19274d0e541a"
     },
     {
       "id": "studio.page.hq-waitlist",
@@ -6145,50 +6232,6 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2dab7382c2c83877"
-    },
-    {
-      "id": "studio.page.ios",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/ios",
-      "source": "studio/src/app/ios/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use ios.",
-      "primaryAction": "Complete the primary action on ios.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "ea4a4784d5614c41"
     },
     {
       "id": "studio.page.notes",
@@ -6276,7 +6319,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "7996d2e1b7df8e58"
+      "materialityHash": "945299f92811796f"
     },
     {
       "id": "studio.page.pricing",
@@ -6310,17 +6353,17 @@
       "designOwner": "product-taste-design-integrity",
       "engineeringOwner": "engineering-systems-architecture",
       "implementationStatus": "legacy",
-      "auditStatus": "registered",
+      "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f9ab6a89e3e2e908"
+      "materialityHash": "1651da728db4b885"
     },
     {
       "id": "studio.page.principles",
@@ -6361,10 +6404,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "ca8c3f1605254850"
+      "materialityHash": "21cf54fb47cdd338"
     },
     {
       "id": "studio.page.privacy",
@@ -6405,54 +6448,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "34bd129dcfa8e519"
-    },
-    {
-      "id": "studio.page.proof",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/proof",
-      "source": "studio/src/app/proof/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use proof.",
-      "primaryAction": "Complete the primary action on proof.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "9d8885654f9dd89f"
+      "materialityHash": "2b72e964ac67778c"
     },
     {
       "id": "studio.page.redeem-by-code",
@@ -6498,7 +6497,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "d2058ed057e0354a"
+      "materialityHash": "205fa4ca258cfd64"
     },
     {
       "id": "studio.page.root",
@@ -6535,14 +6534,14 @@
       "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "partial",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b8794749e6b9ec62"
+      "materialityHash": "b00539fb463cbd83"
     },
     {
       "id": "studio.page.security",
@@ -6630,7 +6629,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "f9daffa65a4e7ba8"
+      "materialityHash": "856b4bc68707bf0f"
     },
     {
       "id": "studio.page.students",
@@ -6671,10 +6670,10 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "bf5b0a7a6d21ee60"
+      "materialityHash": "8d51f625e73df46a"
     },
     {
       "id": "studio.page.tasks",
@@ -6721,94 +6720,6 @@
       "materialityHash": "1dd5d38939710b53"
     },
     {
-      "id": "studio.page.teachers",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/teachers",
-      "source": "studio/src/app/teachers/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use teachers.",
-      "primaryAction": "Complete the primary action on teachers.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "008fc30678dd76d6"
-    },
-    {
-      "id": "studio.page.templates",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/templates",
-      "source": "studio/src/app/templates/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use templates.",
-      "primaryAction": "Complete the primary action on templates.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "b55b6385ecd292b3"
-    },
-    {
       "id": "studio.page.terms",
       "product": "studio",
       "experienceClass": "company-public",
@@ -6847,10 +6758,10 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-15",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "b15d88ea68dd6d52"
+      "materialityHash": "da89a7b679f321d5"
     },
     {
       "id": "studio.page.timeline",
@@ -6938,51 +6849,7 @@
       "lastReviewedAt": null,
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "1c495f57ce696265"
-    },
-    {
-      "id": "studio.page.venues-demo",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/venues/demo",
-      "source": "studio/src/app/venues/demo/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use venues · demo.",
-      "primaryAction": "Complete the primary action on venues · demo.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "a5b3c92d53c4bac9"
+      "materialityHash": "c80f1710913e6b81"
     },
     {
       "id": "studio.page.waitlist",
@@ -7034,94 +6901,6 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2cb463735ea5df40"
-    },
-    {
-      "id": "studio.page.weddings",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/weddings",
-      "source": "studio/src/app/weddings/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use weddings.",
-      "primaryAction": "Complete the primary action on weddings.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "27a463ffd9d2fcdc"
-    },
-    {
-      "id": "studio.page.work",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/work",
-      "source": "studio/src/app/work/page.tsx",
-      "parentJourney": "public-discovery-and-proof",
-      "archetype": "public-information-and-proof",
-      "primaryJob": "Understand and use work.",
-      "primaryAction": "Complete the primary action on work.",
-      "roles": [
-        "public"
-      ],
-      "requiredStates": [
-        "default",
-        "long-content",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "supporting",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "legacy",
-      "auditStatus": "registered",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "739b6f13db0a6d2b"
     },
     {
       "id": "studio.state.root-error",
@@ -7399,7 +7178,7 @@
       "source": "studio/src/components/layout/products-mega-panel.tsx",
       "parentJourney": "suite-navigation",
       "archetype": "application-shell-and-navigation",
-      "primaryJob": "Understand the four product roles before switching.",
+      "primaryJob": "Understand the three product roles before switching.",
       "primaryAction": "Open a product.",
       "roles": [
         "public"
@@ -7422,17 +7201,17 @@
       "designOwner": "product-taste-design-integrity",
       "engineeringOwner": "engineering-systems-architecture",
       "implementationStatus": "legacy",
-      "auditStatus": "registered",
+      "auditStatus": "baseline-captured",
       "auditScore": null,
       "openFindingIds": [],
-      "automatedTestCoverage": "none",
-      "screenshotCoverage": "none",
-      "accessibilityCoverage": "none",
-      "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-08-09",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "85de6120aa658e82"
+      "materialityHash": "1922e7c34b596f93"
     },
     {
       "id": "studio.surface.site-navigation",
@@ -7474,10 +7253,10 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-07-28",
+      "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "abcd3026519fea2c"
+      "materialityHash": "823611d9eaee6f5e"
     },
     {
       "id": "tasks.page.about",
@@ -11477,6 +11256,92 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.design-lab-brand-guidelines",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/brand-guidelines",
+      "source": "studio/src/app/%5F%5Fdesign-lab/brand-guidelines/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "41daf3feb8d73a32"
+    },
+    {
+      "id": "studio.page.design-lab-product-handoff",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/product-handoff",
+      "source": "studio/src/app/%5F%5Fdesign-lab/product-handoff/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
+      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "eb740bf5ea9343b2"
     }
   ]
 }

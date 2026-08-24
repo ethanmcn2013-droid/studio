@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Signal Studio, Project Management for the 80% not in tech";
+export const alt = "Signal Studio, project management for people outside tech";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

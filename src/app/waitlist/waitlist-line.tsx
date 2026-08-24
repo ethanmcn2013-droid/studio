@@ -14,6 +14,12 @@ import { initialWaitlistFormState } from "./types";
 
 const WAITING = 16;
 
+const PRICING_PLAN_NAMES: Readonly<Record<string, string>> = {
+  pricing_free: "Free",
+  pricing_student: "Student",
+  pricing_pro: "Pro",
+};
+
 type Props = {
   source: string;
   campaign: string;
@@ -29,6 +35,9 @@ export function WaitlistLine(props: Props) {
     initialWaitlistFormState,
   );
   const done = state.status === "success";
+  const planName = props.artifact
+    ? PRICING_PLAN_NAMES[props.artifact]
+    : undefined;
 
   return (
     <section className="wl">
@@ -44,6 +53,13 @@ export function WaitlistLine(props: Props) {
           gate is ready. Add your name and we write when your batch is ready,
           not before.
         </p>
+
+        {planName ? (
+          <p className="wl-selection">
+            You came from <strong>{planName}</strong>. You can change plans
+            before access.
+          </p>
+        ) : null}
 
         <div className="wl-queue" aria-hidden>
           <span className="wl-line">
@@ -87,6 +103,7 @@ export function WaitlistLine(props: Props) {
               className="wl-pot"
               type="text"
               name="company"
+              hidden
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
@@ -111,7 +128,9 @@ export function WaitlistLine(props: Props) {
           </p>
         ) : null}
 
-        <p className="wl-foot">No newsletter. No noise. Just the access window.</p>
+        <p className="wl-foot">
+          No card. No charge. No newsletter. Just the access window.
+        </p>
       </div>
 
       <style>{`
@@ -126,8 +145,9 @@ export function WaitlistLine(props: Props) {
         .wl-rule { width: 132px; height: 1px; margin: 0 auto 30px; background: var(--accent); }
         .wl-eyebrow,
         .wl-headline,
-        .wl-lede,
-        .wl-queue,
+         .wl-lede,
+         .wl-selection,
+         .wl-queue,
         .wl-queue-label,
         .wl-form,
         .wl-echo,
@@ -168,6 +188,17 @@ export function WaitlistLine(props: Props) {
           font-size: clamp(1rem, 0.96rem + 0.3vw, 1.16rem);
           line-height: 1.62;
           animation-delay: 0.12s;
+        }
+        .wl-selection {
+          margin: 20px auto 0;
+          color: var(--ink-faint);
+          font-size: 13px;
+          line-height: 1.5;
+          animation-delay: 0.16s;
+        }
+        .wl-selection strong {
+          color: var(--ink);
+          font-weight: 600;
         }
         .wl-queue { display: flex; justify-content: center; margin: 54px auto 0; min-height: 16px; animation-delay: 0.2s; }
         .wl-line { position: relative; display: inline-flex; align-items: center; gap: 13px; padding-right: 2px; }
@@ -258,7 +289,7 @@ export function WaitlistLine(props: Props) {
           text-transform: uppercase;
           animation-delay: 0.38s;
         }
-        @keyframes wl-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes wl-in { from { opacity: 1; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes wl-dot-in { from { transform: translateY(-0.02em) scale(0); } to { transform: translateY(-0.02em) scale(1); } }
         @keyframes wl-settle { to { transform: translateX(0) scale(1); } }
         @keyframes wl-arrive { from { transform: translateX(20px) scale(0.4); opacity: 0; } to { transform: translateX(0) scale(1); opacity: 1; } }
@@ -269,7 +300,7 @@ export function WaitlistLine(props: Props) {
           .wl-form button { width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .wl-eyebrow, .wl-headline, .wl-lede, .wl-queue, .wl-queue-label,
+          .wl-eyebrow, .wl-headline, .wl-lede, .wl-selection, .wl-queue, .wl-queue-label,
           .wl-form, .wl-echo, .wl-foot { animation: none; opacity: 1; transform: none; }
           .wl-headline-dot { animation: none; transform: translateY(-0.02em) scale(1); }
           .wl-dot { animation: none; transform: none; }

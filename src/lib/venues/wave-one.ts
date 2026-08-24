@@ -31,7 +31,6 @@ export type VenueTarget = {
   links: {
     source: string;
     venuePage: string;
-    demo: string;
     contact: string;
   };
 };
@@ -121,14 +120,16 @@ function contactUrl(venue: string) {
     venue,
   });
 
-  return `${BASE_URL}/contact?${params.toString()}`;
+  // D5. Contact is an anchored section on /about. Params before the
+  // fragment, so the tracked link still prefills the subject server-side
+  // and the browser still lands on the section.
+  return `${BASE_URL}/about?${params.toString()}#contact`;
 }
 
 function links(slug: string, source: string) {
   return {
     source,
     venuePage: trackedUrl("/venues", slug, "venue_page"),
-    demo: trackedUrl("/venues/demo", slug, "venue_demo"),
     contact: contactUrl(slug),
   };
 }
@@ -445,7 +446,7 @@ export const VENUE_FAQ_OBJECTIONS: VenueFaqObjection[] = [
   {
     objection: "Who else uses it?",
     answer:
-      "This is the founding cohort. The early venues are shaping the motion before there is a case study, which is why the first fifteen lock the fixed €1,500 price for as long as they stay.",
+      "This is the Founding 25. The early venues are shaping the motion before there is a case study, which is why the first twenty-five pay €1,000 instead of €1,500, held for as long as they stay. There is no territorial exclusivity: other venues nearby can hold a place too, and we say so before signature rather than after.",
     useWhen: "The buyer asks for social proof before it exists.",
   },
   {

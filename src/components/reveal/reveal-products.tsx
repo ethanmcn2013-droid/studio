@@ -88,7 +88,7 @@ export function RevealProducts() {
   return (
     <section className="reveal-products">
       {/*
-        Walkover #13 (2026-06-07): pushback on the "four products · one
+        Walkover #13 (2026-06-07): pushback on the "three products · one
         system" framing. The reader's mental model isn't products and a
         system, it's a day of work and where the parts of it live.
       */}

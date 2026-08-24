@@ -1,8 +1,8 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { and, count, eq, gt, isNull, sql } from "drizzle-orm";
+import { and, count, eq, gt, gte, isNull, or, sql } from "drizzle-orm";
 import { entitlementsDb } from "./client";
-import { appendEvent } from "./audit";
+import { appendEvent, type EntitlementsTx } from "./audit";
 import { assertBulkAllowed, reportAnomaly, requireActor, type MutationActor } from "./guard";
 import {
   ENTITLEMENT_TIERS,
@@ -14,7 +14,13 @@ import {
   type EntitlementTier,
 } from "./schema";
 import { codeAuditProjection } from "./pure";
-import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
+import {
+  coupleAccessExpiryMs,
+  extendedCoupleAccessExpiryMs,
+  normaliseWeddingDateMs,
+  venueEditionDurationRefusal,
+} from "@/lib/venue-edition";
+import { fairUseBreach, isUnlimitedSponsor } from "@/lib/venue-allotment";
 
 /**
  * Shared-DB code lifecycle: mint (race-safe allotment invariant), redeem
@@ -43,6 +49,59 @@ export const REDEEM_IP_MAX = num(process.env.ACCESS_REDEEM_IP_MAX, 8);
 /** Max orphans a single reconcile run will compensate (per-run blast cap). */
 export const RECONCILE_MAX_PER_RUN = num(process.env.ACCESS_RECONCILE_MAX, 200);
 
+/**
+ * D-020 point 1 — "fair use notifies, never blocks". Emits an anomaly when an
+ * unlimited sponsor's issuance crosses its ceiling, and returns. It has no
+ * refusal path and must never grow one.
+ *
+ * Issuance is counted **within the current licence term**, because the ceiling
+ * is derived from the venue's own ANNUAL wedding count (D-020 point 4).
+ * Comparing an annual figure against the lifetime codes_issued counter would
+ * fire on every venue in its second year, and an alert that cries wolf is an
+ * alert nobody reads.
+ */
+async function reportFairUse(
+  tx: EntitlementsTx,
+  input: { sponsorId: string; requested: number; actorId: string },
+): Promise<void> {
+  const [s] = await tx
+    .select({
+      allotmentMode: sponsors.allotmentMode,
+      fairUseCeiling: sponsors.fairUseCeiling,
+      termStartsAt: sponsors.termStartsAt,
+      slug: sponsors.slug,
+    })
+    .from(sponsors)
+    .where(eq(sponsors.id, input.sponsorId))
+    .limit(1);
+  if (!s || !isUnlimitedSponsor(s) || s.fairUseCeiling == null) return;
+
+  const [row] = await tx
+    .select({ n: count() })
+    .from(licenseCodes)
+    .where(
+      s.termStartsAt != null
+        ? and(
+            eq(licenseCodes.sponsorId, input.sponsorId),
+            gte(licenseCodes.createdAt, s.termStartsAt),
+          )
+        : eq(licenseCodes.sponsorId, input.sponsorId),
+    );
+
+  const verdict = fairUseBreach({
+    fairUseCeiling: s.fairUseCeiling,
+    issuedInTerm: row?.n ?? 0,
+    requested: input.requested,
+  });
+  if (!verdict?.breached) return;
+
+  reportAnomaly({
+    kind: "fair_use",
+    actorId: input.actorId,
+    detail: `${s.slug} issuance ${verdict.wouldReach} crosses its fair-use ceiling ${verdict.ceiling} this term. Issuing anyway — unlimited means unlimited.`,
+  });
+}
+
 function assertKnownTier(tier: string): asserts tier is EntitlementTier {
   if (!(ENTITLEMENT_TIERS as readonly string[]).includes(tier)) {
     reportAnomaly({ kind: "unknown_tier", detail: `code tier '${tier}'` });
@@ -53,14 +112,28 @@ function assertKnownTier(tier: string): asserts tier is EntitlementTier {
 // ── Mint ────────────────────────────────────────────────────────────────
 
 /**
- * Mint license codes for a sponsor under a HARD allotment invariant enforced
- * by a race-safe conditional decrement:
+ * Mint license codes for a sponsor.
+ *
+ * A **limited** sponsor keeps the HARD allotment invariant, enforced by a
+ * race-safe conditional bump:
  *   UPDATE sponsors SET codes_issued = codes_issued + N
  *     WHERE id=? AND codes_issued + N <= code_allotment
  * Zero rows updated => refuse (no headroom, or a null allotment = not
- * mint-eligible). The counter bump and the code inserts commit in ONE
- * transaction, so two concurrent mints can never both slip past the cap.
- * High-tier cohort codes carry a recipient_email_hash lock.
+ * mint-eligible).
+ *
+ * An **unlimited** sponsor (R-016, under D-020) is the ratified Venue Edition
+ * entitlement — every couple who books, for as long as the licence is
+ * current — and the cap clause simply does not apply. The mode test lives
+ * INSIDE the same conditional UPDATE rather than in a read-then-write, so the
+ * statement stays a single atomic claim and two concurrent mints still cannot
+ * both slip past a limited sponsor's cap.
+ *
+ * Crossing an unlimited sponsor's fair-use ceiling ALERTS and proceeds
+ * (D-020 point 1). Nothing here may ever refuse on that number: a numeric
+ * pause must not exist behind a promise that says unlimited.
+ *
+ * The counter bump and the code inserts commit in ONE transaction. High-tier
+ * cohort codes carry a recipient_email_hash lock.
  */
 export async function mintLicenseCodes(input: {
   sponsorId: string;
@@ -75,18 +148,21 @@ export async function mintLicenseCodes(input: {
   const n = input.codes.length;
   if (n === 0) return { minted: 0 };
   assertKnownTier(input.tier);
-  if (
-    input.sourceType === "venue_edition" &&
-    (input.tier !== "wedding" ||
-      input.durationDays !== VENUE_EDITION_COUPLE_ACCESS_DAYS)
-  ) {
-    reportAnomaly({
-      kind: "invalid_terms",
-      detail: `venue_edition code terms '${input.tier}/${input.durationDays ?? "null"}'`,
-    });
-    throw new Error(
-      `Venue Edition codes must use wedding access for ${VENUE_EDITION_COUPLE_ACCESS_DAYS} days`,
-    );
+  if (input.sourceType === "venue_edition") {
+    // R-015 / D-022 point 4. This used to demand exactly 548 days, which made
+    // the ratified grace term unmintable. It now accepts any computed
+    // duration at or above the floor and refuses anything below it.
+    const refusal =
+      input.tier !== "wedding"
+        ? `Venue Edition codes must use the wedding tier (got '${input.tier}')`
+        : venueEditionDurationRefusal(input.durationDays);
+    if (refusal) {
+      reportAnomaly({
+        kind: "invalid_terms",
+        detail: `venue_edition code terms '${input.tier}/${input.durationDays ?? "null"}'`,
+      });
+      throw new Error(refusal);
+    }
   }
   const actor = requireActor(input.actor);
   assertBulkAllowed(n);
@@ -100,7 +176,10 @@ export async function mintLicenseCodes(input: {
       .where(
         and(
           eq(sponsors.id, input.sponsorId),
-          sql`${sponsors.codesIssued} + ${n} <= ${sponsors.codeAllotment}`,
+          or(
+            eq(sponsors.allotmentMode, "unlimited"),
+            sql`${sponsors.codesIssued} + ${n} <= ${sponsors.codeAllotment}`,
+          ),
         ),
       )
       .returning({ codesIssued: sponsors.codesIssued, codeAllotment: sponsors.codeAllotment });
@@ -125,6 +204,12 @@ export async function mintLicenseCodes(input: {
         `mint refused: would exceed allotment (${n} requested, ${remaining < 0 ? 0 : remaining} remaining)`,
       );
     }
+
+    await reportFairUse(tx, {
+      sponsorId: input.sponsorId,
+      requested: n,
+      actorId: actor.actorId,
+    });
 
     for (const c of input.codes) {
       const id = genCodeId();
@@ -156,6 +241,32 @@ export async function mintLicenseCodes(input: {
 
 // ── Redeem ──────────────────────────────────────────────────────────────
 
+/**
+ * The one place redemption expiry is decided, shared by `redeemLicenseCode`
+ * and the orphan reconciler so the two can never diverge.
+ *
+ * Venue Edition rows carry the ratified term (D-010, D-022):
+ * `max(redemption + 548 days, wedding date + 90 days)`. Everything else keeps
+ * the flat duration it always had, and a null duration still means no expiry.
+ */
+function expiryForRedemption(input: {
+  sourceType: string;
+  durationDays: number | null;
+  redeemedAtMs: number;
+  weddingDateMs: number | null;
+}): number | null {
+  if (input.sourceType === "venue_edition") {
+    return coupleAccessExpiryMs({
+      redeemedAtMs: input.redeemedAtMs,
+      weddingDateMs: input.weddingDateMs,
+      mintedDurationDays: input.durationDays,
+    });
+  }
+  return input.durationDays != null && input.durationDays > 0
+    ? input.redeemedAtMs + input.durationDays * DAY_MS
+    : null;
+}
+
 export type RedeemResult =
   | { state: "redeemed"; entitlementId: string; created: boolean }
   | { state: "already_used_by_other" }
@@ -179,6 +290,13 @@ export async function redeemLicenseCode(input: {
   userAgent?: string | null;
   recipientEmailHash?: string | null;
   origin?: string | null;
+  /**
+   * R-015 · D-022 point 1. The couple's wedding day, `YYYY-MM-DD` or a UTC
+   * epoch. Optional: if it is genuinely unknown at redemption the term falls
+   * back to the 548-day floor and `setCoupleWeddingDate` recomputes the moment
+   * it is set.
+   */
+  weddingDate?: string | number | null;
 }): Promise<RedeemResult> {
   const actor = requireActor(input.actor);
   const code = input.code.trim().toUpperCase();
@@ -258,8 +376,16 @@ export async function redeemLicenseCode(input: {
     // Commit: entitlement + redemption + event, all in this transaction.
     assertKnownTier(lc.tier);
     const entId = genEntId();
-    const expiresAt =
-      lc.durationDays != null && lc.durationDays > 0 ? now + lc.durationDays * DAY_MS : null;
+    const weddingDate =
+      lc.sourceType === "venue_edition"
+        ? normaliseWeddingDateMs(input.weddingDate ?? null)
+        : null;
+    const expiresAt = expiryForRedemption({
+      sourceType: lc.sourceType,
+      durationDays: lc.durationDays,
+      redeemedAtMs: now,
+      weddingDateMs: weddingDate,
+    });
     await tx.insert(entitlements).values({
       id: entId,
       userClerkId: input.userClerkId,
@@ -267,6 +393,7 @@ export async function redeemLicenseCode(input: {
       source: lc.sourceType as EntitlementSource,
       sourceRef: `redeem:${lc.id}`,
       expiresAt,
+      weddingDate,
       status: "active",
       billingState: "none",
       batchId: lc.batchId ?? null,
@@ -363,8 +490,17 @@ export async function reconcileCodes(input: {
       if (!entId) {
         entId = genEntId();
         const base = o.redeemedAt ?? now;
-        const expiresAt =
-          o.durationDays != null && o.durationDays > 0 ? base + o.durationDays * DAY_MS : null;
+        // Same rule as the redeem path. A compensated venue_edition orphan has
+        // no wedding date to hand — the couple supplied it to Tasks, not to
+        // this reconciler — so it lands on the floor and is corrected upward
+        // by setCoupleWeddingDate. Access can only move later, so the repair
+        // is never the thing that shortens a term.
+        const expiresAt = expiryForRedemption({
+          sourceType: o.sourceType,
+          durationDays: o.durationDays,
+          redeemedAtMs: base,
+          weddingDateMs: null,
+        });
         await tx.insert(entitlements).values({
           id: entId,
           userClerkId: o.userClerkId,
@@ -419,4 +555,121 @@ export async function reconcileCodes(input: {
   });
 
   return { orphansFound: orphans.length, orphansRepaired: repaired, drift };
+}
+
+// ── Wedding date (R-015 · D-022 point 3) ────────────────────────────────
+
+export type WeddingDateResult =
+  | { state: "updated"; entitlementId: string; expiresAt: number | null; extendedBy: number }
+  | { state: "unchanged"; entitlementId: string; expiresAt: number | null }
+  | { state: "not_found" }
+  | { state: "not_sponsored" }
+  | { state: "invalid_date" };
+
+/**
+ * Record or change a couple's wedding date and recompute their access term.
+ *
+ * The one invariant this function exists to hold: **access only ever moves
+ * later.** A postponement extends it automatically — postponements are common
+ * and a couple must never have to ask. A correction that would pull the date
+ * back leaves the expiry exactly where it was.
+ *
+ * That is deliberate, and it does mean a couple who mistypes 2028 and fixes it
+ * to 2027 keeps the longer term. Granting a few extra months of a product the
+ * venue has already paid for is a far cheaper error than taking access away
+ * from someone who has started planning inside it.
+ *
+ * The audit event records the expiry change only. The wedding date itself is
+ * personal data and the ledger's before/after payloads are explicitly
+ * PII-free (see audit.ts) — a date tied to an entitlement id would breach
+ * that, and the current value is already on the row for anyone entitled to
+ * read it.
+ */
+export async function setCoupleWeddingDate(input: {
+  entitlementId: string;
+  weddingDate: string | number | null;
+  actor: MutationActor;
+  origin?: string | null;
+}): Promise<WeddingDateResult> {
+  const actor = requireActor(input.actor);
+  const weddingDate = normaliseWeddingDateMs(input.weddingDate);
+  if (input.weddingDate != null && weddingDate == null) {
+    return { state: "invalid_date" };
+  }
+  const db = entitlementsDb();
+
+  return db.transaction(async (tx) => {
+    const [row] = await tx
+      .select({
+        id: entitlements.id,
+        userClerkId: entitlements.userClerkId,
+        source: entitlements.source,
+        sourceRef: entitlements.sourceRef,
+        grantedAt: entitlements.grantedAt,
+        expiresAt: entitlements.expiresAt,
+        weddingDate: entitlements.weddingDate,
+        batchId: entitlements.batchId,
+      })
+      .from(entitlements)
+      .where(eq(entitlements.id, input.entitlementId))
+      .limit(1);
+
+    if (!row) return { state: "not_found" };
+    if (row.source !== "venue_edition") return { state: "not_sponsored" };
+
+    // The minted duration is the venue's own floor when it knew a long-lead
+    // date at issue time. Recovered through the redeem source ref.
+    let mintedDurationDays: number | null = null;
+    const codeId = row.sourceRef?.startsWith("redeem:")
+      ? row.sourceRef.slice("redeem:".length)
+      : null;
+    if (codeId) {
+      const [lc] = await tx
+        .select({ durationDays: licenseCodes.durationDays })
+        .from(licenseCodes)
+        .where(eq(licenseCodes.id, codeId))
+        .limit(1);
+      mintedDurationDays = lc?.durationDays ?? null;
+    }
+
+    const nextExpiry = extendedCoupleAccessExpiryMs({
+      currentExpiresAtMs: row.expiresAt,
+      redeemedAtMs: row.grantedAt,
+      weddingDateMs: weddingDate,
+      mintedDurationDays,
+    });
+
+    const dateChanged = (row.weddingDate ?? null) !== weddingDate;
+    const expiryChanged = (row.expiresAt ?? null) !== (nextExpiry ?? null);
+    if (!dateChanged && !expiryChanged) {
+      return { state: "unchanged", entitlementId: row.id, expiresAt: row.expiresAt };
+    }
+
+    await tx
+      .update(entitlements)
+      .set({ weddingDate, expiresAt: nextExpiry, updatedAt: Date.now() })
+      .where(eq(entitlements.id, row.id));
+
+    if (expiryChanged) {
+      await appendEvent(tx, {
+        action: "extend",
+        entitlementId: row.id,
+        userClerkId: row.userClerkId,
+        batchId: row.batchId ?? null,
+        actorId: actor.actorId,
+        actorName: actor.actorName,
+        reason: "wedding date recorded: access term recomputed, never shortened",
+        before: { expiresAt: row.expiresAt },
+        after: { expiresAt: nextExpiry },
+        origin: input.origin ?? "wedding-date",
+      });
+    }
+
+    return {
+      state: "updated",
+      entitlementId: row.id,
+      expiresAt: nextExpiry,
+      extendedBy: (nextExpiry ?? 0) - (row.expiresAt ?? 0),
+    };
+  });
 }

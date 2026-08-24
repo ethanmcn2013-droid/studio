@@ -6,7 +6,7 @@ status: Ready for Ethan
 startDate: 2026-05-13
 endDate: 2026-06-30
 progress: 80
-relatedLandingPage: /weddings
+relatedLandingPage: /venues
 relatedMetric: Pilot participants
 assetsNeeded: [60 second demo render (script locked at docs/CYCLE_8_WEDDING_DEMO_SCRIPT.md)]
 ---
@@ -17,7 +17,7 @@ Recruit venues that can create planning workspaces for couples.
 
 ## Offer
 
-Venue Editions — sponsored wedding planning workspaces, 18 months for every couple at the venue, co-branded eyebrow-only (no venue logo). Founding venue status. Mechanic: per-couple redemption codes minted via `pnpm issue:codes <slug> <n>`, claimed at signalstudio.ie/redeem/[code], auto-drop to Free at month 18 with one quiet prompt beforehand.
+Venue Editions — sponsored wedding planning workspaces, 18 months for every couple at the venue, name-only eyebrow (no venue logo). Founding venue status. Mechanic: per-couple redemption codes minted via `pnpm issue:codes <slug> <n>`, claimed at signalstudio.ie/redeem/[code], auto-drop to Free at month 18 with one quiet prompt beforehand.
 
 ## Current blocker
 
@@ -30,3 +30,7 @@ Operator: provide all three database write credentials, run `pnpm venue:migrate-
 ## Related content
 
 Wedding Venue Outreach Kit (signal-growth/outbound/wedding-venue-outreach-kit.md); Venue Editions email template (docs/VENUE_EDITION_EMAIL_TEMPLATE.md)
+
+## Landing page
+
+Superseded 2026-08-12. This campaign was written against /weddings, which was cut in the public estate consolidation under decision D4 and now redirects to /venues. The record of what it originally pointed at stays here; the working link is /venues. The wedding-facing replacement surface is chartered as E12.01 and does not exist yet, so any asset built from this campaign must be re-read against /venues before it is sent.

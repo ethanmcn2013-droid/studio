@@ -1,0 +1,382 @@
+<title>Studio Floor Session Record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;600&display=swap">
+
+<style>
+/* The palette this session locked, used here exactly as it is used there:
+   Ink, Indigo, White, and tints of those three at stated alpha. Nothing else.
+   Single-theme on purpose — the operator's light-lock on Signal Studio
+   surfaces is a standing decision, so the page paints its own ground rather
+   than borrowing the viewer's. */
+:root {
+  --ink: #111111;
+  --indigo: #4f46e5;
+  --white: #ffffff;
+
+  --ink-1: var(--ink);
+  --ink-2: rgba(17, 17, 17, 0.72);
+  --ink-3: rgba(17, 17, 17, 0.62);
+  --ink-4: rgba(17, 17, 17, 0.28);
+  --line-strong: rgba(17, 17, 17, 0.16);
+  --line: rgba(17, 17, 17, 0.08);
+  --line-soft: rgba(17, 17, 17, 0.06);
+  --wash: rgba(17, 17, 17, 0.04);
+
+  --on-ink-1: #ffffff;
+  --on-ink-2: rgba(255, 255, 255, 0.62);
+  --chrome: rgba(255, 255, 255, 0.07);
+  --chrome-line: rgba(255, 255, 255, 0.10);
+
+  --indigo-wash: rgba(79, 70, 229, 0.09);
+  --indigo-line: rgba(79, 70, 229, 0.32);
+
+  /* One tracking curve, by size — the same one the master carries. */
+  --tr-32: -0.030em; --tr-24: -0.026em; --tr-19: -0.026em; --tr-18: -0.022em;
+  --tr-15: -0.016em; --tr-14: -0.014em; --tr-13: -0.010em; --tr-12: -0.006em;
+  --tr-11: 0em; --tr-10: 0.004em;
+
+  --r-chip: 6px; --r-ctl: 8px; --r-card: 12px; --r-sheet: 16px; --r-pill: 999px;
+  --float: 0 1px 1px rgba(17,17,17,0.03), 0 4px 8px rgba(17,17,17,0.03), 0 14px 28px rgba(17,17,17,0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--ink-1);
+  font-family: Geist, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The ink floor, one sheet lifted off it. The report is shaped like the
+   thing it reports on. */
+.floor { padding: 18px; min-height: 100vh; }
+.sheet {
+  max-width: 940px; margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--r-sheet);
+  overflow: hidden;
+}
+
+/* ── head ─────────────────────────────────────────────────────── */
+.head {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding: 30px 34px 26px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.word {
+  font-size: 15px; font-weight: 600; letter-spacing: var(--tr-15);
+}
+.word i { font-style: normal; color: var(--indigo); }
+.headRule { width: 1px; height: 17px; background: var(--line-strong); }
+h1 {
+  margin: 0; font-size: 18px; font-weight: 600; letter-spacing: var(--tr-18);
+}
+.stamp {
+  margin-left: auto;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+section { padding: 30px 34px; border-bottom: 1px solid var(--line-soft); }
+section:last-child { border-bottom: 0; }
+
+.kicker {
+  margin: 0 0 16px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+h2 {
+  margin: 0 0 12px;
+  font-size: 24px; font-weight: 600; letter-spacing: var(--tr-24);
+  text-wrap: balance;
+}
+p { margin: 0 0 14px; font-size: 15px; line-height: 1.6; letter-spacing: var(--tr-15); color: var(--ink-2); max-width: 68ch; }
+p:last-child { margin-bottom: 0; }
+p b, li b { font-weight: 600; color: var(--ink-1); }
+a { color: var(--indigo); text-underline-offset: 3px; }
+
+/* ── the verdict ──────────────────────────────────────────────── */
+.verdict {
+  display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+  margin: 0 0 20px;
+}
+.big {
+  font-size: 64px; font-weight: 600; letter-spacing: var(--tr-32);
+  line-height: 0.9; font-variant-numeric: tabular-nums;
+}
+.against { font-size: 15px; letter-spacing: var(--tr-15); color: var(--ink-3); }
+.against b { color: var(--ink-1); font-weight: 600; }
+
+.seats { display: grid; gap: 1px; margin-top: 22px; background: var(--line-soft); border-radius: var(--r-ctl); overflow: hidden; }
+.seat {
+  display: grid; grid-template-columns: 1fr auto 116px; align-items: center; gap: 14px;
+  padding: 11px 14px; background: var(--white);
+  font-size: 14px; letter-spacing: var(--tr-14);
+}
+.seat b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.bar { height: 4px; border-radius: 2px; background: var(--wash); position: relative; }
+.bar i { position: absolute; inset: 0 auto 0 0; border-radius: 2px; background: var(--ink-1); }
+.bar u {
+  position: absolute; top: -3px; bottom: -3px; width: 1px;
+  background: var(--indigo); left: 95%;
+}
+
+/* ── the arc ──────────────────────────────────────────────────── */
+.arc { display: grid; gap: 7px; margin-top: 6px; }
+.lane {
+  display: grid; grid-template-columns: 62px 1fr 84px; align-items: center; gap: 12px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3);
+}
+.track { position: relative; height: 16px; }
+.track::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  height: 1px; background: var(--line);
+}
+.span {
+  position: absolute; top: 50%; height: 5px; transform: translateY(-50%);
+  border-radius: 3px; background: var(--ink-1);
+}
+.gate {
+  position: absolute; top: -2px; bottom: -2px; width: 1px;
+  background: var(--indigo); left: 100%;
+}
+.gateLabel {
+  position: absolute; top: -22px; right: 0;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo);
+  white-space: nowrap;
+}
+.lane b { color: var(--ink-1); font-weight: 400; }
+
+/* ── built ────────────────────────────────────────────────────── */
+.built { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); margin-top: 4px; }
+.thing {
+  padding: 15px 16px; border-radius: var(--r-card);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.thing h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; letter-spacing: var(--tr-15); }
+.thing p { margin: 0; font-size: 13px; line-height: 1.5; letter-spacing: var(--tr-13); color: var(--ink-3); }
+.thing .num {
+  display: block; margin-bottom: 9px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4);
+}
+
+/* ── the distance ─────────────────────────────────────────────── */
+.dist { display: grid; gap: 1px; background: var(--line-soft); border-radius: var(--r-ctl); overflow: hidden; margin-top: 4px; }
+.item {
+  display: grid; grid-template-columns: 1fr 92px; gap: 14px; align-items: start;
+  padding: 14px; background: var(--white);
+}
+.item h3 { margin: 0 0 4px; font-size: 14px; font-weight: 600; letter-spacing: var(--tr-14); }
+.item p { margin: 0; font-size: 13px; line-height: 1.5; letter-spacing: var(--tr-13); color: var(--ink-3); }
+.size {
+  justify-self: end; text-align: right;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.06em; color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* ── next ─────────────────────────────────────────────────────── */
+.next { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.next h3 {
+  margin: 0 0 10px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+ul { margin: 0; padding-left: 18px; }
+li { font-size: 14px; line-height: 1.6; letter-spacing: var(--tr-14); color: var(--ink-2); margin-bottom: 7px; }
+li:last-child { margin-bottom: 0; }
+
+.quote {
+  margin: 20px 0 0; padding: 16px 18px;
+  border-radius: var(--r-card); background: var(--wash);
+  font-size: 15px; line-height: 1.55; letter-spacing: var(--tr-15); color: var(--ink-1);
+  max-width: none;
+}
+.quote cite {
+  display: block; margin-top: 8px; font-style: normal;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.links a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: var(--r-pill);
+  background: var(--ink); color: var(--on-ink-1);
+  font-size: 14px; font-weight: 600; letter-spacing: var(--tr-14);
+  text-decoration: none;
+}
+.links a.quiet {
+  background: none; color: var(--ink-1);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.foot {
+  padding: 22px 34px 26px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.08em; color: var(--on-ink-2);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .floor { padding: 9px; }
+  .head, section { padding-left: 20px; padding-right: 20px; }
+  .big { font-size: 48px; }
+  .seat { grid-template-columns: 1fr auto; }
+  .seat .bar { display: none; }
+  .lane { grid-template-columns: 50px 1fr 74px; }
+}
+</style>
+
+<div class="floor">
+<div class="sheet">
+
+  <div class="head">
+    <span class="word">tasks<i>.</i></span>
+    <span class="headRule"></span>
+    <h1>Studio Floor — session record</h1>
+    <span class="stamp">18 Aug 2026 · design/tasks-exploration</span>
+  </div>
+
+  <section>
+    <p class="kicker">The number</p>
+    <div class="verdict">
+      <span class="big">8.1</span>
+      <span class="against">lowest seat, against a <b>9.5</b> gate.<br>Eleven rounds. Seven independent seats each round. <b>350 findings</b>, <b>243 confirmed and fixed</b>.</span>
+    </div>
+    <p>The gate was not met. What follows is the honest distance, in the panel's own words and in days.</p>
+
+    <div class="seats">
+      <div class="seat"><span>Typography</span><b>8.7</b><span class="bar"><i style="width:91.6%"></i><u></u></span></div>
+      <div class="seat"><span>Brand and copy</span><b>8.6</b><span class="bar"><i style="width:90.5%"></i><u></u></span></div>
+      <div class="seat"><span>UI composition</span><b>8.5</b><span class="bar"><i style="width:89.5%"></i><u></u></span></div>
+      <div class="seat"><span>Product taste and emotional resonance</span><b>8.4</b><span class="bar"><i style="width:88.4%"></i><u></u></span></div>
+      <div class="seat"><span>UX and information design</span><b>8.3</b><span class="bar"><i style="width:87.4%"></i><u></u></span></div>
+      <div class="seat"><span>Interaction and states</span><b>8.2</b><span class="bar"><i style="width:86.3%"></i><u></u></span></div>
+      <div class="seat"><span>Measured evidence</span><b>8.1</b><span class="bar"><i style="width:85.3%"></i><u></u></span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">The arc</p>
+    <h2>Six-three to eight-one</h2>
+    <p>Each round: seven fresh seats who had never seen the work, five findings each, every finding then handed to a separate agent told to refute it. Only what survived was fixed. The bar sits at the far right.</p>
+    <div class="arc" style="position:relative">
+      <div class="lane"><span>ROUND</span><span class="track" style="height:6px"><span class="gate"></span><span class="gateLabel">9.5 gate</span></span><span>CONFIRMED</span></div>
+      <div class="lane"><span>01</span><span class="track"><span class="span" style="left:66.3%;right:17.9%"></span><span class="gate"></span></span><span><b>20</b>/35</span></div>
+      <div class="lane"><span>02</span><span class="track"><span class="span" style="left:74.7%;right:20%"></span><span class="gate"></span></span><span><b>17</b>/35</span></div>
+      <div class="lane"><span>03</span><span class="track"><span class="span" style="left:75.8%;right:15.8%"></span><span class="gate"></span></span><span><b>17</b>/35</span></div>
+      <div class="lane"><span>04</span><span class="track"><span class="span" style="left:75.8%;right:20%"></span><span class="gate"></span></span><span><b>21</b>/35</span></div>
+      <div class="lane"><span>05</span><span class="track"><span class="span" style="left:66.3%;right:14.7%"></span><span class="gate"></span></span><span><b>29</b>/35</span></div>
+      <div class="lane"><span>06</span><span class="track"><span class="span" style="left:74.7%;right:20%"></span><span class="gate"></span></span><span><b>24</b>/35</span></div>
+      <div class="lane"><span>07</span><span class="track"><span class="span" style="left:77.9%;right:15.8%"></span><span class="gate"></span></span><span><b>29</b>/35</span></div>
+      <div class="lane"><span>08</span><span class="track"><span class="span" style="left:87.4%;right:5.3%"></span><span class="gate"></span></span><span><b>28</b>/35</span></div>
+      <div class="lane"><span>09</span><span class="track"><span class="span" style="left:90.5%;right:6.3%"></span><span class="gate"></span></span><span><b>28</b>/35</span></div>
+      <div class="lane"><span>10</span><span class="track"><span class="span" style="left:89.5%;right:6.3%"></span><span class="gate"></span></span><span><b>26</b>/35</span></div>
+      <div class="lane"><span>11</span><span class="track"><span class="span" style="left:85.3%;right:8.4%"></span><span class="gate"></span></span><span><b>4</b>/35</span></div>
+    </div>
+    <p style="margin-top:18px">Round 5 dips because it was the first round graded by <em>driving</em> the board rather than reading screenshots, and the interaction layer turned out to punish the operator for using it. Round 11 confirms only four findings because thirty-one were refuted — all four that survived were regressions this session had introduced, and all four were fixed before the record closed.</p>
+  </section>
+
+  <section>
+    <p class="kicker">What exists now</p>
+    <h2>One master, one console, two gates</h2>
+    <div class="built">
+      <div class="thing">
+        <span class="num">3,200 lines</span>
+        <h3>The master</h3>
+        <p>One file serving four variants and six states. Every decision carries the argument for it in a comment beside it.</p>
+      </div>
+      <div class="thing">
+        <span class="num">6 decisions</span>
+        <h3>The console</h3>
+        <p>Card style, radius, density, indigo, type scale, variant — compiled from the master, never a second copy of the board.</p>
+      </div>
+      <div class="thing">
+        <span class="num">192 assertions</span>
+        <h3>The behaviour gate</h3>
+        <p>Every one exists because a seat found the defect it guards by driving the real file. Exits non-zero on any regression.</p>
+      </div>
+      <div class="thing">
+        <span class="num">7 checks</span>
+        <h3>The measured gate</h3>
+        <p>Palette lock, weights, families, WCAG AA against the real composited backdrop, hit targets, radii ladder, motion tokens.</p>
+      </div>
+    </div>
+    <p style="margin-top:20px">The board is operable, not a picture of a board. You can add a task, tick one and watch it fly to Done, drag one across, open a note, filter by a couple or by today, move a card entirely by keyboard, and undo any of it. The palette never left <b>Ink, Indigo and White</b> — machine-checked every round, zero violations.</p>
+    <div class="links">
+      <a href="https://claude.ai/code/artifact/ec6277a9-49d3-4f69-a568-8fbb0c98f6c6">Open the board</a>
+      <a class="quiet" href="https://claude.ai/code/artifact/1da5fc96-aae2-4980-8c79-f417ff30dc88">Read the eleven rounds</a>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">The honest distance</p>
+    <h2>Two to three focused days</h2>
+    <p>Every seat was asked to name what stands between this and 9.5, and whether it is polish, a build, or a different decision. <b>No seat asked to reopen the direction, the palette, the type ramp or the architecture.</b></p>
+    <div class="dist">
+      <div class="item">
+        <div><h3>Design the filtered state</h3><p>The board's primary Saturday move is the one screen still visibly undesigned — one card marooned in four full-height empty columns, with the sentence explaining it 700px below.</p></div>
+        <span class="size">half a day</span>
+      </div>
+      <div class="item">
+        <div><h3>Design emptiness</h3><p>The zero board and the filtered board are the states an operator lives in most, and both are white voids with four identical Add rows and no focal point.</p></div>
+        <span class="size">half a day</span>
+      </div>
+      <div class="item">
+        <div><h3>The 1000–1279px header band</h3><p>The header overflows the sheet in two width bands and clips the project's name before it drops an optional fact.</p></div>
+        <span class="size">3 hours</span>
+      </div>
+      <div class="item">
+        <div><h3>Keep the focused card on screen</h3><p>One function in the measurement pass that already runs after layout. Fixes keyboard focus landing off-screen, the flight playing outside the visible board, and columns resting mid-card.</p></div>
+        <span class="size">3 hours</span>
+      </div>
+      <div class="item">
+        <div><h3>The last of the copy</h3><p>The chip law stated on the specimen sheet describes three fills where the board now draws four. Concentrated in the derived states, where the authoring visibly thinned out.</p></div>
+        <span class="size">half a day</span>
+      </div>
+      <div class="item">
+        <div><h3>Two typographic passes</h3><p>The widow on chip-carrying titles, and the Done column measuring as the darkest thing on the sheet — the eye lands on finished work before work in hand.</p></div>
+        <span class="size">half a day</span>
+      </div>
+    </div>
+    <div class="quote">
+      “What earned it is the interaction model itself, which is genuinely at or above Linear on keyboard drag… Everything the brief claimed was live, was live, and worked. What stands between it and 9.5 is not a different decision and not a redesign — it is the last week's work that a studio does before it ships.”
+      <cite>Interaction and states — the harshest seat, 8.2</cite>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">Next</p>
+    <div class="next">
+      <div>
+        <h3>You — 15 minutes</h3>
+        <ul>
+          <li>Open the board and drive it. Tick a card, drag one, click a couple's name.</li>
+          <li>Say whether Studio Floor is locked as the master for Tasks at this standard.</li>
+          <li>Decide whether the two-to-three days above are spent now, or after Notes and Timeline are explored to the same point.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Me — on your word</h3>
+        <ul>
+          <li>Close the distance above, or start the same engagement on Notes.</li>
+          <li>Nothing merged, nothing deployed, no PR opened. The branch is pushed for backup only.</li>
+          <li>The chrome and navigation contract gates are still failing by design, and get updated only at lock-in.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+<p class="foot">423 commits · design/tasks-exploration · nothing merged, nothing deployed</p>
+</div>

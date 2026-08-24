@@ -13,6 +13,12 @@ chat message or a buried doc. It becomes a file here, so the founder has one
 place to see exactly what they are blocking, and the agent has one place to
 record what is still gating the work.
 
+Routine engineering, migrations, evidence gathering, and provider work that an
+agent can complete do **not** belong here. They go in the current execution
+plan. A task leaves this ledger when the founder decision is settled or when an
+audit proves that no founder action is required; transferring unfinished work
+to an agent queue must be recorded in the task's completion note.
+
 ## File shape
 
 ```
@@ -21,6 +27,7 @@ id: <kebab-id>
 title: <imperative one-liner>
 status: open
 priority: P0
+effort: quick
 blocking: true
 phase: Phase 1
 why: <one line — the cost of leaving it undone>
@@ -36,5 +43,6 @@ date: 2026-06-23
 
 - `status`: `open` or `done`. Mark done only when it is genuinely done — never optimistically.
 - `priority`: `P0` (launch blocker) / `P1` (before scale) / `P2` (nice-to-have).
+- `effort`: `quick` (short decision/dashboard action) or `involved` (considered review, external process, or purchase). Required on every open item.
 - `blocking`: `true` when engineering work is gated until this lands.
 - `README.md` is ignored by the loader.

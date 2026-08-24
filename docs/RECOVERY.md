@@ -36,8 +36,8 @@ names in the Vercel env of each project; by purpose:
 | **notes** | `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` | notes, calendar connections, prefs |
 | **roadmap (Timeline)** | `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` | workspaces, projects, tasks, subtasks, activity |
 | **analytics (Signal)** | `TURSO_ANALYTICS_DATABASE_URL` / `_AUTH_TOKEN` (main) · `TURSO_DATABASE_URL` (prefs) | analytics users, phrasing rotations, briefing feedback, user prefs |
-| **studio** | `TURSO_*` (main) · entitlements DB | sponsors, license codes, redemptions, cron runs, entitlements |
-| **shared** | `TURSO_ENTITLEMENTS_DATABASE_URL` / `_AUTH_TOKEN` | cross-suite tier entitlements (read by several products) |
+| **studio** | `STUDIO_*` (main) · entitlements DB | sponsors, license codes, redemptions, cron runs, entitlements |
+| **shared** | `ENTITLEMENTS_DATABASE_URL` / `_AUTH_TOKEN` | cross-suite tier entitlements (read by several products) |
 
 The **entitlements DB** is the one shared blast-radius — losing it affects tier
 enforcement across products. Back it up with the same priority as the product DBs.

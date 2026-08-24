@@ -17,7 +17,7 @@
  *   2) node scripts/blueprint-metrics-smoke.mjs
  *
  * Reads the same env pairs the Today API uses:
- *   TASKS_/NOTES_/ROADMAP_/ANALYTICS_TURSO_URL + _TOKEN
+ *   TASKS_/NOTES_/TIMELINE_/SIGNAL_DATABASE_URL + _AUTH_TOKEN
  * Read-only. Never writes.
  */
 import { config } from "dotenv";
@@ -42,7 +42,7 @@ function pct(part, whole) {
 const fmtPct = (n) => (n == null ? "—  (no data / no cohort)" : `${n}%`);
 
 async function readTasks() {
-  const client = clientFor("TASKS_TURSO_URL", "TASKS_TURSO_TOKEN");
+  const client = clientFor("TASKS_DATABASE_URL", "TASKS_AUTH_TOKEN");
   if (!client) return { read: "skipped_no_env" };
   try {
     const nowS = Math.floor(Date.now() / 1000);
@@ -116,29 +116,29 @@ async function main() {
     readTasks(),
     readModule(
       "Notes",
-      "NOTES_TURSO_URL",
-      "NOTES_TURSO_TOKEN",
+      "NOTES_DATABASE_URL",
+      "NOTES_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT user_id) AS n FROM notes WHERE archived_at IS NULL AND updated_at >= ?",
       d30ms,
     ),
     readModule(
       "Tasks",
-      "TASKS_TURSO_URL",
-      "TASKS_TURSO_TOKEN",
+      "TASKS_DATABASE_URL",
+      "TASKS_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT user_id) AS n FROM activities WHERE created_at >= ?",
       d30s,
     ),
     readModule(
       "Timeline",
-      "ROADMAP_TURSO_URL",
-      "ROADMAP_TURSO_TOKEN",
+      "TIMELINE_DATABASE_URL",
+      "TIMELINE_AUTH_TOKEN",
       "SELECT COUNT(DISTINCT workspace_slug) AS n FROM tasks WHERE updated_at >= ?",
       d30s,
     ),
     readModule(
       "Signal",
-      "ANALYTICS_TURSO_URL",
-      "ANALYTICS_TURSO_TOKEN",
+      "SIGNAL_DATABASE_URL",
+      "SIGNAL_AUTH_TOKEN",
       "SELECT COUNT(*) AS n FROM user_preferences WHERE cadence != 'off' AND last_sent_at >= ?",
       d30ms,
     ),

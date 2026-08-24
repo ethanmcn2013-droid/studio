@@ -8,7 +8,7 @@ const aliases = {
   signal: fs.existsSync(path.join(parent, "analytics")) ? "analytics" : "signal",
 };
 const contract = JSON.parse(
-  fs.readFileSync(path.join(studio, "contracts", "commercial-terms.v1.json"), "utf8"),
+  fs.readFileSync(path.join(studio, "contracts", "commercial-terms.v2.json"), "utf8"),
 );
 const failures = [];
 
@@ -29,8 +29,13 @@ function requireText(file, text, reason) {
 
 requireText(
   "src/app/pricing/page.tsx",
-  'requireVerifiedAmount("event")',
-  "current Event price must consume the canonical verified amount",
+  "getConsumerPricingPresentation",
+  "current pricing must consume the canonical customer-facing contract adapter",
+);
+requireText(
+  "src/lib/commercial-terms.ts",
+  "event.amountCents",
+  "the pricing adapter must derive the Event amount from the canonical contract",
 );
 requireText(
   "src/app/students/page.tsx",
@@ -136,8 +141,11 @@ for (const match of dateline.matchAll(/\b(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSD
 if (contract.broadLaunchDate !== null) {
   failures.push("commercial contract must not invent a broad launch date");
 }
-if (contract.plans.pro.annualAmountCents !== null) {
-  failures.push("commercial contract must keep Pro annual unresolved until ratified");
+if (contract.plans.pro.annualAmountCents !== 12000) {
+  failures.push("commercial contract must keep the ratified Pro annual price at EUR 120");
+}
+if (contract.unresolved.length !== 0) {
+  failures.push("commercial contract must not retain choices ratified on 2026-08-08");
 }
 
 if (failures.length) {

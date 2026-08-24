@@ -10,19 +10,28 @@ This document is the reference for every future change to any Signal Studio prod
 
 ## 1 · The suite
 
-Signal Studio is the umbrella. Four products live under it.
+**Product-model amendment (2026-08-04, ratified by the Signal → Home
+consolidation):** Signal Studio is the company and one signed-in app. Three
+products live inside it. Home is the authenticated front door and carries
+Today's Signal plus the Full Briefing; it is not a fourth product. Any older
+four-product wording later in this handbook is historical voice guidance and
+does not override this section or
+`docs/consolidation/signal-home-2026-08-04.md`.
 
 | Product | Position | Marketing | App module | Status |
 |---|---|---|---|---|
 | Signal Notes | Capture clarity | `signalstudio.ie/notes` | `app.signalstudio.ie/app/notes` | Live in the unified app |
 | Signal Tasks | Execution clarity | `signalstudio.ie/tasks` | `app.signalstudio.ie/app/tasks` | Live in the unified app |
 | Signal Timeline | Direction clarity | `signalstudio.ie/timeline` | `app.signalstudio.ie/app/timeline` | Live in the unified app |
-| Signal | Attention clarity | `signalstudio.ie/signal` | `app.signalstudio.ie/app/signal` | Live in the unified app |
+| Home | Daily orientation, not a product | `signalstudio.ie/features/daily-briefing` | `app.signalstudio.ie/app/home` | Authenticated front door; Full Briefing at `/app/home/briefing` |
 
 **Marketing origin:** signalstudio.ie · **App origin:** app.signalstudio.ie ·
 **Defensive:** signalhq.ie (301 redirects to signalstudio.ie)
 
-The system: every product is a different *kind* of clarity. Tasks runs the work. Timeline explains the work. Signal surfaces what matters in the work. Notes captures the work as it happens. Each product solves one slice; the suite is the system.
+The system: every product is a different *kind* of clarity. Tasks runs the
+work. Timeline explains the work. Notes captures the work as it happens. Home
+orients the person using those products and the briefing surfaces what matters.
+The three products solve distinct slices; the app is the system.
 
 ---
 
@@ -75,7 +84,11 @@ The moat is **disciplined refusal sustained across a suite of products over time
 - **Voice discipline.** Every page, every empty state, every error message, every email passes through one register (BRAND.md §3). Drift is treated as a bug. An incumbent cannot retrofit this without alienating their existing power-user audience, who are paying for the jargon.
 - **Refusal discipline.** Each product publishes its locked refusals (`PRODUCT.md` §7). Notion cannot refuse to be a wiki; it *is* a wiki. Asana cannot refuse to surface metrics; metrics are its conversion bait. Signal Studio's refusals compound — every "no" deepens the brand and shrinks the surface area, the inverse of standard SaaS timeline dynamics.
 - **Visual restraint.** One accent color across the suite. One per-product gesture. No category-colour fragmentation. No mascots. No 3-adjective hero grids. Boring on purpose. The rules are in BRAND.md §5 and they are easier to copy than to *sustain* against the gravitational pull of "let's just ship a chart".
-- **Suite coherence as a single product surface.** Tasks, Timeline, Signal, Notes are four products that read as one. Cross-product chrome is consistent (BRAND.md §6). An incumbent attacking one of these has to attack all four, against a brand that has been speaking with one voice while they did so.
+- **Suite coherence as a single product surface.** Notes, Tasks, and Timeline
+  are three products that read as one through Home. Cross-product chrome is
+  consistent (BRAND.md §6). An incumbent attacking one of these has to attack
+  the whole system, against a brand that has been speaking with one voice while
+  they did so.
 - **Audience-first scoping over feature-first scoping.** Every cycle asks "would a wedding planner / freelance designer / tradesperson use this?" first, and "would it look good in a comparison table" never. This sounds soft. It is the most load-bearing discipline of all because it is the one most easily abandoned under growth pressure.
 
 **The honest dissent inside this position:** discipline moats are real but slower than feature moats. There will be cycles where Signal Studio looks "behind" because an incumbent shipped a feature that Signal Studio refused to ship. That is the moat working, not failing. The metric to watch is *unprompted user language* — when a user says back to us "this isn't a dashboard" or "this doesn't talk like Jira", the moat is paying out. When users start using the incumbents' vocabulary to describe Signal Studio, the moat has been breached.
@@ -181,6 +194,10 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 
 ## 5 · Visual register
 
+**Register amended 2026-07-31: expressive by default, restraint is the edit.** Confident, premium, expressive — edited, not timid. Indigo `#4f46e5` is the anchor, not a cage — its tints, gradients, and supporting tones are welcome when the moment earns them. Motion is a first-class material: use it generously where it clarifies or delights, cut it where it merely decorates. Reach further than feels safe in exploration; restraint is the edit at the end, never the brief at the start. Never cheap: no clutter, no stock effects, no noise. (Voice, vocabulary, and banned words in §3 are unchanged — this amendment is visual and motion only.)
+
+**A1.1 addendum, same day — priority order, permanent: creativity and emotion outrank restraint.** No rule in this register may be used to flatten a genuinely better idea. When a rule and a better idea conflict, the rule goes under review — through the lab wildcard and, on repeat, a further named amendment — never the idea pre-censored. Design for feeling as much as function: the work should move the person using it (wonder, relief, delight, pride). Voice remains the one standing exception; §3 never bends.
+
 ### Reference register
 - **Aspire to:** Apple, Linear, Arc, Notion Calendar, Raycast.
 - **Avoid:** Jira, Monday, Tableau, PowerBI, Salesforce.
@@ -208,7 +225,7 @@ Single canonical address: **`hello@signalstudio.ie`**. Not `contact@`, not `supp
 - **Mono labels:** 11px tabular, letter-spacing `0.02em`, color `var(--ink-quiet)`.
 
 ### Motion
-Sparingly. Rise stagger on hero entries (`0.6s`, 60ms stagger). Subtle fade between sections. Cinematic demo on Tasks's homepage is the brand-feature; everything else is restrained.
+A first-class material, generous where it clarifies or delights, cut where it merely decorates — see the amended register above. Rise stagger on hero entries (`0.6s`, 60ms stagger) and subtle fades between sections remain the baseline; the cinematic demo on Tasks's homepage is the brand-feature. Restraint is the edit applied after the reach, not a ceiling on it.
 
 `prefers-reduced-motion` is respected everywhere via `useReducedMotion()`.
 

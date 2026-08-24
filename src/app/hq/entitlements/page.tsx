@@ -378,13 +378,18 @@ async function VenuesTab() {
               </span>
             </div>
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-[12px] text-ink-soft">
-              <span>allotment {v.allotment ?? "—"}</span>
+              <span>allotment {v.unlimited ? "unlimited" : (v.allotment ?? "—")}</span>
               <span>minted {v.minted}</span>
               <span>redeemed {v.redeemed}</span>
-              <span>remaining {v.remaining ?? "—"}</span>
+              {v.unlimited ? null : <span>remaining {v.remaining ?? "—"}</span>}
             </div>
             <div className="mt-3 border-t border-border-soft pt-3">
-              <MintCodesForm sponsorId={v.id} sponsorName={v.name} remaining={v.remaining} />
+              <MintCodesForm
+                sponsorId={v.id}
+                sponsorName={v.name}
+                remaining={v.remaining}
+                unlimited={v.unlimited}
+              />
             </div>
           </div>
         ))

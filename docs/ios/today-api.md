@@ -2,9 +2,9 @@
 
 Per-user "today" digest that aggregates state across the four products (Tasks / Notes / Timeline / Signal). Powers the native iOS app's Today home screen and the web seamless-ecosystem widget.
 
-Type contract: `~/Projects/personal/studio/src/server/today/types.ts`.
-Aggregator: `~/Projects/personal/studio/src/server/today/aggregate.ts`.
-Route: `~/Projects/personal/studio/src/app/api/today/route.ts`.
+Type contract: `studio/src/server/today/types.ts`.
+Aggregator: `studio/src/server/today/aggregate.ts`.
+Route: `studio/src/app/api/today/route.ts`.
 
 ## Request
 
@@ -42,14 +42,14 @@ Five environment variables on the studio Vercel deployment (production AND previ
 | Env var                  | Source                                                                                  |
 | ------------------------ | --------------------------------------------------------------------------------------- |
 | `SUITE_API_KEY`          | Generate a 32-byte random hex (`openssl rand -hex 32`). Share with the iOS app proxy / web BFF callers only. Rotate quarterly. |
-| `TASKS_TURSO_URL`        | Tasks production Turso URL (e.g. `libsql://signal-tasks-…`).                              |
-| `TASKS_TURSO_TOKEN`      | **Read-only** Tasks Turso token. Mint via `turso db tokens create --read-only signal-tasks`. |
-| `NOTES_TURSO_URL`        | Notes production Turso URL.                                                              |
-| `NOTES_TURSO_TOKEN`      | **Read-only** Notes Turso token.                                                          |
-| `ROADMAP_TURSO_URL`      | Timeline production Turso URL.                                                            |
-| `ROADMAP_TURSO_TOKEN`    | **Read-only** Timeline Turso token.                                                        |
-| `ANALYTICS_TURSO_URL`    | Signal prefs DB URL (the `analytics_users` / `phrasing_rotations` instance).           |
-| `ANALYTICS_TURSO_TOKEN`  | **Read-only** Signal prefs DB token.                                                  |
+| `TASKS_DATABASE_URL`     | Tasks production Turso URL (e.g. `libsql://signal-tasks-…`).                              |
+| `TASKS_AUTH_TOKEN`       | **Read-only** Tasks Turso token. Mint via `turso db tokens create --read-only signal-tasks`. |
+| `NOTES_DATABASE_URL`     | Notes production Turso URL.                                                              |
+| `NOTES_AUTH_TOKEN`       | **Read-only** Notes Turso token.                                                          |
+| `TIMELINE_DATABASE_URL`  | Timeline production Turso URL.                                                            |
+| `TIMELINE_AUTH_TOKEN`    | **Read-only** Timeline Turso token.                                                        |
+| `SIGNAL_DATABASE_URL`    | Signal prefs DB URL (the `analytics_users` / `phrasing_rotations` instance).           |
+| `SIGNAL_AUTH_TOKEN`      | **Read-only** Signal prefs DB token.                                                  |
 
 When any pair is missing the endpoint gracefully degrades — `reads.<product> = "skipped_no_env"` and the corresponding slice is null. Apple's reviewer hitting the endpoint with `SUITE_API_KEY` only and no Turso tokens will see an empty-but-well-formed response (the iOS client renders the "set up" state).
 
@@ -77,3 +77,4 @@ That migration is a one-cycle follow-up on top of adding `@clerk/nextjs` to stud
 | Date       | What changed                                                            | Updater                |
 | ---------- | ----------------------------------------------------------------------- | ---------------------- |
 | 2026-05-20 | Initial draft. Shipped alongside `aggregateToday` + the POST route.     | Agentic iOS prep cycle |
+| 2026-07-31 | Env var rename (data-layer reset): all four read pairs above moved off their old per-product Turso-branded names onto the `<MODULE>_DATABASE_URL`/`<MODULE>_AUTH_TOKEN` convention shown in the table. Names only; the four-pair contract and degrade behaviour are unchanged. | Data-layer reset cycle |

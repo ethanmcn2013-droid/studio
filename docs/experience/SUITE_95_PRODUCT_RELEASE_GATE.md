@@ -4,11 +4,11 @@ Status: active, founder-directed
 
 Effective: 2026-07-26
 
-Scope: Notes, Tasks, Timeline, and Signal inside the unified application
+Scope: Notes, Tasks, Timeline, and the cross-suite journey into authenticated Home
 
 Canonical origin: `https://app.signalstudio.ie`
 
-This is the stricter promotion gate for the current four-product quality
+This is the stricter promotion gate for the current three-product and Home quality
 programme. It sits above the general 3.5 Studio-grade baseline. Where the two
 thresholds differ for this programme, this file wins.
 

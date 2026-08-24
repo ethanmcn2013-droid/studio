@@ -100,8 +100,8 @@ export const HANDOFF_DEFINITIONS: Record<
   },
   timeline: {
     product: "timeline",
-    caption: "Timeline → Signal",
-    lead: "The plan feeds the read.",
+    caption: "Timeline → Home",
+    lead: "The plan feeds your briefing.",
     body: "The next dated moment arrives with its date and source intact.",
     source: {
       kind: "timeline",
@@ -122,8 +122,8 @@ export const HANDOFF_DEFINITIONS: Record<
       ],
     },
     payloadText: "Send the invitations · 13 Aug · Timeline",
-    nextHref: "/signal",
-    nextLabel: "Next: Signal",
+    nextHref: null,
+    nextLabel: null,
     lineageLabel: "Date and Timeline receipt remain attached.",
   },
   signal: {

@@ -13,6 +13,7 @@ import {
   type EntitlementTier,
 } from "@/lib/entitlements-db/schema";
 import { TIER_RANK } from "@/lib/entitlements-db/tiers";
+import { isUnlimitedSponsor, remainingAllotment } from "@/lib/venue-allotment";
 
 /**
  * Read layer for the Access console (/hq/entitlements). All reads hit the
@@ -129,9 +130,15 @@ export async function getAccessToday(): Promise<TodayWorklist> {
         name: sponsors.name,
         codesIssued: sponsors.codesIssued,
         codeAllotment: sponsors.codeAllotment,
+        allotmentMode: sponsors.allotmentMode,
       })
       .from(sponsors);
+    // R-016. An unlimited venue can never be "near its allotment" — there is
+    // no allotment to be near. Filtering on the mode rather than relying on a
+    // null cap keeps the list honest even when a legacy number is still on the
+    // row. A venue on this list is one an operator is about to chase.
     const near = venues
+      .filter((v) => !isUnlimitedSponsor(v))
       .filter((v) => v.codeAllotment != null && v.codeAllotment > 0)
       .map((v) => ({
         slug: v.slug,
@@ -399,6 +406,8 @@ export type VenueView = {
   termEndsAt: number | null;
   annualAmountCents: number | null;
   allotment: number | null;
+  /** R-016. When true, `allotment` and `remaining` carry no meaning. */
+  unlimited: boolean;
   minted: number;
   redeemed: number;
   remaining: number | null;
@@ -431,9 +440,10 @@ export async function getVenues(): Promise<Reachable<VenueView[]>> {
         termEndsAt: s.termEndsAt,
         annualAmountCents: s.annualAmountCents,
         allotment: s.codeAllotment,
+        unlimited: isUnlimitedSponsor(s),
         minted,
         redeemed: redeemedBy.get(s.id) ?? 0,
-        remaining: s.codeAllotment != null ? s.codeAllotment - s.codesIssued : null,
+        remaining: remainingAllotment(s),
         drift: minted !== s.codesIssued,
       };
     });

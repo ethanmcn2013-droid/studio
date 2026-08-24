@@ -64,7 +64,7 @@ export const NORTH_STAR = {
   mission:
     "Give the 80% of people who don't work in tech a calm way to coordinate work, clarity without the enterprise tax.",
   positioning: [
-    "Four products, one system.",
+    "Three products, one system.",
     "Meetings happen because visibility is poor.",
     "Signal, not noise.",
     "Calm coordination, not enterprise complexity.",
@@ -97,7 +97,7 @@ export const NORTH_STAR = {
     { step: "Capture clarity", detail: "Notes turns scattered thinking into one calm place." },
     { step: "Turn into action", detail: "Tasks converts thinking into owned, dated work." },
     { step: "Show direction", detail: "Timeline makes where things are going visible to all." },
-    { step: "Surface attention", detail: "Signal shows the one thing that needs a human now." },
+    { step: "Surface attention", detail: "Today's Signal, in Home, shows the one thing that needs a human now." },
     { step: "Better decisions", detail: "Visible work means fewer meetings and faster calls." },
     { step: "Less chaos → trust", detail: "Calm teams invite collaborators, who become new creators." },
   ] satisfies FlywheelStep[],
@@ -105,14 +105,14 @@ export const NORTH_STAR = {
 
 /* ════════════════════════════════════════════════════════════════════
    2 · PRODUCT SYSTEM BLUEPRINT
-   Notes → Tasks → Timeline → Signal → better decisions → less chaos
+   Notes → Tasks → Timeline → Today's Signal → better decisions → less chaos
    ════════════════════════════════════════════════════════════════════ */
 
 export type ProductBlueprint = {
   key: "notes" | "tasks" | "timeline" | "signal";
   name: string;
   role: string;          // plain-language one-liner
-  href: string;          // live product subdomain
+  href: string;          // live product surface
   purpose: string;
   inputs: string[];
   outputs: string[];
@@ -125,7 +125,7 @@ export const PRODUCT_FLOW = [
   "Notes",
   "Tasks",
   "Timeline",
-  "Signal",
+  "Today's Signal",
   "Better decisions",
   "Less chaos",
 ] as const;
@@ -172,15 +172,15 @@ export const PRODUCTS: ProductBlueprint[] = [
   },
   {
     key: "signal",
-    name: "Signal",
-    role: "Show what needs attention",
-    href: "https://signal.signalstudio.ie",
-    purpose: "Surface the one thing a human needs to look at, and nothing else.",
+    name: "Today's Signal",
+    role: "Show what needs attention, from Home",
+    href: "https://app.signalstudio.ie/app/home/briefing",
+    purpose: "The daily briefing built into Home. Surface the one thing a human needs to look at, and nothing else.",
     inputs: ["Task + timeline state", "Deterministic rules", "Curated prose"],
     outputs: ["A daily briefing", "A short attention list"],
     keyActions: ["Read the daily signal", "Act on the top item", "Close the loop"],
-    neverBecome: "A notification firehose, an analytics suite, or an LLM chatbot.",
-    // LIVE DATA: daily-signal opens, top-item action rate (signal app).
+    neverBecome: "A separate product, a notification firehose, an analytics suite, or an LLM chatbot.",
+    // LIVE DATA: daily-signal opens, top-item action rate (home briefing).
     successMetrics: ["Daily briefing open rate", "Top-item action rate"],
   },
 ];
@@ -214,7 +214,7 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
       "Note the enquiry",
       "Build the couple's task list from a template",
       "Share a calm timeline with the couple",
-      "Signal flags the next thing due",
+      "Today's Signal flags the next thing due",
     ],
     templates: ["Wedding-day run sheet", "Couple onboarding", "Supplier checklist"],
     activationMoment: "First couple's timeline shared and opened by the couple.",
@@ -232,7 +232,7 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
       "Capture the brief in Notes",
       "Break it into dated tasks",
       "See the term on a timeline",
-      "Signal nudges what's due this week",
+      "Today's Signal nudges what's due this week",
     ],
     templates: ["Semester planner", "Dissertation plan", "Group-project board"],
     activationMoment: "First full term laid out on a timeline.",
@@ -250,7 +250,7 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
       "Capture jobs in Notes",
       "Assign owned tasks",
       "Timeline shows the week",
-      "Signal surfaces what's slipping",
+      "Today's Signal surfaces what's slipping",
     ],
     templates: ["Client onboarding", "Weekly ops", "Service delivery checklist"],
     activationMoment: "First week where the team self-serves status without a meeting.",
@@ -268,7 +268,7 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
       "Capture the idea in Notes",
       "Make the next three tasks",
       "See the arc on a timeline",
-      "Signal keeps it warm",
+      "Today's Signal keeps it warm",
     ],
     templates: ["Side-project starter", "Move-house plan", "Trip planner"],
     activationMoment: "First project taken from idea to a visible plan in one sitting.",
@@ -585,7 +585,7 @@ export const BLUEPRINT_METRICS: BlueprintMetric[] = [
   { key: "retention", label: "Retention", value: "—", target: ">60% M1", source: "app analytics", tone: "quiet" },
   { key: "churn", label: "Churn", value: "—", target: "<5% / mo", source: "app analytics", tone: "quiet" },
   { key: "onboarding", label: "Onboarding completion", value: "—", target: ">70%", source: "onboarding funnel", tone: "quiet" },
-  { key: "usage-by-module", label: "Usage by module", value: "—", target: "all four touched", source: "per-app analytics", tone: "quiet" },
+  { key: "usage-by-module", label: "Usage by module", value: "—", target: "all three + Home touched", source: "per-app analytics", tone: "quiet" },
   { key: "support-sentiment", label: "Support sentiment", value: "—", target: "positive", source: "support inbox", tone: "quiet" },
   { key: "runway", label: "Runway", value: "—", target: ">12 months", source: "finance model", tone: "critical" },
 ];
@@ -746,7 +746,7 @@ export const RISK_LOG = {
   ] satisfies LogItem[],
   launchBlockers: [
     { label: "First paid venue (Gate 0)", detail: "The single headline metric the plan depends on." },
-    { label: "CSP enforce-mode", detail: "Promote from report-only across all four products." },
+    { label: "CSP enforce-mode", detail: "Promote from report-only across all three products and Home." },
     { label: "Inbound capture DNS", detail: "capture@notes needs secret + DNS to go live." },
   ] satisfies LogItem[],
   dependencies: [
@@ -789,7 +789,7 @@ export type BlueprintSection = {
 
 export const BLUEPRINT_SECTIONS: BlueprintSection[] = [
   { id: "north-star", index: 1, label: "North Star", title: "Why we exist", blurb: "Mission, positioning, principles, flywheel." },
-  { id: "product-system", index: 2, label: "Product System", title: "How the product works", blurb: "Notes → Tasks → Timeline → Signal." },
+  { id: "product-system", index: 2, label: "Product System", title: "How the product works", blurb: "Notes → Tasks → Timeline → Today's Signal." },
   { id: "customers", index: 3, label: "Customers", title: "Who it's for", blurb: "Venues, students, small business, personal." },
   { id: "growth", index: 4, label: "Growth Machine", title: "How it grows", blurb: "Wedge → demand → compounding → expansion." },
   { id: "functions", index: 5, label: "Signal HQ", title: "How it operates", blurb: "Ten functions, owners, cadence, risk." },

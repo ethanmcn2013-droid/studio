@@ -59,6 +59,7 @@ export function LoadingCanon({
   const [seq, setSeq] = useState(0);
   const [inView, setInView] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [paused, setPaused] = useState(false);
   const stageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -86,17 +87,23 @@ export function LoadingCanon({
   // The reel: hold the current moment, then advance. Paused offscreen
   // and under reduced motion.
   useEffect(() => {
-    if (!autoAdvance || !inView || reduced) return;
+    if (!autoAdvance || !inView || reduced || paused) return;
     const t = setTimeout(() => {
       setActive((a) => (a + 1) % MOMENTS.length);
       setSeq((s) => s + 1);
     }, MOMENTS[active].hold);
     return () => clearTimeout(t);
-  }, [active, seq, autoAdvance, inView, reduced]);
+  }, [active, seq, autoAdvance, inView, paused, reduced]);
 
   const jump = (i: number) => {
+    setPaused(false);
     setActive(i);
     setSeq((s) => s + 1); // remount = replay, also when i === active
+  };
+
+  const replay = () => {
+    setPaused(false);
+    setSeq((s) => s + 1);
   };
 
   const M = MOMENTS[active];
@@ -114,6 +121,19 @@ export function LoadingCanon({
           <p className="ldc-spec">
             {M.dur} · {M.ease} · {M.aria}
           </p>
+          <div className="ldc-transport" aria-label="Loading reel controls">
+            <button
+              type="button"
+              aria-pressed={paused}
+              disabled={reduced}
+              onClick={() => setPaused((value) => !value)}
+            >
+              {reduced ? "Motion reduced" : paused ? "Resume reel" : "Pause reel"}
+            </button>
+            <button type="button" disabled={reduced} onClick={replay}>
+              Replay moment
+            </button>
+          </div>
         </div>
         <div className="dsn-dot-rail" role="list">
           {MOMENTS.map((m, i) => {
@@ -143,6 +163,7 @@ export function LoadingCanon({
           ref={stageRef}
           className="dsn-dot-stage ldc-stage"
           data-rm={reduced || undefined}
+          data-paused={paused || undefined}
           data-single-run={singleRun || undefined}
         >
           <i className="dsn-dot-corner dsn-dot-corner--tl" aria-hidden />
@@ -392,6 +413,11 @@ function Specimen({ index, product }: { index: number; product: (typeof PRODUCTS
      room's, verbatim (loading-review-2026.html). ───────────────────── */
 const LDC_CSS = `
 .ldc-stage { height: clamp(380px, 36vw, 460px); }
+.ldc-stage[data-paused] *,
+.ldc-stage[data-paused] *::before,
+.ldc-stage[data-paused] *::after {
+  animation-play-state: paused !important;
+}
 .ldc-spec {
   margin: 8px 0 0;
   font-family: var(--font-mono, monospace);
@@ -399,6 +425,48 @@ const LDC_CSS = `
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+.ldc-transport {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.ldc-transport button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+.ldc-transport button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.ldc-transport button:active:not(:disabled) { transform: scale(0.98); }
+.ldc-transport button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.ldc-transport button:disabled {
+  cursor: default;
+  color: var(--ink-ghost);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ldc-transport button:hover:not(:disabled) {
+    border-color: var(--ink-faint);
+    color: var(--ink);
+  }
 }
 .ldc-body { position: absolute; inset: 0; }
 .ldc-center {
@@ -925,9 +993,6 @@ const LDC_CSS = `
    settled state, verbatim from the review room's rm block. */
 [data-rm] .ldc-body *, [data-rm] .ldc-body *::before, [data-rm] .ldc-body *::after {
   animation: none !important;
-}
-[data-single-run] .ldc-body *, [data-single-run] .ldc-body *::before, [data-single-run] .ldc-body *::after {
-  animation-iteration-count: 1 !important;
 }
 [data-rm] .ldc-letter, [data-rm] .ldc-wdot { opacity: 1 !important; transform: none !important; }
 [data-rm] .ldc-land { opacity: 1; }

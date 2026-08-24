@@ -31,7 +31,7 @@ Use `venue=unknown` until the venue is named. Do not invent attribution after th
 
 **Short version:** Signal Studio gives every couple one calm place to plan their wedding: private notes, owned follow-ups, a public plan anyone can read, and a short briefing on what needs attention.
 
-**What the venue pays:** EUR1,500 per venue/year, prepaid. The first fifteen venues lock that price for as long as they stay.
+**What the venue pays:** EUR1,500 per venue/year, prepaid. The first twenty-five venues pay €1,000, held for as long as they stay.
 
 **What the couple sees:** The venue's name in a quiet line at the top. No price. No account for people who only need to read the public plan.
 
@@ -78,7 +78,7 @@ Use `signal-growth/outbound/venue-edition-outreach.md` as the sending source. Th
 ## Reuse Rules
 
 - No fake customer proof.
-- No "limited spots" phrasing. "Founding fifteen" is a fact, not pressure.
+- No "limited spots" phrasing. "Twenty-five places" is a fact, not pressure.
 - No AI-marketing language.
 - No paid-ad derivatives.
 - No asset ships if it promises a product state that is not live.

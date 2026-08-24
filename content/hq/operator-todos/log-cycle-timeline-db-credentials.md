@@ -1,7 +1,8 @@
 ---
 id: log-cycle-timeline-db-credentials
 title: Provide the shared roadmap database credentials for log-cycle
-status: open
+status: done
+cleared: "2026-08-08 - the Timeline repo and log-cycle ritual were retired by consolidation"
 priority: P2
 blocking: false
 why: The end-of-cycle ritual cannot record a cycle, so the public roadmap has been missing entries since T·84 in June.

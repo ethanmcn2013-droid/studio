@@ -3,10 +3,10 @@ title: Cross-repo writers — the log-cycle pattern
 slug: log-cycle-cross-repo-writer
 lens: Processes
 owner: Ethan
-lastVerified: 2026-05-22
+lastVerified: 2026-07-31
 links: [plan-cycle, five-products-as-a-system, turso-databases-and-reads, signal-daily-cron]
 tags: [cross-repo, ping, authed HTTP, fire-and-forget, recipient-owns-the-table, Cycle 8.4.9, Cycle 9.4b, STUDIO_CRON_PING_SECRET, NOTES_TO_TASKS_SECRET, tasks_digest]
-references: [~/Projects/personal/signal/src/lib/ops/ping-studio.ts, ~/Projects/personal/tasks/src/lib/ops/ping-studio.ts, ~/Projects/personal/notes/src/server/actions/notes.ts, ~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts, ~/Projects/personal/studio/src/lib/db/schema.ts]
+references: [signal/src/lib/ops/ping-studio.ts, tasks/src/lib/ops/ping-studio.ts, notes/src/server/actions/notes.ts, studio/src/app/api/internal/cron-ping/route.ts, studio/src/lib/db/schema.ts]
 summary: When one product's cycle produces a signal another product needs, the caller fires an authed HTTP ping; the recipient owns the table. Three real instances today.
 status: complete
 pinned: false
@@ -41,26 +41,26 @@ flowchart LR
 
 ## WHO
 
-Ethan owns both sides of every instance. There's no third-party caller, no webhook from outside the suite. Cross-repo writes always stay inside `~/Projects/personal/`.
+Ethan owns both sides of every instance. There's no third-party caller, no webhook from outside the suite. Cross-repo writes always stay inside the workspace.
 
 ## WHERE
 
 **Signal → Studio (cron staleness)**
 
-- Caller: `~/Projects/personal/analytics/src/lib/ops/ping-studio.ts`. Reads `STUDIO_CRON_PING_URL` + `STUDIO_CRON_PING_SECRET` from env. POSTs JSON with a short fetch timeout.
-- Receiver: `~/Projects/personal/studio/src/app/api/internal/cron-ping/route.ts`. Validates `Authorization: Bearer ${CRON_PING_SECRET}` (note the receiver-side env name differs from the caller-side — deliberate so a leaked one doesn't compromise both).
+- Caller: `analytics/src/lib/ops/ping-studio.ts`. Reads `STUDIO_CRON_PING_URL` + `STUDIO_CRON_PING_SECRET` from env. POSTs JSON with a short fetch timeout.
+- Receiver: `studio/src/app/api/internal/cron-ping/route.ts`. Validates `Authorization: Bearer ${CRON_PING_SECRET}` (note the receiver-side env name differs from the caller-side — deliberate so a leaked one doesn't compromise both).
 - Schema constraint: `CRON_RUN_SOURCES` in `studio/src/lib/db/schema.ts` enumerates accepted sources (`["analytics_daily", "tasks_digest"]` today). Adding a new caller means adding to this tuple — the receiver refuses unknown sources by design.
 - Table: `cron_runs` in the studio Turso DB.
 
 **Tasks → Studio (digest staleness)**
 
-- Caller: `~/Projects/personal/tasks/src/lib/ops/ping-studio.ts`. A near-exact mirror of the signal caller (same `https://*.signalstudio.ie` allowlist, same 2s timeout, same fail-silent contract), `source: "tasks_digest"`. Invoked at the end of `tasks/src/app/api/cron/digest/route.ts`.
+- Caller: `tasks/src/lib/ops/ping-studio.ts`. A near-exact mirror of the signal caller (same `https://*.signalstudio.ie` allowlist, same 2s timeout, same fail-silent contract), `source: "tasks_digest"`. Invoked at the end of `tasks/src/app/api/cron/digest/route.ts`.
 - Receiver: the same `studio/src/app/api/internal/cron-ping/route.ts` — one receiver, source-discriminated by the `CRON_RUN_SOURCES` tuple.
 - Until `STUDIO_CRON_PING_URL` + `STUDIO_CRON_PING_SECRET` are set on the Tasks Vercel project the caller is a silent no-op and HQ reads the digest cron as `never` (honest, not a hardcoded nag) — it self-heals to green on the first run after the env lands.
 
 **Notes → Tasks (note promote)**
 
-- Caller: `~/Projects/personal/notes/src/server/actions/notes.ts`. Reads `TASKS_API_URL` (defaults to `https://tasks.signalstudio.ie`) and `NOTES_TO_TASKS_SECRET` from env. Re-reads the freshest extract from the Notes DB before sending — the network call always carries creator-authored wording, never client-passed.
+- Caller: `notes/src/server/actions/notes.ts`. Reads `TASKS_API_URL` (defaults to `https://tasks.signalstudio.ie`) and `NOTES_TO_TASKS_SECRET` from env. Re-reads the freshest extract from the Notes DB before sending — the network call always carries creator-authored wording, never client-passed.
 - Receiver: Tasks's HTTP API (route exists in the Tasks repo). Owns the destination task row.
 - Configuration check: if `NOTES_TO_TASKS_SECRET` is missing, Notes throws explicitly rather than failing silently — the only path that *doesn't* swallow.
 

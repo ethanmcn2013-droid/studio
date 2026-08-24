@@ -228,6 +228,17 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["materials", "files"],
   },
   {
+    slug: "asset-curator",
+    route: "/hq/asset-curator",
+    name: "Asset curator",
+    group: "make",
+    kind: "room",
+    lifecycle: "active",
+    summary: "Review every visual direction and lock the preferred reference set for future work.",
+    aliases: ["preferred assets", "brand references", "visual canon", "shortlist"],
+    parent: "assets",
+  },
+  {
     slug: "slide-30-review",
     route: "/hq/slide-30-review",
     name: "Market-entry Slide 30",
