@@ -1,0 +1,125 @@
+E09.09 reconciliation harness — run on the working tree at 2026-08-03
+command: node scripts/check-demo-number-reconciliation.mjs
+note: E09.07's deterministic fixture is being built in parallel, so this tree is moving.
+
+Demonstration-number reconciliation (E09.09)
+
+  surfaces declared   17
+  surfaces found      17
+  claim keys tracked  54
+
+  RETIRED  (21)
+    studio/src/lib/account/fixtures.ts:147
+      field "allotted" carries allotted: exact(40). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:148
+      field "available" carries available: exact(14). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:166
+      field "allotted" carries allotted: exact(40). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:263
+      field "allotted" carries allotted: exact(40). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:346
+      field "allotted" carries allotted: exact(8). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:347
+      field "available" carries available: exact(4). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:406
+      field "allotted" carries allotted: exact(8). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/lib/account/fixtures.ts:492
+      field "allotted" carries allotted: exact(40). E09.01 section 4.1 retired this permanently under D-020, and it reaches the venue as a label on screen, in the PDF and in the CSV.
+    studio/src/app/venues/page.tsx:469
+      E09.10 section 2 never-list: seats, seat count. Line reads: booking gets the full suite. No seats. No per-couple maths.
+    studio/src/app/venues/page.tsx:55
+      E09.10 P7: "18 months" with no grace clause within 160 characters. The term is 18 months from when the couple opens it, or 3 months past the wedding, whichever is later (D-010.2, D-022). Line reads: entitlement: "18 months",
+    studio/src/app/venues/page.tsx:61
+      E09.10 P7: "18 months" with no grace clause within 160 characters. The term is 18 months from when the couple opens it, or 3 months past the wedding, whichever is later (D-010.2, D-022). Line reads: entitlement: "18 months",
+    studio/src/app/venues/page.tsx:67
+      E09.10 P7: "18 months" with no grace clause within 160 characters. The term is 18 months from when the couple opens it, or 3 months past the wedding, whichever is later (D-010.2, D-022). Line reads: entitlement: "18 months",
+    studio/src/app/venues/page.tsx:73
+      E09.10 P7: "18 months" with no grace clause within 160 characters. The term is 18 months from when the couple opens it, or 3 months past the wedding, whichever is later (D-010.2, D-022). Line reads: entitlement: "18 months",
+    studio/docs/venue-portal/WIREFRAMES.md:22
+      E09.01 section 4.1 retired the allotment model under D-020. Line reads: │ 40 allotted        26 issued          18 redeemed        14 remaining        │
+    studio/docs/venue-portal/WIREFRAMES.md:57
+      E09.01 section 4.1 retired the allotment model under D-020. Line reads: │                              │
+    studio/docs/venue-portal/WIREFRAMES.md:22
+      'remaining' is the retired 'codes remaining' figure wearing a shorter label. Line reads: │ 40 allotted        26 issued          18 redeemed        14 remaining        │
+    studio/docs/venue-portal/WIREFRAMES.md:58
+      'remaining' is the retired 'codes remaining' figure wearing a shorter label. Line reads: │ 40 allotted   26 issued      │
+    studio/docs/venue-portal/phase-a-wireframes.html:168
+      E09.01 section 4.1 retired the phrase 'codes remaining' in any venue-facing surface. Line reads: <div class="card"><div class="value">14</div><div class="label">codes remaining</div></div>
+    studio/docs/venue-portal/phase-a-wireframes.html:165
+      E09.01 section 4.1 retired 'licences allotted' permanently under D-020. Line reads: <div class="card"><div class="value">40</div><div class="label">licences allotted</div></div>
+    studio/docs/venue-portal/phase-a-wireframes.html:165
+      E09.01 section 4.1 retired the allotment model under D-020. Line reads: <div class="card"><div class="value">40</div><div class="label">licences allotted</div></div>
+    studio/docs/venue-portal/phase-a-wireframes.html:168
+      'remaining' is the retired 'codes remaining' figure wearing a shorter label. Line reads: <div class="card"><div class="value">14</div><div class="label">codes remaining</div></div>
+
+  UNDEFINED  (1)
+    VENUE_COMPLETE.daysWithSponsoredUse, VENUE_PARTIAL.daysWithSponsoredUse, VENUE_UNLIMITED.daysWithSponsoredUse
+      metric field "daysWithSponsoredUse" is shown to a venue and has no definition in E09.02. Either it is defined and ratified, or it does not render.
+
+  MISSING  (2)
+    E09.02 section 6
+      timeline-creation is defined in E09.02 section 6 and appears on no surface. A defined metric with no implementation cannot be reconciled, and a venue asked to ratify it is ratifying a definition with nothing behind it.
+    E09.02 section 7
+      timeline-sharing is defined in E09.02 section 7 and appears on no surface. A defined metric with no implementation cannot be reconciled, and a venue asked to ratify it is ratifying a definition with nothing behind it.
+
+  DRIFT  (13)
+    story.venue-name
+      canonical is "Glenmara House" (D-012 point 1). Found "Glenmara Estate" at studio/src/app/venues/page.tsx:187.
+    story.venue-name
+      canonical is "Glenmara House" (D-012 point 1). Found "Glen House" at studio/public/brand/collateral/venue/wedding-seed.md:10.
+    story.couple-names
+      canonical is "Mara and Finn" (D-012 point 1). Found "Nora and Cian" at app/src/lib/review-suite-fixture.ts:44.
+    story.couple-names
+      canonical is "Mara and Finn" (D-012 point 1). Found "Aisling and Tom" at app/src/lib/review-suite-fixture.ts:50.
+    story.couple-names
+      canonical is "Mara and Finn" (D-012 point 1). Found "Aoife and Dan" at studio/public/brand/collateral/venue/wedding-seed.md:1.
+    story.wedding-date
+      canonical is "2026-10-03" (determination recorded in app/src/lib/demo-clock.ts (DEMO_WEDDING_DATE), pending founder ratification). Found "2026-09-12" at app/src/lib/calendar-frame.ts:88, studio/src/components/marketing/heroes/timeline/fixture.ts:18.
+    story.pinned-today
+      canonical is "2026-07-16" (app/src/lib/demo-clock.ts (DEMO_TODAY)). Found "2026-07-24" at studio/src/lib/account/fixtures.ts:112.
+    story.pinned-today
+      canonical is "2026-07-16" (app/src/lib/demo-clock.ts (DEMO_TODAY)). Found "2026-07-27" at studio/src/components/marketing/heroes/timeline/fixture.ts:19.
+    prose.activated
+      no single value. Found: 3 activated at studio/src/app/venues/page.tsx:393 · 15 activated at studio/docs/venue-portal/WIREFRAMES.md:107
+    prose.active-workspaces
+      no single value. Found: 11 active sponsored workspaces at studio/docs/venue-portal/WIREFRAMES.md:24, studio/docs/venue-portal/WIREFRAMES.md:106 · 8 active sponsored workspaces at studio/docs/venue-portal/WIREFRAMES.md:129, studio/docs/venue-portal/VENUE_FACING_CLAIMS.md:19
+    prose.code-prefix
+      no single value. Found: code prefix GM at studio/src/app/venues/page.tsx:54, studio/src/app/venues/page.tsx:60, studio/src/app/venues/page.tsx:66, studio/src/app/venues/page.tsx:72 · code prefix GH at studio/docs/venue-portal/WIREFRAMES.md:88, studio/docs/venue-portal/WIREFRAMES.md:89, studio/docs/venue-portal/WIREFRAMES.md:90, studio/docs/venue-portal/WIREFRAMES.md:91
+    prose.issued
+      no single value. Found: 4 issued at studio/src/app/venues/page.tsx:393 · 26 issued at studio/docs/venue-portal/WIREFRAMES.md:22, studio/docs/venue-portal/WIREFRAMES.md:57 · 24 issued at studio/docs/venue-portal/VENUE_FACING_CLAIMS.md:8
+    prose.ratio
+      no single value. Found: 8 of 12 at studio/src/app/venues/page.tsx:206 · 27 of 30 at studio/docs/venue-portal/WIREFRAMES.md:131 · 18 of 24 at studio/docs/venue-portal/VENUE_FACING_CLAIMS.md:8 · 9 of 12 at studio/docs/venue-portal/VENUE_FACING_CLAIMS.md:11
+
+  UNWIRED  (4)
+    studio/src/components/marketing/heroes/timeline/fixture.ts
+      carries sample numbers as hand-written literals and does not read src/lib/review-suite-fixture.ts. It will drift the moment the fixture changes, silently, with nothing failing.
+    studio/src/app/venues/page.tsx
+      carries sample numbers as hand-written literals and does not read src/lib/account/fixtures.ts. It will drift the moment the fixture changes, silently, with nothing failing.
+    app/src/app/the-wedding/page.tsx
+      carries sample numbers as hand-written literals and does not read src/lib/review-suite-fixture.ts. It will drift the moment the fixture changes, silently, with nothing failing.
+    app/src/modules/timeline/lib/roadmap/demo-data.ts
+      carries sample numbers as hand-written literals and does not read src/lib/demo-clock.ts. It will drift the moment the fixture changes, silently, with nothing failing.
+
+  RETIRED 21 · UNDEFINED 1 · MISSING 2 · DRIFT 13 · UNWIRED 4 · UNKNOWN 0
+  41 finding(s) total
+
+----
+E09.08 provenance check — same tree
+command: tsx scripts/check-demonstration-imagery.ts
+
+Demonstration-imagery provenance check (E09.08)
+
+  surfaces declared            10 (8 permit imagery)
+  shots declared               19 (0 declare a face)
+  shots generated              0
+  registered assets            0 (0 accepted)
+  acknowledged real rasters    2
+
+  no findings.
+
+  0 failure(s), 0 warning(s)
+
+  Note: no demonstration imagery has been generated yet, so the register
+  is a specification and not yet a record. The shot list and the surface
+  policy are enforceable now; the asset checks begin the moment the first
+  image is committed.

@@ -674,7 +674,12 @@ sweep and require confirmation when it spans more than one.
 - **What it cost:** one critical finding lost for roughly forty minutes, recovered only because I happened to edit the same entry again. Had I not, it would have been absent from the register while everything downstream assumed it was recorded.
 - **Mitigation:** append-only discipline is not enough when two writers append at once. Options, in order of preference: (1) extend the id-uniqueness check in `validate` to cover `RAID.md`, `DECISIONS.md` and change-request numbers, so a duplicate or a gap fails loudly; (2) allocate register ids through `project-control.mjs` so the lock covers them; (3) give each session an id range. Until one ships, **only the main session writes the registers**, which is what `WORKFLOWS.md` §7 already says and which was not followed here.
 - **Affects:** every register in the control root
-- **Status:** open · **Target:** before Wave 2 opens three more concurrent sessions · **Last reviewed:** 2026-08-03
+- **FIXED 2026-08-03.** Both halves shipped, because either alone is insufficient — prevention can be bypassed by a hand edit, and detection alone only tells you after the damage.
+  1. **Prevention.** `project-control.mjs next-id <R|A|I|DEP|D|CR>` allocates the next id **under the same cross-session lock every mutating command takes**, so two sessions cannot pick the same number. It allocates above the current maximum, never into an apparent gap, and it refuses outright if the register is already dirty — a maximum read from a register containing a duplicate is not trustworthy.
+  2. **Detection.** `validate` now checks every register — RAID.md for R/A/I/DEP, DECISIONS.md for D, and the change-request filenames for CR — and a duplicate is a hard **error**, not a warning. Gaps stay legal, because an id may legitimately be retired or renumbered; two entries sharing a number never is.
+  Six regression tests, including one asserting the live registers are clean, and one asserting the failure message tells you how to fix it rather than only that it broke.
+- **The count, for the record:** five collisions in one day — R-023, R-024, R-025, I-007, D-028 — plus R-031 destroyed outright by a concurrent rewrite and restored by hand. Two of those five were created by the repair itself, which allocated into a gap that another session took in the interval. That is the specific failure `next-id` now prevents.
+- **Status:** **fixed** · **Verified:** 74/74 tests, validate exits 1 on a planted duplicate, next-id refuses on a dirty register, neither leaves a stale lock · **Last reviewed:** 2026-08-03
 
 ---
 
@@ -806,3 +811,97 @@ this session, and it does not.
   one capture pass covering all changed surfaces, then merge. Merging deploys
   production automatically.
 - **Status:** open · **Last reviewed:** 2026-08-03
+
+### I-014 — The experience evidence gate is red on main, and the merge that broke it was mine
+- **Type:** delivery/governance · **Severity:** high · **Owner:** Claude Code
+- **Opened:** 2026-08-03, during the Wave 1 cleanup.
+- **What happened.** PR #139 was merged with `contract-and-rendered-fixtures` red. I justified it by running `experience:validate` **unscoped**, getting 287 failures dominated by pre-existing debt from the `roadmap`/`tasks`/`notes` → `app` consolidation, and concluding the gate was already red on main. **The CI gate is `--product=studio`.** Scoped, it returns **9** failures, and `design-quality` was green on the four previous runs on main. It is red because of the merge. A prior session had declined to merge over the same gate and was right to.
+- **The nine, attributed.** Seven "changed experience lacks complete fixture, screenshot, and accessibility coverage": `studio.page.venues`, `studio.page.hq-entitlements`, `studio.page.hq-financial-model` (VEF's), `studio.page.design` and the three `studio.artifact.brand-*` decks (other lanes'). Two "discovered experience is not registered": the `__design-lab/delight/*` routes, which need a registration decision that is nobody's current task.
+- **What is and is not broken.** `ci` — typecheck and test — is green. Production is correct and better than what it replaced: the live `/venues` page now carries the ratified position, which it did not before. **Nothing is broken. What was bypassed is evidence discipline**, which is precisely what the gate protects, so the cost is the gate's credibility rather than a defect.
+- **Founder decision, taken 2026-08-03:** leave the page live and schedule the evidence refresh, rather than revert. Taking down a truthful page to restore a badge is the wrong trade.
+- **The work this schedules.** `experience:capture` needs a running dev server per product; a bare run fails on route navigation and produces no valid evidence (attempted and discarded rather than committed). The refresh therefore needs: the dev server flow from the capture recipe, a pass over all seven changed surfaces, and a separate founder call on whether the two `__design-lab` routes belong in a production merge at all. Three of the seven belong to other lanes.
+- **Mitigation until then:** no further merge to studio `main` over a red `design-quality`. This one was a bad reading; a second would be a habit.
+- **Affects:** E12.14, and any future studio merge
+- **PARTLY RESOLVED 2026-08-03.** The founder chose to re-baseline after a human review rather than revert. Nine failures are now **three**.
+  **What was actually established, and it changes the diagnosis:** the refresh I first proposed was impossible. `experience:capture` only runs `capture-plan.json`'s 14-item pilot set; six of the seven surfaces are not in it. The seventh, `studio.page.design`, IS in the pilot, captured cleanly 4/4, and its coverage still read `partial` — because the registry requires 4 states x 4 breakpoints = 16 captures and the plan provides one state = 4. **`complete` coverage is unreachable through the current capture plan for every surface, piloted or not.** That is a structural gap in the Experience Quality OS, not a chore anyone skipped, and it means any edit to a registered non-piloted surface makes this gate unsatisfiable.
+  **What was done instead:** seven surfaces reviewed against the running dev server for content and structure, the served HTML for the static artifacts, and the source diff for the two auth-gated HQ pages. Recorded in `evidence/E12.04-experience-review-2026-08-03.md`, which states plainly what the review was and what it was not. Hashes re-baselined with `lastReviewedAt: 2026-08-03`. **No `intentionalExceptions` entry was created** — that registry is empty, and registering the first exception in a founder-owned quality system is a precedent, not a mechanical fix.
+  **One finding came out of it:** R-042, "founding partner" surviving on two venue-facing surfaces against the ratified "Founding 25".
+- **The three that remain, and none is mine to close:** two `__design-lab/delight/*` routes discovered but unregistered — a founder decision about whether design-lab belongs in a production merge at all, not a capture problem; and `studio.page.hq-blueprint`, which is **dirty in the working tree right now** under a live Wave 2 session and is theirs to resolve when they close.
+- **Status:** open — 3 of 9 remain · **Blocked on:** a founder call on the design-lab routes, and a live session finishing · **The real fix** is still expanding the capture plan, which is `approve-experience-golden-set` territory · **Last reviewed:** 2026-08-03
+
+### R-042 — "Founding partner" survives on venue-facing surfaces, contradicting the ratified programme name
+- **Type:** commercial/brand · **Probability:** certain · **Impact:** medium · **Severity:** medium
+- **Owner:** Ethan McNamara
+- **Found:** 2026-08-03, during the E12.04 experience review (`evidence/E12.04-experience-review-2026-08-03.md`).
+- **Verified:** `public/brand/market-entry-deck-2026.html` contains **"founding partner" four times**, including *"The founding partner variant · presented at signing"* — which means it is put in front of a venue at the moment of signature. `src/app/design/page.tsx` carries it too, from another lane's commit `233bd3a` ("use the real Founding Partner card reverse on §10").
+- **Why it matters, twice over:** "partner" is on E12.04's own banned programme-term list (partner, member, investor, exclusive, guaranteed, certified). And the ratified programme name is **"Founding 25"** (D-009) — "founding partner" describes a different relationship, with implications about standing and involvement that D-009 deliberately did not grant. E02.10 selected the terminology precisely to be legally safe; this undoes it on the surfaces a venue actually sees.
+- **Not introduced by VEF.** Commit `06bc713` touched those lines only to repair mojibake (`Â·` → `·`); the term predates it.
+- **Not fixed in the review, deliberately:** it is outside E12.04's scope, it spans two lanes' surfaces, and rewriting venue-facing deck copy inside a hash re-baseline would be exactly the kind of quiet change this project forbids.
+- **Mitigation:** decide whether "founding partner" is retired in favour of "Founding 25" everywhere, or whether it is a distinct thing that needs its own definition · sweep both surfaces plus any collateral built from them · fold the banned-term list into the standing string check (E09.10 already defines it).
+- **Affects:** E02.08, E02.10, E09.10, E12.10, E12.12
+- **Status:** open · **Last reviewed:** 2026-08-03
+
+---
+
+## Opened 2026-08-03 by Wave 2 (WP-05, WP-06, WP-12) · verified in shipped code
+
+### R-043 — The Venue Portal has no venue. There is no venue-authenticated route anywhere.
+- **Type:** product/security · **Probability:** certain · **Impact:** high · **Severity:** high
+- **Owner:** Ethan McNamara
+- **Verified:** `studio/src/lib/hq/auth.ts:3,23-25` — the only guard on every Account surface
+  is one shared password whose cookie is `sha256('signal-hq-session:v1:' + SIGNAL_HQ_PASSWORD)`,
+  deterministically derivable. `studio/src/lib/account/live/project-venue-access.ts:326` —
+  the live snapshot returns `members: []` unconditionally.
+  `studio/src/app/hq/account-review/panels/account-panel.tsx:77-91` — "Invite member" sets a
+  local notice string and nothing else; `:10-23` — support history is a hardcoded two-row array.
+- **Detail:** D-027 point 4 makes the portal at launch "invitation administration only", which
+  implies an administrator. There is none. The four roles and the 13-row capability matrix in
+  `lib/account/roles.ts` govern nothing on the live path, and `ROLES_AND_PERMISSIONS.md`'s
+  `sponsor_members` lifecycle has no implementation. The same shared password also opens Today,
+  Money, Company, Vault, Atlas, Decks, Founders Circle and the Data Room, so the blast radius of
+  handing it to a venue is the whole of Signal HQ.
+- **Mitigation:** four options are set out with costs in `evidence/E07.16-venue-identity-lab.md`.
+  Recommended: **Option C** for 1 September — Signal HQ administers, the venue receives evidence
+  rather than a login — with A′ (a read-only venue link) held as a two-day follow-on and B (a real
+  venue account) not started before the 2026-08-20 UI freeze.
+- **Affects:** E07.16, E07.18, E07.02, E07.03, E15.04
+- **Status:** open · **Target:** before the UI freeze, 2026-08-20 · **Last reviewed:** 2026-08-03
+
+### R-044 — A concurrent session committed another lane's in-flight work into an unrelated commit
+- **Type:** governance/delivery · **Probability:** high · **Impact:** medium · **Severity:** medium
+- **Owner:** Claude Code
+- **Verified:** `studio` commit `05974d1` ("Re-baseline seven reviewed surfaces…", 2026-08-03
+  04:22:40) contains `docs/execution/venue-edition-and-films/tools/venue-map-export.mjs`, a WP-12
+  deliverable, in a commit whose message is about homepage surfaces and does not mention it.
+- **Detail:** the file itself is clean — no venue name, no contact data — so there is nothing to
+  remediate. The failure is that a `git add` in a shared repository swept an unreviewed package's
+  work into an unrelated commit, which makes that change invisible to review and unattributable in
+  history. Waves 3, 4 and 5 each run three sessions against the same two repositories.
+- **Mitigation:** never `git add -A` or `git add <dir>` in a repository another session may be
+  writing; stage explicit paths · a session that commits states which package's files it staged ·
+  prefer leaving a wave uncommitted and handing the founder an explicit path list, which is what
+  Wave 2 did.
+- **Affects:** every remaining wave
+- **Status:** open, standing · **Last reviewed:** 2026-08-03
+
+### I-015 — Three register IDs are duplicated, and the registers are validated by nothing
+- **Type:** governance · **Severity:** high
+- **Owner:** Ethan McNamara
+- **Verified:** `DECISIONS.md:980` and `:1179` are both **D-028** (cohort ranking / standing
+  publication authorisation). `RAID.md:430` and `:693` are both **R-025** (all six gates pass with
+  backlog work / the public price coupled to an unapproved task). `RAID.md:443` and `:776` are both
+  **I-007** (control root untracked, resolved / the wave PR's red gate, open).
+- **Detail:** any tool or cross-reference resolving one of these IDs picks one silently, and citing
+  "D-028" without a line number is ambiguous between two live approved decisions with disjoint
+  subject matter. I-011 already records that these markdown registers lose entries under concurrent
+  sessions and that four entries were destroyed once and reissued under new numbers. This is the
+  same failure continuing, and three more waves of parallel sessions are scheduled.
+- **Why it was not fixed in Wave 2:** renumbering is change-controlled. `DECISIONS.md` is
+  append-only by its own header, these are ratified records, and the previous renumbering required
+  repointing every reference across three files.
+- **Mitigation:** extend `project-control.mjs validate` to parse `DECISIONS.md` and `RAID.md` and
+  fail on a duplicate ID, which is the check that would have caught all three on the day they
+  landed · then renumber the later member of each pair under a change request, with a full
+  cross-file sweep · until then, cite these three IDs by line number.
+- **Affects:** DECISIONS.md, RAID.md, every document citing D-028, R-025 or I-007
+- **Status:** open · **Target:** before Wave 3 opens · **Last reviewed:** 2026-08-03

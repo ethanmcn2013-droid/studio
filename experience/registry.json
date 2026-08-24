@@ -2559,7 +2559,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "b47292d6bb2e8f11"
@@ -2911,7 +2911,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "7b08dd4cbd86a7f4"
@@ -2999,7 +2999,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "bad87a85262c4e30"
@@ -3091,6 +3091,182 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "b795c0df1d975359"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-board",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/board",
+      "source": "studio/public/hq/labs/tasks-studio-floor/board.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · board.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · board.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "25e0b2ee548159df"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-floor",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/floor",
+      "source": "studio/public/hq/labs/tasks-studio-floor/floor.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · floor.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · floor.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "c1844ba4ba8443fd"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-record",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/record",
+      "source": "studio/public/hq/labs/tasks-studio-floor/record.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · record.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · record.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "80f51b7b5c4d5bdd"
+    },
+    {
+      "id": "studio.artifact.hq-labs-tasks-studio-floor-rounds",
+      "product": "studio",
+      "experienceClass": "founder-operator",
+      "surfaceType": "page",
+      "route": "/hq/labs/tasks-studio-floor/rounds",
+      "source": "studio/public/hq/labs/tasks-studio-floor/rounds.html",
+      "parentJourney": "brand-assets-and-proof",
+      "archetype": "public-information-and-proof",
+      "primaryJob": "Understand and use hq · labs · tasks studio floor · rounds.",
+      "primaryAction": "Complete the primary action on hq · labs · tasks studio floor · rounds.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "supporting",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "legacy",
+      "auditStatus": "registered",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "none",
+      "screenshotCoverage": "none",
+      "accessibilityCoverage": "none",
+      "fixtureCoverage": "none",
+      "lastReviewedAt": null,
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "e6d2f697172a987a"
     },
     {
       "id": "studio.page.about",
@@ -3263,7 +3439,7 @@
       "screenshotCoverage": "partial",
       "accessibilityCoverage": "partial",
       "fixtureCoverage": "partial",
-      "lastReviewedAt": "2026-07-16",
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": "experience/golden-set.json#/references/0",
       "intentionalExceptions": [],
       "materialityHash": "d6abf1adc448156a"
@@ -4480,7 +4656,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "f9e2e1393d0a7603"
@@ -4656,7 +4832,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "5a54dfb53b0fd300"
@@ -6670,7 +6846,7 @@
       "screenshotCoverage": "none",
       "accessibilityCoverage": "none",
       "fixtureCoverage": "none",
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-08-03",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "c80f1710913e6b81"
@@ -7080,7 +7256,7 @@
       "lastReviewedAt": "2026-08-12",
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
-      "materialityHash": "c92333047b3ad75d"
+      "materialityHash": "823611d9eaee6f5e"
     },
     {
       "id": "tasks.page.about",
@@ -11080,6 +11256,49 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "2a2b586686351bfd"
+    },
+    {
+      "id": "studio.page.design-lab-brand-guidelines",
+      "product": "studio",
+      "experienceClass": "company-public",
+      "surfaceType": "page",
+      "route": "/__design-lab/brand-guidelines",
+      "source": "studio/src/app/%5F%5Fdesign-lab/brand-guidelines/page.tsx",
+      "parentJourney": "experience-review",
+      "archetype": "review-and-approval-workspace",
+      "primaryJob": "Review the complete Signal Studio brand system before public promotion.",
+      "primaryAction": "Approve or reject the brand-guidelines direction and asset package.",
+      "roles": [
+        "founder"
+      ],
+      "requiredStates": [
+        "default",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "requiredBreakpoints": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "wide"
+      ],
+      "componentDependencies": [],
+      "patternDependencies": [],
+      "reviewTier": "core",
+      "designOwner": "product-taste-design-integrity",
+      "engineeringOwner": "engineering-systems-architecture",
+      "implementationStatus": "preview",
+      "auditStatus": "baseline-captured",
+      "auditScore": null,
+      "openFindingIds": [],
+      "automatedTestCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "lastReviewedAt": "2026-07-28",
+      "approvedBaselineReference": null,
+      "intentionalExceptions": [],
+      "materialityHash": "41daf3feb8d73a32"
     }
   ]
 }

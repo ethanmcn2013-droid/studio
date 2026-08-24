@@ -9,7 +9,8 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, writeFileSync, mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import {
@@ -17,6 +18,7 @@ import {
   renderBacklog, renderStatus, renderWeekly, TRANSITIONS, STATUSES, STATUS_CREDIT,
   EFFORT_SCALE, DECISION_CLASSES, ACTIVE_STATUSES, packetBlockers, renderPacket,
   migrateSessions, migrateSchedule, FREEZES, sweepScope, missingEvidenceFiles,
+  registerProblems, nextRegisterId,
 } from "./project-control.mjs";
 
 const base = loadState();
@@ -498,6 +500,50 @@ test("several sessions can be open at once", () => {
   // Closing one must leave the others untouched.
   s.session.open = s.session.open.filter((x) => x.id !== "wp02");
   assert.deepEqual(s.session.open.map((x) => x.id), ["wp01", "wp03"]);
+});
+
+// --- Register ids (I-011) --------------------------------------------------
+
+// Five id collisions happened in one day across four concurrent sessions,
+// because ids were allocated by reading a markdown file nobody held a lock on.
+// These are the net under the fix.
+
+test("every register is free of duplicate ids", () => {
+  assert.deepEqual(registerProblems(), [], "a duplicate makes every cross-reference to that id ambiguous");
+});
+
+test("a duplicate anywhere in a register is detected with an actionable message", () => {
+  const dir = mkdtempSync(join(tmpdir(), "vef-reg-"));
+  writeFileSync(join(dir, "RAID.md"), "### R-001 — first\n### A-001 — fine\n### R-001 — a second claimant\n");
+  writeFileSync(join(dir, "DECISIONS.md"), "## D-001 — first\n## D-002 — second\n");
+  const problems = registerProblems(dir);
+  assert.equal(problems.length, 1, "one duplicate, one problem");
+  assert.match(problems[0], /RAID\.md: duplicate id R-001/);
+  assert.match(problems[0], /above the current maximum/, "tells you how to fix it, not just that it broke");
+});
+
+test("gaps are legal — an id may be retired or renumbered — but duplicates are not", () => {
+  const dir = mkdtempSync(join(tmpdir(), "vef-reg-"));
+  writeFileSync(join(dir, "RAID.md"), "### R-001 — a\n### R-004 — b\n### R-009 — c\n");
+  assert.deepEqual(registerProblems(dir), [], "a gap is not a defect");
+  assert.equal(nextRegisterId("R", dir), "R-010", "allocation goes above the maximum, never into the gap");
+});
+
+test("next-id allocates above the maximum for every register", () => {
+  const dir = mkdtempSync(join(tmpdir(), "vef-reg-"));
+  writeFileSync(join(dir, "RAID.md"), "### R-041 — a\n### A-007 — b\n### I-013 — c\n### DEP-007 — d\n");
+  writeFileSync(join(dir, "DECISIONS.md"), "## D-031 — a\n");
+  assert.equal(nextRegisterId("R", dir), "R-042");
+  assert.equal(nextRegisterId("A", dir), "A-008");
+  assert.equal(nextRegisterId("I", dir), "I-014");
+  assert.equal(nextRegisterId("DEP", dir), "DEP-008");
+  assert.equal(nextRegisterId("D", dir), "D-032");
+});
+
+test("an empty or missing register starts at 001 rather than throwing", () => {
+  const dir = mkdtempSync(join(tmpdir(), "vef-reg-"));
+  assert.equal(nextRegisterId("R", dir), "R-001");
+  assert.deepEqual(registerProblems(dir), []);
 });
 
 // --- The founder-review packet (D-024) -------------------------------------

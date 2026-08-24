@@ -1,0 +1,12 @@
+SIGNAL STUDIO BRAND ASSETS
+Version 2.0.0
+
+Use these assets to represent Signal Studio accurately.
+
+Keep the wordmarks, dot geometry, spacing, colors, and product order intact.
+Use Geist and Geist Mono only.
+Use #4F46E5 as the only brand accent.
+Do not recolor, stretch, redraw, outline, or add effects to the marks.
+Do not use the functional status colors as brand accents.
+
+For questions, contact hello@signalstudio.ie.

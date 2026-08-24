@@ -104,13 +104,16 @@ export function MotionSpecimen({
       role="button"
       tabIndex={0}
       aria-pressed={paused}
-      aria-label={`${glyph(kind)}, ${name}, ${cycle}. ${
-        paused ? "Frozen. Activate to resume." : "Activate to freeze the motion."
-      }`}
       data-paused={paused}
       className={`motion-specimen flex aspect-[1.05] cursor-pointer flex-col justify-between p-6 outline-none focus-visible:ring-2 focus-visible:ring-[var(--indigo)] focus-visible:ring-inset ${className}`}
       onMouseEnter={() => {
-        if (!paused && !reduced()) restart();
+        if (
+          !paused &&
+          !reduced() &&
+          window.matchMedia("(hover: hover) and (pointer: fine)").matches
+        ) {
+          restart();
+        }
       }}
       onClick={toggle}
       onKeyDown={(e) => {
@@ -135,6 +138,9 @@ export function MotionSpecimen({
         <span>{name}</span>
         <span>{cycle}</span>
       </div>
+      <span className="guidelines-visually-hidden">
+        {paused ? "Frozen. Activate to resume." : "Activate to freeze the motion."}
+      </span>
     </div>
   );
 }
