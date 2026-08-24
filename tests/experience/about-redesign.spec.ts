@@ -77,7 +77,7 @@ test.describe("About six-movement production evidence", () => {
       const author = page.locator("[role='group'][aria-label='Author']");
       await expect(author).toContainText("Ethan McNamara");
 
-      await expect(page.getByRole("article").first()).not.toContainText("Daily briefing");
+      await expect(page.locator("#main")).not.toContainText("Daily briefing");
       expect(errors).toEqual([]);
     });
   }
