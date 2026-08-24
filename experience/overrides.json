@@ -260,28 +260,6 @@
       "fixtureCoverage": "complete",
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-07-28"
-    },
-    "studio.page.design-lab-product-handoff": {
-      "parentJourney": "experience-review",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
-      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "reviewTier": "core",
-      "implementationStatus": "preview",
-      "auditStatus": "baseline-captured",
-      "screenshotCoverage": "complete",
-      "accessibilityCoverage": "complete",
-      "fixtureCoverage": "complete",
-      "automatedTestCoverage": "complete",
-      "lastReviewedAt": "2026-07-28"
     }
   }
 }

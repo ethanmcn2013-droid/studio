@@ -11299,49 +11299,6 @@
       "approvedBaselineReference": null,
       "intentionalExceptions": [],
       "materialityHash": "41daf3feb8d73a32"
-    },
-    {
-      "id": "studio.page.design-lab-product-handoff",
-      "product": "studio",
-      "experienceClass": "company-public",
-      "surfaceType": "page",
-      "route": "/__design-lab/product-handoff",
-      "source": "studio/src/app/%5F%5Fdesign-lab/product-handoff/page.tsx",
-      "parentJourney": "experience-review",
-      "archetype": "review-and-approval-workspace",
-      "primaryJob": "Compare three Product Handoff directions across the complete product walk.",
-      "primaryAction": "Select the direction to integrate into the four production marketing pages.",
-      "roles": [
-        "founder"
-      ],
-      "requiredStates": [
-        "default",
-        "reduced-motion",
-        "keyboard-only"
-      ],
-      "requiredBreakpoints": [
-        "mobile",
-        "tablet",
-        "desktop",
-        "wide"
-      ],
-      "componentDependencies": [],
-      "patternDependencies": [],
-      "reviewTier": "core",
-      "designOwner": "product-taste-design-integrity",
-      "engineeringOwner": "engineering-systems-architecture",
-      "implementationStatus": "preview",
-      "auditStatus": "baseline-captured",
-      "auditScore": null,
-      "openFindingIds": [],
-      "automatedTestCoverage": "complete",
-      "screenshotCoverage": "complete",
-      "accessibilityCoverage": "complete",
-      "fixtureCoverage": "complete",
-      "lastReviewedAt": "2026-07-28",
-      "approvedBaselineReference": null,
-      "intentionalExceptions": [],
-      "materialityHash": "eb740bf5ea9343b2"
     }
   ]
 }
