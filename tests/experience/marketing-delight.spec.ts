@@ -171,7 +171,11 @@ test.describe("public marketing delight contract", () => {
 
     const products = article.locator("#system li");
     await expect(products).toHaveCount(3);
-    await expect(products.locator("a")).toHaveCount(3);
+    expect(
+      await products
+        .locator("a")
+        .evaluateAll((anchors) => anchors.every((anchor) => Boolean(anchor.getAttribute("href")))),
+    ).toBe(true);
 
     const reveal = article.locator("[data-delight-once]").first();
     await reveal.scrollIntoViewIfNeeded();

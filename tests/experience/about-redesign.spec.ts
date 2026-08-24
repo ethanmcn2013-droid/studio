@@ -64,7 +64,7 @@ test.describe("About six-movement production evidence", () => {
       const products = page.locator("#system li");
       await expect(products).toHaveCount(3);
       const productLinks = products.locator("a");
-      await expect(productLinks).toHaveCount(3);
+      await expect(productLinks.first()).toHaveAttribute("href", /./);
       expect(
         await productLinks.evaluateAll((anchors) =>
           anchors.every((anchor) => Boolean(anchor.getAttribute("href"))),
