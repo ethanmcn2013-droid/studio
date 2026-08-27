@@ -4,7 +4,7 @@ title: Holding a customer's Google refresh token, in a repository that has never
 category: Security
 likelihood: Medium
 impact: High
-status: Open
+status: Needs attention
 owner: Ethan
 reviewDate: 2026-09-30
 ---

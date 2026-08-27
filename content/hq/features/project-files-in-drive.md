@@ -2,7 +2,7 @@
 id: project-files-in-drive
 title: Project files in the board owner's Google Drive
 product: tasks
-status: In progress
+status: In Progress
 lastVerified: 2026-08-27
 ---
 
