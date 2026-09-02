@@ -8,7 +8,7 @@
 // Read-only. Does not mutate any Clerk state.
 //
 // Usage:
-//   cd ~/Projects/personal/studio && node scripts/verify-clerk-apple.mjs
+//   node scripts/verify-clerk-apple.mjs
 //
 // Required envs (any of these will be read; per-product .env.local first):
 //   CLERK_SECRET_KEY_TASKS
@@ -16,19 +16,20 @@
 //   CLERK_SECRET_KEY_ANALYTICS
 //   CLERK_SECRET_KEY_NOTES
 //
-// Or — fallback — the script reads ~/Projects/personal/<product>/.env.local
+// Or — fallback — the script reads <workspace>/<product>/.env.local
 // for the bare CLERK_SECRET_KEY in each product's own env file.
 
 import { readFile } from "node:fs/promises";
-import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const PRODUCTS = ["tasks", "roadmap", "analytics", "notes"];
 
-const HOME = homedir();
+const STUDIO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const WORKSPACE_ROOT = resolve(STUDIO_ROOT, "..");
 
 async function readSecretFromEnvFile(product) {
-  const envPath = join(HOME, "Projects", "personal", product, ".env.local");
+  const envPath = join(WORKSPACE_ROOT, product, ".env.local");
   try {
     const contents = await readFile(envPath, "utf8");
     const line = contents
