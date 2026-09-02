@@ -71,7 +71,7 @@
     "lenis": "1.1.20",
     "mermaid": "^11.15.0",
     "motion": "^12.38.0",
-    "next": "16.2.5",
+    "next": "16.2.11",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "signal-ds": "^2.1.0"
@@ -90,7 +90,7 @@
     "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.2.6",
+    "eslint-config-next": "16.2.11",
     "pixelmatch": "^7.2.0",
     "pngjs": "^7.0.0",
     "tailwindcss": "^4",
