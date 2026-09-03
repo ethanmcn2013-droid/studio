@@ -51,4 +51,4 @@ Stark + Jobs. Declarative. Plain English ~7th-grade, clean not childish. Verbs o
 
 ## When in doubt
 
-Invoke `signal-brand-voice`. Read `~/Projects/personal/studio/BRAND.md` §2–§3 and `DESIGN.md` §10. If a framework formula needs a banned word, rewrite the output, keep the structure, lose the word.
+Invoke `signal-brand-voice`. Read the repository's `BRAND.md` §2–§3 and `DESIGN.md` §10. If a framework formula needs a banned word, rewrite the output, keep the structure, lose the word.

@@ -8,7 +8,7 @@
  * this same script. Atlas content always lives in studio, so the
  * sidecar lives next to it at:
  *
- *   ~/Projects/personal/studio/content/atlas/_drift.json
+ *   <workspace>/studio/content/atlas/_drift.json
  *
  * Per-repo behavior:
  *   - In studio:   auto-stages the sidecar, runs the clear path (when
@@ -35,9 +35,11 @@ type SidecarEntry = {
 };
 type Sidecar = Record<string, SidecarEntry>;
 
-const HOME = process.env.HOME ?? "";
+const HOME = process.env.USERPROFILE ?? process.env.HOME ?? "";
 const REPO_ROOT = execSync("git rev-parse --show-toplevel").toString().trim();
-const STUDIO_ROOT = path.join(HOME, "Projects", "personal", "studio");
+const STUDIO_ROOT = fs.existsSync(path.join(REPO_ROOT, "content", "atlas"))
+  ? REPO_ROOT
+  : path.resolve(REPO_ROOT, "..", "studio");
 const ATLAS_DIR = path.join(STUDIO_ROOT, "content", "atlas");
 const SIDECAR_PATH = path.join(ATLAS_DIR, "_drift.json");
 const IS_STUDIO = REPO_ROOT === STUDIO_ROOT;

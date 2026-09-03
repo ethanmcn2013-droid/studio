@@ -23,7 +23,7 @@
 //   you have a session for — products without a session are skipped
 //   from the authed pass.
 //
-// Outputs to: ~/Projects/personal/studio/.responsive-audit/<run-id>/<product>-<surface>-<width>[-pwa].png
+// Outputs to: <studio>/.responsive-audit/<run-id>/<product>-<surface>-<width>[-pwa].png
 // .responsive-audit/ is gitignored. Run-id is the ISO timestamp.
 //
 // Requires Playwright installed in the studio repo:
@@ -33,11 +33,10 @@
 // If Playwright isn't installed the script exits with an actionable hint.
 
 import { mkdir } from "node:fs/promises";
-import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const HOME = homedir();
-const REPO = join(HOME, "Projects", "personal", "studio");
+const REPO = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const WIDTHS = [320, 375, 390, 393, 414, 430];
 
