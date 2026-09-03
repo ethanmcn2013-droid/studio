@@ -85,7 +85,7 @@ export function SiteNav() {
   return (
     <header
       ref={productsWrapRef}
-      className="sticky top-0 z-40 w-full"
+      className="site-nav sticky top-0 z-40 w-full"
       style={{
         background: "var(--bg)",
         borderBottom: "1px solid var(--border-soft)",
