@@ -1,6 +1,6 @@
 {
   "schemaVersion": "signal-ux-assurance-report/1",
-  "generatedAt": "2026-08-13T01:14:36.534Z",
+  "generatedAt": "2026-09-03T04:18:45.721Z",
   "modes": [
     {
       "id": "product-clarity",
@@ -73,11 +73,11 @@
   "policy": "Specialists emit evidence and findings. They never manufacture a score from lint counts or claim subjective quality without rendered review evidence.",
   "captureAvailable": true,
   "coverage": {
-    "experiences": 245,
-    "automatedComplete": 5,
-    "screenshotsComplete": 5,
-    "accessibilityComplete": 5,
-    "fixturesComplete": 5
+    "experiences": 250,
+    "automatedComplete": 6,
+    "screenshotsComplete": 6,
+    "accessibilityComplete": 6,
+    "fixturesComplete": 6
   },
   "observations": [],
   "subjectiveReviewQueue": [

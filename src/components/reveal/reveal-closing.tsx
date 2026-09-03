@@ -1,49 +1,21 @@
-/**
- * Reveal closing, indigo accent hairline (mirrors the opening rule) +
- * editorial sign-off + a two-path call to action + mono address line.
- * Page begins and ends on the indigo accent. Circular structure.
- *
- * The CTA pair is the conversion point the front door deliberately
- * withholds (the hero reads as a headline, not a wall). It serves both
- * audiences the suite actually has: the person joining staged access
- * (waitlist), and the venue/events buyer whose path is high-touch.
- */
-
-import Link from "next/link";
-
+/** Direction A · the closing sheet: who it is for, and the two doors. */
 export function RevealClosing() {
   return (
-    <section className="reveal-closing">
-      <div className="reveal-closing-rule" aria-hidden />
-      <p className="reveal-closing-sign">
-        Built for <span className="em">the 80%</span>.
-      </p>
-
-      <div className="reveal-closing-cta">
-        <Link
-          className="reveal-cta reveal-cta-primary"
-          href="/waitlist?source=home_closing&campaign=pre_access_waitlist&artifact=closing_cta&touch=site"
-        >
-          Join the waitlist
-          <span className="cta-arrow" aria-hidden>
-            {" "}
-            →
-          </span>
-        </Link>
-        <Link className="reveal-cta reveal-cta-ghost" href="/venues">
-          For venues &amp; events
-          <span className="cta-arrow" aria-hidden>
-            {" "}
-            →
-          </span>
-        </Link>
-      </div>
-
-      <p className="reveal-closing-addr">
-        <a href="mailto:hello@signalstudio.ie">hello@signalstudio.ie</a>
-        <span className="sep" aria-hidden>·</span>
-        <span>Limerick, {new Date().getFullYear()}</span>
-      </p>
-    </section>
+    <section className="sheet who" aria-labelledby="who-h">
+        <div className="inner rise">
+          <div>
+            <span className="kicker">Who it is for</span>
+            <h2 id="who-h" className="title" style={{ marginTop: "18px" }}>Built for the 80%.</h2>
+          </div>
+          <div>
+            <p className="lede">Most people with work to manage do not work in tech. They run venues, sites, classrooms and small studios. They were handed tools built for engineering teams and told to adapt.</p>
+            <p className="lede">Signal Studio starts from the other end. Wedding venues are first, because a Saturday is the hardest calm day there is.</p>
+            <div className="paths">
+              <a className="path" href="/waitlist?source=home_closing&amp;campaign=pre_access_waitlist&amp;artifact=closing_cta&amp;touch=site"><div><h3>Join the waitlist</h3><p>Access opens in stages. We will write to you when your turn comes.</p></div><span className="go" aria-hidden="true">→</span></a>
+              <a className="path" href="/venues"><div><h3>For venues and events</h3><p>The Venue Edition, in private preview now.</p></div><span className="go" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
   );
 }

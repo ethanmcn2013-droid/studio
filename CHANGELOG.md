@@ -8,6 +8,12 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-03 · S·169 · ships · The front door becomes the floor and the sheet
+
+**The home page is now the suite's own geometry: an ink floor, white sheets lifted off it, and the three products shown as scenes that play once as you reach them.**
+
+The founder chose direction A from three on 3 September. The hero relays one line from a note to a task to a published date. Notes opens as a capture card and unfolds into the page when the first thought is saved; a second thought is dictated; one row is swiped right and goes on to Tasks. Tasks springs wide for the board, a card arrives from Notes and is dragged from To do to In progress under a zoom, the header carries a progress bar, and the same work is shown as a list with owner cards before the board returns. Timeline springs wide for the across view, counts down from 79, draws its track, then goes tall and dark as the dates restack down the page, and comes back to paper with the link ready to share. Between the products and the closing, the words the product refuses are struck through one by one. Every scene has a Play again control and renders its finished state under reduced motion. The headline reads "Project management for people not in tech."
+
 ## 2026-08-23 · S·168 · tightens · About clears its verdict gate, five seats unanimous at the bar
 
 **The About page now holds 9.5 or better from five independent blind
