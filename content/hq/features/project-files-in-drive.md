@@ -3,7 +3,7 @@ id: project-files-in-drive
 title: Project files in the board owner's Google Drive
 product: tasks
 status: In Progress
-lastVerified: 2026-08-27
+lastVerified: 2026-09-03
 ---
 
 # Project files in the board owner's Google Drive
@@ -23,8 +23,18 @@ Founder decision 2026-08-27. Plan, decisions and status live in the app repo at
 | WP | Package | Status |
 |---|---|---|
 | 0 | Fix the floor | **Done** — app PR #159 |
-| 1 | Spike the Drive chain | Blocked on Google Cloud credentials |
-| 2–8 | Secrets, schema, connection, sharing, upload, surfaces, resilience | Not started |
+| 1 | Spike the Drive chain | **Done** — the owner and a second account completed the real share, isolation and exact-revocation lifecycle |
+| 2 | Secrets substrate | **Built on the feature branch** — encrypted, versioned token custody and redaction contracts are green |
+| 3 | Schema | **Ready, founder-gated** — migrations 0028 and 0029 are rehearsed locally but have not touched production |
+| 4–6 | Connection, sharing and upload | **Built on the feature branch** — OAuth, immutable roots, durable folder/grant work, handover, deletion and direct Drive upload are under final PR verification |
+| 7 | Connections surfaces | **Founder choice required** — A · Custodian, B · Ledger and C · Threshold cover all eight states; no production UI has been selected or implemented |
+| 8 | Resilience and launch | **Prepared, not launched** — the count-only daily repair route covers revocation, grant creation, folder provision/rename and exact Signal-native byte cleanup; all four workers are independently default-off pending migration, configuration and launch approval |
+
+The durable implementation is draft app PR #165. No production migration,
+privacy-policy edit or production interface change has been made. The founder
+must choose A, B or C, authorize migrations 0028 and 0029, and approve the
+privacy wording before launch. Until those gates close, “built” means code and
+tests on the feature branch, not a customer launch.
 
 ## WP-0 found two things worth knowing outside the repo
 
@@ -49,9 +59,10 @@ will not let drift.
 
 - **Storage stops being a cost line that scales with customers.** Files sit in
   a member's own Drive and count against their quota, not ours.
-- **The 50 MB ceiling disappears for Drive-backed boards** at WP-6. Against
-  Drive's own documented 5 TB per-file maximum, "how big a file can I attach"
-  stops being a question we have to answer.
+- **The provider is no longer the bottleneck for Drive-backed boards.** WP-6
+  sends bytes straight to Drive while preserving the founder-approved 50 MB
+  customer promise, so the same clear limit applies whichever store a board
+  uses.
 - **It is a real reason to connect an account**, which is a different product
   posture from a tool that only holds its own data.
 
