@@ -31,9 +31,8 @@ export const metadata: Metadata = {
  * The page answers "what's the state of the business?" in ten seconds:
  * verdict → the one critical thing → five numbers → workspace health, with
  * the Action Center and next action in the contextual rail. The proof spine
- * (proof gate / pulse / traction) is preserved verbatim below as the
- * commercial-truth section — the inert/running/expired state machine is
- * unchanged, only re-framed. Long queues now live in /hq/action-center.
+ * (proof gate / pulse / traction) uses shared payment receipts and the
+ * inert January clock. Long queues now live in /hq/action-center.
  */
 export default async function HqPage() {
   await requireHqAccess();
@@ -49,7 +48,7 @@ export default async function HqPage() {
   const pulse = await getPulseState(today);
   const verdict = deriveVerdict({ inbox, pulse, traction });
   const proofGate = getProofGate(traction, prospectRead.source === "database" ? prospects : undefined);
-  const snapshot = getHqSnapshot(prospects, traction);
+  const snapshot = getHqSnapshot(prospectRead.source === "database" ? prospects : undefined, traction);
   const readiness = getLaunchReadiness(traction.available ? traction.paidVenues : null);
   const actions = buildActionCenter(inbox, operatorTodos);
 
@@ -62,8 +61,8 @@ export default async function HqPage() {
     {
       name: "Sell",
       href: "/hq/crm",
-      value: `${snapshot.founderSends} sends`,
-      note: `${snapshot.dueToday} due or stale · ${snapshot.qualifiedReplies} replies`,
+      value: snapshot.crmAvailable ? `${snapshot.founderSends} recorded contacts` : "CRM unread",
+      note: snapshot.crmAvailable ? `${snapshot.dueToday} due or stale · ${snapshot.qualifiedReplies} replies` : "No example counts in live reporting",
       tone: snapshot.dueToday > 0 ? "flight" : snapshot.founderSends > 0 ? "done" : "blocked",
     },
     {
@@ -77,7 +76,7 @@ export default async function HqPage() {
       name: "Money",
       href: "/hq/reporting",
       value: snapshot.cashCollected,
-      note: snapshot.paidVenues === null ? "ledger unread" : `${snapshot.paidVenues} paid venues · 10 by M3`,
+      note: snapshot.paidVenues === null ? "ledger unread" : `${snapshot.paidVenues} receipt-matched venues`,
       tone: snapshot.paidVenues && snapshot.paidVenues > 0 ? "done" : "flight",
     },
     {

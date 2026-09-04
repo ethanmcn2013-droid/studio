@@ -7,6 +7,7 @@ import { sponsors as studioSponsors } from "../db/schema";
 import { appendEvent } from "./audit-core";
 import { parseRoster, resolveOperator } from "./pure";
 import { venueEditionAnnualAmountCents } from "../venue-edition";
+import { VENUE_PAYMENT_FIELDS as financialFields } from "./venue-payment-proof";
 
 export type VenuePaymentInput = {
   slug: string;
@@ -21,9 +22,6 @@ export type VenuePaymentInput = {
 
 type Stores = { shared: ReturnType<typeof entitlementsDb>; studio: typeof db };
 const YEAR = 365 * 24 * 60 * 60 * 1000;
-const financialFields = [
-  "venuePlan", "annualAmountCents", "foundingLocked", "paidAt", "termStartsAt", "termEndsAt",
-] as const;
 
 export class VenuePaymentMirrorError extends Error {
   constructor(cause: unknown) {

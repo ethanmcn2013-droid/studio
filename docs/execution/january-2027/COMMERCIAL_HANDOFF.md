@@ -5,6 +5,18 @@ Branch: `feat/january-commercial-readiness`. Starting revision: `efe2ed6`.
 This is a local implementation receipt for the lead's receiving candidate,
 not programme acceptance or production readiness.
 
+## Populated-source correction after lead review
+
+The earlier statement below that the old outreach-forcing view no longer
+rendered on Today was incomplete. Its database-unavailable browser fixture
+did not exercise `getTraction()`: legacy Studio `paidAt` still counted as cash,
+paid proof could pass, and May burndown/verdict claims remained reachable.
+The later bounded repair from `a53135052f3014edb712cd14655c00a892fe393b`
+supersedes that claim. See [HQ truth repair receipt](HQ_TRUTH_REPAIR.md) for
+the receipt-matched source, populated tests, browser evidence, historical-target
+limits and explicit App consumer gate. The original writer receipt remains
+valid; it did not retrospectively audit legacy rows.
+
 ## Commits
 
 | Commit | Change |

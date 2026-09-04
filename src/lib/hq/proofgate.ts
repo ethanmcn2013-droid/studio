@@ -1,5 +1,6 @@
 import { computeOutreachSummary } from "@/lib/hq/crm-utils";
 import { COMMERCIAL_TERMS } from "@/lib/commercial-terms";
+import { getCommercialClock } from "./commercial-clock";
 import type { DbProspect } from "@/lib/db/schema";
 import type { TractionState } from "@/lib/hq/traction";
 
@@ -30,6 +31,18 @@ export type ProofGate = {
   };
 };
 
+/** Contact metadata stays distinct from an authorised send receipt. */
+export function eligibleVenueContacts(dbProspects: DbProspect[] | undefined, now = Date.now()) {
+  const asOfDay = new Date(now).toISOString().slice(0, 10);
+  return dbProspects?.filter((p) => {
+    const day = p.lastContactedAt;
+    if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day) ||
+        day < COMMERCIAL_TERMS.launchProgramme.firstOutreachDate || day > asOfDay) return false;
+    const parsed = Date.parse(`${day}T00:00:00Z`);
+    return Number.isFinite(parsed) && new Date(parsed).toISOString().slice(0, 10) === day;
+  });
+}
+
 /** January supersedes the May deadlines. No date opens access or passes a gate.
  * CRM contact history is not an immutable send ledger, so it cannot establish
  * the old full-cohort kill clock. Missing sources are unread, never seed counts.
@@ -41,20 +54,15 @@ export function getProofGate(
 ): ProofGate {
   const asOfDay = new Date(now).toISOString().slice(0, 10);
   const launchDay = COMMERCIAL_TERMS.launchProgramme.firstOutreachDate;
-  const eligible = dbProspects?.filter((p) => {
-    const day = p.lastContactedAt;
-    if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day) || day < launchDay || day > asOfDay) return false;
-    const parsed = Date.parse(`${day}T00:00:00Z`);
-    return Number.isFinite(parsed) && new Date(parsed).toISOString().slice(0, 10) === day;
-  });
+  const eligible = eligibleVenueContacts(dbProspects, now);
   const { sent, firstSendDay, qualifiedReplies, bookedCalls } = computeOutreachSummary(eligible ?? [], "venue");
-  const prelaunch = asOfDay < launchDay;
+  const commercialClock = getCommercialClock(now);
   const contactMetric = (n: number, note: string): MetricCell => dbProspects === undefined
     ? { kind: "unread", reason: "Live CRM unavailable. Committed examples are excluded." }
     : { kind: "live", n, target: 1, met: n >= 1, note };
   const paidPilots: MetricCell = traction.available ? {
     kind: "live", n: traction.paidVenues, target: 1, met: traction.paidVenues >= 1,
-    note: `recorded paid venues · ${traction.signedUnpaidVenues} selected a paid plan without recorded payment · legacy evidence audit remains open`,
+    note: `current shared payment receipts · ${traction.unverifiedPaidVenues} legacy or unmatched paid claims excluded · ${traction.selectedUnpaidVenues} selected a plan without payment`,
   } : { kind: "unread", reason: traction.reason };
   // codesRedeemed is an all-source code count. couplesSeeded is an entitlement
   // count. Neither is a count of couples doing useful work.
@@ -73,12 +81,8 @@ export function getProofGate(
       sharedArtifacts: { kind: "unread", reason: "Actual sharing is unverified here. Demo artifacts and page views are excluded." },
     },
     clock: {
-      state: prelaunch ? "prelaunch" : sent > 0 ? "running" : "inert",
-      line: prelaunch
-        ? `Internal testing. User launch and first outreach target ${launchDay}. Both require a recorded manual go/no-go; the date opens neither.`
-        : sent > 0
-          ? `${sent} venue contacts recorded on or after ${launchDay}. CRM contact dates alone do not establish launch approval or the full-cohort evaluation clock.`
-          : `January target ${launchDay}. No eligible venue contacts are recorded${dbProspects === undefined ? " because the live CRM is unavailable" : ""}. Confirm the manual launch and outreach decisions before sending.`,
+      state: commercialClock.state,
+      line: `${commercialClock.line} CRM contact dates do not establish launch approval or actual authorised sends.`,
       milestones: [{
         label: "user launch and first outreach target", date: launchDay,
         daysAway: Math.ceil((Date.parse(`${launchDay}T00:00:00Z`) - now) / 86400000),

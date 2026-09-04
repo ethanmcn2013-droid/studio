@@ -10,9 +10,18 @@ import type { VenuePaymentInput } from "./venue-payment";
 import * as sharedSchema from "./schema";
 import * as studioSchema from "../db/schema";
 import { verifyChainRows } from "./pure";
+import { rowHashOf } from "./pure";
+import { getProofGate } from "../hq/proofgate";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import type { DbProspect } from "../db/schema";
+import { getModeledRunway } from "../hq/financial-model";
 
 // Real disposable SQLite engines. No provider calls and no production env copy.
 const DDL = [
+  `CREATE TABLE entitlements (id text PRIMARY KEY, status text, tier text, source text)`,
+  `CREATE TABLE license_codes (id text PRIMARY KEY, status text)`,
+  `CREATE TABLE redemptions (id text PRIMARY KEY)`,
   `CREATE TABLE sponsors (
     id text PRIMARY KEY, slug text NOT NULL UNIQUE, name text NOT NULL,
     contact_email text NOT NULL, brand_meta text, venue_plan text NOT NULL DEFAULT 'none',
@@ -43,6 +52,14 @@ let shared: ReturnType<typeof drizzle<typeof sharedSchema>>;
 let studio: ReturnType<typeof drizzle<typeof studioSchema>>;
 let payment: typeof import("./venue-payment");
 let onboarding: typeof import("./venues");
+let getTraction: typeof import("../hq/traction").getTraction;
+let computeBurndown: typeof import("../hq/traction").computeBurndown;
+let formatEur: typeof import("../hq/traction").formatEur;
+let deriveVerdict: typeof import("../hq/verdict").deriveVerdict;
+let getHqSnapshot: typeof import("../hq/operating-system").getHqSnapshot;
+let getHqReport: typeof import("../hq/operating-system").getHqReport;
+let HqTraction: typeof import("../../components/hq/hq-traction").HqTraction;
+let HqProofGate: typeof import("../../components/hq/hq-proof-gate").HqProofGate;
 let dir: string;
 let sharedUrl: string;
 let studioUrl: string;
@@ -73,16 +90,179 @@ before(async () => {
   process.env.SIGNAL_HQ_OPERATORS = "test-operator:Test Operator";
   payment = await import("./venue-payment");
   onboarding = await import("./venues");
+  ({ getTraction, computeBurndown, formatEur } = await import("../hq/traction"));
+  ({ deriveVerdict } = await import("../hq/verdict"));
+  ({ getHqSnapshot, getHqReport } = await import("../hq/operating-system"));
+  ({ HqTraction } = await import("../../components/hq/hq-traction"));
+  ({ HqProofGate } = await import("../../components/hq/hq-proof-gate"));
 });
 
 beforeEach(async () => {
   for (const client of [sharedClient, studioClient]) {
     await client.execute("DROP TRIGGER IF EXISTS refuse_write");
-    for (const table of ["entitlement_events", "allotment_ledger", "sponsors"]) await client.execute(`DELETE FROM ${table}`);
+    for (const table of ["entitlement_events", "allotment_ledger", "sponsors", "entitlements", "license_codes", "redemptions"]) await client.execute(`DELETE FROM ${table}`);
     await seed(client);
   }
 });
 after(() => { sharedClient.close(); studioClient.close(); });
+
+const readTraction = (now = Date.now()) => getTraction({ shared, studio }, now);
+const emptyInbox: Parameters<typeof deriveVerdict>[0]["inbox"] = { generatedAt: "2026-09-04T12:00:00Z", items: [], tierCounts: { high: 0, mid: 0, low: 0 } };
+const clearPulse: Parameters<typeof deriveVerdict>[0]["pulse"] = { level: "clear", signals: [], counts: { critical: 0, watch: 0 } };
+
+test("populated legacy paid rows and plan choices do not pass cash or paid proof", async () => {
+  for (const client of [sharedClient, studioClient]) {
+    await client.execute({ sql: "UPDATE sponsors SET venue_plan='founding', paid_at=?, annual_amount_cents=100000, founding_locked=1 WHERE slug='test-venue'", args: [paidAt] });
+  }
+  await seed(studioClient, "mirror-only");
+  await studioClient.execute({ sql: "UPDATE sponsors SET venue_plan='paid', paid_at=?, annual_amount_cents=150000 WHERE slug='mirror-only'", args: [paidAt] });
+  await seed(sharedClient, "selected-plan");
+  await sharedClient.execute("UPDATE sponsors SET venue_plan='paid' WHERE slug='selected-plan'");
+  await studioClient.execute("INSERT INTO entitlements VALUES ('grant-1','active','workspace','venue_edition')");
+  await studioClient.execute("INSERT INTO license_codes VALUES ('code-1','redeemed')");
+  const state = await readTraction();
+  assert.equal(state.available, true);
+  if (!state.available) return;
+  assert.equal(state.cashCollectedEur, 0);
+  assert.equal(state.paidVenues, 0);
+  assert.equal(state.foundingVenues, 0);
+  assert.equal(state.unverifiedPaidVenues, 2, "mirror duplicates count once by slug");
+  assert.equal(state.selectedUnpaidVenues, 1);
+  assert.equal(state.couplesSeeded, 1);
+  const proof = getProofGate(state, []);
+  assert.equal(proof.metrics.paidPilots.kind === "live" && proof.metrics.paidPilots.met, false);
+  const html = renderToStaticMarkup(createElement(HqTraction, { state })) +
+    renderToStaticMarkup(createElement(HqProofGate, { gate: proof }));
+  assert.match(html, /2 legacy or unmatched paid claims excluded/);
+  assert.doesNotMatch(html, /cash in the door|slope starts now|half-year target|paid by tier/);
+  const verdict = deriveVerdict({ inbox: emptyInbox, pulse: clearPulse, traction: state });
+  assert.match(verdict.headline, /2 paid claims/);
+  assert.doesNotMatch(verdict.action, /Contact venues|no venue signed/);
+});
+
+test("real payment receipts feed exact cash through traction, proof and all report projections", async () => {
+  await pay();
+  for (const client of [sharedClient, studioClient]) await seed(client, "standard-venue");
+  await pay({ slug: "standard-venue", plan: "paid", amountCents: 150000, reference: "synthetic-standard" });
+  await pay();
+  const state = await readTraction();
+  assert.equal(state.available, true);
+  if (!state.available) return;
+  assert.equal(state.cashCollectedEur, 2500);
+  assert.equal(state.paidVenues, 2);
+  assert.equal(state.foundingVenues, 1);
+  assert.equal(state.unverifiedPaidVenues, 0);
+  assert.equal(formatEur(1500), "€1,500");
+  assert.deepEqual(getModeledRunway(2500), getModeledRunway(0), "payment does not prove the company funds itself");
+  const proof = getProofGate(state, []);
+  assert.equal(proof.metrics.paidPilots.kind === "live" && proof.metrics.paidPilots.met, true);
+  assert.match(renderToStaticMarkup(createElement(HqTraction, { state })), /€2,500/);
+  const snapshot = getHqSnapshot([], state);
+  const report = getHqReport([], state);
+  assert.equal(snapshot.cashCollected, "€2,500");
+  assert.equal(report.metrics[0].value, "€2,500");
+  assert.match(report.metrics[0].source, /shared.*receipt/);
+  assert.match(report.metrics[0].target, /historical/);
+  assert.equal(report.metrics[1].value, "2");
+  assert.doesNotMatch(JSON.stringify({ snapshot, report }), /10 by M3|send the first founder letters/);
+});
+
+test("canonical receipt remains proof when the Studio mirror write fails", async () => {
+  await studioClient.execute("CREATE TRIGGER refuse_write BEFORE UPDATE ON sponsors BEGIN SELECT RAISE(ABORT, 'synthetic mirror failure'); END");
+  await assert.rejects(pay(), /mirror is incomplete/);
+  assert.equal((await row(studioClient)).paid_at, null);
+  const state = await readTraction();
+  assert.equal(state.available && state.cashCollectedEur, 1000);
+  assert.equal(state.available && state.paidVenues, 1);
+});
+
+test("superseded annual receipts count only the current financial record once", async () => {
+  await pay();
+  await pay({ paidAt: Date.parse("2026-08-01T12:00:00Z"), reference: "synthetic-renewal" });
+  assert.equal(await eventCount(), 2);
+  const state = await readTraction();
+  assert.equal(state.available && state.paidVenues, 1);
+  assert.equal(state.available && state.cashCollectedEur, 1000, "not a lifetime cumulative cash claim");
+});
+
+test("every current financial field must still match the payment receipt", async () => {
+  await pay();
+  const original = await row(sharedClient);
+  for (const [field, changed] of [
+    ["venue_plan", "paid"], ["annual_amount_cents", 150000], ["founding_locked", null],
+    ["paid_at", paidAt + 1], ["term_starts_at", paidAt + 1], ["term_ends_at", paidAt + 1],
+  ] as const) {
+    await sharedClient.execute({ sql: `UPDATE sponsors SET ${field}=? WHERE slug='test-venue'`, args: [changed] });
+    const state = await readTraction();
+    assert.equal(state.available && state.paidVenues, 0, field);
+    assert.equal(state.available && state.unverifiedPaidVenues, 1, field);
+    await sharedClient.execute({ sql: `UPDATE sponsors SET ${field}=? WHERE slug='test-venue'`, args: [original[field]] });
+  }
+});
+
+test("malformed, misbound, future and corrupted receipts cannot verify a paid claim", async () => {
+  await pay();
+  const [original] = await shared.select().from(sharedSchema.entitlementEvents);
+  const evidence = JSON.parse(original.afterJson!);
+  const variants = [
+    { afterJson: "not json" }, { afterJson: JSON.stringify({ ...evidence, version: 99 }) },
+    { afterJson: JSON.stringify({ ...evidence, slug: "another-venue" }) },
+    { afterJson: JSON.stringify({ ...evidence, evidenceKey: "wrong-reference" }) },
+    { action: "grant" }, { sponsorId: "another-venue" }, { actorId: null },
+    { origin: "legacy-import" }, { createdAt: Date.now() + 86400000 },
+  ];
+  for (const patch of variants) {
+    const event = { ...original, ...patch };
+    // A consistent row hash alone must not make an incompatible receipt valid.
+    await shared.update(sharedSchema.entitlementEvents).set({ ...event, rowHash: rowHashOf(event.prevHash!, event) });
+    const state = await readTraction();
+    assert.equal(state.available && state.paidVenues, 0, JSON.stringify(patch));
+  }
+  await shared.update(sharedSchema.entitlementEvents).set({ ...original, rowHash: "corrupted" });
+  const corrupted = await readTraction();
+  assert.equal(corrupted.available && corrupted.paidVenues, 0);
+});
+
+test("an unread canonical audit cannot fall back to the populated Studio paid mirror", async () => {
+  await pay();
+  await sharedClient.execute("ALTER TABLE entitlement_events RENAME TO unavailable_events");
+  try {
+    const state = await readTraction();
+    assert.equal(state.available, false);
+    assert.equal(getProofGate(state, []).metrics.paidPilots.kind, "unread");
+  } finally {
+    await sharedClient.execute("ALTER TABLE unavailable_events RENAME TO entitlement_events");
+  }
+});
+
+test("cash and populated January CRM contacts cannot start a clock or authorise outreach", async () => {
+  await pay();
+  const contacts = ["2026-05-25", "2027-01-21"].map((day) => ({
+    id: day, segment: "venue", stage: "demo_booked", lastContactedAt: day, nextFollowUpAt: null,
+  } as DbProspect));
+  for (const day of ["2026-09-04", "2027-01-20", "2027-01-21", "2027-02-25", "2028-01-21"]) {
+    const now = Date.parse(`${day}T12:00:00Z`);
+    const state = await readTraction(now);
+    assert.equal(state.available, true);
+    if (!state.available) continue;
+    const clock = computeBurndown(250000, 250000, now);
+    assert.equal(clock.state, day < "2027-01-21" ? "prelaunch" : "inert");
+    assert.equal(clock.campaignStart, null);
+    assert.equal(clock.campaignEnd, null);
+    assert.equal(clock.m3Gate, null);
+    const proof = getProofGate(state, contacts, now);
+    assert.equal(proof.clock.state, clock.state);
+    assert.equal(proof.clock.milestones.some(m => m.done || m.missed), false);
+    const snapshot = getHqSnapshot(contacts, state, now);
+    assert.equal(snapshot.founderSends, proof.sent);
+    const verdict = deriveVerdict({ inbox: emptyInbox, pulse: clearPulse, traction: state });
+    assert.doesNotMatch(JSON.stringify({ clock, proof, snapshot, verdict }), /2026-11-16|2026-08-16|Contact venues|send the first founder letters|behind the slope/);
+  }
+  const state = await readTraction();
+  const snapshot = getHqSnapshot(undefined, state);
+  assert.equal(snapshot.crmAvailable, false);
+  assert.equal(getHqReport(undefined, state).metrics[2].value, "unread");
+});
 
 test("selecting a paid plan creates no payment, and onboarding preserves paid financial history", async () => {
   for (const plan of ["pilot", "founding", "paid"] as const) {

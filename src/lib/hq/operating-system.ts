@@ -1,3 +1,5 @@
+import { eligibleVenueContacts } from "./proofgate";
+import { getCommercialClock } from "./commercial-clock";
 import type { DbProspect } from "@/lib/db/schema";
 import { computeOutreachSummary, getDueToday } from "@/lib/hq/crm-utils";
 import { MARKETING_BUCKETS, MARKETING_TOTAL } from "@/lib/hq/marketing";
@@ -41,6 +43,7 @@ export type HqSnapshot = {
   leadContext: string;
   metrics: HqMetric[];
   dueToday: number;
+  crmAvailable: boolean;
   founderSends: number;
   qualifiedReplies: number;
   bookedCalls: number;
@@ -129,7 +132,7 @@ export const HQ_HUBS: HqHub[] = [
     audience: ["founder", "operator"],
     mode: "live",
     summary: "Prospects, follow-ups, replies, demos, and pilots in one ledger.",
-    primaryMetric: "founder sends",
+    primaryMetric: "recorded venue contacts",
     secondaryMetric: "reply and demo stages",
     action: "clear the next follow-up",
   },
@@ -315,7 +318,7 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 export const HQ_ASSETS: HqAsset[] = [
   {
     id: "venue-kit-room",
-    title: "The Venue Kit, APPROVED · outreach may begin",
+    title: "The Venue Kit, retained approval · January outreach held",
     group: "sales",
     audience: ["founder"],
     state: "ready",
@@ -323,11 +326,11 @@ export const HQ_ASSETS: HqAsset[] = [
     href: "/hq/venue-kit",
     source: "public/brand/collateral/venue",
     action: "Approve the kit",
-    note: "Deck (10 slides), pricing explainer, outreach email + one follow-up, demo script + five objections, permission form. Approval starts outreach.",
+    note: "Deck, pricing explainer, outreach drafts, demo script and permission form. Asset approval does not authorise sends; January manual gates remain in force.",
   },
   {
     id: "posting-queue",
-    title: "The Posting Queue, APPROVED · schedule as written",
+    title: "The Posting Queue, retained approval · publication held",
     group: "brand",
     audience: ["founder", "marketing"],
     state: "ready",
@@ -718,43 +721,31 @@ export const HQ_REVIEW_PRINCIPLES: HqReviewPrinciple[] = [
 ];
 
 export function getHqSnapshot(
-  prospects: DbProspect[],
+  prospects: DbProspect[] | undefined,
   traction: TractionState,
+  now = Date.now(),
 ): HqSnapshot {
-  const dueToday = getDueToday(prospects);
+  const dueToday = getDueToday(prospects ?? []);
   // Proof-gate outreach counts read the venue book only; due follow-ups
   // count across every book — due work is due work.
-  const outreach = computeOutreachSummary(prospects, "venue");
+  const outreach = computeOutreachSummary(eligibleVenueContacts(prospects, now) ?? [], "venue");
   const paidVenues = traction.available ? traction.paidVenues : null;
   const cashCollected = traction.available
     ? formatEur(traction.cashCollectedEur)
     : "unread";
 
-  const leadAction =
-    dueToday.length > 0
-      ? `${dueToday.length} follow-up${dueToday.length === 1 ? "" : "s"} due or stale`
-      : outreach.sent === 0
-        ? "send the first founder letters"
-        : outreach.bookedCalls === 0
-          ? "turn replies into booked calls"
-          : "keep the paid-venue gate moving";
-
-  const leadHref =
-    dueToday.length > 0 || outreach.sent === 0 ? "/hq/crm" : "/hq/reporting";
-
-  const leadContext =
-    dueToday.length > 0
-      ? "The CRM is the front door today."
-      : outreach.sent === 0
-        ? "The system has no founder sends recorded yet."
-        : "The reporting hub has the cleanest next read.";
+  const clock = traction.available ? traction.burndown : getCommercialClock(now);
+  const leadAction = "Review January readiness and payment evidence";
+  const leadHref = "/hq/platform-readiness";
+  const leadContext = clock.line;
 
   return {
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(now).toISOString(),
     leadAction,
     leadHref,
     leadContext,
     dueToday: dueToday.length,
+    crmAvailable: prospects !== undefined,
     founderSends: outreach.sent,
     qualifiedReplies: outreach.qualifiedReplies,
     bookedCalls: outreach.bookedCalls,
@@ -762,45 +753,45 @@ export function getHqSnapshot(
     cashCollected,
     metrics: [
       {
-        label: "cash collected",
+        label: "cash with matching receipts",
         value: cashCollected,
         note: traction.available
-          ? `${traction.goalPct}% of ${formatEur(traction.goalEur)} cash target`
-          : "Studio Turso unread",
+          ? `${traction.goalPct}% of historical ${formatEur(traction.goalEur)} reference; no current deadline`
+          : "Payment evidence unread",
         href: "/hq/reporting",
         tone: traction.available && traction.cashCollectedEur > 0 ? "accent" : "quiet",
       },
       {
-        label: "paid venues",
+        label: "receipt-matched venues",
         value: paidVenues === null ? "unread" : String(paidVenues),
-        note: "M3 gate is 10 paid venues",
+        note: traction.available ? `${traction.unverifiedPaidVenues} unverified paid claims excluded` : "Shared payment evidence unread",
         href: "/hq/reporting",
         tone: paidVenues && paidVenues > 0 ? "accent" : "quiet",
       },
       {
-        label: "founder sends",
-        value: String(outreach.sent),
-        note: "from CRM last-contacted dates",
+        label: "recorded venue contacts",
+        value: prospects === undefined ? "unread" : String(outreach.sent),
+        note: "eligible live CRM contact dates, not send receipts",
         href: "/hq/crm",
         tone: outreach.sent > 0 ? "accent" : "critical",
       },
       {
         label: "qualified replies",
-        value: String(outreach.qualifiedReplies),
+        value: prospects === undefined ? "unread" : String(outreach.qualifiedReplies),
         note: "reply, demo, or pilot stages",
         href: "/hq/crm",
         tone: outreach.qualifiedReplies > 0 ? "accent" : "quiet",
       },
       {
         label: "booked calls",
-        value: String(outreach.bookedCalls),
+        value: prospects === undefined ? "unread" : String(outreach.bookedCalls),
         note: "demo booked plus pilot active",
         href: "/hq/crm?stage=demo_booked",
         tone: outreach.bookedCalls > 0 ? "accent" : "quiet",
       },
       {
         label: "due/stale",
-        value: String(dueToday.length),
+        value: prospects === undefined ? "unread" : String(dueToday.length),
         note: "active due or stale follow-ups",
         href: "/hq/crm",
         tone: dueToday.length > 0 ? "critical" : "quiet",
@@ -810,20 +801,21 @@ export function getHqSnapshot(
 }
 
 export function getHqReport(
-  prospects: DbProspect[],
+  prospects: DbProspect[] | undefined,
   traction: TractionState,
+  now = Date.now(),
 ): HqReport {
-  const outreach = computeOutreachSummary(prospects, "venue");
-  const dueToday = getDueToday(prospects);
+  const outreach = computeOutreachSummary(eligibleVenueContacts(prospects, now) ?? [], "venue");
+  const dueToday = getDueToday(prospects ?? []);
   const replyRate = pct(outreach.qualifiedReplies, outreach.sent);
   const bookingRate = pct(outreach.bookedCalls, outreach.sent);
 
   const metrics: HqReportMetric[] = [
     {
-      label: "Cash collected",
+      label: "Cash with matching receipts",
       value: traction.available ? formatEur(traction.cashCollectedEur) : "unread",
-      target: traction.available ? formatEur(traction.goalEur) : "Turso required",
-      source: "sponsors.paid_at + annual_amount_cents",
+      target: traction.available ? `${formatEur(traction.goalEur)} historical reference` : "Shared evidence required",
+      source: "shared venue_payment receipt matched to current sponsor financial state; current annual amounts, not lifetime cash",
       status: traction.available
         ? traction.cashCollectedEur > 0
           ? "moving"
@@ -831,10 +823,10 @@ export function getHqReport(
         : "unread",
     },
     {
-      label: "Paid venues",
+      label: "Receipt-matched venues",
       value: traction.available ? String(traction.paidVenues) : "unread",
-      target: "10 by M3",
-      source: "sponsors.venue_plan",
+      target: "No current dated target",
+      source: "current shared sponsors + matching venue_payment receipts",
       status: traction.available
         ? traction.paidVenues > 0
           ? "moving"
@@ -842,41 +834,41 @@ export function getHqReport(
         : "unread",
     },
     {
-      label: "Founder sends",
-      value: String(outreach.sent),
-      target: "20",
+      label: "Recorded venue contacts",
+      value: prospects === undefined ? "unread" : String(outreach.sent),
+      target: "Historical reference: 20",
       source: "prospects.last_contacted_at",
-      status: outreach.sent > 0 ? "moving" : "blocked",
+      status: prospects === undefined ? "unread" : outreach.sent > 0 ? "moving" : "blocked",
     },
     {
       label: "Reply rate",
-      value: replyRate,
-      target: ">=25%",
+      value: prospects === undefined ? "unread" : replyRate,
+      target: "Historical reference: >=25%",
       source: "CRM stages",
-      status: outreach.qualifiedReplies > 0 ? "moving" : "flat",
+      status: prospects === undefined ? "unread" : outreach.qualifiedReplies > 0 ? "moving" : "flat",
     },
     {
       label: "Booked-call rate",
-      value: bookingRate,
-      target: ">=10%",
+      value: prospects === undefined ? "unread" : bookingRate,
+      target: "Historical reference: >=10%",
       source: "demo booked + pilot active",
-      status: outreach.bookedCalls > 0 ? "moving" : "flat",
+      status: prospects === undefined ? "unread" : outreach.bookedCalls > 0 ? "moving" : "flat",
     },
   ];
 
   const operationalMetrics: HqReportMetric[] = [
     {
       label: "Follow-ups due/stale",
-      value: String(dueToday.length),
+      value: prospects === undefined ? "unread" : String(dueToday.length),
       target: "0 stale",
       source: "CRM next follow-up",
-      status: dueToday.length > 0 ? "blocked" : "moving",
+      status: prospects === undefined ? "unread" : dueToday.length > 0 ? "blocked" : "moving",
     },
   ];
 
   return {
     headline:
-      outreach.sent === 0
+      prospects === undefined ? "Live CRM unavailable. Payment evidence is reported separately." : outreach.sent === 0
         ? "The reporting layer is ready; the commercial motion has not started."
         : "The reporting layer is reading the venue engine.",
     metrics,
@@ -884,34 +876,34 @@ export function getHqReport(
     watchlist: [
       {
         label: "Founder-time concentration",
-        detail: "The CRM only moves when founder-signed outreach moves.",
+        detail: "CRM contact dates do not prove authorised sends. January manual gates remain in force.",
         href: "/hq/crm",
       },
       {
         label: "Asset gate",
-        detail: "Venue proof assets must clear review before wider sends.",
+        detail: "Assets, manual outreach authority and actual send evidence are separate checks.",
         href: "/hq/assets",
       },
       {
         label: "Cash honesty",
-        detail: "Signed unpaid venues remain pipeline, not revenue.",
+        detail: traction.available ? `${traction.unverifiedPaidVenues} legacy or unmatched paid claims excluded. Plan selections and paid dates alone do not prove cleared payment.` : "Payment evidence is unread. Plan selections and paid dates alone do not prove cleared payment.",
         href: "/hq/reporting",
       },
     ],
     sources: [
       {
         label: "CRM",
-        detail: "DB-backed prospects with seed fallback.",
+        detail: "Live eligible venue contact records only. Examples are excluded; contact dates are not send receipts.",
         href: "/hq/crm",
       },
       {
         label: "Traction",
-        detail: "Sponsor ledger, license codes, redemptions, and entitlements.",
+        detail: "Shared payment receipts and current sponsors; Studio access and legacy records remain separate.",
         href: "/hq",
       },
       {
         label: "Marketing",
-        detail: "Typed six-month plan registry.",
+        detail: "Historical plan registry. January authority comes from the current programme.",
         href: "/hq/marketing",
       },
       {

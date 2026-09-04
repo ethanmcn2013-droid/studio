@@ -8,7 +8,7 @@ import {
   FIN_META,
   FIN_PRICING,
 } from "@/lib/hq/financial-model";
-import { getTraction } from "@/lib/hq/traction";
+import { getTraction, formatEur } from "@/lib/hq/traction";
 
 export const dynamic = "force-dynamic";
 
@@ -31,19 +31,6 @@ export default async function FinancialModelPage() {
   const model = buildFinancialModel();
   const traction = await getTraction();
 
-  // Plan-to-date: cumulative modeled revenue through the current month index.
-  // The model starts 2026-06 (index 0); find "this month" against it.
-  const now = new Date();
-  const startIdx =
-    (now.getUTCFullYear() - 2026) * 12 + now.getUTCMonth() - 5; // 2026-06 = 0
-  const currentIdx = Math.max(0, Math.min(model.months.length - 1, startIdx));
-  const planCashToDate = model.months
-    .slice(0, currentIdx + 1)
-    .reduce((s, m) => s + m.revenueEur, 0);
-  const planPaidVenuesToDate = model.months
-    .slice(0, currentIdx + 1)
-    .reduce((s, m) => s + m.newPaid + m.newFounding, 0);
-
   const actualCash = traction.available ? traction.cashCollectedEur : null;
   const actualVenues = traction.available ? traction.paidVenues : null;
 
@@ -61,7 +48,7 @@ export default async function FinancialModelPage() {
       <HqPageHeader
         slug="financial-model"
         title="The projection behind the ask."
-        standfirst="A cash-basis model of assumptions with the live ledger overlaid as plan-vs-actual; a projection, not actuals."
+        standfirst="Historical financial assumptions, retained for reference. January has no newly ratified cash target or active commercial clock."
         meta={
           <span className="hq-page-head-note">
             modeled · revised {FIN_META.revisedOn}
@@ -107,24 +94,16 @@ export default async function FinancialModelPage() {
         </div>
       </section>
 
-      {/* Plan vs actual */}
-      <section className="hq-fm-overlay" aria-label="plan versus actual">
+      <section className="hq-fm-overlay" aria-label="current payment evidence">
         <div className="hq-fm-unit-head">
-          <span className="hq-os-eyebrow">plan vs actual · to date</span>
-          <p>
-            Modeled to {model.months[currentIdx]?.label}. Actuals read live from
-            the ledger{actualCash == null ? " (unread this load)" : ""}.
-          </p>
+          <span className="hq-os-eyebrow">current payment evidence</span>
+          <p>Shared payment receipts matched to current venue records. The historical model below is not a January pace or deadline.</p>
         </div>
         <div className="hq-fm-overlay-grid">
-          <Overlay label="Cash collected" plan={finEur(planCashToDate)} actual={actualCash == null ? "—" : finEur(actualCash)} />
-          <Overlay label="Venues signed" plan={String(planPaidVenuesToDate)} actual={actualVenues == null ? "—" : String(actualVenues)} />
+          <Head label="Cash with matching receipts" value={actualCash == null ? "unread" : formatEur(actualCash)} note="current annual amounts, not lifetime cash" />
+          <Head label="Receipt-matched venues" value={actualVenues == null ? "unread" : String(actualVenues)} note="plan choices and unaudited paid dates excluded" />
         </div>
-        <p className="hq-fm-overlay-note">
-          A gap here is the honest read, not a failure of the model, the plan
-          is the slope; the ledger is the truth. Close it with outreach, the one
-          thing the dashboard cannot move.
-        </p>
+        <p className="hq-fm-overlay-note">{traction.available ? traction.burndown.line : "Payment evidence is unavailable. Missing evidence cannot start the commercial clock."}</p>
       </section>
 
       {/* Monthly projection */}
@@ -208,18 +187,6 @@ function Unit({ label, value, tone }: { label: string; value: string; tone?: "ac
     <div className="hq-fm-unit-cell" data-tone={tone}>
       <span className="hq-fm-unit-value">{value}</span>
       <span className="hq-fm-unit-label">{label}</span>
-    </div>
-  );
-}
-
-function Overlay({ label, plan, actual }: { label: string; plan: string; actual: string }) {
-  return (
-    <div className="hq-fm-overlay-cell">
-      <span className="hq-fm-overlay-label">{label}</span>
-      <div className="hq-fm-overlay-vals">
-        <span className="hq-fm-overlay-plan">plan {plan}</span>
-        <span className="hq-fm-overlay-actual">actual {actual}</span>
-      </div>
     </div>
   );
 }

@@ -8,6 +8,18 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-04 · S·171 · tightens · HQ requires a matching payment receipt
+
+**Legacy paid dates no longer pass HQ cash or paid proof.** The January candidate
+counts shared payment receipts only when they match the current venue record.
+Unaudited claims stay visible for reconciliation. Reporting shows exact amounts
+and their source; useful work remains unverified without its own evidence.
+
+The old May clock and outreach instruction are retired. January dates and CRM
+contacts cannot start a commercial clock or clear a manual gate. Historical
+cash/model targets remain context. Populated local tests and the explicit App
+consumer gate support this internal correction; production and outreach stay held.
+
 ## 2026-09-04 · S·170 · tightens · The January candidate separates plans, payments and useful work
 
 **Choosing a venue plan no longer records payment.** The January candidate

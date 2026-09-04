@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireHqAccess } from "@/lib/hq/access-guard";
-import { getProspects } from "@/lib/hq/crm-db";
+import { getProspectsWithSource } from "@/lib/hq/crm-db";
 import { getHqReport } from "@/lib/hq/operating-system";
 import { getTraction } from "@/lib/hq/traction";
 
@@ -23,8 +23,8 @@ const METRIC_TONE: Record<string, string> = {
 export default async function ReportingPage() {
   await requireHqAccess();
 
-  const [prospects, traction] = await Promise.all([getProspects(), getTraction()]);
-  const report = getHqReport(prospects, traction);
+  const [prospects, traction] = await Promise.all([getProspectsWithSource(), getTraction()]);
+  const report = getHqReport(prospects.source === "database" ? prospects.prospects : undefined, traction);
 
   return (
     <div className="hqx-page">
@@ -47,7 +47,8 @@ export default async function ReportingPage() {
             <div key={metric.label} className="hqx-metric" data-tone={METRIC_TONE[metric.status] ?? "quiet"}>
               <span className="hqx-metric-label">{metric.label}</span>
               <span className="hqx-metric-value">{metric.value}</span>
-              <span className="hqx-metric-note">target {metric.target}</span>
+              <span className="hqx-metric-note">{metric.target}</span>
+              <span className="hqx-metric-note">{metric.source}</span>
             </div>
           ))}
         </div>

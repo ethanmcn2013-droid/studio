@@ -81,7 +81,7 @@ export function HqProofGate({ gate }: { gate: ProofGate }) {
       <ul className="hq-pg-metrics" aria-label="commercial proof and access distribution">
         <MetricRow name="qualified replies" cell={m.qualifiedReplies} />
         <MetricRow name="booked calls" cell={m.bookedCalls} />
-        <MetricRow name="recorded paid venues" cell={m.paidPilots} />
+        <MetricRow name="receipt-matched paid venues" cell={m.paidPilots} />
         <MetricRow name="codes redeemed" cell={m.codesRedeemed} />
         <MetricRow name="useful activation" cell={m.couplesActivated} />
         <MetricRow name="shared artifacts" cell={m.sharedArtifacts} />
@@ -91,7 +91,7 @@ export function HqProofGate({ gate }: { gate: ProofGate }) {
         Replies and calls use eligible live venue CRM records ({gate.sent}{" "}
         contact{gate.sent === 1 ? "" : "s"} recorded
         {gate.firstSendDay ? `, earliest ${gate.firstSendDay}` : ""}).
-        Paid venues read the sponsor ledger. Code redemptions describe access;
+        Paid venues require a shared payment receipt matching the current venue record. Code redemptions describe access;
         useful activation and actual sharing need separate verified evidence.
       </p>
     </section>

@@ -6,7 +6,7 @@ import type { DbProspect } from "../db/schema";
 
 // Only these fields are consumed by the proof projection. All counts are synthetic.
 const traction = {
-  available: true, paidVenues: 2, signedUnpaidVenues: 3,
+  available: true, paidVenues: 2, selectedUnpaidVenues: 3, unverifiedPaidVenues: 4,
   couplesSeeded: 9876, codesRedeemed: 17,
 } as TractionState;
 const date = (day: string) => Date.parse(`${day}T12:00:00Z`);
@@ -52,7 +52,7 @@ test("venue proof excludes historical, future, invalid, unsent and other-segment
   assert.equal(gate.firstSendDay, "2027-01-21");
   assert.equal(gate.metrics.qualifiedReplies.kind === "live" && gate.metrics.qualifiedReplies.n, 2);
   assert.equal(gate.metrics.bookedCalls.kind === "live" && gate.metrics.bookedCalls.n, 1);
-  assert.equal(gate.clock.state, "running");
+  assert.equal(gate.clock.state, "inert");
   assert.match(gate.clock.line, /do not establish launch approval/);
 });
 
