@@ -1,0 +1,42 @@
+January commercial local verification receipt — 2026-09-04
+
+Worktree: feat-january-commercial-readiness
+Branch: feat/january-commercial-readiness
+Runtime commits: f59709a, 003a863
+
+pnpm install --frozen-lockfile: PASS, pinned dependency versions retained.
+pnpm test: PASS, 476 tests (16 migration + 411 core + 49 writer), zero failures.
+  Run includes payment/onboarding/proof and launch/CRM-source changes.
+  Later 003a863 changes two presentation strings; final build and rendered
+  onboarding review include those changes.
+  check-venue-term-parity: SKIPPED explicitly because App is not a sibling of
+  this worktree. Receiving integrator must run assembled cross-repo parity.
+pnpm typecheck: PASS after payment/launch/CRM-source changes.
+Focused ESLint: PASS for edited payment, audit, onboarding, proof, launch,
+  CRM, readiness and HQ modules checked during implementation.
+pnpm build: PASS, exit 0, at 003a863; TypeScript included.
+
+Build credentials: provider/database credentials removed from process env;
+no secret env file copied. No dependency or lockfile update in this slice.
+
+Built local browser review:
+  HQ desktop 1440x1000 and mobile 390x844 inspected.
+  January 21 target and two pending manual gates displayed.
+  Missing CRM/database reads unavailable; useful activation unverified.
+  No browser console errors or framework error overlay in these checks.
+  Mobile document width did not overflow the viewport.
+  Onboarding submitted via actual form against disposable local SQLite.
+  Observed row: slug=synthetic-january-venue, venue_plan=paid,
+    annual_amount_cents=150000, paid_at=null.
+  Final built label: Standard agreement · no payment recorded.
+  No codes minted and no messages sent. All inputs synthetic.
+
+Evidence images:
+  hq-desktop.png
+  hq-mobile.png
+  onboarding-desktop.png
+
+Programme acceptance A1–A6 remains open. This record does not certify
+production state, real settlement, actual use, App integration, provider
+configuration, live Google, legal/tax readiness or manual launch/outreach.
+No push, merge, deployment, production mutation or outreach by this agent.
