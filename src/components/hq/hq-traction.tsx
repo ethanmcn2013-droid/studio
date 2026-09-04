@@ -50,7 +50,7 @@ export function HqTraction({ state }: { state: TractionState }) {
               <strong className="hq-trac-strong">
                 {state.signedUnpaidVenues}
               </strong>{" "}
-              signed, not yet paid. Pipeline, not money.
+              on a paid plan without recorded payment. Pipeline, not money.
             </>
           ) : null}
         </p>
@@ -83,13 +83,13 @@ export function HqTraction({ state }: { state: TractionState }) {
         />
         <Stat
           n={state.signedUnpaidVenues}
-          label="signed, unpaid"
+          label="plan selected, unpaid"
           note="pipeline, not money"
         />
         <Stat
           n={state.couplesSeeded}
-          label="couples seeded"
-          note="what the money buys"
+          label="venue access grants"
+          note="access, not useful work"
         />
         <Stat
           n={state.pilotVenues}

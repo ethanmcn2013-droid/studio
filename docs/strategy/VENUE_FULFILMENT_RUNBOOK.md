@@ -1,5 +1,12 @@
 # Venue Fulfilment Runbook
 
+> January amendment, 2026-09-04: internal testing until the 21 January 2027
+> target and separate manual launch/outreach gates. For payment recording,
+> use [the current payment guide](../guides/venue-payment.md). Onboarding or
+> choosing a plan is not payment. Verify cleared evidence and both ledgers
+> before issuing live codes. Historical command examples below do not approve
+> production changes or outreach.
+
 Status: founder-review draft - 2026-05-26
 Owner: founder
 Companion docs: `ENTITLEMENTS_OPS.md`, `VENUE_EDITION_EMAIL_TEMPLATE.md`, `VENUE_SETUP_RITUAL.md`

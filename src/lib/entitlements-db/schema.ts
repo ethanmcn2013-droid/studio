@@ -530,6 +530,7 @@ export type NewGrantBatch = typeof grantBatches.$inferInsert;
  * breaks tamper-evidence. NEVER write PII into before_json/after_json.
  */
 export const ENTITLEMENT_EVENT_ACTIONS = [
+  "venue_payment",
   "grant",
   "revoke",
   "expire",

@@ -64,16 +64,26 @@ async function ensureSeeded(): Promise<void> {
  * survives a DB blip.
  */
 export async function getProspects(): Promise<DbProspect[]> {
+  return (await getProspectsWithSource()).prospects;
+}
+
+/** Preserve fallback provenance so proof surfaces cannot label examples live. */
+export async function getProspectsWithSource(): Promise<{
+  source: "database" | "committed";
+  prospects: DbProspect[];
+}> {
   try {
     await ensureSeeded();
-    return await db
+    const prospects = await db
       .select()
       .from(prospectsTable)
       .orderBy(asc(prospectsTable.organisation));
+    return { source: "database", prospects };
   } catch {
-    return [...(seedHqData.prospects ?? []), ...schoolLeads]
+    const prospects = [...(seedHqData.prospects ?? []), ...schoolLeads]
       .map(seedToDb)
       .sort((a, b) => a.organisation.localeCompare(b.organisation)) as DbProspect[];
+    return { source: "committed", prospects };
   }
 }
 

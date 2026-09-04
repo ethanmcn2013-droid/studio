@@ -127,7 +127,7 @@ export type TractionState =
       paidVenues: number;
       /** Of those, the Founding 25 (€1,000, held on continuous renewal). */
       foundingVenues: number;
-      /** Signed founding|paid but `paid_at` still null, pipeline, not money. */
+      /** Founding|paid selection with null paid_at; neither signature nor cash evidence. */
       signedUnpaidVenues: number;
       /** Free in-flight pilots (e.g. Lamb's Hill pre-conversion). */
       pilotVenues: number;

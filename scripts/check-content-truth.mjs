@@ -138,8 +138,16 @@ for (const match of dateline.matchAll(/\b(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSD
   }
 }
 
-if (contract.broadLaunchDate !== null) {
-  failures.push("commercial contract must not invent a broad launch date");
+if (contract.broadLaunchDate !== "2027-01-21" ||
+    contract.launchProgramme?.firstOutreachDate !== "2027-01-21") {
+  failures.push("commercial contract must retain the approved January 21 launch and first-outreach target");
+}
+if (contract.broadLaunchPolicy !== "manual_go_no_go_only" ||
+    contract.accessState !== "waitlist_first" ||
+    contract.launchProgramme?.automaticAccessOpening !== false ||
+    contract.launchProgramme?.prelaunchMode !== "internal_testing_only" ||
+    JSON.stringify(contract.launchProgramme?.manualGates) !== JSON.stringify(["user_launch", "first_outreach"])) {
+  failures.push("January target must keep internal testing and separate manual launch/outreach gates");
 }
 if (contract.plans.pro.annualAmountCents !== 12000) {
   failures.push("commercial contract must keep the ratified Pro annual price at EUR 120");

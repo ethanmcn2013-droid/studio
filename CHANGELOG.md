@@ -8,6 +8,19 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-04 · S·170 · tightens · The January candidate separates plans, payments and useful work
+
+**Choosing a venue plan no longer records payment.** The January candidate
+preserves existing paid records, requires cleared-payment evidence for the
+payment command, and reports an incomplete Studio mirror as a failure that
+can be repaired with the same receipt. HQ separates code redemption from
+useful activation and leaves unverified use without an actual-use count.
+
+The programme records the accepted September–January allocations, six
+workstreams and six open acceptance states. Guests & Seating remains no-build
+for January. The 21 January launch and first-outreach target retains manual
+gates. These are internal candidate changes; production and outreach remain held.
+
 ## 2026-09-03 · S·169 · ships · The front door becomes the floor and the sheet
 
 **The home page is now the suite's own geometry: an ink floor, white sheets lifted off it, and the three products shown as scenes that play once as you reach them.**

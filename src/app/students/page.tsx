@@ -263,13 +263,11 @@ const LEDGER_GROUPS: readonly LedgerGroup[] = [
         "The verification standard",
         "Not published. The standard, the payment step and the renewal terms are all stated in full before paid access opens.",
       ],
-      /* broadLaunchDate is null and broadLaunchPolicy is
-         manual_go_no_go_only in the contract, and
-         scripts/check-content-truth.mjs fails the build if either moves,
-         so this row cannot drift into announcing a date. */
+      /* January is the broad target, not automatic Student availability.
+         Eligibility enforcement and manual release gates still apply. */
       [
-        "The date",
-        `There is no launch date. ${PRICING.availability} Each batch is a decision, not a schedule.`,
+        "When access opens",
+        `${PRICING.availability} Student access opens after the eligibility check is ready. Full terms are available before purchase.`,
       ],
       [
         "The state of this plan",

@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { eq } from "drizzle-orm";
 import { entitlementsDb } from "./client";
-import { allotmentLedger, sponsors } from "./schema";
+import { allotmentLedger, sponsors, isPaidVenue } from "./schema";
 import { requireActor, type MutationActor } from "./guard";
 import { venueEditionAnnualAmountCents } from "@/lib/venue-edition";
 import {
@@ -48,7 +48,7 @@ export type OnboardVenueResult = {
 };
 
 /**
- * Create or update a venue and record its payment + term + allotment in one
+ * Create or update a venue and record its intended plan + term + allotment in one
  * transaction. Idempotent on slug: re-onboarding an existing venue updates it
  * rather than duplicating.
  *
@@ -112,7 +112,6 @@ export async function onboardVenue(input: {
   const slug = slugify(input.slug?.trim() || name);
   if (!slug) throw new Error("onboardVenue: could not derive a slug");
 
-  const isPaidPlan = input.venuePlan === "founding" || input.venuePlan === "paid";
   const annualAmountCents = venueEditionAnnualAmountCents(input.venuePlan);
   const db = entitlementsDb();
   const now = Date.now();
@@ -122,13 +121,19 @@ export async function onboardVenue(input: {
 
   return db.transaction(async (tx) => {
     const existing = await tx
-      .select({ id: sponsors.id, codeAllotment: sponsors.codeAllotment })
+      .select()
       .from(sponsors)
       .where(eq(sponsors.slug, slug))
       .limit(1);
 
     const id = existing[0]?.id ?? genId();
     const created = !existing[0];
+    const prior = existing[0];
+    // Onboarding cannot change the meaning or value of cash already recorded.
+    // Payment/renewal/reversal belongs to the dedicated financial writer.
+    if (prior?.paidAt != null && prior.venuePlan !== input.venuePlan) {
+      throw new Error("A venue with recorded payment must change plan through payment review, not onboarding.");
+    }
     // Ledger records the CHANGE in allotment, so SUM(delta) stays equal to
     // code_allotment even when a venue is re-onboarded with a new number. An
     // unlimited venue has no number to change, so it writes no delta — the
@@ -150,7 +155,7 @@ export async function onboardVenue(input: {
         foundingLocked: input.venuePlan === "founding" ? 1 : null,
         termStartsAt,
         termEndsAt,
-        paidAt: isPaidPlan ? now : null,
+        paidAt: null,
         codeAllotment,
         allotmentMode,
         annualWeddingCount,
@@ -163,11 +168,12 @@ export async function onboardVenue(input: {
           name,
           contactEmail,
           venuePlan: input.venuePlan,
-          annualAmountCents,
-          foundingLocked: input.venuePlan === "founding" ? 1 : null,
-          termStartsAt,
-          termEndsAt,
-          paidAt: isPaidPlan ? now : null,
+          ...(prior.paidAt == null ? {
+            annualAmountCents,
+            foundingLocked: input.venuePlan === "founding" ? 1 : null,
+            termStartsAt,
+            termEndsAt,
+          } : {}),
           codeAllotment,
           allotmentMode,
           annualWeddingCount,
@@ -190,6 +196,10 @@ export async function onboardVenue(input: {
       });
     }
 
-    return { id, slug, created, paid: isPaidPlan, allotmentMode, fairUseCeiling };
+    return {
+      id, slug, created,
+      paid: isPaidVenue({ venuePlan: input.venuePlan, paidAt: prior?.paidAt ?? null }),
+      allotmentMode, fairUseCeiling,
+    };
   });
 }

@@ -251,14 +251,19 @@ forbidText(
   "the operator CLI must not accept an arbitrary price",
 );
 requireText(
-  "scripts/mark-venue-paid.ts",
-  'const founding = plan === "founding";',
+  "src/lib/entitlements-db/venue-payment.ts",
+  'foundingLocked: input.plan === "founding" ? 1 : null',
   "the founding plan must always record the rate lock",
 );
 requireText(
-  "scripts/mark-venue-paid.ts",
-  "venueEditionAnnualAmountCents(plan)",
+  "src/lib/entitlements-db/venue-payment.ts",
+  "venueEditionAnnualAmountCents(input.plan)",
   "the cash ledger must take the amount from the plan, not one shared constant",
+);
+requireText(
+  "scripts/mark-venue-paid.ts",
+  "await recordVenuePayment(",
+  "the CLI must use the evidence-backed payment writer tested against SQLite",
 );
 /* DECISION POINT, recorded rather than silently reconciled. This check
    used to REQUIRE `price: String(VENUE_EDITION_ANNUAL_PRICE_EUR)` in the

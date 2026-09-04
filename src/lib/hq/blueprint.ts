@@ -38,12 +38,14 @@
  * ────────────────────────────────────────────────────────────────────
  */
 
+import { COMMERCIAL_TERMS } from "../commercial-terms";
+
 export const BLUEPRINT_META = {
   title: "Founder Operating System",
   subtitle: "How Signal Studio works, grows, ships, thinks, and stays focused.",
   // LIVE DATA: set to the real freeze date when this map is reviewed.
   revisedOn: "2026-06-15",
-  hardLaunch: "2026-09-01",
+  hardLaunch: COMMERCIAL_TERMS.broadLaunchDate,
   initialWedge: "Wedding venues, Ireland, starting in Limerick",
   secondaryWedge: "Students, academic-year planning",
   expansion: "Ireland → UK → English-speaking → localized markets",

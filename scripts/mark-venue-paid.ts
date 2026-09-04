@@ -1,124 +1,43 @@
 import { config } from "dotenv";
-import {
-  VENUE_EDITION_ANNUAL_PRICE_EUR,
-  VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR,
-  venueEditionAnnualAmountCents,
-} from "../src/lib/venue-edition";
 
-config({ path: ".env.local" });
-config({ path: ".env" });
-
-/**
- * Record cash received for one annual Venue Edition. The price is fixed in
- * code so a venue cannot be put onto a negotiated size or multi-site tier.
- * Run this on payment, never on signature.
- *
- * Usage:
- *   pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>
- *     plan: founding | paid
- *     founding records the Founding 25 rate and sets the rate lock.
- *
- * Example:
- *   pnpm tsx scripts/mark-venue-paid.ts lambs-hill founding
+/** Record verified cleared payment, never signature or plan selection.
+ * See docs/guides/venue-payment.md for evidence and partial-failure recovery.
  */
-
-function fail(msg: string): never {
-  console.error(msg);
-  process.exit(1);
-}
-
-const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
-
 async function main() {
-  const [, , slug, plan, ...flags] = process.argv;
-  const unknownFlags = flags.filter((flag) => flag !== "--founding");
-
-  if (!slug || !plan) {
-    fail(
-      [
-        "Usage: pnpm tsx scripts/mark-venue-paid.ts <sponsor-slug> <plan>",
-        "  plan: founding | paid",
-        `  founding: EUR ${VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year, VAT included`,
-        `  paid:     EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year, VAT included`,
-        "  founding also sets the rate lock, held on continuous renewal",
-        "",
-        "Sets venue_plan, annual_amount_cents, founding_locked, the prepaid",
-        "annual term window, and paid_at = now. Run on payment, not signature.",
-      ].join("\n"),
-    );
+  const [slug, plan, ...args] = process.argv.slice(2);
+  const usage = "Usage: pnpm venue:paid <slug> <founding|paid> --reference <opaque-receipt-id> --paid-at <UTC-ISO-time> --amount-cents <100000|150000> --actor-id <id> --actor-name <name>";
+  if (!slug || (plan !== "founding" && plan !== "paid")) throw new Error(usage);
+  const allowed = new Set(["--reference", "--paid-at", "--amount-cents", "--actor-id", "--actor-name"]);
+  const flags = new Map<string, string>();
+  for (let i = 0; i < args.length; i += 2) {
+    const key = args[i], value = args[i + 1];
+    if (!allowed.has(key) || flags.has(key) || !value || value.startsWith("--")) throw new Error(usage);
+    flags.set(key, value);
   }
-
-  if (plan !== "founding" && plan !== "paid") {
-    fail(`plan must be 'founding' or 'paid'; got '${plan}'.`);
+  if (flags.size !== allowed.size) throw new Error(usage);
+  const time = flags.get("--paid-at")!;
+  const paidAt = Date.parse(time);
+  if (!Number.isFinite(paidAt) || new Date(paidAt).toISOString() !== time) {
+    throw new Error("Use the exact UTC cleared-payment time, for example 2027-01-21T12:00:00.000Z.");
   }
-  if (flags.includes("--founding") && plan !== "founding") {
-    fail("--founding is only valid with the founding plan");
-  }
-  if (unknownFlags.length > 0) {
-    fail(
-      `Venue Edition is fixed at EUR ${VENUE_EDITION_FOUNDING_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year founding, EUR ${VENUE_EDITION_ANNUAL_PRICE_EUR.toLocaleString("en-IE")}/year standard. Remove unexpected argument(s): ${unknownFlags.join(" ")}.`,
-    );
-  }
-  const founding = plan === "founding";
+  if (!/^\d+$/.test(flags.get("--amount-cents")!)) throw new Error("Amount must be integer cents.");
 
-  const { db } = await import("../src/lib/db");
-  const { sponsors } = await import("../src/lib/db/schema");
-  const { eq } = await import("drizzle-orm");
-
-  const sponsor = await db.query.sponsors.findFirst({
-    where: eq(sponsors.slug, slug),
-  });
-  if (!sponsor) {
-    fail(
-      `No sponsor with slug '${slug}'. Create the sponsor first (issue-codes.ts path), then mark it paid.`,
-    );
-  }
-
-  const now = Date.now();
-  // The writer chooses the amount from the plan, so a founding venue is never
-  // recorded at the standard price. Before 2026-08-03 both plans wrote the same
-  // constant, which was correct only while there was one price.
-  const amountCents = venueEditionAnnualAmountCents(plan);
-  if (amountCents == null) {
-    fail(`plan '${plan}' has no annual amount; only founding and paid are cash.`);
-  }
-  const ledger = {
-    venuePlan: plan,
-    annualAmountCents: amountCents,
-    foundingLocked: founding ? 1 : null,
-    termStartsAt: now,
-    termEndsAt: now + ONE_YEAR_MS,
-    paidAt: now,
-    updatedAt: now,
-  };
-
-  await db.update(sponsors).set(ledger).where(eq(sponsors.slug, slug));
-  console.log(
-    `[mark-venue-paid] ${slug} -> ${plan} | EUR ${(amountCents / 100).toLocaleString("en-IE")}/yr${founding ? " | rate locked on continuous renewal" : ""} | paid_at set. Studio local written.`,
-  );
-
-  // Mirror to shared signal-entitlements (same discipline as issue-codes).
-  try {
-    const { entitlementsDb } = await import(
-      "../src/lib/entitlements-db/client"
-    );
-    const { sponsors: sharedSponsors } = await import(
-      "../src/lib/entitlements-db/schema"
-    );
-    await entitlementsDb()
-      .update(sharedSponsors)
-      .set(ledger)
-      .where(eq(sharedSponsors.slug, slug));
-    console.log("[mark-venue-paid] shared signal-entitlements mirror written.");
-  } catch (err) {
-    console.warn(
-      "[mark-venue-paid] shared mirror failed (Studio local is written and authoritative for HQ Traction):",
-      err instanceof Error ? err.message : err,
-    );
-  }
+  config({ path: ".env.local", quiet: true });
+  config({ path: ".env", quiet: true });
+  const [{ db }, { entitlementsDb }, { recordVenuePayment }] = await Promise.all([
+    import("../src/lib/db"), import("../src/lib/entitlements-db/client-core"),
+    import("../src/lib/entitlements-db/venue-payment"),
+  ]);
+  const result = await recordVenuePayment({
+    slug, plan, reference: flags.get("--reference")!, paidAt,
+    amountCents: Number(flags.get("--amount-cents")),
+    actorId: flags.get("--actor-id")!, actorName: flags.get("--actor-name")!,
+  }, { studio: db, shared: entitlementsDb() });
+  console.log(`[mark-venue-paid] ${slug}: ${result.replayed ? "existing evidence replayed" : "payment recorded"}; Studio mirror complete; event ${result.eventId}.`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
+main().catch((error: unknown) => {
+  console.error(error instanceof Error ? error.message : "Payment recording failed.");
+  console.error("If a write may have started, retry only with exactly the same evidence. No success is reported until both stores agree.");
+  process.exitCode = 1;
 });
