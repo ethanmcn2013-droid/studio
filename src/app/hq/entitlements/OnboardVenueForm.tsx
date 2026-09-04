@@ -158,7 +158,7 @@ export function OnboardVenueForm() {
           {state.allotmentMode === "unlimited"
             ? `, unlimited issuance (fair-use ceiling ${state.fairUseCeiling})`
             : ""}
-          . Mint its codes below.
+          . Review its access below.
         </p>
       ) : state && "error" in state ? (
         <p className="text-[12px]" style={{ color: "var(--status-blocked)" }}>

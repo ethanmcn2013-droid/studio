@@ -369,7 +369,7 @@ async function VenuesTab() {
               <div>
                 <span className="text-[14px] font-semibold">{v.name}</span>
                 <span className="ml-2 text-[11.5px] text-ink-quiet">
-                  {v.venuePlan} · {v.paid ? "paid" : "not paid"}
+                  {v.venuePlan === "paid" ? "Standard agreement" : v.venuePlan === "founding" ? "Founding agreement" : v.venuePlan} · {v.paid ? "payment recorded" : "no payment recorded"}
                   {v.drift ? " · counter drift" : ""}
                 </span>
               </div>
