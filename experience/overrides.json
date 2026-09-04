@@ -99,11 +99,17 @@
     },
     "studio.surface.hq-shell-navigation": {
       "auditStatus": "baseline-captured",
-      "screenshotCoverage": "partial",
-      "accessibilityCoverage": "partial",
-      "fixtureCoverage": "partial",
-      "automatedTestCoverage": "partial",
-      "lastReviewedAt": "2026-07-15"
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "fixtureCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "lastReviewedAt": "2026-07-15",
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ]
     },
     "studio.surface.site-navigation": {
       "auditStatus": "baseline-captured",
@@ -260,6 +266,105 @@
       "fixtureCoverage": "complete",
       "automatedTestCoverage": "complete",
       "lastReviewedAt": "2026-07-28"
+    },
+    "studio.page.hq": {
+      "requiredStates": [
+        "empty",
+        "populated",
+        "partial-failure",
+        "error",
+        "restricted",
+        "dense",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-blueprint": {
+      "requiredStates": [
+        "default",
+        "empty",
+        "partial-failure",
+        "error",
+        "restricted",
+        "disabled",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-entitlements": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-financial-model": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-founders-circle": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-reporting": {
+      "requiredStates": [
+        "empty",
+        "populated",
+        "partial-failure",
+        "error",
+        "restricted",
+        "dense",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
+    },
+    "studio.page.students": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete"
     }
   }
 }

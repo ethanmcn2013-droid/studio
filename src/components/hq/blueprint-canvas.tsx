@@ -102,7 +102,7 @@ export function BlueprintCanvas({
   const jumpTo = (id: string) => {
     setActive(id);
     const el = document.getElementById(`bp-${id}`);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    el?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   };
 
   // Highlight the section currently in view in the legend.

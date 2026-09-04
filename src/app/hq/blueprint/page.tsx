@@ -187,12 +187,12 @@ export default async function BlueprintPage() {
                   <span className="bp-product-role">{p.role}</span>
                 </header>
                 <p className="bp-body">{p.purpose}</p>
-                <dl className="bp-io">
+                <div className="bp-io">
                   <Field label="inputs" items={p.inputs} />
                   <Field label="outputs" items={p.outputs} />
                   <Field label="key actions" items={p.keyActions} />
                   <Field label="success metrics" items={p.successMetrics} />
-                </dl>
+                </div>
                 <p className="bp-never"><span>never becomes</span> {p.neverBecome}</p>
               </article>
             ))}
@@ -345,7 +345,7 @@ export default async function BlueprintPage() {
               <div key={m.key} className="bp-metric" data-tone={m.tone} data-live={m.live ? "true" : undefined}>
                 <span className="bp-metric-value">
                   <CountUp value={m.display} />
-                  {m.live ? <span className="bp-metric-live" title="live from source" aria-label="live" /> : null}
+                  {m.live ? <span className="bp-metric-live" role="img" title="live from source" aria-label="live" /> : null}
                 </span>
                 <span className="bp-metric-label">{m.label}</span>
                 <span className="bp-metric-target">target · {m.target}</span>
@@ -434,14 +434,14 @@ function Section({
 
 function Field({ label, items, chips }: { label: string; items: string[]; chips?: boolean }) {
   return (
-    <div className="bp-field">
+    <dl className="bp-field">
       <dt className="bp-field-label">{label}</dt>
       <dd className={chips ? "bp-field-chips" : "bp-field-list"}>
         {chips
           ? items.map((it) => <span key={it} className="bp-chip bp-chip--sm">{it}</span>)
           : items.map((it) => <span key={it} className="bp-field-item">{it}</span>)}
       </dd>
-    </div>
+    </dl>
   );
 }
 

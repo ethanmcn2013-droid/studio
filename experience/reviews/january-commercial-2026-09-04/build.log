@@ -1,0 +1,137 @@
+▲ Next.js 16.2.11 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 29.4s
+  Running TypeScript ...
+  Finished TypeScript in 44s ...
+  Collecting page data using 11 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 11 workers (0/35) ...
+  Generating static pages using 11 workers (8/35)
+  Generating static pages using 11 workers (17/35)
+  Generating static pages using 11 workers (26/35)
+✓ Generating static pages using 11 workers (35/35) in 1487ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /__design-lab/brand-guidelines
+├ ƒ /_not-found
+├ ƒ /about
+├ ○ /about/opengraph-image
+├ ƒ /accessibility
+├ ƒ /api/cron/access-reconcile
+├ ƒ /api/cron/sponsored-use
+├ ƒ /api/csp-report
+├ ƒ /api/internal/cron-ping
+├ ƒ /api/internal/entitlements/expire
+├ ƒ /api/internal/entitlements/grant
+├ ƒ /api/internal/prospects/export-schools
+├ ƒ /api/internal/prospects/import-schools
+├ ƒ /api/internal/prospects/migrate
+├ ƒ /api/native/today
+├ ƒ /api/today
+├ ƒ /api/webhooks/clerk
+├ ○ /apple-icon
+├ ○ /changelog
+├ ƒ /changelog.rss
+├ ƒ /design
+├ ƒ /dispatch
+├ ƒ /features/daily-briefing
+├ ƒ /hq
+├ ƒ /hq/[group]
+├ ƒ /hq/access
+├ ƒ /hq/access/check
+├ ƒ /hq/account-review
+├ ƒ /hq/account-review/download
+├ ƒ /hq/action-center
+├ ƒ /hq/api/search-index
+├ ƒ /hq/asset-command
+├ ƒ /hq/asset-curator
+├ ƒ /hq/assets
+├ ƒ /hq/atlas
+├ ƒ /hq/atlas-map
+├ ƒ /hq/atlas/[slug]
+├ ƒ /hq/blueprint
+├ ƒ /hq/cafe-card
+├ ƒ /hq/cap-table
+├ ƒ /hq/cards
+├ ƒ /hq/crm
+├ ƒ /hq/data-room
+├ ƒ /hq/decisions
+├ ƒ /hq/decisions/[id]
+├ ƒ /hq/deck
+├ ƒ /hq/decks
+├ ƒ /hq/demo-film
+├ ƒ /hq/design-rooms
+├ ƒ /hq/email-lab
+├ ƒ /hq/email-lab/render
+├ ƒ /hq/entitlements
+├ ƒ /hq/entitlements/[lookup]
+├ ƒ /hq/entitlements/export
+├ ƒ /hq/experience-quality
+├ ƒ /hq/experience-quality/evidence
+├ ƒ /hq/experimentation-room
+├ ƒ /hq/financial-model
+├ ƒ /hq/founders-circle
+├ ƒ /hq/health
+├ ƒ /hq/incorporation
+├ ƒ /hq/loading-review
+├ ƒ /hq/loan-pack
+├ ƒ /hq/logout
+├ ƒ /hq/market-entry
+├ ƒ /hq/marketing
+├ ƒ /hq/one-pagers
+├ ƒ /hq/one-pagers/analytics
+├ ƒ /hq/one-pagers/brand
+├ ƒ /hq/one-pagers/notes
+├ ƒ /hq/one-pagers/roadmap
+├ ƒ /hq/one-pagers/tasks
+├ ƒ /hq/org
+├ ƒ /hq/org/[slug]
+├ ƒ /hq/partner-card
+├ ƒ /hq/partners
+├ ƒ /hq/plan
+├ ƒ /hq/plan/print
+├ ƒ /hq/platform-readiness
+├ ƒ /hq/poster
+├ ƒ /hq/product-hero-design-motion
+├ ƒ /hq/reporting
+├ ƒ /hq/slide-30-review
+├ ƒ /hq/socials
+├ ƒ /hq/status
+├ ƒ /hq/vault
+├ ƒ /hq/vault/[slug]
+├ ƒ /hq/venue-kit
+├ ƒ /hq/venue-portal-review
+├ ƒ /hq/venues
+├ ƒ /hq/waitlist
+├ ○ /icon
+├ ○ /icon1
+├ ○ /manifest.webmanifest
+├ ƒ /notes
+├ ƒ /opengraph-image
+├ ƒ /press
+├ ƒ /pricing
+├ ƒ /principles
+├ ƒ /privacy
+├ ƒ /redeem/[code]
+├ ○ /robots.txt
+├ ƒ /security
+├ ƒ /signal
+├ ○ /sitemap.xml
+├ ƒ /students
+├ ƒ /tasks
+├ ƒ /terms
+├ ƒ /timeline
+├ ƒ /venues
+├ ○ /venues/opengraph-image
+└ ƒ /waitlist
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

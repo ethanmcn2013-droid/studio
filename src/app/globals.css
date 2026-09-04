@@ -7680,15 +7680,15 @@ a.hq-crm-bulk-btn { text-decoration: none; display: inline-flex; align-items: ce
   --bp-bg-2:      #0f0f13;
   --bp-panel:     rgba(255, 255, 255, 0.022);
   --bp-panel-2:   rgba(255, 255, 255, 0.04);
-  --bp-glass:     rgba(18, 18, 24, 0.55);
+  --bp-glass:     #121218; /* readable even where the fixed legend crosses paper */
   --bp-line:      rgba(255, 255, 255, 0.08);
   --bp-line-2:    rgba(255, 255, 255, 0.05);
   --bp-line-str:  rgba(255, 255, 255, 0.16);
   --bp-ink:       #f4f4f5;
   --bp-soft:      #c4c4cc;
   --bp-faint:     #8a8a94;
-  --bp-quiet:     #6a6a74;
-  --bp-accent:    #6d63f5;        /* indigo, lifted for contrast on ink */
+  --bp-quiet:     #8a8a94;
+  --bp-accent:    #9b94ff;        /* small indigo labels need 4.5:1 on ink */
   --bp-accent-d:  #4f46e5;
   --bp-accent-bg: rgba(79, 70, 229, 0.14);
   --bp-glow:      rgba(79, 70, 229, 0.30);

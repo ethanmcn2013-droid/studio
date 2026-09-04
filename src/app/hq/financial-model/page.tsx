@@ -115,7 +115,7 @@ export default async function FinancialModelPage() {
             €{FIN_PRICING.paidVenueAcvEur.toLocaleString("en-IE")} venue ACV.
           </p>
         </div>
-        <div className="hq-fm-scroll">
+        <div className="hq-fm-scroll" tabIndex={0} role="region" aria-label="Monthly projection table">
           <table className="hq-fm-table">
             <thead>
               <tr>
