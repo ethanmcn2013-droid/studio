@@ -14,6 +14,8 @@ The principal integrator chooses an owner-controlled project plan under the user
 
 A new Event purchase may govern a shared project only through the current primary owner's explicit designation. Bind the verified purchase reference, purchaser and canonical project at settlement. Ordinary members' personal purchases must not silently impose future restrictions on another person's project. Owner transfer must not rewrite historical purchaser identity.
 
+The purchaser must be the current primary owner at both checkout and verified settlement. The reference, purchaser and project binding is immutable; neither a later ownership lookup nor an ordinary member's personal purchase can establish it retrospectively.
+
 Membership and object authorization always apply. An independent valid grant that explicitly covers the project, or the current primary owner's applicable account grant, can preserve shared editing. An ordinary member's account grant retains that person's personal benefits without upgrading everyone. Other-project grants cannot cover this project.
 
 When no current covering grant exists, an unrefunded completed designated Event term provides read-only project content to authorized members. A refund/revocation provides neither editing nor archive rights; epoch zero is never natural expiry. A separate unrefunded completed designated term may preserve archive access. Owner export, deletion and narrow access-revocation controls remain available through their own authorization; a refund must not erase customer-owned content. Standalone personal Notes retain their separate access model.
@@ -29,3 +31,13 @@ If a complete bounded implementation cannot safely close those surfaces in this 
 ## Acceptance
 
 Prove owner/member/outsider scope; natural expiry; refund before/after expiry; multiple independent grants; stale mirrors; owner transfer; missing history/store outage; private Notes; public-link behavior; every relevant mutation family; and owner export/deletion/revocation. A characterization test that reproduces the gap is evidence of unfinished work, not a passing enforcement check.
+
+## Accepted bounded implementation, 2026-09-04
+
+The principal accepted the fallback implemented in App a10432dd. Its shared Event availability switch refuses new sessions through both the billing action and checkout URL, including review mode. Settings omits Event from available offers and removes the unverified archive promise from existing holders' plan copy. Existing payment settlement and refund recovery are preserved. The source was handed off for integration; this is not a statement that deployed checkout or provider payment links have been disabled.
+
+Retain €89 once, twelve calendar months, read-only after the term and revoked access after refund as intended policy. The canonical contract now identifies Event as sales-unavailable with implementation required. Its former unconditional verified status did not establish enforcement. Event remains outside the public Free/Student/Pro/Enterprise ladder.
+
+Reopening requires verified designation under the project/account mutation fence plus consistent private reads, actual-object mutations, Tasks public board/share/OG/cache behavior, bound Timeline curation and public artifacts, honest UI, and owner export/deletion/security recovery. These independent surfaces cannot be closed by the entitlement reader or a mutation-only lock. The exact boundary and tests are in App docs/execution/january-2027/EVENT-ACCESS-CLOSURE.md at a10432dd. S2 Commercial remains partial.
+
+The historical inventory is the open operator item “Reconcile historical Event purchases before designating project access.” Unknown past designation must not silently lock an existing project or create an archive promise. Settlement of a session created before the candidate hold remains possible and does not itself verify project designation. This is an implementation/evidence gate under existing delegation, not another routine product-approval checkpoint.

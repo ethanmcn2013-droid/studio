@@ -14,7 +14,7 @@ import {
   VENUE_EDITION_FOUNDING_ANNUAL_PRICE_CENTS,
 } from "./venue-edition";
 
-test("exports only verified consumer prices as usable amounts", () => {
+test("exports ratified amounts independently of offer availability", () => {
   assert.equal(formatEuroCents(requireVerifiedAmount("student")), "€9.99");
   assert.equal(formatEuroCents(requireVerifiedAmount("pro")), "€12");
   assert.equal(formatEuroCents(requireVerifiedAmount("event")), "€89");
@@ -59,6 +59,23 @@ test("presents public consumer terms without converting cadence into permanence"
   assert.equal(pricing.plans.event.editingGuestLimit, "See terms before purchase");
   assert.equal(pricing.vatStatement, "All prices are inclusive of VAT at the prevailing rate.");
   assert.doesNotMatch(JSON.stringify(pricing), /forever|does not expire|lifetime/i);
+});
+
+test("a ratified Event amount and term do not become an available sale or archive claim", () => {
+  const event = COMMERCIAL_TERMS.plans.event;
+  const offer = getConsumerPricingPresentation().plans.event;
+  assert.equal(requireVerifiedAmount("event"), 8900);
+  assert.equal(event.cadence, "one_time");
+  assert.equal(event.activeWindowMonths, 12);
+  assert.equal(event.postWindow, "read_only");
+  assert.equal(event.refundAccess, "revoked");
+  assert.equal(event.status, "policy_ratified_implementation_required");
+  assert.equal(event.termsStatus, "intended_not_enforced");
+  assert.equal(event.availability, "unavailable_until_project_access_closure");
+  assert.equal(offer.availableForNewPurchase, false);
+  assert.equal(offer.price, "€89");
+  assert.equal(offer.access, "New Event purchases are currently unavailable.");
+  assert.doesNotMatch(JSON.stringify(offer), /then read.only|archive|forever|lifetime/i);
 });
 
 /**
