@@ -41,8 +41,14 @@ test("encodes the founder-ratified commercial policy pack", () => {
   assert.equal(COMMERCIAL_TERMS.plans.event.refundAccess, "revoked");
   assert.equal(COMMERCIAL_TERMS.schools.availability, "manual_quote_pilot");
   assert.equal(COMMERCIAL_TERMS.trialPolicy.openPaidFeatureTrial, false);
-  assert.equal(COMMERCIAL_TERMS.broadLaunchDate, null);
+  assert.equal(COMMERCIAL_TERMS.broadLaunchDate, "2027-01-21");
   assert.equal(COMMERCIAL_TERMS.broadLaunchPolicy, "manual_go_no_go_only");
+  assert.equal(COMMERCIAL_TERMS.accessState, "waitlist_first");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.firstOutreachDate, "2027-01-21");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.prelaunchMode, "internal_testing_only");
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.automaticAccessOpening, false);
+  assert.deepEqual(COMMERCIAL_TERMS.launchProgramme.manualGates, ["user_launch", "first_outreach"]);
+  assert.equal(COMMERCIAL_TERMS.launchProgramme.guestsAndSeating, "no_build_for_january");
   assert.deepEqual(COMMERCIAL_TERMS.unresolved, []);
 });
 

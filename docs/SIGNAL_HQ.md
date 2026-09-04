@@ -1,5 +1,10 @@
 # Signal HQ
 
+Current launch authority: [January 2027 programme](execution/january-2027/PROGRAMME.md)
+and `content/hq/decisions/january-2027-launch.md`. User launch and first outreach
+target 21 January 2027. Six acceptance states remain open; HQ must not treat a
+date, plan selection, redemption or synthetic fixture as approval or actual use.
+
 Signal HQ is the private operating dashboard for building and launching Signal Studio.
 
 It is not a public product surface. It lives at `/hq`, is protected by `SIGNAL_HQ_PASSWORD`, carries `noindex` metadata, and is intentionally absent from public navigation and the sitemap.

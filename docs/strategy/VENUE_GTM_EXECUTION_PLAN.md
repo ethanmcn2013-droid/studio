@@ -1,5 +1,11 @@
 # Venue Go-To-Market Execution Plan
 
+> Current execution, 2026-09-04: [January programme](../execution/january-2027/PROGRAMME.md).
+> First outreach and launch target 2027-01-21; internal testing only before
+> then, with separate manual gates. Dates, send steps and provider state in
+> this May plan are retained history. Current terms are €1,500 standard /
+> €1,000 Founding 25, VAT-inclusive. No old send packet is approved by this plan.
+
 Status: draft operating plan - 2026-05-26
 Owner: founder
 Boundary: no venue outreach is sent until the founder approves the visual pack, motion/video assets, and final email copy.

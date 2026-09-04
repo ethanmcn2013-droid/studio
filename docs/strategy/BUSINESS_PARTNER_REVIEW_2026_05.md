@@ -1,5 +1,13 @@
 # Business Partner Review — May 2026
 
+> Current amendments, 2026-09-04: [January programme](../execution/january-2027/PROGRAMME.md)
+> supersedes this review's 30-day schedule and freeze with an approved internal
+> programme and a 2027-01-21 launch/first-outreach target with manual gates.
+> The €1,500–€4,000 thesis and no-discount wording below are historical;
+> the retained offer is €1,500 standard / €1,000 Founding 25, VAT-inclusive.
+> A signed invoice is not payment evidence. The August BRAND.md amendment
+> establishes three products and Home. The positioning and venue wedge remain.
+
 Status: ratified frame · 2026-05-16
 Owner: founder
 Supersedes positioning fragments scattered across homepage, /pricing, /venues, content/hq/messaging.md

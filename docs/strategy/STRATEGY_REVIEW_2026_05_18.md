@@ -1,3 +1,10 @@
+# January supersession · 2026-09-04
+
+The [January programme](../execution/january-2027/PROGRAMME.md) supersedes the
+May/June outreach deadlines, August expiry and blanket freeze in this dated
+review for the approved January work. First outreach and user launch target
+21 January 2027 with manual gates. The following review is retained history.
+
 # Strategy Review — 18 May 2026
 
 Status: review · 2026-05-18

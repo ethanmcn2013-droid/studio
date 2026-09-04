@@ -11,8 +11,17 @@
     "note": "Every published venue price is the amount the venue pays. VAT at the prevailing rate comes out of it, not on top of it. Whether Signal Studio is an accountable person is unconfirmed pending a written Revenue reply; the wording discloses the position either way."
   },
   "accessState": "waitlist_first",
-  "broadLaunchDate": null,
+  "broadLaunchDate": "2027-01-21",
   "broadLaunchPolicy": "manual_go_no_go_only",
+  "launchProgramme": {
+    "decision": "content/hq/decisions/january-2027-launch.md",
+    "index": "docs/execution/january-2027/PROGRAMME.md",
+    "firstOutreachDate": "2027-01-21",
+    "prelaunchMode": "internal_testing_only",
+    "automaticAccessOpening": false,
+    "manualGates": ["user_launch", "first_outreach"],
+    "guestsAndSeating": "no_build_for_january"
+  },
   "guestSemantics": {
     "editingMembers": ["view", "comment", "edit"],
     "authenticatedGuests": ["view", "comment"],
