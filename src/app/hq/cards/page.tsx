@@ -125,7 +125,7 @@ export default async function CardsPage() {
                   <span style={{ background: "var(--accent)", color: "#fff", borderRadius: "999px", padding: "2px 10px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em" }}>{v.chosen}</span>
                 ) : null}
               </span>
-              <span style={{ color: "var(--ink-faint)" }}>{v.spec}</span>
+              <span style={{ color: "var(--hqx-muted-ink, var(--ink-faint))" }}>{v.spec}</span>
             </div>
             <div
               style={{
@@ -143,7 +143,7 @@ export default async function CardsPage() {
                   alt={`${v.name}, front: ${v.front}`}
                   style={{ width: "100%", height: "auto", display: "block", borderRadius: "6px", boxShadow: "0 16px 40px rgba(10,10,11,0.12)" }}
                 />
-                <figcaption style={{ fontSize: "12.5px", color: "var(--ink-faint)", marginTop: "8px", lineHeight: 1.5 }}>
+                <figcaption style={{ fontSize: "12.5px", color: "var(--hqx-muted-ink, var(--ink-faint))", marginTop: "8px", lineHeight: 1.5 }}>
                   {v.front}
                 </figcaption>
               </figure>
@@ -154,7 +154,7 @@ export default async function CardsPage() {
                   alt={`${v.name}, back: ${v.back}`}
                   style={{ width: "100%", height: "auto", display: "block", borderRadius: "6px", boxShadow: "0 16px 40px rgba(10,10,11,0.12)" }}
                 />
-                <figcaption style={{ fontSize: "12.5px", color: "var(--ink-faint)", marginTop: "8px", lineHeight: 1.5 }}>
+                <figcaption style={{ fontSize: "12.5px", color: "var(--hqx-muted-ink, var(--ink-faint))", marginTop: "8px", lineHeight: 1.5 }}>
                   {v.back}
                 </figcaption>
               </figure>

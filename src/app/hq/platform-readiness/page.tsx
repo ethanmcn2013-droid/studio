@@ -31,7 +31,7 @@ export default async function PlatformReadinessPage() {
       <div className="mt-8 inline-block border border-border-soft px-5 py-4" style={{ background: "var(--surface)" }}>
         <div className="hq-eyebrow">Completion</div>
         <div className="text-ink" style={{ fontSize: 34, fontWeight: 600 }}>{summary.calculatedCompletion}%</div>
-        <div className="text-ink-quiet" style={{ fontSize: 12 }}>{summary.completed} of {summary.total} items</div>
+        <div className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 12 }}>{summary.completed} of {summary.total} items</div>
       </div>
 
       <section className="mt-10 border border-border-soft" style={{ background: "var(--surface)" }} aria-labelledby="blockers-heading">
@@ -42,8 +42,8 @@ export default async function PlatformReadinessPage() {
           <div className="divide-y divide-border-soft">
             {summary.openP0.map((item) => (
               <div key={item.id} className="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
-                <div><span className="mr-3 text-ink-faint" style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{item.id}</span><span className="text-ink" style={{ fontSize: 14 }}>{item.title}</span></div>
-                <span className="text-ink-quiet" style={{ fontSize: 12 }}>{item.status}</span>
+                <div><span className="mr-3 text-[color:var(--hqx-muted-ink,var(--ink-faint))]" style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{item.id}</span><span className="text-ink" style={{ fontSize: 14 }}>{item.title}</span></div>
+                <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 12 }}>{item.status}</span>
               </div>
             ))}
           </div>
@@ -57,13 +57,13 @@ export default async function PlatformReadinessPage() {
             <div key={phase} className="border border-border-soft p-4" style={{ background: "var(--surface)" }}>
               <div className="hq-eyebrow">Phase {phase}</div>
               <div className="mt-2 text-ink" style={{ fontSize: 22, fontWeight: 600 }}>{stats.completed}/{stats.total}</div>
-              <div className="mt-1 text-ink-quiet" style={{ fontSize: 12 }}>complete</div>
+              <div className="mt-1 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 12 }}>complete</div>
             </div>
           ))}
         </div>
       </section>
 
-      <p className="mt-10 text-ink-faint" style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.6 }}>
+      <p className="mt-10 text-[color:var(--hqx-muted-ink,var(--ink-faint))]" style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.6 }}>
         Source: docs/signal-studio-review/remediation-program.yaml · Updated {program.updatedAt}
       </p>
     </main>

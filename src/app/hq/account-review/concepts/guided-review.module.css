@@ -6,7 +6,7 @@
 
 .eyebrow {
   margin: 0 0 8px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -48,7 +48,7 @@
 }
 
 .verdictLine span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 12px;
 }
 
@@ -118,7 +118,7 @@
 .progress button {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
 }
 
 .progress button[data-active="true"] {
@@ -156,7 +156,7 @@
 }
 
 .panel li span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -167,13 +167,13 @@
 }
 
 .panel small {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
 .support {
   margin: 12px 0 0;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -198,7 +198,7 @@
 .reachMetric span,
 .reachMetric small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 

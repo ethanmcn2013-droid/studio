@@ -79,7 +79,7 @@ export function RepointForm({ fromClerkId }: { fromClerkId: string }) {
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="h-8 rounded px-3 text-[11.5px] text-ink-quiet"
+          className="h-8 rounded px-3 text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
         >
           Cancel
         </button>

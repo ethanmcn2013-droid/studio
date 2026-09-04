@@ -38,7 +38,7 @@ export function GiveAccessForm() {
               </option>
             ))}
           </select>
-          <span className="text-[10.5px] text-ink-quiet">Pro and Student both map to Workspace.</span>
+          <span className="text-[10.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">Pro and Student both map to Workspace.</span>
         </label>
         <label className="grid min-w-0 content-start gap-1 text-[12px]">
           <span className="font-medium text-ink">Expires in (days)</span>

@@ -253,14 +253,14 @@ function DirectionRow({ d, base }: { d: Direction; base: string }) {
       </span>
       <BadgeTag badge={d.badge} />
       <div>
-        <p style={{ margin: 0, fontSize: "13.5px", lineHeight: 1.55, color: "var(--ink-faint)" }}>{d.concept}</p>
+        <p style={{ margin: 0, fontSize: "13.5px", lineHeight: 1.55, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>{d.concept}</p>
         <p
           style={{
             margin: "8px 0 0",
             fontFamily: "var(--font-mono-stack)",
             fontSize: "11px",
             letterSpacing: "0.02em",
-            color: "var(--ink-faint)",
+            color: "var(--hqx-muted-ink, var(--ink-faint))",
           }}
         >
           gesture: {d.gesture} · {d.file}
@@ -353,11 +353,11 @@ export default async function ProductHeroRoomPage() {
           >
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "16px", flexWrap: "wrap" }}>
               <span style={{ fontWeight: 600, fontSize: "15px", color: "var(--ink)" }}>{p.name}</span>
-              <span style={{ fontFamily: "var(--font-mono-stack)", fontSize: "11px", letterSpacing: "0.04em", color: "var(--ink-faint)" }}>
+              <span style={{ fontFamily: "var(--font-mono-stack)", fontSize: "11px", letterSpacing: "0.04em", color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
                 {p.repo} · {p.branch}
               </span>
             </div>
-            <p style={{ margin: "6px 0 0", fontSize: "13px", lineHeight: 1.5, color: "var(--ink-faint)" }}>{p.brief}</p>
+            <p style={{ margin: "6px 0 0", fontSize: "13px", lineHeight: 1.5, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>{p.brief}</p>
           </div>
           {p.directions.map((d) => (
             <DirectionRow key={d.name} d={d} base={p.base} />
@@ -369,7 +369,7 @@ export default async function ProductHeroRoomPage() {
         aria-label="how to use"
         style={{ marginTop: "8px", border: "1px solid var(--hairline)", borderRadius: "10px", padding: "16px 20px" }}
       >
-        <p style={{ margin: 0, fontSize: "13.5px", lineHeight: 1.6, color: "var(--ink-faint)" }}>
+        <p style={{ margin: 0, fontSize: "13.5px", lineHeight: 1.6, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
           Click any row to open that direction’s live preview (press 1–N to switch
           directions, R to replay). Full concepts and build specs live at{" "}
           <code>audit/HERO_COUNCIL_SPECS.md</code>; the iteration log at{" "}

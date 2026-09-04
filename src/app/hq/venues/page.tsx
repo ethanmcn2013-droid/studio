@@ -240,7 +240,7 @@ export default async function VenuesPage() {
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: 12,
-          color: "var(--ink-quiet)",
+          color: "var(--hqx-muted-ink, var(--ink-quiet))",
         }}
       >
         <Link
@@ -389,7 +389,7 @@ function LedgerRow({ row }: { row: VenueConversionLedgerRow }) {
       </div>
       <div>
         <Pill tone="status">{row.status}</Pill>
-        <p className="mt-3 text-ink-quiet" style={{ fontSize: 12, lineHeight: 1.45 }}>
+        <p className="mt-3 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 12, lineHeight: 1.45 }}>
           {row.nextAction}
         </p>
       </div>
@@ -415,7 +415,7 @@ function FulfilmentRow({ step }: { step: VenueFulfilmentRehearsalStep }) {
         <p className="mt-2 text-ink-soft" style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 1.55 }}>
           {step.command}
         </p>
-        <p className="mt-2 text-ink-quiet" style={{ fontSize: 13, lineHeight: 1.5 }}>
+        <p className="mt-2 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 13, lineHeight: 1.5 }}>
           {step.proof}
         </p>
       </div>
@@ -519,7 +519,7 @@ function FilePath({ file, note }: { file: string; note: string }) {
       <div className="text-ink" style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
         {file}
       </div>
-      <div className="mt-1 text-ink-quiet" style={{ fontSize: 13, lineHeight: 1.45 }}>
+      <div className="mt-1 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 13, lineHeight: 1.45 }}>
         {note}
       </div>
     </div>
@@ -663,7 +663,7 @@ const quoteStyle: CSSProperties = {
 const eyebrowStyle: CSSProperties = {
   fontFamily: "var(--font-mono)",
   fontSize: 11,
-  color: "var(--ink-quiet)",
+  color: "var(--hqx-muted-ink, var(--ink-quiet))",
   letterSpacing: "var(--tracking-eyebrow)",
   textTransform: "uppercase",
   fontWeight: 600,
@@ -672,7 +672,7 @@ const eyebrowStyle: CSSProperties = {
 const smallMonoStyle: CSSProperties = {
   fontFamily: "var(--font-mono)",
   fontSize: 12,
-  color: "var(--ink-quiet)",
+  color: "var(--hqx-muted-ink, var(--ink-quiet))",
   letterSpacing: "0.01em",
 };
 

@@ -5,7 +5,7 @@
 
 .eyebrow {
   margin: 0 0 8px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -51,7 +51,7 @@
 
 .verdict span,
 .verdict em {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   font-style: normal;
   letter-spacing: 0.04em;
@@ -103,7 +103,7 @@
 }
 
 .sectionHead span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   white-space: nowrap;
 }
@@ -131,7 +131,7 @@
 .journey span,
 .journey small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
 }
 
@@ -204,7 +204,7 @@
 .reachMetric span,
 .reachMetric small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -234,7 +234,7 @@
   align-items: center;
   border-top: 1px solid var(--hairline);
   padding-top: 14px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 

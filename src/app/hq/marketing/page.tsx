@@ -107,7 +107,7 @@ export default async function MarketingPage() {
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: 12,
-          color: "var(--ink-quiet)",
+          color: "var(--hqx-muted-ink, var(--ink-quiet))",
         }}
       >
         <Link

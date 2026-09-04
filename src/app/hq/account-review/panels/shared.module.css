@@ -1,6 +1,6 @@
 .eyebrow {
   margin: 0 0 8px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -96,7 +96,7 @@
 .total span,
 .total small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 

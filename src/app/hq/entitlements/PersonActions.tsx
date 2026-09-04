@@ -67,7 +67,7 @@ export function RevokeRow({
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="h-8 rounded px-3 text-[11.5px] text-ink-quiet"
+          className="h-8 rounded px-3 text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
         >
           Cancel
         </button>
@@ -130,7 +130,7 @@ export function RevokeAll({ clerkId, activeCount }: { clerkId: string; activeCou
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="h-8 rounded px-3 text-[11.5px] text-ink-quiet"
+          className="h-8 rounded px-3 text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
         >
           Cancel
         </button>

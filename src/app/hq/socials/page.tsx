@@ -149,7 +149,7 @@ export default async function SocialsPage() {
                   <span style={{ color: "var(--accent)" }}>{q.slot}</span>
                   &ensp;·&ensp;{q.format}
                 </span>
-                <span style={{ color: "var(--ink-faint)" }}>{q.platforms}</span>
+                <span style={{ color: "var(--hqx-muted-ink, var(--ink-faint))" }}>{q.platforms}</span>
               </div>
               <div
                 style={{
@@ -164,7 +164,7 @@ export default async function SocialsPage() {
               >
                 {q.caption}
               </div>
-              <div style={{ fontSize: "12px", lineHeight: 1.5, color: "var(--ink-faint)" }}>
+              <div style={{ fontSize: "12px", lineHeight: 1.5, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
                 <span style={{ ...mono, fontSize: "9.5px", fontWeight: 600 }}>alt&ensp;</span>
                 {q.alt}
               </div>

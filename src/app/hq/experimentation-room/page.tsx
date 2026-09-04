@@ -119,9 +119,9 @@ function Row({ x }: { x: Experiment }) {
     <>
       <span style={{ fontWeight: 600 }}>{x.name}</span>
       <span style={badgeStyle(x.state)}>{x.state}</span>
-      <span style={{ fontSize: "13.5px", lineHeight: 1.5, color: "var(--ink-faint)" }}>
+      <span style={{ fontSize: "13.5px", lineHeight: 1.5, color: "var(--hqx-muted-ink, var(--ink-faint))" }}>
         {x.note}
-        <span style={{ display: "block", marginTop: "4px", fontFamily: "var(--font-mono-stack)", fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--ink-faint)", opacity: 0.8 }}>
+        <span style={{ display: "block", marginTop: "4px", fontFamily: "var(--font-mono-stack)", fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--hqx-muted-ink, var(--ink-faint))", opacity: 0.8 }}>
           {x.where}
         </span>
       </span>

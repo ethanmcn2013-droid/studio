@@ -134,7 +134,7 @@ export function OnboardVenueForm() {
           Choosing a plan does not record payment. Record cleared payment separately.
         </div>
         {unlimited ? (
-          <p className="text-[11.5px] text-ink-quiet">
+          <p className="text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
             Fair-use ceiling {fairUseCeilingFor(parsedCount)} for this term. It alerts
             Signal HQ and keeps issuing. It never caps issuance, never sets the price,
             and never changes at renewal.

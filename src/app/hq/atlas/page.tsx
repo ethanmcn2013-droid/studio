@@ -79,7 +79,7 @@ export default async function AtlasIndexPage() {
                 {pinned.summary}
               </p>
               <p
-                className="mt-3 font-mono text-[11px] uppercase tracking-wider text-ink-quiet"
+                className="mt-3 font-mono text-[11px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
                 style={{ letterSpacing: "0.06em" }}
               >
                 {pinned.lens} · verified {pinned.lastVerified}
@@ -108,7 +108,7 @@ export default async function AtlasIndexPage() {
           }))}
         />
 
-        <div className="mt-20 border-t border-border-soft pt-6 font-mono text-[12px] text-ink-quiet">
+        <div className="mt-20 border-t border-border-soft pt-6 font-mono text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           <Link href="/hq" className="atlas-link hover:text-accent">
             ← hq
           </Link>

@@ -71,8 +71,8 @@ export default async function AtlasEntryPage({
           >
             ← atlas
           </Link>
-          <span className="text-ink-quiet">/</span>
-          <span className="text-ink-quiet" style={{ letterSpacing: "0.06em" }}>
+          <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">/</span>
+          <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ letterSpacing: "0.06em" }}>
             {entry.lens.toLowerCase()}
           </span>
         </div>
@@ -81,7 +81,7 @@ export default async function AtlasEntryPage({
           {entry.title}
           {note && (
             <span
-              className="ml-3 align-middle font-mono text-[13px] font-normal lowercase text-ink-quiet"
+              className="ml-3 align-middle font-mono text-[13px] font-normal lowercase text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
               style={{ letterSpacing: "0.04em" }}
             >
              , {note}
@@ -97,7 +97,7 @@ export default async function AtlasEntryPage({
         </p>
 
         <p
-          className="mb-10 max-w-[58ch] font-mono text-[11.5px] uppercase tracking-wider text-ink-quiet"
+          className="mb-10 max-w-[58ch] font-mono text-[11.5px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
           style={{ letterSpacing: "0.06em" }}
         >
           verified {entry.lastVerified || "—"} · {entry.owner}
@@ -170,7 +170,7 @@ export default async function AtlasEntryPage({
         {neighbors.length > 0 && (
           <div className="mb-12 border-t border-b border-border-soft py-5">
             <div
-              className="mb-2 font-mono text-[10.5px] uppercase tracking-wider text-ink-quiet"
+              className="mb-2 font-mono text-[10.5px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
               style={{ letterSpacing: "0.06em" }}
             >
               related
@@ -201,7 +201,7 @@ export default async function AtlasEntryPage({
             {entry.tags.length > 0 && (
               <div>
                 <div
-                  className="mb-3 font-mono text-[10.5px] uppercase tracking-wider text-ink-quiet"
+                  className="mb-3 font-mono text-[10.5px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
                   style={{ letterSpacing: "0.06em" }}
                 >
                   tags
@@ -221,7 +221,7 @@ export default async function AtlasEntryPage({
             {entry.references.length > 0 && (
               <div>
                 <div
-                  className="mb-3 font-mono text-[10.5px] uppercase tracking-wider text-ink-quiet"
+                  className="mb-3 font-mono text-[10.5px] uppercase tracking-wider text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
                   style={{ letterSpacing: "0.06em" }}
                 >
                   references

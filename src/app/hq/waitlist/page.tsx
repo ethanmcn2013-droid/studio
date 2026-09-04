@@ -116,7 +116,7 @@ export default async function HqWaitlistPage() {
             <div className="overflow-hidden rounded-[8px] border border-border-soft bg-bg-elev">
               <div className="flex items-center justify-between border-b border-border-soft px-4 py-3">
                 <span className="hq-os-eyebrow">newest first</span>
-                <span className="font-mono text-[11px] text-ink-quiet">
+                <span className="font-mono text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                   {entries.length} shown
                 </span>
               </div>
@@ -137,7 +137,7 @@ export default async function HqWaitlistPage() {
                             {entry.name || entry.email}
                           </h2>
                           {entry.name ? (
-                            <span className="font-mono text-[11px] text-ink-quiet">
+                            <span className="font-mono text-[11px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                               {entry.email}
                             </span>
                           ) : null}
@@ -145,13 +145,13 @@ export default async function HqWaitlistPage() {
                         <p className="mt-2 max-w-[72ch] text-[13px] leading-[1.6] text-ink-soft">
                           {entry.note || "No note."}
                         </p>
-                        <div className="mt-3 flex flex-wrap gap-2 font-mono text-[10.5px] uppercase tracking-[0.08em] text-ink-quiet">
+                        <div className="mt-3 flex flex-wrap gap-2 font-mono text-[10.5px] uppercase tracking-[0.08em] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                           <span>{formatUseCaseLabel(entry.useCase)}</span>
                           <span>{entry.source ?? "unknown source"}</span>
                           {entry.artifact ? <span>{entry.artifact}</span> : null}
                         </div>
                       </div>
-                      <div className="font-mono text-[11px] leading-[1.7] text-ink-quiet md:text-right">
+                      <div className="font-mono text-[11px] leading-[1.7] text-[color:var(--hqx-muted-ink,var(--ink-quiet))] md:text-right">
                         <div>{formatDate(entry.lastSubmittedAt)}</div>
                         <div>{entry.status}</div>
                       </div>
@@ -182,7 +182,7 @@ function Metric({
       <strong className="mt-3 block text-[28px] font-semibold leading-none tracking-[-0.035em] text-ink">
         {value}
       </strong>
-      <span className="mt-2 block text-[12px] text-ink-quiet">{detail}</span>
+      <span className="mt-2 block text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{detail}</span>
     </div>
   );
 }

@@ -36,7 +36,7 @@
 }
 
 .identity span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 12px;
 }
 
@@ -83,7 +83,7 @@
 
 .members small,
 .history small {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
 }
 
 .note {

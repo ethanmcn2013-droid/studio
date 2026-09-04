@@ -52,7 +52,7 @@
 .card span,
 .card small {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .sectionHead span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .reach small {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
 }
 
 .bars {
@@ -141,12 +141,12 @@
 }
 
 .bars span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
 }
 
 .compareNote {
   margin: 10px 0 0;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
   line-height: 1.45;
 }

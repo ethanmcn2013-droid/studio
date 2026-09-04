@@ -85,7 +85,7 @@ function CronRow({
             {label}
           </div>
           <div
-            className="mt-1 text-ink-quiet"
+            className="mt-1 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
             style={{ fontSize: 13, lineHeight: 1.5 }}
           >
             {schedule}
@@ -113,7 +113,7 @@ function CronRow({
 
       {lastRun?.notes ? (
         <div
-          className="mt-4 text-ink-quiet"
+          className="mt-4 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
           style={{ fontSize: 12, lineHeight: 1.5 }}
         >
           {lastRun.notes}
@@ -154,7 +154,7 @@ function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <dt
-        className="text-ink-faint"
+        className="text-[color:var(--hqx-muted-ink,var(--ink-faint))]"
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: 10,
@@ -175,7 +175,7 @@ function Field({ label, value }: { label: string; value: string }) {
 function EmptyState() {
   return (
     <div
-      className="border border-border-soft p-5 text-ink-quiet"
+      className="border border-border-soft p-5 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]"
       style={{ background: "var(--surface)", fontSize: 14 }}
     >
       No cron sources reporting yet. Signal Studio is quiet.

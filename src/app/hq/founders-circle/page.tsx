@@ -133,7 +133,7 @@ export default async function FoundersCirclePage() {
             {HQ_REVIEW_PRINCIPLES.map((p) => (
               <div key={p.role} className="hqx-summary-row">
                 <span className="hqx-summary-row-label">{p.role}</span>
-                <span className="hqx-summary-row-value" style={{ fontWeight: "var(--weight-regular)", color: "var(--ink-faint)", textAlign: "right", maxWidth: "60%" }}>{p.finding}</span>
+                <span className="hqx-summary-row-value" style={{ fontWeight: "var(--weight-regular)", color: "var(--hqx-muted-ink, var(--ink-faint))", textAlign: "right", maxWidth: "60%" }}>{p.finding}</span>
               </div>
             ))}
           </div>

@@ -89,7 +89,7 @@ export default async function AccessConsolePage({
             className={`-mb-px border-b-2 px-3 py-2 text-[12.5px] font-medium transition ${
               tab === t.key
                 ? "border-[color:var(--accent)] text-ink"
-                : "border-transparent text-ink-quiet hover:text-ink-soft"
+                : "border-transparent text-[color:var(--hqx-muted-ink,var(--ink-quiet))] hover:text-ink-soft"
             }`}
           >
             {t.label}
@@ -109,7 +109,7 @@ function Unreachable({ error }: { error?: string }) {
   return (
     <div className="rounded-md border border-border-soft bg-bg-elev px-4 py-6">
       <div className="text-[13px] font-medium">Can&rsquo;t reach the entitlements DB.</div>
-      <p className="mt-1 text-[12px] text-ink-quiet">
+      <p className="mt-1 text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
         Reads fail open to free across the suite, so products stay up. {error ?? ""}
       </p>
     </div>
@@ -123,14 +123,14 @@ async function TodayTab() {
   const stat = (n: number, label: string) => (
     <div className="rounded-md border border-border-soft bg-bg-elev px-4 py-3">
       <div className="text-[22px] font-semibold tabular-nums">{n}</div>
-      <div className="text-[11.5px] text-ink-quiet">{label}</div>
+      <div className="text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{label}</div>
     </div>
   );
 
   return (
     <div className="grid gap-5">
       <div className="flex items-center justify-between">
-        <span className="text-[12px] text-ink-quiet">
+        <span className="text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           {today.driftSponsors > 0
             ? `${today.driftSponsors} venue counter${today.driftSponsors === 1 ? "" : "s"} drifted from their code rows.`
             : "Counters and code rows agree."}
@@ -147,7 +147,7 @@ async function TodayTab() {
         {stat(today.openAccountRequests, "open Account requests")}
       </div>
       {today.openAccountRequests > 0 ? (
-        <p className="text-[12px] text-ink-quiet">
+        <p className="text-[12px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           Open Account requests are recorded from Account review. Fulfillment
           still requires an allotment ledger write here — approving in prose
           does not change codes.
@@ -160,7 +160,7 @@ async function TodayTab() {
             {today.venuesNearAllotment.map((v) => (
               <li key={v.slug} className="flex items-center justify-between px-4 py-2.5 text-[12.5px]">
                 <span>{v.name}</span>
-                <span className="text-ink-quiet">
+                <span className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                   {v.remaining} of {v.allotment} left
                 </span>
               </li>
@@ -217,7 +217,7 @@ async function RosterTab({ sp }: { sp: Record<string, string | undefined> }) {
       <form method="get" className="mb-4 flex flex-wrap items-end gap-2">
         <input type="hidden" name="tab" value="roster" />
         {ROSTER_FILTER_FIELDS.map((f) => (
-          <label key={f.key} className="grid gap-1 text-[10.5px] text-ink-quiet">
+          <label key={f.key} className="grid gap-1 text-[10.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
             <span>{f.label}</span>
             <select
               name={f.key}
@@ -241,7 +241,7 @@ async function RosterTab({ sp }: { sp: Record<string, string | undefined> }) {
         </button>
         <Link
           href="/hq/entitlements?tab=roster"
-          className="h-8 rounded px-2 text-[11.5px] leading-8 text-ink-quiet transition hover:text-ink"
+          className="h-8 rounded px-2 text-[11.5px] leading-8 text-[color:var(--hqx-muted-ink,var(--ink-quiet))] transition hover:text-ink"
         >
           Clear
         </Link>
@@ -257,14 +257,14 @@ async function RosterTab({ sp }: { sp: Record<string, string | undefined> }) {
 
       <h3 className="mb-3 text-[13px] font-semibold">Roster ({rows.length})</h3>
       {rows.length === 0 ? (
-        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-ink-quiet">
+        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           No entitlement rows yet.
         </p>
       ) : (
         <div className="overflow-x-auto rounded-md border border-border-soft bg-bg-elev">
           <table className="w-full text-[12px]">
             <thead>
-              <tr className="border-b border-border-soft text-left text-[10.5px] uppercase tracking-[0.08em] text-ink-quiet">
+              <tr className="border-b border-border-soft text-left text-[10.5px] uppercase tracking-[0.08em] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                 <th className="px-3 py-2">Person</th>
                 <th className="px-3 py-2">Plan</th>
                 <th className="px-3 py-2">Source</th>
@@ -287,7 +287,7 @@ async function RosterTab({ sp }: { sp: Record<string, string | undefined> }) {
                   <td className="px-3 py-2">{r.tierLabel}</td>
                   <td className="px-3 py-2 text-ink-soft">
                     {r.source}
-                    <span className="ml-1 text-[10px] text-ink-quiet">{r.paid ? "paid" : "comp"}</span>
+                    <span className="ml-1 text-[10px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{r.paid ? "paid" : "comp"}</span>
                   </td>
                   <td className="px-3 py-2">{r.status}</td>
                   <td className="px-3 py-2 text-ink-soft">{r.billingState ?? "—"}</td>
@@ -311,14 +311,14 @@ async function BatchesTab() {
     <div>
       <h3 className="mb-3 text-[13px] font-semibold">Batches ({rows.length})</h3>
       {rows.length === 0 ? (
-        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-ink-quiet">
+        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           No cohorts yet. Name a batch when you give access to a group.
         </p>
       ) : (
         <div className="overflow-x-auto rounded-md border border-border-soft bg-bg-elev">
           <table className="w-full text-[12px]">
             <thead>
-              <tr className="border-b border-border-soft text-left text-[10.5px] uppercase tracking-[0.08em] text-ink-quiet">
+              <tr className="border-b border-border-soft text-left text-[10.5px] uppercase tracking-[0.08em] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                 <th className="px-3 py-2">Batch</th>
                 <th className="px-3 py-2">Kind</th>
                 <th className="px-3 py-2">Plan</th>
@@ -335,7 +335,7 @@ async function BatchesTab() {
                   <td className="px-3 py-2">{b.tierLabel}</td>
                   <td className="px-3 py-2 tabular-nums">{b.granted}</td>
                   <td className="px-3 py-2 text-ink-soft">{b.allotment ?? "unlimited"}</td>
-                  <td className="px-3 py-2 text-ink-quiet">{b.reason}</td>
+                  <td className="px-3 py-2 text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">{b.reason}</td>
                 </tr>
               ))}
             </tbody>
@@ -359,7 +359,7 @@ async function VenuesTab() {
       </div>
       <h3 className="text-[13px] font-semibold">Venues ({rows.length})</h3>
       {rows.length === 0 ? (
-        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-ink-quiet">
+        <p className="rounded-md border border-border-soft bg-bg-elev px-4 py-6 text-[12.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
           No venues yet.
         </p>
       ) : (
@@ -368,7 +368,7 @@ async function VenuesTab() {
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <div>
                 <span className="text-[14px] font-semibold">{v.name}</span>
-                <span className="ml-2 text-[11.5px] text-ink-quiet">
+                <span className="ml-2 text-[11.5px] text-[color:var(--hqx-muted-ink,var(--ink-quiet))]">
                   {v.venuePlan === "paid" ? "Standard agreement" : v.venuePlan === "founding" ? "Founding agreement" : v.venuePlan} · {v.paid ? "payment recorded" : "no payment recorded"}
                   {v.drift ? " · counter drift" : ""}
                 </span>

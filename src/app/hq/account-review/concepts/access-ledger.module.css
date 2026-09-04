@@ -5,7 +5,7 @@
 
 .eyebrow {
   margin: 0 0 6px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -40,7 +40,7 @@
 
 .meta span {
   display: block;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -69,7 +69,7 @@
 }
 
 .ledgerHead span {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -96,7 +96,7 @@
 .total span {
   display: block;
   margin-top: 4px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -124,7 +124,7 @@
   height: 20px;
   margin-bottom: 12px;
   border: 1px solid var(--hairline);
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   font-style: normal;
 }
@@ -138,7 +138,7 @@
 .steps span {
   display: block;
   margin-top: 6px;
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 11px;
 }
 
@@ -218,7 +218,7 @@
 }
 
 .products th {
-  color: var(--ink-faint);
+  color: var(--hqx-muted-ink, var(--ink-faint));
   font-size: 10px;
   font-weight: 560;
   text-transform: uppercase;
