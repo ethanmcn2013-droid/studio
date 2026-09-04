@@ -81,3 +81,18 @@ Launch and outreach remain separate actions in [the January operator gate](../..
 Active heartbeat january-maintenance-sync runs Mondays at 09:00 local time, quietly unless actionable. It reconciles verified maintenance into internal release branches only; no automatic deployment, production migration, email or outreach. It stops when canonical release completion is recorded. No duplicate dashboard or automatic launch job was created.
 
 Retained handoffs: [commercial implementation](COMMERCIAL_HANDOFF.md), [populated HQ correction](HQ_TRUTH_REPAIR.md), [instrument decision](INSTRUMENT_OPPORTUNITIES.md), [earlier component reports](history/programme-component-reports-20260904.md), and App docs/projects/project-drive/.
+
+## Current integration checkpoint — 4 September, late execution
+
+The following supersedes earlier component counts where the source has changed. App ca95830e combines the caller repair fd481617 with exact-project sponsored welcome and first-view marking. Forty-nine composed claim/onboarding/helper tests, typecheck and focused lint pass. A new venue claim requires project-management authority; a task-only editor cannot replace shared setup. First-view marking is not useful activity. Legacy experimental new-project sponsorship/date adoption remains unverified and is explicitly excluded from this closure.
+
+App e273e671 passed Linux CI 33924047821 and Verify Tasks 33924047847. Design run 33924047875 rejected stale materiality receipts after the redemption fixture contract changed; the final ca95830e built browser run and receipt regeneration are in progress. Earlier Windows full-test failures remain failed receipts; Linux success does not rewrite them. The receiving branch has not yet integrated this candidate.
+
+Studio e60d7b04, integrated into the candidate at f9c3d1d, has 188/188 final combined state/breakpoint captures plus four Atlas renders. The source-bound attestation, 491 tests, typecheck, lint and build pass. The three mobile layout findings are repaired. Fresh independent review and receiving paired CI remain pending. These results do not establish a quality-council verdict or human comprehension.
+
+Two internal gaps now have implementation owners and separate worktrees; neither is merely a credential blocker:
+
+- Commercial: recoverable issuance from the verified Studio commercial record through the shared ledger to actual App comp codes, same-request retries, readback/withdrawal and a support packet. Current narrow App provenance contract a84f48c1 has four SQLite tests; the complete issuance pipeline is still being implemented.
+- Collaboration: one deliberate Tasks mutation with atomic activity/queue intent, purpose-bound delivery, exact project-and-actor provenance, closed-day Tasks-only reporting, cohort suppression and erasure/retention. Existing no-op delivery is not credited as completed reporting.
+
+Shared Studio schema/migration ownership is centralized with the commercial lane: additive issuance 0001, usage 0002. App usage reserves 0030; an issuance migration would use 0031 only if needed. These are internal branch allocations, not executed production migrations. Service keys and target bindings remain purpose-separated. No new source-of-truth dashboard or generic event platform is authorized by this implementation detail.

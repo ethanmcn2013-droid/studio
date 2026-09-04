@@ -51,3 +51,10 @@ Commands below run in the owning App/Studio checkout with isolated data and decl
 The operator input request remains: reconnect Stripe and identify its test-mode account; locate the existing isolated Google OAuth/Clerk configuration by path/project/account name. Do not paste secrets. Historical Google sharing spike remains valid evidence for its narrow claim. No personal production Drive is implied.
 
 No production changes or outbound communication are performed to make a checklist green. Internal verification continues independently. Prior dated reports and current errors are retained; no gate is lowered and no reviewer score establishes demand.
+
+## Additional exact-candidate evidence
+
+- App ca95830e: 49 composed tests cover atomic claims, caller retries, project-bound welcome, active grant checks and scoped first-view marking. Typecheck and focused lint pass. This updates the earlier 12-case redemption and pending caller statements; no human activation is implied.
+- Studio e60d7b04: final combined 188 state captures, four Atlas renders, 491 tests/typecheck/lint/build and source-bound attestation pass. This closes the specified scripted HQ/Students layout matrix, not the whole suite's experience state A2.
+- Independent migration proof review of 3d8a36e1: 64 existing and four fresh fault-injection tests pass. Initial backfill proof and immutable receipts remain enforced; current new uploads no longer cause a false continuous proof failure. Both dropped indexes and foreign-key damage still fail.
+- Current internal acceptance work: commercial exact-code issuance/recovery and Tasks-only sponsored-use delivery/retention/erasure. Real providers remain separately unverified; these code gaps have accountable active writers.
