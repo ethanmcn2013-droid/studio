@@ -1,5 +1,5 @@
 import "server-only";
-import { and, asc, eq, isNull } from "drizzle-orm";
+import { and, asc, eq, isNull, sql } from "drizzle-orm";
 import type { entitlementsDb } from "@/lib/entitlements-db/client";
 import { sponsorUsageEvents } from "@/lib/entitlements-db/schema";
 import { usageErasureTombstones, usageSubjectWorkspaces } from "./storage-schema";
@@ -70,9 +70,9 @@ export async function ingestVerifiedUsage(database: UsageDatabase, event: VenueM
       await tx.insert(sponsorUsageEvents).values({ ...event,...attribution,hashSaltEpoch:epoch,ingestedAt:now });
     }
     if(canonical) await tx.insert(usageSubjectWorkspaces).values({
-      epoch,subjectIdHash:event.subjectIdHash,workspaceIdHash:event.workspaceIdHash,sponsorId:canonical.sponsorId,updatedAt:now,
+      epoch,subjectIdHash:event.subjectIdHash,workspaceIdHash:event.workspaceIdHash,sponsorId:canonical.sponsorId,updatedAt:event.occurredAt,
     }).onConflictDoUpdate({ target:[usageSubjectWorkspaces.epoch,usageSubjectWorkspaces.subjectIdHash,usageSubjectWorkspaces.workspaceIdHash,usageSubjectWorkspaces.sponsorId],
-      set:{ updatedAt:now } });
+      set:{ updatedAt:sql`max(${usageSubjectWorkspaces.updatedAt}, ${event.occurredAt})` } });
     return "stored";
   });
 }

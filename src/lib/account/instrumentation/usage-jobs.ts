@@ -87,10 +87,13 @@ async function persistClosedUsageDays(database: UsageDatabase, deps: JobDependen
           const prior = previous.find(p=>p.workspaceIdHash===delta.workspaceIdHash);
           const first = prior && prior.firstActionLocalDate<delta.firstActionLocalDate ? prior.firstActionLocalDate : delta.firstActionLocalDate;
           const last = prior && prior.lastActionLocalDate>delta.lastActionLocalDate ? prior.lastActionLocalDate : delta.lastActionLocalDate;
+          // Retention follows the last real action, not delivery/rollup time.
+          // App's account-to-epoch link must outlive every erasable Studio fact.
+          const lastEventAt = Math.max(prior?.updatedAt ?? 0,...events.filter(e=>e.workspaceIdHash===delta.workspaceIdHash).map(e=>e.occurredAt));
           await tx.insert(sponsorWorkspaceLifecycle).values({sponsorId:venue.id,workspaceIdHash:delta.workspaceIdHash,hashSaltEpoch:epoch,
-            firstActionLocalDate:first,lastActionLocalDate:last,tasksLastActionLocalDate:last,updatedAt:now})
+            firstActionLocalDate:first,lastActionLocalDate:last,tasksLastActionLocalDate:last,updatedAt:lastEventAt})
             .onConflictDoUpdate({target:[sponsorWorkspaceLifecycle.sponsorId,sponsorWorkspaceLifecycle.workspaceIdHash,sponsorWorkspaceLifecycle.hashSaltEpoch],
-              set:{firstActionLocalDate:first,lastActionLocalDate:last,tasksLastActionLocalDate:last,updatedAt:now}});
+              set:{firstActionLocalDate:first,lastActionLocalDate:last,tasksLastActionLocalDate:last,updatedAt:lastEventAt}});
         }
       });
       days++;

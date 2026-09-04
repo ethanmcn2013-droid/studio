@@ -141,6 +141,17 @@ test("a silent Tasks-only cohort closes as indeterminate without needing a later
  const [life]=await f.database.select().from(f.schema.sponsorWorkspaceLifecycle);
  assert.equal(life.day30State,"indeterminate");assert.equal(life.day30SealedAt,later);
 }));
+
+test("late delivery and rollup retries cannot outlive App's24-month erasure link",()=>fixture(async f=>{
+ await f.handlers.ingest(f.request());await f.job();
+ const storage=f.load("src/lib/account/instrumentation/storage-schema.ts");
+ const later=now+20*86400000;
+ await f.load("src/lib/account/instrumentation/usage-jobs.ts").closeUsageDays(f.database,f.deps,later);
+ const deadline=new Date(f.event.occurredAt);deadline.setUTCMonth(deadline.getUTCMonth()+24);
+ await f.load("src/lib/account/instrumentation/usage-erasure.ts").retainUsage(f.database,deadline.getTime()+60000);
+ assert.equal((await f.database.select().from(storage.usageSubjectWorkspaces)).length,0);
+ assert.equal((await f.database.select().from(f.schema.sponsorWorkspaceLifecycle)).length,0);
+}));
 test("private projection/export suppresses2 and measures3 with Tasks-only lower bounds; rates4/5",()=>fixture(async f=>{
  await f.handlers.ingest(f.request());
  const access=(await f.load("src/lib/account/live/load-venue-access.ts").loadVenueAccessSnapshot("synthetic")).snapshot;
