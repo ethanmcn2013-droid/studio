@@ -58,3 +58,9 @@ No production changes or outbound communication are performed to make a checklis
 - Studio e60d7b04: final combined 188 state captures, four Atlas renders, 491 tests/typecheck/lint/build and source-bound attestation pass. This closes the specified scripted HQ/Students layout matrix, not the whole suite's experience state A2.
 - Independent migration proof review of 3d8a36e1: 64 existing and four fresh fault-injection tests pass. Initial backfill proof and immutable receipts remain enforced; current new uploads no longer cause a false continuous proof failure. Both dropped indexes and foreign-key damage still fail.
 - Current internal acceptance work: commercial exact-code issuance/recovery and Tasks-only sponsored-use delivery/retention/erasure. Real providers remain separately unverified; these code gaps have accountable active writers.
+
+## Receiving baseline checkpoint
+
+App PR168 merged verified 9105c81a as fe4a2b60 after all three Linux workflows and independent 47-check existing-project P2 review passed. Receiving workflows remain pending observation. Studio paired checks may now run against that release. No production or provider gate is closed by this integration.
+
+Additional bounded findings: Notes Back can lose unblurred writing and Notes navigation can retain a stale project hint (experience owner, fixes active); Home aggregate rows can target synthetic task IDs (principal fix active). Calendar erasure can discard retry custody before failed revocation (principal, bounded repair next; no live-token exposure established). Photo-action missing authorization was not reproduced; eight scoped security checks passed. These findings remain separate from earlier scripted regression receipts.
