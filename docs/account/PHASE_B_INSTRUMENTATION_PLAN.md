@@ -1,6 +1,6 @@
 # Phase B — Sponsored-use instrumentation plan
 
-Status: **B0–B6 built and tested · applying the migration is the only gate left**  
+Status: **Components built and tested; production event delivery and end-to-end activation proof remain incomplete**  
 Date: 2026-07-26  
 Owner: founder + Studio eng  
 Depends on: Account Brief HQ preview (shipped), Venue Portal Phase A contracts  
@@ -8,6 +8,14 @@ Out of scope for this plan: public Account route, sponsor membership, entitlemen
 
 > Note: Historical docs call this **Phase B**. It is the next instrumentation
 > cycle after Account V1 live access preview — not a new product surface.
+
+## 4 September 2026 verification amendment
+
+The July claim that applying the migration was the only remaining gate is superseded. App `src/lib/account/instrumentation/sink.ts` at `f5bc6f25` still exports `sponsoredUseSink = noopSink`; it increments only a process-local test counter. No product event is durably delivered by that path. Studio ingest/attribution/rollup components and their fixtures do not establish a live producer-to-report chain.
+
+The January collaboration/commercial owner must connect a durable, privacy-safe producer to the existing ingest contract, verify committed-action delivery, replay/deduplication, configuration gaps, retention and suppression, and rehearse it against isolated targets. Production flags, schema/retention workers and external configuration require explicit receipts. Until then usage is unavailable; do not report zero activity or useful activation from redemption counts. Human comprehension and demand remain unverified until real use.
+
+Historical component checkboxes below describe their own implementation scope and are retained as history. The January acceptance register owns integrated closure.
 
 ## Goal
 
