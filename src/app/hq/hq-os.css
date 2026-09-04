@@ -6,6 +6,9 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 .hqx-shell {
+  /* Muted copy needs 4.5:1 on HQ's paper-deep, not only on white. */
+  --ink-faint: #62626b;
+  --ink-quiet: #62626b;
   --hqx-rail-w: 264px;
   --hqx-rail-collapsed-w: 76px;
   --hqx-topbar-h: 56px;
@@ -154,10 +157,19 @@
 }
 .hqx-account-link:hover { background: var(--paper-deep); color: var(--ink); }
 .hqx-account-signout {
+  background: transparent; border: 0; cursor: pointer; font-family: inherit;
   color: var(--ink-faint); text-decoration: none; font-size: var(--text-caption); padding: 0 var(--space-2);
   border-left: 1px solid var(--hairline-soft);
 }
 .hqx-account-signout:hover { color: var(--ink); }
+
+.hqx-shell .hq-fm-table td[data-neg="true"] { color: #b91c1c; }
+
+/* The map sits inside HQ's rail; its camera legend must clear that rail. */
+@media (min-width: 1080px) {
+  .hqx-shell .bp-legend { left: calc(var(--hqx-rail-w) + var(--hqx-gutter) + 24px); }
+  .hqx-shell[data-collapsed] .bp-legend { left: calc(var(--hqx-rail-collapsed-w) + var(--hqx-gutter) + 24px); }
+}
 
 .hqx-kbd {
   font-family: var(--font-mono);

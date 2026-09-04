@@ -1,0 +1,623 @@
+{
+  "schemaVersion": "signal-experience-diagnostic/1",
+  "capturedAt": "2026-09-04T21:13:26.002Z",
+  "commit": "17c5140523fca75bff7b140a1c85bde8da7fc739",
+  "buildId": "VeLnC6yFZP5sfQYA0H0sM",
+  "note": "Pre-repair diagnostics only; no current screenshot or coverage attestation.",
+  "findings": [
+    {
+      "experienceId": "studio.page.hq",
+      "breakpoint": "mobile",
+      "materialityHash": "c5c8e8a50639d008",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-banner-kicker"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.42 (foreground color: #71717a, background color: #fff2f2, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 38
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq",
+      "breakpoint": "desktop",
+      "materialityHash": "c5c8e8a50639d008",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 39
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-blueprint",
+      "breakpoint": "mobile",
+      "materialityHash": "85c0cc814127e088",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "help": "Elements must only use permitted ARIA attributes",
+          "nodes": [
+            {
+              "target": [
+                ".bp-metric[data-tone=\"critical\"][data-live=\"true\"]:nth-child(1) > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": [
+                ".bp-metric[data-live=\"true\"][data-tone=\"quiet\"]:nth-child(2) > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": [
+                "div[data-tone=\"accent\"] > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            }
+          ],
+          "nodeCount": 5
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > .hqx-kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".bp-masthead-meta > div:nth-child(1) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.57 (foreground color: #6a6a74, background color: #0f0f13, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".bp-masthead-meta > div:nth-child(2) > dt"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.57 (foreground color: #6a6a74, background color: #0f0f13, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 32
+        },
+        {
+          "id": "dlitem",
+          "impact": "serious",
+          "help": "<dt> and <dd> elements must be contained by a <dl>",
+          "nodes": [
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(2) > .bp-field-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            },
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(2) > .bp-field-list"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            },
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(4) > .bp-field-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            }
+          ],
+          "nodeCount": 76
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-blueprint",
+      "breakpoint": "desktop",
+      "materialityHash": "85c0cc814127e088",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "help": "Elements must only use permitted ARIA attributes",
+          "nodes": [
+            {
+              "target": [
+                ".bp-metric[data-tone=\"critical\"][data-live=\"true\"]:nth-child(1) > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": [
+                ".bp-metric[data-live=\"true\"][data-tone=\"quiet\"]:nth-child(2) > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": [
+                "div[data-tone=\"accent\"] > .bp-metric-value > .bp-metric-live[title=\"live from source\"][aria-label=\"live\"]"
+              ],
+              "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            }
+          ],
+          "nodeCount": 5
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > .hqx-kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > .hqx-kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".bp-legend-title"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.21 (foreground color: #6a6a74, background color: #78787b, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 54
+        },
+        {
+          "id": "dlitem",
+          "impact": "serious",
+          "help": "<dt> and <dd> elements must be contained by a <dl>",
+          "nodes": [
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(2) > .bp-field-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            },
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(2) > .bp-field-list"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            },
+            {
+              "target": [
+                "article[data-primary=\"true\"] > .bp-field:nth-child(4) > .bp-field-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Description list item does not have a <dl> parent element"
+            }
+          ],
+          "nodeCount": 76
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-entitlements",
+      "breakpoint": "mobile",
+      "materialityHash": "8090987237f8667c",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-back"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.9pt (10.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 7
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-entitlements",
+      "breakpoint": "desktop",
+      "materialityHash": "8090987237f8667c",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-back"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 8
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-financial-model",
+      "breakpoint": "mobile",
+      "materialityHash": "8f03a32b98e2ba7e",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-back"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.9pt (10.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 12
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "nodes": [
+            {
+              "target": [
+                ".hq-fm-scroll"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ],
+          "nodeCount": 1
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-financial-model",
+      "breakpoint": "desktop",
+      "materialityHash": "8f03a32b98e2ba7e",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hq-page-head-back"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 18
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-founders-circle",
+      "breakpoint": "mobile",
+      "materialityHash": "bbd42d5742ab7870",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-section-action"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 3
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-founders-circle",
+      "breakpoint": "desktop",
+      "materialityHash": "bbd42d5742ab7870",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 4
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-reporting",
+      "breakpoint": "mobile",
+      "materialityHash": "e91c44746bbf38df",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "section:nth-child(1) > .hqx-section-head > .hqx-section-action"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 4
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.hq-reporting",
+      "breakpoint": "desktop",
+      "materialityHash": "e91c44746bbf38df",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+        }
+      ],
+      "overflow": 0,
+      "accessibility": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".hqx-rail-search > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-topbar-cmdk > kbd"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".hqx-eyebrow"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.39 (foreground color: #71717a, background color: #f4f4f5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "nodeCount": 5
+        }
+      ]
+    },
+    {
+      "experienceId": "studio.page.students",
+      "breakpoint": "mobile",
+      "materialityHash": "2c012f650a96d289",
+      "console": [],
+      "overflow": 0,
+      "accessibility": []
+    },
+    {
+      "experienceId": "studio.page.students",
+      "breakpoint": "desktop",
+      "materialityHash": "2c012f650a96d289",
+      "console": [],
+      "overflow": 0,
+      "accessibility": []
+    }
+  ]
+}
