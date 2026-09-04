@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: synthetic states distinguish empty, legacy claims, verified receipts and failed reads
+ok 1 - synthetic states distinguish empty, legacy claims, verified receipts and failed reads
+  ---
+  duration_ms: 3375.6794
+  type: 'test'
+  ...
+# Subtest: complete requires all four states at all four exact breakpoints
+ok 2 - complete requires all four states at all four exact breakpoints
+  ---
+  duration_ms: 2.8937
+  type: 'test'
+  ...
+# Subtest: a missing mobile keyboard render cannot be certified by other captures
+ok 3 - a missing mobile keyboard render cannot be certified by other captures
+  ---
+  duration_ms: 0.6451
+  type: 'test'
+  ...
+# Subtest: duplicate copies cannot stand in for a required state
+ok 4 - duplicate copies cannot stand in for a required state
+  ---
+  duration_ms: 0.7396
+  type: 'test'
+  ...
+# Subtest: changed source and changed PNG each invalidate coverage
+ok 5 - changed source and changed PNG each invalidate coverage
+  ---
+  duration_ms: 0.7387
+  type: 'test'
+  ...
+# Subtest: an invented data state, wrong width, or missing interaction is rejected
+ok 6 - an invented data state, wrong width, or missing interaction is rejected
+  ---
+  duration_ms: 0.439
+  type: 'test'
+  ...
+# Subtest: runtime and accessibility faults cannot be hidden by pass:true
+ok 7 - runtime and accessibility faults cannot be hidden by pass:true
+  ---
+  duration_ms: 0.4583
+  type: 'test'
+  ...
+# Subtest: only canceled local RSC requests are classified as prefetch cancellation
+ok 8 - only canceled local RSC requests are classified as prefetch cancellation
+  ---
+  duration_ms: 0.6871
+  type: 'test'
+  ...
+# Subtest: reduced motion requires the actual browser preference
+ok 9 - reduced motion requires the actual browser preference
+  ---
+  duration_ms: 0.2629
+  type: 'test'
+  ...
+# Subtest: server environment never inherits operator, DB, payment or mail settings
+ok 10 - server environment never inherits operator, DB, payment or mail settings
+  ---
+  duration_ms: 2.146
+  type: 'test'
+  ...
+# Subtest: the real Atlas Mermaid fence round-trips its Unicode labels exactly
+ok 11 - the real Atlas Mermaid fence round-trips its Unicode labels exactly
+  ---
+  duration_ms: 4.4314
+  type: 'test'
+  ...
+# Subtest: Unicode transport preserves accents, non-Latin text and supplementary code points
+ok 12 - Unicode transport preserves accents, non-Latin text and supplementary code points
+  ---
+  duration_ms: 0.3284
+  type: 'test'
+  ...
+# Subtest: malformed Base64 or UTF-8 is rejected rather than producing corrupted labels
+ok 13 - malformed Base64 or UTF-8 is rejected rather than producing corrupted labels
+  ---
+  duration_ms: 0.48
+  type: 'test'
+  ...
+# Subtest: nested lists and wrapped prose stay inside their owning list item
+ok 14 - nested lists and wrapped prose stay inside their owning list item
+  ---
+  duration_ms: 0.2492
+  type: 'test'
+  ...
+# Subtest: list type changes and following prose close the previous list correctly
+ok 15 - list type changes and following prose close the previous list correctly
+  ---
+  duration_ms: 0.3104
+  type: 'test'
+  ...
+# Subtest: nested list text stays escaped and fences are not interpreted as list items
+ok 16 - nested list text stays escaped and fences are not interpreted as list items
+  ---
+  duration_ms: 0.3985
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6576.5577
