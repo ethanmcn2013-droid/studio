@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baseline": "0000_init",
+  "productionAuthorized": false,
+  "migrations": [
+    {
+      "id": "0001_venue_fulfilment",
+      "sql": "drizzle-entitlements/0001_venue_fulfilment.sql",
+      "sha256": "930455a3f86d457f98c8391a6079a47165cf3dedd5fc01d9087366b1c5e84b82",
+      "journalWhen": 1788559200000,
+      "policy": "additive-local-only",
+      "rollback": "Disable the issuance service and keep allocated requests/codes for exact retry. Do not drop delivered records or rewrite grants."
+    }
+  ]
+}
