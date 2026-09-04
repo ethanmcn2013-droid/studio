@@ -1,6 +1,6 @@
 ---
 id: drive-refresh-token-custody
-title: Holding a customer's Google refresh token, in a repository that has never had any cryptography in it.
+title: Google refresh-token custody and production recovery
 category: Security
 likelihood: Medium
 impact: High
@@ -9,45 +9,20 @@ owner: Ethan
 reviewDate: 2026-09-30
 ---
 
-## Mitigation
+## Current mitigation and residual risk
 
-Opened 2026-08-27 with the Project Drive decision. Not yet mitigated — the
-substrate does not exist. Recorded now because the point at which it becomes
-urgent is the point at which it is cheapest to get wrong.
+Reviewed 2026-09-04. The August claim that no cryptography substrate exists is superseded. App WP-2 added src/server/crypto/secret-box.ts, AES-256-GCM envelopes, key versions, ephemeral access tokens, export omission and logging/Sentry custody checks. Candidate 50f16575 passes Linux Drive lifecycle and custody gates; this is internal code evidence, not production key or provider acceptance.
 
-The feature requires a long-lived Google refresh token per connected account.
-There is no `createCipheriv` anywhere in the app repository today, and the one
-precedent is the wrong one: `calendar_connections` in the Notes module stores
-its Google refresh token in **plaintext**, relying on Turso encryption at rest,
-and its own comment flags this as a follow-up nobody has come back to. Copying
-that shape for Drive would take a known shortcut and multiply it.
+Impact remains High. A compromised runtime able to access both keys and ciphertext can use the durable credential. Rotation, restore and live revocation receipts remain required before launch. App notes/calendar_connections token storage is a separate inherited issue; validate actual exposure and remediate through its own migration rather than describing it as a missing Drive primitive.
 
-The plan's WP-2 builds `secret-box` (AES-256-GCM, key from `PROVIDER_TOKEN_KEY`,
-explicit `keyVersion` so rotation is possible) before any token exists to store,
-along with scrubbing at the Sentry boundary and omission from account export.
-WP-0's hard-rule ratchet already fails CI on a schema column named
-`access_token`, and on a refresh-token column not named `_cipher`, so the
-plaintext shape cannot land quietly even before WP-2 ships.
+Scope is only drive.file, providing per-file authority for created or user-selected/shared files. Provider scope does not replace Signal project authorization, exact-folder guards or named-user permissions. [Google scope guidance](https://developers.google.com/workspace/drive/api/guides/api-specific-auth), retrieved 2026-09-04.
 
-Three things keep the blast radius from being unbounded. The scope is
-`drive.file` permanently, so a leaked token reaches only files our app created
-— the rest of that person's Drive is not data we promise not to read, it is
-data the token cannot address. Access tokens are minted per request and never
-persisted. And the ratchet is a standing control rather than a review habit.
+Google documents seven-day refresh-token expiry for an external OAuth application in Testing when Drive scope is requested. Record the actual test/production configuration and rehearse reauthentication; do not publish a consent screen merely to simplify internal testing. Tokens can also expire for other reasons. [Google refresh-token expiry](https://developers.google.com/identity/protocols/oauth2#expiration), retrieved 2026-09-04.
 
-Honest residual: a refresh token is a durable credential to a real person's
-account, and encryption at rest does not help if the key and the ciphertext are
-reachable together. Likelihood Medium until WP-2 lands and the Notes table is
-retrofitted; impact stays High regardless.
+## Owners and next evidence
 
-## Notes
+- Principal integrator: exact-candidate custody, deletion, negative authorization and recovery evidence; keep production/worker flags off.
+- Founder/provider configuration: identify the existing isolated Google OAuth/Clerk test target, then complete the in-product two-account lifecycle using disposable files. No secret values in handoffs.
+- Notes owner: separately assess calendar-token encryption and a safe versioned migration/rollback.
 
-Two follow-ons this risk owns:
-
-1. Retrofitting `calendar_connections` once `secret-box` exists. Small and
-   obviously correct; must not be allowed to block Project Drive, and must not
-   be forgotten once it stops blocking anything.
-2. The consent screen must be published out of Testing on day one of WP-1.
-   While it is in Testing, Google expires refresh tokens after seven days —
-   which will look exactly like a bug in our own token handling for a week, at
-   the moment the team is least able to tell the difference.
+The original risk statement is preserved in Git 004f9c9; this record remains Needs attention until the residual release obligations have evidence.

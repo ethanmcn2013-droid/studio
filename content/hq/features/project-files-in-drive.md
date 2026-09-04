@@ -3,7 +3,7 @@ id: project-files-in-drive
 title: Project files in the board owner's Google Drive
 product: tasks
 status: In Progress
-lastVerified: 2026-08-27
+lastVerified: 2026-09-04
 ---
 
 # Project files in the board owner's Google Drive
@@ -20,11 +20,18 @@ Founder decision 2026-08-27. Plan, decisions and status live in the app repo at
 
 ## Where it stands
 
+Current internal programme evidence, reviewed 2026-09-04. App PR #168 integrates the retained Drive PR #165; production remains held.
+
 | WP | Package | Status |
 |---|---|---|
-| 0 | Fix the floor | **Done** — app PR #159 |
-| 1 | Spike the Drive chain | Blocked on Google Cloud credentials |
-| 2–8 | Secrets, schema, connection, sharing, upload, surfaces, resilience | Not started |
+| 0 | Fix the floor | Historical WP-0 implementation retained; 50 MB paid attachment ceiling remains in current code. Live regression still required. |
+| 1 | Spike the Drive chain | Historical two-account sharing spike completed 2026-09-02. This does not certify the in-product lifecycle. |
+| 2–3 | Secrets and schema | Encryption implemented; additive 0028/0029 migrations rehearsed on disposable local data and unapplied to production. |
+| 4–6 | Connection, folder/access and upload | Backend and initial UI integrated in the candidate. Live provider acceptance and killed-browser recovery remain open. |
+| 7 | Surfaces | A Custodian selected for bounded implementation under delegated authority, not a specific founder lock. Connections/access/Resources, owner-change and pending-upload surfaces exist; full design acceptance remains open. |
+| 8 | Resilience and release | Linux candidate 50f16575 passes declared code, migration, lifecycle and build gates. Four repair workers remain independently disabled; release, recovery and provider acceptance remain open. |
+
+Observed Linux run 33916021010: db:contract 62/62; Drive test stages 11/11, 20/20 and 332/332; no failures or skips in those stages. Run 33916020941 passes the critical browser attestation. Local built review subsequently passed 132/132 with Drive UI enabled. Later changes require receiving checks. Detailed receipts and remaining owners: docs/execution/january-2027/PROGRAMME.md and App docs/projects/project-drive/STATUS.md.
 
 ## WP-0 found two things worth knowing outside the repo
 
@@ -45,27 +52,17 @@ Both are fixed. Uploads now go from the browser straight to storage, so 50 MB
 is a number we can keep, and the four numbers derive from one constant that CI
 will not let drift.
 
-## What this changes commercially
+## Customer promise and remaining limits
 
-- **Storage stops being a cost line that scales with customers.** Files sit in
-  a member's own Drive and count against their quota, not ours.
-- **The 50 MB ceiling disappears for Drive-backed boards** at WP-6. Against
-  Drive's own documented 5 TB per-file maximum, "how big a file can I attach"
-  stops being a question we have to answer.
-- **It is a real reason to connect an account**, which is a different product
-  posture from a tool that only holds its own data.
+Drive-backed bytes use the named storage owner’s Google quota. Signal still incurs application, metadata and operational costs, and native fallback still uses Signal storage. There is no verified cost-saving outcome yet.
 
-## What has to be said out loud, not buried
+The current Drive intake enforces MAX_UPLOAD_BYTES = 50 MiB, displayed as 50 MB, in App src/lib/upload-limit.ts and src/server/connections/drive-uploads.ts. The previous prediction that the ceiling disappears is superseded; Google’s theoretical maximum is not Signal’s product limit. Signal-native free storage retains its lower per-file allowance.
 
-Files live in a named person's personal Drive. That person can see everything
-anyone attaches to that board, the files count against their quota, and if they
-leave or revoke, the board loses its store. The product states this on screen
-and names the storage owner permanently; it is not a detail to discover later.
+The interface distinguishes Signal membership from live Google access, identifies the current storage owner and explains quota, disconnection and handover consequences. Existing provider-owned files stay where they are when a future storage owner is chosen. Failed revocation remains pending. Account erasure must preserve a user’s provider-owned files while completing exact access cleanup. These are implemented invariants under validation, not a claim that the entire product lifecycle has been observed.
 
-It also changes what we tell customers about where their files are, and it
-constrains account deletion: we can delete our rows, but we must not delete
-files that now belong to somebody else. Founder decisions, tracked as Q6 in the
-project's status board.
+Google scope remains only drive.file. It is per-file access, including files created by or explicitly shared with the app; it is not a guarantee limited solely to newly created files. [Official scope guidance](https://developers.google.com/workspace/drive/api/guides/api-specific-auth), retrieved 2026-09-04.
+
+Live in-product Google rehearsal requires the existing isolated OAuth/Clerk test configuration and designated disposable accounts/files. Production activation, privacy wording, rollback and worker receipts remain open. No venue outreach or commercial opening before 21 January 2027.
 
 ## Related
 
