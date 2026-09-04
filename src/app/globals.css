@@ -2501,7 +2501,7 @@ body::after { content: none; }
   font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-start-here-dot {
   display: inline-block;
@@ -2582,7 +2582,7 @@ body::after { content: none; }
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   padding-top: 0.15rem;
 }
 .atlas-exec-row dd {
@@ -2595,7 +2595,7 @@ body::after { content: none; }
   margin-top: 1.2rem;
   font-size: 12px;
   line-height: 1.55;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   max-width: 56ch;
 }
 
@@ -9127,3 +9127,4 @@ a.hq-needsme-row:hover .hq-needsme-arrow { color: var(--accent); }
 
   .hq-decisions-row { flex-direction: column; gap: 0.35rem; }
 }
+
