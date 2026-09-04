@@ -1,0 +1,21 @@
+{
+  "hq": {
+    "url": "http://localhost:4353/hq/decisions/event-project-funding-2026-09-04",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "console": []
+  },
+  "pricing": {
+    "url": "http://localhost:4353/pricing",
+    "planGroup": "Starting solo\nFree\nOne workspace and 3 editing guests for a real project.\n€0\nno recurring charge\nView details\nFor study\nStudent\nThree workspaces and 3 editing guests, reviewed each year.\n€9.99\nper year\nView details\nOngoing work\nPro\nUnlimited workspaces. Editing limit not yet published.\n€12\nper month · €120/year saves €24\nSelected\n\nPRO\n\nUnlimited workspaces for work that keeps moving across projects.\nWorkspaces\nUnlimited\nBilling\n€12 monthly or €120 yearly. Save €24.\nEditing guests\nLimit not yet published\n\nRenews monthly, or take the year at the saving.\n\n€12\nper month · €120/year saves €24\nJoin the Pro waitlist\n\nEditing limit and purchase terms are confirmed before access.\n\nFor organisations\nEnterprise\nA considered start, shaped around how the work runs.\nLet’s talk\nscope before price\nView details",
+    "console": []
+  }
+}

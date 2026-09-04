@@ -19,7 +19,7 @@ execRisk: Candidate code, synthetic evidence and intended policy must not be mis
 
 Canonical policy: contracts/commercial-terms.v2.json and the January launch decision. Venue Edition is €1,500 annually; Founding 25 is €1,000 annually under its continuous-renewal terms. Both prices are VAT-inclusive. A founding number follows cleared-payment evidence. Policy is not proof that a provider charged or settled a payment.
 
-The remaining consumer ladder must be read from the contract, not copied from historical Atlas prices. Student eligibility must be enforced before new Student sales.
+The remaining consumer ladder must be read from the contract, not copied from historical Atlas prices. Student eligibility must be enforced before new Student sales. Event remains outside the umbrella ladder; its approved €89 and twelve-calendar-month terms are intended policy with implementation required, not verified archive behavior. New Event sales are unavailable until project access closure.
 
 Studio 27016169 excludes plan labels, legacy paidAt rows and mismatched records from paid proof. A positive operator-attested venue_payment receipt must match the current financial row. Synthetic two-receipt rehearsal produced €2,500; that is fixture evidence, not actual revenue or independently observed provider settlement. See docs/execution/january-2027/HQ_TRUTH_REPAIR.md.
 
@@ -30,6 +30,8 @@ Payment, fulfilment, redemption, useful couple activity and repeated use have se
 App owns Stripe checkout and signed webhook reconciliation. Candidate fc40f4ef reads current subscription and exact paid-invoice truth, tracks one-time Event terms, binds portal customers to the actor, and retains failed shared updates for retry. Independent security review identified recovery edges being repaired; this is not provider acceptance.
 
 App 254cccc6 scopes grants before ranking, prevents an Event purchase in A from supplying paid storage in B, and honors local purchase revocation against its stale shared mirror. Independent valid grants and known historical account grants remain usable. Shared inventory and local raw export are not authorization results. Personal Pro benefits are distinct from another project’s resource tier.
+
+App a10432dd implements the accepted Event new-session hold in both checkout entry points and Settings. Existing settlement/refund recovery remains active. This candidate record does not verify deployed checkout, provider payment links or previously created sessions. The delegated owner-controlled policy and exact private/public/Timeline/cache closure boundary are indexed in `content/hq/decisions/event-project-funding-2026-09-04.md`; historical reference reconciliation is open in `content/hq/operator-todos/event-historical-purchase-reconciliation.md`. No retrospective project locks or paid archive claims follow from unknown designation.
 
 Studio owns operator fulfilment and the shared sponsor/receipt boundary. Both repositories now verify matching contract consumers and canonical access-term vectors; the App candidate adds 0731ab91, Studio adds 004f9c9. The receiving App release must contain these contracts before Studio’s paired CI can pass.
 

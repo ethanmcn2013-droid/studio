@@ -8,6 +8,18 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-04 · S·172 · holds · Event waits for project access enforcement
+
+**The January contract marks new Event sales unavailable.** The approved €89
+one-time price and twelve-month term remain intended policy. The pricing adapter
+no longer turns that policy into an archive promise. HQ records the accepted App
+checkout hold, delegated owner designation and the historical reconciliation work.
+
+Existing grants and payment recovery remain intact. Candidate source does not
+prove that deployed checkout or provider payment links are disabled. Reopening
+requires project reads, writes, public artifacts and owner recovery to enforce
+the same policy. Production and outreach remain held.
+
 ## 2026-09-04 · S·171 · tightens · HQ requires a matching payment receipt
 
 **Legacy paid dates no longer pass HQ cash or paid proof.** The January candidate

@@ -18,6 +18,7 @@ export function formatEuroCents(amountCents: number): string {
   }).format(amountCents / 100);
 }
 
+/** A ratified amount is not evidence that a plan is available or enforced. */
 export function requireVerifiedAmount(plan: CommercialPlanId): number {
   const value = commercialTerms.plans[plan];
   const amount =
@@ -94,7 +95,9 @@ export function getConsumerPricingPresentation() {
         price: formatEuroCents(event.amountCents),
         workspaceLimit: "One event",
         editingGuestLimit: countLabel(null),
-        access: `${event.activeWindowMonths} months, then read-only`,
+        availableForNewPurchase: event.newSalesAvailable,
+        // The retained postWindow value is intended policy, not a shipped archive.
+        access: "New Event purchases are currently unavailable.",
       }),
     }),
   });
