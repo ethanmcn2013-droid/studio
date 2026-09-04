@@ -165,6 +165,10 @@ export async function mintLicenseCodes(input: {
     }
   }
   const actor = requireActor(input.actor);
+  if (input.sourceType === "venue_edition" || input.batchId?.startsWith("vi-") ||
+      input.codes.some(row => row.code.toUpperCase().startsWith("VENUE-"))) {
+    throw new Error("Venue codes require the recoverable fulfilment service. Raw issuance is closed.");
+  }
   assertBulkAllowed(n);
   const db = entitlementsDb();
   const now = Date.now();
@@ -339,6 +343,8 @@ export async function redeemLicenseCode(input: {
 
     if (rows.length === 0) return { state: "invalid" };
     const lc = rows[0];
+    // New Venue capacity is redeemed only by App's atomic comp claim.
+    if (lc.batchId?.startsWith("vi-")) return { state: "invalid" };
     if (lc.status === "revoked") return { state: "revoked" };
 
     if (lc.status === "redeemed") {
@@ -474,6 +480,8 @@ export async function reconcileCodes(input: {
 
   let repaired = 0;
   for (const o of orphans) {
+    // Never infer a second positive grant from a runtime status mirror.
+    if (o.batchId?.startsWith("vi-")) continue;
     if (!(ENTITLEMENT_TIERS as readonly string[]).includes(o.tier)) {
       reportAnomaly({ kind: "unknown_tier", detail: `orphan code tier '${o.tier}'` });
       continue;

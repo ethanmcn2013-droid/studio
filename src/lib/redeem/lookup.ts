@@ -1,5 +1,8 @@
 import { eq } from "drizzle-orm";
 import { entitlementsDb } from "@/lib/entitlements-db/client";
+import { configuredVenueRuntime } from "@/lib/venue-fulfilment/runtime-config";
+import { readVenueRuntimeState } from "@/lib/venue-fulfilment/runtime-state";
+import { venueCodeFingerprint } from "@/lib/venue-fulfilment/protocol";
 import {
   type EntitlementSource,
   type EntitlementTier,
@@ -7,10 +10,8 @@ import {
   sponsors,
 } from "@/lib/entitlements-db/schema";
 
-// The shared signal-entitlements DB is canonical for license_codes /
-// redemptions after the codes cutover (migration step 4). This repoint is
-// branch-safe: both the merge to main and the prod migration/backfill are
-// founder-gated, so live reads only follow the data once that lands.
+// Historical codes retain their lookup policy. New canonical Venue issuance
+// requires acknowledged delivery and a fresh read from App's runtime authority.
 
 export type RedemptionLookup =
   | {
@@ -49,6 +50,8 @@ export async function lookupRedemption(
     const rows = await entitlementsDb()
       .select({
         codeStatus: licenseCodes.status,
+        licenseCodeId: licenseCodes.id,
+        batchId: licenseCodes.batchId,
         sourceType: licenseCodes.sourceType,
         tier: licenseCodes.tier,
         durationDays: licenseCodes.durationDays,
@@ -64,6 +67,12 @@ export async function lookupRedemption(
     if (rows.length === 0) return { state: "invalid", code: trimmed };
 
     const row = rows[0];
+    if (row.batchId?.startsWith("vi-")) {
+      const state = await readVenueRuntimeState(entitlementsDb(), configuredVenueRuntime().runtime, {
+        issuanceId: row.batchId, licenseCodeId: row.licenseCodeId, codeFingerprint: venueCodeFingerprint(trimmed),
+      });
+      row.codeStatus = state === "claimed" ? "redeemed" : state === "withdrawn" ? "revoked" : "minted";
+    }
     if (row.codeStatus === "redeemed") {
       return {
         state: "already_used",
@@ -91,8 +100,8 @@ export async function lookupRedemption(
       tier: row.tier as EntitlementTier,
       durationDays: row.durationDays,
     };
-  } catch (err) {
-    console.error("[lookupRedemption] DB error", err);
+  } catch {
+    console.error("[lookupRedemption] Code state is unavailable.");
     return { state: "network_error", code: trimmed };
   }
 }

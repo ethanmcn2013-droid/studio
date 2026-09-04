@@ -1,6 +1,6 @@
 "use server";
 
-import { randomInt, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -17,11 +17,10 @@ import {
   recordViewAs,
 } from "@/lib/entitlements-db/writes";
 import { onboardVenue, type OnboardPlan } from "@/lib/entitlements-db/venues";
-import { mintLicenseCodes, reconcileCodes } from "@/lib/entitlements-db/codes";
+import { reconcileCodes } from "@/lib/entitlements-db/codes";
 import { systemActor } from "@/lib/entitlements-db/guard";
 import { GRANT_TIER_OPTIONS } from "@/lib/hq/access";
 import { getPerson } from "@/lib/hq/access";
-import { VENUE_EDITION_COUPLE_ACCESS_DAYS } from "@/lib/venue-edition";
 import {
   DEFAULT_ALLOTMENT_MODE,
   isAllotmentMode,
@@ -212,13 +211,6 @@ export async function reconcileNowAction(): Promise<void> {
 // ── Mint venue codes (allotment-capped) ─────────────────────────────────
 export type MintResult = { ok: true; minted: number } | { error: string };
 
-const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"; // no ambiguous glyphs
-function genLicenseCode(): string {
-  const block = () =>
-    Array.from({ length: 4 }, () => CODE_ALPHABET[randomInt(CODE_ALPHABET.length)]).join("");
-  return `SIG-${block()}-${block()}`;
-}
-
 export async function mintCodesAction(
   _prev: MintResult | null,
   fd: FormData,
@@ -230,23 +222,9 @@ export async function mintCodesAction(
   const count = Number.parseInt(countRaw, 10);
   if (!Number.isInteger(count) || count < 1) return { error: "Count must be at least 1." };
 
-  try {
-    const actor = await resolveHqOperatorActor();
-    const codes = Array.from({ length: count }, () => ({ code: genLicenseCode() }));
-    const res = await mintLicenseCodes({
-      sponsorId,
-      codes,
-      tier: "wedding",
-      sourceType: "venue_edition",
-      durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
-      actor,
-      origin: "hq",
-    });
-    revalidatePath(CONSOLE);
-    return { ok: true, minted: res.minted };
-  } catch (err) {
-    return { error: err instanceof Error ? err.message : "unknown error" };
-  }
+  // This form has no durable request ID or destination acknowledgement. Keep
+  // it closed until it can call the recoverable operator fulfilment flow.
+  return { error: "Use the Venue fulfilment operator guide to prepare and verify a code request. This form cannot issue codes." };
 }
 
 // ── Onboard a venue (create + record payment + allotment) ───────────────

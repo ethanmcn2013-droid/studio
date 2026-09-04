@@ -15,10 +15,10 @@ import { AnomalySignal } from "./guard";
 /**
  * The real writers, against a real SQLite engine.
  *
- * These paths are where R-015 and R-016 actually live: a pure-function test
- * would pass while `mintLicenseCodes` still refused every unlimited venue and
- * `redeemLicenseCode` still wrote a flat 548 days. So the module is imported
- * for real, pointed at a temp database, and exercised through its public API.
+ * January Venue issuance uses the separate recoverable service. These tests
+ * retain generic allotment coverage and prove historical claims keep their
+ * terms while the raw Venue issuer is closed. Historical rows are fixture
+ * inputs, never newly created production authority.
  *
  * Run with the server-only shim:
  *   npx tsx --import ./src/test/register-server-only.mjs --test <this file>
@@ -191,14 +191,14 @@ after(async () => {
 
 /* ── R-016: unlimited is mintable ───────────────────────────────────────── */
 
-describe("mintLicenseCodes · allotment", () => {
-  it("still refuses a limited venue with no headroom", async () => {
+describe("mintLicenseCodes · retained non-Venue allotment", () => {
+  it("still refuses a limited sponsor with no headroom", async () => {
     await seedSponsor({ id: "sp-capped", codeAllotment: 2 });
     await codes.mintLicenseCodes({
       sponsorId: "sp-capped",
       codes: [{ code: nextCode() }, { code: nextCode() }],
       tier: "wedding",
-      sourceType: "venue_edition",
+      sourceType: "compliments",
       durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
       actor: operator,
     });
@@ -207,7 +207,7 @@ describe("mintLicenseCodes · allotment", () => {
         sponsorId: "sp-capped",
         codes: [{ code: nextCode() }],
         tier: "wedding",
-        sourceType: "venue_edition",
+        sourceType: "compliments",
         durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
         actor: operator,
       }),
@@ -215,7 +215,7 @@ describe("mintLicenseCodes · allotment", () => {
     );
   });
 
-  it("still refuses a limited venue with a null allotment", async () => {
+  it("still refuses a limited sponsor with a null allotment", async () => {
     // The pre-R-016 contract: null means not mint-eligible. Unchanged.
     await seedSponsor({ id: "sp-nullcap", codeAllotment: null });
     await assert.rejects(
@@ -223,7 +223,7 @@ describe("mintLicenseCodes · allotment", () => {
         sponsorId: "sp-nullcap",
         codes: [{ code: nextCode() }],
         tier: "wedding",
-        sourceType: "venue_edition",
+        sourceType: "compliments",
         durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
         actor: operator,
       }),
@@ -231,7 +231,7 @@ describe("mintLicenseCodes · allotment", () => {
     );
   });
 
-  it("R-016: an unlimited venue mints past any cap, repeatedly", async () => {
+  it("an unlimited sponsor mints past any cap, repeatedly", async () => {
     await seedSponsor({
       id: "sp-unlimited",
       allotmentMode: "unlimited",
@@ -242,7 +242,7 @@ describe("mintLicenseCodes · allotment", () => {
         sponsorId: "sp-unlimited",
         codes: [{ code: nextCode() }, { code: nextCode() }],
         tier: "wedding",
-        sourceType: "venue_edition",
+        sourceType: "compliments",
         durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
         actor: operator,
       });
@@ -267,7 +267,7 @@ describe("mintLicenseCodes · allotment", () => {
       sponsorId: "sp-fairuse",
       codes: [{ code: nextCode() }, { code: nextCode() }, { code: nextCode() }],
       tier: "wedding",
-      sourceType: "venue_edition",
+      sourceType: "compliments",
       durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
       actor: operator,
     });
@@ -289,7 +289,7 @@ describe("mintLicenseCodes · allotment", () => {
       sponsorId: "sp-quiet",
       codes: [{ code: nextCode() }],
       tier: "wedding",
-      sourceType: "venue_edition",
+      sourceType: "compliments",
       durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
       actor: operator,
     });
@@ -300,17 +300,16 @@ describe("mintLicenseCodes · allotment", () => {
 /* ── R-015: the mint guard ──────────────────────────────────────────────── */
 
 describe("mintLicenseCodes · Venue Edition terms", () => {
-  it("D-022: accepts a computed duration longer than the floor", async () => {
+  it("raw Venue issuance is closed even with valid longer terms", async () => {
     await seedSponsor({ id: "sp-longlead", codeAllotment: 10 });
-    const res = await codes.mintLicenseCodes({
+    await assert.rejects(codes.mintLicenseCodes({
       sponsorId: "sp-longlead",
       codes: [{ code: nextCode() }],
       tier: "wedding",
       sourceType: "venue_edition",
       durationDays: 1_200,
       actor: operator,
-    });
-    assert.equal(res.minted, 1);
+    }), /Raw issuance is closed/);
   });
 
   it("refuses anything shorter than the ratified 548 days", async () => {
@@ -359,19 +358,36 @@ describe("mintLicenseCodes · Venue Edition terms", () => {
   });
 });
 
+async function seedHistoricalCode(code: string, sponsorId: string, durationDays: number, batchId: string | null = null) {
+  await client.execute({sql: "INSERT INTO license_codes (id,sponsor_id,code,status,tier,source_type,duration_days,batch_id) VALUES (?,?,?,'minted','wedding','venue_edition',?,?)",
+    args:["legacy-"+code,sponsorId,code,durationDays,batchId]});
+}
+
+describe("canonical Venue issuance has one grant authority",()=>{
+  it("refuses reserved code or batch provenance through generic raw mint",async()=>{
+    await seedSponsor({id:"sp-reserved",codeAllotment:10});
+    for(const input of [{code:"VENUE-ABCDE-FGHJK",batchId:null},{code:nextCode(),batchId:"vi-"+"1".repeat(32)}]){
+      await assert.rejects(codes.mintLicenseCodes({sponsorId:"sp-reserved",codes:[{code:input.code}],sourceType:"compliments",
+        tier:"wedding",durationDays:548,batchId:input.batchId,actor:operator}),/Raw issuance is closed/);
+    }
+    assert.equal(Number((await client.execute("SELECT codes_issued FROM sponsors WHERE id='sp-reserved'")).rows[0].codes_issued),0);
+  });
+  it("shared redeem and orphan repair cannot infer a grant for App-owned issuance",async()=>{
+    const code=nextCode();await seedHistoricalCode(code,"sp-reserved",548,"vi-"+"2".repeat(32));
+    assert.equal((await codes.redeemLicenseCode({code,userClerkId:"user_canonical",actor:operator})).state,"invalid");
+    await client.execute({sql:"INSERT INTO redemptions (id,code_id,user_clerk_id) VALUES ('orphan-canonical',?,'user_canonical')",args:["legacy-"+code]});
+    const result=await codes.reconcileCodes({actor:operator});
+    assert.equal(result.orphansRepaired,0);
+    assert.equal((await client.execute("SELECT id FROM entitlements WHERE user_clerk_id='user_canonical'")).rows.length,0);
+    assert.equal((await client.execute("SELECT entitlement_id FROM redemptions WHERE id='orphan-canonical'")).rows[0].entitlement_id,null);
+  });
+});
 /* ── R-015: redemption expiry ───────────────────────────────────────────── */
 
 describe("redeemLicenseCode · access term", () => {
   async function mintOne(sponsorId: string, durationDays: number) {
     const code = nextCode();
-    await codes.mintLicenseCodes({
-      sponsorId,
-      codes: [{ code }],
-      tier: "wedding",
-      sourceType: "venue_edition",
-      durationDays,
-      actor: operator,
-    });
+    await seedHistoricalCode(code,sponsorId,durationDays);
     return code;
   }
 
@@ -464,14 +480,7 @@ describe("redeemLicenseCode · access term", () => {
 describe("setCoupleWeddingDate", () => {
   async function redeemFor(userClerkId: string, weddingDate?: string) {
     const code = nextCode();
-    await codes.mintLicenseCodes({
-      sponsorId: "sp-recompute",
-      codes: [{ code }],
-      tier: "wedding",
-      sourceType: "venue_edition",
-      durationDays: VENUE_EDITION_COUPLE_ACCESS_DAYS,
-      actor: operator,
-    });
+    await seedHistoricalCode(code,"sp-recompute",VENUE_EDITION_COUPLE_ACCESS_DAYS);
     const res = await codes.redeemLicenseCode({
       code,
       userClerkId,
