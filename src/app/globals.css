@@ -3439,32 +3439,29 @@ body::after { content: none; }
  * sits as a full-width prose block with a hairline frame so the diagram
  * reads as a separate object from the body text.
  */
-.atlas-prose .atlas-mermaid {
+.atlas-prose .atlas-diagram {
   margin: 2rem 0 2.25rem 0;
-  padding: 1.75rem 1.25rem 1.5rem;
+}
+.atlas-prose .atlas-diagram figcaption {
+  margin-bottom: 0.5rem;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.atlas-prose .atlas-mermaid {
+  padding: 1.25rem;
   background: var(--paper);
   border: 1px solid var(--border-soft);
   position: relative;
   overflow-x: auto;
 }
-.atlas-prose .atlas-mermaid::before {
-  content: "diagram";
-  position: absolute;
-  top: 0.65rem;
-  left: 1.25rem;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-quiet);
-}
-.atlas-prose .atlas-mermaid[data-rendered="true"]::before {
-  display: none; /* SVG carries its own visual identity */
+.atlas-prose .atlas-mermaid:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .atlas-prose .atlas-mermaid svg {
   display: block;
   margin: 0 auto;
-  max-width: 100%;
+  max-width: none;
   height: auto;
 }
 .atlas-prose .atlas-mermaid .atlas-mermaid-fallback {
@@ -7822,6 +7819,13 @@ a.hq-crm-bulk-btn { text-decoration: none; display: inline-flex; align-items: ce
 .bp-controls-level {
   font-family: var(--font-mono-stack); font-size: 12px !important;
   letter-spacing: 0.02em; padding: 0 6px; min-width: 48px !important;
+}
+
+/* Keep the camera reachable while the Studio-only preview notice is visible. */
+@media (max-width: 767px) {
+  body:has(.signal-devbanner) .bp-controls {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* ── Masthead ───────────────────────────────────────────────────────── */

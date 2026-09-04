@@ -1,0 +1,66 @@
+{
+  "candidateBase": "2a191a3479aa4cb3ce551e6e3ae629e39132e64e",
+  "buildId": "etkOKIYMHahiZKvqMPo-w",
+  "sourceDigest": "2e56c88ec8951b9bbd190360b9547e9f974042452916b00f723c437942519565",
+  "scriptedOnly": true,
+  "checks": [
+    {
+      "tests": 491,
+      "exitCode": 0,
+      "command": "pnpm test"
+    },
+    {
+      "receiptTests": 9,
+      "exitCode": 0,
+      "fixtureScenarios": 6,
+      "command": "pnpm run experience:january:test"
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js .",
+      "exitCode": 0
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js scripts/experience/january/capture.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/experience/january/serve.mjs build",
+      "exitCode": 0
+    },
+    {
+      "exitCode": 0,
+      "cases": 188,
+      "command": "node scripts/experience/january/capture.mjs"
+    },
+    {
+      "exitCode": 0,
+      "cases": 4,
+      "command": "node scripts/experience/january/capture.mjs --atlas",
+      "note": "All four final cases rerun after correcting native touch test input; unchanged source/build"
+    },
+    {
+      "exitCode": 0,
+      "surfaces": 8,
+      "command": "pnpm run experience:january:attest"
+    },
+    {
+      "command": "node scripts/experience/validate.mjs --product=studio",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/experience/schema-validate.mjs",
+      "exitCode": 0
+    }
+  ],
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "preview": {
+    "url": "http://127.0.0.1:4396",
+    "process": 26652,
+    "session": 80367
+  }
+}

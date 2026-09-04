@@ -25,7 +25,7 @@ export function GiveAccessForm() {
       </label>
 
       <div className="grid grid-cols-2 gap-3">
-        <label className="grid gap-1 text-[12px]">
+        <label className="grid min-w-0 content-start gap-1 text-[12px]">
           <span className="font-medium text-ink">Plan</span>
           <select
             name="marketingTier"
@@ -40,7 +40,7 @@ export function GiveAccessForm() {
           </select>
           <span className="text-[10.5px] text-ink-quiet">Pro and Student both map to Workspace.</span>
         </label>
-        <label className="grid gap-1 text-[12px]">
+        <label className="grid min-w-0 content-start gap-1 text-[12px]">
           <span className="font-medium text-ink">Expires in (days)</span>
           <input
             name="durationDays"
@@ -48,7 +48,7 @@ export function GiveAccessForm() {
             min={1}
             defaultValue={365}
             placeholder="blank = no expiry"
-            className="h-9 rounded border border-border-soft bg-bg px-2 text-[12.5px] outline-none focus:border-accent"
+            className="h-9 w-full min-w-0 rounded border border-border-soft bg-bg px-2 text-[12.5px] outline-none focus:border-accent"
           />
         </label>
       </div>

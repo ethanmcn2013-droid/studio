@@ -1,0 +1,12 @@
+
+> studio@0.1.0 experience:january:attest C:\Users\ethan\signal-studio-workspace\worktrees\studio\fix-january-studio-experience-coverage
+> node scripts/experience/january/attest.mjs
+
+studio.page.hq: complete scripted coverage
+studio.page.hq-blueprint: complete scripted coverage
+studio.page.hq-entitlements: complete scripted coverage
+studio.page.hq-financial-model: complete scripted coverage
+studio.page.hq-founders-circle: complete scripted coverage
+studio.page.hq-reporting: complete scripted coverage
+studio.page.students: complete scripted coverage
+studio.surface.hq-shell-navigation: complete scripted coverage

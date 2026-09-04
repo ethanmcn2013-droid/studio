@@ -32,13 +32,13 @@ export function AtlasMermaidHydrator() {
     (async () => {
       const mod = await import("mermaid");
       const mermaid = mod.default;
+      await document.fonts.ready;
 
       mermaid.initialize({
         startOnLoad: false,
         theme: "base",
         themeVariables: {
-          fontFamily:
-            "'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif",
+          fontFamily: getComputedStyle(targets[0]).fontFamily,
           fontSize: "14px",
           primaryColor: "#ffffff",
           primaryTextColor: "#111111",
@@ -84,6 +84,13 @@ export function AtlasMermaidHydrator() {
           const { svg } = await mermaid.render(id, source);
           if (cancelled) return;
           el.innerHTML = svg;
+          const diagram = el.querySelector("svg");
+          if (diagram?.viewBox.baseVal.width) {
+            // One SVG unit per CSS pixel keeps the authored 14px labels legible.
+            // The surrounding native scroll region contains wide diagrams.
+            diagram.style.width = `${Math.ceil(diagram.viewBox.baseVal.width)}px`;
+            diagram.style.maxWidth = "none";
+          }
           el.setAttribute("data-rendered", "true");
         } catch (err) {
           // Leave the fallback <pre> in place, operator can still read

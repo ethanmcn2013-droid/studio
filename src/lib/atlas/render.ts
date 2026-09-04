@@ -100,7 +100,7 @@ export function renderAtlasMarkdown(md: string): string {
         const source = codeLines.join("\n");
         const encoded = Buffer.from(source, "utf8").toString("base64");
         out.push(
-          `<div class="atlas-mermaid" data-source="${encoded}"><pre class="atlas-mermaid-fallback"><code>${escapeHtml(source)}</code></pre></div>`,
+          `<figure class="atlas-diagram"><figcaption>Diagram · scroll horizontally to read</figcaption><div class="atlas-mermaid" data-source="${encoded}" role="region" aria-label="Diagram" tabindex="0"><pre class="atlas-mermaid-fallback"><code>${escapeHtml(source)}</code></pre></div></figure>`,
         );
         continue;
       }
