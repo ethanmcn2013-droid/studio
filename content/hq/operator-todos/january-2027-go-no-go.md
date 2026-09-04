@@ -7,7 +7,7 @@ effort: involved
 blocking: true
 phase: January 2027 launch
 why: January 21 is a target; access and outreach still need separate manual decisions backed by release and commercial evidence.
-href: /hq/launch-readiness
+href: /hq/health
 date: 2026-09-04
 ---
 

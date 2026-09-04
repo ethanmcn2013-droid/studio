@@ -1,7 +1,10 @@
 # Instrument opportunities after launch
 
-Status: internal comparison, 2026-09-04. No build approval. Guests & Seating
-is excluded from January by the [launch decision](../../../content/hq/decisions/january-2027-launch.md).
+Status: accepted delegated January no-build decision, recorded 2026-09-04.
+Guests & Seating is excluded from January by the
+[launch decision](../../../content/hq/decisions/january-2027-launch.md).
+This decision does not await another routine founder checkpoint. The accepted
+16 October instruments allocation can review evidence without reopening scope.
 These are hypotheses from the retained product and venue strategy, not new
 customer research or evidence of demand.
 

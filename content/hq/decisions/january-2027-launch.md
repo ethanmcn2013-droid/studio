@@ -4,7 +4,7 @@ title: January 21 is the launch and first outreach target
 category: Strategy
 date: 2026-09-04
 status: Active
-reviewDate: 2027-01-14
+reviewDate: 2027-01-11
 relatedObjects: [Founding Venue Programme, docs/execution/january-2027/PROGRAMME.md, contracts/commercial-terms.v2.json]
 ---
 
@@ -15,8 +15,11 @@ outreach target. Until then, work is internal testing and preparation. The
 date does not open access, send an email, deploy a release or approve a charge.
 Release and first outreach each require a recorded manual go/no-go.
 
-The approved January programme may proceed through delegated implementation.
-**Guests & Seating is no-build for January.** Compare opportunities in writing;
+The approved January programme may proceed through delegated implementation
+and design review. The user accepted the September–January planning allocations
+recorded in the programme index. Routine checkpoints need no renewed approval.
+**Guests & Seating is no-build for January**, an accepted decision within the
+delegated scope. Compare opportunities in writing;
 any later build needs postlaunch evidence and a new founder scope decision.
 
 The programme index is `docs/execution/january-2027/PROGRAMME.md`. Its six
@@ -32,7 +35,9 @@ plan selection or signature. The existing couple term and unlimited allowance
 remain governed by `commercial-terms.v2.json`.
 
 No solicitor, accountant or Revenue approval is inferred from this decision.
-The contract's accountable-person status remains unconfirmed.
+The contract's accountable-person status remains unconfirmed. This preserves
+actual required legal/tax final-readiness checks; it does not introduce blanket
+legal approval for every commercial statement or routine implementation.
 
 ## Supersession
 
