@@ -1,21 +1,21 @@
 # Signal design quality report
 
-Generated: 2026-09-03T04:18:44.942Z
+Generated: 2026-09-04T22:23:01.487Z
 Status: **baseline-held**
 Readiness: **not-certified**
 
 ## Inventory
 
-- 250 registered experiences
-- 1215 required state variants
-- 1000 required breakpoint variants
-- 4860 required state/breakpoint audit cells
+- 251 registered experiences
+- 1219 required state variants
+- 1004 required breakpoint variants
+- 4876 required state/breakpoint audit cells
 - 0 evidence-proven Studio-grade experiences (0 registry assertions)
 - 139 customer-product experiences across Tasks, Timeline, Signal, and Notes
 - 39 company-public Studio experiences
-- 72 founder-operator experiences across Signal HQ and Signal Review
-- 16/1215 required state variants have rendered pilot evidence
-- 64/1000 required breakpoint variants have rendered pilot evidence
+- 73 founder-operator experiences across Signal HQ and Signal Review
+- 16/1219 required state variants have rendered pilot evidence
+- 64/1004 required breakpoint variants have rendered pilot evidence
 - 64/64 rendered pilot captures pass deterministic accessibility/runtime gates
 - 6/6 governed repositories pass design-system conformance
 
@@ -27,7 +27,7 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 |---|---:|---:|---:|---:|---:|
 | customer-product | 139 | 56 | 0 | 0 | 0 |
 | company-public | 39 | 9 | 0 | 0 | 0 |
-| founder-operator | 72 | 9 | 0 | 0 | 0 |
+| founder-operator | 73 | 9 | 0 | 0 | 0 |
 
 ## Source systems
 
@@ -36,15 +36,15 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 | notes | 20 | 11 | 0 | 0 | 0 |
 | signal | 31 | 14 | 0 | 0 | 0 |
 | signal-review | 4 | 4 | 0 | 0 | 0 |
-| studio | 107 | 14 | 0 | 0 | 0 |
+| studio | 108 | 14 | 0 | 0 | 0 |
 | tasks | 59 | 20 | 0 | 0 | 0 |
 | timeline | 29 | 11 | 0 | 0 | 0 |
 
 ## Gate
 
 - Structural errors: 0
-- Passing audit cells: 20/4860
-- Missing audit cells: 4840
+- Passing audit cells: 20/4876
+- Missing audit cells: 4856
 - Duplicate audit cells: 0
 - False passing assertions: 0
 - Unbaselined high-risk findings: 0
@@ -52,10 +52,10 @@ Tasks, Timeline, Signal, and Notes are the four customer products. The Studio pu
 - Missing founder-approved visual baselines: 24
 - Open findings: 0 (0 release-blocking, 0 high)
 - Experiences under remediation: 0
-- Experiences not yet reviewed since registration/material change: 211
+- Experiences not yet reviewed since registration/material change: 212
 - Expired exceptions: 0
 - Golden set: approved
-- Certification blocker: 20/4860 required state/breakpoint audit cells pass
+- Certification blocker: 20/4876 required state/breakpoint audit cells pass
 - Certification blocker: 24 visual baselines await approval
 
 A passing inventory count is not a launch claim. A surface is Studio grade only after all 13 scores, rendered evidence, deterministic checks, and hard blockers pass.

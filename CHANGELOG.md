@@ -8,6 +8,28 @@ carries what coalesced across the suite. Convention: BRAND.md Â§6.5
 look-back · look-ahead · mark · week). No retroactive rewrite of
 entries before 2026-05-22; the vocabulary starts at the next pass.
 
+## 2026-09-04 · S·170 · ships · Every asset, in one place
+
+Signal HQ gains **the Gallery** — one room holding every graphic the studio
+has produced. 341 assets across seven sets: the new launch set (150), the
+social system (72), the venue kit, identity, cards, the ambassador kit and
+the retained explorations.
+
+It reads the files themselves rather than a hand-kept list, so it cannot
+drift: drop a file into a set folder and it appears, with its platform size
+and the alt text its set already ships beside it. Every tile links to the
+full-size original.
+
+The launch set is new — a hundred and fifty assets drawn from the
+master-suite redesign, in seventeen series including six carousels, sixteen
+feature moments, eight objections and fourteen stories. Sources and gates
+live in the collateral repo.
+
+Two holds carried on purpose: the D series and the J·2 carousel show board
+lanes carrying their own plain-English sentences, which the review
+recommended and the app has not shipped; and every proof card is a marked
+specimen until the words are real.
+
 ## 2026-09-03 · S·169 · ships · The front door becomes the floor and the sheet
 
 **The home page is now the suite's own geometry: an ink floor, white sheets lifted off it, and the three products shown as scenes that play once as you reach them.**
