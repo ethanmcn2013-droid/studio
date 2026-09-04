@@ -1,11 +1,11 @@
 {
   "schemaVersion": "signal-design-quality-report/1",
-  "generatedAt": "2026-09-03T04:18:44.942Z",
+  "generatedAt": "2026-09-04T22:23:01.487Z",
   "status": "baseline-held",
   "readiness": {
     "status": "not-certified",
     "reasons": [
-      "20/4860 required state/breakpoint audit cells pass",
+      "20/4876 required state/breakpoint audit cells pass",
       "24 visual baselines await approval"
     ]
   },
@@ -29,27 +29,27 @@
     "overallMinimum": 3.5
   },
   "inventory": {
-    "experiences": 250,
-    "stateVariants": 1215,
-    "breakpointVariants": 1000,
+    "experiences": 251,
+    "stateVariants": 1219,
+    "breakpointVariants": 1004,
     "products": {
       "notes": 20,
       "signal": 31,
       "signal-review": 4,
-      "studio": 107,
+      "studio": 108,
       "tasks": 59,
       "timeline": 29
     },
     "experienceClasses": {
       "customer-product": 139,
       "company-public": 39,
-      "founder-operator": 72
+      "founder-operator": 73
     },
     "archetypes": {
       "application-shell-and-navigation": 4,
       "create-and-edit-form": 3,
       "dashboard-or-command-centre": 9,
-      "detail-or-record-view": 54,
+      "detail-or-record-view": 55,
       "editor-or-canvas": 9,
       "feedback-interruption-and-exception": 29,
       "list-and-data-table": 12,
@@ -82,7 +82,7 @@
       "releaseBlocking": 0
     },
     "founder-operator": {
-      "experiences": 72,
+      "experiences": 73,
       "critical": 9,
       "passing": 0,
       "openFindings": 0,
@@ -112,7 +112,7 @@
       "releaseBlocking": 0
     },
     "studio": {
-      "experiences": 107,
+      "experiences": 108,
       "critical": 14,
       "passing": 0,
       "openFindings": 0,
@@ -145,10 +145,10 @@
   },
   "audits": {
     "total": 20,
-    "requiredCells": 4860,
+    "requiredCells": 4876,
     "passing": 20,
-    "failing": 4840,
-    "missing": 4840,
+    "failing": 4856,
+    "missing": 4856,
     "duplicate": 0,
     "falsePassingExperienceIds": [],
     "byProduct": {
@@ -244,17 +244,17 @@
   },
   "coverage": {
     "registry": {
-      "registered": 250,
+      "registered": 251,
       "validationErrors": 0
     },
     "states": {
       "capturedVariants": 16,
-      "requiredVariants": 1215,
+      "requiredVariants": 1219,
       "completeFixtureExperiences": 6
     },
     "breakpoints": {
       "capturedVariants": 64,
-      "requiredVariants": 1000,
+      "requiredVariants": 1004,
       "completeScreenshotExperiences": 6
     },
     "accessibility": {
@@ -285,12 +285,12 @@
   },
   "governance": {
     "underRemediation": 0,
-    "legacyExperiences": 248,
+    "legacyExperiences": 249,
     "acceptedExceptions": 0,
     "validAcceptedExceptions": 0,
     "activeExceptions": 0,
     "expiredExceptions": 0,
-    "notReviewedSinceMaterialChange": 211
+    "notReviewedSinceMaterialChange": 212
   },
   "goldenSet": {
     "status": "approved",
