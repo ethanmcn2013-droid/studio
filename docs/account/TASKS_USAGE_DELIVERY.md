@@ -1,0 +1,40 @@
+# Internal Tasks usage delivery
+
+This milestone connects one deliberate App task-creation action to durable delivery, exact canonical attribution, closed-day SQLite persistence and the existing authenticated HQ account review/export. It adds no portal, Notes/Timeline instrumentation, shared positive grant writer or provider integration. Capture and reporting are off unless `SPONSOR_USAGE_EVENTS=1`.
+
+## Private service boundary
+
+App owns actor and Project authorization and provenance. Studio calls only App's bounded usage-purpose endpoint; it receives no App database credential. The seven-field event remains unchanged and contains no code, raw identity, task ID or content. A separate proof binds its digest and hashes to the exact App actor/Project/claim interval and canonical issuance/code fingerprint. App validates the unrounded private commit instant; only the minute-rounded event time leaves App.
+
+Studio independently uses `readVerifiedVenueIssuance` from the issuance-owned `f0b3fa9` contract. Sponsor, issuance, code fingerprint, issue time and environment must match. A venue's current paid term does not shorten a historically valid couple claim. Issuance's signed manifests prove issue-time eligibility; later claim intervals come from App. A revoked or mismatched code cannot acquire new attribution. Unknown canonical proof may be stored as unattributed and excluded from metrics. Pending canonical acknowledgement or storage/provenance outage returns generic503 and leaves App's intent pending. Initial ingestion and repair use the same verifier. Exact repeated events dedupe; changing the body or salt epoch with the same event ID returns409. Already verified historical facts are stable on replay; account erasure removes personal facts separately.
+
+The signer authenticates `usage.v1`, POST, exact path, timestamp, salt epoch and exact body digest. Body limit16KiB; skew5 minutes; fetch timeout5 seconds and redirects refused. `SPONSOR_USAGE_SERVICE_SECRET` must be at least32 characters and distinct from `VENUE_ISSUANCE_SECRET`. Usage credentials do not authorize issuance. Required Studio configuration is `SPONSOR_USAGE_APP_ORIGIN`, explicit `SPONSOR_USAGE_ENVIRONMENT=internal_test|production`, and comma-separated `SPONSOR_USAGE_ACCEPTED_EPOCHS`. Studio needs no identity salt. App retains any explicitly configured previous salts for repair; stored receipts are never relabelled on rotation.
+
+`POST /api/internal/sponsored-use/ingest` accepts only UUID-v4, minute-rounded, retained `tasks/task_created` events. `POST /api/internal/sponsored-use/erase` accepts only an authenticated subject hash and epoch; it works while capture is disabled and without a live App or issuance store. All external error bodies are generic. No raw SQL/codes/identities are logged by this slice.
+
+## Persistence and lifecycle
+
+Existing raw/daily/lifecycle tables are reused. Additive `0002_usage_delivery`, following issuance-owned `0001`, adds only the subject-to-workspace erasure index and monotonic erasure tombstones. Its SQL is hash-bound to the additive ledger and journal, with fresh/no-op/schema-drift/partial-DDL rollback tests. The runner is local-only; this task does not authorize production migration. Apply both migrations before runtime maintenance. Central shared schema ownership remains with issuance; usage's new schema is a separate module.
+
+The authenticated `GET /api/cron/sponsored-use` repairs, persists observed closed days and closes silent day-30 cohorts as indeterminate, then performs hard retention even if repair/configuration fails. Days close after06:00 in the sponsor's reporting timezone (default Europe/Dublin). Each daily row and its lifecycle changes commit together. SQLite contention gets bounded fresh-transaction retries; no network runs while holding the writer. Erasure is reread inside the writer so stale outside snapshots cannot recreate facts.
+
+Counts describe **deliberate Tasks creation only**. Missing days are not manufactured as quiet days; other products remain unavailable. Partial coverage yields lower bounds. A mixed-epoch day is omitted rather than merging distinct identities. At most100 sponsors and100 immutable issuances per sponsor are accepted per run; each App request returns an entire issuance's at-most25 claims from one transaction. Population pagination/overflow, duplicates and incomplete responses fail rather than publish a partial denominator. Larger deployments require a separately bounded partition, not raising these limits silently.
+
+The HQ loader reads only after the existing action/download authentication guards and also requires a configured HQ password. It explicitly projects aggregate values and strips private hashes, code fingerprints and identity references. Counts are suppressed below3 eligible workspaces, retention rates below5 eligible activations. The paired fixture verifies actual authenticated projection and CSV/HTML export at2/3; existing metric/export tests and real-service tests verify4/5. This Tasks-only slice does not claim complete day-30 retention measurement or frozen external reports: unmeasured negative outcomes are indeterminate, not churn.
+
+Raw event retention is35 days; daily/report aggregates expire24 months after their period. The private erasure index/lifecycle expire after24 months without updates. Erasure removes raw subject events, the index and affected workspace lifecycle, conservatively dropping a workspace fact contributed by that actor. Anonymous daily aggregates remain. Tombstones outlive the35-day replay horizon plus5 minutes. App retains unacknowledged erasure intents until delivery and retains the account-to-epoch link for24 months. Disabling collection still allows authenticated erasure and retention; do not stop maintenance during rollback while retained data or pending erasures remain. Archive/membership/revocation blocks new App proof; it is not a request to erase previously verified anonymous history.
+
+## Local verification and lead-owned registration
+
+No provider, credentials, production mutation or browser is required. Use pinned dependencies and Node24:
+
+```sh
+node --test scripts/migrate-usage-delivery.test.mjs src/lib/account/instrumentation/usage-service.test.cjs src/lib/account/instrumentation/usage-runtime.test.cjs
+node node_modules/tsx/dist/cli.mjs --import ./src/test/register-server-only.mjs --test src/lib/sponsored-use/service-auth.test.ts src/lib/venue-fulfilment/canonical.test.ts
+node node_modules/tsx/dist/cli.mjs --test src/lib/account/instrumentation/daily-metrics.test.ts src/lib/account/instrumentation/rollup.test.ts src/lib/account/instrumentation/local-date.test.ts src/lib/account/instrumentation/retention.test.ts src/lib/account/instrumentation/suppression.test.ts src/lib/account/live/project-venue-usage.test.ts src/lib/account/fixtures.test.ts src/lib/account/csv.test.ts
+node node_modules/typescript/bin/tsc --noEmit --incremental false
+```
+
+From the matching App checkout run `node scripts/sponsored-use/acceptance.cjs --studio-root /path/to/studio`. This executes the actual task action, queue delivery, both actual service routes, real canonical SQLite reads, actual closed-day cron and authenticated HQ action/download, then account-fence erasure and retention with capture disabled. Framework identity and network boundaries are local fixtures. Issuance creation/comp redemption remain the separate issuance lane's composition; S5 fixtures seed their canonical contract deliberately.
+
+Lead must append the new CJS runtime/service suites, migration test and usage auth suite to the default Linux test gate and run paired acceptance with both immutable checkouts. Retain the existing canonical and metric suites. App's POST delivery worker needs scheduling; Studio's existing cron path is reused. No package, lockfile, workflow, registry or Vercel configuration was edited. Final combined independent security verification, browser/human comprehension, production provisioning and deployment are unverified.
