@@ -3,7 +3,7 @@ name: Verify Studio
 on:
   pull_request:
   push:
-    branches: [main, feat/remediation-program]
+    branches: [main, feat/remediation-program, release/january-2027]
 
 concurrency:
   group: studio-verify-${{ github.ref }}
