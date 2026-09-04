@@ -60,7 +60,9 @@
     "test:entitlements-writers": "tsx --import ./src/test/register-server-only.mjs --test src/lib/entitlements-db/codes.test.ts",
     "venue:migrate-terms": "node scripts/migrate-venue-edition-terms.mjs",
     "venue:migrate-terms:check": "node scripts/migrate-venue-edition-terms.mjs --dry-run",
-    "venue:migrate-terms:setup": "node scripts/venue-terms-setup.mjs"
+    "venue:migrate-terms:setup": "node scripts/venue-terms-setup.mjs",
+    "experience:january:test": "node --test scripts/experience/january/receipt.test.mjs && tsx --import ./src/test/register-server-only.mjs --test scripts/experience/january/fixture.test.ts",
+    "experience:january:attest": "node scripts/experience/january/attest.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",

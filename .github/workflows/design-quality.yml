@@ -28,6 +28,10 @@ jobs:
         run: pnpm run experience:validate -- --product=studio
       - name: Prove registry and token gates fail closed
         run: pnpm run experience:self-test
+      - name: Prove January state receipts reject stale source and missing evidence
+        run: pnpm run experience:january:test
+      - name: Verify January rendered coverage against this candidate
+        run: pnpm run experience:january:attest
       - name: Enforce finding and audit ratchets
         run: pnpm run experience:audit -- --enforce
       - name: Run UX Assurance specialist modes
