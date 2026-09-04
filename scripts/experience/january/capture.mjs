@@ -92,8 +92,16 @@ try {
             await page.locator('.atlas-mermaid[data-rendered="true"] svg').first().waitFor({ state: 'visible' });
             assert.equal(await page.locator('.atlas-mermaid[data-render-error]').count(), 0);
             assert.equal(await page.locator('.atlas-mermaid-fallback').count(), 0);
+            const labels = await page.locator('.atlas-mermaid svg .nodeLabel').allTextContents();
+            assert.deepEqual(labels.map(label => label.trim()).sort(), [
+              'cycle opens — copy work', 'read BRAND.md §', 'draft against rules',
+              'catch-net second read', 'stage + commit', 'fix in place',
+            ].sort(), 'SVG labels must faithfully match the actual authored Mermaid nodes');
+            const invalidLists = await page.locator('.atlas-prose ul, .atlas-prose ol').evaluateAll(lists => lists.flatMap(list => Array.from(list.children).filter(child => child.tagName !== 'LI').map(child => child.outerHTML)));
+            assert.deepEqual(invalidLists, [], 'Every rendered list has only list-item children');
+            assert.ok(await page.locator('.atlas-prose li > ul').count(), 'Authored nested sections retain their list hierarchy');
             await page.locator('.atlas-mermaid').first().scrollIntoViewIfNeeded();
-            interactions.push('Actual checked-in Atlas Mermaid fence rendered as SVG; no fallback/error');
+            interactions.push(`Actual checked-in Atlas Mermaid labels matched exactly: ${JSON.stringify(labels)}`, 'Real nested list hierarchy; no non-LI direct children', 'SVG rendered without fallback/error');
           }
           if (entry.route.startsWith('/hq') && state !== 'restricted' && !atlas) {
             assert.equal(await page.locator('form[action="/hq/logout"][method="post"] button').count(), 1);

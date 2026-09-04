@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { decodeMermaidSource } from "@/lib/atlas/mermaid-source";
 
 /**
  * AtlasMermaid, client-side hydration of mermaid diagrams inside the
@@ -70,8 +71,10 @@ export function AtlasMermaidHydrator() {
         const encoded = el.getAttribute("data-source") ?? "";
         let source = "";
         try {
-          source = atob(encoded);
-        } catch {
+          source = decodeMermaidSource(encoded);
+        } catch (err) {
+          el.setAttribute("data-render-error", "true");
+          console.warn("atlas-mermaid source decode failed", err);
           continue;
         }
         if (!source.trim()) continue;
