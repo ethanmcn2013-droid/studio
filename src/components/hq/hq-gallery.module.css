@@ -1,0 +1,197 @@
+.gallery {
+  --g-ink: var(--zinc-900);
+  --g-muted: var(--zinc-500);
+  --g-line: var(--zinc-200);
+  --g-paper: var(--paper);
+  --g-soft: var(--zinc-50);
+  --g-indigo: var(--accent);
+  margin-top: 2rem;
+  color: var(--g-ink);
+}
+
+/* ── The set index — 345 assets stay navigable only if you can jump ── */
+/* Sits below the shell's sticky .hqx-topbar (56px), not under it. */
+.index {
+  position: sticky;
+  top: 56px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 2.25rem;
+  padding: 0.75rem 0;
+  background: linear-gradient(var(--g-paper) 80%, transparent);
+}
+
+.indexLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--g-line);
+  border-radius: 99px;
+  background: var(--g-paper);
+  color: var(--g-ink);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.indexLink:hover { border-color: var(--zinc-400); background: var(--g-soft); }
+.indexLink b { font-weight: 600; }
+.indexLink span {
+  font-family: var(--font-mono-stack);
+  font-size: 0.68rem;
+  color: var(--g-muted);
+}
+
+/* ── A set ─────────────────────────────────────────────────────────── */
+/* Clear both the topbar and the sticky index when jumping to a set. */
+.set { margin-bottom: 3.5rem; scroll-margin-top: 8.5rem; }
+
+.setHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--g-line);
+}
+.setName { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+.setCount {
+  font-family: var(--font-mono-stack);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  color: var(--g-indigo);
+  text-transform: uppercase;
+}
+.setBytes {
+  margin-left: auto;
+  font-family: var(--font-mono-stack);
+  font-size: 0.68rem;
+  color: var(--g-muted);
+}
+.setNote {
+  max-width: 62ch;
+  margin: 0.7rem 0 1.4rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--g-muted);
+}
+
+/* ── The grid ──────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1.1rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px solid var(--g-line);
+  border-radius: 12px;
+  background: var(--g-paper);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+.tile:hover {
+  border-color: var(--zinc-400);
+  box-shadow: 0 1px 2px rgb(24 24 27 / 0.04), 0 12px 32px rgb(24 24 27 / 0.06);
+  transform: translateY(-1px);
+}
+.tile:focus-visible {
+  outline: 2px solid var(--g-indigo);
+  outline-offset: 2px;
+}
+
+/* Mixed aspect ratios — square, portrait, story, banner — all sit tidily
+   in one box, contained on a soft ground so white artwork still reads. */
+/* Flex, not grid: against an auto-sized grid ROW a child's max-height:100%
+   has nothing definite to resolve against, so story and portrait artwork
+   escaped the frame and covered the caption. A flex container with a
+   definite height gives the percentage something real to measure. */
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 156px;
+  padding: 0.6rem;
+  overflow: hidden;
+  background: var(--g-soft);
+  border-bottom: 1px solid var(--g-line);
+}
+.frame img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgb(24 24 27 / 0.12);
+}
+
+.doc {
+  display: grid;
+  gap: 0.3rem;
+  place-items: center;
+  font-family: var(--font-mono-stack);
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--g-muted);
+}
+.doc svg { color: var(--zinc-400); }
+
+.meta { display: grid; gap: 0.3rem; padding: 0.7rem 0.75rem 0.8rem; }
+
+.metaTop {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.code {
+  font-family: var(--font-mono-stack);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  color: var(--g-indigo);
+}
+.size {
+  margin-left: auto;
+  font-size: 0.68rem;
+  color: var(--g-muted);
+  white-space: nowrap;
+}
+.file {
+  font-family: var(--font-mono-stack);
+  font-size: 0.63rem;
+  line-height: 1.45;
+  color: var(--g-muted);
+  overflow-wrap: anywhere;
+}
+.alt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0.15rem 0 0;
+  font-size: 0.73rem;
+  line-height: 1.5;
+  color: var(--zinc-600);
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .frame { height: 128px; }
+  .index { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile:hover { transition: none; transform: none; }
+}

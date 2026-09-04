@@ -1,0 +1,187 @@
+Signal Studio - launch set alt text
+===================================
+
+A — Launch day
+  [A01] Signal Studio, live — the wordmark on a dark ground under a single indigo dot, with the line: notes, tasks and a timeline, one place, one plan, everybody looking at the same thing.
+  [A02] One app, three ways to keep a plan straight — notes for catching the thought before it goes, tasks for one owner and one date per task, timeline so everyone sees the same plan.
+  [A03] Every lane explains itself — the Signal Studio tasks board on a desktop screen, five columns each carrying its own plain-English sentence.
+  [A04] Signal Studio belief — Calm is a feature. We build it on purpose. Set in white on the brand indigo.
+  [A05] The whole plan, in your pocket — the Signal Studio tasks list on a phone, showing four jobs with owners, dates and status.
+  [A06] Signal Studio — notes, tasks and a timeline for people running something real, beside the tasks board on a desktop screen.
+
+B — The three products
+  [B01] notes — catch the thought before it goes. Three ways in: type it straight into the box, dictate it while you drive, or photograph the whiteboard or the receipt.
+  [B02] Write it the way you'd say it — the Signal Studio notes box with no fields and no forms, and the three places a note can land: In Tasks, To decide, Kept.
+  [B03] notes — everything you wrote, in the order you wrote it, shown on a phone.
+  [B04] tasks — one owner, one date, per task. The five lanes: to do is agreed and ready to start, in progress is in motion right now, done is finished and put away.
+  [B05] Five lanes, nobody needs them explained — two columns of the Signal Studio board, each headed by a sentence in plain English.
+  [B06] tasks — a board that says what each column is for, shown with the real lane headings.
+  [B07] timeline — everyone sees the same plan. Two ways to read it: across for the run of the whole year, down for the next thing then the next, and one link to send to anyone.
+  [B08] One number everybody agrees on — the Signal Studio timeline countdown: 79 days to Saturday 3 October 2026.
+  [B09] timeline — the date, the days left and the next moment, shown on a phone.
+
+C — The product in use
+  [C01] The Signal Studio tasks board on a desktop screen: to do, in progress, review, waiting and done, each with a count and a sentence.
+  [C02] The list first, on a phone — a board is a desk view, so on a phone you get the one thing next, in the order it matters.
+  [C03] The Signal Studio notebook on a desktop screen: the writing box above, then every note grouped by what it is about.
+  [C04] The Signal Studio timeline on a desktop screen: 79 days to Saturday 3 October 2026, with the year laid out left to right.
+  [C05] Three tools that already know about each other — notes, tasks and timeline side by side on three phones.
+  [C06] One honest number, not a dashboard — five of thirteen done, thirty-eight per cent, one thing overdue.
+  [C07] The whole year, on one line — the Signal Studio timeline track, with today marked and every moment still to come.
+
+D — Plain English
+  [D01] Nobody should need the words explained — the five board lanes with their sentences: to do, agreed and ready to start; in progress, in motion right now; review, being checked before it goes out; waiting, nothing held up; done, finished and put away.
+  [D02] Board lane, one of five — to do: agreed and ready to start.
+  [D03] Board lane, two of five — in progress: in motion right now.
+  [D04] Board lane, three of five — review: being checked before it goes out.
+  [D05] Board lane, four of five — waiting: nothing held up.
+  [D06] Board lane, five of five — done: finished and put away.
+
+E — The switch
+  [E01] The switch — from a mail thread titled Re: Re: Re: FINAL schedule v7, to one plan everyone sees.
+  [E02] The switch — from a file called final_FINAL_v9_USE_THIS_ONE.docx, to one owner, one date, per task.
+  [E03] The switch — from forty-seven unread messages, to the one thing due today.
+  [E04] The switch — a group chat is not a plan, it is a place plans go to be forgotten. Signal Studio is one place, one story.
+
+F — Beliefs and numbers
+  [F01] Signal Studio belief B·03 — Elegance is restraint.
+  [F02] Signal Studio belief B·01 — Meetings happen because visibility is poor.
+  [F03] Signal Studio belief B·02 — Clarity reduces stress. Set in white on the brand indigo.
+  [F04] Signal Studio belief B·08 — Every feature must earn its place. Set in white on a dark ground.
+  [F05] 19,898 weddings in Ireland last year. Most were planned in a group chat.
+  [F06] €36,641, the average spend on an Irish wedding.
+  [F07] 70 plus societies at UL alone. Most run their year in a group chat.
+  [F08] 79 days to the date everyone is working towards. Timeline keeps the count.
+
+G — Founder and proof
+  [G01] Founder note from Ethan McNamara, Limerick — most of the projects in this country never get called one; we built the software those projects deserve.
+  [G02] Built in Limerick, for people running something real — a wedding, a society year, a small venue's season, a course and a job at once.
+  [G03] A wedding is a project nobody calls one. 19,898 weddings in Ireland last year. The date and the days to it, every job with one owner, one link the family can read.
+  [G04] A society year, handed over intact. 70 plus societies at UL alone. The year laid out event by event, who is on which room and when, a handover that survives the summer.
+  [G05] Specimen card — placeholder venue name is a Founding Limerick Partner of Signal Studio. Marked SPECIMEN until an agreement is signed.
+
+H — Profile and link
+  [H01] Signal Studio profile header — notes, tasks and a timeline for people running something real.
+  [H02] Signal Studio profile banner — one place for the notes, the jobs and the date at the end, beside the three product names.
+  [H03] Signal Studio company banner — calm coordination for people running something real.
+  [H04] Signal Studio avatar — the indigo dot, broadcasting, on the charcoal of the app's own rail.
+  [H05] Start with one project — the wedding, the society year, the season. Put it in once and stop holding it in your head.
+
+J — Carousels
+  [J01] Signal Studio carousel, what it is — Three tools for keeping a plan straight. Notes, tasks and a timeline. One place, one plan, and nobody asking for a status update.
+  [J02] Signal Studio carousel, what it is — Catch the thought before it goes. One box, no fields. Type it, say it, or photograph it. Shows the notes writing box, with filing and the other ways in.
+  [J03] Signal Studio carousel, what it is — One owner, one date, per task. Five lanes, and every one of them explains itself. Shows two board columns, each headed by a sentence in plain English.
+  [J04] Signal Studio carousel, what it is — Everyone sees the same plan. The date at the end, the days between, and what has to happen first. Shows the timeline countdown — 79 days to Saturday 3 October 2026.
+  [J05] Signal Studio carousel, what it is — One page that says what today needs. Today's Signal when you open it, the full briefing when you want the whole picture.
+  [J06] Signal Studio carousel, what it is — Start with one project.
+  [J07] Signal Studio carousel, the five board lanes — Nobody should need the words explained. Every lane on the board carries its own sentence. Here are all five.
+  [J08] Signal Studio carousel, the five board lanes — Agreed and ready to start. Written for someone who has never used a tool like this.
+  [J09] Signal Studio carousel, the five board lanes — In motion right now. Written for someone who has never used a tool like this.
+  [J10] Signal Studio carousel, the five board lanes — Being checked before it goes out. Written for someone who has never used a tool like this.
+  [J11] Signal Studio carousel, the five board lanes — Nothing held up. Written for someone who has never used a tool like this.
+  [J12] Signal Studio carousel, the five board lanes — Finished and put away. Written for someone who has never used a tool like this.
+  [J13] Signal Studio carousel, the five board lanes — A board you can just read.
+  [J14] Signal Studio carousel, a wedding in one place — A wedding is a project nobody calls one. 19,898 of them in Ireland last year. Most were planned in a group chat.
+  [J15] Signal Studio carousel, a wedding in one place — Seventy-nine days, and everybody knows it. One number at the top of the page, counting down on its own. Shows the timeline countdown — 79 days to Saturday 3 October 2026.
+  [J16] Signal Studio carousel, a wedding in one place — Thirteen jobs. Five done. One late. That is the whole status report, and it is always on screen.
+  [J17] Signal Studio carousel, a wedding in one place — Every job has a name on it. No job sits in the middle of a thread with nobody holding it. Shows two board columns, each headed by a sentence in plain English.
+  [J18] Signal Studio carousel, a wedding in one place — The thought you had in the car, already filed. Say it once on the way home. It lands where it belongs. Shows the notes writing box, with filing and the other ways in.
+  [J19] Signal Studio carousel, a wedding in one place — One link the family can read. No login, no app, no explaining. Just the plan.
+  [J20] Signal Studio carousel, a wedding in one place — Put the day in once.
+  [J21] Signal Studio carousel, a group chat is not a plan — A group chat is not a plan. It is a place plans go to be forgotten. Four reasons why.
+  [J22] Signal Studio carousel, a group chat is not a plan — Nothing in it has an owner. Everybody read it. Nobody agreed to do it.
+  [J23] Signal Studio carousel, a group chat is not a plan — Nothing in it has a date. “Next week” is not a date, and by Friday nobody remembers whose next week.
+  [J24] Signal Studio carousel, a group chat is not a plan — It scrolls. The decision is in there somewhere, above the photos, below the voice note.
+  [J25] Signal Studio carousel, a group chat is not a plan — It cannot show you today. Forty-seven unread messages is not an answer to what needs doing now.
+  [J26] Signal Studio carousel, a group chat is not a plan — One place. One story.
+  [J27] Signal Studio carousel, put it in once — Put it in once. Four steps, and then you stop holding it in your head.
+  [J28] Signal Studio carousel, put it in once — Write it the way you'd say it. One box. No fields, no forms, no deciding where it goes first. Shows the notes writing box, with filing and the other ways in.
+  [J29] Signal Studio carousel, put it in once — It files itself. The note lands under the right project and tells you where that was.
+  [J30] Signal Studio carousel, put it in once — Give it an owner and a date. Two decisions, and the job stops being everybody's problem. Shows two board columns, each headed by a sentence in plain English.
+  [J31] Signal Studio carousel, put it in once — Everyone sees the same plan. The board, the list, the timeline and the link are one thing. Shows the timeline track, with today marked and the year ahead.
+  [J32] Signal Studio carousel, put it in once — That is the whole system. There is no step five. Nothing else to configure, nothing to learn.
+  [J33] Signal Studio carousel, put it in once — Start with one project.
+  [J34] Signal Studio carousel, a society year — A society year, handed over intact. 70+ societies at UL alone. Most run their year in a group chat.
+  [J35] Signal Studio carousel, a society year — The whole year on one line. Every event where it falls, from the first week to the ball. Shows the timeline track, with today marked and the year ahead.
+  [J36] Signal Studio carousel, a society year — Who is on which room, and when. One place to look instead of asking in three chats.
+  [J37] Signal Studio carousel, a society year — Every job with a name on it. Hand a job over without chasing it afterwards. Shows two board columns, each headed by a sentence in plain English.
+  [J38] Signal Studio carousel, a society year — Everything you wrote, still there in June. The minutes, the decisions and the half-thoughts, in the order you had them.
+  [J39] Signal Studio carousel, a society year — A handover that survives the summer. The next committee opens the same plan you left, not a folder of files.
+  [J40] Signal Studio carousel, a society year — Put the year in once.
+
+K — Feature moments
+  [K01] Signal Studio — It opens on what today actually needs. Three things, each with the reason it is on the list. Not a feed, not a count of unread anything. Shows Today's Signal, three items each with the reason it is listed.
+  [K02] Signal Studio — Two things calling, and one quieter signal below. The briefing writes you a sentence about your own day, then shows its working. Shows the briefing headline with its read, flagged and shown counts.
+  [K03] Signal Studio — Every item can tell you why it is there. “Two days past its date.” “Nothing has moved on it for fifteen days.” In words, not a score. Shows a briefing item with its Why this control.
+  [K04] Signal Studio — The same answer, on the walk in. Good morning, the date, and the three things. Nothing to scroll past. Shows the home page on a phone, with Good morning and three items.
+  [K05] Signal Studio — Search everything you ever wrote. One field, every note, every project. The thing you half-remember from March is two words away.
+  [K06] Signal Studio — A note becomes a job without being retyped. You wrote it once. Give it an owner and a date and it is on the board, still linked to the note.
+  [K07] Signal Studio — Say it on the way home. The car, the corridor, the walk back from the venue. It is written down before you have parked.
+  [K08] Signal Studio — Photograph the whiteboard and keep the words. The list on the wall, the quote on the back of a receipt — kept as text you can search.
+  [K09] Signal Studio — One link, and no login for whoever opens it. The people who need to see the plan are not going to make an account. They do not have to.
+  [K10] Signal Studio — It says one thing is late, and which one. Not a red dashboard. One number, and the job it belongs to. Shows the board head — 5 of 13 done, 2 overdue, 5 with no date.
+  [K11] Signal Studio — Read the year across, or the week down. Across for the shape of the whole thing. Down for what is next, then the next. Shows the timeline track, with today marked and the year ahead.
+  [K12] Signal Studio — A lane for the things that are not your fault. Waiting on somebody else is a real state. It gets its own column, and it tells you when it is empty.
+  [K13] Signal Studio — It tells you where it put your note. No folder to choose before you can write. It files, then shows you the filing. Shows the notes writing box, with filing and the other ways in.
+  [K14] Signal Studio — It counts the jobs nobody has dated yet. The quiet pile that sinks a plan. It is on screen from the beginning, not discovered in week nine.
+  [K15] Signal Studio — A place to think before you commit. Move things around, argue with yourself, and only then put a date on it.
+  [K16] Signal Studio — Ticking the wrong thing costs you nothing. The card stays where it is, struck through, until you are sure. The board does not move under your hand.
+
+L — Asked and answered
+  [L01] Signal Studio, asked and answered — asked “We already have a group chat” A chat is a record of talking. A plan is a record of deciding. You need both, and only one of them can tell you what is due today.
+  [L02] Signal Studio, asked and answered — asked “Could we not just use a spreadsheet?” A spreadsheet cannot tell you it is worried. It will hold the rows. It will not notice that nothing has moved on one of them for fifteen days.
+  [L03] Signal Studio, asked and answered — asked “It's all in a document” A document is a photograph of a plan. True the day it was written. The version everyone has open is never the version that is true.
+  [L04] Signal Studio, asked and answered — asked “The calendar has the dates in it” A date is not a job. The calendar knows the tasting is on the first. It does not know the dietary list has to go in before it.
+  [L05] Signal Studio, asked and answered — asked “We tried one of the big tools” Most of them are built for software teams. You are not running a software team. You are running a Saturday, a season, or a year, with a handful of people.
+  [L06] Signal Studio, asked and answered — asked “I keep it all in my head” You do, and that is the problem. It works until you are ill, on holiday, or handing it over. Then it turns out the plan was never written down.
+  [L07] Signal Studio, asked and answered — asked “We have a meeting for that” Meetings happen because visibility is poor. When everybody can see the same plan, the meeting gets shorter or stops happening.
+  [L08] Signal Studio, asked and answered — asked “We're too small for software” Small is exactly who this is for. Two people and a date. Not a department, not a process, not a rollout — just the thing you are actually doing.
+
+M — Stories
+  [M01] Signal Studio — Agreed and ready to start. The label this lane carries on the board.
+  [M02] Signal Studio — In motion right now. The label this lane carries on the board.
+  [M03] Signal Studio — Being checked before it goes out. The label this lane carries on the board.
+  [M04] Signal Studio — Nothing held up. The label this lane carries on the board.
+  [M05] Signal Studio — Finished and put away. The label this lane carries on the board.
+  [M06] Signal Studio — Five lanes, and every one explains itself. Written for someone who has never used a tool like this. Shows board columns, each headed by a sentence in plain English.
+  [M07] Signal Studio — One plan. Everyone sees it. Instead of: Re: Re: Re: FINAL schedule v7
+  [M08] Signal Studio — One owner, one date, per task. Instead of: final_FINAL_v9_USE_THIS_ONE.docx
+  [M09] Signal Studio — The one thing due today. Instead of: You have 47 unread messages
+  [M10] Signal Studio — One place. One story. Instead of: A group chat is not a plan
+  [M11] Signal Studio — Weddings in Ireland last year. 19,898. Most of them were planned in a group chat.
+  [M12] Signal Studio — The average spend on an Irish wedding. €36,641. Held together, mostly, in somebody's head.
+  [M13] Signal Studio — Societies at UL alone. 70+. Most run their year in a group chat.
+  [M14] Signal Studio — Days to the date everyone is working towards. 79. Timeline keeps the count so nobody has to.
+
+N — More beliefs
+  [N01] Signal Studio belief — Great software should feel obvious.
+  [N02] Signal Studio belief — People want calm, not more features.
+  [N03] Signal Studio belief — Technology should disappear into the background.
+  [N04] Signal Studio belief — The best systems reduce what you have to hold in your head.
+  [N05] Signal Studio belief — Signal over noise — in product, brand and plan.
+
+P — Link cards
+  [P01] Signal Studio link card — Catch the thought before it goes. Shows the Signal Studio notebook on a desktop screen.
+  [P02] Signal Studio link card — One owner, one date, per task. Shows the Signal Studio tasks board on a desktop screen.
+  [P03] Signal Studio link card — Everyone sees the same plan. Shows the Signal Studio timeline on a desktop screen.
+  [P04] Signal Studio link card — It opens on what today actually needs. Shows the full briefing on a desktop screen.
+  [P05] Signal Studio link card — Notes, tasks and a timeline, in one place.
+
+Q — Launch week
+  [Q01] Signal Studio launch week — 5. days until Signal Studio opens. Three tools for keeping a plan straight.
+  [Q02] Signal Studio launch week — 4. days until Signal Studio opens. Notes, so nothing is lost on the way home.
+  [Q03] Signal Studio launch week — 3. days until Signal Studio opens. Tasks, with one owner and one date on each.
+  [Q04] Signal Studio launch week — 2. days until Signal Studio opens. A timeline everybody can read the same way.
+  [Q05] Signal Studio launch week — Tomorrow. Signal Studio opens. Start with one project and put it in once.
+
+R — Proof scaffolding
+  [R01] Signal Studio specimen card — asked “[One sentence, in their own
+         words, about the thing that got easier<span class="bd" style="background:var(--ink);width:.118em;height:.118em;margin-left:.055em"></span>]” “[One sentence, in their own words, about the thing that got easier. Marked SPECIMEN — placeholder copy.
+  [R02] Signal Studio specimen card — “[The sentence you would put on a poster. Marked SPECIMEN — placeholder copy.
+  [R03] Signal Studio specimen card — [Venue Name] is a Founding Limerick Partner of Signal Studio. Marked SPECIMEN — placeholder copy.
+  [R04] Signal Studio specimen card — [Publication] on why a plan should read like a page. Marked SPECIMEN — placeholder copy.
+
+S — Home
+  [S01] Signal Studio — the home page on a desktop screen: Good morning, the date, and Today's Signal listing three things with the reason each one is on the list.
+  [S02] Signal Studio — the full briefing on a desktop screen: “Two things calling, and one quieter signal below”, then the items grouped under Now and Next, each with a Why this control.
+  [S03] Signal Studio — It opens on what today actually needs. Shows the Signal Studio home page on a desktop screen.

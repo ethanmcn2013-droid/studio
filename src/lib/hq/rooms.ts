@@ -228,6 +228,17 @@ export const HQ_ROOMS: HqRoom[] = [
     aliases: ["materials", "files"],
   },
   {
+    slug: "gallery",
+    route: "/hq/gallery",
+    name: "The Gallery",
+    group: "make",
+    kind: "library",
+    lifecycle: "active",
+    summary: "Every graphic asset the studio has produced, read from the files themselves.",
+    aliases: ["graphics", "images", "artwork", "every asset", "asset bank", "social graphics"],
+    parent: "assets",
+  },
+  {
     slug: "asset-curator",
     route: "/hq/asset-curator",
     name: "Asset curator",

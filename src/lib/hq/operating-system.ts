@@ -314,6 +314,18 @@ export const HQ_AUDIENCE_PATHS: HqAudiencePath[] = [
 
 export const HQ_ASSETS: HqAsset[] = [
   {
+    id: "gallery-room",
+    title: "The Gallery, every graphic asset in one place",
+    group: "brand",
+    audience: ["founder", "marketing"],
+    state: "ready",
+    owner: "Founder / Brand",
+    href: "/hq/gallery",
+    source: "public/brand/collateral",
+    action: "Open the gallery",
+    note: "Launch set, social system, venue kit, identity, cards, ambassador kit and retained explorations, read from the files themselves with alt text attached. Nothing to keep in step by hand.",
+  },
+  {
     id: "venue-kit-room",
     title: "The Venue Kit, APPROVED · outreach may begin",
     group: "sales",
