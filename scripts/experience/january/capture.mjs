@@ -50,7 +50,7 @@ try {
       await Promise.all(widths.slice(offset, offset + 2).map(async ([breakpoint, viewport]) => {
         if (selectedWidth && breakpoint !== selectedWidth) return;
         if (pilot && !['mobile', 'desktop'].includes(breakpoint)) return;
-        const context = await browser.newContext({ viewport, locale: 'en-GB', timezoneId: 'Europe/Dublin', colorScheme: 'light', reducedMotion: state === 'reduced-motion' ? 'reduce' : 'no-preference', serviceWorkers: 'block' });
+        const context = await browser.newContext({ viewport, hasTouch: atlas && viewport.width === 390, locale: 'en-GB', timezoneId: 'Europe/Dublin', colorScheme: 'light', reducedMotion: state === 'reduced-motion' ? 'reduce' : 'no-preference', serviceWorkers: 'block' });
         // Explicit synthetic session exercises the production guard, but is not
         // a login/password acceptance claim. Restricted cases omit the cookie.
         if (entry.route.startsWith('/hq') && state !== 'restricted') {
@@ -124,6 +124,63 @@ try {
             }
             throw new Error('Keyboard target not reachable in 180 Tab presses');
           };
+          if (atlas) {
+            const diagram = page.getByRole('region', { name: 'Diagram', exact: true }).first();
+            const geometry = await diagram.evaluate(el => {
+              const svg = el.querySelector('svg');
+              const label = svg.querySelector('.nodeLabel');
+              const bounds = svg.getBoundingClientRect();
+              return { containerWidth: el.clientWidth, contentWidth: el.scrollWidth, renderedLabelPx: parseFloat(getComputedStyle(label).fontSize) * bounds.width / svg.viewBox.baseVal.width };
+            });
+            assert.ok(geometry.renderedLabelPx >= 13.9, 'Diagram labels must not shrink below their authored 14px size');
+            assert.ok(geometry.contentWidth > geometry.containerWidth, 'This wide authored diagram should scroll inside its region');
+            await tabTo(diagram);
+            const before = await diagram.evaluate(el => el.scrollLeft);
+            await page.keyboard.press('ArrowRight');
+            await page.waitForTimeout(250);
+            assert.ok(await diagram.evaluate(el => el.scrollLeft) > before, 'ArrowRight must move the focused native scroll region');
+            interactions.push(`Readable native diagram geometry: ${JSON.stringify(geometry)}`, 'Tab reaches the labelled region with visible focus; ArrowRight scrolls horizontally');
+            if (viewport.width === 390) {
+              const box = await diagram.boundingBox();
+              const touchBefore = await diagram.evaluate(el => el.scrollLeft);
+              const cdp = await context.newCDPSession(page);
+              const x = box.x + box.width * 0.8, y = box.y + Math.min(box.height / 2, 120);
+              await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+              for (let step = 1; step <= 9; step++) {
+                await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - step * 20, y }] });
+                await page.waitForTimeout(30);
+              }
+              await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+              await page.waitForTimeout(250);
+              const touchAfter = await diagram.evaluate(el => el.scrollLeft);
+              interactions.push(`Touch gesture geometry: ${JSON.stringify({ box, touchBefore, touchAfter })}`);
+              assert.ok(touchAfter > touchBefore, 'A native touch swipe must scroll the contained diagram');
+              await cdp.detach();
+              interactions.push('Native Chromium touch swipe scrolls the diagram without page overflow');
+            }
+          }
+          if (entry.route === '/hq/blueprint' && state !== 'restricted') {
+            const camera = page.getByRole('group', { name: 'Zoom controls' });
+            const clear = await camera.evaluate(el => {
+              const box = el.getBoundingClientRect();
+              const notice = document.querySelector('.signal-devbanner')?.getBoundingClientRect();
+              return { noticeVisible: Boolean(notice), overlapsNotice: Boolean(notice && box.left < notice.right && box.right > notice.left && box.top < notice.bottom && box.bottom > notice.top), buttonsReachable: [...el.querySelectorAll('button')].every(button => { const r = button.getBoundingClientRect(); return button.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)); }) };
+            });
+            assert.equal(clear.noticeVisible, true, 'Notice must remain visible during the camera check');
+            assert.equal(clear.overlapsNotice, false, 'Preview notice must not overlap the camera');
+            assert.equal(clear.buttonsReachable, true, 'Every camera button must receive pointer input');
+            interactions.push('Preview notice stays visible; all camera buttons are unobstructed');
+          }
+          if (entry.route === '/hq/entitlements') {
+            const expiry = page.getByRole('spinbutton', { name: 'Expires in (days)' });
+            const fits = await expiry.evaluate(input => {
+              const r = input.getBoundingClientRect(), label = input.closest('label').getBoundingClientRect(), form = input.closest('form').getBoundingClientRect();
+              return { inputWidth: r.width, columnWidth: label.width, fitsColumn: r.left >= label.left - 1 && r.right <= label.right + 1, fitsForm: r.left >= form.left && r.right <= form.right };
+            });
+            assert.equal(fits.fitsColumn, true, 'Expiry input must fit its own grid column');
+            assert.equal(fits.fitsForm, true, 'Expiry input must fit inside the form');
+            interactions.push(`Expiry field geometry: ${JSON.stringify(fits)}`);
+          }
           if (entry.id === 'studio.surface.hq-shell-navigation') {
             const open = page.getByRole('button', { name: 'Open navigation', exact: true });
             if (await open.isVisible()) {
@@ -156,6 +213,13 @@ try {
               assert.equal(await page.getByRole('button', { name: 'Reset zoom' }).innerText(), '100%');
               interactions.push('Tab + Enter zoom in; keyboard 0 restores camera');
             } else if (entry.route === '/hq/entitlements') {
+              const expiry = page.getByRole('spinbutton', { name: 'Expires in (days)' });
+              await tabTo(expiry);
+              await page.keyboard.press('ArrowUp');
+              assert.equal(await expiry.inputValue(), '366');
+              await page.keyboard.press('ArrowDown');
+              assert.equal(await expiry.inputValue(), '365');
+              interactions.push('Keyboard reaches the expiry field and changes its native number value; no form submission');
               await tabTo(page.getByRole('link', { name: 'Roster', exact: true }));
               await page.keyboard.press('Enter');
               await page.waitForURL('**/hq/entitlements?tab=roster');
@@ -176,11 +240,6 @@ try {
             }
           }
           if (state === 'disabled') {
-            const notice = page.getByRole('button', { name: 'Hide development notice', exact: true });
-            if (await notice.isVisible()) {
-              await notice.click();
-              interactions.push('Dismissed the review-mode development notice using its actual Hide control before camera interaction');
-            }
             const button = page.getByRole('button', { name: 'Zoom out', exact: true });
             for (let index = 0; index < 5; index++) await button.click();
             assert.equal(await button.isDisabled(), true);
