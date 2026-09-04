@@ -50,7 +50,7 @@
   margin-top: 10px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 
 /* ── Lens switcher ──────────────────────────────────────────────────────── */
@@ -124,7 +124,7 @@ a.atlas-mc-stat:hover {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   display: flex;
   align-items: center;
   gap: 7px;
@@ -138,14 +138,14 @@ a.atlas-mc-stat:hover {
 }
 .atlas-mc-note {
   font-size: 12px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   line-height: 1.4;
 }
 .atlas-mc-foot {
   padding: 10px 18px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   grid-column: 1 / -1;
 }
 
@@ -268,7 +268,7 @@ a.atlas-mc-stat:hover {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   display: flex;
   align-items: center;
   gap: 6px;
@@ -283,14 +283,14 @@ a.atlas-mc-stat:hover {
 .atlas-node-sub {
   font-size: 12px;
   line-height: 1.4;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-node-health {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-node-mark {
   font-weight: 700;
@@ -425,7 +425,7 @@ a.atlas-mc-stat:hover {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-panel-name {
   margin: 8px 0 0;
@@ -454,7 +454,7 @@ a.atlas-mc-stat:hover {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   margin-bottom: 10px;
 }
 .atlas-panel-p {
@@ -469,7 +469,7 @@ a.atlas-mc-stat:hover {
 }
 .atlas-fact-label {
   font-size: 11px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -534,11 +534,11 @@ a.atlas-mc-stat:hover {
 }
 .atlas-chip--muted {
   cursor: default;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-chip--muted:hover {
   border-color: var(--hairline);
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-links {
   display: flex;
@@ -564,7 +564,7 @@ a.atlas-mc-stat:hover {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 
 /* Health chip (panel header) */
@@ -617,7 +617,7 @@ a.atlas-mc-stat:hover {
   outline: none;
 }
 .atlas-search-input::placeholder {
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 .atlas-search-list {
   list-style: none;
@@ -644,12 +644,12 @@ a.atlas-mc-stat:hover {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   margin-left: auto;
 }
 .atlas-search-empty {
   padding: 24px 18px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   font-size: 0.9375rem;
 }
 .atlas-search-foot {
@@ -657,7 +657,7 @@ a.atlas-mc-stat:hover {
   padding: 8px 14px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   display: flex;
   gap: 14px;
 }
@@ -691,7 +691,7 @@ a.atlas-mc-stat:hover {
   padding: 7px 12px;
   font: inherit;
   font-size: 13px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   cursor: pointer;
   transition: border-color var(--motion-fast) var(--ease-out);
 }
@@ -709,7 +709,7 @@ a.atlas-mc-stat:hover {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
 }
 
 /* ── Investor snapshot ──────────────────────────────────────────────────── */
@@ -760,12 +760,12 @@ a.atlas-mc-stat:hover {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   margin-top: 6px;
 }
 .atlas-investor-fig-note {
   font-size: 12px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   margin-top: 4px;
   line-height: 1.4;
 }
@@ -813,7 +813,7 @@ a.atlas-mc-stat:hover {
 .atlas-placeholders {
   margin-top: 20px;
   font-size: 12px;
-  color: var(--ink-quiet);
+  color: var(--hqx-muted-ink, var(--ink-quiet));
   line-height: 1.6;
 }
 .atlas-placeholders summary {
@@ -856,3 +856,4 @@ a.atlas-mc-stat:hover {
     padding: 0;
   }
 }
+

@@ -1,0 +1,80 @@
+studio.page.hq empty tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq empty mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq empty desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq empty wide: pass  axe=0 overflow=0 console=0
+studio.page.hq populated mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq populated tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq populated desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq populated wide: pass  axe=0 overflow=0 console=0
+studio.page.hq partial-failure mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq partial-failure tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq partial-failure desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq partial-failure wide: pass  axe=0 overflow=0 console=0
+studio.page.hq error tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq error mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq error wide: pass  axe=0 overflow=0 console=0
+studio.page.hq error desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq restricted mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq restricted tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq restricted desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq restricted wide: pass  axe=0 overflow=0 console=0
+studio.page.hq dense tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq dense mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq dense desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq dense wide: pass  axe=0 overflow=0 console=0
+studio.page.hq long-content tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq long-content mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq long-content desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq long-content wide: pass  axe=0 overflow=0 console=0
+studio.page.hq reduced-motion mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq reduced-motion tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq reduced-motion wide: pass  axe=0 overflow=0 console=0
+studio.page.hq reduced-motion desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq keyboard-only mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq keyboard-only tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq keyboard-only wide: pass  axe=0 overflow=0 console=0
+studio.page.hq keyboard-only desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint default tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint default mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint default desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint default wide: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint empty tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint empty mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint empty desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint empty wide: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint partial-failure mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint partial-failure tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint partial-failure desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint partial-failure wide: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint error mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint error tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint error wide: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint error desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint restricted mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint restricted tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint restricted desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint restricted wide: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint disabled mobile: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint disabled tablet: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint disabled desktop: pass  axe=0 overflow=0 console=0
+studio.page.hq-blueprint disabled wide: pass  axe=0 overflow=0 console=0
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"scenario":"dense","synthetic":true,"providerCalls":0,"expectedCash":2500,"verifiedReceipts":2}
+
+
+3221225477 !== 0
+
+    at seed (file:///C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/scripts/experience/january/capture.mjs:34:10)
+    at file:///C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness/scripts/experience/january/capture.mjs:45:23 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3221225477,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
