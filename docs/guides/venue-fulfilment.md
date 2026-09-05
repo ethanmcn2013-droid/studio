@@ -139,8 +139,12 @@ Venue codes. Shared redeem/reconcile cannot create a second grant for `vi-*`
 issuance batches.
 
 Agent-owned evidence includes the synthetic three-store fixture and failure
-injection, claim replay and withdrawal race. Composition with Plato's committed
-Tasks action fixture remains open at this issuance milestone. Actual
+injection, claim replay and withdrawal race. The original issuance milestone left
+Tasks action composition open. The subsequent
+[paired rehearsal](../account/VENUE_USAGE_REHEARSAL.md) passes the actual issue,
+claim, deliberate action, authenticated usage/HQ, account erasure and sibling
+withdrawal path for standard, Founding and explicit pilot terms after the S5
+coverage and acknowledgement fixes. Independent fix review remains separate. Actual
 Clerk sign-in, real payment inputs, deployed service configuration, production
 schema receipt, manual delivery and human comprehension remain unverified until
 observed in their separately authorized rehearsal. Payment provider inputs are
@@ -154,5 +158,9 @@ Test registration for the lead (package files are outside this lane):
   three-store tests. Run `scripts/check-venue-term-parity.mjs` with `APP_REPO_PATH`.
 - App: `src/server/venue-issuance/canonical.test.ts` and `store.test.ts`; use the
   existing `src/test/register-server-only.mjs` hook for the latter.
+- App composition: `scripts/sponsored-use/run-venue-rehearsal.mjs --studio-root`
+  with the explicit paired Studio checkout; this includes
+  `src/server/venue-issuance/composition.test.cjs`. Keep the adjacent
+  `src/server/venue-issuance/erasure.test.ts` suite registered.
 - The child-process fixture uses owned local SQLite files and sanitized private
   IPC. It loads no secret environment file and calls no provider.
