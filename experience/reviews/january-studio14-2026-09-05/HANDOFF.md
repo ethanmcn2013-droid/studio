@@ -21,6 +21,8 @@ The manifest binds each HTTP-served Next build ID, source, supplemental inputs, 
 | Gate | Result |
 | --- | --- |
 | Fresh full browser matrix | 328/328 |
+| Official scripted coverage attestor | 14/14 pages complete |
+| Registry validation | One open AtlasFilter component coverage gap; independently owned |
 | Registered paired Studio test command | 535/535; zero skipped |
 | Extension receipt and actual SQLite fixture tests | 7/7 |
 | Shared chrome 320/390/640/1280 | 8/8 |
