@@ -19,21 +19,32 @@ Current programme estimate: **approximately 60% complete**, including verificati
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Latest complete Linux App checkpoint: `3be4ea96`, draft PR171. All three
-workflows pass: CI33961627091, Verify33961627087 and Design33961627079. Tested
-mergeb5a6cfa8 has exactly candidate tree323625ba; all logs, the132-case built
-artifact and source comparisons are preserved at4a70d3f4. This covers custody/
-focus8ae, not later Event or pending-removal changes.
+Latest complete Linux App checkpoint: `0c93a5cb`, draft PR171. All three
+workflows pass: CI33992802862, Verify33992802886 and Design33992802885. Tested
+mergee893094b has exactly candidate tree2419ad23. Complete logs, the132-case
+built artifact and290 route/33 Floor/25 calendar source comparisons are preserved
+in the owning January sponsored-cohort-clock evidence packet. This checkpoint
+includes reviewed Event80f, Drive1ac and the test-only6d49 clock correction.
 
-Current published App candidate `a8c225c7` composes Event80f and Drive1ac atcbf40.
 The pending-removal notice passes26 SQLite/SSR,5 independent controls and46
 saved component cases/52 screenshots. Principal99-test UI confirmation passes;
 its first native process failure remains retained. Event's36 tests,3 clock
 controls,66 migration tests, disposable fresh/no-op through0031, full type/lint,
 28 tenant/Stripe checks and ambient ratchet pass on the composition. Six archives
 preserve167 Event author/reviewer files and both original test defects. Event36+3
-is registered in the mandatory gate. Fresh Linux33991689111/33991689081/33991689089
-is running. Provider, human/council and receiving acceptance remain open.
+is registered in the mandatory gate.
+
+Precedinga8c passed Design33991689089 but failed CI33991689111 and Verify33991689081
+at the paired sponsored-use cohort fixture. Independent controls reproduce the
+evening-only failure on botha8c and earlier3be: its mutable maintenance clock could
+date the third synthetic grant after the reporting day. Runtime privacy suppression
+was correct. Correction6d49 anchors the fixture's terms to its initial clock and
+requires the actual eligible cohort; the original nine checks now run at four
+explicit clocks, including January2027. Independent positive, empty-output,
+wrong-exit and prior-source negative controls pass. All failed runs remain in the
+owning Event evidence archive. No runtime privacy threshold changed. Current0c
+Linux success closes that candidate's mechanical gates, not provider, human/council,
+RC3, receiving or release acceptance.
 
 The final normal build `wnk1OREKC5EKuma6I3VoO` passes all132 built cases. Six
 separate browser commands pass3 React,68 route,80 geometry/contrast,16 calendar,
@@ -64,6 +75,9 @@ widths. Nine surfaces were adopted at2e263f55. Published9fa4e41e passes CI339586
 and Verify33958617231; Design33958617226 rejects the old extension build inputs.
 Studio41384571 passes CI33962227361 and Verify33962227364; Design33962227359
 fails the January source-freshness gate. Complete logs are preserved at618ef51b.
+Current9f629e45 likewise passes CI33991893477 and Verify33991893484; Design33991893534
+fails the unchanged January source-freshness gate. Its complete three-workflow
+logs are preserved as linux-9f629e45 in the owning revocation-truth packet.
 The accepted permission-notice update now changes the HQ product digest to
 `e76d4b7ccdf2ab9e0de9e37d3e745fe89abb382da2ff099cad7926512524602c`.
 No captures are claimed at that new source. Prior188/20 evidence remains dated
@@ -84,8 +98,9 @@ The original27af twelve-control Drive investigation remains preserved. The
 named-permission notice is repaired in1ac; live Google labels remain independent.
 Personal token disconnect still needs durable local request and bounded provider
 response facts.0032_drive_token_revocation_receipts.sql is allocated to the Drive
-writer after inspecting64 worktrees and refreshedorigin/maina709. Its implementation
-starts fromcbf40, separate from the Event export lane. No old-token retry worker
+writer after inspecting64 worktrees and refreshedorigin/maina709. Runtimef1d7ce02
+is committed in that isolated lane and under independent review; it is not yet
+integrated. Event export and download-failure recovery remain a separate writer. No old-token retry worker
 is authorized. A receipt alone does not serialize overlapping Google consent and
 revocation or prove immediate provider effects.
 

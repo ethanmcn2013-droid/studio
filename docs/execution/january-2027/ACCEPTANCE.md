@@ -150,3 +150,30 @@ source digest toe76d4b7c. Earlier188/20 captures stay dated;328 is unrenewed.
 Atlas remains16 cases/36 images held, not36 cases. No Atlas server, component,
 prefetch or redirect workaround is run. Earlier current-wording is preserved in
 Git618ef51b. A1–A6, RC3, receiving, provider and human/council acceptance stay open.
+
+
+## Exact App Linux checkpoint — candidate0c93
+
+This supersedes the pending Linux status in the a8c checkpoint above. a8c Design
+passed but CI/Verify both failed the paired sponsored-use cohort fixture. The
+independent clock investigation reproduced the same evening-only defect on prior3be
+and confirmed correct runtime suppression. Fixture-only6d49 anchors synthetic
+grant terms to the initial clock, asserts the actual eligible cohort and executes
+the original nine checks at four explicit clocks. Independent old-source failure,
+empty-output and wrong-exit controls verify the correction. No privacy policy or
+runtime change is included.
+
+Current0c93a5cb passes CI33992802862, Verify33992802886 and Design33992802885.
+Tested mergee893094b equals candidate tree2419ad23. All logs and the complete
+132-case uploaded artifact are preserved;290 route,33 Floor and25 calendar source
+inputs match exact Git bytes after documented newline normalization. Earlier failed
+runs remain unchanged. This closes these mechanical candidate checks only.
+
+Studio9f629e45 passes CI33991893477 and Verify33991893484; Design33991893534 fails
+current-source freshness. Full logs are preserved; no render/Atlas workaround is
+performed. HQ sourcee76d4b7c and dated188/20, unrenewed328 evidence limits remain.
+
+Drive token-receipt runtimef1d7ce02 is authored, not accepted or integrated; independent
+lifecycle review is active. Event export/download recovery is the parallel next
+slice. Both receiving branches remain unchanged. A1–A6, RC3, provider,
+human/council and release acceptance stay open.
