@@ -1,19 +1,31 @@
 /* Test-only loader executes TS service/route code with explicit framework boundaries. */
 const fs=require("node:fs"),path=require("node:path"),{tmpdir}=require("node:os");
 const {pathToFileURL}=require("node:url"),{createRequire}=require("node:module");
-async function studioUsageFixture(root=path.resolve(__dirname,"../../../..")){
+async function studioUsageFixture(root=path.resolve(__dirname,"../../../.."),options={}){
  const dep=createRequire(root+"/package.json"),ts=dep("typescript");
  const {createClient}=dep("@libsql/client"),{drizzle}=dep("drizzle-orm/libsql");
  const directory=fs.mkdtempSync(path.join(tmpdir(),"studio-usage-"));
  const client=createClient({url:pathToFileURL(path.join(directory,"usage.db")).href});
  await client.execute("PRAGMA journal_mode=WAL");
- for(const file of fs.readdirSync(root+"/drizzle-entitlements").filter(f=>/^\d{4}_.*\.sql$/.test(f)).sort())
+ const files=options.withVenue ? ["0000_init.sql"] : fs.readdirSync(root+"/drizzle-entitlements").filter(f=>/^\d{4}_.*\.sql$/.test(f)).sort();
+ for(const file of files)
   await client.executeMultiple(fs.readFileSync(root+"/drizzle-entitlements/"+file,"utf8"));
  // Existing Venue terms migrated outside the frozen baseline; fixture only.
  for(const ddl of ["allotment_mode text NOT NULL DEFAULT 'limited'","annual_wedding_count integer",
   "fair_use_ceiling integer","founding_number integer","founding_number_assigned_at integer"])
   await client.execute("ALTER TABLE sponsors ADD COLUMN "+ddl);
  await client.execute("ALTER TABLE entitlements ADD COLUMN wedding_date integer");
+ let localClient,localDatabase,localSchema;
+ if(options.withVenue){
+  // Composition uses the owning additive runners and their real hash ledgers.
+  const venue=await import(pathToFileURL(root+"/scripts/migrate-venue-fulfilment.mjs").href);
+  const usage=await import(pathToFileURL(root+"/scripts/migrate-usage-delivery.mjs").href);
+  await venue.applyVenueFulfilmentMigration(client);
+  await usage.applyUsageDeliveryMigration(client);
+  localClient=createClient({url:pathToFileURL(path.join(directory,"studio-local.db")).href});
+  await localClient.execute("PRAGMA journal_mode=WAL");
+  await localClient.executeMultiple(fs.readFileSync(root+"/drizzle/0000_init.sql","utf8"));
+ }
  let database; const mods=new Map(),state={hqToken:"",send:async()=>{throw Error("Real network forbidden");}};
  function load(relative){
   const file=[relative,relative+".ts",relative+".tsx",relative+"/index.ts"].find(f=>fs.existsSync(root+"/"+f)&&fs.statSync(root+"/"+f).isFile())??relative;
@@ -35,9 +47,11 @@ async function studioUsageFixture(root=path.resolve(__dirname,"../../../..")){
   return mod.exports;
  }
  const schema=load("src/lib/entitlements-db/schema.ts");database=drizzle(client,{schema});
- await database.insert(schema.sponsors).values({id:"synthetic-sponsor",slug:"synthetic",name:"Synthetic venue",contactEmail:"fixture@example.test",
+ if(options.withVenue){localSchema=load("src/lib/db/schema.ts");localDatabase=drizzle(localClient,{schema:localSchema});}
+ if(options.seedSponsor!==false)await database.insert(schema.sponsors).values({id:"synthetic-sponsor",slug:"synthetic",name:"Synthetic venue",contactEmail:"fixture@example.test",
   venuePlan:"paid",paidAt:Date.now(),codeAllotment:20,codesIssued:0});
- return {database,client,schema,state,load,close:()=>{
+ return {database,client,schema,state,load,shared:database,studio:localDatabase,studioClient:localClient,localSchema,close:()=>{
+  localClient?.close();
   client.close();try{fs.rmSync(directory,{recursive:true,force:true});}catch(e){if(!["EPERM","EBUSY"].includes(e.code))throw e;}
  }};
 }
