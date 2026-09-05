@@ -50,7 +50,9 @@ Commands below run in the owning App/Studio checkout with isolated data and decl
 | Code expired/used/wrong actor | No duplicate entitlement/project; safe retry and failure language. | App/Studio commercial; comp/redeem tests plus full fixture rehearsal | Existing-project ca958 scope/replay independently passes47 checks. Actual composed claim creates18 starter Tasks and zero usage; one deliberate action creates one event. Erased consumed codes retain a non-identifying terminal receipt and unused sibling withdrawal remains possible (S2-01 independently closed at b96). Historical missing receipts remain explicit operator conflicts. Receiving UI/CI acceptance remains open. |
 | Drive scope and grants | Only drive.file; stored project folder only; named users; no root or bearer-guest permissions. | App Drive; pnpm test:project-drive | 50f16575 Linux 11+20+332 checks pass; two-account in-product provider matrix open. |
 | Drive secret custody | Ephemeral access token; authenticated encrypted refresh/session custody; no export/log/UI leaks. | App security; crypto/custody/Sentry and full Drive suite | 50f16575 checks pass; production key rotation/restore receipt open. |
-| Live access and failed revoke | UI distinguishes current permission read, saved membership and pending revocation; no false success. | Drive owner; two-account remove/retry/outage interaction | Scoped UI security tests pass. Provider propagation/retry proof open. |
+| Live access and failed permission revoke | Live permission truth and durable pending removal remain visible together after reload. | Drive owner; actual service/SQLite, fresh DTO and remounted UI | Separate27af investigation reproduces pending omission despite truthful live Can edit; existing exact retry204/404 clears the receipt. Migration-free DTO/UI repair active. Real provider propagation remains open. |
+| Personal credential disconnect | Durable requested/confirmed state distinguishes local retirement from Google completion across reload, crash, retry and reconnect. | Drive owner + principal migration integrator; exact-generation receipt and lifecycle controls | Actual27af service/SQLite probes produce identical fresh DTOs for success, failure and in-flight revoke; no-current repeat can report confirmation without retry. Requires separate durable receipt. No schema or retry automation is implemented for this finding. |
+| Drive consent and cancel focus | Initial custody information precedes connection; cancel returns keyboard focus without changing permissions. | Drive UI owner; actual components plus independent review | Runtime8ae composed in3be:76 component +14 supplemental checks, independent35+4 and principal82 UI tests/full type/lint/language pass.624-entry author and21-file independent archives preserved. Fresh Linux/receiving/provider/human acceptance remains separate. |
 | Upload interruption and duplicate finalize | Same claim/session/object identity; expected marker and parent verified; ambiguous result never silently native-falls-back. | Drive owner; upload machine/backend tests, 50 MB fixture | Local/CI tests pass; real 50 MB/quota/session lifecycle open. |
 | Closed-tab upload | Rediscover same claim, safely adopt confirmed completion; incomplete result stays recoverable without guessing bytes or duplicating. | Drive owner; non-minting probe/adoption work and browser | 3caf6356 integrated at f5bc6f25: completed-file adoption and scoped UI pass 81 tests; independent 39-case security review passes. Incomplete closed-tab bytes cannot resume; live provider acceptance remains open. |
 | Owner change/leave/erasure | Explicit future ownership; old files preserved; pending operations block unsafe departure and use same journal. | Drive/security; handover/deletion matrix | Backend + UI local tests pass; real handover/outage/disconnect/erasure open. |
@@ -126,3 +128,14 @@ These outcomes supersede the pending-build/render/Linux portions of the precedin
 dated checkpoint. Scope remains internal; RC-3, receiving, provider and human/council
 acceptance stay open. Event facts/evaluation and Drive custody/focus follow-ups are
 separate active milestones, not part of this accepted source.
+
+
+## Revocation qualification — current internal work
+
+The Drive reload finding is validated local service behavior and has two owners/
+dependencies above. It supersedes any broader inference from earlier scoped UI
+passes. Updating the owning HQ feature/risk to state it changes Studio's product
+digest to781bd312; the earlier188/20 captures remain dated evidence and are not
+current-source proof. No Atlas/component server or redirect workaround is run to
+renew them. App3be's Drive patch is a separate scoped milestone with fresh Linux
+verification in progress. Eventa59 is under independent review, not integrated.

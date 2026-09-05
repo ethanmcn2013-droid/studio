@@ -21,6 +21,10 @@ Google documents seven-day refresh-token expiry for an external OAuth applicatio
 
 ## Owners and next evidence
 
+Validated internal finding, 2026-09-05: actual Drive services and disposable SQLite at27af50c0 produce the same fresh disconnected status after successful, failed and still-in-flight token revocation. Local credential retirement is real; Google completion is not durably recorded. A repeated no-current disconnect can report confirmation without retrying the earlier failure. This is a verified local state/recovery gap, not an observed production exposure. Named-user permission deletion has its own durable pending receipt, but that pending state is not projected after reload.
+
+The Drive implementation owner is repairing the migration-free permission notice first. Personal disconnect needs exact credential-generation request/completion facts, preserved uncertainty and retry/reconnect lineage safeguards. Ordinary consent rotation also retires credentials, so historical retired rows must not be backfilled as confirmed or pending revocations. Automatic retries of old same-account credentials could invalidate newer consent; none are authorized by this repair recommendation. The principal owns migration sequencing and acceptance. These findings qualify the earlier code-gate passes; they do not imply missing cryptography or a need to rebuild the existing grant workers.
+
 - Principal integrator: exact-candidate custody, deletion, negative authorization and recovery evidence; keep production/worker flags off.
 - Founder/provider configuration: identify the existing isolated Google OAuth/Clerk test target, then complete the in-product two-account lifecycle using disposable files. No secret values in handoffs.
 - Notes owner: separately assess calendar-token encryption and a safe versioned migration/rollback.
