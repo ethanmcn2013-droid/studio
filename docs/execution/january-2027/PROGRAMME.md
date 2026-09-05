@@ -17,6 +17,21 @@ Current programme estimate: **approximately 60% complete**, including verificati
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
+Current follow-up candidate: App `feat/january-final-journeys` at `c64b8cb3`.
+The preceding built runtime `e2e4a0c8` passes 132 critical browser cases, 68
+actual-route states, 27 Notes browser scenarios, the 26-case recipient gate and
+ten-checkpoint persisted story, full Drive suite and 65 DB-contract checks.
+Its original artifacts and failures are preserved in App
+`experience/reviews/january-recipient-2026-09-05/`. Manual inspection nevertheless
+found dark-mode Floor and mobile project-label contrast defects; their owner is
+repairing the owning styles and generator. The known-name greeting correction at
+`c64b8cb3` passes six source-fixture tests, typecheck and focused lint; final
+combined rendering remains pending. The targeted independent RC-3 review was
+stopped by an automatic safety check, with no verdict, and is not being retried
+or rerouted. Independent and receiving acceptance remain open. Commercial
+offer/copy and support instructions are being aligned in separately owned App
+and Studio worktrees. None of these follow-ups changes the programme percentage.
+
 ## Accepted allocations
 
 | Window | Work / exit |
@@ -66,7 +81,7 @@ One principal integrator owns shared project identity, membership, schema, navig
 - Free .edu automatic grants versus paid verified Student policy: new automatic grants and email-only issuance disabled in App fc40f4ef; historical grants remain. New verified Student checkout remains unavailable until its actual policy is enforced.
 
 - Event offer versus access enforcement: delegated owner/funding policy recorded; App a10432dd refuses new Event sessions while existing settlement/refund recovery stays active. Full public/private access closure and historical designation remain assigned work.
-- Sponsored-use readiness: corrected the earlier claim that migration was the sole remaining step. The formerfe4 receiving baseline had a no-op sink. PR169 now integrates durable delivery and the independently verified actual three-store reporting composition into receiving77d; its receiving checks all pass. Studio's paired consumer remains a candidate and capture defaults off. This is not a deployed capability.
+- Sponsored-use readiness: corrected the earlier claim that migration was the sole remaining step. The formerfe4 receiving baseline had a no-op sink. PR169 now integrates durable delivery and the independently verified actual three-store reporting composition into receiving77d; its receiving checks all pass. Studio's paired consumer is integrated in receiving4ed through PR176; capture defaults off. This is not a deployed capability.
 - Template and redemption partial writes: 540933c0 request-bound application and b2e6f6fa atomic new comp fulfilment preserve retry identity and prevent partial starter/capacity writes. Historical partial grants require reconciliation.
 - Recovery evidence: a full App populated restore exposed a stale ongoing backfill count. 3d8a36e1 retains every execution proof and immutable migration checksum while restricting continuous proofs to durable invariants.
 
