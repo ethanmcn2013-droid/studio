@@ -8,18 +8,21 @@ import * as studioSchema from '../../../src/lib/db/schema';
 import { recordVenuePayment } from '../../../src/lib/entitlements-db/venue-payment';
 import { matchesCurrentVenuePayment } from '../../../src/lib/entitlements-db/venue-payment-proof';
 import { localDatabase } from './environment.mjs';
+import { applyVenueFulfilmentMigration } from '../../migrate-venue-fulfilment.mjs';
+import { applyUsageDeliveryMigration } from '../../migrate-usage-delivery.mjs';
 
 const scenarios = ['empty', 'legacy', 'populated', 'dense', 'partial-failure', 'error'] as const;
 type Scenario = typeof scenarios[number];
 const quote = (value: string) => `"${value.replaceAll('"', '""')}"`;
 
 async function reset(client: Client, schema: typeof sharedSchema | typeof studioSchema) {
-  // Same real schema columns as the earlier HQ truth fixture. This is a read-
-  // surface fixture, not evidence for migrations, constraints or provider writes.
+  // Baseline tables retain the real-column read fixture. The two new additive
+  // domains below use their owning migrations, not a simulated ledger.
   for (const value of Object.values(schema)) {
     let config;
     try { config = getTableConfig(value as Parameters<typeof getTableConfig>[0]); } catch { continue; }
     await client.execute(`DROP TABLE IF EXISTS ${quote(config.name)}`);
+    if (['venue_sponsor_mirrors', 'venue_fulfilment_requests'].includes(config.name)) continue;
     await client.execute(`CREATE TABLE ${quote(config.name)} (${config.columns.map(c => `${quote(c.name)} ${c.getSQLType()}${c.primary ? ' PRIMARY KEY' : ''}`).join(',')})`);
   }
 }
@@ -36,8 +39,12 @@ export async function seedFixture(scenario: Scenario) {
   const sharedClient = createClient({ url: localDatabase('shared') });
   const studioClient = createClient({ url: localDatabase('studio') });
   try {
+    for (const table of ['usage_subject_workspaces', 'usage_erasure_tombstones', 'signal_additive_migrations']) {
+      await sharedClient.execute(`DROP TABLE IF EXISTS ${quote(table)}`);
+    }
     await reset(sharedClient, sharedSchema);
     await reset(studioClient, studioSchema);
+    const migrations = [await applyVenueFulfilmentMigration(sharedClient), await applyUsageDeliveryMigration(sharedClient)];
     if (scenario !== 'empty') {
       const now = Date.now();
       const count = scenario === 'dense' ? 36 : 3;
@@ -85,7 +92,7 @@ export async function seedFixture(scenario: Scenario) {
       await studioClient.execute('DROP TABLE prospects');
       await sharedClient.execute('DROP TABLE entitlements');
     }
-    return { scenario, synthetic: true, providerCalls: 0, expectedCash: ['partial-failure', 'error'].includes(scenario) ? null : expectedCash, verifiedReceipts: verified.length };
+    return { scenario, synthetic: true, providerCalls: 0, migrations, expectedCash: ['partial-failure', 'error'].includes(scenario) ? null : expectedCash, verifiedReceipts: verified.length };
   } finally { sharedClient.close(); studioClient.close(); }
 }
 
