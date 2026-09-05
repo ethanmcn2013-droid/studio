@@ -1,17 +1,22 @@
 import type { EmailDirection } from "../directions";
 import type { VenueOutreachData } from "../fixtures";
+import type { TextDoc } from "../plaintext";
 import { EmailShell } from "../components/shell";
 import { BodyText } from "../components/text";
 import { VideoPoster } from "../components/imagery";
 import { PrivacyBoundary } from "../components/panels";
 import { FounderSignature } from "../components/signature";
 
-/**
- * outreach.venue-first · Founder mode.
- * A letter, not a campaign: personal opening, the film as an enclosure,
- * one ask, a real signature. No navigation, no feature grid, no button.
- * The email is property-specific even though the film is shared.
- */
+// Held January specimen. The exact plain-text send draft and two-touch cadence
+// live in docs/strategy/VENUE_OUTREACH_SEQUENCE.md; rendering does not send.
+const introduction = "I'm Ethan, the founder of Signal Studio.";
+const offer = (venueName: string) => `With Venue Edition, ${venueName} can give booked couples one place for their private notes, tasks and wedding timeline, with your venue's name on their workspace.`;
+const handoff = "Your venue pays annually. We prepare the access codes and support the couples; your team passes on the invitation. The couple does not pay for the sponsored access.";
+const terms = "Venue Edition is €1,500 a year, prepaid and VAT-inclusive. A qualifying Founding 25 agreement is €1,000 a year on the same basis, held on continuous renewal without lapse.";
+const privacy = "Your venue receives no private notes or task lists from the couple's workspace.";
+const nextStep = (venueName: string) => `Would a twenty-minute conversation be useful for ${venueName}?`;
+const footer = "One personal note and, if I hear nothing, one follow-up ten days later. If you would rather not hear from Signal Studio again, reply and I'll stop.";
+
 export function VenueOutreachEmail({
   direction,
   data,
@@ -22,75 +27,52 @@ export function VenueOutreachEmail({
   return (
     <EmailShell
       direction={direction}
-      preheader={`For ${data.venueName}: the months of planning before the day.`}
+      preheader={`For ${data.venueName}: a place for your couples to plan.`}
       dateISO={data.metaDateISO}
       postalContact={false}
-      footerNote={`Ethan wrote this to ${data.venueName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`}
+      footerNote={footer}
     >
       <BodyText direction={direction}>Hello {data.contactFirstName},</BodyText>
-      <BodyText direction={direction}>
-        Couples choose {data.venueName} for how considered the day itself
-        feels. The months before it rarely feel that way. Their planning
-        lives in group chats, spreadsheets and late-night lists, and none of
-        it reflects the venue they chose.
-      </BodyText>
-      <BodyText direction={direction}>
-        Signal Studio gives each of your couples one clear place to plan:
-        their tasks, their timeline, their private notes, and a short morning
-        briefing that points at the few things needing attention. Your name
-        sits quietly at the top of their workspace. There is nothing for your
-        team to set up or run.
-      </BodyText>
-      <PrivacyBoundary direction={direction}>
-        The couple’s planning stays theirs. {data.venueName} never sees their
-        notes or their lists. We would not build it any other way.
-      </PrivacyBoundary>
-      <BodyText direction={direction}>
-        Sixty seconds on what the planning year looks like when{" "}
-        {data.venueName} stands behind it.
-      </BodyText>
+      <BodyText direction={direction}>{introduction}</BodyText>
+      <BodyText direction={direction}>{offer(data.venueName)}</BodyText>
+      <BodyText direction={direction}>{handoff}</BodyText>
+      <BodyText direction={direction}>{terms}</BodyText>
+      <PrivacyBoundary direction={direction}>{privacy}</PrivacyBoundary>
+      <BodyText direction={direction}>Here is the short film.</BodyText>
       <VideoPoster
         direction={direction}
         src="/email-assets/poster-venues.png"
-        alt="A Signal Tasks window showing one task, send final guest count to catering, marked with a thin indigo line. Make the planning feel as considered as the day. A 60 second film."
+        alt="A Signal Tasks window showing a task to send the final guest count to catering."
         href="https://signalstudio.ie/films/venues"
         width={536}
         height={302}
-        caption="As considered as the day · the Signal Studio venue film"
+        caption="The Signal Studio venue film"
         linkLabel="Watch the film"
-        duration="60 seconds"
+        duration="60 seconds"
         enclosureId="Film-Ven"
       />
-      <BodyText direction={direction}>
-        If it looks right for {data.venueName}, I will set your next couple
-        up with a code, with my compliments. And if it is not for you, a
-        one-line reply saying so is genuinely welcome.
-      </BodyText>
-      <BodyText direction={direction}>
-        Worth twenty minutes? Reply and pick a morning.
-      </BodyText>
+      <BodyText direction={direction}>{nextStep(data.venueName)}</BodyText>
       <FounderSignature direction={direction} closing="Thanks for your time," />
     </EmailShell>
   );
 }
-
-import type { TextDoc } from "../plaintext";
 
 export function venueOutreachText(data: VenueOutreachData): TextDoc {
   return {
     dateISO: data.metaDateISO,
     salutation: `Hello ${data.contactFirstName},`,
     blocks: [
-      { kind: "p", text: `Couples choose ${data.venueName} for how considered the day itself feels. The months before it rarely feel that way. Their planning lives in group chats, spreadsheets and late-night lists, and none of it reflects the venue they chose.` },
-      { kind: "p", text: "Signal Studio gives each of your couples one clear place to plan: their tasks, their timeline, their private notes, and a short morning briefing that points at the few things needing attention. Your name sits quietly at the top of their workspace. There is nothing for your team to set up or run." },
-      { kind: "quiet", text: `The couple\u2019s planning stays theirs. ${data.venueName} never sees their notes or their lists. We would not build it any other way.` },
-      { kind: "p", text: `Sixty seconds on what the planning year looks like when ${data.venueName} stands behind it.` },
+      { kind: "p", text: introduction },
+      { kind: "p", text: offer(data.venueName) },
+      { kind: "p", text: handoff },
+      { kind: "p", text: terms },
+      { kind: "quiet", text: privacy },
+      { kind: "p", text: "Here is the short film." },
       { kind: "link", label: "Watch the film (60 seconds)", href: "https://signalstudio.ie/films/venues" },
-      { kind: "p", text: `If it looks right for ${data.venueName}, I will set your next couple up with a code, with my compliments. And if it is not for you, a one-line reply saying so is genuinely welcome.` },
-      { kind: "p", text: "Worth twenty minutes? Reply and pick a morning." },
+      { kind: "p", text: nextStep(data.venueName) },
     ],
     signature: { closing: "Thanks for your time,", name: "Ethan", role: "Founder, Signal Studio", email: "hello@signalstudio.ie" },
-    enclosure: "Encl \u00b7 Film-Ven \u00b7 60 seconds",
-    footerNote: `Ethan wrote this to ${data.venueName} directly. No list, no sequence. Reply and it lands with him. If you would rather not hear from Signal Studio again, say so and that is the end of it.`,
+    enclosure: "Encl · Film-Ven · 60 seconds",
+    footerNote: footer,
   };
 }

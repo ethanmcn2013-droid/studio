@@ -10,6 +10,18 @@ href: /hq/venue-kit
 date: 2026-07-02
 ---
 
+## January supersession
+
+The July approval below is preserved history. It does not authorise a January
+send. Internal preparation continues until the 21 January 2027 target and the
+separate manual launch/outreach decisions in `january-2027-go-no-go.md`.
+The current kit and `docs/strategy/VENUE_OUTREACH_SEQUENCE.md` use a delegated
+two-touch cadence: first note, one follow-up ten days later, then stop unless
+the recipient engages. Retained PDFs/images are historical specimens requiring
+current-term review; no free pilot or permanence claim is approved by this task.
+
+## July approval, preserved history
+
 **APPROVED by the founder 2026-07-02.** Outreach may begin. One caveat
 carried forward in `send-proof-order`: the permission form goes past a
 solicitor before its first real signature.
