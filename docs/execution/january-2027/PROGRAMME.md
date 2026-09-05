@@ -11,65 +11,70 @@ Current programme estimate: **approximately 60% complete**, including verificati
 | ID | State | Implemented evidence | Remaining acceptance / owner |
 |---|---|---|---|
 | S1 Truth | Partial; foundations established | Workspace40f7755, doctor0 failures/15 warnings; preserved Drive work; January policy and experiment clock; App receiving77d and Studio receiving4ed are Linux-green; current programme/acceptance, immutable paired gates and17-capability index with104 checked source hashes. | Principal: named contradiction disposition and final acceptance/operational evidence. The source index is complete as a dated snapshot, not proof of current runtime or production. |
-| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Held collateral and the eight-card fictional support walkthrough are composed. Current188/20 render matrices pass; older328 remains historical. | Principal/commercial: final composed sponsored-date acceptance, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
+| S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Held collateral and the eight-card fictional support walkthrough are composed. Current188/20 render matrices pass; older328 remains historical. | Principal/commercial: receiving sponsored-date acceptance, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
 | S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. | Drive owner: final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
-| S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App8172 composes project-calendar and independently repaired sponsored-date follow-ups; final gates are running. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
+| S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App6eb composes project-calendar and independently repaired sponsored-date follow-ups; final internal browser, artifact and all three Linux gates pass. Receiving remains held. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
 | S5 Collaboration | Partial; useful-action reporting integrated | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in receiving77d; independent fix154 positive checks and actual three-store composition pass. Studio's paired consumer is now in receiving4ed. | Collaboration owner: complete creator/recipient/role/revocation story and final follow-up receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
 | S6 Instruments | Closed — no-build for January | Accepted delegated decision and [A–F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Current App candidate: `feat/january-final-journeys` at `8172364e`, draft PR171.
-It composes the Floor/My Work calendar repairs, exact-project sponsored-date
-editing and retirement of both actor-wide project-creation extension calls.
-Independent verification closes WDATE-01 and WDATE-02 at c1ab57de:14 retained
-and8 additional ordering controls pass;8 actual SQLite request pairs commit
-without restoring revoked access, while4 old-source pairs reproduce conflict.
-These are scoped component/persistence results, not full Next/provider proof.
+Current published App candidate: `feat/january-final-journeys` at `6ebf71ef`,
+draft PR171, with product source `8172364e`. All three exact Linux workflows
+pass: CI33959562287, Verify33959562365 and Design33959562282. The tested merge
+`ac2470f5` has receiving77d and candidate6eb as parents; its tree equals the
+candidate tree. Local `ce81e066` only archives that Linux proof and corrects
+one README count. It changes no product source.
 
-The composed7e199eb9 normal build passes (XqYTcLjGBoThBQLtisK6h). Its full gate
-then catches five80px controls using the spacing11 token;054b3b83 replaces only
-those five classes with explicit44px minimums. Typecheck, full lint and the
-existing sizing gate pass after that repair. A separate persisted-recipient
-test exposes an incomplete calendar fixture;8172364e supplies the real calendar
-constructor, and all228 assertions in that unchanged command pass. Full test
-continuation and final build/captures are running. Stopped7e199 capture work
-ran0/32 component and0/3 keyboard cases; no final evidence is inferred.
+The final normal build `wnk1OREKC5EKuma6I3VoO` passes all132 built cases. Six
+separate browser commands pass3 React,68 route,80 geometry/contrast,16 calendar,
+16 date-readback and27 Notes cases. The owning date packet passes32 state/viewport
+and3 keyboard checks, with59 measured44px controls. Independent c1ab verification
+closes WDATE-01/02 with14 retained plus8 additional ordering controls and8 actual
+SQLite request-pair replays preserving revocation;4 old-source pairs reproduce
+conflict. Named identity/navigation/board/overview adapters remain explicit.
 
-Precedingffef20c0 retains its normal build,132 built browser cases,68 route
-states,3 React controls,80 paired geometry checks,16 Floor calendar cases,
-12 date-readback controls and27 Notes scenarios. Its first native route-process
-failure and unchanged serial pass are preserved in the471-file archive.
-That runtime still had WDATE-02; its evidence is explicitly intermediate.
-The last fully Linux-verified App candidate remains07d25138, with all three
-workflows passing and council NOT CERTIFIED. Neither prior checkpoint
-certifies the latest candidate or replaces the held independent RC-3 review.
+The506-file composed checkpoint and475-file Linux checkpoint retain source hashes,
+screenshots, all command outcomes and original failures. Independent artifact
+review verifies their source bindings, all203 date entries and preservation of
+earlier packets. It finds only EI-01:16 cases were called16 source hashes. The
+README now correctly states two recorded component hashes. No coverage, approval
+or review-date inflation was found. The Linux council still says NOT CERTIFIED.
 
-Studio candidate sourcee47507c8 composes the content corrections and mobile
-Email Lab/Venue Kit layouts. All14 declared typecheck/test commands pass.
-Fresh188 January and20 Venue Kit captures/strict attestations pass against
-product digest2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4,
-with300 PNGs and four widths. Evidence is merged atd4a2c7ee;2e263f55 independently
-validates and adopts only the nine captured surfaces. The owning CI registry
-check passes. Human scores/approvals remain unchanged. The first native capture
-failure and314 canceled automatic Atlas RSC prefetches remain visible.
+The existing full gate caught five oversized spacing11 controls, repaired with
+explicit44px minima in054b, and an incomplete calendar fixture, repaired through
+the real constructor in8172. Typecheck/full lint and the228 unchanged assertions
+pass. Local catalog/billing native exits remain recorded; catalog's exact-command
+confirmation passes and billing prints40 passes before its native exit. Remaining
+declared commands pass. Later Linux success does not explain or erase those failures.
 
-Extension328 has not been renewed:36 authored Atlas cases remain held;
-a separately identified292-case non-Atlas proposal passes16 tooling tests but
-cannot guarantee redirect requests avoid Atlas. No browser/build/server ran for
-that proposal; it remains unmerged preparation, with all328 cases unrenewed. Email Lab is absent from
-these matrices; its selected-browser MutationObserver error remains unattributed.
-Normal built layout/keyboard checks do not establish clean runtime or native zoom.
-The last Studio Linux candidatec1dd6221 passes CI/Verify and fails the existing
-Atlas stale-source gate. Current candidate Linux/receiving acceptance is open.
+Current Studio product source remains `e47507c8`, digest
+`2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4`.
+Its composed14 commands and current188 January/20 Venue captures pass, with300 PNGs
+at four widths. Nine captured surfaces were independently adopted at2e263f55.
+Published9fa4e41e passes CI33958617225 andVerify33958617231; Design33958617226
+rejects the old extension build inputs. All328 extension cases remain unrenewed.
+The292-case non-Atlas proposal passes16 tooling tests but was not launched or
+merged because redirect exclusion is unproven. Atlas16/36 remains separately held.
+The original native capture failure and314 canceled Atlas RSC prefetches remain
+visible. Email Lab is absent from these matrices; its selected-browser error is
+still unattributed. Automated passes do not supply native zoom or human acceptance.
 
-Receiving branches remain App77d22a6b and Studio4ed9be64. The rejected Atlas
-server start and stopped RC-3 review have not been retried or rerouted. The
-[prior checkpoint](history/programme-candidate-checkpoint-before-8172364e.md)
-preserves the preceding wording and receipts. Event post-term enforcement,
-designated provider lifecycles, sustained use and release exercises remain open.
-None of this changes the approximately60% estimate or authorizes production,
-commercial opening or outreach.
+Active isolated work: `feat/january-event-designation`, based on8172, is building
+immutable purchase/project facts and an explicit access evaluation. Migration0031
+is reserved for that lane; no production run, historical backfill, sales reopening
+or new project-wide denial is included in this first milestone. Recovery and
+private/Timeline/public/cache adapters must follow before Event closure.
+`fix/january-drive-ui-acceptance`, based on6eb, has candidate8ae94ffb for missing
+pre-consent custody copy and lost cancel focus. Its rendered/independent validation
+is in progress. Pending-revocation visibility after reload is a separate read-model
+question; it is not closed by that view-only patch.
+
+Receiving branches remain App77d22a6b and Studio4ed9be64. The rejected Atlas server
+start and stopped RC-3 review are not retried or rerouted. Provider lifecycles,
+human/council acceptance, sustained use and release exercises remain open. Earlier
+wording is retained in Git9fa4e41e and the linked history records. None of this
+changes the approximately60% estimate or authorizes production, launch or outreach.
 
 ## Accepted allocations
 
