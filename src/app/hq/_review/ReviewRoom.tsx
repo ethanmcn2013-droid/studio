@@ -21,6 +21,7 @@ export function ReviewRoom({
   directions,
   advice,
   wide,
+  className,
 }: {
   eyebrow: string;
   title: React.ReactNode;
@@ -28,9 +29,10 @@ export function ReviewRoom({
   directions: ReviewDirection[];
   advice: string;
   wide?: boolean;
+  className?: string;
 }) {
   return (
-    <main id="main" className="hq-page">
+    <main id="main" className={className ? `hq-page ${className}` : "hq-page"}>
       <header className="hq-page-header">
         <span className="hq-page-eyebrow">{eyebrow}</span>
         <h1 className="hq-page-title">
@@ -53,6 +55,7 @@ export function ReviewRoom({
             }}
           >
             <div
+              className="review-room-heading"
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -91,8 +94,8 @@ export function ReviewRoom({
               style={{
                 display: "grid",
                 gridTemplateColumns: wide
-                  ? "minmax(280px, 420px)"
-                  : "repeat(auto-fit, minmax(280px, 1fr))",
+                  ? "var(--review-room-image-columns, minmax(280px, 420px))"
+                  : "var(--review-room-image-columns, repeat(auto-fit, minmax(280px, 1fr)))",
                 justifyContent: "center",
                 gap: "18px",
                 padding: "18px",
@@ -120,6 +123,7 @@ export function ReviewRoom({
               ))}
             </div>
             <div
+              className="review-room-details"
               style={{
                 display: "flex",
                 justifyContent: "space-between",

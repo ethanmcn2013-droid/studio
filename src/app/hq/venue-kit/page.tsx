@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requireHqAccess } from "@/lib/hq/access-guard";
 import { ReviewRoom, type ReviewDirection } from "../_review/ReviewRoom";
+import styles from "./venue-kit.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -84,6 +85,7 @@ export default async function VenueKitPage() {
   await requireHqAccess();
   return (
     <ReviewRoom
+      className={styles.kit}
       wide
       eyebrow="Signal HQ · The venue kit · Held January drafts"
       title={<>Prepare the venue conversation</>}
