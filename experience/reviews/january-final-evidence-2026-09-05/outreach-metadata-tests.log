@@ -1,0 +1,15 @@
+✔ registry holds exactly the seventeen prototype templates with unique ids (2.7916ms)
+✔ all templates render in all directions with all fixtures (1647.1428ms)
+✔ utility templates carry exact facts outside prose (38.9839ms)
+✔ the sign-in code survives plain text and never becomes an image (52.2364ms)
+✔ edge fixtures render without breaking layout assumptions (54.4349ms)
+✔ review transforms: forced dark and blocked images (18.5244ms)
+✔ founder outreach carries no button and no tracking furniture (114.4535ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3224.9789

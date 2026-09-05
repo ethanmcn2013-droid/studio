@@ -561,6 +561,22 @@
       "screenshotCoverage": "complete",
       "accessibilityCoverage": "complete",
       "automatedTestCoverage": "complete"
+    },
+    "studio.page.hq-venue-kit": {
+      "requiredStates": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "restricted"
+      ],
+      "fixtureCoverage": "complete",
+      "screenshotCoverage": "complete",
+      "accessibilityCoverage": "complete",
+      "automatedTestCoverage": "complete",
+      "materialityHash": "575a65d46316904f",
+      "primaryJob": "Review held venue collateral against current January terms and launch decisions.",
+      "primaryAction": "Read the current guidance and inspect retained local collateral specimens."
     }
   }
 }

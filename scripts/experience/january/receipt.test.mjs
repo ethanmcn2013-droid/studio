@@ -39,7 +39,7 @@ test('server environment never inherits operator, DB, payment or mail settings',
   assert.equal(env.STRIPE_SECRET_KEY, undefined);
   assert.equal(env.RESEND_API_KEY, undefined);
   assert.equal(env.VERCEL_API_TOKEN, undefined);
-  assert.match(env.STUDIO_DATABASE_URL, /^file:.*playwright-results\/january-commercial\/studio\.db$/);
+  assert.match(env.STUDIO_DATABASE_URL, /^file:.*playwright-results\/january-commercial-final\/studio\.db$/);
   assert.notEqual(env.SIGNAL_HQ_PASSWORD, 'private');
   assert.throws(() => localDatabase('../private'), /Unknown/);
   assert.throws(() => localDatabase('https://provider'), /Unknown/);

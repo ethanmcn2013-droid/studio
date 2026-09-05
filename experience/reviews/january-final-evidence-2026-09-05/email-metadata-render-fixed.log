@@ -1,0 +1,8 @@
+locator.innerText: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('#main')[22m
+
+    at C:\Users\ethan\Documents\Codex\2026-09-04\here-are-6-prompts-i-have-2\work\studio-final-evidence-2026-09-05\email-metadata-render.cjs:20:45 {
+  log: [ "  - waiting for locator('#main')" ],
+  name: 'TimeoutError'
+}

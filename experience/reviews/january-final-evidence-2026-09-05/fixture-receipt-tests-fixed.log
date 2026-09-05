@@ -1,0 +1,25 @@
+✔ extension fixtures isolate real read states and exclude inherited provider configuration (3901.1389ms)
+✔ all eight waitlist branches require actual matching receipts (3.2742ms)
+✔ missing and duplicate cases cannot close coverage (0.7068ms)
+✔ source, viewport, route and screenshot must match (2.5419ms)
+✔ unobserved branch, unsafe fixture and motion failures are rejected (0.8614ms)
+✔ application faults remain failures; only canceled local RSC prefetch is nonblocking (1.5798ms)
+✔ only the 14 extension pages and all four declared widths are in scope (0.6182ms)
+✔ synthetic states distinguish empty, legacy claims, verified receipts and failed reads (4493.0982ms)
+✔ complete requires all four states at all four exact breakpoints (2.4775ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.3375ms)
+✔ duplicate copies cannot stand in for a required state (0.3063ms)
+✔ changed source and changed PNG each invalidate coverage (0.3025ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.282ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.2914ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.6301ms)
+✔ reduced motion requires the actual browser preference (0.2161ms)
+✔ server environment never inherits operator, DB, payment or mail settings (1.9662ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6036.6681
