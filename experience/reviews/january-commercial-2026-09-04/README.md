@@ -1,5 +1,7 @@
 # January changed-experience coverage
 
+Current evidence is recorded in “Current token-repair capture — 5 September” below. It supersedes earlier source/build/server identities. The188-case matrix passes;14 additional changed pages still require coverage before Studio integration.
+
 This is a scripted browser receipt for PR176's seven changed Studio pages, plus the HQ navigation surface repaired while testing them. It is not founder acceptance, a design-council review, a usability study, a baseline approval, or a release certification.
 
 Worktree: `C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-studio-experience-coverage`, branch `fix/january-studio-experience-coverage`. The initial slice was committed as `3f741fcf332143283ebbd7f47e5a1c21f38c2473`, followed by the Atlas Unicode/list repair `e53e57d6efe60b416a8ee49ab7ef5b7df533f0e7`. This final combined capture merges lead candidate **`2a191a3479aa4cb3ce551e6e3ae629e39132e64e`**, including Event commercial content/contracts, the January receipt CI gate and the default Atlas regression test wiring. Four runtime files then repair the three delegated layout findings. No product data/content/contracts, package/lock files or workflows were authored in this follow-up.
@@ -93,3 +95,11 @@ Pending beyond this scripted scope: human visual/usability acceptance, council/b
 The three demonstrated layout issues are resolved within this scripted scope. Before-images/findings remain in Git history and the retained diagnostic files. Current screenshots show an unobstructed Blueprint camera and the contained Access field (`screenshots/studio.page.hq-entitlements/long-content/mobile-section-0.png`); the current assertions check internal geometry rather than treating zero page overflow as sufficient. They do not certify broader mutation workflows or human/council acceptance.
 
 Any later change to tracked source/content/contracts or package/lock/workspace/Next-config inputs invalidates this receipt digest. Rebuild and recapture that candidate; do not change dates/hashes to make old evidence appear current. CRLF and bare CR normalize to LF, while generated evidence stays outside the source digest. Subsequent lead edits confined to execution documents do not change these build inputs.
+
+## Current token-repair capture — 5 September
+
+This section supersedes the historical candidate/build/server identities below. Runtime4102b5c524373f10ae74e3153eaa0da7bac914ed, owning worktree feat-january-commercial-readiness, produced build9paioZEdhaSy30PZA67hv with source digest1d0e83ecb60d8b751f399653710a9be2d14d4080393c661dd90965a4fa60cd09. All188 required commercial state/width cases and four separate Atlas cases were freshly executed successfully. Source-bound attestation, ds-check, full lint and production build pass. No human/council approval is implied.
+
+The DS gate at9ee2bec rejected a shared-token override and increased raw-colour debt. HQ now owns semantic muted/negative colours; consumers no longer redefine design-system tokens. Two initial Atlas contrast runs identified caption consumers in both its feature stylesheet and globals.css; their failures remain under docs/execution/january-2027/evidence/hq-token-repair. Actual4102 Atlas results pass after correcting those consumers. The188-case4102 run completed in one successful invocation; an earlier1382 run's Windows fixture process failure remains a separate failed receipt.
+
+Registry validation still fails for14 additional pages touched by the same token-consumer repair. Their required evidence is separately assigned and must be completed before integration. This188-case result is valid only for its matrix, not full Studio release acceptance. Previous server80367/PID26652 is stopped; the principal's temporary replacement used session47735 onloopback4396. Reproduce with the declared build/start/capture commands, never with a stale recorded process identifier.
