@@ -49,12 +49,13 @@ jobs:
       - name: Design-system drift gate
         run: pnpm run ds:check
 
-      # Verify the receiving App release, then remove it before local builds.
+      # Every trigger uses a reviewed compatible App runtime. A moving main
+      # fallback may lack the fixture required by the mandatory paired suites.
       - name: Checkout paired App contracts
         uses: actions/checkout@v4
         with:
           repository: ethanmcn2013-droid/app
-          ref: ${{ (github.base_ref == 'release/january-2027' || github.ref_name == 'release/january-2027') && '182935f76b88398fae073f5f0f4e8ebbfb7353d2' || 'main' }}
+          ref: 182935f76b88398fae073f5f0f4e8ebbfb7353d2
           path: app-contract-peer
       - name: Install immutable paired App dependencies
         working-directory: app-contract-peer

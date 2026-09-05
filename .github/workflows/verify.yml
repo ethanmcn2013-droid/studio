@@ -24,12 +24,12 @@ jobs:
       - run: pnpm remediation:check
       - run: pnpm recovery:drill
       - run: pnpm typecheck
-      # Verify the receiving App release, then remove it before local builds.
+      # All triggers need the same reviewed compatible App fixture runtime.
       - name: Checkout paired App contracts
         uses: actions/checkout@v4
         with:
           repository: ethanmcn2013-droid/app
-          ref: ${{ (github.base_ref == 'release/january-2027' || github.ref_name == 'release/january-2027') && '182935f76b88398fae073f5f0f4e8ebbfb7353d2' || 'main' }}
+          ref: 182935f76b88398fae073f5f0f4e8ebbfb7353d2
           path: app-contract-peer
       - name: Install immutable paired App dependencies
         working-directory: app-contract-peer
