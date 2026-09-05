@@ -183,7 +183,7 @@ reason-specific copy. The support link does not prefill the code or account.
 | `exhausted` | If previously used, have the holder sign into that account and retry the same code. Otherwise inspect the original claim before considering any separately authorised issuance. | Original holder/project/term readback, or an explicit conflict. Never infer that a new code is needed. |
 | `expired` | Distinguish a code closed to new claims from an ended or revoked grant. Compare the original grant and term; preserve an independently valid existing grant. | Exact term/status and explained next step. No guessed extension or revival. |
 | `already-redeemed` | Use the original account and same code. Check the stored claim, project and term if recovery still fails. | Original grant restored to view without another grant/project/code. |
-| `still-provisioning` | Confirm the correct account and permission to edit the intended project. Retry the same code after context/cause correction. Escalate persistent failure. | Intended authorised project opens, or a pending case with reason and next owner. |
+| `still-provisioning` | Confirm the correct account and permission to manage the intended project. Ordinary task-editing permission is not enough to replace shared setup. Retry the same code after context/cause correction. Escalate persistent failure. | Intended authorised project opens, or a pending case with reason and next owner. |
 | `rate-limited` | Wait ten minutes, then retry the same code/account. Investigate persistent failure without cycling accounts or codes. | Normal retry or a retained support case; no bypass of the attempt limit. |
 | Paid but access pending | Check the retained payment, exact request, delivery and fresh readback using the recovery table above. Keep any private packet withheld until fulfilled. | Matched payment plus exact fulfilled receipt. Payment alone is not access-ready. |
 
@@ -213,7 +213,7 @@ means the operator followed the procedure, not that the provider outcome occurre
 
 | Card | Injected facts | Required action and pass condition |
 |---|---|---|
-| 01 Correct account/project | Invitation intended for B; person is in account A/project A; App says `still-provisioning`. | Correct sign-in and intended-project edit access; retry the original code. No substitute grant/project; if membership cannot be established, escalate and leave pending. |
+| 01 Correct account/project | Invitation intended for B; person is in account A/project A; App says `still-provisioning`. | Correct sign-in and intended-project management access; ordinary task-editing access is insufficient. Retry the original code. No substitute grant/project; if management capability cannot be established, escalate and leave pending. |
 | 02 Same-code recovery | Original claim is committed in B, but the acknowledgement was lost; person sees used/uncertain state. | Same account/code; inspect original claim and term. Close only on original project access. No second code, no extended term. |
 | 03 Paid but pending | Matched payment receipt exists; App delivery may have committed; Studio has no fulfilled readback. | Retain exact request, retry delivery/readback, withhold packet and send only the pending reply draft. Zero new payment references. |
 | 04 Cancellation intake | Named payer requests cancellation at term end; the relevant notice/effective-date policy is not recorded. | Verify requester/receipt, record requested date, flag policy pending to founder. Do not promise cancellation now, a refund or a grace period. |
