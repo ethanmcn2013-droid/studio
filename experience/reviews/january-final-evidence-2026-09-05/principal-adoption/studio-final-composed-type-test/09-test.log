@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: sponsorship migration is idempotent and enforces the consent boundary
+ok 1 - sponsorship migration is idempotent and enforces the consent boundary
+  ---
+  duration_ms: 8159.6091
+  type: 'test'
+  ...
+# Subtest: migration fails closed and preserves duplicate entitlement rows
+ok 2 - migration fails closed and preserves duplicate entitlement rows
+  ---
+  duration_ms: 591.6951
+  type: 'test'
+  ...
+# Subtest: validates the exact unredeemed/exhausted split and 365-day entitlement join
+ok 3 - validates the exact unredeemed/exhausted split and 365-day entitlement join
+  ---
+  duration_ms: 23.3947
+  type: 'test'
+  ...
+# Subtest: accepts a fully migrated snapshot so reruns can be a no-op
+ok 4 - accepts a fully migrated snapshot so reruns can be a no-op
+  ---
+  duration_ms: 0.5955
+  type: 'test'
+  ...
+# Subtest: fails closed when a redeemed code has the wrong entitlement interval
+ok 5 - fails closed when a redeemed code has the wrong entitlement interval
+  ---
+  duration_ms: 1.5084
+  type: 'test'
+  ...
+# Subtest: fails closed when Venue Edition JSON notes disagree with the code duration
+ok 6 - fails closed when Venue Edition JSON notes disagree with the code duration
+  ---
+  duration_ms: 0.4789
+  type: 'test'
+  ...
+# Subtest: mirror validation ignores status but requires exact code and duration parity
+ok 7 - mirror validation ignores status but requires exact code and duration parity
+  ---
+  duration_ms: 1.7136
+  type: 'test'
+  ...
+# Subtest: digest is stable across input order and does not expose codes
+ok 8 - digest is stable across input order and does not expose codes
+  ---
+  duration_ms: 0.521
+  type: 'test'
+  ...
+# Subtest: apply pin fails closed on missing paired overrides and count/digest mismatch
+ok 9 - apply pin fails closed on missing paired overrides and count/digest mismatch
+  ---
+  duration_ms: 1.0434
+  type: 'test'
+  ...
+# Subtest: ambiguous commit recovery never compensates when Tasks may already be new
+ok 10 - ambiguous commit recovery never compensates when Tasks may already be new
+  ---
+  duration_ms: 0.2829
+  type: 'test'
+  ...
+# Subtest: CLI dry-run, apply, and rerun no-op work against disposable local databases
+ok 11 - CLI dry-run, apply, and rerun no-op work against disposable local databases
+  ---
+  duration_ms: 1498.664
+  type: 'test'
+  ...
+# Subtest: the migration adds every column and index, and is idempotent
+ok 12 - the migration adds every column and index, and is idempotent
+  ---
+  duration_ms: 8192.1708
+  type: 'test'
+  ...
+# Subtest: no existing venue silently becomes unlimited
+ok 13 - no existing venue silently becomes unlimited
+  ---
+  duration_ms: 624.3252
+  type: 'test'
+  ...
+# Subtest: existing data survives untouched
+ok 14 - existing data survives untouched
+  ---
+  duration_ms: 11045.1082
+  type: 'test'
+  ...
+# Subtest: a dry run applies nothing
+ok 15 - a dry run applies nothing
+  ---
+  duration_ms: 11033.4617
+  type: 'test'
+  ...
+# Subtest: the migration fails closed when the base tables are absent
+ok 16 - the migration fails closed when the base tables are absent
+  ---
+  duration_ms: 239.1868
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31441.2557

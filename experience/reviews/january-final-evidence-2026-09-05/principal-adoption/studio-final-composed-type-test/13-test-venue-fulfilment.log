@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: 0001 reruns as a ledger-backed no-op and immutable manifest updates fail
+ok 1 - 0001 reruns as a ledger-backed no-op and immutable manifest updates fail
+  ---
+  duration_ms: 435.5628
+  type: 'test'
+  ...
+# Subtest: failed additive transaction rolls back newly created tables and migration receipt
+ok 2 - failed additive transaction rolls back newly created tables and migration receipt
+  ---
+  duration_ms: 543.6182
+  type: 'test'
+  ...
+# Subtest: canonical read verifies exact stored code/sponsor/batch and requires fulfilled readback
+ok 3 - canonical read verifies exact stored code/sponsor/batch and requires fulfilled readback
+  ---
+  duration_ms: 432.8073
+  type: 'test'
+  ...
+# Subtest: bounded complete pagination does not silently discard pending issuance or store outage
+ok 4 - bounded complete pagination does not silently discard pending issuance or store outage
+  ---
+  duration_ms: 436.1198
+  type: 'test'
+  ...
+# Subtest: three real stores: paid eligible issuance, exact replay and manual packet after readback
+ok 5 - three real stores: paid eligible issuance, exact replay and manual packet after readback
+  ---
+  duration_ms: 11753.829
+  type: 'test'
+  ...
+# Subtest: three real stores: founding eligible issuance, exact replay and manual packet after readback
+ok 6 - three real stores: founding eligible issuance, exact replay and manual packet after readback
+  ---
+  duration_ms: 3447.4843
+  type: 'test'
+  ...
+# Subtest: three real stores: pilot eligible issuance, exact replay and manual packet after readback
+ok 7 - three real stores: pilot eligible issuance, exact replay and manual packet after readback
+  ---
+  duration_ms: 3335.2443
+  type: 'test'
+  ...
+# Subtest: selected paid plan, missing mirror, invalid receipt, expired term and implicit pilot cannot issue
+ok 8 - selected paid plan, missing mirror, invalid receipt, expired term and implicit pilot cannot issue
+  ---
+  duration_ms: 516.5105
+  type: 'test'
+  ...
+# Subtest: local mirror and App transaction failures keep the durable exact set pending for retry
+ok 9 - local mirror and App transaction failures keep the durable exact set pending for retry
+  ---
+  duration_ms: 3490.5543
+  type: 'test'
+  ...
+# Subtest: lost issue acknowledgement and failed final receipt never produce a ready packet; exact retry recovers
+ok 10 - lost issue acknowledgement and failed final receipt never produce a ready packet; exact retry recovers
+  ---
+  duration_ms: 3529.5774
+  type: 'test'
+  ...
+# Subtest: HTTP success without exact manifest/code acknowledgement remains unknown
+ok 11 - HTTP success without exact manifest/code acknowledgement remains unknown
+  ---
+  duration_ms: 3319.5263
+  type: 'test'
+  ...
+# Subtest: actual App same-code replay and withdrawal preserve claimed grant; fingerprint is not a credential
+ok 12 - actual App same-code replay and withdrawal preserve claimed grant; fingerprint is not a credential
+  ---
+  duration_ms: 3540.5646
+  type: 'test'
+  ...
+# Subtest: withdrawal fences an older delivery response and public availability follows fresh App authority
+ok 13 - withdrawal fences an older delivery response and public availability follows fresh App authority
+  ---
+  duration_ms: 3423.4844
+  type: 'test'
+  ...
+# Subtest: reservation rollback does not consume pilot allotment; expiry prevents new capacity but preserves the allocated exact retry
+ok 14 - reservation rollback does not consume pilot allotment; expiry prevents new capacity but preserves the allocated exact retry
+  ---
+  duration_ms: 551.6591
+  type: 'test'
+  ...
+# Subtest: transport signs exact body and purpose/path and accepts only an exact bounded 200 acknowledgement
+ok 15 - transport signs exact body and purpose/path and accepts only an exact bounded 200 acknowledgement
+  ---
+  duration_ms: 33.1917
+  type: 'test'
+  ...
+# Subtest: approved generator discards the modulo tail and refuses missing cryptographic randomness
+ok 16 - approved generator discards the modulo tail and refuses missing cryptographic randomness
+  ---
+  duration_ms: 1.8111
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42743.7235
