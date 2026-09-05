@@ -8,7 +8,38 @@ reviewDate: 2026-09-01
 relatedObjects: [Entitlements, Licensing, Venue Editions, Batch grants, Stripe, Signal HQ, Access hub]
 ---
 
-## Decision
+## Current authority — 5 September 2026
+
+This is a scoped reconciliation under the delegated January programme. The
+licensing architecture remains an intended design; its July phase list and
+review scores below do not establish implementation, deployment or acceptance.
+
+- [Three products and Home](./three-products-home.md) governs product topology:
+  Notes, Tasks and Timeline are the products; Home is the authenticated front
+  door. The former four-product wording is retained only in the dated record.
+- [The January launch decision](./january-2027-launch.md) governs the 21 January
+  2027 target, internal testing and separate launch/outreach actions.
+- Current implementation, exact-candidate evidence and open work resolve to
+  [the programme](../../../docs/execution/january-2027/PROGRAMME.md) and its
+  [acceptance register](../../../docs/execution/january-2027/ACCEPTANCE.md).
+  Paid-plan selection, verified payment, fulfilment, redemption and useful
+  activity are distinct states. The historical phase plan is not a receipt for
+  any of them.
+- Current pricing and offer availability follow `contracts/commercial-terms.v2.json`
+  and the newer commercial decisions. New Event checkout remains held while
+  post-term enforcement and historical grant designation are unfinished.
+- The September review date remains overdue for the remaining licensing and
+  privacy questions. This amendment does not ratify retention, processor
+  agreements, production migrations or the historical claim that GDPR work is
+  complete. Those acceptance rows retain their owners and release gates.
+
+The principal integrator owns this source reconciliation. It changes no prices,
+access rights, data lifecycle or production state. The original July text below
+is preserved verbatim, with current authority established above.
+
+## Historical decision — 9 July 2026
+
+### Decision
 
 Do not rebuild the access core. The `signal-entitlements` database that all four products already read through `resolveEntitlement` (max-by-tier-rank, fail-open-to-free) stays the source of truth for access. Stripe stays the billing brain. Clerk stays identity. We add the missing plumbing around that spine and a single, calm HQ console on top.
 
