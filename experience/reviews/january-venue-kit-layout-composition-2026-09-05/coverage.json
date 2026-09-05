@@ -1,0 +1,13 @@
+{
+  "sourceDigest": "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4",
+  "scriptedOnly": true,
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "outcomes": [
+    {
+      "id": "studio.page.hq-venue-kit",
+      "complete": true,
+      "errors": []
+    }
+  ]
+}

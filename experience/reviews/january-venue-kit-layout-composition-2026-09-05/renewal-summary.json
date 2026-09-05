@@ -1,0 +1,2515 @@
+{
+  "suite": "Venue Kit",
+  "evidence": "experience/reviews/january-venue-kit-layout-composition-2026-09-05",
+  "expectedCases": 20,
+  "actualCases": 20,
+  "passing": 20,
+  "failed": [],
+  "primaryImages": 20,
+  "additionalImages": 8,
+  "totalImages": 28,
+  "imageHashFailures": [],
+  "sourceDigests": [
+    "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4"
+  ],
+  "build": {
+    "sourceDigest": "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4",
+    "buildId": "dzUif7fXfb2J2HoCbag7f",
+    "builtAt": "2026-09-05T09:03:51.064Z",
+    "node": "v24.19.0",
+    "command": "node scripts/experience/january/serve.mjs build --venue-kit",
+    "environment": "allowlisted runtime plumbing, local disposable SQLite, synthetic HQ session; no env files or inherited provider configuration"
+  },
+  "captureCommit": "148249b7d1d00849497da1befb83ee122933d817",
+  "capturedAt": "2026-09-05T09:05:10.400Z",
+  "manifestSha256": "6acf06167deb06a3d431533ee2ffc54c2e2405993d45f32ede002718c7f77222",
+  "buildReceiptSha256": "5447ae7fb8e8cf0d49c9a42d6053d82bc170c0d3414d753669734e4b1099ae0e",
+  "coverageSha256": "e5e6dbe03f0be3992b9e99b077d7f349adbe3c46228fb357f2171fb929eddde5",
+  "routes": [
+    "/hq/venue-kit"
+  ],
+  "consoleObservations": [],
+  "pageerrorObservations": [],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/health?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/platform-readiness?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/experience-quality?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=ZKwe7-qXW3zYg0Cr",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/crm?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/account-review?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/entitlements?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/data-room?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/atlas?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/decks?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/founders-circle?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/vault?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/org?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/assets?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/reporting?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/design-rooms?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq/action-center?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4493/hq?_rsc=dwWYydkN6LGYmMzB",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "blockedRequests": [],
+  "httpErrors": [],
+  "accessibilityBlocking": 0,
+  "accessibilityViolations": 0,
+  "accessibilityIncompleteChecks": 16,
+  "overflows": [],
+  "surfaces": [
+    {
+      "id": "studio.page.hq-venue-kit",
+      "cases": 20,
+      "passing": 20,
+      "states": [
+        "default",
+        "long-content",
+        "reduced-motion",
+        "keyboard-only",
+        "restricted"
+      ],
+      "widths": [
+        390,
+        768,
+        1280,
+        1440
+      ],
+      "owningSource": "studio/src/app/hq/venue-kit/page.tsx",
+      "registeredMaterialityHash": "575a65d46316904f",
+      "capturedMaterialityHashes": [
+        "d8c9a5a1cbee7e14"
+      ],
+      "proposal": "Principal may consider adopting only this source-bound scripted matrix; no human/council status or score changes.",
+      "outcome": {
+        "id": "studio.page.hq-venue-kit",
+        "complete": true,
+        "errors": []
+      }
+    }
+  ],
+  "commandOutcomes": [
+    {
+      "mode": "venue-build",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T09:03:03.616Z",
+      "finishedAt": "2026-09-05T09:03:51.080Z"
+    },
+    {
+      "mode": "venue-start",
+      "exitCode": 4294967295,
+      "startedAt": "2026-09-05T09:04:08.008Z",
+      "finishedAt": "2026-09-05T09:05:24.317Z"
+    },
+    {
+      "mode": "venue-capture",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T09:04:19.618Z",
+      "finishedAt": "2026-09-05T09:05:10.464Z"
+    },
+    {
+      "mode": "venue-attest",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T09:05:23.349Z",
+      "finishedAt": "2026-09-05T09:05:23.714Z"
+    }
+  ],
+  "runtimePin": "e47507c8191a84fa3b508fd520d05c40e6efadaf",
+  "limits": [
+    "Synthetic real-route fixture, not live data/provider proof",
+    "Schema-column baseline fixtures plus owning shared additive migrations, not full database migration proof",
+    "Authored scripted accessibility checks; incomplete axe checks retained",
+    "No human usability, council, score or native-zoom claims",
+    "No registry or CI adoption",
+    "No Atlas action or selected in-app browser control"
+  ],
+  "emailLab": {
+    "status": "not observed",
+    "reason": "Absent from all three existing requested matrices. No inference about selected-browser MutationObserver error."
+  },
+  "extension": {
+    "requestedCases": 328,
+    "status": "held: existing matrix includes 36 prohibited Atlas cases; no matrix edits or captures"
+  }
+}

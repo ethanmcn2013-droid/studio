@@ -1,0 +1,1 @@
+{"scenario":"empty","synthetic":true,"providerCalls":0,"migrations":[{"id":"0001_venue_fulfilment","state":"applied"},{"id":"0002_usage_delivery","state":"applied"}],"expectedCash":0,"verifiedReceipts":0}

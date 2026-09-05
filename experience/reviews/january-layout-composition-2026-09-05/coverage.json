@@ -1,0 +1,128 @@
+{
+  "sourceDigest": "2713468ad563646a469399967fe57a671ae50166d4f72ec70498f6bacffde2d4",
+  "scriptedOnly": true,
+  "humanReview": "pending",
+  "councilReview": "not performed",
+  "outcomes": [
+    {
+      "id": "studio.page.hq",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-blueprint",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-entitlements",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-financial-model",
+      "complete": true,
+      "errors": []
+    },
+    {
+      "id": "studio.page.hq-founders-circle",
+      "complete": false,
+      "errors": [
+        "studio.page.hq-founders-circle:reduced-motion:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:reduced-motion:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:reduced-motion:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:reduced-motion:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:keyboard-only:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:keyboard-only:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:keyboard-only:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-founders-circle:keyboard-only:wide: expected exactly one receipt, found 0"
+      ]
+    },
+    {
+      "id": "studio.page.hq-reporting",
+      "complete": false,
+      "errors": [
+        "studio.page.hq-reporting:empty:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:empty:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:empty:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:empty:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:populated:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:populated:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:populated:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:populated:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:partial-failure:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:partial-failure:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:partial-failure:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:partial-failure:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:error:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:error:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:error:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:error:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:restricted:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:restricted:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:restricted:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:restricted:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:dense:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:dense:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:dense:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:dense:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:long-content:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:long-content:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:long-content:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:long-content:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:reduced-motion:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:reduced-motion:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:reduced-motion:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:reduced-motion:wide: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:keyboard-only:mobile: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:keyboard-only:tablet: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:keyboard-only:desktop: expected exactly one receipt, found 0",
+        "studio.page.hq-reporting:keyboard-only:wide: expected exactly one receipt, found 0"
+      ]
+    },
+    {
+      "id": "studio.page.students",
+      "complete": false,
+      "errors": [
+        "studio.page.students:default:mobile: expected exactly one receipt, found 0",
+        "studio.page.students:default:tablet: expected exactly one receipt, found 0",
+        "studio.page.students:default:desktop: expected exactly one receipt, found 0",
+        "studio.page.students:default:wide: expected exactly one receipt, found 0",
+        "studio.page.students:long-content:mobile: expected exactly one receipt, found 0",
+        "studio.page.students:long-content:tablet: expected exactly one receipt, found 0",
+        "studio.page.students:long-content:desktop: expected exactly one receipt, found 0",
+        "studio.page.students:long-content:wide: expected exactly one receipt, found 0",
+        "studio.page.students:reduced-motion:mobile: expected exactly one receipt, found 0",
+        "studio.page.students:reduced-motion:tablet: expected exactly one receipt, found 0",
+        "studio.page.students:reduced-motion:desktop: expected exactly one receipt, found 0",
+        "studio.page.students:reduced-motion:wide: expected exactly one receipt, found 0",
+        "studio.page.students:keyboard-only:mobile: expected exactly one receipt, found 0",
+        "studio.page.students:keyboard-only:tablet: expected exactly one receipt, found 0",
+        "studio.page.students:keyboard-only:desktop: expected exactly one receipt, found 0",
+        "studio.page.students:keyboard-only:wide: expected exactly one receipt, found 0"
+      ]
+    },
+    {
+      "id": "studio.surface.hq-shell-navigation",
+      "complete": false,
+      "errors": [
+        "studio.surface.hq-shell-navigation:default:mobile: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:default:tablet: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:default:desktop: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:default:wide: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:long-content:mobile: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:long-content:tablet: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:long-content:desktop: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:long-content:wide: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:reduced-motion:mobile: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:reduced-motion:tablet: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:reduced-motion:desktop: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:reduced-motion:wide: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:keyboard-only:mobile: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:keyboard-only:tablet: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:keyboard-only:desktop: expected exactly one receipt, found 0",
+        "studio.surface.hq-shell-navigation:keyboard-only:wide: expected exactly one receipt, found 0"
+      ]
+    }
+  ]
+}
