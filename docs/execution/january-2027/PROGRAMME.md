@@ -1,5 +1,7 @@
 # January 2027 programme
 
+Source index: [17 capabilities and their authoritative code, policy and proof gaps](CAPABILITY_INDEX.md). This dated index preserves source hashes; current acceptance remains in this register.
+
 Updated 2026-09-05 by the principal integrator. Current phase: internal implementation, independent verification and integration. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
 
 Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1–S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
@@ -17,20 +19,34 @@ Current programme estimate: **approximately 60% complete**, including verificati
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Current follow-up candidate: App `feat/january-final-journeys` at `c64b8cb3`.
+Current follow-up candidate: App `feat/january-final-journeys` at `50918cdc`.
 The preceding built runtime `e2e4a0c8` passes 132 critical browser cases, 68
 actual-route states, 27 Notes browser scenarios, the 26-case recipient gate and
 ten-checkpoint persisted story, full Drive suite and 65 DB-contract checks.
 Its original artifacts and failures are preserved in App
 `experience/reviews/january-recipient-2026-09-05/`. Manual inspection nevertheless
-found dark-mode Floor and mobile project-label contrast defects; their owner is
-repairing the owning styles and generator. The known-name greeting correction at
-`c64b8cb3` passes six source-fixture tests, typecheck and focused lint; final
-combined rendering remains pending. The targeted independent RC-3 review was
+found dark-mode Floor and mobile project-label contrast defects. Their owning
+master, generator and project styles are repaired and integrated; six generator
+checks and 80 measured component checks pass. The known-name greeting correction
+at `c64b8cb3` passes six source-fixture tests and 17 desktop route states. My work
+completion controls at `485b3bc0` pass measured light/dark contrast and 44-pixel
+interaction checks at mobile and desktop, with no Open-task overlap. The combined
+gate exposed a billing-loader dependency missed by the isolated commercial copy
+checks; `50918cdc` separates the real copy module and aligns the Pro assertion.
+Forty billing and five redemption checks, typecheck and lint pass; remaining
+declared gates and final combined rendering are running, not yet accepted.
+The targeted independent RC-3 review was
 stopped by an automatic safety check, with no verdict, and is not being retried
 or rerouted. Independent and receiving acceptance remain open. Commercial
-offer/copy and support instructions are being aligned in separately owned App
-and Studio worktrees. None of these follow-ups changes the programme percentage.
+offer/copy and support instructions are composed in Studio `a709b52c` and App
+`50918cdc`, with existing terms preserved. Studio's full tests/typecheck/build
+pass at preceding `a27025fe`; seven email tests and a fresh normal build pass for
+the metadata correction. Product source digest matches the separate capture
+lane. The old 188/328/Atlas component evidence is stale after source changes;
+renewal and Venue-kit coverage are in progress. The [capability source index](CAPABILITY_INDEX.md)
+is adopted with 104 verified hashes. It leaves retention ratification and
+Notes/Signal production migration adoption open. None of these follow-ups
+changes the programme percentage.
 
 ## Accepted allocations
 

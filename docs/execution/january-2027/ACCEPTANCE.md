@@ -1,5 +1,7 @@
 # January acceptance register
 
+Source index: [17 capabilities and their authoritative code, policy and proof gaps](CAPABILITY_INDEX.md). This dated index preserves source hashes; current acceptance remains in this register.
+
 Observed evidence is pinned to the named revision/environment. Open rows are assigned work, not exceptions. S6 closes by the accepted no-build decision; all six release acceptance states below remain open. Update this register after receiving checks; do not add another scoreboard.
 
 ## Release acceptance states
