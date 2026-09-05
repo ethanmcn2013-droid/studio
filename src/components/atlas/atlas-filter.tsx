@@ -73,6 +73,7 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
       <div className="mb-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <input
           type="search"
+          aria-label="Search Atlas"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="search title, summary, tags…"
@@ -84,6 +85,8 @@ export function AtlasFilter({ groups }: { groups: Group[] }) {
             return (
               <button
                 key={l}
+                type="button"
+                aria-pressed={active}
                 onClick={() => setLensFilter(l)}
                 className={
                   "transition-colors " +
