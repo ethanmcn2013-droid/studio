@@ -121,7 +121,13 @@ export async function proveMaterialState({page, entry, state, variant, row, fixt
     }
     proof({marketingView:view,syntheticLocalState:state==='populated',remoteAnalytics:'unconfigured; fallback is not observed use'});
   }
-  if(id==='studio.page.hq-platform-readiness')proof({trackedLedger:true,statusText:(await page.locator('#hq-content').innerText()).slice(0,350)});
+  if(id==='studio.page.hq-platform-readiness'){
+    const text=await page.locator('#hq-content').innerText();
+    assert.match(text,/July 2026 remediation checklist/);
+    assert.match(text,/July checklist completion/);
+    assert.match(text,/closure requires production evidence\. January programme delivery is tracked separately/);
+    proof({trackedLedger:true,statusText:text.slice(0,550),scope:'July 2026 remediation checklist; not January programme progress'});
+  }
   if(id==='studio.page.hq-product-hero-design-motion')proof({externalDirections:await page.locator('.hero-room-direction').count(),externalPreviewsFollowed:false});
   if(id==='studio.page.hq-venues')proof({authoredStrategy:true,outreachPerformed:false});
 }

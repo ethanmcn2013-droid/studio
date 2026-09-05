@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Platform readiness · Signal HQ",
-  description: "Evidence-backed progress through the Signal Studio remediation program.",
+  description: "The July 2026 remediation checklist and its production-evidence closure, separate from January programme delivery.",
   robots: { index: false, follow: false },
 };
 
@@ -25,11 +25,11 @@ export default async function PlatformReadinessPage() {
     <main id="main" className="mx-auto w-full max-w-[1100px] px-6 pb-24">
       <HqPageHeader
         slug="platform-readiness"
-        standfirst="One ledger of observable evidence; no launch claim without proof."
+        standfirst="July 2026 remediation checklist. This count tracks the earlier checklist, whose closure requires production evidence. January programme delivery is tracked separately."
       />
 
       <div className="mt-8 inline-block border border-border-soft px-5 py-4" style={{ background: "var(--surface)" }}>
-        <div className="hq-eyebrow">Completion</div>
+        <div className="hq-eyebrow">July checklist completion</div>
         <div className="text-ink" style={{ fontSize: 34, fontWeight: 600 }}>{summary.calculatedCompletion}%</div>
         <div className="text-[color:var(--hqx-muted-ink,var(--ink-quiet))]" style={{ fontSize: 12 }}>{summary.completed} of {summary.total} items</div>
       </div>

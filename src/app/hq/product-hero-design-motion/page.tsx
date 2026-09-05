@@ -383,6 +383,7 @@ export default async function ProductHeroRoomPage() {
       <style>{`
         .hero-room-direction {
           grid-template-columns: minmax(150px, 210px) 110px 1fr;
+          scroll-margin-block-end: 80px;
           transition: background var(--motion-instant) var(--ease-out);
         }
 
