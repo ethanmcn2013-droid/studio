@@ -1,0 +1,48 @@
+✔ extension fixtures isolate real read states and exclude inherited provider configuration (3914.7986ms)
+✔ all eight waitlist branches require actual matching receipts (3.5035ms)
+✔ missing and duplicate cases cannot close coverage (0.7149ms)
+✔ source, viewport, route and screenshot must match (3.4517ms)
+✔ unobserved branch, unsafe fixture and motion failures are rejected (0.8959ms)
+✔ application faults remain failures; only canceled local RSC prefetch is nonblocking (1.397ms)
+✔ only the 14 extension pages and all four declared widths are in scope (0.3394ms)
+✔ synthetic states distinguish empty, legacy claims, verified receipts and failed reads (4910.6834ms)
+✔ complete requires all four states at all four exact breakpoints (4.2415ms)
+✔ a missing mobile keyboard render cannot be certified by other captures (0.8221ms)
+✔ duplicate copies cannot stand in for a required state (0.4585ms)
+✔ changed source and changed PNG each invalidate coverage (0.3482ms)
+✔ an invented data state, wrong width, or missing interaction is rejected (0.2832ms)
+✔ runtime and accessibility faults cannot be hidden by pass:true (0.2921ms)
+✔ only canceled local RSC requests are classified as prefetch cancellation (0.6467ms)
+✔ reduced motion requires the actual browser preference (0.5663ms)
+✖ server environment never inherits operator, DB, payment or mail settings (5.7917ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7127.347
+
+✖ failing tests:
+
+test at scripts\experience\january\receipt.test.mjs:34:1
+✖ server environment never inherits operator, DB, payment or mail settings (5.7917ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^file:.*playwright-results\/january-commercial\/studio\.db$/. Input:
+  
+  'file:C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-commercial-package/experience/output/playwright-results/january-commercial-final/studio.db'
+  
+      at TestContext.<anonymous> (file:///C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-commercial-package/scripts/experience/january/receipt.test.mjs:42:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'file:C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-commercial-package/experience/output/playwright-results/january-commercial-final/studio.db',
+    expected: /^file:.*playwright-results\/january-commercial\/studio\.db$/,
+    operator: 'match',
+    diff: 'simple'
+  }

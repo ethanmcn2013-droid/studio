@@ -1,0 +1,37 @@
+node:internal/child_process:1160
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync git ENOENT
+    at Object.spawnSync (node:internal/child_process:1160:20)
+    at spawnSync (node:child_process:928:24)
+    at execFileSync (node:child_process:971:15)
+    at sourceDigest (file:///C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-commercial-package/scripts/experience/january/receipt.mjs:10:17)
+    at file:///C:/Users/ethan/signal-studio-workspace/worktrees/studio/fix-january-commercial-package/scripts/experience/january-extension/serve.mjs:14:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [
+    'ls-files',
+    'src',
+    'content',
+    'contracts',
+    'package.json',
+    'pnpm-lock.yaml',
+    'pnpm-workspace.yaml',
+    'next.config.ts'
+  ],
+  error: [Circular *1],
+  status: null,
+  signal: null,
+  output: null,
+  pid: 0,
+  stdout: undefined,
+  stderr: undefined
+}
+
+Node.js v24.19.0

@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ undefined
+- 'Q2eGZCiNLZijg0M_mBjah'
+
+    at C:\Users\ethan\Documents\Codex\2026-09-04\here-are-6-prompts-i-have-2\work\studio-final-evidence-2026-09-05\email-metadata-render.cjs:16:80 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: 'Q2eGZCiNLZijg0M_mBjah',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

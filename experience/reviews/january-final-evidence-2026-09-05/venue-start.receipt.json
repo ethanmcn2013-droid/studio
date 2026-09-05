@@ -1,0 +1,16 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "scripts/experience/january/serve.mjs",
+    "start",
+    "--venue-kit"
+  ],
+  "tag": "venue-start",
+  "startedAt": "2026-09-05T06:00:42.953Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 20296,
+  "exitCode": 4294967295,
+  "signal": null,
+  "finishedAt": "2026-09-05T06:12:15.103Z"
+}

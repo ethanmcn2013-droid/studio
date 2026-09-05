@@ -1,0 +1,729 @@
+{
+  "at": "2026-09-05T06:26:53.111Z",
+  "runtimeCommit": "ee0fb632ab63d73ad197911c823d0d4bf98584fa",
+  "metadataParent": "385cd0be9255161133cb578b86f39cf147b231ed",
+  "branch": "fix/january-commercial-package",
+  "base": "2663e5acb13fa3b95ab235cb963de376c9ff406b",
+  "sourceParity": {
+    "at": "2026-09-05T06:26:36.211Z",
+    "expectedPrincipal": "a709b52c217c343956b199b07d0db47cd8cb42c0",
+    "ownHead": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "git",
+      "args": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": "ee0fb632ab63d73ad197911c823d0d4bf98584fa"
+    },
+    "principalHead": {
+      "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+      "executable": "git",
+      "args": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": "fcb528f1dc364e55ab37f4148a2437f0e8c607a3"
+    },
+    "principalContainsExpected": {
+      "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+      "executable": "git",
+      "args": [
+        "merge-base",
+        "--is-ancestor",
+        "a709b52c217c343956b199b07d0db47cd8cb42c0",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    },
+    "own": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import {sourceDigest} from './scripts/experience/january/receipt.mjs'; console.log(sourceDigest())"
+      ],
+      "exitCode": 0,
+      "stdout": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    "parent": {
+      "cwd": "C:/Users/ethan/signal-studio-workspace/worktrees/studio/feat-january-commercial-readiness",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import {sourceDigest} from './scripts/experience/january/receipt.mjs'; console.log(sourceDigest())"
+      ],
+      "exitCode": 0,
+      "stdout": "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+    },
+    "parity": true,
+    "productDifference": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--name-only",
+        "a709b52c217c343956b199b07d0db47cd8cb42c0",
+        "HEAD",
+        "--",
+        "src",
+        "content",
+        "contracts",
+        "package.json",
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml",
+        "next.config.ts"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    },
+    "extensionAssetDifference": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--name-only",
+        "fcb528f1dc364e55ab37f4148a2437f0e8c607a3",
+        "HEAD",
+        "--",
+        "public/brand/collateral/cards",
+        "public/brand/collateral/social",
+        "docs/signal-studio-review/remediation-program.yaml"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    },
+    "workingProductDifference": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "content",
+        "contracts",
+        "package.json",
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml",
+        "next.config.ts"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    },
+    "untrackedProduct": {
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "git",
+      "args": [
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+        "--",
+        "src",
+        "content",
+        "contracts"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    }
+  },
+  "cases": {
+    "january": {
+      "manifest": "experience/reviews/january-commercial-final-2026-09-05/capture-manifest.json",
+      "manifestSha256": "323959de7d07cb68bc8bc590e13269922c6723ba38284161a8fbcd4cdb401bef",
+      "commit": "ee0fb632ab63d73ad197911c823d0d4bf98584fa",
+      "buildId": "Q2eGZCiNLZijg0M_mBjah",
+      "sourceDigests": [
+        "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+      ],
+      "rows": 188,
+      "passing": 188,
+      "experiences": [
+        "studio.page.hq",
+        "studio.page.hq-blueprint",
+        "studio.page.hq-entitlements",
+        "studio.page.hq-financial-model",
+        "studio.page.hq-founders-circle",
+        "studio.page.hq-reporting",
+        "studio.page.students",
+        "studio.surface.hq-shell-navigation"
+      ],
+      "screenshots": 272,
+      "axeViolations": 0,
+      "axeBlocking": 0,
+      "rowsWithAxeIncomplete": 166,
+      "axeIncompleteIds": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "link-in-text-block"
+      ],
+      "maximumOverflow": 0,
+      "blockedRequests": 0,
+      "httpErrors": 0,
+      "retainedFailedRequests": 5071
+    },
+    "venue": {
+      "manifest": "experience/reviews/january-venue-kit-final-2026-09-05/capture-manifest.json",
+      "manifestSha256": "a8e339cfec9c6cf5b7d4e944341099d3daed0d1a4aa41ebe399f961866bc4c24",
+      "commit": "ee0fb632ab63d73ad197911c823d0d4bf98584fa",
+      "buildId": "Q2eGZCiNLZijg0M_mBjah",
+      "sourceDigests": [
+        "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+      ],
+      "rows": 20,
+      "passing": 20,
+      "experiences": [
+        "studio.page.hq-venue-kit"
+      ],
+      "screenshots": 28,
+      "axeViolations": 0,
+      "axeBlocking": 0,
+      "rowsWithAxeIncomplete": 16,
+      "axeIncompleteIds": [
+        "color-contrast"
+      ],
+      "maximumOverflow": 0,
+      "blockedRequests": 0,
+      "httpErrors": 0,
+      "retainedFailedRequests": 609
+    },
+    "extension": {
+      "manifest": "experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json",
+      "manifestSha256": "b55d4b1c770c90497e8691572a94d86b5fee83f3a4614b85742a0fc10fdc9607",
+      "commit": "ee0fb632ab63d73ad197911c823d0d4bf98584fa",
+      "buildId": "DANN7J8yQ7lTN4nVlbJjA",
+      "sourceDigests": [
+        "38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c"
+      ],
+      "rows": 328,
+      "passing": 328,
+      "experiences": [
+        "studio.page.hq-access",
+        "studio.page.hq-atlas",
+        "studio.page.hq-atlas-by-slug",
+        "studio.page.hq-cards",
+        "studio.page.hq-entitlements-by-lookup",
+        "studio.page.hq-experimentation-room",
+        "studio.page.hq-health",
+        "studio.page.hq-marketing",
+        "studio.page.hq-org-by-slug",
+        "studio.page.hq-platform-readiness",
+        "studio.page.hq-product-hero-design-motion",
+        "studio.page.hq-socials",
+        "studio.page.hq-venues",
+        "studio.page.hq-waitlist"
+      ],
+      "screenshots": 480,
+      "axeViolations": 0,
+      "axeBlocking": 0,
+      "rowsWithAxeIncomplete": 192,
+      "axeIncompleteIds": [
+        "color-contrast",
+        "aria-prohibited-attr",
+        "link-in-text-block"
+      ],
+      "maximumOverflow": 0,
+      "blockedRequests": 0,
+      "httpErrors": 0,
+      "retainedFailedRequests": 9536
+    }
+  },
+  "receipts": [
+    {
+      "file": "email-metadata-render-fixed.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/email-metadata-render.cjs"
+      ],
+      "tag": "email-metadata-render-fixed",
+      "startedAt": "2026-09-05T06:11:11.393Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 17844,
+      "exitCode": 1,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:11:44.762Z"
+    },
+    {
+      "file": "email-metadata-render-selector-fixed.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/email-metadata-render.cjs"
+      ],
+      "tag": "email-metadata-render-selector-fixed",
+      "startedAt": "2026-09-05T06:11:58.349Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 32392,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:12:04.238Z"
+    },
+    {
+      "file": "email-metadata-render.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/email-metadata-render.cjs"
+      ],
+      "tag": "email-metadata-render",
+      "startedAt": "2026-09-05T06:10:26.992Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 7964,
+      "exitCode": 1,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:10:39.018Z"
+    },
+    {
+      "file": "extension-attest.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/attest.mjs",
+        "--manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json",
+        "--write"
+      ],
+      "tag": "extension-attest",
+      "startedAt": "2026-09-05T06:26:08.021Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 23484,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:08.944Z"
+    },
+    {
+      "file": "extension-build-final.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/serve.mjs",
+        "build"
+      ],
+      "tag": "extension-build-final",
+      "startedAt": "2026-09-05T06:12:15.137Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 31344,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:13:42.722Z"
+    },
+    {
+      "file": "extension-build-path-fixed.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/serve.mjs",
+        "build"
+      ],
+      "tag": "extension-build-path-fixed",
+      "startedAt": "2026-09-05T05:50:48.268Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 27860,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:51:32.908Z"
+    },
+    {
+      "file": "extension-build.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/serve.mjs",
+        "build"
+      ],
+      "tag": "extension-build",
+      "startedAt": "2026-09-05T05:50:30.417Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 11260,
+      "exitCode": 1,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:50:30.518Z"
+    },
+    {
+      "file": "extension-capture.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/capture.mjs"
+      ],
+      "tag": "extension-capture",
+      "startedAt": "2026-09-05T06:14:33.189Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 18652,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:25:54.889Z"
+    },
+    {
+      "file": "extension-portable-node22.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/AppData/Local/Programs/nodejs-v22/node-v22.23.2-win-x64/node.exe",
+      "args": [
+        "scripts/experience/january-extension-verify.mjs",
+        "--manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json"
+      ],
+      "startedAt": "2026-09-05T06:26:09.377Z",
+      "environment": "allowlisted process plumbing; no provider configuration inherited",
+      "pid": 28664,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:10.339Z"
+    },
+    {
+      "file": "extension-portable-tests.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--test",
+        "scripts/experience/january-extension-verify.test.mjs",
+        "scripts/experience/january-extension-build-inputs.test.mjs"
+      ],
+      "tag": "extension-portable-tests",
+      "startedAt": "2026-09-05T06:04:48.055Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 19036,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:04:49.027Z"
+    },
+    {
+      "file": "extension-start-unconfigured.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/serve.mjs",
+        "start",
+        "--unconfigured"
+      ],
+      "tag": "extension-start-unconfigured",
+      "startedAt": "2026-09-05T06:14:22.924Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 19500,
+      "exitCode": 4294967295,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:37.040Z"
+    },
+    {
+      "file": "extension-start.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january-extension/serve.mjs",
+        "start"
+      ],
+      "tag": "extension-start",
+      "startedAt": "2026-09-05T06:14:13.993Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 12680,
+      "exitCode": 4294967295,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:37.050Z"
+    },
+    {
+      "file": "extension-tests.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "scripts/experience/january-extension/receipt.test.mjs",
+        "scripts/experience/january-extension/fixture.test.ts",
+        "scripts/experience/january/receipt.test.mjs",
+        "scripts/experience/january/fixture.test.ts"
+      ],
+      "tag": "extension-tests",
+      "startedAt": "2026-09-05T05:50:22.770Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 19500,
+      "exitCode": 1,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:50:29.998Z"
+    },
+    {
+      "file": "fixture-receipt-tests-fixed.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "scripts/experience/january-extension/receipt.test.mjs",
+        "scripts/experience/january-extension/fixture.test.ts",
+        "scripts/experience/january/receipt.test.mjs",
+        "scripts/experience/january/fixture.test.ts"
+      ],
+      "tag": "fixture-receipt-tests-fixed",
+      "startedAt": "2026-09-05T05:51:26.609Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 24896,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:51:32.734Z"
+    },
+    {
+      "file": "january-attest.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/attest.mjs",
+        "--write"
+      ],
+      "tag": "january-attest",
+      "startedAt": "2026-09-05T06:10:55.082Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 18136,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:10:56.857Z"
+    },
+    {
+      "file": "january-build-reuse.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/reuse-jan-build.cjs"
+      ],
+      "tag": "january-build-reuse",
+      "startedAt": "2026-09-05T06:02:28.936Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 12696,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:02:29.028Z"
+    },
+    {
+      "file": "january-capture.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/capture.mjs"
+      ],
+      "tag": "january-capture",
+      "startedAt": "2026-09-05T06:02:29.460Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 9568,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:10:46.402Z"
+    },
+    {
+      "file": "old-atlas-filter-verification.receipt.json",
+      "exitCode": 1,
+      "command": "python scripts/experience/january-atlas-filter.py --output=C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/atlas-filter-old-check --node=Node24"
+    },
+    {
+      "file": "original-package-preservation.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/verify-history.cjs"
+      ],
+      "tag": "original-package-preservation",
+      "startedAt": "2026-09-05T06:22:36.837Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 21028,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:22:37.972Z"
+    },
+    {
+      "file": "outreach-metadata-tests.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "src/emails/render.test.ts"
+      ],
+      "tag": "outreach-metadata-tests",
+      "startedAt": "2026-09-05T05:52:47.202Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 27736,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:52:50.508Z"
+    },
+    {
+      "file": "registry-after-venue.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/validate.mjs",
+        "--product=studio"
+      ],
+      "tag": "registry-after-venue",
+      "startedAt": "2026-09-05T06:02:28.170Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 2120,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:02:28.495Z"
+    },
+    {
+      "file": "registry-before.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/validate.mjs",
+        "--product=studio"
+      ],
+      "tag": "registry-before",
+      "startedAt": "2026-09-05T05:57:44.668Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 28288,
+      "exitCode": 1,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:57:45.038Z"
+    },
+    {
+      "file": "registry-final.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/validate.mjs",
+        "--product=studio"
+      ],
+      "tag": "registry-final",
+      "startedAt": "2026-09-05T06:26:10.736Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 31868,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:11.004Z"
+    },
+    {
+      "file": "source-parity-final.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "C:/Users/ethan/Documents/Codex/2026-09-04/here-are-6-prompts-i-have-2/work/studio-final-evidence-2026-09-05/prove-parity-final.cjs"
+      ],
+      "tag": "source-parity-final",
+      "startedAt": "2026-09-05T06:26:35.331Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 26176,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:26:36.649Z"
+    },
+    {
+      "file": "tooling-lint.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "scripts/experience/january/capture.mjs",
+        "scripts/experience/january/environment.mjs",
+        "scripts/experience/january/attest.mjs",
+        "scripts/experience/january/receipt.mjs",
+        "scripts/experience/january/receipt.test.mjs",
+        "scripts/experience/january/serve.mjs",
+        "scripts/experience/january/venue-kit-matrix.mjs",
+        "scripts/experience/january/venue-kit.test.mjs",
+        "scripts/experience/january-extension/environment.mjs",
+        "src/emails/registry.tsx"
+      ],
+      "tag": "tooling-lint",
+      "startedAt": "2026-09-05T05:57:33.379Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 26656,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:57:52.942Z"
+    },
+    {
+      "file": "venue-attest.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/attest.mjs",
+        "--venue-kit",
+        "--write"
+      ],
+      "tag": "venue-attest",
+      "startedAt": "2026-09-05T06:02:27.288Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 12904,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:02:27.721Z"
+    },
+    {
+      "file": "venue-capture.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/capture.mjs",
+        "--venue-kit"
+      ],
+      "tag": "venue-capture",
+      "startedAt": "2026-09-05T06:00:53.145Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 7996,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:01:38.591Z"
+    },
+    {
+      "file": "venue-fresh-build.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/serve.mjs",
+        "build",
+        "--venue-kit"
+      ],
+      "tag": "venue-fresh-build",
+      "startedAt": "2026-09-05T05:57:23.017Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 28868,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:58:10.987Z"
+    },
+    {
+      "file": "venue-receipt-tests.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "--test",
+        "scripts/experience/january/venue-kit.test.mjs",
+        "scripts/experience/january/receipt.test.mjs"
+      ],
+      "tag": "venue-receipt-tests",
+      "startedAt": "2026-09-05T05:56:18.216Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 8212,
+      "exitCode": 0,
+      "signal": null,
+      "finishedAt": "2026-09-05T05:56:18.681Z"
+    },
+    {
+      "file": "venue-start.receipt.json",
+      "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+      "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "args": [
+        "scripts/experience/january/serve.mjs",
+        "start",
+        "--venue-kit"
+      ],
+      "tag": "venue-start",
+      "startedAt": "2026-09-05T06:00:42.953Z",
+      "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+      "pid": 20296,
+      "exitCode": 4294967295,
+      "signal": null,
+      "finishedAt": "2026-09-05T06:12:15.103Z"
+    }
+  ],
+  "buildMechanism": "Owning fresh normal Next production builds, allowlisted process environment and isolated SQLite. No font mock; January188 transparently reuses the fresh Venue Q2 build. The older S2 packet retains its different cached-font build evidence.",
+  "scope": "Scripted local synthetic fixture coverage; no customer/provider acceptance, production deployment, human usability or council approval."
+}

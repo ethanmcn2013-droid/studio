@@ -1,0 +1,20 @@
+{
+  "cwd": "C:\\Users\\ethan\\signal-studio-workspace\\worktrees\\studio\\fix-january-commercial-package",
+  "executable": "C:/Users/ethan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "args": [
+    "--import",
+    "tsx",
+    "--test",
+    "scripts/experience/january-extension/receipt.test.mjs",
+    "scripts/experience/january-extension/fixture.test.ts",
+    "scripts/experience/january/receipt.test.mjs",
+    "scripts/experience/january/fixture.test.ts"
+  ],
+  "tag": "fixture-receipt-tests-fixed",
+  "startedAt": "2026-09-05T05:51:26.609Z",
+  "environment": "allowlisted runtime plumbing, no inherited provider config; owning fixture helpers select their isolated databases and synthetic credentials",
+  "pid": 24896,
+  "exitCode": 0,
+  "signal": null,
+  "finishedAt": "2026-09-05T05:51:32.734Z"
+}
