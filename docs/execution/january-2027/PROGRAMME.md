@@ -19,7 +19,9 @@ Current programme estimate: **approximately 60% complete**, including verificati
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Current follow-up candidate: App `feat/january-final-journeys` at `50918cdc`.
+Current follow-up candidate: App `feat/january-final-journeys` at `313fbc56`,
+with product runtime unchanged from `50918cdc`; draft PR171 targets the internal
+January branch and exact-candidate Linux checks are pending.
 The preceding built runtime `e2e4a0c8` passes 132 critical browser cases, 68
 actual-route states, 27 Notes browser scenarios, the 26-case recipient gate and
 ten-checkpoint persisted story, full Drive suite and 65 DB-contract checks.
@@ -33,17 +35,26 @@ completion controls at `485b3bc0` pass measured light/dark contrast and 44-pixel
 interaction checks at mobile and desktop, with no Open-task overlap. The combined
 gate exposed a billing-loader dependency missed by the isolated commercial copy
 checks; `50918cdc` separates the real copy module and aligns the Pro assertion.
-Forty billing and five redemption checks, typecheck and lint pass; remaining
-declared gates and final combined rendering are running, not yet accepted.
+Forty billing and five redemption checks, typecheck and lint pass. The17-command
+continuation through full Drive and DB contracts passes, as do the normal build,
+132 built browser cases,68 recipient states,3 React context checks,27 Notes
+browser scenarios and the integrated80-check self-contained contrast command.
+The source-bound LFS checkpoint preserves371 files and286 checked source hashes.
+Registry/materiality checks validate without increasing design or human scores.
 The targeted independent RC-3 review was
 stopped by an automatic safety check, with no verdict, and is not being retried
 or rerouted. Independent and receiving acceptance remain open. Commercial
 offer/copy and support instructions are composed in Studio `a709b52c` and App
 `50918cdc`, with existing terms preserved. Studio's full tests/typecheck/build
-pass at preceding `a27025fe`; seven email tests and a fresh normal build pass for
-the metadata correction. Product source digest matches the separate capture
-lane. The old 188/328/Atlas component evidence is stale after source changes;
-renewal and Venue-kit coverage are in progress. The [capability source index](CAPABILITY_INDEX.md)
+pass at preceding `a27025fe`; seven email tests and fresh normal builds pass for
+the metadata correction. Fresh188 January,328 extension and20 Venue Kit states
+now pass and are composed at `db840b00`. The product source digest remains
+`38ec727e72c0182f8d31c586ee11ad930e01893ec8eb0f50f54649019c63de1c`.
+The separate Atlas16/36 renewal is incomplete: automatic approval review rejected
+starting its isolated test server with only "blocked by policy". That action is
+not retried or rerouted, and the existing Atlas gate remains intact and failing
+on stale source. Scoped machine coverage does not imply full Studio CI success.
+The [capability source index](CAPABILITY_INDEX.md)
 is adopted with 104 verified hashes. It leaves retention ratification and
 Notes/Signal production migration adoption open. None of these follow-ups
 changes the programme percentage.

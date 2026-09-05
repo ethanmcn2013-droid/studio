@@ -35,12 +35,16 @@ jobs:
         run: pnpm run experience:january:test
       - name: Verify January rendered coverage against this candidate
         run: pnpm run experience:january:attest
+      - name: Verify Venue Kit coverage and reject incomplete state receipts
+        run: |
+          node --test scripts/experience/january/venue-kit.test.mjs
+          node scripts/experience/january/attest.mjs --venue-kit
       - name: Prove extension fixtures and receipt checks fail closed
         run: |
           node --test scripts/experience/january-extension/receipt.test.mjs scripts/experience/january-extension-verify.test.mjs scripts/experience/january-extension-build-inputs.test.mjs
           pnpm exec tsx --import ./src/test/register-server-only.mjs --test scripts/experience/january-extension/fixture.test.ts
       - name: Verify the exact complete Studio extension capture
-        run: node scripts/experience/january-extension-verify.mjs --manifest=experience/reviews/january-studio14-2026-09-05/capture-2026-09-05T01-41-27-920Z/manifest.json
+        run: node scripts/experience/january-extension-verify.mjs --manifest=experience/reviews/january-studio14-final-2026-09-05/capture-2026-09-05T06-14-36-024Z/manifest.json
       - name: Verify the independent Atlas filter component capture
         run: python3 scripts/experience/january-atlas-filter.py --output="$RUNNER_TEMP/studio-atlas-filter-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
       - name: Enforce finding and audit ratchets
