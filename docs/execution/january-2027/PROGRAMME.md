@@ -4,7 +4,7 @@ Source index: [17 capabilities and their authoritative code, policy and proof ga
 
 Updated 2026-09-05 by the principal integrator. Current phase: internal implementation, independent verification and integration. Commercial launch and first venue outreach target: **21 January 2027**. No earlier sends or commercial opening. The [January decision](../../../content/hq/decisions/january-2027-launch.md) records the user's authority and supersession.
 
-Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1–S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
+Current programme estimate: **approximately 60% complete**, including verification, recovery, stabilisation and release preparation. This is a principal planning assessment against the accepted scope, not a measured percentage, a count of passing tests or release authorization. S6 is closed; S1â€“S5 remain partial. Implemented candidate work receives no final acceptance credit until its independent and receiving gates pass. Live-provider proof, sustained internal use and final release exercises remain open; customer demand and human comprehension are separate postlaunch outcomes. This estimate is deliberately unchanged by individual follow-up test successes.
 
 ## Accountable workstreams
 
@@ -12,24 +12,28 @@ Current programme estimate: **approximately 60% complete**, including verificati
 |---|---|---|---|
 | S1 Truth | Partial; foundations established | Workspace40f7755, doctor0 failures/15 warnings; preserved Drive work; January policy and experiment clock; App receiving77d and Studio receiving4ed are Linux-green; current programme/acceptance, immutable paired gates and17-capability index with104 checked source hashes. | Principal: named contradiction disposition and final acceptance/operational evidence. The source index is complete as a dated snapshot, not proof of current runtime or production. |
 | S2 Commercial readiness | Partial; internal flow implemented | Verified payment evidence, exact recoverable issuance/readback, atomic claim and support packet. Actual three-store standard/Founding/pilot rehearsal24 checkpoints plus14 independent failure probes pass; repeated on the combined candidate. Held collateral and the eight-card fictional support walkthrough are composed. The preceding188/20 render matrices pass at source2713468a; HQ revocation corrections now require renewed source evidence. Older328 remains historical. | Principal/commercial: receiving sponsored-date acceptance, Event post-term closure, final contract parity and receiving gates. Operator: designated Stripe test account and connector reauthentication. Event/Student offer limitations remain explicit; demand is unverified. |
-| S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. | Drive owner: pending-permission notice and durable personal-disconnect revocation facts, then final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
+| S3 Drive | Partial; core implementation integrated | Backend, ownership/access UI and completed-upload recovery are in receivingfe4. Scoped UI security review and recovery81 authored plus39 independent cases pass. The later1ac pending-removal notice is independently verified and composed ina8c. | Drive owner: durable personal-disconnect response receipts and reconnect safeguards, then final integrated experience and failure-state acceptance. Operator/provider: isolated OAuth/Clerk target and real two-account upload/revoke/reauth/handover/erasure lifecycle. Incomplete closed-tab bytes cannot resume. Production0028/0029 remain held. |
 | S4 Suite coherence | Partial; follow-up candidate implemented | Canonical template/caller retry, invitation arrival, navigation/contrast and Home scope fixes. Notesf04 independently passes198 checks/scenarios. App6eb composes project-calendar and independently repaired sponsored-date follow-ups; final internal browser, artifact and all three Linux gates pass. Receiving remains held. Preceding runtime509 and Studio source38ec retain their132/68/27 and188/328/20 captures; those are historical after current source changes. Floor calendar has16 component browser cases/196 assertions; My Work has four scoped render controls. | Experience owner: exact-candidate/receiving gates, incomplete Atlas renewal, remaining design-lab observations and final calendar composition, complete authenticated stories and human accessibility/comprehension. Scripted coverage does not approve design or human usability. |
 | S5 Collaboration | Partial; useful-action reporting integrated | Invitation B while A is active passes25 cases. Actual deliberate Tasks creation, atomic delivery intent, canonical attribution, closed-day report, suppression and account erasure are in receiving77d; independent fix154 positive checks and actual three-store composition pass. Studio's paired consumer is now in receiving4ed. | Collaboration owner: complete creator/recipient/role/revocation story and final follow-up receiving verification. Operator: actual provider/delivery configuration and maintained erasure processing. Capture defaults off; no real email or human first-minute success is claimed. |
-| S6 Instruments | Closed — no-build for January | Accepted delegated decision and [A–F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
+| S6 Instruments | Closed â€” no-build for January | Accepted delegated decision and [Aâ€“F opportunity comparison](INSTRUMENT_OPPORTUNITIES.md). Existing templates win the January scope decision. | Reopen only after the recorded postlaunch evidence trigger and a new scope decision. No guest schema, plus menu or speculative chooser added. |
 
 These verdicts distinguish implementation progress from release acceptance. The authoritative scenario register is [ACCEPTANCE.md](ACCEPTANCE.md). Component reports remain historical receipts; they cannot override a later failure.
 
-Latest complete Linux App checkpoint: `6ebf71ef`, draft PR171, with product
-source `8172364e`. All three exact Linux workflows
-pass: CI33959562287, Verify33959562365 and Design33959562282. The tested merge
-`ac2470f5` has receiving77d and candidate6eb as parents; its tree equals the
-candidate tree. `ce81e066` archives that Linux proof and corrects one README count. Current
-published candidate `3be4ea96` adds the reviewed Drive UI patch8ae94ffb, composed
-at29193167. The82-test Drive UI command, full typecheck/lint and language check
-pass; two surface source reviews are renewed with coverage/approvals unchanged.
-Fresh Linux CI33961627091, Verify33961627087 and Design33961627079 are running.
-The76-case/14-supplemental component packet and35+4 independent controls are
-scoped UI proof, not full authenticated/provider or receiving acceptance.
+Latest complete Linux App checkpoint: `3be4ea96`, draft PR171. All three
+workflows pass: CI33961627091, Verify33961627087 and Design33961627079. Tested
+mergeb5a6cfa8 has exactly candidate tree323625ba; all logs, the132-case built
+artifact and source comparisons are preserved at4a70d3f4. This covers custody/
+focus8ae, not later Event or pending-removal changes.
+
+Current published App candidate `a8c225c7` composes Event80f and Drive1ac atcbf40.
+The pending-removal notice passes26 SQLite/SSR,5 independent controls and46
+saved component cases/52 screenshots. Principal99-test UI confirmation passes;
+its first native process failure remains retained. Event's36 tests,3 clock
+controls,66 migration tests, disposable fresh/no-op through0031, full type/lint,
+28 tenant/Stripe checks and ambient ratchet pass on the composition. Six archives
+preserve167 Event author/reviewer files and both original test defects. Event36+3
+is registered in the mandatory gate. Fresh Linux33991689111/33991689081/33991689089
+is running. Provider, human/council and receiving acceptance remain open.
 
 The final normal build `wnk1OREKC5EKuma6I3VoO` passes all132 built cases. Six
 separate browser commands pass3 React,68 route,80 geometry/contrast,16 calendar,
@@ -58,8 +62,10 @@ Latest captured Studio product source is `e47507c8`, digest
 Its composed14 commands and188 January/20 Venue captures pass, with300 PNGs at four
 widths. Nine surfaces were adopted at2e263f55. Published9fa4e41e passes CI33958617225
 and Verify33958617231; Design33958617226 rejects the old extension build inputs.
-The current HQ revocation qualification changes the source digest to
-`781bd312562fcc6885588c7e73cc9c28bace67de0a6aef00b6c2e364889222ee`.
+Studio41384571 passes CI33962227361 and Verify33962227364; Design33962227359
+fails the January source-freshness gate. Complete logs are preserved at618ef51b.
+The accepted permission-notice update now changes the HQ product digest to
+`e76d4b7ccdf2ab9e0de9e37d3e745fe89abb382da2ff099cad7926512524602c`.
 No captures are claimed at that new source. Prior188/20 evidence remains dated
 and intact; its freshness is now open alongside the unrenewed328 extension.
 The292-case proposal was not launched or merged because redirect exclusion is
@@ -67,21 +73,21 @@ unproven; Atlas16/36 remains held. The original native capture failure and314
 canceled Atlas RSC prefetches remain visible. No further browser action is taken
 to evade that boundary. Email Lab's selected-browser error is still unattributed.
 
-Active isolated work: Event milestone `a59dbd3e`, based on8172, implements
-immutable purchase/project facts and an explicit internal access evaluation.
-Author checks pass36 new SQLite/action/webhook cases,40 existing billing and66
-migration contracts, with actual FK-on/off account erasure after owner transfer.
-Independent immutable review is running. Migration0031 is allocated but not
-production-authorized. No historical backfill, sales reopening or content denial
-is included. Export/recovery and private/Timeline/public/cache adapters must follow.
+Event foundationa59 and corrections93be/80f are independently verified and
+integrated ina8c. Original checkout/project/term/refund facts and anonymized
+surviving-project effects are implemented; no content adapter consumes the
+internal evaluator yet. Export and independent profile-download reachability
+are the active next slice. Recovery must precede private/Timeline/public/cache
+denial. No historical backfill, sales reopening or production migration occurred.
 
-Drive's reviewed custody/focus patch is composed in3be4ea96. A separate actual
-service/SQLite investigation at27af50c0 reproduces12 controls: named-permission
-removal is durably pending but lacks a fresh-view notice; personal token disconnect
-has no durable provider-completion fact and its no-current retry can imply success.
-The permission DTO/view repair is active and migration-free. Token receipt and
-reconnect-lineage work is a separate next dependency; no schema or automatic retry
-has been added for it. Current live permission labels remain the access truth.
+The original27af twelve-control Drive investigation remains preserved. The
+named-permission notice is repaired in1ac; live Google labels remain independent.
+Personal token disconnect still needs durable local request and bounded provider
+response facts.0032_drive_token_revocation_receipts.sql is allocated to the Drive
+writer after inspecting64 worktrees and refreshedorigin/maina709. Its implementation
+starts fromcbf40, separate from the Event export lane. No old-token retry worker
+is authorized. A receipt alone does not serialize overlapping Google consent and
+revocation or prove immediate provider effects.
 
 Receiving branches remain App77d22a6b and Studio4ed9be64. The rejected Atlas server
 start and stopped RC-3 review are not retried or rerouted. Provider lifecycles,
@@ -93,14 +99,14 @@ changes the approximately60% estimate or authorizes production, launch or outrea
 
 | Window | Work / exit |
 |---|---|
-| 4–11 September | Truth, Drive takeover, workspace and internal verification environment. |
-| 14 September–9 October | Drive lifecycle and commercial test-mode preparation in parallel. |
-| 5–30 October | Project identity, collaboration, invitation arrival and reproducible templates. |
+| 4â€“11 September | Truth, Drive takeover, workspace and internal verification environment. |
+| 14 Septemberâ€“9 October | Drive lifecycle and commercial test-mode preparation in parallel. |
+| 5â€“30 October | Project identity, collaboration, invitation arrival and reproducible templates. |
 | By 16 October | Instrument decision; no-build is already recorded. |
-| 2–27 November | Integrated suite design and experience acceptance. |
-| 30 November–11 December | Commercial rehearsal, security, resilience and six verdicts; feature freeze on 11 December. |
-| 14 December–8 January | Stabilisation, internal use, maintenance and recovery. |
-| 11–20 January | Exact release revisions, migration/restore/rollback and operator rehearsal. |
+| 2â€“27 November | Integrated suite design and experience acceptance. |
+| 30 Novemberâ€“11 December | Commercial rehearsal, security, resilience and six verdicts; feature freeze on 11 December. |
+| 14 Decemberâ€“8 January | Stabilisation, internal use, maintenance and recovery. |
+| 11â€“20 January | Exact release revisions, migration/restore/rollback and operator rehearsal. |
 | 21 January | Controlled release checks, then commercial opening and separately authorized first outreach. |
 
 These are allocations, not evidence of completed future work. Reforecast from measured remaining effort. After freeze, new work must resolve an acceptance failure/material defect and state its schedule cost.
@@ -125,7 +131,7 @@ One principal integrator owns shared project identity, membership, schema, navig
 | App 50f16575, Linux 33916020920 and 33916020941 | CI and registry/browser/locale checks pass. | Fixture coverage does not certify all golden stories or human understanding. |
 | Built App 50f16575 + copy committed 450dda44; local Drive flag enabled | 132/132 critical browser cases; scoped owner confirmation and pending-state desktop/mobile review. | Fictional state; no DB/Google mutation or byte-resume claim. |
 | Scoped independent Drive UI review at 50f16575 | 38 UI tests plus 12 additional action-boundary tests; no new validated scoped security finding. | Not an exhaustive backend audit or live-provider acceptance. |
-| Studio 27016169 | 484 tests, typecheck/lint/build; populated synthetic HQ legacy-only claims excluded and two receipts total €2,500. | Operator-attested receipt logic, not actual settlement or revenue. |
+| Studio 27016169 | 484 tests, typecheck/lint/build; populated synthetic HQ legacy-only claims excluded and two receipts total â‚¬2,500. | Operator-attested receipt logic, not actual settlement or revenue. |
 | App 0731ab91 / Studio 004f9c9 | 30 App access-term/vector tests, 792 differential cases and four consumer CLI regressions pass locally. | Correct arithmetic is separate from capturing/updating the couple's wedding date. |
 
 ## Consequential contradictions repaired
