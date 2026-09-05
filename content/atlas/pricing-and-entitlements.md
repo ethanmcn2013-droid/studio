@@ -47,9 +47,16 @@ Owning sources: Studio `contracts/commercial-terms.v2.json`, `src/app/pricing/pa
 `src/components/app/settings/sections/billing.tsx`, `src/server/actions/billing.ts`,
 `src/app/api/checkout/route.ts` and `src/server/actions/comp.ts`.
 Keep Pro as the public name without changing the internal `workspace` identifier.
-The sponsored term retains the 548-day floor and wedding-date-plus-90-day rule;
-the capture/update journey is still open in ACCEPTANCE. Arithmetic is not proof
-that a customer can update a date successfully.
+The sponsored term retains the 548-day floor and wedding-date-plus-90-day rule.
+App candidate `2d1d7783` links sponsored arrival and the persistent Tasks strip
+to the exact project's wedding date. It reads and updates `workspaces.primary_date`
+through `src/server/actions/sponsored-wedding-date.ts` and its project-scoped
+transaction. Missing dates retain the minimum term; earlier or cleared dates
+never shorten access already granted. The older overview target stays separate.
+Scoped local action, SQLite and component checks pass; full Next/Clerk,
+independent review, legacy creation-path retirement and receiving acceptance
+remain open in `docs/execution/january-2027/ACCEPTANCE.md`. This candidate does
+not expose the date to a venue, update shared date metadata or retime tasks.
 
 ## Evidence and measurement source map
 
@@ -120,7 +127,7 @@ Studio owns operator fulfilment and the shared sponsor/receipt boundary. Both re
 
 ## Open acceptance
 
-Stripe connector reauthentication and designated test-mode account identity are missing. No real renewal, refund, cancellation or customer portal rehearsal is claimed. Event post-term read-only behavior and the sponsored wedding-date capture/update path need product verification. Selecting a paid plan, redeeming a code or loading a board cannot close these gaps.
+Stripe connector reauthentication and designated test-mode account identity are missing. No real renewal, refund, cancellation or customer portal rehearsal is claimed. Event post-term read-only behavior and final integrated sponsored-date acceptance remain open. Selecting a paid plan, redeeming a code or loading a board cannot close these gaps.
 
 January's experiment clock stays inert until actual authorized first-outreach evidence. Commercial opening remains held until 21 January 2027 and the separate release/outreach decisions.
 

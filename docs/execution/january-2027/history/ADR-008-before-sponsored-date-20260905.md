@@ -6,14 +6,6 @@
 **Supersedes:** nothing. Extends ADR-007 (Venue Portal Phase A), which stands.
 **Decisions this rests on:** D-001, D-010, D-011, D-015 Q2 and Q4, D-020, D-022
 
-**Scoped amendment, 5 September 2026:** the couple-term row and section 9 now
-identify the actual date source and candidate implementation. This does not
-approve the rest of this proposed ADR or its venue-consent recommendation.
-Other August status labels remain historical observations, not January release
-acceptance. Current verdicts live in [the programme acceptance register](../execution/january-2027/ACCEPTANCE.md).
-The [original document](../execution/january-2027/history/ADR-008-before-sponsored-date-20260905.md)
-is preserved unchanged.
-
 ---
 
 ## Why this document exists
@@ -73,7 +65,7 @@ a test rather than reaching a venue.
 | 1 | **Venue** | `studio/src/lib/entitlements-db/schema.ts` table `sponsors` — slug, name, contactEmail, brandMeta, venuePlan, annualAmountCents, foundingLocked, term dates, paidAt, codeAllotment, allotmentMode, annualWeddingCount, fairUseCeiling, codesIssued | **partial** |
 | 2 | **Agreement** | Nowhere. No table, no signature date, no document reference, no contract version, in either repo. | **absent** |
 | 3 | **Term (venue)** | `sponsors.termStartsAt` / `termEndsAt` / `paidAt`. Two flat nullable integers, no renewal object, no history. | **partial** |
-| 3b | **Term (couple)** | App `workspaces.primary_date`; local `entitlements.expiresAt`. Redemption reads through `src/server/db/couple-access-term.ts`; candidate date edits use `src/server/db/sponsored-wedding-date.ts`; both consume `src/lib/venue-access-term.ts`. | **candidate implemented; final acceptance open** |
+| 3b | **Term (couple)** | `entitlements.expiresAt` + `entitlements.wedding_date`, computed by `app/src/server/db/sponsored-access-term.ts` through `app/src/lib/venue-edition-term.ts`. Implements D-022 exactly. | **shipped** |
 | 4 | **Founding status** | `sponsors.foundingLocked`, a boolean, set in `studio/src/lib/entitlements-db/venues.ts`. | **partial** |
 | 5 | **Member (couple)** | `app/src/server/db/schema.ts` `workspaceMembers` — workspaceId, userId, role `owner` or `member`. One-owner floor enforced in `app/src/server/actions/settings.ts`. | **shipped** |
 | 5b | **Member (venue)** | `sponsor_members` is fully specified in `studio/docs/venue-portal/ROLES_AND_PERMISSIONS.md` and exists nowhere in code. | **absent** |
@@ -385,33 +377,25 @@ rather than described as protection.
 
 ## 9. E04.09 — Wedding-date metadata and portal visibility
 
-**Canonical source.** App `workspaces.primary_date` holds the calendar date.
-The generic overview target in `meta` is a different field and is not migrated
-or used as a wedding date. `src/server/db/couple-access-term.ts` reads the
-project date at redemption; `src/lib/venue-access-term.ts` implements the
-approved maximum of redemption plus 548 days and wedding plus 90 days,
-preserving longer minted or existing terms.
+**Where the date lives.** `workspaces.primary_date` in the app — a calendar
+date, never an instant. The couple owns it and is never asked for it twice.
 
-**Candidate date changes.** App `2d1d7783` adds a linked arrival and persistent
-Tasks entry to the exact project's date form. The action in
-`src/server/actions/sponsored-wedding-date.ts` uses
-`src/server/db/sponsored-wedding-date.ts` to authorize project management and
-commit the date and eligible project-bound local term extensions together.
-Revision, revocation, membership and deletion checks are exercised locally.
-Ordinary members can view the date; managers can update it. Missing dates use
-the existing minimum term. Earlier or cleared dates never shorten granted access.
+**What reads it today.** The D-022 access term, and only that:
+`app/src/server/db/sponsored-access-term.ts` computes
+`max(redemption + 548 days, wedding + 90 days)` from it, at redemption and again
+on recompute. That is a shipped, tested, wired mechanism. It answers *when does
+this couple's access end*, not *what may a venue see*.
 
-**No shared date projection is claimed.** This path does not write
-`entitlements.wedding_date` in the shared store, retime tasks or add venue date
-visibility. The former paragraph incorrectly described that projection and a
-nonexistent App helper as implemented; the original is retained in the dated
-history above. D-011's prohibition on showing date changes to a venue remains.
+**The projection.** `entitlements.wedding_date` in the shared entitlements store
+is a projection of the couple-owned date, written at redemption and on
+recompute, so the term can be evaluated without reaching into product content.
+It is documented as a projection on the column itself, and it is deliberately
+**not** in `SPONSOR_DEFAULT_FIELDS`.
 
-**Acceptance boundary.** The source has local transaction/action and component
-evidence, not a successful full Next/Clerk journey or production receipt.
-Independent review, retirement of the older actor-wide creation helper and
-final receiving verification remain separate programme work. The venue-consent
-recommendation below remains proposed; this amendment does not implement it.
+**Date changes.** Recompute extends and never shortens (D-022 point 3). D-011
+point 1 additionally rules that **date changes are never shown to a venue** — a
+postponement is the couple's news to share, not a dashboard event. There is no
+date-change UI in the product today, so the rule has nothing to govern yet.
 
 ### Three gates, and nobody has said which governs
 
